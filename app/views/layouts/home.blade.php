@@ -11,7 +11,7 @@
 {{HTML::style('assets/js/jquery.dataTables.min.css')}}
 {{HTML::style('assets/css/dropzone.css')}}
 
-{{ Rapyd::head() }} <!-- for rapyd service -->
+
 </head>
 <body>
 
