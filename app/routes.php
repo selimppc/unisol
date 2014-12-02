@@ -13,3 +13,5 @@
 Route::get('/','RelationshipController@Show');
 Route::get('/eloquent','RelationshipController@Show');
 
+Route::get('/era','EloquentController@index');
+
