@@ -10,6 +10,6 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
-
+Route::get('/','RelationshipController@Show');
 Route::get('/eloquent','RelationshipController@Show');
 

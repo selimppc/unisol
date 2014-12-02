@@ -2,7 +2,7 @@
 
 @section('container')
 
-  <div class="container" style="margin-top: 20px">
+  <div class="container" style="">
     <div class="row">
         <table class="table table-bordered" id="myTable">
           <thead>
