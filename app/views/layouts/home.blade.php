@@ -1,154 +1,238 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="no-js">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-<title> {{ $title }}</title>
-
-<!-- BOOTSTRAP CSS (REQUIRED ALL PAGE)-->
-{{ HTML::style('assets/css/bootstrap.min.css') }}
-{{ HTML::style('assets/css/style.css') }}
-{{HTML::style('assets/js/jquery.dataTables.min.css')}}
-{{HTML::style('assets/css/dropzone.css')}}
+    <title>Main Page</title>
+    <!-- Bootstrap -->
+    {{ HTML::style('assets/css/bootstrap.min.css') }}
+    {{ HTML::style('assets/css/bootstrap-responsive.min.css') }}
+    {{HTML::style('assets/css/styles.css')}}
 
 
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    
 </head>
+
 <body>
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <a class="brand" href="#">Admin Panel</a>
+            <div class="nav-collapse collapse">
+                <ul class="nav pull-right">
+                    <li class="dropdown">
+                        <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-user"></i><i class="caret"></i>
 
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a tabindex="-1" href="#">Profile</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a tabindex="-1" href="login.html">Logout</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav">
+                    <li class="active">
+                        <a href="#">Dashboard</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Settings <b class="caret"></b>
 
-<nav id="myNavbar" class="navbar navbar-default navbar-fixed-top" role="navigation">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbarCollapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-       <a class="navbar-brand" href="#">{{ $title }}</a> 
+                        </a>
+                        <ul class="dropdown-menu" id="menu1">
+                            <li>
+                                <a href="#">Tools <i class="icon-arrow-right"></i>
+
+                                </a>
+                                <ul class="dropdown-menu sub-menu">
+                                    <li>
+                                        <a href="#">Reports</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Logs</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Errors</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">SEO Settings</a>
+                            </li>
+                            <li>
+                                <a href="#">Other Link</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#">Other Link</a>
+                            </li>
+                            <li>
+                                <a href="#">Other Link</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Content <i class="caret"></i>
+
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a tabindex="-1" href="#">Blog</a>
+                            </li>
+                            <li>
+                                <a tabindex="-1" href="#">News</a>
+                            </li>
+                            <li>
+                                <a tabindex="-1" href="#">Custom Pages</a>
+                            </li>
+                            <li>
+                                <a tabindex="-1" href="#">Calendar</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a tabindex="-1" href="#">FAQ</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Users <i class="caret"></i>
+
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a tabindex="-1" href="#">User List</a>
+                            </li>
+                            <li>
+                                <a tabindex="-1" href="#">Search</a>
+                            </li>
+                            <li>
+                                <a tabindex="-1" href="#">Permissions</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
         </div>
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="nav navbar-nav">
-             
+    </div>
+</div>
+<div class="container-fluid">
+<div class="row-fluid">
+<div class="span3" id="sidebar">
+    <ul class="nav nav-list bs-docs-sidenav nav-collapse collapse">
+        <li class="active">
+            <a href="index.html"><i class="icon-chevron-right"></i> Dashboard</a>
+        </li>
+        <li>
+            <a href="calendar.html"><i class="icon-chevron-right"></i> Calendar</a>
+        </li>
+        <li>
+            <a href="stats.html"><i class="icon-chevron-right"></i> Statistics (Charts)</a>
+        </li>
+        <li>
+            <a href="form.html"><i class="icon-chevron-right"></i> Forms</a>
+        </li>
+        <li>
+            <a href="tables.html"><i class="icon-chevron-right"></i> Tables</a>
+        </li>
+        <li>
+            <a href="buttons.html"><i class="icon-chevron-right"></i> Buttons & Icons</a>
+        </li>
+        <li>
+            <a href="editors.html"><i class="icon-chevron-right"></i> WYSIWYG Editors</a>
+        </li>
+        <li>
+            <a href="interface.html"><i class="icon-chevron-right"></i> UI & Interface</a>
+        </li>
+        <li>
+            <a href="#"><span class="badge badge-success pull-right">731</span> Orders</a>
+        </li>
+        <li>
+            <a href="#"><span class="badge badge-success pull-right">812</span> Invoices</a>
+        </li>
+        <li>
+            <a href="#"><span class="badge badge-info pull-right">27</span> Clients</a>
+        </li>
+        <li>
+            <a href="#"><span class="badge badge-info pull-right">1,234</span> Users</a>
+        </li>
+        <li>
+            <a href="#"><span class="badge badge-info pull-right">2,221</span> Messages</a>
+        </li>
+        <li>
+            <a href="#"><span class="badge badge-info pull-right">11</span> Reports</a>
+        </li>
+        <li>
+            <a href="#"><span class="badge badge-important pull-right">83</span> Errors</a>
+        </li>
+        <li>
+            <a href="#"><span class="badge badge-warning pull-right">4,231</span> Logs</a>
+        </li>
+    </ul>
+</div>
+
+<!--/span-->
+<div class="span9" id="content">
+<div class="row-fluid">
+    <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <h4>Success</h4>
+        The operation completed successfully</div>
+    <div class="navbar">
+        <div class="navbar-inner">
+            <ul class="breadcrumb">
+                <i class="icon-chevron-left hide-sidebar"><a href='#' title="Hide Sidebar" rel='tooltip'>&nbsp;</a></i>
+                <i class="icon-chevron-right show-sidebar" style="display:none;"><a href='#' title="Show Sidebar" rel='tooltip'>&nbsp;</a></i>
+                <li>
+                    <a href="#">Dashboard</a> <span class="divider">/</span>
+                </li>
+                <li>
+                    <a href="#">Settings</a> <span class="divider">/</span>
+                </li>
+                <li class="active">Tools</li>
             </ul>
         </div>
     </div>
-</nav>
-<div class="container" style="margin-top: 60px;">
+</div> 
+<!-- main content -->
+    <div class="container">
 
-   @yield('container')
- 
+    @yield('container')
+     
+    </div> 
+        <!-- /block -->
+    </div>
 </div>
 
+   
+</div>
+<hr>
+<footer>
+    <p>&copy; Edu Tech Solutions BD</p>
+</footer>
 
-{{ HTML::script('assets/js/jquery.min.js') }}
+
+<!--/.fluid-container-->
+{{ HTML::script('assets/js/jquery-1.9.1.min.js') }}
 {{ HTML::script('assets/js/bootstrap.min.js') }}
-{{ HTML::script('assets/js/jquery.tablesorter.min.js') }}
-{{ HTML::script('assets/js/jquery.jscroll.min.js') }}
-{{HTML::script('assets/js/jquery.dataTables.min.js')}}
-{{HTML::script('assets/js/dropzone.js')}}
+{{HTML::script('assets/js/scripts.js')}}
+
+{{--{{ HTML::script('assets/js/jquery.tablesorter.min.js') }}--}}
+{{--{{ HTML::script('assets/js/jquery.jscroll.min.js') }}--}}
+{{--{{HTML::script('assets/js/jquery.dataTables.min.js')}}--}}
 
 
 </body>
 
-  <script>
-       $( document ).ready(function()
-        {
-                  
-                 $('#confirm-delete').on('show.bs.modal', function(e) {
-                      $(this).find('.danger').attr('href', $(e.relatedTarget).data('href'));
-                      $('.debug-url').html('Delete URL: <strong>' + $(this).find('.danger').attr('href') + '</strong>');
-                  });
-
-              $('#myTable').tablesorter(); //for table sorting
-              
-                 // for table filter
-                  $('#dataTableId').DataTable();
-        
-                //to refresh button in modal
-                // $('.dropclose').on('click', function(event) {
-                //   event.preventDefault();
-                //   window.location.reload();
-                // });
-                
-               $('.close').on('click', function(event) {
-                event.preventDefault();
-                window.location.reload();
-              });
-          
-        // JS: infinite scroll
-       
-                  $('.scroll').jscroll({
-                      autoTrigger: true,
-                      nextSelector: '.pagination li.active + li a',
-                      contentSelector: 'div.scroll',
-                      callback: function() {
-                          $('ul.pagination:visible:first').hide();
-                      }
-                  });
-      
-
-     // select All records for batch delete
-
-          $("#hide-button").hide();
-
-          $(".checkbox").change(function() {
-              if(this.checked) {
-                  $('.myCheckbox').prop('checked', true);
-                   $("#hide-button").show();
-              }
-              if(!this.checked) {
-                  $('.myCheckbox').prop('checked', false);
-                   $("#hide-button").hide();
-              }
-          });
-
-          $('.myCheckbox').on('change', function(event) {
-            event.preventDefault();
-            if ($('.myCheckbox:checked').length > 0) {
-                $("#hide-button").show();
-            } else {
-                $("#hide-button").hide();
-            }
-          });
-
-  //for image show in modal in upload.blade.php file starts
-       $('.image_thumbs li img').on('click',function(){
-            var src = $(this).attr('data_description');
-            //var src= $(this).attr('src').replace('thumbs/thumb_', 'user_photos/');            
-            var img = '<img src="' + src + '" class="img-responsive"/>';
-            $('#myModal').modal();
-            $('#myModal').on('shown.bs.modal', function(){
-                $('#myModal .modal-body').html(img);
-            });
-            $('#myModal').on('hidden.bs.modal', function(){
-                $('#myModal .modal-body').html('');
-            });               
-       });  
-
-   //for image show in modal in upload.blade.php file ends
-      
-
-  //paginations search
-  $('#searchStr').keyup(function() {
-      var that = this;
-      $.each($('.searchBody tr'),
-      function(i, val) {
-          if ($(val).text().toLowerCase().indexOf($(that).val().toLowerCase()) == -1) 
-          {
-              $('.searchBody tr').eq(i).hide();
-          } else {
-              $('.searchBody tr').eq(i).show();
-          }
-      });
-   });
-
-  
-    });
-
-</script>
-
-</body>
 </html>
