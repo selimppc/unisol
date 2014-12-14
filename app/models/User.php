@@ -1,38 +1,26 @@
 <?php
 
-class User extends \Eloquent 
-{
-	// MASS ASSIGNMENT -------------------------------------------------------
-	// define which attributes are mass assignable (for security)
-	// we only want these attributes able to be filled
-	protected $fillable = array('username ', 'password ', 'email_address','user_type','join_date','last_visit','ip_address','security_question','security_answer');
-    protected $table = 'user';
+use Illuminate\Auth\UserTrait;
+use Illuminate\Auth\UserInterface;
+use Illuminate\Auth\Reminders\RemindableTrait;
+use Illuminate\Auth\Reminders\RemindableInterface;
 
-	// DEFINE RELATIONSHIPS --------------------------------------------------
-	// each User HAS one user_profile 
-	public function user_profiles() {
-		return $this->hasOne('UserProfile'); // this matches the Eloquent model
-	}
-	public function user_meta() {
-		return $this->hasOne('UserMeta'); // this matches the Eloquent model
-	}
-	
-	public function supporting_doc() {
-        return $this->hasOne('SupportingDoc'); // this matches the Eloquent model
+class User extends Eloquent implements UserInterface, RemindableInterface {
 
-    }
-    //shafi
-    public function miscellaneous_information() {
-        return $this->hasOne('MiscellaneousInformation'); // this matches the Eloquent model
-    }
+	use UserTrait, RemindableTrait;
 
-    public function academic_record() {
-        return $this->hasOne('AcademicRecords'); // this matches the Eloquent model
-    }
+	/**
+	 * The database table used by the model.
+	 *
+	 * @var string
+	 */
+	protected $table = 'users';
 
-    public function extra_curriculam_activity() {
-        return $this->hasOne('ExtraCurriculamActivity'); // this matches the Eloquent model
-    }
-	
+	/**
+	 * The attributes excluded from the model's JSON form.
+	 *
+	 * @var array
+	 */
+	protected $hidden = array('password', 'remember_token');
+
 }
-?>
