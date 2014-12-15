@@ -4,10 +4,16 @@
 <head>
     <title>Edu Tech Solutions Bd</title>
     <!-- Bootstrap -->
-    {{ HTML::style('assets/css/bootstrap.min.css') }}
+    {{--{{ HTML::style('assets/css/bootstrap.min.css') }}--}}
+    {{ HTML::style('assets/css/bootstrap.css') }}
+     {{ HTML::style('assets/css/bootstrap.min.css') }}
     {{ HTML::style('assets/css/bootstrap-responsive.min.css') }}
-    {{HTML::style('assets/js/jquery.dataTables.min.css')}}
-    {{HTML::style('assets/css/styles.css')}}
+    {{ HTML::style('assets/css/styles.css')}}
+    {{--{{ HTML::script('assets/js/jquery.min.js') }}--}}
+
+
+    {{--{{ HTML::style('assets/css/bootstrap.min.css') }}--}}
+    {{ HTML::style('assets/css/bootstrap-theme.min.css') }}
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -86,6 +92,9 @@
                             <li><a tabindex="-1" href="">Search</a></li>
                             <li><a tabindex="-1" href="">Permissions</a></li>
                         </ul>
+                    </li>
+                    <li class="">
+                          <a href=""{{URL::to('department/create') }}>Department</a>
                     </li>
                 </ul>
             </div>
@@ -185,6 +194,7 @@
 
 
     </div>
+
 </div>
 <hr>
 <footer>
@@ -269,8 +279,18 @@
   
     });
 
+{{ HTML::script('assets/js/scripts.js')}}
+{{ HTML::script('assets/js/jquery.dataTables.min.js')}}
+
 </script>
 
+ <script type="text/javascript" charset="utf-8">
+			$(document).ready(function() {
+				$('#example').dataTable();
+			} );
+ </script>
 </body>
 
 </html>
+
+
