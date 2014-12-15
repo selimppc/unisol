@@ -5,8 +5,8 @@
     <title>Edu Tech Solutions </title>
     <!-- Bootstrap -->
     {{ HTML::style('assets/css/bootstrap.min.css') }}
-    {{ HTML::style('assets/css/bootstrap-responsive.min.css') }}
-    {{HTML::style('assets/css/styles.css')}}
+    {{ HTML::style('assets/css/bootstrap-theme.min.css') }}
+    {{--{{HTML::style('assets/css/styles.css')}}--}}
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -15,92 +15,74 @@
 </head>
 
 <body>
-<div class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-        <div class="container-fluid">
-            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </a>
-            <a class="brand" href="" >Control Panel</a>
-            <div class="nav-collapse collapse">
-                <ul class="nav pull-right">
-                    <li class="dropdown">
-                        <a href="" role="button" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-user"></i> Edu Tech Solutions <i class="caret"></i>
-
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a tabindex="-1" href="">Profile</a>
-                            </li>
-                            <li class="divider"></li>
-                            <li><a tabindex="-1" href="">Logout</a></li>
-                        </ul>
-                    </li>
-                </ul>
-                <ul class="nav">
-                    <li class="active">
-                        <a href="">Dashboard</a>
-                    </li>
-                    <li class="dropdown">
-                        <a href="" data-toggle="dropdown" class="dropdown-toggle">Settings <b class="caret"></b>
-
-                        </a>
-                        <ul class="dropdown-menu" id="menu1">
-                            <li>
-                                <a href="">Tools <i class="icon-arrow-right"></i></a>
-                                <ul class="dropdown-menu sub-menu">
-                                    <li><a href="">Reports</a></li>
-                                    <li><a href="">Logs</a></li>
-                                    <li><a href="">Errors</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="">SEO Settings</a></li>
-                            <li><a href="">Other Link</a></li>
-                            <li class="divider"></li>
-                            <li><a href="">Other Link</a></li>
-                            <li><a href="">Other Link</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Content <i class="caret"></i>
-
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a tabindex="-1" href="">Blog</a></li>
-                            <li><a tabindex="-1" href="">News</a></li>
-                            <li><a tabindex="-1" href="">Custom Pages</a></li>
-                            <li><a tabindex="-1" href="">Calendar</a></li>
-                            <li class="divider"></li>
-                            <li><a tabindex="-1" href="">FAQ</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Users <i class="caret"></i>
-
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a tabindex="-1" href="">User List</a></li>
-                            <li><a tabindex="-1" href="">Search</a></li>
-                            <li><a tabindex="-1" href="">Permissions</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-            <!--/.nav-collapse -->
-        </div>
+<nav class="navbar navbar-default" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Control Panel</a>
     </div>
-</div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+        <li><a href="#">Link</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <li class="divider"></li>
+            <li><a href="#">One more separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+      <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Link</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
 
 
 <div class="container-fluid">
-<div class="row-fluid">
-    <div class="span3" id="sidebar">
-        @section('sidebar')
-        @show
+<div class="row">
+
+    <div class="col-sm-3 col-md-3">
+        <div class="panel-group" id="accordion">
+            @section('sidebar')
+            @show
+        </div>
     </div>
 
+
     <!--/span-->
-    <div class="span9" id="content">
+    <div class="col-md-9" id="content">
         <div class="row-fluid">
             {{--Error handling--}}
                 @if ( $errors->count() > 0 )
@@ -127,6 +109,7 @@
                             <a href="#">Dashboard</a> <span class="divider">/</span>
                         </li>
                     </ul>
+
                 </div>
             </div>
         </div>
