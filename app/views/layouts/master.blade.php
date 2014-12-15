@@ -2,10 +2,11 @@
 <html class="no-js">
 
 <head>
-    <title>Edu Tech Solutions </title>
+    <title>Edu Tech Solutions Bd</title>
     <!-- Bootstrap -->
     {{ HTML::style('assets/css/bootstrap.min.css') }}
     {{ HTML::style('assets/css/bootstrap-responsive.min.css') }}
+    {{HTML::style('assets/js/jquery.dataTables.min.css')}}
     {{HTML::style('assets/css/styles.css')}}
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -22,11 +23,11 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </a>
-            <a class="brand" href="" >Control Panel</a>
+            <a class="brand" href="" >{{ $title}}</a>
             <div class="nav-collapse collapse">
                 <ul class="nav pull-right">
                     <li class="dropdown">
-                        <a href="" role="button" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-user"></i> Edu Tech Solutions <i class="caret"></i>
+                        <a href="" role="button" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-user"></i>Ratna<i class="caret"></i>
 
                         </a>
                         <ul class="dropdown-menu">
@@ -41,6 +42,7 @@
                     <li class="active">
                         <a href="">Dashboard</a>
                     </li>
+
                     <li class="dropdown">
                         <a href="" data-toggle="dropdown" class="dropdown-toggle">Settings <b class="caret"></b>
 
@@ -114,9 +116,9 @@
                 @endif
 
                 {{--set some message after action--}}
-                @if (Session::has('message'))
-                  <div>{{ Session::get('message') }}</div>
-                @endif
+                  @if (Session::has('message'))
+                  <div class="alert alert-info">{{Session::get("message")}}</div>
+                 @endif
 
             <div class="navbar">
                 <div class="navbar-inner">
@@ -144,14 +146,84 @@
 </footer>
 </div>
 
+
 <!--/.fluid-container-->
 {{ HTML::script('assets/js/jquery-1.9.1.min.js') }}
 {{ HTML::script('assets/js/bootstrap.min.js') }}
 {{HTML::script('assets/js/scripts.js')}}
+{{HTML::script('assets/js/jquery.dataTables.min.js')}}
+{{ HTML::script('assets/js/jquery.tablesorter.min.js') }}
 
 {{--{{ HTML::script('assets/js/jquery.jscroll.min.js') }}--}}
 {{--{{HTML::script('assets/js/jquery.dataTables.min.js')}}--}}
+  <script>
+       $( document ).ready(function()
+        {
+                  
+                 $('#confirm-delete').on('show.bs.modal', function(e) {
+                      $(this).find('.danger').attr('href', $(e.relatedTarget).data('href'));
+                      $('.debug-url').html('Delete URL: <strong>' + $(this).find('.danger').attr('href') + '</strong>');
+                  });
 
+              $('#myTable').tablesorter(); //for table sorting
+              
+                 // for table filter
+                  $('#dataTableId').DataTable();
+        
+                //to refresh button in modal
+                // $('.dropclose').on('click', function(event) {
+                //   event.preventDefault();
+                //   window.location.reload();
+                // });
+                
+               $('.close').on('click', function(event) {
+                event.preventDefault();
+                window.location.reload();
+              });
+    
+     // select All records for batch delete
+
+          $("#hide-button").hide();
+
+          $(".checkbox").change(function() {
+              if(this.checked) {
+                  $('.myCheckbox').prop('checked', true);
+                   $("#hide-button").show();
+              }
+              if(!this.checked) {
+                  $('.myCheckbox').prop('checked', false);
+                   $("#hide-button").hide();
+              }
+          });
+
+          $('.myCheckbox').on('change', function(event) {
+            event.preventDefault();
+            if ($('.myCheckbox:checked').length > 0) {
+                $("#hide-button").show();
+            } else {
+                $("#hide-button").hide();
+            }
+          });
+  
+      // batch delte ends
+  //paginations search
+  $('#searchStr').keyup(function() {
+      var that = this;
+      $.each($('.searchBody tr'),
+      function(i, val) {
+          if ($(val).text().toLowerCase().indexOf($(that).val().toLowerCase()) == -1) 
+          {
+              $('.searchBody tr').eq(i).hide();
+          } else {
+              $('.searchBody tr').eq(i).show();
+          }
+      });
+   });
+
+  
+    });
+
+</script>
 
 </body>
 

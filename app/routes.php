@@ -10,9 +10,13 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
-
 //Route::get('/', function()
 //{
 //	return View::make('hello');
 //});
-Route::get('/','HomeController@index');
+//Route::get('/','HomeController@index');
+Route::get('create/subject','SubjectController@Index');
+Route::post('subject/save','SubjectController@save');
+Route::any('subject/list','SubjectController@show');
+Route::any('subject/batch/delete','SubjectController@batchdelete');
+Route::get('subject/delete/{id}','SubjectController@delete');
