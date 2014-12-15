@@ -24,7 +24,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </a>
-            <a class="brand" href="" >{{ $title}}</a>
+            {{--<a class="brand" href="" >{{ $title}}</a>--}}
             <div class="nav-collapse collapse">
                 <ul class="nav pull-right">
                     <li class="dropdown">
