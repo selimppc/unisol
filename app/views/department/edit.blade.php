@@ -1,4 +1,4 @@
-
+@section('content')
 
 
 <div class="span4 well">

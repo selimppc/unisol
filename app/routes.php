@@ -36,11 +36,6 @@ Route::any('degree_level/store', ['as' => 'degreelevel.store', 'uses' => 'Degree
 Route::get('degree_level/show/{id}', [ 'as' => 'degreelevel.show', 'uses' => 'DegreeLevelController@show' ]);
 
 
-
-
-
-
-
 Route::any('degree_level/edit/{id}', ['as' => 'degreelevel.edit', 'uses' => 'DegreeLevelController@edit' ]);
 Route::any('degree_level/update/{id}', ['as' => 'degreelevel.update','uses' => 'DegreeLevelController@update' ]);
 
@@ -66,7 +61,5 @@ Route::any('department/batchDelete','DepartmentController@batchDelete');
 Route::any('department/edit/{id}','DepartmentController@edit');
 
 Route::post('department/update/{id}','DepartmentController@update');
-
-
 
 //{------------------ End Department Routes --------------------}

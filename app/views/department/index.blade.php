@@ -31,7 +31,7 @@
                      <td>{{ $department->description }}</td>
                      <td>
                     <a class="btn btn-sm btn-danger" data-href="{{ URL::to('department/delete/'.$department->id) }}" data-toggle="modal" data-target="#confirm-delete">Delete </a>
-                    <a class="btn btn-sm btn-info" href="{{ URL::to('department/edit/' . $department->id ) }}" data-toggle="modal" data-target="#myModal" >Edit...</a>
+                    <a class="btn btn-sm btn-info" href="{{ URL::to('department/edit/' . $department->id ) }}" data-toggle="modal" data-target="#edit-modal" >Edit...</a>
 
                     </td>
 
@@ -130,23 +130,19 @@
 {{--Modal : edit --}}
 
 
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="myModalLabel">Edit</h4>
-      </div>
-      <div class="modal-body">
-
-      </div>
-      <br><br>
-
-      <div class="modal-footer">
-
-      </div>
-    </div>
-  </div>
-</div>
+<div class="modal fade" id="edit-modal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                 <div class="modal-header">
+                                         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                         <h4 class="modal-title" id="myModalLabel">Edit Degree Level</h4>
+                                 </div>
+                                 <div class="modal-body">
+                                 </div>
+                                 <div class="modal-footer">
+                                 </div>
+                            </div>
+                        </div>
+             </div>
 @stop
 
