@@ -24,6 +24,7 @@ Route::get('subject/editvalue', 'SubjectController@edit');
 Route::post('subject/update/{id}', 'SubjectController@update');
 
 
+
 Route::get('/','HomeController@index');
 
 
@@ -59,6 +60,8 @@ Route::get('department/create','DepartmentController@create');
 Route::any('department/store','DepartmentController@store');
 
 Route::any('department/delete/{id}','DepartmentController@delete');
+
+
 
 
 Route::any('department/batchDelete','DepartmentController@batchDelete');
