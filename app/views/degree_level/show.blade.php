@@ -6,25 +6,18 @@
 
 
 @section('content')
-    @if($errors->any())
-      <div>
-        <ul>
-          {{ implode('', $errors->all('<li>:message</li>'))}}
-        </ul>
-      </div>
-    @endif
 
-    @if (Session::has('message'))
-      <div>{{ Session::get('message') }}</div>
-    @endif
+    {{ Form::open(array('url'=>'degree_level/show','method' => '')) }}
 
-    <table>
-      <tr>
-        <th>Title</th>
-        <td>{{ $degree_levels->title }}</td>
-        <th>Description</th>
-        <td>{{ $degree_levels->description }}</td>
-      </tr>
-    </table>
+        <div class="jumbotron text-center">
+            <h2>{{ $degree->title }}</h2>
+            <p>
+                <strong> Description:</strong> {{ $degree->description }}
+            </p>
+        </div>
+
+    {{ Form::close() }}
 
 @stop
+
+
