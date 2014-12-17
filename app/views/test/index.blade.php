@@ -6,5 +6,5 @@
 
 @section('content')
    <h1>Welcome Home! </h1>
-   <p style="color: red"> ERROR :: You Lost !!</p>
+   <p style="color: green">heloo...</p>
 @stop

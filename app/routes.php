@@ -10,6 +10,16 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
+//Route::get('/', function()
+//{
+//	return View::make('hello');
+//});
+//Route::get('/','HomeController@index');
+Route::get('create/subject','SubjectController@Index');
+Route::post('subject/save','SubjectController@save');
+Route::any('subject/list','SubjectController@show');
+Route::any('subject/batch/delete','SubjectController@batchdelete');
+Route::get('subject/delete/{id}','SubjectController@delete');
 
 Route::get('/','HomeController@index');
 
@@ -35,7 +45,13 @@ Route::any('degree_level/update/{id}', ['as' => 'degreelevel.update','uses' => '
 Route::any('degree_level/destroy/{id}', ['as' => 'degreelevel.destroy', 'uses' => 'DegreeLevelController@destroy' ]);
 
 
+Route::get('/','HomeController@index');
 
+Route::get('department','DepartmentController@index');
 
+Route::get('department/create','DepartmentController@create');
 
+Route::any('department/store','DepartmentController@store');
+
+Route::any('department/delete/{id}','DepartmentController@delete');
 
