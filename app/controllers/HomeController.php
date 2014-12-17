@@ -22,7 +22,6 @@ class HomeController extends BaseController {
 
     public function index()
     {
-
         return View::make('test.index')->with('title','Welcome to ETSB!');
     }
 }
