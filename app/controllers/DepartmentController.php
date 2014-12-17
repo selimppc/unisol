@@ -38,9 +38,11 @@ class DepartmentController extends BaseController{
             return Redirect::to('department/create')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
         }
     }
-       public function delete($id){
+
+
+    public function delete($id){
             Department::find($id)->delete();
-        return Redirect::back();
+        return Redirect::back()->with('message', 'Successfully Added Country Information!');
     }
 
     public function batchDelete()
@@ -50,5 +52,39 @@ class DepartmentController extends BaseController{
         Department::destroy(Request::get('ids'));
 
         return Redirect::back();
+    }
+
+    public function edit($id)
+    {
+//        $datas = DB::table('department')->where('id', '=', $id)->limit(1)->get();
+//        return View::make('department.edit')->with('department', $datas);
+
+        $department = Department::find($id);
+        // Show the edit employee form.
+        return View::make('department.edit', compact('department'));
+
+    }
+
+    public function update($id)
+    {
+        $rules = array(
+            'dept_name' => 'required|alpha_num',
+            'description' => 'required|alpha_num',
+
+        );
+
+        $validator = Validator::make(Input::all(), $rules);
+
+        if ($validator->passes()) {
+
+            $department = Department::find($id);
+            $department->title = Input::get('dept_name');
+            $department->description = Input::get('description');
+
+            $department->save();
+            return Redirect::back()->with('message', 'Successfully Added Country Information!');
+        } else {
+            return Redirect::to('department/create')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
+        }
     }
 }
