@@ -73,22 +73,20 @@ class DegreeLevelController extends \BaseController {
 
         // Show the edit employee form.
         return View::make('degree_level.edit')->with('degree',$degree_levels);
-
+    //ok
     }
 
 	public function update($id)
 	{
-
-
         // get the POST data
-        $data = Input::all();
+        $data = Input::all($id);
         // create a new model instance
-        $degree_levels = DegreeLevel::find($id);
+        $degree_levels = new DegreeLevel();
         // attempt validation
         if ($degree_levels->validate($data))
         {
             // success code
-            //$degree_levels = DegreeLevel::find($id);
+            $degree_levels = DegreeLevel::find($id);
 
             $degree_levels->title = Input::get('title');
             $degree_levels->description = Input::get('description');
@@ -105,20 +103,36 @@ class DegreeLevelController extends \BaseController {
             Session::flash('errors', $errors);
 
             //return Redirect::to('employee/create')->withInput()->withErrors($errors);
-            return Redirect::to('degree_level/edit');
+            return Redirect::to('degree_level');
         }
-
+    //ok
 	}
 
-  	public function destroy()
+
+
+  	public function destroy($id)
 	{
-
+        $data= DegreeLevel::find($id);
+        if($data->delete())
+        {
+            return Redirect::to('degree_level');
+        }
+        //ok
 	}
 
-    public function delete()
-    {
+    public function batchDelete(){
+
+        DegreeLevel::destroy(Request::get('id'));
+        return Redirect::back();
 
     }
+
+
+
+
+
+
+
 
 
 }

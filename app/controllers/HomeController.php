@@ -24,4 +24,11 @@ class HomeController extends BaseController {
     {
         return View::make('test.index')->with('title','Welcome to ETSB!');
     }
+
+
+    public function done()
+    {
+        return View::make('test.index')->with('title','Welcome to ETSB!');
+    }
+
 }

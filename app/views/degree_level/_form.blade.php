@@ -1,26 +1,21 @@
 
-
-
-
-
-<fieldset>
-            <!--    <div class='col-md-12' style="border: 1px red solid"> -->
+    <fieldset style="padding: 10px; width: 90%;">
                 <div class="form-group">
-                    {{ Form::label('department_id', 'DepartmentName') }}
-                    {{ Form::select('department_id', [''=>'Select', '1'=>'BCSE', '2'=>'BBA', '3'=>'BSEE'],'', ['class'=>'form-control col-md-12']) }}
+                    <div>{{ Form::label('department_id', 'DepartmentName') }}</div>
+                    <div>{{ Form::select('department_id', Department::orderBy('title')->lists('title', 'id'),'', ['class'=>'form-control ']) }}</div>
                 </div>
+                <div class='form-group'>
+                    <div>{{ Form::label('title', 'DegreeName') }}</div>
+                    <div>{{ Form::text('title', Input::old('title'),['class'=>'form-control']) }}</div>
 
-               <div class='form-group'>
-                    {{ Form::label('title', 'DegreeName') }}
-                    {{ Form::text('title', Input::old('title'), array('class'=>'form-control','required'=>'required')) }}
                 </div>
 
                 <div class='form-group'>
-                    {{ Form::label('description', 'Description') }} 
-                    {{ Form::textarea('description', Input::old('description'),['class'=>'form-control','required'=>'required','size'=>'30x5']) }}
+                    <div>{{ Form::label('description', 'Description') }}</div>
+                    <div>{{ Form::textarea('description', Input::old('description'),['class'=>'form-control ']) }}</div>
+
                 </div>
-             
+
             {{ Form::submit('Submit', array('class'=>'btn btn-primary')) }}
-            <button type="reset" class="btn">Cancel</button>
-                  <!--   </div> -->
-</fieldset>
+
+    </fieldset>

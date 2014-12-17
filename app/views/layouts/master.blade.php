@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 <!DOCTYPE html>
 <html lang="en">
 
@@ -182,6 +180,7 @@
 
 <!--/.fluid-container-->
 {{ HTML::script('assets/js/jquery-1.9.1.min.js') }}
+
 {{ HTML::script('assets/js/bootstrap.min.js') }}
 {{HTML::script('assets/js/scripts.js')}}
 {{HTML::script('assets/js/jquery.dataTables.min.js')}}
@@ -194,5 +193,3 @@
 </body>
 </html>
 
-
->>>>>>> 735b8a5ea5f0cec413533a669f0da53ce5967e50

@@ -15,13 +15,46 @@
 //	return View::make('hello');
 //});
 //Route::get('/','HomeController@index');
-Route::get('create/subject','SubjectController@Index');
-Route::post('subject/save','SubjectController@save');
-Route::any('subject/list','SubjectController@show');
-Route::any('subject/batch/delete','SubjectController@batchdelete');
-Route::get('subject/delete/{id}','SubjectController@delete');
-Route::get('subject/editvalue', 'SubjectController@edit');
-Route::post('subject/update/{id}', 'SubjectController@update');
+
+
+
+
+/*
+==================================================================
+Selim
+==================================================================
+*/
+
+include("routes_sr.php");
+
+
+/*
+==================================================================
+Shafi
+==================================================================
+*/
+
+include("routes_sh.php");
+
+
+/*
+==================================================================
+Ratna
+==================================================================
+*/
+
+include("routes_ra.php");
+
+
+/*
+==================================================================
+Tanin
+==================================================================
+*/
+
+include("routes_tj.php");
+
+
 
 
 
