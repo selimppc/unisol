@@ -50,12 +50,12 @@ class SubjectController extends \BaseController {
 							$data->description = Input::get('description');
 							$data->save();
 							Session::flash('message', "Subject added successfully");
-						return Redirect::to('create/subject')->with('title', 'Create Role');
+						return Redirect::to('subject/list')->with('title', 'Subject List');
 					}
 					else
 					{
 						Session::flash('message', 'Token Mismatched');
-						return Redirect::to('create/subject')->with('title', 'Create Subject');
+						return Redirect::to('subject/list')->with('title', 'Subject List');
 					}
 			}
 	}
@@ -115,9 +115,53 @@ class SubjectController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+
+
+	public function edit()
 	{
-		//
+		$subId = Input::get('subjectId');
+
+		$data = Subject::find($subId);
+
+		return json_encode($data);
+	}
+
+	public function update($id)
+	{
+		$token = csrf_token();
+		
+		$rules = array(
+				
+				'department_id' => 'Required',
+				'title' => 'Required|Min: 3',
+			    'description' => 'Required|min:3'
+			);
+		$validator = Validator::make(Input::all(), $rules);
+
+		
+			if($validator->fails())
+			{				
+				return Redirect::to('subject/list')->withErrors($validator)->withInput()->with('title', 'Subject List');
+			}
+			else
+			{
+				if($token == Input::get('_token'))
+					{
+
+						$data = Subject::find($id);
+						$data->department_id = Input::get('department_id');
+						$data->title = Input::get('title');
+						$data->description = Input::get('description');
+						$data->save();
+						Session::flash('message', "Subject updated successfully");
+						return Redirect::to('subject/list')->with('title', 'Subject List');
+					}
+					else
+					{
+						Session::flash('message', 'Token Mismatched');
+						return Redirect::to('subject/list')->with('title', 'Subject List');
+					}
+			}
 	}
 
 
@@ -135,11 +179,6 @@ class SubjectController extends \BaseController {
 		 return Redirect::to('subject/list')->with('title','All Subject List');
 		}
 	}
-	public function update($id)
-	{
-		//
-	}
-
 
 	/**
 	 * Remove the specified resource from storage.
