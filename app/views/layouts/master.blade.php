@@ -22,6 +22,7 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+
 </head>
 
 <body>
@@ -140,19 +141,13 @@
 
                 <div class="navbar">
                     <div class="navbar-inner">
+
+
                         <ul class="breadcrumb">
-                            <i class="glyphicon glyphicon-align-justify hide-sidebar"><a href='#' title="Hide Sidebar" rel='tooltip'>&nbsp;</a></i>
-                            <i class="glyphicon glyphicon-align-justify show-sidebar" style="display:none;"><a href='#' title="Show Sidebar" rel='tooltip'>&nbsp;</a></i>
+                            <i class="glyphicon glyphicon-align-justify hide-sidebar"><a href='' title="Hide Sidebar" rel='tooltip'></a></i>
+                            <i class="glyphicon glyphicon-align-justify show-sidebar" style="display:none;"><a href='' title="Show Sidebar" rel='tooltip'></a></i>
                             <li>
-                                <span class="pull-left" id="slide-submenu">
-                                                <i class="glyphicon glyphicon-align-justify"></i>
-                                            </span>
-                                            <div class="mini-submenu">
-                                                    <span class="icon-bar"></span>
-                                                    <span class="icon-bar"></span>
-                                                    <span class="icon-bar"></span>
-                                                </div>
-                                <a href="#">Dashboard</a> <span class="divider">/</span>
+                                <a href="">Dashboard</a> <span class="divider">/</span>
                             </li>
                         </ul>
 
