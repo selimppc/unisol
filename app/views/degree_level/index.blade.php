@@ -30,7 +30,7 @@
 
                    <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $level->id }}"></td>
 
-                   <td align="left" class="deptName">{{ Department::getDepartmentName($level->department_id) }}</td>
+                   {{--<td align="left" class="deptName">{{ Department::getDepartmentName($level->department_id) }}</td>--}}
 
                    <td>{{ $level->title }}</td>
                    <td>{{ $level->description }}</td>
