@@ -61,8 +61,8 @@
             @foreach ($datas as $value)
               <tr>
                 <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $value->id }}"></td>
-                 <td align="left" class="deptName">{{ Department::getDepartmentName($value->department_id) }}</td>
-                 <td class="subTitle">{{ $value->title }}</td>
+                 {{--<td align="left" class="deptName">{{ Department::getDepartmentName($value->department_id) }}</td>--}}
+                 {{--<td class="subTitle">{{ $value->title }}</td>--}}
                  <td class="subDesc">{{ $value->description }}</td>
                  <td>
                    <a data-href="{{ URL::to('subject/delete/'.$value->id) }}" class="btn btn-sm btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><span class="glyphicon glyphicon-trash text-danger"></span></a>

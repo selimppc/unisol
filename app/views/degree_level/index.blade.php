@@ -81,7 +81,7 @@
                           <div class="modal-body">
                           </div>
                           <div class="modal-footer">
-                            <button type="button" class="btn btn-danger close" data-dismiss="modal" >Cencel</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal" >Cencel</button>
                           </div>
                         </div>
                       </div>
@@ -124,15 +124,6 @@
                                                             });
 
                                                       });
-
-                        // button refressh
-
-                        $('.close').on('click', function(event) {
-                                    event.preventDefault();
-                                    window.location.reload();
-                                  });
-
-
 
 
 

@@ -17,6 +17,7 @@
                 </div>
 
             {{ Form::submit('Submit', array('class'=>'btn btn-primary')) }}
-              <button type="button" class="btn btn-danger close" data-dismiss="modal" >Cencel</button>
+
+              <a href="{{URL::to('degree_level/')}}" class="btn btn-default">Close </a>
 
     </fieldset>
