@@ -6,9 +6,10 @@
 
 @section('content')
 
-      <div class="container" style="margin-top: 20px">
+<h1>{{$title}}</h1>
+    <div class="container" style="margin-top: 20px">
     <div class="row">
-      <div class="col-sm-10" style="background: #FFFFFF;">
+      <div class="col-sm-10" style="background: #FFFFFF">
               <div class="panel-body">
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" style="margin-bottom: 20px">
                  Add New Subject
@@ -43,6 +44,7 @@
 
         {{ Form::open(array('url' => 'subject/batch/delete')) }}
         <table class="table table-bordered" id="myTable">
+
           <thead>
               <th>
                <input name="id" type="checkbox" id="checkbox" class="checkbox" value="">
@@ -97,7 +99,7 @@
 
           {{ Form::open(array('url' => '', 'method' =>'post', 'role'=>'form','files'=>'true', 'class' => 'updateForm')) }}
               @include('subject._form')
-             <button type="button" class="btn btn-danger" data-dismiss="modal" >Cencel</button>
+             <button type="button" class="btn btn-danger close" data-dismiss="modal" >Cencel</button>
           {{ Form::close() }}
 
       </div>
@@ -139,7 +141,7 @@
                     <strong>Are you sure to delete?</strong>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-default close" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                 <a href="#" class="btn btn-danger danger">Delete</a>
 
               </div>
@@ -161,7 +163,7 @@
 
                        @include('subject._form')
 
-                  <button type="button" class="btn btn-danger" data-dismiss="modal">Cencel</button>
+                  <button type="button" class="btn btn-danger close" data-dismiss="modal">Cencel</button>
                     {{ Form::close() }}
 
                 </div>
