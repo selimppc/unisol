@@ -1,20 +1,20 @@
-    <fieldset>
-                <div class="form-group">
-                    <div class="span4">{{ Form::label('department_id', 'DepartmentName') }}</div>
-                    <div class="span8">{{ Form::select('department_id', Department::orderBy('title')->lists('title', 'id'),'', ['class'=>'form-control span10']) }}</div>
-                </div>
-                <div class='form-group'>
-                    <div class="span4">{{ Form::label('title', 'SubjectName') }}</div>
-                    <div class="span8">{{ Form::text('title', Input::old('title'),['class'=>'form-control span10','required'=>'required']) }}</div>
+    <div class="form-group">
+    <div>{{ Form::label('department_id', 'DepartmentName') }}</div>
+    <div>{{ Form::select('department_id', [''=>'Select Option'] + Department::orderBy('title')->lists('title', 'id'),'', ['class'=>'form-control']) }}</div>
+    </div>
 
-                </div>
+    <div class='form-group'>
+    <div>{{ Form::label('title', 'SubjectName') }}</div>
+    <div>{{ Form::text('title', Input::old('title'),['class'=>'form-control','required'=>'required']) }}</div>
 
-                <div class='form-group'>
-                    <div class="span4">{{ Form::label('description', 'Description') }}</div>
-                    <div class="span8">{{ Form::textarea('description', Input::old('description'),['class'=>'form-control span10','required'=>'required','size'=>'30x10']) }}</div>
+    </div>
 
-                </div>
+    <div class='form-group'>
+    <div>{{ Form::label('description', 'Description') }}</div>
+    <div>{{ Form::textarea('description', Input::old('description'),['class'=>'form-control','required'=>'required','size'=>'30x10']) }}</div>
 
-            {{ Form::submit('Submit', array('class'=>'btn btn-primary')) }}
-            
-       </fieldset>
+    </div>
+
+    <div>
+        {{ Form::submit('Submit', array('class'=>'btn btn-primary')) }}
+    </div>

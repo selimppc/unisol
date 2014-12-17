@@ -1,11 +1,6 @@
-@extends('layouts.master')
+<div style="padding: 10px; width: 90%;">
 
-@section('sidebar')
-    @include('degree_level._sidebar')
-@stop
-
-
-@section('content')
+ <h1>Show Degree Level</h1>
 
     {{ Form::open(array('url'=>'degree_level/show','method' => '')) }}
 
@@ -16,8 +11,9 @@
             </p>
         </div>
 
+
+
     {{ Form::close() }}
 
-@stop
 
-
+</div>

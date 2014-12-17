@@ -20,6 +20,9 @@ Route::post('subject/save','SubjectController@save');
 Route::any('subject/list','SubjectController@show');
 Route::any('subject/batch/delete','SubjectController@batchdelete');
 Route::get('subject/delete/{id}','SubjectController@delete');
+Route::get('subject/editvalue', 'SubjectController@edit');
+Route::post('subject/update/{id}', 'SubjectController@update');
+
 
 Route::get('/','HomeController@index');
 
@@ -46,6 +49,8 @@ Route::any('degree_level/destroy/{id}', ['as' => 'degreelevel.destroy', 'uses' =
 
 
 Route::get('/','HomeController@index');
+
+
 //{-------------------Department--------------------}
 Route::get('department/index','DepartmentController@index');
 
@@ -55,10 +60,12 @@ Route::any('department/store','DepartmentController@store');
 
 Route::any('department/delete/{id}','DepartmentController@delete');
 
+
 Route::any('department/batchDelete','DepartmentController@batchDelete');
 
 Route::any('department/edit/{id}','DepartmentController@edit');
 
 Route::post('department/update/{id}','DepartmentController@update');
+
 
 //{------------------ End Department Routes --------------------}

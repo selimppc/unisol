@@ -1,17 +1,11 @@
-@extends('layouts.master')
 
-@section('sidebar')
-    @include('degree_level._sidebar')
-@stop
 
-@section('content')
-
+<div style="padding: 10px; width: 90%;">
         <h1>Edit Degree Level</h1>
 
-{{ Form::model($degree,array('url'=>'degree_level/update','method' => 'POST')) }}
 
-       {{ Form::hidden('id', $degree->id) }}
-       @include('degree_level._form')
+    {{ Form::model($degree,array('url'=> array('degree_level/update',$degree->id), 'method' => 'POST')) }}
+
+             @include('degree_level._form')
     {{ Form::close() }}
-
-@stop
+</div>
