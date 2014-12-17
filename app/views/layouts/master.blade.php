@@ -1,40 +1,95 @@
 <!DOCTYPE html>
-<html class="no-js">
+<html lang="en">
 
 <head>
-    <title>Edu Tech Solutions Bd</title>
+    <title>{{ isset($pageTitle) ? $pageTitle : 'Edu Tech Solutions' }}</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Edu Tech Solutions">
+    <meta name="author" content="Edu Tech Solutions">
+
     <!-- Bootstrap -->
-    {{--{{ HTML::style('assets/css/bootstrap.min.css') }}--}}
     {{ HTML::style('assets/css/bootstrap.css') }}
-     {{ HTML::style('assets/css/bootstrap.min.css') }}
+    {{ HTML::style('assets/css/bootstrap.min.css') }}
     {{ HTML::style('assets/css/bootstrap-responsive.min.css') }}
     {{ HTML::style('assets/css/styles.css')}}
-    {{--{{ HTML::script('assets/js/jquery.min.js') }}--}}
 
-
-    {{--{{ HTML::style('assets/css/bootstrap.min.css') }}--}}
-    {{ HTML::style('assets/css/bootstrap-theme.min.css') }}
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
 </head>
 
 <body>
-<div class="navbar navbar-fixed-top">
+<div id="wrapper">
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation" >
     <div class="navbar-inner">
-        <div class="container-fluid">
-            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </a>
-            {{--<a class="brand" href="" >{{ $title}}</a>--}}
-            <div class="nav-collapse collapse">
-                <ul class="nav pull-right">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="">Control Panel</a>
+            </div>
+            <!-- /.navbar-header -->
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                        <a href="" role="button" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-user"></i>Ratna<i class="caret"></i>
+                        <a href="" role="button" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="icon-user"></i> Common Module <i class="caret"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a tabindex="-1" href=""> Course Management </a></li>
+                            <li class="divider"></li>
+                            <li><a tabindex="-1" href=""> Degree Level </a></li>
+                            <li class="divider"></li>
+                            <li><a tabindex="-1" href=""> Degree / Program Name </a></li>
+                            <li class="divider"></li>
+                            <li><a tabindex="-1" href=""> Subject Management </a></li>
+                            <li class="divider"></li>
+                            <li><a tabindex="-1" href=""> Term / Semester </a></li>
+                            <li class="divider"></li>
+                            <li><a tabindex="-1" href=""> Year </a></li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            Dropdown
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="#">Action</a>
+                            </li>
+                            <li>
+                                <a href="#">Another action</a>
+                            </li>
+                            <li>
+                                <a href="#">Something else here</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#">Separated link</a>
+                            </li>
+                            <li>
+                                <a href="#">One more separated link</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="" role="button" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-user"></i>Admin<i class="caret"></i>
 
                         </a>
                         <ul class="dropdown-menu">
@@ -45,162 +100,79 @@
                         </ul>
                     </li>
                 </ul>
-                <ul class="nav">
-                    <li class="active">
-                        <a href="">Dashboard</a>
-                    </li>
-
-                    <li class="dropdown">
-                        <a href="" data-toggle="dropdown" class="dropdown-toggle">Settings <b class="caret"></b>
-
-                        </a>
-                        <ul class="dropdown-menu" id="menu1">
-                            <li>
-                                <a href="">Tools <i class="icon-arrow-right"></i></a>
-                                <ul class="dropdown-menu sub-menu">
-                                    <li><a href="">Reports</a></li>
-                                    <li><a href="">Logs</a></li>
-                                    <li><a href="">Errors</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="">SEO Settings</a></li>
-                            <li><a href="">Other Link</a></li>
-                            <li class="divider"></li>
-                            <li><a href="">Other Link</a></li>
-                            <li><a href="">Other Link</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Content <i class="caret"></i>
-
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a tabindex="-1" href="">Blog</a></li>
-                            <li><a tabindex="-1" href="">News</a></li>
-                            <li><a tabindex="-1" href="">Custom Pages</a></li>
-                            <li><a tabindex="-1" href="">Calendar</a></li>
-                            <li class="divider"></li>
-                            <li><a tabindex="-1" href="">FAQ</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Users <i class="caret"></i>
-
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a tabindex="-1" href="">User List</a></li>
-                            <li><a tabindex="-1" href="">Search</a></li>
-                            <li><a tabindex="-1" href="">Permissions</a></li>
-                        </ul>
-                    </li>
-                    <li class="">
-                          <a href=""{{URL::to('department/create') }}>Department</a>
-                    </li>
-                </ul>
             </div>
-            <!--/.nav-collapse -->
+            <!-- /.navbar-collapse -->
         </div>
     </div>
+    </nav>
+    <div style="clear: both"></div>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-        <li><a href="#">Link</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-            <li class="divider"></li>
-            <li><a href="#">One more separated link</a></li>
-          </ul>
-        </li>
-      </ul>
-      <form class="navbar-form navbar-left" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
-        </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-      </form>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Link</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-          </ul>
-        </li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
+    <!-- Page Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <form class="navbar-form navbar-left" role="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Search">
+                </div>
+                <button type="submit" class="btn btn-default">Submit</button>
+              </form>
+                @section('sidebar')
+                @show
+            </div>
 
+            <div class="col-md-9">
+                    {{--Error handling--}}
+                    @if ( $errors->count() > 0 )
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach($errors->all() as $message )
+                                    <li>{{ $message }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
 
-<div class="container-fluid">
-<div class="row">
+                    {{--set some message after action--}}
+                      @if (Session::has('message'))
+                      <div class="alert alert-info">{{Session::get("message")}}</div>
+                     @endif
 
-    <div class="col-sm-3 col-md-3">
-        <div class="panel-group" id="accordion">
-            @section('sidebar')
-            @show
-        </div>
-    </div>
-
-
-    <!--/span-->
-    <div class="col-md-9" id="content">
-        <div class="row-fluid">
-            {{--Error handling--}}
-                @if ( $errors->count() > 0 )
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach($errors->all() as $message )
-                                <li>{{ $message }}</li>
-                            @endforeach
+                <div class="navbar">
+                    <div class="navbar-inner">
+                        <ul class="breadcrumb">
+                            <i class="icon-list hide-sidebar"><a href='#' title="Hide Sidebar" rel='tooltip'>&nbsp;</a></i>
+                            <i class="icon-list show-sidebar" style="display:none;"><a href='#' title="Show Sidebar" rel='tooltip'>&nbsp;</a></i>
+                            <li>
+                                <a href="#">Dashboard</a> <span class="divider">/</span>
+                            </li>
                         </ul>
+
                     </div>
-                @endif
+                </div>
 
-                {{--set some message after action--}}
-                  @if (Session::has('message'))
-                  <div class="alert alert-info">{{Session::get("message")}}</div>
-                 @endif
+                @yield('content')
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
 
-            <div class="navbar">
-                <div class="navbar-inner">
-                    <ul class="breadcrumb">
-                        <i class="icon-list hide-sidebar"><a href='#' title="Hide Sidebar" rel='tooltip'>&nbsp;</a></i>
-                        <i class="icon-list show-sidebar" style="display:none;"><a href='#' title="Show Sidebar" rel='tooltip'>&nbsp;</a></i>
-                        <li>
-                            <a href="#">Dashboard</a> <span class="divider">/</span>
-                        </li>
-                    </ul>
 
+     <div class="container">
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12 footer-fixed">
+                    <p class="text-muted">Copyright &copy; Edu Tech Solutions</p>
                 </div>
             </div>
-        </div>
-
-
-        @yield('content')
-
-
-
+        </footer>
     </div>
+    <!-- /.container -->
 
 </div>
-<hr>
-<footer>
-    <p>&copy; Edu Tech Solutions</p>
-</footer>
-</div>
+<!-- /#wrapper -->
+
 
 
 <!--/.fluid-container-->
@@ -216,7 +188,6 @@
   <script>
        $( document ).ready(function()
         {
-                  
                  $('#confirm-delete').on('show.bs.modal', function(e) {
                       $(this).find('.danger').attr('href', $(e.relatedTarget).data('href'));
                       $('.debug-url').html('Delete URL: <strong>' + $(this).find('.danger').attr('href') + '</strong>');
@@ -263,35 +234,35 @@
           });
   
       // batch delte ends
-  //paginations search
-  $('#searchStr').keyup(function() {
-      var that = this;
-      $.each($('.searchBody tr'),
-      function(i, val) {
-          if ($(val).text().toLowerCase().indexOf($(that).val().toLowerCase()) == -1) 
-          {
-              $('.searchBody tr').eq(i).hide();
-          } else {
-              $('.searchBody tr').eq(i).show();
-          }
-      });
-   });
+      //paginations search
+      $('#searchStr').keyup(function() {
+          var that = this;
+          $.each($('.searchBody tr'),
+          function(i, val) {
+              if ($(val).text().toLowerCase().indexOf($(that).val().toLowerCase()) == -1)
+              {
+                  $('.searchBody tr').eq(i).hide();
+              } else {
+                  $('.searchBody tr').eq(i).show();
+              }
+          });
+       });
 
-  
-    });
 
-{{ HTML::script('assets/js/scripts.js')}}
-{{ HTML::script('assets/js/jquery.dataTables.min.js')}}
+        });
 
-</script>
+    {{ HTML::script('assets/js/scripts.js')}}
+    {{ HTML::script('assets/js/jquery.dataTables.min.js')}}
+
+    </script>
 
  <script type="text/javascript" charset="utf-8">
 			$(document).ready(function() {
 				$('#example').dataTable();
 			} );
  </script>
-</body>
 
+</body>
 </html>
 
 
