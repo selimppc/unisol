@@ -24,3 +24,4 @@ Route::get('subject/editvalue', 'SubjectController@edit');
 Route::post('subject/update/{id}', 'SubjectController@update');
 
 
+
