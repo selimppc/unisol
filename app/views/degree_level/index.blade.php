@@ -30,6 +30,8 @@
 
                    <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $level->id }}"></td>
 
+                   <td align="left" class="deptName">{{ Department::getDepartmentName($level->department_id) }}</td>
+
                    <td>{{ $level->title }}</td>
                    <td>{{ $level->description }}</td>
 
@@ -79,6 +81,7 @@
                           <div class="modal-body">
                           </div>
                           <div class="modal-footer">
+                            <button type="button" class="btn btn-danger close" data-dismiss="modal" >Cencel</button>
                           </div>
                         </div>
                       </div>
@@ -121,6 +124,16 @@
                                                             });
 
                                                       });
+
+                        // button refressh
+
+                        $('.close').on('click', function(event) {
+                                    event.preventDefault();
+                                    window.location.reload();
+                                  });
+
+
+
 
 
                </script>

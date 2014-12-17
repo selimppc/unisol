@@ -2,7 +2,7 @@
     <fieldset style="padding: 10px; width: 90%;">
                 <div class="form-group">
                     <div>{{ Form::label('department_id', 'DepartmentName') }}</div>
-                    <div>{{ Form::select('department_id', Department::orderBy('title')->lists('title', 'id'),'', ['class'=>'form-control ']) }}</div>
+                    <div>{{ Form::select('department_id', [''=>'Select Option'] + Department::orderBy('title')->lists('title', 'id'),'', ['class'=>'form-control']) }}</div>
                 </div>
                 <div class='form-group'>
                     <div>{{ Form::label('title', 'DegreeName') }}</div>
@@ -17,5 +17,6 @@
                 </div>
 
             {{ Form::submit('Submit', array('class'=>'btn btn-primary')) }}
+              <button type="button" class="btn btn-danger close" data-dismiss="modal" >Cencel</button>
 
     </fieldset>
