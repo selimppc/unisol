@@ -22,6 +22,7 @@ Route::any('subject/batch/delete','SubjectController@batchdelete');
 Route::get('subject/delete/{id}','SubjectController@delete');
 Route::get('subject/editvalue', 'SubjectController@edit');
 Route::post('subject/update/{id}', 'SubjectController@update');
+<<<<<<< HEAD
 
 
 
@@ -60,6 +61,9 @@ Route::get('department/create','DepartmentController@create');
 Route::any('department/store','DepartmentController@store');
 
 Route::any('department/delete/{id}','DepartmentController@delete');
+=======
+
+>>>>>>> 7f6bdc2c50662e2423862609b1e623c0057ef3ed
 
 
 
