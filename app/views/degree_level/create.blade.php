@@ -7,13 +7,11 @@
 
 @section('content')
 
-{{ Form::open([
-        'route' => ['degreelevel.store'],
-        'role' => 'form',
-        //'autoComplete' => 'off',
-        ]) }}
-        @include('degree_level._form')
-{{ Form::close() }}
+            {{ Form::open(array('route' => 'degreelevel.store', 'method' =>'post', 'role'=>'form','files'=>'true'))  }}
+
+                    @include('degree_level._form')
+
+            {{ Form::close() }}
 
 
 @stop

@@ -42,4 +42,13 @@ class DepartmentController extends BaseController{
             Department::find($id)->delete();
         return Redirect::back();
     }
+
+    public function batchDelete()
+    {
+        // pass the array to the destroy method
+
+        Department::destroy(Request::get('ids'));
+
+        return Redirect::back();
+    }
 }
