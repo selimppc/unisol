@@ -141,9 +141,17 @@
                 <div class="navbar">
                     <div class="navbar-inner">
                         <ul class="breadcrumb">
-                            <i class="icon-list hide-sidebar"><a href='#' title="Hide Sidebar" rel='tooltip'>&nbsp;</a></i>
-                            <i class="icon-list show-sidebar" style="display:none;"><a href='#' title="Show Sidebar" rel='tooltip'>&nbsp;</a></i>
+                            <i class="glyphicon glyphicon-align-justify hide-sidebar"><a href='#' title="Hide Sidebar" rel='tooltip'>&nbsp;</a></i>
+                            <i class="glyphicon glyphicon-align-justify show-sidebar" style="display:none;"><a href='#' title="Show Sidebar" rel='tooltip'>&nbsp;</a></i>
                             <li>
+                                <span class="pull-left" id="slide-submenu">
+                                                <i class="glyphicon glyphicon-align-justify"></i>
+                                            </span>
+                                            <div class="mini-submenu">
+                                                    <span class="icon-bar"></span>
+                                                    <span class="icon-bar"></span>
+                                                    <span class="icon-bar"></span>
+                                                </div>
                                 <a href="#">Dashboard</a> <span class="divider">/</span>
                             </li>
                         </ul>
@@ -181,85 +189,10 @@
 {{HTML::script('assets/js/scripts.js')}}
 {{HTML::script('assets/js/jquery.dataTables.min.js')}}
 {{ HTML::script('assets/js/jquery.tablesorter.min.js') }}
-
+{{HTML::script('assets/js/ratna_script.js')}}
 {{--{{ HTML::script('assets/js/jquery.jscroll.min.js') }}--}}
 {{--{{HTML::script('assets/js/jquery.dataTables.min.js')}}--}}
-  <script>
-       $( document ).ready(function()
-        {
-                 $('#confirm-delete').on('show.bs.modal', function(e) {
-                      $(this).find('.danger').attr('href', $(e.relatedTarget).data('href'));
-                      $('.debug-url').html('Delete URL: <strong>' + $(this).find('.danger').attr('href') + '</strong>');
-                  });
 
-              $('#myTable').tablesorter(); //for table sorting
-              
-                 // for table filter
-                  $('#dataTableId').DataTable();
-        
-                //to refresh button in modal
-                // $('.dropclose').on('click', function(event) {
-                //   event.preventDefault();
-                //   window.location.reload();
-                // });
-                
-               $('.close').on('click', function(event) {
-                event.preventDefault();
-                window.location.reload();
-              });
-    
-     // select All records for batch delete
-
-          $("#hide-button").hide();
-
-          $(".checkbox").change(function() {
-              if(this.checked) {
-                  $('.myCheckbox').prop('checked', true);
-                   $("#hide-button").show();
-              }
-              if(!this.checked) {
-                  $('.myCheckbox').prop('checked', false);
-                   $("#hide-button").hide();
-              }
-          });
-
-          $('.myCheckbox').on('change', function(event) {
-            event.preventDefault();
-            if ($('.myCheckbox:checked').length > 0) {
-                $("#hide-button").show();
-            } else {
-                $("#hide-button").hide();
-            }
-          });
-  
-      // batch delte ends
-      //paginations search
-      $('#searchStr').keyup(function() {
-          var that = this;
-          $.each($('.searchBody tr'),
-          function(i, val) {
-              if ($(val).text().toLowerCase().indexOf($(that).val().toLowerCase()) == -1)
-              {
-                  $('.searchBody tr').eq(i).hide();
-              } else {
-                  $('.searchBody tr').eq(i).show();
-              }
-          });
-       });
-
-
-        });
-
-    {{ HTML::script('assets/js/scripts.js')}}
-    {{ HTML::script('assets/js/jquery.dataTables.min.js')}}
-
-    </script>
-
- <script type="text/javascript" charset="utf-8">
-			$(document).ready(function() {
-				$('#example').dataTable();
-			} );
- </script>
 
 </body>
 </html>
