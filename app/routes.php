@@ -30,10 +30,28 @@ Route::any('degree_level/create','DegreeLevelController@create');
 
 Route::any('degree_level/store', ['as' => 'degreelevel.store', 'uses' => 'DegreeLevelController@store' ]);
 
+Route::get('degree_level/show/{id}', [ 'as' => 'degreelevel.show', 'uses' => 'DegreeLevelController@show' ]);
+
+
+
+
+
 
 
 Route::any('degree_level/edit/{id}', ['as' => 'degreelevel.edit', 'uses' => 'DegreeLevelController@edit' ]);
+Route::any('degree_level/update/{id}', ['as' => 'degreelevel.update','uses' => 'DegreeLevelController@update' ]);
+
 
 Route::any('degree_level/destroy/{id}', ['as' => 'degreelevel.destroy', 'uses' => 'DegreeLevelController@destroy' ]);
 
-Route::get('degree_level/show/{id}', [ 'as' => 'degreelevel.show', 'uses' => 'DegreeLevelController@show' ]);
+
+Route::get('/','HomeController@index');
+
+Route::get('department','DepartmentController@index');
+
+Route::get('department/create','DepartmentController@create');
+
+Route::any('department/store','DepartmentController@store');
+
+Route::any('department/delete/{id}','DepartmentController@delete');
+

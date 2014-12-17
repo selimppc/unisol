@@ -4,17 +4,14 @@
     @include('degree_level._sidebar')
 @stop
 
-
 @section('content')
 
-    <div class="page-header" style="border: 1px solid #0077b3;">
-            <h1>Edit Degree level</h1>
-        </div>
+        <h1>Edit Degree Level</h1>
 
-        {{ Form::model( $employee, ['route' => ['employees.update', $employee->id], 'method' => 'POST', 'role' => 'form'] ) }}
-           {{ Form::hidden('id', $employee->id) }}
-           @include('employee._form')
-        {{ Form::close() }}
+{{ Form::model($degree,array('url'=>'degree_level/update','method' => 'POST')) }}
 
+       {{ Form::hidden('id', $degree->id) }}
+       @include('degree_level._form')
+    {{ Form::close() }}
 
 @stop
