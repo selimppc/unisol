@@ -7,11 +7,15 @@
 
 @section('content')
 
+        <div padding="10px 10px 10px 10px">
+
             {{ Form::open(array('route' => 'degreelevel.store', 'method' =>'post', 'role'=>'form','files'=>'true'))  }}
 
                     @include('degree_level._form')
 
             {{ Form::close() }}
+
+        </div>
 
 
 @stop
