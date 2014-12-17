@@ -10,7 +10,7 @@
         <table class="table">
             <tr>
                 <td>
-                    <span class="glyphicon glyphicon-pencil text-primary"></span><a href="department/index">Department</a>
+                    <span class="glyphicon glyphicon-pencil text-primary"></span><a href="department/index">Dep</a>
                 </td>
             </tr>
             <tr>
