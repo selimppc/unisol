@@ -15,18 +15,11 @@
 //	return View::make('hello');
 //});
 //Route::get('/','HomeController@index');
-Route::get('create/subject','SubjectController@Index');
-Route::post('subject/save','SubjectController@save');
-Route::any('subject/list','SubjectController@show');
-Route::any('subject/batch/delete','SubjectController@batchdelete');
-Route::get('subject/delete/{id}','SubjectController@delete');
-Route::get('subject/editvalue', 'SubjectController@edit');
-Route::post('subject/update/{id}', 'SubjectController@update');
 
 
-Route::get('/','HomeController@index');
 
 
+<<<<<<< HEAD
 Route::get('degree_level/','DegreeLevelController@index');
 
 Route::any('degree_level/create','DegreeLevelController@create');
@@ -41,25 +34,47 @@ Route::any('degree_level/update/{id}', ['as' => 'degreelevel.update','uses' => '
 
 
 Route::any('degree_level/destroy/{id}', ['as' => 'degreelevel.destroy', 'uses' => 'DegreeLevelController@destroy' ]);
+=======
+/*
+==================================================================
+Selim
+==================================================================
+*/
+>>>>>>> 90702d2b53891d8d45a4910e39fee79df36b4bbc
+
+include("routes_sr.php");
 
 
-Route::get('/','HomeController@index');
+/*
+==================================================================
+Shafi
+==================================================================
+*/
+
+include("routes_sh.php");
 
 
-//{-------------------Department--------------------}
-Route::get('department/index','DepartmentController@index');
+/*
+==================================================================
+Ratna
+==================================================================
+*/
 
-Route::get('department/create','DepartmentController@create');
-
-Route::any('department/store','DepartmentController@store');
-
-Route::any('department/delete/{id}','DepartmentController@delete');
+include("routes_ra.php");
 
 
-Route::any('department/batchDelete','DepartmentController@batchDelete');
+/*
+==================================================================
+Tanin
+==================================================================
+*/
 
-Route::any('department/edit/{id}','DepartmentController@edit');
+include("routes_tj.php");
 
-Route::post('department/update/{id}','DepartmentController@update');
 
+<<<<<<< HEAD
 //{------------------ End Department Routes --------------------}
+=======
+
+
+>>>>>>> 90702d2b53891d8d45a4910e39fee79df36b4bbc
