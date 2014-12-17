@@ -65,7 +65,7 @@ class DegreeLevelController extends \BaseController {
             return View::make('degree_level.show')->with('degree',$degree_levels);
         }
         App::abort(404);
-
+        //OK
     }
 
 
@@ -78,23 +78,22 @@ class DegreeLevelController extends \BaseController {
 
     }
 
-	public function update()
+	public function update($id)
 	{
+
 
         // get the POST data
         $data = Input::all();
-
         // create a new model instance
-        $degree_levels = new DegreeLevel();
-
+        $degree_levels = DegreeLevel::find($id);
         // attempt validation
         if ($degree_levels->validate($data))
         {
             // success code
-            $degree_levels = Employee::find($id);
-            $degree_levels->first_name = Input::get('first_name');
-            $degree_levels->last_name = Input::get('last_name');
-            $degree_levels->email = Input::get('email');
+            //$degree_levels = DegreeLevel::find($id);
+
+            $degree_levels->title = Input::get('title');
+            $degree_levels->description = Input::get('description');
             $degree_levels->save();
 
             // redirect
@@ -113,15 +112,15 @@ class DegreeLevelController extends \BaseController {
 
 	}
 
+  	public function destroy()
+	{
+
+	}
+
     public function delete()
     {
 
     }
-
-	public function destroy()
-	{
-
-	}
 
 
 }

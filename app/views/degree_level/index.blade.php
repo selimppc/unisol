@@ -30,7 +30,7 @@
                             <td><input type="checkbox" name="ids[]"  id="check" class="myCheckbox" value="{{ $level->id }}"></td>
                             <td>{{ $level->title }}</td>
                             <td>{{ $level->description }}</td>
-                        </tr>
+
                         <td>
                               <a href="{{ URL::route('degreelevel.edit', ['id'=>$level->id])  }}" class="btn btn-default">Edit</a>
 
@@ -39,6 +39,7 @@
                               <a href="{{ URL::route('degreelevel.show', ['id'=>$level->id])  }}" class="btn btn-default">View</a>
 
                         </td>
+                        </tr>
                     @endforeach
 
             </tbody>
