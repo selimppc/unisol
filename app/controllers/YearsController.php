@@ -36,7 +36,7 @@ class YearsController extends \BaseController {
 		
 			if($validator->fails())
 			{				
-				return Redirect::to('create/years')->withErrors($validator)->withInput()->with('title', 'Create Subject');
+				return Redirect::to('years/show')->withErrors($validator)->withInput()->with('title', 'Create Subject');
 			}
 			else
 			{
@@ -47,12 +47,12 @@ class YearsController extends \BaseController {
 							$data->description = Input::get('description');
 							$data->save();
 							Session::flash('message', "Years added successfully");
-						return Redirect::to('create/years')->with('title', 'Years List');
+						return Redirect::to('years/show')->with('title', 'Years List');
 					}
 					else
 					{
 						Session::flash('message', 'Token Mismatched');
-						return Redirect::to('create/years')->with('title', 'Years List');
+						return Redirect::to('years/show')->with('title', 'Years List');
 					}
 			}
 	}
@@ -62,23 +62,25 @@ class YearsController extends \BaseController {
 	 *
 	 * @return Response
 	 */
+	
 	public function store()
 	{
 		//
 	}
 
-
+	
 	/**
 	 * Display the specified resource.
 	 *
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
-	{
-		//
-	}
 
+	public function show()
+	{
+		$data= Years::orderBy('id', 'DESC')->paginate(5);
+		return View::make('years.index')->with('datas',$data)->with('title','All Years list');
+	}
 
 	/**
 	 * Show the form for editing the specified resource.
