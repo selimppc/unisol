@@ -7,9 +7,9 @@ class YearsController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function Index()
 	{
-		//
+		return View::make('years.index')->with('title','Create Years');
 	}
 
 
@@ -22,7 +22,40 @@ class YearsController extends \BaseController {
 	{
 		//
 	}
+	public function save()
+	{
+		$token = csrf_token();
+		
+		$rules = array(
+				
+				'title' => 'Required|Min: 3',
+			    'description' => 'Required|min:3'
+			);
+		$validator = Validator::make(Input::all(), $rules);
 
+		
+			if($validator->fails())
+			{				
+				return Redirect::to('create/years')->withErrors($validator)->withInput()->with('title', 'Create Subject');
+			}
+			else
+			{
+				if($token == Input::get('_token'))
+					{
+							$data = new Years;
+							$data->title = Input::get('title');
+							$data->description = Input::get('description');
+							$data->save();
+							Session::flash('message', "Years added successfully");
+						return Redirect::to('create/years')->with('title', 'Years List');
+					}
+					else
+					{
+						Session::flash('message', 'Token Mismatched');
+						return Redirect::to('create/years')->with('title', 'Years List');
+					}
+			}
+	}
 
 	/**
 	 * Store a newly created resource in storage.

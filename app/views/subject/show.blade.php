@@ -61,8 +61,8 @@
             @foreach ($datas as $value)
               <tr>
                 <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $value->id }}"></td>
-                 {{--<td align="left" class="deptName">{{ Department::getDepartmentName($value->department_id) }}</td>--}}
-                 {{--<td class="subTitle">{{ $value->title }}</td>--}}
+                 <td align="left" class="deptName">{{ Department::getDepartmentName($value->department_id) }}</td>
+                 <td class="subTitle">{{ $value->title }}</td>
                  <td class="subDesc">{{ $value->description }}</td>
                  <td>
                    <a data-href="{{ URL::to('subject/delete/'.$value->id) }}" class="btn btn-sm btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><span class="glyphicon glyphicon-trash text-danger"></span></a>
@@ -99,13 +99,10 @@
 
           {{ Form::open(array('url' => '', 'method' =>'post', 'role'=>'form','files'=>'true', 'class' => 'updateForm')) }}
               @include('subject._form')
-           <!-- <button type="button" class="btn btn-default close" data-dismiss="modal" >Cencel</button> 
-              -->
+           <!--   <button type="button" class="btn btn-default" data-dismiss="modal" >Cencel</button> -->
+             
         <!-- To refresh page -->
-             <a href="{{URL::to('subject/list')}}" class="btn btn-default">Close </a>  
-            <!--  {{ Form::reset('Clear form') }} -->
-          <!--   {{Form::button('button')}} -->
-
+             <a href="{{URL::to('')}}" class="btn btn-default">Close </a> 
           {{ Form::close() }}
 
       </div>
@@ -147,8 +144,7 @@
                     <strong>Are you sure to delete?</strong>
               </div>
               <div class="modal-footer">
-               <!-- To refresh page -->
-             <a href="{{URL::to('subject/list')}}" class="btn btn-default">Close </a>  
+                <button type="button" class="btn btn-default close" data-dismiss="modal">Cancel</button>
                 <a href="#" class="btn btn-danger danger">Delete</a>
 
               </div>

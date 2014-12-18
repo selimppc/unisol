@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('sidebar')
-    @include('subject.sidebar')
+    @include('years.sidebar')
 @stop
 
 @section('content')
@@ -14,8 +14,7 @@
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" style="margin-bottom: 20px">
                  Add New Subject
                 </button>
-
-              <!-- for search box -->
+             <!-- for search box -->
                 <div class="row m-t-sm">
                 <div class="col-md-12">
                   <section class="panel panel-default">
@@ -40,17 +39,15 @@
           </div>
         </div>
     <!-- search ends -->
-
-
-        {{ Form::open(array('url' => 'subject/batch/delete')) }}
+  {{ Form::open(array('url' => 'years/batch/delete')) }}
         <table class="table table-bordered" id="myTable">
 
           <thead>
               <th>
                <input name="id" type="checkbox" id="checkbox" class="checkbox" value="">
                </th>
-              <th>DepartmentId</th>
-              <th>SubjectName</th>
+              <th>Id</th>
+              <th>YearsName</th>
               <th>Description</th>
               <th colspan="2" width="120px">Action</th>
           </thead>
@@ -61,7 +58,6 @@
             @foreach ($datas as $value)
               <tr>
                 <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $value->id }}"></td>
-                 <td align="left" class="deptName">{{ Department::getDepartmentName($value->department_id) }}</td>
                  <td class="subTitle">{{ $value->title }}</td>
                  <td class="subDesc">{{ $value->description }}</td>
                  <td>
@@ -87,70 +83,6 @@
   </div>
   </div>
 </div>
-    <!-- Modal for Edit -->
-<div class="modal fade" id="confirm-edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="myModalLabel">Edit Subject</h4>
-      </div>
-      <div class="modal-body edit-modal">
-
-          {{ Form::open(array('url' => '', 'method' =>'post', 'role'=>'form','files'=>'true', 'class' => 'updateForm')) }}
-              @include('subject._form')
-           <!--   <button type="button" class="btn btn-default" data-dismiss="modal" >Cencel</button> -->
-             
-        <!-- To refresh page -->
-             <a href="{{URL::to('')}}" class="btn btn-default">Close </a> 
-          {{ Form::close() }}
-
-      </div>
-      <div class="modal-footer">
-      </div>
-    </div>
-  </div>
-</div>
-
-
- <!-- Modal for details view cell -->
-<div class="modal fade" id="confirm-details" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="myModalLabel">View Subject</h4>
-      </div>
-      <div class="modal-body details-modal">                  
-        <p>Department: <span class="department"></span></p>
-        <p>Title: <span class="title"></span></p>
-        <p>Description:  <span class="description"></span></p>
-      </div>
-      <div class="modal-footer">
-      </div>
-    </div>
-  </div>
-</div>
-
-  <!-- Modal for delete -->
-    <div class="modal fade " id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>
-              </div>
-              <div class="modal-body">
-                    <strong>Are you sure to delete?</strong>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default close" data-dismiss="modal">Cancel</button>
-                <a href="#" class="btn btn-danger danger">Delete</a>
-
-              </div>
-        </div>
-      </div>
-    </div>
 
 
     <!-- Modal add new subject -->
@@ -162,9 +94,9 @@
                     <h4 class="modal-title">Add New Subject</h4>
                 </div>
                 <div class="modal-body">
-                   {{ Form::open(array('url' => 'subject/save', 'method' =>'post', 'role'=>'form','files'=>'true')) }}
+                   {{ Form::open(array('url' => 'years/save', 'method' =>'post', 'role'=>'form','files'=>'true')) }}
 
-                       @include('subject._form')
+                       @include('years._form')
 
                   <button type="button" class="btn btn-danger close" data-dismiss="modal">Cencel</button>
                     {{ Form::close() }}
