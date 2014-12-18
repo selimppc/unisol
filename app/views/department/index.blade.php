@@ -34,6 +34,8 @@
                      <td>
                     {{--<a class="btn btn-sm btn-danger" data-href="{{ URL::to('department/delete/'.$department->id) }}" data-toggle="modal" data-target="#confirm-delete">Delete </a>--}}
                      <a data-href="{{ URL::to('department/delete/'.$department->id) }}" class="btn btn-sm btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><span class="glyphicon glyphicon-trash text-danger"></span></a>
+                     <a href="{{ URL::to('department/show/'.$department->id) }}" class="btn btn-sm btn-default" data-toggle="modal" data-target="#confirm-show"><span class="glyphicon glyphicon-eye-open text-danger"></span></a>
+
 
                     <a class="btn btn-sm btn-info" href="{{ URL::to('department/edit/' . $department->id ) }}" data-toggle="modal" data-target="#myeditModal" >Edit...</a>
 
@@ -42,7 +44,7 @@
                   </tr>
               @endforeach
               <div>
-              {{--<a href="{{ action('DepartmentController@create') }}" class="btn btn-success" data-toggle="modal" data-target="#myModal">Add New Department</a>--}}
+
                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
                           Add New
                </button>
@@ -50,7 +52,9 @@
               <br>
 {{ Form::submit('Delete Items', array('class'=>'btn btn-primary'))}}
 {{ Form::close() }}
-
+ <div class="text-right">
+            {{ $departmentList->links() }}
+ </div>
       </tbody>
   </table>
   </div>
@@ -58,7 +62,7 @@
 
        <!-- Modal :: Delete Confirmation -->
 
-         <!-- Modal for delete -->
+
              <div class="modal fade " id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                <div class="modal-dialog">
                  <div class="modal-content">
@@ -78,6 +82,24 @@
                </div>
              </div>
 
+{{--Model: for showing single row info--}}
+<div class="modal fade " id="confirm-show" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+               <div class="modal-dialog">
+                 <div class="modal-content">
+                       <div class="modal-header">
+                         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                         <h4 class="modal-title" id="myModalLabel">Department :<b>{{$department->title}}</b></h4>
+                       </div>
+                <div class="modal-body">
+
+ </div>
+ <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      <a href="" class="btn btn-default" >Close</a>
+ </div>
+ </div>
+ </div>
+ </div>
 
 <script>
       $(document).ready(function(){
@@ -123,6 +145,8 @@
 
 
         {{ Form::close() }}
+
+
         {{--</div>--}}
       </div>
       <div class="modal-footer">
@@ -133,7 +157,6 @@
 </div>
 
 {{--Modal : edit --}}
-
 
 <div class="modal fade" id="myeditModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -157,11 +180,11 @@
 <script type="text/javascript">
 			$(document).ready(function() {
 				$('#myTable').dataTable({
-
+                paging: false
 
 				});
 
 			} );
-		</script>
+</script>
 @stop
 

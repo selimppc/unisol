@@ -17,6 +17,7 @@ Route::any('department/edit/{id}','DepartmentController@edit');
 
 Route::post('department/update/{id}','DepartmentController@update');
 
+Route::get('department/show/{id}', 'DepartmentController@show' );
 
 
 //{------------------ End Department Routes --------------------}

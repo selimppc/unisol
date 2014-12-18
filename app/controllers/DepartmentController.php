@@ -9,7 +9,8 @@
 class DepartmentController extends BaseController{
 
      public function index(){
-         $departmentList = Department::all();
+         //$departmentList = Department::all()->paginate(5);
+         $departmentList = DB::table('department')->paginate(5);
          //return View::make('department/index');
          return View::make('department.index', compact('departmentList'));
       }
@@ -85,5 +86,15 @@ class DepartmentController extends BaseController{
         } else {
             return Redirect::to('department/index')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
         }
+    }
+
+    public function show($id)
+    {
+        // get the country
+        $department = Department::find($id);
+
+        return View::make('department.show',compact('department'));
+
+
     }
 }
