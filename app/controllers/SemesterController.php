@@ -9,7 +9,10 @@ class SemesterController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+        $semester = Semester::orderBy('id', 'DESC')->paginate(10);
+
+        return View::make('semester.index')->with('term_semester',$semester);
+        //ok
 	}
 
 
@@ -20,7 +23,8 @@ class SemesterController extends \BaseController {
 	 */
 	public function create()
 	{
-		//
+        return View::make('semester.create');
+        //ok
 	}
 
 
@@ -31,7 +35,34 @@ class SemesterController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+        // get the POST data
+        $data = Input::all();
+
+        // create a new model instance
+        $semester = new Semester();
+
+        // attempt validation
+        if ($semester->validate($data))
+        {
+            // success code
+            $semester->title = Input::get('title');
+            $semester->description = Input::get('description');
+
+            $semester->save();
+
+            // redirect
+            Session::flash('message', 'Successfully Added!');
+            return Redirect::to('semester');
+        }
+        else
+        {
+            // failure, get errors
+            $errors = $semester->errors();
+            Session::flash('errors', $errors);
+
+            return Redirect::to('semester/create');
+        }
+        //ok
 	}
 
 
@@ -43,7 +74,15 @@ class SemesterController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		//
+        // get the employee
+        $semester = Semester::find($id);
+
+        if($semester)
+        {
+            return View::make('semester.show')->with('term_semester',$semester);
+        }
+        App::abort(404);
+        //ok
 	}
 
 
@@ -55,7 +94,10 @@ class SemesterController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+        $semester = Semester::find($id);
+
+        // Show the edit employee form.
+        return View::make('semester.edit')->with('term_semester',$semester);
 	}
 
 
@@ -67,7 +109,34 @@ class SemesterController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+        // get the POST data
+        $data = Input::all($id);
+        // create a new model instance
+        $semester = new Semester();
+        // attempt validation
+        if ($semester->validate2($data))
+        {
+            // success code
+            $semester = Semester::find($id);
+
+            $semester->title = Input::get('title');
+            $semester->description = Input::get('description');
+            $semester->save();
+
+            // redirect
+            Session::flash('message', 'Successfully Added!');
+            return Redirect::to('semester');
+        }
+        else
+        {
+            // failure, get errors
+            $errors = $semester->errors();
+            Session::flash('errors', $errors);
+
+            //return Redirect::to('employee/create')->withInput()->withErrors($errors);
+            return Redirect::to('semester');
+        }
+        //ok
 	}
 
 
@@ -79,8 +148,22 @@ class SemesterController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+
+        $data= Semester::find($id);
+        if($data->delete())
+        {
+            return Redirect::to('semester');
+        }
+        //ok
 	}
+
+    public function batchDelete(){
+
+
+        Semester::destroy(Request::get('id'));
+        return Redirect::back();
+        //ok
+    }
 
 
 }
