@@ -26,6 +26,7 @@
 
       <tbody>
 {{ Form::open(array('url' => 'department/batchDelete')) }}
+
               @foreach ($departmentList as $department)
                   <tr>
                      <td><input type="checkbox" name="ids[]"  id="check" class="myCheckbox" value="{{ $department->id }}"></td>
@@ -50,13 +51,14 @@
                </button>
               </div>
               <br>
-{{ Form::submit('Delete Items', array('class'=>'btn btn-primary'))}}
+
 {{ Form::close() }}
  <div class="text-right">
-            {{ $departmentList->links() }}
+        {{ $departmentList->links() }}
  </div>
       </tbody>
   </table>
+  {{ Form::submit('Delete Items', array('class'=>'btn btn-primary'))}}
   </div>
 
 
@@ -101,21 +103,7 @@
  </div>
  </div>
 
-<script>
-      $(document).ready(function(){
-              $(".checkbox").change(function() {
-                  if(this.checked) {
-                      $('.myCheckbox').prop('checked', true);
-                  }
-                  if(!this.checked) {
-                               $('.myCheckbox').prop('checked', false);
-                           }
-              });
 
-         });
-
-
-</script>
 <!-- Modal :Add new Department-->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -178,13 +166,28 @@
 </div>
 
 <script type="text/javascript">
-			$(document).ready(function() {
+		$(document).ready(function() {
 				$('#myTable').dataTable({
                 paging: false
 
 				});
 
-			} );
+		} );
 </script>
+
+     <script>
+
+              $(".checkbox").change(function() {
+                  if(this.checked) {
+                      $('.myCheckbox').prop('checked', true);
+                  }
+                  if(!this.checked) {
+                               $('.myCheckbox').prop('checked', false);
+                           }
+
+         });
+
+
+     </script>
 @stop
 
