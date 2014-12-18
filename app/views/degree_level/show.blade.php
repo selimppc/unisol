@@ -4,6 +4,7 @@
 
     {{ Form::open(array('url'=>'degree_level/show','method' => '')) }}
 
+
         <div class="jumbotron text-center">
             <h2>{{ $degree->title }}</h2>
             <p>
@@ -11,7 +12,7 @@
             </p>
         </div>
 
-
+    <a href="{{URL::to('degree_level/')}}" class="btn btn-default">Close </a>
 
     {{ Form::close() }}
 

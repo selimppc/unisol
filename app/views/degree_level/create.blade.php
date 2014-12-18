@@ -1,13 +1,7 @@
-@extends('layouts.master')
-
-@section('sidebar')
-    @include('degree_level._sidebar')
-@stop
 
 
-@section('content')
-
-        <div padding="10px 10px 10px 10px">
+        <div style="padding: 10px; width: 90%;">
+         <h1>Create Degree Level</h1>
 
             {{ Form::open(array('route' => 'degreelevel.store', 'method' =>'post', 'role'=>'form','files'=>'true'))  }}
 
@@ -17,5 +11,3 @@
 
         </div>
 
-
-@stop
