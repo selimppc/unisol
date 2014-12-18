@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateYearsTable extends Migration
+class CreateSemesterTable extends Migration
 {
 
     /**
@@ -13,10 +13,10 @@ class CreateYearsTable extends Migration
      */
     public function up()
     {
-        Schema::create('years', function (Blueprint $table) {
+        Schema::create('semester', function (Blueprint $table) {
+            $table->increments('id');
 
-            $table->increments('id', true);
-            $table->integer('title');
+            $table->string('title', 128);
             $table->text('description');
             $table->timestamps();
             $table->engine = 'InnoDB';
@@ -31,7 +31,7 @@ class CreateYearsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('years');
+        Schema::drop('semester');
     }
 
 }
