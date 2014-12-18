@@ -109,8 +109,6 @@ class DegreeLevelController extends \BaseController {
     //ok
 	}
 
-
-
   	public function destroy($id)
 	{
         $data= DegreeLevel::find($id);
