@@ -99,7 +99,13 @@
 
           {{ Form::open(array('url' => '', 'method' =>'post', 'role'=>'form','files'=>'true', 'class' => 'updateForm')) }}
               @include('subject._form')
-             <button type="button" class="btn btn-danger close" data-dismiss="modal" >Cencel</button>
+           <!-- <button type="button" class="btn btn-default close" data-dismiss="modal" >Cencel</button> 
+              -->
+        <!-- To refresh page -->
+             <a href="{{URL::to('subject/list')}}" class="btn btn-default">Close </a>  
+            <!--  {{ Form::reset('Clear form') }} -->
+          <!--   {{Form::button('button')}} -->
+
           {{ Form::close() }}
 
       </div>
@@ -141,7 +147,8 @@
                     <strong>Are you sure to delete?</strong>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-default close" data-dismiss="modal">Cancel</button>
+               <!-- To refresh page -->
+             <a href="{{URL::to('subject/list')}}" class="btn btn-default">Close </a>  
                 <a href="#" class="btn btn-danger danger">Delete</a>
 
               </div>
