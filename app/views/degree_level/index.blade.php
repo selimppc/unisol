@@ -31,9 +31,12 @@
 
                    <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $level->id }}"></td>
 <<<<<<< HEAD
+<<<<<<< HEAD
 
                    {{--<td align="left" class="deptName">{{ Department::getDepartmentName($level->department_id) }}</td>--}}
 
+=======
+>>>>>>> a1110ed10439fdb196b48a9a4bf13ee078396aad
 =======
 >>>>>>> a1110ed10439fdb196b48a9a4bf13ee078396aad
                    <td>{{ $level->title }}</td>
@@ -70,11 +73,25 @@
                                  <div class="modal-body">
 
                                          {{ Form::open(array('route' => 'degreelevel.store', 'method' =>'post', 'role'=>'form','files'=>'true'))  }}
+<<<<<<< HEAD
+=======
+
+                                                 @include('degree_level._form')
+
+                                         {{ Form::close() }}
+>>>>>>> a1110ed10439fdb196b48a9a4bf13ee078396aad
 
                                                  @include('degree_level._form')
 
                                          {{ Form::close() }}
 
+
+                                 </div>
+                                 <div class="modal-footer">
+                                 </div>
+                            </div>
+                        </div>
+             </div>
 
                                  </div>
                                  <div class="modal-footer">
@@ -140,6 +157,7 @@
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
                <script>
 
@@ -157,6 +175,12 @@
                                                       });
 
 
+=======
+               <script> $(document).ready(function() {
+                            $('#example').DataTable();
+                        } );
+               </script>
+>>>>>>> a1110ed10439fdb196b48a9a4bf13ee078396aad
 
 =======
                <script> $(document).ready(function() {
@@ -164,7 +188,6 @@
                         } );
 >>>>>>> a1110ed10439fdb196b48a9a4bf13ee078396aad
                </script>
-
 
 
 @stop
