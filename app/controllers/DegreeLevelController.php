@@ -53,8 +53,6 @@ class DegreeLevelController extends \BaseController {
 
     }
 
-
-
     public function show($id)
     {
         // get the employee

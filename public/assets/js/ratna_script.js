@@ -64,7 +64,7 @@
 
     //Modal subEdit for subject start. this only shows the value according their id
 
-            $('.subEdit').on('click', function(){
+        $('.subEdit').on('click', function(){
         var subId = $(this).data('id');
         var url = "editvalue";
         $.ajax({
