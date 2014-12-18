@@ -85,7 +85,7 @@ class DegreeLevelController extends \BaseController {
         // create a new model instance
         $degree_levels = new DegreeLevel();
         // attempt validation
-        if ($degree_levels->validate($data))
+        if ($degree_levels->validate2($data))
         {
             // success code
             $degree_levels = DegreeLevel::find($id);
@@ -126,15 +126,8 @@ class DegreeLevelController extends \BaseController {
 
         DegreeLevel::destroy(Request::get('id'));
         return Redirect::back();
-
+        //ok
     }
-
-
-
-
-
-
-
 
 
 }
