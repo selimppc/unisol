@@ -9,7 +9,8 @@ class DegreeLevelController extends \BaseController {
 	 */
 	public function index()
 	{
-        $degree_levels = DegreeLevel::all();
+        $degree_levels = DegreeLevel::orderBy('id', 'DESC')->paginate(10);
+
         return View::make('degree_level.index')->with('degree',$degree_levels);
     //ok
 	}

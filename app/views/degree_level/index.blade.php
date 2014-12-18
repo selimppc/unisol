@@ -4,7 +4,6 @@
     @include('degree_level._sidebar')
 @stop
 
-
 @section('content')
    <h1>Welcome to Degree Level! </h1>
 
@@ -48,9 +47,11 @@
                     <br><br>
 
             {{form::close() }}
-
             </tbody>
         </table>
+
+        {{ $degree->links() }}
+
         <br><br><br>
 
 <!-- Modal for Create -->
@@ -68,6 +69,8 @@
                                                  @include('degree_level._form')
 
                                          {{ Form::close() }}
+
+
 
 
                                  </div>
@@ -133,9 +136,18 @@
                </div>
 
 
-               <script> $(document).ready(function() {
-                            $('#example').DataTable();
-                        } );
+               <script>
+                        $(document).ready(function() {
+                            $('#example').dataTable({
+                                        paging: false
+
+                            });
+
+                           } );
+
+
+
+
                </script>
 
 
