@@ -1,8 +1,5 @@
-
-
-
-<div class="span4 well">
-
+<div style="padding: 20px;">
+        <h3>Edit {{$department->title}}</h3>
        {{--@foreach($department as $data)--}}
         {{Form::open(array('url'=>'department/update/'.$department->id, 'class'=>'form-horizontal'))}}
 
@@ -13,10 +10,11 @@
 
         {{ Form::label('description', 'Description:') }}
         {{ Form::textarea('description',$department->description, array('class' => 'form-control')) }}
-
+        <p>&nbsp;</p>
         {{ Form::submit('Save Changes', array('class'=>'btn btn-primary')) }}
         {{ Form::submit('Close', array('class'=>'btn btn-primary')) }}
 
         {{Form::close()}}
         {{--@endforeach--}}
+
 </div>

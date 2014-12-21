@@ -9,7 +9,8 @@
 class DepartmentController extends BaseController{
 
      public function index(){
-         $departmentList = Department::all();
+         //$departmentList = Department::all()->paginate(5);
+         $departmentList = DB::table('department')->paginate(5);
          //return View::make('department/index');
          return View::make('department.index', compact('departmentList'));
       }
@@ -19,8 +20,7 @@ class DepartmentController extends BaseController{
       }
     public function store(){
         $rules = array(
-            'dept_name' => 'required|alpha_num',
-            'description' => 'required|alpha_num',
+            'dept_name' => 'required',
 
         );
 
@@ -35,14 +35,14 @@ class DepartmentController extends BaseController{
             // return Redirect::to('crud')->with('message', 'Successfully added Country!');
             return Redirect::back()->with('message', 'Successfully Added Country Information!');
         } else {
-            return Redirect::to('department/create')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
+            return Redirect::to('department/index')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
         }
     }
 
 
     public function delete($id){
             Department::find($id)->delete();
-        return Redirect::back()->with('message', 'Successfully Added Country Information!');
+        return Redirect::back()->with('message', 'Successfully deleted Country Information!');
     }
 
     public function batchDelete()
@@ -68,8 +68,8 @@ class DepartmentController extends BaseController{
     public function update($id)
     {
         $rules = array(
-            'dept_name' => 'required|alpha_num',
-            'description' => 'required|alpha_num',
+            'dept_name' => 'required',
+
 
         );
 
@@ -84,7 +84,17 @@ class DepartmentController extends BaseController{
             $department->save();
             return Redirect::back()->with('message', 'Successfully Added Country Information!');
         } else {
-            return Redirect::to('department/create')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
+            return Redirect::to('department/index')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
         }
+    }
+
+    public function show($id)
+    {
+        // get the country
+        $department = Department::find($id);
+
+        return View::make('department.show',compact('department'));
+
+
     }
 }
