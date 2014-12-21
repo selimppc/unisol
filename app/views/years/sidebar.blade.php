@@ -8,14 +8,14 @@
 <div id="collapseOne" class="panel-collapse collapse in">
     <div class="panel-body">
         <table class="table">
-            <tr>
+         <!--    <tr>
                 <td>
                     <span class="glyphicon glyphicon-pencil text-primary"></span><a href="{{URL::to('create/subject') }}">Create Subject</a> 
                 </td>
-            </tr>
+            </tr> -->
             <tr>
                 <td>
-                    <span class="glyphicon glyphicon-eye-open"></span><a href="{{URL::to('subject/list') }}">View Subject List</a> 
+                    <span class="glyphicon glyphicon-eye-open"></span><a href="{{URL::to('years/show') }}">View Years List</a> 
                 </td>
             </tr>
            

@@ -1,20 +1,22 @@
-<div style="padding: 10px; width: 90%;">
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+ <h4 class="modal-title">Show Years</h4>
+</div>
+<div class="modal-body">
 
- <h1></h1>
+    <div style="padding: 10px; width: 90%;">
 
-    {{ Form::open(array('url'=>'','method' => '')) }}
+       {{ Form::open(array('url'=>'years/show','method' => '')) }}
 
-
-        <div class="jumbotron text-center">
-            <h2>{{ $degree->title }}</h2>
+            <h2><strong> Years:</strong>  {{ $years->title }}</h2>
             <p>
-                <strong> Description:</strong> {{ $degree->description }}
+                <strong> Description:</strong> {{ $years->description }}
             </p>
-        </div>
 
-    <a href="{{URL::to('degree_level/')}}" class="btn btn-default">Close </a>
+	{{ Form::close() }}
+    </div>
 
-    {{ Form::close() }}
-
-
+</div>
+<div class="modal-footer">
+    <a href="{{URL::to('years/show')}}" class="btn btn-default">Close </a>
 </div>

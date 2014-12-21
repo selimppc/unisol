@@ -1,112 +1,74 @@
 @extends('layouts.master')
 
 @section('sidebar')
-    @include('subject.sidebar')
+    @include('years.sidebar')
 @stop
 
 @section('content')
-
 <h1>{{$title}}</h1>
-    <div class="container" style="margin-top: 20px">
-    <div class="row">
-      <div class="col-sm-10" style="background: #FFFFFF">
-              <div class="panel-body">
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" style="margin-bottom: 20px">
                  Add New Subject
                 </button>
-
-
-        {{ Form::open(array('url' => '')) }}
-        <table class="table table-bordered" id="myTable">
-
-          <thead>
+     {{ Form::open(array('url' => 'batch/delete')) }}
+        <table id="example" class="table table-bordered">
+        <thead>
+            <tr>
               <th>
               <input name="id" type="checkbox" id="checkbox" class="checkbox" value="">
                </th>
-              <th>Id</th>
-              <th>YearsName</th>
-              <th>Description</th>
-              <th colspan="2" width="120px">Action</th>
-          </thead>
-          <tbody class="searchBody">
-
-          {{ Form::submit('Delete Items', array('class'=>'btn btn-danger', 'id'=>'hide-button', 'style'=>'display:none'))}}
-
+                <th>Id</th>
+                <th>Year </th>
+                <th>Description</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+ 
+        <tbody>
             @foreach ($datas as $value)
-              <tr>
+            <tr>
                 <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $value->id }}">
                 </td>
-                 <td>{{$value->id}} </td>
-                 <td >{{ $value->title }} </td>
-                 <td>{{ $value->description }} </td>
-                 <td>
-                   <a data-href="{{ URL::to('subject/delete/'.$value->id) }}" class="btn btn-sm btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><span class="glyphicon glyphicon-trash text-danger"></span></a>
+                <td>{{$value->id}}</td>
+                <td>{{$value->title}}</td>
+                <td>{{$value->description}}</td>
+                <td> 
+                  <a data-href="{{ URL::to('years/delete/'.$value->id) }}" class="btn btn-sm btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><span class="glyphicon glyphicon-trash text-danger"></span></a>
 
-                   <a data-id="{{ $value->id }}" class="subEdit btn btn-sm btn-default" data-toggle="modal" data-target="#confirm-edit" href="" ><span class="glyphicon glyphicon-edit text-info"></span></a>
-                   
-                   <a data-id="{{ $value->id }}" class="subDetails btn btn-sm btn-default" data-toggle="modal" data-target="#confirm-details" href="" ><span class="glyphicon glyphicon-list-alt text-info"></span></a>
-                  
-                 </td>
-              </tr>
+                   <a href="{{ URL::route('years.edit', ['id'=>$value->id]) }}" class="subEdit btn btn-sm btn-default" data-toggle="modal" data-target="#edit-modal" href="" ><span class="glyphicon glyphicon-edit text-info"></span></a>
+
+                   <a href="{{ URL::route('years.show', ['id'=>$value->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#show-modal" href=""><span class="glyphicon glyphicon-list-alt text-info"></span></a>
+                </td>
+            </tr>
             @endforeach
-
           </tbody>
+          {{ Form::submit('Delete Items', array('class'=>'btn btn-danger', 'id'=>'hide-button', 'style'=>'display:none'))}}
+    </table>
+    {{ Form::close() }}
 
-        </table>
+    {{ $datas->links() }}
+         
 
-       {{ Form::close() }}
-
-       {{ $datas->links() }}
-
-   </div>
-  </div>
-  </div>
-</div>
     <!-- Modal for Edit -->
-<div class="modal fade" id="confirm-edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="myModalLabel">Edit Subject</h4>
-      </div>
-      <div class="modal-body edit-modal">
+   <div class="modal fade" id="edit-modal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
 
-          {{ Form::open(array('url' => '', 'method' =>'post', 'role'=>'form','files'=>'true', 'class' => 'updateForm')) }}
-              @include('subject._form')
-           <!--   <button type="button" class="btn btn-default" data-dismiss="modal" >Cencel</button> -->
-             
-        <!-- To refresh page -->
-             <a href="{{URL::to('')}}" class="btn btn-default">Close </a> 
-          {{ Form::close() }}
+        </div>
+        <div class="modal-footer">
+       <!--  <button type="button" class="btn btn-default close" data-dismiss="modal">Close</button> -->
+      </div>
+      </div>
+   </div>
 
-      </div>
-      <div class="modal-footer">
-      </div>
-    </div>
-  </div>
-</div>
+          
+<!-- Modal for show -->
+   <div class="modal fade" id="show-modal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
 
-
- <!-- Modal for details view cell -->
-<div class="modal fade" id="confirm-details" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="myModalLabel">View Subject</h4>
+        </div>
       </div>
-      <div class="modal-body details-modal">                  
-        <p>Department: <span class="department"></span></p>
-        <p>Title: <span class="title"></span></p>
-        <p>Description:  <span class="description"></span></p>
-      </div>
-      <div class="modal-footer">
-      </div>
-    </div>
-  </div>
-</div>
-
+   </div>
   <!-- Modal for delete -->
     <div class="modal fade " id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog">
