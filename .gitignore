@@ -9,4 +9,4 @@ Thumbs.db
 .idea/
 vendor
 vendor/
-test/
+app/config/database.php
