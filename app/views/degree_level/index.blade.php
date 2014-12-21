@@ -160,22 +160,5 @@ $(document).ready(function(){
                  </div>
                </div>
 
-               <script>
 
-                        {{-- JS: batch delete --}}
-
-                                      $(document).ready(function(){
-                                            $(".checkBox").change(function() {
-                                                if(this.checked) {
-                                                    $('.myCheckBox').prop('checked', true);
-                                                }
-                                                if(!this.checked) {
-                                                    $('.myCheckBox').prop('checked', false);
-                                                }
-                                            });
-                                      } );
-                                    $(document).ready(function() {
-                                                $('#example').DataTable();
-                                            } );
-               </script>
 @stop

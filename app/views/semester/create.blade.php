@@ -7,7 +7,7 @@
 @section('content')
 
         <div style="padding: 10px; width: 90%;">
-         <h1>Create Degree Level</h1>
+         <h1>Create Semester</h1>
 
             {{ Form::open(array('route' => 'semester.store', 'method' =>'post', 'role'=>'form','files'=>'true'))  }}
 

@@ -21,3 +21,16 @@ Route::any('semester/edit/{id}', ['as' => 'semester.edit', 'uses' => 'SemesterCo
 Route::any('semester/update/{id}', ['as' => 'semester.update','uses' => 'SemesterController@update' ]);
 Route::any('semester/destroy/{id}', ['as' => 'semester.destroy', 'uses' => 'SemesterController@destroy' ]);
 Route::any('semester/batchDelete','SemesterController@batchDelete');
+
+
+//Course
+Route::get('course/','CourseController@index');
+
+
+Route::any('course/create','CourseController@create');
+Route::any('course/store', ['as' => 'course.store', 'uses' => 'CourseController@store' ]);
+Route::get('course/show/{id}', [ 'as' => 'course.show', 'uses' => 'CourseController@show' ]);
+Route::any('course/edit/{id}', ['as' => 'course.edit', 'uses' => 'CourseController@edit' ]);
+Route::any('course/update/{id}', ['as' => 'course.update','uses' => 'CourseController@update' ]);
+Route::any('course/destroy/{id}', ['as' => 'course.destroy', 'uses' => 'CourseController@destroy' ]);
+Route::any('course/batchDelete','CourseController@batchDelete');
