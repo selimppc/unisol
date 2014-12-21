@@ -152,7 +152,7 @@ class SemesterController extends \BaseController {
         $data= Semester::find($id);
         if($data->delete())
         {
-            return Redirect::to('semester');
+            return Redirect::back()->with('message', 'Successfully deleted Semester Information!');
         }
         //ok
 	}

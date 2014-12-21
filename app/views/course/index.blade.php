@@ -9,26 +9,27 @@
 
 <script type="text/javascript" language="javascript" src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
-<script>
-$(document).ready(function(){
-    $(".checkbox2").change(function() {
-      if(this.checked) {
-          $('.myCheckbox2').prop('checked', true);
-          $("#hide-button2").show();
-      }
-      if(!this.checked) {
-               $('.myCheckbox2').prop('checked', false);
-                $("#hide-button2").hide();
-           }
-    });
+{{--<script>--}}
+{{--$(document).ready(function(){--}}
+    {{--$(".checkbox2").change(function() {--}}
+      {{--if(this.checked) {--}}
+          {{--$('.myCheckbox2').prop('checked', true);--}}
+          {{--$("#hide-button2").show();--}}
+      {{--}--}}
+      {{--if(!this.checked) {--}}
+               {{--$('.myCheckbox2').prop('checked', false);--}}
+                {{--$("#hide-button2").hide();--}}
+           {{--}--}}
+    {{--});--}}
 
-    $('#example').dataTable({
-          paging: false
+    {{--$('#example').dataTable({--}}
+          {{--paging: false--}}
 
-   });
-});
+   {{--});--}}
+{{--});--}}
 
-</script>
+{{--</script>--}}
+
 {{ Form::open(array('url' => 'course/batchDelete')) }}
 
         <table id="example" class="table table-striped  table-bordered"  >
@@ -74,13 +75,14 @@ $(document).ready(function(){
                    <td>{{ $course->cost_per_credit }}</td>
 
                    <td>
-                      <a href="{{ URL::route('course.edit', ['id'=>$course->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#edit-modal" href="#"><span class="glyphicon glyphicon-edit text-info"></span></a>
+                      <a href="{{ URL::route('course.edit', ['id'=>$course->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#edit-modal" data-toggle="tooltip" data-placement="left" title="Edit" href="#"><span class="glyphicon glyphicon-edit text-info"></span></a>
 
-                      <a data-href="{{ URL::route('course.destroy',['id'=>$course->id]) }}" class="btn btn-danger" data-toggle="modal" data-target="#confirm-delete" href="" ><span class="glyphicon glyphicon-trash text-danger"></span></a>
+                      <a data-href="{{ URL::route('course.destroy',['id'=>$course->id]) }}" class="btn btn-danger" data-toggle="modal" data-target="#confirm-delete" data-toggle="tooltip" data-placement="left" title="Delete" href="" ><span class="glyphicon glyphicon-trash text-danger"></span></a>
 
-                      <a href="{{ URL::route('course.show', ['id'=>$course->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#showModal" href=""><span class="glyphicon glyphicon-list-alt text-info"></span></a>
+                      <a href="{{ URL::route('course.show', ['id'=>$course->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#showModal" data-toggle="tooltip" data-placement="left" title="Show/View" href=""><span class="glyphicon glyphicon-list-alt text-info"></span></a>
 
                    </td>
+
                 </tr>
                     @endforeach
 
@@ -102,15 +104,11 @@ $(document).ready(function(){
                                     <h4 class="modal-title" id="myModalLabel">Create Course</h4>
                                  </div>
                                  <div class="modal-body">
-
                                          {{ Form::open(array('route' => 'course.store', 'method' =>'post', 'role'=>'form','files'=>'true'))  }}
 
                                                  @include('course._form')
 
                                          {{ Form::close() }}
-
-
-
 
                                  </div>
                                  <div class="modal-footer">
@@ -173,5 +171,23 @@ $(document).ready(function(){
                    </div>
                  </div>
                </div>
+
+               {{--<script>--}}
+
+
+                                                     {{--$(document).ready(function(){--}}
+                                                           {{--$(".checkBox").change(function() {--}}
+                                                               {{--if(this.checked) {--}}
+                                                                   {{--$('.myCheckBox').prop('checked', true);--}}
+                                                               {{--}--}}
+                                                               {{--if(!this.checked) {--}}
+                                                                   {{--$('.myCheckBox').prop('checked', false);--}}
+                                                               {{--}--}}
+                                                           {{--});--}}
+                                                     {{--} );--}}
+                                                   {{--$(document).ready(function() {--}}
+                                                               {{--$('#example').DataTable();--}}
+                                                           {{--} );--}}
+                              {{--</script>--}}
 
 @stop

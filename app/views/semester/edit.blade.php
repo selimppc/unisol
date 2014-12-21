@@ -1,5 +1,3 @@
-
-
 <div style="padding: 10px; width: 90%;">
 
         <h1>Edit Semester</h1>
