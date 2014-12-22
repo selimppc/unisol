@@ -11,6 +11,7 @@ class DepartmentController extends BaseController{
      public function index(){
          //$departmentList = Department::all()->paginate(5);
          $departmentList = DB::table('department')->paginate(5);
+
          //return View::make('department/index');
          return View::make('department.index', compact('departmentList'));
       }
@@ -56,8 +57,6 @@ class DepartmentController extends BaseController{
 
     public function edit($id)
     {
-//        $datas = DB::table('department')->where('id', '=', $id)->limit(1)->get();
-//        return View::make('department.edit')->with('department', $datas);
 
         $department = Department::find($id);
         // Show the edit employee form.
@@ -90,9 +89,7 @@ class DepartmentController extends BaseController{
 
     public function show($id)
     {
-        // get the country
         $department = Department::find($id);
-
         return View::make('department.show',compact('department'));
 
 

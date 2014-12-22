@@ -62,4 +62,9 @@ class DegreeLevel extends Eloquent
         return $this->errors;
     }
 
+    public static function getDegreeLevelName($degId){
+    $data = DegreeLevel::find($degId);
+    return $data->title;
+}
+
 }
