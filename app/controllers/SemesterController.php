@@ -124,7 +124,7 @@ class SemesterController extends \BaseController {
             $semester->save();
 
             // redirect
-            Session::flash('message', 'Successfully Added!');
+            Session::flash('message', 'Successfully Edited!');
             return Redirect::to('semester');
         }
         else
