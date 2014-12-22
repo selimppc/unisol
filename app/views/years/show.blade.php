@@ -3,8 +3,7 @@
  <h4 class="modal-title">Show Years</h4>
 </div>
 <div class="modal-body">
-
-    <div style="padding: 10px; width: 90%;">
+	<div style="padding: 10px; width: 90%;">
 
        {{ Form::open(array('url'=>'years/show','method' => '')) }}
 
@@ -15,7 +14,6 @@
 
 	{{ Form::close() }}
     </div>
-
 </div>
 <div class="modal-footer">
     <a href="{{URL::to('years/show')}}" class="btn btn-default">Close </a>

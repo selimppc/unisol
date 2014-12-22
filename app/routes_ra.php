@@ -18,4 +18,17 @@ Route::get('years/edit/{id}', ['as' => 'years.edit','uses' => 'YearsController@e
 Route::any('years/update/{id}', ['as' => 'years/update','uses' => 'YearsController@update']);
 Route::get('years/delete/{id}','YearsController@delete');
 Route::any('batch/delete','YearsController@batchdelete');
-// end years
+// End years
+
+// Courses under semester/term
+Route::get('create/term','TermUnderSemesterController@Index');
+Route::post('term/save','TermUnderSemesterController@save');
+Route::any('term/show','TermUnderSemesterController@showterm');
+Route::any('term/show/{id}',['as' => 'term.show', 'uses'=> 'TermUnderSemesterController@show_one']);
+Route::get('term/edit/{id}', ['as' => 'term.edit','uses' => 'TermUnderSemesterController@edit']);
+Route::any('term/update/{id}', ['as' => 'term/update','uses' => 'TermUnderSemesterController@update']);
+Route::get('term/delete/{id}','TermUnderSemesterController@delete');
+Route::any('term/batch/delete','TermUnderSemesterController@batchdelete');
+
+
+// End courses

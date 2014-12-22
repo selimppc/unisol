@@ -120,5 +120,12 @@
      
      $('#example').dataTable({
           paging: false
-
+         //"sSearch": "Filter _INPUT_ ",
+         
+      // For date time picker
+        $(function () {
+        $('#datetimepicker1').datetimepicker();
+         });
+     
+         
    });

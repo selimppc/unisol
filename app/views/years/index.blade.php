@@ -5,12 +5,28 @@
 @stop
 
 @section('content')
-<h1>{{$title}}</h1>
+ <h1>{{$title}}</h1>
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" style="margin-bottom: 20px">
                  Add New Subject
                 </button>
+
+                <!-- search db  -->
+                   <div class="wrapper text-right no-padder" style="margin-top: 20px">
+                    {{ Form::open(array('url' =>'years/show', 'class'=>'form-inline', 'role' => 'form')) }}
+                        <div class="form-group">
+                          {{ Form::label('search_text', 'Search Text:',array('class'=>'sr-only')) }}
+                          {{ Form::text('search_text', Input::old('search_text'), array('class' => 'form-control','placeholder' => 'Search All')) }}
+                        </div>
+                        {{ Form::submit('Search', array('class' => 'btn btn-info')) }}
+                    {{ Form::close() }}
+                    </div>
+              
+            
+            <!-- search db ends -->
+
+                
      {{ Form::open(array('url' => 'batch/delete')) }}
-        <table id="example" class="table table-bordered">
+        <table id="example" class="table table-bordered table-hover table-striped">
         <thead>
             <tr>
               <th>

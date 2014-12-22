@@ -77,8 +77,25 @@ class YearsController extends \BaseController {
 
 	public function show()
 	{
-		$data= Years::orderBy('id', 'DESC')->paginate(5);
-		return View::make('years.index')->with('datas',$data)->with('title','All Years list');
+		// $data= Years::orderBy('id', 'DESC')->paginate(5);
+		// return View::make('years.index')->with('datas',$data)->with('title','All Years list');
+		
+		$search_text =trim(Input::get('search_text'));
+	    $q = Years::query();
+
+	    if (!empty($search_text)) 
+	    {
+	     $q->where(function($query) use ($search_text)
+	      {
+	      	 $query->where('id', 'LIKE', '%'.$search_text.'%');
+             $query->orWhere('title', 'LIKE', '%'.$search_text.'%');
+             $query->orWhere('description', 'LIKE', '%'.$search_text.'%');
+	        
+	      });
+        }
+
+      $data = $q->orderBy('id', 'DESC')->paginate(5);
+  	  return View::make('years.index')->with('datas',$data)->with('title','All Years List');
 	}
 
 	public function show_one($id)
@@ -147,6 +164,7 @@ class YearsController extends \BaseController {
 		$data= Years::find($id);
 		if($data->delete())
 		{
+		 	
 		 return Redirect::to('years/show')->with('title','All Years List');
 		}
 	}

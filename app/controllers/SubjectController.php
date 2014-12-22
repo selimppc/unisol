@@ -99,7 +99,7 @@ class SubjectController extends \BaseController {
 
       $data = $q->orderBy('id', 'DESC')->paginate(5);
   
-  	 return View::make('subject.show')->with('datas',$data)->with('title','All Subject List');
+  	 return View::make('subject.index')->with('datas',$data)->with('title','All Subject List');
 	}
 
      public function batchdelete()
