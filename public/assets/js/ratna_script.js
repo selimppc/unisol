@@ -4,18 +4,20 @@
                   $('.debug-url').html('Delete URL: <strong>' + $(this).find('.danger').attr('href') + '</strong>');
               });
 
-          $('#myTable').tablesorter(); //for table sorting
+          //$('#myTable').tablesorter(); //for table sorting
 
              // for table filter
-              $('#dataTableId').DataTable();
+             //$('#dataTableId').DataTable();
 
             //to refresh button in modal
             // $('.dropclose').on('click', function(event) {
             //   event.preventDefault();
             //   window.location.reload();
             // });
-
-           $('.close').on('click', function(event) {
+            
+        //to refresh button in modal
+           $('.close').on('click', function(event) 
+           {
             event.preventDefault();
             window.location.reload();
           });
@@ -113,3 +115,10 @@
             event.preventDefault();
             window.location.reload();
           });
+
+     // To search and filter using datatable
+     
+     $('#example').dataTable({
+          paging: false
+
+   });

@@ -109,14 +109,12 @@ class DegreeLevelController extends \BaseController {
     //ok
 	}
 
-
-
   	public function destroy($id)
 	{
         $data= DegreeLevel::find($id);
         if($data->delete())
         {
-            return Redirect::to('degree_level');
+            return Redirect::back()->with('message', 'Successfully deleted Degree Level Information!');
         }
         //ok
 	}

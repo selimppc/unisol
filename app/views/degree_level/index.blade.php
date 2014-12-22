@@ -9,36 +9,36 @@
 
 <script type="text/javascript" language="javascript" src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
-<script>
-$(document).ready(function(){
-    $(".checkbox2").change(function() {
-      if(this.checked) {
-          $('.myCheckbox2').prop('checked', true);
-          $("#hide-button2").show();
-      }
-      if(!this.checked) {
-               $('.myCheckbox2').prop('checked', false);
-                $("#hide-button2").hide();
-           }
-    });
+{{--<script>--}}
+{{--$(document).ready(function(){--}}
+    {{--$(".checkbox2").change(function() {--}}
+      {{--if(this.checked) {--}}
+          {{--$('.myCheckbox2').prop('checked', true);--}}
+          {{--$("#hide-button2").show();--}}
+      {{--}--}}
+      {{--if(!this.checked) {--}}
+               {{--$('.myCheckbox2').prop('checked', false);--}}
+                {{--$("#hide-button2").hide();--}}
+           {{--}--}}
+    {{--});--}}
 
-    $('#example').dataTable({
-          paging: false
+    {{--$('#example').dataTable({--}}
+          {{--paging: false--}}
 
-   });
-});
-</script>
+   {{--});--}}
+{{--});--}}
+{{--</script>--}}
 
  {{ Form::open(array('url' => 'degree_level/batchDelete')) }}
 
         <table id="example" class="table table-striped  table-bordered"  >
             <thead>
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#CreateModal" style="margin-bottom: 20px">
-                              Add New Degree Level
+                          Add New Degree Level
                     </button>
 
                     <br>
-                              {{ Form::submit('Delete Items', array('class'=>'btn btn-danger', 'id'=>'hide-button', 'style'=>'display:none'))}}
+                          {{ Form::submit('Delete Items', array('class'=>'btn btn-danger', 'id'=>'hide-button', 'style'=>'display:none'))}}
                     <br>
 
                     <br>
@@ -61,11 +61,11 @@ $(document).ready(function(){
                    <td>{{ $level->description }}</td>
 
                    <td>
-                      <a href="{{ URL::route('degreelevel.edit', ['id'=>$level->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#edit-modal" href="#"><span class="glyphicon glyphicon-edit text-info"></span></a>
+                      <a href="{{ URL::route('degreelevel.edit', ['id'=>$level->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#edit-modal" data-toggle="tooltip" data-placement="left" title="Edit" href="#"><span class="glyphicon glyphicon-edit text-info"></span></a>
 
-                      <a data-href="{{ URL::route('degreelevel.destroy',['id'=>$level->id]) }}" class="btn btn-danger" data-toggle="modal" data-target="#confirm-delete" href="" ><span class="glyphicon glyphicon-trash text-danger"></span></a>
+                      <a data-href="{{ URL::route('degreelevel.destroy',['id'=>$level->id]) }}" class="btn btn-danger" data-toggle="modal" data-target="#confirm-delete" data-toggle="tooltip" data-placement="left" title="Delete" href="" ><span class="glyphicon glyphicon-trash text-danger"></span></a>
 
-                      <a href="{{ URL::route('degreelevel.show', ['id'=>$level->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#showModal" href=""><span class="glyphicon glyphicon-list-alt text-info"></span></a>
+                      <a href="{{ URL::route('degreelevel.show', ['id'=>$level->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#showModal" data-toggle="tooltip" data-placement="left" title="Show/View" href=""><span class="glyphicon glyphicon-list-alt text-info"></span></a>
 
                    </td>
                 </tr>
@@ -160,22 +160,5 @@ $(document).ready(function(){
                  </div>
                </div>
 
-               <script>
 
-                        {{-- JS: batch delete --}}
-
-                                      $(document).ready(function(){
-                                            $(".checkBox").change(function() {
-                                                if(this.checked) {
-                                                    $('.myCheckBox').prop('checked', true);
-                                                }
-                                                if(!this.checked) {
-                                                    $('.myCheckBox').prop('checked', false);
-                                                }
-                                            });
-                                      } );
-                                    $(document).ready(function() {
-                                                $('#example').DataTable();
-                                            } );
-               </script>
 @stop

@@ -51,17 +51,17 @@
                             <i class="icon-user"></i> Common Module <i class="caret"></i>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a tabindex="-1" href=""> Course Management </a></li>
+                            <li><a tabindex="-1" href="{{ action('CourseController@index') }}"> Course Management </a></li>
                             <li class="divider"></li>
-                            <li><a tabindex="-1" href=""> Degree Level </a></li>
+                            <li><a tabindex="-1" href="{{ action('DegreeLevelController@index') }}"> Degree Level </a></li>
                             <li class="divider"></li>
-                            <li><a tabindex="-1" href=""> Degree / Program Name </a></li>
+                            <li><a tabindex="-1" href="#"> Degree / Program Name </a></li>
                             <li class="divider"></li>
-                            <li><a tabindex="-1" href=""> Subject Management </a></li>
+                            <li><a tabindex="-1" href="{{ action('SubjectController@show') }}"> Subject Management </a></li>
                             <li class="divider"></li>
-                            <li><a tabindex="-1" href=""> Term / Semester </a></li>
+                            <li><a tabindex="-1" href="{{ action('SemesterController@index') }}"> Term / Semester </a></li>
                             <li class="divider"></li>
-                            <li><a tabindex="-1" href=""> Year </a></li>
+                            <li><a tabindex="-1" href="#"> Year </a></li>
                         </ul>
                     </li>
 
