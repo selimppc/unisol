@@ -119,7 +119,7 @@ class CourseTypeController extends \BaseController {
             $course_type->save();
 
             // redirect
-            Session::flash('message', 'Successfully Added!');
+            Session::flash('message', 'Successfully Edited!');
             return Redirect::to('course_type');
         }
         else

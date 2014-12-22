@@ -12,7 +12,7 @@
   <col width="80">
     <col width="200">
     <col width="250">
-   <h4>Country Information</h4>
+   <h4>Department Information</h4>
                   <thead>
                   <tr>
                      <td><input name="checkbox" type="checkbox" id="checkbox" class="checkbox" value="">
@@ -33,7 +33,7 @@
                      <td align="left">{{ $department->title }}</td>
                      <td>{{ $department->description }}</td>
                      <td>
-                    {{--<a class="btn btn-sm btn-danger" data-href="{{ URL::to('department/delete/'.$department->id) }}" data-toggle="modal" data-target="#confirm-delete">Delete </a>--}}
+
                      <a data-href="{{ URL::to('department/delete/'.$department->id) }}" class="btn btn-sm btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><span class="glyphicon glyphicon-trash text-danger"></span></a>
                      <a href="{{ URL::to('department/show/'.$department->id) }}" class="btn btn-sm btn-default" data-toggle="modal" data-target="#confirm-show"><span class="glyphicon glyphicon-eye-open text-danger"></span></a>
 
@@ -52,15 +52,18 @@
               </div>
               <br>
 
-{{ Form::close() }}
+
  <div class="text-right">
         {{ $departmentList->links() }}
  </div>
+
       </tbody>
+
   </table>
   {{ Form::submit('Delete Items', array('class'=>'btn btn-primary'))}}
-  </div>
+        </div>
 
+{{ Form::close() }}
 
        <!-- Modal :: Delete Confirmation -->
 
@@ -94,7 +97,7 @@
                        </div>
                 <div class="modal-body">
 
- </div>
+                </div>
  <div class="modal-footer">
       <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
       <a href="" class="btn btn-default" >Close</a>
@@ -186,7 +189,6 @@
                            }
 
          });
-
 
      </script>
 @stop

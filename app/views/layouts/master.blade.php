@@ -52,17 +52,44 @@
                             <i class="icon-user"></i> Common Module <i class="caret"></i>
                         </a>
                         <ul class="dropdown-menu">
+
                             <li><a tabindex="-1" href="{{ action('CourseController@index') }}"> Course Management </a></li>
                             <li class="divider"></li>
+
+                            <li><a tabindex="-1" href="{{ action('CourseTypeController@index') }}"> Term / Semester </a></li>
+                            <li class="divider"></li>
+
                             <li><a tabindex="-1" href="{{ action('DegreeLevelController@index') }}"> Degree Level </a></li>
                             <li class="divider"></li>
-                            <li><a tabindex="-1" href="#"> Degree / Program Name </a></li>
+
+                            <li><a tabindex="-1" href="{{ action('DegreeProgController@index') }}"> Degree / Program Name </a></li>
                             <li class="divider"></li>
-                            <li><a tabindex="-1" href="{{ action('SubjectController@show') }}"> Subject Management </a></li>
+
+                            <li><a tabindex="-1" href="{{ action('DepartmentController@index') }}"> Department Management </a></li>
                             <li class="divider"></li>
+
                             <li><a tabindex="-1" href="{{ action('SemesterController@index') }}"> Term / Semester </a></li>
                             <li class="divider"></li>
-                            <li><a tabindex="-1" href="#"> Year </a></li>
+
+                            <li><a tabindex="-1" href="{{ action('SubjectController@show') }}"> Subject Management </a></li>
+                            <li class="divider"></li>
+
+                            <li><a tabindex="-1" href="{{ action('TargetRoleController@index') }}"> Target Role </a></li>
+                            <li class="divider"></li>
+
+                            <li><a tabindex="-1" href="{{ action('TaskListRoleController@index') }}"> Task List </a></li>
+                            <li class="divider"></li>
+
+                            {{--<li><a tabindex="-1" href="{{ action('RoleTaskController@index') }}"> Role Task </a></li>--}}
+                            {{--<li class="divider"></li>--}}
+
+                            <li><a tabindex="-1" href="{{ action('RoleTaskUserController@index') }}"> Role Task User </a></li>
+                            <li class="divider"></li>
+
+                            {{--<li><a tabindex="-1" href="{{ action('YearsController@show') }}"> Years </a></li>--}}
+                            {{--<li class="divider"></li>--}}
+
+
                         </ul>
                     </li>
 

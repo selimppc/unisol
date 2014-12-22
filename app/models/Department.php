@@ -17,5 +17,6 @@ class Department extends Eloquent {
 		return $data->title;
     }
 
+
 } 
 

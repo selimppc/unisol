@@ -6,7 +6,7 @@
 
 
         <div class="jumbotron text-center">
-            <h2>{{ $type_of_course->title }}</h2>
+            <h2><strong>Name :</strong>{{ $type_of_course->title }}</h2>
             <p>
                 <strong> Description:</strong> {{ $type_of_course->description }}
             </p>

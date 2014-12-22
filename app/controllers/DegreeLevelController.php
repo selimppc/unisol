@@ -94,7 +94,7 @@ class DegreeLevelController extends \BaseController {
             $degree_levels->save();
 
             // redirect
-            Session::flash('message', 'Successfully Added!');
+            Session::flash('message', 'Successfully Edited!');
             return Redirect::to('degree_level');
         }
         else
