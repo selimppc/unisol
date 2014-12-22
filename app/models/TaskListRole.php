@@ -1,17 +1,16 @@
 <?php
 
 
-class DegreeLevel extends Eloquent
+class TaskListRole extends Eloquent
 {
 
-    protected $table = 'degree_level';
+    protected $table = 'task_list';
 
     private $errors;
     // 1
     private $rules = array(
-        'title' => 'required|unique:degree_level',
+        'title' => 'required|unique:task_list',
         'description'  => 'required',
-
     );
 
 
@@ -61,10 +60,5 @@ class DegreeLevel extends Eloquent
     {
         return $this->errors;
     }
-
-    public static function getDegreeLevelName($degId){
-    $data = DegreeLevel::find($degId);
-    return $data->title;
-}
 
 }

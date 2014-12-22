@@ -1,17 +1,17 @@
 <?php
 
 
-class DegreeLevel extends Eloquent
+class TargetRole extends Eloquent
 {
 
-    protected $table = 'degree_level';
+    protected $table = 'target_role';
 
     private $errors;
     // 1
     private $rules = array(
-        'title' => 'required|unique:degree_level',
+        'code'=>'required',
+        'title' => 'required|unique:target_role',
         'description'  => 'required',
-
     );
 
 
@@ -33,6 +33,7 @@ class DegreeLevel extends Eloquent
     // 2
 
     private $rules2 = array(
+        'code'=>'required',
         'title' => 'required',
         'description'  => 'required',
 
@@ -61,10 +62,5 @@ class DegreeLevel extends Eloquent
     {
         return $this->errors;
     }
-
-    public static function getDegreeLevelName($degId){
-    $data = DegreeLevel::find($degId);
-    return $data->title;
-}
 
 }

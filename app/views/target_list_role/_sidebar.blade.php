@@ -116,9 +116,71 @@
         </div>
     </div>
     </div>
-    <br>
-       <br>
-       <br>
+
+
+
+
+   <div class="panel panel-default">
+       <div class="panel-heading">
+           <h4 class="panel-title">
+               <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive"><span class="glyphicon glyphicon-th">
+               </span>Target Role</a>
+           </h4>
+       </div>
+       <div id="collapseFive" class="panel-collapse collapse">
+           <div class="panel-body">
+               <table class="table">
+                   <tr>
+                       <td>
+                           <a href="{{ action('TargetRoleController@index') }}">All Target Role</a> <span class="label label-success"></span>
+                       </td>
+                   </tr>
+                   <tr>
+                       <td>
+                           <a href="{{ action('TargetRoleController@create') }}">Create New Target Role</a> <span class="label label-info"></span>
+                       </td>
+                   </tr>
+                   <tr>
+
+                   </tr>
+               </table>
+           </div>
+       </div>
+       </div>
+
+
+
+
+<div class="panel panel-default">
+       <div class="panel-heading">
+           <h4 class="panel-title">
+               <a data-toggle="collapse" data-parent="#accordion" href="#collapseSix"><span class="glyphicon glyphicon-th">
+               </span>Role : Task List </a>
+           </h4>
+       </div>
+       <div id="collapseSix" class="panel-collapse collapse">
+           <div class="panel-body">
+               <table class="table">
+                   <tr>
+                       <td>
+                           <a href="{{ action('TaskListRoleController@index') }}">All Task List</a> <span class="label label-success"></span>
+                       </td>
+                   </tr>
+                   <tr>
+                       <td>
+                           <a href="{{ action('TaskListRoleController@create') }}">Create New Task List</a> <span class="label label-info"></span>
+                       </td>
+                   </tr>
+                   <tr>
+
+                   </tr>
+               </table>
+           </div>
+       </div>
+       </div>
+
+
+
 
 
 

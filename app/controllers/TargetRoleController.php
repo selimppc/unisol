@@ -1,6 +1,6 @@
 <?php
 
-class CourseTypeController extends \BaseController {
+class TargetRoleController extends \BaseController {
 
 	/**
 	 * Display a listing of the resource.
@@ -9,10 +9,9 @@ class CourseTypeController extends \BaseController {
 	 */
 	public function index()
 	{
-        $course_type = CourseType::orderBy('id', 'DESC')->paginate(10);
+        $target_role = TargetRole::orderBy('id', 'DESC')->paginate(10);
 
-        return View::make('course_type.index')->with('type_of_course',$course_type);
-        //ok
+        return View::make('target_role.index')->with('targetRole',$target_role);
 	}
 
 
@@ -23,7 +22,7 @@ class CourseTypeController extends \BaseController {
 	 */
 	public function create()
 	{
-        return View::make('course_type.create');
+        return View::make('target_role.create');
 	}
 
 
@@ -37,28 +36,30 @@ class CourseTypeController extends \BaseController {
         $data = Input::all();
 
         // create a new model instance
-        $course_type = new CourseType();
+        $target_role = new TargetRole();
 
         // attempt validation
-        if ($course_type->validate($data))
+        if ($target_role->validate($data))
         {
             // success code
-            $course_type->title = Input::get('title');
-            $course_type->description = Input::get('description');
 
-            $course_type->save();
+            $target_role->code = Input::get('code');
+            $target_role->title = Input::get('title');
+            $target_role->description = Input::get('description');
+
+            $target_role->save();
 
             // redirect
             Session::flash('message', 'Successfully Added!');
-            return Redirect::to('course_type');
+            return Redirect::to('target_role');
         }
         else
         {
             // failure, get errors
-            $errors = $course_type->errors();
+            $errors = $target_role->errors();
             Session::flash('errors', $errors);
 
-            return Redirect::to('course_type/create');
+            return Redirect::to('target_role/create');
         }
 	}
 
@@ -71,11 +72,11 @@ class CourseTypeController extends \BaseController {
 	 */
 	public function show($id)
 	{
-        $course_type = CourseType::find($id);
+        $target_role = TargetRole::find($id);
 
-        if($course_type)
+        if($target_role)
         {
-            return View::make('course_type.show')->with('type_of_course',$course_type);
+            return View::make('target_role.show')->with('targetRole',$target_role);
         }
         App::abort(404);
 	}
@@ -89,10 +90,10 @@ class CourseTypeController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-        $course_type = CourseType::find($id);
+        $target_role = TargetRole::find($id);
 
         // Show the edit employee form.
-        return View::make('course_type.edit')->with('type_of_course',$course_type);
+        return View::make('target_role.edit')->with('targetRole',$target_role);
 	}
 
 
@@ -107,29 +108,31 @@ class CourseTypeController extends \BaseController {
         // get the POST data
         $data = Input::all($id);
         // create a new model instance
-        $course_type = new CourseType();
+        $target_role = new TargetRole();
         // attempt validation
-        if ($course_type->validate2($data))
+        if ($target_role->validate2($data))
         {
             // success code
-            $course_type = CourseType::find($id);
+            $target_role = TargetRole::find($id);
 
-            $course_type->title = Input::get('title');
-            $course_type->description = Input::get('description');
-            $course_type->save();
+            $target_role->code = Input::get('code');
+            $target_role->title = Input::get('title');
+            $target_role->description = Input::get('description');
+
+            $target_role->save();
 
             // redirect
             Session::flash('message', 'Successfully Edited!');
-            return Redirect::to('course_type');
+            return Redirect::to('target_role');
         }
         else
         {
             // failure, get errors
-            $errors = $course_type->errors();
+            $errors = $target_role->errors();
             Session::flash('errors', $errors);
 
             //return Redirect::to('employee/create')->withInput()->withErrors($errors);
-            return Redirect::to('course_type');
+            return Redirect::to('target_role');
         }
 	}
 
@@ -140,18 +143,21 @@ class CourseTypeController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
-	{
-        $data= CourseType::find($id);
+    public function destroy($id)
+    {
+
+        $data= TargetRole::find($id);
         if($data->delete())
         {
-            return Redirect::back()->with('message', 'Successfully deleted Semester Information!');
+            return Redirect::back()->with('message', 'Successfully deleted Course type Information!');
         }
-	}
+        //ok
+    }
 
     public function batchDelete(){
 
-        CourseType::destroy(Request::get('id'));
+
+        TargetRole::destroy(Request::get('id'));
         return Redirect::back();
         //ok
     }
