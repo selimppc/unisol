@@ -1,9 +1,12 @@
 <?php
 
 
-class DegreeProgram extends Eloquent {
+class DegreeProgram extends Eloquent
+{
 
     protected $table = 'degree_program';
+
+
 
 
 
