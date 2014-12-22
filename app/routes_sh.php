@@ -57,7 +57,7 @@ Route::any('target_role/destroy/{id}', ['as' => 'target_role.destroy', 'uses' =>
 Route::any('target_role/batchDelete','TargetRoleController@batchDelete');
 
 
-//Target Role
+//Target List Role
 Route::get('target_list_role/','TaskListRoleController@index');
 Route::any('target_list_role/create','TaskListRoleController@create');
 Route::any('target_list_role/store', ['as' => 'target_list_role.store', 'uses' => 'TaskListRoleController@store' ]);
@@ -66,3 +66,15 @@ Route::any('target_list_role/edit/{id}', ['as' => 'target_list_role.edit', 'uses
 Route::any('target_list_role/update/{id}', ['as' => 'target_list_role.update','uses' => 'TaskListRoleController@update' ]);
 Route::any('target_list_role/destroy/{id}', ['as' => 'target_list_role.destroy', 'uses' => 'TaskListRoleController@destroy' ]);
 Route::any('target_list_role/batchDelete','TaskListRoleController@batchDelete');
+
+
+
+//Role Task User
+Route::get('role_task_user/','RoleTaskUserController@index');
+Route::any('role_task_user/create','RoleTaskUserController@create');
+Route::any('role_task_user/store', ['as' => 'role_task_user.store', 'uses' => 'RoleTaskUserController@store' ]);
+Route::get('role_task_user/show/{id}', [ 'as' => 'role_task_user.show', 'uses' => 'RoleTaskUserController@show' ]);
+Route::any('role_task_user/edit/{id}', ['as' => 'role_task_user.edit', 'uses' => 'RoleTaskUserController@edit' ]);
+Route::any('role_task_user/update/{id}', ['as' => 'role_task_user.update','uses' => 'RoleTaskUserController@update' ]);
+Route::any('role_task_user/destroy/{id}', ['as' => 'role_task_user.destroy', 'uses' => 'RoleTaskUserController@destroy' ]);
+Route::any('role_task_user/batchDelete','RoleTaskUserController@batchDelete');
