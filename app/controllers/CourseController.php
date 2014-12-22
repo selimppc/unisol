@@ -181,7 +181,7 @@ class CourseController extends \BaseController {
         $data= Course::find($id);
         if($data->delete())
         {
-            return Redirect::to('course');
+            return Redirect::back()->with('message', 'Successfully deleted Course Information!');
         }
         //ok
     }

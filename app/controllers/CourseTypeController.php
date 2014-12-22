@@ -1,6 +1,6 @@
 <?php
 
-class SemesterController extends \BaseController {
+class CourseTypeController extends \BaseController {
 
 	/**
 	 * Display a listing of the resource.
@@ -9,9 +9,9 @@ class SemesterController extends \BaseController {
 	 */
 	public function index()
 	{
-        $semester = Semester::orderBy('id', 'DESC')->paginate(10);
+        $course_type = CourseType::orderBy('id', 'DESC')->paginate(10);
 
-        return View::make('semester.index')->with('term_semester',$semester);
+        return View::make('course_type.index')->with('type_of_course',$course_type);
         //ok
 	}
 
@@ -23,8 +23,7 @@ class SemesterController extends \BaseController {
 	 */
 	public function create()
 	{
-        return View::make('semester.create');
-        //ok
+        return View::make('course_type.create');
 	}
 
 
@@ -35,34 +34,32 @@ class SemesterController extends \BaseController {
 	 */
 	public function store()
 	{
-        // get the POST data
         $data = Input::all();
 
         // create a new model instance
-        $semester = new Semester();
+        $course_type = new CourseType();
 
         // attempt validation
-        if ($semester->validate($data))
+        if ($course_type->validate($data))
         {
             // success code
-            $semester->title = Input::get('title');
-            $semester->description = Input::get('description');
+            $course_type->title = Input::get('title');
+            $course_type->description = Input::get('description');
 
-            $semester->save();
+            $course_type->save();
 
             // redirect
             Session::flash('message', 'Successfully Added!');
-            return Redirect::to('semester');
+            return Redirect::to('course_type');
         }
         else
         {
             // failure, get errors
-            $errors = $semester->errors();
+            $errors = $course_type->errors();
             Session::flash('errors', $errors);
 
-            return Redirect::to('semester/create');
+            return Redirect::to('course_type/create');
         }
-        //ok
 	}
 
 
@@ -74,15 +71,13 @@ class SemesterController extends \BaseController {
 	 */
 	public function show($id)
 	{
-        // get the employee
-        $semester = Semester::find($id);
+        $course_type = CourseType::find($id);
 
-        if($semester)
+        if($course_type)
         {
-            return View::make('semester.show')->with('term_semester',$semester);
+            return View::make('course_type.show')->with('type_of_course',$course_type);
         }
         App::abort(404);
-        //ok
 	}
 
 
@@ -94,10 +89,10 @@ class SemesterController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-        $semester = Semester::find($id);
+        $course_type = CourseType::find($id);
 
         // Show the edit employee form.
-        return View::make('semester.edit')->with('term_semester',$semester);
+        return View::make('course_type.edit')->with('type_of_course',$course_type);
 	}
 
 
@@ -112,31 +107,30 @@ class SemesterController extends \BaseController {
         // get the POST data
         $data = Input::all($id);
         // create a new model instance
-        $semester = new Semester();
+        $course_type = new CourseType();
         // attempt validation
-        if ($semester->validate2($data))
+        if ($course_type->validate2($data))
         {
             // success code
-            $semester = Semester::find($id);
+            $course_type = CourseType::find($id);
 
-            $semester->title = Input::get('title');
-            $semester->description = Input::get('description');
-            $semester->save();
+            $course_type->title = Input::get('title');
+            $course_type->description = Input::get('description');
+            $course_type->save();
 
             // redirect
             Session::flash('message', 'Successfully Added!');
-            return Redirect::to('semester');
+            return Redirect::to('course_type');
         }
         else
         {
             // failure, get errors
-            $errors = $semester->errors();
+            $errors = $course_type->errors();
             Session::flash('errors', $errors);
 
             //return Redirect::to('employee/create')->withInput()->withErrors($errors);
-            return Redirect::to('semester');
+            return Redirect::to('course_type');
         }
-        //ok
 	}
 
 
@@ -148,19 +142,16 @@ class SemesterController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-
-        $data= Semester::find($id);
+        $data= CourseType::find($id);
         if($data->delete())
         {
-            return Redirect::back()->with('message', 'Successfully deleted Course type Information!');
+            return Redirect::back()->with('message', 'Successfully deleted Semester Information!');
         }
-        //ok
 	}
 
     public function batchDelete(){
 
-
-        Semester::destroy(Request::get('id'));
+        CourseType::destroy(Request::get('id'));
         return Redirect::back();
         //ok
     }

@@ -1,11 +1,11 @@
 @extends('layouts.master')
 
 @section('sidebar')
-    @include('semester._sidebar')
+    @include('course_type._sidebar')
 @stop
 
 @section('content')
-   <h1>Welcome to Semester </h1>
+   <h1>Welcome to Course Type </h1>
 
 <script type="text/javascript" language="javascript" src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
@@ -29,12 +29,12 @@
 {{--});--}}
 {{--</script>--}}
 
-{{ Form::open(array('url' => 'semester/batchDelete')) }}
+{{ Form::open(array('url' => 'course_type/batchDelete')) }}
 
         <table id="example" class="table table-striped  table-bordered"  >
             <thead>
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#CreateModal" style="margin-bottom: 20px">
-                        Add New Semester
+                        Add New Course Type
                 </button>
 
                  <br>
@@ -52,19 +52,19 @@
             </thead>
             <tbody>
 
-              @foreach($term_semester as $semester)
+              @foreach($type_of_course as $course_type)
                 <tr>
 
-                   <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox2" value="{{ $semester->id }}"></td>
-                   <td>{{ $semester->title }}</td>
-                   <td>{{ $semester->description }}</td>
+                   <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox2" value="{{ $course_type->id }}"></td>
+                   <td>{{ $course_type->title }}</td>
+                   <td>{{ $course_type->description }}</td>
 
                    <td>
-                      <a href="{{ URL::route('semester.edit', ['id'=>$semester->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#edit-modal" data-toggle="tooltip" data-placement="left" title="Edit" href="#"><span class="glyphicon glyphicon-edit text-info"></span></a>
+                      <a href="{{ URL::route('course_type.edit', ['id'=>$course_type->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#edit-modal" data-toggle="tooltip" data-placement="left" title="Edit" href="#"><span class="glyphicon glyphicon-edit text-info"></span></a>
 
-                      <a data-href="{{ URL::route('semester.destroy',['id'=>$semester->id]) }}" class="btn btn-danger" data-toggle="modal" data-target="#confirm-delete" data-toggle="tooltip" data-placement="left" title="Delete" href="" ><span class="glyphicon glyphicon-trash text-danger"></span></a>
+                      <a data-href="{{ URL::route('course_type.destroy',['id'=>$course_type->id]) }}" class="btn btn-danger" data-toggle="modal" data-target="#confirm-delete" data-toggle="tooltip" data-placement="left" title="Delete" href="" ><span class="glyphicon glyphicon-trash text-danger"></span></a>
 
-                      <a href="{{ URL::route('semester.show', ['id'=>$semester->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#showModal" data-toggle="tooltip" data-placement="left" title="Show/View" href=""><span class="glyphicon glyphicon-list-alt text-info"></span></a>
+                      <a href="{{ URL::route('course_type.show', ['id'=>$course_type->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#showModal" data-toggle="tooltip" data-placement="left" title="Show/View" href=""><span class="glyphicon glyphicon-list-alt text-info"></span></a>
 
                    </td>
                 </tr>
@@ -75,7 +75,7 @@
 
         {{form::close() }}
 
-        {{ $term_semester->links() }}
+        {{ $type_of_course->links() }}
 
         <br><br><br>
 
@@ -89,14 +89,11 @@
                                  </div>
                                  <div class="modal-body">
 
-                                         {{ Form::open(array('route' => 'semester.store', 'method' =>'post', 'role'=>'form','files'=>'true'))  }}
+                                         {{ Form::open(array('route' => 'course_type.store', 'method' =>'post', 'role'=>'form','files'=>'true'))  }}
 
-                                                 @include('semester._form')
+                                                 @include('course_type._form')
 
                                          {{ Form::close() }}
-
-
-
 
                                  </div>
                                  <div class="modal-footer">
