@@ -10,4 +10,10 @@ class RoleTask  extends Eloquent{
 
     protected $table = 'role_task';
 
+    //Shafi
+    public static function getRoleTaskName($roletaskId){
+        $data = RoleTask::find($roletaskId);
+        return $data->title;
+    }
+
 } 
