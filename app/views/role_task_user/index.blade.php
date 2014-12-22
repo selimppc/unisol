@@ -7,6 +7,7 @@
 @section('content')
    <h1>Welcome to Role task User </h1>
 
+
 <script type="text/javascript" language="javascript" src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
 {{--<script>--}}
@@ -59,8 +60,11 @@
 
                    <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox2" value="{{ $role_task_user->id }}"></td>
 
-                   <td>{{ $role_task_user->role_task_id }}</td>
-                   <td>{{ $role_task_user->user_id }}</td>
+                   <td>{{ RoleTask::getRoleTaskName($role_task_user->role_task_id) }}</td>
+
+
+                   <td>{{ User::getUserName($role_task_user->user_id) }}</td>
+                   
                    <td>{{ $role_task_user->status }}</td>
 
                    <td>
