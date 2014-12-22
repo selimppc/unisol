@@ -181,3 +181,33 @@
            </div>
        </div>
        </div>
+
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseSeven"><span class="glyphicon glyphicon-th">
+            </span> Role Task User </a>
+        </h4>
+    </div>
+    <div id="collapseSeven" class="panel-collapse collapse">
+        <div class="panel-body">
+            <table class="table">
+                <tr>
+                    <td>
+                      <a href="{{ action('RoleTaskUserController@index') }}">All Role Task User</a> <span class="label label-success"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                     <a href="{{ action('RoleTaskUserController@create') }}">Create Role Task User</a> <span class="label label-info"></span>
+                    </td>
+                </tr>
+                <tr>
+
+                </tr>
+            </table>
+        </div>
+    </div>
+    </div>

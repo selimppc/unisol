@@ -4,13 +4,14 @@
 
                 <div class='form-group'>
                     <div>{{ Form::label('role_task_id', 'Role Task Name') }}</div>
-                    <div>{{ Form::text('role_task_id', Input::old('role_task_id'),['class'=>'form-control','spellcheck'=> 'true']) }}</div>
+                    <div>{{ Form::select('role_task_id', [''=>'Select Option'] + RoleTask::orderBy('title')->lists('title', 'id'),'', ['class'=>'form-control']) }}</div>
 
                 </div>
 
+
                 <div class='form-group'>
                     <div>{{ Form::label('user_id', 'User Name') }}</div>
-                    <div>{{ Form::textarea('user_id', Input::old('user_id'),['class'=>'form-control ','spellcheck'=> 'true']) }}</div>
+                    <div>{{ Form::select('user_id', [''=>'Select Option'] + User::orderBy('username')->lists('username', 'id'),'', ['class'=>'form-control']) }}</div>
 
                 </div>
 

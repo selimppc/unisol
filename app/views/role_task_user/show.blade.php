@@ -9,7 +9,8 @@
             <h2><strong>Role Task Name:</strong>{{  $roleTaskUser->role_task_id }}</h2>
             <p>
                 <strong>User Name:</strong> {{ $roleTaskUser->user_id }}
-                <strong>Status:</strong> {{ $roleTaskUser->user_id }}
+                <br>
+                <strong>Status:</strong> {{ $roleTaskUser->status }}
 
             </p>
         </div>
