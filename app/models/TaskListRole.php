@@ -52,13 +52,16 @@ class TaskListRole extends Eloquent
         return true;
     }
 
-
-
-
-
     public function errors()
     {
         return $this->errors;
+    }
+
+
+
+    public static function getTaskList($Id){
+        $data = TaskListRole::find($Id);
+        return $data->title;
     }
 
 }

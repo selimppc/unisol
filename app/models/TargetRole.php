@@ -63,4 +63,10 @@ class TargetRole extends Eloquent
         return $this->errors;
     }
 
+
+    public static function getTargetRole($Id){
+        $data = TargetRole::find($Id);
+        return $data->title;
+    }
+
 }

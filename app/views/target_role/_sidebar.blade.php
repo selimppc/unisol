@@ -155,7 +155,7 @@
        <div class="panel-heading">
            <h4 class="panel-title">
                <a data-toggle="collapse" data-parent="#accordion" href="#collapseSix"><span class="glyphicon glyphicon-th">
-               </span>Role : Task List </a>
+               </span>Task List </a>
            </h4>
        </div>
        <div id="collapseSix" class="panel-collapse collapse">

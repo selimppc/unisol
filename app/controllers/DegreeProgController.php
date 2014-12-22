@@ -8,9 +8,7 @@ class DegreeProgController extends \BaseController {
 	 * @return Response
 	 */
 	public function index()
-	{    //$departments = Department::lists('title', 'id');
-        //$Select_id = array('' => 'Select One') +Department::find('title', 'id');
-        //print_r($departments);
+	{
         $degree_prog = DB::table('degree_program')->paginate(5);
         return View::make('degree_program.index', compact('degree_prog'));
 
@@ -55,7 +53,6 @@ class DegreeProgController extends \BaseController {
     {
 
         $degree_program = DegreeProg::find($id);
-        // Show the edit employee form.
         return View::make('degreeprog.edit', compact('degree_program'));
 
     }
@@ -72,11 +69,11 @@ class DegreeProgController extends \BaseController {
 
         if ($validator->passes()) {
 
-            $degree_prog = DegreeProg::find($id);
-            $degree_prog->title = Input::get('title');
-            $degree_prog->description = Input::get('description');
+            $degree_program = DegreeProg::find($id);
+            $degree_program->title = Input::get('title');
+            $degree_program->description = Input::get('description');
 
-            $degree_prog->save();
+            $degree_program->save();
             return Redirect::back()->with('message', 'Successfully Added Information!');
         } else {
             return Redirect::to('degreeprogram/index')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
