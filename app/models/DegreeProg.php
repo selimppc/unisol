@@ -6,6 +6,14 @@
  * Time: 1:59 PM
  */
 
-class DegreeProg {
+class DegreeProg extends Eloquent{
+    protected $table = 'degree_program';
+
+
+
+
+
+
+
 
 } 

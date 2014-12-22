@@ -21,3 +21,28 @@ Route::get('department/show/{id}', 'DepartmentController@show' );
 
 
 //{------------------ End Department Routes --------------------}
+
+Route::any('degreeprogram/index','DegreeProgController@index');
+Route::any('degreeprogram/store','DegreeProgController@store');
+
+Route::any('degreeprogram/destroy/{id}','DegreeProgController@destroy');
+Route::any('degreeprogram/edit/{id}','DegreeProgController@edit');
+Route::post('degreeprogram/update/{id}','DegreeProgController@update');
+
+Route::get('degreeprogram/show/{id}', 'DegreeProgController@show' );
+
+//Route::any('degreeprogram/destroy/{id}', ['as' => 'degreeprogram.destroy', 'uses' => 'DegreeProgController@destroy' ]);
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -11,12 +11,37 @@ class DegreeProgController extends \BaseController {
 	{    //$departments = Department::lists('title', 'id');
         //$Select_id = array('' => 'Select One') +Department::find('title', 'id');
         //print_r($departments);
-        $degree_prog = DB::table('degree_program')->get();
+        $degree_prog = DB::table('degree_program')->paginate(5);
         return View::make('degree_program.index', compact('degree_prog'));
 
 	}
 
-	public function destroy($id)
+    public function store(){
+        $rules = array(
+            'title' => 'required',
+
+        );
+
+        $validator = Validator::make(Input::all(), $rules);
+
+        if ($validator->passes()) {
+            $degree_program = new DegreeProg;
+            $degree_program->title = Input::get('title');
+            $degree_program->department_id = Input::get('department_id');
+            $degree_program->degree_level_id = Input::get('degree_level_id');
+            $degree_program->description = Input::get('description');
+
+            $degree_program->save();
+            // return Redirect::to('crud')->with('message', 'Successfully added Country!');
+            return Redirect::back()->with('message', 'Successfully Added Country Information!');
+        } else {
+            return Redirect::to('degreeprogram/index')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
+        }
+    }
+
+
+
+    public function destroy($id)
 	{
         $result =  DegreeProg::find($id);
 
@@ -29,9 +54,9 @@ class DegreeProgController extends \BaseController {
     public function edit($id)
     {
 
-        $degree_prog = DegreeProg::find($id);
+        $degree_program = DegreeProg::find($id);
         // Show the edit employee form.
-        return View::make('degreeprog.edit', compact('degree_prog'));
+        return View::make('degreeprog.edit', compact('degree_program'));
 
     }
 
@@ -49,8 +74,6 @@ class DegreeProgController extends \BaseController {
 
             $degree_prog = DegreeProg::find($id);
             $degree_prog->title = Input::get('title');
-//            $degree_prog->department_id = Input::get('department_id');
-//            $degree_prog->degree_level_id = Input::get('degree_level_id');
             $degree_prog->description = Input::get('description');
 
             $degree_prog->save();
@@ -64,12 +87,7 @@ class DegreeProgController extends \BaseController {
     {
         // get the country
         $degree_program = DegreeProg::find($id);
-        $selectId = Input::get('Select_id');
-        //echo "ok";
-        //print_r($degree_program);
-        //exit;
-
-        return View::make('degreeprogram.show',compact('degree_program'));
+        return View::make('degree_program.show',compact('degree_program'));
 
 
     }
