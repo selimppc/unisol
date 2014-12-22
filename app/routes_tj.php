@@ -36,7 +36,10 @@ Route::get('degreeprogram/show/{id}', 'DegreeProgController@show' );
 //{------------------ Role Task  --------------------}
 
 Route::any('roletask/index','RoleTaskController@index');
-Route::any('roletask/delete/{id}','DegreeProgController@destroy');
+Route::any('roletask/store','RoleTaskController@store');
+Route::any('roletask/delete/{id}','RoleTaskController@destroy');
+Route::any('roletask/edit/{id}','RoleTaskController@edit');
+Route::post('roletask/update/{id}','RoleTaskController@update');
 
 
 
