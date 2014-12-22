@@ -27,18 +27,18 @@ class TermUnderSemesterController extends \BaseController {
 	public function save()
 	{
 		$token = csrf_token();
-		
+
 		$rules = array(
 				'degree_program_id' => 'Required',
 				'department_id' => 'Required',
 				'year_id' => 'Required',
-				'semester_id' => 'Required'
-				// 'start_date' => 'Required',
-				// 'end_date' => 'Required'
+				'semester_id' => 'Required',
+				'start_date' => 'Required',
+				'end_date' => 'Required'
 			);
 		$validator = Validator::make(Input::all(), $rules);
 		if($validator->fails())
-			{				
+			{
 				return Redirect::to('term/show')->withErrors($validator)->withInput()->with('title', 'Add New');
 			}
 			else
@@ -50,8 +50,8 @@ class TermUnderSemesterController extends \BaseController {
 				$data->department_id = Input::get('department_id');
 				$data->year_id = Input::get('year_id');
 				$data->term_semester_id = Input::get('semester_id');
-				// $data->start_date = Input::get('start_date');
-				// $data->end_date = Input::get('end_date');
+				$data->start_date = Input::get('start_date');
+				$data->end_date = Input::get('end_date');
 				$data->save();
 				Session::flash('message', "Subject added successfully");
 			    return Redirect::to('term/show')->with('title', 'Subject List');
@@ -59,7 +59,7 @@ class TermUnderSemesterController extends \BaseController {
 		else
 		{
 			Session::flash('message', 'Token Mismatched');
-			return Redirect::to('subject/list')->with('title', 'aa');
+			return Redirect::to('subject/list')->with('title', 'Subject List');
 		}
 	}
 
@@ -69,11 +69,11 @@ class TermUnderSemesterController extends \BaseController {
 	{
 		// $data= Years::orderBy('id', 'DESC')->paginate(5);
 		// return View::make('years.index')->with('datas',$data)->with('title','All Years list');
-		
+
 		$search_text =trim(Input::get('search_text'));
 	    $q = CoursesUnderSemester::query();
 
-	    if (!empty($search_text)) 
+	    if (!empty($search_text))
 	    {
 	     $q->where(function($query) use ($search_text)
 	      {
@@ -84,7 +84,7 @@ class TermUnderSemesterController extends \BaseController {
          //     $query->orWhere('semester_id', 'LIKE', '%'.$search_text.'%');
          //     $query->orWhere('start_date', 'LIKE', '%'.$search_text.'%');
          //     $query->orWhere('end_date', 'LIKE', '%'.$search_text.'%');
-	        
+
 	      });
         }
 
@@ -109,9 +109,11 @@ class TermUnderSemesterController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function show_one($id)
 	{
-		//
+		 $terms = CoursesUnderSemester::find($id);
+		 return View::make('termundersemester.show')->with('datas',$terms);
+
 	}
 
 
@@ -123,7 +125,8 @@ class TermUnderSemesterController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+		$terms = CoursesUnderSemester::find($id);
+    	return View::make('termundersemester.edit')->with('terms',$terms);
 	}
 
 
@@ -135,8 +138,45 @@ class TermUnderSemesterController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$token = csrf_token();
+
+				$rules = array(
+						'degree_program_id' => 'Required',
+						'department_id' => 'Required',
+						'year_id' => 'Required',
+						'semester_id' => 'Required',
+						'start_date' => 'Required',
+						'end_date' => 'Required'
+					);
+				$validator = Validator::make(Input::all(), $rules);
+				if($validator->fails())
+					{
+						return Redirect::to('term/show')->withErrors($validator)->withInput()->with('title', 'Add New');
+					}
+					else
+					{
+			      if($token == Input::get('_token'))
+				   {
+						$data = CoursesUnderSemester::find($id);
+						$data->degree_program_id = Input::get('degree_program_id');
+						$data->department_id = Input::get('department_id');
+						$data->year_id = Input::get('year_id');
+						$data->term_semester_id = Input::get('semester_id');
+						$data->start_date = Input::get('start_date');
+						$data->end_date = Input::get('end_date');
+						$data->save();
+						Session::flash('message', "Subject added successfully");
+					    return Redirect::to('term/show')->with('title', 'Subject List');
+				}
+				else
+				{
+					Session::flash('message', 'Token Mismatched');
+					return Redirect::to('subject/list')->with('title', 'Subject List');
+				}
+			}
 	}
+
+
 	public function delete($id)
 	{
 		$data= CoursesUnderSemester::find($id);
@@ -145,7 +185,9 @@ class TermUnderSemesterController extends \BaseController {
 		 return Redirect::to('term/show')->with('title','Deleted Successfully');
 		}
 	}
-	 public function batchdelete()
+
+
+	public function batchdelete()
      {
 		CoursesUnderSemester::destroy(Request::get('id'));
         return Redirect::to('term/show')->with('title','Deleted Successfully');
@@ -157,6 +199,7 @@ class TermUnderSemesterController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
+
 	public function destroy($id)
 	{
 		//

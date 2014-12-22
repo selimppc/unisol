@@ -1,19 +1,18 @@
-<div class="modal-header">
- 	<h4 class="modal-title">Edit Years</h4>
-</div>
-<div class="modal-body">
-
-    <div style="padding: 10px; width: 90%;">
-
-        {{ Form::model($datas,array('url'=> array('term/update',$datas->id), 'method' => 'POST')) }}
-
-            @include('termundersemester._form')
-
-        {{ Form::close() }}
-
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Edit info</h4>
     </div>
-</div>
+    <div class="modal-body">
+        <div style="padding: 10px; width: 90%;">
 
-<div class="modal-footer">
-    <a href="{{URL::to('term/show')}}" class="btn btn-default">Close </a>
-</div>
+            {{ Form::model($terms,array('route'=> array('term/update',$terms->id), 'method' => 'POST', 'class'=>'form-horizontal')) }}
+
+                @include('termundersemester._form')
+
+            {{ Form::close() }}
+
+        </div>
+    </div>
+    <div class="modal-footer">
+       <a href="{{URL::to('term/show')}}" class="btn btn-default">Close </a>
+    </div>

@@ -1,16 +1,19 @@
 <?php
 
-class DegreeProgram extends \Eloquent 
+class DegreeProgram extends \Eloquent
 {
 	protected $fillable = [];
 	protected $table = 'degree_program';
 
-	
+
 	// ratna code
-    public static function getDepartmentName($degId){
-    $data = DegreeProgram::find($degId);
-	return $data->title;
-	
- }
+    public static function getDegreeProgramName($degreeId)
+    {
+        $data = DegreeProgram::find($degreeId);
+        return $data->title;
+    }
+
+
+
+
 }
-?>

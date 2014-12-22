@@ -31,4 +31,5 @@ Route::get('term/delete/{id}','TermUnderSemesterController@delete');
 Route::any('term/batch/delete','TermUnderSemesterController@batchdelete');
 
 
+
 // End courses
