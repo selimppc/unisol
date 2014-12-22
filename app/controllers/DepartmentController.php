@@ -81,7 +81,7 @@ class DepartmentController extends BaseController{
             $department->description = Input::get('description');
 
             $department->save();
-            return Redirect::back()->with('message', 'Successfully Added Country Information!');
+            return Redirect::back()->with('message', 'Successfully updated Country Information!');
         } else {
             return Redirect::to('department/index')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
         }

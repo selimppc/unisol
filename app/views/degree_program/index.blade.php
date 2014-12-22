@@ -200,7 +200,7 @@
                  {{ Form::text('title',$degree_program->title, array('class' => 'form-control')) }}
 
                  {{ Form::label('department_id', 'DeptName') }}
-                  {{ Form::select('department_id',  Department::orderBy('title')->lists('title', 'id')+[''=>'Select Option'] ,'', ['class'=>'form-control']) }}
+                 {{ Form::select('department_id',  Department::orderBy('title')->lists('title', 'id')+[''=>'Select Option'] ,'', ['class'=>'form-control']) }}
 
                   {{ Form::label('degree_level_id','Degree Program Name:') }}
                   {{ Form::select('degree_level_id',  DegreeLevel::orderBy('title')->lists('title', 'id')+[''=>'Select Option'] ,'', ['class'=>'form-control']) }}
