@@ -45,9 +45,9 @@
                                         <td>{{ $roletask->status }}</td>
                                         <td>
 
-                                          <a data-href="{{ URL::to('roletask/delete/'.$roletask->id) }}" class="btn btn-sm btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><span class="glyphicon glyphicon-trash text-danger"></span></a>
-                                           {{--<a href="{{ URL::to('degreeprogram/show/'.$roletask->id) }}" class="btn btn-sm btn-default" data-toggle="modal" data-target="#confirm-show"><span class="glyphicon glyphicon-eye-open text-danger"></span></a>--}}
-                                           <a class="btn btn-sm btn-info" data-href="{{ URL::to('roletask/edit/' . $roletask->id ) }}" data-toggle="modal" data-target="#myeditModal" >Edit...</a>
+                                           <a data-href="{{ URL::to('roletask/delete/'.$roletask->id) }}" class="btn btn-sm btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><span class="glyphicon glyphicon-trash text-danger"></span></a>
+                                           <a href="{{ URL::to('roletask/show/'.$roletask->id) }}" class="btn btn-sm btn-default" data-toggle="modal" data-target="#confirm-show"><span class="glyphicon glyphicon-eye-open text-danger"></span></a>
+                                           <a class="btn btn-sm btn-info" href="{{ URL::to('roletask/edit/' . $roletask->id ) }}" data-toggle="modal" data-target="#myeditModal" >Edit...</a>
                                         </td>
 
                                     </tr>
@@ -84,6 +84,25 @@
 
 
 <!--Model: for showing single row info -->
+<div class="modal fade " id="confirm-show" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+               <div class="modal-dialog">
+                 <div class="modal-content">
+                       <div class="modal-header">
+                         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                         <h4 class="modal-title" id="myModalLabel">Department :<b>{{$roletask->title}}</b></h4>
+                       </div>
+                <div class="modal-body">
+
+                </div>
+
+ <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      <a href="" class="btn btn-default" >Close</a>
+ </div>
+ </div>
+ </div>
+ </div>
+
 
 <!-- Modal :Add new -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -163,8 +182,8 @@
                  {{ Form::label('target_role_id', 'Target Role') }}
                  {{ Form::select('target_role_id',  TargetRole::orderBy('title')->lists('title', 'id')+[''=>'Select Option'] ,'', ['class'=>'form-control']) }}
 
-                  {{ Form::label('task_list_id','task_list_id:') }}
-                  {{ Form::select('task_list_id',  RoleTask::orderBy('title')->lists('title', 'id')+[''=>'Select Option'] ,'', ['class'=>'form-control']) }}
+                 {{ Form::label('task_list_id','task_list_id:') }}
+                 {{ Form::select('task_list_id',  RoleTask::orderBy('title')->lists('title', 'id')+[''=>'Select Option'] ,'', ['class'=>'form-control']) }}
 
                  {{ Form::label('description', 'Description:') }}
                  {{ Form::text('description',$roletask->description, array('class' => 'form-control')) }}

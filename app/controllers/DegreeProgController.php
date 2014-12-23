@@ -2,15 +2,10 @@
 
 class DegreeProgController extends \BaseController {
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
 	public function index()
 	{
-        $degree_prog = DB::table('degree_program')->paginate(5);
-        return View::make('degree_program.index', compact('degree_prog'));
+        $degree_programs = DB::table('degree_program')->paginate(5);
+        return View::make('degree_program.index', compact('degree_programs'));
 
 	}
 
@@ -53,7 +48,7 @@ class DegreeProgController extends \BaseController {
     {
 
         $degree_program = DegreeProg::find($id);
-        return View::make('degreeprog.edit', compact('degree_program'));
+        return View::make('degree_program.edit', compact('degree_program'));
 
     }
 

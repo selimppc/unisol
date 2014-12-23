@@ -3,16 +3,19 @@
     @include('department._sidebar')
 @stop
 @section('content')
-<script type="text/javascript" language="javascript" src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
-<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.4/css/jquery.dataTables.css">
+
+        <script type="text/javascript" language="javascript" src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.4/css/jquery.dataTables.css">
+
 
   <div class="span well">
+  @if ($departmentList->count())
   <table class="table table-striped table-bordered" id="myTable">
   <col width="80">
     <col width="200">
     <col width="250">
-   <h4>Department Information</h4>
+  <h4>Department Information</h4>
                   <thead>
                   <tr>
                      <td><input name="checkbox" type="checkbox" id="checkbox" class="checkbox" value="">
@@ -27,7 +30,10 @@
       <tbody>
 {{ Form::open(array('url' => 'department/batchDelete')) }}
 
+
+
               @foreach ($departmentList as $department)
+
                   <tr>
                      <td><input type="checkbox" name="ids[]"  id="check" class="myCheckbox" value="{{ $department->id }}"></td>
                      <td align="left">{{ $department->title }}</td>
@@ -58,9 +64,13 @@
  </div>
 
       </tbody>
-
+{{ Form::submit('Delete Items', array('class'=>'btn btn-primary', 'id'=>'hide-button', 'style'=>'display:none'))}}
   </table>
-  {{ Form::submit('Delete Items', array('class'=>'btn btn-primary'))}}
+  @else
+  There are no Department
+  @endif
+
+
         </div>
 
 {{ Form::close() }}
@@ -136,7 +146,6 @@
 
 
         {{ Form::close() }}
-
 
         {{--</div>--}}
       </div>
