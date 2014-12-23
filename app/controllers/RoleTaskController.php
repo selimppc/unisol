@@ -74,8 +74,11 @@ class RoleTaskController extends \BaseController {
             $roletask->title = Input::get('title');
             $roletask->target_role_id = Input::get('target_role_id');
             $roletask->task_list_id = Input::get('task_list_id');
+            $roletask->status = Input::get('status');
+            $roletask->description = Input::get('description');
 
             $roletask->save();
+
             return Redirect::back()->with('message', 'Successfully Added Information!');
         } else {
             return Redirect::to('roletask/index')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
