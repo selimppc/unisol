@@ -7,12 +7,12 @@
 @section('content')
  <h4>{{$title}}</h4>
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" >
-                 Add New Years
+                 Add New year
                 </button>
 
                 <!-- search db  -->
                    <div class="wrapper text-right no-padder" style="margin-top: 20px">
-                    {{ Form::open(array('url' =>'years/show', 'class'=>'form-inline', 'role' => 'form')) }}
+                    {{ Form::open(array('url' =>'year/show', 'class'=>'form-inline', 'role' => 'form')) }}
                         <div class="form-group">
                           {{ Form::label('search_text', 'Search Text:',array('class'=>'sr-only')) }}
                           {{ Form::text('search_text', Input::old('search_text'), array('class' => 'form-control','placeholder' => 'Search All')) }}
@@ -48,11 +48,11 @@
                 <td>{{$value->title}}</td>
                 <td>{{$value->description}}</td>
                 <td> 
-                  <a data-href="{{ URL::to('years/delete/'.$value->id) }}" class="btn btn-sm btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><span class="glyphicon glyphicon-trash text-danger"></span></a>
+                  <a data-href="{{ URL::to('year/delete/'.$value->id) }}" class="btn btn-sm btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><span class="glyphicon glyphicon-trash text-danger"></span></a>
 
-                   <a href="{{ URL::route('years.edit', ['id'=>$value->id]) }}" class="subEdit btn btn-sm btn-default" data-toggle="modal" data-target="#edit-modal" href="" ><span class="glyphicon glyphicon-edit text-info"></span></a>
+                   <a href="{{ URL::route('year.edit', ['id'=>$value->id]) }}" class="subEdit btn btn-sm btn-default" data-toggle="modal" data-target="#edit-modal" href="" ><span class="glyphicon glyphicon-edit text-info"></span></a>
 
-                   <a href="{{ URL::route('years.show', ['id'=>$value->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#show-modal" href=""><span class="glyphicon glyphicon-list-alt text-info"></span></a>
+                   <a href="{{ URL::route('year.show', ['id'=>$value->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#show-modal" href=""><span class="glyphicon glyphicon-list-alt text-info"></span></a>
                 </td>
             </tr>
             @endforeach
@@ -114,7 +114,7 @@
                     <h4 class="modal-title">Add New Subject</h4>
                 </div>
                 <div class="modal-body">
-                   {{ Form::open(array('url' => 'years/save', 'method' =>'post', 'role'=>'form','files'=>'true')) }}
+                   {{ Form::open(array('url' => 'year/save', 'method' =>'post', 'role'=>'form','files'=>'true')) }}
 
                        @include('year._form')
 
