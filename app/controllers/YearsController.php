@@ -165,13 +165,14 @@ class YearsController extends \BaseController {
 		if($data->delete())
 		{
 		 	
+		 Session::flash('message', "Years Deleted successfully");
 		 return Redirect::to('years/show')->with('title','All Years List');
 		}
 	}
 
 	 public function batchdelete()
      {
-
+     	Session::flash('message', "Years Deleted successfully");
      	Years::destroy(Request::get('id'));
         return Redirect::to('years/show')->with('title','All Subject List');
 

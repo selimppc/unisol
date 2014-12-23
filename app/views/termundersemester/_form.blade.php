@@ -9,7 +9,7 @@
   </div>
   <div class="form-group">
     <div class="col-sm-4">{{ Form::label('year_id', 'YearName') }}</div>
-    <div class="col-sm-8">{{ Form::select('year_id', [''=>'Select Option'] + Years::orderBy('title')->lists('title', 'id'),Input::old('year_id'), ['class'=>'form-control']) }}</div>
+    <div class="col-sm-8">{{ Form::select('year_id', [''=>'Select Option'] + Year::orderBy('title')->lists('title', 'id'),Input::old('year_id'), ['class'=>'form-control']) }}</div>
   </div>
 
 

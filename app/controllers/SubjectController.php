@@ -104,7 +104,7 @@ class SubjectController extends \BaseController {
 
      public function batchdelete()
      {
-
+     	Session::flash('message', "Subject Deleted successfully");
      	Subject::destroy(Request::get('id'));
         return Redirect::to('subject/list')->with('title','All Subject List');
 
@@ -176,6 +176,8 @@ class SubjectController extends \BaseController {
 		$data= Subject::find($id);
 		if($data->delete())
 		{
+
+		 Session::flash('message', "Subject Deleted successfully");
 		 return Redirect::to('subject/list')->with('title','All Subject List');
 		}
 	}

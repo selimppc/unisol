@@ -6,7 +6,7 @@
 
 @section('content')
 
-<h1>{{$title}}</h1>
+<h4>{{$title}}</h4>
     <div class="container" style="margin-top: 20px">
     <div class="row">
       <div class="col-sm-10" style="background: #FFFFFF">

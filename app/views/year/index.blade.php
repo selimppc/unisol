@@ -5,9 +5,9 @@
 @stop
 
 @section('content')
- <h1>{{$title}}</h1>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" style="margin-bottom: 20px">
-                 Add New Subject
+ <h4>{{$title}}</h4>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" >
+                 Add New Years
                 </button>
 
                 <!-- search db  -->

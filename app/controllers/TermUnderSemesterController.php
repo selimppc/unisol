@@ -49,7 +49,7 @@ class TermUnderSemesterController extends \BaseController {
 				$data->degree_program_id = Input::get('degree_program_id');
 				$data->department_id = Input::get('department_id');
 				$data->year_id = Input::get('year_id');
-				$data->term_semester_id = Input::get('semester_id');
+				$data->semester_id = Input::get('semester_id');
 				$data->start_date = Input::get('start_date');
 				$data->end_date = Input::get('end_date');
 				$data->save();
@@ -151,7 +151,7 @@ class TermUnderSemesterController extends \BaseController {
 				$validator = Validator::make(Input::all(), $rules);
 				if($validator->fails())
 					{
-						return Redirect::to('term/show')->withErrors($validator)->withInput()->with('title', 'Add New');
+						return Redirect::to('term/show')->withErrors($validator)->withInput()->with('title', 'All List of Courses under semester/term');
 					}
 					else
 					{
@@ -161,17 +161,17 @@ class TermUnderSemesterController extends \BaseController {
 						$data->degree_program_id = Input::get('degree_program_id');
 						$data->department_id = Input::get('department_id');
 						$data->year_id = Input::get('year_id');
-						$data->term_semester_id = Input::get('semester_id');
+						$data->semester_id = Input::get('semester_id');
 						$data->start_date = Input::get('start_date');
 						$data->end_date = Input::get('end_date');
 						$data->save();
-						Session::flash('message', "Subject added successfully");
-					    return Redirect::to('term/show')->with('title', 'Subject List');
+						Session::flash('message', "Courses added successfully");
+					    return Redirect::to('term/show')->with('title', 'All List of Courses under semester/term');
 				}
 				else
 				{
 					Session::flash('message', 'Token Mismatched');
-					return Redirect::to('subject/list')->with('title', 'Subject List');
+					 return Redirect::to('term/show')->with('title', 'All List of Courses under semester/term');
 				}
 			}
 	}
@@ -182,6 +182,8 @@ class TermUnderSemesterController extends \BaseController {
 		$data= CoursesUnderSemester::find($id);
 		if($data->delete())
 		{
+
+		 Session::flash('message', "Deleted successfully");
 		 return Redirect::to('term/show')->with('title','Deleted Successfully');
 		}
 	}
@@ -190,6 +192,7 @@ class TermUnderSemesterController extends \BaseController {
 	public function batchdelete()
      {
 		CoursesUnderSemester::destroy(Request::get('id'));
+		Session::flash('message', "Deleted successfully");
         return Redirect::to('term/show')->with('title','Deleted Successfully');
 
      }

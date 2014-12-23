@@ -15,7 +15,7 @@
             </tr> -->
             <tr>
                 <td>
-                    <span class="glyphicon glyphicon-eye-open"></span><a href="{{URL::to('years/show') }}">View Years List</a> 
+                    <span class="glyphicon glyphicon-eye-open"></span><a href="{{URL::to('term/show') }}">View All Courses List</a> 
                 </td>
             </tr>
            

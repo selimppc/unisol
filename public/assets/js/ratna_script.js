@@ -147,5 +147,5 @@
                         left : offset.left,
                         zIndex : zIndex
                     });
-                },
+                }
       });

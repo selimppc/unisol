@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('sidebar')
-    @include('subject.sidebar')
+    @include('termundersemester.sidebar')
 @stop
 
 @section('content')
@@ -43,6 +43,7 @@
             </tr>
         </thead>
 
+
         <tbody>
             @foreach ($datas as $value)
             <tr>
@@ -51,10 +52,12 @@
                 <td>{{$value->id}}</td>
                 <td>{{ DegreeProgram::getDegreeProgramName($value->degree_program_id) }}</td>
                 <td>{{ Department::getDepartmentName($value->department_id) }}</td>
-                <td>{{ Years::getYearsName($value->year_id) }}</td>
+                <td>{{ Year::getYearsName($value->year_id) }}</td>
                 <td>{{ Semester::getSemesterName($value->term_semester_id)}}</td>
                 <td>{{ date('d-m-Y', strtotime($value->start_date)) }}</td>
                 <td>{{ date('d-m-Y', strtotime($value->end_date)) }}</td>
+
+            
                 <td width="135">
                      <a data-href="{{ URL::to('term/delete/'.$value->id) }}" class="btn btn-sm btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><span class="glyphicon glyphicon-trash text-danger"></span></a>
 

@@ -30,6 +30,4 @@ Route::any('term/update/{id}', ['as' => 'term/update','uses' => 'TermUnderSemest
 Route::get('term/delete/{id}','TermUnderSemesterController@delete');
 Route::any('term/batch/delete','TermUnderSemesterController@batchdelete');
 
-
-
 // End courses
