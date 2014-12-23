@@ -8,12 +8,12 @@ class Semester extends Eloquent
 
     protected $table = 'semester';
 
-    public static function getSemesterName($semId){
-        $data = Semester::find($semId);
-        
-        return @$data->title;
+    public static function getSemesterName($semId)
+    {
+    $data = Semester::find($semId);
+    return $data->title;
     }
-
+    
     private $errors;
     // 1
     private $rules = array(
