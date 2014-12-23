@@ -66,9 +66,12 @@ class DegreeProgController extends \BaseController {
 
             $degree_program = DegreeProg::find($id);
             $degree_program->title = Input::get('title');
+            $degree_program->department_id = Input::get('department_id');
+            $degree_program->degree_level_id = Input::get('degree_level_id');
             $degree_program->description = Input::get('description');
 
             $degree_program->save();
+
             return Redirect::back()->with('message', 'Successfully Added Information!');
         } else {
             return Redirect::to('degreeprogram/index')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
