@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('sidebar')
-    @include('years.sidebar')
+    @include('year.sidebar')
 @stop
 
 @section('content')
@@ -116,7 +116,7 @@
                 <div class="modal-body">
                    {{ Form::open(array('url' => 'years/save', 'method' =>'post', 'role'=>'form','files'=>'true')) }}
 
-                       @include('years._form')
+                       @include('year._form')
 
                   <button type="button" class="btn btn-danger close" data-dismiss="modal">Cencel</button>
                     {{ Form::close() }}

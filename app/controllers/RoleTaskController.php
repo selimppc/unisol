@@ -55,7 +55,7 @@ class RoleTaskController extends \BaseController {
 
 	public function update($id)
 	{
-		//
+
 	}
 
     public function destroy($id){

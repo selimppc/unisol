@@ -53,7 +53,7 @@
                 <td>{{ DegreeProgram::getDegreeProgramName($value->degree_program_id) }}</td>
                 <td>{{ Department::getDepartmentName($value->department_id) }}</td>
                 <td>{{ Year::getYearsName($value->year_id) }}</td>
-                <td>{{ Semester::getSemesterName($value->term_semester_id)}}</td>
+                <td>{{ Semester::getSemesterName($value->semester_id)}}</td>
                 <td>{{ date('d-m-Y', strtotime($value->start_date)) }}</td>
                 <td>{{ date('d-m-Y', strtotime($value->end_date)) }}</td>
 
