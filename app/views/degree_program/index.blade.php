@@ -8,6 +8,7 @@
 <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.4/css/jquery.dataTables.css">
 
   <div class="span well">
+   @if ($degree_programs->count())
   <table class="table table-striped table-bordered" id="myTable">
     <col width="50">
       <col width="180">
@@ -33,7 +34,7 @@
         <tbody>
 
 
-                @foreach ($degree_prog as $degree_program)
+                @foreach ($degree_programs as $degree_program)
                     <tr>
                        <td><input type="checkbox" name="ids[]"  id="check" class="myCheckbox" value="{{ $degree_program->id }}"></td>
 
@@ -45,7 +46,8 @@
 
                            <a data-href="{{ URL::to('degreeprogram/destroy/'.$degree_program->id) }}" class="btn btn-sm btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><span class="glyphicon glyphicon-trash text-danger"></span></a>
                            <a href="{{ URL::to('degreeprogram/show/'.$degree_program->id) }}" class="btn btn-sm btn-default" data-toggle="modal" data-target="#confirm-show"><span class="glyphicon glyphicon-eye-open text-danger"></span></a>
-                           <a class="btn btn-sm btn-info" data-href="{{ URL::to('degreeprogram/edit/' . $degree_program->id ) }}" data-toggle="modal" data-target="#myeditModal" >Edit...</a>
+                           <a class="btn btn-sm btn-info" href="{{ URL::to('degreeprogram/edit/' . $degree_program->id ) }}" data-toggle="modal" data-target="#myeditModal" >Edit...</a>
+                           {{--<a class="btn btn-sm btn-info" href="{{ URL::to('roletask/edit/' . $roletask->id ) }}" data-toggle="modal" data-target="#myeditModal" >Edit...</a>--}}
                         </td>
 
                     </tr>
@@ -59,11 +61,14 @@
                 </div>
 
                 <br>
-<div class="text-right">
-                           {{ $degree_prog->links() }}
+                    <div class="text-right">
+                           {{ $degree_programs->links() }}
                     </div>
         </tbody>
     </table>
+    @else
+      There are no Degree Program
+      @endif
   </div>
 
 
@@ -190,33 +195,7 @@
       </div>
       <div class="modal-body">
 
-         <div style="padding: 20px;">
-                 <h3>Edit {{$degree_program->title}}</h3>
 
-                 {{Form::open(array('url'=>'degreeprogram/update/'.$degree_program->id, 'class'=>'form-horizontal'))}}
-
-
-                 {{ Form::label('title','Degee Program Name:') }}
-                 {{ Form::text('title',$degree_program->title, array('class' => 'form-control')) }}
-
-                 {{ Form::label('department_id', 'DeptName') }}
-                 {{ Form::select('department_id',  Department::orderBy('title')->lists('title', 'id')+[''=>'Select Option'] ,'', ['class'=>'form-control']) }}
-
-                  {{ Form::label('degree_level_id','Degree Program Name:') }}
-                  {{ Form::select('degree_level_id',  DegreeLevel::orderBy('title')->lists('title', 'id')+[''=>'Select Option'] ,'', ['class'=>'form-control']) }}
-
-                 {{ Form::label('description', 'Description:') }}
-                 {{ Form::text('description',$degree_program->description, array('class' => 'form-control')) }}
-
-
-                 <p>&nbsp;</p>
-                 {{ Form::submit('Save Changes', array('class'=>'btn btn-primary')) }}
-                 {{ Form::submit('Close', array('class'=>'btn btn-primary')) }}
-
-                 {{Form::close()}}
-
-
-         </div>
       </div>
 
 
