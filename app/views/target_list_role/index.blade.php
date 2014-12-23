@@ -38,13 +38,13 @@
                 </button>
 
                  <br>
-                      {{ Form::submit('Delete Items', array('class'=>'btn btn-danger', 'id'=>'hide-button2', 'style'=>'display:none'))}}
+                      {{ Form::submit('Delete Items', array('class'=>'btn btn-danger', 'id'=>'hide-button', 'style'=>'display:none'))}}
                  <br>
 
                  <br>
                 <tr>
 
-                    <th><input name="id" type="checkbox" id="checkbox" class="checkbox2" value=""></th>
+                    <th><input name="id" type="checkbox" id="checkbox" class="checkbox" value=""></th>
 
                     <th>Title</th>
                     <th>Description</th>
@@ -56,7 +56,7 @@
               @foreach($taskListRole as $task_list_role)
                 <tr>
 
-                   <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox2" value="{{ $task_list_role->id }}"></td>
+                   <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $task_list_role->id }}"></td>
 
                    <td>{{ $task_list_role->title }}</td>
                    <td>{{ $task_list_role->description }}</td>
