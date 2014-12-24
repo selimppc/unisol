@@ -89,7 +89,7 @@
                  <div class="modal-content">
                        <div class="modal-header">
                          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-                         <h4 class="modal-title" id="myModalLabel">Department :<b>{{$roletask->title}}</b></h4>
+                         <h4 class="modal-title" id="myModalLabel"></h4>
                        </div>
                 <div class="modal-body">
 
@@ -131,7 +131,7 @@
                  {{ Form::select('target_role_id',TargetRole::orderBy('title')->lists('title', 'id')+[''=>'Select Option'] ,'', ['class'=>'form-control']) }}
 
                  {{ Form::label('task_list_id','Task List:') }}
-                 {{ Form::select('task_list_id',  RoleTask::orderBy('title')->lists('title', 'id')+[''=>'Select Option'] ,'', ['class'=>'form-control']) }}
+                 {{ Form::select('task_list_id',  TaskListRole::orderBy('title')->lists('title', 'id')+[''=>'Select Option'] ,'', ['class'=>'form-control']) }}
 
 
                  {{ Form::label('description', 'Description:') }}
@@ -144,8 +144,7 @@
 
                 <p>&nbsp;</p>
                 {{ Form::submit('Save', array('class'=>'btn btn-primary')) }}
-                {{ Form::submit('Close', array('class'=>'btn btn-primary')) }}
-
+                <a href="{{URL::to('roletask/index')}}" class="btn btn-default">Close </a>
                 {{Form::close()}}
 
 
@@ -170,33 +169,6 @@
       </div>
       <div class="modal-body">
 
-         <div style="padding: 20px;">
-                 <h3>Edit {{$roletask->title}}</h3>
-
-                 {{Form::open(array('url'=>'roletask/update/'.$roletask->id, 'class'=>'form-horizontal'))}}
-
-
-                 {{ Form::label('title','Role Task:') }}
-                 {{ Form::text('title',$roletask->title, array('class' => 'form-control')) }}
-
-                 {{ Form::label('target_role_id', 'Target Role') }}
-                 {{ Form::select('target_role_id',  TargetRole::orderBy('title')->lists('title', 'id')+[''=>'Select Option'] ,'', ['class'=>'form-control']) }}
-
-                 {{ Form::label('task_list_id','task_list_id:') }}
-                 {{ Form::select('task_list_id',  RoleTask::orderBy('title')->lists('title', 'id')+[''=>'Select Option'] ,'', ['class'=>'form-control']) }}
-
-                 {{ Form::label('description', 'Description:') }}
-                 {{ Form::text('description',$roletask->description, array('class' => 'form-control')) }}
-
-
-                 <p>&nbsp;</p>
-                 {{ Form::submit('Save Changes', array('class'=>'btn btn-primary')) }}
-                 {{ Form::submit('Close', array('class'=>'btn btn-primary')) }}
-
-                 {{Form::close()}}
-
-
-         </div>
       </div>
 
 

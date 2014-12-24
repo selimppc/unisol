@@ -5,7 +5,8 @@ class RoleTaskController extends \BaseController {
 
     public function index()
     {
-        $role_task_list = DB::table('role_task')->get();
+        //$role_task_list = DB::table('role_task')->get();
+        $role_task_list = RoleTask::orderBy('id', 'DESC')->paginate(5);
         return View::make('role_task.index', compact('role_task_list'));
 
     }
