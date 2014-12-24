@@ -76,6 +76,7 @@ class DegreeProgController extends \BaseController {
         } else {
             return Redirect::to('degreeprogram/index')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
         }
+
     }
 
     public function show($id)

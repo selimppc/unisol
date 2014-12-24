@@ -80,8 +80,8 @@
                             <li><a tabindex="-1" href="{{ action('TaskListRoleController@index') }}"> Task List </a></li>
                             <li class="divider"></li>
 
-                            {{--<li><a tabindex="-1" href="{{ action('RoleTaskController@index') }}"> Role Task </a></li>--}}
-                            {{--<li class="divider"></li>--}}
+                            <li><a tabindex="-1" href="{{ action('RoleTaskController@index') }}"> Role Task </a></li>
+                            <li class="divider"></li>
 
                             <li><a tabindex="-1" href="{{ action('RoleTaskUserController@index') }}"> Role Task User </a></li>
 
