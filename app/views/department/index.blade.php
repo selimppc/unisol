@@ -4,13 +4,13 @@
 @stop
 @section('content')
 
-        <script type="text/javascript" language="javascript" src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-        <script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.4/css/jquery.dataTables.css">
+        {{--<script type="text/javascript" language="javascript" src="//code.jquery.com/jquery-1.11.1.min.js"></script>--}}
+        {{--<script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>--}}
+        {{--<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.4/css/jquery.dataTables.css">--}}
 
 
   <div class="span well">
-  @if ($departmentList->count())
+
   <table class="table table-striped table-bordered" id="myTable">
   <col width="80">
     <col width="200">
@@ -66,12 +66,7 @@
       </tbody>
 {{ Form::submit('Delete Items', array('class'=>'btn btn-primary', 'id'=>'hide-button', 'style'=>'display:none'))}}
   </table>
-  @else
-  There are no Department
-  @endif
-
-
-        </div>
+     </div>
 
 {{ Form::close() }}
 

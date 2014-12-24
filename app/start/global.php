@@ -57,9 +57,18 @@ Log::useDailyFiles(storage_path().'/logs/'.$logFile);
 
 App::error(function(Exception $exception, $code)
 {
+
+    $pathInfo = Request::getPathInfo();
+
+    $selim = " : Edu Tech Solutions";
+    Log::error('Error', array('error' => 'Errors information. Path: '.''.$pathInfo.' Code: '.$code.''.$selim));
+
+    if (Config::get('app.debug')) {
+        return;
+    }
+
     //var_dump($exception);
 
-    Log::error('Error', array('error' => 'Errors information'));
 
     if($exception=='debug'){
         Log::debug('Debug', array('debug' => 'Other helpful information'));
