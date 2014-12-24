@@ -78,10 +78,11 @@
                        <div class="modal-body">
                              <strong>Are you sure to delete?</strong>
                        </div>
-                       <div class="modal-footer">
-                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                         <a href="#" class="btn btn-danger danger">Delete</a>
 
+                       <div class="modal-footer">
+
+                         <a href="#" class="btn btn-danger danger">Delete</a>
+                         <a href="{{URL::to('department/index')}}" class="btn btn-default">Close </a>
                        </div>
                  </div>
                </div>
@@ -123,9 +124,7 @@
 
        {{ Form::close() }}
 
-
-
-      </div>
+</div>
       <div class="modal-footer">
 
       </div>
@@ -156,12 +155,13 @@
 
 <!-- Script: Datatable-->
 <script type="text/javascript">
-
+		$(document).ready(function() {
 				$('#myTable').dataTable({
                 paging: false
 
 				});
 
+		} );
 </script>
 
 

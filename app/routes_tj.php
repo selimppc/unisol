@@ -3,6 +3,7 @@
 
 //{-------------------Department--------------------}
 Route::get('department/index','DepartmentController@index');
+Route::get('department/','DepartmentController@index');
 
 Route::get('department/create','DepartmentController@create');
 
