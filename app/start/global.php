@@ -30,8 +30,12 @@ ClassLoader::addDirectories(array(
 | build a basic log file setup which creates a single file for logs.
 |
 */
-//contetn
-Log::useFiles(storage_path().'/logs/laravel.log');
+//old file
+//Log::useFiles(storage_path().'/logs/laravel.log');
+
+///Daily Log File
+$logFile = 'laravel.log';
+Log::useDailyFiles(storage_path().'/logs/'.$logFile);
 
 /*
 |--------------------------------------------------------------------------
@@ -45,10 +49,33 @@ Log::useFiles(storage_path().'/logs/laravel.log');
 | shown, which includes a detailed stack trace during debug.
 |
 */
+// Old code
+//App::error(function(Exception $exception, $code)
+//{
+//	Log::error($exception);
+//});
 
 App::error(function(Exception $exception, $code)
 {
-	Log::error($exception);
+    var_dump($exception);
+    if($exception=='debug'){
+        Log::debug('Debug', array('debug' => 'Other helpful information'));
+    }elseif($exception=='information'){
+        Log::info('Information', array('information' => 'Other helpful information'));
+    }elseif($exception=='notice'){
+        Log::notice('Notice', array('notice' => 'Other helpful information'));
+    }elseif($exception=='warning'){
+        Log::warning('Warning', array('warning' => 'Other helpful information'));
+    }elseif($exception=='error'){
+        Log::error('Error', array('error' => 'Other helpful information'));
+    }elseif($exception=='critical'){
+        Log::critical('Critical', array('critical' => 'Other helpful information'));
+    }elseif($exception=='alert'){
+        Log::alert('Alert', array('alert' => 'Other helpful information'));
+    }
+    //Log::error($exception);
+
+
 });
 
 /*
