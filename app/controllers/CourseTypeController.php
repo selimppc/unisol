@@ -142,10 +142,14 @@ class CourseTypeController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-        $data= CourseType::find($id);
-        if($data->delete())
-        {
-            return Redirect::back()->with('message', 'Successfully deleted Semester Information!');
+
+        try {
+            CourseType::find($id)->delete();
+            return Redirect::back()->with('message', 'Successfully deleted Information!');
+        }
+        catch(exception $ex){
+            return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+
         }
 	}
 
