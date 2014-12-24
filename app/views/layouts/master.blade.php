@@ -80,8 +80,8 @@
                             <li><a tabindex="-1" href="{{ action('TaskListRoleController@index') }}"> Task List </a></li>
                             <li class="divider"></li>
 
-                            {{--<li><a tabindex="-1" href="{{ action('RoleTaskController@index') }}"> Role Task </a></li>--}}
-                            {{--<li class="divider"></li>--}}
+                            <li><a tabindex="-1" href="{{ action('RoleTaskController@index') }}"> Role Task </a></li>
+                            <li class="divider"></li>
 
                             <li><a tabindex="-1" href="{{ action('RoleTaskUserController@index') }}"> Role Task User </a></li>
 
@@ -170,7 +170,17 @@
 
                     {{--set some message after action--}}
                       @if (Session::has('message'))
-                      <div class="alert alert-info">{{Session::get("message")}}</div>
+                            <div class="alert alert-success">{{Session::get("message")}}</div>
+
+                      @elseif(Session::has('error'))
+                           <div class="alert alert-warning">{{Session::get("error")}}</div>
+
+                      @elseif(Session::has('info'))
+                          <div class="alert alert-info">{{Session::get("info")}}</div>
+
+                      @elseif(Session::has('danger'))
+                           <div class="alert alert-danger">{{Session::get("danger")}}</div>
+
                      @endif
 
                 <div class="navbar">
