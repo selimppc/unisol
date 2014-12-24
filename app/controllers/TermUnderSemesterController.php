@@ -53,7 +53,7 @@ class TermUnderSemesterController extends \BaseController {
 				$data->start_date = Input::get('start_date');
 				$data->end_date = Input::get('end_date');
 				$data->save();
-				Session::flash('message', "Success:Years added successfully");
+				Session::flash('message', "Success:Added successfully");
 			    return Redirect::to('term/show')->with('title', 'Subject List');
 		}
 		else
@@ -67,23 +67,44 @@ class TermUnderSemesterController extends \BaseController {
 
 	public function showterm()
 	{
-		// $data= Years::orderBy('id', 'DESC')->paginate(5);
-		// return View::make('years.index')->with('datas',$data)->with('title','All Years list');
+			  $search_dept = Input::get('department');
+			  $search_semester = Input::get('semester');
+			  $search_prog = Input::get('program');
+			  $search_year = Input::get('year');
 
-		$search_text =trim(Input::get('search_text'));
-	    $q = TermUnderSemester::query();
+			  Input::flash();
 
-	    if (!empty($search_text))
-	    {
-	     $q->where(function($query) use ($search_text)
-	      {
-	      	  $query->where('id', 'LIKE', '%'.$search_text.'%');
-            
-	      });
-        }
+			  $q = TermUnderSemester::query();
 
-      $data = $q->orderBy('id', 'DESC')->paginate(5);
-  	  return View::make('termundersemester.index')->with('datas',$data)->with('title','	Courses under semester/term List');
+			  if (!empty($search_dept)) {
+			   $q->where(function($query) use ($search_dept) {
+			    $query->where('department_id', '=', $search_dept);
+			    });
+			  }
+
+			  if (!empty($search_semester)) {
+			   $q->where(function($query) use ($search_semester) {
+			    $query->where('semester_id', '=', $search_semester);
+			    });
+			  }
+
+			  if (!empty($search_prog)) {
+			   $q->where(function($query) use ($search_prog) {
+			    $query->where('degree_program_id', '=', $search_prog);
+			    });
+			  }
+
+			  if (!empty($search_year)) {
+			   $q->where(function($query) use ($search_year) {
+			    $query->where('year_id', '=', $search_year);
+			    });
+			  }
+
+
+			  $data = $q->orderBy('id', 'DESC')
+			    ->paginate(20);
+
+         return View::make('termundersemester.index')->with('datas',$data)->with('title','Courses under semester/term List');
 
   }
 	/**

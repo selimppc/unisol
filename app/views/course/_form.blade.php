@@ -1,6 +1,13 @@
 
     <fieldset style="padding: 10px; width: 90%;">
 
+                     <?php
+                               $subject_id_result = Subject::lists('title', 'id');
+                               $course_type_id_result = CourseType::lists('title', 'id');
+
+                     ?>
+
+
                 <div class='form-group'>
                             <div>{{ Form::label('title', 'Course Name') }}</div>
                             <div>{{ Form::text('title', Input::old('title'),['class'=>'form-control']) }}</div>
@@ -13,7 +20,7 @@
 
                  <div class='form-group'>
                     <div>{{ Form::label('subject_id', 'Subject') }}</div>
-                    <div>{{ Form::select('subject_id', [''=>'Select Option'] + Subject::orderBy('title')->lists('title', 'id'),'', ['class'=>'form-control']) }}</div>
+                    <div>{{ Form::select('subject_id',$subject_id_result) }}</div>
                  </div>
 
                   <div class='form-group'>
@@ -24,7 +31,7 @@
 
                   <div class='form-group'>
                              <div>{{ Form::label('course_type', 'Course Type') }}</div>
-                             <div>{{ Form::select('course_type', array('1' => 'Theory', '2' => 'Lab','3' => 'Thesis','4' => 'Internship','5' => 'Industrial Tour'));}}</div>
+                             <div>{{ Form::select('course_type',$course_type_id_result)}}</div>
 
                   </div>
 

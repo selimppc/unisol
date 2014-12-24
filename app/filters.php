@@ -13,7 +13,7 @@
 
 App::before(function($request)
 {
-	//
+
 });
 
 
@@ -88,3 +88,21 @@ Route::filter('csrf', function()
 		throw new Illuminate\Session\TokenMismatchException;
 	}
 });
+
+//Route::filter('localization', function() {
+//    App::setLocale(Route::input('lang'));
+//});
+
+//Route::filter('localization', function() {
+//    App::setLocale(Auth::user()->locale);
+//});
+
+Route::filter('localization', function() {
+    $locale = Route::input('lang');
+
+//    if (!in_array($locale, array('en', 'fr')))
+//        App::abort(404);
+
+    App::setLocale($locale);
+});
+

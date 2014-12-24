@@ -15,15 +15,16 @@
            <div class="wrapper text-right no-padder" style="margin-top: 20px">
             {{ Form::open(array('url' =>'term/show', 'class'=>'form-inline', 'role' => 'form')) }}
                 <div class="form-group">
-                  {{ Form::label('search_text', 'Search Text:',array('class'=>'sr-only')) }}
-                  {{ Form::text('search_text', Input::old('search_text'), array('class' => 'form-control','placeholder' => 'Search All')) }}
+                  {{ Form::select('department', [''=>'Department']+ Department::lists('title','id'), Input::old('department'), ['class'=>'form-control']  )}}
+                  {{ Form::select('year', [''=>'Year']+ Year::lists('title','id'), Input::old('year'), ['class'=>'form-control']  )}}
+                  {{ Form::select('semester', [''=>'Semester']+ Department::lists('title','id'), Input::old('semester'), ['class'=>'form-control']  )}}
+                  {{ Form::select('program', [''=>'Program']+ DegreeProgram::lists('title','id'), Input::old('program'), ['class'=>'form-control']  )}}
                 </div>
                 {{ Form::submit('Search', array('class' => 'btn btn-info')) }}
             {{ Form::close() }}
             </div>
 
           <!-- search db ends -->
-
 
     {{ Form::open(array('url' => 'term/batch/delete')) }}
         <table id="example" class="table table-bordered table-hover table-striped">
