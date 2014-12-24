@@ -145,13 +145,15 @@ class TargetRoleController extends \BaseController {
 	 */
     public function destroy($id)
     {
-
-        $data= TargetRole::find($id);
-        if($data->delete())
-        {
-            return Redirect::back()->with('message', 'Successfully deleted Course type Information!');
+        try {
+            TargetRole::find($id)->delete();
+            return Redirect::back()->with('message', 'Successfully deleted Information!');
         }
-        //ok
+        catch(exception $ex){
+            return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+
+        }
+
     }
 
     public function batchDelete(){

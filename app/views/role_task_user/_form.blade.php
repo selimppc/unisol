@@ -1,17 +1,23 @@
 
-    <fieldset style="padding: 10px; width: 90%;">
+<fieldset style="padding: 10px; width: 90%;">
+
+
+                 <?php
+                           $role_task_id_result = RoleTask::lists('title', 'id');
+                           $user_id_result = User::lists('username', 'id');
+                 ?>
 
 
                 <div class='form-group'>
                     <div>{{ Form::label('role_task_id', 'Role Task Name') }}</div>
-                    <div>{{ Form::select('role_task_id', [''=>'Select Option'] + RoleTask::orderBy('title')->lists('title', 'id'),'', ['class'=>'form-control']) }}</div>
+                    <div>{{ Form::select('role_task_id',  $role_task_id_result ) }}</div>
 
                 </div>
 
 
                 <div class='form-group'>
                     <div>{{ Form::label('user_id', 'User Name') }}</div>
-                    <div>{{ Form::select('user_id', [''=>'Select Option'] + User::orderBy('username')->lists('username', 'id'),'', ['class'=>'form-control']) }}</div>
+                    <div>{{ Form::select('user_id',$user_id_result ) }}</div>
 
                 </div>
 
@@ -27,6 +33,6 @@
 
               <a href="{{URL::to('role_task_user/')}}" class="btn btn-default">Close </a>
 
-    </fieldset>
+</fieldset>
 
 

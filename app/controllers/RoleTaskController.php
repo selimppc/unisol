@@ -87,8 +87,18 @@ class RoleTaskController extends \BaseController {
 
     public function destroy($id){
 
-        RoleTask::find($id)->delete();
-        return Redirect::back()->with('message', 'Successfully deleted Information!');
+        try {
+            RoleTask::find($id)->delete();
+            return Redirect::back()->with('message', 'Successfully deleted Information!');
+        }
+        catch(exception $ex){
+            return Redirect::back()->with('message', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+
+        }
+
+
+
+
     }
 
 
