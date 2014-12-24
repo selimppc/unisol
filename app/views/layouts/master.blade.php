@@ -15,11 +15,15 @@
     {{ HTML::style('assets/css/bootstrap-responsive.min.css') }}
     {{ HTML::style('assets/css/styles.css')}}
     {{ HTML::style('assets/css/datepicker.css')}}
+    {{ HTML::style('assets/css/jquery.dataTables.min.css')}}
+
    
     <style>
     .datepicker{z-index:1151 !important;}
     </style>
 
+    {{ HTML::script('assets/js/jquery-2.1.1.min.js') }}
+    {{HTML::script('assets/js/jquery-1.11.1.min.js')}}
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
         <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -223,13 +227,14 @@
 
 
 <!--/.fluid-container-->
-{{ HTML::script('assets/js/jquery-2.1.1.min.js') }}
+
 {{ HTML::script('assets/js/bootstrap.min.js') }}
 {{HTML::script('assets/js/scripts.js')}}
 {{HTML::script('assets/js/jquery.dataTables.min.js')}}
 {{ HTML::script('assets/js/jquery.tablesorter.min.js') }}
 {{ HTML::script('assets/js/bootstrap-datepicker.js') }}
 {{HTML::script('assets/js/ratna_script.js')}}
+
 
 
 
