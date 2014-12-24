@@ -53,7 +53,7 @@ class TermUnderSemesterController extends \BaseController {
 				$data->start_date = Input::get('start_date');
 				$data->end_date = Input::get('end_date');
 				$data->save();
-				Session::flash('message', "Subject added successfully");
+				Session::flash('message', "Success:Years added successfully");
 			    return Redirect::to('term/show')->with('title', 'Subject List');
 		}
 		else
@@ -78,13 +78,7 @@ class TermUnderSemesterController extends \BaseController {
 	     $q->where(function($query) use ($search_text)
 	      {
 	      	  $query->where('id', 'LIKE', '%'.$search_text.'%');
-              $query->orWhere('degree_program_id', 'LIKE', '%'.$search_text.'%');
-              $query->orWhere('department_id', 'LIKE', '%'.$search_text.'%');
-              $query->orWhere('year_id', 'LIKE', '%'.$search_text.'%');
-              $query->orWhere('semester_id', 'LIKE', '%'.$search_text.'%');
-              $query->orWhere('start_date', 'LIKE', '%'.$search_text.'%');
-              $query->orWhere('end_date', 'LIKE', '%'.$search_text.'%');
-
+            
 	      });
         }
 
@@ -165,7 +159,7 @@ class TermUnderSemesterController extends \BaseController {
 						$data->start_date = Input::get('start_date');
 						$data->end_date = Input::get('end_date');
 						$data->save();
-						Session::flash('message', "Courses added successfully");
+						Session::flash('info', "Courses Updated successfully");
 					    return Redirect::to('term/show')->with('title', 'All List of Courses under semester/term');
 				}
 				else
@@ -184,7 +178,7 @@ class TermUnderSemesterController extends \BaseController {
 		if($data->delete())
 		{
 
-		 Session::flash('message', "Deleted successfully");
+		 Session::flash('danger', " Courses Deleted successfully");
 		 return Redirect::to('term/show')->with('title','Deleted Successfully');
 		}
 	
@@ -194,8 +188,9 @@ class TermUnderSemesterController extends \BaseController {
 
 	public function batchdelete()
      {
+     	
 		TermUnderSemester::destroy(Request::get('id'));
-		Session::flash('message', "Deleted successfully");
+		Session::flash('danger', " Courses Deleted successfully");
         return Redirect::to('term/show')->with('title','Deleted Successfully');
 
      }

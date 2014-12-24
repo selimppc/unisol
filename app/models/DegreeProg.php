@@ -7,13 +7,7 @@
  */
 
 class DegreeProg extends Eloquent{
-    protected $table = 'degree_program';
-
-
-
-
-
-
+protected $table = 'degree_program';
 
 
 } 
