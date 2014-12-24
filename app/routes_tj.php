@@ -6,7 +6,9 @@ Route::get('department/index','DepartmentController@index');
 
 Route::get('department/create','DepartmentController@create');
 
-Route::any('department/store','DepartmentController@store');
+Route::any('department/store', ['as' => 'department.store', 'uses' => 'DepartmentController@store' ]);
+
+
 
 Route::any('department/delete/{id}','DepartmentController@delete');
 

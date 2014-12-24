@@ -1,28 +1,20 @@
-{{--@extends('layouts.master')--}}
+@extends('layouts.master')
+
+@section('sidebar')
+    @include('department._sidebar')
+@stop
 
 @section('content')
 
+        <div style="padding: 10px; width: 90%;">
+         <h1>Add New Department</h1>
 
-<legend>Department Entry Form</legend>
-<div class="span4 well">
+            {{ Form::open(array('route' => 'department.store', 'method' =>'post', 'role'=>'form','files'=>'true'))  }}
 
-{{ Form::open(array('url'=>'department/store','class'=>'form-horizontal')) }}
+                    @include('department._form')
 
+            {{ Form::close() }}
 
-        {{ Form::label('dept_name','Department Name:') }}
-        {{ Form::text('dept_name',Input::old('dept_name'), array('class' => 'form-control')) }}
-
-
-        {{ Form::label('description', 'Description:') }}
-        {{ Form::textarea('description',Input::old('description'), array('class' => 'form-control')) }}
-
-         <br>
-
-        {{ Form::submit('Save', array('class' => 'btn btn-primary')) }}
-
-
-{{ Form::close() }}
-</div>
-
+        </div>
 
 @stop

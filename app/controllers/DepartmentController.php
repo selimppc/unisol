@@ -17,26 +17,55 @@ class DepartmentController extends BaseController{
       }
 
       public function create(){
-          return View::make('department/create');
+          return View::make('department.create');
       }
     public function store(){
-        $rules = array(
-            'dept_name' => 'required',
+//        $rules = array(
+//            'dept_name' => 'required',
+//
+//        );
+//
+//        $validator = Validator::make(Input::all(), $rules);
+//
+//        if ($validator->passes()) {
+//            $department = new Department;
+//            $department->title = Input::get('dept_name');
+//            $department->description = Input::get('description');
+//
+//            $department->save();
+//
+//            return Redirect::back()->with('message', 'Successfully Added Country Information!');
+//        } else {
+//            return Redirect::to('department/index')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
+//        }
 
-        );
 
-        $validator = Validator::make(Input::all(), $rules);
+        // get the POST data
+        $data = Input::all();
 
-        if ($validator->passes()) {
-            $department = new Department;
-            $department->title = Input::get('dept_name');
+        // create a new model instance
+        $department = new Department();
+
+        // attempt validation
+        if ($department->validate($data))
+        {
+            // success code
+            $department->title = Input::get('title');
             $department->description = Input::get('description');
 
             $department->save();
-            // return Redirect::to('crud')->with('message', 'Successfully added Country!');
-            return Redirect::back()->with('message', 'Successfully Added Country Information!');
-        } else {
-            return Redirect::to('department/index')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
+
+            // redirect
+            Session::flash('message', 'Successfully Added!');
+            return Redirect::to('department/index');
+        }
+        else
+        {
+            // failure, get errors
+            $errors = $department->errors();
+            Session::flash('errors', $errors);
+
+            return Redirect::to('department/create');
         }
     }
 
