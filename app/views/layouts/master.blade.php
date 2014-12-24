@@ -15,7 +15,10 @@
     {{ HTML::style('assets/css/bootstrap-responsive.min.css') }}
     {{ HTML::style('assets/css/styles.css')}}
     {{ HTML::style('assets/css/datepicker.css')}}
-
+   
+    <style>
+    .datepicker{z-index:1151 !important;}
+    </style>
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -71,9 +74,6 @@
                             <li><a tabindex="-1" href="{{ action('SemesterController@index') }}"> Term / Semester </a></li>
                             <li class="divider"></li>
 
-                            <li><a tabindex="-1" href="{{ action('SubjectController@show') }}"> Subject Management </a></li>
-                            <li class="divider"></li>
-
                             <li><a tabindex="-1" href="{{ action('TargetRoleController@index') }}"> Target Role </a></li>
                             <li class="divider"></li>
 
@@ -84,10 +84,16 @@
                             {{--<li class="divider"></li>--}}
 
                             <li><a tabindex="-1" href="{{ action('RoleTaskUserController@index') }}"> Role Task User </a></li>
-                            <li class="divider"></li>
 
-                            {{--<li><a tabindex="-1" href="{{ action('YearsController@show') }}"> Years </a></li>--}}
-                            {{--<li class="divider"></li>--}}
+                            <li class="divider"></li>
+                            <li><a tabindex="-1" a href="{{URL::to('subject/list') }}"> Subject Management </a></li>
+                            <li class="divider"></li>
+                            <li class="divider"></li>
+                            <li><a tabindex="-1" a href="{{URL::to('years/show') }}"> Years Management </a></li>
+                            <li class="divider"></li>
+                            <li class="divider"></li>
+                            <li><a tabindex="-1" a href="{{URL::to('term/show') }}"> All Course Management </a></li>
+                            <li class="divider"></li>
 
 
                         </ul>

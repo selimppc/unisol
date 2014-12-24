@@ -40,6 +40,7 @@ Route::any('roletask/store','RoleTaskController@store');
 Route::any('roletask/delete/{id}','RoleTaskController@destroy');
 Route::any('roletask/edit/{id}','RoleTaskController@edit');
 Route::post('roletask/update/{id}','RoleTaskController@update');
+Route::get('roletask/show/{id}', 'RoleTaskController@show' );
 
 
 

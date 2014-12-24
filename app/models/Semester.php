@@ -1,25 +1,24 @@
 <?php
-
-
+/**
+ * 
+ * 
+ * */
 class Semester extends Eloquent
 {
 
     protected $table = 'semester';
 
-
-        // Ratna code
-        public static function getSemesterName($semId){
-        $data = Semester::find($semId);
-        return $data->title;
+    public static function getSemesterName($semId)
+    {
+    $data = Semester::find($semId);
+    return $data->title;
     }
-
-
+    
     private $errors;
     // 1
     private $rules = array(
         'title' => 'required|unique:semester',
         'description'  => 'required',
-
     );
 
 
@@ -27,6 +26,7 @@ class Semester extends Eloquent
     {
         // make a new validator object
         $validate = Validator::make($data, $this->rules);
+
         // check for failure
         if ($validate->fails())
         {
@@ -34,6 +34,7 @@ class Semester extends Eloquent
             $this->errors = $validate->errors();
             return false;
         }
+
         // validation pass
         return true;
     }
@@ -50,6 +51,7 @@ class Semester extends Eloquent
     {
         // make a new validator object
         $validate = Validator::make($data, $this->rules2);
+
         // check for failure
         if ($validate->fails())
         {
@@ -57,13 +59,10 @@ class Semester extends Eloquent
             $this->errors = $validate->errors();
             return false;
         }
+
         // validation pass
         return true;
     }
-
-
-
-
 
     public function errors()
     {

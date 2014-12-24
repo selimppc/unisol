@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDegreeProgramTable extends Migration {
+class CreateSubjectTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,19 +12,13 @@ class CreateDegreeProgramTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('degree_program', function(Blueprint $table)
+		Schema::create('subject', function(Blueprint $table)
 		{
-
-		 $table->increments('id', true);
+			$table->increments('id');
             $table->string('title', 128);
-			
-			$table->unsignedInteger('department_id');
+			$table->unsignedInteger('department_id')->index();
 			$table->foreign('department_id')->references('id')->on('department');
-			
-			//$table->unsignedInteger('degree_level_id');
-			//$table->foreign('degree_level_id')->references('id')->on('degree_level');
-
-			$table->string('description');
+			$table->text('description');
             $table->timestamps();
 			$table->engine = 'InnoDB';
 		});
@@ -37,7 +31,7 @@ class CreateDegreeProgramTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('degree_program');
+		Schema::drop('subject');
 	}
 
 }

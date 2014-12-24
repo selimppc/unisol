@@ -1,6 +1,6 @@
 <?php
 
-class YearsController extends \BaseController {
+class YearController extends \BaseController {
 
 	/**
 	 * Display a listing of the resource.
@@ -9,7 +9,7 @@ class YearsController extends \BaseController {
 	 */
 	public function Index()
 	{
-		return View::make('years.index')->with('title','Create Years');
+		return View::make('year.index')->with('title','Create Years');
 	}
 
 
@@ -35,23 +35,23 @@ class YearsController extends \BaseController {
 		
 			if($validator->fails())
 			{				
-				return Redirect::to('years/show')->withErrors($validator)->withInput()->with('title', 'Create Subject');
+				return Redirect::to('year/show')->withErrors($validator)->withInput()->with('title', 'Create Subject');
 			}
 			else
 			{
 				if($token == Input::get('_token'))
 					{
-							$data = new Years;
+							$data = new Year;
 							$data->title = Input::get('title');
 							$data->description = Input::get('description');
 							$data->save();
 							Session::flash('message', "Years added successfully");
-						    return Redirect::to('years/show')->with('title', 'Years List');
+						    return Redirect::to('year/show')->with('title', 'Years List');
 					}
 					else
 					{
 						Session::flash('message', 'Token Mismatched');
-						return Redirect::to('years/show')->with('title', 'Years List');
+						return Redirect::to('year/show')->with('title', 'Years List');
 					}
 			}
 	}
@@ -81,7 +81,7 @@ class YearsController extends \BaseController {
 		// return View::make('years.index')->with('datas',$data)->with('title','All Years list');
 		
 		$search_text =trim(Input::get('search_text'));
-	    $q = Years::query();
+	    $q = Year::query();
 
 	    if (!empty($search_text)) 
 	    {
@@ -95,13 +95,13 @@ class YearsController extends \BaseController {
         }
 
       $data = $q->orderBy('id', 'DESC')->paginate(5);
-  	  return View::make('years.index')->with('datas',$data)->with('title','All Years List');
+  	  return View::make('year.index')->with('datas',$data)->with('title','All Years List');
 	}
 
 	public function show_one($id)
 	{
-		 $years = Years::find($id);
-		 return View::make('years.show')->with('years',$years);
+		 $years = Year::find($id);
+		 return View::make('year.show')->with('years',$years);
 
 	}
 
@@ -113,8 +113,8 @@ class YearsController extends \BaseController {
 	 */
 	public function edit($id)
     {
-    $years = Years::find($id);
-    return View::make('years.edit')->with('years',$years);
+    $years = Year::find($id);
+    return View::make('year.edit')->with('years',$years);
     }
 
 
@@ -138,42 +138,43 @@ class YearsController extends \BaseController {
 		
 			if($validator->fails())
 			{				
-				return Redirect::to('years/show')->withErrors($validator)->withInput()->with('title', 'Create Subject');
+				return Redirect::to('year/show')->withErrors($validator)->withInput()->with('title', 'Create Subject');
 			}
 			else
 			{
 				if($token == Input::get('_token'))
 					{
-							$data = new Years;
+							$data = new Year;
 							$data->title = Input::get('title');
 							$data->description = Input::get('description');
 							$data->save();
 							Session::flash('message', "Years Updated successfully");
-						return Redirect::to('years/show')->with('title', 'Years List');
+						return Redirect::to('year/show')->with('title', 'Years List');
 					}
 					else
 					{
 						Session::flash('message', 'Token Mismatched');
-						return Redirect::to('years/show')->with('title', 'Years List');
+						return Redirect::to('year/show')->with('title', 'Years List');
 					}
 			}
 	}
 
 	public function delete($id)
 	{
-		$data= Years::find($id);
+		$data= Year::find($id);
 		if($data->delete())
 		{
 		 	
-		 return Redirect::to('years/show')->with('title','All Years List');
+		 Session::flash('message', "Years Deleted successfully");
+		 return Redirect::to('year/show')->with('title','All Years List');
 		}
 	}
 
 	 public function batchdelete()
      {
-
-     	Years::destroy(Request::get('id'));
-        return Redirect::to('years/show')->with('title','All Subject List');
+     	Session::flash('message', "Years Deleted successfully");
+     	Year::destroy(Request::get('id'));
+        return Redirect::to('year/show')->with('title','All Subject List');
 
      }
 

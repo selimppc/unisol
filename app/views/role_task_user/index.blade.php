@@ -32,20 +32,23 @@
 
 {{ Form::open(array('url' => 'role_task_user/batchDelete')) }}
 
+
         <table id="example" class="table table-striped  table-bordered"  >
             <thead>
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#CreateModal" style="margin-bottom: 20px">
                         Add New Role Target User
                 </button>
 
-                 <br>
-                      {{ Form::submit('Delete Items', array('class'=>'btn btn-danger', 'id'=>'hide-button2', 'style'=>'display:none'))}}
-                 <br>
+                <br>
+                     {{ Form::submit('Delete Items', array('class'=>'btn btn-danger', 'id'=>'hide-button', 'style'=>'display:none'))}}
+                <br>
+
+
 
                  <br>
                 <tr>
 
-                    <th><input name="id" type="checkbox" id="checkbox" class="checkbox2" value=""></th>
+                    <th><input name="id" type="checkbox" id="checkbox" class="checkbox" value=""></th>
 
                     <th>Role Task Name</th>
                     <th>User Name</th>
@@ -58,19 +61,19 @@
               @foreach($roleTaskUser as $role_task_user)
                 <tr>
 
-                   <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox2" value="{{ $role_task_user->id }}"></td>
+                   <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $role_task_user->id }}"></td>
 
                    <td>{{ RoleTask::getRoleTaskName($role_task_user->role_task_id) }}</td>
 
 
                    <td>{{ User::getUserName($role_task_user->user_id) }}</td>
-                   
+
                    <td>{{ $role_task_user->status }}</td>
 
                    <td>
                       <a href="{{ URL::route('role_task_user.edit', ['id'=>$role_task_user->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#edit-modal" data-toggle="tooltip" data-placement="left" title="Edit" href="#"><span class="glyphicon glyphicon-edit text-info"></span></a>
 
-                      <a data-href="{{ URL::route('role_task_user.destroy',['id'=>$role_task_user->id]) }}" class="btn btn-danger" data-toggle="modal" data-target="#confirm-delete" data-toggle="tooltip" data-placement="left" title="Delete" href="" ><span class="glyphicon glyphicon-trash text-danger"></span></a>
+                      <a data-href="{{ URL::route('role_task_user.destroy',['id'=>$role_task_user->id]) }}" class="btn btn-danger" data-toggle="modal" data-target="#confirm-delete" data-toggle="tooltip" data-placement="left" title="Delete" href="" ><span class="glyphicon glyphicon-trash text-danger">&nbsp;</span></a>
 
                       <a href="{{ URL::route('role_task_user.show', ['id'=>$role_task_user->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#showModal" data-toggle="tooltip" data-placement="left" title="Show/View" href=""><span class="glyphicon glyphicon-list-alt text-info"></span></a>
 

@@ -1,13 +1,13 @@
 <?php
 
-class Years extends \Eloquent 
+class Year extends \Eloquent 
 {
 	protected $fillable = [];
-	protected $table = 'years';
+	protected $table = 'year';
 
 	// ratna code
     public static function getYearsName($yearId){
-    $data = Years::find($yearId);
+    $data = Year::find($yearId);
 	return $data->title;
 	}
 }

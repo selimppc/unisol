@@ -14,9 +14,9 @@
             //   event.preventDefault();
             //   window.location.reload();
             // });
-            
+
         //to refresh button in modal
-           $('.close').on('click', function(event) 
+           $('.close').on('click', function(event)
            {
             event.preventDefault();
             window.location.reload();
@@ -101,7 +101,7 @@
 
       });
 
-   // To refresh textbox value and it will not catch the previous value 
+   // To refresh textbox value and it will not catch the previous value
       $('#confirm-edit').on('hidden.bs.modal', function (e) {
         $(this)
           .find("input,textarea,select")
@@ -117,15 +117,35 @@
           });
 
      // To search and filter using datatable
-     
+
      $('#example').dataTable({
           paging: false
          //"sSearch": "Filter _INPUT_ ",
-         
-      // For date time picker
-        $(function () {
-        $('#datetimepicker1').datetimepicker();
-         });
-     
-         
    });
+
+
+     //for term add new datepicker
+
+      $('.datepicker').datepicker({
+        format: 'yyyy/mm/dd',
+        place : function() {
+
+                    if (this.isInline)
+                        return;
+                    var zIndex = parseInt(this.element.parents().filter(function() {
+                        return $(this).css('z-index') != 'auto';
+                    }).first().css('z-index')) + 10;
+                    var offset = this.component ? this.component.offset() : this.element.offset();
+                    var height = this.component ? this.component.outerHeight(true) : this.element.outerHeight(true);
+                    var isInModal = this.element.parents('.modal').length;
+                    var top = offset.top + height;
+                    if(isInModal) {
+                        top = top - 40;
+                    }
+                    this.picker.css({
+                        top : top,
+                        left : offset.left,
+                        zIndex : zIndex
+                    });
+                }
+      });

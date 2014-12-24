@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateYearsTable extends Migration
+class CreateYearTable extends Migration
 {
 
     /**
@@ -13,7 +13,7 @@ class CreateYearsTable extends Migration
      */
     public function up()
     {
-        Schema::create('years', function (Blueprint $table) {
+        Schema::create('year', function (Blueprint $table) {
 
             $table->increments('id', true);
             $table->integer('title');
@@ -31,7 +31,7 @@ class CreateYearsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('years');
+        Schema::drop('year');
     }
 
 }

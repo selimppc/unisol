@@ -1,14 +1,14 @@
 @extends('layouts.master')
 
 @section('sidebar')
-    @include('subject.sidebar')
+    @include('termundersemester.sidebar')
 @stop
 
 @section('content')
 
 <h1>{{$title}}</h1>
          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" style="margin-bottom: 20px">
-                 Add New 
+                 Add New
         </button>
 
           <!-- search db  -->
@@ -21,10 +21,10 @@
                 {{ Form::submit('Search', array('class' => 'btn btn-info')) }}
             {{ Form::close() }}
             </div>
-      
+
           <!-- search db ends -->
-              
-    
+
+
     {{ Form::open(array('url' => 'term/batch/delete')) }}
         <table id="example" class="table table-bordered table-hover table-striped">
         <thead>
@@ -42,25 +42,28 @@
                 <th>Action</th>
             </tr>
         </thead>
-       
+
+
         <tbody>
             @foreach ($datas as $value)
             <tr>
                 <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $value->id }}">
                 </td>
                 <td>{{$value->id}}</td>
-                <td>{{$value->degree_program_id}}</td>
-                <td>{{$value->department_id}}</td>
-                <td>{{$value->year_id}}</td>
-                <td>{{$value->semester_id}}</td>
-                <!-- <td>{{$value->start_date}}</td>
-                <td>{{$value->end_date}}</td> -->
-                <td> 
-                   <a data-href="{{ URL::to('term/delete/'.$value->id) }}" class="btn btn-sm btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><span class="glyphicon glyphicon-trash text-danger"></span></a>
+                <td>{{ DegreeProgram::getDegreeProgramName($value->degree_program_id) }}</td>
+                <td>{{ Department::getDepartmentName($value->department_id) }}</td>
+                <td>{{ Year::getYearsName($value->year_id) }}</td>
+                <td>{{ Semester::getSemesterName($value->semester_id)}}</td>
+                <td>{{ date('d-m-Y', strtotime($value->start_date)) }}</td>
+                <td>{{ date('d-m-Y', strtotime($value->end_date)) }}</td>
 
-                  <!-- <a href="{{ URL::route('years.edit', ['id'=>$value->id]) }}" class="subEdit btn btn-sm btn-default" data-toggle="modal" data-target="#edit-modal" href="" ><span class="glyphicon glyphicon-edit text-info"></span></a>
+            
+                <td width="135">
+                     <a data-href="{{ URL::to('term/delete/'.$value->id) }}" class="btn btn-sm btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><span class="glyphicon glyphicon-trash text-danger"></span></a>
 
-                   <a href="{{ URL::route('years.show', ['id'=>$value->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#show-modal" href=""><span class="glyphicon glyphicon-list-alt text-info"></span></a> -->
+                     <a href="{{ URL::route('term.edit', ['id'=>$value->id]) }}" class="subEdit btn btn-sm btn-default" data-toggle="modal" data-target="#edit-modal" href="" ><span class="glyphicon glyphicon-edit text-info"></span></a>
+
+                     <a href="{{ URL::route('term.show', ['id'=>$value->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#show-modal" href=""><span class="glyphicon glyphicon-list-alt text-info"></span></a>
                 </td>
             </tr>
             @endforeach
@@ -81,19 +84,52 @@
                     <h4 class="modal-title">Add New</h4>
                 </div>
                 <div class="modal-body">
-                   {{ Form::open(array('url' => 'term/save', 'method' =>'post', 'role'=>'form','files'=>'true')) }}
+                   {{ Form::open(array('url' => 'term/save', 'method' =>'post', 'role'=>'form','class' => 'form-horizontal')) }}
 
                        @include('termundersemester._form')
 
-                  <button type="button" class="btn btn-danger close" data-dismiss="modal">Cencel</button>
                     {{ Form::close() }}
 
                 </div>
-                <div class="modal-footer">                  
+                <div class="modal-footer">
+                   <a href="{{URL::to('term/show')}}" class="btn btn-default">Close </a>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Modal for Edit -->
+   <div class="modal fade" id="edit-modal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Edit info</h4>
+                </div>
+                <div class="modal-body">
+
+                </div>
+                <div class="modal-footer">
+                   <a href="{{URL::to('term/show')}}" class="btn btn-default">Close </a>
+                </div>
+            </div>
+        <div class="modal-footer">
+       <!--  <button type="button" class="btn btn-default close" data-dismiss="modal">Close</button> -->
+      </div>
+      </div>
+   </div>
+
+
+    <!-- Modal for show -->
+       <div class="modal fade" id="show-modal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+
+            </div>
+          </div>
+       </div>
+
+
     <!-- Modal for delete -->
     <div class="modal fade " id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog">
