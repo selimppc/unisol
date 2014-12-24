@@ -71,7 +71,7 @@ class TermUnderSemesterController extends \BaseController {
 		// return View::make('years.index')->with('datas',$data)->with('title','All Years list');
 
 		$search_text =trim(Input::get('search_text'));
-	    $q = CoursesUnderSemester::query();
+	    $q = TermUnderSemester::query();
 
 	    if (!empty($search_text))
 	    {
