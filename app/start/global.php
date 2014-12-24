@@ -57,7 +57,10 @@ Log::useDailyFiles(storage_path().'/logs/'.$logFile);
 
 App::error(function(Exception $exception, $code)
 {
-    var_dump($exception);
+    //var_dump($exception);
+
+    Log::error('Error', array('error' => 'Errors information'));
+
     if($exception=='debug'){
         Log::debug('Debug', array('debug' => 'Other helpful information'));
     }elseif($exception=='information'){
