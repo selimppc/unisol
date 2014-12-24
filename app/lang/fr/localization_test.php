@@ -1,7 +1,7 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: SELIM
- * Date: 12/24/2014
- * Time: 1:01 PM
- */ 
+// app/lang/fr/localization_test.php
+return array(
+    'title' => 'French title',
+    'subtitle' => 'French subtitle',
+    'pageTitle' => 'French ... Ha ha ha !!'
+);

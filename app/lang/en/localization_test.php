@@ -1,7 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: SELIM
- * Date: 12/24/2014
- * Time: 1:00 PM
- */ 
+// app/lang/en/localization_test.php
+return array(
+    'title' => 'English title',
+    'subtitle' => 'English subtitle',
+);

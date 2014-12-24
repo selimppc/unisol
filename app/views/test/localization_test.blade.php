@@ -1,7 +1,12 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: SELIM
- * Date: 12/24/2014
- * Time: 1:06 PM
- */ 
+@extends('layouts.master')
+
+@section('sidebar')
+    @include('test._sidebar')
+@stop
+@section('content')
+
+    <h1>{{ trans('localization_test.title') }}</h1>
+    <h2>{{ trans('localization_test.subtitle') }}</h2>
+
+
+@stop

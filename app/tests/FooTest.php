@@ -6,6 +6,6 @@
  * Time: 3:51 PM
  */
 
-class FooTest {
+class FooTest extends TestCase{
 
 } 
