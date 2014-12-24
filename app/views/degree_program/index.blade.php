@@ -8,7 +8,7 @@
 <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.4/css/jquery.dataTables.css">
 
   <div class="span well">
-   @if ($degree_programs->count())
+
   <table class="table table-striped table-bordered" id="myTable">
     <col width="50">
       <col width="180">
@@ -22,7 +22,6 @@
                        <td><input name="checkbox" type="checkbox" id="checkbox" class="checkbox" value="">
                        </td>
                        <th>DegreeProgram Name</th>
-
                        <th>Dept Name</th>
                         <th>Degree Level</th>
                          <th>Description</th>
@@ -32,7 +31,6 @@
                   </thead>
 
         <tbody>
-
 
                 @foreach ($degree_programs as $degree_program)
                     <tr>
@@ -52,23 +50,25 @@
 
                     </tr>
                 @endforeach
-                <div>
 
-                   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-                          Add New
-                   </button>
-
-                </div>
-
-                <br>
-                    <div class="text-right">
-                           {{ $degree_programs->links() }}
-                    </div>
         </tbody>
     </table>
-    @else
-      There are no Degree Program
-      @endif
+
+
+    <div>
+
+       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+              Add New
+       </button>
+
+    </div>
+
+    <br>
+        <div class="text-right">
+               {{ $degree_programs->links() }}
+        </div>
+
+
   </div>
 
 
@@ -93,46 +93,6 @@
                  </div>
                </div>
              </div>
-
-
-
-{{--Model: for showing single row info--}}
-<div class="modal fade " id="confirm-show" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-               <div class="modal-dialog">
-                 <div class="modal-content">
-                       <div class="modal-header">
-                         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-                         <h4 class="modal-title" id="myModalLabel">Department :<b>{{$degree_program->title}}</b></h4>
-                       </div>
-                {{--<div class="modal-body">--}}
-
-                {{--</div>--}}
-                <div style="padding: 20px;">
-                    <table>
-                    <h4> Information</h4>
-                      <tr>
-                        <th>Degree Program :</th>
-                        <td>{{ $degree_program->title }}</td>
-                        </tr>
-                         <tr>
-                        <th>Name:</th>
-                         <td>{{ $degree_program->description }}</td>
-
-                      </tr>
-                       <tr>
-
-                            </tr>
-                    </table>
-
-                  <a href="" class="btn btn-default" span class="glyphicon-refresh">Close</a>
-                </div>
- <div class="modal-footer">
-      <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-      <a href="" class="btn btn-default" >Close</a>
- </div>
- </div>
- </div>
- </div>
 
 <!-- Modal :Add new Degree-->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -207,13 +167,13 @@
 </div>
 
 <script type="text/javascript">
-		$(document).ready(function() {
-				$('#myTable').dataTable({
+    $(document).ready(function() {
+        $('#myTable').dataTable({
                 paging: false
 
-				});
+        });
 
-		} );
+    } );
 </script>
 
 @stop

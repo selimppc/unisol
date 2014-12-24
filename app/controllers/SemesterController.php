@@ -149,20 +149,38 @@ class SemesterController extends \BaseController {
 	public function destroy($id)
 	{
 
+     try{
         $data= Semester::find($id);
         if($data->delete())
         {
             return Redirect::back()->with('message', 'Successfully deleted Course type Information!');
         }
-        //ok
-	}
+    }
+     catch (exception $ex)
+    {
 
-    public function batchDelete(){
+      return Redirect::back()->with('message', 'Invalid Delete Process ! Semester has been using in All courses Module.At first Delete Data from there then come here again. Thank You !!!');
+    }
 
+ }
+
+    public function batchDelete()
+    {
+
+        try{
 
         Semester::destroy(Request::get('id'));
         return Redirect::back();
-        //ok
+        }
+    
+         catch (exception $ex)
+        {
+
+          return Redirect::back()->with('message', 'Invalid Delete Process ! Semester has been using in All courses Module.At first Delete Data from there then come here again. Thank You !!!');
+        }
+
+
+      
     }
 
 

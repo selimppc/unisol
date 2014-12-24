@@ -8,7 +8,7 @@
         <td>{{ $department->title }}</td>
         </tr>
          <tr>
-        <th>Name:</th>
+        <th>Description:</th>
          <td>{{ $department->description }}</td>
 
       </tr>

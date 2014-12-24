@@ -4,9 +4,9 @@ class DegreeProgController extends \BaseController {
 
 	public function index()
 	{
-        $degree_programs = DB::table('degree_program')->paginate(5);
-        return View::make('degree_program.index', compact('degree_programs'));
-
+      
+       $degree_programs = DegreeProg::orderBy('id', 'DESC')->paginate(5);
+       return View::make('degree_program.index', compact('degree_programs'));
 	}
 
     public function store(){

@@ -49,8 +49,8 @@ class SubjectController extends \BaseController {
 							$data->title = Input::get('title');
 							$data->description = Input::get('description');
 							$data->save();
-							Session::flash('message', "Subject added successfully");
-						return Redirect::to('subject/list')->with('title', 'Subject List');
+							Session::flash('message', "Success:Subject added successfully");
+						    return Redirect::to('subject/list')->with('title', 'Subject List');
 					}
 					else
 					{
@@ -104,7 +104,7 @@ class SubjectController extends \BaseController {
 
      public function batchdelete()
      {
-     	Session::flash('message', "Subject Deleted successfully");
+     	Session::flash('danger', "Subject Deleted successfully");
      	Subject::destroy(Request::get('id'));
         return Redirect::to('subject/list')->with('title','All Subject List');
 
@@ -153,7 +153,7 @@ class SubjectController extends \BaseController {
 						$data->title = Input::get('title');
 						$data->description = Input::get('description');
 						$data->save();
-						Session::flash('message', "Subject updated successfully");
+						Session::flash('info', "Subject Updated successfully");
 						return Redirect::to('subject/list')->with('title', 'Subject List');
 					}
 					else
@@ -177,7 +177,7 @@ class SubjectController extends \BaseController {
 		if($data->delete())
 		{
 
-		 Session::flash('message', "Subject Deleted successfully");
+		 Session::flash('danger', "Subject Deleted successfully");
 		 return Redirect::to('subject/list')->with('title','All Subject List');
 		}
 	}

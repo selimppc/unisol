@@ -12,9 +12,8 @@
         {{ Form::textarea('description',$department->description, array('class' => 'form-control')) }}
         <p>&nbsp;</p>
         {{ Form::submit('Save Changes', array('class'=>'btn btn-primary')) }}
-        {{ Form::submit('Close', array('class'=>'btn btn-primary')) }}
+         <a href="" class="btn btn-default" span class="glyphicon-refresh">Close</a>
 
         {{Form::close()}}
-        {{--@endforeach--}}
 
 </div>
