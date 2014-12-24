@@ -21,9 +21,9 @@ Route::get('/','HomeController@index');
 //});
 
 
-Route::group(['prefix' => '{lang?}','before' => 'localization'], function() {
-    Route::get('/', function() {
-        return View::make('test.localization_test');
-    });
-});
+//Route::group(['prefix' => '{lang?}','before' => 'localization'], function() {
+//    Route::get('/', function() {
+//        return View::make('test.localization_test');
+//    });
+//});
 
