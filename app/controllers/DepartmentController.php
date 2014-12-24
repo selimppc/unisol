@@ -9,34 +9,42 @@
 class DepartmentController extends BaseController{
 
      public function index(){
-         //$departmentList = Department::all()->paginate(5);
-         $departmentList = DB::table('department')->paginate(5);
 
-         //return View::make('department/index');
+         $departmentList = Department::orderBy('id', 'DESC')->paginate(5);
          return View::make('department.index', compact('departmentList'));
       }
 
       public function create(){
-          return View::make('department/create');
+          return View::make('department.create');
       }
     public function store(){
-        $rules = array(
-            'dept_name' => 'required',
 
-        );
+        // get the POST data
+        $data = Input::all();
 
-        $validator = Validator::make(Input::all(), $rules);
+        // create a new model instance
+        $department = new Department();
 
-        if ($validator->passes()) {
-            $department = new Department;
-            $department->title = Input::get('dept_name');
+        // attempt validation
+        if ($department->validate($data))
+        {
+            // success code
+            $department->title = Input::get('title');
             $department->description = Input::get('description');
 
             $department->save();
-            // return Redirect::to('crud')->with('message', 'Successfully added Country!');
-            return Redirect::back()->with('message', 'Successfully Added Country Information!');
-        } else {
-            return Redirect::to('department/index')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
+
+            // redirect
+            Session::flash('message', 'Successfully Added!');
+            return Redirect::to('department');
+        }
+        else
+        {
+            // failure, get errors
+            $errors = $department->errors();
+            Session::flash('errors', $errors);
+
+            return Redirect::to('department/create');
         }
     }
 
@@ -94,6 +102,9 @@ class DepartmentController extends BaseController{
         } else {
             return Redirect::to('department/index')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
         }
+
+         return Redirect::to('department');
+
     }
 
     public function show($id)
