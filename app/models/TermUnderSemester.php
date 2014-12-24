@@ -1,6 +1,6 @@
 <?php
 
-class CoursesUnderSemester extends \Eloquent 
+class TermUnderSemester extends \Eloquent
 {
 	protected $fillable = [];
 	protected $table = 'courses_under_semester';

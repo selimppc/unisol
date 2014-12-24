@@ -26,7 +26,7 @@ class DegreeProgController extends \BaseController {
 
             $degree_program->save();
             // return Redirect::to('crud')->with('message', 'Successfully added Country!');
-            return Redirect::back()->with('message', 'Successfully Added Country Information!');
+            return Redirect::back()->with('message', 'Successfully Added Information!');
         } else {
             return Redirect::to('degreeprogram/index')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
         }
@@ -76,6 +76,7 @@ class DegreeProgController extends \BaseController {
         } else {
             return Redirect::to('degreeprogram/index')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
         }
+
     }
 
     public function show($id)

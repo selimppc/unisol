@@ -59,7 +59,7 @@
                             <li><a tabindex="-1" href="{{ action('CourseController@index') }}"> Course Management </a></li>
                             <li class="divider"></li>
 
-                            <li><a tabindex="-1" href="{{ action('CourseTypeController@index') }}"> Term / Semester </a></li>
+                            <li><a tabindex="-1" href="{{ action('CourseTypeController@index') }}"> Course Type </a></li>
                             <li class="divider"></li>
 
                             <li><a tabindex="-1" href="{{ action('DegreeLevelController@index') }}"> Degree Level </a></li>
@@ -71,7 +71,7 @@
                             <li><a tabindex="-1" href="{{ action('DepartmentController@index') }}"> Department Management </a></li>
                             <li class="divider"></li>
 
-                            <li><a tabindex="-1" href="{{ action('SemesterController@index') }}"> Term / Semester </a></li>
+                            <li><a tabindex="-1" href="{{ action('SemesterController@index') }}"> Semester </a></li>
                             <li class="divider"></li>
 
                             <li><a tabindex="-1" href="{{ action('TargetRoleController@index') }}"> Target Role </a></li>
@@ -89,7 +89,7 @@
                             <li><a tabindex="-1" a href="{{URL::to('subject/list') }}"> Subject Management </a></li>
                             <li class="divider"></li>
                             <li class="divider"></li>
-                            <li><a tabindex="-1" a href="{{URL::to('years/show') }}"> Years Management </a></li>
+                            <li><a tabindex="-1" a href="{{URL::to('year/show') }}"> Year Management </a></li>
                             <li class="divider"></li>
                             <li class="divider"></li>
                             <li><a tabindex="-1" a href="{{URL::to('term/show') }}"> All Course Management </a></li>

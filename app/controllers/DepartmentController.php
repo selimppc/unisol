@@ -42,19 +42,28 @@ class DepartmentController extends BaseController{
 
 
     public function delete($id){
+        try {
             Department::find($id)->delete();
-        return Redirect::back()->with('message', 'Successfully deleted Country Information!');
+            return Redirect::back()->with('message', 'Successfully deleted Country Information!');
+        }
+        catch(exception $ex){
+            return Redirect::back()->with('message', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+
+        }
     }
 
     public function batchDelete()
     {
-        // pass the array to the destroy method
+        try {
+            Department::destroy(Request::get('ids'));
+            return Redirect::back();
+           
+        }
+        catch (exception $ex) {
+            return Redirect::back()->with('message', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
 
-        Department::destroy(Request::get('ids'));
-
-        return Redirect::back();
+        }
     }
-
     public function edit($id)
     {
 
