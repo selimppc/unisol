@@ -7,7 +7,7 @@
 
             {{ Form::model($terms,array('route'=> array('term/update',$terms->id), 'method' => 'POST', 'class'=>'form-horizontal')) }}
 
-                @include('termundersemester._form')
+            @include('termundersemester._form')
 
             {{ Form::close() }}
 
@@ -15,4 +15,4 @@
     </div>
     <div class="modal-footer">
        <a href="{{URL::to('term/show')}}" class="btn btn-default">Close </a>
-    </div>
+   </div>
