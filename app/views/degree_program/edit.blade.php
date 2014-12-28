@@ -3,8 +3,8 @@
 
         {{Form::open(array('url'=>'degreeprogram/update/'.$degree_program->id, 'class'=>'form-horizontal'))}}
 
-        {{ Form::label('degprorgam_name','Degree Program Name:') }}
-        {{ Form::text('degprorgam_name',$degree_program->title, array('class' => 'form-control')) }}
+        {{ Form::label('title','Degree Program Name:') }}
+        {{ Form::text('title',$degree_program->title, array('class' => 'form-control')) }}
          <br>
         {{ Form::label('department_id', 'DeptName') }}
         {{ Form::select('department_id',[0=>'Select one'] + Department::lists('title', 'id'),$degree_program->department_id) }}
