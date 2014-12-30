@@ -226,6 +226,21 @@
                             </select>
                         </div>
 
+                        <div class="form-group">
+                            <label for="Payment">Payment Option</label>
+                            <label class="radio-inline">
+                                <input type="radio" name="optradio">Bank
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="optradio">B-Kash
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="optradio">Online
+                            </label>
+
+                        </div>
+
+
 
                     </div>
 
