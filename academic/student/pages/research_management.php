@@ -278,10 +278,10 @@
                 </div> <!-- /.row -->
                 <!-- END CUSTOM TABS -->
 
-
-
-        </section><!-- /.content -->
-    </aside><!-- /.right-side -->
+        </section>
+        <!-- /.content -->
+    </aside>
+    <!-- /.right-side -->
 </div><!-- ./wrapper -->
 
 <?php include('modals/_modal_research_management.php'); ?>
