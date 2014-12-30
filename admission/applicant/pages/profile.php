@@ -129,7 +129,7 @@
                               <div class="box-header">
                                 <h3 class="box-title">Applicant Information</h3>
                                  <button class="pull-right btn btn-success"  data-toggle="modal" data-target="#add" >
-                                    Add Review
+                                    Add New
                                 </button>
                             </div>
                             <!-- /.box-header -->
@@ -153,9 +153,9 @@
                                             <td>ratna@yahoo.com</td>
                                             <td> 01528888987</td>
                                             <td><button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#viewApplicant">View</button>
-                                            <button type="edit" class="btn btn-default btn-sm">Edit</button>
+                                            <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#add">Edit</button>
                                             <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteApplicant">Delete</button>
-                                            </td>
+                                                </td>
                                            
                                         </tr>
                                          <tr>
@@ -222,8 +222,8 @@
                               <div class="box">
                               <div class="box-header">
                                 <h3 class="box-title">Personal Information</h3>
-                                <button class="pull-right btn btn-success btn-sm"  data-toggle="modal" data-target="#addResearchReview" >
-                                    Add Review
+                                <button class="pull-right btn btn-success btn-sm"  data-toggle="modal" data-target="#addPersonal" >
+                                    Add New
                                 </button>
                             </div><!-- /.box-header -->
                             <div class="box-body table-responsive">
@@ -250,7 +250,7 @@
                                             <td>Uttara,Dhaka</td>
                                             <td> 01723456678</td>
                                             <td><button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#viewPersonal">View</button>
-                                            <button type="edit" class="btn btn-default btn-sm">Edit</button>
+                                           <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#addPersonal">Edit</button>
                                            <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deletePersonal">Delete</button>
                                           </td>
                                            
@@ -262,8 +262,8 @@
                                             <td>Uttara,Dhaka</td>
                                             <td>Uttara,Dhaka</td>
                                             <td> 01723456678</td>
-                                              <td><button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#viewPersonal">View</button>
-                                            <button type="edit" class="btn btn-default btn-sm">Edit</button>
+                                             <td><button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#viewPersonal">View</button>
+                                           <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#addPersonal">Edit</button>
                                            <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deletePersonal">Delete</button>
                                           </td>
                                             
@@ -275,8 +275,8 @@
                                             <td>Uttara,Dhaka</td>
                                             <td>Uttara,Dhaka</td>
                                             <td> 01723456678</td>
-                                              <td><button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#viewPersonal">View</button>
-                                            <button type="edit" class="btn btn-default btn-sm">Edit</button>
+                                             <td><button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#viewPersonal">View</button>
+                                           <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#addPersonal">Edit</button>
                                            <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deletePersonal">Delete</button>
                                           </td>
                                         </tr>
@@ -288,7 +288,7 @@
                                             <td>Uttara,Dhaka</td>
                                             <td> 01723456678</td>
                                             <td><button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#viewPersonal">View</button>
-                                            <button type="edit" class="btn btn-default btn-sm">Edit</button>
+                                           <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#addPersonal">Edit</button>
                                            <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deletePersonal">Delete</button>
                                           </td>
                                         </tr>
@@ -300,7 +300,7 @@
                                             <td>Uttara,Dhaka</td>
                                             <td> 01723456678</td>
                                             <td><button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#viewPersonal">View</button>
-                                            <button type="edit" class="btn btn-default btn-sm">Edit</button>
+                                           <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#addPersonal">Edit</button>
                                            <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deletePersonal">Delete</button>
                                           </td>
                                         </tr>
@@ -320,8 +320,8 @@
                               <div class="box">
                               <div class="box-header">
                                 <h3 class="box-title">Academic Information</h3>
-                              <button class="pull-right btn btn-success btn-sm"  data-toggle="modal" data-target="#addResearchReview" >
-                                    Add Review
+                              <button class="pull-right btn btn-success btn-sm"  data-toggle="modal" data-target="#addAcademic" >
+                                    Add New
                                 </button>
                             </div><!-- /.box-header -->
                             <div class="box-body table-responsive">
@@ -352,7 +352,7 @@
                                             <td>xyz</td>
                                             <td>ABCD</td>
                                              <td><button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#viewAcademic">View</button>
-                                            <button type="edit" class="btn btn-default btn-sm">Edit</button>
+                                             <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#addAcademic">Edit</button>
                                            <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteAcademic">Delete</button>
                                             </td>
                                            
@@ -366,10 +366,11 @@
                                             <td>2007</td>
                                             <td>xyz</td>
                                             <td>ABCD</td>
-                                              <td><button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#viewAcademic">View</button>
-                                            <button type="edit" class="btn btn-default btn-sm">Edit</button>
+                                             <td><button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#viewAcademic">View</button>
+                                             <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#addAcademic">Edit</button>
                                            <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteAcademic">Delete</button>
                                             </td>
+                                           
                                            
                                            
                                         </tr>
@@ -382,10 +383,11 @@
                                             <td>2009</td>
                                             <td>xyz</td>
                                             <td>ABCD</td>
-                                               <td><button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#viewAcademic">View</button>
-                                            <button type="edit" class="btn btn-default btn-sm">Edit</button>
+                                            <td><button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#viewAcademic">View</button>
+                                             <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#addAcademic">Edit</button>
                                            <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteAcademic">Delete</button>
                                             </td>
+                                           
                                            
                                         </tr>
                                          <tr>
@@ -397,10 +399,11 @@
                                             <td>2008</td>
                                             <td>xyz</td>
                                             <td>ABCD</td>
-                                               <td><button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#viewAcademic">View</button>
-                                            <button type="edit" class="btn btn-default btn-sm">Edit</button>
+                                              <td><button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#viewAcademic">View</button>
+                                             <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#addAcademic">Edit</button>
                                            <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteAcademic">Delete</button>
                                             </td>
+                                           
                                            
                                         </tr>
                                          <tr>
@@ -412,10 +415,11 @@
                                             <td>2008</td>
                                             <td>xyz</td>
                                             <td>ABCD</td>
-                                               <td><button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#viewAcademic">View</button>
-                                            <button type="edit" class="btn btn-default btn-sm">Edit</button>
+                                             <td><button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#viewAcademic">View</button>
+                                             <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#addAcademic">Edit</button>
                                            <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteAcademic">Delete</button>
                                             </td>
+                                           
                                            
                                         </tr>
                                         

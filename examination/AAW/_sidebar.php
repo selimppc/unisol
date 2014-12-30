@@ -28,16 +28,10 @@
                     <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                 </a>
             </li>
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-bar-chart-o"></i>
-                    <span>Enrolment</span>
-                    <i class="fa fa-angle-left pull-right"></i>
+            <li>
+                <a href="enroll_index.php">
+                    <i class="fa fa-th"></i> <span>Enrollment</span>
                 </a>
-                <ul class="treeview-menu">
-                    <li><a href="pages/enroll_index.php"><i class="fa fa-angle-double-right"></i>Enroll for Exam</a></li>
-
-                </ul>
             </li>
 
             <li class="treeview">
@@ -64,15 +58,10 @@
                     <i class="fa fa-th"></i> <span>Manage Examination Center</span>
                 </a>
             </li>
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-table"></i> <span>Prepare Tabulation </span>
-                    <i class="fa fa-angle-left pull-right"></i>
+            <li>
+                <a href="prepare_tabulation.php">
+                    <i class="fa fa-th"></i> <span>Prepare Tabulation</span>
                 </a>
-                <ul class="treeview-menu">
-                    <li><a href="pages/tables/simple.php"><i class="fa fa-angle-double-right"></i> Simple tables</a></li>
-                    <li><a href="pages/tables/data.php"><i class="fa fa-angle-double-right"></i> Data tables</a></li>
-                </ul>
             </li>
             <li>
                 <a href="pages/calendar.php">
