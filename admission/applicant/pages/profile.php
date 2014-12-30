@@ -48,7 +48,7 @@
                                     <thead>
                                         <tr>
                                             <th>Email Address</th>
-                                            <th>User name</th>
+                                            <th>User Name</th>
                                             <th>Security Questions</th>
                                             <th>Security Answer </th>
                                             <th>Action </th>

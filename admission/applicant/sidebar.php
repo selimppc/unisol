@@ -40,7 +40,7 @@
                         </a>
                      </li>
                         <li>
-                        <a href="pages/widgets.html">
+                        <a href="pages/admission_application.php">
                             <i class="fa fa-th"></i> <span>Application for Admission</span> 
                         </a>
                       </li>
@@ -59,19 +59,8 @@
                                      
                                 </li>
                             </ul>
-                        </li>
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-folder"></i> <span>Others</span>
-                    <i class="fa fa-angle-left pull-right"></i>
-                </a>
-                <ul class="treeview-menu">
-                   <li><a href="pages/examples/lockscreen.php"><i class="fa fa-angle-double-right"></i> Lockscreen</a></li>
-                    <li><a href="pages/examples/404.php"><i class="fa fa-angle-double-right"></i> 404 Error</a></li>
-                    <li><a href="pages/examples/500.php"><i class="fa fa-angle-double-right"></i> 500 Error</a></li>
-                    <li><a href="pages/examples/blank.php"><i class="fa fa-angle-double-right"></i> Blank Page</a></li>
-                </ul>
-            </li>
+							
+            
         </ul>
     </section>
     <!-- /.sidebar -->

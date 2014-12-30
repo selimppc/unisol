@@ -11,8 +11,8 @@
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
                     <h1>
-                        Dashboard
-                        <small>Control panel</small>
+                        Admission Module
+                        <small>/teacher</small>
                     </h1>
                     <ol class="breadcrumb">
                         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -25,7 +25,7 @@
 
 
 
-                    <h1>Welcome to our Admin Dashboard !</h1>
+                    <h2>Welcome to our Admission Module Dashboard !</h2>
 
                 </section><!-- /.content -->
             </aside><!-- /.right-side -->
