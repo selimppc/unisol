@@ -1,7 +1,7 @@
 
 <!-- add new calendar event modal -->
 
-<script src="../js/plugins/jquery/jquery.min.js"></script>
+
 <script src="../js/plugins/bootstrap/bootstrap.min.js" type="text/javascript"></script>
 <script src="../js/plugins/jquery/jquery-ui.min.js" type="text/javascript"></script>
 <!-- Morris.js charts -->
@@ -31,6 +31,12 @@
 
 <!-- AdminLTE for demo purposes -->
 <script src="../js/edutech/demo.js" type="text/javascript"></script>
+
+<!-- DATA TABES SCRIPT -->
+<script src="../js/plugins/datatables/jquery.dataTables.js" type="text/javascript"></script>
+<script src="../js/plugins/datatables/dataTables.bootstrap.js" type="text/javascript"></script>
+
+
 
 </body>
 </html>
