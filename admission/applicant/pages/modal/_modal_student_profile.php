@@ -56,7 +56,7 @@
 </div><!-- /.modal -->
 
 <!-- Add new Personal Modal -->
-<div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="addResearchReview" aria-hidden="true">
+<div class="modal fade" id="addPersonal" tabindex="-1" role="dialog" aria-labelledby="addResearchReview" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -65,16 +65,20 @@
             </div>
             <div class="modal-body">
                 <form>
+                   <div class="form-group">
+                        <label for="fathersname">FathersName</label>
+                        <input type="text" class="form-control" id="title" placeholder="Enter Title">
+                    </div>
                     <div class="form-group">
-                        <label for="firstname">First Name</label>
+                        <label for="firstname">MothersName</label>
                         <input type="text" class="form-control" id="title" placeholder="Enter Title">
                     </div>
                      <div class="form-group">
-                        <label for="lastname">Last Name</label>
+                        <label for="lastname">PresentAddress</label>
                         <input type="text" class="form-control" id="title" placeholder="Enter Title">
                     </div>
                       <div class="form-group">
-                        <label for="email">Email Address</label>
+                        <label for="email">ParmentAddress</label>
                         <input type="text" class="form-control" id="title" placeholder="Enter Title">
                     </div>
                        <div class="form-group">
@@ -93,7 +97,7 @@
 </div><!-- /.modal -->
 
 <!-- Add new Academic Modal -->
-<div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="addResearchReview" aria-hidden="true">
+<div class="modal fade" id="addAcademic" tabindex="-1" role="dialog" aria-labelledby="addResearchReview" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -103,20 +107,57 @@
             <div class="modal-body">
                 <form>
                     <div class="form-group">
-                        <label for="firstname">First Name</label>
-                        <input type="text" class="form-control" id="title" placeholder="Enter Title">
+                        <label for="insname">InstuteName </label>
+                        <select class="form-control">
+                            <option>Select</option>
+                            <option>Milestone College</option>
+                            <option>Rajuk College</option>
+                            <option>Notordame College</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="degname">Degree </label>
+                        <select class="form-control">
+                            <option>Select</option>
+                            <option>SSC</option>
+                            <option>HSC</option> 
+                            <option>BSC</option> 
+                        </select>
                     </div>
                      <div class="form-group">
-                        <label for="lastname">Last Name</label>
-                        <input type="text" class="form-control" id="title" placeholder="Enter Title">
+                        <label for="degname">Board </label>
+                        <select class="form-control">
+                            <option>Select</option>
+                            <option>Dhaka</option>
+                            <option>Sylhet</option> 
+                            <option>Comilla</option> 
+                            <option>Khulna</option> 
+                            <option>Barisal</option> 
+                        </select>
+                   </div>
+                    <div class="form-group">
+                        <label for="grade">Result</label>
+                        <input type="text" class="form-control" id="title" placeholder="Enter Result">
+                    </div>
+                    <div class="form-group">
+                        <label for="degname">Passing Year </label>
+                        <select class="form-control">
+                           <option>Select</option>
+                            <option>2006</option>
+                            <option>2007</option>
+                            <option>2008</option> 
+                            <option>2009</option> 
+                            <option>2010</option> 
+                            <option>2011</option> 
+                        </select>
+                   </div>
+                     <div class="form-group">
+                        <label for="exampleInputFile1">Certificate</label>
+                        <input type="file" id="exampleInputFile">
                     </div>
                       <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="text" class="form-control" id="title" placeholder="Enter Title">
-                    </div>
-                       <div class="form-group">
-                        <label for="phno">Phone No</label>
-                        <input type="text" class="form-control" id="title" placeholder="Enter Title">
+                        <label for="exampleInputFile2">Transcript</label>
+                        <input type="file" id="exampleInputFile">
                     </div>
                     
                 </form>
