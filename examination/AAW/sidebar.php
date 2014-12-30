@@ -67,9 +67,9 @@
 
 
             <li>
-                <a href="pages/calendar.php">
+                <a href="pages/prepare_certificates.php">
                     <i class="fa fa-calendar"></i> <span>Generate Certificates</span>
-                    <small class="badge pull-right bg-red"></small>
+                    <small class="fa fa-th"></small>
                 </a>
             </li>
 
