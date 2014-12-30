@@ -28,23 +28,13 @@
                     <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                 </a>
             </li>
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-bar-chart-o"></i>
-                    <span>Enrolment</span>
-                    <i class="fa fa-angle-left pull-right"></i>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="enroll_index.php"><i class="fa fa-angle-double-right"></i>Enroll for Exam</a></li>
-
-                </ul>
-            </li>
-
             <li>
-                <a href="manage_exam_centers.php">
-                    <i class="fa fa-th"></i> <span>Manage Examination Center</span>
+                <a href="enroll_index.php">
+                    <i class="fa fa-th"></i> <span>Enrollment</span>
                 </a>
             </li>
+
+
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-bar-chart-o"></i>
@@ -57,40 +47,24 @@
                     <li><a href=""><i class="fa fa-angle-double-right"></i> Inline charts</a></li>
                 </ul>
             </li>
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-laptop"></i>
-                    <span>Manage Examiner</span>
-                    <i class="fa fa-angle-left pull-right"></i>
+
+
+            <li>
+                <a href="manage_examiners.php">
+                    <i class="fa fa-th"></i> <span>Manage Examiner</span>
                 </a>
-                <ul class="treeview-menu">
-                    <li><a href="manage_examiners.php"><i class="fa fa-angle-double-right"></i> General</a></li>
-                    <li><a href="pages/UI/icons.php"><i class="fa fa-angle-double-right"></i> Icons</a></li>
-                    <li><a href="pages/UI/buttons.php"><i class="fa fa-angle-double-right"></i> Buttons</a></li>
-                    <li><a href="pages/UI/sliders.php"><i class="fa fa-angle-double-right"></i> Sliders</a></li>
-                    <li><a href="pages/UI/timeline.php"><i class="fa fa-angle-double-right"></i> Timeline</a></li>
-                </ul>
             </li>
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-edit"></i> <span>Manage Examination centers </span>
-                    <i class="fa fa-angle-left pull-right"></i>
+
+            <li>
+                <a href="manage_exam_centers.php">
+                    <i class="fa fa-th"></i> <span>Manage Examination Center</span>
                 </a>
-                <ul class="treeview-menu">
-                    <li><a href="pages/forms/general.php"><i class="fa fa-angle-double-right"></i> General Elements</a></li>
-                    <li><a href="pages/forms/advanced.php"><i class="fa fa-angle-double-right"></i> Advanced Elements</a></li>
-                    <li><a href="pages/forms/editors.php"><i class="fa fa-angle-double-right"></i> Editors</a></li>
-                </ul>
             </li>
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-table"></i> <span>Prepare Tabulation </span>
-                    <i class="fa fa-angle-left pull-right"></i>
+
+            <li>
+                <a href="prepare_tabulation.php">
+                    <i class="fa fa-th"></i> <span>Prepare Tabulation</span>
                 </a>
-                <ul class="treeview-menu">
-                    <li><a href="pages/tables/simple.php"><i class="fa fa-angle-double-right"></i> Simple tables</a></li>
-                    <li><a href="pages/tables/data.php"><i class="fa fa-angle-double-right"></i> Data tables</a></li>
-                </ul>
             </li>
             <li>
                 <a href="pages/calendar.php">
