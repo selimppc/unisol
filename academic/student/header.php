@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Admin  | Dashboard</title>
+    <title>Student  | Dashboard</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
@@ -21,6 +21,8 @@
     <!-- Theme style -->
     <link href="css/custom.css" rel="stylesheet" type="text/css" />
 
+    <script src="js/plugins/jquery/jquery.min.js"></script>
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -32,9 +34,8 @@
 <body class="skin-blue">
 <!-- header logo: style can be found in header.less -->
 <header class="header">
-<a href="index.php" class="logo">
-    <!-- Add the class icon to your logo image or logo icon to add the margining -->
-    Edu Tech Solutions
+<a href="/academic" class="logo">
+    Shadhin University
 </a>
 <!-- Header Navbar: style can be found in header.less -->
 
