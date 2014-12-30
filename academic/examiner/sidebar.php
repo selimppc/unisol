@@ -38,7 +38,7 @@
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="pages/theory_mid_final_exam.php"><i class="fa fa-angle-double-right"></i> Mid / final Exam : online / manual</a></li>
+                    <li><a href="pages/theory_mid_final_exam.php"><i class="fa fa-angle-double-right"></i> Mid / final Exam : Manual</a></li>
                 </ul>
             </li>
 

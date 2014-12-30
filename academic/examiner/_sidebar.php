@@ -4,7 +4,7 @@
         <!-- Sidebar user panel -->
         <div class="user-panel">
             <div class="pull-left image">
-                <img src="img/avatar3.png" class="img-circle" alt="User Image" />
+                <img src="../img/avatar3.png" class="img-circle" alt="User Image" />
             </div>
             <div class="pull-left info">
                 <p>Hello, Edu Tech</p>
@@ -38,7 +38,7 @@
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="theory_mid_final_exam.php"><i class="fa fa-angle-double-right"></i> Mid / final Exam : online / manual</a></li>
+                    <li><a href="theory_mid_final_exam.php"><i class="fa fa-angle-double-right"></i> Mid / final Exam : Manual</a></li>
                 </ul>
             </li>
 
