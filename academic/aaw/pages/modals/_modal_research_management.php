@@ -107,8 +107,15 @@
                         <textarea class="form-control" id="description" placeholder="Description goes here"></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="topics">Topics</label>
-                        <input type="text" class="form-control" id="topics" placeholder="Enter Topics">
+                        <label for="topics"> Category </label>
+                        <select class="form-control">
+                            <option>Biosciences</option>
+                            <option>Biomolecules and Biomedicine</option>
+                            <option>Microbiology and Mycology</option>
+                            <option>Artificial Integency</option>
+                            <option>Agriculture</option>
+                        </select>
+                        <!--<input type="text" class="form-control" id="topics" placeholder="Enter Topics">-->
                     </div>
                     <div class="form-group">
                         <label for="exampleInputFile">File input</label>
@@ -159,7 +166,14 @@
                     </div>
                     <div class="form-group">
                         <label for="topics"> Category </label>
-                        <input type="text" class="form-control" id="topics" placeholder="Enter Topics">
+                        <select class="form-control">
+                            <option>Biosciences</option>
+                            <option>Biomolecules and Biomedicine</option>
+                            <option>Microbiology and Mycology</option>
+                            <option>Artificial Integency</option>
+                            <option>Agriculture</option>
+                        </select>
+                        <!--<input type="text" class="form-control" id="topics" placeholder="Enter Topics">-->
                     </div>
 
                     <div class="form-group">
