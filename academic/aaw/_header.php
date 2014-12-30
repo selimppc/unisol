@@ -35,6 +35,7 @@
     <script type="text/javascript">
         $(function() {
             $("#example1").dataTable();
+            $("#example3").dataTable();
             $('#example2').dataTable({
                 "bPaginate": true,
                 "bLengthChange": false,
