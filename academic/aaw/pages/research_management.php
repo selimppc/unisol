@@ -31,7 +31,7 @@
                     <!-- Custom Tabs -->
                     <div class="nav-tabs-custom">
                         <ul class="nav nav-tabs">
-                            <li class="active"><a href="#tab_1" data-toggle="tab">Review  </a></li>
+                            <li class="active"><a href="#tab_1" data-toggle="tab">Papers  </a></li>
                             <li><a href="#tab_2" data-toggle="tab">Publication</a></li>
                             <li class="dropdown">
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -39,24 +39,24 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li role="presentation" data-toggle="modal" data-target="#addCategory"><a role="menuitem" tabindex="-1" href="#"> Add Category </a></li>
-                                    <li role="presentation" data-toggle="modal" data-target="#addJournal"><a role="menuitem" tabindex="-1" href="#"> Add Journal </a></li>
+                                    <li role="presentation" data-toggle="modal" data-target="#addResearchReview"><a role="menuitem" tabindex="-1" href="#"> Add Journal </a></li>
                                 </ul>
                             </li>
                             <li class="pull-right" class="dropdown">
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-gear"></i>&nbsp;</a>
                                 <ul class="dropdown-menu">
                                     <li role="presentation" data-toggle="modal" data-target="#addCategory"><a role="menuitem" tabindex="-1" href="#"> Add Category </a></li>
-                                    <li role="presentation" data-toggle="modal" data-target="#addJournal"><a role="menuitem" tabindex="-1" href="#"> Add Journal </a></li>
+                                    <li role="presentation" data-toggle="modal" data-target="#addResearchReview"><a role="menuitem" tabindex="-1" href="#"> Add Journal </a></li>
                                 </ul>
                             </li>
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane active" id="tab_1">
                                 <button class="pull-right btn btn-success btn-sm"  data-toggle="modal" data-target="#addResearchReview" >
-                                    Add Review
+                                    Add Papers
                                 </button><br>
 
-                                <b>Review:</b>
+                                <b>Paper:</b>
 
                                 <div class="box-body table-responsive">
                                     <table id="example1" class="table table-bordered table-striped">
@@ -64,7 +64,7 @@
                                             <tr>
                                                 <th>Title</th>
                                                 <th>Description</th>
-                                                <th>Topics</th>
+                                                <th>Category</th>
                                                 <th>Documents</th>
                                                 <th>Resources</th>
                                                 <th>Status</th>
