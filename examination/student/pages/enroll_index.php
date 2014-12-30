@@ -26,7 +26,7 @@
     <div class="box-body">
         <p>
 
-            <button class="btn bg-olive btn-flat margin" data-toggle="modal" data-target="#confirm-delete">Go To Enrollment Form</button>
+            <button class="btn bg-olive btn-flat margin" data-toggle="modal" data-target="#modal-form">Go To Enrollment Form</button>
         </p>
 
     </div>
@@ -35,7 +35,7 @@
 
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">Data Table With Full Features</h3>
+                    <h3 class="box-title">Examination List</h3>
                 </div><!-- /.box-header -->
                 <div class="box-body table-responsive">
                     <table id="example1" class="table table-bordered table-striped">
@@ -157,10 +157,10 @@
 </aside><!-- /.right-side -->
 </div><!-- ./wrapper -->
 
-<!-- Modal :: Delete Confirmation -->
+<!-- Modal ::  Confirmation -->
 
 
-<div class="modal fade " id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade " id="modal-form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -185,7 +185,9 @@
                             <input type="email" class="form-control" id="email" placeholder="Enter your email address">
                         </div>
                         <div class="form-group">
-                            <select>
+                            <label for="department">Department</label>
+                            <select name='department'>
+                                <option>Select a Department</option>
                                 <option value="CSE">CSE</option>
                                 <option value="ICT">ICT</option>
                                 <option value="ENGLISH">ENGLISH</option>
@@ -193,6 +195,33 @@
                                 <option value="CSE">MATH</option>
                                 <option value="CSE">BBA</option>
                                 <option value="CSE">MBA</option>
+
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="semester">Semester</label>
+                            <select name='semester'>
+                                <option>Select Semester</option>
+                                <option value="CSE">Spring</option>
+                                <option value="ICT">Summer</option>
+                                <option value="ENGLISH">Fall</option>
+
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="year">Year</label>
+                            <select name='year'>
+                                <option>Select Year</option>
+                                <option value="CSE">2010</option>
+                                <option value="CSE">2011</option>
+                                <option value="CSE">2012</option>
+                                <option value="CSE">2013</option>
+                                <option value="CSE">2014</option>
+                                <option value="CSE">2015</option>
+                                <option value="CSE">2016</option>
+
 
                             </select>
                         </div>

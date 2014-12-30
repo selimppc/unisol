@@ -36,8 +36,7 @@
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="pages/enroll_index.php"><i class="fa fa-angle-double-right"></i>Enroll for Exam</a></li>
-                    <li><a href="pages/charts/flot.html"><i class="fa fa-angle-double-right"></i></a></li>
-                    <li><a href="pages/charts/inline.html"><i class="fa fa-angle-double-right"></i> Inline charts</a></li>
+
                 </ul>
             </li>
 
@@ -60,23 +59,17 @@
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="pages/UI/general.php"><i class="fa fa-angle-double-right"></i> General</a></li>
+                    <li><a href="../AAW/pages/manage_examiners.php"><i class="fa fa-angle-double-right"></i> General</a></li>
                     <li><a href="pages/UI/icons.php"><i class="fa fa-angle-double-right"></i> Icons</a></li>
                     <li><a href="pages/UI/buttons.php"><i class="fa fa-angle-double-right"></i> Buttons</a></li>
                     <li><a href="pages/UI/sliders.php"><i class="fa fa-angle-double-right"></i> Sliders</a></li>
                     <li><a href="pages/UI/timeline.php"><i class="fa fa-angle-double-right"></i> Timeline</a></li>
                 </ul>
             </li>
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-edit"></i> <span>Manage Examination centers </span>
-                    <i class="fa fa-angle-left pull-right"></i>
+            <li>
+                <a href="pages/manage_exam_centers.php">
+                    <i class="fa fa-th"></i> <span>Manage Examination Center</span>
                 </a>
-                <ul class="treeview-menu">
-                    <li><a href="pages/forms/general.php"><i class="fa fa-angle-double-right"></i> General Elements</a></li>
-                    <li><a href="pages/forms/advanced.php"><i class="fa fa-angle-double-right"></i> Advanced Elements</a></li>
-                    <li><a href="pages/forms/editors.php"><i class="fa fa-angle-double-right"></i> Editors</a></li>
-                </ul>
             </li>
             <li class="treeview">
                 <a href="#">

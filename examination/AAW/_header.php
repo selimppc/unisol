@@ -21,6 +21,10 @@
     <!-- Theme style -->
     <link href="../css/custom.css" rel="stylesheet" type="text/css" />
 
+    <!-- DATA TABLES -->
+    <link href="../css/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
+    <script src="../js/plugins/jquery/jquery.min.js"></script>
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>

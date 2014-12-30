@@ -35,85 +35,78 @@
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="enroll_students.php"><i class="fa fa-angle-double-right"></i>Enroll for Exam</a></li>
-                    <li><a href="pages/charts/flot.html"><i class="fa fa-angle-double-right"></i></a></li>
-                    <li><a href="pages/charts/inline.html"><i class="fa fa-angle-double-right"></i> Inline charts</a></li>
+                    <li><a href="enroll_index.php"><i class="fa fa-angle-double-right"></i>Enroll for Exam</a></li>
+
                 </ul>
+            </li>
+
+            <li>
+                <a href="manage_exam_centers.php">
+                    <i class="fa fa-th"></i> <span>Manage Examination Center</span>
+                </a>
             </li>
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-bar-chart-o"></i>
-                    <span>Charts</span>
+                    <span>Prepare Question Papers</span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="charts/morris.php"><i class="fa fa-angle-double-right"></i> Morris</a></li>
-                    <li><a href="charts/flot.php"><i class="fa fa-angle-double-right"></i> Flot</a></li>
-                    <li><a href="charts/inline.php"><i class="fa fa-angle-double-right"></i> Inline charts</a></li>
+                    <li><a href="pages/charts/morris.php"><i class="fa fa-angle-double-right"></i> Morris</a></li>
+                    <li><a href=""><i class="fa fa-angle-double-right"></i> Flot</a></li>
+                    <li><a href=""><i class="fa fa-angle-double-right"></i> Inline charts</a></li>
                 </ul>
             </li>
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-laptop"></i>
-                    <span>UI Elements</span>
+                    <span>Manage Examiner</span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="UI/general.php"><i class="fa fa-angle-double-right"></i> General</a></li>
-                    <li><a href="UI/icons.php"><i class="fa fa-angle-double-right"></i> Icons</a></li>
-                    <li><a href="UI/buttons.php"><i class="fa fa-angle-double-right"></i> Buttons</a></li>
-                    <li><a href="UI/sliders.php"><i class="fa fa-angle-double-right"></i> Sliders</a></li>
-                    <li><a href="UI/timeline.php"><i class="fa fa-angle-double-right"></i> Timeline</a></li>
+                    <li><a href="manage_examiners.php"><i class="fa fa-angle-double-right"></i> General</a></li>
+                    <li><a href="pages/UI/icons.php"><i class="fa fa-angle-double-right"></i> Icons</a></li>
+                    <li><a href="pages/UI/buttons.php"><i class="fa fa-angle-double-right"></i> Buttons</a></li>
+                    <li><a href="pages/UI/sliders.php"><i class="fa fa-angle-double-right"></i> Sliders</a></li>
+                    <li><a href="pages/UI/timeline.php"><i class="fa fa-angle-double-right"></i> Timeline</a></li>
                 </ul>
             </li>
             <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-edit"></i> <span>Forms</span>
+                    <i class="fa fa-edit"></i> <span>Manage Examination centers </span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="forms/general.php"><i class="fa fa-angle-double-right"></i> General Elements</a></li>
-                    <li><a href="forms/advanced.php"><i class="fa fa-angle-double-right"></i> Advanced Elements</a></li>
-                    <li><a href="forms/editors.php"><i class="fa fa-angle-double-right"></i> Editors</a></li>
+                    <li><a href="pages/forms/general.php"><i class="fa fa-angle-double-right"></i> General Elements</a></li>
+                    <li><a href="pages/forms/advanced.php"><i class="fa fa-angle-double-right"></i> Advanced Elements</a></li>
+                    <li><a href="pages/forms/editors.php"><i class="fa fa-angle-double-right"></i> Editors</a></li>
                 </ul>
             </li>
             <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-table"></i> <span>Tables</span>
+                    <i class="fa fa-table"></i> <span>Prepare Tabulation </span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="tables/simple.php"><i class="fa fa-angle-double-right"></i> Simple tables</a></li>
-                    <li><a href="tables/data.php"><i class="fa fa-angle-double-right"></i> Data tables</a></li>
+                    <li><a href="pages/tables/simple.php"><i class="fa fa-angle-double-right"></i> Simple tables</a></li>
+                    <li><a href="pages/tables/data.php"><i class="fa fa-angle-double-right"></i> Data tables</a></li>
                 </ul>
             </li>
             <li>
-                <a href="calendar.php">
-                    <i class="fa fa-calendar"></i> <span>Calendar</span>
-                    <small class="badge pull-right bg-red">3</small>
+                <a href="pages/calendar.php">
+                    <i class="fa fa-calendar"></i> <span>Generate Certificates</span>
+                    <small class="badge pull-right bg-red"></small>
                 </a>
             </li>
-            <li>
-                <a href="mailbox.php">
-                    <i class="fa fa-envelope"></i> <span>Mailbox</span>
-                    <small class="badge pull-right bg-yellow">12</small>
-                </a>
-            </li>
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-folder"></i> <span>Examples</span>
-                    <i class="fa fa-angle-left pull-right"></i>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="examples/invoice.php"><i class="fa fa-angle-double-right"></i> Invoice</a></li>
-                    <li><a href="examples/login.php"><i class="fa fa-angle-double-right"></i> Login</a></li>
-                    <li><a href="examples/register.php"><i class="fa fa-angle-double-right"></i> Register</a></li>
-                    <li><a href="examples/lockscreen.php"><i class="fa fa-angle-double-right"></i> Lockscreen</a></li>
-                    <li><a href="examples/404.php"><i class="fa fa-angle-double-right"></i> 404 Error</a></li>
-                    <li><a href="examples/500.php"><i class="fa fa-angle-double-right"></i> 500 Error</a></li>
-                    <li><a href="examples/blank.php"><i class="fa fa-angle-double-right"></i> Blank Page</a></li>
-                </ul>
-            </li>
+
+
+
+
+
+
+
+
+
         </ul>
     </section>
     <!-- /.sidebar -->
