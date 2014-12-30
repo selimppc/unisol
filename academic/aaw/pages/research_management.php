@@ -72,250 +72,72 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td> Renewal: The Ultimate Gift </td>
-                                                <td> Consistently ranked the most highly-cited and pertinent publications in the field </td>
-                                                <td> Science  </td>
-                                                <td>
+                                            <?php for($i = 0; $i < 5; $i++){ ?>
+                                                <tr>
+                                                    <td> Renewal: The Ultimate Gift </td>
+                                                    <td> Consistently ranked the most highly-cited and pertinent publications in the field </td>
+                                                    <td> Science  </td>
+                                                    <td>
                                                     <span data-toggle="modal" data-target="#viewDetails">
                                                         <img src="../img/doc.png" width="50px" style="cursor: pointer">
                                                     </span>
-                                                </td>
-                                                <td> IEEE links </td>
-                                                <td> Approved </td>
-                                                <td>
-                                                    <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#viewDetails">
-                                                        View
-                                                    </button>
-                                                </td>
-                                            </tr>
+                                                    </td>
+                                                    <td> IEEE links </td>
+                                                    <td> Approved </td>
+                                                    <td>
+                                                        <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#viewDetails">
+                                                            View
+                                                        </button>
+                                                    </td>
+                                                </tr>
 
-                                            <tr>
-                                                <td> The Science of Addiction </td>
-                                                <td> How Science Has Revolutionized the Understanding of Drug Addiction </td>
-                                                <td> Science  </td>
-                                                <td>
+                                                <tr>
+                                                    <td> The Science of Addiction </td>
+                                                    <td> How Science Has Revolutionized the Understanding of Drug Addiction </td>
+                                                    <td> Science  </td>
+                                                    <td>
                                                     <span data-toggle="modal" data-target="#viewDetails">
                                                         <img src="../img/doc.png" width="50px" style="cursor: pointer">
                                                     </span>
-                                                </td>
-                                                <td> http://www.drugabuse.gov/ </td>
-                                                <td> Open </td>
-                                                <td>
-                                                    <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#approvalModal">
-                                                        Approve
-                                                    </button>
+                                                    </td>
+                                                    <td> http://www.drugabuse.gov/ </td>
+                                                    <td> Open </td>
+                                                    <td>
+                                                        <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#approvalModal">
+                                                            Approve
+                                                        </button>
 
-                                                    <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#viewDetails">
-                                                        View
-                                                    </button>
-                                                </td>
-                                            </tr>
+                                                        <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#viewDetails">
+                                                            View
+                                                        </button>
+                                                    </td>
+                                                </tr>
 
-                                            <tr>
-                                                <td> Drug Abuse and Addiction </td>
-                                                <td> Addiction is defined as a chronic, relapsing brain disease that is characterized by compulsive drug seeking and use, despite harmful consequences. </td>
-                                                <td> Science  </td>
-                                                <td>
+                                                <tr>
+                                                    <td> Drug Abuse and Addiction </td>
+                                                    <td> Addiction is defined as a chronic, relapsing brain disease that is characterized by compulsive drug seeking and use, despite harmful consequences. </td>
+                                                    <td> Science  </td>
+                                                    <td>
                                                     <span data-toggle="modal" data-target="#viewDetails">
                                                         <img src="../img/doc.png" width="50px" style="cursor: pointer">
                                                     </span>
-                                                </td>
-                                                <td> publications/drugs-brains-behavior-science-addiction </td>
-                                                <td> Open </td>
-                                                <td>
-                                                    <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#approvalModal">
-                                                        Approve
-                                                    </button>
+                                                    </td>
+                                                    <td> publications/drugs-brains-behavior-science-addiction </td>
+                                                    <td> Open </td>
+                                                    <td>
+                                                        <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#approvalModal">
+                                                            Approve
+                                                        </button>
 
-                                                    <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#viewDetails">
-                                                        View
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td> Renewal: The Ultimate Gift </td>
-                                                <td> Consistently ranked the most highly-cited and pertinent publications in the field </td>
-                                                <td> Science  </td>
-                                                <td>
-                                                    <span data-toggle="modal" data-target="#viewDetails">
-                                                        <img src="../img/doc.png" width="50px" style="cursor: pointer">
-                                                    </span>
-                                                </td>
-                                                <td> IEEE links </td>
-                                                <td> Approved </td>
-                                                <td>
-                                                    <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#viewDetails">
-                                                        View
-                                                    </button>
-                                                </td>
-                                            </tr>
+                                                        <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#viewDetails">
+                                                            View
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            <?php } ?>
 
-                                            <tr>
-                                                <td> The Science of Addiction </td>
-                                                <td> How Science Has Revolutionized the Understanding of Drug Addiction </td>
-                                                <td> Science  </td>
-                                                <td>
-                                                    <span data-toggle="modal" data-target="#viewDetails">
-                                                        <img src="../img/doc.png" width="50px" style="cursor: pointer">
-                                                    </span>
-                                                </td>
-                                                <td> http://www.drugabuse.gov/ </td>
-                                                <td> Open </td>
-                                                <td>
-                                                    <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#approvalModal">
-                                                        Approve
-                                                    </button>
 
-                                                    <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#viewDetails">
-                                                        View
-                                                    </button>
-                                                </td>
-                                            </tr>
 
-                                            <tr>
-                                                <td> Drug Abuse and Addiction </td>
-                                                <td> Addiction is defined as a chronic, relapsing brain disease that is characterized by compulsive drug seeking and use, despite harmful consequences. </td>
-                                                <td> Science  </td>
-                                                <td>
-                                                    <span data-toggle="modal" data-target="#viewDetails">
-                                                        <img src="../img/doc.png" width="50px" style="cursor: pointer">
-                                                    </span>
-                                                </td>
-                                                <td> publications/drugs-brains-behavior-science-addiction </td>
-                                                <td> Open </td>
-                                                <td>
-                                                    <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#approvalModal">
-                                                        Approve
-                                                    </button>
-
-                                                    <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#viewDetails">
-                                                        View
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td> Renewal: The Ultimate Gift </td>
-                                                <td> Consistently ranked the most highly-cited and pertinent publications in the field </td>
-                                                <td> Science  </td>
-                                                <td>
-                                                    <span data-toggle="modal" data-target="#viewDetails">
-                                                        <img src="../img/doc.png" width="50px" style="cursor: pointer">
-                                                    </span>
-                                                </td>
-                                                <td> IEEE links </td>
-                                                <td> Approved </td>
-                                                <td>
-                                                    <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#viewDetails">
-                                                        View
-                                                    </button>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td> The Science of Addiction </td>
-                                                <td> How Science Has Revolutionized the Understanding of Drug Addiction </td>
-                                                <td> Science  </td>
-                                                <td>
-                                                    <span data-toggle="modal" data-target="#viewDetails">
-                                                        <img src="../img/doc.png" width="50px" style="cursor: pointer">
-                                                    </span>
-                                                </td>
-                                                <td> http://www.drugabuse.gov/ </td>
-                                                <td> Open </td>
-                                                <td>
-                                                    <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#approvalModal">
-                                                        Approve
-                                                    </button>
-
-                                                    <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#viewDetails">
-                                                        View
-                                                    </button>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td> Drug Abuse and Addiction </td>
-                                                <td> Addiction is defined as a chronic, relapsing brain disease that is characterized by compulsive drug seeking and use, despite harmful consequences. </td>
-                                                <td> Science  </td>
-                                                <td>
-                                                    <span data-toggle="modal" data-target="#viewDetails">
-                                                        <img src="../img/doc.png" width="50px" style="cursor: pointer">
-                                                    </span>
-                                                </td>
-                                                <td> publications/drugs-brains-behavior-science-addiction </td>
-                                                <td> Open </td>
-                                                <td>
-                                                    <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#approvalModal">
-                                                        Approve
-                                                    </button>
-
-                                                    <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#viewDetails">
-                                                        View
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td> Renewal: The Ultimate Gift </td>
-                                                <td> Consistently ranked the most highly-cited and pertinent publications in the field </td>
-                                                <td> Science  </td>
-                                                <td>
-                                                    <span data-toggle="modal" data-target="#viewDetails">
-                                                        <img src="../img/doc.png" width="50px" style="cursor: pointer">
-                                                    </span>
-                                                </td>
-                                                <td> IEEE links </td>
-                                                <td> Approved </td>
-                                                <td>
-                                                    <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#viewDetails">
-                                                        View
-                                                    </button>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td> The Science of Addiction </td>
-                                                <td> How Science Has Revolutionized the Understanding of Drug Addiction </td>
-                                                <td> Science  </td>
-                                                <td>
-                                                    <span data-toggle="modal" data-target="#viewDetails">
-                                                        <img src="../img/doc.png" width="50px" style="cursor: pointer">
-                                                    </span>
-                                                </td>
-                                                <td> http://www.drugabuse.gov/ </td>
-                                                <td> Open </td>
-                                                <td>
-                                                    <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#approvalModal">
-                                                        Approve
-                                                    </button>
-
-                                                    <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#viewDetails">
-                                                        View
-                                                    </button>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td> Drug Abuse and Addiction </td>
-                                                <td> Addiction is defined as a chronic, relapsing brain disease that is characterized by compulsive drug seeking and use, despite harmful consequences. </td>
-                                                <td> Science  </td>
-                                                <td>
-                                                    <span data-toggle="modal" data-target="#viewDetails">
-                                                        <img src="../img/doc.png" width="50px" style="cursor: pointer">
-                                                    </span>
-                                                </td>
-                                                <td> publications/drugs-brains-behavior-science-addiction </td>
-                                                <td> Open </td>
-                                                <td>
-                                                    <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#approvalModal">
-                                                        Approve
-                                                    </button>
-
-                                                    <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#viewDetails">
-                                                        View
-                                                    </button>
-                                                </td>
-                                            </tr>
 
                                         </tbody>
 
@@ -342,6 +164,7 @@
                                         </tr>
                                         </thead>
                                         <tbody>
+                                            <?php for($i = 0; $i < 5; $i++){ ?>
                                             <tr>
                                                 <td> Renewal: The Ultimate Gift </td>
                                                 <td> Consistently ranked the most highly-cited and pertinent publications in the field </td>
@@ -352,6 +175,9 @@
                                                 <td>
                                                     <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#viewPublications">
                                                         View
+                                                    </button>
+                                                    <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#addPublications">
+                                                        Edit
                                                     </button>
                                                     <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">
                                                         Delete
@@ -370,56 +196,8 @@
                                                     <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#viewPublications">
                                                         View
                                                     </button>
-                                                    <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">
-                                                        Delete
-                                                    </button>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td> Drug Abuse and Addiction </td>
-                                                <td> Addiction is defined as a chronic, relapsing brain disease that is characterized by compulsive drug seeking and use, despite harmful consequences. </td>
-                                                <td> Science  </td>
-
-                                                <td> publications/drugs-brains-behavior-science-addiction </td>
-                                                <td> Open </td>
-                                                <td>
-                                                    <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#viewPublications">
-                                                        View
-                                                    </button>
-                                                    <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">
-                                                        Delete
-                                                    </button>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td> Renewal: The Ultimate Gift </td>
-                                                <td> Consistently ranked the most highly-cited and pertinent publications in the field </td>
-                                                <td> Science  </td>
-
-                                                <td> IEEE links </td>
-                                                <td> Open </td>
-                                                <td>
-                                                    <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#viewPublications">
-                                                        View
-                                                    </button>
-                                                    <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">
-                                                        Delete
-                                                    </button>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td> The Science of Addiction </td>
-                                                <td> How Science Has Revolutionized the Understanding of Drug Addiction </td>
-                                                <td> Science  </td>
-
-                                                <td> http://www.drugabuse.gov/ </td>
-                                                <td> Open </td>
-                                                <td>
-                                                    <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#viewPublications">
-                                                        View
+                                                    <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#addPublications">
+                                                        Edit
                                                     </button>
                                                     <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">
                                                         Delete
@@ -438,22 +216,8 @@
                                                     <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#viewPublications">
                                                         View
                                                     </button>
-                                                    <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">
-                                                        Delete
-                                                    </button>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td> Renewal: The Ultimate Gift </td>
-                                                <td> Consistently ranked the most highly-cited and pertinent publications in the field </td>
-                                                <td> Science  </td>
-
-                                                <td> IEEE links </td>
-                                                <td> Open </td>
-                                                <td>
-                                                    <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#viewPublications">
-                                                        View
+                                                    <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#addPublications">
+                                                        Edit
                                                     </button>
                                                     <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">
                                                         Delete
@@ -461,89 +225,8 @@
                                                 </td>
                                             </tr>
 
-                                            <tr>
-                                                <td> The Science of Addiction </td>
-                                                <td> How Science Has Revolutionized the Understanding of Drug Addiction </td>
-                                                <td> Science  </td>
+                                            <?php } ?>
 
-                                                <td> http://www.drugabuse.gov/ </td>
-                                                <td> Open </td>
-                                                <td>
-                                                    <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#viewPublications">
-                                                        View
-                                                    </button>
-                                                    <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">
-                                                        Delete
-                                                    </button>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td> Drug Abuse and Addiction </td>
-                                                <td> Addiction is defined as a chronic, relapsing brain disease that is characterized by compulsive drug seeking and use, despite harmful consequences. </td>
-                                                <td> Science  </td>
-
-                                                <td> publications/drugs-brains-behavior-science-addiction </td>
-                                                <td> Open </td>
-                                                <td>
-                                                    <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#viewPublications">
-                                                        View
-                                                    </button>
-                                                    <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">
-                                                        Delete
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td> Renewal: The Ultimate Gift </td>
-                                                <td> Consistently ranked the most highly-cited and pertinent publications in the field </td>
-                                                <td> Science  </td>
-
-                                                <td> IEEE links </td>
-                                                <td> Open </td>
-                                                <td>
-                                                    <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#viewPublications">
-                                                        View
-                                                    </button>
-                                                    <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">
-                                                        Delete
-                                                    </button>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td> The Science of Addiction </td>
-                                                <td> How Science Has Revolutionized the Understanding of Drug Addiction </td>
-                                                <td> Science  </td>
-
-                                                <td> http://www.drugabuse.gov/ </td>
-                                                <td> Open </td>
-                                                <td>
-                                                    <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#viewPublications">
-                                                        View
-                                                    </button>
-                                                    <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">
-                                                        Delete
-                                                    </button>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td> Drug Abuse and Addiction </td>
-                                                <td> Addiction is defined as a chronic, relapsing brain disease that is characterized by compulsive drug seeking and use, despite harmful consequences. </td>
-                                                <td> Science  </td>
-
-                                                <td> publications/drugs-brains-behavior-science-addiction </td>
-                                                <td> Open </td>
-                                                <td>
-                                                    <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#viewPublications">
-                                                        View
-                                                    </button>
-                                                    <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">
-                                                        Delete
-                                                    </button>
-                                                </td>
-                                            </tr>
 
                                         </tbody>
 
