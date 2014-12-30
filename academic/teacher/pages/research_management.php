@@ -76,6 +76,37 @@
                                 <tbody>
                                 <?php for($i = 0; $i < 5; $i++){ ?>
                                     <tr>
+                                        <td> Technology comes quickly  </td>
+                                        <td> Abstract   </td>
+                                        <td> ICCIT  </td>
+                                        <td> A teacher's "value-added" is defined as the average test-score gain for his or her students  </td>
+                                        <td>
+                                            <span data-toggle="modal" data-target="#viewDetails">
+                                                <img src="../img/doc.png" width="100px" style="cursor: pointer" class="img-thumbnail">
+                                            </span>
+                                        </td>
+                                        <td> PAID </td>
+                                        <td> YES </td>
+                                        <td> 30% </td>
+                                        <td> Open </td>
+                                        <td width="130">
+                                            <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#viewDetails">
+                                                View
+                                            </button>
+
+                                            <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#submitConfirmation">
+                                                Submit
+                                            </button>
+                                            <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#addResearchReview">
+                                                Edit
+                                            </button>
+                                            <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">
+                                                Delete
+                                            </button>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
                                         <td> Value added outcomes  </td>
                                         <td> Abstract   </td>
                                         <td> IEEE  </td>
@@ -87,6 +118,37 @@
                                         </td>
                                         <td> FREE </td>
                                         <td> YES </td>
+                                        <td> 30% </td>
+                                        <td> Open </td>
+                                        <td width="130">
+                                            <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#viewDetails">
+                                                View
+                                            </button>
+
+                                            <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#submitConfirmation">
+                                                Submit
+                                            </button>
+                                            <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#addResearchReview">
+                                                Edit
+                                            </button>
+                                            <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">
+                                                Delete
+                                            </button>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td> Value added outcomes  </td>
+                                        <td> Abstract   </td>
+                                        <td> IEEE  </td>
+                                        <td> A teacher's "value-added" is defined as the average test-score gain for his or her students  </td>
+                                        <td>
+                                            <span data-toggle="modal" data-target="#viewDetails">
+                                                <img src="../img/doc.png" width="100px" style="cursor: pointer" class="img-thumbnail">
+                                            </span>
+                                        </td>
+                                        <td> FREE for Student </td>
+                                        <td> NO </td>
                                         <td> 30% </td>
                                         <td> Open </td>
                                         <td width="130">

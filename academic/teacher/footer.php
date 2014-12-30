@@ -1,7 +1,7 @@
 
 <!-- add new calendar event modal -->
 
-<script src="js/plugins/jquery/jquery.min.js"></script>
+
 <script src="js/plugins/bootstrap/bootstrap.min.js" type="text/javascript"></script>
 <script src="js/plugins/jquery/jquery-ui.min.js" type="text/javascript"></script>
 <!-- Morris.js charts -->
