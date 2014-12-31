@@ -89,16 +89,12 @@
                 </ul>
             </li>
 
-            <li class="treeview">
-                <a href="#">
+            <li>
+                <a href="internship_online.php">
                     <i class="fa fa-laptop"></i>
-                    <span>Intern ship</span>
-                    <i class="fa fa-angle-left pull-right"></i>
+                    <span>InternShip</span>
+                    <i class="fa pull-right"></i>
                 </a>
-                <ul class="treeview-menu">
-                    <li><a href="internship_manual.php"><i class="fa fa-angle-double-right"></i> Manual</a></li>
-                    <li><a href="internship_online.php"><i class="fa fa-angle-double-right"></i> Online</a></li>
-                </ul>
             </li>
 
             <li class="treeview">
@@ -114,7 +110,7 @@
             </li>
 
             <li>
-                <a href="pages/noticeboard.php">
+                <a href="noticeboard.php">
                     <i class="fa fa-laptop"></i>
                     <span>Notice Board</span>
                     <i class="fa pull-right"></i>

@@ -6,12 +6,12 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
                         class="sr-only">Close</span></button>
-                <h4 class="modal-title">Add Projects Items Marks</h4>
+                <h4 class="modal-title">Add Thesis Items Marks</h4>
             </div>
             <div class="modal-body">
                 <form>
                     <div class="form-group">
-                        <label for="title">Project Proposal</label>
+                        <label for="title">Thesis Proposal</label>
                         <input type="text" class="form-control" id="title" placeholder="Enter Marks">
                     </div>
 
@@ -31,7 +31,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="title">Project Presentation</label>
+                        <label for="title">Thesis Presentation</label>
                         <input type="text" class="form-control" id="title" placeholder="Enter Marks">
                     </div>
 
@@ -41,10 +41,14 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="title">Manage Project</label>
+                        <label for="title">Manage Thesis</label>
                         <input type="text" class="form-control" id="title" placeholder="Enter Marks">
                     </div>
-                    <b disable">Total Marks:</b> 35 <br/>
+                    <div class="form-group">
+                        <label>Marks</label>
+                        <input type="text" class="form-control" placeholder="35" disabled/>
+                    </div>
+
                 </form>
             </div>
             <div class="modal-footer">
@@ -60,7 +64,7 @@
 
 
 
-<!-- Project Proposal -->
+<!-- Thesis Proposal -->
 <div class="modal fade" id="projectproposal" tabindex="-1" role="dialog" aria-labelledby="addPublications"
      aria-hidden="true">
     <div class="modal-dialog">
@@ -68,17 +72,17 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
                         class="sr-only">Close</span></button>
-                <h4 class="modal-title">Project Proposal</h4>
+                <h4 class="modal-title">Thesis Proposal</h4>
             </div>
             <div class="modal-body">
                 <form>
                     <button type="button" class="btn btn-success" data-dismiss="modal"> Ask From Student</button>
                     <div class="form-group">
-                        <label for="title">Project Name</label>
+                        <label for="title">Thesis Name</label>
                         <input type="text" class="form-control" id="title" placeholder="Type Here">
                     </div>
                     <div class="form-group">
-                        <label for="description">Project Proposal</label>
+                        <label for="description">Thesis Proposal</label>
                         <textarea class="form-control" id="description" placeholder="Type Here"></textarea>
                     </div>
 
@@ -97,7 +101,7 @@
 
 
 
-<!-- Project Presentation -->
+<!-- Thesis Presentation -->
 <div class="modal fade" id="projectpresentation" tabindex="-1" role="dialog" aria-labelledby="addPublications"
      aria-hidden="true">
     <div class="modal-dialog">
@@ -105,13 +109,13 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
                         class="sr-only">Close</span></button>
-                <h4 class="modal-title">Project Presentation</h4>
+                <h4 class="modal-title">Thesis Presentation</h4>
             </div>
             <div class="modal-body">
                 <form>
 
                     <div class="form-group">
-                        <label for="title">Project Presentation Related Files</label><br>
+                        <label for="title">Thesis Presentation Related Files</label><br>
                         <span data-toggle="modal" data-target="#viewDetails">
                            <img src="../img/doc.png" width="100px" style="cursor: pointer"
                                 class="img-thumbnail">
@@ -143,7 +147,7 @@
 
 
 
-<!-- Project Field Work -->
+<!-- Thesis Field Work -->
 <div class="modal fade" id="projectFieldWork" tabindex="-1" role="dialog" aria-labelledby="addPublications"
      aria-hidden="true">
     <div class="modal-dialog">
@@ -151,13 +155,13 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
                         class="sr-only">Close</span></button>
-                <h4 class="modal-title">Project Field Work</h4>
+                <h4 class="modal-title">Thesis Field Work</h4>
             </div>
             <div class="modal-body">
                 <form>
 
                     <div class="form-group">
-                        <label for="title">Project Field Work Related Files</label><br>
+                        <label for="title">Thesis Field Work Related Files</label><br>
                         <span data-toggle="modal" data-target="#viewDetails">
                            <img src="../img/doc.png" width="100px" style="cursor: pointer"
                                 class="img-thumbnail">
@@ -189,7 +193,7 @@
 
 
 
-<!-- Project Presentation -->
+<!-- Thesis Presentation -->
 <div class="modal fade" id="projectPresentation" tabindex="-1" role="dialog" aria-labelledby="addPublications"
      aria-hidden="true">
     <div class="modal-dialog">
@@ -197,13 +201,13 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
                         class="sr-only">Close</span></button>
-                <h4 class="modal-title">Project Field Work</h4>
+                <h4 class="modal-title">Thesis Field Work</h4>
             </div>
             <div class="modal-body">
                 <form>
 
                     <div class="form-group">
-                        <label for="title">Project Presentation Related Files</label><br>
+                        <label for="title">Thesis Presentation Related Files</label><br>
                         <span data-toggle="modal" data-target="#viewDetails">
                            <img src="../img/doc.png" width="100px" style="cursor: pointer"
                                 class="img-thumbnail">
@@ -241,7 +245,7 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
                         class="sr-only">Close</span></button>
-                <h4 class="modal-title">Project Field Work</h4>
+                <h4 class="modal-title">Thesis Field Work</h4>
             </div>
             <div class="modal-body">
                 <form>
@@ -276,7 +280,7 @@
 
 
 
-<!-- Manage Project -->
+<!-- Manage Thesis -->
 <div class="modal fade" id="manageProjet" tabindex="-1" role="dialog" aria-labelledby="addPublications"
      aria-hidden="true">
     <div class="modal-dialog">
@@ -284,7 +288,7 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
                         class="sr-only">Close</span></button>
-                <h4 class="modal-title">Manage Project</h4>
+                <h4 class="modal-title">Manage Thesis</h4>
             </div>
             <div class="modal-body">
                 <form>
@@ -327,7 +331,7 @@
 
 
 
-<!-- Distribute Project -->
+<!-- Distribute Thesis -->
 <div class="modal fade" id="distributeProjet" tabindex="-1" role="dialog" aria-labelledby="addPublications"
      aria-hidden="true">
     <div class="modal-dialog">
@@ -335,19 +339,19 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
                         class="sr-only">Close</span></button>
-                <h4 class="modal-title">Manage Project</h4>
+                <h4 class="modal-title">Manage Thesis</h4>
             </div>
             <div class="modal-body">
 
 
 
-                <b>Projects:</b>
+                <b>Thesis:</b>
 
                 <div class="box-body table-responsive">
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
                         <tr>
-                            <th>Project Title</th>
+                            <th>Thesis Title</th>
                             <th>File</th>
                             <th>Action</th>
                         </tr>
@@ -497,7 +501,7 @@
 </div><!-- /.modal -->
 
 
-<!-- Assign Project to ONE -->
+<!-- Assign Thesis to ONE -->
 <div class="modal fade" id="assignProjectToONE" tabindex="-1" role="dialog" aria-labelledby="addPublications"
      aria-hidden="true">
     <div class="modal-dialog">
@@ -505,7 +509,7 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
                         class="sr-only">Close</span></button>
-                <h4 class="modal-title">Assign Project to ONE</h4>
+                <h4 class="modal-title">Assign Thesis to ONE</h4>
             </div>
             <div class="modal-body">
                 <form>
@@ -527,14 +531,14 @@
 </div><!-- /.modal -->
 
 
-<!-- Evaluate Projects-->
-<div class="modal fade" id="evaluateProjects" tabindex="-1" role="dialog" aria-labelledby="viewDetails" aria-hidden="true">
+<!-- Evaluate Thesis-->
+<div class="modal fade" id="evaluateThesis" tabindex="-1" role="dialog" aria-labelledby="viewDetails" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
                         class="sr-only">Close</span></button>
-                <h4 class="modal-title">Project Evaluation</h4>
+                <h4 class="modal-title">Thesis Evaluation</h4>
             </div>
             <div class="modal-body">
                 <form>
