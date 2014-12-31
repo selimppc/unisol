@@ -29,11 +29,9 @@
 
 
             <div class="box-body">
+
                 <p>
-                    <button class="pull-right btn btn-primary btn-sm"  data-toggle="modal" data-target="#massage">Send Notification </button>
-                </p>
-                <p>
-                    <button class="pull-left btn btn-primary btn-sm"  data-toggle="modal" data-target="#add">Add New </button>
+                    <button class="pull-right btn btn-primary btn-sm"  data-toggle="modal" data-target="#add">Add New Notice</button>
                 </p>
 
             </div>
@@ -202,6 +200,107 @@
 
             </tr>
 
+            <tr>
+
+                <td>class test</td>
+                <td>Department:ict,semester:fall,year:2013</td>
+                <th>
+            <span data-toggle="modal" data-target="#view">
+                <img src="../img/doc.png" width="50px" style="cursor: pointer">
+            </span>
+                </th>
+                <td>Teacher,Student</td>
+                <td>31/1/2014</td>
+                <td>31/1/2014</td>
+                <th>
+                    <button class="btn btn-primary btn-xs" >closed</button>
+
+
+                </th>
+                <th>
+                    <button class="btn btn-success btn-xs" >send</button>
+
+
+                </th>
+
+
+            </tr>
+            <tr>
+
+                <td>class test</td>
+                <td>Department:ict,semester:fall,year:2013</td>
+                <th>
+            <span data-toggle="modal" data-target="#view">
+                <img src="../img/doc.png" width="50px" style="cursor: pointer">
+            </span>
+                </th>
+                <td>Teacher,Student</td>
+                <td>31/1/2014</td>
+                <td>31/1/2014</td>
+                <th>
+                    <button class="btn btn-primary btn-xs" >closed</button>
+
+
+                </th>
+                <th>
+                    <button class="btn btn-success btn-xs" >send</button>
+
+
+                </th>
+
+
+            </tr>
+            <tr>
+
+                <td>class test</td>
+                <td>Department:ict,semester:fall,year:2013</td>
+                <th>
+            <span data-toggle="modal" data-target="#view">
+                <img src="../img/doc.png" width="50px" style="cursor: pointer">
+            </span>
+                </th>
+                <td>Teacher,Student</td>
+                <td>31/1/2014</td>
+                <td>31/1/2014</td>
+                <th>
+                    <button class="btn btn-primary btn-xs" >closed</button>
+
+
+                </th>
+                <th>
+                    <button class="btn btn-success btn-xs" >send</button>
+                    <button class="btn btn-danger btn-xs" >discard</button>
+
+                </th>
+
+
+            </tr>
+            <tr>
+
+                <td>class test</td>
+                <td>Department:ict,semester:fall,year:2013</td>
+                <th>
+            <span data-toggle="modal" data-target="#view">
+                <img src="../img/doc.png" width="50px" style="cursor: pointer">
+            </span>
+                </th>
+                <td>Teacher,Student</td>
+                <td>31/1/2014</td>
+                <td>31/1/2014</td>
+                <th>
+                    <button class="btn btn-primary btn-xs" >closed</button>
+
+
+                </th>
+                <th>
+                    <button class="btn btn-success btn-xs" >send</button>
+
+
+                </th>
+
+
+            </tr>
+
             </tbody>
             <tfoot>
             <tr>
@@ -225,8 +324,108 @@
 
 
 
+
+
+
         </section><!-- /.content -->
     </aside><!-- /.right-side -->
 </div><!-- ./wrapper -->
+
+
+<div class="modal fade " id="add" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Add New Notice</h4>
+            </div>
+            <div class="modal-body">
+
+
+                <form role="form">
+                    <div class="box-body">
+
+                        <div class="form-group">
+                            <label for="title">Title</label>
+                            <input type="title" class="form-control" id="title" >
+                        </div>
+                        <div class="form-group">
+                            <label for="Description">Description</label>
+                            <input type="Description" class="form-control" id="Description" >
+                        </div>
+                        <div class="form-group">
+                            <label for="upload">Upload Notice</label>
+                            <input type="file" class="form-control" id="upload" >
+                        </div>
+                        <div class="form-group">
+                            <label for="Target">Target Role</label>
+                            <select class="form-control input-sm" id="Target">
+                                <option>Select a Target Role</option>
+                                <option value="CSE">Teacher</option>
+                                <option value="ICT">Student</option>
+                                <option value="ENGLISH">staff</option>
+                                <option value="PHYSICS">Teacher,Student</option>
+                                <option value="CSE">Teacher,staff</option>
+                                <option value="CSE">All</option>
+
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="date">Start Date</label>
+                            <input type="date" class="form-control" id="date" >
+                        </div>
+                        <div class="form-group">
+                            <label for="date">End Date</label>
+                            <input type="date" class="form-control" id="date" >
+                        </div>
+                        <div class="form-group">
+                            <label for="Status">Status</label>
+                            <select class="form-control input-sm" id="Status">
+                                <option>Select Status</option>
+                                <option value="CSE">New</option>
+                                <option value="CSE">closed</option>
+
+                            </select>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-info" data-dismiss="modal"  data-toggle="modal" data-target="#notification">Send</button>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--get msg:modal-->
+
+<div class="modal fade" id="notification" tabindex="-1" role="dialog" aria-labelledby="viewDetails" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">Send Notice</h4>
+            </div>
+            <div class="modal-body">
+
+                <form role="form">
+                    <div class="box-body">
+                        <p>The notice has been sent to Teacher/Student/Staff........</p>
+
+                    </div>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 
 <?php include('../_footer.php'); ?>

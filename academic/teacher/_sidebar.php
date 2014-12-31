@@ -114,6 +114,14 @@
             </li>
 
             <li>
+                <a href="pages/noticeboard.php">
+                    <i class="fa fa-laptop"></i>
+                    <span>Notice Board</span>
+                    <i class="fa pull-right"></i>
+                </a>
+            </li>
+
+            <li>
                 <a href="scholarship.php">
                     <i class="fa fa-laptop"></i>
                     <span>Scholarship MGMT</span>
