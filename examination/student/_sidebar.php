@@ -35,52 +35,6 @@
             </li>
 
 
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-bar-chart-o"></i>
-                    <span>Prepare Question Papers</span>
-                    <i class="fa fa-angle-left pull-right"></i>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="pages/charts/morris.php"><i class="fa fa-angle-double-right"></i> Morris</a></li>
-                    <li><a href=""><i class="fa fa-angle-double-right"></i> Flot</a></li>
-                    <li><a href=""><i class="fa fa-angle-double-right"></i> Inline charts</a></li>
-                </ul>
-            </li>
-
-
-            <li>
-                <a href="manage_examiners.php">
-                    <i class="fa fa-th"></i> <span>Manage Examiner</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="manage_exam_centers.php">
-                    <i class="fa fa-th"></i> <span>Manage Examination Center</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="prepare_tabulation.php">
-                    <i class="fa fa-th"></i> <span>Prepare Tabulation</span>
-                </a>
-            </li>
-            <li>
-                <a href="pages/calendar.php">
-                    <i class="fa fa-calendar"></i> <span>Generate Certificates</span>
-                    <small class="badge pull-right bg-red"></small>
-                </a>
-            </li>
-
-
-
-
-
-
-
-
-
         </ul>
     </section>
     <!-- /.sidebar -->

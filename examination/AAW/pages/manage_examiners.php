@@ -25,7 +25,7 @@
         <section class="content">
             <div class="box-body">
                  <p>
-                    <button class="pull-right btn-btn-info btn-sm"  data-toggle="modal" data-target="#add">Add Examination </button>
+                    <button class="pull-right btn btn-success btn-sm"  data-toggle="modal" data-target="#add">Add Examination </button>
                 </p>
 
             </div>

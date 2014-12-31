@@ -390,20 +390,48 @@
 
                     </div>
 
-                    <div class="box-footer">
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                        <button type="button" class="btn btn-success" data-dismiss="modal">Cancel</button>
-                    </div>
+
                 </form>
             </div>
             <div class="modal-footer">
-
+                <button type="submit" class="btn btn-info" data-dismiss="modal"  data-toggle="modal" data-target="#notification">Send</button>
 
 
             </div>
         </div>
     </div>
 </div>
+
+
+<!--get msg:modal-->
+
+<div class="modal fade" id="notification" tabindex="-1" role="dialog" aria-labelledby="viewDetails" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">Send Notification</h4>
+            </div>
+            <div class="modal-body">
+
+                <form role="form">
+                    <div class="box-body">
+                        <p>The Form has been submitted to AAW........</p>
+
+                    </div>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
+
 
 <script type="text/javascript">
     $(function() {

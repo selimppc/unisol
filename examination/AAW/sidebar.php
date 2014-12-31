@@ -28,26 +28,13 @@
                     <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                 </a>
             </li>
-            <li>
-                <a href="pages/enroll_index.php">
-                    <i class="fa fa-th"></i> <span>Enrollment</span>
-                </a>
-            </li>
+
 
             <li>
                 <a href="pages/manage_enroll_exam.php">
                     <i class="fa fa-th"></i> <span>Enrollment</span>
                 </a>
             </li>
-
-
-
-
-
-
-
-
-
 
 
             <li class="treeview">
