@@ -1,10 +1,10 @@
-
 <!-- Delete Modal -->
 <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="delete" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Close</span></button>
                 <h4 class="modal-title">Delete </h4>
             </div>
             <div class="modal-body">
@@ -14,29 +14,34 @@
                 <button type="button" class="btn btn-success" data-dismiss="modal">Confirm</button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
             </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
 <!-- submitConfirmation Modal -->
-<div class="modal fade" id="submitConfirmation" tabindex="-1" role="dialog" aria-labelledby="submitConfirmation" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title">Submit Confirmation</h4>
-      </div>
-      <div class="modal-body">
-        Are you sure to submit this item ?
+<div class="modal fade" id="submitConfirmation" tabindex="-1" role="dialog" aria-labelledby="submitConfirmation"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Close</span></button>
+                <h4 class="modal-title">Submit Confirmation</h4>
+            </div>
+            <div class="modal-body">
+                Are you sure to submit this item ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-dismiss="modal">Submit</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
     </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-success" data-dismiss="modal">Submit</button>
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-    </div>
-</div><!-- /.modal-content -->
-</div><!-- /.modal-dialog -->
+    <!-- /.modal-dialog -->
 </div><!-- /.modal -->
-
 
 
 <!-- View Details Modal -->
@@ -44,56 +49,71 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Close</span></button>
                 <h4 class="modal-title">View Details</h4>
             </div>
             <div class="modal-body">
                 <h2> Renewal: The Ultimate Gift </h2>
+
                 <p>Consistently ranked the most highly-cited and pertinent publications in the field</p>
+
                 <p>
-                    <img src="../img/doc.png" >
+                    <img src="../img/doc.png">
                 </p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-success" data-dismiss="modal">Back</button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
             </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
 
-
 <!-- View Details Modal -->
-<div class="modal fade" id="viewPublications" tabindex="-1" role="dialog" aria-labelledby="viewPublications" aria-hidden="true">
+<div class="modal fade" id="viewPublications" tabindex="-1" role="dialog" aria-labelledby="viewPublications"
+     aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Close</span></button>
                 <h4 class="modal-title">View Publication</h4>
             </div>
             <div class="modal-body">
                 <h2> Drug Abuse and Addiction </h2>
+
                 <p>What is drug addiction?</p>
+
                 <p>
-                    Addiction is defined as a chronic, relapsing brain disease that is characterized by compulsive drug seeking and use, despite harmful consequences.† It is considered a brain disease because drugs change the brain—they change its structure and how it works. These brain changes can be long-lasting, and can lead to the harmful behaviors seen in people who abuse drugs.
+                    Addiction is defined as a chronic, relapsing brain disease that is characterized by compulsive drug
+                    seeking and use, despite harmful consequences.† It is considered a brain disease because drugs
+                    change the brain—they change its structure and how it works. These brain changes can be
+                    long-lasting, and can lead to the harmful behaviors seen in people who abuse drugs.
                 </p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-success" data-dismiss="modal">Back</button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
             </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
 
 <!-- Add Research Review Modal -->
-<div class="modal fade" id="addResearchReview" tabindex="-1" role="dialog" aria-labelledby="addResearchReview" aria-hidden="true">
+<div class="modal fade" id="addResearchReview" tabindex="-1" role="dialog" aria-labelledby="addResearchReview"
+     aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Close</span></button>
                 <h4 class="modal-title">Add Research Item</h4>
             </div>
             <div class="modal-body">
@@ -131,7 +151,7 @@
                         <select class="form-control" id="freetype">
                             <option>Free</option>
                             <option>Paid</option>
-                            <option>Free for Teacher </option>
+                            <option>Free for Teacher</option>
                             <option>Free for Student</option>
                         </select>
                     </div>
@@ -164,18 +184,21 @@
                 <button type="button" class="btn btn-success" data-dismiss="modal">Save</button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
             </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
 
-
 <!-- Add Publications Modal -->
-<div class="modal fade" id="addPublications" tabindex="-1" role="dialog" aria-labelledby="addPublications" aria-hidden="true">
+<div class="modal fade" id="addPublications" tabindex="-1" role="dialog" aria-labelledby="addPublications"
+     aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Close</span></button>
                 <h4 class="modal-title">Add Publication</h4>
             </div>
             <div class="modal-body">
@@ -212,11 +235,11 @@
                 <button type="button" class="btn btn-success" data-dismiss="modal">Save</button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
             </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
 </div><!-- /.modal -->
-
-
 
 
 <!--  addFreeType Modal -->
@@ -224,7 +247,8 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Close</span></button>
                 <h4 class="modal-title">Add Free Type</h4>
             </div>
             <div class="modal-body">
@@ -253,11 +277,11 @@
                 <button type="button" class="btn btn-success" data-dismiss="modal">Save</button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
             </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
 </div><!-- /.modal -->
-
-
 
 
 <!-- Add Journal Modal -->
@@ -265,7 +289,8 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Close</span></button>
                 <h4 class="modal-title">Add Journal</h4>
             </div>
             <div class="modal-body">
@@ -294,6 +319,8 @@
                 <button type="button" class="btn btn-success" data-dismiss="modal">Save</button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
             </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
 </div><!-- /.modal -->
