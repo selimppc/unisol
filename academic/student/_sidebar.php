@@ -28,7 +28,13 @@
                     <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                 </a>
             </li>
+            <li>
+                <a href="calendar.php">
+                    <i class="fa fa-laptop"></i>
+                    <span>Calendar</span>
+                </a>
 
+            </li>
             <li>
                 <a href="enrollment.php">
                     <i class="fa fa-laptop"></i>
