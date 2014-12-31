@@ -35,7 +35,7 @@
 
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">Examination List</h3>
+                    <h3 class="box-title"><b>Examination List</b></h3>
                 </div><!-- /.box-header -->
                 <div class="box-body table-responsive">
                     <table id="example1" class="table table-bordered table-striped">
@@ -150,12 +150,158 @@
         </div>
     </div>
 
+<!---->
+
+    <div class="row">
+        <div class="col-xs-12">
+
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title"><b>Credits Outline</b></h3>
+                </div><!-- /.box-header -->
+                <div class="box-body table-responsive">
+                    <table id="example1" class="table table-bordered table-striped">
+                        <thead>
+                        <tr>
+                            <th>Year</th>
+                            <th>Semester</th>
+
+                            <th>Total Credit</th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        <tr>
+                            <td>First Year</td>
+                            <td>First Semester</td>
+
+                            <td>19</td>
+
+                        </tr>
+                        <tr>
+                            <td>First Year</td>
+                            <td>Second Semester</td>
+
+                            <td>19</td>
+
+                        </tr>
+                        <tr>
+                            <td>Second Year</td>
+                            <td>First Semester</td>
+
+                            <td>20</td>
+
+                        </tr>
+                        <tr>
+                            <td>Second Year</td>
+                            <td>Second Semester</td>
+
+                            <td>19</td>
+
+                        </tr>
+                        <tr>
+                            <td>Third Year</td>
+                            <td>First Semester</td>
+
+                            <td>22</td>
+
+                        </tr>
+                        <tr>
+                            <td>Third Year</td>
+                            <td>Second Semester</td>
+
+                            <td>21</td>
+
+                        </tr>
+                        <tr>
+                            <td>Fourth Year</td>
+                            <td>First Semester</td>
+
+                            <td>18</td>
+
+                        </tr>
+                        <tr>
+                            <td>Fourth Year</td>
+                            <td>Second Semester</td>
+
+                            <td>22</td>
+
+                        </tr>
+
+
+
+
+
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <th>Serial No</th>
+                            <th>Semester </th>
+
+                            <th>Total Credit=160</th>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </div><!-- /.box-body -->
+            </div><!-- /.box -->
+        </div>
+    </div>
+<!--    -->
+
+
+    <div class="row">
+        <div class="col-xs-12">
+
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title"><b>Fees</b></h3>
+                </div><!-- /.box-header -->
+                <div class="box-body table-responsive">
+                    <table id="example1" class="table table-bordered table-striped">
+                        <thead>
+                        <tr>
+                            <th>Exam Fee(per credit)</th>
+                            <th>Lab Charge</th>
+
+                            <th>Delay Charge</th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        <tr>
+                            <td>500</td>
+                            <td>500</td>
+
+                            <th>0.00</th>
+
+                        </tr>
+
+
+
+
+                        </tbody>
+                        <tfoot>
+
+                        </tfoot>
+                    </table>
+                </div><!-- /.box-body -->
+            </div><!-- /.box -->
+        </div>
+    </div>
+
+
+
 
 
 
 </section><!-- /.content -->
 </aside><!-- /.right-side -->
 </div><!-- ./wrapper -->
+
+
+
 
 <!-- Modal ::  Confirmation -->
 

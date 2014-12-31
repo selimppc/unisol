@@ -585,7 +585,7 @@
             <div class="modal-footer">
                 <button type="submit" class="btn btn-info" data-dismiss="modal"  data-toggle="modal" data-target="#send_msg">Send</button>
 
-                
+
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

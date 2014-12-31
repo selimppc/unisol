@@ -34,6 +34,22 @@
                 </a>
             </li>
 
+            <li>
+                <a href="pages/manage_enroll_exam.php">
+                    <i class="fa fa-th"></i> <span>Enrollment</span>
+                </a>
+            </li>
+
+
+
+
+
+
+
+
+
+
+
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-bar-chart-o"></i>

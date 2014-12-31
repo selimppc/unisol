@@ -29,10 +29,11 @@
                 </a>
             </li>
             <li>
-                <a href="enroll_index.php">
+                <a href="manage_enroll_exam.php">
                     <i class="fa fa-th"></i> <span>Enrollment</span>
                 </a>
             </li>
+
 
             <li class="treeview">
                 <a href="#">
