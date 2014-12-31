@@ -143,6 +143,119 @@
 
 
                                 </tr>
+                                <tr>
+
+                                    <td>TechSolutions</td>
+
+
+                                    <td>Software</td>
+                                    <td>With a small team of developers, designers works day in and day out on developing beautiful, powerful, and user-friendly apps</td>
+                                    <td>6 month</td>
+                                    <th><button class="btn btn-primary btn-xs">open</button></th>
+                                    <th><button class="btn btn-success btn-xs" data-toggle="modal" data-target="#approve">approve</button>
+                                        <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#view">view</button></th>
+
+
+                                </tr>
+                                <tr>
+
+                                    <td>VB-Solutions</td>
+
+
+                                    <td>Software</td>
+                                    <td>designers works day in and day out on developing beautiful, powerful, and user-friendly apps</td>
+                                    <td>6 month</td>
+                                    <th><button class="btn btn-primary btn-xs">open</button></th>
+                                    <th><button class="btn btn-success btn-xs" data-toggle="modal" data-target="#approve">approve</button>
+                                        <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#view">view</button></th>
+
+
+                                </tr>
+
+                                <tr>
+
+                                    <td>GP-IT</td>
+
+
+                                    <td>Software</td>
+                                    <td>designers works day in and day out on developing beautiful, powerful, and user-friendly apps</td>
+                                    <td>6 month</td>
+                                    <th><button class="btn btn-primary btn-xs">open</button></th>
+                                    <th><button class="btn btn-success btn-xs" data-toggle="modal" data-target="#approve">approve</button>
+                                        <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#view">view</button></th>
+
+
+                                </tr>
+                                <tr>
+
+                                    <td>GP-IT</td>
+
+
+                                    <td>Software</td>
+                                    <td>designers works day in and day out on developing beautiful, powerful, and user-friendly apps</td>
+                                    <td>6 month</td>
+                                    <th><button class="btn btn-primary btn-xs">open</button></th>
+                                    <th><button class="btn btn-success btn-xs" data-toggle="modal" data-target="#approve">approve</button>
+                                        <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#view">view</button></th>
+
+
+                                </tr>
+                                <tr>
+
+                                    <td>GP-IT</td>
+
+
+                                    <td>Software</td>
+                                    <td>designers works day in and day out on developing beautiful, powerful, and user-friendly apps</td>
+                                    <td>6 month</td>
+                                    <th><button class="btn btn-primary btn-xs">open</button></th>
+                                    <th><button class="btn btn-success btn-xs" data-toggle="modal" data-target="#approve">approve</button>
+                                        <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#view">view</button></th>
+
+
+                                </tr>
+                                <tr>
+
+                                    <td>Concord Group</td>
+
+
+                                    <td>Software</td>
+                                    <td>designers works day in and day out on developing beautiful, powerful, and user-friendly apps</td>
+                                    <td>6 month</td>
+                                    <th><button class="btn btn-primary btn-xs">open</button></th>
+                                    <th><button class="btn btn-success btn-xs" data-toggle="modal" data-target="#approve">approve</button>
+                                        <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#view">view</button></th>
+
+
+                                </tr>
+                                <tr>
+
+                                    <td>GP-IT</td>
+
+
+                                    <td>Software</td>
+                                    <td>designers works day in and day out on developing beautiful, powerful, and user-friendly apps</td>
+                                    <td>6 month</td>
+                                    <th><button class="btn btn-primary btn-xs">open</button></th>
+                                    <th><button class="btn btn-success btn-xs" data-toggle="modal" data-target="#approve">approve</button>
+                                        <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#view">view</button></th>
+
+
+                                </tr>
+                                <tr>
+
+                                    <td>GP-IT</td>
+
+
+                                    <td>Software</td>
+                                    <td>designers works day in and day out on developing beautiful, powerful, and user-friendly apps</td>
+                                    <td>6 month</td>
+                                    <th><button class="btn btn-primary btn-xs">open</button></th>
+                                    <th><button class="btn btn-success btn-xs" data-toggle="modal" data-target="#approve">approve</button>
+                                        <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#view">view</button></th>
+
+
+                                </tr>
 
 
                                 </tbody>
@@ -279,12 +392,12 @@
                                 <option>Select One</option>
                                 <option value="CSE">Software</option>
                                 <option value="ICT">Telecom</option>
-                               
+
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="roll">Business Description</label>
-                            <input type="roll" class="form-control" id="roll" >
+                            <input type="name" class="form-control" id="name" >
                         </div>
                         <div class="form-group">
                             <label for="year">Intern Policy</label>
