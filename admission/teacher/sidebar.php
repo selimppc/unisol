@@ -28,18 +28,10 @@
                     <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                 </a>
             </li>
-               <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-laptop"></i>
-                    <span>Prepare Questions</span>
-                    <i class="fa fa-angle-left pull-right"></i>
+             <li>
+                <a href="pages/questions_online_admission.php">
+                    <i class="fa fa-th"></i> <span>Prepare Questions</span> 
                 </a>
-                <ul class="treeview-menu">
-                    <li><a href="pages/questions_online_admission.php"><i class="fa fa-angle-double-right"></i> Mid / final Exam : Manual</a></li>
-                </ul>
-                 <ul class="treeview-menu">
-                    <li><a href="questions_online_admission.php"><i class="fa fa-angle-double-right"></i> Mid / final Exam : Manual</a></li>
-                </ul>
             </li>
         </ul>
     </section>

@@ -56,9 +56,9 @@
                                     <tbody>
                                         <tr>
                                           <td>Bechelor of Computer Science and Engineering</td>
-                                            <td>This is 4 years course for every student who want to apply for this couse.Total credit hours is 138</td>
-                                            <td>5 December 2014</td>
-                                            <td>30 December 2014 </td>
+                                            <td>This is 4 years course for every student who want to apply for this course.</td>
+                                            <td>5/12/2014</td>
+                                            <td>30/12/2014 </td>
                                             <td><button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#viewDetails">View
                                             </button>
                                             <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#approvalModal">Apply</button>
@@ -66,9 +66,9 @@
                                         </tr>
                                          <tr>
                                             <td>Bechelor of Computer Science and Engineering</td>
-                                            <td>This is 4 years course for every student who want to apply for this couse.Total credit hours is 138</td>
-                                            <td>5 December 2014</td>
-                                            <td>30 December 2014 </td>
+                                             <td>This is 4 years course for every student who want to apply for this course.</td>
+                                            <td>5/12/2014</td>
+                                            <td>30/12/2014 </td>
                                             <td><button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#viewDetails">View
                                             </button>
                                             <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#approvalModal">Apply</button>
@@ -77,9 +77,9 @@
                                          
                                          <tr>
                                             <td>Bechelor of Computer Science and Engineering</td>
-                                            <td>This is 4 years course for every student who want to apply for this couse.Total credit hours is 138</td>
-                                            <td>5 December 2014</td>
-                                            <td>30 December 2014 </td>
+                                             <td>This is 4 years course for every student who want to apply for this course.</td>
+                                             <td>5/12/2014</td>
+                                             <td>30/12/2014 </td>
                                             <td><button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#viewDetails">View
                                             </button>
                                             <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#approvalModal">Apply</button>
@@ -87,9 +87,9 @@
                                         </tr>
                                          <tr>
                                              <td>Bechelor of Computer Science and Engineering</td>
-                                            <td>This is 4 years course for every student who want to apply for this couse.Total credit hours is 138</td>
-                                            <td>5 December 2014</td>
-                                            <td>30 December 2014 </td>
+                                            <td>This is 4 years course for every student who want to apply for this course.</td>
+                                             <td>5/12/2014</td>
+                                             <td>30/12/2014 </td>
                                             <td><button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#viewDetails">View
                                             </button>
                                             <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#approvalModal">Apply</button>
@@ -97,9 +97,9 @@
                                         </tr>
                                            <tr>
                                              <td>Bechelor of Computer Science and Engineering</td>
-                                            <td>This is 4 years course for every student who want to apply for this couse.Total credit hours is 138</td>
-                                            <td>5 December 2014</td>
-                                            <td>30 December 2014 </td>
+                                             <td>This is 4 years course for every student who want to apply for this course.</td>
+                                               <td>5/12/2014</td>
+                                               <td>30/12/2014 </td>
                                             <td><button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#viewDetails">View
                                             </button>
                                             <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#approvalModal">Apply</button>
