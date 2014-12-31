@@ -263,7 +263,7 @@
     <li class="dropdown user user-menu">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <i class="glyphicon glyphicon-user"></i>
-            <span>Admin <i class="caret"></i></span>
+            <span>Staff <i class="caret"></i></span>
         </a>
         <ul class="dropdown-menu">
             <!-- User image -->
