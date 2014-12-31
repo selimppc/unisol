@@ -83,7 +83,49 @@
                                                 </td>
                                             </tr>
 
+                                            <tr>
+                                                <td> Data Analysis </td>
+                                                <td> 3 </td>
+                                                <td>
+                                                    <span data-toggle="modal" data-target="#viewDetails">
+                                                        <img src="../video/video.png" width="40" style="cursor: pointer" class="img-thumbnail">
+                                                    </span>
+                                                </td>
+                                                <td> Published </td>
+                                                <td width="120">
+                                                    <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#viewDetails">
+                                                        View
+                                                    </button>
+                                                    <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#newClassVideo">
+                                                        Edit
+                                                    </button>
+                                                    <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">
+                                                        Delete
+                                                    </button>
+                                                </td>
+                                            </tr>
 
+                                            <tr>
+                                                <td> Programing Language </td>
+                                                <td> 4 </td>
+                                                <td>
+                                                    <span data-toggle="modal" data-target="#viewDetails">
+                                                        <img src="../video/video.png" width="40" style="cursor: pointer" class="img-thumbnail">
+                                                    </span>
+                                                </td>
+                                                <td> Published </td>
+                                                <td width="120">
+                                                    <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#viewDetails">
+                                                        View
+                                                    </button>
+                                                    <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#newClassVideo">
+                                                        Edit
+                                                    </button>
+                                                    <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">
+                                                        Delete
+                                                    </button>
+                                                </td>
+                                            </tr>
 
                                         <?php } ?>
 
