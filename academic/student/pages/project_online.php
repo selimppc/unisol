@@ -36,55 +36,46 @@
 
                             <div class="btn-group">
                                 <button type="button" class=" btn-info" data-toggle="modal"
-                                data-target="#projectproposal">Submit Project Proposal
-                            </button>
+                                        data-target="#projectproposal">Submit Project Proposal
+                                </button>
 
-                        </div>
-                        <div class="btn-group">
-                            <button type="button" class=" btn-danger" data-toggle="modal"
-                            data-target="#projectpresentation">Proposal Presentation</button>
+                            </div>
+                            <div class="btn-group">
+                                <button type="button" class=" btn-danger" data-toggle="modal"
+                                        data-target="#projectpresentation">Propose Presentation</button>
 
-                        </div>
+                            </div>
 
-                        <div class="btn-group">
-                            <button type="button" class=" btn-warning" data-toggle="modal"
-                            data-target="#projectFieldWork">Fieldwork</button>
+                            <div class="btn-group">
+                                <button type="button" class=" btn-warning" data-toggle="modal"
+                                        data-target="#projectFieldWork">Fieldwork</button>
 
-                        </div>
+                            </div>
 
-                        <div class="btn-group">
-                            <button type="button" class=" btn-default" data-toggle="modal"
-                            data-target="#projectPresentation">Project Presentation</button>
-                        </div>
+                            <div class="btn-group">
+                                <button type="button" class=" btn-default" data-toggle="modal"
+                                        data-target="#projectPresentation">Project Presentation</button>
+                            </div>
 
-                        <div class="btn-group">
-                            <button type="button" class=" btn-info" data-toggle="modal"
-                            data-target="#reportPresentation">Report Presentation</button>
+                            <div class="btn-group">
+                                <button type="button" class=" btn-info" data-toggle="modal"
+                                        data-target="#reportPresentation">Report Presentation</button>
 
-                        </div>
-                        <div class="btn-group">
-                            <button type="button" class=" btn-danger" data-toggle="modal"
-                            data-target="#manageProjet">Manage Project</button>
+                            </div>
+                            <div class="btn-group">
+                                <button type="button" class=" btn-danger" data-toggle="modal"
+                                        data-target="#finalReport">Final Report</button>
 
-                        </div>
-                        <div class="btn-group">
-                            <button type="button" class=" btn-success" data-toggle="modal"
-                            data-target="#distributeProjet">Distribute To Student</button>
+                            </div>
 
-                        </div>
-                        <div class="btn-group">
-                            <button type="button" class=" btn-warning" data-toggle="modal"
-                            data-target="#evaluateProjects">Evaluate Project</button>
 
-                        </div>
+                            <br><br>
 
-                        <br><br>
+                            <b>Projects:</b>
 
-                        <b>Projects:</b>
-
-                        <div class="box-body table-responsive">
-                            <table id="example1" class="table table-bordered table-striped">
-                                <thead>
+                            <div class="box-body table-responsive">
+                                <table id="example1" class="table table-bordered table-striped">
+                                    <thead>
                                     <tr>
                                         <th>Project Title</th>
                                         <th>Subject</th>
@@ -95,8 +86,8 @@
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
-                                </thead>
-                                <tbody>
+                                    </thead>
+                                    <tbody>
 
 
                                     <tr>
@@ -105,118 +96,110 @@
                                         <td> 12/12/12 </td>
                                         <td> A teacher's "value-added" is defined as the average test-score gain for
                                             his or her students</td>
-                                            <td>
-                                                <span data-toggle="modal" data-target="#viewDetails">
-                                                    <img src="../img/doc.png" width="100px" style="cursor: pointer"
-                                                    class="img-thumbnail">
-                                                </span>
-                                            </td>
+                                        <td>
+                                            <span data-toggle="modal" data-target="#viewDetails">
+                                                <img src="../img/doc.png" width="100px" style="cursor: pointer"
+                                                     class="img-thumbnail">
+                                            </span>
+                                        </td>
 
-                                            <td> professor Rahman </td>
-                                            <td> Not Done  </td>
-                                            <td width="130">
-                                                <button class="btn btn-primary btn-xs" data-toggle="modal"
-                                                data-target="#viewDetails">
+                                        <td> professor Rahman </td>
+                                        <td> Not Done  </td>
+                                        <td width="130">
+                                            <button class="btn btn-primary btn-xs" data-toggle="modal"
+                                                    data-target="#viewDetails">
                                                 View
                                             </button>
 
                                             <button class="btn btn-success btn-xs" data-toggle="modal"
-                                            data-target="#submitConfirmation">
-                                            Accept
-                                        </button>
+                                                    data-target="#submitConfirmation">
+                                                Accept
+                                            </button>
 
-                                        <button class="btn btn-primary btn-xs" data-toggle="modal"
-                                        data-target="#evaluationProjectMarks">
-                                        Edit
-                                    </button>
-
-
-                                </td>
-                            </tr>
+                                            <button class="btn btn-primary btn-xs" data-toggle="modal"
+                                                    data-target="#evaluationProjectMarks">
+                                                Edit
+                                            </button>
 
 
-                            <tr>
-                                <td> Online Taxi Cab Management in Java</td>
-                                <td> English</td>
-                                <td> 12/12/12 </td>
-                                <td> A teacher's "value-added" is defined as the average test-score gain for
-                                    his or her students</td>
-                                    <td>
-                                        <span data-toggle="modal" data-target="#viewDetails">
-                                            <img src="../img/doc.png" width="100px" style="cursor: pointer"
-                                            class="img-thumbnail">
-                                        </span>
-                                    </td>
-
-                                    <td> professor Huda </td>
-                                    <td> Done  </td>
-                                    <td width="130">
-                                        <button class="btn btn-primary btn-xs" data-toggle="modal"
-                                        data-target="#viewDetails">
-                                        View
-                                    </button>
-
-                                    <button class="btn btn-success btn-xs" data-toggle="modal"
-                                    data-target="#submitConfirmation">
-                                    Accept
-                                </button>
-
-                                <button class="btn btn-primary btn-xs" data-toggle="modal"
-                                data-target="#evaluationProjectMarks">
-                                Edit
-                            </button>
+                                        </td>
+                                    </tr>
 
 
-                        </td>
-                    </tr>
-                    <tr>
-                        <td> Online Taxi Cab Management in Java</td>
-                        <td> Electronics</td>
-                        <td> 12/12/12 </td>
-                        <td> A teacher's "value-added" is defined as the average test-score gain for
-                            his or her students</td>
-                            <td>
-                                <span data-toggle="modal" data-target="#viewDetails">
-                                    <img src="../img/doc.png" width="100px" style="cursor: pointer"
-                                    class="img-thumbnail">
-                                </span>
-                            </td>
+                                    <tr>
+                                        <td> Online Taxi Cab Management in Java</td>
+                                        <td> English</td>
+                                        <td> 12/12/12 </td>
+                                        <td> A teacher's "value-added" is defined as the average test-score gain for
+                                            his or her students</td>
+                                        <td>
+                                            <span data-toggle="modal" data-target="#viewDetails">
+                                                <img src="../img/doc.png" width="100px" style="cursor: pointer"
+                                                     class="img-thumbnail">
+                                            </span>
+                                        </td>
 
-                            <td> professor Feroz </td>
-                            <td> Done  </td>
-                            <td width="130">
-                                <button class="btn btn-primary btn-xs" data-toggle="modal"
-                                data-target="#viewDetails">
-                                View
-                            </button>
+                                        <td> professor Huda </td>
+                                        <td> Done  </td>
+                                        <td width="130">
+                                            <button class="btn btn-primary btn-xs" data-toggle="modal"
+                                                    data-target="#viewDetails">
+                                                View
+                                            </button>
 
-                            <button class="btn btn-success btn-xs" data-toggle="modal"
-                            data-target="#submitConfirmation">
-                            Accept
-                        </button>
-
-                        <button class="btn btn-primary btn-xs" data-toggle="modal"
-                        data-target="#evaluationProjectMarks">
-                        Edit
-                    </button>
+                                            <button class="btn btn-danger btn-xs" data-toggle="modal"
+                                                    data-target="#deleteConfirmation">
+                                                Delete
+                                            </button>
 
 
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-<!-- /.box -->
-</div>
-<!-- /.tab-pane -->
-</div>
-</div>
 
 
-</section>
-<!-- /.content -->
-</aside>
-<!-- /.right-side -->
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td> Online Taxi Cab Management in Java</td>
+                                        <td> Electronics</td>
+                                        <td> 12/12/12 </td>
+                                        <td> A teacher's "value-added" is defined as the average test-score gain for
+                                            his or her students</td>
+                                        <td>
+                                            <span data-toggle="modal" data-target="#viewDetails">
+                                                <img src="../img/doc.png" width="100px" style="cursor: pointer"
+                                                     class="img-thumbnail">
+                                            </span>
+                                        </td>
+
+                                        <td> professor Feroz </td>
+                                        <td> Done  </td>
+                                        <td width="130">
+                                            <button class="btn btn-primary btn-xs" data-toggle="modal"
+                                                    data-target="#viewDetails">
+                                                View
+                                            </button>
+
+                                            <button class="btn btn-danger btn-xs" data-toggle="modal"
+                                                    data-target="#deleteConfirmation">
+                                                Delete
+                                            </button>
+
+
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.box -->
+                        </div>
+                        <!-- /.tab-pane -->
+                    </div>
+                </div>
+
+
+        </section>
+        <!-- /.content -->
+    </aside>
+    <!-- /.right-side -->
 </div><!-- ./wrapper -->
 
 <?php include('modal/_modal_project_online.php') ?>
