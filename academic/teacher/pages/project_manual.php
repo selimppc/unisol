@@ -31,7 +31,6 @@
         <section class="content">
 
 
-
             <h1>Welcome to our Teacher Project Control Panel</h1>
 
             <div class="box-header">
@@ -50,14 +49,15 @@
                 </div>
 
                 <div class="button-centre">
-                    <button type="button"  class="btn btn-success" >Submit</button>
+                    <button type="button" class="btn btn-success">Submit</button>
                 </div>
             </div>
 
 
-
-        </section><!-- /.content -->
-    </aside><!-- /.right-side -->
+        </section>
+        <!-- /.content -->
+    </aside>
+    <!-- /.right-side -->
 </div><!-- ./wrapper -->
 
 <?php include('../_footer.php'); ?>
