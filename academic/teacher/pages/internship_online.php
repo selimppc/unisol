@@ -104,7 +104,7 @@
     <td>edu TechSolutions</td>
 
 
-    <td>Software</td>
+    <td>Telecom</td>
     <td>With a small team of developers, designers works day in and day out on developing beautiful, powerful, and user-friendly apps</td>
     <td>6 month</td>
     <th><button class="btn btn-success btn-xs">approved</button></th>
@@ -163,7 +163,7 @@
     <td>VB-Solutions</td>
 
 
-    <td>Software</td>
+    <td>Telecom</td>
     <td>designers works day in and day out on developing beautiful, powerful, and user-friendly apps</td>
     <td>6 month</td>
     <th><button class="btn btn-success btn-xs">approved</button></th>
@@ -208,7 +208,7 @@
     <td>GP-IT</td>
 
 
-    <td>Software</td>
+    <td>Telecom</td>
     <td>designers works day in and day out on developing beautiful, powerful, and user-friendly apps</td>
     <td>6 month</td>
     <th><button class="btn btn-primary btn-xs">open</button></th>
@@ -255,7 +255,7 @@
     <td>GP-IT</td>
 
 
-    <td>Software</td>
+    <td>Telecom</td>
     <td>designers works day in and day out on developing beautiful, powerful, and user-friendly apps</td>
     <td>6 month</td>
     <th><button class="btn btn-primary btn-xs">open</button></th>
