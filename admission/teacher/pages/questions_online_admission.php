@@ -124,5 +124,5 @@
                  </section><!-- /.content -->
             </aside><!-- /.right-side -->
         </div><!-- ./wrapper -->
-<?php include('modal/_modal_teacher_Question.php'); ?>
+<?php include('modal/_modal_teacher_question.php'); ?>
 <?php include('../_footer.php'); ?>

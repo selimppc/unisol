@@ -52,10 +52,10 @@
                             </a>
                             <ul class="treeview-menu">
                                
-                                <li><a href="pages/charts/flot.html"><i class="fa fa-angle-double-right"></i> Online Based</a>
+                                <li><a href=""><i class="fa fa-angle-double-right"></i> Online Based</a>
                                    
                                 </li>
-                                  <li><a href="pages/charts/inline.html"><i class="fa fa-angle-double-right"></i> paper Based</a>
+                                  <li><a href=""><i class="fa fa-angle-double-right"></i> paper Based</a>
                                      
                                 </li>
                             </ul>
