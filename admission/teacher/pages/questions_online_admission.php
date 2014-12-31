@@ -19,12 +19,110 @@
 
                 <!-- Main content -->
                 <section class="content">
+                    
+                       <div class="row">
+                    <div class="col-md-12">
+                        <!-- Custom Tabs -->
+                        <div class="nav-tabs-custom">
+                            <ul class="nav nav-tabs">
+                              <li class="active"><a href="#tab_1" data-toggle="tab">Question </a></li>
+                              <li class="pull-right"><a href="#" class="text-muted"><i class="fa fa-gear"></i></a></li>
+                            </ul>
 
-                       
-                        
-                        
-                </section><!-- /.content -->
+                    <!--  tab_1 -->
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="tab_2">
+                              <div class="box">
+                              <div class="box-header">
+                                <h3 class="box-title">Prepare Question for Admission Examination</h3>
+                                 <button class="pull-right btn btn-success"  data-toggle="modal" data-target="#addQuestion" >
+                                    Add New
+                                </button>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body table-responsive">
+                            <table id="example" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Type</th>
+                                            <th>Questions</th>
+                                            <th>Options</th>
+                                            <th>Answer</th>
+                                            <th>Action </th>
+                                            
+                                        </tr>
+
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>MCQ</td>
+                                            <td>RAD stands for?</td>
+                                            <td>1.Relative Application Development,2.Rapid Application Development,3.Rapid Application Document,4.Rapid Apply Document</td>
+                                            <td>2.Rapid Application Development</td>
+                                            <td><button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#viewDetails">View</button>
+                                            <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#addQuestion">Edit</button>
+                                            <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">Delete</button>
+                                             </td>
+                                           
+                                        </tr>
+                                         <tr>
+                                             <td>MCQ</td>
+                                            <td>RAD stands for?</td>
+                                            <td>1.Relative Application Development,2.Rapid Application Development,3.Rapid Application Document,4.Rapid Apply Document</td>
+                                            <td>2.Rapid Application Development</td>
+                                              <td><button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#viewDetails">View</button>
+                                            <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#addQuestion">Edit</button>
+                                            <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">Delete</button>
+                                             </td>
+                                            
+                                        </tr>
+                                         <tr>
+                                            <td>MCQ</td>
+                                            <td>RAD stands for?</td>
+                                            <td>1.Relative Application Development,2.Rapid Application Development,3.Rapid Application Document,4.Rapid Apply Document</td>
+                                            <td>2.Rapid Application Development</td>
+                                              <td><button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#viewDetails">View</button>
+                                            <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#addQuestion">Edit</button>
+                                            <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">Delete</button>
+                                             </td>
+                                            
+                                        </tr>
+                                         <tr>
+                                            <td>MCQ</td>
+                                            <td>RAD stands for?</td>
+                                            <td>1.Relative Application Development,2.Rapid Application Development,3.Rapid Application Document,4.Rapid Apply Document</td>
+                                            <td>2.Rapid Application Development</td>
+                                              <td><button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#viewDetails">View</button>
+                                            <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#addQuestion">Edit</button>
+                                            <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">Delete</button>
+                                             </td>
+                                           
+                                        </tr>
+                                         <tr>
+                                             <td>MCQ</td>
+                                            <td>RAD stands for?</td>
+                                            <td>1.Relative Application Development,2.Rapid Application Development,3.Rapid Application Document,4.Rapid Apply Document</td>
+                                            <td>2.Rapid Application Development</td>
+                                              <td><button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#viewDetails">View</button>
+                                            <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#addQuestion">Edit</button>
+                                            <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">Delete</button>
+                                             </td>
+                                        </tr>
+                                        
+                                    </tbody>
+                                 
+                                </table>
+                                </div><!-- /.box-body -->
+                               </div><!-- /.box -->
+                             </div><!-- /.tab-pane -->
+
+                        </div><!-- /.tab-content -->
+                        </div><!-- nav-tabs-custom -->
+                    </div><!-- /.col -->
+                    
+                   </div>
+                 </section><!-- /.content -->
             </aside><!-- /.right-side -->
         </div><!-- ./wrapper -->
-
+<?php include('modal/_modal_teacher_Question.php'); ?>
 <?php include('../_footer.php'); ?>
