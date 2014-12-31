@@ -25,7 +25,10 @@
 <section class="content">
 <div class="box-body">
     <p>
-        <button class="pull-right btn btn-primary btn-sm"  data-toggle="modal" data-target="#add">Add New </button>
+        <button class="pull-right btn btn-primary btn-sm"  data-toggle="modal" data-target="#massage">Send Notification To Student </button>
+    </p>
+    <p>
+        <button class="pull-left btn btn-primary btn-sm"  data-toggle="modal" data-target="#add">Add New </button>
     </p>
 
 </div>
@@ -70,9 +73,9 @@
 
 
     <th>
-            <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#print">Print</button>
+        <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#print">Print</button>
 
-            </span>
+        </span>
     </th>
 
 </tr>
@@ -485,7 +488,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title">View Details</h4>
+                <h4 class="modal-title">Print Certificate</h4>
             </div>
             <div class="modal-body">
 
@@ -502,6 +505,118 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
+
+<!--send notification:Modal-->
+
+<div class="modal fade" id="massage" tabindex="-1" role="dialog" aria-labelledby="viewDetails" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">Send Notification</h4>
+            </div>
+            <div class="modal-body">
+
+                <form role="form">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="name">Student Name</label>
+                            <input type="name" class="form-control" id="name" >
+                        </div>
+
+
+
+
+                        <div class="form-group">
+                            <label for="department">Department</label>
+                            <select class="form-control input-sm" id="department">
+                                <option>Select a Department</option>
+                                <option value="CSE">CSE</option>
+                                <option value="ICT">ICT</option>
+                                <option value="ENGLISH">ENGLISH</option>
+                                <option value="PHYSICS">PHYSICS</option>
+                                <option value="CSE">MATH</option>
+                                <option value="CSE">BBA</option>
+                                <option value="CSE">MBA</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="semester">Semester</label>
+                            <select class="form-control input-sm" id="semester">
+                                <option>Select Semester</option>
+                                <option value="CSE">Spring</option>
+                                <option value="ICT">Summer</option>
+                                <option value="ENGLISH">Fall</option>
+                            </select>
+                        </div>
+
+
+
+                        <div class="form-group">
+                            <label for="year">Year</label>
+                            <select class="form-control input-sm" id="year">
+                                <option>Select Year</option>
+                                <option value="CSE">2010</option>
+                                <option value="ICT">2011</option>
+                                <option value="ENGLISH">2012</option>
+                                <option value="ENGLISH">2013</option>
+                                <option value="ENGLISH">2014</option>
+                                <option value="ENGLISH">2015</option>
+                                <option value="ENGLISH">2016</option>
+
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" class="form-control" id="email" >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="msg">Massage</label>
+                            <input type="msg" class="form-control" id="msg" value="Your Certificate is ready,Please receive it from your department">
+                        </div>
+
+                    </div>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-info" data-dismiss="modal"  data-toggle="modal" data-target="#send_msg">Send</button>
+
+                
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!--get msg:modal-->
+
+<div class="modal fade" id="send_msg" tabindex="-1" role="dialog" aria-labelledby="viewDetails" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">Send Notification</h4>
+            </div>
+            <div class="modal-body">
+
+                <form role="form">
+                    <div class="box-body">
+                        <p>The notification has been  sent to all of the students of <b>'CSE'</b> Department</p>
+
+                    </div>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 
 
 <script type="text/javascript">
