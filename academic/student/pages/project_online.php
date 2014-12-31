@@ -42,7 +42,7 @@
 </div>
 <div class="btn-group">
     <button type="button" class=" btn-danger" data-toggle="modal"
-            data-target="#projectpresentation">Proposal Presentation</button>
+            data-target="#projectpresentation">Propose Presentation</button>
 
 </div>
 
@@ -64,19 +64,10 @@
 </div>
 <div class="btn-group">
     <button type="button" class=" btn-danger" data-toggle="modal"
-            data-target="#manageProjet">Manage Project</button>
+            data-target="#finalReport">Final Report</button>
 
 </div>
-<div class="btn-group">
-    <button type="button" class=" btn-success" data-toggle="modal"
-            data-target="#distributeProjet">Distribute To Student</button>
 
-</div>
-<div class="btn-group">
-    <button type="button" class=" btn-warning" data-toggle="modal"
-            data-target="#evaluateProjects">Evaluate Project</button>
-
-</div>
 
 <br><br>
 
@@ -156,15 +147,12 @@
                     View
                 </button>
 
-                <button class="btn btn-success btn-xs" data-toggle="modal"
-                        data-target="#submitConfirmation">
-                    Accept
+                <button class="btn btn-danger btn-xs" data-toggle="modal"
+                        data-target="#deleteConfirmation">
+                    Delete
                 </button>
 
-                <button class="btn btn-primary btn-xs" data-toggle="modal"
-                        data-target="#evaluationProjectMarks">
-                    Edit
-                </button>
+
 
 
             </td>
@@ -190,14 +178,9 @@
                     View
                 </button>
 
-                <button class="btn btn-success btn-xs" data-toggle="modal"
-                        data-target="#submitConfirmation">
-                    Accept
-                </button>
-
-                <button class="btn btn-primary btn-xs" data-toggle="modal"
-                        data-target="#evaluationProjectMarks">
-                    Edit
+                <button class="btn btn-danger btn-xs" data-toggle="modal"
+                        data-target="#deleteConfirmation">
+                    Delete
                 </button>
 
 
