@@ -247,7 +247,7 @@
             <li class="user-header bg-light-blue">
                 <img src="img/avatar5.png" class="img-circle" alt="User Image" />
                 <p>
-                    Mr. Arko
+                    Mr. Talukdar
                     <small>Member since Jan. 2013</small>
                 </p>
             </li>
