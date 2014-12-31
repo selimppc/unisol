@@ -65,6 +65,7 @@
                             <tr>
                                 <th>Title</th>
                                 <th>Description</th>
+                                <th>Category</th>
                                 <th>Gender</th>
                                 <th>Rules</th>
                                 <th>Eligibility</th>
@@ -77,6 +78,7 @@
                             <tr>
                                 <td> Sport and fitness </td>
                                 <td> There are countless opportunities to join a University sport club </td>
+                                <td> All - Student  </td>
                                 <td> Male  </td>
                                 <td> Fierce, competition is guaranteed through the intercollegiate 'Cuppers' </td>
                                 <td> Student </td>
@@ -98,6 +100,7 @@
                             <tr>
                                 <td> Drama </td>
                                 <td> Fry, John Cleese, Emma Thompson, Tilda Swinton, and Tom Hiddleston </td>
+                                <td> Teacher  </td>
                                 <td> Female  </td>
                                 <td> clubs and societies </td>
                                 <td> Student </td>
@@ -116,6 +119,7 @@
                             <tr>
                                 <td> Volunteering </td>
                                 <td> The Office of External Affairs and Communications' Public Engagement team work closely  </td>
+                                <td> Staff  </td>
                                 <td> Female  </td>
                                 <td> volunteer </td>
                                 <td> Student </td>
