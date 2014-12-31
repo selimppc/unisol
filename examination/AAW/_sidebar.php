@@ -4,11 +4,11 @@
         <!-- Sidebar user panel -->
         <div class="user-panel">
             <div class="pull-left image">
-                <img src="../img/avatar3.png" class="img-circle" alt="User Image" />
+                <img src="img/avatar3.png" class="img-circle" alt="User Image" />
             </div>
             <div class="pull-left info">
-                <p>Hello, Mrs. Laila</p>
-                <a href="#"><i class="fa fa-circle text-success"></i>as AAW is Online</a>
+                <p>Hello, Edu Tech</p>
+                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
         </div>
         <!-- search form -->
@@ -24,7 +24,7 @@
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
             <li class="active">
-                <a href="index.php">
+                <a href="../index.php">
                     <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                 </a>
             </li>

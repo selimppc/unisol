@@ -24,9 +24,9 @@
 <!-- Main content -->
 <section class="content">
 <div class="box-body">
-    <p>
+    <!--<p>
         <button class="pull-right btn btn-primary btn-sm"  data-toggle="modal" data-target="#add">Add New </button>
-    </p>
+    </p>-->
 
 </div>
 <div class="row">
@@ -58,10 +58,10 @@
     <td>Md. Jamal</td>
 
 
-    <td>CE-01001</td>
+    <td>010101</td>
     <td>CSE</td>
     <td>Spring</td>
-    <td>2011</td>
+    <td>2014</td>
 
     <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
 
@@ -73,10 +73,10 @@
     <td>Md. Tarak</td>
 
 
-    <td>MBA-01001</td>
+    <td>010202</td>
     <td>MBA</td>
     <td>Spring</td>
-    <td>2011</td>
+    <td>2014</td>
 
     <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
 
@@ -84,52 +84,52 @@
 
 <tr>
 
-    <td>Md. Jamal</td>
+    <td>Md. Mahin</td>
 
 
-    <td>CE-01001</td>
+    <td>010102</td>
     <td>CSE</td>
     <td>Spring</td>
-    <td>2011</td>
+    <td>2014</td>
 
     <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
 
 </tr>
 <tr>
 
-    <td>Md. Sami</td>
+    <td>Sami Haider</td>
 
 
-    <td>CE-01001</td>
+    <td>010103</td>
     <td>CSE</td>
     <td>Spring</td>
-    <td>2012</td>
+    <td>2014</td>
 
     <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
 
 </tr>
 <tr>
 
-    <td>Md. Tarak</td>
+    <td>Md. Tofael Rana</td>
 
 
-    <td>MBA-01001</td>
+    <td>010201</td>
     <td>MBA</td>
     <td>Spring</td>
-    <td>2011</td>
+    <td>2014</td>
 
     <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
 
 </tr>
 <tr>
 
-    <td>Md. Tarak</td>
+    <td>Manish Hotra</td>
 
 
-    <td>MBA-01001</td>
+    <td>010210</td>
     <td>MBA</td>
     <td>Spring</td>
-    <td>2011</td>
+    <td>2014</td>
 
     <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
 
@@ -137,156 +137,156 @@
 </tr>
 <tr>
 
-    <td>Md. Jamal</td>
+    <td>Md. Jamal Kaiser</td>
 
 
-    <td>CE-01001</td>
+    <td>010121</td>
     <td>CSE</td>
     <td>Spring</td>
-    <td>2011</td>
+    <td>2014</td>
 
     <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
 
 </tr>
 <tr>
 
-    <td>Md. Sami</td>
+    <td>Md. Sami hasan</td>
 
 
-    <td>CE-01001</td>
+    <td>010131</td>
     <td>CSE</td>
     <td>Spring</td>
-    <td>2012</td>
+    <td>2014</td>
 
     <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
 
 </tr>
 <tr>
 
-    <td>Md. Jamal</td>
+    <td>Md. Jamal Khan</td>
 
 
-    <td>CE-01001</td>
+    <td>010111</td>
     <td>CSE</td>
     <td>Spring</td>
-    <td>2011</td>
+    <td>2014</td>
 
     <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
 
 </tr>
 <tr>
 
-    <td>Md. Sami</td>
+    <td>Md. Kausar Hamid</td>
 
 
-    <td>CE-01001</td>
+    <td>010123</td>
     <td>CSE</td>
     <td>Spring</td>
-    <td>2012</td>
+    <td>2014</td>
 
     <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
 
 </tr>
 <tr>
 
-    <td>Md. Sami</td>
+    <td>Md. Samiul Bashar</td>
 
 
-    <td>CE-01001</td>
+    <td>010122</td>
     <td>CSE</td>
     <td>Spring</td>
-    <td>2012</td>
+    <td>2014</td>
 
     <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
 
 </tr>
 <tr>
 
-    <td>Md. Jamal</td>
+    <td>Khan Jamal</td>
 
 
-    <td>CE-01001</td>
+    <td>010134</td>
     <td>CSE</td>
     <td>Spring</td>
-    <td>2011</td>
+    <td>2014</td>
 
     <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
 
 </tr>
 <tr>
 
-    <td>Md. Jamal</td>
+    <td>Jeni Hasan</td>
 
 
-    <td>CE-01001</td>
+    <td>010117</td>
     <td>CSE</td>
     <td>Spring</td>
-    <td>2011</td>
+    <td>2014</td>
 
     <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
 
 </tr>
 <tr>
 
-    <td>Md. Jamal</td>
+    <td>Taifa Khalil</td>
 
 
-    <td>CE-01001</td>
+    <td>010133</td>
     <td>CSE</td>
     <td>Spring</td>
-    <td>2011</td>
+    <td>2014</td>
 
     <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
 
 </tr>
 <tr>
 
-    <td>Md. Jamal</td>
+    <td>Shumi Hasnat</td>
 
 
-    <td>CE-01001</td>
+    <td>010134</td>
     <td>CSE</td>
     <td>Spring</td>
-    <td>2011</td>
+    <td>2014</td>
 
     <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
 
 </tr>
 <tr>
 
-    <td>Md. Jamal</td>
+    <td>Talha Ahmed</td>
 
 
-    <td>CE-01001</td>
+    <td>010132</td>
     <td>CSE</td>
     <td>Spring</td>
-    <td>2011</td>
+    <td>2014</td>
 
     <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
 
 </tr>
 <tr>
 
-    <td>Md. Jamal</td>
+    <td>Kahn Shafi Rahman</td>
 
 
-    <td>CE-01001</td>
+    <td>010125</td>
     <td>CSE</td>
     <td>Spring</td>
-    <td>2011</td>
+    <td>2014</td>
 
     <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
 
 </tr>
 <tr>
 
-    <td>Md. Jamal</td>
+    <td>Janal Rahman</td>
 
 
-    <td>CE-01001</td>
+    <td>010143</td>
     <td>CSE</td>
     <td>Spring</td>
-    <td>2011</td>
+    <td>2014</td>
 
     <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
 
@@ -294,13 +294,13 @@
 
 <tr>
 
-    <td>Md. Jamal</td>
+    <td>Mobasser Ahmed</td>
 
 
-    <td>CE-01001</td>
+    <td>010154</td>
     <td>CSE</td>
     <td>Spring</td>
-    <td>2011</td>
+    <td>2014</td>
 
     <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
 
@@ -441,7 +441,7 @@
 
                         </tr>
 
-                        <td>Roll:01001</td></tr>
+                        <td>Roll:0101--</td></tr>
                         <td>Department:CSE</td></tr>
                         <td>Semester:Spring</td></tr>
 
