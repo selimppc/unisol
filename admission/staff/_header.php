@@ -20,6 +20,10 @@
     <link href="../css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
     <!-- Theme style -->
     <link href="../css/custom.css" rel="stylesheet" type="text/css" />
+  <!-- DATA TABLES -->
+        <link href="../css/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
+
+        <script src="../js/plugins/jquery/jquery.min.js"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -27,6 +31,26 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
+
+    <!-- page script -->
+    <script type="text/javascript">
+        $(function() {
+            $("#example1").dataTable();
+               $("#example").dataTable();
+                  $("#example3").dataTable();
+                     $("#example4").dataTable();
+
+            $('#example2').dataTable({
+                "bPaginate": true,
+                "bLengthChange": false,
+                "bFilter": false,
+                "bSort": true,
+                "bInfo": true,
+                "bAutoWidth": false
+            });
+        });
+    </script>
+
 </head>
 
 <body class="skin-blue">
@@ -244,14 +268,14 @@
         <ul class="dropdown-menu">
             <!-- User image -->
             <li class="user-header bg-light-blue">
-                <img src="img/avatar3.png" class="img-circle" alt="User Image" />
+                <img src="../img/avatar5.png" class="img-circle" alt="User Image" />
                 <p>
-                    Edu Tech Software Solutions
+                    Mr. Hasan
                     <small>Member since Nov. 2012</small>
                 </p>
             </li>
             <!-- Menu Body -->
-            <li class="user-body">
+            <!--<li class="user-body">
                 <div class="col-xs-4 text-center">
                     <a href="#">Followers</a>
                 </div>
@@ -261,7 +285,7 @@
                 <div class="col-xs-4 text-center">
                     <a href="#">Friends</a>
                 </div>
-            </li>
+            </li>-->
             <!-- Menu Footer-->
             <li class="user-footer">
                 <div class="pull-left">

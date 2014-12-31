@@ -35,8 +35,9 @@
                               <li class="pull-right"><a href="#" class="text-muted"><i class="fa fa-gear"></i></a></li>
                             </ul>
 
-                    <!--  tab_1 -->
+
                         <div class="tab-content">
+                        <!--  tab_1 -->
                             <div class="tab-pane active" id="tab_1">
                               <div class="box">
                               <div class="box-header">
