@@ -201,7 +201,6 @@
                                       placeholder="Description goes here"></textarea>
                         </div>
 
-
                         <div class="form-group">
                             <label for="exampleInputFile">Project Report File/DOc </label>
                             <input type="file" id="exampleInputFile">
@@ -285,14 +284,12 @@
                 <h4 class="modal-title">View Details</h4>
             </div>
             <div class="modal-body">
-
-
                 <p>
                     <img src="../img/doc.png">
                 </p>
             </div>
             <div class="modal-footer">
-              
+
                 <button type="button" class="btn btn-success" data-dismiss="modal">Back</button>
             </div>
         </div>
@@ -323,7 +320,6 @@
                     <textarea class="form-control" id="description"
                               placeholder="Your Comment Please"></textarea>
                 </div>
-
 
             </div>
             <div class="modal-footer">
