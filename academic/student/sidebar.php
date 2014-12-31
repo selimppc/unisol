@@ -28,7 +28,13 @@
                     <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                 </a>
             </li>
+            <li>
+                <a href="pages/calendar.php">
+                    <i class="fa fa-laptop"></i>
+                    <span>Calendar</span>
+                </a>
 
+            </li>
             <li>
                 <a href="pages/enrollment.php">
                     <i class="fa fa-laptop"></i>
@@ -114,17 +120,12 @@
 
 
 
-            <li class="treeview">
-                <a href="#">
+            <li>
+                <a href="pages/noticeboard_frontend.php">
                     <i class="fa fa-laptop"></i>
                     <span>Notice Board</span>
-                    <i class="fa fa-angle-left pull-right"></i>
+                    <i class="fa pull-right"></i>
                 </a>
-                <ul class="treeview-menu">
-                    <li><a href="pages/noticeboard_backend.php"><i class="fa fa-angle-double-right"></i> Backend</a></li>
-                    <li><a href="pages/noticeboard_frontend.php"><i class="fa fa-angle-double-right"></i> Frontend</a></li>
-
-                </ul>
             </li>
 
 
