@@ -266,7 +266,7 @@
             <li class="user-header bg-light-blue">
                 <img src="../img/avatar3.png" class="img-circle" alt="User Image" />
                 <p>
-                    Mr. Hossain
+                    Mrs. Laila
                     <small>Member since Nov. 2014</small>
                 </p>
             </li>

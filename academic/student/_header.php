@@ -82,7 +82,7 @@
                     <li><!-- start message -->
                         <a href="#">
                             <div class="pull-left">
-                                <img src="../img/avatar3.png" class="img-circle" alt="User Image"/>
+                                <img src="../img/avatar04.png" class="img-circle" alt="User Image"/>
                             </div>
                             <h4>
                                 Support Team
@@ -191,19 +191,19 @@
     <li class="dropdown user user-menu">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <i class="glyphicon glyphicon-user"></i>
-            <span>Admin <i class="caret"></i></span>
+            <span>Student <i class="caret"></i></span>
         </a>
         <ul class="dropdown-menu">
             <!-- User image -->
             <li class="user-header bg-light-blue">
-                <img src="../img/avatar3.png" class="img-circle" alt="User Image" />
+                <img src="../img/avatar04.png" class="img-circle" alt="User Image" />
                 <p>
-                    Edu Tech Software Solutions
-                    <small>Member since Nov. 2012</small>
+                    Mr. Arko
+                    <small>Member since Nov. 2014</small>
                 </p>
             </li>
             <!-- Menu Body -->
-            <li class="user-body">
+            <!--<li class="user-body">
                 <div class="col-xs-4 text-center">
                     <a href="#">Followers</a>
                 </div>
@@ -212,7 +212,7 @@
                 </div>
                 <div class="col-xs-4 text-center">
                     <a href="#">Friends</a>
-                </div>
+                </div>-->
             </li>
             <!-- Menu Footer-->
             <li class="user-footer">

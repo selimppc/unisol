@@ -263,7 +263,7 @@
         <ul class="dropdown-menu">
             <!-- User image -->
             <li class="user-header bg-light-blue">
-                <img src="../img/avatar3.png" class="img-circle" alt="User Image" />
+                <img src="../img/avatar5.png" class="img-circle" alt="User Image" />
                 <p>
                     Mr. Talukdar
                     <small>Member since Jan, 2013</small>
