@@ -470,9 +470,6 @@
 
 
 
-
-
-
 <script type="text/javascript">
     $(function() {
         $("#example1").dataTable();
