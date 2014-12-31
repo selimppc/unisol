@@ -25,7 +25,7 @@
 
 
 
-                    <h2>Welcome to our Admission Module Admin Dashboard !</h2>
+                    <h2>Welcome to our Admission Staff Dashboard !</h2>
 
                 </section><!-- /.content -->
             </aside><!-- /.right-side -->
