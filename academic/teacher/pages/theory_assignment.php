@@ -24,11 +24,12 @@
         <section class="content">
 
 
-
             <h1>Welcome to our Student Enrollment Page</h1>
 
-        </section><!-- /.content -->
-    </aside><!-- /.right-side -->
+        </section>
+        <!-- /.content -->
+    </aside>
+    <!-- /.right-side -->
 </div><!-- ./wrapper -->
 
 <?php include('../_footer.php'); ?>

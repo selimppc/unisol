@@ -5,6 +5,13 @@
 
     <?php include('../_sidebar.php'); ?>
 
+    <style type="text/css">
+
+        .button-centre {
+            text-align: center;
+        }
+    </style>
+
 
     <!-- Right side column. Contains the navbar and content of the page -->
     <aside class="right-side">
@@ -24,11 +31,33 @@
         <section class="content">
 
 
+            <h1>Welcome to our Teacher Thesis Control Panel</h1>
 
-            <h1>Welcome to our Student Enrollment Page</h1>
+            <div class="box-header">
+                <h3 class="box-title">Manual Lab Evaluation</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body table-responsive no-padding">
 
-        </section><!-- /.content -->
-    </aside><!-- /.right-side -->
+                <div class="jumbotron text-center">
+                    <h2> Lab Task : Lab Task -1</h2>
+
+                    <div class="">
+                        <label for="title">Obtain Marks</label>
+                        <input class="" id="title" placeholder="Marks">
+                    </div>
+                </div>
+
+                <div class="button-centre">
+                    <button type="button" class="btn btn-success">Submit</button>
+                </div>
+            </div>
+
+
+        </section>
+        <!-- /.content -->
+    </aside>
+    <!-- /.right-side -->
 </div><!-- ./wrapper -->
 
 <?php include('../_footer.php'); ?>

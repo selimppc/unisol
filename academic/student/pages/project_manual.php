@@ -29,9 +29,6 @@
         <!-- Main content -->
         <section class="content">
 
-
-
-
             <h1>Welcome to our Student Project Control Panel</h1>
 
             <div class="box-header">

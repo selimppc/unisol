@@ -17,7 +17,7 @@
             </div>
             <div class="modal-body">
                 <div class="jumbotron text-centre">
-                    You have got 9 out of 10 on Project-1
+                    You have got 9 out of 10
                 </div>
             </div>
             <div class="modal-footer">
