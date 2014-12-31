@@ -63,7 +63,15 @@
                         <label for="description">Description</label>
                         <textarea class="form-control" id="description" placeholder="Description goes here"></textarea>
                     </div>
-
+                    <div class="form-group">
+                        <label for="description">Category</label>
+                        <select class="form-control">
+                            <option>All - Student</option>
+                            <option>Student - Year Basis</option>
+                            <option>Teacher</option>
+                            <option>Staff</option>
+                        </select>
+                    </div>
                     <div class="form-group">
                         <label for="gender">Gender </label>
                         <label class="radio-inline">
