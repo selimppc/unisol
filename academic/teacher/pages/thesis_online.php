@@ -24,7 +24,7 @@
         <section class="content">
 
         <!-- START CUSTOM TABS -->
-        <h2 class="page-header">Project Management Online: Teacher </h2>
+        <h2 class="page-header">Thesis Management Online: Teacher </h2>
 
         <div class="row">
         <div class="col-md-12">
@@ -42,7 +42,7 @@
 
         <div class="btn-group">
             <button type="button" class=" btn-info" data-toggle="modal"
-                    data-target="#projectproposal">Project Proposal
+                    data-target="#projectproposal">Thesis Proposal
             </button>
 
         </div>
@@ -60,7 +60,7 @@
 
         <div class="btn-group">
             <button type="button" class=" btn-default" data-toggle="modal"
-                    data-target="#projectPresentation">Project Presentation</button>
+                    data-target="#projectPresentation">Thesis Presentation</button>
         </div>
 
         <div class="btn-group">
@@ -70,7 +70,7 @@
         </div>
         <div class="btn-group">
             <button type="button" class=" btn-danger" data-toggle="modal"
-                    data-target="#manageProjet">Manage Project</button>
+                    data-target="#manageProjet">Manage Thesis</button>
 
         </div>
         <div class="btn-group">
@@ -80,19 +80,19 @@
         </div>
         <div class="btn-group">
             <button type="button" class=" btn-warning" data-toggle="modal"
-                    data-target="#evaluateProjects">Evaluate Project</button>
+                    data-target="#evaluateThesis">Evaluate Thesis</button>
 
         </div>
 
         <br><br>
 
-        <b>Projects:</b>
+        <b>Thesis:</b>
 
         <div class="box-body table-responsive">
         <table id="example1" class="table table-bordered table-striped">
         <thead>
         <tr>
-            <th>Project Title</th>
+            <th>Thesis Title</th>
             <th>Deadline</th>
             <th>Details</th>
             <th>File</th>
