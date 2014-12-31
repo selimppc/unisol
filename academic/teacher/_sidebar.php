@@ -114,7 +114,7 @@
             </li>
 
             <li>
-                <a href="pages/noticeboard.php">
+                <a href="noticeboard.php">
                     <i class="fa fa-laptop"></i>
                     <span>Notice Board</span>
                     <i class="fa pull-right"></i>
