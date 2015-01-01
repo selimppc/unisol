@@ -170,7 +170,7 @@
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
-<!--Login View Academic Modal -->
+<!-- View Academic Modal -->
 <div class="modal fade" id="viewDetails" tabindex="-1" role="dialog" aria-labelledby="viewDetails" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -179,11 +179,21 @@
                 <h4 class="modal-title">View Details</h4>
             </div>
             <div class="modal-body">
+
                 <h2>Login Information:</h2>
-                <p>ratna@gmail.com</p>
+                <h4>Name:
                 <p>ratnaakter</p>
+                </h4><br>
+                <h4>Email Address:
+                <p>ratna@gmail.com</p>
+                </h4><br>
+                <h4>Security Question:
                 <p>What is your favourite color?</p>
+                </h4><br>
+                <h4>Question Answer:
                 <p>Purple</p>
+                </h4><br>
+                
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-success" data-dismiss="modal">Back</button>
@@ -202,11 +212,24 @@
                 <h4 class="modal-title">View Details</h4>
             </div>
             <div class="modal-body">
+
                 <h2>Applicant Information:</h2>
-                 <p>Ratna</p>
+                <h4>Applicant Id:
+                <p>1</p>
+                </h4><br>
+                <h4>FirstName:
+                <p>Ratna</p>
+                </h4><br>
+                <h4>LastName:
                 <p>Akter</p>
+                </h4><br>
+                <h4>Email Address:
                 <p>ratna@yahoo.com</p>
-                <p> 01528888987</p>
+                </h4><br>
+                <h4>Phone No:
+                <p>01528888987</p>
+                </h4><br>
+                
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-success" data-dismiss="modal">Back</button>
@@ -225,13 +248,27 @@
                 <h4 class="modal-title">View Details</h4>
             </div>
             <div class="modal-body">
+
                 <h2>Personal Information:</h2>
-                    <p>1</p>
-                    <p>Shamsul Hoque</p>
-                    <p>Jahanara Begum</p>
-                    <p>Uttara,Dhaka</p>
-                    <p>Uttara,Dhaka</p>
-                    <p> 01723456678</p>
+                <h4>Applicant Id:
+                <p>1</p>
+                </h4><br>
+                <h4>FathersName:
+                <p>Shamsul Hoque</p>
+                </h4><br>
+                <h4>MothersName:
+                <p>Jahanara Begum</p>
+                </h4><br>
+                <h4>Present Address:
+                <p>Uttara,Dhaka</p>
+                </h4><br>
+                <h4>Parmanent Address:
+                <p>Uttara,Dhaka</p>
+                </h4><br>
+                <h4>Phone No:
+                <p>01528888987</p>
+                </h4><br>
+                
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-success" data-dismiss="modal">Back</button>
@@ -241,7 +278,9 @@
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
-<!--Academic View Details Modal -->
+
+
+<!--Academic View HSC Details Modal -->
 <div class="modal fade" id="viewAcademic" tabindex="-1" role="dialog" aria-labelledby="viewDetails" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -251,14 +290,25 @@
             </div>
             <div class="modal-body">
                 <h2>Academic Information:</h2>
-                    <p>1</p>
-                    <p>Milestone College</p>
-                    <p>HSC</p>
-                    <p>Dhaka</p>
-                    <p>GPA 5</p>
-                    <p>2008</p>
-                    <p>xyz</p>
-                    <p>ABCD</p>
+                <h4>Applicant Id:
+                <p>1</p>
+                </h4><br>                         
+                <h4>Institute Name:
+                <p>Milestone College</p>
+                </h4><br>
+                <h4>Degree:
+                <p>HSC</p>
+                </h4><br>
+                <h4>Board:
+                <p>Dhaka</p>
+                </h4><br>
+                <h4>Result:
+                <p>GPA 5</p>
+                </h4><br>
+                <h4>Passing Year :
+                <p>2008</p>
+                </h4><br>
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-success" data-dismiss="modal">Back</button>
@@ -268,7 +318,7 @@
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
-
+                
 
 <!--Login Delete Modal -->
 

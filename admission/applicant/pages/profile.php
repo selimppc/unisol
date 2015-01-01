@@ -45,7 +45,7 @@
                            
                             </div><!-- /.box-header -->
                             <div class="box-body table-responsive">
-                             <table id="example1" class="table table-bordered table-striped">
+                        <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
                                             <th>Email Address</th>
@@ -65,57 +65,12 @@
                                             <td>Purple</td>
                                             <td>
                                             <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#viewDetails">View</button>
-                                            <button type="edit" class="btn btn-default btn-sm">Edit</button>
+                                            
                                             <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete">Delete</button>
                                             </td>
                                            
                                         </tr>
-                                         <tr>
-                                             <td>ratna@gmail.com</td>
-                                            <td>ratnaakter</td>
-                                            <td>What is your favourite color?</td>
-                                            <td>Purple</td>
-                                            <td>
-                                            <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#viewDetails">View</button>
-                                            <button type="edit" class="btn btn-default btn-sm">Edit</button>
-                                            <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete">Delete</button>
-                                            </td>
-                                            
-                                        </tr>
-                                         <tr>
-                                             <td>ratna@gmail.com</td>
-                                            <td>ratnaakter</td>
-                                            <td>What is your favourite color?</td>
-                                            <td>Purple</td>
-                                            <td>
-                                            <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#viewDetails">View</button>
-                                            <button type="edit" class="btn btn-default btn-sm">Edit</button>
-                                            <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete">Delete</button>
-                                            </td>
-                                        </tr>
-                                         <tr>
-                                            <td>ratna@gmail.com</td>
-                                            <td>ratnaakter</td>
-                                            <td>What is your favourite color?</td>
-                                            <td>Purple</td>
-                                            <td>
-                                            <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#viewDetails">View</button>
-                                            <button type="edit" class="btn btn-default btn-sm">Edit</button>
-                                            <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete">Delete</button>
-                                            </td>
-                                        </tr>
-                                         <tr>
-                                            <td>ratna@gmail.com</td>
-                                            <td>ratnaakter</td>
-                                            <td>What is your favourite color?</td>
-                                            <td>Purple</td>
-                                            <td>
-                                            <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#viewDetails">View</button>
-                                            <button type="edit" class="btn btn-default btn-sm">Edit</button>
-                                            <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete">Delete</button>
-                                            </td>
-                                        </tr>
-                                        
+                                  
                                         
                                     </tbody>
                                  
@@ -138,6 +93,7 @@
                             <table id="example" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
+                                            <th>Applicant ID</th>
                                             <th>First Name</th>
                                             <th>Last Name</th>
                                             <th>Email Address</th>
@@ -149,6 +105,7 @@
                                     </thead>
                                     <tbody>
                                         <tr>
+                                            <td>1</td>
                                             <td>Ratna</td>
                                             <td>Akter</td>
                                             <td>ratna@yahoo.com</td>
@@ -157,60 +114,8 @@
                                             <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#add">Edit</button>
                                             <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteApplicant">Delete</button>
                                                 </td>
-                                           
-                                        </tr>
-                                         <tr>
-                                            <td>Trident</td>
-                                            <td>Internet
-                                                Explorer 4.0</td>
-                                            <td>Win 95+</td>
-                                            <td> 4</td>
+                                          </tr>
                                           
-                                            <td><button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#viewApplicant">View</button>
-                                            <button type="edit" class="btn btn-default btn-sm">Edit</button>
-                                            <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteApplicant">Delete</button>
-                                            </td>
-                                            
-                                        </tr>
-                                         <tr>
-                                            <td>Trident</td>
-                                            <td>Internet
-                                                Explorer 4.0</td>
-                                            <td>Win 95+</td>
-                                            <td> 4</td>
-                                           
-                                             <td><button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#viewApplicant">View</button>
-                                            <button type="edit" class="btn btn-default btn-sm">Edit</button>
-                                            <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteApplicant">Delete</button>
-                                            </td>
-                                            
-                                        </tr>
-                                         <tr>
-                                            <td>Trident</td>
-                                            <td>Internet
-                                                Explorer 4.0</td>
-                                            <td>Win 95+</td>
-                                            <td> 4</td>
-                                         
-                                             <td><button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#viewApplicant">View</button>
-                                            <button type="edit" class="btn btn-default btn-sm">Edit</button>
-                                            <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteApplicant">Delete</button>
-                                            </td>
-                                           
-                                        </tr>
-                                         <tr>
-                                            <td>Trident</td>
-                                            <td>Internet
-                                                Explorer 4.0</td>
-                                            <td>Win 95+</td>
-                                            <td> 4</td>
-                                      
-                                            <td><button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#viewApplicant">View</button>
-                                            <button type="edit" class="btn btn-default btn-sm">Edit</button>
-                                            <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteApplicant">Delete</button>
-                                            </td>
-                                        </tr>
-                                        
                                     </tbody>
                                  
                                 </table>
@@ -256,57 +161,7 @@
                                           </td>
                                            
                                         </tr>
-                                         <tr>
-                                            <td>2</td>
-                                            <td>Shamsul Hoque</td>
-                                            <td>Jahanara Begum</td>
-                                            <td>Uttara,Dhaka</td>
-                                            <td>Uttara,Dhaka</td>
-                                            <td> 01723456678</td>
-                                             <td><button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#viewPersonal">View</button>
-                                           <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#addPersonal">Edit</button>
-                                           <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deletePersonal">Delete</button>
-                                          </td>
-                                            
-                                        </tr>
-                                         <tr>
-                                            <td>3</td>
-                                            <td>Shamsul Hoque</td>
-                                            <td>Jahanara Begum</td>
-                                            <td>Uttara,Dhaka</td>
-                                            <td>Uttara,Dhaka</td>
-                                            <td> 01723456678</td>
-                                             <td><button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#viewPersonal">View</button>
-                                           <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#addPersonal">Edit</button>
-                                           <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deletePersonal">Delete</button>
-                                          </td>
-                                        </tr>
-                                         <tr>
-                                            <td>4</td>
-                                            <td>Shamsul Hoque</td>
-                                            <td>Jahanara Begum</td>
-                                            <td>Uttara,Dhaka</td>
-                                            <td>Uttara,Dhaka</td>
-                                            <td> 01723456678</td>
-                                            <td><button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#viewPersonal">View</button>
-                                           <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#addPersonal">Edit</button>
-                                           <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deletePersonal">Delete</button>
-                                          </td>
-                                        </tr>
-                                         <tr>
-                                            <td>5</td>
-                                            <td>Rahim Uddin</td>
-                                            <td>Maleka</td>
-                                            <td>Uttara,Dhaka</td>
-                                            <td>Uttara,Dhaka</td>
-                                            <td> 01723456678</td>
-                                            <td><button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#viewPersonal">View</button>
-                                           <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#addPersonal">Edit</button>
-                                           <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deletePersonal">Delete</button>
-                                          </td>
-                                        </tr>
-                                        
-                                        
+                                         
                                     </tbody>
                                
                                 </table>
@@ -335,8 +190,6 @@
                                             <th>Board</th>
                                             <th>Result</th>
                                             <th>Passing Year </th>
-                                            <th>Certificate</th>
-                                            <th>Transcript</th>
                                             <th>Action </th>
                                             
                                         </tr>
@@ -350,82 +203,68 @@
                                             <td>Dhaka</td>
                                             <td>GPA 5</td>
                                             <td>2008</td>
-                                            <td>xyz</td>
-                                            <td>ABCD</td>
-                                             <td><button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#viewAcademic">View</button>
-                                             <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#addAcademic">Edit</button>
+                                            
+                                           <td>
+
+                                            <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#viewAcademic">View</button>
+
+                                           <button class="btn btn-default btn-sm" data-toggle=" modal" data-target="#addAcademic">Edit</button>
+
                                            <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteAcademic">Delete</button>
                                             </td>
-                                           
-                                        </tr>
-                                         <tr>
-                                           <td>1</td>
-                                            <td>Milestone College</td>
-                                            <td>HSC</td>
-                                            <td>Dhaka</td>
-                                            <td>GPA 5</td>
-                                            <td>2007</td>
-                                            <td>xyz</td>
-                                            <td>ABCD</td>
-                                             <td><button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#viewAcademic">View</button>
-                                             <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#addAcademic">Edit</button>
-                                           <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteAcademic">Delete</button>
-                                            </td>
-                                           
-                                           
-                                           
-                                        </tr>
-                                         <tr>
+                                         </tr>
+
+                                           <tr>
                                             <td>1</td>
-                                            <td>Notordame College</td>
-                                            <td>HSC</td>
-                                            <td>Dhaka</td>
-                                            <td>GPA 5</td>
-                                            <td>2009</td>
-                                            <td>xyz</td>
-                                            <td>ABCD</td>
-                                            <td><button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#viewAcademic">View</button>
-                                             <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#addAcademic">Edit</button>
-                                           <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteAcademic">Delete</button>
-                                            </td>
-                                           
-                                           
-                                        </tr>
-                                         <tr>
-                                            <td>1</td>
-                                            <td>Rajuk College</td>
-                                            <td>HSC</td>
+                                            <td>Emarat Hossain High School</td>
+                                            <td>SSC</td>
                                             <td>Dhaka</td>
                                             <td>GPA 4</td>
-                                            <td>2008</td>
-                                            <td>xyz</td>
-                                            <td>ABCD</td>
-                                              <td><button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#viewAcademic">View</button>
-                                             <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#addAcademic">Edit</button>
+                                            <td>2006</td>
+                                            
+                                           <td>
+                                           <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#viewAcademic">View</button>
+
+                                           <button class="btn btn-default btn-sm" data-toggle=" modal" data-target="#addAcademic">Edit</button>
+
                                            <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteAcademic">Delete</button>
                                             </td>
-                                           
-                                           
-                                        </tr>
-                                         <tr>
-                                           <td>1</td>
-                                            <td>Commerce College</td>
-                                            <td>HSC</td>
+                                         </tr>
+                                           <tr>
+                                            <td>1</td>
+                                            <td>Milestone School</td>
+                                            <td>JSC</td>
                                             <td>Dhaka</td>
-                                            <td>GPA 4.50</td>
-                                            <td>2008</td>
-                                            <td>xyz</td>
-                                            <td>ABCD</td>
-                                             <td><button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#viewAcademic">View</button>
-                                             <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#addAcademic">Edit</button>
+                                            <td>GPA 4.90</td>
+                                            <td>2004</td>
+                                            
+                                           <td>
+
+                                            <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#viewAcademic">View</button>
+
+                                           <button class="btn btn-default btn-sm" data-toggle=" modal" data-target="#addAcademic">Edit</button>
+
                                            <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteAcademic">Delete</button>
                                             </td>
-                                           
-                                           
-                                        </tr>
-                                        
-                                        
-                                    </tbody>
+                                         </tr>
+                                           <tr>
+                                            <td>1</td>
+                                            <td>Milestone School</td>
+                                            <td>PSC</td>
+                                            <td>Dhaka</td>
+                                            <td>GPA 5</td>
+                                            <td>2001</td>
+                                            
+                                           <td>
+
+                                            <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#viewAcademic">View</button>
+
+                                           <button class="btn btn-default btn-sm" data-toggle=" modal" data-target="#addAcademic">Edit</button>
+
+                                           <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteAcademic">Delete</button>
+                                            </td>
+                                         </tr>
+                                       </tbody>
                                 
                                 </table>
                             </div><!-- /.box-body -->
