@@ -60,6 +60,51 @@
                                                 </td>
                                             </tr>
 
+                                            <tr>
+                                                <td> Lab </td>
+                                                <td width="120">
+                                                    <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#labMarksDistribution">
+                                                        Mark Distribution
+                                                    </button>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td> Project </td>
+                                                <td width="120">
+                                                    <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#projectMarksDistribution">
+                                                        Mark Distribution
+                                                    </button>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td> Thesis </td>
+                                                <td width="120">
+                                                    <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#thesisMarksDistribution">
+                                                        Mark Distribution
+                                                    </button>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td> InternShip </td>
+                                                <td width="120">
+                                                    <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#internshipMarksDistribution">
+                                                        Mark Distribution
+                                                    </button>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td> Industrial Tour </td>
+                                                <td width="120">
+                                                    <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#industrial_tourMarksDistribution">
+                                                        Mark Distribution
+                                                    </button>
+                                                </td>
+                                            </tr>
+
                                             
 
                                      </tbody>
