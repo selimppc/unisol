@@ -44,7 +44,7 @@
                         <div class="tab-content">
                             <div class="tab-pane active" id="tab_1">
                                 <button class="pull-right btn btn-success btn-sm"  data-toggle="modal" data-target="#newClassVideo" >
-                                    New Class Video
+                                    New Sesion Video
                                 </button><br>
                                 <b>&nbsp;</b>
 
@@ -52,10 +52,10 @@
                                     <table id="example1" class="table table-bordered table-striped">
                                         <thead>
                                         <tr>
-                                            <th> Class Name </th>
+                                            <th> Session Name </th>
                                             <th> Day </th>
-                                            <th> Video </th>
-                                            <th> Status </th>
+                                            <th> Session Video </th>
+                                            <th> Description </th>
                                             <th> Action </th>
                                         </tr>
                                         </thead>
@@ -69,7 +69,7 @@
                                                         <img src="../video/video.png" width="40" style="cursor: pointer" class="img-thumbnail">
                                                     </span>
                                                 </td>
-                                                <td> Published </td>
+                                                <td> Description  </td>
                                                 <td width="120">
                                                     <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#viewDetails">
                                                         View
