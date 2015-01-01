@@ -54,7 +54,7 @@
 
             <th>Type</th>
             <th>Business Description</th>
-            <th>Intern Policy</th>
+            <th>Intern Duration</th>
             <th>Status</th>
             <th>Action</th>
 
@@ -71,7 +71,9 @@
             <td>Software</td>
             <td>With a small team of developers, designers works day in and day out on developing beautiful, powerful, and user-friendly apps</td>
             <td>6 month</td>
-            <th><button class="btn btn-success btn-xs">approved</button></th>
+            <th>
+                <h5 style="color: #b11b64"><b>accepted</b></h5>
+            </th>
             <th><button class="btn btn-info btn-xs" data-toggle="modal" data-target="#view">view</button></th>
 
 
@@ -83,7 +85,9 @@
             <td>Software</td>
             <td>With a small team of developers, designers works day in and day out on developing beautiful, powerful, and user-friendly apps</td>
             <td>4 month</td>
-            <th><button class="btn btn-success btn-xs">approved</button></th>
+            <th>
+                <h5 style="color: #b11b64"><b>accepted</b></h5>
+            </th>
             <th><button class="btn btn-info btn-xs" data-toggle="modal" data-target="#view">view</button></th>
 
 
@@ -95,7 +99,9 @@
             <td>Telecom</td>
             <td>QlikView, is the leading Business Discovery Platform, providing user-driven business intelligence (BI) to a variety of organizations worldwide</td>
             <td>6 month</td>
-            <th><button class="btn btn-success btn-xs">approved</button></th>
+            <th>
+                <h5 style="color: #b11b64"><b>accepted</b></h5>
+            </th>
             <th><button class="btn btn-info btn-xs" data-toggle="modal" data-target="#view">view</button></th>
 
 
@@ -106,7 +112,9 @@
             <td>Telecom</td>
             <td>With a small team of developers, designers works day in and day out on developing beautiful, powerful, and user-friendly apps</td>
             <td>6 month</td>
-            <th><button class="btn btn-success btn-xs">approved</button></th>
+            <th>
+                <h5 style="color: #b11b64"><b>accepted</b></h5>
+            </th>
             <th><button class="btn btn-info btn-xs" data-toggle="modal" data-target="#view">view</button></th>
 
 
@@ -121,7 +129,9 @@
             <td>With a small team of developers, designers works day in and day out on developing beautiful, powerful, and user-friendly apps</td>
             <td>6 month</td>
 
-            <th><button class="btn btn-success btn-xs">approved</button></th>
+            <th>
+                <h5 style="color: #b11b64"><b>accepted</b></h5>
+            </th>
             <th><button class="btn btn-info btn-xs" data-toggle="modal" data-target="#view">view</button></th>
 
 
@@ -134,9 +144,14 @@
             <td>Software</td>
             <td>With a small team of developers, designers works day in and day out on developing beautiful, powerful, and user-friendly apps</td>
             <td>6 month</td>
-            <th><button class="btn btn-primary btn-xs">open</button></th>
-            <th><button class="btn btn-success btn-xs" data-toggle="modal" data-target="#approve">approve</button>
-                <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#view">view</button></th>
+            <th>
+                <h5 style="color:#0089db"><b>open</b></h5>
+            </th>
+            <th><button class="btn btn-success btn-xs" data-toggle="modal" data-target="#assign">submit</button>
+                <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#view">view</button>
+                <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#edit">edit</button>
+                <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">delete</button></th>
+            </th>
 
 
         </tr>
@@ -148,8 +163,10 @@
             <td>Software</td>
             <td>With a small team of developers, designers works day in and day out on developing beautiful, powerful, and user-friendly apps</td>
             <td>6 month</td>
-            <th><button class="btn btn-primary btn-xs">open</button></th>
-            <th><button class="btn btn-success btn-xs" data-toggle="modal" data-target="#assign">assign</button>
+            <th>
+                <h5 style="color:#0089db"><b>open</b></h5>
+            </th>
+            <th><button class="btn btn-success btn-xs" data-toggle="modal" data-target="#assign">submit</button>
                 <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#view">view</button>
                 <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#edit">edit</button>
                 <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">delete</button></th>
@@ -165,7 +182,9 @@
             <td>Telecom</td>
             <td>designers works day in and day out on developing beautiful, powerful, and user-friendly apps</td>
             <td>6 month</td>
-            <th><button class="btn btn-success btn-xs">approved</button></th>
+            <th>
+                <h5 style="color: #b11b64"><b>accepted</b></h5>
+            </th>
             <th><button class="btn btn-info btn-xs" data-toggle="modal" data-target="#view">view</button></th>
 
 
@@ -179,8 +198,10 @@
             <td>Software</td>
             <td>designers works day in and day out on developing beautiful, powerful, and user-friendly apps</td>
             <td>6 month</td>
-            <th><button class="btn btn-primary btn-xs">open</button></th>
-            <th><button class="btn btn-success btn-xs" data-toggle="modal" data-target="#assign">assign</button>
+            <th>
+                <h5 style="color:#0089db"><b>open</b></h5>
+            </th>
+            <th><button class="btn btn-success btn-xs" data-toggle="modal" data-target="#assign">submit</button>
                 <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#view">view</button>
                 <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#edit">edit</button>
                 <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">delete</button></th>
@@ -196,9 +217,14 @@
             <td>Software</td>
             <td>designers works day in and day out on developing beautiful, powerful, and user-friendly apps</td>
             <td>6 month</td>
-            <th><button class="btn btn-primary btn-xs">open</button></th>
-            <th><button class="btn btn-success btn-xs" data-toggle="modal" data-target="#approve">approve</button>
-                <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#view">view</button></th>
+            <th>
+                <h5 style="color:#0089db"><b>open</b></h5>
+            </th>
+            <th><button class="btn btn-success btn-xs" data-toggle="modal" data-target="#assign">submit</button>
+                <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#view">view</button>
+                <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#edit">edit</button>
+                <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">delete</button></th>
+            </th>
 
 
         </tr>
@@ -210,9 +236,14 @@
             <td>Telecom</td>
             <td>designers works day in and day out on developing beautiful, powerful, and user-friendly apps</td>
             <td>6 month</td>
-            <th><button class="btn btn-primary btn-xs">open</button></th>
-            <th><button class="btn btn-success btn-xs" data-toggle="modal" data-target="#approve">approve</button>
-                <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#view">view</button></th>
+            <th>
+                <h5 style="color:#0089db"><b>open</b></h5>
+            </th>
+            <th><button class="btn btn-success btn-xs" data-toggle="modal" data-target="#assign">submit</button>
+                <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#view">view</button>
+                <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#edit">edit</button>
+                <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">delete</button></th>
+            </th>
 
 
         </tr>
@@ -223,8 +254,10 @@
             <td>Software</td>
             <td>designers works day in and day out on developing beautiful, powerful, and user-friendly apps</td>
             <td>6 month</td>
-            <th><button class="btn btn-primary btn-xs">open</button></th>
-            <th><button class="btn btn-success btn-xs" data-toggle="modal" data-target="#assign">assign</button>
+            <th>
+                <h5 style="color:#0089db"><b>open</b></h5>
+            </th>
+            <th><button class="btn btn-success btn-xs" data-toggle="modal" data-target="#assign">submit</button>
                 <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#view">view</button>
                 <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#edit">edit</button>
                 <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">delete</button></th>
@@ -240,8 +273,10 @@
             <td>Software</td>
             <td>designers works day in and day out on developing beautiful, powerful, and user-friendly apps</td>
             <td>6 month</td>
-            <th><button class="btn btn-primary btn-xs">open</button></th>
-            <th><button class="btn btn-success btn-xs" data-toggle="modal" data-target="#assign">assign</button>
+            <th>
+                <h5 style="color:#0089db"><b>open</b></h5>
+            </th>
+            <th><button class="btn btn-success btn-xs" data-toggle="modal" data-target="#assign">submit</button>
                 <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#view">view</button>
                 <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#edit">edit</button>
                 <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">delete</button></th>
@@ -257,9 +292,14 @@
             <td>Telecom</td>
             <td>designers works day in and day out on developing beautiful, powerful, and user-friendly apps</td>
             <td>6 month</td>
-            <th><button class="btn btn-primary btn-xs">open</button></th>
-            <th><button class="btn btn-success btn-xs" data-toggle="modal" data-target="#approve">approve</button>
-                <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#view">view</button></th>
+            <th>
+                <h5 style="color:#0089db"><b>open</b></h5>
+            </th>
+            <th><button class="btn btn-success btn-xs" data-toggle="modal" data-target="#assign">submit</button>
+                <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#view">view</button>
+                <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#edit">edit</button>
+                <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">delete</button></th>
+            </th>
 
 
         </tr>
@@ -267,18 +307,7 @@
 
 
         </tbody>
-        <tfoot>
-        <tr>
 
-            <th>Name of Organization</th>
-
-            <th>Type</th>
-            <th width>Business Description</th>
-            <th>Intern Policy</th>
-            <th>Status</th>
-            <th>Action</th>
-        </tr>
-        </tfoot>
         </table>
         </div><!-- /.box-body -->
         </div><!-- /.box -->
@@ -290,5 +319,203 @@
     </aside>
     <!-- /.right-side -->
 </div><!-- ./wrapper -->
+
+<!-- Modal :: view  -->
+
+<div class="modal fade " id="view" tabindex="-1" role="dialog" aria-labelledby="confirm-delete" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Information</h4>
+            </div>
+
+            <div class="modal-body">
+                <div class="span well">
+
+
+
+                    <table>
+
+                        <tr
+
+                        <td><b>Name of Organization:</b>edu TechSolutions</td>
+
+                        </tr>
+
+                        <td><b>Type:</b>Software</td></tr>
+                        <td><b>Intern Duration:</b>6 month</td></tr>
+                        <td><b>Status:</b>Approved</td></tr>
+
+                        </tr>
+                    </table>
+
+
+                </div>
+            </div>
+            <div class="modal-footer">
+
+
+                <button type="submit" class="btn btn-info" data-dismiss="modal">Cancel</button>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal :: add-->
+
+
+<div class="modal fade " id="add" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Add Organization Information</h4>
+            </div>
+            <div class="modal-body">
+
+
+                <form role="form">
+                    <div class="box-body">
+
+                        <div class="form-group">
+                            <label for="name">Name of Organization</label>
+                            <input type="name" class="form-control" id="name" >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="year">Type</label>
+                            <select class="form-control input-sm" id="year">
+                                <option>Select One</option>
+                                <option value="CSE">Software</option>
+                                <option value="ICT">Telecom</option>
+
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="roll">Business Description</label>
+                            <input type="name" class="form-control" id="name" >
+                        </div>
+                        <div class="form-group">
+                            <label for="year">Intern Duration</label>
+                            <select class="form-control input-sm" id="year">
+                                <option>Select One</option>
+                                <option value="CSE">6 month</option>
+                                <option value="ICT">4 month</option>
+                                <option value="ENGLISH">5 month</option>
+
+                            </select>
+                        </div>
+
+
+
+                    </div>
+                    <div class="box-footer">
+                        <button type="submit" class="btn btn-primary">Save</button>
+                        <button type="button" class="btn btn-success" data-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--modal:edit-->
+
+<div class="modal fade " id="edit" tabindex="-1" role="dialog" aria-labelledby="confirm-delete" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel"></h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="Dapartment">Name Of Organization</label>
+                    <input type="Dapartment" class="form-control" id="Dapartment" value="EduTechSolutions">
+                </div>
+                <div class="form-group">
+                    <label for="Semester">Type</label>
+                    <input type="Semester" class="form-control" id="Semester" value="Software">
+                </div>
+                <div class="form-group">
+                    <label for="Year">Business Description</label>
+                    <input type="Year" class="form-control" id="Year" value="With a small team of developers, designers works day in and day out on developing beautiful, powerful, and user-friendly apps">
+                </div>
+                <div class="form-group">
+                    <label for="text">Intern Duration</label>
+                    <input type="text" class="form-control" id="Data" value="6 month">
+                </div>
+            </div>
+            <div class="modal-footer">
+
+                <button type="submit" class="btn btn-danger" data-dismiss="modal">Update</button>
+                <button type="submit" class="btn btn-info" data-dismiss="modal">Cancel</button>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--modal:delete-->
+
+<div class="modal fade " id="delete" tabindex="-1" role="dialog" aria-labelledby="confirm-delete" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel"><b>Delete Confirmation</b></h4>
+            </div>
+            <div class="modal-body">
+                <strong><b>Are you sure to delete?</b></strong>
+            </div>
+            <div class="modal-footer">
+
+                <button type="submit" class="btn btn-danger" data-dismiss="modal">delete</button>
+                <button type="submit" class="btn btn-info" data-dismiss="modal">Cancel</button>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--submit:modal-->
+
+<div class="modal fade " id="assign" tabindex="-1" role="dialog" aria-labelledby="confirm-delete" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Submit Confirmation</h4>
+            </div>
+            <div class="modal-body">
+                <p><b>Are you sure to submit this item?</b></p>
+            </div>
+            <div class="modal-footer">
+
+                <button type="submit" class="btn btn-success" data-dismiss="modal">Submit</button>
+                <button type="submit" class="btn btn-info" data-dismiss="modal">Cancel</button>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 <?php include('../_footer.php'); ?>

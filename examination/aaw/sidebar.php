@@ -58,12 +58,7 @@
             </li>
 
 
-            <li>
-                <a href="pages/prepare_certificates.php">
-                    <i class="fa fa-th"></i> <span>Generate Certificates</span>
 
-                </a>
-            </li>
 
 
         </ul>

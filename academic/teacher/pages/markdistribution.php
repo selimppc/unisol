@@ -60,7 +60,7 @@
                                                 </td>
                                             </tr>
 
-<<<<<<< HEAD
+
                                             <tr>
                                                 <td> Lab </td>
                                                 <td width="120">
@@ -106,10 +106,6 @@
                                                 </td>
                                             </tr>
 
-                                            
-=======
-
->>>>>>> 1f80c47e11c3d6105911f5cefbc0a2ddec90cb2a
 
                                      </tbody>
                                     </table>

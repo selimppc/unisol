@@ -517,7 +517,7 @@
                             <td>3.00</td>
                             <td>B</td>
                             <td>3.00</td>
-                            <th rowspan="8" <b>3.05</b></th>
+                            <th rowspan="8" style="vertical-align: middle"> <b> 3.05 </b> </th>
 
 
                         </tr>

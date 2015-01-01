@@ -69,7 +69,9 @@
     <td>Software</td>
     <td>With a small team of developers, designers works day in and day out on developing beautiful, powerful, and user-friendly apps</td>
     <td>6 month</td>
-    <th><button class="btn btn-success btn-xs">approved</button></th>
+    <th>
+        <h5 style="color: #b11b64"><b>approved</b></h5>
+    </th>
     <th><button class="btn btn-info btn-xs" data-toggle="modal" data-target="#view">view</button></th>
 
 
@@ -81,7 +83,9 @@
     <td>Software</td>
     <td>With a small team of developers, designers works day in and day out on developing beautiful, powerful, and user-friendly apps</td>
     <td>4 month</td>
-    <th><button class="btn btn-success btn-xs">approved</button></th>
+    <th>
+        <h5 style="color: #b11b64"><b>approved</b></h5>
+    </th>
     <th><button class="btn btn-info btn-xs" data-toggle="modal" data-target="#view">view</button></th>
 
 
@@ -93,7 +97,9 @@
     <td>Telecom</td>
     <td>QlikView, is the leading Business Discovery Platform, providing user-driven business intelligence (BI) to a variety of organizations worldwide</td>
     <td>6 month</td>
-    <th><button class="btn btn-success btn-xs">approved</button></th>
+    <th>
+        <h5 style="color: #b11b64"><b>approved</b></h5>
+    </th>
     <th><button class="btn btn-info btn-xs" data-toggle="modal" data-target="#view">view</button></th>
 
 
@@ -104,7 +110,9 @@
     <td>Telecom</td>
     <td>With a small team of developers, designers works day in and day out on developing beautiful, powerful, and user-friendly apps</td>
     <td>6 month</td>
-    <th><button class="btn btn-success btn-xs">approved</button></th>
+    <th>
+        <h5 style="color: #b11b64"><b>approved</b></h5>
+    </th>
     <th><button class="btn btn-info btn-xs" data-toggle="modal" data-target="#view">view</button></th>
 
 
@@ -119,7 +127,9 @@
     <td>With a small team of developers, designers works day in and day out on developing beautiful, powerful, and user-friendly apps</td>
     <td>6 month</td>
 
-    <th><button class="btn btn-success btn-xs">approved</button></th>
+    <th>
+        <h5 style="color: #b11b64"><b>approved</b></h5>
+    </th>
     <th><button class="btn btn-info btn-xs" data-toggle="modal" data-target="#view">view</button></th>
 
 
@@ -132,9 +142,14 @@
     <td>Software</td>
     <td>With a small team of developers, designers works day in and day out on developing beautiful, powerful, and user-friendly apps</td>
     <td>6 month</td>
-    <th><button class="btn btn-primary btn-xs">open</button></th>
-    <th><button class="btn btn-success btn-xs" data-toggle="modal" data-target="#approve">approve</button>
-        <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#view">view</button></th>
+    <th>
+        <h5 style="color:#0089db"><b>open</b></h5>
+    </th>
+    <th><button class="btn btn-success btn-xs" data-toggle="modal" data-target="#assign">assign</button>
+        <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#view">view</button>
+        <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#edit">edit</button>
+        <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">delete</button></th>
+    </th>
 
 
 </tr>
@@ -146,7 +161,9 @@
     <td>Software</td>
     <td>With a small team of developers, designers works day in and day out on developing beautiful, powerful, and user-friendly apps</td>
     <td>6 month</td>
-    <th><button class="btn btn-primary btn-xs">open</button></th>
+    <th>
+        <h5 style="color:#0089db"><b>open</b></h5>
+    </th>
     <th><button class="btn btn-success btn-xs" data-toggle="modal" data-target="#assign">assign</button>
         <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#view">view</button>
         <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#edit">edit</button>
@@ -163,7 +180,9 @@
     <td>Telecom</td>
     <td>designers works day in and day out on developing beautiful, powerful, and user-friendly apps</td>
     <td>6 month</td>
-    <th><button class="btn btn-success btn-xs">approved</button></th>
+    <th>
+        <h5 style="color: #b11b64"><b>approved</b></h5>
+    </th>
     <th><button class="btn btn-info btn-xs" data-toggle="modal" data-target="#view">view</button></th>
 
 
@@ -177,7 +196,9 @@
     <td>Software</td>
     <td>designers works day in and day out on developing beautiful, powerful, and user-friendly apps</td>
     <td>6 month</td>
-    <th><button class="btn btn-primary btn-xs">open</button></th>
+    <th>
+        <h5 style="color:#0089db"><b>open</b></h5>
+    </th>
     <th><button class="btn btn-success btn-xs" data-toggle="modal" data-target="#assign">assign</button>
         <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#view">view</button>
         <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#edit">edit</button>
@@ -194,9 +215,14 @@
     <td>Software</td>
     <td>designers works day in and day out on developing beautiful, powerful, and user-friendly apps</td>
     <td>6 month</td>
-    <th><button class="btn btn-primary btn-xs">open</button></th>
-    <th><button class="btn btn-success btn-xs" data-toggle="modal" data-target="#approve">approve</button>
-        <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#view">view</button></th>
+    <th>
+        <h5 style="color:#0089db"><b>open</b></h5>
+    </th>
+    <th><button class="btn btn-success btn-xs" data-toggle="modal" data-target="#assign">assign</button>
+        <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#view">view</button>
+        <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#edit">edit</button>
+        <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">delete</button></th>
+    </th>
 
 
 </tr>
@@ -208,9 +234,14 @@
     <td>Telecom</td>
     <td>designers works day in and day out on developing beautiful, powerful, and user-friendly apps</td>
     <td>6 month</td>
-    <th><button class="btn btn-primary btn-xs">open</button></th>
-    <th><button class="btn btn-success btn-xs" data-toggle="modal" data-target="#approve">approve</button>
-        <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#view">view</button></th>
+    <th>
+        <h5 style="color:#0089db"><b>open</b></h5>
+    </th>
+    <th><button class="btn btn-success btn-xs" data-toggle="modal" data-target="#assign">assign</button>
+        <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#view">view</button>
+        <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#edit">edit</button>
+        <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">delete</button></th>
+    </th>
 
 
 </tr>
@@ -221,7 +252,9 @@
     <td>Software</td>
     <td>designers works day in and day out on developing beautiful, powerful, and user-friendly apps</td>
     <td>6 month</td>
-    <th><button class="btn btn-primary btn-xs">open</button></th>
+    <th>
+        <h5 style="color:#0089db"><b>open</b></h5>
+    </th>
     <th><button class="btn btn-success btn-xs" data-toggle="modal" data-target="#assign">assign</button>
         <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#view">view</button>
         <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#edit">edit</button>
@@ -238,7 +271,9 @@
     <td>Software</td>
     <td>designers works day in and day out on developing beautiful, powerful, and user-friendly apps</td>
     <td>6 month</td>
-    <th><button class="btn btn-primary btn-xs">open</button></th>
+    <th>
+        <h5 style="color:#0089db"><b>open</b></h5>
+    </th>
     <th><button class="btn btn-success btn-xs" data-toggle="modal" data-target="#assign">assign</button>
         <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#view">view</button>
         <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#edit">edit</button>
@@ -255,7 +290,9 @@
     <td>Telecom</td>
     <td>designers works day in and day out on developing beautiful, powerful, and user-friendly apps</td>
     <td>6 month</td>
-    <th><button class="btn btn-primary btn-xs">open</button></th>
+    <th>
+        <h5 style="color:#0089db"><b>open</b></h5>
+    </th>
     <th><button class="btn btn-success btn-xs" data-toggle="modal" data-target="#approve">approve</button>
         <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#view">view</button></th>
 
@@ -271,7 +308,7 @@
     <th>Name of Organization</th>
 
     <th>Type</th>
-    <th width>Business Description</th>
+    <th>Business Description</th>
     <th>Intern Policy</th>
     <th>Status</th>
     <th>Action</th>
@@ -313,7 +350,7 @@
                 <h4 class="modal-title" id="myModalLabel"></h4>
             </div>
             <div class="modal-body">
-                <p>Are you sure to assign this?</p>
+                <p><b>Are you sure to assign this item?</b></p>
             </div>
             <div class="modal-footer">
 
@@ -351,7 +388,8 @@
                         </tr>
 
                         <td><b>Type:</b>Software</td></tr>
-                        <td><b>Intern Policy:</b>6 month</td></tr>
+                        <td><b>Intern Duration:</b>6 month</td></tr>
+                        <td><b>Status:</b>Approved</td></tr>
 
                         </tr>
                     </table>
@@ -406,7 +444,7 @@
                             <input type="name" class="form-control" id="name" >
                         </div>
                         <div class="form-group">
-                            <label for="year">Intern Policy</label>
+                            <label for="year">Intern Duration</label>
                             <select class="form-control input-sm" id="year">
                                 <option>Select One</option>
                                 <option value="CSE">6 month</option>
@@ -457,7 +495,7 @@
                     <input type="Year" class="form-control" id="Year" value="With a small team of developers, designers works day in and day out on developing beautiful, powerful, and user-friendly apps">
                 </div>
                 <div class="form-group">
-                    <label for="text">Intern Policy</label>
+                    <label for="text">Intern Duration</label>
                     <input type="text" class="form-control" id="Data" value="6 month">
                 </div>
             </div>
@@ -480,10 +518,10 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel"></h4>
+                <h4 class="modal-title" id="myModalLabel"><b>Delete Confirmation</b></h4>
             </div>
             <div class="modal-body">
-                <strong>Are you sure to delete?</strong>
+                <strong><b>Are you sure to delete?</b></strong>
             </div>
             <div class="modal-footer">
 
