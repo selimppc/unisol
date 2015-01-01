@@ -54,7 +54,7 @@
                 <th>Start Date</th>
                 <th>End Date</th>
                 <th>Status</th>
-                <th>Notification</th>
+                <th>Action</th>
 
 
             </tr>
@@ -73,14 +73,11 @@
                 <td>All</td>
                 <td>10/1/2015</td>
                 <td>20/1/2015</td>
-                <th>
-                    <button class="btn btn-success btn-xs" >new</button>
+                <th>new</th>
 
-
-                </th>
                 <th>
                     <button class="btn btn-success btn-xs" >send</button>
-                    <button class="btn btn-info btn-xs" >approved</button>
+                    <button class="btn btn-info btn-xs" >view</button>
 
                 </th>
 
@@ -99,12 +96,12 @@
                 <td>Teacher,Student</td>
                 <td>20/1/2015</td>
                 <td>20/1/2015</td>
+                <th>new</th>
                 <th>
-                    <button class="btn btn-success btn-xs" >new</button>
+                    <button class="btn btn-success btn-xs" >send</button>
+                    <button class="btn btn-info btn-xs" >view</button>
 
-                    </span>
                 </th>
-                <td></td>
 
             </tr>
             <tr>
@@ -120,9 +117,7 @@
                 <td>25/12/2014</td>
                 <td>25/12/2014</td>
                 <th>
-                    <button class="btn btn-primary btn-xs" >closed</button>
-
-
+                    closed
                 </th>
                 <th>
                     <button class="btn btn-success btn-xs" >send</button>
@@ -145,9 +140,7 @@
                 <td>31/1/2014</td>
                 <td>31/1/2014</td>
                 <th>
-                    <button class="btn btn-primary btn-xs" >closed</button>
-
-
+                    closed
                 </th>
                 <th>
                     <button class="btn btn-success btn-xs" >send</button>
@@ -170,12 +163,12 @@
                 <td>Teacher,Student</td>
                 <td>2/1/2015</td>
                 <td>2/1/2015</td>
+                <th>new</th>
                 <th>
-                    <button class="btn btn-success btn-xs" >new</button>
+                    <button class="btn btn-success btn-xs" >send</button>
+                    <button class="btn btn-info btn-xs" >view</button>
 
-                    </span>
                 </th>
-                <td></td>
 
             </tr>
 
@@ -191,12 +184,12 @@
                 <td>Teacher,Student</td>
                 <td>3/1/2015</td>
                 <td>3/1/2015</td>
+                <th>new</th>
                 <th>
-                    <button class="btn btn-success btn-xs" >new</button>
+                    <button class="btn btn-success btn-xs" >send</button>
+                    <button class="btn btn-info btn-xs" >view</button>
 
-                    </span>
                 </th>
-                <td></td>
 
             </tr>
 
@@ -212,11 +205,7 @@
                 <td>Teacher,Student</td>
                 <td>31/1/2014</td>
                 <td>31/1/2014</td>
-                <th>
-                    <button class="btn btn-primary btn-xs" >closed</button>
-
-
-                </th>
+                <th>closed</th>
                 <th>
                     <button class="btn btn-success btn-xs" >send</button>
 
@@ -237,11 +226,9 @@
                 <td>Teacher,Student</td>
                 <td>31/1/2014</td>
                 <td>31/1/2014</td>
-                <th>
-                    <button class="btn btn-primary btn-xs" >closed</button>
+                <th>closed</th>
 
 
-                </th>
                 <th>
                     <button class="btn btn-success btn-xs" >send</button>
 
@@ -288,10 +275,7 @@
                 <td>31/1/2014</td>
                 <td>31/1/2014</td>
                 <th>
-                    <button class="btn btn-primary btn-xs" >closed</button>
-
-
-                </th>
+                    closed</th>
                 <th>
                     <button class="btn btn-success btn-xs" >send</button>
 
