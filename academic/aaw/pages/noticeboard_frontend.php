@@ -76,8 +76,8 @@
                 <th>new</th>
 
                 <th>
-                    <button class="btn btn-success btn-xs" >send</button>
-                    <button class="btn btn-info btn-xs" >view</button>
+                    <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#send">send</button>
+                    <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#view">view</button>
 
                 </th>
 
@@ -86,20 +86,20 @@
 
             <tr>
 
-                <td>class test</td>
+                <td>Mid Term</td>
                 <td>Department:cse,semester:fall,year:2015</td>
                 <th>
             <span data-toggle="modal" data-target="#view">
                 <img src="../img/doc.png" width="50px" style="cursor: pointer">
             </span>
                 </th>
-                <td>Teacher,Student</td>
+                <td>Student</td>
                 <td>20/1/2015</td>
-                <td>20/1/2015</td>
+                <td>29/1/2015</td>
                 <th>new</th>
                 <th>
-                    <button class="btn btn-success btn-xs" >send</button>
-                    <button class="btn btn-info btn-xs" >view</button>
+                    <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#send">send</button>
+                    <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#view">view</button>
 
                 </th>
 
@@ -120,8 +120,7 @@
                     closed
                 </th>
                 <th>
-                    <button class="btn btn-success btn-xs" >send</button>
-                    <button class="btn btn-info btn-xs" >approved</button>
+                    <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#view" >view</button>
 
                 </th>
 
@@ -129,22 +128,21 @@
             </tr>
             <tr>
 
-                <td>class test</td>
+                <td>Term final</td>
                 <td>Department:ict,semester:fall,year:2013</td>
                 <th>
             <span data-toggle="modal" data-target="#view">
                 <img src="../img/doc.png" width="50px" style="cursor: pointer">
             </span>
                 </th>
-                <td>Teacher,Student</td>
+                <td>Teacher</td>
                 <td>31/1/2014</td>
                 <td>31/1/2014</td>
                 <th>
                     closed
                 </th>
                 <th>
-                    <button class="btn btn-success btn-xs" >send</button>
-                    <button class="btn btn-danger btn-xs" >discard</button>
+                    <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#view">view</button>
 
                 </th>
 
@@ -153,7 +151,7 @@
 
             <tr>
 
-                <td>class test</td>
+                <td>Govement Holiday</td>
                 <td>Department:cse,semester:fall,year:2015</td>
                 <th>
             <span data-toggle="modal" data-target="#view">
@@ -165,8 +163,8 @@
                 <td>2/1/2015</td>
                 <th>new</th>
                 <th>
-                    <button class="btn btn-success btn-xs" >send</button>
-                    <button class="btn btn-info btn-xs" >view</button>
+                    <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#send">send</button>
+                    <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#view">view</button>
 
                 </th>
 
@@ -174,20 +172,20 @@
 
             <tr>
 
-                <td>class test</td>
+                <td>Meeting</td>
                 <td>Department:cse,semester:fall,year:2015</td>
                 <th>
             <span data-toggle="modal" data-target="#view">
                 <img src="../img/doc.png" width="50px" style="cursor: pointer">
             </span>
                 </th>
-                <td>Teacher,Student</td>
+                <td>Teacher</td>
                 <td>3/1/2015</td>
                 <td>3/1/2015</td>
                 <th>new</th>
                 <th>
-                    <button class="btn btn-success btn-xs" >send</button>
-                    <button class="btn btn-info btn-xs" >view</button>
+                    <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#send">send</button>
+                    <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#view">view</button>
 
                 </th>
 
@@ -202,12 +200,12 @@
                 <img src="../img/doc.png" width="50px" style="cursor: pointer">
             </span>
                 </th>
-                <td>Teacher,Student</td>
+                <td>Teacher</td>
                 <td>31/1/2014</td>
                 <td>31/1/2014</td>
                 <th>closed</th>
                 <th>
-                    <button class="btn btn-success btn-xs" >send</button>
+                    <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#view">view</button>
 
 
                 </th>
@@ -216,7 +214,7 @@
             </tr>
             <tr>
 
-                <td>class test</td>
+                <td>Study Tour</td>
                 <td>Department:ict,semester:fall,year:2013</td>
                 <th>
             <span data-toggle="modal" data-target="#view">
@@ -224,13 +222,13 @@
             </span>
                 </th>
                 <td>Teacher,Student</td>
-                <td>31/1/2014</td>
-                <td>31/1/2014</td>
+                <td>13/12/2014</td>
+                <td>15/12/2014</td>
                 <th>closed</th>
 
 
                 <th>
-                    <button class="btn btn-success btn-xs" >send</button>
+                    <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#view">view</button>
 
 
                 </th>
@@ -239,24 +237,21 @@
             </tr>
             <tr>
 
-                <td>class test</td>
+                <td>Lab Test</td>
                 <td>Department:ict,semester:fall,year:2013</td>
                 <th>
             <span data-toggle="modal" data-target="#view">
                 <img src="../img/doc.png" width="50px" style="cursor: pointer">
             </span>
                 </th>
-                <td>Teacher,Student</td>
+                <td>Student</td>
                 <td>31/1/2014</td>
                 <td>31/1/2014</td>
                 <th>
-                    <button class="btn btn-primary btn-xs" >closed</button>
-
-
+                   closed
                 </th>
                 <th>
-                    <button class="btn btn-success btn-xs" >send</button>
-                    <button class="btn btn-danger btn-xs" >discard</button>
+                    <button class="btn btn-info btn-xs"  data-toggle="modal" data-target="#view">view</button>
 
                 </th>
 
@@ -264,7 +259,7 @@
             </tr>
             <tr>
 
-                <td>class test</td>
+                <td>Extra Class</td>
                 <td>Department:ict,semester:fall,year:2013</td>
                 <th>
             <span data-toggle="modal" data-target="#view">
@@ -277,7 +272,7 @@
                 <th>
                     closed</th>
                 <th>
-                    <button class="btn btn-success btn-xs" >send</button>
+                    <button class="btn btn-info btn-xs"  data-toggle="modal" data-target="#view">view</button>
 
 
                 </th>
@@ -331,7 +326,7 @@
 
                         <div class="form-group">
                             <label for="title">Title</label>
-                            <input type="title" class="form-control" id="title" >
+                            <input type="title" class="form-control" id="title" value="">
                         </div>
                         <div class="form-group">
                             <label for="Description">Description</label>
@@ -385,9 +380,9 @@
     </div>
 </div>
 
-<!--get msg:modal-->
+<!--send notice:modal-->
 
-<div class="modal fade" id="notification" tabindex="-1" role="dialog" aria-labelledby="viewDetails" aria-hidden="true">
+<div class="modal fade" id="send" tabindex="-1" role="dialog" aria-labelledby="viewDetails" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -398,18 +393,77 @@
 
                 <form role="form">
                     <div class="box-body">
-                        <p>The notice has been sent to Teacher/Student/Staff........</p>
+                        <div class="form-group">
+                            <label for="Target">Target Role</label>
+                            <select class="form-control input-sm" id="Target">
+                                <option>Select a Target Role</option>
+                                <option value="CSE">Teacher</option>
+                                <option value="ICT">Student</option>
+                                <option value="ENGLISH">staff</option>
+                                <option value="PHYSICS">Teacher,Student</option>
+                                <option value="CSE">Teacher,staff</option>
+                                <option value="CSE">All</option>
+
+                            </select>
+                        </div>
 
                     </div>
                 </form>
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Send</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
+<!--view:modal-->
+
+<div class="modal fade" id="view" tabindex="-1" role="dialog" aria-labelledby="viewDetails" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">View Notice</h4>
+            </div>
+            <div class="modal-body">
+
+                <form role="form">
+                    <div class="box-body">
+                        <div class="span well" >
+                            <table class="table table-bordered table-striped">
+
+
+
+
+                                <td>Title : Govement Holiday</td>
+
+                                </tr>
+
+                                <td>Description : ChrismasDay</td></tr>
+                                <td>Target Role : Teacher ,Student</td></tr>
+                                <td>Start Date :31/12/2014</td></tr>
+
+                                <td>Start Date :31/12/2014</td></tr>
+                                <td>Status : closed </td></tr>
+                              </tr>
+
+
+                            </table>
+
+
+                        </div>
+
+                    </div>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 <?php include('../_footer.php'); ?>
