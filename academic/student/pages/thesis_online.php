@@ -117,7 +117,7 @@
                                             </button>
 
                                             <button class="btn btn-primary btn-xs" data-toggle="modal"
-                                                    data-target="#thesisPresentation">
+                                                    data-target="#Edit">
                                                 Edit
                                             </button>
 
