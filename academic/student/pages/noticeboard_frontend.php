@@ -12,7 +12,7 @@
 <section class="content-header">
     <h1>
         Dashboard
-        <small>Control panel</small>
+        <small>/Student</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -72,7 +72,7 @@
     <td>10/1/2015</td>
     <td>20/1/2015</td>
     <th>
-        <button class="btn btn-success btn-xs" >new</button>
+        <h5 style="color:dodgerblue"><b>new</b></h5>
 
 
     </th>
@@ -92,12 +92,10 @@
     <td>2/1/2015</td>
     <td>2/1/2015</td>
     <th>
-        <button class="btn btn-success btn-xs" >new</button>
+        <h5 style="color:dodgerblue"><b>new</b></h5>
 
 
-        </span>
     </th>
-
 
 </tr>
 
@@ -114,10 +112,9 @@
     <td>12/11/2014</td>
     <td>21/1/2014</td>
     <th>
+        <h5 style="color:dodgerblue"><b>new</b></h5>
 
-        <button class="btn btn-primary btn-xs" >closed</button>
 
-        </span>
     </th>
 
 
@@ -135,18 +132,15 @@
     <td>25/12/2014</td>
     <td>25/12/2014</td>
     <th>
-        <button class="btn btn-primary btn-xs" >closed</button>
-        <button class="btn btn-info btn-xs" >approved</button>
+        <h5 style="color:dodgerblue"><b>new</b></h5>
+
 
     </th>
-
-
-
 </tr>
 <tr>
 
     <td>class test</td>
-    <td>Department:ict,semester:summer,year:2013</td>
+    <td>Department:ict, semester:summer, year:2013</td>
     <th>
             <span data-toggle="modal" data-target="#view">
                 <img src="../img/doc.png" width="50px" style="cursor: pointer">
@@ -156,9 +150,9 @@
     <td>31/1/2014</td>
     <td>31/1/2014</td>
     <th>
-        <button class="btn btn-primary btn-xs" >closed</button>
+        <h5 style="color:dodgerblue"><b>new</b></h5>
 
-        <button class="btn btn-danger btn-xs" >discard</button>
+
     </th>
 
 
@@ -168,7 +162,7 @@
 <tr>
 
     <td>final term</td>
-    <td>Department:cse,semester:fall,year:2015</td>
+    <td>Department:cse,  semester:fall,  year:2015</td>
     <th>
             <span data-toggle="modal" data-target="#view">
                 <img src="../img/doc.png" width="50px" style="cursor: pointer">
@@ -178,11 +172,10 @@
     <td>2/11/2014</td>
     <td>2/12/2014</td>
     <th>
-        <button class="btn btn-success btn-xs" >closed</button>
-        <button class="btn btn-info btn-xs" >approved</button>
-        </span>
-    </th>
+        <h5 style="color:dodgerblue"><b>new</b></h5>
 
+
+    </th>
 
 </tr>
 
@@ -200,10 +193,13 @@
     <td>25/12/2014</td>
     <td>25/12/2014</td>
     <th>
-        <button class="btn btn-primary btn-xs" >closed</button>
+        <h5 style="color:red"><b>Closed</b></h5>
 
 
     </th>
+
+
+
 
 
 
@@ -212,7 +208,7 @@
 <tr>
 
     <td>class test</td>
-    <td>Department:ict,semester:fall,year:2013</td>
+    <td>Department:ict,  semester:fall,  year:2013</td>
     <th>
             <span data-toggle="modal" data-target="#view">
                 <img src="../img/doc.png" width="50px" style="cursor: pointer">
@@ -222,29 +218,7 @@
     <td>31/1/2014</td>
     <td>31/1/2014</td>
     <th>
-        <button class="btn btn-primary btn-xs" >closed</button>
-
-
-    </th>
-
-
-
-</tr>
-
-<tr>
-
-    <td>class test</td>
-    <td>Department:ict,semester:fall,year:2013</td>
-    <th>
-            <span data-toggle="modal" data-target="#view">
-                <img src="../img/doc.png" width="50px" style="cursor: pointer">
-            </span>
-    </th>
-
-    <td>31/1/2014</td>
-    <td>31/1/2014</td>
-    <th>
-        <button class="btn btn-primary btn-xs" >closed</button>
+        <h5 style="color:red"><b>Closed</b></h5>
 
 
     </th>
@@ -255,20 +229,7 @@
 
 
 </tbody>
-<tfoot>
-<tr>
 
-    <th>Title</th>
-    <th>Description</th>
-    <th>File</th>
-   
-    <th>Start Date</th>
-    <th>End Date</th>
-    <th>Status</th>
-
-
-</tr>
-</tfoot>
 </table>
 </div><!-- /.box-body -->
 </div><!-- /.box -->
@@ -374,6 +335,30 @@
 
             </div>
             <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<div class="modal fade" id="view" tabindex="-1" role="dialog" aria-labelledby="viewDetails" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">View</h4>
+            </div>
+            <div class="modal-body">
+
+
+                <p>
+                    <img src="../img/doc.png" >
+                </p>
+            </div>
+            <div class="modal-footer">
+
+
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
             </div>
         </div><!-- /.modal-content -->

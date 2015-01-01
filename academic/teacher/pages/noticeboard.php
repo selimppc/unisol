@@ -36,217 +36,203 @@
 <div class="row">
 <div class="col-xs-12">
 
-<div class="box">
-<div class="box-header">
+    <div class="box">
+        <div class="box-header">
 
-</div><!-- /.box-header -->
-<div class="box-body table-responsive">
-<table id="example1" class="table table-bordered table-striped">
-<thead>
-<tr>
+        </div><!-- /.box-header -->
+        <div class="box-body table-responsive">
+            <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
 
-    <th>Title</th>
-    <th>Description</th>
-    <th>File</th>
-    <th>Target Role</th>
-    <th>Start Date</th>
-    <th>End Date</th>
-    <th>Status</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>File</th>
+
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Status</th>
 
 
 
-</tr>
-</thead>
-<tbody>
+                </tr>
+                </thead>
+                <tbody>
 
-<tr>
+                <tr>
 
-    <td>Holiday</td>
-    <td> A Winter Vacation</td>
-    <th>
+                    <td>Holiday</td>
+                    <td> A Winter Vacation</td>
+                    <th>
             <span data-toggle="modal" data-target="#view">
                 <img src="../img/doc.png" width="50px" style="cursor: pointer">
             </span>
-    </th>
-    <td>All</td>
-    <td>10/1/2015</td>
-    <td>20/1/2015</td>
-    <th>
-        new
-    </th>
+                    </th>
 
-</tr>
+                    <td>10/1/2015</td>
+                    <td>20/1/2015</td>
+                    <th>
+                        <h5 style="color:dodgerblue"><b>new</b></h5>
 
-<tr>
 
-    <td>mid term</td>
-    <td>Department:BBA,semester:fall,year:2015</td>
-    <th>
+                    </th>
+
+                </tr>
+
+                <tr>
+
+                    <td>mid term</td>
+                    <td>Department:BBA,semester:fall,year:2015</td>
+                    <th>
             <span data-toggle="modal" data-target="#view">
                 <img src="../img/doc.png" width="50px" style="cursor: pointer">
             </span>
-    </th>
-    <td>Student</td>
-    <td>2/1/2015</td>
-    <td>2/1/2015</td>
-    <th>
-        new
-    </th>
+                    </th>
+
+                    <td>2/1/2015</td>
+                    <td>2/1/2015</td>
+                    <th>
+                        <h5 style="color:dodgerblue"><b>new</b></h5>
 
 
-</tr>
+                    </th>
 
-<tr>
+                </tr>
 
-    <td>mid term final</td>
-    <td>Department:BBA,semester:summer,year:2014</td>
-    <th>
+                <tr>
+
+                    <td>mid term final</td>
+                    <td>Department:BBA,semester:summer,year:2014</td>
+                    <th>
             <span data-toggle="modal" data-target="#view">
                 <img src="../img/doc.png" width="50px" style="cursor: pointer">
             </span>
-    </th>
-    <td>Student</td>
-    <td>12/11/2014</td>
-    <td>21/1/2014</td>
-    <th>
-        colsed
-    </th>
+                    </th>
+
+                    <td>12/11/2014</td>
+                    <td>21/1/2014</td>
+                    <th>
+                        <h5 style="color:dodgerblue"><b>new</b></h5>
 
 
-</tr>
-<tr>
+                    </th>
 
-    <td>Holiday</td>
-    <td>ChrismasDay</td>
-    <th>
+
+                </tr>
+                <tr>
+
+                    <td>Holiday</td>
+                    <td>ChrismasDay</td>
+                    <th>
             <span data-toggle="modal" data-target="#view">
                 <img src="../img/doc.png" width="50px" style="cursor: pointer">
             </span>
-    </th>
-    <td>All</td>
-    <td>25/12/2014</td>
-    <td>25/12/2014</td>
-    <th>
-        closed
-    </th>
+                    </th>
+
+                    <td>25/12/2014</td>
+                    <td>25/12/2014</td>
+                    <th>
+                        <h5 style="color:dodgerblue"><b>new</b></h5>
 
 
+                    </th>
+                </tr>
+                <tr>
 
-</tr>
-<tr>
-
-    <td>class test</td>
-    <td>Department:ict,semester:summer,year:2013</td>
-    <th>
+                    <td>class test</td>
+                    <td>Department:ict, semester:summer, year:2013</td>
+                    <th>
             <span data-toggle="modal" data-target="#view">
                 <img src="../img/doc.png" width="50px" style="cursor: pointer">
             </span>
-    </th>
-    <td>Student</td>
-    <td>31/1/2014</td>
-    <td>31/1/2014</td>
-    <th>
-        closed
-    </th>
+                    </th>
+
+                    <td>31/1/2014</td>
+                    <td>31/1/2014</td>
+                    <th>
+                        <h5 style="color:dodgerblue"><b>new</b></h5>
+
+
+                    </th>
 
 
 
-</tr>
+                </tr>
 
-<tr>
+                <tr>
 
-    <td>final term</td>
-    <td>Department:cse,semester:fall,year:2015</td>
-    <th>
+                    <td>final term</td>
+                    <td>Department:cse,  semester:fall,  year:2015</td>
+                    <th>
             <span data-toggle="modal" data-target="#view">
                 <img src="../img/doc.png" width="50px" style="cursor: pointer">
             </span>
-    </th>
-    <td>Student</td>
-    <td>2/11/2014</td>
-    <td>2/12/2014</td>
-    <th>
-        closed
-    </th>
+                    </th>
+
+                    <td>2/11/2014</td>
+                    <td>2/12/2014</td>
+                    <th>
+                        <h5 style="color:dodgerblue"><b>new</b></h5>
 
 
-</tr>
+                    </th>
+
+                </tr>
 
 
-<tr>
+                <tr>
 
-    <td>Holiday</td>
-    <td>ChrismasDay</td>
-    <th>
+                    <td>Holiday</td>
+                    <td>ChrismasDay</td>
+                    <th>
             <span data-toggle="modal" data-target="#view">
                 <img src="../img/doc.png" width="50px" style="cursor: pointer">
             </span>
-    </th>
-    <td>All</td>
-    <td>25/12/2014</td>
-    <td>25/12/2014</td>
-    <th>
-        closed
-    </th>
-</tr>
+                    </th>
 
-<tr>
+                    <td>25/12/2014</td>
+                    <td>25/12/2014</td>
+                    <th>
+                        <h5 style="color:red"><b>Closed</b></h5>
 
-    <td>class test</td>
-    <td>Department:ict,semester:fall,year:2013</td>
-    <th>
+
+                    </th>
+
+
+
+
+
+
+                </tr>
+
+                <tr>
+
+                    <td>class test</td>
+                    <td>Department:ict,  semester:fall,  year:2013</td>
+                    <th>
             <span data-toggle="modal" data-target="#view">
                 <img src="../img/doc.png" width="50px" style="cursor: pointer">
             </span>
-    </th>
-    <td>Student</td>
-    <td>31/1/2014</td>
-    <td>31/1/2014</td>
-    <th>
-        closed
-    </th>
+                    </th>
 
-</tr>
+                    <td>31/1/2014</td>
+                    <td>31/1/2014</td>
+                    <th>
+                        <h5 style="color:red"><b>Closed</b></h5>
 
-<tr>
 
-    <td>class test</td>
-    <td>Department:ict,semester:fall,year:2013</td>
-    <th>
-            <span data-toggle="modal" data-target="#view">
-                <img src="../img/doc.png" width="50px" style="cursor: pointer">
-            </span>
-    </th>
-    <td>Teacher,Student</td>
-    <td>31/1/2014</td>
-    <td>31/1/2014</td>
-    <th>
-        closed
-    </th>
+                    </th>
 
 
 
-</tr>
+                </tr>
 
 
-</tbody>
-<tfoot>
-<tr>
+                </tbody>
 
-    <th>Title</th>
-    <th>Description</th>
-    <th>File</th>
-    <th>Target Role</th>
-    <th>Start Date</th>
-    <th>End Date</th>
-    <th>Status</th>
-
-
-</tr>
-</tfoot>
-</table>
-</div><!-- /.box-body -->
-</div><!-- /.box -->
+            </table>
+        </div><!-- /.box-body -->
+    </div><!-- /.box -->
 </div>
 </div>
 
@@ -354,6 +340,33 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
+
+<!-- View Details Modal -->
+<div class="modal fade" id="view" tabindex="-1" role="dialog" aria-labelledby="viewDetails" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">View</h4>
+            </div>
+            <div class="modal-body">
+
+
+                <p>
+                    <img src="../img/doc.png" >
+                </p>
+            </div>
+            <div class="modal-footer">
+
+
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
 
 
 <?php include('../_footer.php'); ?>

@@ -366,16 +366,12 @@
                             </ul>
                         </li>
 
-                        <li class="treeview">
-                            <a href="#">
+                        <li>
+                            <a href="pages/internship_online.php">
                                 <i class="fa fa-laptop"></i>
-                                <span>Intern ship</span>
-                                <i class="fa fa-angle-left pull-right"></i>
+                                <span>InterShip</span>
+                                <i class="fa pull-right"></i>
                             </a>
-                            <ul class="treeview-menu">
-                                <li><a href="pages/internship_manual.php"><i class="fa fa-angle-double-right"></i> Manual</a></li>
-                                <li><a href="pages/internship_online.php"><i class="fa fa-angle-double-right"></i> Online</a></li>
-                            </ul>
                         </li>
 
                         <li class="treeview">
