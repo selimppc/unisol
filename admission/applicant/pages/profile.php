@@ -32,7 +32,7 @@
                               <li><a href="#tab_2" data-toggle="tab">Applicant</a></li>
                               <li><a href="#tab_3" data-toggle="tab">Personal</a></li>
                               <li><a href="#tab_4" data-toggle="tab">Academic</a></li>
-                              <li class="pull-right"><a href="#" class="text-muted"><i class="fa fa-gear"></i></a></li>
+                             
                             </ul>
 
 

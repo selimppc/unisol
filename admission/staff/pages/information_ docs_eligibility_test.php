@@ -27,7 +27,6 @@
                     <ul class="nav nav-tabs">
                       <li class="active"><a href="#tab_1" data-toggle="tab">Testing</a></li>
 
-                      <li class="pull-right"><a href="#" class="text-muted"><i class="fa fa-gear"></i></a></li>
                   </ul>
 
                   <div class="tab-content">
@@ -51,24 +50,10 @@
 
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>CSE</td>
-                                    <td>2016</td>
-                                    <td>Ratna Akter</td>
-                                     <td>
-                                     <img src="../img/doc.png" width="70px" style="cursor: pointer"class="img-thumbnail">
-                                    <button class="btn btn-dafault btn-sm" data-toggle="modal" data-target="#viewDetails">View Docs  </button>
-                                    </td>
-                                    <td>
-                                    <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#approvalModal">Approve</button>
-                                    <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#assintask">Comments</button>
-                                    
-                                    </td>
-
-                                </tr>
+                              
                                 <tr>
                                    <td>CSE</td>
-                                    <td>2016</td>
+                                    <td>2015</td>
                                     <td>Ratna Akter</td>
                                      <td>
                                      <img src="../img/doc.png" width="70px" style="cursor: pointer"class="img-thumbnail">
@@ -81,10 +66,11 @@
                                     </td>
 
                                 </tr>
+                                
                                 <tr>
-                                    <td>CSE</td>
+                                    <td>EEE</td>
                                     <td>2016</td>
-                                    <td>Ratna Akter</td>
+                                    <td>Talukdar Hossain</td>
                                      <td>
                                      <img src="../img/doc.png" width="70px" style="cursor: pointer"class="img-thumbnail">
                                     <button class="btn btn-dafault btn-sm" data-toggle="modal" data-target="#viewDetails">View Docs  </button>
@@ -96,9 +82,9 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>CSE</td>
+                                    <td>Economics</td>
                                     <td>2016</td>
-                                    <td>Ratna Akter</td>
+                                    <td>Md Toha</td>
                                      <td>
                                      <img src="../img/doc.png" width="70px" style="cursor: pointer"class="img-thumbnail">
                                     <button class="btn btn-dafault btn-sm" data-toggle="modal" data-target="#viewDetails">View Docs  </button>
@@ -110,9 +96,9 @@
                                     </td>                             
                                 </tr>
                                 <tr>
-                                   <td>CSE</td>
+                                   <td>Mathmatics</td>
                                     <td>2016</td>
-                                    <td>Ratna Akter</td>
+                                    <td>Sharmin Akter</td>
                                      <td>
                                      <img src="../img/doc.png" width="70px" style="cursor: pointer"class="img-thumbnail">
                                     <button class="btn btn-dafault btn-sm" data-toggle="modal" data-target="#viewDetails">View Docs  </button>
