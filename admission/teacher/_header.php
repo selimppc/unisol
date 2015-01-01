@@ -35,11 +35,22 @@
     <!-- page script -->
     <script type="text/javascript">
         $(function() {
-            $("#example1").dataTable();
-               $("#example").dataTable();
-                  $("#example3").dataTable();
-                     $("#example4").dataTable();
-
+            $("#example1").dataTable({
+                "aLengthMenu": [[3, 5, 10, -1], [3, 5, 10, "All"]],
+                "iDisplayLength": 3
+            });
+            $("#example").dataTable({
+                "aLengthMenu": [[3, 5, 10, -1], [3, 5, 10, "All"]],
+                "iDisplayLength": 3
+            });
+            $("#example3").dataTable({
+                "aLengthMenu": [[3, 5, 10, -1], [3, 5, 10, "All"]],
+                "iDisplayLength": 3
+            });
+            $("#example4").dataTable({
+                "aLengthMenu": [[3, 5, 10, -1], [3, 5, 10, "All"]],
+                "iDisplayLength": 3
+            });
             $('#example2').dataTable({
                 "bPaginate": true,
                 "bLengthChange": false,

@@ -31,8 +31,8 @@
                     <!-- Custom Tabs -->
                     <div class="nav-tabs-custom">
                         <ul class="nav nav-tabs">
-                            <li class="active"><a href="#tab_1" data-toggle="tab">Class Test Report  </a></li>
-
+                            <li class="active"><a href="#tab_1" data-toggle="tab">Class Test(Manual)  </a></li>
+                            <li><a href="#tab_2" data-toggle="tab">Class Test (Online)</a></li>
 
                             <li class="pull-right" class="dropdown">
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-gear"></i>&nbsp;</a>
@@ -94,6 +94,111 @@
 
                                     </table>
                                 </div><!-- /.box -->
+                            </div><!-- /.tab-pane -->
+
+                            <div class="tab-pane" id="tab_2">
+                                <!-- START CUSTOM TABS -->
+                                <h2 class="page-header">&nbsp;</h2>
+                                <div class="row">
+                                <div class="col-md-12">
+                                <!-- Custom Tabs -->
+                                <div class="nav-tabs-custom">
+                                <ul class="nav nav-tabs">
+                                    <li><a href="#tab_3" data-toggle="tab"> Question Papers  </a></li>
+                                    <li><a href="#tab_4" data-toggle="tab">Evaluation</a></li>
+
+                                </ul>
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="tab_3">
+                                        <button class="pull-right btn btn-success btn-sm"  data-toggle="modal" data-target="#addQuestionPaper" >
+                                            Add Question Paper
+                                        </button><br>
+
+                                        <b>Question:</b>
+
+                                        <div class="box-body table-responsive">
+                                            <table id="example3" class="table table-bordered table-striped">
+                                                <thead>
+                                                <tr>
+                                                    <th>Type</th>
+                                                    <th>Questions</th>
+                                                    <th>Options</th>
+                                                    <th>Answer</th>
+                                                    <th>Comments</th>
+                                                    <th>Status</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <?php for($i = 0; $i < 5; $i++){ ?>
+                                                    <tr>
+                                                        <td> MCQ </td>
+                                                        <td> RAD stands for? </td>
+                                                        <td> 1.Relative Application Development,2.Rapid Application Development,3.Rapid Application Document,4.Rapid Apply Document  </td>
+                                                        <td> 2.Rapid Application Development </td>
+                                                        <td> comments </td>
+                                                        <td> open </td>
+                                                        <td>
+                                                            <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#viewDetails">
+                                                                View
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+
+
+                                                <?php } ?>
+
+
+                                                </tbody>
+
+                                            </table>
+                                        </div><!-- /.box -->
+                                    </div><!-- /.tab-pane -->
+                                    <div class="tab-pane" id="tab_4">
+
+                                        <div class="box-body table-responsive">
+                                            <table id="example4" class="table table-bordered table-striped">
+                                                <thead>
+                                                <tr>
+                                                    <th> Type </th>
+                                                    <th> Questions </th>
+                                                    <th> Options </th>
+                                                    <th> Answer </th>
+                                                    <th> Number </th>
+                                                    <th> Action </th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <?php for($i = 0; $i < 5; $i++){ ?>
+                                                    <tr>
+                                                        <td> MCQ </td>
+                                                        <td> RAD stands for? </td>
+                                                        <td> 1.Relative Application Development,2.Rapid Application Development,3.Rapid Application Document,4.Rapid Apply Document  </td>
+                                                        <td> 2.Rapid Application Development </td>
+                                                        <td> 23 </td>
+                                                        <td>
+                                                            <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#addEvoNo">
+                                                                Add Number
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+
+
+                                                <?php } ?>
+
+
+                                                </tbody>
+
+                                            </table>
+                                        </div><!-- /.box -->
+                                    </div><!-- /.tab-pane -->
+                                </div><!-- /.tab-content -->
+                                </div><!-- nav-tabs-custom -->
+                                </div><!-- /.col -->
+
+
+                                </div> <!-- /.row -->
+                                <!-- END CUSTOM TABS -->
                             </div><!-- /.tab-pane -->
 
                         </div><!-- /.tab-content -->
