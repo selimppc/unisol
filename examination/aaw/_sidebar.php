@@ -51,12 +51,7 @@
                     <i class="fa fa-th"></i> <span>Prepare Tabulation</span>
                 </a>
             </li>
-            <li>
-                <a href="prepare_certificates.php">
-                    <i class="fa fa-th"></i> <span>Generate Certificates</span>
-
-                </a>
-            </li>
+           
 
 
         </ul>
