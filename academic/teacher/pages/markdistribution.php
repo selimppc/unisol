@@ -105,22 +105,15 @@
                                                     </button>
                                                 </td>
                                             </tr>
-
                                      </tbody>
-
                                     </table>
                                 </div><!-- /.box -->
                             </div><!-- /.tab-pane -->
-
                         </div><!-- /.tab-content -->
                     </div><!-- nav-tabs-custom -->
                 </div><!-- /.col -->
-
-
             </div> <!-- /.row -->
             <!-- END CUSTOM TABS -->
-
-
 
         </section><!-- /.content -->
     </aside><!-- /.right-side -->
