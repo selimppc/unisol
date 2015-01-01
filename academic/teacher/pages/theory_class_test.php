@@ -110,7 +110,7 @@
                                 </ul>
                                 <div class="tab-content">
                                     <div class="tab-pane active" id="tab_3">
-                                        <button class="pull-right btn btn-success btn-sm"  data-toggle="modal" data-target="#addquestionPaper" >
+                                        <button class="pull-right btn btn-success btn-sm"  data-toggle="modal" data-target="#addQuestionPaper" >
                                             Add Question Paper
                                         </button><br>
 

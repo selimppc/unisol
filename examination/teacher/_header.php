@@ -27,6 +27,27 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
+
+    <script type="text/javascript">
+        $(function() {
+            $("#example1").dataTable({
+                "aLengthMenu": [[3, 5, 10, -1], [3, 5, 10, "All"]],
+                "iDisplayLength": 3
+            });
+            $("#example3").dataTable({
+                "aLengthMenu": [[3, 5, 10, -1], [3, 5, 10, "All"]],
+                "iDisplayLength": 3
+            });
+            $('#example2').dataTable({
+                "bPaginate": true,
+                "bLengthChange": false,
+                "bFilter": false,
+                "bSort": true,
+                "bInfo": true,
+                "bAutoWidth": false
+            });
+        });
+    </script>
 </head>
 
 <body class="skin-blue">
