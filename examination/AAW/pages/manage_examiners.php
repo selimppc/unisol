@@ -59,205 +59,112 @@
                                     <td>Computer Science & engineering</td>
 
 
+                                    <td>Fall</td>
+                                    <td>2015</td>
+                                    <td>Architecture</td>
+                                    <td>1/1/2015</td>
+                                    <th></th>
+                                    <th><a class="btn btn-sm btn-info" href="" data-toggle="modal" data-target="#request" >Add Examiner</a></th>
+                                </tr>
+                                <tr>
+
+                                    <td>Math</td>
+
+
+                                    <td>Fall</td>
+                                    <td>2015</td>
+                                    <td>Fundamental</td>
+                                    <td>1/1/2015</td>
+                                    <th>approved</th>
+                                    <th><a class="btn btn-success btn-xs" href="" data-toggle="modal" data-target="#view" >view</a></th>
+                                </tr>
+                                <tr>
+
+                                    <td>BBA</td>
+
+
                                     <td>Spring</td>
-                                    <td>2010</td>
+                                    <td>2015</td>
                                     <td>Fundamental C</td>
                                     <td>1/1/2015</td>
                                     <th>approved</th>
-                                    <th></th>
+                                    <th><a class="btn btn-success btn-xs" href="" data-toggle="modal" data-target="#view" >view</a></th>
                                 </tr>
                                 <tr>
 
-                                    <td>Computer Science & engineering</td>
+                                    <td>MBA</td>
 
 
-                                    <td>Spring</td>
-                                    <td>2010</td>
+                                    <td>Fall</td>
+                                    <td>2015</td>
                                     <td>Fundamental C</td>
+                                    <td>1/1/2015</td>
+                                    <th></th>
+                                    <th><a class="btn btn-sm btn-info" href="" data-toggle="modal" data-target="#request" >Add Examiner</a></th>
+                                </tr>
+                                <tr>
+
+                                    <td>English</td>
+
+
+                                    <td>Summer</td>
+                                    <td>2015</td>
+                                    <td>Literature1</td>
                                     <td>1/1/2015</td>
                                     <th>approved</th>
-                                    <th></th>
+                                    <th><a class="btn btn-success btn-xs" href="" data-toggle="modal" data-target="#view" >view</a></th>
                                 </tr>
                                 <tr>
 
-                                    <td>Computer Science & engineering</td>
+                                    <td>ICT</td>
 
 
                                     <td>Spring</td>
-                                    <td>2010</td>
+                                    <td>2015</td>
                                     <td>Fundamental C</td>
+                                    <td>1/1/2015</td>
+                                    <th></th>
+                                    <th><a class="btn btn-sm btn-info" href="" data-toggle="modal" data-target="#request" >Add Examiner</a></th>
+                                </tr>
+                                <tr>
+
+                                    <td>CSE</td>
+
+
+                                    <td>Summer</td>
+                                    <td>2015</td>
+                                    <td> C++</td>
                                     <td>1/1/2015</td>
                                     <th>approved</th>
-                                    <th></th>
+                                    <th><a class="btn btn-success btn-xs" href="" data-toggle="modal" data-target="#view" >view</a></th>
                                 </tr>
+                                <tr>
+
+                                    <td>Math</td>
+
+
+                                    <td>Spring</td>
+                                    <td>2015</td>
+                                    <td>Math1</td>
+                                    <td>1/1/2015</td>
+                                    <th></th>
+                                    <th><a class="btn btn-sm btn-info" href="" data-toggle="modal" data-target="#request" >Add Examiner</a></th>
+                                </tr>
+
                                 <tr>
 
                                     <td>Computer Science & engineering</td>
 
 
-                                    <td>Spring</td>
-                                    <td>2010</td>
+                                    <td>Summer</td>
+                                    <td>2015</td>
                                     <td>Fundamental C</td>
                                     <td>1/1/2015</td>
-                                    <th></th>
-                                    <th><a class="btn btn-sm btn-info" href="" data-toggle="modal" data-target="#request" >Send Request</a></th>
+                                    <th>discard</th>
+                                    <th><a class="btn btn-success btn-xs" href="" data-toggle="modal" data-target="#view" >view</a></th>
                                 </tr>
-                                <tr>
-
-                                    <td>Computer Science & engineering</td>
 
 
-                                    <td>Spring</td>
-                                    <td>2010</td>
-                                    <td>Fundamental C</td>
-                                    <td>1/1/2015</td>
-                                    <th>approved</th>
-                                    <th></th>
-                                </tr>
-                                <tr>
-
-                                    <td>Computer Science & engineering</td>
-
-
-                                    <td>Spring</td>
-                                    <td>2010</td>
-                                    <td>Fundamental C</td>
-                                    <td>1/1/2015</td>
-                                    <th></th>
-                                    <th><a class="btn btn-sm btn-info" href="" data-toggle="modal" data-target="#request" >Send Request</a></th>
-                                </tr>
-                                <tr>
-
-                                    <td>Computer Science & engineering</td>
-
-
-                                    <td>Spring</td>
-                                    <td>2010</td>
-                                    <td>Fundamental C</td>
-                                    <td>1/1/2015</td>
-                                    <th>approved</th>
-                                    <th></th>
-                                </tr>
-                                <tr>
-
-                                    <td>Computer Science & engineering</td>
-
-
-                                    <td>Spring</td>
-                                    <td>2010</td>
-                                    <td>Fundamental C</td>
-                                    <td>1/1/2015</td>
-                                    <th></th>
-                                    <th><a class="btn btn-sm btn-info" href="" data-toggle="modal" data-target="#request" >Send Request</a></th>
-                                </tr>
-                                <tr>
-
-                                    <td>Computer Science & engineering</td>
-
-
-                                    <td>Spring</td>
-                                    <td>2010</td>
-                                    <td>Fundamental C</td>
-                                    <td>1/1/2015</td>
-                                    <th></th>
-                                    <th><a class="btn btn-sm btn-info" href="" data-toggle="modal" data-target="#request" >Send Request</a></th>
-                                </tr>
-                                <tr>
-
-                                    <td>Computer Science & engineering</td>
-
-
-                                    <td>Spring</td>
-                                    <td>2010</td>
-                                    <td>Fundamental C</td>
-                                    <td>1/1/2015</td>
-                                    <th></th>
-                                    <th><a class="btn btn-sm btn-info" href="" data-toggle="modal" data-target="#request" >Send Request</a></th>
-                                </tr>
-                                <tr>
-
-                                    <td>Computer Science & engineering</td>
-
-
-                                    <td>Spring</td>
-                                    <td>2010</td>
-                                    <td>Fundamental C</td>
-                                    <td>1/1/2015</td>
-                                    <th></th>
-                                    <th><a class="btn btn-sm btn-info" href="" data-toggle="modal" data-target="#request" >Send Request</a></th>
-                                </tr>
-                                <tr>
-
-                                    <td>Computer Science & engineering</td>
-
-
-                                    <td>Spring</td>
-                                    <td>2010</td>
-                                    <td>Fundamental C</td>
-                                    <td>1/1/2015</td>
-                                    <th>approved</th>
-                                    <th></th>
-                                </tr>
-                                <tr>
-
-                                    <td>Computer Science & engineering</td>
-
-
-                                    <td>Spring</td>
-                                    <td>2010</td>
-                                    <td>Fundamental C</td>
-                                    <td>1/1/2015</td>
-                                    <th></th>
-                                    <th><a class="btn btn-sm btn-info" href="" data-toggle="modal" data-target="#request" >Send Request</a></th>
-                                </tr>
-                                <tr>
-
-                                    <td>Computer Science & engineering</td>
-
-
-                                    <td>Spring</td>
-                                    <td>2010</td>
-                                    <td>Fundamental C</td>
-                                    <td>1/1/2015</td>
-                                    <th>approved</th>
-                                    <th></th>
-                                </tr>
-                                <tr>
-
-                                    <td>Computer Science & engineering</td>
-
-
-                                    <td>Spring</td>
-                                    <td>2010</td>
-                                    <td>Fundamental C</td>
-                                    <td>1/1/2015</td>
-                                    <th></th>
-                                    <th><a class="btn btn-sm btn-info" href="" data-toggle="modal" data-target="#request" >Send Request</a></th>
-                                </tr>
-                                <tr>
-
-                                    <td>Computer Science & engineering</td>
-
-
-                                    <td>Spring</td>
-                                    <td>2010</td>
-                                    <td>Fundamental C</td>
-                                    <td>1/1/2015</td>
-                                    <th>approved</th>
-                                    <th></th>
-                                </tr>
-                                <tr>
-
-                                    <td>Computer Science & engineering</td>
-
-
-                                    <td>Spring</td>
-                                    <td>2010</td>
-                                    <td>Fundamental C</td>
-                                    <td>1/1/2015</td>
-                                    <th></th>
-                                    <th><a class="btn btn-sm btn-info" href="" data-toggle="modal" data-target="#request" >Send Request</a></th>
-                                </tr>
 
 
                                 </tbody>
@@ -366,7 +273,7 @@
                         </div>
                     </div>
                     <div class="box-footer">
-                        <button type="submit" class="btn btn-primary">Send Request</button>
+                        <button type="submit" class="btn btn-primary">Add</button>
                         <button type="button" class="btn btn-success" data-dismiss="modal">Cancel</button>
                     </div>
                 </form>
@@ -394,6 +301,37 @@
             <div class="modal-body">
                 <form role="form">
                     <div class="box-body">
+
+
+
+                        <div class="form-group">
+                            <label for="department">Department</label>
+                            <select class="form-control input-sm" id="department">
+                                <option>Select a Department</option>
+                                <option value="CSE">CSE</option>
+                                <option value="ICT">ICT</option>
+                                <option value="ENGLISH">ENGLISH</option>
+                                <option value="PHYSICS">PHYSICS</option>
+                                <option value="CSE">MATH</option>
+                                <option value="CSE">BBA</option>
+                                <option value="CSE">MBA</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <select class="form-control input-sm" id="subject">
+                                <option>Select Year</option>
+                                <option value="CSE">Fundamental C</option>
+                                <option value="ICT">Fundamental C</option>
+                                <option value="ENGLISH">Fundamental C</option>
+                                <option value="ENGLISH">Fundamental C</option>
+                                <option value="ENGLISH">Fundamental C</option>
+                                <option value="ENGLISH">Fundamental C</option>
+                                <option value="ENGLISH">Fundamental C</option>
+
+                            </select>
+                        </div>
 
                         <div class="form-group">
                             <label for="teacher">Teacher</label>
@@ -424,6 +362,57 @@
         </div>
     </div>
 </div>
+
+
+<!--Modal:view-->
+
+<div class="modal fade " id="view" tabindex="-1" role="dialog" aria-labelledby="confirm-delete" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Information</h4>
+            </div>
+            <div class="modal-body">
+                <form role="form">
+                    <div class="box-body">
+
+
+
+                        <div style="padding: 20px;">
+                            <table>
+                                <h4> </h4>
+                                <tr
+
+                                <td>Department:CSE</td>
+
+                                </tr>
+                                <td>Semester:Spring</td></tr>
+                                <td>Year:2010</td></tr>
+
+                                <td>Subject:Fundamental C</td></tr>
+                                <td>Teacher:Md Rashad</td></tr>
+
+                                </tr>
+                            </table>
+
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+
+                <button type="submit" class="btn btn-info" data-dismiss="modal">Cancel</button>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 <script type="text/javascript">
     $(function() {
