@@ -106,18 +106,18 @@
                                 <ul class="nav nav-tabs">
                                     <li><a href="#tab_3" data-toggle="tab"> Question Papers  </a></li>
                                     <li><a href="#tab_4" data-toggle="tab">Evaluation</a></li>
-                                    <li><a href="#tab_5" data-toggle="tab">Marks</a></li>
+
                                 </ul>
                                 <div class="tab-content">
                                     <div class="tab-pane active" id="tab_3">
-                                        <button class="pull-right btn btn-success btn-sm"  data-toggle="modal" data-target="#addquestionPaper" >
+                                        <button class="pull-right btn btn-success btn-sm"  data-toggle="modal" data-target="#addQuestionPaper" >
                                             Add Question Paper
                                         </button><br>
 
                                         <b>Question:</b>
 
                                         <div class="box-body table-responsive">
-                                            <table id="example1" class="table table-bordered table-striped">
+                                            <table id="example3" class="table table-bordered table-striped">
                                                 <thead>
                                                 <tr>
                                                     <th>Type</th>
@@ -149,54 +149,39 @@
                                                 <?php } ?>
 
 
-
-
                                                 </tbody>
 
                                             </table>
                                         </div><!-- /.box -->
                                     </div><!-- /.tab-pane -->
                                     <div class="tab-pane" id="tab_4">
-                                        <button class="pull-right btn btn-success btn-sm"  data-toggle="modal" data-target="#addPublications" >
-                                            Add Publication
-                                        </button><br>
-
-                                        <b>Publications:</b>
 
                                         <div class="box-body table-responsive">
-                                            <table id="example3" class="table table-bordered table-striped">
+                                            <table id="example4" class="table table-bordered table-striped">
                                                 <thead>
                                                 <tr>
-                                                    <th>Publication</th>
-                                                    <th>Description</th>
-                                                    <th>Category </th>
-                                                    <th>Resources</th>
-                                                    <th>Status</th>
-                                                    <th>Action</th>
+                                                    <th> Type </th>
+                                                    <th> Questions </th>
+                                                    <th> Options </th>
+                                                    <th> Answer </th>
+                                                    <th> Number </th>
+                                                    <th> Action </th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
                                                 <?php for($i = 0; $i < 5; $i++){ ?>
                                                     <tr>
-                                                        <td> Renewal: The Ultimate Gift </td>
-                                                        <td> Consistently ranked the most highly-cited and pertinent publications in the field </td>
-                                                        <td> Science  </td>
-
-                                                        <td> IEEE links </td>
-                                                        <td> Open </td>
+                                                        <td> MCQ </td>
+                                                        <td> RAD stands for? </td>
+                                                        <td> 1.Relative Application Development,2.Rapid Application Development,3.Rapid Application Document,4.Rapid Apply Document  </td>
+                                                        <td> 2.Rapid Application Development </td>
+                                                        <td> 23 </td>
                                                         <td>
-                                                            <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#viewPublications">
-                                                                View
-                                                            </button>
-                                                            <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#addPublications">
-                                                                Edit
-                                                            </button>
-                                                            <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">
-                                                                Delete
+                                                            <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#addEvoNo">
+                                                                Add Number
                                                             </button>
                                                         </td>
                                                     </tr>
-
 
 
                                                 <?php } ?>
