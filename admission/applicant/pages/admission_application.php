@@ -65,10 +65,10 @@
                                             </td>
                                         </tr>
                                          <tr>
-                                            <td>Bechelor of Computer Science and Engineering</td>
+                                            <td>Bechelor of Business Admistration</td>
                                              <td>This is 4 years course for every student who want to apply for this course.</td>
-                                            <td>5/12/2014</td>
-                                            <td>30/12/2014 </td>
+                                            <td>15/12/2014</td>
+                                            <td>31/12/2014 </td>
                                             <td><button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#viewDetails">View
                                             </button>
                                             <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#approvalModal">Apply</button>
@@ -76,9 +76,9 @@
                                         </tr>
                                          
                                          <tr>
-                                            <td>Bechelor of Computer Science and Engineering</td>
+                                            <td>Bechelor of Mechanical Engineering</td>
                                              <td>This is 4 years course for every student who want to apply for this course.</td>
-                                             <td>5/12/2014</td>
+                                             <td>1/12/2014</td>
                                              <td>30/12/2014 </td>
                                             <td><button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#viewDetails">View
                                             </button>
@@ -86,25 +86,16 @@
                                             </td>
                                         </tr>
                                          <tr>
-                                             <td>Bechelor of Computer Science and Engineering</td>
+                                             <td>Bechelor of Hotel Management</td>
                                             <td>This is 4 years course for every student who want to apply for this course.</td>
-                                             <td>5/12/2014</td>
-                                             <td>30/12/2014 </td>
+                                             <td>6/12/2014</td>
+                                             <td>10/12/2014 </td>
                                             <td><button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#viewDetails">View
                                             </button>
                                             <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#approvalModal">Apply</button>
                                             </td>
                                         </tr>
-                                           <tr>
-                                             <td>Bechelor of Computer Science and Engineering</td>
-                                             <td>This is 4 years course for every student who want to apply for this course.</td>
-                                               <td>5/12/2014</td>
-                                               <td>30/12/2014 </td>
-                                            <td><button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#viewDetails">View
-                                            </button>
-                                            <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#approvalModal">Apply</button>
-                                            </td>
-                                        </tr>
+                                           
                                     </tbody>
                                  
                                 </table>
