@@ -18,6 +18,53 @@
 </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
+<!-- Add new questions  Title Modal -->
+<div class="modal fade" id="addTitle" tabindex="-1" role="dialog" aria-labelledby="addResearchReview" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">Add New Question Title</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                      <div class="form-group">
+                        <label for="question">Title</label>
+                        <input type="text" class="form-control" id="title" placeholder="Enter Question Title">
+                    </div>
+                    <div class="form-group">
+                        <label for="degname">Type </label>
+                        <select class="form-control">
+                            <option>Select</option>
+                            <option>MCQ</option>
+                            <option>Descriptive</option> 
+                            <option>Mixed</option> 
+                        </select>
+                    </div>
+                   
+                    <div class="form-group">
+                            <label for="Payment">Auto Evaluated</label>
+                            <label class="radio-inline">
+                                <input type="radio" name="optradio">Yes
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="optradio">No
+                            </label>
+                            
+
+                        </div>
+                    
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-dismiss="modal">Save</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
 <!-- Add new questions Modal -->
 <div class="modal fade" id="addQuestion" tabindex="-1" role="dialog" aria-labelledby="addResearchReview" aria-hidden="true">
     <div class="modal-dialog">
@@ -73,7 +120,7 @@
 
 
 
-<!-- View details Modal -->
+<!-- 1-View details Modal -->
 <div class="modal fade" id="viewDetails" tabindex="-1" role="dialog" aria-labelledby="viewDetails" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -83,8 +130,14 @@
             </div>
             <div class="modal-body">
                 <h2>Question Information:</h2>
+                <h4>Title:
+                <p>Question for CSE Department</p>
+                </h4><br>                         
                 <h4>Type:
                 <p>MCQ</p>
+                </h4><br>
+                <h4>Auto Evaluated:
+                <p>yes</p>
                 </h4><br>
                 <h4>Question:
                 <p>RAD stands for?</p>
@@ -108,6 +161,50 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
+
+<!-- 2-View details Modal -->
+<div class="modal fade" id="viewDetailstb" tabindex="-1" role="dialog" aria-labelledby="viewDetails" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">View Details</h4>
+            </div>
+            <div class="modal-body">
+                <h2>Question Information:</h2>
+                <h4>Title:
+                <p>Question for BBA Department</p>
+                </h4><br>                         
+                <h4>Type:
+                <p>MCQ</p>
+                </h4><br>
+                <h4>Auto Evaluated:
+                <p>yes</p>
+                </h4><br>
+                <h4>Question:
+                <p>Communication with superiors involves?</p>
+                </h4><br>
+                <h4>Options:
+                <p>1.Problem solving
+                <p>2.Disciplinary matters</p>
+                <p>3.Welfare aspects</p>
+                <p>4.Public relations</p>
+                </h4><br>
+                <h4>Answer:
+                <p>1.Problem solving</p>
+                </h4><br>
+               </div>
+            <td></td>
+                                           
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-dismiss="modal">Back</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 
 <!--Login Delete Modal -->
 
