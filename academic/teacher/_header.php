@@ -54,6 +54,7 @@
                 "bInfo": true,
                 "bAutoWidth": false
             });
+
         });
     </script>
 </head>

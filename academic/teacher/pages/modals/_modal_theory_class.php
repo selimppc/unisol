@@ -92,12 +92,10 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="status">Status </label>
-                        <select class="form-control" id="status">
-                            <option>Publish</option>
-                            <option>Un publish</option>
-                        </select>
+                        <label for="description">Description</label>
+                        <textarea class="form-control" id="description" placeholder="Description goes here"></textarea>
                     </div>
+
                 </form>
             </div>
             <div class="modal-footer">

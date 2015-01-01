@@ -38,14 +38,19 @@
 </div><!-- /.box-header -->
 <div class="box-body table-responsive">
 <table id="example1" class="table table-bordered table-striped">
+    <col width="150">
+    <col width="200">
+    <col width="180">
+    <col width="150">
 <thead>
 <tr>
 
-    <th>Name of </th>
+    <th>Name of Examination Center</th>
 
     <th>Address </th>
-    <th>Description</th>
+
     <th>Category</th>
+    <th>Action</th>
 
 
 </tr>
@@ -54,255 +59,149 @@
 
 <tr>
 
-    <td></td>
+    <td>Dhaka (51276)</td>
+    <td>American Alumni Association,
+        Prometric Testing Center,
+        House 145, Street 13B,
+        Banani 1216,
+        Dhaka, Bangladesh</td>
 
+    <td>General Training & Academic</td>
 
-    <td>Spring</td>
-    <td>2010</td>
-    <td>Fundamental C</td>
-    <td>1/1/2015</td>
-    <th>Uttara</th>
-    <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
-    <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit">Edit</button>
-    <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete">Delete</button></th>
+    <th><button class="btn btn-info btn-xs" data-toggle="modal" data-target="#view">View</button>
+    <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#edit">Edit</button>
+    <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#delete">Delete</button></th>
+</tr>
+
+<tr>
+
+    <td>Chittagong (21275)</td>
+    <td>Ctg Traning Association,
+        Prometric Testing Center,
+        House 1, Street 13B,
+        Shughanda 1216,
+        Ctg, Bangladesh</td>
+
+    <td>General Training & Academic</td>
+
+    <th><button class="btn btn-info btn-xs" data-toggle="modal" data-target="#view">View</button>
+        <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#edit">Edit</button>
+        <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#delete">Delete</button></th>
+</tr>
+
+<tr>
+
+    <td>Dhaka (21200)</td>
+    <td>
+        Prometric Testing Center,
+        House 10, Street 13B,
+        Dhaka, Bangladesh</td>
+
+    <td> Academic</td>
+
+    <th><button class="btn btn-info btn-xs" data-toggle="modal" data-target="#view">View</button>
+        <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#edit">Edit</button>
+        <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#delete">Delete</button></th>
+</tr>
+
+<tr>
+
+    <td>Dhaka (21200)</td>
+    <td>
+        Prometric Traning Center,
+        House 10, Street 13B,
+        Dhaka, Bangladesh</td>
+
+    <td> General Training & Academic</td>
+
+    <th><button class="btn btn-info btn-xs" data-toggle="modal" data-target="#view">View</button>
+        <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#edit">Edit</button>
+        <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#delete">Delete</button></th>
+</tr>
+
+<tr>
+
+    <td>Old Dhaka (51200)</td>
+    <td>
+        Prometric Traning Center ,
+        House 10, Street 13B,
+        Dhaka, Bangladesh</td>
+
+    <td> Academic</td>
+
+    <th><button class="btn btn-info btn-xs" data-toggle="modal" data-target="#view">View</button>
+        <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#edit">Edit</button>
+        <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#delete">Delete</button></th>
+</tr>
+
+<tr>
+
+    <td>Old Dhaka (51200)</td>
+    <td>
+        ChildSchool ,
+        House 10, Street 13B,
+        Dhaka, Bangladesh</td>
+
+    <td>General Training & Academic</td>
+
+    <th><button class="btn btn-info btn-xs" data-toggle="modal" data-target="#view">View</button>
+        <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#edit">Edit</button>
+        <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#delete">Delete</button></th>
 </tr>
 <tr>
 
-    <td>Computer Science & engineering</td>
+    <td>Old Dhaka (51200)</td>
+    <td>
+        ChildSchool ,
+        House 10, Street 13B,
+        Dhaka, Bangladesh</td>
 
+    <td> Academic</td>
 
-    <td>Spring</td>
-    <td>2010</td>
-    <td>Fundamental C</td>
-    <td>1/1/2015</td>
-    <th>Mirpur</th>
-    <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
-        <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit">Edit</button>
-        <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete">Delete</button></th>
+    <th><button class="btn btn-info btn-xs" data-toggle="modal" data-target="#view">View</button>
+        <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#edit">Edit</button>
+        <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#delete">Delete</button></th>
 </tr>
+
 <tr>
 
-    <td>Computer Science & engineering</td>
+    <td>X Dhaka (51200)</td>
+    <td>
+        ChildSchool ,
+        House 10, Street 13B,
+        Dhaka, Bangladesh</td>
 
+    <td> Academic</td>
 
-    <td>Spring</td>
-    <td>2010</td>
-    <td>Fundamental C</td>
-    <td>1/1/2015</td>
-    <th>Motijil</th>
-    <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
-        <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit">Edit</button>
-        <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete">Delete</button></th>
+    <th><button class="btn btn-info btn-xs" data-toggle="modal" data-target="#view">View</button>
+        <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#edit">Edit</button>
+        <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#delete">Delete</button></th>
 </tr>
+
 <tr>
 
-    <td>Computer Science & engineering</td>
+    <td>X Dhaka (51200)</td>
+    <td>
+        ChildSchool ,
+        House 10, Street 13B,
+        Dhaka, Bangladesh</td>
 
+    <td> Academic</td>
 
-    <td>Spring</td>
-    <td>2010</td>
-    <td>Fundamental C</td>
-    <td>1/1/2015</td>
-    <th>Uttara</th>
-    <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
-        <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit">Edit</button>
-        <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete">Delete</button></th>
+    <th><button class="btn btn-info btn-xs" data-toggle="modal" data-target="#view">View</button>
+        <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#edit">Edit</button>
+        <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#delete">Delete</button></th>
 </tr>
-<tr>
-
-    <td>Computer Science & engineering</td>
-
-
-    <td>Spring</td>
-    <td>2010</td>
-    <td>Fundamental C</td>
-    <td>1/1/2015</td>
-    <th>Uttara</th>
-    <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
-        <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit">Edit</button>
-        <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete">Delete</button></th>
-</tr>
-<tr>
-
-    <td>Computer Science & engineering</td>
-
-
-    <td>Spring</td>
-    <td>2010</td>
-    <td>Fundamental C</td>
-    <td>1/1/2015</td>
-    <th>Uttara</th>
-    <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
-        <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit">Edit</button>
-        <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete">Delete</button></th>
-</tr>
-<tr>
-
-    <td>Computer Science & engineering</td>
-
-
-    <td>Spring</td>
-    <td>2010</td>
-    <td>Fundamental C</td>
-    <td>1/1/2015</td>
-    <th>Uttara</th>
-    <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
-        <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit">Edit</button>
-        <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete">Delete</button></th>
-</tr>
-<tr>
-
-    <td>Computer Science & engineering</td>
-
-
-    <td>Spring</td>
-    <td>2010</td>
-    <td>Fundamental C</td>
-    <td>1/1/2015</td>
-    <th>Kalshi</th>
-    <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
-        <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit">Edit</button>
-        <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete">Delete</button></th>
-</tr>
-<tr>
-
-    <td>Computer Science & engineering</td>
-
-
-    <td>Spring</td>
-    <td>2010</td>
-    <td>Fundamental C</td>
-    <td>1/1/2015</td>
-    <th>Shamoli</th>
-    <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
-        <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit">Edit</button>
-        <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete">Delete</button></th>
-</tr>
-<tr>
-
-    <td>Computer Science & engineering</td>
-
-
-    <td>Spring</td>
-    <td>2010</td>
-    <td>Fundamental C</td>
-    <td>1/1/2015</td>
-    <th>Shamoli</th>
-    <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
-        <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit">Edit</button>
-        <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete">Delete</button></th>
-</tr>
-<tr>
-
-    <td>Computer Science & engineering</td>
-
-
-    <td>Spring</td>
-    <td>2010</td>
-    <td>Fundamental C</td>
-    <td>1/1/2015</td>
-    <th>Shamoli</th>
-    <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
-        <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit">Edit</button>
-        <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete">Delete</button></th>
-</tr>
-<tr>
-
-    <td>Computer Science & engineering</td>
-
-
-    <td>Spring</td>
-    <td>2010</td>
-    <td>Fundamental C</td>
-    <td>1/1/2015</td>
-    <th>Shamoli</th>
-    <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
-        <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit">Edit</button>
-        <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete">Delete</button></th>
-</tr>
-<tr>
-
-    <td>Computer Science & engineering</td>
-
-
-    <td>Spring</td>
-    <td>2010</td>
-    <td>Fundamental C</td>
-    <td>1/1/2015</td>
-    <th>Shamoli</th>
-    <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
-        <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit">Edit</button>
-        <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete">Delete</button></th>
-</tr>
-<tr>
-
-    <td>Computer Science & engineering</td>
-
-
-    <td>Spring</td>
-    <td>2010</td>
-    <td>Fundamental C</td>
-    <td>1/1/2015</td>
-    <th>Shamoli</th>
-    <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
-        <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit">Edit</button>
-        <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete">Delete</button></th>
-</tr>
-<tr>
-
-    <td>Computer Science & engineering</td>
-
-
-    <td>Spring</td>
-    <td>2010</td>
-    <td>Fundamental C</td>
-    <td>1/1/2015</td>
-    <th>Gazipur</th>
-    <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
-        <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit">Edit</button>
-        <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete">Delete</button></th>
-</tr>
-<tr>
-
-    <td>Computer Science & engineering</td>
-
-
-    <td>Spring</td>
-    <td>2010</td>
-    <td>Fundamental C</td>
-    <td>1/1/2015</td>
-    <th>Gazipur</th>
-    <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
-        <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit">Edit</button>
-        <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete">Delete</button></th>
-</tr>
-<tr>
-
-    <td>Computer Science & engineering</td>
-
-
-    <td>Spring</td>
-    <td>2010</td>
-    <td>Fundamental C</td>
-    <td>1/1/2015</td>
-    <th>Gazipur</th>
-    <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
-        <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit">Edit</button>
-        <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete">Delete</button></th>
-</tr>
-
 
 </tbody>
                 <tfoot>
                 <tr>
 
-                    <th>Department</th>
+                    <th>Name of Examination Center</th>
 
-                    <th>Semester </th>
-                    <th>Year</th>
-                    <th>Subject</th>
-                    <th>Examination Date</th>
-                    <th>Location</th>
+                    <th>Address </th>
+
+                    <th>Category</th>
                     <th>Action</th>
                 </tr>
                 </tfoot>
@@ -338,82 +237,32 @@
 
 
                         <div class="form-group">
-                            <label for="department">Department</label>
-                            <select class="form-control input-sm" id="department">
-                                <option>Select a Department</option>
-                                <option value="CSE">CSE</option>
-                                <option value="ICT">ICT</option>
-                                <option value="ENGLISH">ENGLISH</option>
-                                <option value="PHYSICS">PHYSICS</option>
-                                <option value="CSE">MATH</option>
-                                <option value="CSE">BBA</option>
-                                <option value="CSE">MBA</option>
-                            </select>
+                            <label for="date">Name Of Examination Center</label>
+                            <input type="d" class="form-control" id="date" >
                         </div>
                         <div class="form-group">
-                            <label for="semester">Semester</label>
-                            <select class="form-control input-sm" id="semester">
-                                <option>Select Semester</option>
-                                <option value="CSE">Spring</option>
-                                <option value="ICT">Summer</option>
-                                <option value="ENGLISH">Fall</option>
-                            </select>
+                            <label for="date">Address</label>
+                            <input type="d" class="form-control" id="date" >
                         </div>
 
-                        <div class="form-group">
-                            <label for="subject">Subject</label>
-                            <select class="form-control input-sm" id="subject">
-                                <option>Select Year</option>
-                                <option value="CSE">Fundamental C</option>
-                                <option value="ICT">Fundamental C</option>
-                                <option value="ENGLISH">Fundamental C</option>
-                                <option value="ENGLISH">Fundamental C</option>
-                                <option value="ENGLISH">Fundamental C</option>
-                                <option value="ENGLISH">Fundamental C</option>
-                                <option value="ENGLISH">Fundamental C</option>
 
-                            </select>
-                        </div>
+
 
                         <div class="form-group">
-                            <label for="year">Year</label>
+                            <label for="year">Category</label>
                             <select class="form-control input-sm" id="year">
-                                <option>Select Year</option>
-                                <option value="CSE">2010</option>
-                                <option value="ICT">2011</option>
-                                <option value="ENGLISH">2012</option>
-                                <option value="ENGLISH">2013</option>
-                                <option value="ENGLISH">2014</option>
-                                <option value="ENGLISH">2015</option>
-                                <option value="ENGLISH">2016</option>
+                                <option>Select a Category</option>
+                                <option value="CSE">General Training & Academic</option>
+                                <option value="ICT">Academic</option>
+
 
                             </select>
                         </div>
 
 
-
-                        <div class="form-group">
-                            <label for="date">Examination Date</label>
-                            <input type="date" class="form-control" id="date" >
-                        </div>
-
-                        <div class="form-group">
-                            <label for="Location">Location</label>
-                            <select class="form-control input-sm" id="Location">
-                                <option>Select Location</option>
-                                <option value="CSE">Uttara</option>
-                                <option value="ICT">Mirpur</option>
-                                <option value="ENGLISH">Gazipur</option>
-                                <option value="ENGLISH">Uttara</option>
-                                <option value="ENGLISH">Gazipur</option>
-                                <option value="ENGLISH">Mirpur</option>
-                                <option value="ENGLISH">Gazipur</option>
-
-                            </select>
-                        </div>
                     </div>
                     <div class="box-footer">
-                        <button type="submit" class="btn btn-primary">Send Request</button>
+                        <button type="submit" class="btn btn-primary">Add</button>
                         <button type="button" class="btn btn-success" data-dismiss="modal">Cancel</button>
                     </div>
                 </form>
@@ -436,27 +285,27 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel"></h4>
+                <h4 class="modal-title" id="myModalLabel">Details Information Of Exam Center</h4>
             </div>
             <div class="modal-body">
-                <div style="padding: 20px;">
+                <div class="span well" style="padding: 20px;">
                     <table>
-                        <h4> Information</h4>
+                        <h4> </h4>
                         <tr
 
-                        <td>Department :Computer Science & engineering</td>
+                        <td><b>Name of Exam center  :</b>  Dhaka (21200)</td>
 
                         </tr>
 
-                        <td>Semester:Spring</td></tr>
+                        <td><b>Address  :</b> American Alumni Association,
+                            Prometric Testing Center,
+                            House 145, Street 13B,
+                            Banani 1216,
+                            Dhaka, Bangladesh </td></tr>
 
-                        <td>Year:2010</td></tr>
+                        <td><b>Category  : </b>General Training & Academic</td></tr>
 
-                        <td>Subject:Fundamental C</td></tr>
 
-                        <td>Date:1/1/2015</td></tr>
-
-                        <td>Location:Uttara</td>
                         </tr>
                     </table>
 
@@ -511,21 +360,24 @@
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    <label for="Dapartment">Dapartment</label>
-                    <input type="Dapartment" class="form-control" id="Dapartment" value="CSE">
+                    <label for="Dapartment">Name of Examination Center</label>
+                    <input type="Dapartment" class="form-control" id="Dapartment" value="Dhaka (21200)">
                 </div>
                 <div class="form-group">
-                    <label for="Semester">Semester</label>
-                    <input type="Semester" class="form-control" id="Semester" value="Spring">
+                    <label for="Semester">Address</label>
+                    <input type="Semester" class="form-control" id="Semester" value=" House 10, Street 13B,
+        Dhaka, Bangladesh">
                 </div>
                 <div class="form-group">
-                    <label for="Year">Year</label>
-                    <input type="Year" class="form-control" id="Year" value="2011">
+                    <label for="semester">Category</label>
+                    <select class="form-control input-sm" id="semester">
+                        <option>Select Category</option>
+                        <option value="CSE">General Training & Academic</option>
+                        <option value="ICT">Academic</option>
+
+                    </select>
                 </div>
-                <div class="form-group">
-                    <label for="Data">Examination Data</label>
-                    <input type="Data" class="form-control" id="Data" value="1/1/2015">
-                </div>
+
             </div>
             <div class="modal-footer">
 
