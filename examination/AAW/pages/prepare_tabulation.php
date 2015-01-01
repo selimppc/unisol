@@ -46,7 +46,7 @@
     <th>Department</th>
     <th>Semester</th>
     <th>Year</th>
-    <th>CGPA</th>
+    <th>GPA</th>
     <th>Action</th>
 
 </tr>
@@ -73,10 +73,10 @@
     <td>Md. Tarak</td>
 
 
-    <td>MBA-01001</td>
+    <td>MBA-02006</td>
     <td>MBA</td>
     <td>Spring</td>
-    <td>2011</td>
+    <td>2013</td>
     <th>3.70</th>
     <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
         <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit">Edit</button>
@@ -85,12 +85,12 @@
 
 <tr>
 
-    <td>Md. Jamal</td>
+    <td>Md. Khalid</td>
 
 
-    <td>CE-01001</td>
-    <td>CSE</td>
-    <td>Spring</td>
+    <td>BBA-01009</td>
+    <td>BBA</td>
+    <td>Summer</td>
     <td>2011</td>
     <th>2.78</th>
     <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
@@ -119,7 +119,7 @@
     <td>MBA-01001</td>
     <td>MBA</td>
     <td>Spring</td>
-    <td>2011</td>
+    <td>2013</td>
     <th>3.08</th>
     <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
         <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit">Edit</button>
@@ -127,13 +127,13 @@
 </tr>
 <tr>
 
-    <td>Md. Tarak</td>
+    <td>Md. Sami</td>
 
 
-    <td>MBA-01001</td>
+    <td>MBA-09001</td>
     <td>MBA</td>
     <td>Spring</td>
-    <td>2011</td>
+    <td>2014</td>
     <th>2.22</th>
     <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
         <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit">Edit</button>
@@ -141,11 +141,11 @@
 </tr>
 <tr>
 
-    <td>Md. Jamal</td>
+    <td>Rafiq Ahmed</td>
 
 
-    <td>CE-01001</td>
-    <td>CSE</td>
+    <td>Phy-01008</td>
+    <td>Physics</td>
     <td>Spring</td>
     <td>2011</td>
     <th>3.00</th>
@@ -158,8 +158,8 @@
     <td>Md. Sami</td>
 
 
-    <td>CE-01001</td>
-    <td>CSE</td>
+    <td>M-01001</td>
+    <td>Math</td>
     <td>Spring</td>
     <td>2012</td>
     <th>3.14</th>
@@ -172,10 +172,10 @@
     <td>Md. Jamal</td>
 
 
-    <td>CE-01001</td>
-    <td>CSE</td>
-    <td>Spring</td>
-    <td>2011</td>
+    <td>ICT-01001</td>
+    <td>ICT</td>
+    <td>Fall</td>
+    <td>2014</td>
     <th>3.78</th>
     <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
         <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit">Edit</button>
@@ -183,13 +183,13 @@
 </tr>
 <tr>
 
-    <td>Md. Sami</td>
+    <td>Md. Jahan</td>
 
 
-    <td>CE-01001</td>
+    <td>CE-01005</td>
     <td>CSE</td>
     <td>Spring</td>
-    <td>2012</td>
+    <td>2011</td>
     <th>3.14</th>
     <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
         <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit">Edit</button>
@@ -197,21 +197,77 @@
 </tr>
 <tr>
 
-    <td>Md. Sami</td>
+    <td>A.K.M Rafi</td>
+
+
+    <td>Eng-01001</td>
+    <td>English</td>
+    <td>Fall</td>
+    <td>2012</td>
+    <th>3.25</th>
+    <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
+        <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit">Edit</button>
+        <button class="btn btn-dropbox btn-sm" data-toggle="modal" data-target="#delete">Delete</button></th>
+</tr>
+<tr>
+
+    <td>Md. Zakir Ahmed</td>
+
+
+    <td>CE-01001</td>
+    <td>CSE</td>
+    <td>Spring</td>
+    <td>2010</td>
+    <th>3.78</th>
+    <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
+        <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit">Edit</button>
+        <button class="btn btn-dropbox btn-sm" data-toggle="modal" data-target="#delete">Delete</button></th>
+</tr>
+<tr>
+
+    <td>Munni Akter</td>
+
+
+    <td>CE-01001</td>
+    <td>CSE</td>
+    <td>Spring</td>
+    <td>2011</td>
+    <th>3.78</th>
+    <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
+        <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit">Edit</button>
+        <button class="btn btn-dropbox btn-sm" data-toggle="modal" data-target="#delete">Delete</button></th>
+</tr>
+<tr>
+
+    <td>Md. Rashad</td>
 
 
     <td>CE-01001</td>
     <td>CSE</td>
     <td>Spring</td>
     <td>2012</td>
-    <th>3.14</th>
+    <th>3.78</th>
     <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
         <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit">Edit</button>
         <button class="btn btn-dropbox btn-sm" data-toggle="modal" data-target="#delete">Delete</button></th>
 </tr>
 <tr>
 
-    <td>Md. Jamal</td>
+    <td>Tamanna Khanam</td>
+
+
+    <td>CE-01001</td>
+    <td>CSE</td>
+    <td>Fall</td>
+    <td>2011</td>
+    <th>3.78</th>
+    <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
+        <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit">Edit</button>
+        <button class="btn btn-dropbox btn-sm" data-toggle="modal" data-target="#delete">Delete</button></th>
+</tr>
+<tr>
+
+    <td>Md. Raihan</td>
 
 
     <td>CE-01001</td>
@@ -228,10 +284,10 @@
     <td>Md. Jamal</td>
 
 
-    <td>CE-01001</td>
+    <td>CE-01008</td>
     <td>CSE</td>
     <td>Spring</td>
-    <td>2011</td>
+    <td>2013</td>
     <th>3.78</th>
     <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
         <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit">Edit</button>
@@ -239,21 +295,7 @@
 </tr>
 <tr>
 
-    <td>Md. Jamal</td>
-
-
-    <td>CE-01001</td>
-    <td>CSE</td>
-    <td>Spring</td>
-    <td>2011</td>
-    <th>3.78</th>
-    <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
-        <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit">Edit</button>
-        <button class="btn btn-dropbox btn-sm" data-toggle="modal" data-target="#delete">Delete</button></th>
-</tr>
-<tr>
-
-    <td>Md. Jamal</td>
+    <td>Md. Malak</td>
 
 
     <td>CE-01001</td>
@@ -267,13 +309,13 @@
 </tr>
 <tr>
 
-    <td>Md. Jamal</td>
+    <td>Zarin Akter</td>
 
 
     <td>CE-01001</td>
     <td>CSE</td>
-    <td>Spring</td>
-    <td>2011</td>
+    <td>Fall</td>
+    <td>2012</td>
     <th>3.78</th>
     <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
         <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit">Edit</button>
@@ -287,49 +329,7 @@
     <td>CE-01001</td>
     <td>CSE</td>
     <td>Spring</td>
-    <td>2011</td>
-    <th>3.78</th>
-    <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
-        <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit">Edit</button>
-        <button class="btn btn-dropbox btn-sm" data-toggle="modal" data-target="#delete">Delete</button></th>
-</tr>
-<tr>
-
-    <td>Md. Jamal</td>
-
-
-    <td>CE-01001</td>
-    <td>CSE</td>
-    <td>Spring</td>
-    <td>2011</td>
-    <th>3.78</th>
-    <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
-        <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit">Edit</button>
-        <button class="btn btn-dropbox btn-sm" data-toggle="modal" data-target="#delete">Delete</button></th>
-</tr>
-<tr>
-
-    <td>Md. Jamal</td>
-
-
-    <td>CE-01001</td>
-    <td>CSE</td>
-    <td>Spring</td>
-    <td>2011</td>
-    <th>3.78</th>
-    <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
-        <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit">Edit</button>
-        <button class="btn btn-dropbox btn-sm" data-toggle="modal" data-target="#delete">Delete</button></th>
-</tr>
-<tr>
-
-    <td>Md. Jamal</td>
-
-
-    <td>CE-01001</td>
-    <td>CSE</td>
-    <td>Spring</td>
-    <td>2011</td>
+    <td>2010</td>
     <th>3.78</th>
     <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
         <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit">Edit</button>
@@ -433,7 +433,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="cgpa">CGPA</label>
+                            <label for="cgpa">GPA</label>
                             <input type="cgpa" class="form-control" id="cgpa" >
                         </div>
 
@@ -463,12 +463,12 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel"></h4>
+                <h4 class="modal-title" id="myModalLabel"><b>View Of Tabulation</b></h4>
             </div>
             <div class="modal-body">
                 <div style="padding: 20px;">
                     <table>
-                        <h4> Information</h4>
+                        <h4><b>Student Information</b></h4>
                         <tr
 
                         <td>Student Name:Samia Jahan</td>
@@ -480,11 +480,130 @@
                         <td>Semester:Spring</td></tr>
 
                         <td>Year:2010</td></tr>
-                        <td>CGPA:3.78</td></tr>
+                        <td>CGPA:3.05</td></tr>
 
 
 
                         </tr>
+                    </table>
+
+
+                </div>
+                <div class="span well" >
+                    <table class="table table-bordered table-striped">
+                        <h4><b>Details</b></h4>
+                        <thead>
+                        <tr>
+
+                            <th>Course Code</th>
+                            <th>Course Title</th>
+                            <th>credit Hours(s)</th>
+                            <th>LG</th>
+                            <th>GP</th>
+                            <th>GPA</th>
+
+
+
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        <tr>
+
+                            <td>CSE-2201</td>
+
+
+                            <td>Algorithms</td>
+                            <td>3.00</td>
+                            <td>B</td>
+                            <td>3.00</td>
+                            <th rowspan="8" <b>3.05</b></th>
+
+
+                        </tr>
+
+                        <tr>
+
+                            <td>CSE-2202</td>
+
+
+                            <td>Algorithms Lab</td>
+                            <td>1.00</td>
+                            <td>C</td>
+                            <td>2.25</td>
+
+
+
+                        </tr>
+                        <tr>
+
+                            <td>CSE-2203</td>
+
+
+                            <td>Computer Architecture</td>
+                            <td>3.00</td>
+                            <td>B</td>
+                            <td>3.00</td>
+
+
+
+                        </tr>
+                        <tr>
+
+                            <td>CSE-2205</td>
+
+
+                            <td>Numerical Methods</td>
+                            <td>2.00</td>
+                            <td>B</td>
+                            <td>3.00</td>
+
+
+
+                        </tr>
+                        <tr>
+
+                            <td>CSE-2206</td>
+
+
+                            <td>Numerical Methods Lab</td>
+                            <td>1.00</td>
+                            <td>C</td>
+                            <td>2.25</td>
+
+
+
+                        </tr>
+                        <tr>
+
+                            <td>CSE-2207</td>
+
+
+                            <td>Digital System</td>
+                            <td>3.00</td>
+                            <td>a</td>
+                            <td>3.25</td>
+
+
+                        </tr>
+                        <tr>
+
+                            <td>CSE-2208</td>
+
+
+                            <td>Digital System Lab</td>
+                            <td>1.00</td>
+                            <td>C</td>
+                            <td>2.25</td>
+
+
+
+                        </tr>
+
+
+
+                        </tbody>
+
                     </table>
 
 

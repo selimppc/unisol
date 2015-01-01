@@ -100,10 +100,7 @@
 </tr>
 
 <tr>
-
     <td>edu TechSolutions</td>
-
-
     <td>Telecom</td>
     <td>With a small team of developers, designers works day in and day out on developing beautiful, powerful, and user-friendly apps</td>
     <td>6 month</td>
