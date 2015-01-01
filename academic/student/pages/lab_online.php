@@ -39,6 +39,10 @@
                                         data-target="#labProposal">Submit Lab Task
                                 </button>
 
+                                <button type="button" class=" btn-success" data-toggle="modal"
+                                        data-target="#marksDistribution">View Marks
+                                </button>
+
                             </div>
 
                             <br><br>

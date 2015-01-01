@@ -11,28 +11,28 @@
                 <form role="form">
                     <div class="box-body">
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Attendance (10%):  </label>
-                            <input id="exampleInputEmail1" placeholder="Attendence Marks">
+                            <label for="exampleInputEmail1">Attendance :  </label>
+                            <input id="exampleInputEmail1" placeholder="Attendence Marks in %">
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleInputEmail1"> Class Test (20%): </label>
-                            <input id="exampleInputEmail1" placeholder="Class Test Marks">
+                            <label for="exampleInputEmail1"> Class Test : </label>
+                            <input id="exampleInputEmail1" placeholder="Class Test Marks in %">
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleInputEmail1"> Assignment (10%):</label>
-                            <input id="exampleInputEmail1" placeholder="Assignment Marks">
+                            <label for="exampleInputEmail1"> Assignment :</label>
+                            <input id="exampleInputEmail1" placeholder="Assignment Marks in %">
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleInputEmail1"> Mid Term (30%):</label>
-                            <input id="exampleInputEmail1" placeholder="Mid Term Marks">
+                            <label for="exampleInputEmail1"> Mid Term :</label>
+                            <input id="exampleInputEmail1" placeholder="Mid Term Marks in %">
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleInputEmail1"> Final Term (30%):</label>
-                            <input id="exampleInputEmail1" placeholder="Final Term Marks">
+                            <label for="exampleInputEmail1"> Final Term :</label>
+                            <input id="exampleInputEmail1" placeholder="Final Term Marks in %">
                         </div>
 
                     </div><!-- /.box-body -->
@@ -61,28 +61,28 @@
                     <div class="box-body">
 
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Lab Works (10%):  </label>
-                            <input id="exampleInputEmail1" placeholder="Lab Works Marks">
+                            <label for="exampleInputEmail1">Lab Works :  </label>
+                            <input id="exampleInputEmail1" placeholder="Lab Works Marks in %">
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleInputEmail1"> Class Test (20%): </label>
-                            <input id="exampleInputEmail1" placeholder="Class Test Marks">
+                            <label for="exampleInputEmail1"> Class Test : </label>
+                            <input id="exampleInputEmail1" placeholder="Class Test Marks in %">
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleInputEmail1"> Assignment (10%):</label>
-                            <input id="exampleInputEmail1" placeholder="Assignment Marks">
+                            <label for="exampleInputEmail1"> Assignment :</label>
+                            <input id="exampleInputEmail1" placeholder="Assignment Marks in %">
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleInputEmail1"> Mid Term (30%):</label>
-                            <input id="exampleInputEmail1" placeholder="Mid Term Marks">
+                            <label for="exampleInputEmail1"> Mid Term :</label>
+                            <input id="exampleInputEmail1" placeholder="Mid Term Marks in %">
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleInputEmail1"> Final Term (30%):</label>
-                            <input id="exampleInputEmail1" placeholder="Final Term Marks">
+                            <label for="exampleInputEmail1"> Final Term :</label>
+                            <input id="exampleInputEmail1" placeholder="Final Term Marks in %">
                         </div>
 
                     </div><!-- /.box-body -->
@@ -112,38 +112,38 @@
                     <div class="box-body">
 
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Attendance (1%):  </label>
-                            <input id="exampleInputEmail1" placeholder="Lab Works Marks">
+                            <label for="exampleInputEmail1">Attendance :  </label>
+                            <input id="exampleInputEmail1" placeholder="Lab Works Marks in %">
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Project Proposal (10%):  </label>
-                            <input id="exampleInputEmail1" placeholder="Lab Works Marks">
+                            <label for="exampleInputEmail1">Project Proposal :  </label>
+                            <input id="exampleInputEmail1" placeholder="Lab Works Marks in %">
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleInputEmail1"> Proposal Presentation (10%): </label>
-                            <input id="exampleInputEmail1" placeholder="Class Test Marks">
+                            <label for="exampleInputEmail1"> Proposal Presentation : </label>
+                            <input id="exampleInputEmail1" placeholder="Class Test Marks in %">
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleInputEmail1"> Field Work (15%):</label>
-                            <input id="exampleInputEmail1" placeholder="Assignment Marks">
+                            <label for="exampleInputEmail1"> Field Work :</label>
+                            <input id="exampleInputEmail1" placeholder="Assignment Marks in %">
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleInputEmail1"> Project Presentation (15%):</label>
-                            <input id="exampleInputEmail1" placeholder="Mid Term Marks">
+                            <label for="exampleInputEmail1"> Project Presentation :</label>
+                            <input id="exampleInputEmail1" placeholder="Mid Term Marks in %">
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleInputEmail1"> Report Presentation (20%):</label>
-                            <input id="exampleInputEmail1" placeholder="Mid Term Marks">
+                            <label for="exampleInputEmail1"> Report Presentation :</label>
+                            <input id="exampleInputEmail1" placeholder="Mid Term Marks in %">
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleInputEmail1"> Final Report (20%):</label>
-                            <input id="exampleInputEmail1" placeholder="Final Term Marks">
+                            <label for="exampleInputEmail1"> Final Report :</label>
+                            <input id="exampleInputEmail1" placeholder="Final Term Marks in %">
                         </div>
 
                     </div><!-- /.box-body -->
@@ -174,34 +174,34 @@
                     <div class="box-body">
 
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Attendance (10%):  </label>
-                            <input id="exampleInputEmail1" placeholder="Lab Works Marks">
+                            <label for="exampleInputEmail1">Attendance :  </label>
+                            <input id="exampleInputEmail1" placeholder="Lab Works Marks in %">
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleInputEmail1"> Proposal & Presentation (20%): </label>
-                            <input id="exampleInputEmail1" placeholder="Class Test Marks">
+                            <label for="exampleInputEmail1"> Proposal & Presentation : </label>
+                            <input id="exampleInputEmail1" placeholder="Class Test Marks in %">
                         </div>
 
 
                         <div class="form-group">
-                            <label for="exampleInputEmail1"> Field Work (15%):</label>
-                            <input id="exampleInputEmail1" placeholder="Assignment Marks">
+                            <label for="exampleInputEmail1"> Field Work :</label>
+                            <input id="exampleInputEmail1" placeholder="Assignment Marks in %">
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleInputEmail1"> Implementation Presentation (15%):</label>
-                            <input id="exampleInputEmail1" placeholder="Mid Term Marks">
+                            <label for="exampleInputEmail1"> Implementation Presentation :</label>
+                            <input id="exampleInputEmail1" placeholder="Mid Term Marks in %">
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleInputEmail1"> Thesis Presentation (20%):</label>
-                            <input id="exampleInputEmail1" placeholder="Mid Term Marks">
+                            <label for="exampleInputEmail1"> Thesis Presentation :</label>
+                            <input id="exampleInputEmail1" placeholder="Mid Term Marks in %">
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleInputEmail1"> Final Report (20%):</label>
-                            <input id="exampleInputEmail1" placeholder="Final Term Marks">
+                            <label for="exampleInputEmail1"> Final Report :</label>
+                            <input id="exampleInputEmail1" placeholder="Final Term Marks in %">
                         </div>
 
                     </div><!-- /.box-body -->
@@ -230,28 +230,28 @@
                     <div class="box-body">
 
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Attendance (15%):  </label>
-                            <input id="exampleInputEmail1" placeholder="Lab Works Marks">
+                            <label for="exampleInputEmail1">Attendance :  </label>
+                            <input id="exampleInputEmail1" placeholder="Lab-Works Marks in %">
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Internship Proposal (15%):  </label>
-                            <input id="exampleInputEmail1" placeholder="Lab Works Marks">
+                            <label for="exampleInputEmail1">Internship Proposal :  </label>
+                            <input id="exampleInputEmail1" placeholder="Lab Works Marks in %">
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleInputEmail1"> Internship Report (20%): </label>
-                            <input id="exampleInputEmail1" placeholder="Class Test Marks">
+                            <label for="exampleInputEmail1"> Internship Report : </label>
+                            <input id="exampleInputEmail1" placeholder="Class Test Marks in %">
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleInputEmail1"> Internship Report Presentation  (20%):</label>
-                            <input id="exampleInputEmail1" placeholder="Mid Term Marks">
+                            <label for="exampleInputEmail1"> Internship Report Presentation :</label>
+                            <input id="exampleInputEmail1" placeholder="Mid Term Marks in %">
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleInputEmail1"> Final Report (30%):</label>
-                            <input id="exampleInputEmail1" placeholder="Final Term Marks">
+                            <label for="exampleInputEmail1"> Final Report :</label>
+                            <input id="exampleInputEmail1" placeholder="Final Term Marks in %">
                         </div>
 
                     </div><!-- /.box-body -->
@@ -280,30 +280,29 @@
                     <div class="box-body">
 
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Attendance (15%):  </label>
-                            <input id="exampleInputEmail1" placeholder="Lab Works Marks">
+                            <label for="exampleInputEmail1">Attendance :  </label>
+                            <input id="exampleInputEmail1" placeholder="Lab Works Marks in %">
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Internship Proposal (15%):  </label>
-                            <input id="exampleInputEmail1" placeholder="Lab Works Marks">
+                            <label for="exampleInputEmail1">Internship Proposal :  </label>
+                            <input id="exampleInputEmail1" placeholder="Lab Works Marks in %">
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleInputEmail1"> Internship Report (20%): </label>
-                            <input id="exampleInputEmail1" placeholder="Class Test Marks">
+                            <label for="exampleInputEmail1"> Internship Report : </label>
+                            <input id="exampleInputEmail1" placeholder="Class Test Marks in %">
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleInputEmail1"> Internship Report Presentation  (20%):</label>
-                            <input id="exampleInputEmail1" placeholder="Mid Term Marks">
+                            <label for="exampleInputEmail1"> Internship Report Presentation :</label>
+                            <input id="exampleInputEmail1" placeholder="Mid Term Marks in %">
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleInputEmail1"> Final Report (30%):</label>
-                            <input id="exampleInputEmail1" placeholder="Final Term Marks">
+                            <label for="exampleInputEmail1"> Final Report :</label>
+                            <input id="exampleInputEmail1" placeholder="Final Term Marks in %">
                         </div>
-
                     </div><!-- /.box-body -->
                 </form>
             </div>

@@ -6,7 +6,6 @@
     <?php include('../_sidebar.php'); ?>
 
     <style type="text/css">
-
         .button-centre {
             text-align: center;
         }

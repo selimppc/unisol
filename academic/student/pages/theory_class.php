@@ -43,10 +43,16 @@
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane active" id="tab_1">
-                                <button class="pull-right btn btn-success btn-sm"  data-toggle="modal" data-target="#newClassVideo" >
-                                    New Class Video
-                                </button><br>
-                                <b>&nbsp;</b>
+
+                                    <button class="btn btn-success btn-sm"  data-toggle="modal" data-target="#newClassVideo" >
+                                        Upload New Class Video
+                                    </button> <br><br>
+
+                                    <button class="btn btn-info btn-sm"  data-toggle="modal" data-target="#marksDistribution" >
+                                        View Marks Distributions
+                                    </button> <br>
+
+                                    <b>&nbsp;</b>
 
                                 <div class="box-body table-responsive">
                                     <table id="example1" class="table table-bordered table-striped">

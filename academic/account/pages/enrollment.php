@@ -29,195 +29,190 @@
     <div class="col-xs-12">
         <div class="box">
             <div class="box-header">
-                <h3 class="box-title">Responsive Hover Table</h3>
+                <h3 class="box-title"></h3>
 
-                <div class="box-tools">
-                    <div class="input-group">
-                        <input type="text" name="table_search" class="form-control input-sm pull-right"
-                               style="width: 150px;" placeholder="Search"/>
 
-                        <div class="input-group-btn">
-                            <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
-                        </div>
-                    </div>
-                </div>
             </div>
             <!-- /.box-header -->
             <div class="box-body table-responsive no-padding">
-                <table class="table table-hover">
-                    <tr>
-                        <th>Student Name</th>
-                        <th> ID</th>
-                        <th>Year</th>
-                        <th>Semester</th>
-                        <th>Courses</th>
-                        <th>Discount Type</th>
-                        <th>Payment Type</th>
-                        <th>Total Amount</th>
-                        <th>Status</th>
-                        <th>Action</th>
-                    </tr>
-                    <tr>
-                        <td>Md. Shafiqul Haque</td>
-                        <td>011091022</td>
-                        <td>2013</td>
-                        <td>Fall</td>
-                        <td>CSE-101,CSE-003,PHY-01,ECO-02,IPE-1</td>
-                        <td>Scholarship-25% , Waiver-25%</td>
-                        <td>Online Bank Payment</td>
-                        <td>49,000</td>
-                        <td><span class="label label-primary">New</span></td>
-                        <td>
-                            <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#viewDetails">
-                                View
-                            </button>
-                            <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#approvalModal">
-                                Approve
-                            </button>
+                <table id="example1" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Student Name</th>
+                            <th> ID</th>
+                            <th>Year</th>
+                            <th>Semester</th>
+                            <th>Courses</th>
+                            <th>Discount Type</th>
+                            <th>Payment Type</th>
+                            <th>Total Amount</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Md. Shafiqul Haque</td>
+                            <td>011091022</td>
+                            <td>2013</td>
+                            <td>Fall</td>
+                            <td>CSE-101,CSE-003,PHY-01,ECO-02,IPE-1</td>
+                            <td>Scholarship-25% , Waiver-25%</td>
+                            <td>Online Bank Payment</td>
+                            <td>49,000</td>
+                            <td><span class="label label-primary">New</span></td>
+                            <td>
+                                <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#viewDetails">
+                                    View
+                                </button>
+                                <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#approvalModal">
+                                    Approve
+                                </button>
 
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Monjur Morshed Bappy</td>
-                        <td>011091013</td>
-                        <td>2013</td>
-                        <td>Fall</td>
-                        <td>CSE-003,CSE-101,CSE-102,PHY-02,ECO-01,MATH-005</td>
-                        <td>Scholarship-50% , Waiver-25%</td>
-                        <td>Bank Payment</td>
-                        <td>54,000</td>
-                        <td><span class="label label-primary">New</span></td>
-                        <td>
-                            <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#viewDetails">
-                                View
-                            </button>
-                            <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#approvalModal">
-                                Approve
-                            </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Monjur Morshed Bappy</td>
+                            <td>011091013</td>
+                            <td>2013</td>
+                            <td>Fall</td>
+                            <td>CSE-003,CSE-101,CSE-102,PHY-02,ECO-01,MATH-005</td>
+                            <td>Scholarship-50% , Waiver-25%</td>
+                            <td>Bank Payment</td>
+                            <td>54,000</td>
+                            <td><span class="label label-primary">New</span></td>
+                            <td>
+                                <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#viewDetails">
+                                    View
+                                </button>
+                                <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#approvalModal">
+                                    Approve
+                                </button>
 
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Ayon Alfaz</td>
-                        <td>011091032</td>
-                        <td>2013</td>
-                        <td>Fall</td>
-                        <td>CSE-333,CSE-334,PHY-01,ECO-02,IPE-1</td>
-                        <td>Waiver-25%</td>
-                        <td>Bank Payment</td>
-                        <td>49,000</td>
-                        <td><span class="label label-warning">Checked</span></td>
-                        <td>
-                            <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#viewDetails">
-                                View
-                            </button>
-                            <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#approvalModal">
-                                Approve
-                            </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Ayon Alfaz</td>
+                            <td>011091032</td>
+                            <td>2013</td>
+                            <td>Fall</td>
+                            <td>CSE-333,CSE-334,PHY-01,ECO-02,IPE-1</td>
+                            <td>Waiver-25%</td>
+                            <td>Bank Payment</td>
+                            <td>49,000</td>
+                            <td><span class="label label-warning">Checked</span></td>
+                            <td>
+                                <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#viewDetails">
+                                    View
+                                </button>
+                                <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#approvalModal">
+                                    Approve
+                                </button>
 
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Md. Shafiqul Haque</td>
-                        <td>011091022</td>
-                        <td>2013</td>
-                        <td>Fall</td>
-                        <td>CSE-101,CSE-003,PHY-01,ECO-02,IPE-1</td>
-                        <td>Scholarship-25% , Waiver-25%</td>
-                        <td>Online Bank Payment</td>
-                        <td>49,000</td>
-                        <td><span class="label label-warning">Checked</span></td>
-                        <td>
-                            <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#viewDetails">
-                                View
-                            </button>
-                            <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#approvalModal">
-                                Approve
-                            </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Md. Shafiqul Haque</td>
+                            <td>011091022</td>
+                            <td>2013</td>
+                            <td>Fall</td>
+                            <td>CSE-101,CSE-003,PHY-01,ECO-02,IPE-1</td>
+                            <td>Scholarship-25% , Waiver-25%</td>
+                            <td>Online Bank Payment</td>
+                            <td>49,000</td>
+                            <td><span class="label label-warning">Checked</span></td>
+                            <td>
+                                <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#viewDetails">
+                                    View
+                                </button>
+                                <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#approvalModal">
+                                    Approve
+                                </button>
 
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Md. Shafiqul Haque</td>
-                        <td>011091022</td>
-                        <td>2013</td>
-                        <td>Fall</td>
-                        <td>CSE-101,CSE-003,PHY-01,ECO-02,IPE-1</td>
-                        <td>Scholarship-25% , Waiver-25%</td>
-                        <td>Online Bank Payment</td>
-                        <td>49,000</td>
-                        <td><span class="label label-danger">Declined</span></td>
-                        <td>
-                            <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#viewDetails">
-                                View
-                            </button>
-                            <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#approvalModal">
-                                Approve
-                            </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Md. Shafiqul Haque</td>
+                            <td>011091022</td>
+                            <td>2013</td>
+                            <td>Fall</td>
+                            <td>CSE-101,CSE-003,PHY-01,ECO-02,IPE-1</td>
+                            <td>Scholarship-25% , Waiver-25%</td>
+                            <td>Online Bank Payment</td>
+                            <td>49,000</td>
+                            <td><span class="label label-danger">Declined</span></td>
+                            <td>
+                                <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#viewDetails">
+                                    View
+                                </button>
+                                <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#approvalModal">
+                                    Approve
+                                </button>
 
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Md. Shafiqul Haque</td>
-                        <td>011091022</td>
-                        <td>2013</td>
-                        <td>Fall</td>
-                        <td>CSE-101,CSE-003,PHY-01,ECO-02,IPE-1</td>
-                        <td>Scholarship-25% , Waiver-25%</td>
-                        <td>Online Bank Payment</td>
-                        <td>49,000</td>
-                        <td><span class="label label-success">Approved</span></td>
-                        <td>
-                            <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#viewDetails">
-                                View
-                            </button>
-                            <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#approvalModal">
-                                Approve
-                            </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Md. Shafiqul Haque</td>
+                            <td>011091022</td>
+                            <td>2013</td>
+                            <td>Fall</td>
+                            <td>CSE-101,CSE-003,PHY-01,ECO-02,IPE-1</td>
+                            <td>Scholarship-25% , Waiver-25%</td>
+                            <td>Online Bank Payment</td>
+                            <td>49,000</td>
+                            <td><span class="label label-success">Approved</span></td>
+                            <td>
+                                <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#viewDetails">
+                                    View
+                                </button>
+                                <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#approvalModal">
+                                    Approve
+                                </button>
 
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Md. Shafiqul Haque</td>
-                        <td>011091022</td>
-                        <td>2013</td>
-                        <td>Fall</td>
-                        <td>CSE-101,CSE-003,PHY-01,ECO-02,IPE-1</td>
-                        <td>Scholarship-25% , Waiver-25%</td>
-                        <td>Online Bank Payment</td>
-                        <td>49,000</td>
-                        <td><span class="label label-success">Approved</span></td>
-                        <td>
-                            <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#viewDetails">
-                                View
-                            </button>
-                            <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#approvalModal">
-                                Approve
-                            </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Md. Shafiqul Haque</td>
+                            <td>011091022</td>
+                            <td>2013</td>
+                            <td>Fall</td>
+                            <td>CSE-101,CSE-003,PHY-01,ECO-02,IPE-1</td>
+                            <td>Scholarship-25% , Waiver-25%</td>
+                            <td>Online Bank Payment</td>
+                            <td>49,000</td>
+                            <td><span class="label label-success">Approved</span></td>
+                            <td>
+                                <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#viewDetails">
+                                    View
+                                </button>
+                                <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#approvalModal">
+                                    Approve
+                                </button>
 
-                        </td>
-                    </tr>
+                            </td>
+                        </tr>
 
-                    <tr>
-                        <td>Md. Shafiqul Haque</td>
-                        <td>011091022</td>
-                        <td>2013</td>
-                        <td>Fall</td>
-                        <td>CSE-101,CSE-003,PHY-01,ECO-02,IPE-1</td>
-                        <td>Scholarship-25% , Waiver-25%</td>
-                        <td>Online Bank Payment</td>
-                        <td>49,000</td>
-                        <td><span class="label label-success">Approved</span></td>
-                        <td>
-                            <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#viewDetails">
-                                View
-                            </button>
-                            <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#approvalModal">
-                                Approve
-                            </button>
+                        <tr>
+                            <td>Md. Shafiqul Haque</td>
+                            <td>011091022</td>
+                            <td>2013</td>
+                            <td>Fall</td>
+                            <td>CSE-101,CSE-003,PHY-01,ECO-02,IPE-1</td>
+                            <td>Scholarship-25% , Waiver-25%</td>
+                            <td>Online Bank Payment</td>
+                            <td>49,000</td>
+                            <td><span class="label label-success">Approved</span></td>
+                            <td>
+                                <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#viewDetails">
+                                    View
+                                </button>
+                                <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#approvalModal">
+                                    Approve
+                                </button>
 
-                        </td>
-                    </tr>
+                            </td>
+                        </tr>
+                    </tbody>
                 </table>
             </div>
             <!-- /.box-body -->

@@ -68,6 +68,10 @@
 
                             </div>
 
+                            <button type="button" class=" btn-success" data-toggle="modal"
+                                    data-target="#marksDistribution">View Marks
+                            </button>
+
 
                             <br><br>
 
