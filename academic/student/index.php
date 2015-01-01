@@ -326,7 +326,7 @@
                                 <li><a href="pages/theory_class.php"><i class="fa fa-angle-double-right"></i> Class</a></li>
                                 <li><a href="pages/theory_class_test.php"><i class="fa fa-angle-double-right"></i> Class Test</a></li>
                                 <li><a href="pages/theory_assignment.php"><i class="fa fa-angle-double-right"></i> Assignment</a></li>
-                                <li><a href="pages/theory_mid_final_exam.php"><i class="fa fa-angle-double-right"></i> Mid/ final Exam</a></li>
+
                             </ul>
                         </li>
 
