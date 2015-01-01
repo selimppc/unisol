@@ -25,7 +25,7 @@
 <section class="content">
 <div class="box-body">
     <p>
-        <button class="pull-right btn-btn-info btn-sm"  data-toggle="modal" data-target="#add">Add Examination </button>
+        <button class="pull-right btn btn-primary btn-sm"  data-toggle="modal" data-target="#add">Add Examination Center</button>
     </p>
 
 </div>
@@ -41,14 +41,12 @@
 <thead>
 <tr>
 
-    <th>Department</th>
+    <th>Name of </th>
 
-    <th>Semester </th>
-    <th>Year</th>
-    <th>Subject</th>
-    <th>Examination Date</th>
-    <th>Location</th>
-    <th>Action</th>
+    <th>Address </th>
+    <th>Description</th>
+    <th>Category</th>
+
 
 </tr>
 </thead>
@@ -56,7 +54,7 @@
 
 <tr>
 
-    <td>Computer Science & engineering</td>
+    <td></td>
 
 
     <td>Spring</td>
