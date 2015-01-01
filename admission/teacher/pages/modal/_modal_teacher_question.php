@@ -128,11 +128,18 @@
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                 <h4 class="modal-title">View Details</h4>
             </div>
+     
             <div class="modal-body">
                 <h2>Question Information:</h2>
-                <h4>Title:
-                <p>Question for CSE Department</p>
-                </h4><br>                         
+                <h4>Department:
+                <p>BBA</p>
+                </h4><br>
+                <h4>TeacherName:
+                <p>Alamgir Bhuyan</p>
+                </h4><br> 
+                <h4>Subject:
+                <p>Business Communication</p>
+                </h4><br>                        
                 <h4>Type:
                 <p>MCQ</p>
                 </h4><br>
@@ -140,16 +147,16 @@
                 <p>yes</p>
                 </h4><br>
                 <h4>Question:
-                <p>RAD stands for?</p>
+                <p>Communication with superiors involves?</p>
                 </h4><br>
                 <h4>Options:
-                <p>1.Relative Application Development
-                <p>2.Rapid Application Development</p>
-                <p>3.Rapid Application Document</p>
-                <p>4.Rapid Apply Document</p>
+                <p>1.1.Problem solving
+                <p>2.Disciplinary matters</p>
+                <p>3.Welfare aspects</p>
+                <p>4.Public relations</p>
                 </h4><br>
                 <h4>Answer:
-                <p>2.Rapid Application Development</p>
+                <p>1.Problem solving</p>
                 </h4><br>
                </div>
             <td></td>
@@ -171,29 +178,28 @@
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                 <h4 class="modal-title">View Details</h4>
             </div>
+
             <div class="modal-body">
                 <h2>Question Information:</h2>
-                <h4>Title:
-                <p>Question for BBA Department</p>
-                </h4><br>                         
+                <h4>Department:
+                <p>BBA</p>
+                </h4><br>
+                <h4>TeacherName:
+                <p>Saidur Rahman</p>
+                </h4><br> 
+                <h4>Subject:
+                <p>Business Communication</p>
+                </h4><br>                        
                 <h4>Type:
-                <p>MCQ</p>
+                <p>Written</p>
                 </h4><br>
                 <h4>Auto Evaluated:
-                <p>yes</p>
+                <p>no</p>
                 </h4><br>
                 <h4>Question:
-                <p>Communication with superiors involves?</p>
+                <p>What is Bisiness Communication</p>
                 </h4><br>
-                <h4>Options:
-                <p>1.Problem solving
-                <p>2.Disciplinary matters</p>
-                <p>3.Welfare aspects</p>
-                <p>4.Public relations</p>
-                </h4><br>
-                <h4>Answer:
-                <p>1.Problem solving</p>
-                </h4><br>
+               
                </div>
             <td></td>
                                            

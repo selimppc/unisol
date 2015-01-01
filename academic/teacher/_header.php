@@ -55,6 +55,12 @@
                 "bAutoWidth": false
             });
 
+            $('#example11').dataTable({
+                "aaSorting": false
+            });
+
+
+
         });
     </script>
 </head>
