@@ -5,8 +5,6 @@
 
     <?php include('../_sidebar.php'); ?>
 
-
-
     <!-- Right side column. Contains the navbar and content of the page -->
     <aside class="right-side">
         <!-- Content Header (Page header) -->
@@ -23,8 +21,6 @@
 
         <!-- Main content -->
         <section class="content">
-
-
             <!-- START CUSTOM TABS -->
             <h2 class="page-header">Marks Distribution :: Teacher</h2>
             <div class="row">
@@ -33,8 +29,6 @@
                     <div class="nav-tabs-custom">
                         <ul class="nav nav-tabs">
                             <li class="active"><a href="#tab_1" data-toggle="tab">Distribute Marks  </a></li>
-
-
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane active" id="tab_1">
@@ -105,8 +99,6 @@
                                                     </button>
                                                 </td>
                                             </tr>
-
-
                                      </tbody>
                                     </table>
                                 </div><!-- /.box -->
