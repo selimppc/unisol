@@ -108,7 +108,9 @@
                                             <td>Business Communication 5 question</td>
                                             <td>Written</td>
                                             <td>No</td>
-                                            <td>What is Bisiness Communication</td>
+                                            <td>What is Bisiness Communication?</td>
+                                            <td></td>
+                                            <td></td>
                                             <td>
                                              <button class="btn btn-success btn-xs"  data-toggle="modal" data-target="#addQuestion" >
                                               Add New

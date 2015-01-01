@@ -179,37 +179,27 @@
                 <h4 class="modal-title">View Details</h4>
             </div>
 
-             <td>BBA</td>
-                                                                            <td>Saidur Rahman</td>
-                                                                            <td>Business Communication</td>
-                                                                            <td>Question for BBA Department</td>
-                                                                            <td>Business Communication 5 question</td>
-                                                                            <td>Written</td>
-                                                                            <td>No</td>
-                                                                            <td>What is Bisiness Communication</td>
             <div class="modal-body">
-                <h2>Question Information:</h2>                          
-                <h4>Title:
-                <p>Question for BBA Department</p>
-                </h4><br>                         
+                <h2>Question Information:</h2>
+                <h4>Department:
+                <p>BBA</p>
+                </h4><br>
+                <h4>TeacherName:
+                <p>Saidur Rahman</p>
+                </h4><br> 
+                <h4>Subject:
+                <p>Business Communication</p>
+                </h4><br>                        
                 <h4>Type:
-                <p>MCQ</p>
+                <p>Written</p>
                 </h4><br>
                 <h4>Auto Evaluated:
-                <p>yes</p>
+                <p>no</p>
                 </h4><br>
                 <h4>Question:
-                <p>Communication with superiors involves?</p>
+                <p>What is Bisiness Communication</p>
                 </h4><br>
-                <h4>Options:
-                <p>1.Problem solving
-                <p>2.Disciplinary matters</p>
-                <p>3.Welfare aspects</p>
-                <p>4.Public relations</p>
-                </h4><br>
-                <h4>Answer:
-                <p>1.Problem solving</p>
-                </h4><br>
+               
                </div>
             <td></td>
                                            
