@@ -139,6 +139,78 @@
 
 
 
+<!-- Add Question Paper Modal -->
+<div class="modal fade" id="addQuestionPaper" tabindex="-1" role="dialog" aria-labelledby="addQuestionPaper" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">New Question </h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="classTest">Question Type </label>
+                        <select class="form-control" id="classTest">
+                            <option>MCQ</option>
+                            <option>Descriptive</option>
+                            <option>Mixed</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="question"> Question </label>
+                        <input type="text" class="form-control" id="question" placeholder="Enter questio">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="option"> Option One </label>
+                        <input type="text" class="form-control" id="option" placeholder="Enter option one">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="option"> Option Two </label>
+                        <input type="text" class="form-control" id="option" placeholder="Enter option two ">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="option"> Option Three </label>
+                        <input type="text" class="form-control" id="option" placeholder="Enter option three">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="option"> Option Four </label>
+                        <input type="text" class="form-control" id="option" placeholder="Enter option four">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Searching">Answer</label>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" name="inlineCheckboxOptions" id="inlineCheckbox1" value="option1"> Option One
+                        </label>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" name="inlineCheckboxOptions" id="inlineCheckbox2" value="option2"> Option Two
+                        </label>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" name="inlineCheckboxOptions" id="inlineCheckbox3" value="option3"> Option Three
+                        </label>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" name="inlineCheckboxOptions" id="inlineCheckbox4" value="option4"> Option Four
+                        </label>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-dismiss="modal">Save</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
 
 
 <!-- Add Category Modal -->
@@ -158,6 +230,31 @@
                     <div class="form-group">
                         <label for="description">Description</label>
                         <textarea class="form-control" id="description" placeholder="Description goes here"></textarea>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-dismiss="modal">Save</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- Add Number Revoluation  Modal -->
+<div class="modal fade" id="addEvoNo" tabindex="-1" role="dialog" aria-labelledby="addEvoNo" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">Add Number for the question</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="title">RAD stands for?</label>
+                        <input type="text" class="form-control" id="title" placeholder="Enter NUmber">
                     </div>
 
                 </form>
