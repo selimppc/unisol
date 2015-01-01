@@ -101,14 +101,14 @@
                                             
                                         </tr>
                                         <tr>
-                                            <td>BBA</td>
+                                            <td>CSE</td>
                                             <td>Saidur Rahman</td>
-                                            <td>Business Communication</td>
-                                            <td>Question for BBA Department</td>
-                                            <td>Business Communication 5 question</td>
+                                            <td>Mathmatics</td>
+                                            <td>Mathmatics Question for CSE Department</td>
+                                            <td>Mathmatics 3 question</td>
                                             <td>Written</td>
                                             <td>No</td>
-                                            <td>What is Bisiness Communication?</td>
+                                            <td>1.Which of the following values is NOT equal to 34(58+9)?--,2.Two angles of a triangle measure 15° and 85 °. What is the measure for the third angle?--,3. If 5 ounces is equal to 140 grams, then 2 pounds of ground meat is equal to how many grams?</td>
                                             <td></td>
                                             <td></td>
                                             <td>

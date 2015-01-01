@@ -182,14 +182,20 @@
             <div class="modal-body">
                 <h2>Question Information:</h2>
                 <h4>Department:
-                <p>BBA</p>
+                <p>CSE</p>
                 </h4><br>
                 <h4>TeacherName:
                 <p>Saidur Rahman</p>
                 </h4><br> 
                 <h4>Subject:
-                <p>Business Communication</p>
-                </h4><br>                        
+                <p>Mathmatics</p>
+                </h4><br>  
+                <h4>Title:
+                <p>Mathmatics question for CSE department</p>
+                </h4><br> 
+                <h4>Description:
+                <p>Mathmatics written Question</p>
+                </h4><br>                       
                 <h4>Type:
                 <p>Written</p>
                 </h4><br>
@@ -197,7 +203,7 @@
                 <p>no</p>
                 </h4><br>
                 <h4>Question:
-                <p>What is Bisiness Communication</p>
+                <p>1.Which of the following values is NOT equal to 34(58+9)?--,2.Two angles of a triangle measure 15° and 85 °. What is the measure for the third angle?--,3. If 5 ounces is equal to 140 grams, then 2 pounds of ground meat is equal to how many grams?</p>
                 </h4><br>
                
                </div>
