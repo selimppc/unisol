@@ -42,13 +42,12 @@
                                 <b>&nbsp;</b>
 
                                 <div class="box-body table-responsive">
-                                    <table id="example11" class="table table-bordered table-striped">
+                                    <table id="" class="table table-bordered table-striped">
                                         <thead>
-                                        <tr>
-
-                                            <th>Course type</th>
-                                            <th>Action</th>
-                                        </tr>
+                                            <tr>
+                                                <th>Course type</th>
+                                                <th>Action</th>
+                                            </tr>
                                         </thead>
                                         <tbody>
 
@@ -61,50 +60,8 @@
                                                 </td>
                                             </tr>
 
-                                            <tr>
-                                                <td> Lab </td>
-                                                <td width="120">
-                                                    <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#labMarksDistribution">
-                                                        Mark Distribution
-                                                    </button>
-                                                </td>
-                                            </tr>
+                                            
 
-                                            <tr>
-                                                <td> Project </td>
-                                                <td width="120">
-                                                    <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#projectMarksDistribution">
-                                                        Mark Distribution
-                                                    </button>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td> Thesis </td>
-                                                <td width="120">
-                                                    <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#thesisMarksDistribution">
-                                                        Mark Distribution
-                                                    </button>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td> InternShip </td>
-                                                <td width="120">
-                                                    <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#internshipMarksDistribution">
-                                                        Mark Distribution
-                                                    </button>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td> Industrial Tour </td>
-                                                <td width="120">
-                                                    <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#industrial_tourMarksDistribution">
-                                                        Mark Distribution
-                                                    </button>
-                                                </td>
-                                            </tr>
                                      </tbody>
                                     </table>
                                 </div><!-- /.box -->
@@ -119,5 +76,7 @@
     </aside><!-- /.right-side -->
 </div><!-- ./wrapper -->
 
+
 <?php include('modals/_modal_marks_distribution.php'); ?>
+
 <?php include('../_footer.php'); ?>

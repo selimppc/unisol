@@ -20,6 +20,7 @@
     <link href="../css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
     <!-- Theme style -->
     <link href="../css/custom.css" rel="stylesheet" type="text/css" />
+
     <script src="../js/plugins/jquery/jquery.min.js"></script>
 
     <!-- DATA TABLES -->
@@ -55,7 +56,7 @@
                 "bAutoWidth": false
             });
 
-            $('#example11').dataTable({
+            $('#example233').dataTable({
                 "aaSorting": false
             });
 
