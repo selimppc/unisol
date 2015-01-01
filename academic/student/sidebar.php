@@ -53,7 +53,6 @@
                     <li><a href="pages/theory_class.php"><i class="fa fa-angle-double-right"></i> Class</a></li>
                     <li><a href="pages/theory_class_test.php"><i class="fa fa-angle-double-right"></i> Class Test</a></li>
                     <li><a href="pages/theory_assignment.php"><i class="fa fa-angle-double-right"></i> Assignment</a></li>
-                    <li><a href="pages/theory_mid_final_exam.php"><i class="fa fa-angle-double-right"></i> Mid/ final Exam</a></li>
                 </ul>
             </li>
 
@@ -100,20 +99,6 @@
                     <i class="fa pull-right"></i>
                 </a>
             </li>
-
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-laptop"></i>
-                    <span>Industrial Tour</span>
-                    <i class="fa fa-angle-left pull-right"></i>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="pages/industrialtour_manual.php"><i class="fa fa-angle-double-right"></i> Manual</a></li>
-                    <li><a href="pages/industrialtour_online.php"><i class="fa fa-angle-double-right"></i> Online</a></li>
-                </ul>
-            </li>
-
-
 
 
             <li>

@@ -97,17 +97,7 @@
                 </a>
             </li>
 
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-laptop"></i>
-                    <span>Industrial Tour</span>
-                    <i class="fa fa-angle-left pull-right"></i>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="pages/industrialtour_manual.php"><i class="fa fa-angle-double-right"></i> Manual</a></li>
-                    <li><a href="pages/industrialtour_online.php"><i class="fa fa-angle-double-right"></i> Online</a></li>
-                </ul>
-            </li>
+
             <li>
                 <a href="pages/noticeboard.php">
                     <i class="fa fa-laptop"></i>
