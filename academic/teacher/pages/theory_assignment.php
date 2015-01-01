@@ -58,6 +58,7 @@
                                                 <th> Student Name/ID </th>
                                                 <th> Marks </th>
                                                 <th> Comments </th>
+                                                <th> Action </th>
                                             </tr>
                                             </thead>
                                             <tbody>
