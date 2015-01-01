@@ -62,69 +62,70 @@
                                     <td>65 out of 100</td>
                                     <td>open</td>
                                    <td>
-                                   <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#approvalModal">Approve</button>
+                                   <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#approvalModal">Select</button>
                                     <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#viewDetails">View</button>
                                     <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete">Delete</button>
                                    </td>
 
                                </tr>
                                <tr>
-                                  <td>1</td>
-                                    <td>Ratna Akter</td>
+                                  <td>2</td>
+                                    <td>Tanvir Jahan</td>
                                     <td>BCSE</td>
                                     <td>Spring2016</td>
                                     <td>Yes</td>
-                                    <td>65 out of 100</td>
+                                    <td>60 out of 100</td>
                                     <td>open</td>
                                    <td>
-                                   <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#approvalModal">Approve</button>
-                                    <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#viewDetails">View</button>
+                                   <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#approvalModal">Select</button>
+                                    <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#viewDetails2">View</button>
                                     <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete">Delete</button>
                                    </td>
                              </tr>
-                              <tr>
-                                   <td>1</td>
-                                    <td>Ratna Akter</td>
-                                    <td>BCSE</td>
+                                <tr>
+                                  <td>3</td>
+                                    <td>MD Toha</td>
+                                    <td>BBA</td>
                                     <td>Spring2016</td>
                                     <td>Yes</td>
-                                    <td>65 out of 100</td>
-                                    <td>approved</td>
+                                    <td>70out of 100</td>
+                                    <td>New</td>
                                    <td>
-                                   <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#approvalModal">Approve</button>
-                                    <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#viewDetails">View</button>
-                                    <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete">Delete</button>
-                                   </td>
-                            </tr>
-                            <tr>
-                                  <td>1</td>
-                                    <td>Ratna Akter</td>
-                                    <td>BCSE</td>
-                                    <td>Spring2016</td>
-                                    <td>Yes</td>
-                                    <td>65 out of 100</td>
-                                    <td>open</td>
-                                   <td>
-                                   <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#approvalModal">Approve</button>
-                                    <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#viewDetails">View</button>
+                                   <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#approvalModal">Select</button>
+                                    <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#viewDetails3">View</button>
                                     <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete">Delete</button>
                                    </td>
                                 </tr>
                                 <tr>
-                                  <td>1</td>
-                                    <td>Ratna Akter</td>
+                                  <td>4</td>
+                                    <td>Jahid Hasan</td>
                                     <td>BCSE</td>
                                     <td>Spring2016</td>
                                     <td>Yes</td>
-                                    <td>65 out of 100</td>
-                                    <td>new</td>
+                                    <td>80 out of 100</td>
+                                    <td>Selected</td>
                                    <td>
-                                   <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#approvalModal">Approve</button>
+                                   <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#approvalModal">Select</button>
                                     <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#viewDetails">View</button>
                                     <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete">Delete</button>
                                    </td>
                                  </tr>
 
+                              <tr>
+                                   <td>5</td>
+                                    <td>Sharmin Jahan</td>
+                                    <td>BBA</td>
+                                    <td>Spring2016</td>
+                                    <td>NO</td>
+                                    <td>0</td>
+                                    <td>Not Selected</td>
+                                   <td>
+                                   <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#approvalModal">Select</button>
+                                    <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#viewDetails">View</button>
+                                    <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete">Delete</button>
+                                   </td>
+                            </tr>
+                         
 
                             </tbody>
 

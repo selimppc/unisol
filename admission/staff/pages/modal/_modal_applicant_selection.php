@@ -93,6 +93,7 @@
 
 
 
+
 <!-- View details Modal -->
 <div class="modal fade" id="viewDetails" tabindex="-1" role="dialog" aria-labelledby="viewDetails" aria-hidden="true">
     <div class="modal-dialog">
@@ -146,7 +147,7 @@
         </table>
         <table class="table table-bordered table-striped">
             <thead>
-                <tr>Academic Information:
+                <tr>Academic Information HSC:
                     <th>Applicant Id</th>
                     <th>Institute Name</th>
                     <th>Degree</th>
@@ -166,8 +167,129 @@
                     <td>Dhaka</td>
                     <td>GPA 5</td>
                     <td>2008</td>
-                    <td>xyz</td>
-                    <td>ABCD</td>
+                    <td>
+                    <span data-toggle="modal" data-target="#viewDocs">
+                        <img src="../img/doc.png" width="60px" style="cursor: pointer"
+                             class="img-thumbnail">
+                    </span>
+                    </td>
+                    <td>
+                    <span data-toggle="modal" data-target="#viewDocs">
+                        <img src="../img/doc.png" width="60px" style="cursor: pointer"
+                             class="img-thumbnail">
+                    </span>
+                  </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>Academic Information SSC:
+                    <th>Applicant Id</th>
+                    <th>Institute Name</th>
+                    <th>Degree</th>
+                    <th>Board</th>
+                    <th>Result</th>
+                    <th>Passing Year </th>
+                    <th>Certificate</th>
+                    <th>Transcript</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Emarat Hossain High School</td>
+                    <td>SSC</td>
+                    <td>Dhaka</td>
+                    <td>GPA 4</td>
+                    <td>2006</td>
+                    <td>
+                    <span data-toggle="modal" data-target="#viewDocs">
+                        <img src="../img/doc.png" width="60px" style="cursor: pointer"
+                             class="img-thumbnail">
+                    </span>
+                    </td>
+                    <td>
+                    <span data-toggle="modal" data-target="#viewDocs">
+                        <img src="../img/doc.png" width="60px" style="cursor: pointer"
+                             class="img-thumbnail">
+                    </span>
+                  </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>Academic Information JSC:
+                    <th>Applicant Id</th>
+                    <th>Institute Name</th>
+                    <th>Degree</th>
+                    <th>Board</th>
+                    <th>Result</th>
+                    <th>Passing Year </th>
+                    <th>Certificate</th>
+                    <th>Transcript</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Milestone School</td>
+                    <td>JSC</td>
+                    <td>Dhaka</td>
+                    <td>GPA 4.90</td>
+                    <td>2004</td>
+                    <td>
+                    <span data-toggle="modal" data-target="#viewDocs">
+                    <img src="../img/doc.png" width="60px" style="cursor: pointer"
+                             class="img-thumbnail">
+                    </span>
+                    </td>
+                    <td>
+                    <span data-toggle="modal" data-target="#viewDocs">
+                        <img src="../img/doc.png" width="60px" style="cursor: pointer"
+                             class="img-thumbnail">
+                    </span>
+                  </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>Academic Information PSC:
+                    <th>Applicant Id</th>
+                    <th>Institute Name</th>
+                    <th>Degree</th>
+                    <th>Board</th>
+                    <th>Result</th>
+                    <th>Passing Year </th>
+                    <th>Certificate</th>
+                    <th>Transcript</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Milestone School</td>
+                    <td>PSC</td>
+                    <td>Dhaka</td>
+                    <td>GPA 5</td>
+                    <td>2001</td>
+                    <td>
+                    <span data-toggle="modal" data-target="#viewDocs">
+                        <img src="../img/doc.png" width="60px" style="cursor: pointer"
+                             class="img-thumbnail">
+                    </span>
+                    </td>
+                    <td>
+                    <span data-toggle="modal" data-target="#viewDocs">
+                        <img src="../img/doc.png" width="60px" style="cursor: pointer"
+                             class="img-thumbnail">
+                    </span>
+                  </td>
                 </tr>
             </tbody>
         </table>
@@ -180,7 +302,32 @@
 </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 </div>
+<!-- View Docs -->
+<div class="modal fade" id="viewDocs" tabindex="-1" role="dialog" aria-labelledby="addPublications"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Close</span></button>
+                <h4 class="modal-title">View Details</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    <img src="../img/doc.png">
+                </p>
+            </div>
+            <div class="modal-footer">
 
+                <button type="button" class="btn btn-success" data-dismiss="modal">Back</button>
+            </div>
+        </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 
 
