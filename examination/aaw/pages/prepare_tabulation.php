@@ -25,7 +25,7 @@
 <section class="content">
 <div class="box-body">
     <p>
-        <button class="pull-right btn btn-primary btn-sm"  data-toggle="modal" data-target="#add">Add Examination Center</button>
+        <button class="pull-right btn btn-primary btn-sm"  data-toggle="modal" data-target="#add">Add New </button>
     </p>
 
 </div>
@@ -34,19 +34,20 @@
 
 <div class="box">
 <div class="box-header">
-    <h3 class="box-title">Examination Center List</h3>
+    <h3 class="box-title">Tabulation Sheet</h3>
 </div><!-- /.box-header -->
 <div class="box-body table-responsive">
 <table id="example1" class="table table-bordered table-striped">
 <thead>
 <tr>
 
-    <th>Name of </th>
-
-    <th>Address </th>
-    <th>Description</th>
-    <th>Category</th>
-
+    <th>Student Name</th>
+    <th>Roll </th>
+    <th>Department</th>
+    <th>Semester</th>
+    <th>Year</th>
+    <th>GPA</th>
+    <th>Action</th>
 
 </tr>
 </thead>
@@ -54,258 +55,304 @@
 
 <tr>
 
-    <td></td>
+    <td>Md. Jamal</td>
 
 
+    <td>CE-01001</td>
+    <td>CSE</td>
     <td>Spring</td>
-    <td>2010</td>
-    <td>Fundamental C</td>
-    <td>1/1/2015</td>
-    <th>Uttara</th>
+    <td>2011</td>
+    <th>3.78</th>
     <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
-    <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit">Edit</button>
-    <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete">Delete</button></th>
+        <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit">Edit</button>
+        <button class="btn btn-dropbox btn-sm" data-toggle="modal" data-target="#delete">Delete</button></th>
+</tr>
+
+<tr>
+
+    <td>Md. Tarak</td>
+
+
+    <td>MBA-02006</td>
+    <td>MBA</td>
+    <td>Spring</td>
+    <td>2013</td>
+    <th>3.70</th>
+    <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
+        <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit">Edit</button>
+        <button class="btn btn-dropbox btn-sm" data-toggle="modal" data-target="#delete">Delete</button></th>
+</tr>
+
+<tr>
+
+    <td>Md. Khalid</td>
+
+
+    <td>BBA-01009</td>
+    <td>BBA</td>
+    <td>Summer</td>
+    <td>2011</td>
+    <th>2.78</th>
+    <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
+        <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit">Edit</button>
+        <button class="btn btn-dropbox btn-sm" data-toggle="modal" data-target="#delete">Delete</button></th>
 </tr>
 <tr>
 
-    <td>Computer Science & engineering</td>
+    <td>Md. Sami</td>
 
 
+    <td>CE-01001</td>
+    <td>CSE</td>
     <td>Spring</td>
-    <td>2010</td>
-    <td>Fundamental C</td>
-    <td>1/1/2015</td>
-    <th>Mirpur</th>
+    <td>2012</td>
+    <th>2.14</th>
     <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
         <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit">Edit</button>
-        <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete">Delete</button></th>
+        <button class="btn btn-dropbox btn-sm" data-toggle="modal" data-target="#delete">Delete</button></th>
 </tr>
 <tr>
 
-    <td>Computer Science & engineering</td>
+    <td>Md. Tarak</td>
 
 
+    <td>MBA-01001</td>
+    <td>MBA</td>
     <td>Spring</td>
-    <td>2010</td>
-    <td>Fundamental C</td>
-    <td>1/1/2015</td>
-    <th>Motijil</th>
+    <td>2013</td>
+    <th>3.08</th>
     <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
         <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit">Edit</button>
-        <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete">Delete</button></th>
+        <button class="btn btn-dropbox btn-sm" data-toggle="modal" data-target="#delete">Delete</button></th>
 </tr>
 <tr>
 
-    <td>Computer Science & engineering</td>
+    <td>Md. Sami</td>
 
 
+    <td>MBA-09001</td>
+    <td>MBA</td>
     <td>Spring</td>
-    <td>2010</td>
-    <td>Fundamental C</td>
-    <td>1/1/2015</td>
-    <th>Uttara</th>
+    <td>2014</td>
+    <th>2.22</th>
     <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
         <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit">Edit</button>
-        <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete">Delete</button></th>
+        <button class="btn btn-dropbox btn-sm" data-toggle="modal" data-target="#delete">Delete</button></th>
 </tr>
 <tr>
 
-    <td>Computer Science & engineering</td>
+    <td>Rafiq Ahmed</td>
 
 
+    <td>Phy-01008</td>
+    <td>Physics</td>
     <td>Spring</td>
-    <td>2010</td>
-    <td>Fundamental C</td>
-    <td>1/1/2015</td>
-    <th>Uttara</th>
+    <td>2011</td>
+    <th>3.00</th>
     <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
         <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit">Edit</button>
-        <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete">Delete</button></th>
+        <button class="btn btn-dropbox btn-sm" data-toggle="modal" data-target="#delete">Delete</button></th>
 </tr>
 <tr>
 
-    <td>Computer Science & engineering</td>
+    <td>Md. Sami</td>
 
 
+    <td>M-01001</td>
+    <td>Math</td>
     <td>Spring</td>
-    <td>2010</td>
-    <td>Fundamental C</td>
-    <td>1/1/2015</td>
-    <th>Uttara</th>
+    <td>2012</td>
+    <th>3.14</th>
     <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
         <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit">Edit</button>
-        <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete">Delete</button></th>
+        <button class="btn btn-dropbox btn-sm" data-toggle="modal" data-target="#delete">Delete</button></th>
 </tr>
 <tr>
 
-    <td>Computer Science & engineering</td>
+    <td>Md. Jamal</td>
 
 
-    <td>Spring</td>
-    <td>2010</td>
-    <td>Fundamental C</td>
-    <td>1/1/2015</td>
-    <th>Uttara</th>
+    <td>ICT-01001</td>
+    <td>ICT</td>
+    <td>Fall</td>
+    <td>2014</td>
+    <th>3.78</th>
     <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
         <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit">Edit</button>
-        <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete">Delete</button></th>
+        <button class="btn btn-dropbox btn-sm" data-toggle="modal" data-target="#delete">Delete</button></th>
 </tr>
 <tr>
 
-    <td>Computer Science & engineering</td>
+    <td>Md. Jahan</td>
 
 
+    <td>CE-01005</td>
+    <td>CSE</td>
     <td>Spring</td>
-    <td>2010</td>
-    <td>Fundamental C</td>
-    <td>1/1/2015</td>
-    <th>Kalshi</th>
+    <td>2011</td>
+    <th>3.14</th>
     <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
         <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit">Edit</button>
-        <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete">Delete</button></th>
+        <button class="btn btn-dropbox btn-sm" data-toggle="modal" data-target="#delete">Delete</button></th>
 </tr>
 <tr>
 
-    <td>Computer Science & engineering</td>
+    <td>A.K.M Rafi</td>
 
 
-    <td>Spring</td>
-    <td>2010</td>
-    <td>Fundamental C</td>
-    <td>1/1/2015</td>
-    <th>Shamoli</th>
+    <td>Eng-01001</td>
+    <td>English</td>
+    <td>Fall</td>
+    <td>2012</td>
+    <th>3.25</th>
     <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
         <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit">Edit</button>
-        <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete">Delete</button></th>
+        <button class="btn btn-dropbox btn-sm" data-toggle="modal" data-target="#delete">Delete</button></th>
 </tr>
 <tr>
 
-    <td>Computer Science & engineering</td>
+    <td>Md. Zakir Ahmed</td>
 
 
+    <td>CE-01001</td>
+    <td>CSE</td>
     <td>Spring</td>
     <td>2010</td>
-    <td>Fundamental C</td>
-    <td>1/1/2015</td>
-    <th>Shamoli</th>
+    <th>3.78</th>
     <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
         <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit">Edit</button>
-        <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete">Delete</button></th>
+        <button class="btn btn-dropbox btn-sm" data-toggle="modal" data-target="#delete">Delete</button></th>
 </tr>
 <tr>
 
-    <td>Computer Science & engineering</td>
+    <td>Munni Akter</td>
 
 
+    <td>CE-01001</td>
+    <td>CSE</td>
     <td>Spring</td>
-    <td>2010</td>
-    <td>Fundamental C</td>
-    <td>1/1/2015</td>
-    <th>Shamoli</th>
+    <td>2011</td>
+    <th>3.78</th>
     <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
         <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit">Edit</button>
-        <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete">Delete</button></th>
+        <button class="btn btn-dropbox btn-sm" data-toggle="modal" data-target="#delete">Delete</button></th>
 </tr>
 <tr>
 
-    <td>Computer Science & engineering</td>
+    <td>Md. Rashad</td>
 
 
+    <td>CE-01001</td>
+    <td>CSE</td>
     <td>Spring</td>
-    <td>2010</td>
-    <td>Fundamental C</td>
-    <td>1/1/2015</td>
-    <th>Shamoli</th>
+    <td>2012</td>
+    <th>3.78</th>
     <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
         <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit">Edit</button>
-        <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete">Delete</button></th>
+        <button class="btn btn-dropbox btn-sm" data-toggle="modal" data-target="#delete">Delete</button></th>
 </tr>
 <tr>
 
-    <td>Computer Science & engineering</td>
+    <td>Tamanna Khanam</td>
 
 
-    <td>Spring</td>
-    <td>2010</td>
-    <td>Fundamental C</td>
-    <td>1/1/2015</td>
-    <th>Shamoli</th>
+    <td>CE-01001</td>
+    <td>CSE</td>
+    <td>Fall</td>
+    <td>2011</td>
+    <th>3.78</th>
     <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
         <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit">Edit</button>
-        <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete">Delete</button></th>
+        <button class="btn btn-dropbox btn-sm" data-toggle="modal" data-target="#delete">Delete</button></th>
 </tr>
 <tr>
 
-    <td>Computer Science & engineering</td>
+    <td>Md. Raihan</td>
 
 
+    <td>CE-01001</td>
+    <td>CSE</td>
     <td>Spring</td>
-    <td>2010</td>
-    <td>Fundamental C</td>
-    <td>1/1/2015</td>
-    <th>Shamoli</th>
+    <td>2011</td>
+    <th>3.78</th>
     <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
         <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit">Edit</button>
-        <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete">Delete</button></th>
+        <button class="btn btn-dropbox btn-sm" data-toggle="modal" data-target="#delete">Delete</button></th>
 </tr>
 <tr>
 
-    <td>Computer Science & engineering</td>
+    <td>Md. Jamal</td>
 
 
+    <td>CE-01008</td>
+    <td>CSE</td>
     <td>Spring</td>
-    <td>2010</td>
-    <td>Fundamental C</td>
-    <td>1/1/2015</td>
-    <th>Gazipur</th>
+    <td>2013</td>
+    <th>3.78</th>
     <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
         <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit">Edit</button>
-        <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete">Delete</button></th>
+        <button class="btn btn-dropbox btn-sm" data-toggle="modal" data-target="#delete">Delete</button></th>
 </tr>
 <tr>
 
-    <td>Computer Science & engineering</td>
+    <td>Md. Malak</td>
 
 
+    <td>CE-01001</td>
+    <td>CSE</td>
     <td>Spring</td>
-    <td>2010</td>
-    <td>Fundamental C</td>
-    <td>1/1/2015</td>
-    <th>Gazipur</th>
+    <td>2011</td>
+    <th>3.78</th>
     <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
         <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit">Edit</button>
-        <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete">Delete</button></th>
+        <button class="btn btn-dropbox btn-sm" data-toggle="modal" data-target="#delete">Delete</button></th>
 </tr>
 <tr>
 
-    <td>Computer Science & engineering</td>
+    <td>Zarin Akter</td>
 
 
-    <td>Spring</td>
-    <td>2010</td>
-    <td>Fundamental C</td>
-    <td>1/1/2015</td>
-    <th>Gazipur</th>
+    <td>CE-01001</td>
+    <td>CSE</td>
+    <td>Fall</td>
+    <td>2012</td>
+    <th>3.78</th>
     <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
         <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit">Edit</button>
-        <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete">Delete</button></th>
+        <button class="btn btn-dropbox btn-sm" data-toggle="modal" data-target="#delete">Delete</button></th>
 </tr>
+<tr>
+
+    <td>Md. Jamal</td>
+
+
+    <td>CE-01001</td>
+    <td>CSE</td>
+    <td>Spring</td>
+    <td>2010</td>
+    <th>3.78</th>
+    <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
+        <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit">Edit</button>
+        <button class="btn btn-dropbox btn-sm" data-toggle="modal" data-target="#delete">Delete</button></th>
+</tr>
+
+
 
 
 </tbody>
-                <tfoot>
-                <tr>
+<tfoot>
+<tr>
 
-                    <th>Department</th>
+    <th>Department</th>
 
-                    <th>Semester </th>
-                    <th>Year</th>
-                    <th>Subject</th>
-                    <th>Examination Date</th>
-                    <th>Location</th>
-                    <th>Action</th>
-                </tr>
-                </tfoot>
+    <th>Semester </th>
+    <th>Year</th>
+    <th>Subject</th>
+    <th>Examination Date</th>
+    <th>Location</th>
+    <th>Action</th>
+</tr>
+</tfoot>
 </table>
 </div><!-- /.box-body -->
 </div><!-- /.box -->
@@ -319,7 +366,7 @@
 </aside><!-- /.right-side -->
 </div><!-- ./wrapper -->
 
-<!-- Modal :: -->
+<!-- Modal :: add-->
 
 
 <div class="modal fade " id="add" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -327,7 +374,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Fill up This Form To Enlist Exam center</h4>
+                <h4 class="modal-title" id="myModalLabel">Add Result</h4>
             </div>
             <div class="modal-body">
 
@@ -335,7 +382,15 @@
                 <form role="form">
                     <div class="box-body">
 
+                        <div class="form-group">
+                            <label for="name">Student Name</label>
+                            <input type="name" class="form-control" id="name" >
+                        </div>
 
+                        <div class="form-group">
+                            <label for="roll">Student Roll</label>
+                            <input type="roll" class="form-control" id="roll" >
+                        </div>
 
                         <div class="form-group">
                             <label for="department">Department</label>
@@ -360,20 +415,7 @@
                             </select>
                         </div>
 
-                        <div class="form-group">
-                            <label for="subject">Subject</label>
-                            <select class="form-control input-sm" id="subject">
-                                <option>Select Year</option>
-                                <option value="CSE">Fundamental C</option>
-                                <option value="ICT">Fundamental C</option>
-                                <option value="ENGLISH">Fundamental C</option>
-                                <option value="ENGLISH">Fundamental C</option>
-                                <option value="ENGLISH">Fundamental C</option>
-                                <option value="ENGLISH">Fundamental C</option>
-                                <option value="ENGLISH">Fundamental C</option>
 
-                            </select>
-                        </div>
 
                         <div class="form-group">
                             <label for="year">Year</label>
@@ -390,30 +432,15 @@
                             </select>
                         </div>
 
-
-
                         <div class="form-group">
-                            <label for="date">Examination Date</label>
-                            <input type="date" class="form-control" id="date" >
+                            <label for="cgpa">GPA</label>
+                            <input type="cgpa" class="form-control" id="cgpa" >
                         </div>
 
-                        <div class="form-group">
-                            <label for="Location">Location</label>
-                            <select class="form-control input-sm" id="Location">
-                                <option>Select Location</option>
-                                <option value="CSE">Uttara</option>
-                                <option value="ICT">Mirpur</option>
-                                <option value="ENGLISH">Gazipur</option>
-                                <option value="ENGLISH">Uttara</option>
-                                <option value="ENGLISH">Gazipur</option>
-                                <option value="ENGLISH">Mirpur</option>
-                                <option value="ENGLISH">Gazipur</option>
 
-                            </select>
-                        </div>
                     </div>
                     <div class="box-footer">
-                        <button type="submit" class="btn btn-primary">Send Request</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
                         <button type="button" class="btn btn-success" data-dismiss="modal">Cancel</button>
                     </div>
                 </form>
@@ -436,28 +463,147 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel"></h4>
+                <h4 class="modal-title" id="myModalLabel"><b>View Of Tabulation</b></h4>
             </div>
             <div class="modal-body">
                 <div style="padding: 20px;">
                     <table>
-                        <h4> Information</h4>
+                        <h4><b>Student Information</b></h4>
                         <tr
 
-                        <td>Department :Computer Science & engineering</td>
+                        <td>Student Name:Samia Jahan</td>
 
                         </tr>
 
+                        <td>Roll:01001</td></tr>
+                        <td>Department:CSE</td></tr>
                         <td>Semester:Spring</td></tr>
 
                         <td>Year:2010</td></tr>
+                        <td>CGPA:3.05</td></tr>
 
-                        <td>Subject:Fundamental C</td></tr>
 
-                        <td>Date:1/1/2015</td></tr>
 
-                        <td>Location:Uttara</td>
                         </tr>
+                    </table>
+
+
+                </div>
+                <div class="span well" >
+                    <table class="table table-bordered table-striped">
+                        <h4><b>Details</b></h4>
+                        <thead>
+                        <tr>
+
+                            <th>Course Code</th>
+                            <th>Course Title</th>
+                            <th>credit Hours(s)</th>
+                            <th>LG</th>
+                            <th>GP</th>
+                            <th>GPA</th>
+
+
+
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        <tr>
+
+                            <td>CSE-2201</td>
+
+
+                            <td>Algorithms</td>
+                            <td>3.00</td>
+                            <td>B</td>
+                            <td>3.00</td>
+                            <th rowspan="8" <b>3.05</b></th>
+
+
+                        </tr>
+
+                        <tr>
+
+                            <td>CSE-2202</td>
+
+
+                            <td>Algorithms Lab</td>
+                            <td>1.00</td>
+                            <td>C</td>
+                            <td>2.25</td>
+
+
+
+                        </tr>
+                        <tr>
+
+                            <td>CSE-2203</td>
+
+
+                            <td>Computer Architecture</td>
+                            <td>3.00</td>
+                            <td>B</td>
+                            <td>3.00</td>
+
+
+
+                        </tr>
+                        <tr>
+
+                            <td>CSE-2205</td>
+
+
+                            <td>Numerical Methods</td>
+                            <td>2.00</td>
+                            <td>B</td>
+                            <td>3.00</td>
+
+
+
+                        </tr>
+                        <tr>
+
+                            <td>CSE-2206</td>
+
+
+                            <td>Numerical Methods Lab</td>
+                            <td>1.00</td>
+                            <td>C</td>
+                            <td>2.25</td>
+
+
+
+                        </tr>
+                        <tr>
+
+                            <td>CSE-2207</td>
+
+
+                            <td>Digital System</td>
+                            <td>3.00</td>
+                            <td>a</td>
+                            <td>3.25</td>
+
+
+                        </tr>
+                        <tr>
+
+                            <td>CSE-2208</td>
+
+
+                            <td>Digital System Lab</td>
+                            <td>1.00</td>
+                            <td>C</td>
+                            <td>2.25</td>
+
+
+
+                        </tr>
+
+
+
+                        </tbody>
+
                     </table>
 
 
