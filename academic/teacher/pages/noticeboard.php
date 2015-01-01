@@ -72,9 +72,7 @@
     <td>10/1/2015</td>
     <td>20/1/2015</td>
     <th>
-        <button class="btn btn-success btn-xs" >new</button>
-
-
+        new
     </th>
 
 </tr>
@@ -92,10 +90,7 @@
     <td>2/1/2015</td>
     <td>2/1/2015</td>
     <th>
-        <button class="btn btn-success btn-xs" >new</button>
-
-
-        </span>
+        new
     </th>
 
 
@@ -114,10 +109,7 @@
     <td>12/11/2014</td>
     <td>21/1/2014</td>
     <th>
-
-        <button class="btn btn-primary btn-xs" >closed</button>
-
-        </span>
+        colsed
     </th>
 
 
@@ -135,9 +127,7 @@
     <td>25/12/2014</td>
     <td>25/12/2014</td>
     <th>
-        <button class="btn btn-primary btn-xs" >closed</button>
-        <button class="btn btn-info btn-xs" >approved</button>
-
+        closed
     </th>
 
 
@@ -156,9 +146,7 @@
     <td>31/1/2014</td>
     <td>31/1/2014</td>
     <th>
-        <button class="btn btn-primary btn-xs" >closed</button>
-
-        <button class="btn btn-danger btn-xs" >discard</button>
+        closed
     </th>
 
 
@@ -178,9 +166,7 @@
     <td>2/11/2014</td>
     <td>2/12/2014</td>
     <th>
-        <button class="btn btn-success btn-xs" >closed</button>
-        <button class="btn btn-info btn-xs" >approved</button>
-        </span>
+        closed
     </th>
 
 
@@ -200,13 +186,8 @@
     <td>25/12/2014</td>
     <td>25/12/2014</td>
     <th>
-        <button class="btn btn-primary btn-xs" >closed</button>
-
-
+        closed
     </th>
-
-
-
 </tr>
 
 <tr>
@@ -222,12 +203,8 @@
     <td>31/1/2014</td>
     <td>31/1/2014</td>
     <th>
-        <button class="btn btn-primary btn-xs" >closed</button>
-
-
+        closed
     </th>
-
-
 
 </tr>
 
@@ -244,9 +221,7 @@
     <td>31/1/2014</td>
     <td>31/1/2014</td>
     <th>
-        <button class="btn btn-primary btn-xs" >closed</button>
-
-
+        closed
     </th>
 
 

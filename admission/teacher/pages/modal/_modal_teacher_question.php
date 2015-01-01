@@ -179,37 +179,33 @@
                 <h4 class="modal-title">View Details</h4>
             </div>
 
-             <td>BBA</td>
-                                                                            <td>Saidur Rahman</td>
-                                                                            <td>Business Communication</td>
-                                                                            <td>Question for BBA Department</td>
-                                                                            <td>Business Communication 5 question</td>
-                                                                            <td>Written</td>
-                                                                            <td>No</td>
-                                                                            <td>What is Bisiness Communication</td>
             <div class="modal-body">
-                <h2>Question Information:</h2>                          
+                <h2>Question Information:</h2>
+                <h4>Department:
+                <p>CSE</p>
+                </h4><br>
+                <h4>TeacherName:
+                <p>Saidur Rahman</p>
+                </h4><br> 
+                <h4>Subject:
+                <p>Mathmatics</p>
+                </h4><br>  
                 <h4>Title:
-                <p>Question for BBA Department</p>
-                </h4><br>                         
+                <p>Mathmatics question for CSE department</p>
+                </h4><br> 
+                <h4>Description:
+                <p>Mathmatics written Question</p>
+                </h4><br>                       
                 <h4>Type:
-                <p>MCQ</p>
+                <p>Written</p>
                 </h4><br>
                 <h4>Auto Evaluated:
-                <p>yes</p>
+                <p>no</p>
                 </h4><br>
                 <h4>Question:
-                <p>Communication with superiors involves?</p>
+                <p>1.Which of the following values is NOT equal to 34(58+9)?--,2.Two angles of a triangle measure 15° and 85 °. What is the measure for the third angle?--,3. If 5 ounces is equal to 140 grams, then 2 pounds of ground meat is equal to how many grams?</p>
                 </h4><br>
-                <h4>Options:
-                <p>1.Problem solving
-                <p>2.Disciplinary matters</p>
-                <p>3.Welfare aspects</p>
-                <p>4.Public relations</p>
-                </h4><br>
-                <h4>Answer:
-                <p>1.Problem solving</p>
-                </h4><br>
+               
                </div>
             <td></td>
                                            
