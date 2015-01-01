@@ -31,7 +31,8 @@
                         <!-- Custom Tabs -->
                         <div class="nav-tabs-custom">
                             <ul class="nav nav-tabs">
-                                <li class="active"><a href="#tab_1" data-toggle="tab">Assignment  </a></li>
+                                <li class="active"><a href="#tab_1" data-toggle="tab">Assignment (Manual)  </a></li>
+                                <li><a href="#tab_2" data-toggle="tab">Assignment (Online)  </a></li>
 
                                 <li class="pull-right" class="dropdown">
                                     <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-gear"></i>&nbsp;</a>
@@ -43,9 +44,9 @@
                             <div class="tab-content">
                                 <div class="tab-pane active" id="tab_1">
                                     <button class="pull-right btn btn-success btn-sm"  data-toggle="modal" data-target="#addAssignment" >
-                                        Add Assignment
+                                        Add Assignment (Manual)
                                     </button><br>
-                                    <b>&nbsp;</b>
+                                    <b> Manual Assignment </b>
 
                                     <div class="box-body table-responsive">
                                         <table id="example1" class="table table-bordered table-striped">
@@ -95,6 +96,73 @@
                                         </table>
                                     </div><!-- /.box -->
                                 </div><!-- /.tab-pane -->
+
+
+
+
+                                <div class="tab-pane" id="tab_2">
+                                    <button class="pull-right btn btn-success btn-sm"  data-toggle="modal" data-target="#addAssignmentOnline" >
+                                        New Assignment ( Online )
+                                    </button><br>
+                                    <b> Manage Assignment </b>
+
+                                    <div class="box-body table-responsive">
+                                        <table id="example4" class="table table-bordered table-striped">
+                                            <thead>
+                                            <tr>
+                                                <th> Title </th>
+                                                <th> Description </th>
+                                                <th> File </th>
+                                                <th> Deadline </th>
+                                                <th> Assign to </th>
+                                                <th> Comments </th>
+                                                <th> Action </th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <?php for($i = 0; $i < 5; $i++){ ?>
+                                                <tr>
+                                                    <td> Data Analysis </td>
+                                                    <td> Structure </td>
+                                                    <td>
+                                                        <span data-toggle="modal" data-target="#viewDetails">
+                                                            <img src="../img/doc.png" width="40" style="cursor: pointer" class="img-thumbnail">
+                                                        </span>
+                                                    </td>
+                                                    <td> 12/12/2014 </td>
+                                                    <td> Selim Reza / Gourp </td>
+                                                    <td> .. </td>
+                                                    <td width="120">
+                                                        <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#addAssignmentOnline">
+                                                            Edit
+                                                        </button>
+                                                        <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#viewOnlineAssignment">
+                                                            View
+                                                        </button>
+                                                        <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#assignToSt">
+                                                            Assign
+                                                        </button>
+                                                        <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">
+                                                            Delete
+                                                        </button>
+
+                                                    </td>
+                                                </tr>
+
+
+
+                                            <?php } ?>
+
+
+
+
+                                            </tbody>
+
+                                        </table>
+                                    </div><!-- /.box -->
+                                </div><!-- /.tab-pane -->
+
+
 
                             </div><!-- /.tab-content -->
                         </div><!-- nav-tabs-custom -->

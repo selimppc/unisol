@@ -54,21 +54,17 @@
                                     <label for="exampleInputPassword1">Password</label>
                                     <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
                                 </div>
-                                
                                 <div class="form-group">
-                                    <label>Target Role </label>
-                                    <select class="form-control">
-                                        <option>Applicant</option>
-                                        <option>Teacher</option>
-                                        <option>Staff</option>
-                                        <option>Alumni</option>
-                                        <option>Employer</option>
-                                    </select>
+                                    <label for="exampleInputPassword1">Confirm Password</label>
+                                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
                                 </div>
-                                        
+                               
                                </div>
                                  <div class="form-group">
-                                     <div class="g-recaptcha" data-sitekey="6LeYvf4SAAAAAE72M_jBFJdzfx7mglsnK_0C4cr6"></div>  
+                                    <img src="../img/captcha.PNG"> 
+                                </div>
+                                 <div class="form-group">
+                                   <input type="password" class="form-control" id="exampleInputPassword1" placeholder="captcha">
                                 </div>
                             </div><!-- /.box-body -->
 
