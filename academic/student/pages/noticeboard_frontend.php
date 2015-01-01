@@ -48,7 +48,7 @@
     <th>Title</th>
     <th>Description</th>
     <th>File</th>
-    <th>Target Role</th>
+
     <th>Start Date</th>
     <th>End Date</th>
     <th>Status</th>
@@ -68,7 +68,7 @@
                 <img src="../img/doc.png" width="50px" style="cursor: pointer">
             </span>
     </th>
-    <td>All</td>
+
     <td>10/1/2015</td>
     <td>20/1/2015</td>
     <th>
@@ -88,7 +88,7 @@
                 <img src="../img/doc.png" width="50px" style="cursor: pointer">
             </span>
     </th>
-    <td>Student</td>
+
     <td>2/1/2015</td>
     <td>2/1/2015</td>
     <th>
@@ -110,7 +110,7 @@
                 <img src="../img/doc.png" width="50px" style="cursor: pointer">
             </span>
     </th>
-    <td>Student</td>
+
     <td>12/11/2014</td>
     <td>21/1/2014</td>
     <th>
@@ -131,7 +131,7 @@
                 <img src="../img/doc.png" width="50px" style="cursor: pointer">
             </span>
     </th>
-    <td>All</td>
+
     <td>25/12/2014</td>
     <td>25/12/2014</td>
     <th>
@@ -152,7 +152,7 @@
                 <img src="../img/doc.png" width="50px" style="cursor: pointer">
             </span>
     </th>
-    <td>Student</td>
+
     <td>31/1/2014</td>
     <td>31/1/2014</td>
     <th>
@@ -174,7 +174,7 @@
                 <img src="../img/doc.png" width="50px" style="cursor: pointer">
             </span>
     </th>
-    <td>Student</td>
+
     <td>2/11/2014</td>
     <td>2/12/2014</td>
     <th>
@@ -196,7 +196,7 @@
                 <img src="../img/doc.png" width="50px" style="cursor: pointer">
             </span>
     </th>
-    <td>All</td>
+
     <td>25/12/2014</td>
     <td>25/12/2014</td>
     <th>
@@ -218,7 +218,7 @@
                 <img src="../img/doc.png" width="50px" style="cursor: pointer">
             </span>
     </th>
-    <td>Student</td>
+
     <td>31/1/2014</td>
     <td>31/1/2014</td>
     <th>
@@ -240,7 +240,7 @@
                 <img src="../img/doc.png" width="50px" style="cursor: pointer">
             </span>
     </th>
-    <td>Teacher,Student</td>
+
     <td>31/1/2014</td>
     <td>31/1/2014</td>
     <th>
@@ -261,7 +261,7 @@
     <th>Title</th>
     <th>Description</th>
     <th>File</th>
-    <th>Target Role</th>
+   
     <th>Start Date</th>
     <th>End Date</th>
     <th>Status</th>
