@@ -35,16 +35,18 @@
                               <div class="box">
                               <div class="box-header">
                                 <h3 class="box-title">Prepare Question for Admission Examination</h3>
-                                 <button class="pull-right btn btn-success"  data-toggle="modal" data-target="#addQuestion" >
-                                    Add New
-                                </button>
+                                <button class="pull-right btn-success btn-xs"  data-toggle="modal" data-target="#addTitle" >
+                                Add New
+                              </button>
                             </div>
                             <!-- /.box-header -->
                             <div class="box-body table-responsive">
                             <table id="example" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
+                                            <th>Title</th>
                                             <th>Type</th>
+                                            <th>Auto Evaluated</th>
                                             <th>Questions</th>
                                             <th>Options</th>
                                             <th>Answer</th>
@@ -55,56 +57,86 @@
                                     </thead>
                                     <tbody>
                                         <tr>
+                                            <td>Question for CSE Department</td>
                                             <td>MCQ</td>
+                                            <td>yes</td>
                                             <td>RAD stands for?</td>
                                             <td>1.Relative Application Development,2.Rapid Application Development,3.Rapid Application Document,4.Rapid Apply Document</td>
                                             <td>2.Rapid Application Development</td>
-                                            <td><button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#viewDetails">View</button>
-                                            <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#addQuestion">Edit</button>
+                                            <td>
+                                             <button class="btn btn-success btn-xs"  data-toggle="modal" data-target="#addQuestion" >
+                                              Add New
+                                            </button>
+                                            <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#viewDetails">View</button>
+                                            <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#addQuestion">Edit</button>
                                             <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">Delete</button>
                                              </td>
                                            
                                         </tr>
                                          <tr>
-                                             <td>MCQ</td>
-                                            <td>RAD stands for?</td>
-                                            <td>1.Relative Application Development,2.Rapid Application Development,3.Rapid Application Document,4.Rapid Apply Document</td>
-                                            <td>2.Rapid Application Development</td>
-                                              <td><button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#viewDetails">View</button>
-                                            <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#addQuestion">Edit</button>
+                                            <td>Question for BBA Department</td>
+                                            <td>MCQ</td>
+                                            <td>Yes</td>
+                                            <td>Communication with superiors involves?</td>
+                                            <td>1.Problem solving,2.Disciplinary matters,3.Welfare aspects,4.Public relations</td>
+                                            <td>1.Problem solving</td>
+                                             <td>
+                                             <button class="btn btn-success btn-xs"  data-toggle="modal" data-target="#addQuestion" >
+                                              Add New
+                                            </button>
+                                            <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#viewDetailstb">View</button>
+                                            <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#addQuestion">Edit</button>
                                             <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">Delete</button>
                                              </td>
                                             
                                         </tr>
                                          <tr>
+                                            <td>Question for CSE Department</td>
                                             <td>MCQ</td>
+                                            <td>yes</td>
                                             <td>RAD stands for?</td>
                                             <td>1.Relative Application Development,2.Rapid Application Development,3.Rapid Application Document,4.Rapid Apply Document</td>
                                             <td>2.Rapid Application Development</td>
-                                              <td><button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#viewDetails">View</button>
-                                            <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#addQuestion">Edit</button>
+                                              <td>
+                                           <button class="btn btn-success btn-xs"  data-toggle="modal" data-target="#addQuestion" >
+                                              Add New
+                                            </button>
+                                            <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#viewDetails">View</button>
+                                            <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#addQuestion">Edit</button>
                                             <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">Delete</button>
                                              </td>
                                             
                                         </tr>
                                          <tr>
+                                            <td>Question for CSE Department</td>
                                             <td>MCQ</td>
+                                            <td>yes</td>
                                             <td>RAD stands for?</td>
                                             <td>1.Relative Application Development,2.Rapid Application Development,3.Rapid Application Document,4.Rapid Apply Document</td>
                                             <td>2.Rapid Application Development</td>
-                                              <td><button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#viewDetails">View</button>
-                                            <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#addQuestion">Edit</button>
+                                              <td>
+                                            <button class="btn btn-success btn-xs"  data-toggle="modal" data-target="#addQuestion" >
+                                              Add New
+                                            </button>
+                                            <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#viewDetails">View</button>
+                                            <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#addQuestion">Edit</button>
                                             <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">Delete</button>
                                              </td>
                                            
                                         </tr>
                                          <tr>
-                                             <td>MCQ</td>
+                                             <td>Question for CSE Department</td>
+                                            <td>MCQ</td>
+                                            <td>yes</td>
                                             <td>RAD stands for?</td>
                                             <td>1.Relative Application Development,2.Rapid Application Development,3.Rapid Application Document,4.Rapid Apply Document</td>
                                             <td>2.Rapid Application Development</td>
-                                              <td><button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#viewDetails">View</button>
-                                            <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#addQuestion">Edit</button>
+                                               <td>
+                                             <button class="btn btn-success btn-xs"  data-toggle="modal" data-target="#addQuestion" >
+                                              Add New
+                                            </button>
+                                            <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#viewDetails">View</button>
+                                            <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#addQuestion">Edit</button>
                                             <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">Delete</button>
                                              </td>
                                         </tr>
