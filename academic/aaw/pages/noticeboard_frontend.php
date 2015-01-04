@@ -260,20 +260,7 @@
             </tr>
 
             </tbody>
-            <tfoot>
-            <tr>
-
-                <th>Title</th>
-                <th>Description</th>
-                <th>File</th>
-                <th>Target Role</th>
-                <th>Start Date</th>
-                <th>End Date</th>
-                <th>Status</th>
-                <th>Notification</th>
-
-            </tr>
-            </tfoot>
+           
             </table>
             </div><!-- /.box-body -->
             </div><!-- /.box -->
