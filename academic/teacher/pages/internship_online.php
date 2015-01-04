@@ -12,7 +12,7 @@
 <section class="content-header">
     <h1>
         Dashboard
-        <small>Control panel</small>
+        <small>/Teacher panel</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -72,7 +72,7 @@
     <th>
         <h5 style="color: #b11b64"><b>approved</b></h5>
     </th>
-    <th><button class="btn btn-info btn-xs" data-toggle="modal" data-target="#view">view</button></th>
+    <th><button class="btn btn-info btn-xs" data-toggle="modal" data-target="#view1">view</button></th>
 
 
 </tr>
@@ -86,7 +86,7 @@
     <th>
         <h5 style="color: #b11b64"><b>approved</b></h5>
     </th>
-    <th><button class="btn btn-info btn-xs" data-toggle="modal" data-target="#view">view</button></th>
+    <th><button class="btn btn-info btn-xs" data-toggle="modal" data-target="#view1">view</button></th>
 
 
 </tr>
@@ -100,7 +100,7 @@
     <th>
         <h5 style="color: #b11b64"><b>approved</b></h5>
     </th>
-    <th><button class="btn btn-info btn-xs" data-toggle="modal" data-target="#view">view</button></th>
+    <th><button class="btn btn-info btn-xs" data-toggle="modal" data-target="#view1">view</button></th>
 
 
 </tr>
@@ -113,7 +113,7 @@
     <th>
         <h5 style="color: #b11b64"><b>approved</b></h5>
     </th>
-    <th><button class="btn btn-info btn-xs" data-toggle="modal" data-target="#view">view</button></th>
+    <th><button class="btn btn-info btn-xs" data-toggle="modal" data-target="#view1">view</button></th>
 
 
 </tr>
@@ -130,7 +130,7 @@
     <th>
         <h5 style="color: #b11b64"><b>approved</b></h5>
     </th>
-    <th><button class="btn btn-info btn-xs" data-toggle="modal" data-target="#view">view</button></th>
+    <th><button class="btn btn-info btn-xs" data-toggle="modal" data-target="#view1">view</button></th>
 
 
 </tr>
@@ -146,7 +146,7 @@
         <h5 style="color:#0089db"><b>open</b></h5>
     </th>
     <th><button class="btn btn-success btn-xs" data-toggle="modal" data-target="#assign">assign</button>
-        <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#view">view</button>
+        <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#view2">view</button>
         <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#edit">edit</button>
         <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">delete</button></th>
     </th>
@@ -165,7 +165,7 @@
         <h5 style="color:#0089db"><b>open</b></h5>
     </th>
     <th><button class="btn btn-success btn-xs" data-toggle="modal" data-target="#assign">assign</button>
-        <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#view">view</button>
+        <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#view2">view</button>
         <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#edit">edit</button>
         <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">delete</button></th>
     </th>
@@ -183,7 +183,7 @@
     <th>
         <h5 style="color: #b11b64"><b>approved</b></h5>
     </th>
-    <th><button class="btn btn-info btn-xs" data-toggle="modal" data-target="#view">view</button></th>
+    <th><button class="btn btn-info btn-xs" data-toggle="modal" data-target="#view1">view</button></th>
 
 
 </tr>
@@ -200,7 +200,7 @@
         <h5 style="color:#0089db"><b>open</b></h5>
     </th>
     <th><button class="btn btn-success btn-xs" data-toggle="modal" data-target="#assign">assign</button>
-        <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#view">view</button>
+        <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#view2">view</button>
         <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#edit">edit</button>
         <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">delete</button></th>
     </th>
@@ -219,7 +219,7 @@
         <h5 style="color:#0089db"><b>open</b></h5>
     </th>
     <th><button class="btn btn-success btn-xs" data-toggle="modal" data-target="#assign">assign</button>
-        <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#view">view</button>
+        <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#view2">view</button>
         <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#edit">edit</button>
         <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">delete</button></th>
     </th>
@@ -238,7 +238,7 @@
         <h5 style="color:#0089db"><b>open</b></h5>
     </th>
     <th><button class="btn btn-success btn-xs" data-toggle="modal" data-target="#assign">assign</button>
-        <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#view">view</button>
+        <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#view2">view</button>
         <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#edit">edit</button>
         <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">delete</button></th>
     </th>
@@ -256,7 +256,7 @@
         <h5 style="color:#0089db"><b>open</b></h5>
     </th>
     <th><button class="btn btn-success btn-xs" data-toggle="modal" data-target="#assign">assign</button>
-        <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#view">view</button>
+        <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#view2">view</button>
         <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#edit">edit</button>
         <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">delete</button></th>
     </th>
@@ -275,7 +275,7 @@
         <h5 style="color:#0089db"><b>open</b></h5>
     </th>
     <th><button class="btn btn-success btn-xs" data-toggle="modal" data-target="#assign">assign</button>
-        <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#view">view</button>
+        <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#view2">view</button>
         <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#edit">edit</button>
         <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">delete</button></th>
     </th>
@@ -293,8 +293,11 @@
     <th>
         <h5 style="color:#0089db"><b>open</b></h5>
     </th>
-    <th><button class="btn btn-success btn-xs" data-toggle="modal" data-target="#approve">approve</button>
-        <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#view">view</button></th>
+    <th><button class="btn btn-success btn-xs" data-toggle="modal" data-target="#assign">assign</button>
+        <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#view2">view</button>
+        <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#edit">edit</button>
+        <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">delete</button></th>
+
 
 
 </tr>
@@ -302,18 +305,6 @@
 
 
 </tbody>
-<tfoot>
-<tr>
-
-    <th>Name of Organization</th>
-
-    <th>Type</th>
-    <th>Business Description</th>
-    <th>Intern Policy</th>
-    <th>Status</th>
-    <th>Action</th>
-</tr>
-</tfoot>
 </table>
 </div><!-- /.box-body -->
 </div><!-- /.box -->
@@ -347,7 +338,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel"></h4>
+                <h4 class="modal-title" id="myModalLabel"><b>Approval</b></h4>
             </div>
             <div class="modal-body">
                 <p><b>Are you sure to assign this item?</b></p>
@@ -364,9 +355,9 @@
     </div>
 </div>
 
-<!-- Modal :: view  -->
+<!-- Modal :: view1  -->
 
-<div class="modal fade " id="view" tabindex="-1" role="dialog" aria-labelledby="confirm-delete" aria-hidden="true">
+<div class="modal fade " id="view1" tabindex="-1" role="dialog" aria-labelledby="confirm-delete" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -381,15 +372,15 @@
 
                     <table>
 
-                        <tr
+                        <tr>
 
-                        <td><b>Name of Organization:</b>edu TechSolutions</td>
+                            <td style="font-size: 140%"><b>Name of Organization:</b>edu TechSolutions</td>
 
                         </tr>
 
-                        <td><b>Type:</b>Software</td></tr>
-                        <td><b>Intern Duration:</b>6 month</td></tr>
-                        <td><b>Status:</b>Approved</td></tr>
+                        <td style="font-size: 140%"><b>Type:</b>Software</td></tr>
+                        <td style="font-size: 140%"><b>Intern Duration:</b>6 month</td></tr>
+                        <td style="font-size: 140%"><b>Status:</b>Approved</td></tr>
 
                         </tr>
                     </table>
@@ -408,6 +399,54 @@
         </div>
     </div>
 </div>
+
+<!-- Modal :: view2  -->
+
+<div class="modal fade " id="view2" tabindex="-1" role="dialog" aria-labelledby="confirm-delete" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Information</h4>
+            </div>
+
+            <div class="modal-body">
+                <div class="span well">
+
+
+
+                    <table>
+
+                        <tr>
+
+                            <td style="font-size: 140%"><b>Name of Organization:</b>edu TechSolutions</td>
+
+                        </tr>
+
+                        <td style="font-size: 140%"><b >Type:</b>Software</td></tr>
+                        <td style="font-size: 140%"><b>Intern Duration:</b>6 month</td></tr>
+                        <td style="font-size: 140%"><b>Status:</b>open</td></tr>
+
+                        </tr>
+                    </table>
+
+
+                </div>
+            </div>
+            <div class="modal-footer">
+
+
+                <button type="submit" class="btn btn-info" data-dismiss="modal">Cancel</button>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 
 <!-- Modal :: add-->
 
