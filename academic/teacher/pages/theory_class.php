@@ -283,6 +283,30 @@
                                         </td>
                                     </tr>
 
+
+
+                                    <tr>
+                                        <td>Digital Image Processing </td>
+                                        <td> 3 </td>
+                                        <td>
+                                                <span data-toggle="modal" data-target="#viewDetails">
+                                                    <img src="../video/video.png" width="40" style="cursor: pointer" class="img-thumbnail">
+                                                </span>
+                                        </td>
+                                        <td> Description </td>
+                                        <td width="120">
+                                            <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#viewDetails">
+                                                View
+                                            </button>
+                                            <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#newClassVideo">
+                                                Edit
+                                            </button>
+                                            <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">
+                                                Delete
+                                            </button>
+                                        </td>
+                                    </tr>
+
                                             <tr>
                                                 <td> System Analysis and Design </td>
                                                 <td> 2 </td>
