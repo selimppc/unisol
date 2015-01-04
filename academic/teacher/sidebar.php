@@ -29,6 +29,14 @@
                 </a>
             </li>
 
+            <li>
+                <a href="pages/calendar.php">
+                    <i class="fa fa-laptop"></i>
+                    <span>Calendar</span>
+                    <i class="fa pull-right"></i>
+                </a>
+            </li>
+
 
             <li>
                 <a href="pages/markdistribution.php">
@@ -49,44 +57,34 @@
                     <li><a href="pages/theory_class.php"><i class="fa fa-angle-double-right"></i> Class</a></li>
                     <li><a href="pages/theory_class_test.php"><i class="fa fa-angle-double-right"></i> Class Test</a></li>
                     <li><a href="pages/theory_assignment.php"><i class="fa fa-angle-double-right"></i> Assignment</a></li>
-                    <li><a href="pages/theory_mid_final_exam.php"><i class="fa fa-angle-double-right"></i> Mid/ final Exam</a></li>
+
                 </ul>
             </li>
 
-            <li class="treeview">
-                <a href="#">
+            <li>
+                <a href="pages/lab_online.php">
                     <i class="fa fa-laptop"></i>
                     <span>Lab</span>
-                    <i class="fa fa-angle-left pull-right"></i>
+                    <i class="fa pull-right"></i>
                 </a>
-                <ul class="treeview-menu">
-                    <li><a href="pages/lab_manual.php"><i class="fa fa-angle-double-right"></i> Manual</a></li>
-                    <li><a href="pages/lab_online.php"><i class="fa fa-angle-double-right"></i> Online</a></li>
-                </ul>
             </li>
 
-            <li class="treeview">
-                <a href="#">
+            <li>
+                <a href="pages/project_online.php">
                     <i class="fa fa-laptop"></i>
                     <span>Project</span>
-                    <i class="fa fa-angle-left pull-right"></i>
+                    <i class="fa pull-right"></i>
                 </a>
-                <ul class="treeview-menu">
-                    <li><a href="pages/project_manual.php"><i class="fa fa-angle-double-right"></i> Manual</a></li>
-                    <li><a href="pages/project_online.php"><i class="fa fa-angle-double-right"></i> Online</a></li>
-                </ul>
+
             </li>
 
-            <li class="treeview">
-                <a href="#">
+            <li>
+                <a href="pages/thesis_online.php">
                     <i class="fa fa-laptop"></i>
                     <span>Thesis</span>
-                    <i class="fa fa-angle-left pull-right"></i>
+                    <i class="fa pull-right"></i>
                 </a>
-                <ul class="treeview-menu">
-                    <li><a href="pages/thesis_manual.php"><i class="fa fa-angle-double-right"></i> Manual</a></li>
-                    <li><a href="pages/thesis_online.php"><i class="fa fa-angle-double-right"></i> Online</a></li>
-                </ul>
+
             </li>
 
             <li>
