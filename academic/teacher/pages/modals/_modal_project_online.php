@@ -377,7 +377,7 @@
 
 
                         <tr>
-                            <td> Online Taxi Cab Management in Java</td>
+                            <td> Particle Image Velocimetry</td>
                             <td>
                                             <span data-toggle="modal" data-target="#viewDetails">
                                                 <img src="../img/doc.png" width="100px" style="cursor: pointer"
@@ -398,7 +398,7 @@
                         </tr>
 
                         <tr>
-                            <td> Online Taxi Cab Management in Java</td>
+                            <td> mixed-signal integrated circuit</td>
                             <td>
                                             <span data-toggle="modal" data-target="#viewDetails">
                                                 <img src="../img/doc.png" width="100px" style="cursor: pointer"
@@ -419,7 +419,7 @@
                         </tr>
 
                         <tr>
-                            <td> Online Taxi Cab Management in Java</td>
+                            <td>  Unicode, Box2D</td>
                             <td>
                                             <span data-toggle="modal" data-target="#viewDetails">
                                                 <img src="../img/doc.png" width="100px" style="cursor: pointer"
@@ -440,7 +440,7 @@
                         </tr>
 
                         <tr>
-                            <td> Online Taxi Cab Management in Java</td>
+                            <td> e-governance and e-government</td>
                             <td>
                                             <span data-toggle="modal" data-target="#viewDetails">
                                                 <img src="../img/doc.png" width="100px" style="cursor: pointer"
@@ -461,7 +461,7 @@
                         </tr>
 
                         <tr>
-                            <td> Online Taxi Cab Management in Java</td>
+                            <td> Library Management</td>
                             <td>
                                             <span data-toggle="modal" data-target="#viewDetails">
                                                 <img src="../img/doc.png" width="100px" style="cursor: pointer"

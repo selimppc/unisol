@@ -70,7 +70,7 @@
 
 <tr>
     <td> Online Taxi Cab Management in Java</td>
-    <td> 12/12/12 </td>
+    <td> 12/3/15 </td>
     <td> A teacher's "value-added" is defined as the average test-score gain for
         his or her students</td>
     <td>
@@ -100,10 +100,9 @@
 </tr>
 
 <tr>
-    <td> Online Taxi Cab Management in Java</td>
-    <td> 12/12/12 </td>
-    <td> A teacher's "value-added" is defined as the average test-score gain for
-        his or her students</td>
+    <td>Synthesis of Alum from Scrap Aluminum</td>
+    <td>7/2/2015 </td>
+    <td> Design and architecture  Synthesis of Alum from Scrap Aluminum</td>
     <td>
                                             <span data-toggle="modal" data-target="#viewDetails">
                                                 <img src="../img/doc.png" width="100px" style="cursor: pointer"
@@ -139,10 +138,9 @@
 </tr>
 
 <tr>
-    <td> Online Taxi Cab Management in Java</td>
-    <td> 12/12/12 </td>
-    <td> A teacher's "value-added" is defined as the average test-score gain for
-        his or her students</td>
+    <td> Particle Image Velocimetry</td>
+    <td> 12/1/15 </td>
+    <td> New Developments and Recent Applications on Particle Image Velocimetry</td>
     <td>
                                             <span data-toggle="modal" data-target="#viewDetails">
                                                 <img src="../img/doc.png" width="100px" style="cursor: pointer"
@@ -151,7 +149,45 @@
     </td>
     <td> 10 </td>
     <td>  </td>
-    <td> Aslam </td>
+    <td>Md Rafiq Islam</td>
+    <td width="130">
+        <button class="btn btn-primary btn-xs" data-toggle="modal"
+                data-target="#viewDetails">
+            View
+        </button>
+
+
+        <button class="btn btn-primary btn-xs" data-toggle="modal"
+                data-target="#evaluationLabMarks">
+            Edit
+        </button>
+        <button class="btn btn-danger btn-xs" data-toggle="modal"
+                data-target="#delete">
+            Delete
+        </button>
+        <button class="btn btn-success btn-xs" data-toggle="modal"
+                data-target="#submitConfirmation">
+            Approve
+        </button>
+        <button class="btn btn-success btn-xs" data-toggle="modal"
+                data-target="#denyConfirmation">
+            Deny
+        </button>
+    </td>
+</tr>
+<tr>
+    <td>Unicode, Box2D</td>
+    <td> 19/1/15 </td>
+    <td> Microprocessor :Unicode, Box2D</td>
+    <td>
+                                            <span data-toggle="modal" data-target="#viewDetails">
+                                                <img src="../img/doc.png" width="100px" style="cursor: pointer"
+                                                     class="img-thumbnail">
+                                            </span>
+    </td>
+    <td> 10 </td>
+    <td>  </td>
+    <td>Md. Monim Islam</td>
     <td width="130">
         <button class="btn btn-primary btn-xs" data-toggle="modal"
                 data-target="#viewDetails">
@@ -179,10 +215,9 @@
 </tr>
 
 <tr>
-    <td> Online Taxi Cab Management in Java</td>
+    <td> Boot process, X-window concepts, Bash scripts, Linux world</td>
     <td> 12/12/12 </td>
-    <td> A teacher's "value-added" is defined as the average test-score gain for
-        his or her students</td>
+    <td> Boot process, X-window concepts, Bash scripts, Linux world</td>
     <td>
                                             <span data-toggle="modal" data-target="#viewDetails">
                                                 <img src="../img/doc.png" width="100px" style="cursor: pointer"
@@ -191,7 +226,7 @@
     </td>
     <td> 10 </td>
     <td>  </td>
-    <td> Aslam </td>
+    <td> Jaman Khan </td>
     <td width="130">
         <button class="btn btn-primary btn-xs" data-toggle="modal"
                 data-target="#viewDetails">
@@ -217,10 +252,9 @@
 </tr>
 
 <tr>
-    <td> Online Taxi Cab Management in Java</td>
-    <td> 12/12/12 </td>
-    <td> A teacher's "value-added" is defined as the average test-score gain for
-        his or her students</td>
+    <td> Java Programming</td>
+    <td> 9/2/15 </td>
+    <td> Introduction and syntex of Java</td>
     <td>
                                             <span data-toggle="modal" data-target="#viewDetails">
                                                 <img src="../img/doc.png" width="100px" style="cursor: pointer"
@@ -228,7 +262,7 @@
                                             </span>
     </td>
     <td> 10 </td>
-    <td> Aslam </td>
+    <td> Ahmed Raton</td>
     <td>  </td>
     <td width="130">
         <button class="btn btn-primary btn-xs" data-toggle="modal"
