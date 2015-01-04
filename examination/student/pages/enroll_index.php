@@ -12,7 +12,7 @@
 <section class="content-header">
     <h1>
         Dashboard
-        <small>Control panel</small>
+        <small>/Student</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -41,7 +41,7 @@
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
                             <tr>
-                                <th>Serial No</th>
+
                                 <th>Department</th>
 
                                 <th>Examination Starting Date</th>
@@ -51,99 +51,86 @@
                         <tbody>
 
                             <tr>
-                                <td>1</td>
+
                                 <td>Computer Science & engineering</td>
 
                                 <td> 1/1/2015</td>
 
                             </tr>
                             <tr>
-                                <td>2</td>
-                                <td>Information & Communication engineering</td>
+
+                                <td>Information & Communication Technology</td>
 
                                 <td>3/1/2015</td>
 
                             </tr>
                             <tr>
-                                <td>3</td>
+
                                 <td>MBA</td>
 
                                 <td>5/1/2015</td>
 
                             </tr>
                             <tr>
-                                <td>2</td>
-                                <td>Information & Communication engineering</td>
+
+                                <td>Business Management</td>
+
+                                <td>7/2/2015</td>
+
+                            </tr>
+                            <tr>
+
+                                <td>English</td>
+
+                                <td>9/1/2015</td>
+
+                            </tr>
+                            <tr>
+
+                                <td>Mathematics</td>
+
+                                <td>9/3/2015</td>
+
+                            </tr>
+                            <tr>
+
+                                <td>Applied Physics</td>
+
+                                <td>4/2/2015</td>
+
+                            </tr>
+                            <tr>
+
+                                <td>Environment Science</td>
+
+                                <td>9/2/2015</td>
+
+                            </tr>
+                            <tr>
+
+                                <td>Zoology</td>
+
+                                <td>4/1/2015</td>
+
+                            </tr>
+                            <tr>
+
+                                <td>Civil Engineering</td>
 
                                 <td>3/1/2015</td>
 
                             </tr>
                             <tr>
-                                <td>2</td>
-                                <td>Information & Communication engineering</td>
 
-                                <td>3/1/2015</td>
+                                <td>Mechanical Engineering</td>
 
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Information & Communication engineering</td>
-
-                                <td>3/1/2015</td>
+                                <td>17/2/2015</td>
 
                             </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Information & Communication engineering</td>
 
-                                <td>3/1/2015</td>
-
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Information & Communication engineering</td>
-
-                                <td>3/1/2015</td>
-
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Information & Communication engineering</td>
-
-                                <td>3/1/2015</td>
-
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Information & Communication engineering</td>
-
-                                <td>3/1/2015</td>
-
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Information & Communication engineering</td>
-
-                                <td>3/1/2015</td>
-
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Information & Communication engineering</td>
-
-                                <td>3/1/2015</td>
-
-                            </tr>
 
                         </tbody>
-                        <tfoot>
-                            <tr>
-                                <th>Serial No</th>
-                                <th>Examination </th>
 
-                                <th>Department</th>
-                            </tr>
-                        </tfoot>
                     </table>
                 </div><!-- /.box-body -->
             </div><!-- /.box -->
@@ -236,8 +223,8 @@
                         </tbody>
                         <tfoot>
                         <tr>
-                            <th>Serial No</th>
-                            <th>Semester </th>
+                            <th></th>
+                            <th></th>
 
                             <th>Total Credit=160</th>
                         </tr>
@@ -282,9 +269,7 @@
 
 
                         </tbody>
-                        <tfoot>
 
-                        </tfoot>
                     </table>
                 </div><!-- /.box-body -->
             </div><!-- /.box -->
@@ -395,8 +380,7 @@
             </div>
             <div class="modal-footer">
                 <button type="submit" class="btn btn-info" data-dismiss="modal"  data-toggle="modal" data-target="#notification">Send</button>
-
-
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
             </div>
         </div>
     </div>

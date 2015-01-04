@@ -12,7 +12,7 @@
 <section class="content-header">
     <h1>
         Dashboard
-        <small>/AAW panel</small>
+        <small>/AAW </small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -183,7 +183,7 @@
 </tr>
 <tr>
 
-    <td>Md. Raihan</td>
+    <td>Mahmudul Hasan </td>
 
 
     <td>CE-01005</td>
@@ -362,7 +362,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Add Result</h4>
+                <h4 class="modal-title" id="myModalLabel"><b>Add New One</b></h4>
             </div>
             <div class="modal-body">
 
@@ -617,7 +617,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel"></h4>
+                <h4 class="modal-title" id="myModalLabel"><b>Delete Confirmation</b></h4>
             </div>
             <div class="modal-body">
                 <strong>Are you sure to delete?</strong>
@@ -641,7 +641,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel"></h4>
+                <h4 class="modal-title" id="myModalLabel"><b>Update Information</b></h4>
             </div>
             <div class="modal-body">
 
