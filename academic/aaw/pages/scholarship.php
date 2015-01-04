@@ -75,7 +75,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <?php for($i = 0; $i < 5; $i++){ ?>
+                              
                                     <tr>
                                         <td> Scholarship : Awarded </td>
                                         <td> Department of CSE </td>
@@ -142,10 +142,7 @@
                                         </td>
                                     </tr>
 
-                                <?php } ?>
-
-
-
+                          
 
                                 </tbody>
 
@@ -172,7 +169,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <?php for($i = 0; $i < 5; $i++){ ?>
+                               
                                     <tr>
                                         <td> Academic Scholarship </td>
                                         <td> CSE </td>
@@ -234,7 +231,7 @@
                                     </tr>
 
 
-                                <?php } ?>
+                             
 
 
                                 </tbody>

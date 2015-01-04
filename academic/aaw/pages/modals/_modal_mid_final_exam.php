@@ -48,9 +48,9 @@
                 <h4 class="modal-title">Mid / Fianl Exam Details</h4>
             </div>
             <div class="modal-body">
-                <h2> Mid Term Exam </h2>
+                <h2> First Term Exam </h2>
                 <p> Examiner </p>
-                <p> Mid term examination for CSE </p>
+                <p> First term examination for CSE </p>
                 <p> ..... </p>
 
             </div>

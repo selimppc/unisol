@@ -74,7 +74,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                        <?php for($i = 0; $i < 5; $i++){ ?>
+                        
                             <tr>
                                 <td> Sport and fitness </td>
                                 <td> There are countless opportunities to join a University sport club </td>
@@ -130,10 +130,6 @@
                                     </button>
                                 </td>
                             </tr>
-
-                        <?php } ?>
-
-
 
 
                         </tbody>

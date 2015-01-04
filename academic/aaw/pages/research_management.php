@@ -72,7 +72,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php for($i = 0; $i < 5; $i++){ ?>
+                                           
                                                 <tr>
                                                     <td> Renewal: The Ultimate Gift </td>
                                                     <td> Consistently ranked the most highly-cited and pertinent publications in the field </td>
@@ -134,11 +134,7 @@
                                                         </button>
                                                     </td>
                                                 </tr>
-                                            <?php } ?>
-
-
-
-
+                                      
                                         </tbody>
 
                                     </table>
@@ -164,7 +160,7 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                            <?php for($i = 0; $i < 5; $i++){ ?>
+                                      
                                             <tr>
                                                 <td> Renewal: The Ultimate Gift </td>
                                                 <td> Consistently ranked the most highly-cited and pertinent publications in the field </td>
@@ -225,8 +221,7 @@
                                                 </td>
                                             </tr>
 
-                                            <?php } ?>
-
+                                           
 
                                         </tbody>
 

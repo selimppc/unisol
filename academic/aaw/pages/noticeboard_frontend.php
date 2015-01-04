@@ -114,7 +114,7 @@
             </span>
                 </th>
                 <td>All</td>
-                <td>25/12/2014</td>
+                <td>15/12/2014</td>
                 <td>25/12/2014</td>
                 <th>
                     closed
@@ -129,14 +129,14 @@
             <tr>
 
                 <td>Term final</td>
-                <td>Department:ict,semester:fall,year:2013</td>
+                <td>Department:EEE,semester:fall,year:2016</td>
                 <th>
             <span data-toggle="modal" data-target="#view">
                 <img src="../img/doc.png" width="50px" style="cursor: pointer">
             </span>
                 </th>
                 <td>Teacher</td>
-                <td>31/1/2014</td>
+                <td>16/1/2014</td>
                 <td>31/1/2014</td>
                 <th>
                     closed
@@ -152,7 +152,7 @@
             <tr>
 
                 <td>Govement Holiday</td>
-                <td>Department:cse,semester:fall,year:2015</td>
+                <td>Department:BBA,semester:fall,year:2016</td>
                 <th>
             <span data-toggle="modal" data-target="#view">
                 <img src="../img/doc.png" width="50px" style="cursor: pointer">
@@ -160,7 +160,7 @@
                 </th>
                 <td>Teacher,Student</td>
                 <td>2/1/2015</td>
-                <td>2/1/2015</td>
+                <td>21/1/2015</td>
                 <th>new</th>
                 <th>
                     <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#send">send</button>
@@ -173,15 +173,15 @@
             <tr>
 
                 <td>Meeting</td>
-                <td>Department:cse,semester:fall,year:2015</td>
+                <td>Department:CSE,semester:fall,year:2018</td>
                 <th>
             <span data-toggle="modal" data-target="#view">
                 <img src="../img/doc.png" width="50px" style="cursor: pointer">
             </span>
                 </th>
                 <td>Teacher</td>
-                <td>3/1/2015</td>
-                <td>3/1/2015</td>
+                <td>13/1/2015</td>
+                <td>30/1/2015</td>
                 <th>new</th>
                 <th>
                     <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#send">send</button>
@@ -194,14 +194,14 @@
             <tr>
 
                 <td>class test</td>
-                <td>Department:ict,semester:fall,year:2013</td>
+                <td>Department:BBA,semester:fall,year:2013</td>
                 <th>
             <span data-toggle="modal" data-target="#view">
                 <img src="../img/doc.png" width="50px" style="cursor: pointer">
             </span>
                 </th>
                 <td>Teacher</td>
-                <td>31/1/2014</td>
+                <td>16/1/2014</td>
                 <td>31/1/2014</td>
                 <th>closed</th>
                 <th>
@@ -215,7 +215,7 @@
             <tr>
 
                 <td>Study Tour</td>
-                <td>Department:ict,semester:fall,year:2013</td>
+                <td>Department:BSE,semester:fall,year:2013</td>
                 <th>
             <span data-toggle="modal" data-target="#view">
                 <img src="../img/doc.png" width="50px" style="cursor: pointer">
@@ -223,7 +223,7 @@
                 </th>
                 <td>Teacher,Student</td>
                 <td>13/12/2014</td>
-                <td>15/12/2014</td>
+                <td>18/12/2014</td>
                 <th>closed</th>
 
 
@@ -235,40 +235,19 @@
 
 
             </tr>
-            <tr>
-
-                <td>Lab Test</td>
-                <td>Department:ict,semester:fall,year:2013</td>
-                <th>
-            <span data-toggle="modal" data-target="#view">
-                <img src="../img/doc.png" width="50px" style="cursor: pointer">
-            </span>
-                </th>
-                <td>Student</td>
-                <td>31/1/2014</td>
-                <td>31/1/2014</td>
-                <th>
-                   closed
-                </th>
-                <th>
-                    <button class="btn btn-info btn-xs"  data-toggle="modal" data-target="#view">view</button>
-
-                </th>
-
-
-            </tr>
+           
             <tr>
 
                 <td>Extra Class</td>
-                <td>Department:ict,semester:fall,year:2013</td>
+                <td>Department:EEE,semester:fall,year:2019</td>
                 <th>
             <span data-toggle="modal" data-target="#view">
                 <img src="../img/doc.png" width="50px" style="cursor: pointer">
             </span>
                 </th>
                 <td>Teacher,Student</td>
-                <td>31/1/2014</td>
-                <td>31/1/2014</td>
+                <td>19/1/2014</td>
+                <td>30/1/2014</td>
                 <th>
                     closed</th>
                 <th>
@@ -310,7 +289,7 @@
     </aside><!-- /.right-side -->
 </div><!-- ./wrapper -->
 
-
+<!-- All models -->
 <div class="modal fade " id="add" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -433,24 +412,14 @@
                     <div class="box-body">
                         <div class="span well" >
                             <table class="table table-bordered table-striped">
-
-
-
-
-                                <td>Title : Govement Holiday</td>
-
-                                </tr>
-
-                                <td>Description : ChrismasDay</td></tr>
-                                <td>Target Role : Teacher ,Student</td></tr>
-                                <td>Start Date :31/12/2014</td></tr>
-
-                                <td>Start Date :31/12/2014</td></tr>
-                                <td>Status : closed </td></tr>
-                              </tr>
-
-
-                            </table>
+                           
+                                <tr><td>Title : Govement Holiday</td></tr>
+                                <tr><td>Description : ChrismasDay</td></tr>
+                                <tr><td>Target Role : Teacher ,Student</td></tr>
+                                <tr><td>Start Date :12/12/2014</td></tr>
+                                <tr><td>Start Date :31/12/2014</td></tr>
+                                <tr><td>Status : closed </td> </tr>
+                             </table>
 
 
                         </div>
