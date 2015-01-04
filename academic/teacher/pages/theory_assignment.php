@@ -183,6 +183,89 @@
                                                 </tr>
 
                                                 <tr>
+
+                                                    <td>Operating System Concepts</td>
+                                                    <td> OS concepts and history </td>
+                                                    <td>
+                                                            <span data-toggle="modal" data-target="#viewDetails">
+                                                                <img src="../img/doc.png" width="40" style="cursor: pointer" class="img-thumbnail">
+                                                            </span>
+                                                    </td>
+                                                    <td> ICT </td>
+                                                    <td> Tanzila Tashrif / 60181214 </td>
+                                                    <td> 23 </td>
+                                                    <td> .. </td>
+                                                    <td width="120">
+                                                        <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#addMarks">
+                                                            Add Mark
+                                                        </button>
+
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>Business Analysis</td>
+                                                    <td>Business Policy and Analysis </td>
+                                                    <td>
+                                                            <span data-toggle="modal" data-target="#viewDetails">
+                                                                <img src="../img/doc.png" width="40" style="cursor: pointer" class="img-thumbnail">
+                                                            </span>
+                                                    </td>
+                                                    <td> BBA</td>
+                                                    <td>Tashrif Tabassum/ 60188254 </td>
+                                                    <td> 23 </td>
+                                                    <td> .. </td>
+                                                    <td width="120">
+                                                        <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#addMarks">
+                                                            Add Mark
+                                                        </button>
+
+                                                    </td>
+                                                </tr>
+
+
+                                                <tr>
+                                                    <td>Distributed Operating System Concepts</td>
+                                                    <td> History of DOS</td>
+                                                    <td>
+                                                            <span data-toggle="modal" data-target="#viewDetails">
+                                                                <img src="../img/doc.png" width="40" style="cursor: pointer" class="img-thumbnail">
+                                                            </span>
+                                                    </td>
+                                                    <td> CSE</td>
+                                                    <td> Monowar Islam / 70181234 </td>
+                                                    <td> 21 </td>
+                                                    <td> .. </td>
+                                                    <td width="120">
+                                                        <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#addMarks">
+                                                            Add Mark
+                                                        </button>
+
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>Organic Chemistry concepts</td>
+                                                    <td>Organic Synthesis</td>
+                                                    <td>
+                                                            <span data-toggle="modal" data-target="#viewDetails">
+                                                                <img src="../img/doc.png" width="40" style="cursor: pointer" class="img-thumbnail">
+                                                            </span>
+                                                    </td>
+                                                    <td>Chemistry</td>
+                                                    <td>Mamun Islam / 44141734 </td>
+                                                    <td> 24 </td>
+                                                    <td> .. </td>
+                                                    <td width="120">
+                                                        <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#addMarks">
+                                                            Add Mark
+                                                        </button>
+
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+
                                                     <td>Applied Physics Photonics</td>
                                                     <td>Current Trends of Optics and Photonics</td>
                                                     <td>
@@ -204,6 +287,7 @@
 
 
 
+
                                                 <tr>
                                                     <td> Job Scheduling math </td>
                                                     <td> Operating System </td>
@@ -222,6 +306,7 @@
                                                         </button>
                                                     </td>
                                                 </tr>
+
 
 
                                                 <tr>
@@ -307,6 +392,7 @@
 
                                                     </td>
                                                 </tr>
+
 
 
                                                 <tr>
@@ -476,6 +562,7 @@
 
                                                         </td>
                                                     </tr>
+
 
                                                 <tr>
                                                     <td> Multiple Graph Matching </td>

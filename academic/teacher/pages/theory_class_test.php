@@ -64,6 +64,7 @@
                                         </tr>
                                         </thead>
                                         <tbody>
+
                                             <tr>
                                                 <td> Algorithm </td>
                                                 <td> Graph Algorithm, Sequence Algorithms, Search   </td>
@@ -74,6 +75,25 @@
                                                 <td> 16 </td>
 
                                                 <td> 17 </td>
+                                                <td width="120">
+                                                    <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#viewDetails">
+                                                        View
+                                                    </button>
+                                                    <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#addClassTest">
+                                                        Edit
+                                                    </button>
+                                                    <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">
+                                                        Delete
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td> Numerical Methods </td>
+                                                <td>Basic Numerical Concepts </td>
+                                                <td> Shofiq Reza </td>
+                                                <td> NM004</td>
+                                                <td> 14 </td>
+                                                <td> 10 </td>
                                                 <td width="120">
                                                     <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#viewDetails">
                                                         View
@@ -165,6 +185,108 @@
                                                     </button>
                                                 </td>
                                             </tr>
+
+                                            <tr>
+                                                <td>Algorithms </td>
+                                                <td> Algorithms theory</td>
+                                                <td>Rafiq Ahmed</td>
+                                                <td> AI004</td>
+                                                <td> 16</td>
+                                                <td> 16</td>
+                                                <td width="120">
+                                                    <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#viewDetails">
+                                                        View
+                                                    </button>
+                                                    <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#addClassTest">
+                                                        Edit
+                                                    </button>
+                                                    <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">
+                                                        Delete
+                                                    </button>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>Numerical Analysis</td>
+                                                <td> Numerical Rules</td>
+                                                <td> Samia Jahan </td>
+                                                <td> NM004</td>
+                                                <td> 14</td>
+                                                <td> 11</td>
+                                                <td width="120">
+                                                    <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#viewDetails">
+                                                        View
+                                                    </button>
+                                                    <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#addClassTest">
+                                                        Edit
+                                                    </button>
+                                                    <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">
+                                                        Delete
+                                                    </button>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td> Digital Signal Processing </td>
+                                                <td>Signal Processing </td>
+                                                <td> Samia Jahan </td>
+                                                <td> DG004</td>
+                                                <td> 15</td>
+                                                <td> 13</td>
+                                                <td width="120">
+                                                    <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#viewDetails">
+                                                        View
+                                                    </button>
+                                                    <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#addClassTest">
+                                                        Edit
+                                                    </button>
+                                                    <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">
+                                                        Delete
+                                                    </button>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td> Image Processing </td>
+                                                <td>Basic Signal Processing </td>
+                                                <td>  Shajahan Kabir</td>
+                                                <td> DI004</td>
+                                                <td> 15</td>
+                                                <td> 12</td>
+                                                <td width="120">
+                                                    <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#viewDetails">
+                                                        View
+                                                    </button>
+                                                    <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#addClassTest">
+                                                        Edit
+                                                    </button>
+                                                    <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">
+                                                        Delete
+                                                    </button>
+                                                </td>
+                                            </tr>
+
+
+                                            <tr>
+                                                <td>Data Structure </td>
+                                                <td>Data Analysis </td>
+                                                <td> Kabir Ahmed</td>
+                                                <td> DS004</td>
+                                                <td> 15</td>
+                                                <td> 10</td>
+                                                <td width="120">
+                                                    <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#viewDetails">
+                                                        View
+                                                    </button>
+                                                    <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#addClassTest">
+                                                        Edit
+                                                    </button>
+                                                    <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">
+                                                        Delete
+                                                    </button>
+                                                </td>
+                                            </tr>
+
 
                                             <tr>
                                                 <td>Algorithms </td>
