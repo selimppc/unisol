@@ -84,6 +84,7 @@
                                                 </tr>
 
                                                 <tr>
+
                                                     <td> Parallel Graduated Assignment Algorithm for Multiple Graph Matching Based on a Common Labelling  </td>
                                                     <td> Graph Algorithm </td>
                                                     <td>
@@ -95,12 +96,113 @@
                                                     <td> Shafiqul Haque / 011015012 </td>
                                                     <td> 23 </td>
                                                     <td> Good </td>
+
+                                                    <td>Operating System Concepts</td>
+                                                    <td> OS concepts and history </td>
+                                                    <td>
+                                                            <span data-toggle="modal" data-target="#viewDetails">
+                                                                <img src="../img/doc.png" width="40" style="cursor: pointer" class="img-thumbnail">
+                                                            </span>
+                                                    </td>
+                                                    <td> ICT </td>
+                                                    <td> Tanzila Tashrif / 60181214 </td>
+                                                    <td> 23 </td>
+                                                    <td> .. </td>
+
                                                     <td width="120">
                                                         <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#addMarks">
                                                             Add Mark
                                                         </button>
+
                                                     </td>
                                                 </tr>
+
+
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>Business Analysis</td>
+                                                    <td>Business Policy and Analysis </td>
+                                                    <td>
+                                                            <span data-toggle="modal" data-target="#viewDetails">
+                                                                <img src="../img/doc.png" width="40" style="cursor: pointer" class="img-thumbnail">
+                                                            </span>
+                                                    </td>
+                                                    <td> BBA</td>
+                                                    <td>Tashrif Tabassum/ 60188254 </td>
+                                                    <td> 23 </td>
+                                                    <td> .. </td>
+                                                    <td width="120">
+                                                        <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#addMarks">
+                                                            Add Mark
+                                                        </button>
+
+                                                    </td>
+                                                </tr>
+
+
+                                                <tr>
+                                                    <td>Distributed Operating System Concepts</td>
+                                                    <td> History of DOS</td>
+                                                    <td>
+                                                            <span data-toggle="modal" data-target="#viewDetails">
+                                                                <img src="../img/doc.png" width="40" style="cursor: pointer" class="img-thumbnail">
+                                                            </span>
+                                                    </td>
+                                                    <td> CSE</td>
+                                                    <td> Monowar Islam / 70181234 </td>
+                                                    <td> 21 </td>
+                                                    <td> .. </td>
+                                                    <td width="120">
+                                                        <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#addMarks">
+                                                            Add Mark
+                                                        </button>
+
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>Organic Chemistry concepts</td>
+                                                    <td>Organic Synthesis</td>
+                                                    <td>
+                                                            <span data-toggle="modal" data-target="#viewDetails">
+                                                                <img src="../img/doc.png" width="40" style="cursor: pointer" class="img-thumbnail">
+                                                            </span>
+                                                    </td>
+                                                    <td>Chemistry</td>
+                                                    <td>Mamun Islam / 44141734 </td>
+                                                    <td> 24 </td>
+                                                    <td> .. </td>
+                                                    <td width="120">
+                                                        <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#addMarks">
+                                                            Add Mark
+                                                        </button>
+
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>Applied Physics Photonics</td>
+                                                    <td>Current Trends of Optics and Photonics</td>
+                                                    <td>
+                                                            <span data-toggle="modal" data-target="#viewDetails">
+                                                                <img src="../img/doc.png" width="40" style="cursor: pointer" class="img-thumbnail">
+                                                            </span>
+                                                    </td>
+                                                    <td>Applied Physics</td>
+                                                    <td>Rashad Islam / 22141234 </td>
+                                                    <td> 25</td>
+                                                    <td> .. </td>
+                                                    <td width="120">
+                                                        <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#addMarks">
+                                                            Add Mark
+                                                        </button>
+
+                                                    </td>
+                                                </tr>
+
+
 
                                                 <tr>
                                                     <td> Job Scheduling math </td>
@@ -121,6 +223,7 @@
                                                     </td>
                                                 </tr>
 
+
                                                 <tr>
                                                     <td> COCOMO Model  </td>
                                                     <td> Software Engineering </td>
@@ -139,6 +242,7 @@
                                                         </button>
                                                     </td>
                                                 </tr>
+
 
                                             </tbody>
 
@@ -169,6 +273,7 @@
                                             </tr>
                                             </thead>
                                             <tbody>
+
                                                 <tr>
                                                     <td> Data Types Conversion </td>
                                                     <td> Make the conversion from Binary to Decimal, Octal to Decimal, Decimal to Binary </td>
@@ -177,9 +282,15 @@
                                                             <img src="../img/doc.png" width="40" style="cursor: pointer" class="img-thumbnail">
                                                         </span>
                                                     </td>
+
                                                     <td> 20/01/2015 </td>
                                                     <td> Selim Reza </td>
                                                     <td> If needed take help from Google </td>
+
+                                                    <td> 12/12/2014 </td>
+                                                    <td> Selim Reza / 22141234 </td>
+                                                    <td> .. </td>
+
                                                     <td width="120">
                                                         <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#addAssignmentOnline">
                                                             Edit
@@ -196,6 +307,7 @@
 
                                                     </td>
                                                 </tr>
+
 
                                                 <tr>
                                                     <td> COCOMO Model </td>
@@ -225,6 +337,145 @@
                                                     </td>
                                                 </tr>
 
+
+                                                    <tr>
+                                                        <td> Applied Physics Photonics</td>
+                                                        <td> Current Trends of Optics and Photonics </td>
+                                                        <td>
+                                                                <span data-toggle="modal" data-target="#viewDetails">
+                                                                    <img src="../img/doc.png" width="40" style="cursor: pointer" class="img-thumbnail">
+                                                                </span>
+                                                        </td>
+                                                        <td> 5/1/20145</td>
+                                                        <td> Tamanna Khanam / 89741234 </td>
+                                                        <td> .. </td>
+                                                        <td width="120">
+                                                            <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#addAssignmentOnline">
+                                                                Edit
+                                                            </button>
+                                                            <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#viewOnlineAssignment">
+                                                                View
+                                                            </button>
+                                                            <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#assignToSt">
+                                                                Assign
+                                                            </button>
+                                                            <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">
+                                                                Delete
+                                                            </button>
+
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>Organic Chemistry and Organic Synthesis</td>
+                                                        <td>Organic Synthesis</td>
+                                                        <td>
+                                                    <span data-toggle="modal" data-target="#viewDetails">
+                                                        <img src="../img/doc.png" width="40" style="cursor: pointer" class="img-thumbnail">
+                                                    </span>
+                                                        </td>
+                                                        <td> 12/1/2015</td>
+                                                        <td> Rafi Rahman / 09144634 </td>
+                                                        <td> .. </td>
+                                                        <td width="120">
+                                                            <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#addAssignmentOnline">
+                                                                Edit
+                                                            </button>
+                                                            <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#viewOnlineAssignment">
+                                                                View
+                                                            </button>
+                                                            <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#assignToSt">
+                                                                Assign
+                                                            </button>
+                                                            <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">
+                                                                Delete
+                                                            </button>
+
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>Operating System Concepts</td>
+                                                        <td>OS concepts and history</td>
+                                                        <td>
+                                                            <span data-toggle="modal" data-target="#viewDetails">
+                                                                <img src="../img/doc.png" width="40" style="cursor: pointer" class="img-thumbnail">
+                                                            </span>
+                                                        </td>
+                                                        <td> 15/1/2015</td>
+                                                        <td> Akhi Rahman / 01159634 </td>
+                                                        <td> .. </td>
+                                                        <td width="120">
+                                                            <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#addAssignmentOnline">
+                                                                Edit
+                                                            </button>
+                                                            <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#viewOnlineAssignment">
+                                                                View
+                                                            </button>
+                                                            <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#assignToSt">
+                                                                Assign
+                                                            </button>
+                                                            <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">
+                                                                Delete
+                                                            </button>
+
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>Digital  System Concepts</td>
+                                                        <td>Digital Structure</td>
+                                                        <td>
+                                                            <span data-toggle="modal" data-target="#viewDetails">
+                                                                <img src="../img/doc.png" width="40" style="cursor: pointer" class="img-thumbnail">
+                                                            </span>
+                                                        </td>
+                                                        <td> 6/2/2015</td>
+                                                        <td>Poly Sarker / 10159638 </td>
+                                                        <td> .. </td>
+                                                        <td width="120">
+                                                            <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#addAssignmentOnline">
+                                                                Edit
+                                                            </button>
+                                                            <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#viewOnlineAssignment">
+                                                                View
+                                                            </button>
+                                                            <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#assignToSt">
+                                                                Assign
+                                                            </button>
+                                                            <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">
+                                                                Delete
+                                                            </button>
+
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td> Architecture concepts</td>
+                                                        <td>Architecture analysis and design</td>
+                                                        <td>
+                                                                <span data-toggle="modal" data-target="#viewDetails">
+                                                                    <img src="../img/doc.png" width="40" style="cursor: pointer" class="img-thumbnail">
+                                                                </span>
+                                                        </td>
+                                                        <td> 9/2/2015</td>
+                                                        <td>Rakhi Sarker / 19199938 </td>
+                                                        <td> .. </td>
+                                                        <td width="120">
+                                                            <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#addAssignmentOnline">
+                                                                Edit
+                                                            </button>
+                                                            <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#viewOnlineAssignment">
+                                                                View
+                                                            </button>
+                                                            <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#assignToSt">
+                                                                Assign
+                                                            </button>
+                                                            <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">
+                                                                Delete
+                                                            </button>
+
+                                                        </td>
+                                                    </tr>
 
                                                 <tr>
                                                     <td> Multiple Graph Matching </td>

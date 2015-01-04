@@ -12,7 +12,7 @@
         <section class="content-header">
             <h1>
                 Dashboard
-                <small>Control panel</small>
+                <small>/AAW</small>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -56,12 +56,12 @@
 
                                 <tr>
 
-                                    <td>Computer Science & engineering</td>
+                                    <td>Environment Science</td>
 
 
                                     <td>Fall</td>
                                     <td>2015</td>
-                                    <td>Architecture</td>
+                                    <td>Environment Science</td>
                                     <td>1/1/2015</td>
                                     <th></th>
                                     <th><a class="btn btn-sm btn-info" href="" data-toggle="modal" data-target="#request" >Add Examiner</a></th>
@@ -74,7 +74,7 @@
                                     <td>Fall</td>
                                     <td>2015</td>
                                     <td>Fundamental</td>
-                                    <td>1/1/2015</td>
+                                    <td>10/1/2015</td>
                                     <th>approved</th>
                                     <th><a class="btn btn-success btn-xs" href="" data-toggle="modal" data-target="#view" >view</a></th>
                                 </tr>
@@ -85,8 +85,8 @@
 
                                     <td>Spring</td>
                                     <td>2015</td>
-                                    <td>Fundamental C</td>
-                                    <td>1/1/2015</td>
+                                    <td>Business Strategy</td>
+                                    <td>19/2/2015</td>
                                     <th>approved</th>
                                     <th><a class="btn btn-success btn-xs" href="" data-toggle="modal" data-target="#view" >view</a></th>
                                 </tr>
@@ -98,7 +98,7 @@
                                     <td>Fall</td>
                                     <td>2015</td>
                                     <td>Fundamental C</td>
-                                    <td>1/1/2015</td>
+                                    <td>13/4/2015</td>
                                     <th></th>
                                     <th><a class="btn btn-sm btn-info" href="" data-toggle="modal" data-target="#request" >Add Examiner</a></th>
                                 </tr>
@@ -110,7 +110,7 @@
                                     <td>Summer</td>
                                     <td>2015</td>
                                     <td>Literature1</td>
-                                    <td>1/1/2015</td>
+                                    <td>7/1/2015</td>
                                     <th>approved</th>
                                     <th><a class="btn btn-success btn-xs" href="" data-toggle="modal" data-target="#view" >view</a></th>
                                 </tr>
@@ -122,7 +122,7 @@
                                     <td>Spring</td>
                                     <td>2015</td>
                                     <td>Fundamental C</td>
-                                    <td>1/1/2015</td>
+                                    <td>2/3/2015</td>
                                     <th></th>
                                     <th><a class="btn btn-sm btn-info" href="" data-toggle="modal" data-target="#request" >Add Examiner</a></th>
                                 </tr>
@@ -134,19 +134,19 @@
                                     <td>Summer</td>
                                     <td>2015</td>
                                     <td> C++</td>
-                                    <td>1/1/2015</td>
+                                    <td>8/1/2015</td>
                                     <th>approved</th>
                                     <th><a class="btn btn-success btn-xs" href="" data-toggle="modal" data-target="#view" >view</a></th>
                                 </tr>
                                 <tr>
 
-                                    <td>Math</td>
+                                    <td>Physics</td>
 
 
                                     <td>Spring</td>
                                     <td>2015</td>
-                                    <td>Math1</td>
-                                    <td>1/1/2015</td>
+                                    <td>Physics-Part:I</td>
+                                    <td>16/1/2015</td>
                                     <th></th>
                                     <th><a class="btn btn-sm btn-info" href="" data-toggle="modal" data-target="#request" >Add Examiner</a></th>
                                 </tr>
@@ -159,28 +159,16 @@
                                     <td>Summer</td>
                                     <td>2015</td>
                                     <td>Fundamental C</td>
-                                    <td>1/1/2015</td>
-                                    <th>discard</th>
-                                    <th><a class="btn btn-success btn-xs" href="" data-toggle="modal" data-target="#view" >view</a></th>
+                                    <td>14/2/2015</td>
+                                    <th></th>
+                                    <th><a class="btn btn-sm btn-info" href="" data-toggle="modal" data-target="#request" >Add Examiner</a></th>
                                 </tr>
 
 
 
 
                                 </tbody>
-                                <tfoot>
-                                <tr>
 
-                                    <th>Department</th>
-
-                                    <th>Semester </th>
-                                    <th>Year</th>
-                                    <th>Subject</th>
-                                    <th>Examination Date</th>
-                                    <th>Status</th>
-                                    <th>Action</th>
-                                </tr>
-                                </tfoot>
                             </table>
                         </div><!-- /.box-body -->
                     </div><!-- /.box -->
@@ -296,7 +284,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel"></h4>
+                <h4 class="modal-title" id="myModalLabel"><b>Request Send To Teacher</b></h4>
             </div>
             <div class="modal-body">
                 <form role="form">
@@ -371,7 +359,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Information</h4>
+                <h4 class="modal-title" id="myModalLabel"><b>View Information</b></h4>
             </div>
             <div class="modal-body">
                 <form role="form">
@@ -382,16 +370,16 @@
                         <div style="padding: 20px;">
                             <table>
                                 <h4> </h4>
-                                <tr
+                                <tr>
 
-                                <td>Department:CSE</td>
+                                <td style="font-size: 140%">Department : CSE</td>
 
                                 </tr>
-                                <td>Semester:Spring</td></tr>
-                                <td>Year:2010</td></tr>
+                                <td style="font-size: 140%">Semester: Spring</td></tr>
+                                <td style="font-size: 140%">Year:    2010</td></tr>
 
-                                <td>Subject:Fundamental C</td></tr>
-                                <td>Teacher:Md Rashad</td></tr>
+                                <td style="font-size: 140%">Subject:  Fundamental C</td></tr>
+                                <td style="font-size: 140%">Teacher:  Md Rashad</td></tr>
 
                                 </tr>
                             </table>

@@ -129,7 +129,7 @@
             <tr>
 
                 <td>Term final</td>
-                <td>Department:ict,semester:fall,year:2013</td>
+                <td>Department:EEE,semester:fall,year:2016</td>
                 <th>
             <span data-toggle="modal" data-target="#view">
                 <img src="../img/doc.png" width="50px" style="cursor: pointer">
@@ -152,7 +152,7 @@
             <tr>
 
                 <td>Govement Holiday</td>
-                <td>Department:cse,semester:fall,year:2015</td>
+                <td>Department:BBA,semester:fall,year:2016</td>
                 <th>
             <span data-toggle="modal" data-target="#view">
                 <img src="../img/doc.png" width="50px" style="cursor: pointer">
@@ -173,7 +173,7 @@
             <tr>
 
                 <td>Meeting</td>
-                <td>Department:cse,semester:fall,year:2015</td>
+                <td>Department:CSE,semester:fall,year:2018</td>
                 <th>
             <span data-toggle="modal" data-target="#view">
                 <img src="../img/doc.png" width="50px" style="cursor: pointer">
@@ -194,7 +194,7 @@
             <tr>
 
                 <td>class test</td>
-                <td>Department:ict,semester:fall,year:2013</td>
+                <td>Department:BBA,semester:fall,year:2013</td>
                 <th>
             <span data-toggle="modal" data-target="#view">
                 <img src="../img/doc.png" width="50px" style="cursor: pointer">
@@ -215,7 +215,7 @@
             <tr>
 
                 <td>Study Tour</td>
-                <td>Department:ict,semester:fall,year:2013</td>
+                <td>Department:BSE,semester:fall,year:2013</td>
                 <th>
             <span data-toggle="modal" data-target="#view">
                 <img src="../img/doc.png" width="50px" style="cursor: pointer">
@@ -235,32 +235,11 @@
 
 
             </tr>
-            <tr>
-
-                <td>Lab Test</td>
-                <td>Department:ict,semester:fall,year:2013</td>
-                <th>
-            <span data-toggle="modal" data-target="#view">
-                <img src="../img/doc.png" width="50px" style="cursor: pointer">
-            </span>
-                </th>
-                <td>Student</td>
-                <td>19/1/2014</td>
-                <td>31/1/2014</td>
-                <th>
-                   closed
-                </th>
-                <th>
-                    <button class="btn btn-info btn-xs"  data-toggle="modal" data-target="#view">view</button>
-
-                </th>
-
-
-            </tr>
+           
             <tr>
 
                 <td>Extra Class</td>
-                <td>Department:ict,semester:fall,year:2013</td>
+                <td>Department:EEE,semester:fall,year:2019</td>
                 <th>
             <span data-toggle="modal" data-target="#view">
                 <img src="../img/doc.png" width="50px" style="cursor: pointer">
@@ -281,20 +260,7 @@
             </tr>
 
             </tbody>
-            <tfoot>
-            <tr>
-
-                <th>Title</th>
-                <th>Description</th>
-                <th>File</th>
-                <th>Target Role</th>
-                <th>Start Date</th>
-                <th>End Date</th>
-                <th>Status</th>
-                <th>Notification</th>
-
-            </tr>
-            </tfoot>
+           
             </table>
             </div><!-- /.box-body -->
             </div><!-- /.box -->

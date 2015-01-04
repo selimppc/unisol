@@ -382,7 +382,7 @@
 
 
                         <tr>
-                            <td> Online Taxi Cab Management in Java</td>
+                            <td>Evaluation of Laser Beam Melted Surfaces using Texture Classification</td>
                             <td>
                                             <span data-toggle="modal" data-target="#viewDetails">
                                                 <img src="../img/doc.png" width="100px" style="cursor: pointer"
@@ -403,7 +403,7 @@
                         </tr>
 
                         <tr>
-                            <td> Online Taxi Cab Management in Java</td>
+                            <td>Evaluation of Interpolation Methods</td>
                             <td>
                                             <span data-toggle="modal" data-target="#viewDetails">
                                                 <img src="../img/doc.png" width="100px" style="cursor: pointer"
@@ -424,7 +424,7 @@
                         </tr>
 
                         <tr>
-                            <td> Online Taxi Cab Management in Java</td>
+                            <td>Face detection and tracking in thermal videos</td>
                             <td>
                                             <span data-toggle="modal" data-target="#viewDetails">
                                                 <img src="../img/doc.png" width="100px" style="cursor: pointer"
@@ -445,7 +445,7 @@
                         </tr>
 
                         <tr>
-                            <td> Online Taxi Cab Management in Java</td>
+                            <td> Expressing emotions through vibration for perception and control</td>
                             <td>
                                             <span data-toggle="modal" data-target="#viewDetails">
                                                 <img src="../img/doc.png" width="100px" style="cursor: pointer"
@@ -466,7 +466,7 @@
                         </tr>
 
                         <tr>
-                            <td> Online Taxi Cab Management in Java</td>
+                            <td>  Implement and run a scenario in an existing Agent-Based Model</td>
                             <td>
                                             <span data-toggle="modal" data-target="#viewDetails">
                                                 <img src="../img/doc.png" width="100px" style="cursor: pointer"

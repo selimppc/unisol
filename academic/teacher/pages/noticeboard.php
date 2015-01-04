@@ -82,7 +82,7 @@
                 <tr>
 
                     <td>mid term</td>
-                    <td>Department:BBA,semester:fall,year:2015</td>
+                    <td>Department:Math,semester:fall,year:2015</td>
                     <th>
             <span data-toggle="modal" data-target="#view">
                 <img src="../img/doc.png" width="50px" style="cursor: pointer">
@@ -101,16 +101,16 @@
 
                 <tr>
 
-                    <td>mid term final</td>
-                    <td>Department:BBA,semester:summer,year:2014</td>
+                    <td>Semester final</td>
+                    <td>Department:MBA,semester:summer,year:2014</td>
                     <th>
             <span data-toggle="modal" data-target="#view">
                 <img src="../img/doc.png" width="50px" style="cursor: pointer">
             </span>
                     </th>
 
-                    <td>12/11/2014</td>
-                    <td>21/1/2014</td>
+                    <td>12/1/2015</td>
+                    <td>7/2/2015</td>
                     <th>
                         <h5 style="color:dodgerblue"><b>new</b></h5>
 
@@ -121,8 +121,8 @@
                 </tr>
                 <tr>
 
-                    <td>Holiday</td>
-                    <td>ChrismasDay</td>
+                    <td>Vacation </td>
+                    <td>Semester Final Exam Finished</td>
                     <th>
             <span data-toggle="modal" data-target="#view">
                 <img src="../img/doc.png" width="50px" style="cursor: pointer">
@@ -130,7 +130,7 @@
                     </th>
 
                     <td>25/12/2014</td>
-                    <td>25/12/2014</td>
+                    <td>2/1/2015</td>
                     <th>
                         <h5 style="color:dodgerblue"><b>new</b></h5>
 
@@ -148,7 +148,7 @@
                     </th>
 
                     <td>31/1/2014</td>
-                    <td>31/1/2014</td>
+                    <td>3/1/2015</td>
                     <th>
                         <h5 style="color:dodgerblue"><b>new</b></h5>
 
@@ -161,7 +161,7 @@
 
                 <tr>
 
-                    <td>final term</td>
+                    <td>Lab final </td>
                     <td>Department:cse,  semester:fall,  year:2015</td>
                     <th>
             <span data-toggle="modal" data-target="#view">
@@ -169,8 +169,8 @@
             </span>
                     </th>
 
-                    <td>2/11/2014</td>
-                    <td>2/12/2014</td>
+                    <td>31/12/2014</td>
+                    <td>2/1/2015</td>
                     <th>
                         <h5 style="color:dodgerblue"><b>new</b></h5>
 
@@ -182,8 +182,8 @@
 
                 <tr>
 
-                    <td>Holiday</td>
-                    <td>ChrismasDay</td>
+                    <td>Government Holiday</td>
+                    <td>ChristmasDay</td>
                     <th>
             <span data-toggle="modal" data-target="#view">
                 <img src="../img/doc.png" width="50px" style="cursor: pointer">
@@ -207,21 +207,46 @@
 
                 <tr>
 
-                    <td>class test</td>
-                    <td>Department:ict,  semester:fall,  year:2013</td>
+                    <td>Mid Term Final</td>
+                    <td>Department:BBA,  semester:fall,  year:2013</td>
                     <th>
             <span data-toggle="modal" data-target="#view">
                 <img src="../img/doc.png" width="50px" style="cursor: pointer">
             </span>
                     </th>
 
-                    <td>31/1/2014</td>
-                    <td>31/1/2014</td>
+                    <td>3/12/2014</td>
+                    <td>31/12/2014</td>
                     <th>
                         <h5 style="color:red"><b>Closed</b></h5>
 
 
                     </th>
+
+
+
+                </tr>
+
+                <tr>
+
+                    <td>Lab Project Work</td>
+                    <td>Lab Project Work with group</td>
+                    <th>
+            <span data-toggle="modal" data-target="#view">
+                <img src="../img/doc.png" width="50px" style="cursor: pointer">
+            </span>
+                    </th>
+
+                    <td>25/12/2014</td>
+                    <td>25/12/2014</td>
+                    <th>
+                        <h5 style="color:red"><b>Closed</b></h5>
+
+
+                    </th>
+
+
+
 
 
 

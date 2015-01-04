@@ -80,7 +80,7 @@
             </tr>
             </thead>
             <tbody>
-            <?php for ($i = 0; $i < 5; $i++) { ?>
+<!--            --><?php //for ($i = 0; $i < 5; $i++) { ?>
                 <tr>
                     <td> Technology comes quickly</td>
                     <td> Abstract</td>
@@ -118,7 +118,7 @@
                     <td> Value added outcomes</td>
                     <td> Abstract</td>
                     <td> IEEE</td>
-                    <td> A teacher's "value-added" is defined as the average test-score gain for his or her students
+                    <td> Human values,humanity,society,nature
                     </td>
                     <td>
                                             <span data-toggle="modal" data-target="#viewDetails">
@@ -148,10 +148,10 @@
                 </tr>
 
                 <tr>
-                    <td> Value added outcomes</td>
+                    <td> Automated Legacy Code Partitioning for Embedded Systems</td>
                     <td> Abstract</td>
                     <td> IEEE</td>
-                    <td> A teacher's "value-added" is defined as the average test-score gain for his or her students
+                    <td> Automated Legacy Code Partitioning for Embedded Systems on EEE
                     </td>
                     <td>
                                             <span data-toggle="modal" data-target="#viewDetails">
@@ -180,8 +180,173 @@
                     </td>
                 </tr>
 
+<tr>
+    <td> Hardware design for Power Anlaysis Attacks in Embedded Systems</td>
+    <td> Abstract</td>
+    <td> ICCIT</td>
+    <td> Hardware design for Power Anlaysis Attacks in Embedded Systems
+    </td>
+    <td>
+                                            <span data-toggle="modal" data-target="#viewDetails">
+                                                <img src="../img/doc.png" width="100px" style="cursor: pointer"
+                                                     class="img-thumbnail">
+                                            </span>
+    </td>
+    <td> FREE</td>
+    <td> YES</td>
+    <td> 30%</td>
+    <td> Open</td>
+    <td width="130">
+        <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#viewDetails">
+            View
+        </button>
 
-            <?php } ?>
+        <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#submitConfirmation">
+            Submit
+        </button>
+        <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#addResearchReview">
+            Edit
+        </button>
+        <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">
+            Delete
+        </button>
+    </td>
+</tr>
+
+<tr>
+    <td>Evaluation of Heterogeneous Communication Architecture for MPSoCs in ARGUS </td>
+    <td> Abstract</td>
+    <td> IEEE</td>
+    <td> Evaluation of Heterogeneous Communication Architecture for MPSoCs in ARGUS
+    </td>
+    <td>
+                                            <span data-toggle="modal" data-target="#viewDetails">
+                                                <img src="../img/doc.png" width="100px" style="cursor: pointer"
+                                                     class="img-thumbnail">
+                                            </span>
+    </td>
+    <td> FREE</td>
+    <td> YES</td>
+    <td> 30%</td>
+    <td> Open</td>
+    <td width="130">
+        <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#viewDetails">
+            View
+        </button>
+
+        <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#submitConfirmation">
+            Submit
+        </button>
+        <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#addResearchReview">
+            Edit
+        </button>
+        <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">
+            Delete
+        </button>
+    </td>
+</tr>
+
+<tr>
+    <td>People to People Recommendation in Social Networks </td>
+    <td> Abstract</td>
+    <td> IEEE</td>
+    <td> People to People Recommendation in Social Networks
+    </td>
+    <td>
+                                            <span data-toggle="modal" data-target="#viewDetails">
+                                                <img src="../img/doc.png" width="100px" style="cursor: pointer"
+                                                     class="img-thumbnail">
+                                            </span>
+    </td>
+    <td> FREE</td>
+    <td> YES</td>
+    <td> 30%</td>
+    <td> Open</td>
+    <td width="130">
+        <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#viewDetails">
+            View
+        </button>
+
+        <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#submitConfirmation">
+            Submit
+        </button>
+        <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#addResearchReview">
+            Edit
+        </button>
+        <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">
+            Delete
+        </button>
+    </td>
+</tr>
+
+<tr>
+    <td> Design and Implementation of an Automated Software Verification Tool</td>
+    <td> Abstract</td>
+    <td> ICCIT</td>
+    <td> Design and Implementation of an Automated Software Verification Tool
+    </td>
+    <td>
+                                            <span data-toggle="modal" data-target="#viewDetails">
+                                                <img src="../img/doc.png" width="100px" style="cursor: pointer"
+                                                     class="img-thumbnail">
+                                            </span>
+    </td>
+    <td> FREE</td>
+    <td> YES</td>
+    <td> 30%</td>
+    <td> Open</td>
+    <td width="130">
+        <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#viewDetails">
+            View
+        </button>
+
+        <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#submitConfirmation">
+            Submit
+        </button>
+        <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#addResearchReview">
+            Edit
+        </button>
+        <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">
+            Delete
+        </button>
+    </td>
+</tr>
+
+<tr>
+    <td> 	Gene regulatory network in embryonic organ development </td>
+    <td> Abstract</td>
+    <td> IEEE</td>
+    <td> 	Gene regulatory network in embryonic organ development
+    </td>
+    <td>
+                                            <span data-toggle="modal" data-target="#viewDetails">
+                                                <img src="../img/doc.png" width="100px" style="cursor: pointer"
+                                                     class="img-thumbnail">
+                                            </span>
+    </td>
+    <td> FREE</td>
+    <td> YES</td>
+    <td> 30%</td>
+    <td> Open</td>
+    <td width="130">
+        <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#viewDetails">
+            View
+        </button>
+
+        <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#submitConfirmation">
+            Submit
+        </button>
+        <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#addResearchReview">
+            Edit
+        </button>
+        <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">
+            Delete
+        </button>
+    </td>
+</tr>
+
+
+<!--            --><?php //} ?>
 
 
             </tbody>

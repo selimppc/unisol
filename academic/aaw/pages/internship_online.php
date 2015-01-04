@@ -63,11 +63,11 @@
 
 <tr>
 
-    <td>edu TechSolutions</td>
+    <td>Edu TechSolutions</td>
 
 
     <td>Software</td>
-    <td>With a small team of developers, designers works day in and day out on developing beautiful, powerful, and user-friendly apps</td>
+    <td>Many developers, designers  developing beautiful, powerful web apps</td>
     <td>6 month</td>
     <th>
         <h5 style="color:#0089db"><b>open</b></h5>
@@ -80,19 +80,7 @@
 
 </tr>
 
-<tr>
 
-    <td>Belight Software</td>
-    <td>Software</td>
-    <td>With a small team of developers, designers works day in and day out on developing beautiful, powerful, and user-friendly apps</td>
-    <td>4 month</td>
-    <th>
-        <h5 style="color: #b11b64"><b>approved</b></h5>
-    </th>
-    <th><button class="btn btn-info btn-xs" data-toggle="modal" data-target="#view">view</button></th>
-
-
-</tr>
 
 <tr>
 
@@ -131,7 +119,7 @@
 
 
     <td>Software</td>
-    <td>With a small team of developers, designers works day in and day out on developing beautiful, powerful, and user-friendly apps</td>
+    <td>Designers works day in and day out on developing beautiful, powerful, and user-friendly apps which will be able to do many works.</td>
     <td>6 month</td>
     <th>
         <h5 style="color:#0089db"><b>open</b></h5>
@@ -147,7 +135,7 @@
 
 
     <td>Software</td>
-    <td>With a small team of developers, designers works day in and day out on developing beautiful, powerful, and user-friendly apps</td>
+    <td>With a small team of developers,Making a powerful web application.</td>
     <td>6 month</td>
     <th>
         <h5 style="color:#0089db"><b>open</b></h5>
@@ -163,23 +151,7 @@
 
 
     <td>Software</td>
-    <td>With a small team of developers, designers works day in and day out on developing beautiful, powerful, and user-friendly apps</td>
-    <td>6 month</td>
-    <th>
-        <h5 style="color:#0089db"><b>open</b></h5>
-    </th>
-    <th><button class="btn btn-success btn-xs" data-toggle="modal" data-target="#assign">assign</button>
-        <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#view">view</button></th>
-
-
-</tr>
-<tr>
-
-    <td>VB-Solutions</td>
-
-
-    <td>Software</td>
-    <td>designers works day in and day out on developing beautiful, powerful, and user-friendly apps</td>
+    <td>We are developing beautiful, powerful, and user-friendly apps</td>
     <td>6 month</td>
     <th>
         <h5 style="color:#0089db"><b>open</b></h5>
@@ -196,86 +168,7 @@
 
 
     <td>Software</td>
-    <td>designers works day in and day out on developing beautiful, powerful, and user-friendly apps</td>
-    <td>6 month</td>
-    <th>
-        <h5 style="color:#0089db"><b>open</b></h5>
-    </th>
-    <th><button class="btn btn-success btn-xs" data-toggle="modal" data-target="#assign">assign</button>
-        <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#view">view</button></th>
-
-
-</tr>
-<tr>
-
-    <td>GP-IT</td>
-
-
-    <td>Software</td>
-    <td>designers works day in and day out on developing beautiful, powerful, and user-friendly apps</td>
-    <td>6 month</td>
-    <th>
-        <h5 style="color: #b11b64"><b>approved</b></h5>
-    </th>
-    <th><button class="btn btn-info btn-xs" data-toggle="modal" data-target="#view">view</button></th>
-
-
-</tr>
-<tr>
-
-    <td>GP-IT</td>
-
-
-    <td>Software</td>
-    <td>designers works day in and day out on developing beautiful, powerful, and user-friendly apps</td>
-    <td>6 month</td>
-    <th>
-        <h5 style="color:#0089db"><b>open</b></h5>
-    </th>
-    <th><button class="btn btn-success btn-xs" data-toggle="modal" data-target="#assign">assign</button>
-        <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#view">view</button></th>
-
-
-</tr>
-<tr>
-
-    <td>Concord Group</td>
-
-
-    <td>Software</td>
-    <td>designers works day in and day out on developing beautiful, powerful, and user-friendly apps</td>
-    <td>6 month</td>
-    <th>
-        <h5 style="color:#0089db"><b>open</b></h5>
-    </th>
-    <th><button class="btn btn-success btn-xs" data-toggle="modal" data-target="#assign">assign</button>
-        <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#view">view</button></th>
-
-
-</tr>
-<tr>
-
-    <td>GP-IT</td>
-
-
-    <td>Software</td>
-    <td>designers works day in and day out on developing beautiful, powerful, and user-friendly apps</td>
-    <td>6 month</td>
-    <th>
-        <h5 style="color:#0089db"><b>open</b></h5>
-    </th>
-    <th><button class="btn btn-success btn-xs" data-toggle="modal" data-target="#assign">assign</button>
-        <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#view">view</button></th>
-
-
-</tr>
-<tr>
-
-    <td>GP-IT</td>
-
-
-    <td>Software</td>
-    <td>designers works day in and day out on developing beautiful, powerful, and user-friendly apps</td>
+    <td>All developers are developing beautiful, powerful, and user-friendly apps</td>
     <td>6 month</td>
     <th>
         <h5 style="color:#0089db"><b>open</b></h5>
@@ -288,18 +181,7 @@
 
 
 </tbody>
-<tfoot>
-<tr>
 
-    <th>Name of Organization</th>
-
-    <th>Type</th>
-    <th width>Business Description</th>
-    <th>Intern Policy</th>
-    <th>Status</th>
-    <th>Action</th>
-</tr>
-</tfoot>
 </table>
 </div><!-- /.box-body -->
 </div><!-- /.box -->

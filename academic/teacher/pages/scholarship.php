@@ -63,11 +63,28 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <?php for($i = 0; $i < 5; $i++){ ?>
+<!--                                --><?php //for($i = 0; $i < 5; $i++){ ?>
                                     <tr>
                                         <td> Academic Scholarship </td>
-                                        <td> CSE </td>
+                                        <td> Math </td>
                                         <td> Selim Reza  </td>
+                                        <td> 20 K </td>
+                                        <td> ... </td>
+                                        <td> Open </td>
+                                        <td width="120">
+                                            <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#viewDetails">
+                                                View
+                                            </button>
+                                            <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#addRecommend">
+                                                Recommend
+                                            </button>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Average Academic Performance Scholarships </td>
+                                        <td> CSE </td>
+                                        <td> Shakila Akter  </td>
                                         <td> 20 K </td>
                                         <td> ... </td>
                                         <td> Open </td>
@@ -113,7 +130,41 @@
                                         </td>
                                     </tr>
 
-                                <?php } ?>
+                                    <tr>
+                                        <td> Scholarships for Women </td>
+                                        <td> MBA </td>
+                                        <td> Nishita  Akter  </td>
+                                        <td> 30 K </td>
+                                        <td> ... </td>
+                                        <td> Requested </td>
+                                        <td width="120">
+                                            <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#viewDetails">
+                                                View
+                                            </button>
+                                            <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#addRecommend">
+                                                Recommend
+                                            </button>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td> Community Service Scholarships </td>
+                                        <td> EEE </td>
+                                        <td> Shafiul Bari </td>
+                                        <td> 10 K </td>
+                                        <td> Shafiul is eligible </td>
+                                        <td> Recommended </td>
+                                        <td width="120">
+                                            <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#viewDetails">
+                                                View
+                                            </button>
+
+                                        </td>
+                                    </tr>
+
+
+
+<!--                                --><?php //} ?>
 
 
 

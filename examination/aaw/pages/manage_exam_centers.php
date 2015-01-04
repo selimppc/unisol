@@ -12,7 +12,7 @@
 <section class="content-header">
     <h1>
         Dashboard
-        <small>Control panel</small>
+        <small>/AAW</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -82,7 +82,7 @@
         Shughanda 1216,
         Ctg, Bangladesh</td>
 
-    <td>General Training & Academic</td>
+    <td>Academic</td>
 
     <th><button class="btn btn-info btn-xs" data-toggle="modal" data-target="#view">View</button>
         <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#edit">Edit</button>
@@ -91,9 +91,9 @@
 
 <tr>
 
-    <td>Dhaka (21200)</td>
+    <td>Uttara,Dhaka (21200)</td>
     <td>
-        Prometric Testing Center,
+        Uttara Modal School,
         House 10, Street 13B,
         Dhaka, Bangladesh</td>
 
@@ -106,13 +106,13 @@
 
 <tr>
 
-    <td>Dhaka (21200)</td>
+    <td>KarwanBazar,Dhaka (21200)</td>
     <td>
         Prometric Traning Center,
         House 10, Street 13B,
         Dhaka, Bangladesh</td>
 
-    <td> General Training & Academic</td>
+    <td> Academic</td>
 
     <th><button class="btn btn-info btn-xs" data-toggle="modal" data-target="#view">View</button>
         <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#edit">Edit</button>
@@ -127,7 +127,7 @@
         House 10, Street 13B,
         Dhaka, Bangladesh</td>
 
-    <td> Academic</td>
+    <td>General Training & Academic</td>
 
     <th><button class="btn btn-info btn-xs" data-toggle="modal" data-target="#view">View</button>
         <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#edit">Edit</button>
@@ -136,11 +136,11 @@
 
 <tr>
 
-    <td>Old Dhaka (51200)</td>
+    <td>Nasirabad, Ctg (51200)</td>
     <td>
-        ChildSchool ,
+        PlayGround ChildSchool ,
         House 10, Street 13B,
-        Dhaka, Bangladesh</td>
+        Ctg, Bangladesh</td>
 
     <td>General Training & Academic</td>
 
@@ -150,9 +150,24 @@
 </tr>
 <tr>
 
-    <td>Old Dhaka (51200)</td>
+    <td>Comilla  (51200)</td>
     <td>
         ChildSchool ,
+        House 10, Street 13B,
+        Comilla, Bangladesh</td>
+
+    <td> Academic</td>
+
+    <th><button class="btn btn-info btn-xs" data-toggle="modal" data-target="#view">View</button>
+        <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#edit">Edit</button>
+        <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#delete">Delete</button></th>
+</tr>
+
+<tr>
+
+    <td>Mohammudpur, Dhaka (51200)</td>
+    <td>
+
         House 10, Street 13B,
         Dhaka, Bangladesh</td>
 
@@ -165,22 +180,7 @@
 
 <tr>
 
-    <td>X Dhaka (51200)</td>
-    <td>
-        ChildSchool ,
-        House 10, Street 13B,
-        Dhaka, Bangladesh</td>
-
-    <td> Academic</td>
-
-    <th><button class="btn btn-info btn-xs" data-toggle="modal" data-target="#view">View</button>
-        <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#edit">Edit</button>
-        <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#delete">Delete</button></th>
-</tr>
-
-<tr>
-
-    <td>X Dhaka (51200)</td>
+    <td>Mohakhali, Dhaka (51200)</td>
     <td>
         ChildSchool ,
         House 10, Street 13B,
@@ -194,17 +194,7 @@
 </tr>
 
 </tbody>
-                <tfoot>
-                <tr>
 
-                    <th>Name of Examination Center</th>
-
-                    <th>Address </th>
-
-                    <th>Category</th>
-                    <th>Action</th>
-                </tr>
-                </tfoot>
 </table>
 </div><!-- /.box-body -->
 </div><!-- /.box -->
@@ -285,25 +275,25 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Details Information Of Exam Center</h4>
+                <h3 class="modal-title" id="myModalLabel">Details Information Of Exam Center</h3>
             </div>
             <div class="modal-body">
                 <div class="span well" style="padding: 20px;">
                     <table>
-                        <h4> </h4>
-                        <tr
 
-                        <td><b>Name of Exam center  :</b>  Dhaka (21200)</td>
+                        <tr>
+
+                        <td style="font-size: 140%"><b>Name of Exam center  :</b>  Dhaka (21200)</td>
 
                         </tr>
 
-                        <td><b>Address  :</b> American Alumni Association,
+                        <td style="font-size: 140%"><b>Address  :</b> American Alumni Association,
                             Prometric Testing Center,
                             House 145, Street 13B,
                             Banani 1216,
                             Dhaka, Bangladesh </td></tr>
 
-                        <td><b>Category  : </b>General Training & Academic</td></tr>
+                        <td style="font-size: 140%"><b>Category  : </b>General Training & Academic</td></tr>
 
 
                         </tr>
@@ -332,7 +322,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel"></h4>
+                <h4 class="modal-title" id="myModalLabel"><b>Delete Confirmation</b></h4>
             </div>
             <div class="modal-body">
                 <strong>Are you sure to delete?</strong>
@@ -356,7 +346,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel"></h4>
+                <h4 class="modal-title" id="myModalLabel"><b>Update Information</b></h4>
             </div>
             <div class="modal-body">
                 <div class="form-group">

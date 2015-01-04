@@ -137,10 +137,9 @@
                                     </tr>
 
                                     <tr>
-                                        <td> Online Taxi Cab Management in Java</td>
-                                        <td> 12/12/12 </td>
-                                        <td> A teacher's "value-added" is defined as the average test-score gain for
-                                            his or her students</td>
+                                        <td>Library Management</td>
+                                        <td> 12/3/15 </td>
+                                        <td> Library Management</td>
                                         <td>
                                             <span data-toggle="modal" data-target="#viewDetails">
                                                 <img src="../img/doc.png" width="100px" style="cursor: pointer"
@@ -176,10 +175,9 @@
                                     </tr>
 
                                     <tr>
-                                        <td> Online Taxi Cab Management in Java</td>
-                                        <td> 12/12/12 </td>
-                                        <td> A teacher's "value-added" is defined as the average test-score gain for
-                                            his or her students</td>
+                                        <td> e-governance and e-government</td>
+                                        <td> 7/3/15 </td>
+                                        <td> e-governance and e-government</td>
                                         <td>
                                             <span data-toggle="modal" data-target="#viewDetails">
                                                 <img src="../img/doc.png" width="100px" style="cursor: pointer"
@@ -188,7 +186,7 @@
                                         </td>
                                         <td> 10 </td>
                                         <td>  </td>
-                                        <td> Aslam </td>
+                                        <td> Madehi Hasan </td>
                                         <td width="130">
                                             <button class="btn btn-primary btn-xs" data-toggle="modal"
                                                     data-target="#viewDetails">
@@ -216,10 +214,9 @@
                                     </tr>
 
                                     <tr>
-                                        <td> Online Taxi Cab Management in Java</td>
-                                        <td> 12/12/12 </td>
-                                        <td> A teacher's "value-added" is defined as the average test-score gain for
-                                            his or her students</td>
+                                        <td> Unicode, Box2D</td>
+                                        <td> 6/2/15 </td>
+                                        <td> Microprocessor :Unicode, Box2D</td>
                                         <td>
                                             <span data-toggle="modal" data-target="#viewDetails">
                                                 <img src="../img/doc.png" width="100px" style="cursor: pointer"
@@ -228,7 +225,7 @@
                                         </td>
                                         <td> 10 </td>
                                         <td>  </td>
-                                        <td> Aslam </td>
+                                        <td> Sazzad Hossain</td>
                                         <td width="130">
                                             <button class="btn btn-primary btn-xs" data-toggle="modal"
                                                     data-target="#viewDetails">
@@ -254,10 +251,46 @@
                                     </tr>
 
                                     <tr>
-                                        <td> Online Taxi Cab Management in Java</td>
+                                        <td> mixed-signal integrated circuit</td>
+                                        <td> 5/1/15 </td>
+                                        <td>  mixed-signal integrated circuit</td>
+                                        <td>
+                                            <span data-toggle="modal" data-target="#viewDetails">
+                                                <img src="../img/doc.png" width="100px" style="cursor: pointer"
+                                                     class="img-thumbnail">
+                                            </span>
+                                        </td>
+                                        <td> 10 </td>
+                                        <td>  </td>
+                                        <td>Riva Hossain</td>
+                                        <td width="130">
+                                            <button class="btn btn-primary btn-xs" data-toggle="modal"
+                                                    data-target="#viewDetails">
+                                                View
+                                            </button>
+                                            <button class="btn btn-primary btn-xs" data-toggle="modal"
+                                                    data-target="#evaluationProjectMarks">
+                                                Edit
+                                            </button>
+                                            <button class="btn btn-danger btn-xs" data-toggle="modal"
+                                                    data-target="#delete">
+                                                Delete
+                                            </button>
+                                            <button class="btn btn-success btn-xs" data-toggle="modal"
+                                                    data-target="#submitConfirmation">
+                                                Approve
+                                            </button>
+                                            <button class="btn btn-success btn-xs" data-toggle="modal"
+                                                    data-target="#denyConfirmation">
+                                                Deny
+                                            </button>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Particle Image Velocimetry</td>
                                         <td> 12/12/12 </td>
-                                        <td> A teacher's "value-added" is defined as the average test-score gain for
-                                            his or her students</td>
+                                        <td> Particle Image Velocimetry</td>
                                         <td>
                                             <span data-toggle="modal" data-target="#viewDetails">
                                                 <img src="../img/doc.png" width="100px" style="cursor: pointer"
