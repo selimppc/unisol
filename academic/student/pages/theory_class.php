@@ -68,14 +68,14 @@
                                         <tbody>
                                         <?php for($i = 0; $i < 5; $i++){ ?>
                                             <tr>
-                                                <td> Theory Nuclear Analysis </td>
-                                                <td> 2 </td>
+                                                <td> <?php echo $i+5; ?>. Theory Nuclear Analysis </td>
+                                                <td> <?php echo $i+5; ?> </td>
                                                 <td>
                                                     <span data-toggle="modal" data-target="#viewDetails">
                                                         <img src="../video/video.png" width="40" style="cursor: pointer" class="img-thumbnail">
                                                     </span>
                                                 </td>
-                                                <td> Published </td>
+                                                <td> <?php echo $i+5; ?> Published </td>
                                                 <td width="120">
                                                     <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#viewDetails">
                                                         View
