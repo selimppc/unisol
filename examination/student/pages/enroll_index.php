@@ -25,7 +25,6 @@
 <section class="content">
     <div class="box-body">
         <p>
-
             <button class="btn bg-olive btn-flat margin" data-toggle="modal" data-target="#modal-form">Go To Enrollment Form</button>
         </p>
 
@@ -276,17 +275,9 @@
         </div>
     </div>
 
-
-
-
-
-
 </section><!-- /.content -->
 </aside><!-- /.right-side -->
 </div><!-- ./wrapper -->
-
-
-
 
 <!-- Modal ::  Confirmation -->
 
@@ -412,9 +403,6 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-
-
-
 
 
 <script type="text/javascript">
