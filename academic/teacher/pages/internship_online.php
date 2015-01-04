@@ -108,7 +108,7 @@
 <tr>
     <td>edu TechSolutions</td>
     <td>Telecom</td>
-    <td>With a small team of developers, designers works day in and day out on developing beautiful, powerful, and user-friendly apps</td>
+    <td>powerful, and user-friendly apps</td>
     <td>6 month</td>
     <th>
         <h5 style="color: #b11b64"><b>approved</b></h5>
@@ -209,10 +209,10 @@
 </tr>
 <tr>
 
-    <td>GP-IT</td>
+    <td>Enosis </td>
 
 
-    <td>Software</td>
+    <td>Telecom</td>
     <td>designers works day in and day out on developing beautiful, powerful, and user-friendly apps</td>
     <td>6 month</td>
     <th>
@@ -232,7 +232,7 @@
 
 
     <td>Telecom</td>
-    <td>designers works day in and day out on developing beautiful, powerful, and user-friendly apps</td>
+    <td>beautiful, powerful, and user-friendly apps</td>
     <td>6 month</td>
     <th>
         <h5 style="color:#0089db"><b>open</b></h5>
@@ -265,11 +265,11 @@
 </tr>
 <tr>
 
-    <td>GP-IT</td>
+    <td>BRAC-IT</td>
 
 
-    <td>Software</td>
-    <td>designers works day in and day out on developing beautiful, powerful, and user-friendly apps</td>
+    <td>Telecom</td>
+    <td>powerful, and user-friendly apps</td>
     <td>6 month</td>
     <th>
         <h5 style="color:#0089db"><b>open</b></h5>
@@ -284,11 +284,11 @@
 </tr>
 <tr>
 
-    <td>GP-IT</td>
+    <td>Iqrasis Solutions</td>
 
 
     <td>Telecom</td>
-    <td>designers works day in and day out on developing beautiful, powerful, and user-friendly apps</td>
+    <td>powerful, and user-friendly apps</td>
     <td>6 month</td>
     <th>
         <h5 style="color:#0089db"><b>open</b></h5>

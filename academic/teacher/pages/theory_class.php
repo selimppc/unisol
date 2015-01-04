@@ -60,7 +60,7 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <?php for($i = 0; $i < 5; $i++){ ?>
+
                                             <tr>
                                                 <td> Theory Nuclear Analysis </td>
                                                 <td> 2 </td>
@@ -82,6 +82,27 @@
                                                     </button>
                                                 </td>
                                             </tr>
+                                        <tr>
+                                            <td> Digital System And Design </td>
+                                            <td> 2 </td>
+                                            <td>
+                                            <span data-toggle="modal" data-target="#viewDetails">
+                                                <img src="../video/video.png" width="40" style="cursor: pointer" class="img-thumbnail">
+                                            </span>
+                                            </td>
+                                            <td> Description  </td>
+                                            <td width="120">
+                                                <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#viewDetails">
+                                                    View
+                                                </button>
+                                                <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#newClassVideo">
+                                                    Edit
+                                                </button>
+                                                <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">
+                                                    Delete
+                                                </button>
+                                            </td>
+                                        </tr>
 
                                             <tr>
                                                 <td> Data Analysis </td>
@@ -126,10 +147,73 @@
                                                     </button>
                                                 </td>
                                             </tr>
+                                    <tr>
+                                        <td>Graphics Design</td>
+                                        <td> 2 </td>
+                                        <td>
+                                                <span data-toggle="modal" data-target="#viewDetails">
+                                                    <img src="../video/video.png" width="40" style="cursor: pointer" class="img-thumbnail">
+                                                </span>
+                                        </td>
+                                        <td> Description </td>
+                                        <td width="120">
+                                            <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#viewDetails">
+                                                View
+                                            </button>
+                                            <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#newClassVideo">
+                                                Edit
+                                            </button>
+                                            <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">
+                                                Delete
+                                            </button>
+                                        </td>
+                                    </tr>
 
-                                        <?php } ?>
+                                <tr>
+                                    <td>Fundamental Programming </td>
+                                    <td> 4 </td>
+                                    <td>
+                                        <span data-toggle="modal" data-target="#viewDetails">
+                                            <img src="../video/video.png" width="40" style="cursor: pointer" class="img-thumbnail">
+                                        </span>
+                                    </td>
+                                    <td> Description </td>
+                                    <td width="120">
+                                        <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#viewDetails">
+                                            View
+                                        </button>
+                                        <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#newClassVideo">
+                                            Edit
+                                        </button>
+                                        <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">
+                                            Delete
+                                        </button>
+                                    </td>
+                                </tr>
 
 
+
+                                    <tr>
+                                        <td>Digital Image Processing </td>
+                                        <td> 3 </td>
+                                        <td>
+                                                <span data-toggle="modal" data-target="#viewDetails">
+                                                    <img src="../video/video.png" width="40" style="cursor: pointer" class="img-thumbnail">
+                                                </span>
+                                        </td>
+                                        <td> Description </td>
+                                        <td width="120">
+                                            <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#viewDetails">
+                                                View
+                                            </button>
+                                            <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#newClassVideo">
+                                                Edit
+                                            </button>
+                                            <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">
+                                                Delete
+                                            </button>
+                                        </td>
+                                    </tr>
 
 
                                         </tbody>

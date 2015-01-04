@@ -100,7 +100,7 @@
 
 
                         <tr>
-                            <td> Online Taxi Cab Management in Java</td>
+                            <td> Unicode, Box2D</td>
                             <td>
                                             <span data-toggle="modal" data-target="#viewDetails">
                                                 <img src="../img/doc.png" width="100px" style="cursor: pointer"
@@ -121,7 +121,7 @@
                         </tr>
 
                         <tr>
-                            <td> Online Taxi Cab Management in Java</td>
+                            <td> Boot process, X-window concepts, Bash scripts, Linux world</td>
                             <td>
                                             <span data-toggle="modal" data-target="#viewDetails">
                                                 <img src="../img/doc.png" width="100px" style="cursor: pointer"
@@ -142,7 +142,7 @@
                         </tr>
 
                         <tr>
-                            <td> Online Taxi Cab Management in Java</td>
+                            <td> Particle Image Velocimetry</td>
                             <td>
                                             <span data-toggle="modal" data-target="#viewDetails">
                                                 <img src="../img/doc.png" width="100px" style="cursor: pointer"
@@ -163,7 +163,7 @@
                         </tr>
 
                         <tr>
-                            <td> Online Taxi Cab Management in Java</td>
+                            <td>Synthesis of Alum from Scrap Aluminum</td>
                             <td>
                                             <span data-toggle="modal" data-target="#viewDetails">
                                                 <img src="../img/doc.png" width="100px" style="cursor: pointer"
@@ -184,7 +184,7 @@
                         </tr>
 
                         <tr>
-                            <td> Online Taxi Cab Management in Java</td>
+                            <td>  Java Programming</td>
                             <td>
                                             <span data-toggle="modal" data-target="#viewDetails">
                                                 <img src="../img/doc.png" width="100px" style="cursor: pointer"

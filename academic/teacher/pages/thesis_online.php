@@ -111,10 +111,10 @@
             <td> A teacher's "value-added" is defined as the average test-score gain for
                 his or her students</td>
             <td>
-                                            <span data-toggle="modal" data-target="#viewDetails">
-                                                <img src="../img/doc.png" width="100px" style="cursor: pointer"
-                                                     class="img-thumbnail">
-                                            </span>
+                    <span data-toggle="modal" data-target="#viewDetails">
+                        <img src="../img/doc.png" width="100px" style="cursor: pointer"
+                             class="img-thumbnail">
+                    </span>
             </td>
             <td> 10 </td>
             <td> Aslam </td>
@@ -137,18 +137,17 @@
         </tr>
 
         <tr>
-            <td> Online Taxi Cab Management in Java</td>
-            <td> 12/12/12 </td>
-            <td> A teacher's "value-added" is defined as the average test-score gain for
-                his or her students</td>
+            <td> Character Recognition</td>
+            <td> 12/12/15 </td>
+            <td>Character Recognition on Image Processing</td>
             <td>
-                                            <span data-toggle="modal" data-target="#viewDetails">
-                                                <img src="../img/doc.png" width="100px" style="cursor: pointer"
-                                                     class="img-thumbnail">
-                                            </span>
+                <span data-toggle="modal" data-target="#viewDetails">
+                    <img src="../img/doc.png" width="100px" style="cursor: pointer"
+                         class="img-thumbnail">
+                </span>
             </td>
             <td> 10 </td>
-            <td> Aslam </td>
+            <td> Medahi Hasan </td>
             <td>  </td>
             <td width="130">
                 <button class="btn btn-primary btn-xs" data-toggle="modal"
@@ -176,19 +175,18 @@
         </tr>
 
         <tr>
-            <td> Online Taxi Cab Management in Java</td>
-            <td> 12/12/12 </td>
-            <td> A teacher's "value-added" is defined as the average test-score gain for
-                his or her students</td>
+            <td> Embedded System Touchscreen and WIFI</td>
+            <td> 7/12/15 </td>
+            <td> Embedded System Touchscreen and WIFI</td>
             <td>
-                                            <span data-toggle="modal" data-target="#viewDetails">
-                                                <img src="../img/doc.png" width="100px" style="cursor: pointer"
-                                                     class="img-thumbnail">
-                                            </span>
+                <span data-toggle="modal" data-target="#viewDetails">
+                    <img src="../img/doc.png" width="100px" style="cursor: pointer"
+                         class="img-thumbnail">
+                </span>
             </td>
             <td> 10 </td>
             <td>  </td>
-            <td> Aslam </td>
+            <td>Azaj Rasal</td>
             <td width="130">
                 <button class="btn btn-primary btn-xs" data-toggle="modal"
                         data-target="#viewDetails">
@@ -216,15 +214,14 @@
         </tr>
 
         <tr>
-            <td> Online Taxi Cab Management in Java</td>
-            <td> 12/12/12 </td>
-            <td> A teacher's "value-added" is defined as the average test-score gain for
-                his or her students</td>
+            <td>Sensitivity Analysis of Agent Based Models</td>
+            <td> 12/12/15 </td>
+            <td> Sensitivity Analysis of Agent Based Models</td>
             <td>
-                                            <span data-toggle="modal" data-target="#viewDetails">
-                                                <img src="../img/doc.png" width="100px" style="cursor: pointer"
-                                                     class="img-thumbnail">
-                                            </span>
+                <span data-toggle="modal" data-target="#viewDetails">
+                    <img src="../img/doc.png" width="100px" style="cursor: pointer"
+                         class="img-thumbnail">
+                </span>
             </td>
             <td> 10 </td>
             <td>  </td>
@@ -254,18 +251,169 @@
         </tr>
 
         <tr>
-            <td> Online Taxi Cab Management in Java</td>
-            <td> 12/12/12 </td>
-            <td> A teacher's "value-added" is defined as the average test-score gain for
-                his or her students</td>
+            <td> Implement and run a scenario in an existing Agent-Based Model</td>
+            <td> 12/7/15</td>
+            <td>Implement and run a scenario in an existing Agent-Based Model</td>
             <td>
-                                            <span data-toggle="modal" data-target="#viewDetails">
-                                                <img src="../img/doc.png" width="100px" style="cursor: pointer"
-                                                     class="img-thumbnail">
-                                            </span>
+                <span data-toggle="modal" data-target="#viewDetails">
+                    <img src="../img/doc.png" width="100px" style="cursor: pointer"
+                         class="img-thumbnail">
+                </span>
             </td>
             <td> 10 </td>
-            <td> Aslam </td>
+            <td>Zakir Ahmed </td>
+            <td>  </td>
+            <td width="130">
+                <button class="btn btn-primary btn-xs" data-toggle="modal"
+                        data-target="#viewDetails">
+                    View
+                </button>
+
+                <button class="btn btn-primary btn-xs" data-toggle="modal"
+                        data-target="#evaluationProjectMarks">
+                    Edit
+                </button>
+                <button class="btn btn-danger btn-xs" data-toggle="modal"
+                        data-target="#delete">
+                    Delete
+                </button>
+                <button class="btn btn-success btn-xs" data-toggle="modal"
+                        data-target="#submitConfirmation">
+                    Approve
+                </button>
+                <button class="btn btn-success btn-xs" data-toggle="modal"
+                        data-target="#denyConfirmation">
+                    Deny
+                </button>
+            </td>
+        </tr>
+
+        <tr>
+            <td> Expressing emotions through vibration for perception and control</td>
+            <td> 12/12/15</td>
+            <td>Expressing emotions through vibration for perception and control</td>
+            <td>
+                    <span data-toggle="modal" data-target="#viewDetails">
+                        <img src="../img/doc.png" width="100px" style="cursor: pointer"
+                             class="img-thumbnail">
+                    </span>
+            </td>
+            <td> 10 </td>
+            <td> Md. Raihan</td>
+            <td>  </td>
+            <td width="130">
+                <button class="btn btn-primary btn-xs" data-toggle="modal"
+                        data-target="#viewDetails">
+                    View
+                </button>
+
+                <button class="btn btn-primary btn-xs" data-toggle="modal"
+                        data-target="#evaluationProjectMarks">
+                    Edit
+                </button>
+                <button class="btn btn-danger btn-xs" data-toggle="modal"
+                        data-target="#delete">
+                    Delete
+                </button>
+                <button class="btn btn-success btn-xs" data-toggle="modal"
+                        data-target="#submitConfirmation">
+                    Approve
+                </button>
+                <button class="btn btn-success btn-xs" data-toggle="modal"
+                        data-target="#denyConfirmation">
+                    Deny
+                </button>
+            </td>
+        </tr>
+
+        <tr>
+            <td>Face detection and tracking in thermal videos</td>
+            <td> 12/9/15</td>
+            <td>Face detection and tracking in thermal videos</td>
+            <td>
+                <span data-toggle="modal" data-target="#viewDetails">
+                    <img src="../img/doc.png" width="100px" style="cursor: pointer"
+                         class="img-thumbnail">
+                </span>
+            </td>
+            <td> 10 </td>
+            <td> Md. Mamun</td>
+            <td>  </td>
+            <td width="130">
+                <button class="btn btn-primary btn-xs" data-toggle="modal"
+                        data-target="#viewDetails">
+                    View
+                </button>
+
+                <button class="btn btn-primary btn-xs" data-toggle="modal"
+                        data-target="#evaluationProjectMarks">
+                    Edit
+                </button>
+                <button class="btn btn-danger btn-xs" data-toggle="modal"
+                        data-target="#delete">
+                    Delete
+                </button>
+                <button class="btn btn-success btn-xs" data-toggle="modal"
+                        data-target="#submitConfirmation">
+                    Approve
+                </button>
+                <button class="btn btn-success btn-xs" data-toggle="modal"
+                        data-target="#denyConfirmation">
+                    Deny
+                </button>
+            </td>
+        </tr>
+
+        <tr>
+            <td>Evaluation of Interpolation Methods</td>
+            <td> 7/10/15</td>
+            <td>Evaluation of Interpolation Methods</td>
+            <td>
+            <span data-toggle="modal" data-target="#viewDetails">
+                <img src="../img/doc.png" width="100px" style="cursor: pointer"
+                     class="img-thumbnail">
+            </span>
+            </td>
+            <td> 10 </td>
+            <td>Sazzad Hossain</td>
+            <td>  </td>
+            <td width="130">
+                <button class="btn btn-primary btn-xs" data-toggle="modal"
+                        data-target="#viewDetails">
+                    View
+                </button>
+
+                <button class="btn btn-primary btn-xs" data-toggle="modal"
+                        data-target="#evaluationProjectMarks">
+                    Edit
+                </button>
+                <button class="btn btn-danger btn-xs" data-toggle="modal"
+                        data-target="#delete">
+                    Delete
+                </button>
+                <button class="btn btn-success btn-xs" data-toggle="modal"
+                        data-target="#submitConfirmation">
+                    Approve
+                </button>
+                <button class="btn btn-success btn-xs" data-toggle="modal"
+                        data-target="#denyConfirmation">
+                    Deny
+                </button>
+            </td>
+        </tr>
+
+        <tr>
+            <td>Evaluation of Laser Beam Melted Surfaces using Texture Classification</td>
+            <td> 12/9/15</td>
+            <td>Evaluation of Laser Beam Melted Surfaces using Texture Classification</td>
+            <td>
+                <span data-toggle="modal" data-target="#viewDetails">
+                    <img src="../img/doc.png" width="100px" style="cursor: pointer"
+                         class="img-thumbnail">
+                </span>
+            </td>
+            <td> 10 </td>
+            <td> Md. Kamal</td>
             <td>  </td>
             <td width="130">
                 <button class="btn btn-primary btn-xs" data-toggle="modal"
