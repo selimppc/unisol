@@ -59,9 +59,9 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <?php for($i = 0; $i < 5; $i++){ ?>
+                               
                                     <tr>
-                                        <td> Mid Term Exam </td>
+                                        <td> First Term Exam </td>
                                         <td> Examiner </td>
                                         <td> Mid term examination for CSE  </td>
                                         <td> ... </td>
@@ -78,11 +78,40 @@
                                         </td>
                                     </tr>
 
-
-
-                                <?php } ?>
-
-
+                                      <tr>
+                                        <td> Mid Term Exam </td>
+                                        <td> Examiner </td>
+                                        <td> Mid term examination for BBA  </td>
+                                        <td> ... </td>
+                                        <td width="120">
+                                            <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#viewDetails">
+                                                View
+                                            </button>
+                                            <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#adExamTerm">
+                                                Edit
+                                            </button>
+                                            <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">
+                                                Delete
+                                            </button>
+                                        </td>
+                                    </tr>
+                                      <tr>
+                                        <td> Semester Final Exam </td>
+                                        <td> Examiner </td>
+                                        <td> Mid term examination for EEE  </td>
+                                        <td> ... </td>
+                                        <td width="120">
+                                            <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#viewDetails">
+                                                View
+                                            </button>
+                                            <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#adExamTerm">
+                                                Edit
+                                            </button>
+                                            <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">
+                                                Delete
+                                            </button>
+                                        </td>
+                                    </tr>
 
 
                                 </tbody>
@@ -107,7 +136,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <?php for($i = 0; $i < 5; $i++){ ?>
+                                
                                     <tr>
                                         <td> Mid Term Exam </td>
                                         <td> Examiner </td>
@@ -125,12 +154,6 @@
                                             </button>
                                         </td>
                                     </tr>
-
-
-
-                                <?php } ?>
-
-
 
 
                                 </tbody>
@@ -151,17 +174,13 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <?php for($i = 0; $i < 2; $i++){ ?>
+                                
                                     <tr>
                                         <td> Mid Term Exam </td>
                                         <td> Instruction goes here </td>
                                     </tr>
 
-                                <?php } ?>
-
-
-
-
+                               
                                 </tbody>
 
                             </table>
@@ -179,7 +198,7 @@
 
 
 
-
+            </div>
         </section><!-- /.content -->
     </aside><!-- /.right-side -->
 </div><!-- ./wrapper -->

@@ -48,11 +48,11 @@
                 <h4 class="modal-title">View Details</h4>
             </div>
             <div class="modal-body">
-                <h2> Under Graduation Certificate </h2>
-                <p>Department: <b>CSE</b></p>
-                <p>Student Name: <b>Shafiul Haque</b></p>
-                <p>Student Roll: <b>CSE890890</b></p>
-                <p>Student ID: <b>20152323454</b></p>
+                <h2> Graduate Certificate  </h2>
+                <p>Department: <b>EEE </b></p>
+                <p>Student Name: <b>Selim Reza </b></p>
+                <p>Student Roll: <b>EEE190</b></p>
+                <p>Student ID: <b>341523234544</b></p>
                 <p>Status: <b>Open</b></p>
             </div>
             <div class="modal-footer">
