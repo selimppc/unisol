@@ -63,7 +63,7 @@
                                     <tr>
                                         <td> First Term Exam </td>
                                         <td> Examiner </td>
-                                        <td> Mid term examination for CSE  </td>
+                                        <td> First term examination for CSE  </td>
                                         <td> ... </td>
                                         <td width="120">
                                             <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#viewDetails">
@@ -98,7 +98,7 @@
                                       <tr>
                                         <td> Semester Final Exam </td>
                                         <td> Examiner </td>
-                                        <td> Mid term examination for EEE  </td>
+                                        <td> Semester Final examination for EEE  </td>
                                         <td> ... </td>
                                         <td width="120">
                                             <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#viewDetails">
