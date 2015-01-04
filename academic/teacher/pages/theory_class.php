@@ -60,16 +60,15 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <?php for($i = 0; $i < 5; $i++){ ?>
                                             <tr>
-                                                <td> Theory Nuclear Analysis </td>
+                                                <td> Algorithm </td>
                                                 <td> 2 </td>
                                                 <td>
                                                     <span data-toggle="modal" data-target="#viewDetails">
                                                         <img src="../video/video.png" width="40" style="cursor: pointer" class="img-thumbnail">
                                                     </span>
                                                 </td>
-                                                <td> Description  </td>
+                                                <td> Published  </td>
                                                 <td width="120">
                                                     <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#viewDetails">
                                                         View
@@ -84,8 +83,30 @@
                                             </tr>
 
                                             <tr>
-                                                <td> Data Analysis </td>
-                                                <td> 3 </td>
+                                                <td> Algorithm Lab </td>
+                                                <td> 1 </td>
+                                                <td>
+                                                    <span data-toggle="modal" data-target="#viewDetails">
+                                                        <img src="../video/video.png" width="40" style="cursor: pointer" class="img-thumbnail">
+                                                    </span>
+                                                </td>
+                                                <td> Published  </td>
+                                                <td width="120">
+                                                    <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#viewDetails">
+                                                        View
+                                                    </button>
+                                                    <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#newClassVideo">
+                                                        Edit
+                                                    </button>
+                                                    <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">
+                                                        Delete
+                                                    </button>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td> Data Structure </td>
+                                                <td> 2 </td>
                                                 <td>
                                                     <span data-toggle="modal" data-target="#viewDetails">
                                                         <img src="../video/video.png" width="40" style="cursor: pointer" class="img-thumbnail">
@@ -106,8 +127,8 @@
                                             </tr>
 
                                             <tr>
-                                                <td> Programing Language </td>
-                                                <td> 4 </td>
+                                                <td> Data Structure Lab </td>
+                                                <td> 1 </td>
                                                 <td>
                                                     <span data-toggle="modal" data-target="#viewDetails">
                                                         <img src="../video/video.png" width="40" style="cursor: pointer" class="img-thumbnail">
@@ -127,22 +148,56 @@
                                                 </td>
                                             </tr>
 
-                                        <?php } ?>
+                                            <tr>
+                                                <td> System Analysis and Design </td>
+                                                <td> 2 </td>
+                                                <td>
+                                                    <span data-toggle="modal" data-target="#viewDetails">
+                                                        <img src="../video/video.png" width="40" style="cursor: pointer" class="img-thumbnail">
+                                                    </span>
+                                                </td>
+                                                <td> Published </td>
+                                                <td width="120">
+                                                    <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#viewDetails">
+                                                        View
+                                                    </button>
+                                                    <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#newClassVideo">
+                                                        Edit
+                                                    </button>
+                                                    <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">
+                                                        Delete
+                                                    </button>
+                                                </td>
+                                            </tr>
 
-
-
-
+                                            <tr>
+                                                <td> System Analysis and Design Lab </td>
+                                                <td> 1 </td>
+                                                <td>
+                                                    <span data-toggle="modal" data-target="#viewDetails">
+                                                        <img src="../video/video.png" width="40" style="cursor: pointer" class="img-thumbnail">
+                                                    </span>
+                                                </td>
+                                                <td> Published </td>
+                                                <td width="120">
+                                                    <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#viewDetails">
+                                                        View
+                                                    </button>
+                                                    <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#newClassVideo">
+                                                        Edit
+                                                    </button>
+                                                    <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">
+                                                        Delete
+                                                    </button>
+                                                </td>
+                                            </tr>
                                         </tbody>
-
                                     </table>
                                 </div><!-- /.box -->
                             </div><!-- /.tab-pane -->
-
                         </div><!-- /.tab-content -->
                     </div><!-- nav-tabs-custom -->
                 </div><!-- /.col -->
-
-
             </div> <!-- /.row -->
             <!-- END CUSTOM TABS -->
 

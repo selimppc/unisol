@@ -26,90 +26,176 @@
 
             <!-- START CUSTOM TABS -->
             <h2 class="page-header">Class :: Student </h2>
+
             <div class="row">
                 <div class="col-md-12">
                     <!-- Custom Tabs -->
                     <div class="nav-tabs-custom">
                         <ul class="nav nav-tabs">
-                            <li class="active"><a href="#tab_1" data-toggle="tab">Class  </a></li>
+                            <li class="active"><a href="#tab_1" data-toggle="tab">Class </a></li>
 
 
                             <li class="pull-right" class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-gear"></i>&nbsp;</a>
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-gear"></i>&nbsp;
+                                </a>
                                 <ul class="dropdown-menu">
-                                    <li role="presentation" data-toggle="modal" data-target="#addClass"><a role="menuitem" tabindex="-1" href="#"> Add Class </a></li>
+                                    <li role="presentation" data-toggle="modal" data-target="#addClass"><a
+                                            role="menuitem" tabindex="-1" href="#"> Add Class </a></li>
                                 </ul>
                             </li>
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane active" id="tab_1">
 
-                                    <button class="btn btn-success btn-sm"  data-toggle="modal" data-target="#newClassVideo" >
-                                        Upload New Class Video
-                                    </button> <br><br>
+                                <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#newClassVideo">
+                                    Upload New Class Video
+                                </button>
+                                <br><br>
 
-                                    <button class="btn btn-info btn-sm"  data-toggle="modal" data-target="#marksDistribution" >
-                                        View Marks Distributions
-                                    </button> <br>
+                                <button class="btn btn-info btn-sm" data-toggle="modal"
+                                        data-target="#marksDistribution">
+                                    View Marks Distributions
+                                </button>
+                                <br>
 
-                                    <b>&nbsp;</b>
+                                <b>&nbsp;</b>
 
                                 <div class="box-body table-responsive">
                                     <table id="example1" class="table table-bordered table-striped">
                                         <thead>
                                         <tr>
-                                            <th> Class Name </th>
-                                            <th> Day </th>
-                                            <th> Video </th>
-                                            <th> Status </th>
-                                            <th> Action </th>
+                                            <th> Class Name</th>
+                                            <th> Day</th>
+                                            <th> Video</th>
+                                            <th> Status</th>
+                                            <th> Action</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <?php for($i = 0; $i < 5; $i++){ ?>
-                                            <tr>
-                                                <td> <?php echo $i+5; ?>. Theory Nuclear Analysis </td>
-                                                <td> <?php echo $i+5; ?> </td>
-                                                <td>
+
+                                        <tr>
+                                            <td> System Analysis : Theory</td>
+                                            <td> 1</td>
+                                            <td>
                                                     <span data-toggle="modal" data-target="#viewDetails">
-                                                        <img src="../video/video.png" width="40" style="cursor: pointer" class="img-thumbnail">
+                                                        <img src="../video/video.png" width="40" style="cursor: pointer"
+                                                             class="img-thumbnail">
                                                     </span>
-                                                </td>
-                                                <td> <?php echo $i+5; ?> Published </td>
-                                                <td width="120">
-                                                    <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#viewDetails">
-                                                        View
-                                                    </button>
-                                                    <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#newClassVideo">
-                                                        Edit
-                                                    </button>
-                                                    <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">
-                                                        Delete
-                                                    </button>
-                                                </td>
-                                            </tr>
+                                            </td>
+                                            <td>Published</td>
+                                            <td width="120">
+                                                <button class="btn btn-primary btn-xs" data-toggle="modal"
+                                                        data-target="#viewDetails">
+                                                    View
+                                                </button>
+                                                <button class="btn btn-success btn-xs" data-toggle="modal"
+                                                        data-target="#newClassVideo">
+                                                    Edit
+                                                </button>
+                                                <button class="btn btn-danger btn-xs" data-toggle="modal"
+                                                        data-target="#delete">
+                                                    Delete
+                                                </button>
+                                            </td>
+                                        </tr>
 
+                                        <tr>
+                                            <td>Software Engineering : Lab</td>
+                                            <td> 1</td>
+                                            <td>
+                                                    <span data-toggle="modal" data-target="#viewDetails">
+                                                        <img src="../video/video.png" width="40" style="cursor: pointer"
+                                                             class="img-thumbnail">
+                                                    </span>
+                                            </td>
+                                            <td>Published</td>
+                                            <td width="120">
+                                                <button class="btn btn-primary btn-xs" data-toggle="modal"
+                                                        data-target="#viewDetails">
+                                                    View
+                                                </button>
+                                                <button class="btn btn-success btn-xs" data-toggle="modal"
+                                                        data-target="#newClassVideo">
+                                                    Edit
+                                                </button>
+                                                <button class="btn btn-danger btn-xs" data-toggle="modal"
+                                                        data-target="#delete">
+                                                    Delete
+                                                </button>
+                                            </td>
+                                        </tr>
 
+                                        <tr>
+                                            <td>Data Structure : Theory</td>
+                                            <td> 1</td>
+                                            <td>
+                                                    <span data-toggle="modal" data-target="#viewDetails">
+                                                        <img src="../video/video.png" width="40" style="cursor: pointer"
+                                                             class="img-thumbnail">
+                                                    </span>
+                                            </td>
+                                            <td>Published</td>
+                                            <td width="120">
+                                                <button class="btn btn-primary btn-xs" data-toggle="modal"
+                                                        data-target="#viewDetails">
+                                                    View
+                                                </button>
+                                                <button class="btn btn-success btn-xs" data-toggle="modal"
+                                                        data-target="#newClassVideo">
+                                                    Edit
+                                                </button>
+                                                <button class="btn btn-danger btn-xs" data-toggle="modal"
+                                                        data-target="#delete">
+                                                    Delete
+                                                </button>
+                                            </td>
+                                        </tr>
 
-                                        <?php } ?>
-
-
-
+                                        <tr>
+                                            <td>Algorithm : Lab</td>
+                                            <td> 1</td>
+                                            <td>
+                                                    <span data-toggle="modal" data-target="#viewDetails">
+                                                        <img src="../video/video.png" width="40" style="cursor: pointer"
+                                                             class="img-thumbnail">
+                                                    </span>
+                                            </td>
+                                            <td>Published</td>
+                                            <td width="120">
+                                                <button class="btn btn-primary btn-xs" data-toggle="modal"
+                                                        data-target="#viewDetails">
+                                                    View
+                                                </button>
+                                                <button class="btn btn-success btn-xs" data-toggle="modal"
+                                                        data-target="#newClassVideo">
+                                                    Edit
+                                                </button>
+                                                <button class="btn btn-danger btn-xs" data-toggle="modal"
+                                                        data-target="#delete">
+                                                    Delete
+                                                </button>
+                                            </td>
+                                        </tr>
 
                                         </tbody>
 
                                     </table>
-                                </div><!-- /.box -->
-                            </div><!-- /.tab-pane -->
+                                </div>
+                                <!-- /.box -->
+                            </div>
+                            <!-- /.tab-pane -->
 
-                        </div><!-- /.tab-content -->
-                    </div><!-- nav-tabs-custom -->
-                </div><!-- /.col -->
+                        </div>
+                        <!-- /.tab-content -->
+                    </div>
+                    <!-- nav-tabs-custom -->
+                </div>
+                <!-- /.col -->
 
 
-            </div> <!-- /.row -->
+            </div>
+            <!-- /.row -->
             <!-- END CUSTOM TABS -->
-
 
 
         </section>

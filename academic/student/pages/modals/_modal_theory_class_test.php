@@ -1,10 +1,10 @@
-
 <!-- Delete Modal -->
 <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="delete" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Close</span></button>
                 <h4 class="modal-title">Delete </h4>
             </div>
             <div class="modal-body">
@@ -14,28 +14,33 @@
                 <button type="button" class="btn btn-success" data-dismiss="modal">Confirm</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
             </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
 <!-- Confirm Test Modal -->
-<div class="modal fade" id="confirmTest" tabindex="-1" role="dialog" aria-labelledby="confirmTest" aria-hidden="true" >
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title">Confirm Test</h4>
-      </div>
-      <div class="modal-body">
-        Are you sure to start the Test ?
-    </div>
-    <div class="modal-footer">
-        <button class="btn btn-success" data-toggle="modal" data-target="#viewDetails" >Start</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-    </div>
+<div class="modal fade" id="confirmTest" tabindex="-1" role="dialog" aria-labelledby="confirmTest" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Close</span></button>
+                <h4 class="modal-title">Confirm Test</h4>
+            </div>
+            <div class="modal-body">
+                Are you sure to start the Test ?
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-success" data-toggle="modal" data-target="#viewDetails">Start</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            </div>
 
-</div><!-- /.modal-content -->
-</div><!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
 
@@ -44,7 +49,8 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Close</span></button>
                 <h4 class="modal-title">Confirm Pause</h4>
             </div>
             <div class="modal-body">
@@ -54,8 +60,10 @@
                 <button type="button" class="btn btn-success" data-dismiss="modal">Pause</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
             </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
 <!-- View Details Modal -->
@@ -63,13 +71,17 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title"> Calculus Part 1  </h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Close</span></button>
+                <h4 class="modal-title"> Calculus Part 1 </h4>
             </div>
             <div class="modal-body" style="text-align: center">
                 <h2>&nbsp;</h2>
+
                 <h2> Your Time Starts Now !</h2>
+
                 <h3> 00:00 Hour</h3>
+
                 <h2>&nbsp;</h2>
             </div>
 
@@ -77,11 +89,11 @@
                 <button type="button" class="btn btn-success" data-dismiss="modal">Start Now!</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
             </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
 </div><!-- /.modal -->
-
-
 
 
 <!-- Add Class Test Modal -->
@@ -89,7 +101,8 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Close</span></button>
                 <h4 class="modal-title">Class Test Result</h4>
             </div>
             <div class="modal-body">
@@ -148,20 +161,21 @@
                 <button type="button" class="btn btn-success" data-dismiss="modal">Save</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
             </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
 
-
-
-
 <!-- Add Question Paper Modal -->
-<div class="modal fade" id="addQuestionPaper" tabindex="-1" role="dialog" aria-labelledby="addQuestionPaper" aria-hidden="true">
+<div class="modal fade" id="addQuestionPaper" tabindex="-1" role="dialog" aria-labelledby="addQuestionPaper"
+     aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Close</span></button>
                 <h4 class="modal-title">New Question </h4>
             </div>
             <div class="modal-body">
@@ -203,16 +217,20 @@
                     <div class="form-group">
                         <label for="Searching">Answer</label>
                         <label class="checkbox-inline">
-                            <input type="checkbox" name="inlineCheckboxOptions" id="inlineCheckbox1" value="option1"> Option One
+                            <input type="checkbox" name="inlineCheckboxOptions" id="inlineCheckbox1" value="option1">
+                            Option One
                         </label>
                         <label class="checkbox-inline">
-                            <input type="checkbox" name="inlineCheckboxOptions" id="inlineCheckbox2" value="option2"> Option Two
+                            <input type="checkbox" name="inlineCheckboxOptions" id="inlineCheckbox2" value="option2">
+                            Option Two
                         </label>
                         <label class="checkbox-inline">
-                            <input type="checkbox" name="inlineCheckboxOptions" id="inlineCheckbox3" value="option3"> Option Three
+                            <input type="checkbox" name="inlineCheckboxOptions" id="inlineCheckbox3" value="option3">
+                            Option Three
                         </label>
                         <label class="checkbox-inline">
-                            <input type="checkbox" name="inlineCheckboxOptions" id="inlineCheckbox4" value="option4"> Option Four
+                            <input type="checkbox" name="inlineCheckboxOptions" id="inlineCheckbox4" value="option4">
+                            Option Four
                         </label>
                     </div>
 
@@ -222,12 +240,11 @@
                 <button type="button" class="btn btn-success" data-dismiss="modal">Save</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
             </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
 </div><!-- /.modal -->
-
-
-
 
 
 <!-- Add Category Modal -->
@@ -235,7 +252,8 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Close</span></button>
                 <h4 class="modal-title">Add Class Test</h4>
             </div>
             <div class="modal-body">
@@ -255,8 +273,10 @@
                 <button type="button" class="btn btn-success" data-dismiss="modal">Save</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
             </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
 <!-- Add Number Revoluation  Modal -->
@@ -264,7 +284,8 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Close</span></button>
                 <h4 class="modal-title">Add Number for the question</h4>
             </div>
             <div class="modal-body">
@@ -280,17 +301,21 @@
                 <button type="button" class="btn btn-success" data-dismiss="modal">Save</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
             </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
 
 <!-- Add Scholarship Modal -->
-<div class="modal fade" id="addScholarship" tabindex="-1" role="dialog" aria-labelledby="addScholarship" aria-hidden="true">
+<div class="modal fade" id="addScholarship" tabindex="-1" role="dialog" aria-labelledby="addScholarship"
+     aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Close</span></button>
                 <h4 class="modal-title">Add Scholarship Item</h4>
             </div>
             <div class="modal-body">
@@ -319,8 +344,10 @@
                 <button type="button" class="btn btn-success" data-dismiss="modal">Save</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
             </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
 

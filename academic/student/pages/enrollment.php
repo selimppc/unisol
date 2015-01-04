@@ -184,8 +184,9 @@
                             <br>
 
                             <div class="button-centre">
-                                <button type="button" class="btn btn-success"  data-toggle="modal"
-                                        data-target="#paymentOptionModal">Payment Option</button>
+                                <button type="button" class="btn btn-success" data-toggle="modal"
+                                        data-target="#paymentOptionModal">Payment Option
+                                </button>
 
                             </div>
                             <br>

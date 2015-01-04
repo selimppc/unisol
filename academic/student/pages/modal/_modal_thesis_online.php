@@ -225,7 +225,6 @@
 </div><!-- /.modal -->
 
 
-
 <!-- submitConfirmation Modal -->
 <div class="modal fade" id="submitConfirmation" tabindex="-1" role="dialog" aria-labelledby="submitConfirmation"
      aria-hidden="true">
@@ -333,8 +332,6 @@
 </div><!-- /.modal -->
 
 
-
-
 <!-- Edit -->
 <div class="modal fade" id="Edit" tabindex="-1" role="dialog" aria-labelledby="addPublications"
      aria-hidden="true">
@@ -359,13 +356,16 @@
 
                     <div class="form-group">
                         <label>Deadline:</label>
+
                         <div class="input-group">
                             <div class="input-group-addon">
                                 <i class="fa fa-calendar"></i>
                             </div>
-                            <input type="text" class="form-control" placeholder="dd/mm/yy" />
-                        </div><!-- /.input group -->
-                    </div><!-- /.form group -->
+                            <input type="text" class="form-control" placeholder="dd/mm/yy"/>
+                        </div>
+                        <!-- /.input group -->
+                    </div>
+                    <!-- /.form group -->
 
                     <div class="form-group">
                         <label for="description">Details</label>
@@ -399,13 +399,14 @@
 </div><!-- /.modal -->
 
 
-
 <!-- View Marks Distribution -->
-<div class="modal fade" id="marksDistribution" tabindex="-1" role="dialog" aria-labelledby="addScholarship" aria-hidden="true">
+<div class="modal fade" id="marksDistribution" tabindex="-1" role="dialog" aria-labelledby="addScholarship"
+     aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Close</span></button>
                 <h4 class="modal-title">View Marks</h4>
             </div>
             <div class="modal-body">
@@ -414,48 +415,51 @@
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
                         <tr>
-                            <th> Category </th>
-                            <th> Marks </th>
+                            <th> Category</th>
+                            <th> Marks</th>
                         </tr>
                         </thead>
                         <tbody>
 
                         <tr>
-                            <td>Attendance </td>
-                            <td> 10% </td>
+                            <td>Attendance</td>
+                            <td> 10%</td>
                         </tr>
                         <tr>
-                            <td>Proposal % Presentation </td>
-                            <td> 10% </td>
-                        </tr>
-
-                        <tr>
-                            <td>Field Work </td>
-                            <td> 10% </td>
-                        </tr>
-                        <tr>
-                            <td>Implementation Presentation </td>
-                            <td> 10% </td>
+                            <td>Proposal % Presentation</td>
+                            <td> 10%</td>
                         </tr>
 
                         <tr>
-                            <td>Thesis Presentation </td>
-                            <td> 10% </td>
+                            <td>Field Work</td>
+                            <td> 10%</td>
+                        </tr>
+                        <tr>
+                            <td>Implementation Presentation</td>
+                            <td> 10%</td>
                         </tr>
 
                         <tr>
-                            <td>Final Report </td>
-                            <td> 10% </td>
+                            <td>Thesis Presentation</td>
+                            <td> 10%</td>
+                        </tr>
+
+                        <tr>
+                            <td>Final Report</td>
+                            <td> 10%</td>
                         </tr>
                         </tbody>
                     </table>
-                </div><!-- /.box -->
+                </div>
+                <!-- /.box -->
 
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-success" data-dismiss="modal">Back</button>
             </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
 </div><!-- /.modal -->
 

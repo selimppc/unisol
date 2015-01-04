@@ -63,33 +63,82 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <?php for($i = 0; $i < 5; $i++){ ?>
+
                                                 <tr>
-                                                    <td> Data Analysis </td>
-                                                    <td> Structure </td>
+                                                    <td> Data Types Conversion </td>
+                                                    <td> Data Structure </td>
                                                     <td>
                                                         <span data-toggle="modal" data-target="#viewDetails">
                                                             <img src="../img/doc.png" width="40" style="cursor: pointer" class="img-thumbnail">
                                                         </span>
                                                     </td>
                                                     <td> CSE </td>
-                                                    <td> Selim Reza / 20141212 </td>
+                                                    <td> Selim Reza / 011014212 </td>
                                                     <td> 24 </td>
-                                                    <td> .. </td>
+                                                    <td> Good </td>
                                                     <td width="120">
                                                         <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#addMarks">
                                                             Add Mark
                                                         </button>
-
                                                     </td>
                                                 </tr>
 
+                                                <tr>
+                                                    <td> Parallel Graduated Assignment Algorithm for Multiple Graph Matching Based on a Common Labelling  </td>
+                                                    <td> Graph Algorithm </td>
+                                                    <td>
+                                                        <span data-toggle="modal" data-target="#viewDetails">
+                                                            <img src="../img/doc.png" width="40" style="cursor: pointer" class="img-thumbnail">
+                                                        </span>
+                                                    </td>
+                                                    <td> CSE </td>
+                                                    <td> Shafiqul Haque / 011015012 </td>
+                                                    <td> 23 </td>
+                                                    <td> Good </td>
+                                                    <td width="120">
+                                                        <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#addMarks">
+                                                            Add Mark
+                                                        </button>
+                                                    </td>
+                                                </tr>
 
+                                                <tr>
+                                                    <td> Job Scheduling math </td>
+                                                    <td> Operating System </td>
+                                                    <td>
+                                                        <span data-toggle="modal" data-target="#viewDetails">
+                                                            <img src="../img/doc.png" width="40" style="cursor: pointer" class="img-thumbnail">
+                                                        </span>
+                                                    </td>
+                                                    <td> CSE </td>
+                                                    <td> Almas Hossain / 011012025 </td>
+                                                    <td> 25 </td>
+                                                    <td> Excellent </td>
+                                                    <td width="120">
+                                                        <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#addMarks">
+                                                            Add Mark
+                                                        </button>
+                                                    </td>
+                                                </tr>
 
-                                            <?php } ?>
-
-
-
+                                                <tr>
+                                                    <td> COCOMO Model  </td>
+                                                    <td> Software Engineering </td>
+                                                    <td>
+                                                        <span data-toggle="modal" data-target="#viewDetails">
+                                                            <img src="../img/doc.png" width="40" style="cursor: pointer" class="img-thumbnail">
+                                                        </span>
+                                                    </td>
+                                                    <td> CSE </td>
+                                                    <td> Ratna Akter / 011013162 </td>
+                                                    <td> 22 </td>
+                                                    <td> Good </td>
+                                                    <td width="120">
+                                                        <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#addMarks">
+                                                            Add Mark
+                                                        </button>
+                                                    </td>
+                                                </tr>
 
                                             </tbody>
 
@@ -120,18 +169,45 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <?php for($i = 0; $i < 5; $i++){ ?>
                                                 <tr>
-                                                    <td> Data Analysis </td>
-                                                    <td> Structure </td>
+                                                    <td> Data Types Conversion </td>
+                                                    <td> Make the conversion from Binary to Decimal, Octal to Decimal, Decimal to Binary </td>
                                                     <td>
                                                         <span data-toggle="modal" data-target="#viewDetails">
                                                             <img src="../img/doc.png" width="40" style="cursor: pointer" class="img-thumbnail">
                                                         </span>
                                                     </td>
-                                                    <td> 12/12/2014 </td>
-                                                    <td> Selim Reza / Gourp </td>
-                                                    <td> .. </td>
+                                                    <td> 20/01/2015 </td>
+                                                    <td> Selim Reza </td>
+                                                    <td> If needed take help from Google </td>
+                                                    <td width="120">
+                                                        <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#addAssignmentOnline">
+                                                            Edit
+                                                        </button>
+                                                        <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#viewOnlineAssignment">
+                                                            View
+                                                        </button>
+                                                        <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#assignToSt">
+                                                            Assign
+                                                        </button>
+                                                        <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">
+                                                            Delete
+                                                        </button>
+
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td> COCOMO Model </td>
+                                                    <td> An empirical study using task assignment patterns to improve the accuracy of software effort estimation with COCOMO Model </td>
+                                                    <td>
+                                                        <span data-toggle="modal" data-target="#viewDetails">
+                                                            <img src="../img/doc.png" width="40" style="cursor: pointer" class="img-thumbnail">
+                                                        </span>
+                                                    </td>
+                                                    <td> 28/01/2015 </td>
+                                                    <td> Shafiqul Haque </td>
+                                                    <td> If needed take help from Me </td>
                                                     <td width="120">
                                                         <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#addAssignmentOnline">
                                                             Edit
@@ -150,10 +226,33 @@
                                                 </tr>
 
 
+                                                <tr>
+                                                    <td> Multiple Graph Matching </td>
+                                                    <td> Parallel Graduated Assignment Algorithm for Multiple Graph Matching Based on a Common Labelling </td>
+                                                    <td>
+                                                        <span data-toggle="modal" data-target="#viewDetails">
+                                                            <img src="../img/doc.png" width="40" style="cursor: pointer" class="img-thumbnail">
+                                                        </span>
+                                                    </td>
+                                                    <td> 22/01/2015 </td>
+                                                    <td> Ratna Akter </td>
+                                                    <td> If needed take help from TA </td>
+                                                    <td width="120">
+                                                        <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#addAssignmentOnline">
+                                                            Edit
+                                                        </button>
+                                                        <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#viewOnlineAssignment">
+                                                            View
+                                                        </button>
+                                                        <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#assignToSt">
+                                                            Assign
+                                                        </button>
+                                                        <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">
+                                                            Delete
+                                                        </button>
 
-                                            <?php } ?>
-
-
+                                                    </td>
+                                                </tr>
 
 
                                             </tbody>

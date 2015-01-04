@@ -53,23 +53,28 @@
                                         <thead>
                                         <tr>
                                             <th> Class Test </th>
-                                            <th> Topics </th>
+                                            <th> Topics CT-1 </th>
+                                            <th> Topics CT-2</th>
                                             <th> Student Name </th>
                                             <th> Student ID </th>
-                                            <th> Marks/ Score </th>
+                                            <th> Marks of CT-1 </th>
+                                            <th> Marks of CT-2 </th>
                                             <th> Average Mark </th>
                                             <th> Action </th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <?php for($i = 0; $i < 5; $i++){ ?>
+
                                             <tr>
-                                                <td> Calculus Part 1 </td>
-                                                <td> Limitations </td>
-                                                <td> Selim Reza </td>
-                                                <td> SR009 </td>
+                                                <td> Algorithm </td>
+                                                <td> Graph Algorithm, Sequence Algorithms, Search   </td>
+                                                <td> Cryptography, Distributed systems algorithms   </td>
+                                                <td> Ratna Akter </td>
+                                                <td> 011142093 </td>
                                                 <td> 18 </td>
-                                                <td> 18 </td>
+                                                <td> 16 </td>
+
+                                                <td> 17 </td>
                                                 <td width="120">
                                                     <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#viewDetails">
                                                         View
@@ -84,11 +89,71 @@
                                             </tr>
 
 
+                                            <tr>
+                                                <td> Structural Programing Language </td>
+                                                <td> Array, String, Pointer, List </td>
+                                                <td> If/Else, Flow Chart, Swiss Case  </td>
+                                                <td> Selim Reza </td>
+                                                <td> 011143125 </td>
+                                                <td> 19 </td>
+                                                <td> 17 </td>
+                                                <td> 18 </td>
+                                                <td width="120">
+                                                    <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#viewDetails">
+                                                        View
+                                                    </button>
+                                                    <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#addClassTest">
+                                                        Edit
+                                                    </button>
+                                                    <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">
+                                                        Delete
+                                                    </button>
+                                                </td>
+                                            </tr>
 
-                                        <?php } ?>
+                                            <tr>
+                                                <td> Data Structure </td>
+                                                <td> Data types, Linear data structures, Trees </td>
+                                                <td> Queue, Deque, Stack, String, Tree, Graph </td>
+                                                <td> Tanvir jahan </td>
+                                                <td> 011152215 </td>
+                                                <td> 16 </td>
+                                                <td> 18 </td>
+                                                <td> 17 </td>
+                                                <td width="120">
+                                                    <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#viewDetails">
+                                                        View
+                                                    </button>
+                                                    <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#addClassTest">
+                                                        Edit
+                                                    </button>
+                                                    <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">
+                                                        Delete
+                                                    </button>
+                                                </td>
+                                            </tr>
 
-
-
+                                            <tr>
+                                                <td> Operating System </td>
+                                                <td> Processes and system calls, Processes and threads, Scheduling </td>
+                                                <td> Resources and deadlocks, File systems , Network programming (TCP/IP stack and sockets), Distributed File Systems   </td>
+                                                <td> Shafiqul Haque</td>
+                                                <td> 011143135 </td>
+                                                <td> 19 </td>
+                                                <td> 18 </td>
+                                                <td> 18.5 </td>
+                                                <td width="120">
+                                                    <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#viewDetails">
+                                                        View
+                                                    </button>
+                                                    <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#addClassTest">
+                                                        Edit
+                                                    </button>
+                                                    <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete">
+                                                        Delete
+                                                    </button>
+                                                </td>
+                                            </tr>
 
                                         </tbody>
 
@@ -120,6 +185,7 @@
                                             <table id="example3" class="table table-bordered table-striped">
                                                 <thead>
                                                 <tr>
+                                                    <th>Subject</th>
                                                     <th>Type</th>
                                                     <th>Questions</th>
                                                     <th>Options</th>
@@ -130,13 +196,14 @@
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                <?php for($i = 0; $i < 5; $i++){ ?>
+
                                                     <tr>
-                                                        <td> MCQ </td>
-                                                        <td> RAD stands for? </td>
-                                                        <td> 1.Relative Application Development,2.Rapid Application Development,3.Rapid Application Document,4.Rapid Apply Document  </td>
-                                                        <td> 2.Rapid Application Development </td>
-                                                        <td> comments </td>
+                                                        <td> Data Structure </td>
+                                                        <td> Descriptive </td>
+                                                        <td> What are the different kind of Data types? </td>
+                                                        <td> N/A </td>
+                                                        <td> N/A </td>
+                                                        <td> Answer maybe different from different students. </td>
                                                         <td> open </td>
                                                         <td>
                                                             <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#viewDetails">
@@ -145,10 +212,57 @@
                                                         </td>
                                                     </tr>
 
+                                                    <tr>
+                                                        <td> Algorithm </td>
+                                                        <td> MCQ </td>
+                                                        <td> The memory address of fifth element of an array can be calculated by the formula is : </td>
+                                                        <td> A. LOC(Array[5]=Base(Array)+w(5-lower bound), where w is the number of words per memory cell for the array <br>
+                                                             B. LOC(Array[5])=Base(Array[5])+(5-lower bound), where w is the number of words per memory cell for the array <br>
+                                                             C. LOC(Array[5])=Base(Array[4])+(5-Upper bound), where w is the number of words per memory cell for the array <br>
+                                                             D. None of above  </td>
+                                                        <td> A. LOC(Array[5]=Base(Array)+w(5-lower bound), where w is the number of words per memory cell for the array </td>
+                                                        <td> Only one Option </td>
+                                                        <td> open </td>
+                                                        <td>
+                                                            <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#viewDetails">
+                                                                View
+                                                            </button>
+                                                        </td>
+                                                    </tr>
 
-                                                <?php } ?>
+                                                    <tr>
+                                                        <td> Operating System </td>
+                                                        <td> MCQ </td>
+                                                        <td> Process is? </td>
+                                                        <td> A. program in High level language kept on disk <br>
+                                                             B.	contents of main memory <br>
+                                                             C.	a program in execution <br>
+                                                             D.	a job in secondary memory <br>
+                                                             E.	None of the above </td>
+                                                        <td> C. a program in execution </td>
+                                                        <td> Only One Answer </td>
+                                                        <td> open </td>
+                                                        <td>
+                                                            <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#viewDetails">
+                                                                View
+                                                            </button>
+                                                        </td>
+                                                    </tr>
 
-
+                                                    <tr>
+                                                        <td> Data-Base Management System </td>
+                                                        <td> MCQ </td>
+                                                        <td> Database is a collection of _______ </td>
+                                                        <td> 1.Program, 2.Data ,3.Modules ,4.None of These  </td>
+                                                        <td> 2.Data </td>
+                                                        <td> comments </td>
+                                                        <td> open </td>
+                                                        <td>
+                                                            <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#viewDetails">
+                                                                View
+                                                            </button>
+                                                        </td>
+                                                    </tr>
                                                 </tbody>
 
                                             </table>
@@ -160,6 +274,7 @@
                                             <table id="example4" class="table table-bordered table-striped">
                                                 <thead>
                                                 <tr>
+                                                    <th> Subject </th>
                                                     <th> Type </th>
                                                     <th> Questions </th>
                                                     <th> Options </th>
@@ -169,23 +284,72 @@
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                <?php for($i = 0; $i < 5; $i++){ ?>
+
+
+
                                                     <tr>
-                                                        <td> MCQ </td>
-                                                        <td> RAD stands for? </td>
-                                                        <td> 1.Relative Application Development,2.Rapid Application Development,3.Rapid Application Document,4.Rapid Apply Document  </td>
-                                                        <td> 2.Rapid Application Development </td>
-                                                        <td> 23 </td>
+                                                        <td> Data Structure </td>
+                                                        <td> Descriptive </td>
+                                                        <td> What are the different kind of Data types? </td>
+                                                        <td> N/A </td>
+                                                        <td> N/A </td>
+                                                        <td> 5 </td>
+
                                                         <td>
-                                                            <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#addEvoNo">
-                                                                Add Number
+                                                            <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#viewDetails">
+                                                                View
                                                             </button>
                                                         </td>
                                                     </tr>
 
+                                                    <tr>
+                                                        <td> Algorithm </td>
+                                                        <td> MCQ </td>
+                                                        <td> The memory address of fifth element of an array can be calculated by the formula is: </td>
+                                                        <td> A. LOC(Array[5]=Base(Array)+w(5-lower bound), where w is the number of words per memory cell for the array <br>
+                                                            B. LOC(Array[5])=Base(Array[5])+(5-lower bound), where w is the number of words per memory cell for the array <br>
+                                                            C. LOC(Array[5])=Base(Array[4])+(5-Upper bound), where w is the number of words per memory cell for the array <br>
+                                                            D. None of above  </td>
+                                                        <td> A. LOC(Array[5]=Base(Array)+w(5-lower bound), where w is the number of words per memory cell for the array </td>
+                                                        <td> 5 </td>
+                                                        <td>
+                                                            <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#viewDetails">
+                                                                View
+                                                            </button>
+                                                        </td>
+                                                    </tr>
 
-                                                <?php } ?>
+                                                    <tr>
+                                                        <td> Operating System </td>
+                                                        <td> MCQ </td>
+                                                        <td> Process is? </td>
+                                                        <td> A. program in High level language kept on disk <br>
+                                                            B.	contents of main memory <br>
+                                                            C.	a program in execution <br>
+                                                            D.	a job in secondary memory <br>
+                                                            E.	None of the above </td>
+                                                        <td> C. a program in execution </td>
+                                                        <td> 5 </td>
+                                                        <td>
+                                                            <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#viewDetails">
+                                                                View
+                                                            </button>
+                                                        </td>
+                                                    </tr>
 
+                                                    <tr>
+                                                        <td> Data-Base Management System </td>
+                                                        <td> MCQ </td>
+                                                        <td> Database is a collection of _______ </td>
+                                                        <td> 1.Program, 2.Data ,3.Modules ,4.None of These  </td>
+                                                        <td> 2.Data </td>
+                                                        <td> 5 </td>
+                                                        <td>
+                                                            <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#viewDetails">
+                                                                View
+                                                            </button>
+                                                        </td>
+                                                    </tr>
 
                                                 </tbody>
 

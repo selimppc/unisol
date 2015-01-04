@@ -42,29 +42,34 @@
                             </div>
                             <div class="btn-group">
                                 <button type="button" class=" btn-danger" data-toggle="modal"
-                                        data-target="#projectpresentation">Propose Presentation</button>
+                                        data-target="#projectpresentation">Propose Presentation
+                                </button>
 
                             </div>
 
                             <div class="btn-group">
                                 <button type="button" class=" btn-warning" data-toggle="modal"
-                                        data-target="#projectFieldWork">Fieldwork</button>
+                                        data-target="#projectFieldWork">Fieldwork
+                                </button>
 
                             </div>
 
                             <div class="btn-group">
                                 <button type="button" class=" btn-default" data-toggle="modal"
-                                        data-target="#projectPresentation">Project Presentation</button>
+                                        data-target="#projectPresentation">Project Presentation
+                                </button>
                             </div>
 
                             <div class="btn-group">
                                 <button type="button" class=" btn-info" data-toggle="modal"
-                                        data-target="#reportPresentation">Report Presentation</button>
+                                        data-target="#reportPresentation">Report Presentation
+                                </button>
 
                             </div>
                             <div class="btn-group">
                                 <button type="button" class=" btn-danger" data-toggle="modal"
-                                        data-target="#finalReport">Final Report</button>
+                                        data-target="#finalReport">Final Report
+                                </button>
 
                             </div>
 
@@ -95,11 +100,12 @@
 
 
                                     <tr>
-                                        <td> Online Taxi Cab Management in Java</td>
-                                        <td> Computer Architecture</td>
-                                        <td> 12/12/12 </td>
-                                        <td> A teacher's "value-added" is defined as the average test-score gain for
-                                            his or her students</td>
+                                        <td> Library System Management</td>
+                                        <td> Structure Programming Language</td>
+                                        <td> 12/02/15</td>
+                                        <td> UI not mandatory but Library System management Program should be running
+                                            error free.
+                                        </td>
                                         <td>
                                             <span data-toggle="modal" data-target="#viewDetails">
                                                 <img src="../img/doc.png" width="100px" style="cursor: pointer"
@@ -107,8 +113,8 @@
                                             </span>
                                         </td>
 
-                                        <td> professor Rahman </td>
-                                        <td> Not Done  </td>
+                                        <td> Professor hasan Sarwar</td>
+                                        <td> Not Done</td>
                                         <td width="130">
                                             <button class="btn btn-primary btn-xs" data-toggle="modal"
                                                     data-target="#viewDetails">
@@ -124,18 +130,17 @@
                                                     data-target="#Edit">
                                                 Edit
                                             </button>
-
-
                                         </td>
                                     </tr>
 
 
                                     <tr>
-                                        <td> Online Taxi Cab Management in Java</td>
-                                        <td> English</td>
-                                        <td> 12/12/12 </td>
-                                        <td> A teacher's "value-added" is defined as the average test-score gain for
-                                            his or her students</td>
+                                        <td> School Management System</td>
+                                        <td> Structure Programming Language</td>
+                                        <td> 02/02/15</td>
+                                        <td> School Management System application should be run in the server so that
+                                            local student can access that.
+                                        </td>
                                         <td>
                                             <span data-toggle="modal" data-target="#viewDetails">
                                                 <img src="../img/doc.png" width="100px" style="cursor: pointer"
@@ -143,8 +148,8 @@
                                             </span>
                                         </td>
 
-                                        <td> professor Huda </td>
-                                        <td> Done  </td>
+                                        <td> Professor Salekur Rahman</td>
+                                        <td> Done</td>
                                         <td width="130">
                                             <button class="btn btn-primary btn-xs" data-toggle="modal"
                                                     data-target="#viewDetails">
@@ -155,18 +160,15 @@
                                                     data-target="#deleteConfirmation">
                                                 Delete
                                             </button>
-
-
-
-
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td> Online Taxi Cab Management in Java</td>
-                                        <td> Electronics</td>
-                                        <td> 12/12/12 </td>
-                                        <td> A teacher's "value-added" is defined as the average test-score gain for
-                                            his or her students</td>
+                                        <td> Scientific Calculator with nice UI</td>
+                                        <td> Java</td>
+                                        <td> 12/12/12</td>
+                                        <td> Most of the scientific calculator option have to be included in this
+                                            apps.
+                                        </td>
                                         <td>
                                             <span data-toggle="modal" data-target="#viewDetails">
                                                 <img src="../img/doc.png" width="100px" style="cursor: pointer"
@@ -174,8 +176,8 @@
                                             </span>
                                         </td>
 
-                                        <td> professor Feroz </td>
-                                        <td> Done  </td>
+                                        <td> Professor Manzurur Rahman</td>
+                                        <td> Done</td>
                                         <td width="130">
                                             <button class="btn btn-primary btn-xs" data-toggle="modal"
                                                     data-target="#viewDetails">
@@ -186,8 +188,6 @@
                                                     data-target="#deleteConfirmation">
                                                 Delete
                                             </button>
-
-
                                         </td>
                                     </tr>
                                     </tbody>
