@@ -301,20 +301,6 @@
                     <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                 </a>
             </li>
-            <li>
-                <a href="pages/calendar.php">
-                    <i class="fa fa-laptop"></i>
-                    <span>Calendar</span>
-                </a>
-
-            </li>
-            <li>
-                <a href="pages/enrollment.php">
-                    <i class="fa fa-laptop"></i>
-                    <span>Enrollment</span>
-                </a>
-
-            </li>
 
             <li class="treeview">
                 <a href="#">
