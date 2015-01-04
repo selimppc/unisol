@@ -285,25 +285,25 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Details Information Of Exam Center</h4>
+                <h3 class="modal-title" id="myModalLabel">Details Information Of Exam Center</h3>
             </div>
             <div class="modal-body">
                 <div class="span well" style="padding: 20px;">
                     <table>
-                        <h4> </h4>
-                        <tr
+                        
+                        <tr>
 
-                        <td><b>Name of Exam center  :</b>  Dhaka (21200)</td>
+                        <td style="font-size: 140%"><b>Name of Exam center  :</b>  Dhaka (21200)</td>
 
                         </tr>
 
-                        <td><b>Address  :</b> American Alumni Association,
+                        <td style="font-size: 140%"><b>Address  :</b> American Alumni Association,
                             Prometric Testing Center,
                             House 145, Street 13B,
                             Banani 1216,
                             Dhaka, Bangladesh </td></tr>
 
-                        <td><b>Category  : </b>General Training & Academic</td></tr>
+                        <td style="font-size: 140%"><b>Category  : </b>General Training & Academic</td></tr>
 
 
                         </tr>

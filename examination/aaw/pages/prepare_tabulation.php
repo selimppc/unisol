@@ -12,7 +12,7 @@
 <section class="content-header">
     <h1>
         Dashboard
-        <small>Control panel</small>
+        <small>/AAW panel</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -75,7 +75,7 @@
 
     <td>MBA-02006</td>
     <td>MBA</td>
-    <td>Spring</td>
+    <td>Fall</td>
     <td>2013</td>
     <th>3.70</th>
     <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
@@ -91,7 +91,7 @@
     <td>BBA-01009</td>
     <td>BBA</td>
     <td>Summer</td>
-    <td>2011</td>
+    <td>2010</td>
     <th>2.78</th>
     <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
         <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit">Edit</button>
@@ -113,7 +113,7 @@
 </tr>
 <tr>
 
-    <td>Md. Tarak</td>
+    <td>Md. Raju</td>
 
 
     <td>MBA-01001</td>
@@ -127,7 +127,7 @@
 </tr>
 <tr>
 
-    <td>Md. Sami</td>
+    <td> Samia </td>
 
 
     <td>MBA-09001</td>
@@ -147,7 +147,7 @@
     <td>Phy-01008</td>
     <td>Physics</td>
     <td>Spring</td>
-    <td>2011</td>
+    <td>2015</td>
     <th>3.00</th>
     <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
         <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit">Edit</button>
@@ -155,12 +155,12 @@
 </tr>
 <tr>
 
-    <td>Md. Sami</td>
+    <td>Sumia Jaman</td>
 
 
     <td>M-01001</td>
     <td>Math</td>
-    <td>Spring</td>
+    <td>Fall</td>
     <td>2012</td>
     <th>3.14</th>
     <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
@@ -169,7 +169,7 @@
 </tr>
 <tr>
 
-    <td>Md. Jamal</td>
+    <td>Md. Mukul</td>
 
 
     <td>ICT-01001</td>
@@ -183,7 +183,7 @@
 </tr>
 <tr>
 
-    <td>Md. Jahan</td>
+    <td>Md. Raihan</td>
 
 
     <td>CE-01005</td>
@@ -231,7 +231,7 @@
     <td>CE-01001</td>
     <td>CSE</td>
     <td>Spring</td>
-    <td>2011</td>
+    <td>2014</td>
     <th>3.78</th>
     <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
         <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit">Edit</button>
@@ -256,10 +256,10 @@
     <td>Tamanna Khanam</td>
 
 
-    <td>CE-01001</td>
-    <td>CSE</td>
+    <td>ENG-01001</td>
+    <td>English</td>
     <td>Fall</td>
-    <td>2011</td>
+    <td>2013</td>
     <th>3.78</th>
     <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
         <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit">Edit</button>
@@ -270,8 +270,8 @@
     <td>Md. Raihan</td>
 
 
-    <td>CE-01001</td>
-    <td>CSE</td>
+    <td>Phy-01001</td>
+    <td>Physics</td>
     <td>Spring</td>
     <td>2011</td>
     <th>3.78</th>
@@ -281,7 +281,7 @@
 </tr>
 <tr>
 
-    <td>Md. Jamal</td>
+    <td>Zafor Ahmed</td>
 
 
     <td>CE-01008</td>
@@ -323,14 +323,14 @@
 </tr>
 <tr>
 
-    <td>Md. Jamal</td>
+    <td>Jannatul Ferdous</td>
 
 
-    <td>CE-01001</td>
-    <td>CSE</td>
+    <td>EEE-01001</td>
+    <td>EEE</td>
     <td>Spring</td>
     <td>2010</td>
-    <th>3.78</th>
+    <th>3.18</th>
     <th><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#view">View</button>
         <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit">Edit</button>
         <button class="btn btn-dropbox btn-sm" data-toggle="modal" data-target="#delete">Delete</button></th>
@@ -340,19 +340,7 @@
 
 
 </tbody>
-<tfoot>
-<tr>
 
-    <th>Department</th>
-
-    <th>Semester </th>
-    <th>Year</th>
-    <th>Subject</th>
-    <th>Examination Date</th>
-    <th>Location</th>
-    <th>Action</th>
-</tr>
-</tfoot>
 </table>
 </div><!-- /.box-body -->
 </div><!-- /.box -->
@@ -656,6 +644,16 @@
                 <h4 class="modal-title" id="myModalLabel"></h4>
             </div>
             <div class="modal-body">
+
+                <div class="form-group">
+                    <label for="Name">Student Name</label>
+                    <input type="Name" class="form-control" id="Dapartment" value="Samia Jahan">
+                </div>
+
+                <div class="form-group">
+                    <label for="Name">Student ID</label>
+                    <input type="Name" class="form-control" id="Dapartment" value="CE-09003">
+                </div>
                 <div class="form-group">
                     <label for="Dapartment">Dapartment</label>
                     <input type="Dapartment" class="form-control" id="Dapartment" value="CSE">
@@ -669,8 +667,8 @@
                     <input type="Year" class="form-control" id="Year" value="2011">
                 </div>
                 <div class="form-group">
-                    <label for="Data">Examination Data</label>
-                    <input type="Data" class="form-control" id="Data" value="1/1/2015">
+                    <label for="Data">GPA</label>
+                    <input type="Data" class="form-control" id="Data" value="3.69">
                 </div>
             </div>
             <div class="modal-footer">
