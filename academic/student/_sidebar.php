@@ -56,40 +56,28 @@
                 </ul>
             </li>
 
-            <li class="treeview">
-                <a href="#">
+            <li>
+                <a href="lab_online.php">
                     <i class="fa fa-laptop"></i>
                     <span>Lab</span>
-                    <i class="fa fa-angle-left pull-right"></i>
+                    <i class="fa pull-right"></i>
                 </a>
-                <ul class="treeview-menu">
-                    <li><a href="lab_manual.php"><i class="fa fa-angle-double-right"></i> Manual</a></li>
-                    <li><a href="lab_online.php"><i class="fa fa-angle-double-right"></i> Online</a></li>
-                </ul>
             </li>
 
-            <li class="treeview">
-                <a href="#">
+            <li>
+                <a href="project_online.php">
                     <i class="fa fa-laptop"></i>
                     <span>Project</span>
-                    <i class="fa fa-angle-left pull-right"></i>
+                    <i class="fa pull-right"></i>
                 </a>
-                <ul class="treeview-menu">
-                    <li><a href="project_manual.php"><i class="fa fa-angle-double-right"></i> Manual</a></li>
-                    <li><a href="project_online.php"><i class="fa fa-angle-double-right"></i> Online</a></li>
-                </ul>
             </li>
 
-            <li class="treeview">
-                <a href="#">
+            <li>
+                <a href="thesis_online.php">
                     <i class="fa fa-laptop"></i>
                     <span>Thesis</span>
-                    <i class="fa fa-angle-left pull-right"></i>
+                    <i class="fa pull-right"></i>
                 </a>
-                <ul class="treeview-menu">
-                    <li><a href="thesis_manual.php"><i class="fa fa-angle-double-right"></i> Manual</a></li>
-                    <li><a href="thesis_online.php"><i class="fa fa-angle-double-right"></i> Online</a></li>
-                </ul>
             </li>
 
             <li>
