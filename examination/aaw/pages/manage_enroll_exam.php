@@ -310,18 +310,7 @@
 
 
 </tbody>
-<tfoot>
-<tr>
 
-    <th>Student Name</th>
-    <th>Roll </th>
-    <th>Department</th>
-    <th>Semester</th>
-    <th>Year</th>
-
-    <th>Action</th>
-</tr>
-</tfoot>
 </table>
 </div><!-- /.box-body -->
 </div><!-- /.box -->
@@ -429,23 +418,23 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel"></h4>
+                <h4 class="modal-title" id="myModalLabel"><b>Information</b></h4>
             </div>
             <div class="modal-body">
                 <div style="padding: 20px;">
                     <table>
-                        <h4> Information</h4>
-                        <tr
 
-                        <td>Student Name:Samia Jahan</td>
+                        <tr>
+
+                        <td style="font-size: 140%"><b>Student Name:</b>Samia Jahan</td>
 
                         </tr>
 
-                        <td>Roll:0101--</td></tr>
-                        <td>Department:CSE</td></tr>
-                        <td>Semester:Spring</td></tr>
+                        <td style="font-size: 140%"><b>Roll:</b>0101</td></tr>
+                        <td style="font-size: 140%"><b>Department:</b>CSE</td></tr>
+                        <td style="font-size: 140%"><b>Semester:</b>Spring</td></tr>
 
-                        <td>Year:2010</td></tr>
+                        <td style="font-size: 140%"><b>Year:</b>2010</td></tr>
 
 
 
