@@ -25,7 +25,7 @@ class HomeController extends BaseController {
         //Session::flash('message', "Success Message: Successfully Saved !");
         //Session::flash('error', "Error Message: Invalid Request !");
         //Session::flash('info', "Info Message: Invalid Request !");
-        Session::flash('danger', "Warning: You are Lost ! Do not Laugh !!! He he he he !!");
+        //Session::flash('danger', "Warning: You are Lost ! Do not Laugh !!! He he he he !!");
 
         return View::make('test.index')->with('pageTitle','Welcome to ETSB!');
     }
