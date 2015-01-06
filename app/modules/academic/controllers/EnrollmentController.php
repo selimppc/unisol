@@ -9,7 +9,7 @@ class EnrollmentController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+
 	}
 
 
@@ -20,7 +20,7 @@ class EnrollmentController extends \BaseController {
 	 */
 	public function create()
 	{
-		//
+		return View::make('academic::academic.home');
 	}
 
 
