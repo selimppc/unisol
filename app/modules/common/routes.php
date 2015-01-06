@@ -24,3 +24,5 @@
 Route::get('admin/common', function() { return '<h1>Hello World !</h1>'; });
 
 Route::get('admin/mon','CommonController@index');
+
+Route::get('/helloworld','FowController@index');
