@@ -42,7 +42,6 @@ return array(
     'FooController' => $baseDir . '/app/modules/common/controllers/FooController.php',
     'HomeController' => $baseDir . '/app/controllers/HomeController.php',
     'IlluminateQueueClosure' => $vendorDir . '/laravel/framework/src/Illuminate/Queue/IlluminateQueueClosure.php',
-    'PagesController' => $baseDir . '/app/modules/common/controllers/PagesController.php',
     'RoleTask' => $baseDir . '/app/models/RoleTask.php',
     'RoleTaskController' => $baseDir . '/app/controllers/RoleTaskController.php',
     'RoleTaskUser' => $baseDir . '/app/models/RoleTaskUser.php',
