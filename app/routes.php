@@ -14,6 +14,8 @@
 //Route::get('/','HomeController@index');
 
 
+Route::get('/hellow','TestController@index');
+
 
 
 /*
