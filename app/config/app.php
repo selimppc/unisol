@@ -122,6 +122,9 @@ return array(
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
         'App\Modules\Common\ServiceProvider',
+        'App\Modules\Academic\ServiceProvider',
+        'App\Modules\Admission\ServiceProvider',
+        'App\Modules\Examination\ServiceProvider',
 
 	),
 
