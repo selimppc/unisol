@@ -13,3 +13,4 @@ class ServiceProvider extends \App\Modules\ServiceProvider {
     }
 
 }
+
