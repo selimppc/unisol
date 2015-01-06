@@ -9,7 +9,7 @@ class ExaminationController extends \BaseController {
 	 */
 	public function index()
 	{
-        return View::make('examination::examination.index');
+       return View::make('examination::examination.index');
 
 	}
 
