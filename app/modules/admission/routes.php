@@ -19,6 +19,6 @@ Tanin
 
 //include("routes_tjt.php");
 
-Route::get('admission','UserController@index');
+Route::get('/admissionOk','AdmissionController@index');
 
 
