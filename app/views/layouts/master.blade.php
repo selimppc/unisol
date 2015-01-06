@@ -103,6 +103,31 @@
                         </ul>
                     </li>
 
+                    {{--Examination Manageemnt Modules--}}
+
+
+                    <li class="dropdown">
+                             <a href="" role="button" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-user"></i> Examination Management Module <i class="caret"></i>
+                             </a>
+                             <ul class="dropdown-menu">
+                                    <li><a tabindex="-1" href="{{ action('ExaminationController@index') }}"> Home </a></li>
+                                    <li class="divider"></li>
+
+
+                             </ul>
+                    </li>
+
+
+
+                     {{-- End of Examination Module--}}
+
+
+
+
+
+
+
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                             Dropdown
