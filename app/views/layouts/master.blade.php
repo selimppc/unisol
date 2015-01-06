@@ -103,6 +103,37 @@
                         </ul>
                     </li>
 
+        {{--Start Academic Module--}}
+
+         <li class="dropdown">
+                 <a href="" role="button" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="icon-user"></i> Academic Module <i class="caret"></i>
+                 </a>
+                  <ul class="dropdown-menu">
+                      <li><a tabindex="-1" a href="{{URL::to('/index') }}"> Enrollment </a></li>
+                       <li class="divider"></li>
+                       <li><a tabindex="-1" a href="{{URL::to('') }}"> </a></li>
+                       <li class="divider"></li>
+                       <li><a tabindex="-1" a href="{{URL::to('') }}"> </a></li>
+                       <li class="divider"></li>
+                       <li><a tabindex="-1" a href="{{URL::to('') }}"> </a></li>
+                       <li class="divider"></li>
+                       <li><a tabindex="-1" a href="{{URL::to('') }}"> </a></li>
+                       <li class="divider"></li>
+                       <li><a tabindex="-1" a href="{{URL::to('') }}"> </a></li>
+                       <li class="divider"></li>
+                       <li><a tabindex="-1" a href="{{URL::to('') }}"> </a></li>
+                       <li class="divider"></li>
+                       <li><a tabindex="-1" a href="{{URL::to('') }}"> </a></li>
+                       <li class="divider"></li>
+                       <li><a tabindex="-1" a href="{{URL::to('') }}"> </a></li>
+                       <li class="divider"></li>
+
+                  </ul>
+         </li>
+        {{-- Ends Academic Module--}}
+
+
                     {{--Examination Manageemnt Modules--}}
 
 
@@ -121,7 +152,6 @@
 
 
                      {{-- End of Examination Module--}}
-
 
 
 
