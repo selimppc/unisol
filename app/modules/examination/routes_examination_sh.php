@@ -8,3 +8,5 @@
 
 
 Route::get('examination_management/index','ExaminationController@index');
+
+Route::get('examination_management/create','ExaminationController@create');
