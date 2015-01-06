@@ -39,13 +39,13 @@
                 </button>
 
                      <br>
-                          {{ Form::submit('Delete Items', array('class'=>'btn btn-danger', 'id'=>'hide-button2', 'style'=>'display:none'))}}
+                          {{ Form::submit('Delete Items', array('class'=>'btn btn-danger', 'id'=>'hide-button', 'style'=>'display:none'))}}
                      <br>
 
                      <br>
 
                 <tr>
-                    <th><input name="id" type="checkbox" id="checkbox" class="checkbox2" value=""></th>
+                    <th><input name="id" type="checkbox" id="checkbox" class="checkbox" value=""></th>
                     <th>Title</th>
                     <th>Course Code</th>
                     <th>Subject Name</th>
@@ -63,7 +63,7 @@
               @foreach($course_management as $course)
                 <tr>
 
-                   <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox2" value="{{ $course->id }}"></td>
+                   <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $course->id }}"></td>
                    <td>{{ $course->title }}</td>
                    <td>{{ $course->course_code }}</td>
                    <td>{{ Subject::getSubjectName($course->subject_id) }}</td>
