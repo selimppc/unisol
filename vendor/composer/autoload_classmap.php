@@ -13,6 +13,8 @@ return array(
     'App\\Modules\\ServiceProvider' => $baseDir . '/app/modules/ServiceProvider.php',
     'BaseController' => $baseDir . '/app/controllers/BaseController.php',
     'CommonController' => $baseDir . '/app/modules/common/controllers/CommonController.php',
+    'ExaminationController' => $baseDir . '/app/modules/examination/controllers/ExaminationController.php',
+    
     'Course' => $baseDir . '/app/models/Course.php',
     'CourseController' => $baseDir . '/app/controllers/CourseController.php',
     'CourseType' => $baseDir . '/app/models/CourseType.php',
