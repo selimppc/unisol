@@ -17,8 +17,8 @@ Tanin
 ==================================================================
 */
 
-//include("routes_tjt.php");
+include("routes_tjt.php");
 
-Route::get('/admissionOk','AdmissionController@index');
+
 
 

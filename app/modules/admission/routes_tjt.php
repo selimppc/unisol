@@ -8,3 +8,5 @@
 
 
 Route::any('admission','UserController@index');
+
+Route::get('/user','UserController@index');

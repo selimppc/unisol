@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AdmissionController' => $baseDir . '/app/modules/admission/controllers/AdmissionController.php',
     'App\\Modules\\Academic\\ServiceProvider' => $baseDir . '/app/modules/academic/ServiceProvider.php',
     'App\\Modules\\Admission\\ServiceProvider' => $baseDir . '/app/modules/admission/ServiceProvider.php',
     'App\\Modules\\Common\\ServiceProvider' => $baseDir . '/app/modules/common/ServiceProvider.php',
@@ -13,6 +14,7 @@ return array(
     'App\\Modules\\ServiceProvider' => $baseDir . '/app/modules/ServiceProvider.php',
     'BaseController' => $baseDir . '/app/controllers/BaseController.php',
     'CommonController' => $baseDir . '/app/modules/common/controllers/CommonController.php',
+    'UserController' => $baseDir . '/app/modules/admission/controllers/UserController.php',
     'Course' => $baseDir . '/app/models/Course.php',
     'CourseController' => $baseDir . '/app/controllers/CourseController.php',
     'CourseType' => $baseDir . '/app/models/CourseType.php',
@@ -49,6 +51,7 @@ return array(
     'Semester' => $baseDir . '/app/models/Semester.php',
     'SemesterController' => $baseDir . '/app/controllers/SemesterController.php',
     'SessionHandlerInterface' => $vendorDir . '/symfony/http-foundation/Symfony/Component/HttpFoundation/Resources/stubs/SessionHandlerInterface.php',
+    'SserController' => $baseDir . '/app/controllers/SserController.php',
     'Subject' => $baseDir . '/app/models/Subject.php',
     'SubjectController' => $baseDir . '/app/controllers/SubjectController.php',
     'TargetRole' => $baseDir . '/app/models/TargetRole.php',
@@ -59,6 +62,7 @@ return array(
     'TermUnderSemesterController' => $baseDir . '/app/controllers/TermUnderSemesterController.php',
     'TestCase' => $baseDir . '/app/tests/TestCase.php',
     'User' => $baseDir . '/app/models/User.php',
+    'UserController' => $baseDir . '/app/modules/admission/controllers/UserController.php',
     'Whoops\\Module' => $vendorDir . '/filp/whoops/src/deprecated/Zend/Module.php',
     'Whoops\\Provider\\Zend\\ExceptionStrategy' => $vendorDir . '/filp/whoops/src/deprecated/Zend/ExceptionStrategy.php',
     'Whoops\\Provider\\Zend\\RouteNotFoundStrategy' => $vendorDir . '/filp/whoops/src/deprecated/Zend/RouteNotFoundStrategy.php',
