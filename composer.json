@@ -18,9 +18,13 @@
 			"app/tests/TestCase.php",
             "app/modules",
             "app/modules/academic/controllers",
+            "app/modules/academic/models",
             "app/modules/admission/controllers",
+            "app/modules/admission/models",
             "app/modules/common/controllers",
-            "app/modules/examination/controllers"
+            "app/modules/common/models",
+            "app/modules/examination/controllers",
+            "app/modules/examination/models"
 		]
 	},
 	"scripts": {
