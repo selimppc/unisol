@@ -10,4 +10,7 @@ Thumbs.db
 /vendor
 vendor/
 app/config/database.php
+vendor/autoload.php
+vendor/composer/autoload_classmap.php
+vendor/composer/autoload_real.php
 test//
