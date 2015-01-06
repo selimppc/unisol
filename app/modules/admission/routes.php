@@ -11,12 +11,14 @@
 |
 */
 
-//Route::get('admin/common', function() {
-//    return '<h1>Hello</h1>
-//'; });
-//foreach (Config::get('content::channels') as $key => $channel)
-//{
-//    Route::get('admin/content/' . $key, function() use ($channel) {
-//        return "<h1>Channel [{$channel['title']}]</h1>";
-//    });
-//}
+/*
+==================================================================
+Tanin
+==================================================================
+*/
+
+include("routes_tjt.php");
+
+
+
+
