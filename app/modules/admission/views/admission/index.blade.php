@@ -6,13 +6,10 @@
 
 @section('content')
 
-<div class="container" style="margin-top: 30px; width:500px">
-
-    <div class='row clearfix'>
-    <div class='col-md-12'style="width:450px;background:#FFFFFF">
-   {{--<h2>Welcome to Admission Module...! </h2>--}}
+ <div class='control-group'>
+ <legend style="color: #0088cc">Sign Up Here.......</legend>
 <div class="span6 well">
-<legend style="color: #0088cc">Sign Up Here.......</legend>
+
 
 
 {{ Form::open(array('class'=>'form-horizontal')) }}
@@ -41,6 +38,14 @@
         {{ Form::select('targetrole', array(''=>'Select','applicant' => 'Applicant', 'teacher' => 'Teacher','staff'=>'Staff','alumni'=>'Alumni','employer' => 'Employer'), '', array('class' => 'form-control','required'=>'required'))}}
 
 
+        {{ HTML::image(Captcha::img(), 'Captha image') }}
+
+
+        {{ Form::text('captcha_value', null, ['class'=>'form-control']) }}
+        <div class="g-recaptcha" data-sitekey="6LeYvf4SAAAAAE72M_jBFJdzfx7mglsnK_0C4cr6"></div>
+
+
+
          <br>
 
         {{ Form::submit('Save', array('class' => 'btn btn-primary')) }}
@@ -49,7 +54,7 @@
 {{ Form::close() }}
 
 </div>
+
 </div>
-</div>
-</div>
+
 @stop
