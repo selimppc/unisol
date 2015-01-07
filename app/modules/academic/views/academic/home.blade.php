@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts._master')
 
 @section('sidebar')
     @include('year.sidebar')

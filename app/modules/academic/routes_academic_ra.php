@@ -6,3 +6,4 @@
  * Time: 5:02 PM
  */
 route::get('/index','EnrollmentController@create');
+route::get('student/index','EnrollmentController@index');

@@ -9,7 +9,7 @@ class EnrollmentController extends \BaseController {
 	 */
 	public function index()
 	{
-
+        return View::make('academic::enrollment.applicant.index');
 	}
 
 
