@@ -36,7 +36,7 @@
 
         {{ Form::label('targetrole', 'Target Role') }}
         {{ Form::select('targetrole', array(''=>'Select','applicant' => 'Applicant', 'teacher' => 'Teacher','staff'=>'Staff','alumni'=>'Alumni','employer' => 'Employer'), '', array('class' => 'form-control','required'=>'required'))}}
-
+          <br>
 
         {{ HTML::image(Captcha::img(), 'Captha image') }}
 
