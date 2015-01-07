@@ -1,7 +1,7 @@
 @extends('layouts._master')
 
 @section('sidebar')
-    {{--@include('year.sidebar')--}}
+    @include('academic::enrollment.applicant.sidebar')
 @stop
 @section('content')
            <div class="wrapper">
