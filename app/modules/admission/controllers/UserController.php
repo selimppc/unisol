@@ -5,14 +5,14 @@ class UserController extends \BaseController {
 
 	public function index()
 	{
-        return View::make('admission::admission.index');
+        return View::make('admission::admission.signup.index');
 	}
 
 
 
 	public function create()
 	{
-		//
+        return View::make('admission::admission.signup.index');
 	}
 
 

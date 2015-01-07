@@ -7,6 +7,8 @@
  */
 
 
-Route::any('admission','UserController@index');
+//Route::any('admission','UserController@index');
 
-Route::get('/user','UserController@index');
+Route::get('user','UserController@index');
+
+//Route::get('user','UserController@create');

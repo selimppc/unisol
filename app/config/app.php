@@ -126,6 +126,7 @@ return array(
         'App\Modules\Admission\ServiceProvider',
         'App\Modules\Examination\ServiceProvider',
 
+
 	),
 
 	/*
@@ -192,6 +193,7 @@ return array(
 		'URL'               => 'Illuminate\Support\Facades\URL',
 		'Validator'         => 'Illuminate\Support\Facades\Validator',
 		'View'              => 'Illuminate\Support\Facades\View',
+
 
 	),
 
