@@ -38,18 +38,20 @@
         {{ Form::select('targetrole', array(''=>'Select','applicant' => 'Applicant', 'teacher' => 'Teacher','staff'=>'Staff','alumni'=>'Alumni','employer' => 'Employer'), '', array('class' => 'form-control','required'=>'required'))}}
           <br>
 
-        {{ HTML::image(Captcha::img(), 'Captha image') }}
+        {{--{{ HTML::image(Captcha::img(), 'Captha image') }}--}}
 
 
-        {{ Form::text('captcha_value', null, ['class'=>'form-control']) }}
-        <div class="g-recaptcha" data-sitekey="6LeYvf4SAAAAAE72M_jBFJdzfx7mglsnK_0C4cr6"></div>
+        {{--{{ Form::text('captcha_value', null, ['class'=>'form-control']) }}--}}
+        {{--<div class="g-recaptcha" data-sitekey="6LeYvf4SAAAAAE72M_jBFJdzfx7mglsnK_0C4cr6"></div>--}}
 
 
 
          <br>
 
-        {{ Form::submit('Save', array('class' => 'btn btn-primary')) }}
+        {{ Form::submit('Submit', array('class' => 'btn btn-primary')) }}
 
+<br>
+<br>
 
 {{ Form::close() }}
 
