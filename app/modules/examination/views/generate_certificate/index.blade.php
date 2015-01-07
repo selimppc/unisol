@@ -5,9 +5,9 @@
 @stop
 
 @section('content')
-        <h1>Welcome to Examination Management </h1> <br>
+        <h1>Welcome to Generate Certificate </h1> <br>
 
-
+       
 
 
 

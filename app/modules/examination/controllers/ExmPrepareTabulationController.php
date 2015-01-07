@@ -1,15 +1,16 @@
 <?php
 
-class ExaminationController extends \BaseController {
+class ExmPrepareTabulationController extends \BaseController {
 
 	/**
 	 * Display a listing of the resource.
 	 *
 	 * @return Response
 	 */
+
 	public function index()
 	{
-       return View::make('examination::examination.index');
+        return View::make('examination::prepare_tabulation.index');
 	}
 
 
@@ -20,7 +21,7 @@ class ExaminationController extends \BaseController {
 	 */
 	public function create()
 	{
-
+		//
 	}
 
 

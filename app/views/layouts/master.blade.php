@@ -134,24 +134,42 @@
         {{-- Ends Academic Module--}}
 
 
-                    {{--Examination Manageemnt Modules--}}
+    {{--Examination Manageemnt Modules--}}
 
 
-                    <li class="dropdown">
-                             <a href="" role="button" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="icon-user"></i> Examination Management Module <i class="caret"></i>
-                             </a>
-                             <ul class="dropdown-menu">
-                                    <li><a tabindex="-1" href="{{ action('ExaminationController@index') }}"> Home </a></li>
-                                    <li class="divider"></li>
+    <li class="dropdown">
+             <a href="" role="button" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="icon-user"></i> Examination Management Module <i class="caret"></i>
+             </a>
+             <ul class="dropdown-menu">
+                    <li><a tabindex="-1" href="{{ action('ExaminationController@index') }}"> Home </a></li>
+                    <li class="divider"></li>
+
+                    <li><a tabindex="-1" href="{{ action('ExmEnrollmentController@index') }}"> Enrollment </a></li>
+                    <li class="divider"></li>
+
+                    <li><a tabindex="-1" href="{{ action('ExmGenerateCertificateController@index') }}"> Generate Certificate </a></li>
+                    <li class="divider"></li>
+
+                    <li><a tabindex="-1" href="{{ action('ExmManageExaminationCenterController@index') }}"> Manage Examination Center </a></li>
+                    <li class="divider"></li>
+
+                     <li><a tabindex="-1" href="{{ action('ExmManageExaminerController@index') }}"> Manage Examiner </a></li>
+                     <li class="divider"></li>
+
+                    <li><a tabindex="-1" href="{{ action('ExmPrepareQuestionPaperController@index') }}"> Prepare Question Paper </a></li>
+                    <li class="divider"></li>
+
+                    <li><a tabindex="-1" href="{{ action('ExmPrepareTabulationController@index') }}"> Prepare Tabulation </a></li>
+                    <li class="divider"></li>
 
 
-                             </ul>
-                    </li>
+             </ul>
+    </li>
 
 
 
-                     {{-- End of Examination Module--}}
+     {{-- End of Examination Module--}}
 
 
 
