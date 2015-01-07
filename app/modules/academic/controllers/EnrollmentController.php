@@ -7,22 +7,21 @@ class EnrollmentController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function index()
-	{
-        return View::make('academic::enrollment.applicant.index');
-	}
-
+    public function index()
+    {
+        return View::make('academic::enrollment.applicant.home');
+    }
 
 	/**
 	 * Show the form for creating a new resource.
 	 *
 	 * @return Response
 	 */
-	public function create()
-	{
-		return View::make('academic::academic.home');
-	}
 
+    public function create()
+    {
+        return View::make('academic::enrollment.applicant.index');
+    }
 
 	/**
 	 * Store a newly created resource in storage.

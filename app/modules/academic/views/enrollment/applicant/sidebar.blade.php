@@ -11,7 +11,7 @@
             <table class="table">
                 <tr>
                     <td>
-                     <a href="{{ action('EnrollmentController@index') }}">Select Course</a> <span class="label label-info"></span>
+                     <a href="{{ action('EnrollmentController@create') }}">Select Course</a> <span class="label label-info"></span>
 
 
                     </td>

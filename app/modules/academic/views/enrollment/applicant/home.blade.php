@@ -1,5 +1,4 @@
 @extends('layouts._master')
-
 @section('sidebar')
   @include('academic::enrollment.applicant.sidebar')
 @stop
