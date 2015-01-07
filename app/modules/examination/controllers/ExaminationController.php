@@ -21,7 +21,7 @@ class ExaminationController extends \BaseController {
 	 */
 	public function create()
 	{
-		//
+
 	}
 
 
