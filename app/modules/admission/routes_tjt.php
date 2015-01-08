@@ -7,8 +7,10 @@
  */
 
 
-//Route::any('admission','UserController@index');
 
-Route::get('user','UserController@index');
 
-//Route::get('user','UserController@create');
+Route::get('user','UserSignupController@Userindex');
+
+
+Route::any('user/store','UserSignupController@Userstore');
+
