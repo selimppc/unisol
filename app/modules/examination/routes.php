@@ -17,4 +17,4 @@ Shafi
 ==================================================================
 */
 
-include("routes_examination_sh.php");
+include("routes_sh.php");

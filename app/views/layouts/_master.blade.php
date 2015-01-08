@@ -11,13 +11,13 @@
 
     <!-- Bootstrap -->
     {{ HTML::style('assets/css/bootstrap.css') }}
-    {{ HTML::style('assets/css/bootstrap.min.css') }}
+    {{ HTML::style('assets/css/bootstrap.3.2.min.css') }}
     {{ HTML::style('assets/css/bootstrap-responsive.min.css') }}
     {{ HTML::style('assets/css/styles.css')}}
     {{ HTML::style('assets/css/datepicker.css')}}
     {{ HTML::style('assets/css/jquery.dataTables.min.css')}}
 
-   
+
     <style>
     .datepicker{z-index:1151 !important;}
     </style>
@@ -134,42 +134,24 @@
         {{-- Ends Academic Module--}}
 
 
-    {{--Examination Manageemnt Modules--}}
+                    {{--Examination Manageemnt Modules--}}
 
 
-    <li class="dropdown">
-             <a href="" role="button" class="dropdown-toggle" data-toggle="dropdown">
-                    <i class="icon-user"></i> Examination Management Module <i class="caret"></i>
-             </a>
-             <ul class="dropdown-menu">
-                    <li><a tabindex="-1" href="{{ action('ExaminationController@index') }}"> Home </a></li>
-                    <li class="divider"></li>
-
-                    <li><a tabindex="-1" href="{{ action('ExmEnrollmentController@index') }}"> Enrollment </a></li>
-                    <li class="divider"></li>
-
-                    <li><a tabindex="-1" href="{{ action('ExmGenerateCertificateController@index') }}"> Generate Certificate </a></li>
-                    <li class="divider"></li>
-
-                    <li><a tabindex="-1" href="{{ action('ExmManageExaminationCenterController@index') }}"> Manage Examination Center </a></li>
-                    <li class="divider"></li>
-
-                     <li><a tabindex="-1" href="{{ action('ExmManageExaminerController@index') }}"> Manage Examiner </a></li>
-                     <li class="divider"></li>
-
-                    <li><a tabindex="-1" href="{{ action('ExmPrepareQuestionPaperController@index') }}"> Prepare Question Paper </a></li>
-                    <li class="divider"></li>
-
-                    <li><a tabindex="-1" href="{{ action('ExmPrepareTabulationController@index') }}"> Prepare Tabulation </a></li>
-                    <li class="divider"></li>
+                    <li class="dropdown">
+                             <a href="" role="button" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-user"></i> Examination Management Module <i class="caret"></i>
+                             </a>
+                             <ul class="dropdown-menu">
+                                    <li><a tabindex="-1" href="{{ action('ExaminationController@index') }}"> Home </a></li>
+                                    <li class="divider"></li>
 
 
-             </ul>
-    </li>
+                             </ul>
+                    </li>
 
 
 
-     {{-- End of Examination Module--}}
+                     {{-- End of Examination Module--}}
 
 
 
@@ -301,7 +283,8 @@
 
 <!--/.fluid-container-->
 
-{{ HTML::script('assets/js/bootstrap.min.js') }}
+
+{{ HTML::script('assets/js/bootstrap.3.2.min.js') }}
 {{HTML::script('assets/js/scripts.js')}}
 {{HTML::script('assets/js/jquery.dataTables.min.js')}}
 {{ HTML::script('assets/js/jquery.tablesorter.min.js') }}
