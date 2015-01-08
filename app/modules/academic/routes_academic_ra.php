@@ -10,3 +10,7 @@ route::get('/index','EnrollmentController@index');
 
 //Applicant enrollment
 route::get('student/index','EnrollmentController@create');
+
+//Theory Class start
+  //class start
+route::get('class/index','TheoryclassController@class_index');

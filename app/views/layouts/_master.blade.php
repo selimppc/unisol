@@ -112,7 +112,7 @@
                   <ul class="dropdown-menu">
                       <li><a tabindex="-1" a href="{{URL::to('/index') }}"> Enrollment </a></li>
                        <li class="divider"></li>
-                       <li><a tabindex="-1" a href="{{URL::to('') }}"> </a></li>
+                       <li><a tabindex="-1" a href="{{URL::to('class/index') }}">Theory Class</a></li>
                        <li class="divider"></li>
                        <li><a tabindex="-1" a href="{{URL::to('') }}"> </a></li>
                        <li class="divider"></li>
@@ -144,17 +144,12 @@
                              <ul class="dropdown-menu">
                                     <li><a tabindex="-1" href="{{ action('ExaminationController@index') }}"> Home </a></li>
                                     <li class="divider"></li>
-
-
-                             </ul>
+                            </ul>
                     </li>
 
 
 
                      {{-- End of Examination Module--}}
-
-
-
 
 
 
