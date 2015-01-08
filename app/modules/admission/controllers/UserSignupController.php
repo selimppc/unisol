@@ -8,21 +8,19 @@ class UserSignupController extends \BaseController {
         return View::make('admission::admission.signup.index');
 	}
 
-
-	public function create()
+    public function create()
 	{
 
 	}
 
-
-	public function Userstore()
+    public function Userstore()
 	{
         $rules = array(
             'firstname' => 'required',
             'lastname' => 'required',
-            'email' => 'required',
+            'email' => 'required|unique:user_signup',
             'username' => 'required',
-            'password' => 'required',
+            'password' => 'regex:((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{8,20})|required',
             'confirmpassword' => 'required',
             'targetrole' => 'required',
 
@@ -42,7 +40,7 @@ class UserSignupController extends \BaseController {
 
             $users->save();
             // return Redirect::to('crud')->with('message', 'Successfully added Country!');
-            return Redirect::back()->with('message', 'Successfully Added Information!');
+            return Redirect::back()->with('message', 'Thank you for your registration !');
         } else {
             return Redirect::to('user')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
         }
@@ -55,36 +53,18 @@ class UserSignupController extends \BaseController {
 	}
 
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function edit($id)
 	{
 		//
 	}
 
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function update($id)
 	{
 		//
 	}
 
 
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function destroy($id)
 	{
 		//
