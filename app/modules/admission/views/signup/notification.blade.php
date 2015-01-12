@@ -12,7 +12,9 @@
 		
 		<section style="width: 100%;background: #fff;">
 			<p style="font: 13px/18px verdana; color: #0a182d;text-align: justify;">{{ $message_var }}</p>
-			<a href="www.edutechsolutionsbd.com" >Visit</a>
+			<a href="" >Visit</a>
+
+			  <a href="https://www.google.com"> Hello</a>
 			<br />
 			<!--this $message_var comes form your making from. -->
 		</section>

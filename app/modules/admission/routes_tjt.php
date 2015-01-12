@@ -16,3 +16,5 @@ Route::any('user/store','UserSignupController@Userstore');
 
 Route::post('send/email', 'UserSignupController@send_users_email');
 
+Route::get('register/verify/{confirmation_code}','UserSignupController@confirm');
+

@@ -89,7 +89,7 @@ class UserSignupController extends \BaseController {
 
 
 
-                    Mail::send('admission::signup.verify', array('link' => $confirmation_code, 'username' => Input::get('firstname')), function ($message) {
+                    Mail::send('admission::signup.verify', array('link' =>URL::to('register/verify/',$confirmation_code), 'username' => Input::get('firstname')), function ($message) {
                         $message->to(Input::get('email'), Input::get('username'))->subject('Verify your email address');
                     });
 
@@ -123,7 +123,7 @@ class UserSignupController extends \BaseController {
             'message_var' => Input::get('message_details')
         );
 
-        Mail::queue('admission::signup.notification', $data, function($message) use ($emailList)
+        Mail::queue('admission::signup.verify', $data, function($message) use ($emailList)
       {
             $message->from('test@edutechsolutionsbd.com', 'Mail Notification');
             $message->to($emailList);
@@ -136,25 +136,48 @@ class UserSignupController extends \BaseController {
 
     public function confirm($confirmation_code)
     {
+        echo $confirmation_code;
+        exit;
+//        $user = User::where('confirmation_code','=',$confirmation_code);
+//
+//        if($user->count())
+//        {
+//            $user = $user->first();
+//            $user->confirmation_code = ''; //after activation we don't need any confirmation code. make it blank
+//
+//            if($user->save())
+//            {
+//                Session::flash('message','Your account activated successfully. You can signin now.');
+//                return Redirect::to("user")->with('message', 'Signup');
+//            }
+//        }
+//
+//        Session::flash('message','We cannot activate your account. Please try again.');
+//        return Redirect::to('user')->with('message','Signup');
+
+
         if( ! $confirmation_code)
         {
-            throw new InvalidConfirmationCodeException;
+            return Redirect::home();
         }
 
         $user = User::whereConfirmationCode($confirmation_code)->first();
 
         if ( ! $user)
         {
-            throw new InvalidConfirmationCodeException;
+            return Redirect::back();
         }
 
         $user->confirmed = 1;
         $user->confirmation_code = null;
         $user->save();
 
-        Flash::message('You have successfully verified your account.');
+        Flash::message('You have successfully verified your account. You can now login.');
 
-        return Redirect::back();
+//        return Redirect::route('login_path');
+
+
+
     }
 
 
