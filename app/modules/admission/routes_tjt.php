@@ -14,3 +14,5 @@ Route::get('user','UserSignupController@Userindex');
 
 Route::any('user/store','UserSignupController@Userstore');
 
+Route::post('send/email', 'UserSignupController@send_users_email');
+
