@@ -6,7 +6,7 @@
  * Time: 11:23 AM
  */
 
-    class ExaminationManagement extends Eloquent{
+    class Examination extends Eloquent{
 
         // ok
 
