@@ -17,7 +17,7 @@
                 </tr>
                 <tr>
                     <td>
-                     <a href="{{ action('ExmPrepareQuestionPaperController@create') }}"> ADD</a> <span class="label label-info"></span>
+                     <a href="{{ action('ExmPrepareQuestionPaperController@createQuestionPaper') }}"> ADD</a> <span class="label label-info"></span>
                     </td>
                 </tr>
                 <tr>
