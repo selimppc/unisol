@@ -12,4 +12,5 @@
 
 <div>
     {{ Form::submit('Submit', array('class'=>'btn btn-primary')) }}
+    <a href="{{URL::to('year/show')}}" class="btn btn-default">Close </a>
 </div>

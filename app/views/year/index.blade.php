@@ -118,7 +118,7 @@
 
                        @include('year._form')
 
-                  <button type="button" class="btn btn-danger close" data-dismiss="modal">Cencel</button>
+                
                     {{ Form::close() }}
 
                 </div>
