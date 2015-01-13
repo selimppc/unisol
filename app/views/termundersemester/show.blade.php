@@ -18,11 +18,11 @@
         </tr>
         <tr>
             <td>YearName:</td>
-            <td>{{ Years::getYearsName($datas->year_id) }}</td>
+            <td>{{ Year::getYearsName($datas->year_id) }}</td>
         </tr>
-        <tr>
+       <tr>
             <td>SemesterName:</td>
-            <td>{{ Semester::getSemesterName($datas->term_semester_id)}}</td>
+            <td>{{ Semester::getSemesterName($datas->semester_id)}}</td>
         </tr>
         <tr>
             <td>Start Date</td>
