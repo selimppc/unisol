@@ -13,7 +13,8 @@ class MarkdistributionController extends \BaseController {
 
 	public function amw_index()
 	{
-        return View::make('academic::mark_distribution_courses.amw.index')->with('title','All Courses Items List');
+        $data = AcmMarksDist::orderBy('id', 'DESC')->paginate(5);
+        return View::make('academic::mark_distribution_courses.amw.index')->with('datas', $data)->with('title','All Course Item List');
 	}
 
 
@@ -70,8 +71,7 @@ class MarkdistributionController extends \BaseController {
 	 */
 	public function amw_show()
 	{
-        $data = AcmMarksDist::all();
-        return View::make('academic::mark_distribution_courses.amw.index')->with('datas', $data)->with('title','All Courses Title List');
+
     }
 
 
@@ -81,9 +81,10 @@ class MarkdistributionController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function amw_edit($id)
 	{
-		//
+        $data = AcmMarksDist::find($id);
+        return View::make('academic::mark_distribution_courses.amw.edit')->with('editamw',$data);
 	}
 
 
@@ -93,13 +94,54 @@ class MarkdistributionController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function amw_update($id)
 	{
-		//
+        // get the POST data
+        $data = Input::all($id);
+        // create a new model instance
+        $datas = new AcmMarksDist();
+        // attempt validation
+        if ($datas->validate2($data))
+        {
+            // success code
+            $datas = AcmMarksDist::find($id);
+
+            $datas->title = Input::get('title');
+            $datas->save();
+
+            Session::flash('message', 'Successfully Added!');
+            return Redirect::to('amw/index');
+        }
+        else
+        {
+            // failure, get errors
+            $errors = $datas->errors();
+            Session::flash('errors', $errors);
+
+            return Redirect::to('amw/index');
+        }
 	}
+    public function show_one($id)
+    {
+        $data = AcmMarksDist::find($id);
+        return View::make('academic::mark_distribution_courses.amw.show')->with('datas',$data);
+    }
+
+    public function amw_delete($id)
+    {
+        $data= AcmMarksDist::find($id);
+        if($data->delete())
+        {
+
+            Session::flash('danger', "Items Deleted successfully");
+            return Redirect::to('amw/index')->with('title','All Courses Item List');
+        }
+    }
     public function amw_batchdelete()
     {
-
+        Session::flash('danger', "Years Deleted successfully");
+        AcmMarksDist::destroy(Request::get('id'));
+        return Redirect::to('amw/index')->with('title','All Courses Item List');
     }
 
 	/**

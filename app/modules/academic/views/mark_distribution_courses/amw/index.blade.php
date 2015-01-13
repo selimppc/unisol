@@ -9,18 +9,6 @@
          Add New Item
         </button>
 
-         <!-- search db  -->
-       <div class="wrapper text-right no-padder" style="margin-top: 20px">
-        {{ Form::open(array('url' =>'amw/show', 'class'=>'form-inline', 'role' => 'form')) }}
-            <div class="form-group">
-              {{ Form::label('search_text', 'Search Text:',array('class'=>'sr-only')) }}
-              {{ Form::text('search_text', Input::old('search_text'), array('class' => 'form-control','placeholder' => 'Search All')) }}
-            </div>
-            {{ Form::submit('Search', array('class' => 'btn btn-info')) }}
-        {{ Form::close() }}
-        </div>
-
-         <!-- search db ends -->
 
 
      {{ Form::open(array('url' => 'amw/batch/delete')) }}
@@ -37,28 +25,28 @@
         </thead>
 
         <tbody>
-            {{--@foreach ($datas as $value)--}}
-            {{--<tr>--}}
-                {{--<td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $value->id }}">--}}
-                {{--</td>--}}
-                {{--<td>{{$value->id}}</td>--}}
-                {{--<td>{{$value->title}}</td>--}}
+            @foreach ($datas as $value)
+            <tr>
+                <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $value->id }}">
+                </td>
+                <td>{{$value->id}}</td>
+                <td>{{$value->title}}</td>
 
-                {{--<td>--}}
-                  {{--<a data-href="{{ URL::to('year/delete/'.$value->id) }}" class="btn btn-sm btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><span class="glyphicon glyphicon-trash text-danger"></span></a>--}}
+                <td>
+                  <a data-href="{{ URL::to('amw/delete/'.$value->id) }}" class="btn btn-sm btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><span class="glyphicon glyphicon-trash text-danger"></span></a>
 
-                   {{--<a href="{{ URL::route('year.edit', ['id'=>$value->id]) }}" class="subEdit btn btn-sm btn-default" data-toggle="modal" data-target="#edit-modal" href="" ><span class="glyphicon glyphicon-edit text-info"></span></a>--}}
+                   <a href="{{ URL::route('amw.edit', ['id'=>$value->id]) }}" class="subEdit btn btn-sm btn-default" data-toggle="modal" data-target="#edit-modal" href="" ><span class="glyphicon glyphicon-edit text-info"></span></a>
 
-                   {{--<a href="{{ URL::route('year.show', ['id'=>$value->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#show-modal" href=""><span class="glyphicon glyphicon-list-alt text-info"></span></a>--}}
-                {{--</td>--}}
-            {{--</tr>--}}
-            {{--@endforeach--}}
+                   <a href="{{ URL::route('amw.show', ['id'=>$value->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#showModal" href=""><span class="glyphicon glyphicon-list-alt text-info"></span></a>
+                </td>
+            </tr>
+            @endforeach
           </tbody>
           {{ Form::submit('Delete Items', array('class'=>'btn btn-danger', 'id'=>'hide-button', 'style'=>'display:none'))}}
     </table>
     {{ Form::close() }}
 
-    {{--{{ $datas->links() }}--}}
+    {{ $datas->links() }}
 
 
 
@@ -97,7 +85,67 @@
 </div><!-- /.modal -->
 
 
-{{---------------------------------------------}}
+<!-- Edit Item Modal -->
+
+ <div class="modal fade" id="edit-modal" tabindex="-1" role="dialog" aria-labelledby="addScholarship" aria-hidden="true">
+     <div class="modal-dialog">
+         <div class="modal-content">
+             <div class="modal-header">
+                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                 <h4 class="modal-title">Edit Course Item</h4>
+             </div>
+             <div class="modal-body">
+
+
+             </div>
+             <div class="modal-footer">
+
+             </div>
+         </div><!-- /.modal-content -->
+     </div><!-- /.modal-dialog -->
+ </div><!-- /.modal -->
+
+<!-- Modal for delete -->
+    <div class="modal fade " id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>
+              </div>
+              <div class="modal-body">
+                    <strong>Are you sure to delete?</strong>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default " data-dismiss="modal">Cancel</button>
+                <a href="#" class="btn btn-danger danger">Delete</a>
+
+              </div>
+        </div>
+      </div>
+    </div>
+
+
+      <!-- Show Modal -->
+      <div class="modal fade" id="showModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+              <h4 class="modal-title" id="myModalLabel">Show Course Item</h4>
+            </div>
+            <div class="modal-body">
+
+
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal" >Cencel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
 {{--End all modal for amw--}}
 {{---------------------------------------------}}
 
