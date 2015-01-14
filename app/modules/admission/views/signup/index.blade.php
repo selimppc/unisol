@@ -11,13 +11,15 @@
 <div class="span6 well">
 
 
-{{ Form::open(array('class'=>'form-horizontal','url' => 'user/store', 'method' =>'post', 'role'=>'form','files'=>'true')) }}
-
+{{ Form::open(array('class'=>'form-horizontal','url' => 'user/store', 'method' =>'post', 'files'=>'true','id'=>'signup-form')) }}
+ <div class="control-group @if ($errors->has('firstname')) has-error @endif">
         {{ Form::label('firstname','First Name:') }}
-        {{ Form::text('firstname',Input::old('firstname'), array('class' => 'form-control','placeholder'=>'Enter your first name')) }}
+        {{ Form::text('firstname',Input::old('firstname'), array('class' => 'form-control  has-success','placeholder'=>'Enter your first name')) }}
+        @if ($errors->has('firstname')) <p class="help-block" >{{ $errors->first('firstname') }}</p> @endif
+ </div>
 
         {{ Form::label('middlename', 'Middle Name:') }}
-        {{ Form::text('middlename',Input::old('middlename'), array('class' => 'form-control')) }}
+        {{ Form::text('middlename',Input::old('middlename'), array('class' => 'form-control has-success')) }}
 
         {{ Form::label('lastname', 'Last Name:') }}
         {{ Form::text('lastname',Input::old('lastname'), array('class' => 'form-control','placeholder'=>'Enter your last name')) }}
@@ -36,6 +38,7 @@
 
         {{ Form::label('targetrole', 'Target Role') }}
         {{ Form::select('targetrole', array(''=>'Select One','applicant' => 'Applicant', 'teacher' => 'Teacher','staff'=>'Staff','alumni'=>'Alumni','employer' => 'Employer'), '', array('class' => 'form-control'))}}
+
           <br>
 
         {{--{{ HTML::image(Captcha::img(), 'Captha image') }}--}}
@@ -71,4 +74,5 @@
         $('#confirmpassword').tooltip({  title: 'Write again your password  to confirm it',placement : 'right' });
 });
 </script>
+
 @stop
