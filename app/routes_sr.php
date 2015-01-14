@@ -27,3 +27,14 @@ Route::get('/','HomeController@index');
 //    });
 //});
 
+
+Route::any('user/create','HomeController@userCreate');
+
+Route::any('user/login','HomeController@userLogin');
+
+Route::any('user/sign','HomeController@userSign');
+
+
+Route::any('user/dashboard','HomeController@userDashboard');
+
+Route::any('user/logout','HomeController@userLogout');
