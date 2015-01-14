@@ -42,7 +42,9 @@ class ExmPrepareQuestionPaperController extends \BaseController {
             $prepare_question_paper->exm_exam_list_id = Input::get('exm_exam_list_id');
             $prepare_question_paper->title = Input::get('title');
             $prepare_question_paper->deadline = Input::get('deadline');
+            $prepare_question_paper->total_marks = Input::get('total_marks');
             $prepare_question_paper->created_by = Input::get('created_by');
+            $prepare_question_paper->updated_by = Input::get('updated_by');
             $prepare_question_paper->save();
 
             // redirect
@@ -69,7 +71,6 @@ class ExmPrepareQuestionPaperController extends \BaseController {
         {
             return View::make('examination::prepare_question_paper.show')->with('prepareQuestionPaper',$prepare_question_paper);
         }
-        App::abort(404);
 
     }
 
@@ -102,7 +103,10 @@ class ExmPrepareQuestionPaperController extends \BaseController {
             $prepare_question_paper->exm_exam_list_id = Input::get('exm_exam_list_id');
             $prepare_question_paper->title = Input::get('title');
             $prepare_question_paper->deadline = Input::get('deadline');
+            $prepare_question_paper->total_marks = Input::get('total_marks');
             $prepare_question_paper->created_by = Input::get('created_by');
+            $prepare_question_paper->updated_by = Input::get('updated_by');
+
 
             $prepare_question_paper->save();
 
