@@ -1,24 +1,18 @@
 <?php
 
 
-class AcmMarksDist extends Eloquent
+class AcmCourseConfig extends Eloquent
 {
 
-    protected $table = 'acm_marks_dist_item';
-
-    // ratna code
-    public static function AcmMarksDistName($itemId)
-    {
-        $data = AcmMarksDist::find($itemId);
-        return $data->title;
-    }
-
-
+    protected $table = 'acm_course_config';
 
     private $errors;
     // 1 Create data validation
     private $rules = array(
-        'title' => 'required|min :3'
+
+        'acm_marks_dist_item_id' =>'required',
+        'marks' =>'required|numeric',
+        'readonly' =>'required'
 
     );
 
@@ -39,7 +33,9 @@ class AcmMarksDist extends Eloquent
     // 2 update data validation
 
     private $rules2 = array(
-        'title' => 'required|min :3'
+        'acm_marks_dist_item_id' =>'required',
+        'marks' =>'required|numeric',
+        'readonly' =>'required'
 
     );
 
@@ -64,4 +60,5 @@ class AcmMarksDist extends Eloquent
     {
         return $this->errors;
     }
+
 }
