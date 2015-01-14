@@ -50,7 +50,6 @@ class MarkdistributionController extends \BaseController {
         }
 	}
 
-
 	/**
 	 * Store a newly created resource in storage.
 	 *
@@ -152,7 +151,6 @@ class MarkdistributionController extends \BaseController {
 	}
  //End code
 
-
 //-------------------------------------
 //Start amw course config code
 //-------------------------------------
@@ -252,6 +250,11 @@ class MarkdistributionController extends \BaseController {
     }
 
 
+//End code
+
+//-------------------------------------
+//Start teacher code
+//-------------------------------------
 
 
 
@@ -260,8 +263,6 @@ class MarkdistributionController extends \BaseController {
 
 
 //End code
-
-
 
 
 }
