@@ -256,7 +256,10 @@ class MarkdistributionController extends \BaseController {
 //Start teacher code
 //-------------------------------------
 
-
+    public function  teacher_index()
+    {
+        return View::make('academic::mark_distribution_courses.teacher.index')->with('title','All Marks Distribution list');
+    }
 
 
 

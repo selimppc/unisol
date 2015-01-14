@@ -35,5 +35,5 @@ Route::get('amw/config/delete/{id}','MarkdistributionController@config_delete');
 Route::any('amw/config/batch/delete','MarkdistributionController@config_batchdelete');
 
 //teacher
-
+Route::get('teacher/index','MarkdistributionController@teacher_index');
 
