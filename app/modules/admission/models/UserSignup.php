@@ -8,6 +8,7 @@
 
 class UserSignup extends Eloquent {
 
+    protected $fillable = ['username', 'email', 'password', 'confirmation_code'];
     protected $table = 'user_signup';
 
 
