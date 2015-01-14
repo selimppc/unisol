@@ -11,8 +11,8 @@
   <div class='form-group'>
     {{ Form::label('readonly', 'ReadOnly') }}
     {{ Form::select('readonly', array(''=>'Select','0' => '0', '1' => '1'), Input::old('readonly'),array('class' => 'form-control','required'=>'required'))}}
-</div>
-<div>
+  </div>
+ <div>
     {{ Form::submit('Submit', array('class'=>'btn btn-primary')) }}
     <a href="{{URL::to('amw/config/index')}}" class="btn btn-default">Close </a>
-</div>
+ </div>
