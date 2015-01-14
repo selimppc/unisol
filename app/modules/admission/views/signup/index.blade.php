@@ -14,31 +14,42 @@
 {{ Form::open(array('class'=>'form-horizontal','url' => 'user/store', 'method' =>'post', 'files'=>'true','id'=>'signup-form')) }}
  <div class="control-group @if ($errors->has('firstname')) has-error @endif">
         {{ Form::label('firstname','First Name:') }}
-        {{ Form::text('firstname',Input::old('firstname'), array('class' => 'form-control  has-success','placeholder'=>'Enter your first name')) }}
+        {{ Form::text('firstname',Input::old('firstname'), array('class' => 'form-control  has-success','placeholder'=>'Enter your first name','required')) }}
         @if ($errors->has('firstname')) <p class="help-block" >{{ $errors->first('firstname') }}</p> @endif
  </div>
 
         {{ Form::label('middlename', 'Middle Name:') }}
         {{ Form::text('middlename',Input::old('middlename'), array('class' => 'form-control has-success')) }}
 
+<div class="control-group @if ($errors->has('lastname')) has-error @endif">
         {{ Form::label('lastname', 'Last Name:') }}
-        {{ Form::text('lastname',Input::old('lastname'), array('class' => 'form-control','placeholder'=>'Enter your last name')) }}
+        {{ Form::text('lastname',Input::old('lastname'), array('class' => 'form-control','placeholder'=>'Enter your last name','required')) }}
+@if ($errors->has('lastname')) <p class="help-block" >{{ $errors->first('lastname') }}</p> @endif</div>
 
+<div class="control-group @if ($errors->has('email')) has-error @endif">
         {{ Form::label('email', 'Email') }}
-        {{ Form::text('email', Input::old('email'), array('class'=>'form-control','placeholder'=>'Enter a valid email address')) }}
+        {{ Form::text('email', Input::old('email'), array('class'=>'form-control','placeholder'=>'Enter a valid email address','required')) }}
+@if ($errors->has('email')) <p class="help-block" >{{ $errors->first('email') }}</p> @endif</div>
 
+<div class="control-group @if ($errors->has('username')) has-error @endif">
         {{ Form::label('username', 'User Name:') }}
         {{ Form::text('username',Input::old('username'), array('class' => 'form-control','placeholder'=>'Enter your user name')) }}
+@if ($errors->has('username')) <p class="help-block">{{ $errors->first('username') }}</p> @endif</div>
 
+<div class="control-group @if ($errors->has('password')) has-error @endif">
         {{ Form::label('password', 'Password') }}
         {{ Form::password('password', array('placeholder'=>'........','class'=>'form-control')) }}
+@if ($errors->has('password')) <p class="help-block">{{ $errors->first('password') }}</p> @endif</div>
 
+<div class="control-group @if ($errors->has('confirmpassword')) has-error @endif">
         {{ Form::label('confirmpassword', 'ConfirmPassword') }}
         {{ Form::password('confirmpassword', array('placeholder'=>'........','class'=>'form-control')) }}
+@if ($errors->has('confirmpassword')) <p class="help-block">{{ $errors->first('confirmpassword') }}</p> @endif</div>
 
+<div class="control-group @if ($errors->has('targetrole')) has-error @endif">
         {{ Form::label('targetrole', 'Target Role') }}
         {{ Form::select('targetrole', array(''=>'Select One','applicant' => 'Applicant', 'teacher' => 'Teacher','staff'=>'Staff','alumni'=>'Alumni','employer' => 'Employer'), '', array('class' => 'form-control'))}}
-
+@if ($errors->has('targetrole')) <p class="help-block">{{ $errors->first('targetrole') }}</p> @endif</div>
           <br>
 
         {{--{{ HTML::image(Captcha::img(), 'Captha image') }}--}}

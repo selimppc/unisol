@@ -18,3 +18,8 @@ Route::post('send/email', 'UserSignupController@send_users_email');
 
 Route::get('register/verify/{confirmation_code}','UserSignupController@confirm');
 
+Route::any('login', 'UserSignupController@Login');
+
+Route::any('user/login', 'UserSignupController@UserLogin');
+
+Route::any('dashboard', 'UserSignupController@Dashboard');
