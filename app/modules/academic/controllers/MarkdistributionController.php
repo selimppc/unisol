@@ -50,7 +50,6 @@ class MarkdistributionController extends \BaseController {
         }
 	}
 
-
 	/**
 	 * Store a newly created resource in storage.
 	 *
@@ -152,7 +151,6 @@ class MarkdistributionController extends \BaseController {
 	}
  //End code
 
-
 //-------------------------------------
 //Start amw course config code
 //-------------------------------------
@@ -252,16 +250,22 @@ class MarkdistributionController extends \BaseController {
     }
 
 
+//End code
 
+//-------------------------------------
+//Start teacher code
+//-------------------------------------
 
+    public function  teacher_index()
+    {
+        return View::make('academic::mark_distribution_courses.teacher.index')->with('title','All Marks Distribution list');
+    }
 
 
 
 
 
 //End code
-
-
 
 
 }
