@@ -6,19 +6,22 @@
  * Time: 5:02 PM
  */
 
-route::get('/index','EnrollmentController@index');
+Route::get('/index','EnrollmentController@index');
 
 //Applicant enrollment
-route::get('student/index','EnrollmentController@create');
+Route::get('student/index','EnrollmentController@create');
 
 //Theory Class start
   //class
-route::get('class/index','TheoryclassController@class_index');
+Route::get('class/index','TheoryclassController@class_index');
 
 //Mark_distribution_courses start
  //amw
-route::get('amw/index','MarkdistributionController@amw_index');
-route::any('amw/save','MarkdistributionController@amw_save');
-route::get('amw/show/{id}','MarkdistributionController@amw_show');
+Route::get('amw/index','MarkdistributionController@amw_index');
+Route::any('amw/save','MarkdistributionController@amw_save');
+Route::get('amw/edit/{id}', ['as' => 'amw.edit','uses' => 'MarkdistributionController@amw_edit']);
+Route::any('amw/update/{id}', ['as' => 'amw/update','uses' => 'MarkdistributionController@amw_update']);
+Route::any('amw/show/{id}',['as' => 'amw.show', 'uses'=> 'MarkdistributionController@show_one']);
+Route::get('amw/delete/{id}','MarkdistributionController@amw_delete');
 Route::any('amw/batch/delete','MarkdistributionController@amw_batchdelete');
 

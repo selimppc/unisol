@@ -52,7 +52,7 @@
 
                    <a href="{{ URL::route('year.edit', ['id'=>$value->id]) }}" class="subEdit btn btn-sm btn-default" data-toggle="modal" data-target="#edit-modal" href="" ><span class="glyphicon glyphicon-edit text-info"></span></a>
 
-                   <a href="{{ URL::route('year.show', ['id'=>$value->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#show-modal" href=""><span class="glyphicon glyphicon-list-alt text-info"></span></a>
+                   <a href="{{ URL::route('year.show', ['id'=>$value->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#showOne" href=""><span class="glyphicon glyphicon-list-alt text-info"></span></a>
                 </td>
             </tr>
             @endforeach
@@ -78,7 +78,7 @@
 
           
 <!-- Modal for show -->
-   <div class="modal fade" id="show-modal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true">
+   <div class="modal fade" id="showOne" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
 
