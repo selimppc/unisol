@@ -10,7 +10,10 @@ class ExmQuestion extends \Eloquent
         'exm_exam_list_id'  => 'required',
         'title'  => 'required',
         'deadline'  => 'required',
-        'created_by'  => 'required',
+        'total_marks' => 'required',
+        'created_by' => 'required',
+        'updated_by' => 'required',
+
     );
 
 

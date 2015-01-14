@@ -25,7 +25,6 @@ class CreateExmQuestionTable extends Migration {
 
             $table->string('created_by');
 
-
             $table->timestamps();
             $table->engine = 'InnoDB';
 		});

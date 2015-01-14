@@ -1,6 +1,6 @@
 <div style="padding: 10px; width: 90%;">
 
- <h1>Show Prepare Question Paper</h1>
+
 
     {{ Form::open(array('url'=>'prepare_question_paper/show','method' => '')) }}
 
@@ -10,7 +10,10 @@
             <p>
                 <strong> Exam List Id:</strong> {{ ExmExamList::getExamName($prepareQuestionPaper->exm_exam_list_id) }} <br>
                 <strong> Deadline:</strong> {{ $prepareQuestionPaper->deadline }}<br>
+                <strong> Total Marks:</strong> {{ $prepareQuestionPaper->total_marks }}<br>
                 <strong> Created By:</strong> {{ $prepareQuestionPaper->created_by }}<br>
+                <strong> Updated By:</strong> {{ $prep_quest_paper->updated_by }}<br>
+
             </p>
         </div>
 

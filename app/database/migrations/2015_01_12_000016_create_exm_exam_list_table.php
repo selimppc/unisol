@@ -48,7 +48,11 @@ class CreateExmExamListTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('exm_exam_list');
+		Schema::drop('exm_exam_list',function( $table){
+
+
+
+        });
 	}
 
 }
