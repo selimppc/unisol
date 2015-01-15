@@ -26,3 +26,25 @@
     padding-top: 5px;
 }
 
+
+
+
+/** add field style **/
+ .option_class{
+     width: 200px;
+     padding: 3px;
+     margin-bottom: 10px;
+ }
+.remove{
+    cursor: pointer;
+    border: 1px solid #efefef;
+    background: #efefef;
+    margin: 5px;
+}
+.add_button{
+    background: #efefef;
+    padding: 3px;
+    cursor: pointer;
+}
+
+

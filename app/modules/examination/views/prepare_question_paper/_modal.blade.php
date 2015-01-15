@@ -1,3 +1,4 @@
+
 <!-- Modal for Create -->
 <div class="modal fade" id="CreateModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true">
     <div class="modal-dialog">
@@ -122,47 +123,36 @@
                                         </label>
                                 </div>
 
-                                <h4>With checkbox and radio inputs</h4>
-                                        <div class="row">
-                                            <div class="col-xs-6">
-                                                <div class="input-group">
-                                                    <span class="input-group-addon">
-                                                        <input type="radio">
-                                                    </span>
-                                                    <input type="text" class="form-control">
 
-                                                </div><!-- /input-group -->
-                                            </div><!-- /.col-lg-6 --> <br>
+                                {{--challenging part--}}
+                                {{--challenging part : start--}}
+
+                                    <div id="fields">
+                                        <label>
+                                        Option 1:
+                                        </label>
+                                        <input id="option1" class="option_class" type="text" name="option[]">
+                                    </div>
+
+                                    <div id="fields1">
+                                        <label>
+                                        Option 2:
+                                        </label>
+                                        <input id="option2" class="option_class" type="text" name="option[]">
+                                    </div>
+
+
+                                    <div id="fields">
+
+                                    </div>
+
+
+                                    <a onclick="createInput()" class="add_button">Add (+)</a>
 
 
 
-                                             <div class="col-xs-6">
-                                                     <div class="input-group">
-                                                          <span class="input-group-addon">
-                                                                 <input type="radio">
-                                                          </span>
-                                                                 <input type="text" class="form-control">
-                                                     </div><!-- /input-group -->
-                                             </div><!-- /.col-lg-6 --> <br>
+                                {{--challenging part : end --}}
 
-                                             <div class="col-xs-6">
-                                                   <div class="input-group">
-                                                        <span class="input-group-addon">
-                                                            <input type="radio">
-                                                        </span>
-                                                        <input type="text" class="form-control">
-                                                    </div><!-- /input-group -->
-                                            </div><!-- /.col-lg-6 --> <br>
-
-                                             <div class="col-xs-6">
-                                                   <div class="input-group">
-                                                        <span class="input-group-addon">
-                                                            <input type="radio">
-                                                        </span>
-                                                        <input type="text" class="form-control">
-                                                    </div><!-- /input-group -->
-                                             </div><!-- /.col-lg-6 --> <br>
-                                        </div><!-- /.row -->
 
 
 
@@ -192,9 +182,7 @@
                                         <h4 class="modal-title" id="myModalLabel">Edit Question Paper</h4>
                                      </div>
                                      <div class="modal-body">
-hi
-
-
+                                            hi
 
                                      </div>
                                      <div class="modal-footer">
@@ -202,3 +190,8 @@ hi
                                 </div>
                             </div>
                     </div>
+
+
+
+
+

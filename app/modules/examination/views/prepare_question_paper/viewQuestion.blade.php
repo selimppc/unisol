@@ -1,10 +1,11 @@
-@extends('layouts._master')
+@extends('layouts.master')
 
 @section('sidebar')
     @include('examination::prepare_question_paper._sidebar')
 @stop
 
 @section('content')
+
 
              <h1>Welcome to View Question </h1> <br>
 
@@ -55,7 +56,6 @@
 
 
 
-
-
 @include('examination::prepare_question_paper/_modal');
 @stop
+
