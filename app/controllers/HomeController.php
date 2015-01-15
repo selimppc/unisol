@@ -1,6 +1,9 @@
 <?php
+use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends BaseController {
+
 
 	/*
 	|--------------------------------------------------------------------------
@@ -34,6 +37,49 @@ class HomeController extends BaseController {
     public function done()
     {
         return View::make('test.index')->with('title','Welcome to ETSB!');
+    }
+
+
+
+    /// Login System
+    public function userCreate() {
+        $user = new User;
+        $user->username = 'selim1';
+        $user->email_address = 'selim@selim.com';
+        $user->password = Hash::make('123');
+        $user->save();
+    }
+
+    public function userLogin() {
+        return View::make('test.login')->with('pageTitle','Login!');
+
+    }
+
+    public function userSign(){
+
+        $credentials = array(
+            'username'=> Input::get('username'),
+            'password'=>Input::get('password'),
+        );
+
+        if ( Auth::attempt($credentials) ) {
+            return Redirect::to('user/dashboard')->with('pageTitle', 'Logged in!');
+        } else {
+            return Redirect::to('user/login')->with('pageTitle', 'Failed log in!');
+        }
+    }
+
+    public function userDashboard() {
+
+        $user_id = Auth::user()->username;
+        //print_r($user_id);
+        //exit;
+        return View::make('test.dashboard', compact('user_id'));
+    }
+
+    public function userLogout() {
+        Auth::logout();
+        return Redirect::to('user/login');
     }
 
 }

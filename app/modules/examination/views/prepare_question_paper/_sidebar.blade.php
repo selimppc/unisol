@@ -1,5 +1,3 @@
-
-
 <div class="panel panel-default">
     <div class="panel-heading">
         <h4 class="panel-title">
@@ -20,13 +18,17 @@
                      <a href="{{ action('ExmPrepareQuestionPaperController@createQuestionPaper') }}"> ADD</a> <span class="label label-info"></span>
                     </td>
                 </tr>
+
                 <tr>
+                    <td>
+                    <a href="{{ action('ExmPrepareQuestionPaperController@ViewQuestion') }}">View All Questions</a><span  class="label label-default"></span>
+                    </td>
 
                 </tr>
             </table>
         </div>
     </div>
-    </div>
+</div>
 
 
 

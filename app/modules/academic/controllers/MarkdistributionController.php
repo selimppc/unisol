@@ -8,15 +8,14 @@ class MarkdistributionController extends \BaseController {
 	 * @return Response
 	 */
 //-------------------------------------
-//Start amw code
+//Start amw dist item code
 //-------------------------------------
 
 	public function amw_index()
 	{
-        $data = AcmMarksDist::orderBy('id', 'DESC')->paginate(5);
+        $data = AcmMarksDist::orderBy('id', 'ASC')->paginate(5);
         return View::make('academic::mark_distribution_courses.amw.index')->with('datas', $data)->with('title','All Course Item List');
 	}
-
 
 	/**
 	 * Show the form for creating a new resource.
@@ -51,7 +50,6 @@ class MarkdistributionController extends \BaseController {
         }
 	}
 
-
 	/**
 	 * Store a newly created resource in storage.
 	 *
@@ -61,7 +59,6 @@ class MarkdistributionController extends \BaseController {
 	{
 		//
 	}
-
 
 	/**
 	 * Display the specified resource.
@@ -73,9 +70,7 @@ class MarkdistributionController extends \BaseController {
 	{
 
     }
-
-
-	/**
+    /**
 	 * Show the form for editing the specified resource.
 	 *
 	 * @param  int  $id
@@ -154,8 +149,123 @@ class MarkdistributionController extends \BaseController {
 	{
 		//
 	}
+ //End code
+
 //-------------------------------------
-//End amw code
+//Start amw course config code
 //-------------------------------------
+   public function config_index()
+   {
+    //return View::make('academic::mark_distribution_courses.amw.index_course_config')->with('title','All Course config List');
+
+       $data = AcmCourseConfig::orderBy('id', 'ASC')->paginate(5);
+       return View::make('academic::mark_distribution_courses.amw.index_course_config')->with('datas', $data)->with('title','All Course config List');
+    }
+
+    public function config_save()
+    {
+        $data = Input::all();
+
+        // create a new model instance
+        $datas = new AcmCourseConfig();
+
+        // attempt validation
+        if ($datas->validate($data))
+        {
+
+            $datas->acm_marks_dist_item_id = Input::get('acm_marks_dist_item_id');
+            $datas->marks = Input::get('marks');
+            $datas->readonly = Input::get('readonly');
+            $datas->save();
+
+            // redirect
+            Session::flash('message', 'Successfully Added!');
+            return Redirect::to('amw/config/index');
+        }
+        else
+        {
+            // failure, get errors
+            $errors = $datas->errors();
+            Session::flash('errors', $errors);
+
+            return Redirect::to('amw/config/index');
+        }
+    }
+    public  function config_edit($id)
+    {
+        $data = AcmCourseConfig::find($id);
+        return View::make('academic::mark_distribution_courses.amw.edit_course_config')->with('editconfig',$data);
+    }
+
+    public function config_update($id)
+    {
+        // get the POST data
+        $data = Input::all($id);
+        // create a new model instance
+        $datas = new AcmCourseConfig();
+        // attempt validation
+        if ($datas->validate2($data))
+        {
+            $datas = AcmCourseConfig::find($id);
+            // success code
+            $datas->acm_marks_dist_item_id = Input::get('acm_marks_dist_item_id');
+            $datas->marks = Input::get('marks');
+            $datas->readonly = Input::get('readonly');
+            $datas->save();
+            // redirect
+            Session::flash('message', 'Successfully Edited!');
+            return Redirect::to('amw/config/index');
+        }
+        else
+        {
+            // failure, get errors
+            $errors = $datas->errors();
+            Session::flash('errors', $errors);
+
+            return Redirect::to('amw/config/index');
+        }
+    }
+    public  function config_show_one($id)
+    {
+        $data = AcmCourseConfig::find($id);
+        return View::make('academic::mark_distribution_courses.amw.show_course_config')->with('datas',$data);
+    }
+
+    public function config_delete($id)
+    {
+        $data= AcmCourseConfig::find($id);
+        if($data->delete())
+        {
+
+            Session::flash('danger', "Items Deleted successfully");
+            return Redirect::to('amw/config/index')->with('title','All Course config List');
+        }
+    }
+
+    public function config_batchdelete()
+    {
+        Session::flash('danger', "Course Item Deleted successfully");
+        AcmCourseConfig::destroy(Request::get('id'));
+        return Redirect::to('amw/config/index')->with('title','All Course config List');
+    }
+
+
+//End code
+
+//-------------------------------------
+//Start teacher code
+//-------------------------------------
+
+    public function  teacher_index()
+    {
+        return View::make('academic::mark_distribution_courses.teacher.index')->with('title','All Marks Distribution list');
+    }
+
+
+
+
+
+//End code
+
 
 }

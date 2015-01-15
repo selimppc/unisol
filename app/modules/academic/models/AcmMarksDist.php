@@ -6,6 +6,15 @@ class AcmMarksDist extends Eloquent
 
     protected $table = 'acm_marks_dist_item';
 
+    // ratna code
+    public static function AcmMarksDistName($itemId)
+    {
+        $data = AcmMarksDist::find($itemId);
+        return $data->title;
+    }
+
+
+
     private $errors;
     // 1 Create data validation
     private $rules = array(

@@ -15,12 +15,12 @@
                  <a href="{{ action('MarkdistributionController@amw_index') }}">All Item List</a> <span class="label label-success"></span>
                 </td>
                 </tr>
-                {{--<tr>--}}
-                {{--<td>--}}
-                  {{--<a href="{{ action('SemesterController@create') }}">Create New Semester</a> <span class="label label-info"></span>--}}
-                {{--</td>--}}
+                <tr>
+                <td>
+                  <a href="{{ action('MarkdistributionController@config_index') }}">Course Config</a> <span class="label label-info"></span>
+                </td>
 
-                {{--</tr>--}}
+                </tr>
 
             </table>
         </div>
@@ -39,11 +39,11 @@
     <div id="collapseFour" class="panel-collapse collapse">
         <div class="panel-body">
             <table class="table">
-                {{--<tr>--}}
-                    {{--<td>--}}
-                     {{--<a href="{{ action('SemesterController@index') }}">All semester</a> <span class="label label-success"></span>--}}
-                    {{--</td>--}}
-                {{--</tr>--}}
+                <tr>
+                    <td>
+                     <a href="{{ action('MarkdistributionController@teacher_index') }}">Mark Distribution</a> <span class="label label-success"></span>
+                    </td>
+                </tr>
                 {{--<tr>--}}
                     {{--<td>--}}
                       {{--<a href="{{ action('SemesterController@create') }}">Create New Semester</a> <span class="label label-info"></span>--}}

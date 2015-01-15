@@ -16,7 +16,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
      */
     public function getReminderEmail()
     {
-        // TODO: Implement getReminderEmail() method.
+        return $this->email;
     }
 
     /**
@@ -26,7 +26,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
      */
     public function getAuthIdentifier()
     {
-        // TODO: Implement getAuthIdentifier() method.
+        return $this->getKey();
     }
 
     /**
@@ -36,7 +36,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
      */
     public function getAuthPassword()
     {
-        // TODO: Implement getAuthPassword() method.
+        return $this->password;
     }
 
     /**
