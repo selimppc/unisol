@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('sidebar')
-    @include('test._sidebar')
+    @include('admission::_sidebar')
 @stop
 
 @section('content')
@@ -9,7 +9,6 @@
  <div class='control-group'>
  <legend style="color: #0088cc">Sign Up Here.......</legend>
 <div class="span6 well">
-
 
 {{ Form::open(array('class'=>'form-horizontal','url' => 'user/store', 'method' =>'post', 'files'=>'true','id'=>'signup-form')) }}
  <div class="control-group @if ($errors->has('firstname')) has-error @endif">

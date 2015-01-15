@@ -132,11 +132,9 @@ class UserSignupController extends \BaseController {
 
 
     public function UserLogin() {
-//        echo 'ok';
-//        exit;
 
         $credentials = array(
-            'username'=> Input::get('username'),
+            'email'=> Input::get('email'),
             'password'=>Input::get('password'),
         );
         if ( Auth::attempt($credentials) ) {
@@ -147,11 +145,20 @@ class UserSignupController extends \BaseController {
         }
     }
 
-
-
     public function Dashboard(){
-       return View::make('admission::signup.dashboard');
+
+
+
+        return View::make('admission::signup.dashboard');
     }
+
+
+    public function usersLogout() {
+        Auth::logout();
+        return Redirect::to('login')->with('message', 'Your are now logged out!');
+    }
+
+
 
     public function show($id)
 	{

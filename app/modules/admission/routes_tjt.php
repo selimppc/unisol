@@ -20,6 +20,11 @@ Route::get('register/verify/{confirmation_code}','UserSignupController@confirm')
 
 Route::any('login', 'UserSignupController@Login');
 
-Route::any('user/login', 'UserSignupController@UserLogin');
+Route::any('users/login', 'UserSignupController@UserLogin');
+
+Route::any('users/logout', 'UserSignupController@usersLogout');
 
 Route::any('dashboard', 'UserSignupController@Dashboard');
+
+
+

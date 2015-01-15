@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('sidebar')
-    @include('test._sidebar')
+    @include('admission::_sidebar')
 @stop
 
 @section('content')
@@ -14,6 +14,9 @@
     @endif
 
     <p>Welcome to your Dashboard. You rock!</p>
+
+    {{ HTML::linkAction('UserSignupController@usersLogout', 'Logout') }}
+
 </div>
 
 @stop
