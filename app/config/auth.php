@@ -43,10 +43,10 @@ return array(
 	*/
 
 
-	'table' => 'users',
+	//'table' => 'users',
     'table' => 'user_signup',
 
-	'table' => 'user',
+	//'table' => 'user',
 
 
 	/*
