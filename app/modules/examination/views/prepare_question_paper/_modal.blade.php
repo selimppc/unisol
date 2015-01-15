@@ -38,42 +38,29 @@
     </div>
 </div>
 
+
+
 <!-- Show Modal -->
-<div class="modal fade" id="showModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="myModalLabel">Show </h4>
-            </div>
-            <div class="modal-body">
-
-                <h1>Show Prepare Question Paper</h1>
-
-                {{ Form::open(array('url'=>'prepare_question_paper/show','method' => '')) }}
+                    <div class="modal fade" id="showModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <h4 class="modal-title" id="myModalLabel">Show Semester</h4>
+                          </div>
+                          <div class="modal-body">
 
 
-                {{--<div class="jumbotron text-center">--}}
-                    {{--<h2><strong>Name :</strong>{{ $prep_quest_paper->title }}</h2>--}}
-                    {{--<p>--}}
-                        {{--<strong> Exam List Id:</strong> {{ ExmExamList::getExamName($prep_quest_paper->exm_exam_list_id) }} <br>--}}
-                        {{--<strong> Deadline:</strong> {{ $prep_quest_paper->deadline }}<br>--}}
-                        {{--<strong> Total Marks:</strong> {{ $prep_quest_paper->total_marks }}<br>--}}
-                        {{--<strong> Created By:</strong> {{ $prep_quest_paper->created_by }}<br>--}}
-                        {{--<strong> Updated By:</strong> {{ $prep_quest_paper->updated_by }}--}}
 
-                    {{--</p>--}}
-                {{--</div>--}}
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal" >Cencel</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
 
-                {{ Form::close() }}
 
-            </div>
-            <div class="modal-footer">
-                <button href="{{URL::to('prepare_question_paper/index')}}" type="button" class="btn btn-default" data-dismiss="modal" >Close</button>
-            </div>
-        </div>
-    </div>
-</div>
 
 <!-- Modal for delete -->
 <div class="modal fade " id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -193,3 +180,25 @@
         </div>
     </div>
 </div>
+
+
+
+ <!-- Modal for Edit Question Paper  -->
+                    <div class="modal fade" id="EditQuestionPaperModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                     <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                        <h4 class="modal-title" id="myModalLabel">Edit Question Paper</h4>
+                                     </div>
+                                     <div class="modal-body">
+hi
+
+
+
+                                     </div>
+                                     <div class="modal-footer">
+                                     </div>
+                                </div>
+                            </div>
+                    </div>
