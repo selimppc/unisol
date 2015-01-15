@@ -20,9 +20,6 @@
                                               </button>
                                           </div>
 
-
-
-
                                           {{--page content start from here--}}
                                          <br>
                                               {{ Form::submit('Delete Items', array('class'=>'btn btn-danger', 'id'=>'hide-button', 'style'=>'display:none'))}}
@@ -59,7 +56,7 @@
                                               <a data-href="{{ URL::route('prepare_question_paper.destroy',['id'=>$prep_quest_paper->id]) }}" class="btn btn-danger" data-toggle="modal" data-target="#confirm-delete" data-placement="left" title="Delete" href="#" >Delete</a>
                                                   {{--<span class="glyphicon glyphicon-trash text-danger"></span>--}}
 
-                                              <a href="{{ URL::route('prepare_question_paper.show', ['id'=>$prep_quest_paper->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#showModal" data-placement="left" title="Show/View" href="#">View</a>
+                                              <a href="{{ URL::route('prepare_question_paper.show', ['id'=>$prep_quest_paper->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#showModal" data-placement="left" title="Show" href="#">View</a>
                                                    {{--<span class="glyphicon glyphicon-list-alt text-info"></span>--}}
 
                                                    <br>
@@ -76,16 +73,11 @@
                                     </tbody>
                                 </table>
 
-
-
                     {{form::close() }}
 
                               {{ $prepareQuestionPaper->links() }}
 
                               <br><br><br>
-
-
-
 
 
 @include('examination::prepare_question_paper/_modal')
