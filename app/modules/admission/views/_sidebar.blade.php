@@ -1,13 +1,17 @@
-    <ul class="nav nav-list bs-docs-sidenav nav-collapse collapse">
-        <li class="active">
-            <a href=""><i class="icon-chevron-right"></i> Dashboard</a>
-        </li>
-        <li>
-            <a href=""><i class="icon-chevron-right"></i> Calendar</a>
-        </li>
+<p class="lead">Quick Navigation</p>
+<div class="list-group">
+ @if(!Auth::check())
 
-        <li>
-            <a href=""><span class="badge badge-success pull-right">731</span> Orders</a>
-        </li>
+        <a href="{{URL::to('user') }}" class="list-group-item">Signup</a>
+        <a href="{{URL::to('/login') }}" class="list-group-item">SignIn</a>
+ @else
+        <a href="{{URL::to('users/logout') }}" class="list-group-item">Signout</a>
+  @endif
 
-    </ul>
+{{--<li>{{ HTML::link('login', 'Register') }}</li>--}}
+    {{--<a href="" class="list-group-item">Degree Level</a>--}}
+    {{--<a href="" class="list-group-item">Degree / Program Name</a>--}}
+    {{--<a href="" class="list-group-item active">Subject Management</a>--}}
+    {{--<a href="" class="list-group-item">Term / Semester</a>--}}
+    {{--<a href="" class="list-group-item">Year</a>--}}
+</div>

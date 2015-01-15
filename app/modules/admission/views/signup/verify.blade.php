@@ -13,7 +13,7 @@
 
             Thanks for creating an account with the verification app.
             Please follow the link below to verify your email address.<br>
-           {{ URL::to('register/verify/') }}.<br/>
+           {{ URL::to('register/verify/'.$link) }}.<br/>
 
         </div>
 

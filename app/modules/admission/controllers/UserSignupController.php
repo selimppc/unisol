@@ -1,7 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Auth\UserInterface;
+use Illuminate\Routing\Controller;
+
+
+//use Illuminate\Auth;
 class UserSignupController extends \BaseController {
+
+
 
 
 	public function Userindex()
@@ -17,41 +25,8 @@ class UserSignupController extends \BaseController {
     public function Userstore()
     {
 
-
-//        $rules = [
-//            'username' => 'required',
-//            'email' => 'required',
-//            'password' => 'required'
-//        ];
-//
-//        $validator = Validator::make(Input::only('username', 'email', 'password', 'password_confirmation'), $rules);
-//
-//        if($validator->fails())
-//        {
-//            return Redirect::back()->withInput()->withErrors($validator);
-//        }
-//
-//        $confirmation_code = str_random(30);
-//
-//        UserSignup::create([
-//            'username' => Input::get('username'),
-//            'email' => Input::get('email'),
-//            'password' => Hash::make(Input::get('password')),
-//            'confirmation_code' => $confirmation_code
-//        ]);
-//
-//        Mail::send('admission::signup.verify', compact('confirmation_code'), function($message) {
-//            $message->to(Input::get('email'), Input::get('username'))->subject('Verify your email address');
-//        });
-//
-//        Session::Flash('message','Thanks for signing up! Please check your email and follow the instructions to complete the sign up process');
-//
-//        return Redirect::back();
-
-
-
         $token = csrf_token();
-        //dd($token);
+
         $rules = array(
             'firstname' => 'Required',
             'lastname' => 'Required',
@@ -136,39 +111,66 @@ class UserSignupController extends \BaseController {
 
     public function confirm($confirmation_code)
     {
-        $user = User::where('confirmation_code','=',$confirmation_code);
+        $user = UserSignup::where('confirmation_code','=',$confirmation_code);
 
         if($user->count())
         {
             $user = $user->first();
-            $user->confirmation_code = ''; //after activation we don't need any confirmation code. make it blank
-
+            $user->confirmation_code = '';
 
         }
-
         Session::flash('message','Your account activated successfully. You can signin now.');
-        //return Redirect::to('signup')->with('title','Signup');
-        return View::make('admission::signup.mailnotify');
 
-
-
+        return Redirect::to('user');
 
     }
 
+    public function Login()
+    {
+        return View::make('admission::signup.login');
+    }
 
-	public function show($id)
+
+    public function UserLogin() {
+
+        $credentials = array(
+            'email'=> Input::get('email'),
+            'password'=>Input::get('password'),
+        );
+        if ( Auth::attempt($credentials) ) {
+            return Redirect::to('dashboard')->with('message', 'Logged in!');
+        } else {
+            return Redirect::to('login') ->with('message', 'Your username/password combination was incorrect')
+                ->withInput();
+        }
+    }
+
+    public function Dashboard(){
+
+
+
+        return View::make('admission::signup.dashboard');
+    }
+
+
+    public function usersLogout() {
+        Auth::logout();
+        return Redirect::to('login')->with('message', 'Your are now logged out!');
+    }
+
+
+
+    public function show($id)
 	{
 		//
 	}
 
-
-	public function edit($id)
+    public function edit($id)
 	{
 		//
 	}
 
-
-	public function update($id)
+    public function update($id)
 	{
 		//
 	}
