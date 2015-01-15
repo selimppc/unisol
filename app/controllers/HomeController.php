@@ -61,20 +61,23 @@ class HomeController extends BaseController {
             'username'=> Input::get('username'),
             'password'=>Input::get('password'),
         );
-
-        if ( Auth::attempt($credentials) ) {
-            return Redirect::to('user/dashboard')->with('pageTitle', 'Logged in!');
-        } else {
-            return Redirect::to('user/login')->with('pageTitle', 'Failed log in!');
+        if (Auth::check()){
+                $user_id = Auth::user()->username;
+                $pageTitle = 'You are already logged in!';
+                return View::make('test.dashboard', compact('user_id', 'pageTitle'));
+        }else{
+            if ( Auth::attempt($credentials) ) {
+                return Redirect::to('user/dashboard')->with('pageTitle', 'Logged in!');
+            } else {
+                return Redirect::to('user/login')->with('pageTitle', 'Failed log in!');
+            }
         }
     }
 
     public function userDashboard() {
-
         $user_id = Auth::user()->username;
-        //print_r($user_id);
-        //exit;
-        return View::make('test.dashboard', compact('user_id'));
+        $pageTitle = '';
+        return View::make('test.dashboard', compact('user_id', 'pageTitle'));
     }
 
     public function userLogout() {
