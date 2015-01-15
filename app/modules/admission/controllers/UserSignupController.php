@@ -137,6 +137,7 @@ class UserSignupController extends \BaseController {
             'email'=> Input::get('email'),
             'password'=>Input::get('password'),
         );
+        
         if ( Auth::attempt($credentials) ) {
             return Redirect::to('dashboard')->with('message', 'Logged in!');
         } else {
