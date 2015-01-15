@@ -26,5 +26,7 @@ Route::any('users/logout', 'UserSignupController@usersLogout');
 
 Route::any('dashboard', 'UserSignupController@Dashboard');
 
+Route::any('scopeOnline', 'UserSignupController@scopeOnline');
+
 
 
