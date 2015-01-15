@@ -17,8 +17,13 @@ class CreateAcmCourseConfigTable extends Migration {
 			$table->increments('id', true);
             $table->unsignedInteger('acm_marks_dist_item_id')->index();
             $table->foreign('acm_marks_dist_item_id')->references('id')->on('acm_marks_dist_item');
+            $table->unsignedInteger('course_id')->index();
+            $table->foreign('course_id')->references('id')->on('course');
             $table->tinyInteger('marks', false, 3)->unsigned();
             $table->boolean('readonly');
+            $table->boolean('default_item');
+            $table->unsignedInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('user')->onDelete('cascade');
 			$table->timestamps();
 		});
 	}
