@@ -2,34 +2,28 @@
 
 class ExmPrepareQuestionPaperController extends \BaseController {
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
+
 	public function index()
 	{
         $prepare_question_paper = ExmQuestion::orderBy('id', 'DESC')->paginate(3);
         return View::make('examination::prepare_question_paper.index')->with('prepareQuestionPaper', $prepare_question_paper);
 	}
 
+    public function ViewQuestion()
+    {
+        $prepare_question_paper = ExmQuestion::orderBy('id', 'DESC')->paginate(3);
+        return View::make('examination::prepare_question_paper.viewQuestion')->with('prepareQuestionPaper', $prepare_question_paper);
+    }
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
+
+
 	public function createQuestionPaper()
 	{
         return View::make('examination::prepare_question_paper.create');
 	}
 
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
+
 	public function storeQuestionPaper()
 	{
         $data = Input::all();
@@ -59,7 +53,6 @@ class ExmPrepareQuestionPaperController extends \BaseController {
 
             return Redirect::to('prepare_question_paper/create');
         }
-
 	}
 
 
@@ -71,7 +64,6 @@ class ExmPrepareQuestionPaperController extends \BaseController {
         {
             return View::make('examination::prepare_question_paper.show')->with('prepareQuestionPaper',$prepare_question_paper);
         }
-
     }
 
     /**

@@ -21,12 +21,6 @@
                                           </div>
 
 
-                                          <div class="btn-group" style="margin-right: 10px">
-                                               <button type="button" class="btn btn-info" data-toggle="modal"
-                                                       data-target="#EditQuestionPaperModal">
-                                                          Edit Question Papers
-                                               </button>
-                                          </div>
 
 
                                           {{--page content start from here--}}
@@ -70,9 +64,9 @@
 
                                                    <br>
 
-                                              <a class="btn btn-default" data-toggle="modal" data-target="#AddQuestionModal">Add Question</a>
+                                              <a class="btn btn-default" data-toggle="modal" data-target="#AddQuestionModal">Add Question Item</a>
 
-                                              <a class="btn btn-default" data-toggle="modal" data-target="#ViewAllQuestionModal">View All Questions</a>
+                                              <a class="btn btn-default" href="{{ action('ExmPrepareQuestionPaperController@ViewQuestion') }}">View All Questions</a>
 
                                            </td>
 
@@ -84,173 +78,16 @@
 
 
 
-                                {{form::close() }}
+                    {{form::close() }}
 
-                                        {{ $prepareQuestionPaper->links() }}
+                              {{ $prepareQuestionPaper->links() }}
 
-                                        <br><br><br>
-
-                    <!-- Modal for Create -->
-                    <div class="modal fade" id="CreateModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                     <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                        <h4 class="modal-title" id="myModalLabel">Create Course</h4>
-                                     </div>
-                                     <div class="modal-body">
-                                             {{ Form::open(array('url' => 'prepare_question_paper/store', 'method' =>'post', 'role'=>'form','files'=>'true'))  }}
-
-                                                             @include('examination::prepare_question_paper._form')
-
-                                              {{ Form::close() }}
-
-                                     </div>
-                                     <div class="modal-footer">
-                                     </div>
-                                </div>
-                            </div>
-                    </div>
-
-
-                    <!-- Modal for Edit -->
-                    <div class="modal fade" id="edit-modal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                     <div class="modal-header">
-                                               <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                             <h4 class="modal-title" id="myModalLabel">Edit </h4>
-                                     </div>
-                                     <div class="modal-body">
-                                     </div>
-                                     <div class="modal-footer">
-                                     </div>
-                                </div>
-                            </div>
-                    </div>
-
-
-                    <!-- Show Modal -->
-                    <div class="modal fade" id="showModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true">
-                      <div class="modal-dialog">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                            <h4 class="modal-title" id="myModalLabel">Show </h4>
-                          </div>
-                          <div class="modal-body">
-
-                            <h1>Show Prepare Question Paper</h1>
-
-                            {{ Form::open(array('url'=>'prepare_question_paper/show','method' => '')) }}
-
-
-                                    <div class="jumbotron text-center">
-                                        <h2><strong>Name :</strong>{{ $prep_quest_paper->title }}</h2>
-                                        <p>
-                                            <strong> Exam List Id:</strong> {{ ExmExamList::getExamName($prep_quest_paper->exm_exam_list_id) }} <br>
-                                            <strong> Deadline:</strong> {{ $prep_quest_paper->deadline }}<br>
-                                            <strong> Total Marks:</strong> {{ $prep_quest_paper->total_marks }}<br>
-                                            <strong> Created By:</strong> {{ $prep_quest_paper->created_by }}<br>
-                                            <strong> Updated By:</strong> {{ $prep_quest_paper->updated_by }}<br>
-
-                                        </p>
-                                    </div>
-
-                                {{ Form::close() }}
-
-                          </div>
-                          <div class="modal-footer">
-                            <button href="{{URL::to('prepare_question_paper/index')}}" type="button" class="btn btn-default" data-dismiss="modal" >Close</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <!-- Modal for delete -->
-                    <div class="modal fade " id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                     <div class="modal-dialog">
-                       <div class="modal-content">
-                             <div class="modal-header">
-                               <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-                               <h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>
-                             </div>
-                             <div class="modal-body">
-                                   <strong>Are you sure to delete?</strong>
-
-                             </div>
-                             <div class="modal-footer">
-                               <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                               <a href="#" class="btn btn-danger danger">Delete</a>
-
-                             </div>
-                       </div>
-                     </div>
-                    </div>
+                              <br><br><br>
 
 
 
 
-                     <!-- Modal for Add Question -->
-                    <div class="modal fade" id="AddQuestionModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                     <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                        <h4 class="modal-title" id="myModalLabel">Add Question </h4>
-                                     </div>
-                                     <div class="modal-body">
 
-
-
-                                     </div>
-
-                                     <div class="modal-footer">
-                                     </div>
-                                </div>
-                            </div>
-                    </div>
-
-
-                    <!-- Modal for View All Question  -->
-                    <div class="modal fade" id="ViewAllQuestionModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                     <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                        <h4 class="modal-title" id="myModalLabel">View All Question</h4>
-                                     </div>
-                                     <div class="modal-body">
-
-
-
-
-                                     </div>
-                                     <div class="modal-footer">
-                                     </div>
-                                </div>
-                            </div>
-                    </div>
-
-                    <!-- Modal for Edit Question Paper  -->
-                    <div class="modal fade" id="EditQuestionPaperModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                     <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                        <h4 class="modal-title" id="myModalLabel">Edit Question Paper</h4>
-                                     </div>
-                                     <div class="modal-body">
-
-
-
-
-                                     </div>
-                                     <div class="modal-footer">
-                                     </div>
-                                </div>
-                            </div>
-                    </div>
-
+@include('examination::prepare_question_paper/_modal')
 
 @stop
