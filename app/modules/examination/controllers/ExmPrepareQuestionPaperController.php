@@ -9,10 +9,48 @@ class ExmPrepareQuestionPaperController extends \BaseController {
         return View::make('examination::prepare_question_paper.index')->with('prepareQuestionPaper', $prepare_question_paper);
 	}
 
+    public function amw_index()
+    {
+        //$prepare_question_paper = ExmQuestion::orderBy('id', 'DESC')->paginate(3);
+        return View::make('examination::prepare_question_paper.amw_index')->with('prepareQuestionPaperByAMW');
+    }
+
+
+    public function faculty_index()
+    {
+        //$prepare_question_paper = ExmQuestion::orderBy('id', 'DESC')->paginate(3);
+        return View::make('examination::prepare_question_paper.faculty_index')->with('prepareQuestionPaperByFACULTY');
+    }
+
+
     public function ViewQuestion()
     {
         $prepare_question_paper = ExmQuestion::orderBy('id', 'DESC')->paginate(3);
         return View::make('examination::prepare_question_paper.viewQuestion')->with('prepareQuestionPaper', $prepare_question_paper);
+    }
+
+    public function amw_ViewQuestion()
+    {
+//        $prepare_question_paper = ExmQuestion::orderBy('id', 'DESC')->paginate(3);
+        return View::make('examination::prepare_question_paper.amw_viewQuestion')->with('prepareQuestionPaper');
+    }
+
+    public function faculty_ViewQuestion()
+    {
+//        $prepare_question_paper = ExmQuestion::orderBy('id', 'DESC')->paginate(3);
+        return View::make('examination::prepare_question_paper.faculty_viewQuestion')->with('prepareQuestionPaper');
+    }
+
+
+    public function amw_QuestionList()
+    {
+    //
+    }
+
+
+    public function faculty_QuestionList()
+    {
+    //
     }
 
 

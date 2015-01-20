@@ -7,6 +7,15 @@ Route::any('examination/create','ExaminationController@create');
 
 //prepare question paper
 Route::any('prepare_question_paper/index','ExmPrepareQuestionPaperController@index');
+
+Route::any('prepare_question_paper/amw_index','ExmPrepareQuestionPaperController@amw_index');
+
+Route::any('prepare_question_paper/faculty_index','ExmPrepareQuestionPaperController@faculty_index');
+
+
+
+
+
 Route::any('prepare_question_paper/create','ExmPrepareQuestionPaperController@createQuestionPaper');
 Route::any('prepare_question_paper/store','ExmPrepareQuestionPaperController@storeQuestionPaper');
 Route::any('prepare_question_paper/show/{id}', [ 'as' => 'prepare_question_paper.show', 'uses' => 'ExmPrepareQuestionPaperController@show' ]);
