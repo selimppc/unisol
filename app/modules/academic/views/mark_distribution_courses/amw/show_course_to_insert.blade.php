@@ -3,7 +3,6 @@
   <h4 class="modal-title">Show Course Item config</h4>
 </div>
 <div class="modal-body">
-
     {{ Form::open(array('url'=>'amw/config/index','method' => '', 'class'=>'form-horizontal')) }}
         <p> Total Marks: {{ $datas->evaluation_total_marks}}</p>
         <div class="form-group">
