@@ -21,7 +21,8 @@
       We’ve sent you an email containing a link that will allow you to reset your password for the next 30 minutes.
     </p>
     <p>
-      Please check your spam folder if the email doesn’t appear within a few minutes.
+      Please check your spam folder if the email doesn’t appear within a few minutes.<br>
+      {{ URL::to('register/verify/'.$link) }}.<br/>
     </p>
     <a href="usersign/login" class="minibutton">
       <span class="octicon octicon-arrow-right"></span>

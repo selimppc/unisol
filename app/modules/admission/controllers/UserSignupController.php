@@ -182,7 +182,29 @@ class UserSignupController extends \BaseController {
 
     public function userPasswordConfirm(){
 
-        return View::make('admission::signup.password_reset_confirm');
+
+        $users = DB::table('user_signup')->select('email')->get();
+        $emailList = array();
+        foreach($users as $user)
+        {
+            $emailList[]=$user->email;
+        }
+        $reset_password_token = str_random(30);
+        $data = array
+        (
+            'message_var' => Input::get('message_details')
+        );
+
+        Mail::send('admission::signup.password_reset_confirm', array('link' => $reset_password_token),  function($message) use ($emailList)
+        {
+            $message->from('test@edutechsolutionsbd.com', 'Mail Notification');
+            $message->to($emailList);
+            $message->cc('tanintjt@gmail.com');
+            $message->subject('Notification');
+
+        });
+
+      return View::make('admission::signup.password_reset_confirm');
     }
 
 

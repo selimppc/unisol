@@ -30,6 +30,8 @@ Route::any('/password_reset', 'UserSignupController@userPassword');
 
 Route::any('/password_reset_confirm', 'UserSignupController@userPasswordConfirm');
 
+Route::get('password_reset_confirm/{confirmation_code}','UserSignupController@userPasswordConfirm');
+
 Route::any('scopeOnline', 'UserSignupController@scopeOnline');
 
 
