@@ -46,9 +46,9 @@
             </tr>
             @endforeach
           </tbody>
-          {{ Form::submit('Delete Items', array('class'=>'btn btn-danger', 'id'=>'hide-button', 'style'=>'display:none'))}}
+
     </table>
-    {{ Form::close() }}
+  
 
 
 
