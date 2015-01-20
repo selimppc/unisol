@@ -134,7 +134,6 @@ class UserSignupController extends \BaseController {
 
     public function UserLogin() {
 
-
 //        $ip = getHostByName(getHostName());
 //        echo $ip;
 //        exit;
@@ -144,12 +143,25 @@ class UserSignupController extends \BaseController {
             'password'=>Input::get('password'),
         );
 
-        if ( Auth::attempt($credentials) ) {
-            return Redirect::to('dashboard')->with('message', 'Logged in!');
-        } else {
-            return Redirect::to('login') ->with('message', 'Your username/password combination was incorrect')
-                ->withInput();
+        if(Auth::check()){
+            $user_id = Auth::user()->username;
+            $pageTitle = 'You are already logged in!';
+            return View::make('dashboard', compact('user_id', 'pageTitle'));
+        }else{
+            if ( Auth::attempt($credentials) ) {
+                return Redirect::to('usersign/dashboard')->with('message', 'Logged in!');
+            } else {
+                return Redirect::to('usersign/login') ->with('message', 'Your username/password combination was incorrect')
+                    ->withInput();
+            }
         }
+
+//        if ( Auth::attempt($credentials) ) {
+//            return Redirect::to('dashboard')->with('message', 'Logged in!');
+//        } else {
+//            return Redirect::to('login') ->with('message', 'Your username/password combination was incorrect')
+//                ->withInput();
+//        }
 
     }
 
@@ -164,7 +176,7 @@ class UserSignupController extends \BaseController {
     public function usersLogout() {
 
         Auth::logout();
-        return Redirect::to('login')->with('message', 'Your are now logged out!');
+        return Redirect::to('usersign/login')->with('message', 'Your are now logged out!');
 
 
     }

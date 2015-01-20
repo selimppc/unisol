@@ -3,9 +3,9 @@
  @if(!Auth::check())
 
         <a href="{{URL::to('user') }}" class="list-group-item">Signup</a>
-        <a href="{{URL::to('/login') }}" class="list-group-item">SignIn</a>
+        <a href="{{URL::to('usersign/login') }}" class="list-group-item">SignIn</a>
  @else
-        <a href="{{URL::to('users/logout') }}" class="list-group-item">Signout</a>
+        <a href="{{URL::to('usersign/logout') }}" class="list-group-item">Signout</a>
   @endif
 
 {{--<li>{{ HTML::link('login', 'Register') }}</li>--}}

@@ -70,8 +70,6 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         // TODO: Implement getRememberTokenName() method.
     }
 
-
-
     //Shafi
     public static function getUserName($userId){
         $data = User::find($userId);
