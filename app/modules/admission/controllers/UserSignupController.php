@@ -146,7 +146,8 @@ class UserSignupController extends \BaseController {
         if(Auth::check()){
             $user_id = Auth::user()->username;
             $pageTitle = 'You are already logged in!';
-            return View::make('dashboard', compact('user_id', 'pageTitle'));
+            echo $pageTitle;
+            //return View::make('usersign/dashboard', compact('user_id', 'pageTitle'));
         }else{
             if ( Auth::attempt($credentials) ) {
                 return Redirect::to('usersign/dashboard')->with('message', 'Logged in!');

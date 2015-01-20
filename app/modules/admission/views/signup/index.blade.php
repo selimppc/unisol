@@ -13,13 +13,13 @@
 {{ Form::open(array('class'=>'form-horizontal','url' => 'user/store', 'method' =>'post', 'files'=>'true','id'=>'signup-form')) }}
  <div class="control-group @if ($errors->has('firstname')) has-error @endif">
 
- <div class="form-group">
-    <span class="text-muted"><em><span style="color:red;">*</span> Indicates required field</em></span>
- </div>
+ {{--<div class="form-group">--}}
+    {{--<span class="text-muted"><em><span style="color:red;">*</span> Indicates required field</em></span>--}}
+ {{--</div>--}}
 
 <span style="color:red;">*</span>
         {{ Form::label('firstname','First Name:') }}
-        {{ Form::text('firstname',Input::old('firstname'), array('class' => 'form-control  has-success','placeholder'=>'Enter your first name','required')) }}
+        {{ Form::text('firstname',Input::old('firstname'), array('class' => 'form-control  has-success','placeholder'=>'Enter your first name','required'=>true)) }}
         @if ($errors->has('firstname')) <p class="help-block" >{{ $errors->first('firstname') }}</p> @endif
  </div>
 
