@@ -85,4 +85,24 @@ class HomeController extends BaseController {
         return Redirect::to('user/login');
     }
 
+
+
+    public function userSignUp(){
+        //$user_id = Auth::user()->username;
+        $pageTitle = '';
+        return View::make('test.user_sign_up', compact('pageTitle'));
+    }
+
+    public function userInfoStore(){
+
+        $validation = Validator::make(Input::all(), array('title' => 'required', 'body' => 'required'));
+            if($validation->fails()) {
+            return Redirect::back()->withInput()->withErrors($validation->messages());
+        }
+
+        echo "You are ok!";
+
+
+    }
+
 }

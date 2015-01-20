@@ -32,8 +32,7 @@
                                             <th>Title</th>
                                             <th>Deadline</th>
                                             <th>Total Marks</th>
-                                            <th>Created by</th>
-                                            <th>Updated by</th>
+
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -47,8 +46,7 @@
                                             <td>{{ $prep_quest_paper->title }}</td>
                                             <td>{{ $prep_quest_paper->deadline }}</td>
                                             <td>{{ $prep_quest_paper->total_marks }}</td>
-                                            <td>{{ $prep_quest_paper->created_by }}</td>
-                                            <td>{{ $prep_quest_paper->updated_by }}</td>
+
                                            <td>
                                               <a href="{{ URL::route('prepare_question_paper.edit', ['id'=>$prep_quest_paper->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#edit-modal" data-placement="left" title="Edit" href="#">Edit</a>
                                                  {{--<span class="glyphicon glyphicon-edit text-info"></span>--}}

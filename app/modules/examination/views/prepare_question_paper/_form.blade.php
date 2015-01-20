@@ -23,12 +23,7 @@
                </div>
 
                <div class="form-group">
-                     {{ Form::label('created_by', 'Created By') }}
-                     {{ Form::text('created_by', Input::old('created_by'), array('class' => 'form-control','required'=>'required')) }}
-               </div>
-
-               <div class="form-group">
-                      {{ Form::label('updated_by', 'Updated By') }}
+                      {{ Form::label('updated_by', 'Assign To') }}
                       {{ Form::text('updated_by', Input::old('updated_by'), array('class' => 'form-control','required'=>'required')) }}
                </div>
 

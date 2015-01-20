@@ -30,11 +30,20 @@
 
 
 /** add field style **/
- .option_class{
-     width: 200px;
-     padding: 3px;
-     margin-bottom: 10px;
- }
+.option_class{
+       width: 200px;
+       padding: 3px;
+       margin-bottom: 10px;
+}
+
+
+.answer_class{
+    width: 200px;
+    padding: 3px;
+    margin-bottom: 10px;
+}
+
+
 .remove{
     cursor: pointer;
     border: 1px solid #efefef;
