@@ -18,7 +18,6 @@
               <th>
               <input name="id" type="checkbox" id="checkbox" class="checkbox" value="">
                </th>
-                <th>Id</th>
                 <th>Title</th>
                 <th>Action</th>
             </tr>
@@ -29,7 +28,6 @@
             <tr>
                 <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $value->id }}">
                 </td>
-                <td>{{$value->id}}</td>
                 <td>{{$value->title}}</td>
 
                 <td>

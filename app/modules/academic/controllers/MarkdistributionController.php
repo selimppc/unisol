@@ -165,8 +165,13 @@ class MarkdistributionController extends \BaseController {
        $datas = Course::all();
        return View::make('academic::mark_distribution_courses.amw.index_course_config')->with('title', 'Course List')->with('datas', $datas);
 
-
     }
+    public function find_course_info($id)
+    {
+        $data = Course::find($id);
+        return View::make('academic::mark_distribution_courses.amw.show_course_to_insert')->with('datas',$data);
+    }
+
 
     public function config_save()
     {
