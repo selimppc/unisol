@@ -157,18 +157,9 @@ class UserSignupController extends \BaseController {
             }
         }
 
-//        if ( Auth::attempt($credentials) ) {
-//            return Redirect::to('dashboard')->with('message', 'Logged in!');
-//        } else {
-//            return Redirect::to('login') ->with('message', 'Your username/password combination was incorrect')
-//                ->withInput();
-//        }
-
     }
 
     public function Dashboard(){
-
-
 
         return View::make('admission::signup.dashboard');
     }
@@ -183,11 +174,18 @@ class UserSignupController extends \BaseController {
     }
 
 
-    public function scopeOnline()
-    {
-        UserSignup::online()->count();
-        //return $query->whereRaw('TIMESTAMPDIFF(MINUTE, updated_at, NOW()) <= 60');
+   public function userPassword(){
+
+       return View::make('admission::signup.password_reset');
+       return Redirect::to('usersign/login');
+   }
+
+    public function userPasswordConfirm(){
+
+        return View::make('admission::signup.password_reset_confirm');
     }
+
+
     public function show($id)
 	{
 		//
