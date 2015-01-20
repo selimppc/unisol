@@ -5,12 +5,25 @@
 Route::any('examination/index','ExaminationController@index');
 Route::any('examination/create','ExaminationController@create');
 
-//prepare question paper
+//prepare question paper : INDEX
 Route::any('prepare_question_paper/index','ExmPrepareQuestionPaperController@index');
 
 Route::any('prepare_question_paper/amw_index','ExmPrepareQuestionPaperController@amw_index');
 
 Route::any('prepare_question_paper/faculty_index','ExmPrepareQuestionPaperController@faculty_index');
+
+//prepare question paper : View Question
+Route::any('prepare_question_paper/ViewQuestion','ExmPrepareQuestionPaperController@ViewQuestion');
+
+Route::any('prepare_question_paper/amw_ViewQuestion','ExmPrepareQuestionPaperController@amw_ViewQuestion');
+
+Route::any('prepare_question_paper/faculty_ViewQuestion','ExmPrepareQuestionPaperController@faculty_ViewQuestion');
+
+//prepare question paper : View QuestionList
+Route::any('prepare_question_paper/amw_QuestionList','ExmPrepareQuestionPaperController@amw_QuestionList');
+
+Route::any('prepare_question_paper/faculty_QuestionList','ExmPrepareQuestionPaperController@faculty_QuestionList');
+
 
 
 
