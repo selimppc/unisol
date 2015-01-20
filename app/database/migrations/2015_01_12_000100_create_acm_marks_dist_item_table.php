@@ -16,8 +16,8 @@ class CreateAcmMarksDistItemTable extends Migration {
 		{
 			$table->increments('id');
             $table->string('title',128);
-            $table->unsignedInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('user')->onDelete('cascade');
+            //$table->unsignedInteger('user_id');
+            // $table->foreign('user_id')->references('id')->on('user')->onDelete('cascade');
             $table->timestamps();
 		});
 	}
