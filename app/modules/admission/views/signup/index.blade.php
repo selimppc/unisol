@@ -13,9 +13,9 @@
 {{ Form::open(array('class'=>'form-horizontal','url' => 'user/store', 'method' =>'post', 'files'=>'true','id'=>'signup-form')) }}
  <div class="control-group @if ($errors->has('firstname')) has-error @endif">
 
- {{--<div class="form-group">--}}
-    {{--<span class="text-muted"><em><span style="color:red;">*</span> Indicates required field</em></span>--}}
- {{--</div>--}}
+ <div class="form-group">
+    <span class="text-muted"><em><span style="color:red;">  * </span><b>Indicates required field</b> </em></span>
+ </div>
 
 <span style="color:red;">*</span>
         {{ Form::label('firstname','First Name:') }}

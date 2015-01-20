@@ -26,6 +26,10 @@ Route::any('usersign/logout', 'UserSignupController@usersLogout');
 
 Route::any('usersign/dashboard', 'UserSignupController@Dashboard');
 
+Route::any('/password_reset', 'UserSignupController@userPassword');
+
+Route::any('/password_reset_confirm', 'UserSignupController@userPasswordConfirm');
+
 Route::any('scopeOnline', 'UserSignupController@scopeOnline');
 
 
