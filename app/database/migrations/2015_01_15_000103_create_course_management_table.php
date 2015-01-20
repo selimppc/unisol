@@ -15,8 +15,9 @@ class CreateCourseManagementTable extends Migration {
 		Schema::create('course_management', function(Blueprint $table)
 		{
 			$table->increments('id');
-            $table->unsignedInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('user')->onDelete('cascade');
+
+// $table->unsignedInteger('user_id');
+//$table->foreign('user_id')->references('id')->on('user')->onDelete('cascade');
             $table->unsignedInteger('degree_program_id');
             $table->foreign('degree_program_id')->references('id')->on('degree_program')->onDelete('cascade');
             $table->unsignedInteger('course_id');
@@ -33,8 +34,9 @@ class CreateCourseManagementTable extends Migration {
             $table->dateTime('end_date');
             $table->string('created_by',32);
             $table->string('updated_by',32);
-            $table->timestamps();
+
             $table->engine = 'InnoDB';
+			$table->timestamps();
 		});
 	}
 

@@ -22,8 +22,8 @@ class CreateAcmCourseConfigTable extends Migration {
             $table->tinyInteger('marks', false, 3)->unsigned();
             $table->boolean('readonly');
             $table->boolean('default_item');
-            $table->unsignedInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('user')->onDelete('cascade');
+//            $table->unsignedInteger('user_id');
+//            $table->foreign('user_id')->references('id')->on('user')->onDelete            ('cascade');
 			$table->timestamps();
 		});
 	}

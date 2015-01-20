@@ -134,7 +134,7 @@ class MarkdistributionController extends \BaseController {
     }
     public function amw_batchdelete()
     {
-        Session::flash('danger', "Years Deleted successfully");
+        Session::flash('danger', " Deleted successfully");
         AcmMarksDist::destroy(Request::get('id'));
         return Redirect::to('amw/index')->with('title','All Courses Item List');
     }
@@ -157,9 +157,15 @@ class MarkdistributionController extends \BaseController {
    public function config_index()
    {
     //return View::make('academic::mark_distribution_courses.amw.index_course_config')->with('title','All Course config List');
+//
+//       $data = AcmCourseConfig::orderBy('id', 'ASC')->paginate(5);
+//       return View::make('academic::mark_distribution_courses.amw.index_course_config')
+    //->with('datas', $data)->with('title','All Course config List');
 
-       $data = AcmCourseConfig::orderBy('id', 'ASC')->paginate(5);
-       return View::make('academic::mark_distribution_courses.amw.index_course_config')->with('datas', $data)->with('title','All Course config List');
+       $datas = Course::all();
+       return View::make('academic::mark_distribution_courses.amw.index_course_config')->with('title', 'Course List')->with('datas', $datas);
+
+
     }
 
     public function config_save()
@@ -248,6 +254,13 @@ class MarkdistributionController extends \BaseController {
         AcmCourseConfig::destroy(Request::get('id'));
         return Redirect::to('amw/config/index')->with('title','All Course config List');
     }
+//To show course list
+//    public function getCourse_list()
+//    {
+//        $datas = Course::all();
+//        return View::make('academic::mark_distribution_courses.amw.course')->with('title', 'Course List')->with('datas', $datas);
+//    }
+
 
 
 //End code
