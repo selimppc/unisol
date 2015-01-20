@@ -33,6 +33,7 @@ $(function() {
         label.innerHTML = "Option "+ count + ":";
         div.appendChild(label);
 
+
         var input = document.createElement("input");
         input.id = 'option'+count;
         input.className = 'option_class';
@@ -40,17 +41,47 @@ $(function() {
         input.type = "text";
         div.appendChild(input);
 
+
+        //Radio
+        // <input type="radio" name="answerType" id="inlineRadio2" value="Female">
+        var input = document.createElement("input");
+        input.id = 'answer'+count;
+        input.className = 'radio_class';
+        input.name = 'answer[]';
+        //input.type = "radio";
+        input.type = "checkbox";
+
+        div.appendChild(input);
+
+
+
         field_area.appendChild(div);
         //remove area
         var removalLink = document.createElement('a');
         removalLink.className = "remove";
 
         removalLink.onclick = function(){
-        field_area.removeChild(div);
-        }
-        removalLink.appendChild(document.createTextNode('remove'));
-        div.appendChild(removalLink);
-        count++;
+            field_area.removeChild(div);
+            }
+            removalLink.appendChild(document.createTextNode('Remove (-)'));
+            div.appendChild(removalLink);
+            count++;
         }
 
+});
+
+
+// hide and seek
+
+
+$(function() {
+
+    $(document).ready(function(){
+        $("input[name='mcq']").click(function() {
+
+            var test = $(this).val();
+            $(".descriptive").hide();
+            $("#"+test).show();
+        });
+    });
 });
