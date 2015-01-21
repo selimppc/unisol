@@ -36,7 +36,7 @@
                <td>
                <a href="{{ URL::route('coursefind.show', ['id'=>$value->id])  }}" class="btn btn-primary" data-toggle="modal" data-target="#addNew" data-toggle="tooltip" data-placement="left" title="Show/View" href="">Marks Dist</a>
 
-               <a href="" class="btn btn-default" data-toggle="modal" data-target="" data-toggle="tooltip" data-placement="left" title="Show/View" href="">View Dist</a>
+               <a href="{{ URL::route('config.show', ['id'=>$value->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#showModal" data-toggle="tooltip" data-placement="left" title="Show/View" href="">View Dist</a>
                </td>
             </tr>
             @endforeach
@@ -56,5 +56,23 @@
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
+ <!-- Show Modal -->
+<div class="modal fade" id="showModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true">
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+       <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+      <h4 class="modal-title" id="myModalLabel">Show Course Item</h4>
+    </div>
+  <div class="modal-body">
 
+
+
+  </div>
+  <div class="modal-footer">
+   <button type="button" class="btn btn-danger" data-dismiss="modal" >Cencel</button>
+  </div>
+  </div>
+</div>
+</div>
 @stop
