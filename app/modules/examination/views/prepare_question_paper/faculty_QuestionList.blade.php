@@ -7,7 +7,7 @@
 @section('content')
 
 
-             <h1>Welcome to View Question : AMW </h1> <br>
+             <h1>Welcome to Question List : Faculty </h1> <br>
 
 
               <table id="example" class="table table-striped  table-bordered"  >
@@ -27,17 +27,17 @@
                              <th><input name="id" type="checkbox" id="checkbox" class="checkbox" value=""></th>
 
                              <th>Title</th>
-                             <th>Question Type</th>
-                             <th>Answer Type</th>
+                             <th>Type</th>
+                             <th>Marks</th>
                              <th>Action</th>
                          </tr>
                      </thead>
                      <tbody>
 
-                       @foreach($viewPrepareQuestionPaperAmw as $view_question_amw)
+                       @foreach($QuestionListFaculty as $question_list_faculty)
                          <tr>
 
-                             <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="  {{ $view_question_amw->id }}"></td>
+                             <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="  {{ $question_list_faculty->id }}"></td>
 
                              <td>a</td>
                              <td>a</td>

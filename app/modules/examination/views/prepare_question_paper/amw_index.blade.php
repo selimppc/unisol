@@ -28,7 +28,7 @@
 
                                         <tr>
                                             <th><input name="id" type="checkbox" id="checkbox" class="checkbox" value=""></th>
-                                            <th>Title</th>
+                                            {{--<th>Title</th>--}}
                                             <th>Deadline</th>
                                             <th>Department</th>
                                             <th>Year</th>
@@ -39,25 +39,25 @@
                                     </thead>
                                     <tbody>
 
-                                      {{--@foreach($prepareQuestionPaperByAMW as $prep_quest_paper)--}}
+                                      {{--@foreach($prepareQuestionPaperByAMW as $prepare_question_paper_amw)--}}
                                         {{--<tr>--}}
 
-                                            {{--<td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $prep_quest_paper->id }}"></td>--}}
-                                            {{--<td>{{ ExmExamList::getExamName($prep_quest_paper->exm_exam_list_id) }}</td>--}}
-                                            {{--<td>{{ $prep_quest_paper->title }}</td>--}}
-                                            {{--<td>{{ $prep_quest_paper->deadline }}</td>--}}
-                                            {{--<td>{{ $prep_quest_paper->total_marks }}</td>--}}
-                                            {{--<td>{{ $prep_quest_paper->total_marks }}</td>--}}
-                                            {{--<td>{{ $prep_quest_paper->total_marks }}</td>--}}
+                                            {{--<td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $prepare_question_paper_amw->id }}"></td>--}}
+                                            {{--<td>{{ ExmExamList::getExamName($prepare_question_paper_amw->exm_exam_list_id) }}</td>--}}
+                                            {{--<td>{{ $prepare_question_paper_amw->title }}</td>--}}
+                                            {{--<td>{{ $prepare_question_paper_amw->deadline }}</td>--}}
+                                            {{--<td>{{ $prepare_question_paper_amw->total_marks }}</td>--}}
+                                            {{--<td>{{ $prepare_question_paper_amw->total_marks }}</td>--}}
+                                            {{--<td>{{ $prepare_question_paper_amw->total_marks }}</td>--}}
 
                                            {{--<td>--}}
-                                              {{--<a href="{{ URL::route('prepare_question_paper.edit', ['id'=>$prep_quest_paper->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#edit-modal" data-placement="left" title="Edit" href="#">Edit</a>--}}
+                                              {{--<a href="{{ URL::route('prepare_question_paper.edit', ['id'=>$prepare_question_paper_amw->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#edit-modal" data-placement="left" title="Edit" href="#">Edit</a>--}}
                                                  {{--<span class="glyphicon glyphicon-edit text-info"></span>--}}
 
-                                              {{--<a data-href="{{ URL::route('prepare_question_paper.destroy',['id'=>$prep_quest_paper->id]) }}" class="btn btn-danger" data-toggle="modal" data-target="#confirm-delete" data-placement="left" title="Delete" href="#" >Delete</a>--}}
+                                              {{--<a data-href="{{ URL::route('prepare_question_paper.destroy',['id'=>$prepare_question_paper_amw->id]) }}" class="btn btn-danger" data-toggle="modal" data-target="#confirm-delete" data-placement="left" title="Delete" href="#" >Assign </a>--}}
                                                   {{--<span class="glyphicon glyphicon-trash text-danger"></span>--}}
 
-                                              {{--<a href="{{ URL::route('prepare_question_paper.show', ['id'=>$prep_quest_paper->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#showModal" data-placement="left" title="Show" href="#">View</a>--}}
+                                              {{--<a href="{{ URL::route('prepare_question_paper.show', ['id'=>$prepare_question_paper_amw->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#showModal" data-placement="left" title="Show" href="#">View</a>--}}
                                                    {{--<span class="glyphicon glyphicon-list-alt text-info"></span>--}}
 
                                                    {{--<br>--}}
@@ -76,7 +76,7 @@
 
                     {{form::close() }}
 
-                              {{--{{ $prepareQuestionPaper->links() }}--}}
+                              {{ $prepareQuestionPaperByAMW->links() }}
 
                               <br><br><br>
 
