@@ -11,15 +11,15 @@ class ExmPrepareQuestionPaperController extends \BaseController {
 
     public function amw_index()
     {
-        //$prepare_question_paper = ExmQuestion::orderBy('id', 'DESC')->paginate(3);
-        return View::make('examination::prepare_question_paper.amw_index')->with('prepareQuestionPaperByAMW');
+        $prepare_question_paper_amw = ExmQuestion::orderBy('id', 'DESC')->paginate(3);
+        return View::make('examination::prepare_question_paper.amw_index')->with('prepareQuestionPaperByAMW',$prepare_question_paper_amw);
     }
 
 
     public function faculty_index()
     {
-        //$prepare_question_paper = ExmQuestion::orderBy('id', 'DESC')->paginate(3);
-        return View::make('examination::prepare_question_paper.faculty_index')->with('prepareQuestionPaperByFACULTY');
+        $prepare_question_paper_faculty = ExmQuestion::orderBy('id', 'DESC')->paginate(3);
+        return View::make('examination::prepare_question_paper.faculty_index')->with('prepareQuestionPaperByFACULTY',$prepare_question_paper_faculty);
     }
 
 
@@ -31,26 +31,28 @@ class ExmPrepareQuestionPaperController extends \BaseController {
 
     public function amw_ViewQuestion()
     {
-//        $prepare_question_paper = ExmQuestion::orderBy('id', 'DESC')->paginate(3);
-        return View::make('examination::prepare_question_paper.amw_viewQuestion')->with('prepareQuestionPaper');
+        $view_question_amw = ExmQuestion::orderBy('id', 'DESC')->paginate(3);
+        return View::make('examination::prepare_question_paper.amw_viewQuestion')->with('viewPrepareQuestionPaperAmw',$view_question_amw);
     }
 
     public function faculty_ViewQuestion()
     {
-//        $prepare_question_paper = ExmQuestion::orderBy('id', 'DESC')->paginate(3);
-        return View::make('examination::prepare_question_paper.faculty_viewQuestion')->with('prepareQuestionPaper');
+        $view_question_faculty = ExmQuestion::orderBy('id', 'DESC')->paginate(3);
+        return View::make('examination::prepare_question_paper.faculty_viewQuestion')->with('viewPrepareQuestionPaperFaculty',$view_question_faculty);
     }
 
 
     public function amw_QuestionList()
     {
-    //
+        $question_list_amw = ExmQuestion::orderBy('id', 'DESC')->paginate(3);
+        return View::make('examination::prepare_question_paper.amw_QuestionList')->with('QuestionListAmw',$question_list_amw);
     }
 
 
     public function faculty_QuestionList()
     {
-    //
+        $question_list_faculty = ExmQuestion::orderBy('id', 'DESC')->paginate(3);
+        return View::make('examination::prepare_question_paper.faculty_QuestionList')->with('QuestionListFaculty',$question_list_faculty);
     }
 
 
