@@ -6,8 +6,7 @@
 	"type": "project",
 	"require": {
 		"laravel/framework": "4.2.*",
-        "phpunit/phpunit": "3.7.*",
-        "doctrine/dbal": "~2.3"
+        "phpunit/phpunit": "3.7.*"
 
 	},
 	"autoload": {

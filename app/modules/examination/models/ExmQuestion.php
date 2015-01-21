@@ -2,9 +2,18 @@
 
 class ExmQuestion extends \Eloquent
 {
-    protected $table = 'exm_question';
+    protected $table = 'exm_questions';
 
     private $errors;
+
+
+
+    public static function getCourseId($exmId){
+        $data = CourseManagement::find($exmId);
+        return $data->year_id;
+    }
+
+
     // 1
     private $rules = array(
         'exm_exam_list_id'  => 'required',
@@ -15,6 +24,8 @@ class ExmQuestion extends \Eloquent
         'updated_by' => 'required',
 
     );
+
+
 
 
     public function validate($data)
@@ -36,6 +47,8 @@ class ExmQuestion extends \Eloquent
     {
         return $this->errors;
     }
+
+
 
 }
 ?>
