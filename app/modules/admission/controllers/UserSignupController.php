@@ -1,17 +1,9 @@
 <?php
 
-//use Illuminate\Support\Facades\Input;
-//use Illuminate\Support\Facades\Auth;
-//use Illuminate\Auth\UserInterface;
-//use Illuminate\Routing\Controller;
-
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class UserSignupController extends \BaseController {
-
-
-
 
 	public function Userindex()
 	{
@@ -64,12 +56,9 @@ class UserSignupController extends \BaseController {
 
                 if ($data->save()) {
 
-
-
                     Mail::send('admission::signup.verify', array('link' =>'ok', 'username' => Input::get('firstname')), function ($message) {
                         $message->to(Input::get('email'), Input::get('username'))->subject('Verify your email address');
                     });
-
 
                     Session::flash('message', "Thanks for signing up! Please check your email.");
 
@@ -80,11 +69,9 @@ class UserSignupController extends \BaseController {
 
                     return Redirect::to('user')->with('message', 'Signup Here ');
                 }
-
             }
         }
     }
-
 
     public function send_users_email()
     {
@@ -106,19 +93,16 @@ class UserSignupController extends \BaseController {
             $message->to($emailList);
             $message->cc('tanintjt@gmail.com');
             $message->subject('Notification');
-
         });
     }
 
     public function confirm($confirmation_code)
     {
         $user = UserSignup::where('confirmation_code','=',$confirmation_code);
-
         if($user->count())
         {
             $user = $user->first();
             $user->confirmation_code = '';
-
         }
         Session::flash('message','Your account activated successfully. You can signin now.');
 
@@ -156,7 +140,6 @@ class UserSignupController extends \BaseController {
                     ->withInput();
             }
         }
-
     }
 
     public function Dashboard(){
@@ -173,40 +156,70 @@ class UserSignupController extends \BaseController {
 
     }
 
-
-   public function userPassword(){
+    public function userPassword(){
 
        return View::make('admission::signup.password_reset');
        return Redirect::to('usersign/login');
    }
 
-    public function userPasswordConfirm(){
 
+    public function userPasswordResetMail(){
 
-//        $users = DB::table('user')->select('email')->get();
-//        $emailList = array();
-//        foreach($users as $user)
-//        {
-//            $emailList[]=$user->email;
-//        }
-//        $reset_password_token = str_random(30);
-//        $data = array
-//        (
-//            'message_var' => Input::get('message_details')
-//        );
-//
-//        Mail::send('admission::signup.password_reset_confirm', array('link' => $reset_password_token),  function($message) use ($emailList)
-//        {
-//            $message->from('test@edutechsolutionsbd.com', 'Mail Notification');
-//            $message->to($emailList);
-//            $message->cc('tanintjt@gmail.com');
-//            $message->subject('Notification');
-//
-//        });
+        $rules = array(
+            'email_address' => 'Required|email|exists:user',
+        );
+        $validator = Validator::make(Input::all(), $rules);
+        if($validator->Fails()){
+            Session::flash('message', 'This Email address does not exit');
 
-      return View::make('admission::signup.password_reset_confirm');
+            return Redirect::back();
+        }
+        else{
+            $email_address = Input::get('email_address');
+            $users = DB::table('user')->where('email_address', $email_address)->first();
+            $user_id = $users->id;
+
+            //random number with 30 character
+            $reset_password_token = str_random(30);
+            $reset_password_expire=date('Y-m-d h:i:s', time());;
+            $reset_password_time=date('Y-m-d h:i:s', time());;
+            $data = new UserResetPassword();
+
+            $data->user_id = $user_id;
+            $data->reset_password_token = $reset_password_token;
+            $data->reset_password_expire = $reset_password_expire;
+            $data->reset_password_time = $reset_password_time;
+            $data->status = "2"; // 2 == reset requested
+
+            if($data->save())
+            {
+//                echo "Saved !";
+             Mail::send('admission::signup.password_reset_mail', array('link' =>$reset_password_token),  function($message) use ($email_address)
+           {
+              $message->from('test@edutechsolutionsbd.com', 'Mail Notification');
+              $message->to($email_address);
+              $message->cc('tanintjt@gmail.com');
+              $message->subject('Notification');
+
+           });
+            }
+        }
     }
 
+    public function userPasswordResetConfirm($reset_password_token){
+
+        $user = UserSignup::where('reset_password_token','=',$reset_password_token);
+        if($user->count())
+        {
+            $user = $user->first();
+            $user->reset_password_token = '';
+        }
+        Session::flash('message','Your account activated successfully.');
+        echo 'ok';
+        exit;
+
+        return Redirect::to('user');
+    }
 
     public function show($id)
 	{

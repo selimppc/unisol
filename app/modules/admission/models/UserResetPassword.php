@@ -5,13 +5,9 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class UserSignup extends Eloquent implements UserInterface, RemindableInterface {
+class UserResetPassword extends Eloquent implements UserInterface, RemindableInterface {
 
-
-    protected $table = 'user_signup';
-
-//    protected $user_password_table = 'user_reset_password';
-//    protected $user_table='user';
+    protected $table = 'user_reset_password';
 
     public function getReminderEmail()
     {
