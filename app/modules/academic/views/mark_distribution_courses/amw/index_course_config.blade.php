@@ -18,7 +18,6 @@
                 <th>Hours Per Credit</th>
                 <th>Cost Per Credit</th>
                 <th>Action</th>
-
             </tr>
         </thead>
 
@@ -35,25 +34,27 @@
                <td>{{ $value->hours_per_credit }}</td>
                <td>{{ $value->cost_per_credit }}</td>
                <td>
-                 {{--<a href="{{ URL::route('course.edit', ['id'=>$course->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#edit-modal" data-toggle="tooltip" data-placement="left" title="Edit" href="#"><span class="glyphicon glyphicon-edit text-info"></span></a>--}}
+               <a href="{{ URL::route('coursefind.show', ['id'=>$value->id])  }}" class="btn btn-primary" data-toggle="modal" data-target="#addNew" data-toggle="tooltip" data-placement="left" title="Show/View" href="">Marks Dist</a>
 
-                 {{--<a data-href="{{ URL::route('course.destroy',['id'=>$course->id]) }}" class="btn btn-danger" data-toggle="modal" data-target="#confirm-delete" data-toggle="tooltip" data-placement="left" title="Delete" href="" ><span class="glyphicon glyphicon-trash text-danger"></span></a>--}}
-
-                 {{--<a href="{{ URL::route('course.show', ['id'=>$course->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#showModal" data-toggle="tooltip" data-placement="left" title="Show/View" href=""><span class="glyphicon glyphicon-list-alt text-info"></span></a>--}}
-
-              </td>
-
+               <a href="" class="btn btn-default" data-toggle="modal" data-target="" data-toggle="tooltip" data-placement="left" title="Show/View" href="">View Dist</a>
+               </td>
             </tr>
             @endforeach
           </tbody>
-          {{ Form::submit('Delete Items', array('class'=>'btn btn-danger', 'id'=>'hide-button', 'style'=>'display:none'))}}
+
     </table>
-    {{ Form::close() }}
 
-
-
-
-{{--End all modal for amw course config--}}
+{{--Start all modal for amw--}}
 {{---------------------------------------------}}
+
+<!-- Add New Item Modal -->
+<div class="modal fade" id="addNew" tabindex="-1" role="dialog" aria-labelledby="addScholarship" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 
 @stop
