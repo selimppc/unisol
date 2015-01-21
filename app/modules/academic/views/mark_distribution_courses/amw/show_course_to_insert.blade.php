@@ -3,22 +3,26 @@
   <h4 class="modal-title">Show Course Item config</h4>
 </div>
 <div class="modal-body">
-    {{ Form::open(array('url'=>'amw/config/index','method' => '', 'class'=>'form-horizontal')) }}
-        <p> Total Marks: {{ $datas->evaluation_total_marks}}</p>
-        <div class="form-group">
-            {{ Form::hidden('course_id', $datas->id, ['class'=>'form-control'])}}
-            {{ Form::hidden('course_title', $datas->title, ['class'=>'form-control'])}}
-        </div>
-        <div class="form-group">
-           <div class="col-md-8">
-                {{ Form::select('acm_marks_dist_item_id', [''=>'Select Option'] + AcmMarksDist::orderBy('title')->lists('title', 'id'),Input::old('acm_marks_dist_item_id'), ['class'=>'form-control']) }}
-           </div>
-           <div class="col-md-4">
-               {{ Form::submit('ADD', ['class'=>'btn btn-info']) }}
-           </div>
-        </div>
-    {{ Form::close() }}
-
+    
+  <p> Total Marks: {{ $datas->evaluation_total_marks}}</p>
+        
+   
+   <div class="form-horizontal">
+      <div class="form-group">
+          {{ Form::hidden('course_id', $datas->id, ['class'=>'form-control course_id'])}}
+          {{ Form::hidden('course_title', $datas->title, ['class'=>'form-control course_title'])}}
+          {{ Form::hidden('course_evaluation_total_marks', $datas->evaluation_total_marks, ['class'=>'form-control course_evalution_marks'])}}
+      </div>
+      <div class="form-group">
+         <div class="col-md-4">
+              {{ Form::select('acm_marks_dist_item_id', [''=>'Select Option'] + AcmMarksDist::orderBy('title')->lists('title', 'id'),Input::old('acm_marks_dist_item_id'), ['class'=>'form-control addConfigListItem']) }}
+         </div>
+         <div class="col-md-4">
+             {{ Form::submit('ADD', ['class'=>'btn btn-info addConfigList','onClick'=>'addCourseListItem()']) }}
+         </div>
+      </div>
+   </div>
+  {{ Form::open(array('url'=>'amw/course/marks/save','method' => '')) }}
     <table class="table table-bordered">
         <thead>
             <th>Item</th>
@@ -28,19 +32,14 @@
             <th>Actual Marks</th>
             <th>Action</th>
         </thead>
-        <tbody>
-           {{Form::open()}}
-            <tr>
-                <td>Attendance</td>
-                <td>{{ Form::text('marks_percent', Input::old('marks_percent'), ['class'=>'']) }}</td>
-                <td>{{ Form::checkbox('is_readOnly[]', 1, true, ['class' => '']) }}</td>
-                <td>{{ Form::radio('is_default[]', 1, true, ['class' => '']) }}</td>
-                <td>10</td>
-                <td><a class="btn btn-sm btn-default" href="" ><span class="glyphicon glyphicon-trash text-danger"></span></a></td>
-            </tr>
-           {{Form::close()}}
-        </tbody>
+                
+        <tbody class="acm_course_config_list">           
+                       
+        </tbody>        
+        <tr><td colspan="6">{{ Form::submit('Submit', ['class'=>'btn btn-info'] ) }}</td></tr>
+        
     </table>
+    {{Form::close()}}
 </div>
 <div class="modal-footer">
     <a href="{{URL::to('amw/config/index')}}" class="btn btn-default">Close </a>

@@ -89,8 +89,9 @@ class HomeController extends BaseController {
 
     public function userSignUp(){
         //$user_id = Auth::user()->username;
+        $model = new User();
         $pageTitle = '';
-        return View::make('test.user_sign_up', compact('pageTitle'));
+        return View::make('test.user_sign_up', compact('model'));
     }
 
     public function userInfoStore(){

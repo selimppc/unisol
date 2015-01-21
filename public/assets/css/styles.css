@@ -55,5 +55,8 @@
     padding: 3px;
     cursor: pointer;
 }
-
+/***********For amw course config************/
+.acm_course_config_list input{
+    width: 70px;
+}
 
