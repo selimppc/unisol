@@ -3,12 +3,12 @@
 class ExmPrepareQuestionPaperController extends \BaseController {
 
 
-	public function index()
-	{
-        $prepare_question_paper = ExmQuestion::orderBy('id', 'DESC')->paginate(3);
-        return View::make('examination::prepare_question_paper.index')->with('prepareQuestionPaper', $prepare_question_paper);
-        //ok
-	}
+//	public function index()
+//	{
+//        $prepare_question_paper = ExmQuestion::orderBy('id', 'DESC')->paginate(3);
+//        return View::make('examination::prepare_question_paper.index')->with('prepareQuestionPaper', $prepare_question_paper);
+//        //ok
+//	}
 
     public function amw_index()
     {
@@ -32,9 +32,6 @@ class ExmPrepareQuestionPaperController extends \BaseController {
 
         return View::make('examination::prepare_question_paper.amw_index')->with('prepareQuestionPaperByAMW',$data);
 
-
-
-
     }
 
 
@@ -45,16 +42,30 @@ class ExmPrepareQuestionPaperController extends \BaseController {
     }
 
 
-    public function ViewQuestion()
-    {
-        $prepare_question_paper = ExmQuestion::orderBy('id', 'DESC')->paginate(3);
-        return View::make('examination::prepare_question_paper.viewQuestion')->with('prepareQuestionPaper', $prepare_question_paper);
-    }
+//    public function ViewQuestion()
+//    {
+//        $prepare_question_paper = ExmQuestion::orderBy('id', 'DESC')->paginate(3);
+//        return View::make('examination::prepare_question_paper.viewQuestion')->with('prepareQuestionPaper', $prepare_question_paper);
+//    }
 
-    public function amw_ViewQuestion()
+//    public function show($id)
+//    {
+//        $prepare_question_paper = ExmQuestion::find($id);
+//
+//        if($prepare_question_paper)
+//        {
+//            return View::make('examination::prepare_question_paper.show')->with('prepareQuestionPaper',$prepare_question_paper);
+//        }
+//        //ok
+//    }
+
+    public function amw_ViewQuestion($id)
     {
-        $view_question_amw = ExmQuestion::orderBy('id', 'DESC')->paginate(3);
-        return View::make('examination::prepare_question_paper.amw_viewQuestion')->with('viewPrepareQuestionPaperAmw',$view_question_amw);
+        $view_question_amw = ExmQuestion::find($id);
+
+        if($view_question_amw) {
+            return View::make('examination::prepare_question_paper.amw_viewQuestion')->with('viewPrepareQuestionPaperAmw', $view_question_amw);
+        }//ok
     }
 
     public function faculty_ViewQuestion()
@@ -79,7 +90,7 @@ class ExmPrepareQuestionPaperController extends \BaseController {
 
 
 
-	public function createQuestionPaper()
+	public function amw_createQuestionPaper()
 	{
         return View::make('examination::prepare_question_paper.create');
         //ok
@@ -87,7 +98,7 @@ class ExmPrepareQuestionPaperController extends \BaseController {
 
 
 
-	public function storeQuestionPaper()
+	public function amw_storeQuestionPaper()
 	{
         $data = Input::all();
 
@@ -96,7 +107,7 @@ class ExmPrepareQuestionPaperController extends \BaseController {
         if ($prepare_question_paper->validate($data))
         {
             // success code
-            $prepare_question_paper->exm_exam_list_id = Input::get('exm_exam_list_id');
+            $prepare_question_paper->exm_exam_lists_id = Input::get('exm_exam_lists_id');
             $prepare_question_paper->title = Input::get('title');
             $prepare_question_paper->deadline = Input::get('deadline');
             $prepare_question_paper->total_marks = Input::get('total_marks');
@@ -106,7 +117,7 @@ class ExmPrepareQuestionPaperController extends \BaseController {
 
             // redirect
             Session::flash('message', 'Successfully Added!');
-            return Redirect::to('prepare_question_paper/index');
+            return Redirect::to('prepare_question_paper/amw_index');
         }
         else
         {
@@ -120,32 +131,29 @@ class ExmPrepareQuestionPaperController extends \BaseController {
 	}
 
 
-    public function show($id)
-    {
-        $prepare_question_paper = ExmQuestion::find($id);
-
-        if($prepare_question_paper)
-        {
-            return View::make('examination::prepare_question_paper.show')->with('prepareQuestionPaper',$prepare_question_paper);
-        }
-        //ok
-    }
 
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function edit($id)
+
+//    public function edit($id)
+//    {
+//        $prepare_question_paper = ExmQuestion::find($id);
+//
+//        // Show the edit employee form.
+//        return View::make('examination::prepare_question_paper.edit')->with('prepareQuestionPaper',$prepare_question_paper);
+//        //ok
+//    }
+
+
+    public function amw_editQuestionPaper($id)
     {
         $prepare_question_paper = ExmQuestion::find($id);
 
         // Show the edit employee form.
-        return View::make('examination::prepare_question_paper.edit')->with('prepareQuestionPaper',$prepare_question_paper);
+        return View::make('examination::prepare_question_paper.amw_editQuestionPaper')->with('edit_AmwQuestionPaper',$prepare_question_paper);
         //ok
     }
+
+
 
     public function update($id)
     {
@@ -159,7 +167,7 @@ class ExmPrepareQuestionPaperController extends \BaseController {
             // success code
             $prepare_question_paper = ExmQuestion::find($id);
 
-            $prepare_question_paper->exm_exam_list_id = Input::get('exm_exam_list_id');
+            $prepare_question_paper->exm_exam_lists_id = Input::get('exm_exam_lists_id');
             $prepare_question_paper->title = Input::get('title');
             $prepare_question_paper->deadline = Input::get('deadline');
             $prepare_question_paper->total_marks = Input::get('total_marks');
@@ -171,7 +179,7 @@ class ExmPrepareQuestionPaperController extends \BaseController {
 
             // redirect
             Session::flash('message', 'Successfully Added!');
-            return Redirect::to('prepare_question_paper/index');
+            return Redirect::to('prepare_question_paper/amw_index');
         }
         else
         {
@@ -179,18 +187,21 @@ class ExmPrepareQuestionPaperController extends \BaseController {
             $errors = $prepare_question_paper->errors();
             Session::flash('errors', $errors);
 
-            return Redirect::to('prepare_question_paper/edit');
+            return Redirect::to('prepare_question_paper/amw_editQuestionPaper');
         }
         //ok
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
+    public function assignTo()
+    {
+
+        echo "Not Done Yet";
+
+
+    }
+
+
     public function destroy($id)
     {
         try {

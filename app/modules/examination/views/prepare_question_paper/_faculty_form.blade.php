@@ -14,7 +14,7 @@
 
                <div class="form-group">
                     {{ Form::label('deadline', 'Deadline') }}
-                    {{ Form::text('deadline', Input::old('deadline'), array('class' => 'form-control','required'=>'required')) }}
+                    {{ Form::text('deadline', Input::old('deadline'), array('class' => 'form-control datepicker','required'=>'required')) }}
                </div>
 
                <div class="form-group">
@@ -30,6 +30,6 @@
 
             {{ Form::submit('Create', array('class' => 'btn btn-primary')) }}
 
-            <a href="{{URL::to('prepare_question_paper/index')}}" class="btn btn-default">Close </a>
+            <a href="{{URL::to('prepare_question_paper/faculty_index')}}" class="btn btn-default">Close </a>
 
     </fieldset>

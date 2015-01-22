@@ -28,7 +28,7 @@
     <div class="col-sm-8 input-append">
       {{ Form::text('end_date', Input::old('end_date'), ['class'=> 'form-control datepicker']) }}
       <span class="add-on">
-        <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+        {{--<i data-time-icon="icon-time" data-date-icon="icon-calendar">--}}
         </i>
       </span>
     </div>

@@ -31,7 +31,7 @@
 
             {{ Form::open(array('url' => 'prepare_question_paper/store', 'method' =>'post', 'role'=>'form','files'=>'true'))  }}
 
-                @include('examination::prepare_question_paper._form')
+                @include('examination::prepare_question_paper/_amw_form')
 
             {{ Form::close() }}
 

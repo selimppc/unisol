@@ -11,7 +11,7 @@
 
                 {{ Form::open(array('url' => 'prepare_question_paper/store', 'method' =>'post', 'role'=>'form','files'=>'true'))  }}
 
-                    @include('examination::prepare_question_paper._form')
+                    @include('examination::prepare_question_paper/_amw_form')
 
                 {{ Form::close() }}
 
@@ -21,6 +21,44 @@
         </div>
     </div>
 </div>
+
+ {{--Modal for View Question Paper--}}
+
+ <div class="modal fade" id="ViewQuestionPaperModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true">
+                             <div class="modal-dialog">
+                                 <div class="modal-content">
+                                      <div class="modal-header">
+                                         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                         <h4 class="modal-title" id="myModalLabel">View Question Paper</h4>
+                                      </div>
+                                      <div class="modal-body">
+
+                                      </div>
+                                      <div class="modal-footer">
+                                      </div>
+                                 </div>
+                             </div>
+</div>
+
+
+<!-- Modal for Edit Amw Question Paper -->
+<div class="modal fade" id="edit_amw_QuestionPapermodal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">Edit Question paper : AMW </h4>
+            </div>
+            <div class="modal-body">
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 
 
 <!-- Modal for Edit -->
@@ -202,3 +240,6 @@
                                 </div>
                             </div>
                     </div>
+
+
+
