@@ -30,6 +30,9 @@ class HomeController extends BaseController {
         //Session::flash('info', "Info Message: Invalid Request !");
         //Session::flash('danger', "Warning: You are Lost ! Do not Laugh !!! He he he he !!");
 
+        date_default_timezone_set("Asia/Dacca");
+        echo date('Y-m-d H:i:s', time());
+
         return View::make('test.index')->with('pageTitle','Welcome to ETSB!');
     }
 
