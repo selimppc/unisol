@@ -7,10 +7,7 @@
  */
 
 
-
-
 Route::get('user','UserSignupController@Userindex');
-
 
 Route::any('user/store','UserSignupController@Userstore');
 
@@ -28,11 +25,13 @@ Route::any('usersign/dashboard', 'UserSignupController@Dashboard');
 
 Route::any('/password_reset', 'UserSignupController@userPassword');
 
-Route::any('/password_reset_confirm', 'UserSignupController@userPasswordConfirm');
+Route::any('/password_reset_mail', 'UserSignupController@userPasswordResetMail');
 
-Route::get('password_reset_confirm/{confirmation_code}','UserSignupController@userPasswordConfirm');
+Route::any('password_reset_confirm/{reset_password_token}','UserSignupController@userPasswordResetConfirm');
 
-Route::any('scopeOnline', 'UserSignupController@scopeOnline');
+Route::any('users/get_user_password_update', 'UserSignupController@userPasswordUpdate');
+
+Route::any('users/user_password_update/{reset_password_token}', 'UserSignupController@userPasswordUpdate');
 
 
 

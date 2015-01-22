@@ -54,7 +54,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
      */
     public function getReminderEmail()
     {
-        return $this->email;
+        return $this->email_address;
     }
 
     /**
@@ -116,19 +116,24 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
 
 
-    /*
-    public static $rules = array(
-        'title' => 'required',
-        'body' => 'required'
-     );
-    */
 
-    public static function passesValidation($data) {
-        $validation = Validator::make($data, static::$rules);
-        if($validation->passes()) {
-            return true;
-        }
-        static::$messages = $validation->messages();
-        return false;
+//    public static $rules = array(
+//        'title' => 'required',
+//        'body' => 'required'
+//    );
+//
+//    public static function passesValidation($data) {
+//        $validation = Validator::make($data, static::$rules);
+//        if($validation->passes()) {
+//            return true;
+//        }
+//        static::$messages = $validation->messages();
+//        return false;
+//    }
+
+
+    public function usermeta(){
+        return $this->belongsTo('usermeta');
     }
+
 }
