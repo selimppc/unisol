@@ -208,17 +208,36 @@ class UserSignupController extends \BaseController {
 
     public function userPasswordResetConfirm($reset_password_token){
 
-        $user = UserSignup::where('reset_password_token','=',$reset_password_token);
-        if($user->count())
-        {
-            $user = $user->first();
-            $user->reset_password_token = '';
-        }
-        Session::flash('message','Your account activated successfully.');
-        echo 'ok';
-        exit;
+        $userReset = UserResetPassword::where('reset_password_token', $reset_password_token)
+                ->exists();
+        if($userReset) {
+            $user_reset_info = UserResetPassword::select('id','user_id', 'reset_password_expire', 'status')
+                ->where('reset_password_token', $reset_password_token)
+                ->first();
+            $reset_expire = $user_reset_info->reset_password_expire;
+            $reset_status = $user_reset_info->status;
+            $now = date('Y-m-d h:i:s', time());
 
-        return Redirect::to('user');
+            if ($reset_expire > $now && $reset_status == 2) {
+                $model = UserResetPassword::find($user_reset_info->id);
+                $model->status = 0;
+                if($model->save()){
+                    return View::make('admission::signup.password_reset_form')
+                        ->with('user_id', $user_reset_info->user_id );
+                }else{
+                    echo "Invalid!";
+                }
+
+
+            } else {
+                echo "Session Expired!";
+            }
+
+        }
+    }
+
+    public function method(){
+
     }
 
     public function show($id)
