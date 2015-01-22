@@ -34,9 +34,9 @@
                <td>{{ $value->hours_per_credit }}</td>
                <td>{{ $value->cost_per_credit }}</td>
                <td>
-               <a href="{{ URL::route('coursefind.show', ['id'=>$value->id])  }}" class="btn btn-primary" data-toggle="modal" data-target="#addNew" data-toggle="tooltip" data-placement="left" title="Show/View" href="">Marks Dist</a>
+               <a href="{{ URL::route('coursefind.show', ['id'=>$value->id,'course_id'=>$value->id])  }}" class="btn btn-primary" data-toggle="modal" data-target="#addNew" data-toggle="tooltip" data-placement="left" title="Show/View" href="">Marks Dist</a>
 
-               <a href="{{ URL::route('config.show', ['id'=>$value->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#showModal" data-toggle="tooltip" data-placement="left" title="Show/View" href="">View Dist</a>
+               {{--<a href="{{ URL::route('config.show', ['id'=>$value->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#showModal" data-toggle="tooltip" data-placement="left" title="Show/View" href="">View Dist</a>--}}
                </td>
             </tr>
             @endforeach

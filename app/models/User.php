@@ -131,4 +131,9 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 //        return false;
 //    }
 
+
+    public function usermeta(){
+        return $this->belongsTo('usermeta');
+    }
+
 }

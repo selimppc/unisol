@@ -30,6 +30,9 @@ class HomeController extends BaseController {
         //Session::flash('info', "Info Message: Invalid Request !");
         //Session::flash('danger', "Warning: You are Lost ! Do not Laugh !!! He he he he !!");
 
+        date_default_timezone_set("Asia/Dacca");
+        echo date('Y-m-d H:i:s', time());
+
         return View::make('test.index')->with('pageTitle','Welcome to ETSB!');
     }
 
@@ -38,7 +41,6 @@ class HomeController extends BaseController {
     {
         return View::make('test.index')->with('title','Welcome to ETSB!');
     }
-
 
 
     /// Login System
@@ -86,8 +88,6 @@ class HomeController extends BaseController {
         return Redirect::to('user/login');
     }
 
-
-
     public function userSignUp(){
         //$user_id = Auth::user()->username;
         $model = new User();
@@ -96,15 +96,18 @@ class HomeController extends BaseController {
     }
 
     public function userInfoStore(){
-
         $validation = Validator::make(Input::all(), array('title' => 'required', 'body' => 'required'));
             if($validation->fails()) {
             return Redirect::back()->withInput()->withErrors($validation->messages());
         }
-
         echo "You are ok!";
-
-
     }
+
+
+    public function testUserMeta(){
+        $userMeta = Usermeta::with('User')->get();
+        return View::make('test.user_meta', compact('userMeta'));
+    }
+
 
 }

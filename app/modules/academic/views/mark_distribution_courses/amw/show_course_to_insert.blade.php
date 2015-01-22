@@ -22,7 +22,9 @@
          </div>
       </div>
    </div>
-  {{ Form::open(array('url'=>'amw/course/marks/save','method' => '')) }}
+
+
+    {{ Form::open(array('url'=>'amw/course/marks/save','method' => '')) }}
     <table class="table table-bordered">
         <thead>
             <th>Item</th>
@@ -32,12 +34,26 @@
             <th>Actual Marks</th>
             <th>Action</th>
         </thead>
-                
-        <tbody class="acm_course_config_list">           
-                       
+
+        <tbody class="acm_course_config_list">
+        @foreach($course_data as $key=>$value)
+            <tr>
+                <td>{{ AcmMarksDist::AcmMarksDistName($value->acm_marks_dist_item_id) }}</td>
+                <td><input type="text" name="marks_percent[]" value="{{ $value->marks }}" class="amw_marks_percent'+trLen+'" onChange="calculateActualMarks(this.className, '+course_evalution_marks+',this.value)" required/></td>
+                <td>
+                    <input type="checkbox" name="isReadOnly[]" value="1" class="amw_isReadOnly" {{($value->readonly == 1) ? 'checked' : '' }} />
+                </td>
+                <td>
+                    <input type="radio" name="isDefault{{$key}}" value="1" class="amw_isDefault" {{($value->default_item == 1) ? 'checked' : '' }}/><span>Yes</span>
+                    <input type="radio" name="isDefault{{$key}}" value="0" class="amw_isDefault" {{($value->default_item == 0) ? 'checked' : '' }}/><span>No</span>
+                </td>
+                <td><input type="text" name="actual_marks[]" value="{{$value->marks}}" class="amw_actual_marks"/> </td>
+                <td><a class="btn btn-default btn-sm" id="removeTrId{{$key}}" onClick="deleteNearestTr(this.id)"><span class="glyphicon glyphicon-trash text-danger"></span></a></td>
+            </tr>
+        @endforeach
         </tbody>        
         <tr><td colspan="6">{{ Form::submit('Submit', ['class'=>'btn btn-info'] ) }}</td></tr>
-        
+
     </table>
     {{Form::close()}}
 </div>
