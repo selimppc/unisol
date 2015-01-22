@@ -1,61 +1,25 @@
-@extends('layouts.master')
-
-@section('sidebar')
-    @include('examination::prepare_question_paper._sidebar')
-@stop
-
-@section('content')
+<div style="padding: 10px; width: 90%;">
 
 
-             <h1>Welcome to View Question : Faculty</h1> <br>
+             <h2>Welcome to View Question : Faculty </h2> </br>
 
 
-              <table id="example" class="table table-striped  table-bordered"  >
-                     <thead>
-
-                           <div class="btn-group" style="margin-right: 10px">
-                              <a class="btn btn-default" data-toggle="modal" data-target="#AddQuestionModal">Add Question</a>
-                           </div>
-
-                           {{--page content start from here--}}
-                          <br>
-                               {{ Form::submit('Delete Items', array('class'=>'btn btn-danger', 'id'=>'hide-button', 'style'=>'display:none'))}}
-                          <br>
+             {{ Form::open(array('route'=>'prepare_question_paper.faculty_ViewQuestion','method' => '')) }}
 
 
-                         <tr>
-                             <th><input name="id" type="checkbox" id="checkbox" class="checkbox" value=""></th>
+                     <div class="jumbotron text-center">
+                         <h3><strong>Name of Examination :</strong>{{ $viewPrepareQuestionPaperFaculty->exm_exam_lists_id }}</h3> </br>
+                         {{--ExmExamList::getExamName($prepareQuestionPaper->exm_exam_list_id)--}}
+                         <p>
+                             <strong> Title:</strong>{{ $viewPrepareQuestionPaperFaculty->title }} </br>
+                             <strong> Deadline:</strong>{{ $viewPrepareQuestionPaperFaculty->deadline  }} </br>
+                             <strong> Total Marks:</strong>{{ $viewPrepareQuestionPaperFaculty->total_marks }} </br>
+                             <strong> Assign To:</strong> Coming Soon...</br>
+                         </p>
+                     </div>
 
-                             <th>Title</th>
-                             <th>Question Type</th>
-                             <th>Answer Type</th>
-                             <th>Action</th>
-                         </tr>
-                     </thead>
-                     <tbody>
+                     <a href="{{URL::to('prepare_question_paper/faculty_index')}}" class="btn btn-default">Close </a>
 
-                       @foreach($viewPrepareQuestionPaperFaculty as $view_question_faculty)
-                         <tr>
+             {{ Form::close() }}
 
-                             <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="  {{ $view_question_faculty->id }}"></td>
-
-                             <td>a</td>
-                             <td>a</td>
-                             <td>a</td>
-                            <td>
-                              <a type="button" class="btn btn-info" data-toggle="modal" data-target="#EditQuestionPaperModal"> Edit Question Papers </a>
-
-
-                            </td>
-
-                         </tr>
-                             @endforeach
-
-                     </tbody>
-              </table>
-
-
-
-@include('examination::prepare_question_paper/_modal');
-@stop
-
+</div>

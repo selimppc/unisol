@@ -13,10 +13,6 @@
               <table id="example" class="table table-striped  table-bordered"  >
                      <thead>
 
-                           <div class="btn-group" style="margin-right: 10px">
-                              <a class="btn btn-default" data-toggle="modal" data-target="#AddQuestionModal">Add Question</a>
-                           </div>
-
                            {{--page content start from here--}}
                           <br>
                                {{ Form::submit('Delete Items', array('class'=>'btn btn-danger', 'id'=>'hide-button', 'style'=>'display:none'))}}
@@ -43,7 +39,10 @@
                              <td>a</td>
                              <td>a</td>
                             <td>
-                              <a type="button" class="btn btn-info" data-toggle="modal" data-target="#EditQuestionPaperModal"> Edit Question Papers </a>
+
+                              <a type="button" class="btn btn-info" data-toggle="modal" data-target="#ViewQuestion"> View </a>
+
+                              <a type="button" class="btn btn-info" data-toggle="modal" data-target="#EditQuestion"> Edit </a>
 
 
                             </td>

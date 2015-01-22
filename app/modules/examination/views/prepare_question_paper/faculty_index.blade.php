@@ -46,14 +46,12 @@
 
                                            <td>
 
-                                              <a href="{{ URL::route('prepare_question_paper.show', ['id'=>$prepare_question_paper_faculty->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#showModal" data-placement="left" title="Show" href="#">View</a>
-                                                   
+                                              <a href="{{ URL::route('prepare_question_paper.faculty_ViewQuestion', ['id'=>$prepare_question_paper_faculty->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#ViewQuestionPaperModal" data-placement="left" title="Show" href="#">View</a>
+
 
                                               <a class="btn btn-default" data-toggle="modal" data-target="#AddQuestionModal">Add Question Item</a>
 
                                               <br>
-
-                                              <a class="btn btn-default" href="{{ action('ExmPrepareQuestionPaperController@ViewQuestion') }}">View All Questions</a>
 
                                            </td>
 
@@ -65,7 +63,7 @@
 
                     {{form::close() }}
 
-                              {{ $prepareQuestionPaperByFACULTY->links() }}
+                              {{--{{ $prepareQuestionPaperByFACULTY->links() }}--}}
 
                               <br><br><br>
 

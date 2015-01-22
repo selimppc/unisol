@@ -28,7 +28,7 @@ Route::any('prepare_question_paper/edit/{id}', ['as' => 'prepare_question_paper.
 Route::any('prepare_question_paper/update/{id}', ['as' => 'prepare_question_paper.update','uses' => 'ExmPrepareQuestionPaperController@update' ]);
 Route::any('prepare_question_paper/destroy/{id}', ['as' => 'prepare_question_paper.destroy', 'uses' => 'ExmPrepareQuestionPaperController@destroy' ]);
 Route::any('prepare_question_paper/batchDelete','ExmPrepareQuestionPaperController@batchDelete');
-Route::any('prepare_question_paper/ViewQuestion','ExmPrepareQuestionPaperController@ViewQuestion');
+
 
 
 
@@ -47,7 +47,7 @@ Route::any('prepare_question_paper/assignto','ExmPrepareQuestionPaperController@
 
 Route::any('prepare_question_paper/faculty_index','ExmPrepareQuestionPaperController@faculty_index');
 
-Route::any('prepare_question_paper/faculty_ViewQuestion','ExmPrepareQuestionPaperController@faculty_ViewQuestion');
+Route::any('prepare_question_paper/faculty_ViewQuestion/{id}', [ 'as' => 'prepare_question_paper.faculty_ViewQuestion', 'uses' => 'ExmPrepareQuestionPaperController@faculty_ViewQuestion' ]);
 
 Route::any('prepare_question_paper/faculty_QuestionList','ExmPrepareQuestionPaperController@faculty_QuestionList');
 

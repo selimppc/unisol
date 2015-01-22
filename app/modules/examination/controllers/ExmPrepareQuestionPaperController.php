@@ -14,6 +14,7 @@ class ExmPrepareQuestionPaperController extends \BaseController {
     {
         //$prepare_question_paper_amw = ExmQuestion::orderBy('id', 'DESC')->paginate(3);
         $data = ExmQuestion::all();
+
 //        $exm_exam_list = DB::table('exm_exam_list')->where('id', $data->exm_exam_list_id)->first();
 //        $department_id = $exm_exam_list->department_id;
 //        $year_id = $exm_exam_list->year_id;
@@ -37,7 +38,8 @@ class ExmPrepareQuestionPaperController extends \BaseController {
 
     public function faculty_index()
     {
-        $prepare_question_paper_faculty = ExmQuestion::orderBy('id', 'DESC')->paginate(3);
+        $prepare_question_paper_faculty = ExmQuestion::all();
+
         return View::make('examination::prepare_question_paper.faculty_index')->with('prepareQuestionPaperByFACULTY',$prepare_question_paper_faculty);
     }
 
@@ -59,6 +61,7 @@ class ExmPrepareQuestionPaperController extends \BaseController {
 //        //ok
 //    }
 
+
     public function amw_ViewQuestion($id)
     {
         $view_question_amw = ExmQuestion::find($id);
@@ -68,10 +71,15 @@ class ExmPrepareQuestionPaperController extends \BaseController {
         }//ok
     }
 
-    public function faculty_ViewQuestion()
+    public function faculty_ViewQuestion($id)
     {
-        $view_question_faculty = ExmQuestion::orderBy('id', 'DESC')->paginate(3);
-        return View::make('examination::prepare_question_paper.faculty_viewQuestion')->with('viewPrepareQuestionPaperFaculty',$view_question_faculty);
+        $view_question_faculty = ExmQuestion::find($id);
+
+        if($view_question_faculty){
+
+            return View::make('examination::prepare_question_paper.faculty_viewQuestion')->with('viewPrepareQuestionPaperFaculty',$view_question_faculty);
+        }
+
     }
 
 
