@@ -9,9 +9,10 @@
 @if(Session::has('message'))
 <p class="alert">{{ Session::get('message') }}</p>
 @endif
-{{ $user_id }}
+
+
 <div class="span5 well">
-{{ Form::open(array('url'=>'password_reset_confirm', 'class'=>'form-signin')) }}
+{{ Form::open(array('url'=>'users/user_password_update/', 'class'=>'form-signin')) }}
 <h3 class="form-signin-heading">Change Your Password</h3>
         <br>
         {{ Form::label('password','Password') }}
@@ -23,6 +24,9 @@
          {{ Form::label('confirmpassword', 'ConfirmPassword') }}
          {{ Form::password('confirmpassword', array('class'=>'form-control')) }}
         <br>
+
+        {{ Form::hidden('reset_password_token', $reset_password_token) }}
+
         {{ Form::submit('submit', array('class'=>'btn btn-large btn-primary '))}}
         <br>
         {{ Form::close() }}

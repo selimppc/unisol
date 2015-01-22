@@ -236,8 +236,20 @@ class UserSignupController extends \BaseController {
         }
     }
 
-    public function method(){
-
+    public function userPasswordUpdate()
+    {
+        return View::make('admission::signup.password_reset_form');
+        exit;
+//        $credentials = array('email_address' => Input::get('email_address'));
+//
+//        return Password::reset($credentials, function($user, $password)
+//        {
+//            $user->password = Hash::make($password);
+//
+//            $user->save();
+//
+//            return Redirect::to('login')->with('flash', 'Your password has been reset');
+//        });
     }
 
     public function show($id)
