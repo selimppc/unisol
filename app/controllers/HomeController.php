@@ -43,7 +43,6 @@ class HomeController extends BaseController {
     }
 
 
-
     /// Login System
     public function userCreate() {
         $user = new User;
@@ -89,8 +88,6 @@ class HomeController extends BaseController {
         return Redirect::to('user/login');
     }
 
-
-
     public function userSignUp(){
         //$user_id = Auth::user()->username;
         $model = new User();
@@ -99,15 +96,18 @@ class HomeController extends BaseController {
     }
 
     public function userInfoStore(){
-
         $validation = Validator::make(Input::all(), array('title' => 'required', 'body' => 'required'));
             if($validation->fails()) {
             return Redirect::back()->withInput()->withErrors($validation->messages());
         }
-
         echo "You are ok!";
-
-
     }
+
+
+    public function testUserMeta(){
+        $userMeta = Usermeta::with('User')->get();
+        return View::make('test.user_meta', compact('userMeta'));
+    }
+
 
 }

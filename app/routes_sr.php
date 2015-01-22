@@ -42,3 +42,7 @@ Route::any('user/logout','HomeController@userLogout');
 Route::any('user/registration','HomeController@userSignUp');
 Route::any('user/infostore','HomeController@userInfoStore');
 
+Route::any('user/usermeta','HomeController@testUserMeta');
+
+
+
