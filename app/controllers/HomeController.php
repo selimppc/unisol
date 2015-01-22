@@ -61,6 +61,7 @@ class HomeController extends BaseController {
             'username'=> Input::get('username'),
             'password'=>Input::get('password'),
         );
+
         if (Auth::check()){
                 $user_id = Auth::user()->username;
                 $pageTitle = 'You are already logged in!';

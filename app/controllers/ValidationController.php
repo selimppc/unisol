@@ -19,7 +19,6 @@ class ValidationController extends BaseController {
                 return Response::json(array('msg' => 'true'));
             }
             return Response::json(array('msg' => 'false'));
-
         }
 
     }
