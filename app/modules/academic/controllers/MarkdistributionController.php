@@ -149,10 +149,11 @@ class MarkdistributionController extends \BaseController
         return View::make('academic::mark_distribution_courses.amw.index_course_config')->with('title', 'Course List')->with('datas', $datas);
     }
 
-    public function find_course_info($id)
+    public function find_course_info($id,$course_id)
     {
         $data = Course::find($id);
-        return View::make('academic::mark_distribution_courses.amw.show_course_to_insert')->with('datas', $data);
+        $course_data = AcmCourseConfig::where('course_id','=',$course_id)->get();
+        return View::make('academic::mark_distribution_courses.amw.show_course_to_insert')->with('datas', $data)->with('course_data', $course_data);
     }
 
     public function save_acm_course_config_data()
@@ -175,12 +176,11 @@ class MarkdistributionController extends \BaseController
 
     }
 
-    public function config_show_one($id)
-    {
-//        $data = AcmCourseConfig::where('course_id', '=', $id);
-        $data = AcmCourseConfig::where('course_id', '=', '1')->get();
-        return View::make('academic::mark_distribution_courses.amw.show_course_config')->with('datas', $data);
-    }
+//    public function config_show_one($id)
+//    {
+//        $data = AcmCourseConfig::where('course_id', '=', '1')->get();
+//        return View::make('academic::mark_distribution_courses.amw.show_course_config')->with('datas', $data);
+//    }
 //End code
 
 
