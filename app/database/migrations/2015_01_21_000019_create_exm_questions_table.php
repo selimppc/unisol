@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateExmQuestionTable extends Migration {
+class CreateExmQuestionsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,9 +12,9 @@ class CreateExmQuestionTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('exm_question', function(Blueprint $table)
+		Schema::create('exm_questions', function(Blueprint $table)
 		{
-			$table->increments('id',true);
+            $table->increments('id',true);
 
             $table->unsignedInteger('exm_exam_lists_id');
             $table->foreign('exm_exam_lists_id')->references('id')->on('exm_exam_lists');
@@ -23,7 +23,10 @@ class CreateExmQuestionTable extends Migration {
 
             $table->string('deadline');
 
-            $table->string('created_by');
+            $table->string('total_marks');
+
+            $table->integer('created_by');
+            $table->integer('updated_by');
 
             $table->timestamps();
             $table->engine = 'InnoDB';
@@ -37,7 +40,7 @@ class CreateExmQuestionTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('exm_question');
+		Schema::drop('exm_questions');
 	}
 
 }
