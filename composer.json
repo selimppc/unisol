@@ -25,7 +25,9 @@
             "app/modules/common/controllers",
             "app/modules/common/models",
             "app/modules/examination/controllers",
-            "app/modules/examination/models"
+            "app/modules/examination/models",
+            "app/modules/user/controllers",
+            "app/modules/user/models"
 		]
 	},
 	"scripts": {
