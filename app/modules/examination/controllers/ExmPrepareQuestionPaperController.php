@@ -7,19 +7,41 @@ class ExmPrepareQuestionPaperController extends \BaseController {
 	{
         $prepare_question_paper = ExmQuestion::orderBy('id', 'DESC')->paginate(3);
         return View::make('examination::prepare_question_paper.index')->with('prepareQuestionPaper', $prepare_question_paper);
+        //ok
 	}
 
     public function amw_index()
     {
-        //$prepare_question_paper = ExmQuestion::orderBy('id', 'DESC')->paginate(3);
-        return View::make('examination::prepare_question_paper.amw_index')->with('prepareQuestionPaperByAMW');
+        //$prepare_question_paper_amw = ExmQuestion::orderBy('id', 'DESC')->paginate(3);
+        $data = ExmQuestion::all();
+//        $exm_exam_list = DB::table('exm_exam_list')->where('id', $data->exm_exam_list_id)->first();
+//        $department_id = $exm_exam_list->department_id;
+//        $year_id = $exm_exam_list->year_id;
+//        $semester_id = $exm_exam_list->semester_id;
+//
+//               //$course = Course::where('id', $exm_exam_list->course_id)->get();
+//
+//        $department = DB::table('department')->where('id', $department_id)->first();
+//        $year = DB::table('year')->where('id', $year_id)->first();
+//        $semester = DB::table('semester')->where('id', $semester_id)->first();
+//
+//
+//        print_r($data->id); //,$year->title,$semester->title
+//        exit();
+
+
+        return View::make('examination::prepare_question_paper.amw_index')->with('prepareQuestionPaperByAMW',$data);
+
+
+
+
     }
 
 
     public function faculty_index()
     {
-        //$prepare_question_paper = ExmQuestion::orderBy('id', 'DESC')->paginate(3);
-        return View::make('examination::prepare_question_paper.faculty_index')->with('prepareQuestionPaperByFACULTY');
+        $prepare_question_paper_faculty = ExmQuestion::orderBy('id', 'DESC')->paginate(3);
+        return View::make('examination::prepare_question_paper.faculty_index')->with('prepareQuestionPaperByFACULTY',$prepare_question_paper_faculty);
     }
 
 
@@ -31,26 +53,28 @@ class ExmPrepareQuestionPaperController extends \BaseController {
 
     public function amw_ViewQuestion()
     {
-//        $prepare_question_paper = ExmQuestion::orderBy('id', 'DESC')->paginate(3);
-        return View::make('examination::prepare_question_paper.amw_viewQuestion')->with('prepareQuestionPaper');
+        $view_question_amw = ExmQuestion::orderBy('id', 'DESC')->paginate(3);
+        return View::make('examination::prepare_question_paper.amw_viewQuestion')->with('viewPrepareQuestionPaperAmw',$view_question_amw);
     }
 
     public function faculty_ViewQuestion()
     {
-//        $prepare_question_paper = ExmQuestion::orderBy('id', 'DESC')->paginate(3);
-        return View::make('examination::prepare_question_paper.faculty_viewQuestion')->with('prepareQuestionPaper');
+        $view_question_faculty = ExmQuestion::orderBy('id', 'DESC')->paginate(3);
+        return View::make('examination::prepare_question_paper.faculty_viewQuestion')->with('viewPrepareQuestionPaperFaculty',$view_question_faculty);
     }
 
 
     public function amw_QuestionList()
     {
-    //
+        $question_list_amw = ExmQuestion::orderBy('id', 'DESC')->paginate(3);
+        return View::make('examination::prepare_question_paper.amw_QuestionList')->with('QuestionListAmw',$question_list_amw);
     }
 
 
     public function faculty_QuestionList()
     {
-    //
+        $question_list_faculty = ExmQuestion::orderBy('id', 'DESC')->paginate(3);
+        return View::make('examination::prepare_question_paper.faculty_QuestionList')->with('QuestionListFaculty',$question_list_faculty);
     }
 
 
@@ -58,6 +82,7 @@ class ExmPrepareQuestionPaperController extends \BaseController {
 	public function createQuestionPaper()
 	{
         return View::make('examination::prepare_question_paper.create');
+        //ok
 	}
 
 
@@ -91,6 +116,7 @@ class ExmPrepareQuestionPaperController extends \BaseController {
 
             return Redirect::to('prepare_question_paper/create');
         }
+        //ok
 	}
 
 
@@ -102,6 +128,7 @@ class ExmPrepareQuestionPaperController extends \BaseController {
         {
             return View::make('examination::prepare_question_paper.show')->with('prepareQuestionPaper',$prepare_question_paper);
         }
+        //ok
     }
 
 
@@ -117,6 +144,7 @@ class ExmPrepareQuestionPaperController extends \BaseController {
 
         // Show the edit employee form.
         return View::make('examination::prepare_question_paper.edit')->with('prepareQuestionPaper',$prepare_question_paper);
+        //ok
     }
 
     public function update($id)
@@ -153,6 +181,7 @@ class ExmPrepareQuestionPaperController extends \BaseController {
 
             return Redirect::to('prepare_question_paper/edit');
         }
+        //ok
 
     }
 
@@ -172,6 +201,7 @@ class ExmPrepareQuestionPaperController extends \BaseController {
             return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
 
         }
+        //ok
     }
 
 
@@ -180,5 +210,6 @@ class ExmPrepareQuestionPaperController extends \BaseController {
         ExmQuestion::destroy(Request::get('id'));
         return Redirect::back();
     }
+    //ok
 
 }

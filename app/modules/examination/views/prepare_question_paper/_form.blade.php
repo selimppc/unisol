@@ -3,8 +3,8 @@
             <?php  $exm_exam_list_id = ExmExamList::lists('title', 'id'); ?>
 
             <div class="form-group">
-                   {{ Form::label('exm_exam_list_id', 'Exam Name') }}
-                   {{ Form::select('exm_exam_list_id', $exm_exam_list_id )}}
+                   {{ Form::label('exm_exam_lists_id', 'Exam Name') }}
+                   {{ Form::select('exm_exam_lists_id', $exm_exam_list_id )}}
             </div>
 
             <div class="form-group">

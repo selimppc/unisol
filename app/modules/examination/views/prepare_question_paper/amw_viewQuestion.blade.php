@@ -34,22 +34,22 @@
                      </thead>
                      <tbody>
 
-                       {{--@foreach($prepareQuestionPaper as $prep_quest_paper)--}}
-                         {{--<tr>--}}
+                       @foreach($viewPrepareQuestionPaperAmw as $view_question_amw)
+                         <tr>
 
-                             {{--<td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="  {{ $prep_quest_paper->id }}"></td>--}}
+                             <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="  {{ $view_question_amw->id }}"></td>
 
-                             {{--<td>a</td>--}}
-                             {{--<td>a</td>--}}
-                             {{--<td>a</td>--}}
-                            {{--<td>--}}
-                              {{--<a type="button" class="btn btn-info" data-toggle="modal" data-target="#EditQuestionPaperModal"> Edit Question Papers </a>--}}
+                             <td>a</td>
+                             <td>a</td>
+                             <td>a</td>
+                            <td>
+                              <a type="button" class="btn btn-info" data-toggle="modal" data-target="#EditQuestionPaperModal"> Edit Question Papers </a>
 
 
-                            {{--</td>--}}
+                            </td>
 
-                         {{--</tr>--}}
-                             {{--@endforeach--}}
+                         </tr>
+                             @endforeach
 
                      </tbody>
               </table>

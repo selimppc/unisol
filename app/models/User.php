@@ -8,6 +8,44 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 class User extends Eloquent implements UserInterface, RemindableInterface {
 
 	protected $table = 'user';
+    public $errors;
+
+    private $rules = [
+        'title' => 'required|alpha|min:3',
+        'body' => 'required|alpha|min:3'
+        //'first_name' => 'required|alpha|min:3',
+        //'last_name'  => 'required',
+        //'email' => 'required|email|unique:employees', // required and must be unique in the employees table
+        //'files' => 'required|mimes:jpeg,jpg,png'
+        //'photo' => 'image|max:3000',
+        //'photo' => 'mimes:jpg,jpeg,bmp,png'
+        // .. more rules here ..
+        //'password'         => 'required',
+        //'password_confirm' => 'required|same:password'
+        //'name'                  => 'required|between:4,16',
+        //'email'                 => 'required|email',
+        //'password'              => 'required|alpha_num|between:4,8|confirmed',
+        //'password_confirmation' => 'required|alpha_num|between:4,8',
+    ];
+    public function validate($data)
+    {
+        // make a new validator object
+        $validate = Validator::make($data, $this->rules);
+        // check for failure
+        if ($validate->fails())
+        {
+            // set errors and return false
+            $this->errors = $validate->errors();
+            return false;
+        }
+        // validation pass
+        return true;
+    }
+    public function errors()
+    {
+        return $this->errors;
+    }
+
 
     /**
      * Get the e-mail address where password reminders are sent.
@@ -78,6 +116,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
 
 
+<<<<<<< HEAD
 //    public static $rules = array(
 //        'title' => 'required',
 //        'body' => 'required'
@@ -91,4 +130,21 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 //        static::$messages = $validation->messages();
 //        return false;
 //    }
+=======
+    /*
+    public static $rules = array(
+        'title' => 'required',
+        'body' => 'required'
+     );
+    */
+
+    public static function passesValidation($data) {
+        $validation = Validator::make($data, static::$rules);
+        if($validation->passes()) {
+            return true;
+        }
+        static::$messages = $validation->messages();
+        return false;
+    }
+>>>>>>> 798f2b0c470f1879e9f2179c27fb0ec56c55c382
 }

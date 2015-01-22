@@ -4,6 +4,11 @@ class Course extends \Eloquent
 {
     protected $table = 'course';
 
+    public static function getCourseName($courseId){
+        $data = Course::find($courseId);
+        return $data->title;
+    }
+
     private $errors;
     // 1
     private $rules = array(

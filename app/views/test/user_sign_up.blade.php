@@ -7,9 +7,10 @@
 @section('content')
  <h4> Create a New User </h4>
 
- {{ Form::open(array('url' => 'user/infostore', 'method' =>'post', 'files'=>'true')) }}
+ {{--{{ Form::model($rules, array('url' => 'user/infostore', 'method' =>'post', 'files'=>'true')) }}--}}
+ {{ Form::model($model->rules, array('method' => 'PATCH', 'url' => array('user/infostore'))) }}
      <div> {{  Form::label('title', 'Title: ')  }}
-       {{  Form::text('title', '', array('class' => 'form-control', 'required'))  }}
+       {{  Form::text('title', '', array('class' => 'form-control'))  }}
        {{  $errors->first('title', '<div class="alert alert-danger"><b>:message</b></div>')  }}
      </div>
 

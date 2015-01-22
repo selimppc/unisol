@@ -28,7 +28,7 @@
 
                                         <tr>
                                             <th><input name="id" type="checkbox" id="checkbox" class="checkbox" value=""></th>
-                                            <th>Exam Name</th>
+                                            {{--<th>Exam Name</th>--}}
                                             <th>Title</th>
                                             <th>Deadline</th>
                                             <th>Total Marks</th>
@@ -42,7 +42,7 @@
                                         <tr>
 
                                             <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $prep_quest_paper->id }}"></td>
-                                            <td>{{ ExmExamList::getExamName($prep_quest_paper->exm_exam_list_id) }}</td>
+                                            {{--<td>{{ ExmExamList::getExamName($prep_quest_paper->exm_exam_list_id) }}</td>--}}
                                             <td>{{ $prep_quest_paper->title }}</td>
                                             <td>{{ $prep_quest_paper->deadline }}</td>
                                             <td>{{ $prep_quest_paper->total_marks }}</td>

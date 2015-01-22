@@ -15,7 +15,7 @@ class AddForeignKeyToRoleTaskUserTable extends Migration {
         Schema::table('role_task_user', function($table) {
             //$table->dropForeign('user_id');
         });
-        //
+
 	}
 
 	/**

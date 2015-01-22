@@ -161,3 +161,48 @@ $('.datepicker').datepicker({
         });
     }
 });
+
+/***********************ACM COURSE CONFIG GENERATION STARTS***********************/
+
+function addCourseListItem()
+{
+    var listItem = $('.addConfigListItem').val();
+    var listItemTitle = $( ".addConfigListItem option:selected" ).text();
+    var course_id = $('.course_id').val();
+    var course_title = $('.course_title').val();
+    var course_evalution_marks = $('.course_evalution_marks').val();
+
+    var contentBody = $('.acm_course_config_list');
+    var trLen = $('.acm_course_config_list tr').length;
+
+    // $( ".addConfigListItem option:selected" ).remove();
+
+    var str = '';
+    str += '<tr>';
+    str += '<td width="170px"><input type="hidden" name="course_id[]" value="'+course_id+'" /><input type="hidden" name="acm_marks_dist_item_id[]" value="'+listItem+'" />'+listItemTitle+'</td>';
+    str += '<td><input type="text" name="marks_percent[]" class="amw_marks_percent'+trLen+'" onChange="calculateActualMarks(this.className, '+course_evalution_marks+',this.value)" required/> </td>';
+    str += '<td><input type="checkbox" name="isReadOnly[]" value="1" class="amw_isReadOnly"/> </td>';
+    str += '<td><input type="radio" name="isDefault'+trLen+'" value="1" class="amw_isDefault"/> </td>';
+    str += '<td><input type="text" name="actual_marks[]" class="amw_actual_marks"/> </td>';
+    str += '<td><a class="btn btn-default btn-sm" id="removeTrId'+trLen+'" onClick="deleteNearestTr(this.id)"><span class="glyphicon glyphicon-trash text-danger"></span></a></td>';
+    str += '</tr>';
+
+    contentBody.append(str);
+}
+
+
+function calculateActualMarks(class_name, course_evalution_marks, selected_percent_marks)
+{
+    var total = (selected_percent_marks/100)*course_evalution_marks;
+    var actual_marks = $('.'+class_name).closest('tr').find('.amw_actual_marks').val(total);
+    // console.log(class_name+"//"+total);
+}
+
+function deleteNearestTr(getId)
+{
+    console.log(getId);
+    var whichtr = $('#'+getId).closest("tr");
+    whichtr.fadeOut(500).remove();
+}
+
+/***********************ACM COURSE CONFIG GENERATION ENDS***********************/

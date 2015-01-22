@@ -16,8 +16,8 @@ class CreateExmQuestionTable extends Migration {
 		{
 			$table->increments('id',true);
 
-            $table->unsignedInteger('exm_exam_list_id');
-            $table->foreign('exm_exam_list_id')->references('id')->on('exm_exam_list');
+            $table->unsignedInteger('exm_exam_lists_id');
+            $table->foreign('exm_exam_lists_id')->references('id')->on('exm_exam_lists');
 
             $table->string('title');
 

@@ -13,12 +13,6 @@
                         <table id="example" class="table table-striped  table-bordered"  >
                                     <thead>
 
-                                          {{--<div class="btn-group" style="margin-right: 10px">--}}
-                                              {{--<button type="button" class="btn btn-default" data-toggle="modal"--}}
-                                                        {{--data-target="#CreateModal">--}}
-                                                          {{--Create Question paper--}}
-                                              {{--</button>--}}
-                                          {{--</div>--}}
 
                                           {{--page content start from here--}}
                                          <br>
@@ -39,46 +33,43 @@
                                     </thead>
                                     <tbody>
 
-                                      {{--@foreach($prepareQuestionPaperByFACULTY as $prep_quest_paper)--}}
-                                        {{--<tr>--}}
+                                      @foreach($prepareQuestionPaperByFACULTY as $prepare_question_paper_faculty)
+                                        <tr>
 
-                                            {{--<td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $prep_quest_paper->id }}"></td>--}}
-                                            {{--<td>{{ ExmExamList::getExamName($prep_quest_paper->exm_exam_list_id) }}</td>--}}
-                                            {{--<td>{{ $prep_quest_paper->title }}</td>--}}
-                                            {{--<td>{{ $prep_quest_paper->deadline }}</td>--}}
-                                            {{--<td>{{ $prep_quest_paper->total_marks }}</td>--}}
-                                             {{--<td>{{ $prep_quest_paper->total_marks }}</td>--}}
+                                            <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $prepare_question_paper_faculty->id }}"></td>
+                                            <td>{{ $prepare_question_paper_faculty->title }}</td>
+                                            <td>{{ $prepare_question_paper_faculty->deadline }}</td>
 
-                                           {{--<td>--}}
-                                              {{--<a href="{{ URL::route('prepare_question_paper.edit', ['id'=>$prep_quest_paper->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#edit-modal" data-placement="left" title="Edit" href="#">Edit</a>--}}
-                                                 {{--<span class="glyphicon glyphicon-edit text-info"></span>--}}
+                                            <td> {{ Department::getDepartmentName(1) }}</td>
+                                            <td> {{ Year::getYearsName(1) }}</td>
+                                            <td> {{ Semester::getSemesterName(1) }} </td>
 
-                                              {{--<a data-href="{{ URL::route('prepare_question_paper.destroy',['id'=>$prep_quest_paper->id]) }}" class="btn btn-danger" data-toggle="modal" data-target="#confirm-delete" data-placement="left" title="Delete" href="#" >Delete</a>--}}
-                                                  {{--<span class="glyphicon glyphicon-trash text-danger"></span>--}}
+                                           <td>
 
-                                              {{--<a href="{{ URL::route('prepare_question_paper.show', ['id'=>$prep_quest_paper->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#showModal" data-placement="left" title="Show" href="#">View</a>--}}
-                                                   {{--<span class="glyphicon glyphicon-list-alt text-info"></span>--}}
+                                              <a href="{{ URL::route('prepare_question_paper.show', ['id'=>$prepare_question_paper_faculty->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#showModal" data-placement="left" title="Show" href="#">View</a>
+                                                   
 
-                                                   {{--<br>--}}
+                                              <a class="btn btn-default" data-toggle="modal" data-target="#AddQuestionModal">Add Question Item</a>
 
-                                              {{--<a class="btn btn-default" data-toggle="modal" data-target="#AddQuestionModal">Add Question Item</a>--}}
+                                              <br>
 
-                                              {{--<a class="btn btn-default" href="{{ action('ExmPrepareQuestionPaperController@ViewQuestion') }}">View All Questions</a>--}}
+                                              <a class="btn btn-default" data-toggle="modal" data-target="#AddQuestionModal">Add Question Item</a>
 
-                                           {{--</td>--}}
+                                              <a class="btn btn-default" href="{{ action('ExmPrepareQuestionPaperController@ViewQuestion') }}">View All Questions</a>
 
-                                        {{--</tr>--}}
-                                            {{--@endforeach--}}
+                                           </td>
+
+                                        </tr>
+                                            @endforeach
 
                                     </tbody>
                                 </table>
 
                     {{form::close() }}
 
-                              {{--{{ $prepareQuestionPaper->links() }}--}}
+                              {{ $prepareQuestionPaperByFACULTY->links() }}
 
                               <br><br><br>
-
 
 @include('examination::prepare_question_paper/_modal')
 
