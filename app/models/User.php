@@ -116,7 +116,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
 
 
-<<<<<<< HEAD
+
 //    public static $rules = array(
 //        'title' => 'required',
 //        'body' => 'required'
@@ -130,21 +130,5 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 //        static::$messages = $validation->messages();
 //        return false;
 //    }
-=======
-    /*
-    public static $rules = array(
-        'title' => 'required',
-        'body' => 'required'
-     );
-    */
 
-    public static function passesValidation($data) {
-        $validation = Validator::make($data, static::$rules);
-        if($validation->passes()) {
-            return true;
-        }
-        static::$messages = $validation->messages();
-        return false;
-    }
->>>>>>> 798f2b0c470f1879e9f2179c27fb0ec56c55c382
 }
