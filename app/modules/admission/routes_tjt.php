@@ -29,9 +29,9 @@ Route::any('/password_reset_mail', 'UserSignupController@userPasswordResetMail')
 
 Route::any('password_reset_confirm/{reset_password_token}','UserSignupController@userPasswordResetConfirm');
 
-Route::any('users/get_user_password_update', 'UserSignupController@userPasswordUpdate');
+Route::any('users/password_reset', 'UserSignupController@userPasswordReset'); //password reset view
 
-Route::any('users/user_password_update/{reset_password_token}', 'UserSignupController@userPasswordUpdate');
+Route::any('users/user_password_update', 'UserSignupController@userPasswordUpdate'); // password reset action
 
 
 
