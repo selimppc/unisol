@@ -8,10 +8,10 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 class UserSignup extends Eloquent implements UserInterface, RemindableInterface {
 
 
-    protected $table = 'user_signup';
+    //protected $table = 'user_signup';
 
 //    protected $user_password_table = 'user_reset_password';
-//    protected $user_table='user';
+    protected $user_table='user';
 
     public function getReminderEmail()
     {
