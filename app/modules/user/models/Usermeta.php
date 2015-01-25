@@ -12,7 +12,8 @@ class Usermeta extends Eloquent {
 
 
     public function user(){
-        return $this->belongsTo('user', 'user_id', 'id');
+        return $this->belongsTo('user');
+        //return $this->hasOne('user');
     }
 
 }
