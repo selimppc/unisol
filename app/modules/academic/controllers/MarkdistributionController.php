@@ -155,32 +155,28 @@ class MarkdistributionController extends \BaseController
         $course_data = AcmCourseConfig::where('course_id','=',$course_id)->get();
         return View::make('academic::mark_distribution_courses.amw.show_course_to_insert')->with('datas', $data)->with('course_data', $course_data);
     }
-
     public function save_acm_course_config_data()
     {
         $data = Input::all();
+
         for ($idx = 0; $idx < count(Input::get('acm_marks_dist_item_id')); $idx++) {
-            $values = new AcmCourseConfig;
+
+            $values = ($data['acm_config_id'][$idx]) ? AcmCourseConfig::updateOrCreate(array('id' => $data['acm_config_id'][$idx])) : new AcmCourseConfig;
             $values->acm_marks_dist_item_id = $data['acm_marks_dist_item_id'][$idx];
             $values->course_id = $data['course_id'][$idx];
             $values->marks = $data['actual_marks'][$idx];
             $values->readonly = (Input::has('isReadOnly') == 1) ? 1 : 0;
-            $values->default_item = (Input::get('isDefault' . $idx) == 1) ? 1 : 0;
-            // $values->readonly = $data['isReadOnly'][$idx];
-            // $values->default_item = $data['isDefault'.$idx];
+            $values->default_item = Input::get('isDefault' . $idx);-
             $values->save();
+
         }
-         // redirect
-            Session::flash('message', 'ACM Course Configuration Data Successfully Added !!');
-            return Redirect::to('amw/config/index');
+        // redirect
+        Session::flash('message', 'ACM Course Configuration Data Successfully Added !!');
+        return Redirect::to('amw/config/index');
 
     }
 
-//    public function config_show_one($id)
-//    {
-//        $data = AcmCourseConfig::where('course_id', '=', '1')->get();
-//        return View::make('academic::mark_distribution_courses.amw.show_course_config')->with('datas', $data);
-//    }
+
 //End code
 
 
@@ -188,7 +184,8 @@ class MarkdistributionController extends \BaseController
 
     public function  teacher_index()
     {
-        return View::make('academic::mark_distribution_courses.teacher.index')->with('title', 'All Marks Distribution list');
+        $datas = CourseManagement::all();
+        return View::make('academic::mark_distribution_courses.teacher.index')->with('title', 'Course List')->with('datas', $datas);
     }
 
 

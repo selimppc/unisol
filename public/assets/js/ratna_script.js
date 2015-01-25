@@ -179,10 +179,10 @@ function addCourseListItem()
 
     var str = '';
     str += '<tr>';
-    str += '<td width="170px"><input type="hidden" name="course_id[]" value="'+course_id+'" /><input type="hidden" name="acm_marks_dist_item_id[]" value="'+listItem+'" />'+listItemTitle+'</td>';
+    str += '<td width="130px"><input type="hidden" name="acm_config_id[]" value="" /><input type="hidden" name="course_id[]" value="'+course_id+'" /><input type="hidden" name="acm_marks_dist_item_id[]" value="'+listItem+'" />'+listItemTitle+'</td>';
     str += '<td><input type="text" name="marks_percent[]" class="amw_marks_percent'+trLen+'" onChange="calculateActualMarks(this.className, '+course_evalution_marks+',this.value)" required/> </td>';
-    str += '<td><input type="checkbox" name="isReadOnly[]" value="1" class="amw_isReadOnly"/> </td>';
-    str += '<td><input type="radio" name="isDefault'+trLen+'" value="1" class="amw_isDefault"/><span>Yes</span><input type="radio" name="isDefault'+trLen+'" value="0" class="amw_isDefault"/><span>No</span></td>';
+    str += '<td><span><input type="checkbox" name="isReadOnly[]" value="1" class="amw_isReadOnly"/></span></td>';
+    str += '<td width="120"><span><input type="radio" name="isDefault'+trLen+'" value="1" class="amw_isDefault"/> Yes</span><span> <input type="radio" name="isDefault'+trLen+'" value="0" class="amw_isDefault" checked/> No</span></td>';
     str += '<td><input type="text" name="actual_marks[]" class="amw_actual_marks"/> </td>';
     str += '<td><a class="btn btn-default btn-sm" id="removeTrId'+trLen+'" onClick="deleteNearestTr(this.id)"><span class="glyphicon glyphicon-trash text-danger"></span></a></td>';
     str += '</tr>';
@@ -204,5 +204,6 @@ function deleteNearestTr(getId)
     var whichtr = $('#'+getId).closest("tr");
     whichtr.fadeOut(500).remove();
 }
+
 
 /***********************ACM COURSE CONFIG GENERATION ENDS***********************/
