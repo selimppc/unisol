@@ -23,7 +23,7 @@ class UserSignupController extends \BaseController {
         $rules = array(
             'firstname' => 'Required',
             'lastname' => 'Required',
-            'email' => 'Required|email|unique:user_signup',
+            'email_address' => 'Required|email|unique:user_signup',
             'username' => 'Required',
             'password' => 'regex:((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})|required',
             'confirmpassword' => 'Required|same:password',
@@ -43,10 +43,10 @@ class UserSignupController extends \BaseController {
             $confirmation_code = str_random(30);
             if ($token == Input::get('_token')) {
                 $data = new UserSignup();
-                $data->firstname = Input::get('firstname');
-                $data->middlename = Input::get('middlename');
-                $data->lastname = Input::get('lastname');
-                $data->email = Input::get('email');
+                $data->first_name = Input::get('firstname');
+                $data->middle_name = Input::get('middlename');
+                $data->last_name = Input::get('lastname');
+                $data->email_address = Input::get('email_address');
                 $data->username = Input::get('username');
                 $data->password = Hash::make(Input::get('password'));//dd($data->password);
                 $data->targetrole = Input::get('targetrole');
@@ -54,15 +54,20 @@ class UserSignupController extends \BaseController {
 
                 $data->confirmation_code = $confirmation_code;
 
-                if ($data->save()) {
 
-                    Mail::send('admission::signup.verify', array('link' =>'ok', 'username' => Input::get('firstname')), function ($message) {
-                        $message->to(Input::get('email'), Input::get('username'))->subject('Verify your email address');
+
+                if ($data->save()) {
+                    $email=$data->email_address;
+
+                    Mail::send('admission::signup.verify', array('link' => $confirmation_code),  function($message) use ($email)
+                    {
+                        $message->from('test@edutechsolutionsbd.com', 'Mail Notification');
+                        $message->to($email);
+                        $message->cc('tanintjt@gmail.com');
+                        $message->subject('Notification');
                     });
 
-                    Session::flash('message', "Thanks for signing up! Please check your email.");
-
-                    return View::make('admission::signup.mailnotify');
+                    return View::make('admission::signup.notification');
 
                 } else {
                     Session::flash('message', 'not sending email. try again');
@@ -106,7 +111,7 @@ class UserSignupController extends \BaseController {
         }
         Session::flash('message','Your account activated successfully. You can signin now.');
 
-        return Redirect::to('user');
+        return Redirect::to('usersign/login');
 
     }
 
@@ -140,7 +145,7 @@ class UserSignupController extends \BaseController {
             if ( Auth::attempt($credentials) ) {
                 return Redirect::to('usersign/dashboard')->with('message', 'Logged in!');
             } else {
-                return Redirect::to('usersign/login') ->with('message', 'Your username/password combination was incorrect')
+                return Redirect::to('usersign/login') ->with('message', 'Your username/password combination was incorrect! Please try again....')
                     ->withInput();
             }
         }
@@ -160,12 +165,14 @@ class UserSignupController extends \BaseController {
 
     }
 
+    // method for password_reset view that contains email_address
     public function userPassword(){
 
        return View::make('admission::signup.password_reset');
        return Redirect::to('usersign/login');
    }
 
+    //method for sending mail to user :forgot password
     public function userPasswordResetMail(){
 
         $rules = array(
@@ -184,9 +191,13 @@ class UserSignupController extends \BaseController {
 
             //random number with 30 character
             $reset_password_token = str_random(30);
+
+            //convert date format
+            date_default_timezone_set("Asia/Dacca");
             $reset_password_expire=date('Y-m-d h:i:s', time());;
             $reset_password_time=date('Y-m-d h:i:s', time());;
-            $data = new UserResetPassword();
+
+            $data = new ResetUserPassword();
 
             $data->user_id = $user_id;
             $data->reset_password_token = $reset_password_token;
@@ -205,16 +216,19 @@ class UserSignupController extends \BaseController {
               $message->subject('Notification');
 
            });
+
             }
+            return View::make('admission::signup.password_mail_notification');
+
         }
     }
 
     public function userPasswordResetConfirm($reset_password_token){
 
-        $userReset = UserResetPassword::where('reset_password_token', $reset_password_token)
+        $userReset = ResetUserPassword::where('reset_password_token', $reset_password_token)
                 ->exists();
         if($userReset) {
-            $user_reset_info = UserResetPassword::select('id','user_id', 'reset_password_expire', 'status')
+            $user_reset_info = ResetUserPassword::select('id','user_id', 'reset_password_expire', 'status')
                 ->where('reset_password_token', $reset_password_token)
                 ->first();
             $reset_expire = $user_reset_info->reset_password_expire;
@@ -222,7 +236,7 @@ class UserSignupController extends \BaseController {
             $now = date('Y-m-d h:i:s', time());
 
             if ($reset_expire > $now && $reset_status == 2) {
-                $model = UserResetPassword::find($user_reset_info->id);
+                $model = ResetUserPassword::find($user_reset_info->id);
                 $model->status = 0;
                 if($model->save()){
                     return View::make('admission::signup.password_reset_form')
@@ -247,6 +261,41 @@ class UserSignupController extends \BaseController {
             $data->password = Hash::make(Input::get('password'));
 
             $data->save();
+        }
+
+    }
+
+    // Methods for forgot username
+    public function usernameReset(){
+
+        return View::make('admission::signup.username_reset');
+    }
+
+    public  function usernameResetMail(){
+
+        $rules = array(
+            'email_address' => 'Required|email|exists:user_signup',
+        );
+        $validator = Validator::make(Input::all(), $rules);
+        if($validator->Fails()){
+            Session::flash('message', 'This Email address does not exit');
+
+            return Redirect::back();
+
+        }else{
+                $userData = UserSignup::where('email_address', Input::get('email_address'))->first();
+                $username = $userData->username;
+
+                $email_address = Input::get('email_address');
+
+                Mail::send('admission::signup.username_reset_mail', array('link' =>$username),  function($message) use ($email_address)
+                {
+                    $message->from('test@edutechsolutionsbd.com', 'Mail Notification');
+                    $message->to($email_address);
+                    $message->cc('tanintjt@gmail.com');
+                    $message->subject('Notification');
+
+                });
         }
 
     }

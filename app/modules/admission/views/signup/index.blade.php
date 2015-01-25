@@ -11,12 +11,13 @@
 <div class="span6 well">
 
 {{ Form::open(array('class'=>'form-horizontal','url' => 'user/store', 'method' =>'post', 'files'=>'true','id'=>'signup-form')) }}
- <div class="control-group @if ($errors->has('firstname')) has-error @endif">
+
 
  <div class="form-group">
     <span class="text-muted"><em><span style="color:red;">  * </span><b>Indicates required field</b> </em></span>
  </div>
 
+<div class="control-group @if ($errors->has('firstname')) has-error @endif">
 <span style="color:red;">*</span>
         {{ Form::label('firstname','First Name:') }}
         {{ Form::text('firstname',Input::old('firstname'), array('class' => 'form-control  has-success','placeholder'=>'Enter your first name','required'=>true)) }}
@@ -33,12 +34,12 @@
         {{ Form::text('lastname',Input::old('lastname'), array('class' => 'form-control','placeholder'=>'Enter your last name','required')) }}
 @if ($errors->has('lastname')) <p class="help-block" >{{ $errors->first('lastname') }}</p> @endif</div>
 
-<div class="control-group @if ($errors->has('email')) has-error @endif">
+<div class="control-group @if ($errors->has('email_address')) has-error @endif">
 
 <span style="color:red;">*</span>
-        {{ Form::label('email', 'Email') }}
-        {{ Form::text('email', Input::old('email'), array('class'=>'form-control','placeholder'=>'Enter a valid email address','required')) }}
-@if ($errors->has('email')) <p class="help-block" >{{ $errors->first('email') }}</p> @endif</div>
+        {{ Form::label('email_address', 'Email') }}
+        {{ Form::text('email_address', Input::old('email_address'), array('class'=>'form-control','placeholder'=>'Enter a valid email address','required')) }}
+@if ($errors->has('email_address')) <p class="help-block" >{{ $errors->first('email_address') }}</p> @endif</div>
 
 <div class="control-group @if ($errors->has('username')) has-error @endif">
 

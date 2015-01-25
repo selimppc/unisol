@@ -1,13 +1,20 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: User
+ * Date: 1/25/2015
+ * Time: 12:56 PM
+ */
+
 
 use Illuminate\Auth\UserTrait;
 use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class UserResetPassword extends Eloquent implements UserInterface, RemindableInterface {
+class ResetUsername extends Eloquent implements UserInterface, RemindableInterface{
 
-    protected $table = 'user_reset_password';
+    protected $table = 'reset_username';
 
     public function getReminderEmail()
     {
@@ -66,5 +73,4 @@ class UserResetPassword extends Eloquent implements UserInterface, RemindableInt
     }
 
 
-
-}
+} 

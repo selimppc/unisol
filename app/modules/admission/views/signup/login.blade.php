@@ -6,9 +6,9 @@
 
 @section('content')
 
-@if(Session::has('message'))
-<p class="alert">{{ Session::get('message') }}</p>
-@endif
+{{--@if(Session::has('message'))--}}
+{{--<p class="alert">{{ Session::get('message') }}</p>--}}
+{{--@endif--}}
 <div class="span6 well">
 {{ Form::open(array('url'=>'users/login', 'class'=>'form-signin')) }}
 <h2 class="form-signin-heading">Please Login</h2>
