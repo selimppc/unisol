@@ -1,26 +1,21 @@
-<!-- <h1>Hello Users</h1>
+@extends('layouts.master')
 
-<p>{{ $message_var }}</p><br /> -->
+@section('sidebar')
+    @include('admission::_sidebar')
+@stop
 
-<!--this $message_var comes form  mailnotification from -->
-<!-- <h4>Online University in Bangladesh</h4> -->
-<html>
-	<head></head>
-	<body>
-			<div class="wrapper" style="width:450px; height:300px;background: #EEEEEE;margin-left:33px;margin-top: 3px;">	
-		<h1 style="font:bold 20px/30px arial; color: #009966;">Dear Student</h1>
-		
-		<section style="width: 100%;background: #fff;">
-			<p style="font: 13px/18px verdana; color: #0a182d;text-align: justify;">{{ $message_var }}</p>
-			<a href="" >Visit</a>
-
-			  <a href="https://www.google.com"> Hello</a>
-			<br />
-			<!--this $message_var comes form your making from. -->
-		</section>
+@section('content')
 
 
-		</div>
-	</div>
-	</body>
-</html>
+<div class="span6 well">
+{{ Form::open(array('class'=>'form-signin')) }}
+<h4 class="form-signin-heading">Mail Notification</h4>
+
+       <div>
+       <p>Thanks for signing up! Please check your email.</p>
+       </div>
+        {{ Form::close() }}
+
+</div>
+
+ @stop

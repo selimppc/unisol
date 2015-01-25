@@ -28,8 +28,8 @@ return array(
 	|
 	*/
 
-	'model' => 'User',
-    //'model' => 'UserSignup',
+	//'model' => 'User',
+    'model' => 'UserSignup',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -44,8 +44,8 @@ return array(
 
 
 	//'table' => 'users',
-    //'table' => 'user_signup',
-	'table' => 'user',
+    'table' => 'user_signup',
+	//'table' => 'user',
 
 
 	/*
