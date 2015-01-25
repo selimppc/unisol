@@ -105,7 +105,7 @@ class HomeController extends BaseController {
 
 
     public function testUserMeta(){
-        $userMeta = Usermeta::with('User')->get();
+        $userMeta = Usermeta::with('user')->get();
         return View::make('test.user_meta', compact('userMeta'));
     }
 
