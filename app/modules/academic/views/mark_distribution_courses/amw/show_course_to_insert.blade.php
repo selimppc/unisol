@@ -42,12 +42,11 @@
                 {{ Form::hidden('course_id[]', $value->course_id) }}
                 {{ Form::hidden('acm_marks_dist_item_id[]', $value->acm_marks_dist_item_id) }}
                 <td width="130">{{ AcmMarksDist::AcmMarksDistName($value->acm_marks_dist_item_id) }}</td>
-                <td><input type="text" name="marks_percent[]" value="{{($value->marks/$datas->evaluation_total_marks) * 100 }}" class="amw_marks_percent{{$key}}" onkeyup="calculateActualMarks(this.className, {{$datas->evaluation_total_marks}},this.value)" required/>
-                </td>
-
+                <td><input type="text" name="marks_percent[]" value="{{($value->marks/$datas->evaluation_total_marks) * 100 }}" class="amw_marks_percent{{$key}}" onkeyup="calculateActualMarks(this.className, {{$datas->evaluation_total_marks}},this.value)" required/> </td>
+                <td>
                     <span><input type="checkbox" name="isReadOnly[]" value="1" class="amw_isReadOnly" {{ ($value->readonly == 1) ? 'checked' : '' }} /> Yes</span>
                 </td>
-                <td width="100">
+                <td width="120">
                     <span><input type="radio" name="isDefault{{$key}}" value="1" class="amw_isDefault" {{ ($value->default_item == 1) ? 'checked' : '' }}/> Yes</span>
                     <span><input type="radio" name="isDefault{{$key}}" value="0" class="amw_isDefault" {{ ($value->default_item == 0) ? 'checked' : '' }}/> No</span>
                 </td>
@@ -56,7 +55,9 @@
             </tr>
         @endforeach
         </tbody>
-        <tr><td colspan="6">{{ Form::submit('Submit', ['class'=>'btn btn-info'] ) }}</td></tr>
+        <tr>
+            <td colspan="6">{{ Form::submit('Submit', ['class'=>'btn btn-info'] ) }}</td>
+        </tr>
 
     </table>
     {{Form::close()}}

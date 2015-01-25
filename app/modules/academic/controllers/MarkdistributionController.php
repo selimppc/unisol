@@ -148,6 +148,13 @@ class MarkdistributionController extends \BaseController
         $datas = Course::all();
         return View::make('academic::mark_distribution_courses.amw.index_course_config')->with('title', 'Course List')->with('datas', $datas);
     }
+
+    public function find_course_info($id,$course_id)
+    {
+        $data = Course::find($id);
+        $course_data = AcmCourseConfig::where('course_id','=',$course_id)->get();
+        return View::make('academic::mark_distribution_courses.amw.show_course_to_insert')->with('datas', $data)->with('course_data', $course_data);
+    }
     public function save_acm_course_config_data()
     {
         $data = Input::all();
@@ -159,7 +166,7 @@ class MarkdistributionController extends \BaseController
             $values->course_id = $data['course_id'][$idx];
             $values->marks = $data['actual_marks'][$idx];
             $values->readonly = (Input::has('isReadOnly') == 1) ? 1 : 0;
-            $values->default_item = Input::get('isDefault' . $idx);
+            $values->default_item = Input::get('isDefault' . $idx);-
             $values->save();
 
         }
@@ -177,7 +184,8 @@ class MarkdistributionController extends \BaseController
 
     public function  teacher_index()
     {
-        return View::make('academic::mark_distribution_courses.teacher.index')->with('title', 'All Marks Distribution list');
+        $datas = CourseManagement::all();
+        return View::make('academic::mark_distribution_courses.teacher.index')->with('title', 'Course List')->with('datas', $datas);
     }
 
 

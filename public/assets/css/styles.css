@@ -56,7 +56,18 @@
     cursor: pointer;
 }
 /***********For amw course config************/
+/*.acm_course_config_list input{*/
+    /*width: 70px;*/
+/*}*/
+.small-header-table th{font-size: 12px; }
+.acm_course_config_list input[type="text"]{
+    width: 60px;
+}
+/***********For amw course config************/
 .acm_course_config_list input{
     width: 70px;
 }
-
+.small-header-table th{font-size: 12px; }
+.acm_course_config_list input[type="text"]{
+    width: 60px;
+}
