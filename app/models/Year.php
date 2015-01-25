@@ -12,3 +12,4 @@ class Year extends \Eloquent
 	}
 }
 ?>
+

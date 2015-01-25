@@ -6,22 +6,33 @@ class ExmQuestion extends \Eloquent
 
     private $errors;
 
-
-
-    public static function getCourseId($exmId){
-        $data = CourseManagement::find($exmId);
-        return $data->year_id;
+    public static function getYear($id){
+        $data = Year::find($id);
+        return $data->title;
     }
+
+    public function getCourseManageId($id){
+        $data = CourseManagement::find($id);
+        return $data;
+    }
+
+    public function getExamItemList($id){
+        $data = ExmExamList::find($id);
+        $course_manage_id = $data->cousre_management_id;
+        return getCourseManageId($course_manage_id);
+    }
+
+
+
 
 
     // 1
     private $rules = array(
-        'exm_exam_list_id'  => 'required',
+
         'title'  => 'required',
         'deadline'  => 'required',
         'total_marks' => 'required',
-        'created_by' => 'required',
-        'updated_by' => 'required',
+
 
     );
 
