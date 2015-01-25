@@ -165,12 +165,14 @@ class UserSignupController extends \BaseController {
 
     }
 
+    // method for password_reset view that contains email_address
     public function userPassword(){
 
        return View::make('admission::signup.password_reset');
        return Redirect::to('usersign/login');
    }
 
+    //method for sending mail to user :forgot password
     public function userPasswordResetMail(){
 
         $rules = array(
@@ -216,6 +218,8 @@ class UserSignupController extends \BaseController {
            });
 
             }
+            return View::make('admission::signup.password_mail_notification');
+
         }
     }
 
@@ -261,6 +265,7 @@ class UserSignupController extends \BaseController {
 
     }
 
+    // Methods for forgot username
     public function usernameReset(){
 
         return View::make('admission::signup.username_reset');
@@ -278,8 +283,19 @@ class UserSignupController extends \BaseController {
             return Redirect::back();
 
         }else{
-            
+                $userData = UserSignup::where('email_address', Input::get('email_address'))->first();
+                $username = $userData->username;
 
+                $email_address = Input::get('email_address');
+
+                Mail::send('admission::signup.username_reset_mail', array('link' =>$username),  function($message) use ($email_address)
+                {
+                    $message->from('test@edutechsolutionsbd.com', 'Mail Notification');
+                    $message->to($email_address);
+                    $message->cc('tanintjt@gmail.com');
+                    $message->subject('Notification');
+
+                });
         }
 
     }
