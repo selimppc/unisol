@@ -26,14 +26,16 @@ Route::get('amw/delete/{id}','MarkdistributionController@amw_delete');
 Route::any('amw/batch/delete','MarkdistributionController@amw_batchdelete');
 
 //amw course config
+//Route::get('amw/config/index','MarkdistributionController@config_index');
+//Route::any('amw/course/show/{id}/{course_id}',['as' => 'coursefind.show', 'uses'=> 'MarkdistributionController@find_course_info']);
+//Route::post('amw/course/marks/save', 'MarkdistributionController@save_acm_course_config_data');
+//Route::any('amw/config/show/{id}',['as' => 'config.show', 'uses'=> 'MarkdistributionController@config_show_one']);
+//amw course config
 Route::get('amw/config/index','MarkdistributionController@config_index');
 Route::any('amw/course/show/{id}/{course_id}',['as' => 'coursefind.show', 'uses'=> 'MarkdistributionController@find_course_info']);
 Route::post('amw/course/marks/save', 'MarkdistributionController@save_acm_course_config_data');
-//Route::any('amw/config/show/{id}',['as' => 'config.show', 'uses'=> 'MarkdistributionController@config_show_one']);
-
-
 //teacher
-Route::get('teacher/index','MarkdistributionController@teacher_index');
+Route::get('teacher/','MarkdistributionController@teacher_index');
 
 
 
