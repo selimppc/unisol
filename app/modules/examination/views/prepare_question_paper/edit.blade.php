@@ -4,7 +4,7 @@
 
             {{ Form::model($prepareQuestionPaper,array('url'=> array('prepare_question_paper/update',$prepareQuestionPaper->id), 'method' => 'POST')) }}
 
-                     @include('examination::prepare_question_paper._form')
+                     @include('examination::_amw_form')
 
             {{ Form::close() }}
 

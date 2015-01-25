@@ -39,7 +39,7 @@
                              <td>a</td>
                              <td>a</td>
                             <td>
-                              <a type="button" class="btn btn-info" data-toggle="modal" data-target="#EditQuestionPaperModal"> Edit Question Papers </a>
+                              <a type="button" class="btn btn-info" data-toggle="modal" data-target="#ViewQuestion"> View </a>
 
 
                             </td>

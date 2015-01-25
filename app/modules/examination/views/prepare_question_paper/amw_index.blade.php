@@ -44,35 +44,41 @@
                                         <tr>
 
                                             <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $prepare_question_paper_amw->id }}"></td>
-                                            {{--<td>{{ ExmExamList::getExamName($prepare_question_paper_amw->exm_exam_list_id) }}</td>--}}
                                             <td>{{ $prepare_question_paper_amw->title }}</td>
                                             <td>{{ $prepare_question_paper_amw->deadline }}</td>
+                                            <td> </td>
+                                            <td> </td>
 
-                                            
+                                            <td> </td>
 
-                                            <td> {{ Department::getDepartmentName(1) }} </td>
-                                            <td> {{ Year::getYearsName(1) }}</td>
-                                            <td> {{ Semester::getSemesterName(1) }} </td>
+
+                                            {{--<td> {{ Department::getDepartmentName($prepare_question_paper_amw->) }} </td>--}}
+
+                                             {{--<td>{{ ExmExamList::getExamName($prepare_question_paper_amw->exm_exam_list_id) }}</td>--}}
+
+                                            {{--<td> {{ Year::getYearsName($prepare_question_paper_amw->year_id) }} </td>--}}
+
+                                            {{--<td>{{ CourseManagement::getCourseId($prepare_question_paper_amw->department_id) }}</td>--}}
+
+                                            {{--<td> {{ ExmQuestion::getExamItemList($prepare_question_paper_amw->exm_exam_list_id)->id }}</td>--}}
+
+                                            {{--<td> {{ Semester::getSemesterName($prepare_question_paper_amw->semester_id) }} </td>--}}
 
                                             <td> Mr. </td>
 
 
-                                                        {{--$prepare_question_paper_amw->title--}}
+                                            {{--$prepare_question_paper_amw->title--}}
 
                                            <td>
 
-                                                   <a href="{{ URL::route('prepare_question_paper.show', ['id'=>$prepare_question_paper_amw->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#showModal" data-placement="left" title="Show" href="#">View</a>
+                                                   <a href="{{ URL::route('prepare_question_paper.amw_ViewQuestion', ['id'=>$prepare_question_paper_amw->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#ViewQuestionPaperModal" data-placement="left" title="Show" href="#">View</a>
 
 
-
-                                                   <a href="{{ URL::route('prepare_question_paper.edit', ['id'=>$prepare_question_paper_amw->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#edit-modal" data-placement="left" title="Edit" href="#">Edit</a>
-
+                                                   <a href="{{ URL::route('prepare_question_paper.amw_editQuestionPaper', ['id'=>$prepare_question_paper_amw->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#edit_amw_QuestionPapermodal" data-placement="left" title="Edit" href="#">Edit</a>
 
                                                    <br>
 
-
-
-                                              <a class="btn btn-default" href="{{ action('ExmPrepareQuestionPaperController@ViewQuestion') }}">Assign</a>
+                                              <a class="btn btn-default" href="{{ action('ExmPrepareQuestionPaperController@assignTo') }}">Assign</a>
 
                                            </td>
 
