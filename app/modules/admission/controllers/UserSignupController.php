@@ -324,7 +324,7 @@ class UserSignupController extends \BaseController {
                 echo "Failed!";
             }
         }else{
-            //echo "Password does not match!";
+
             Session::flash('message','Password does not match. Please try again!');
             return Redirect::back();
         }

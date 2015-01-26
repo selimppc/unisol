@@ -26,7 +26,7 @@
          {{--{{ Form::password('confirm_password', array('class'=>'form-control')) }}--}}
         <br>
 
-     
+
 
         {{ Form::submit('Update Password', array('class'=>'btn btn-large btn-primary '))}}
         <br>
