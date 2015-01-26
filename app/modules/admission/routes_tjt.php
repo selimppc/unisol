@@ -23,6 +23,8 @@ Route::any('usersign/logout', 'UserSignupController@usersLogout');
 
 Route::any('usersign/dashboard', 'UserSignupController@Dashboard');
 
+//forgot password
+
 Route::any('/password_reset', 'UserSignupController@userPassword');
 
 Route::any('/password_reset_mail', 'UserSignupController@userPasswordResetMail');
@@ -37,4 +39,10 @@ Route::any('users/user_password_update', 'UserSignupController@userPasswordUpdat
 Route::any('user/username_reset', 'UserSignupController@usernameReset');
 
 Route::any('user/username_reset_mail', 'UserSignupController@usernameResetMail');
+
+//reset password
+Route::any('user/reset_password', 'UserSignupController@userResetPassword');
+
+Route::any('user/reset_password_update', 'UserSignupController@userResetPasswordUpdate');
+
 

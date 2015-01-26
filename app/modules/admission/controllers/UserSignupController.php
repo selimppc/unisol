@@ -295,6 +295,42 @@ class UserSignupController extends \BaseController {
         return View::make('admission::signup.username_mail_notification');
     }
 
+   // user password reset view method
+    public function userResetPassword(){
+
+        return View::make('admission::reset_password.reset_password_form');
+    }
+
+    // user password reset method
+    public function userResetPasswordUpdate()
+    {
+        $model= User::find(Auth::user()->id);
+       // print_r($model);
+        //exit;
+        $old_password = Input::get('old_password');
+
+        $user_password = Auth::user()->password;
+
+        $new_password = Input::get('new_password');
+
+        if(Hash::check($old_password, $user_password)){
+
+            $model->password =  Hash::make($new_password);
+            if($model->save()){
+                Session::flash('message','You have changed your password successfully. You may signin now.');
+
+                return View::make('admission::signup.login');
+            }else{
+                echo "Failed!";
+            }
+        }else{
+            //echo "Password does not match!";
+            Session::flash('message','Password does not match. Please try again!');
+            return Redirect::back();
+        }
+    }
+
+
     public function show($id)
 	{
 		//

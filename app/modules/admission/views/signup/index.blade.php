@@ -17,22 +17,6 @@
     <span class="text-muted"><em><span style="color:red;">  * </span><b>Indicates required field</b> </em></span>
  </div>
 
-{{--<div class="control-group @if ($errors->has('firstname')) has-error @endif">--}}
-{{--<span style="color:red;">*</span>--}}
-        {{--{{ Form::label('firstname','First Name:') }}--}}
-        {{--{{ Form::text('firstname',Input::old('firstname'), array('class' => 'form-control  has-success','placeholder'=>'Enter your first name','required'=>true)) }}--}}
-        {{--@if ($errors->has('firstname')) <p class="help-block" >{{ $errors->first('firstname') }}</p> @endif--}}
- {{--</div>--}}
-
-        {{--{{ Form::label('middlename', 'Middle Name') }}--}}
-        {{--{{ Form::text('middlename',Input::old('middlename'), array('class' => 'form-control has-success')) }}--}}
-
-{{--<div class="control-group @if ($errors->has('lastname')) has-error @endif">--}}
-
-{{--<span style="color:red;">*</span>--}}
-        {{--{{ Form::label('lastname', 'Last Name:') }}--}}
-        {{--{{ Form::text('lastname',Input::old('lastname'), array('class' => 'form-control','placeholder'=>'Enter your last name','required')) }}--}}
-{{--@if ($errors->has('lastname')) <p class="help-block" >{{ $errors->first('lastname') }}</p> @endif</div>--}}
 
 <div class="control-group @if ($errors->has('username')) has-error @endif">
 
