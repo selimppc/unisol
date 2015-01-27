@@ -8,9 +8,10 @@
 
 <div class="span6 well">
 {{ Form::open(array('url'=>'users/login', 'class'=>'form-signin')) }}
-<h2 class="form-signin-heading">Please Login</h2>
 
-        {{ Form::label('email','Username or Email address') }}
+         <h4 class="form-signin-heading">Login</h4>
+
+         {{ Form::label('email','Username or Email address') }}
          <label for="username">
                  <a href="/user/username_reset">(forgot username?)</a>
          </label>
