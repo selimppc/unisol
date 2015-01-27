@@ -15,6 +15,7 @@
 
     <p>Welcome to your Dashboard. You rock!</p>
 
+
     {{ HTML::linkAction('UserSignupController@usersLogout', 'Logout') }}
 
 </div>

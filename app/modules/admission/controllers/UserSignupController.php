@@ -145,7 +145,15 @@ class UserSignupController extends \BaseController {
 
     public function usersLogout() {
 
+        $model= User::find(Auth::user()->id);
+
+        date_default_timezone_set("Asia/Dacca");
+        $time=date('Y-m-d h:i:s', time());;
+
+        $model->last_visit = $time;
+            $model->save();
         Auth::logout();
+
         return Redirect::to('usersign/login')->with('message', 'Your are now logged out!');
 
     }

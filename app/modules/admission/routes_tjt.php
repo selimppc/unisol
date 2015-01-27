@@ -45,4 +45,10 @@ Route::any('user/reset_password', 'UserSignupController@userResetPassword');
 
 Route::any('user/reset_password_update', 'UserSignupController@userResetPasswordUpdate');
 
+//Cookie
+Route::any('user/set_cookie', 'UserSignupController@setCookie');
+
+Route::any('user/get_cookie', 'UserSignupController@getCookie');
+
+
 
