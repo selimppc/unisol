@@ -30,8 +30,8 @@
         <th>Item</th>
         <th>Marks (%)</th>
         <th>Actual Marks</th>
-        <th>Default Item?</th>
         <th>Read Only</th>
+        <th>Default Item?</th>
         <th>Is Attendance</th>
         <th>Action</th>
         </thead>
@@ -42,19 +42,26 @@
                 {{ Form::hidden('acm_config_id[]', $value->id) }}
                 {{ Form::hidden('course_id[]', $value->course_id) }}
                 {{ Form::hidden('acm_marks_dist_item_id[]', $value->acm_marks_dist_item_id) }}
-                <td width="130">{{ AcmMarksDist::AcmMarksDistName($value->acm_marks_dist_item_id) }}</td>
-                <td><input type="text" name="marks_percent[]" value="{{($value->marks/$datas->evaluation_total_marks) * 100 }}" class="amw_marks_percent{{$key}}" onkeyup="calculateActualMarks(this.className, {{$datas->evaluation_total_marks}},this.value)" required/> </td>
-                <td><input type="text" name="actual_marks[]" value="{{$value->marks}}" class="amw_actual_marks" readonly/> </td>
+                <td width="130">
+                    {{ AcmMarksDist::AcmMarksDistName($value->acm_marks_dist_item_id) }}
+                </td>
                 <td>
-                    <span><input type="checkbox" name="isReadOnly[]" value="1" class="amw_isReadOnly" {{ ($value->readonly == 1) ? 'checked' : '' }} /> Yes</span>
+                <input type="text" name="marks_percent[]" value="{{($value->marks/$datas->evaluation_total_marks) * 100 }}" class="amw_marks_percent{{$key}}" onchange="calculateActualMarks(this.className, {{$datas->evaluation_total_marks}},this.value)" required/> </td>
+                <td>
+                <input type="text" name="actual_marks[]" value="{{$value->marks}}" class="amw_actual_marks" readonly/>
+                </td>
+                <td>
+                <span><input type="checkbox" name="isReadOnly[]" value="1" class="amw_isReadOnly" {{ ($value->readonly == 1) ? 'checked' : '' }} /> </span>
                 </td>
                 <td width="120">
-                    <input type="radio" id="isDefault1" name="isDefault[]" value="1" class="amw_isDefault" {{ ($value->default_item == 1) ? 'checked' : '' }}/>
+                <input type="radio" id="isDefault1" name="isDefault[]" value="1" class="amw_isDefault" {{ ($value->default_item == 1) ? 'checked' : '' }}/>
                 </td>
                 <td width="120">
-                    <span><input type="radio" name="isAttendance[]" value="1" class="amw_isAttendance" {{ ($value->acm_attendance_config_id == 1) ? 'checked' : '' }}/> Yes</span>
+                <span><input type="radio" name="isAttendance[]" value="1" class="amw_isAttendance" {{ ($value->acm_attendance_config_id == 1) ? 'checked' : '' }}/></span>
                 </td>
-                <td><a class="btn btn-default btn-sm" id="removeTrId{{$key}}" onClick="deleteNearestTr(this.id)"><span class="glyphicon glyphicon-trash text-danger"></span></a></td>
+                <td>
+                <a class="btn btn-default btn-sm" id="removeTrId{{$key}}" onClick="deleteNearestTr(this.id)"><span class="glyphicon glyphicon-trash text-danger"></span></a>
+                </td>
             </tr>
         @endforeach
         </tbody>

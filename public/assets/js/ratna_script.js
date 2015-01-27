@@ -183,11 +183,11 @@ function addCourseListItem()
 
     str += '<td width="130"><input type="hidden" name="course_id[]" value="'+course_id+'" /><input type="hidden" name="acm_marks_dist_item_id[]" value="'+listItem+'" />'+listItemTitle+'</td>';
 
-    str += '<td><input type="text" name="marks_percent[]" class="amw_marks_percent'+trLen+'" onkeyup="calculateActualMarks(this.className, '+course_evalution_marks+',this.value)" required/> </td>';
+    str += '<td><input type="text" name="marks_percent[]" class="amw_marks_percent'+trLen+'" onchange="calculateActualMarks(this.className, '+course_evalution_marks+',this.value)" required/> </td>';
 
     str += '<td><input type="text" name="actual_marks[]" class="amw_actual_marks" /> </td>';
 
-    str += '<td width="120"><span><input type="checkbox" name="isReadOnly[]" value="1" class="amw_isReadOnly"/> Yes</span></td>';
+    str += '<td width="120"><span><input type="checkbox" name="isReadOnly[]" value="1" class="amw_isReadOnly"/></span></td>';
 
     str += '<td width="120"><input type="radio" name="isDefault[]" value="1" class="amw_isDefault"/></td>';
 

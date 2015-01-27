@@ -174,6 +174,29 @@ class MarkdistributionController extends \BaseController
     {
         $data = Input::all();
 
+        $is_attendance = Input::get('is_attendance');
+        $count = count(Input::get('acm_marks_dist_item_id'));
+
+        if($is_attendance == 1){
+            for($i=0; $i < $count; $i++){
+                $model1 = new Model1();
+                $model1->title = "data[]";
+                $model1->save();
+            }
+
+            $model2 = new Model2();
+            $model2->title = Input::get('is_attendance');
+            $model2->save();
+
+        }else{
+
+            for($i=0; $i < $count; $i++){
+                $model2 = new Model1();
+                $model2->title = "data[]";
+                $model2->save();
+            }
+        }
+
 //        print_r($data);
 //        exit;
 
@@ -183,8 +206,12 @@ class MarkdistributionController extends \BaseController
             $values->acm_marks_dist_item_id = $data['acm_marks_dist_item_id'][$idx];
             $values->course_id = $data['course_id'][$idx];
             $values->marks = $data['actual_marks'][$idx];
-            $values->readonly = (Input::has('isReadOnly') == 1) ? 1 : 0;
-            $values->default_item = Input::get('isDefault' . $idx);
+//            $values->readonly = (Input::has('isReadOnly') == 1) ? 1 : 0;
+//            $values->default_item = Input::get('isDefault' . $idx);
+            $values->readonly = ($data['isReadOnly'][$idx] == 1) ? "1" : "0";
+            $values->default_item = ($data['isDefault'][$idx] == 1) ? "1" : "0";
+            $values->acm_attendance_config_id = ($data['isAttendance'][$idx] == 1) ? "1": "0";
+
             $values->save();
 
         }
