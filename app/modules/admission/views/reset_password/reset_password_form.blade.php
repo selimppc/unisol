@@ -22,8 +22,8 @@
             <span class="text-muted"><em><span style="color:green;"></span><b>Must contain one lowercase letter,one uppercase letter, one number,one special character and be at least 8 characters long</b> </em></span>
          </div>
         <br>
-         {{--{{ Form::label('confirm_password', 'Confirm New Password') }}--}}
-         {{--{{ Form::password('confirm_password', array('class'=>'form-control')) }}--}}
+         {{ Form::label('confirm_password', 'Confirm New Password') }}
+         {{ Form::password('confirm_password', array('class'=>'form-control')) }}
         <br>
 
 
