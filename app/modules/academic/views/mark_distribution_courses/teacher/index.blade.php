@@ -9,7 +9,7 @@
         <thead>
         <tr>
             <th>CourseName</th>
-            <th>Degree/Program</th>
+            <th>Department</th>
             <th>Year</th>
             <th>Semester</th>
             <th>Status</th>
@@ -22,13 +22,10 @@
             <tr>
 
                 <td>{{ Course::getCourseName($value->course_id) }}</td>
-                <td>{{DegreeProgram::getDegreeProgramName($value->degree_program_id ) }}</td>
+                <td>{{$value->d_title}}</td>
                 <td>{{ Year::getYearsName($value->year_id ) }}</td>
                 <td>{{ Semester::getSemesterName($value->semester_id ) }}</td>
-                <td>
-                    <h5 style="color: #56b112"><b>Dist Done </b></h5>
-                </td>
-
+                <td></td>
 
                 <td>
                     <a href="" class="btn btn-primary" data-toggle="modal" data-target="#addNew" data-toggle="tooltip" data-placement="left" title="Show/View" href="">Marks Dist</a>
