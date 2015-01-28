@@ -31,7 +31,9 @@ class HomeController extends BaseController {
         //Session::flash('danger', "Warning: You are Lost ! Do not Laugh !!! He he he he !!");
 
         date_default_timezone_set("Asia/Dacca");
-        echo date('Y-m-d H:i:s', time());
+        $date = date('Y-m-d H:i:s', time());
+        $shortFormat = strtotime($date);
+        $expireDate = date("Y-m-d H:i:s", ($shortFormat+(60*5)));
 
         return View::make('test.index')->with('pageTitle','Welcome to ETSB!');
     }
