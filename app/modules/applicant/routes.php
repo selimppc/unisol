@@ -9,7 +9,14 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
-Route::get('user/applicant', function()
-{
-    return 'Hello World';
-});
+
+include("routes_applicant_tj.php");
+//Route::get('user/applicant', function()
+//{
+//    return 'Hello World';
+//});
+//
+//Route::get('user/applicant', function()
+//{
+//    return 'Hello World';
+//});

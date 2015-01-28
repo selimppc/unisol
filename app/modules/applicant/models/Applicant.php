@@ -11,4 +11,7 @@ class Applicant extends Eloquent{
     protected $table = 'user_meta';
 
 
+
+
+
 } 
