@@ -24,20 +24,20 @@ $(function () {
 // add field js
 
 $(function() {
-    var count = 3;
+    var count = 2;
     window.createInput = function(){
         var field_area = document.getElementById('fields1')
         var div = document.createElement("div");
         var label = document.createElement("label");
         label.for = "option";
-        label.innerHTML = "Option "+ count + ":";
+        label.innerHTML = "Option "+ (count + 1) + ":";
         div.appendChild(label);
 
 
         var input = document.createElement("input");
         input.id = 'option'+count;
         input.className = 'option_class';
-        input.name = 'option[]';
+        input.name = 'option_title[]';
         input.type = "text";
         div.appendChild(input);
 
@@ -50,6 +50,7 @@ $(function() {
         input.name = 'answer[]';
         //input.type = "radio";
         input.type = "checkbox";
+        input.value = count;
 
         div.appendChild(input);
 
@@ -70,18 +71,3 @@ $(function() {
 
 });
 
-
-// hide and seek
-
-
-$(function() {
-
-    $(document).ready(function(){
-        $("input[name='mcq']").click(function() {
-
-            var test = $(this).val();
-            $(".descriptive").hide();
-            $("#"+test).show();
-        });
-    });
-});

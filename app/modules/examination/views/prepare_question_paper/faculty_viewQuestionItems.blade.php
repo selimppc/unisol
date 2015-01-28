@@ -1,10 +1,10 @@
 <div style="padding: 10px; width: 90%;">
 
 
-             <h2>Welcome to View Question : AMW </h2> </br>
+             <h2>Welcome to View Question Items : faculty </h2> </br>
 
 
-             {{ Form::open(array('route'=>'prepare_question_paper.amw_ViewQuestion','method' => '')) }}
+             {{ Form::open(array('route'=>'prepare_question_paper.amw_ViewQuestionItems','method' => '')) }}
 
 
                      <div class="jumbotron text-center">

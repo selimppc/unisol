@@ -122,125 +122,6 @@
     </div>
 </div>
 
-<!-- Modal for Add Question -->
-<div class="modal fade" id="AddQuestionModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="myModalLabel">Add Question Item </h4>
-            </div>
-
-            <div class="modal-body">
-                            <form>
-                                <div class="form-group">
-                                    <label for="title">Add Question</label>
-                                    <input type="text" class="form-control" id="title" placeholder="Enter Title">
-                                </div>
-
-
-                               <div id="myRadioGroup">
-                               						<label for="gender">Question Type </label>
-
-                               						<label class="radio-inline">
-                               							<input type="radio" name="mcq" checked="checked" value="twoCarDiv"  />	MCQ
-                               						</label>
-
-                               						<label class="radio-inline">
-                               							<input type="radio" name="mcq" value="threeCarDiv" /> Descriptive
-                               						</label>
-
-                               						<div id="twoCarDiv" class="descriptive">
-
-                               							        <div class="form-group">
-                                                                        <label for="gender">Answer Type </label>
-                                                                        <label class="radio-inline">
-                                                                            <input type="radio" name="answerType" id="inlineRadio1" value="Male"> Single Answer
-                                                                        </label>
-                                                                        <label class="radio-inline">
-                                                                            <input type="radio" name="answerType" id="inlineRadio2" value="Female"> Multiple Answer
-                                                                        </label>
-                                                                 </div>
-
-                                                                 <div class="form-group">
-                                                                        <label for="title">Marks</label>
-                                                                        <input type="text" class="form-control" id="title" placeholder="Enter Marks">
-                                                                 </div>
-
-
-                                                                {{--challenging part--}}
-                                                                {{--challenging part : start--}}
-                                                                    <div id="fields">
-                                                                        <label>
-                                                                        Option 1:
-                                                                        </label>
-                                                                        <input id="option1" class="option_class" type="text" name="option[]">
-
-                                                                         <input type="checkbox" name="answerType" id="inlineRadio1" value="Male">
-
-
-
-                                                                    </div>
-
-                                                                    <div id="fields1">
-                                                                        <label>
-                                                                        Option 2:
-                                                                        </label>
-                                                                        <input id="option2" class="option_class" type="text" name="option[]">
-
-                                                                         <input type="checkbox" name="answerType" id="inlineRadio2" value="Female">
-
-
-
-                                                                    </div>
-
-                                                                    <div id="fields">
-
-                                                                    </div>
-                                                                    <a onclick="createInput()" class="add_button">Add (+)</a>
-                                                                {{--challenging part : end --}}
-
-                                                    </div>
-
-                                                    <div id="threeCarDiv" class="descriptive">
-
-                                                    </div>
-
-                               </div>
-
-                            </form>
-                        </div>
-
-
-            <div class="modal-footer">
-                 <button type="button" class="btn btn-info" data-dismiss="modal">Submit</button>
-                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
- <!-- Modal for View Question  -->
-                    <div class="modal fade" id="ViewQuestion" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                     <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                        <h4 class="modal-title" id="myModalLabel">View Question</h4>
-                                     </div>
-                                     <div class="modal-body">
-                                            Is it ok ?
-
-                                     </div>
-                                     <div class="modal-footer">
-                                     </div>
-                                </div>
-                            </div>
-                    </div>
-
 
 
  <!-- Modal for Edit Question  -->
@@ -259,4 +140,48 @@
                                      </div>
                                 </div>
                             </div>
+                    </div>
+
+
+
+
+
+
+<!-- Modal for AddQuestionItemsModal -->
+             <div class="modal fade" id="AddQuestionItemsModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                 <div class="modal-header">
+                                         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+
+                                 </div>
+                                 <div class="modal-body">
+                                 </div>
+                                 <div class="modal-footer">
+                                 </div>
+                            </div>
+                        </div>
+             </div>
+
+
+
+
+<!-- View Question Items Modal -->
+                    <div class="modal fade" id="ViewQuestionItems" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <h4 class="modal-title" id="myModalLabel">Show Semester</h4>
+                          </div>
+                          <div class="modal-body">
+
+
+
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal" >Cencel</button>
+                          </div>
+                        </div>
+                      </div>
                     </div>

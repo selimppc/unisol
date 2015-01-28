@@ -32,6 +32,8 @@ Route::any('prepare_question_paper/batchDelete','ExmPrepareQuestionPaperControll
 
 
 
+Route::any('prepare_question_paper/faculty_ViewQuestionItems/{id}', [ 'as' => 'prepare_question_paper.faculty_ViewQuestion', 'uses' => 'ExmPrepareQuestionPaperController@faculty_ViewQuestion' ]);
+
 // AMW Part
 
 Route::any('prepare_question_paper/amw_index','ExmPrepareQuestionPaperController@amw_index');
@@ -43,13 +45,34 @@ Route::any('prepare_question_paper/assignto','ExmPrepareQuestionPaperController@
 
 
 
+// question item View
+Route::any('prepare_question_paper/amw_ViewQuestionItems/{id}', [ 'as' => 'prepare_question_paper.amw_ViewQuestionItems', 'uses' => 'ExmPrepareQuestionPaperController@amw_ViewQuestionItems' ]);
+
+
+
+
+
+
 // Faculty Part
 
 Route::any('prepare_question_paper/faculty_index','ExmPrepareQuestionPaperController@faculty_index');
-
 Route::any('prepare_question_paper/faculty_ViewQuestion/{id}', [ 'as' => 'prepare_question_paper.faculty_ViewQuestion', 'uses' => 'ExmPrepareQuestionPaperController@faculty_ViewQuestion' ]);
-
 Route::any('prepare_question_paper/faculty_QuestionList','ExmPrepareQuestionPaperController@faculty_QuestionList');
+
+
+Route::any('prepare_question_paper/faculty_add_question_items/{qid}', ['as' => 'prepare_question_paper.faculty_add_question_items', 'uses' => 'ExmPrepareQuestionPaperController@faculty_add_question_items'] );
+Route::any('prepare_question_paper/faculty_store_Question_Items','ExmPrepareQuestionPaperController@faculty_storeQuestionItems');
+
+Route::any('prepare_question_paper/faculty_editQuestionItems/{id}', ['as' => 'prepare_question_paper.editQuestionItems', 'uses' => 'ExmPrepareQuestionPaperController@faculty_editQuestionItems' ]);
+Route::any('prepare_question_paper/faculty_updateQuestionItems/{id}', ['as' => 'prepare_question_paper.updateQuestionItems','uses' => 'ExmPrepareQuestionPaperController@faculty_updateQuestionItems' ]);
+
+// question item View
+Route::any('prepare_question_paper/faculty_ViewQuestionItems/{id}', [ 'as' => 'prepare_question_paper.faculty_ViewQuestionItems', 'uses' => 'ExmPrepareQuestionPaperController@faculty_ViewQuestionItems' ]);
+
+
+
+
+
 
 
 
