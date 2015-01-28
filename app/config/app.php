@@ -125,8 +125,8 @@ return array(
         'App\Modules\Academic\ServiceProvider',
         'App\Modules\Admission\ServiceProvider',
         'App\Modules\Examination\ServiceProvider',
-
-
+        'App\Modules\User\ServiceProvider',
+        'App\Modules\Applicant\ServiceProvider',
 	),
 
 	/*

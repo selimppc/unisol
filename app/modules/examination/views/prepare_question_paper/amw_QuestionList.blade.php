@@ -43,8 +43,6 @@
                              <td>{{ $question_list_amw->marks }}</td>
                             <td>
 
-                            {{--<a href="{{ URL::route('prepare_question_paper.amw_ViewQuestion', ['id'=>$question_list_amw->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#ViewQuestionPaperModal" data-placement="left" title="Show" href="#">View</a>--}}
-
                             <a href="{{ URL::route('prepare_question_paper.amw_ViewQuestionItems', ['id'=>$question_list_amw->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#ViewQuestionItems" data-placement="left" title="Show" href="#"> View </a>
 
                             </td>

@@ -11,3 +11,7 @@
 |
 */
 
+Route::get('user/applicant', function()
+{
+    return 'Hello World';
+});
