@@ -9,7 +9,9 @@ class AdmissionController extends \BaseController {
 	 */
 	public function index()
 	{
-		echo "OK...........";
+        return View::make('applicant::applicants.index');
+
+
 	}
 
 
