@@ -8,9 +8,9 @@ Tanin
 ==================================================================
 */
 
-include("routes_applicant_tj.php");
 
-Route::any('applicant','ApplicantController@index');
-
-
+Route::get('user/applicant', function()
+{
+    return 'Hello World';
+});
 
