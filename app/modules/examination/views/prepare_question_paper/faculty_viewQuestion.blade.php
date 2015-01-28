@@ -8,7 +8,7 @@
 
 
                      <div class="jumbotron text-center">
-                         <h3><strong>Name of Examination :</strong>{{ $viewPrepareQuestionPaperFaculty->exm_exam_lists_id }}</h3> </br>
+                         <h3><strong>Name of Examination :</strong>{{ ExmExamList::getExamName($viewPrepareQuestionPaperFaculty->exm_exam_lists_id) }}</h3> </br>
                          {{--ExmExamList::getExamName($prepareQuestionPaper->exm_exam_list_id)--}}
                          <p>
                              <strong> Title:</strong>{{ $viewPrepareQuestionPaperFaculty->title }} </br>

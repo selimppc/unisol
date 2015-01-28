@@ -33,23 +33,27 @@
                                     </thead>
                                     <tbody>
 
-                                      @foreach($prepareQuestionPaperByFACULTY as $prepare_question_paper_faculty)
+                                      @foreach($datas as $prepare_question_paper_faculty)
                                         <tr>
 
                                             <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $prepare_question_paper_faculty->id }}"></td>
                                             <td>{{ $prepare_question_paper_faculty->title }}</td>
                                             <td>{{ $prepare_question_paper_faculty->deadline }}</td>
 
-                                            <td> </td>
-                                            <td> </td>
-                                            <td>  </td>
+
+
+                                            <td>{{ $prepare_question_paper_faculty->d_title }} </td>
+                                            <td>{{ Year::getYearsName($prepare_question_paper_faculty->year_id) }} </td>
+                                            <td>{{ Semester::getSemesterName($prepare_question_paper_faculty->semester_id) }} </td>
 
                                            <td>
 
-                                              <a href="{{ URL::route('prepare_question_paper.faculty_ViewQuestion', ['id'=>$prepare_question_paper_faculty->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#ViewQuestionPaperModal" data-placement="left" title="Show" href="#">View</a>
+                                              <a href="{{ URL::route('prepare_question_paper.faculty_ViewQuestion', ['qid'=>$prepare_question_paper_faculty->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#ViewQuestionPaperModal" data-placement="left" title="Show" href="#">View</a>
 
+                                              {{--<a type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editModal" href="{{ URL::route('prepare_question_paper.faculty_add_question_items', $prepare_question_paper_faculty->id) }}" >Add Question Item</a>--}}
 
-                                              <a class="btn btn-default" data-toggle="modal" data-target="#AddQuestionModal">Add Question Item</a>
+                                              {{--<a data-href="{{ URL::to('prepare_question_paper.faculty_add_question_items', ['qid'=>$prepare_question_paper_faculty->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#AddQuestionItemsModal">Add Question Item</a>--}}
+                                              <a href="{{ URL::route('prepare_question_paper.faculty_add_question_items', ['qid'=>$prepare_question_paper_faculty->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#AddQuestionItemsModal" data-toggle="tooltip" data-placement="left" title="Edit" href="#">Add Question Item</a>
 
                                               <br>
 
@@ -63,10 +67,14 @@
 
                     {{form::close() }}
 
-                              {{--{{ $prepareQuestionPaperByFACULTY->links() }}--}}
+
 
                               <br><br><br>
 
 @include('examination::prepare_question_paper/_modal')
+
+
+
+
 
 @stop

@@ -76,6 +76,8 @@ return array(
     'ExmPrepareQuestionPaperController' => $baseDir . '/app/modules/examination/controllers/ExmPrepareQuestionPaperController.php',
     'ExmPrepareTabulationController' => $baseDir . '/app/modules/examination/controllers/ExmPrepareTabulationController.php',
     'ExmQuestion' => $baseDir . '/app/modules/examination/models/ExmQuestion.php',
+    'ExmQuestionItems' => $baseDir . '/app/modules/examination/models/ExmQuestionItems.php',
+    'ExmQuestionOptionAnswer' => $baseDir . '/app/modules/examination/models/ExmQuestionOptionAnswer.php',
     'File_Iterator' => $vendorDir . '/phpunit/php-file-iterator/File/Iterator.php',
     'File_Iterator_Facade' => $vendorDir . '/phpunit/php-file-iterator/File/Iterator/Facade.php',
     'File_Iterator_Factory' => $vendorDir . '/phpunit/php-file-iterator/File/Iterator/Factory.php',

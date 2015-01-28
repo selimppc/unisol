@@ -160,7 +160,7 @@
                      <li><a tabindex="-1" href="{{ action('ExmManageExaminerController@index') }}"> Manage Examiner </a></li>
                      <li class="divider"></li>
 
-                    <li><a tabindex="-1" href="{{ action('ExmPrepareQuestionPaperController@index') }}"> Prepare Question Paper </a></li>
+                    <li><a tabindex="-1" href="{{ action('ExmPrepareQuestionPaperController@amw_index') }}"> Prepare Question Paper </a></li>
                     <li class="divider"></li>
 
                     <li><a tabindex="-1" href="{{ action('ExmPrepareTabulationController@index') }}"> Prepare Tabulation </a></li>
