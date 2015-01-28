@@ -1,88 +1,80 @@
 <div style="padding: 10px; width: 90%;">
 
-
              <h3>Welcome to View Question Items: Amw </h3> </br>
-
 
              {{ Form::open(array('route'=>'prepare_question_paper.amw_ViewQuestionItems','method' => '')) }}
 
-                     <div class="jumbotron text-center">
+                     <div class="jumbotron text-left">
 
-                         <p>
-                             <strong> Title:</strong> &nbsp &nbsp &nbsp &nbsp {{ $amw_ViewQuestionItems->title }}
+                             <strong> Title:</strong> &nbsp &nbsp {{ $amw_ViewQuestionItems->title }}
+                             </br>
+                             <strong> Marks:</strong> &nbsp &nbsp {{ $amw_ViewQuestionItems->marks }}
                              </br></br>
 
+                             <div class="container">
 
 
 
-                               <?php
-                               if($amw_ViewQuestionItems->question_type == 'radio'){
-                                    ?><div><?php
+                               <div class="row">
 
-                                             foreach($options as $op){
-                                                  ?><input type="radio" id="id<?=$op->id?>" name="options"><?php
-                                                  echo ($op->title)."<br>" ;
+                                    @if($amw_ViewQuestionItems->question_type == 'radio')
 
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="col-sm-6"><strong>Option </strong></div>
+                                                <div class="col-sm-6"><strong>Answer </strong></div>
+                                        </div>
 
-                                     ?></div><?php
+                                        @foreach($options as $op)
 
-                                     ?><div><?php
+                                            <div class="col-sm-12">
+                                                <div class="col-sm-6">
+                                                        {{Form::checkbox('options', '')}}
+                                                        {{$op->title}}
+                                                </div>
+                                                <div class="col-sm-6">
+                                                     @if($op->answer == 1)
+                                                        {{Form::checkbox('checkbox', '',array('checked'))}}<br>
+                                                     @endif
+                                                </div>
+                                            </div>
+                                        @endforeach
 
+                                    @elseif($amw_ViewQuestionItems->question_type == 'checkbox')
 
-                                              if($op->answer == '1'){
-                                                  ?><input type="checkbox" id="" name="answer" checked><?php
-                                              }
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div class="col-sm-6"><strong>Option </strong></div>
+                                                    <div class="col-sm-6"><strong>Answer </strong></div>
+                                            </div>
 
-                                     ?></div><?php
-                                  }
+                                        @foreach($options as $op)
 
+                                            <div class="col-sm-12">
+                                                <div class="col-sm-6">
+                                                        {{Form::radio('options', '')}}
+                                                        {{$op->title}}
+                                                </div>
+                                                <div class="col-sm-6">
+                                                      @if($op->answer == 1)
+                                                        {{Form::checkbox('checkbox', '',array('checked'))}}<br>
+                                                      @endif
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    @else
+                                           <div class="text-center">
+                                                {{ Form::textarea('desc', 'Write Your Answer', ['size' => '40x6']) }}
+                                            </div>
+                                    @endif
 
-
-
-
-
-
-                               }else if($amw_ViewQuestionItems->question_type == 'checkbox'){
-
-                                   foreach($options as $op){
-                                       ?><input type="checkbox" id="id<?=$op->id?>" name="options"><?php
-                                       echo($op->title)."<br>";
-
-                                       if($op->answer == '1'){
-                                             ?><input type="checkbox" id="" name="answer" checked><?php
-                                       }
-
-                                   }
-                               }
-                               else{
-
-                                   ?>
-                                   {{ Form::textarea('desc', 'Write Your Answer', ['size' => '40x8']) }}
-
-                                  <?php
-                               }
-
-                              ?>
-
-
-
-
-
-
-
-
-
-
-
-
-                              </br>
-
-
-                         </p>
+                               </div>
+                             </div>
                      </div>
+             </div>
 
-                     <a href="{{URL::to('prepare_question_paper/amw_QuestionList')}}" class="btn btn-default">Close </a>
+            <a href="{{URL::to('prepare_question_paper/amw_QuestionList')}}" class="btn btn-default">Close </a>
 
-             {{ Form::close() }}
-
+            {{ Form::close() }}
+ </div>
 </div>
