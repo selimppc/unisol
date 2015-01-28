@@ -43,7 +43,8 @@
 
                             <a href="{{ URL::route('prepare_question_paper.faculty_ViewQuestionItems', ['id'=>$question_list_faculty->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#ViewQuestionItems" data-placement="left" title="Show" href="#"> View </a>
 
-                            <a type="button" class="btn btn-info" data-toggle="modal" data-target="#EditQuestion"> Edit </a>
+                            <a href="{{ URL::route('prepare_question_paper.editQuestionItems', ['id'=>$question_list_faculty->id])  }}" class="btn btn-info" data-toggle="modal" data-target="#EditQuestionItems"> Edit </a>
+
 
 
                             </td>

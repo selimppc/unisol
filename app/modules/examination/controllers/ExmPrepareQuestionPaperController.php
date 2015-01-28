@@ -165,7 +165,7 @@ class ExmPrepareQuestionPaperController extends \BaseController {
     }
 
 // method for Update Question Paper : AMW
-    public function update($id)
+    public function amw_updateQuestionPaper($id)
     {
         // get the POST data
         $data = Input::all($id);
@@ -311,56 +311,6 @@ class ExmPrepareQuestionPaperController extends \BaseController {
 
     }
 
-// method for Edit Question Items : Faculty
-    public function faculty_editQuestionItems($id)
-    {
-        $fac_edit_question_item = ExmQuestionItems::find($id);
-        return View::make('examination::prepare_question_paper.faculty_editQuestionItems')->with('edit_FacultyQuestionItems',$fac_edit_question_item);
-
-    }
-
-// method for Update Question Items : Faculty
-    public function faculty_updateQuestionItems($id)
-    {
-        // get the POST data
-        $data = Input::all($id);
-        // create a new model instance
-        $fac_update_question_item = new ExmQuestionItems();
-        // attempt validation
-        if ($fac_update_question_item->validate($data))
-        {
-            // success code
-            $fac_update_question_item = ExmQuestion::find($id);
-
-            //$fac_update_question_item->exm_questions_id = Input::get('exm_questions_id');
-            $fac_update_question_item->title = Input::get('title');
-            $fac_update_question_item->question_type = Input::get('question_type');
-            $fac_update_question_item->marks = Input::get('marks');
-            //$fac_update_question_item->created_by = Input::get('created_by');
-//            $fac_update_question_item->updated_by = Input::get('updated_by');
-//            $fac_update_question_item->status = Input::get('status');
-
-            $fac_update_question_item->save();
-
-            // redirect
-            Session::flash('message', 'Successfully Added!');
-            return Redirect::to('prepare_question_paper/faculty_index');
-        }
-        else
-        {
-            // failure, get errors
-            $errors = $fac_update_question_item->errors();
-            Session::flash('errors', $errors);
-
-            return Redirect::to('prepare_question_paper/faculty_editQuestionItems');
-        }
-
-    }
-
-
-
-
-
 // method for View Question : Faculty
     public function faculty_ViewQuestion($id)
     {
@@ -385,8 +335,6 @@ class ExmPrepareQuestionPaperController extends \BaseController {
 
     }
 
-
-
 // method for View Question Items: Faculty
     public function faculty_ViewQuestionItems($id)
     {
@@ -399,13 +347,7 @@ class ExmPrepareQuestionPaperController extends \BaseController {
             ->get();
 
         return View::make('examination::prepare_question_paper.faculty_viewQuestionItems', compact('faculty_ViewQuestionItems', 'options'));
-
-
     }
-
-
-
-
 
 // method for Assign Question Paper Creation Task to teacher : AMW
     public function assignTo()
@@ -428,12 +370,136 @@ class ExmPrepareQuestionPaperController extends \BaseController {
 //        //ok
 //    }
 
-
     public function batchDelete()
     {
         ExmQuestion::destroy(Request::get('id'));
         return Redirect::back();
     }
     //ok
+
+
+
+// method for Edit Question Items : Faculty
+    public function faculty_EditQuestionItems($id)
+    {
+//        $qid = ExmQuestionItems::find($qid);
+//        return View::make('examination::prepare_question_paper.faculty_editQuestionItems',compact('qid'));
+
+
+        $qid = DB::table('exm_question_items')
+            ->where('id', $id)
+            ->first();
+
+        $options = DB::table('exm_question_opt_ans')
+            ->where('exm_question_items_id', $qid->id)
+            ->get();
+
+        return View::make('examination::prepare_question_paper.faculty_editQuestionItems', compact('qid', 'options'));
+
+    }
+
+
+// method for Update Question Items : Faculty
+    public function faculty_updateQuestionItems()
+    {
+        $data = Input::all();
+
+        $faculty_store_question_items = new ExmQuestionItems();
+
+
+        if ($faculty_store_question_items->validate($data))
+        {
+            $faculty_store_question_items->title = Input::get('title');
+            $faculty_store_question_items->exm_questions_id = Input::get('qid');
+            $faculty_store_question_items->marks = Input::get('marks');
+
+            if( strtolower(Input::get('mcq')) == 'mcq'){
+                if( strtolower(Input::get('question_type')) == 'mcq_single'){
+                    $faculty_store_question_items->question_type = 'radio';
+
+                    //$faculty_store_question_items->save();
+
+                    if($faculty_store_question_items->save()) {
+                        $exm_question_items_id = $faculty_store_question_items->id;
+                        $opt_title = Input::get('option_title');
+                        $opt_answer = Input::get('answer');
+                        $i = 0;
+                        foreach ($opt_title as $key => $value) {
+
+                            //Re-declare model each time you want to save data as loop.
+                            $exm_question_opt = new ExmQuestionOptionAnswer();
+
+                            $exm_question_opt->exm_question_items_id = $exm_question_items_id;
+                            $exm_question_opt->title = $value;#$opt_title[$i];
+                            foreach ($opt_answer as $oa) {
+                                if ($oa == $key)
+                                    $exm_question_opt->answer = 1;
+                            }
+
+                            $exm_question_opt->save();
+                            $i++;
+                        }
+                        echo "Option Data : Single Answer Saved!";
+                    }else {
+                        echo "NO";
+                    }
+
+
+                }else{
+                    $faculty_store_question_items->question_type = 'checkbox';
+                    if($faculty_store_question_items->save()){
+                        $exm_question_items_id = $faculty_store_question_items->id;
+                        $opt_title = Input::get('option_title');
+                        $opt_answer = Input::get('answer');
+                        $i = 0;
+                        foreach($opt_title as $key => $value){
+
+                            //Re-declare model each time you want to save data as loop.
+                            $exm_question_opt = new ExmQuestionOptionAnswer();
+
+                            $exm_question_opt->exm_question_items_id = $exm_question_items_id;
+                            $exm_question_opt->title = $value;#$opt_title[$i];
+                            foreach($opt_answer as $oa){
+                                if($oa == $key)
+                                    $exm_question_opt->answer = 1;
+                            }
+
+                            $exm_question_opt->save();
+                            $i++;
+                        } /// saving last single data
+
+                        echo "Option Data : Multiple Answer Saved!";
+                    }else{
+                        echo "NO";
+                    }
+                }
+
+
+
+            }else{
+                $faculty_store_question_items->question_type = 'text';
+                if($faculty_store_question_items->save()){
+                    echo "Save";
+
+                }else{
+                    echo "No";
+                }
+            }
+
+            // redirect
+            Session::flash('message', 'Successfully Added!');
+            return Redirect::to('prepare_question_paper/faculty_QuestionList');
+        }
+        else
+        {
+            // failure, get errors
+            $errors = $faculty_store_question_items->errors();
+            Session::flash('errors', $errors);
+
+            return Redirect::to('prepare_question_paper/faculty_index');
+        }
+
+    }
+
 
 }
