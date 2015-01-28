@@ -38,6 +38,8 @@ class UserSignup extends Eloquent implements UserInterface, RemindableInterface 
         return $this->password;
     }
 
+
+
     /**
      * Get the token value for the "remember me" session.
      *

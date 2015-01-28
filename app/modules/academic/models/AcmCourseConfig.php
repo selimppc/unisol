@@ -6,6 +6,40 @@ class AcmCourseConfig extends Eloquent
 
     protected $table = 'acm_course_config';
 
+    //static function to calculate either partial done or no starts
+
+    public static function getCourseItemStatus($course_id, $evalution_marks)
+    {
+        $totalEntry = 0;
+        $datas = AcmCourseConfig::where('course_id', '=', $course_id)->get();
+        if (count($datas) > 0) {
+            foreach ($datas as $item_marks) {
+                if($item_marks->marks > 0)
+                {
+                    $percent = ($item_marks->marks / round($evalution_marks)) * 100;
+                    $totalEntry += $percent;
+                }
+            }
+//            if($totalEntry == 100)
+//            {
+//                return 'Done';
+//            }
+            if ($totalEntry < 100 && $totalEntry > 0) {
+                return 'Distribution Done';
+            }
+            else
+            {
+                return 'No';
+            }
+        }
+        else
+        {
+            return 'No DistributionItem added';
+        }
+
+    }
+    //static function ends here
+
     private $errors;
     // 1 Create data validation
     private $rules = array(
