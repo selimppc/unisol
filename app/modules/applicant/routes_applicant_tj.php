@@ -1,5 +1,5 @@
 <?php
 
 
-//Route::get('applicant','ApplicantController@index');
+Route::any('applicant','ApplicantController@index');
 
