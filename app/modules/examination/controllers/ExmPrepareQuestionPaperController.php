@@ -359,6 +359,18 @@ class ExmPrepareQuestionPaperController extends \BaseController {
 
 
 
+
+
+// method for View Question : Faculty
+    public function faculty_ViewQuestion($id)
+    {
+        $view_question_faculty = ExmQuestion::find($id);
+
+        return View::make('examination::prepare_question_paper.faculty_viewQuestion')->with('viewPrepareQuestionPaperFaculty',$view_question_faculty);
+
+    }
+
+// method for View Question Items: AMW
     public function amw_ViewQuestionItems($id)
     {
         $amw_ViewQuestionItems = DB::table('exm_question_items')
@@ -374,21 +386,19 @@ class ExmPrepareQuestionPaperController extends \BaseController {
     }
 
 
-// method for View Question : Faculty
-    public function faculty_ViewQuestion($id)
+
+// method for View Question Items: Faculty
+    public function faculty_ViewQuestionItems($id)
     {
-        $view_question_faculty = ExmQuestion::find($id);
+        $faculty_ViewQuestionItems = DB::table('exm_question_items')
+            ->where('id', $id)
+            ->first();
 
-        return View::make('examination::prepare_question_paper.faculty_viewQuestion')->with('viewPrepareQuestionPaperFaculty',$view_question_faculty);
+        $options = DB::table('exm_question_opt_ans')
+            ->where('exm_question_items_id', $faculty_ViewQuestionItems->id)
+            ->get();
 
-
-    }
-
-
-
-
-    public function faculty_ViewQuestionItems()
-    {
+        return View::make('examination::prepare_question_paper.faculty_viewQuestionItems', compact('faculty_ViewQuestionItems', 'options'));
 
 
     }

@@ -23,7 +23,6 @@
 
                          <tr>
                              <th><input name="id" type="checkbox" id="checkbox" class="checkbox" value=""></th>
-
                              <th>Title</th>
                              <th>Type</th>
                              <th>Marks</th>
@@ -42,15 +41,9 @@
                              <td>{{ $question_list_faculty->marks }}</td>
                             <td>
 
+                            <a href="{{ URL::route('prepare_question_paper.faculty_ViewQuestionItems', ['id'=>$question_list_faculty->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#ViewQuestionItems" data-placement="left" title="Show" href="#"> View </a>
 
-                              <a type="button" class="btn btn-info" data-toggle="modal" data-target="#ViewQuestionItems"> View </a>
-
-                              <a href="{{ URL::route('prepare_question_paper.amw_ViewQuestionItems', ['id'=>$question_list_faculty->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#ViewQuestionPaperModal" data-placement="left" title="Show" href="#">View</a>
-
-
-
-
-                              <a type="button" class="btn btn-info" data-toggle="modal" data-target="#EditQuestion"> Edit </a>
+                            <a type="button" class="btn btn-info" data-toggle="modal" data-target="#EditQuestion"> Edit </a>
 
 
                             </td>

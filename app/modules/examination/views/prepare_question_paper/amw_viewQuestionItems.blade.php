@@ -29,7 +29,7 @@
 
                                             <div class="col-sm-12">
                                                 <div class="col-sm-6">
-                                                        {{Form::checkbox('options', '')}}
+                                                        {{Form::radio('options', '')}}
                                                         {{$op->title}}
                                                 </div>
                                                 <div class="col-sm-6">
