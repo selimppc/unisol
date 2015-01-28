@@ -28,7 +28,7 @@
                 <td>{{ AcmCourseConfig::getCourseItemStatus($value->course_id, $value->evaluation_total_marks) }}</td>
 
                 <td>
-                    <a href="{{ URL::route('coursefind.show', ['id'=>$value->id,'course_id'=>$value->id])  }}" class="btn btn-primary" data-toggle="modal" data-target="#addNew" data-toggle="tooltip" data-placement="left" title="Show/View" href="">MarksDistConfig</a>
+                    <a href="{{ URL::route('coursefind.show', ['course_id'=>$value->id])  }}" class="btn btn-primary" data-toggle="modal" data-target="#addNew" data-toggle="tooltip" data-placement="left" title="Show/View" href="">MarksDistConfig</a>
 
                     {{--<a href="{{ URL::route('config.show', ['id'=>$value->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#showModal" data-toggle="tooltip" data-placement="left" title="Show/View" href="">View Dist</a>--}}
                 </td>

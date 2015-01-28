@@ -49,6 +49,12 @@ Route::any('prepare_question_paper/assignto','ExmPrepareQuestionPaperController@
 Route::any('prepare_question_paper/amw_ViewQuestionItems/{id}', [ 'as' => 'prepare_question_paper.amw_ViewQuestionItems', 'uses' => 'ExmPrepareQuestionPaperController@amw_ViewQuestionItems' ]);
 
 
+// question item View
+Route::any('prepare_question_paper/faculty_ViewQuestionItems/{id}', [ 'as' => 'prepare_question_paper.faculty_ViewQuestionItems', 'uses' => 'ExmPrepareQuestionPaperController@faculty_ViewQuestionItems' ]);
+
+
+
+
 
 
 
@@ -65,12 +71,6 @@ Route::any('prepare_question_paper/faculty_store_Question_Items','ExmPrepareQues
 
 Route::any('prepare_question_paper/faculty_editQuestionItems/{id}', ['as' => 'prepare_question_paper.editQuestionItems', 'uses' => 'ExmPrepareQuestionPaperController@faculty_editQuestionItems' ]);
 Route::any('prepare_question_paper/faculty_updateQuestionItems/{id}', ['as' => 'prepare_question_paper.updateQuestionItems','uses' => 'ExmPrepareQuestionPaperController@faculty_updateQuestionItems' ]);
-
-// question item View
-Route::any('prepare_question_paper/faculty_ViewQuestionItems/{id}', [ 'as' => 'prepare_question_paper.faculty_ViewQuestionItems', 'uses' => 'ExmPrepareQuestionPaperController@faculty_ViewQuestionItems' ]);
-
-
-
 
 
 
