@@ -2,7 +2,7 @@
 
 class ExmPrepareQuestionPaperController extends \BaseController {
 
-
+// method for index : past
 //	public function index()
 //	{
 //        $prepare_question_paper = ExmQuestion::orderBy('id', 'DESC')->paginate(3);
@@ -10,40 +10,57 @@ class ExmPrepareQuestionPaperController extends \BaseController {
 //        //ok
 //	}
 
+// method for amw_index
     public function amw_index()
     {
-        //$prepare_question_paper_amw = ExmQuestion::orderBy('id', 'DESC')->paginate(3);
-        $data = ExmQuestion::all();
+        $datas = DB::table('exm_questions')
+            ->select(
+                'exm_questions.id as id', 'exm_questions.title as title','exm_questions.deadline as deadline',
+                'exm_exam_lists.course_management_id as cm_id',
+                'course_management.year_id as year_id','course_management.semester_id as semester_id', 'course_management.course_id as course_id',
+                //'course.subject_id as c_s_id',
+                //'subject.department_id as s_d_id',
+                'department.title as d_title'
+            )
+            ->join('exm_exam_lists','exm_questions.exm_exam_lists_id','=','exm_exam_lists.id')
+            ->join('course_management','exm_exam_lists.course_management_id','=','course_management.id')
+            ->join('course', 'course_management.course_id', '=', 'course.id' )
+            ->join('subject', 'course.subject_id', '=', 'subject.id' )
+            ->join('department', 'subject.department_id', '=', 'department.id' )
+            //->where('exm_questions.id', 6)
+            ->get();
 
-//        $exm_exam_list = DB::table('exm_exam_list')->where('id', $data->exm_exam_list_id)->first();
-//        $department_id = $exm_exam_list->department_id;
-//        $year_id = $exm_exam_list->year_id;
-//        $semester_id = $exm_exam_list->semester_id;
-//
-//               //$course = Course::where('id', $exm_exam_list->course_id)->get();
-//
-//        $department = DB::table('department')->where('id', $department_id)->first();
-//        $year = DB::table('year')->where('id', $year_id)->first();
-//        $semester = DB::table('semester')->where('id', $semester_id)->first();
-//
-//
-//        print_r($data->id); //,$year->title,$semester->title
-//        exit();
 
-
-        return View::make('examination::prepare_question_paper.amw_index')->with('prepareQuestionPaperByAMW',$data);
+        return View::make('examination::prepare_question_paper.amw_index')->with('datas',$datas);
 
     }
 
-
+// method for faculty_index
     public function faculty_index()
     {
-        $prepare_question_paper_faculty = ExmQuestion::all();
 
-        return View::make('examination::prepare_question_paper.faculty_index')->with('prepareQuestionPaperByFACULTY',$prepare_question_paper_faculty);
+        $datas = DB::table('exm_questions')
+            ->select(
+                    'exm_questions.id as id', 'exm_questions.title as title','exm_questions.deadline as deadline',
+                    'exm_exam_lists.course_management_id as cm_id',
+                    'course_management.year_id as year_id','course_management.semester_id as semester_id', 'course_management.course_id as course_id',
+                    //'course.subject_id as c_s_id',
+                    //'subject.department_id as s_d_id',
+                    'department.title as d_title'
+            )
+            ->join('exm_exam_lists','exm_questions.exm_exam_lists_id','=','exm_exam_lists.id')
+            ->join('course_management','exm_exam_lists.course_management_id','=','course_management.id')
+            ->join('course', 'course_management.course_id', '=', 'course.id' )
+            ->join('subject', 'course.subject_id', '=', 'subject.id' )
+            ->join('department', 'subject.department_id', '=', 'department.id' )
+            //->where('exm_questions.id', 6)
+            ->get();
+
+
+        return View::make('examination::prepare_question_paper.faculty_index')->with('datas',$datas);
     }
 
-
+// method for view question : past
 //    public function ViewQuestion()
 //    {
 //        $prepare_question_paper = ExmQuestion::orderBy('id', 'DESC')->paginate(3);
@@ -61,51 +78,40 @@ class ExmPrepareQuestionPaperController extends \BaseController {
 //        //ok
 //    }
 
-
+// method for View Question : AMW
     public function amw_ViewQuestion($id)
     {
         $view_question_amw = ExmQuestion::find($id);
 
         if($view_question_amw) {
             return View::make('examination::prepare_question_paper.amw_viewQuestion')->with('viewPrepareQuestionPaperAmw', $view_question_amw);
-        }//ok
-    }
-
-    public function faculty_ViewQuestion($id)
-    {
-        $view_question_faculty = ExmQuestion::find($id);
-
-        if($view_question_faculty){
-
-            return View::make('examination::prepare_question_paper.faculty_viewQuestion')->with('viewPrepareQuestionPaperFaculty',$view_question_faculty);
         }
-
     }
 
 
+
+// method for Question Item List : AMW
     public function amw_QuestionList()
     {
-        $question_list_amw = ExmQuestion::orderBy('id', 'DESC')->paginate(3);
+        $question_list_amw = ExmQuestionItems::orderBy('id', 'DESC')->paginate(6);
         return View::make('examination::prepare_question_paper.amw_QuestionList')->with('QuestionListAmw',$question_list_amw);
     }
 
-
+// method for Question Item List : Faculty
     public function faculty_QuestionList()
     {
-        $question_list_faculty = ExmQuestion::orderBy('id', 'DESC')->paginate(3);
+        $question_list_faculty = ExmQuestionItems::orderBy('id', 'DESC')->paginate(6);
         return View::make('examination::prepare_question_paper.faculty_QuestionList')->with('QuestionListFaculty',$question_list_faculty);
     }
 
-
-
+// method for Create Question  Paper : AMW
 	public function amw_createQuestionPaper()
 	{
         return View::make('examination::prepare_question_paper.create');
         //ok
 	}
 
-
-
+// method for Store Question Paper : AMW
 	public function amw_storeQuestionPaper()
 	{
         $data = Input::all();
@@ -119,8 +125,8 @@ class ExmPrepareQuestionPaperController extends \BaseController {
             $prepare_question_paper->title = Input::get('title');
             $prepare_question_paper->deadline = Input::get('deadline');
             $prepare_question_paper->total_marks = Input::get('total_marks');
-            $prepare_question_paper->created_by = Input::get('created_by');
-            $prepare_question_paper->updated_by = Input::get('updated_by');
+            $prepare_question_paper->created_by = '0';
+            $prepare_question_paper->updated_by = '0';
             $prepare_question_paper->save();
 
             // redirect
@@ -138,10 +144,7 @@ class ExmPrepareQuestionPaperController extends \BaseController {
         //ok
 	}
 
-
-
-
-
+// method for edit Question Paper : Past
 //    public function edit($id)
 //    {
 //        $prepare_question_paper = ExmQuestion::find($id);
@@ -151,7 +154,7 @@ class ExmPrepareQuestionPaperController extends \BaseController {
 //        //ok
 //    }
 
-
+// method for Edit Question Paper : AMW
     public function amw_editQuestionPaper($id)
     {
         $prepare_question_paper = ExmQuestion::find($id);
@@ -161,8 +164,7 @@ class ExmPrepareQuestionPaperController extends \BaseController {
         //ok
     }
 
-
-
+// method for Update Question Paper : AMW
     public function update($id)
     {
         // get the POST data
@@ -179,8 +181,8 @@ class ExmPrepareQuestionPaperController extends \BaseController {
             $prepare_question_paper->title = Input::get('title');
             $prepare_question_paper->deadline = Input::get('deadline');
             $prepare_question_paper->total_marks = Input::get('total_marks');
-            $prepare_question_paper->created_by = Input::get('created_by');
-            $prepare_question_paper->updated_by = Input::get('updated_by');
+            $prepare_question_paper->created_by = '0';
+            $prepare_question_paper->updated_by = '0';
 
 
             $prepare_question_paper->save();
@@ -201,27 +203,220 @@ class ExmPrepareQuestionPaperController extends \BaseController {
 
     }
 
+// method for Add Question Items : Faculty
+    public function faculty_add_question_items($qid){
+        $qid = ExmQuestion::find($qid);
+        return View::make('examination::prepare_question_paper.edit_test', compact('qid'));
+    }
+
+// method for Store Question Items : Faculty
+    public function faculty_storeQuestionItems()
+    {
+        $data = Input::all();
+
+        $faculty_store_question_items = new ExmQuestionItems();
+
+
+        if ($faculty_store_question_items->validate($data))
+        {
+            $faculty_store_question_items->title = Input::get('title');
+            $faculty_store_question_items->exm_questions_id = Input::get('qid');
+            $faculty_store_question_items->marks = Input::get('marks');
+
+            if( strtolower(Input::get('mcq')) == 'mcq'){
+                if( strtolower(Input::get('question_type')) == 'mcq_single'){
+                    $faculty_store_question_items->question_type = 'radio';
+
+                    //$faculty_store_question_items->save();
+
+                    if($faculty_store_question_items->save()) {
+                        $exm_question_items_id = $faculty_store_question_items->id;
+                        $opt_title = Input::get('option_title');
+                        $opt_answer = Input::get('answer');
+                        $i = 0;
+                        foreach ($opt_title as $key => $value) {
+
+                            //Re-declare model each time you want to save data as loop.
+                            $exm_question_opt = new ExmQuestionOptionAnswer();
+
+                            $exm_question_opt->exm_question_items_id = $exm_question_items_id;
+                            $exm_question_opt->title = $value;#$opt_title[$i];
+                            foreach ($opt_answer as $oa) {
+                                if ($oa == $key)
+                                    $exm_question_opt->answer = 1;
+                            }
+
+                            $exm_question_opt->save();
+                            $i++;
+                        }
+                        echo "Option Data : Single Answer Saved!";
+                    }else {
+                        echo "NO";
+                    }
+
+
+                }else{
+                    $faculty_store_question_items->question_type = 'checkbox';
+                    if($faculty_store_question_items->save()){
+                        $exm_question_items_id = $faculty_store_question_items->id;
+                        $opt_title = Input::get('option_title');
+                        $opt_answer = Input::get('answer');
+                        $i = 0;
+                        foreach($opt_title as $key => $value){
+
+                            //Re-declare model each time you want to save data as loop.
+                            $exm_question_opt = new ExmQuestionOptionAnswer();
+
+                            $exm_question_opt->exm_question_items_id = $exm_question_items_id;
+                            $exm_question_opt->title = $value;#$opt_title[$i];
+                            foreach($opt_answer as $oa){
+                                if($oa == $key)
+                                    $exm_question_opt->answer = 1;
+                            }
+
+                            $exm_question_opt->save();
+                            $i++;
+                        } /// saving last single data
+
+                        echo "Option Data : Multiple Answer Saved!";
+                    }else{
+                        echo "NO";
+                    }
+                }
+
+
+
+            }else{
+                $faculty_store_question_items->question_type = 'text';
+                if($faculty_store_question_items->save()){
+                        echo "Save";
+
+                }else{
+                    echo "No";
+                }
+                }
+
+            // redirect
+            Session::flash('message', 'Successfully Added!');
+            return Redirect::to('prepare_question_paper/faculty_QuestionList');
+        }
+        else
+        {
+            // failure, get errors
+            $errors = $faculty_store_question_items->errors();
+            Session::flash('errors', $errors);
+
+            return Redirect::to('prepare_question_paper/faculty_index');
+        }
+
+    }
+
+// method for Edit Question Items : Faculty
+    public function faculty_editQuestionItems($id)
+    {
+        $fac_edit_question_item = ExmQuestionItems::find($id);
+        return View::make('examination::prepare_question_paper.faculty_editQuestionItems')->with('edit_FacultyQuestionItems',$fac_edit_question_item);
+
+    }
+
+// method for Update Question Items : Faculty
+    public function faculty_updateQuestionItems($id)
+    {
+        // get the POST data
+        $data = Input::all($id);
+        // create a new model instance
+        $fac_update_question_item = new ExmQuestionItems();
+        // attempt validation
+        if ($fac_update_question_item->validate($data))
+        {
+            // success code
+            $fac_update_question_item = ExmQuestion::find($id);
+
+            //$fac_update_question_item->exm_questions_id = Input::get('exm_questions_id');
+            $fac_update_question_item->title = Input::get('title');
+            $fac_update_question_item->question_type = Input::get('question_type');
+            $fac_update_question_item->marks = Input::get('marks');
+            //$fac_update_question_item->created_by = Input::get('created_by');
+//            $fac_update_question_item->updated_by = Input::get('updated_by');
+//            $fac_update_question_item->status = Input::get('status');
+
+            $fac_update_question_item->save();
+
+            // redirect
+            Session::flash('message', 'Successfully Added!');
+            return Redirect::to('prepare_question_paper/faculty_index');
+        }
+        else
+        {
+            // failure, get errors
+            $errors = $fac_update_question_item->errors();
+            Session::flash('errors', $errors);
+
+            return Redirect::to('prepare_question_paper/faculty_editQuestionItems');
+        }
+
+    }
+
+
+
+    public function amw_ViewQuestionItems($id)
+    {
+        $amw_ViewQuestionItems = DB::table('exm_question_items')
+            ->where('id', $id)
+            ->first();
+
+        $options = DB::table('exm_question_opt_ans')
+            ->where('exm_question_items_id', $amw_ViewQuestionItems->id)
+            ->get();
+
+        return View::make('examination::prepare_question_paper.amw_viewQuestionItems', compact('amw_ViewQuestionItems', 'options'));
+
+    }
+
+
+// method for View Question : Faculty
+    public function faculty_ViewQuestion($id)
+    {
+        $view_question_faculty = ExmQuestion::find($id);
+
+        return View::make('examination::prepare_question_paper.faculty_viewQuestion')->with('viewPrepareQuestionPaperFaculty',$view_question_faculty);
+
+
+    }
+
+
+
+
+    public function faculty_ViewQuestionItems()
+    {
+
+
+    }
+
+
+
+
+
+// method for Assign Question Paper Creation Task to teacher : AMW
     public function assignTo()
     {
-
         echo "Not Done Yet";
 
-
     }
 
-
-    public function destroy($id)
-    {
-        try {
-            ExmQuestion::find($id)->delete();
-            return Redirect::back()->with('message', 'Successfully deleted Information!');
-        }
-        catch(exception $ex){
-            return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
-
-        }
-        //ok
-    }
+//// method for delete : AMW
+//    public function destroy($id)
+//    {
+//        try {
+//            ExmQuestion::find($id)->delete();
+//            return Redirect::back()->with('message', 'Successfully deleted Information!');
+//        }
+//        catch(exception $ex){
+//            return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+//
+//        }
+//        //ok
+//    }
 
 
     public function batchDelete()

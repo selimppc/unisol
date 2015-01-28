@@ -9,6 +9,8 @@
 
              <h1>Welcome to Question List : Faculty </h1> <br>
 
+                {{ Form::open(array('url' => 'prepare_question_paper/batchDelete')) }}
+
 
               <table id="example" class="table table-striped  table-bordered"  >
                      <thead>
@@ -35,12 +37,18 @@
 
                              <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="  {{ $question_list_faculty->id }}"></td>
 
-                             <td>a</td>
-                             <td>a</td>
-                             <td>a</td>
+                             <td>{{ $question_list_faculty->title }}</td>
+                             <td>{{ $question_list_faculty->question_type }}</td>
+                             <td>{{ $question_list_faculty->marks }}</td>
                             <td>
 
-                              <a type="button" class="btn btn-info" data-toggle="modal" data-target="#ViewQuestion"> View </a>
+
+                              <a type="button" class="btn btn-info" data-toggle="modal" data-target="#ViewQuestionItems"> View </a>
+
+                              <a href="{{ URL::route('prepare_question_paper.amw_ViewQuestionItems', ['id'=>$question_list_faculty->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#ViewQuestionPaperModal" data-placement="left" title="Show" href="#">View</a>
+
+
+
 
                               <a type="button" class="btn btn-info" data-toggle="modal" data-target="#EditQuestion"> Edit </a>
 
@@ -52,6 +60,10 @@
 
                      </tbody>
               </table>
+
+
+
+             {{form::close() }}
 
 
 

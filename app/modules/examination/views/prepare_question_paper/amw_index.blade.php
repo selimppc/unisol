@@ -40,34 +40,18 @@
                                     <tbody>
 
 
-                                      @foreach($prepareQuestionPaperByAMW as $prepare_question_paper_amw)
+                                      @foreach($datas as $prepare_question_paper_amw)
                                         <tr>
 
                                             <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $prepare_question_paper_amw->id }}"></td>
                                             <td>{{ $prepare_question_paper_amw->title }}</td>
                                             <td>{{ $prepare_question_paper_amw->deadline }}</td>
-                                            <td> </td>
-                                            <td> </td>
 
-                                            <td> </td>
-
-
-                                            {{--<td> {{ Department::getDepartmentName($prepare_question_paper_amw->) }} </td>--}}
-
-                                             {{--<td>{{ ExmExamList::getExamName($prepare_question_paper_amw->exm_exam_list_id) }}</td>--}}
-
-                                            {{--<td> {{ Year::getYearsName($prepare_question_paper_amw->year_id) }} </td>--}}
-
-                                            {{--<td>{{ CourseManagement::getCourseId($prepare_question_paper_amw->department_id) }}</td>--}}
-
-                                            {{--<td> {{ ExmQuestion::getExamItemList($prepare_question_paper_amw->exm_exam_list_id)->id }}</td>--}}
-
-                                            {{--<td> {{ Semester::getSemesterName($prepare_question_paper_amw->semester_id) }} </td>--}}
+                                            <td>{{ $prepare_question_paper_amw->d_title }} </td>
+                                            <td>{{ Year::getYearsName($prepare_question_paper_amw->year_id) }} </td>
+                                            <td>{{ Semester::getSemesterName($prepare_question_paper_amw->semester_id) }} </td>
 
                                             <td> Mr. </td>
-
-
-                                            {{--$prepare_question_paper_amw->title--}}
 
                                            <td>
 
@@ -90,7 +74,7 @@
 
                     {{form::close() }}
 
-                              {{--{{ $prepareQuestionPaperByAMW->links() }}--}}
+
 
                               <br><br><br>
 
