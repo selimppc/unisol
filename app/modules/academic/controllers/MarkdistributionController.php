@@ -145,7 +145,22 @@ class MarkdistributionController extends \BaseController
 
     public function config_index()
     {
-        $datas = Course::all();
+        $datas = DB::table('course_management')
+            ->select(
+                'course_management.id', 'course_management.course_id as course_id','course_management.year_id as year_id',
+                'course_management.semester_id as semester_id',
+                //'course.title as c_title',
+                'course.evaluation_total_marks as evaluation_total_marks',
+                'course.subject_id as c_s_id',
+                'subject.department_id as s_d_id',
+                'department.title as d_title'
+            )
+            ->join('course', 'course_management.course_id', '=', 'course.id' )
+            ->join('subject', 'course.subject_id', '=', 'subject.id' )
+            ->join('department', 'subject.department_id', '=', 'department.id' )
+            //->where('course_management.id', 1)
+            ->get();
+
         return View::make('academic::mark_distribution_courses.amw.index_course_config')->with('title', 'Course List')->with('datas', $datas);
     }
 
@@ -155,32 +170,59 @@ class MarkdistributionController extends \BaseController
         $course_data = AcmCourseConfig::where('course_id','=',$course_id)->get();
         return View::make('academic::mark_distribution_courses.amw.show_course_to_insert')->with('datas', $data)->with('course_data', $course_data);
     }
-
     public function save_acm_course_config_data()
     {
         $data = Input::all();
+
+        $is_attendance = Input::get('is_attendance');
+        $count = count(Input::get('acm_marks_dist_item_id'));
+
+        if($is_attendance == 1){
+            for($i=0; $i < $count; $i++){
+                $model1 = new Model1();
+                $model1->title = "data[]";
+                $model1->save();
+            }
+
+            $model2 = new Model2();
+            $model2->title = Input::get('is_attendance');
+            $model2->save();
+
+        }else{
+
+            for($i=0; $i < $count; $i++){
+                $model2 = new Model1();
+                $model2->title = "data[]";
+                $model2->save();
+            }
+        }
+
+//        print_r($data);
+//        exit;
+
         for ($idx = 0; $idx < count(Input::get('acm_marks_dist_item_id')); $idx++) {
-            $values = new AcmCourseConfig;
+            //insert-a-new-record-if-not-exist-and-update-if-exist-laravel-eloquent
+            $values = ($data['acm_config_id'][$idx]) ? AcmCourseConfig::updateOrCreate(array('id' => $data['acm_config_id'][$idx])) : new AcmCourseConfig;
             $values->acm_marks_dist_item_id = $data['acm_marks_dist_item_id'][$idx];
             $values->course_id = $data['course_id'][$idx];
             $values->marks = $data['actual_marks'][$idx];
-            $values->readonly = (Input::has('isReadOnly') == 1) ? 1 : 0;
-            $values->default_item = (Input::get('isDefault' . $idx) == 1) ? 1 : 0;
-            // $values->readonly = $data['isReadOnly'][$idx];
-            // $values->default_item = $data['isDefault'.$idx];
+//            $values->readonly = (Input::has('isReadOnly') == 1) ? 1 : 0;
+//            $values->default_item = Input::get('isDefault' . $idx);
+            $values->readonly = ($data['isReadOnly'][$idx] == 1) ? "1" : "0";
+            $values->default_item = ($data['isDefault'][$idx] == 1) ? "1" : "0";
+            $values->acm_attendance_config_id = ($data['isAttendance'][$idx] == 1) ? "1": "0";
+
             $values->save();
+
         }
-         // redirect
-            Session::flash('message', 'ACM Course Configuration Data Successfully Added !!');
-            return Redirect::to('amw/config/index');
+
+        // redirect
+        Session::flash('message', 'ACM Course Configuration Data Successfully Added !!');
+        return Redirect::to('amw/config/index');
 
     }
 
-//    public function config_show_one($id)
-//    {
-//        $data = AcmCourseConfig::where('course_id', '=', '1')->get();
-//        return View::make('academic::mark_distribution_courses.amw.show_course_config')->with('datas', $data);
-//    }
+
 //End code
 
 
@@ -188,7 +230,23 @@ class MarkdistributionController extends \BaseController
 
     public function  teacher_index()
     {
-        return View::make('academic::mark_distribution_courses.teacher.index')->with('title', 'All Marks Distribution list');
+        $datas = DB::table('course_management')
+            ->select(
+                'course_management.id', 'course_management.course_id as course_id','course_management.year_id as year_id',
+                'course_management.semester_id as semester_id',
+                //'course.title as c_title',
+                //'course.evaluation_total_marks as evaluation_total_marks',
+                'course.subject_id as c_s_id',
+                'subject.department_id as s_d_id',
+                'department.title as d_title'
+            )
+            ->join('course', 'course_management.course_id', '=', 'course.id' )
+            ->join('subject', 'course.subject_id', '=', 'subject.id' )
+            ->join('department', 'subject.department_id', '=', 'department.id' )
+            //->where('course_management.id', 1)
+            ->get();
+
+        return View::make('academic::mark_distribution_courses.teacher.index')->with('title', 'Course List')->with('datas', $datas);
     }
 
 

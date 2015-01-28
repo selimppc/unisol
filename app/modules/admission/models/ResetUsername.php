@@ -1,17 +1,20 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: User
+ * Date: 1/25/2015
+ * Time: 12:56 PM
+ */
+
 
 use Illuminate\Auth\UserTrait;
 use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class UserSignup extends Eloquent implements UserInterface, RemindableInterface {
+class ResetUsername extends Eloquent implements UserInterface, RemindableInterface{
 
-
-    //protected $table = 'user_signup';
-
-//    protected $user_password_table = 'user_reset_password';
-    protected $user_table='user';
+    protected $table = 'reset_username';
 
     public function getReminderEmail()
     {
@@ -37,8 +40,6 @@ class UserSignup extends Eloquent implements UserInterface, RemindableInterface 
     {
         return $this->password;
     }
-
-
 
     /**
      * Get the token value for the "remember me" session.
@@ -72,5 +73,4 @@ class UserSignup extends Eloquent implements UserInterface, RemindableInterface 
     }
 
 
-
-}
+} 

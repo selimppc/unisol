@@ -12,7 +12,9 @@
 <h4 class="form-signin-heading">Mail Notification</h4>
 
        <div>
-       <p>Thanks for signing up! Please check your email.</p>
+       <p>We’ve sent you an email containing your username.</p>
+
+       <p>Please check your spam folder if the email doesn’t appear within a few minutes.</p>
        </div>
         {{ Form::close() }}
 
