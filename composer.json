@@ -29,7 +29,9 @@
             "app/modules/examination/controllers",
             "app/modules/examination/models",
             "app/modules/user/controllers",
-            "app/modules/user/models"
+            "app/modules/user/models",
+            "app/modules/applicant/controllers",
+            "app/modules/applicant/models"
 		]
 	},
 	"scripts": {
