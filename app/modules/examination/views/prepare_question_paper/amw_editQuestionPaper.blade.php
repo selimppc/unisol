@@ -2,7 +2,7 @@
 
         <h2>Edit Prepare Question Paper : AMW</h2>
 
-            {{ Form::model($edit_AmwQuestionPaper,array('url'=> array('prepare_question_paper/update',$edit_AmwQuestionPaper->id), 'method' => 'POST')) }}
+            {{ Form::model($edit_AmwQuestionPaper,array('url'=> array('prepare_question_paper/amw_updateQuestionPaper',$edit_AmwQuestionPaper->id), 'method' => 'POST')) }}
 
                      @include('examination::prepare_question_paper/_amw_form')
 

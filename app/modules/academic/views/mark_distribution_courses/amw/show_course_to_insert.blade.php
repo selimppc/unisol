@@ -10,8 +10,9 @@
     <div class="form-horizontal">
         <div class="form-group">
             {{ Form::hidden('course_id', $datas->id, ['class'=>'form-control course_id'])}}
-            {{ Form::hidden('course_title', $datas->title, ['class'=>'form-control course_title'])}}
-            {{ Form::hidden('course_evaluation_total_marks', $datas->evaluation_total_marks, ['class'=>'form-control course_evalution_marks'])}}
+            {{ Form::text('course_title', $datas->c_title, ['class'=>'form-control course_title'])}}
+           {{ Form::text('course_type', $datas->course_type_title, ['class'=>'form-control course_type'])}}
+            {{ Form::text('course_evaluation_total_marks', $datas->evaluation_total_marks, ['class'=>'form-control course_evalution_marks'])}}
         </div>
         <div class="form-group">
             <div class="col-md-4">
@@ -37,7 +38,7 @@
         </thead>
 
         <tbody class="acm_course_config_list">
-        @foreach($course_data as $key=>$value)
+        @foreach($datas as $key=>$value)
             <tr>
                 {{ Form::hidden('acm_config_id[]', $value->id) }}
                 {{ Form::hidden('course_id[]', $value->course_id) }}
@@ -57,7 +58,7 @@
                 <input type="radio" id="isDefault1" name="isDefault[]" value="1" class="amw_isDefault" {{ ($value->default_item == 1) ? 'checked' : '' }}/>
                 </td>
                 <td width="120">
-                <span><input type="radio" name="isAttendance[]" value="1" class="amw_isAttendance" {{ ($value->acm_attendance_config_id == 1) ? 'checked' : '' }}/></span>
+                <span><input type="radio" name="isAttendance[]" value="1" class="amw_isAttendance" {{ ($value->is_attendance_ == 1) ? 'checked' : '' }}/></span>
                 </td>
                 <td>
                 <a class="btn btn-default btn-sm" id="removeTrId{{$key}}" onClick="deleteNearestTr(this.id)"><span class="glyphicon glyphicon-trash text-danger"></span></a>

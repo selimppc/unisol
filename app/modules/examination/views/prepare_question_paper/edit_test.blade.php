@@ -21,7 +21,6 @@
 
 
                         <div class="form-group" id="myRadioGroup">
-
                                {{ Form::label('gender','Question Type') }}
 
                                {{ Form::label('mcq','MCQ',array('class'=>'radio-inline')) }}
@@ -30,50 +29,105 @@
                                {{ Form::label('mcq','Descriptive',array('class'=>'radio-inline')) }}
                                {{ Form::radio('mcq', 'Descriptive', array('id'=>'mcq', 'class'=>'radio')) }}
 
-
                         </div>
+
+
 
 
                         <div id="MCQ" class="descriptive">
-                            <div class="form-group">
-
-                                        {{ Form::label('gender','Answer Type') }}
-
-                                        {{ Form::label('mcq','Single Answer', array('class'=>'radio-inline')) }}
-                                        {{ Form::radio('question_type', 'mcq_single', array('id'=>'single', 'class'=>'radio')) }}
 
 
-                                        {{ Form::label('mcq','Multiple Answer', array('class'=>'radio-inline')) }}
-                                        {{ Form::radio('question_type', 'mcq_multiple', array('id'=>'multiple', 'class'=>'radio')) }}
+                                <div class="form-group">
 
-                            </div>
+                                            {{ Form::label('gender','Answer Type') }}
 
-                        <div id="fields">
+                                            {{ Form::label('mcq','Single Answer', array('class'=>'radio-inline')) }}
+                                            {{ Form::radio('question_type', 'mcq_single', array('id'=>'single', 'class'=>'radio')) }}
 
-                                         {{ Form::label('Option 1:') }}
-                                         {{ Form::text('option_title[]', '', array('id'=>'option1','class' => 'option_class')) }}
-                                         {{ Form::checkbox('answer[]', 0 ) }}
 
+                                            {{ Form::label('mcq','Multiple Answer', array('class'=>'radio-inline')) }}
+                                            {{ Form::radio('question_type', 'mcq_multiple', array('id'=>'multiple', 'class'=>'radio')) }}
+
+                                </div>
+
+
+                                          <div id="myRadioGroup">
+
+
+                                                <div id="mcq_single" class="desc">
+
+                                                        <div id="fields">
+
+                                                                         {{ Form::label('Option 1:') }}
+                                                                         {{ Form::text('option_title[]', '', array('id'=>'option1','class' => 'option_class')) }}
+                                                                         {{ Form::radio('answer[]', 0 ) }}
+
+                                                        </div>
+
+                                                        <div id="fields1">
+                                                                         {{ Form::label('Option 2:') }}
+                                                                         {{ Form::text('option_title[]', '', array('id'=>'option2','class' => 'option_class')) }}
+                                                                         {{ Form::radio('answer[]', 1) }}
+                                                        </div>
+
+
+
+                                                         <div id="fields">
+                                                         </div>
+
+                                                         <a onclick="createInput()" class="add_button">Add (+)</a>
+
+                                                </div>
+                                                <div id="mcq_multiple" class="desc">
+
+                                                            <div id="fields">
+
+                                                                             {{ Form::label('Option 1:') }}
+                                                                             {{ Form::text('option_title[]', '', array('id'=>'option1','class' => 'option_class')) }}
+                                                                             {{ Form::checkbox('answer[]', 0 ) }}
+
+                                                            </div>
+
+                                                            <div id="fields1">
+                                                                             {{ Form::label('Option 2:') }}
+                                                                             {{ Form::text('option_title[]', '', array('id'=>'option2','class' => 'option_class')) }}
+                                                                             {{ Form::checkbox('answer[]', 1) }}
+                                                            </div>
+
+
+
+                                                             <div id="fields">
+                                                             </div>
+
+                                                             <a onclick="createInput()" class="add_button">Add (+)</a>
+
+
+
+
+                                                </div>
+                                          </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                 <div id="Descriptive" class="descriptive">
+                                 </div>
                         </div>
 
-                        <div id="fields1">
-                                         {{ Form::label('Option 2:') }}
-                                         {{ Form::text('option_title[]', '', array('id'=>'option2','class' => 'option_class')) }}
-                                         {{ Form::checkbox('answer[]', 1) }}
-                        </div>
-
-
-
-                         <div id="fields">
-                         </div>
-
-                         <a onclick="createInput()" class="add_button">Add (+)</a>
-
-
-                        <div id="Descriptive" class="descriptive">
-                         </div>
-
-                        </div>
                        </br></br></br>
 
 
@@ -97,7 +151,18 @@
                 $("#"+test).show();
             });
         });
+
+
+            $("input[name='question_type']").click(function() {
+
+                var test = $(this).val();
+                $(".desc").hide();
+                $("#"+test).show();
+            });
+
     });
+
+    
 </script>
 
 

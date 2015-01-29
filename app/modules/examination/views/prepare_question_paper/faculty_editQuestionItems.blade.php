@@ -2,9 +2,10 @@
 
         <h2>Edit Question Items : Faculty</h2>
 
-            {{ Form::model($fac_edit_question_item,array('url'=> array('prepare_question_paper/updatequestionItems',$fac_edit_question_item->id), 'method' => 'POST')) }}
+            {{ Form::model($qid,array('url'=> array('prepare_question_paper/faculty_updateQuestionItems',$qid->id), 'method' => 'POST')) }}
 
-                     @include('examination::prepare_question_paper/_addQuestionItem_form')
+                     @include('examination::prepare_question_paper/edit_item')
+                     {{--@include('examination::prepare_question_paper/faculty_viewQuestionItems')--}}
 
             {{ Form::close() }}
 
