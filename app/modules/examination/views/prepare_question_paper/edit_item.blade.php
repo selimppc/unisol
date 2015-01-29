@@ -9,13 +9,38 @@
 
 
                                      {{ Form::label('title', 'Question Title') }}
-                                     {{ Form::text('title', Input::old('title'),['class'=>'form-control', 'required'=>'required']) }}
+                                     {{ Form::text('title', null, ['class'=>'form-control', 'required'=>'required']) }}
 
                                      </br>
                                      {{ Form::label('marks', 'Marks') }}
-                                     {{ Form::text('marks', Input::old('marks'), array('class' => 'form-control','required'=>'required')) }}
+                                     {{ Form::text('marks', null, array('class' => 'form-control','required'=>'required')) }}
 
-                                     </br></br>
+                                     </br>
+
+                                     <div class="form-group" id="myRadioGroup">
+                                                 {{ Form::label('gender','Question Type') }}
+
+                                                 {{ Form::label('mcq','MCQ',array('class'=>'radio-inline')) }}
+                                                 {{ Form::radio('mcq', 'MCQ', array('id'=>'mcq', 'class'=>'radio')) }}
+
+                                                 {{ Form::label('mcq','Descriptive',array('class'=>'radio-inline')) }}
+                                                 {{ Form::radio('mcq', 'Descriptive',array('id'=>'mcq', 'class'=>'radio')) }}
+
+                                     </div>
+                                     </br>
+
+                                     <div class="form-group">
+
+                                                 {{ Form::label('gender','Answer Type') }}
+
+                                                 {{ Form::label('mcq','Single Answer', array('class'=>'radio-inline')) }}
+                                                 {{ Form::radio('question_type', 'mcq_single', array('id'=>'single', 'class'=>'radio')) }}
+
+                                                 {{ Form::label('mcq','Multiple Answer', array('class'=>'radio-inline')) }}
+                                                 {{ Form::radio('question_type', 'mcq_multiple', array('id'=>'multiple', 'class'=>'radio')) }}
+
+                                     </div>
+                                     </br>
 
                                      <div class="container">
 
@@ -35,8 +60,10 @@
 
                                                     <div class="col-sm-12">
                                                         <div class="col-sm-6">
-                                                                {{Form::radio('options', '')}}
-                                                                {{$op->title}}
+                                                                {{ Form::radio('options','')}}
+
+                                                                {{ Form::text('title',$op->title,['class'=>'form-control']) }}
+                                                                {{--{{$op->title}}--}}
                                                         </div>
                                                         <div class="col-sm-6">
                                                              @if($op->answer == 1)
@@ -59,7 +86,8 @@
                                                     <div class="col-sm-12">
                                                         <div class="col-sm-6">
                                                                 {{Form::radio('options', '')}}
-                                                                {{$op->title}}
+                                                                {{--{{$op->title}}--}}
+                                                                 {{ Form::text('title',$op->title,['class'=>'form-control']) }}
                                                         </div>
                                                         <div class="col-sm-6">
                                                               @if($op->answer == 1)
@@ -85,7 +113,3 @@
                 <a href="{{URL::to('prepare_question_paper/faculty_QuestionList')}}" class="btn btn-default">Close </a>
         </fieldset>
     {{ Form::close() }}
-
-
-
-

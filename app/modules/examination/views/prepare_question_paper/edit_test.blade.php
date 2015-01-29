@@ -24,7 +24,8 @@
                                {{ Form::label('gender','Question Type') }}
 
                                {{ Form::label('mcq','MCQ',array('class'=>'radio-inline')) }}
-                               {{ Form::radio('mcq', 'MCQ', array('id'=>'mcq', 'class'=>'radio')) }}
+                               {{ Form::radio('mcq', 'MCQ', array('id'=>'mcq', 'class'=>'radio', 'checked')) }}
+
 
                                {{ Form::label('mcq','Descriptive',array('class'=>'radio-inline')) }}
                                {{ Form::radio('mcq', 'Descriptive', array('id'=>'mcq', 'class'=>'radio')) }}
@@ -34,7 +35,7 @@
 
 
 
-                        <div id="MCQ" class="descriptive">
+                        <div id="MCQ" class="descriptive" style="display: none">
 
 
                                 <div class="form-group">
@@ -44,7 +45,6 @@
                                             {{ Form::label('mcq','Single Answer', array('class'=>'radio-inline')) }}
                                             {{ Form::radio('question_type', 'mcq_single', array('id'=>'single', 'class'=>'radio')) }}
 
-
                                             {{ Form::label('mcq','Multiple Answer', array('class'=>'radio-inline')) }}
                                             {{ Form::radio('question_type', 'mcq_multiple', array('id'=>'multiple', 'class'=>'radio')) }}
 
@@ -53,15 +53,11 @@
 
                                           <div id="myRadioGroup">
 
-
-                                                <div id="mcq_single" class="desc">
-
+                                                <div id="mcq_single" class="desc" style="display: none">
                                                         <div id="fields">
-
                                                                          {{ Form::label('Option 1:') }}
                                                                          {{ Form::text('option_title[]', '', array('id'=>'option1','class' => 'option_class')) }}
                                                                          {{ Form::radio('answer[]', 0 ) }}
-
                                                         </div>
 
                                                         <div id="fields1">
@@ -70,22 +66,15 @@
                                                                          {{ Form::radio('answer[]', 1) }}
                                                         </div>
 
-
-
-                                                         <div id="fields">
-                                                         </div>
-
+                                                        <div id="fields">
+                                                        </div>
                                                          <a onclick="createInput()" class="add_button">Add (+)</a>
-
                                                 </div>
                                                 <div id="mcq_multiple" class="desc">
-
                                                             <div id="fields">
-
                                                                              {{ Form::label('Option 1:') }}
                                                                              {{ Form::text('option_title[]', '', array('id'=>'option1','class' => 'option_class')) }}
                                                                              {{ Form::checkbox('answer[]', 0 ) }}
-
                                                             </div>
 
                                                             <div id="fields1">
@@ -93,32 +82,12 @@
                                                                              {{ Form::text('option_title[]', '', array('id'=>'option2','class' => 'option_class')) }}
                                                                              {{ Form::checkbox('answer[]', 1) }}
                                                             </div>
-
-
-
-                                                             <div id="fields">
-                                                             </div>
-
+                                                            <div id="fields">
+                                                            </div>
                                                              <a onclick="createInput()" class="add_button">Add (+)</a>
-
-
-
 
                                                 </div>
                                           </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -150,6 +119,7 @@
                 $(".descriptive").hide();
                 $("#"+test).show();
             });
+//
         });
 
 
@@ -159,6 +129,10 @@
                 $(".desc").hide();
                 $("#"+test).show();
             });
+
+
+
+
 
     });
 
