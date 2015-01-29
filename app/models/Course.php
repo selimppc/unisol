@@ -4,6 +4,14 @@ class Course extends \Eloquent
 {
     protected $table = 'course';
 
+    public function coursemanagement(){
+        return $this->belongsTo('CourseManagement');
+    }
+
+    public function subject(){
+        return $this->belongsTo('Subject');
+    }
+
     public static function getCourseName($courseId){
         $data = Course::find($courseId);
         return $data->title;

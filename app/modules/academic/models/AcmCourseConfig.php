@@ -6,6 +6,10 @@ class AcmCourseConfig extends Eloquent
 
     protected $table = 'acm_course_config';
 
+
+    public function acmmarksdist(){
+        return $this->belongsTo('AcmMarksDist', 'acm_marks_dist_item_id', 'id');
+    }
     //static function to calculate either partial done or no starts
 
     public static function getCourseItemStatus($course_id, $evalution_marks)
@@ -66,7 +70,7 @@ class AcmCourseConfig extends Eloquent
 
     // 2 update data validation
 
-    private $rules2 = array(
+    /* private $rules2 = array(
         'acm_marks_dist_item_id' =>'required',
         'marks' =>'required|numeric',
         'readonly' =>'required'
@@ -88,7 +92,7 @@ class AcmCourseConfig extends Eloquent
 
         // validation pass
         return true;
-    }
+    }*/
 
     public function errors()
     {

@@ -21,11 +21,11 @@
         <tbody>
         @foreach ($datas as $value)
             <tr>
-                <td>{{ Course::getCourseName($value->course_id) }}</td>
-                <td>{{$value->d_title}}</td>
-                <td>{{ Year::getYearsName($value->year_id ) }}</td>
-                <td>{{ Semester::getSemesterName($value->semester_id ) }}</td>
-                <td>{{ AcmCourseConfig::getCourseItemStatus($value->course_id, $value->evaluation_total_marks) }}</td>
+                <td>{{$value->course->title}}</td>
+                <td>{{$value->course->subject->department->title}}</td>
+                <td>{{$value->year->title}}</td>
+                <td>{{$value->semester->title}}</td>
+                <td>1</td>
 
                 <td>
                     <a href="{{ URL::route('coursefind.show', ['course_id'=>$value->id])  }}" class="btn btn-primary" data-toggle="modal" data-target="#addNew" data-toggle="tooltip" data-placement="left" title="Show/View" href="">MarksDistConfig</a>
