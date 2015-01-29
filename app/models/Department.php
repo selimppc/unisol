@@ -18,6 +18,11 @@ class Department extends Eloquent {
 
     );
 
+
+    public function subject(){
+        return $this->belongsTo('Subject');
+    }
+
     public function validate($data)
     {
         // make a new validator object
