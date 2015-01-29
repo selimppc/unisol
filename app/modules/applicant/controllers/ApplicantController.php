@@ -1,18 +1,21 @@
 <?php
-class ApplicantController extends \BaseController {
+class ApplicantController extends \BaseController
+{
 
     public function index()
 
     {
-         //$applicant_list = Applicant::orderBy('id', 'DESC');
+        //$applicant_list = Applicant::orderBy('id', 'DESC');
         $applicant_list = Applicant::all();
 
-        return View::make('applicant::applicants.index',compact('applicant_list'));
+        return View::make('applicant::applicants.index', compact('applicant_list'));
     }
+
     public function create()
     {
         return View::make('applicant::applicants.create');
     }
+
     public function store()
     {
         $rules = array(
@@ -37,7 +40,7 @@ class ApplicantController extends \BaseController {
             $model->marital_status = Input::get('marital_status');
             $model->nationality = Input::get('nationality');
             $model->religion = Input::get('religion');
-            $model->signature = Input::get('signature');
+            $model->signature = Input::file('signature');
             $model->present_address = Input::get('present_address');
             $model->parmanent_address = Input::get('parmanent_address');
             $model->save();
@@ -47,21 +50,24 @@ class ApplicantController extends \BaseController {
             return Redirect::to('applicant')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
         }
     }
+
     public function show($id)
     {
         $applicant = Applicant::find($id);
-        return View::make('applicant::applicants.show',compact('applicant'));
+        return View::make('applicant::applicants.show', compact('applicant'));
     }
+
     public function edit($id)
     {
         $applicant = Applicant::find($id);
 
         return View::make('applicant::applicants.edit', compact('applicant'));
     }
+
     /**
      * Update the specified resource in storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return Response
      */
     public function update($id)
@@ -97,10 +103,11 @@ class ApplicantController extends \BaseController {
             return Redirect::to('applicant')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
         }
     }
+
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return Response
      */
     public function destroy($id)
@@ -108,9 +115,29 @@ class ApplicantController extends \BaseController {
         try {
             Applicant::find($id)->delete();
             return Redirect::back()->with('message', 'Successfully deleted Information!');
-        }
-        catch(exception $ex){
+        } catch (exception $ex) {
             return Redirect::back()->with('message', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
         }
     }
+
+    public function applicantMetaData()
+    {
+        $user_id = Auth::user()->id;
+
+        $data = Applicant::where('user_id', '=', $user_id)->first();
+
+        return View::make('applicant::applicants.meta_data', compact('data'));
+
+    }
+
+    public function applicantMetaDataView(){
+
+
+    }
+
+    public function applicantExtraCurricular()
+    {
+        return View::make('applicant::extra_curricular.index');
+    }
 }
+
