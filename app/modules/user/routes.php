@@ -11,3 +11,4 @@
 |
 */
 
+Route::any('user/login','UserController@login');

@@ -16,7 +16,7 @@
 
      <div>
        {{  Form::label('body', 'Body: ')  }}
-       {{  Form::textarea('body', '', array('class' => 'form-control'))  }}
+       {{  Form::text('body', '', array('class' => 'form-control'))  }}
        {{  $errors->first('body', '<div class="alert alert-danger"><b>:message</b></div>')  }}
      </div>
 
