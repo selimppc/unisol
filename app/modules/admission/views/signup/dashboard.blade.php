@@ -17,6 +17,8 @@
 
 
     {{ HTML::linkAction('UserSignupController@usersLogout', 'Logout') }}
+    <br>
+    <a href= "{{URL::to('applicant/profile') }}" class="btn btn-sm btn-info">Create Profile</a>
 
 </div>
 

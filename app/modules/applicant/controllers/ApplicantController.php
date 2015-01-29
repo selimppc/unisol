@@ -120,6 +120,12 @@ class ApplicantController extends \BaseController
         }
     }
 
+    public function applicantProfile(){
+
+        return View::make('applicant::applicants.profile');
+
+    }
+
     public function applicantMetaData()
     {
         $user_id = Auth::user()->id;
@@ -137,7 +143,70 @@ class ApplicantController extends \BaseController
 
     public function applicantExtraCurricular()
     {
-        return View::make('applicant::extra_curricular.index');
+        return View::make('applicant::extra_curricular._form');
+    }
+
+    public function applicantExtraCurricularStore(){
+
+        $rules = array(
+            'title' => 'required',
+        );
+        $validator = Validator::make(Input::all(), $rules);
+        if ($validator->passes()) {
+            $extra_curricular =new ExtraCurricularActivities();
+            $extra_curricular->user_id = Input::get('user_id');
+            $extra_curricular->title = Input::get('title');
+            $extra_curricular->description = Input::get('description');
+            $extra_curricular->achivement = Input::get('achivement');
+            $extra_curricular->certificate_medal = Input::file('certificate_medal');
+            $extra_curricular->save();
+
+            return Redirect::back()->with('message', 'Successfully updated Information!');
+        } else {
+            return Redirect::to('applicant/extra_curricular/create')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
+        }
+
+
+
+    }
+
+    public function applicantExtraCurricularActivities()
+    {
+        $user_id = Auth::user()->id;
+
+        $data = ExtraCurricularActivities::where('user_id', '=', $user_id)->first();
+
+        return View::make('applicant::extra_curricular.index', compact('data'));
+
+    }
+
+    public function editExtraCurricular($id)
+    {
+        $extra_curricular = ExtraCurricularActivities::find($id);
+
+        return View::make('applicant::extra_curricular.edit', compact('extra_curricular'));
+    }
+
+    public function updateExtraCurricular($id){
+
+        $rules = array(
+            'title' => 'required',
+        );
+        $validator = Validator::make(Input::all(), $rules);
+        if ($validator->passes()) {
+            $extra_curricular = ExtraCurricularActivities::find($id);
+            $extra_curricular->title = Input::get('title');
+            $extra_curricular->description = Input::get('description');
+            $extra_curricular->achivement = Input::get('achivement');
+            $extra_curricular->certificate_medal = Input::file('certificate_medal');
+
+
+            $extra_curricular->save();
+            return Redirect::back()->with('message', 'Successfully updated Information!');
+        } else {
+            return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
+        }
+
     }
 }
 

@@ -77,7 +77,7 @@
                                         <td>
                                         <a data-href="{{ URL::to('applicant/delete/'.$applicants->id) }}" class="btn btn-sm btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><span class="glyphicon glyphicon-trash text-danger"></span></a>
                                         <a href="{{ URL::to('applicant/show/'.$applicants->id) }}" class="btn btn-sm btn-default" data-toggle="modal" data-target="#confirm-show"><span class="glyphicon glyphicon-eye-open text-danger"></span></a>
-                                         <a class="btn btn-sm btn-info" href="{{ URL::to('roletask/edit/' . $roletask->id ) }}" data-toggle="modal" data-target="#myeditModal" >Edit...</a>
+                                         {{--<a class="btn btn-sm btn-info" href="{{ URL::to('roletask/edit/' . $roletask->id ) }}" data-toggle="modal" data-target="#myeditModal" >Edit...</a>--}}
                                         <a class="btn btn-sm btn-info" href="{{ URL::to('applicant/edit/' . $applicants->id ) }}" data-toggle="modal" data-target="#myeditModal" >Edit...</a>
                                         </td>
 
