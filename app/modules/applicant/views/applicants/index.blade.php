@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('sidebar')
-    {{--@include('role_task._sidebar')--}}
+    @include('applicant::_sidebar')
 @stop
 @section('content')
 
@@ -21,7 +21,7 @@
                     <tr>
                        <td><input name="checkbox" type="checkbox" id="checkbox" class="checkbox" value="">
                        </td>
-                        <th>User's Id</th>
+                        <th>Applicant's name</th>
                         <th>Father's Name</th>
                         <th>Mother's Name</th>
                         <th>Father's occupation</th>
@@ -48,10 +48,11 @@
         <tbody>
 
                 @foreach ($applicant_list as $applicants)
-                                    <tr>
+                                    <tr >
                                        <td><input type="checkbox" name="ids[]"  id="check" class="myCheckbox" value="{{ $applicants->id }}"></td>
 
-                                        <td>{{ $applicants->user_id }}</td>
+                                       <td align="left" class="Applicant">{{ User::getUserName($applicants->user_id) }}</td>
+
                                         <td>{{ $applicants->fathers_name }}</td>
                                         <td>{{ $applicants->mothers_name }}</td>
                                         <td>{{ $applicants->fathers_occupation }}</td>
@@ -69,23 +70,23 @@
                                         <td>{{ $applicants->signature }}</td>
                                         <td>{{ $applicants->present_address }}</td>
                                         <td>{{ $applicants->parmanent_address }}</td>
-                                        <td align="left" class="Applicant">{{ User::getUserName($applicants->user_id) }}</td>
 
 
-                                        <td>{{ $applicants->status }}</td>
+
+
                                         <td>
                                         <a data-href="{{ URL::to('applicant/delete/'.$applicants->id) }}" class="btn btn-sm btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><span class="glyphicon glyphicon-trash text-danger"></span></a>
                                         <a href="{{ URL::to('applicant/show/'.$applicants->id) }}" class="btn btn-sm btn-default" data-toggle="modal" data-target="#confirm-show"><span class="glyphicon glyphicon-eye-open text-danger"></span></a>
-                                         {{--<a class="btn btn-sm btn-info" href="{{ URL::to('roletask/edit/' . $roletask->id ) }}" data-toggle="modal" data-target="#myeditModal" >Edit...</a>--}}
+                                         <a class="btn btn-sm btn-info" href="{{ URL::to('roletask/edit/' . $roletask->id ) }}" data-toggle="modal" data-target="#myeditModal" >Edit...</a>
                                         <a class="btn btn-sm btn-info" href="{{ URL::to('applicant/edit/' . $applicants->id ) }}" data-toggle="modal" data-target="#myeditModal" >Edit...</a>
                                         </td>
 
                                     </tr>
                                 @endforeach
                                  <br><br>
-     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#CreateModal">
-           Add New
-     </button>
+     {{--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#CreateModal">--}}
+           {{--Add New--}}
+     {{--</button>--}}
 
         </tbody>
     </table>
