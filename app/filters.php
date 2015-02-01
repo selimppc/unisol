@@ -17,9 +17,20 @@ App::before(function($request)
 });
 
 
-App::after(function($request, $response)
-{
-	//
+App::after(function($request, $response){
+    $cookieName = Auth::getRecallerName();
+    if (Session::has('cookie_expiration') && Auth::check() && isset($_COOKIE[$cookieName])) {
+        // get the (current/new) cookie values
+        $cookieValue = Cookie::get($cookieName);
+        $expiration = Session::get('cookie_expiration');
+
+        // forget the session var
+        Session::forget('cookie_expiration');
+
+        // change the expiration time
+        $cookie = Cookie::make($cookieName, $cookieValue, $expiration);
+        return $response->withCookie($cookie);
+    }
 });
 
 /*
