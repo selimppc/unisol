@@ -29,13 +29,9 @@ Route::any('prepare_question_paper/edit/{id}', ['as' => 'prepare_question_paper.
 Route::any('prepare_question_paper/destroy/{id}', ['as' => 'prepare_question_paper.destroy', 'uses' => 'ExmPrepareQuestionPaperController@destroy' ]);
 Route::any('prepare_question_paper/batchDelete','ExmPrepareQuestionPaperController@batchDelete');
 
-
-
-
 Route::any('prepare_question_paper/faculty_ViewQuestionItems/{id}', [ 'as' => 'prepare_question_paper.faculty_ViewQuestion', 'uses' => 'ExmPrepareQuestionPaperController@faculty_ViewQuestion' ]);
 
 // AMW Part
-
 Route::any('prepare_question_paper/amw_index','ExmPrepareQuestionPaperController@amw_index');
 Route::any('prepare_question_paper/amw_ViewQuestion/{id}', [ 'as' => 'prepare_question_paper.amw_ViewQuestion', 'uses' => 'ExmPrepareQuestionPaperController@amw_ViewQuestion' ]);
 Route::any('prepare_question_paper/amw_QuestionList','ExmPrepareQuestionPaperController@amw_QuestionList');
@@ -48,14 +44,7 @@ Route::any('prepare_question_paper/assignto','ExmPrepareQuestionPaperController@
 // question item View
 Route::any('prepare_question_paper/amw_ViewQuestionItems/{id}', [ 'as' => 'prepare_question_paper.amw_ViewQuestionItems', 'uses' => 'ExmPrepareQuestionPaperController@amw_ViewQuestionItems' ]);
 
-
-
-
-
-
-
 // Faculty Part
-
 Route::any('prepare_question_paper/faculty_index','ExmPrepareQuestionPaperController@faculty_index');
 Route::any('prepare_question_paper/faculty_ViewQuestion/{id}', [ 'as' => 'prepare_question_paper.faculty_ViewQuestion', 'uses' => 'ExmPrepareQuestionPaperController@faculty_ViewQuestion' ]);
 Route::any('prepare_question_paper/faculty_QuestionList','ExmPrepareQuestionPaperController@faculty_QuestionList');
