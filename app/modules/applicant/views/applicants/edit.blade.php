@@ -1,5 +1,6 @@
 
 <div style="padding: 20px;">
+
 <h3>Edit {{$applicant->username}}</h3>
 {{Form::open(array('url'=>'applicant/update/'.$applicant->id, 'class'=>'form-horizontal'))}}
 
@@ -44,10 +45,10 @@
 <br>
 
 {{ Form::label('present_address', 'present_address:') }}
-{{ Form::textarea('present_address',$applicant->present_address, array('class' => 'form-control')) }}
+{{ Form::textarea('present_address',$applicant->present_address, array('class' => 'form-control','rows'=>"5")) }}
 <br>
 {{ Form::label('parmanent_address', 'parmanent_address:') }}
-{{ Form::textarea('parmanent_address',$applicant->parmanent_address, array('class' => 'form-control')) }}
+{{ Form::textarea('parmanent_address',$applicant->parmanent_address, array('class' => 'form-control','rows'=>"5")) }}
 <p>&nbsp;</p>
 {{ Form::submit('Save Changes', array('class'=>'btn btn-primary')) }}
 <a href="" class="btn btn-default" span class="glyphicon-refresh">Close</a>

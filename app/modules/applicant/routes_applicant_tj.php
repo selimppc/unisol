@@ -15,3 +15,7 @@ Route::post('applicant/update/{id}','ApplicantController@update');
 
 Route::get('applicant/show/{id}', 'ApplicantController@show' );
 
+Route::any('applicant/meta_data','ApplicantController@applicantMetaData');//meta-data
+
+Route::any('applicant/extra_curricular','ApplicantController@applicantExtraCurricular');
+
