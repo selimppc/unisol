@@ -40,37 +40,18 @@ $(function() {
         div.appendChild(input);
 
 
-
-        //if(question_type == radio){
-        //
-        //}else{
-        //
-        //}
-
         //Radio
-        // <input type="radio" name="answerType" id="inlineRadio2" value="Female">
+
         var input = document.createElement("input");
         input.id = 'answer'+count;
-        input.className = 'radio_class';
+        input.className = 'radiocheck';
         input.name = 'answer[]';
         //input.type = "radio";
-        input.type = "checkbox";
+        input.type = "radio";
         input.value = count;
 
 
-        //var input = document.createElement("input");
-        //input.id = 'answer'+count;
-        //input.className = 'radio_class';
-        //input.name = 'answer[]';
-        ////input.type = "radio";
-        //input.type = "radio";
-        //input.value = count;
-
-
-
         div.appendChild(input);
-
-
 
         field_area.appendChild(div);
         //remove area
