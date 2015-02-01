@@ -15,21 +15,30 @@ class CreateAcmMarksDistributionTable extends Migration {
 		Schema::create('acm_marks_distribution', function(Blueprint $table)
 		{
 			$table->increments('id');
-            $table->unsignedInteger('course_management_id')->index();
-            $table->foreign('course_management_id')->references('id')->on('course_management');
-            $table->unsignedInteger('acm_marks_dist_item_id')->index();
+            $table->unsignedInteger('course_management_id')->nullable();
+
+
+            $table->unsignedInteger('acm_marks_dist_item_id');
             $table->foreign('acm_marks_dist_item_id')->references('id')->on('acm_marks_dist_item');
-            $table->unsignedInteger('acm_marks_policy_id')->index();
+
+            $table->unsignedInteger('acm_marks_policy_id');
             $table->foreign('acm_marks_policy_id')->references('id')->on('acm_marks_policy');
-            $table->unsignedInteger('acm_attendance_config_id')->index();
+
+            $table->unsignedInteger('acm_attendance_config_id');
             $table->foreign('acm_attendance_config_id')->references('id')->on('acm_attendance_config');
+
             $table->boolean('is_attendance');
             $table->tinyInteger('marks', false, 3)->unsigned();
             $table->string('note');
             $table->string('created_by',32);
             $table->string('updated_by',32);
             $table->timestamps();
+            $table->engine = 'InnoDB';
 		});
+
+        Schema::table('acm_marks_distribution', function($table) {
+            $table->foreign('course_management_id')->references('id')->on('course_management');
+        });
 	}
 
 	/**
