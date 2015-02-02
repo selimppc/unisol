@@ -15,11 +15,11 @@ class CreateRoleTaskTable extends Migration {
         Schema::create('role_task', function($table) {
             $table->increments('id', true);
 
-            $table->unsignedInteger('target_role_id');
-            $table->foreign('target_role_id')->references('id')->on('target_role');
-
-            $table->unsignedInteger('task_list_id');
-            $table->foreign('task_list_id')->references('id')->on('task_list');
+//            $table->unsignedInteger('target_role_id');
+//            $table->foreign('target_role_id')->references('id')->on('target_role');
+//
+//            $table->unsignedInteger('task_list_id');
+//            $table->foreign('task_list_id')->references('id')->on('task_list');
 
             $table->string('title');
             $table->text('description');

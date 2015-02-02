@@ -15,6 +15,7 @@ class CreateCourseManagementTable extends Migration {
 		Schema::create('course_management', function(Blueprint $table)
 		{
 			$table->increments('id');
+
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('user')->onDelete('cascade');
             $table->unsignedInteger('degree_program_id');
