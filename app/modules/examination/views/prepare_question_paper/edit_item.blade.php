@@ -9,7 +9,7 @@
  </div>
 
  <div class="form-group" id="myRadioGroup">
-     {{ Form::label('gender','Question Type') }}
+     {{ Form::label('gender','Question Type:') }}
      @if($qid->question_type == 'radio' || $qid->question_type == 'checkbox')
          {{ Form::label('mcq','MCQ',array('class'=>'radio-inline')) }}
          {{ Form::radio('mcq', 'MCQ', array('class'=>'radio','checked')) }}
@@ -26,42 +26,23 @@
     <div class="row">
         @if($qid->question_type == 'radio')
              <div class="form-group">
-                 {{ Form::label('gender','Answer Type') }}
+                 {{ Form::label('gender','Answer Type:') }}
                  {{ Form::label('mcq','Single Answer', array('class'=>'radio-inline')) }}
-                 {{ Form::radio('question_type', 'mcq_single',array('id'=>'single','checked')) }}
-                 {{--{{ Form::label('mcq','Multiple Answer', array('class'=>'radio-inline')) }}--}}
-                 {{--{{ Form::radio('question_type', 'mcq_multiple', array('class'=>'radio')) }}--}}
-             </div>
-             <div class="row">
-                <div class="col-sm-12">
-                    <div class="col-sm-6"><strong>Option </strong></div>
-                    <div class="col-sm-6"><strong>Answer </strong></div>
-                </div>
-                @foreach($options as $op)
-                    <div class="col-sm-12">
-                        <div class="col-sm-6">
-                                {{Form::hidden('id[]', $op->id, ['class'=>'form-control'])}}
-                                {{ Form::text('option_title[]',$op->title,['class'=>'form-control']) }}
-                        </div>
-                        <div class="col-sm-6">
-                             @if($op->answer == 1)
-                                {{Form::checkbox('answer',$op->answer ,array('checked'))}}<br>
-                             @elseif($op->answer == 0)
-                                {{Form::checkbox('answer', $op->answer)}}<br>
-                             @endif
-                        </div>
-                    </div>
-                @endforeach
+                 {{ Form::radio('question_type', 'mcq_single',array('checked')) }}
+
+                 {{ Form::label('mcq','Multiple Answer', array('class'=>'radio-inline')) }}
+                 {{ Form::radio('question_type', 'mcq_multiple') }}
              </div>
         @elseif($qid->question_type == 'checkbox')
              <div class="form-group">
-                 {{ Form::label('gender','Answer Type') }}
-                 {{--{{ Form::label('mcq','Single Answer', array('class'=>'radio-inline')) }}--}}
-                 {{--{{ Form::radio('question_type', 'mcq_single', array('class'=>'radio')) }}--}}
+                 {{ Form::label('gender','Answer Type:') }}
+                 {{ Form::label('mcq','Single Answer', array('class'=>'radio-inline')) }}
+                 {{ Form::radio('question_type', 'mcq_single') }}
+
                  {{ Form::label('mcq','Multiple Answer', array('class'=>'radio-inline')) }}
-                 {{ Form::radio('question_type', 'mcq_multiple', array('id'=>'multiple','checked')) }}
+                 {{ Form::radio('question_type', 'mcq_multiple',array('checked')) }}
              </div>
-            <div class="row">
+             <div class="row">
                 <div class="col-sm-12">
                     <div class="col-sm-6"><strong>Option </strong></div>
                     <div class="col-sm-6"><strong>Answer </strong></div>
@@ -73,15 +54,44 @@
                                 {{ Form::text('option_title[]',$op->title,['class'=>'form-control']) }}
                         </div>
                         <div class="col-sm-6">
-                              @if($op->answer == 1)
-                                {{ Form::checkbox('answer[]', $op->answer,array('checked'))}}<br>
-                              @elseif($op->answer == 0)
-                                {{ Form::checkbox('answer[]',$op->answer)}}<br>
-                              @endif
+                             @if($op->answer == 1)
+                                {{Form::checkbox('answer',$op->answer ,array('checked'))}}
+                             @elseif($op->answer == 0)
+                                {{Form::checkbox('answer', $op->answer)}}
+                             @endif
                         </div>
                     </div>
                 @endforeach
-            </div>
+             </div>
+        {{--@elseif($qid->question_type == 'checkbox')--}}
+             {{--<div class="form-group">--}}
+                 {{--{{ Form::label('gender','Answer Type') }}--}}
+                 {{--{{ Form::label('mcq','Single Answer', array('class'=>'radio-inline')) }}--}}
+                 {{--{{ Form::radio('question_type', 'mcq_single') }}--}}
+                 {{--{{ Form::label('mcq','Multiple Answer', array('class'=>'radio-inline')) }}--}}
+                 {{--{{ Form::radio('question_type', 'mcq_multiple', array('checked')) }}--}}
+             {{--</div>--}}
+            {{--<div class="row">--}}
+                {{--<div class="col-sm-12">--}}
+                    {{--<div class="col-sm-6"><strong>Option </strong></div>--}}
+                    {{--<div class="col-sm-6"><strong>Answer </strong></div>--}}
+                {{--</div>--}}
+                {{--@foreach($options as $op)--}}
+                    {{--<div class="col-sm-12">--}}
+                        {{--<div class="col-sm-6">--}}
+                                {{--{{ Form::hidden('id[]', $op->id, ['class'=>'form-control'])}}--}}
+                                {{--{{ Form::text('option_title[]',$op->title,['class'=>'form-control']) }}--}}
+                        {{--</div>--}}
+                        {{--<div class="col-sm-6">--}}
+                              {{--@if($op->answer == 1)--}}
+                                {{--{{ Form::checkbox('answer', $op->answer,array('checked'))}}--}}
+                              {{--@elseif($op->answer == 0)--}}
+                                {{--{{ Form::checkbox('answer',$op->answer)}}--}}
+                              {{--@endif--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                {{--@endforeach--}}
+            {{--</div>--}}
         @else
            <div class="text-center">
                 {{ Form::textarea('desc', 'Write Your Answer', ['size' => '40x6']) }}

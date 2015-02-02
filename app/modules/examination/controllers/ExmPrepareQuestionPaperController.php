@@ -56,7 +56,6 @@ class ExmPrepareQuestionPaperController extends \BaseController {
             //->where('exm_questions.id', 6)
             ->get();
 
-
         return View::make('examination::prepare_question_paper.faculty_index')->with('datas',$datas);
     }
 
@@ -199,7 +198,7 @@ class ExmPrepareQuestionPaperController extends \BaseController {
 // method for Add Question Items : Faculty
     public function faculty_add_question_items($qid){
         $qid = ExmQuestion::find($qid);
-        return View::make('examination::prepare_question_paper.edit_test', compact('qid'));
+        return View::make('examination::prepare_question_paper.faculty_add_question_item', compact('qid'));
     }
 
 // method for Store Question Items : Faculty
@@ -208,7 +207,6 @@ class ExmPrepareQuestionPaperController extends \BaseController {
         $data = Input::all();
 
         $faculty_store_question_items = new ExmQuestionItems();
-
 
         if ($faculty_store_question_items->validate($data))
         {
@@ -219,26 +217,20 @@ class ExmPrepareQuestionPaperController extends \BaseController {
             if( strtolower(Input::get('mcq')) == 'mcq'){
                 if( strtolower(Input::get('question_type')) == 'mcq_single'){
                     $faculty_store_question_items->question_type = 'radio';
-
-                    //$faculty_store_question_items->save();
-
                     if($faculty_store_question_items->save()) {
                         $exm_question_items_id = $faculty_store_question_items->id;
                         $opt_title = Input::get('option_title');
                         $opt_answer = Input::get('answer');
                         $i = 0;
                         foreach ($opt_title as $key => $value) {
-
                             //Re-declare model each time you want to save data as loop.
                             $exm_question_opt = new ExmQuestionOptionAnswer();
-
                             $exm_question_opt->exm_question_items_id = $exm_question_items_id;
-                            $exm_question_opt->title = $value;#$opt_title[$i];
-                            foreach ($opt_answer as $oa) {
+                            $exm_question_opt->title = $value;
+                                foreach ($opt_answer as $oa) {
                                 if ($oa == $key)
                                     $exm_question_opt->answer = 1;
-                            }
-
+                                }
                             $exm_question_opt->save();
                             $i++;
                         }
@@ -246,8 +238,6 @@ class ExmPrepareQuestionPaperController extends \BaseController {
                     }else {
                         echo "NO";
                     }
-
-
                 }else{
                     $faculty_store_question_items->question_type = 'checkbox';
                     if($faculty_store_question_items->save()){
@@ -256,37 +246,29 @@ class ExmPrepareQuestionPaperController extends \BaseController {
                         $opt_answer = Input::get('answer');
                         $i = 0;
                         foreach($opt_title as $key => $value){
-
                             //Re-declare model each time you want to save data as loop.
                             $exm_question_opt = new ExmQuestionOptionAnswer();
-
                             $exm_question_opt->exm_question_items_id = $exm_question_items_id;
-                            $exm_question_opt->title = $value;#$opt_title[$i];
+                            $exm_question_opt->title = $value;
                             foreach($opt_answer as $oa){
                                 if($oa == $key)
                                     $exm_question_opt->answer = 1;
                             }
-
                             $exm_question_opt->save();
                             $i++;
                         } /// saving last single data
-
                         echo "Option Data : Multiple Answer Saved!";
                     }else{
                         echo "NO";
                     }
                 }
-
-
-
             }else{
-                $faculty_store_question_items->question_type = 'text';
-                if($faculty_store_question_items->save()){
-                        echo "Save";
-
-                }else{
-                    echo "No";
-                }
+                  $faculty_store_question_items->question_type = 'text';
+                    if($faculty_store_question_items->save()){
+                            echo "Save";
+                    }else{
+                        echo "No";
+                    }
                 }
 
             // redirect
@@ -414,6 +396,12 @@ class ExmPrepareQuestionPaperController extends \BaseController {
                             //Re-declare model each time you want to save data as loop.
                             $exm_question_opt = ExmQuestionOptionAnswer::find($exm_question_items_id[$i]);
                             $exm_question_opt->title = $value;
+//
+//                            foreach ($opt_answer as $oa) {
+//                                if ($oa == $key)
+//                                    $exm_question_opt->answer = $opt_answer;
+//                            }
+
                             $exm_question_opt->answer = $opt_answer;
                             $exm_question_opt->save();
                             $i++;
@@ -433,7 +421,13 @@ class ExmPrepareQuestionPaperController extends \BaseController {
                             //Re-declare model each time you want to save data as loop.
                             $exm_question_opt = ExmQuestionOptionAnswer::find($exm_question_items_id[$i]);
                             $exm_question_opt->title = $value;
-                            $exm_question_opt->answer = $opt_answer;//
+
+//                            foreach ($opt_answer as $oa) {
+//                                if ($oa == $key)
+//                                    $exm_question_opt->answer = $opt_answer;
+//                            }
+
+                            $exm_question_opt->answer = $opt_answer;
                             $exm_question_opt->save();
                             $i++;
 
