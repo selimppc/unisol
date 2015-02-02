@@ -11,8 +11,6 @@
 |
 */
 
-//Route::get('/','HomeController@index');
-
 
 Route::get('/hellow','TestController@index');
 
@@ -41,7 +39,6 @@ Shafi
 ==================================================================
 */
 
-//include("routes_sh.php");
 
 //degree-level
 Route::get('degree_level/','DegreeLevelController@index');
@@ -128,7 +125,6 @@ Ratna
 ==================================================================
 */
 
-//include("routes_ra.php");
 //Subject
 Route::get('create/subject','SubjectController@Index');
 Route::post('subject/save','SubjectController@save');
@@ -169,9 +165,6 @@ Route::any('term/batch/delete','TermUnderSemesterController@batchdelete');
 Tanin
 ==================================================================
 */
-
-//include("routes_tj.php");
-
 
 //{-------------------Department--------------------}
 Route::get('department/index','DepartmentController@index');
