@@ -1,6 +1,6 @@
 
 <fieldset style="padding: 10px; width: 90%;">
-{{--{{ Form::open(array('class'=>'form-horizontal','url' => 'user/store', 'method' =>'post', 'files'=>'true','id'=>'signup-form')) }}--}}
+{{ Form::open(array('class'=>'form-horizontal','url' => 'user/store', 'method' =>'post', 'files'=>'true','id'=>'signup-form')) }}
 <div class="form-group">
 {{ Form::label('user_id','Name of Applicant' ) }}
 {{ Form::select('user_id', User::orderBy('username')->lists('username', 'id')+[''=>'Select Option'] ,'', ['class'=>'form-control']) }}

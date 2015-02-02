@@ -11,32 +11,33 @@
 <table class="table table-striped table-bordered" id="myTable">
 
      <h4>Extra-Curricular Activities </h4>
+
+      <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('applicant/extra_curricular/edit/' . $data->id ) }}" data-toggle="modal" data-target="#myeditModal" >Edit...</a>
                     <thead>
 
 
-                        <tr><td>Applicant's name</td></tr>
-                        <tr><td>Father's Name</td></tr>
-                        <tr><td>Mother's Name</td></tr>
-                        <tr><td>Father's occupation</td></tr>
-                        <tr><td>Father's Phone</td></tr>
-                        <tr><td>Freedom fighter</td></tr>
-                        <tr><td>Mother's occupation</td></tr>
-                        <tr><td>Mother's Phone</td></tr>
-                        <tr><td>National_id</td></tr>
-                        <tr><td>driving_license</td></tr>
-                        <tr><td>passport</td></tr>
-                        <tr><td>place_of_birth</td></tr>
-                        <tr><td>marital_status</td></tr>
-                        <tr><td>nationality</td></tr>
-                        <tr><td>religion</td></tr>
-                        <tr><td>signature</td></tr>
-                        <tr><td>present_address</td></tr>
-                        <tr><td>parmanent_address</td></tr>
+                         <tr>
+                            <td>title</td>
+                               <td>{{$data->title}}
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td>Description</td>
+                              <td>{{$data->description}}
+                          </td>
+                         </tr>
+
+                          <tr>
+                             <td>Achievement</td>
+                               <td>{{$data->achivement}}
+                             </td>
+                         </tr>
 
 
 
 
-                  </thead>
+           </thead>
 
         <tbody>
 
@@ -52,6 +53,25 @@
 </div>
 
 
+<!-- Modal : edit -->
+<div class="modal fade" id="myeditModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Edit</h4>
+      </div>
+      <div class="modal-body">
+
+      </div>
+
+
+      <div class="modal-footer">
+
+      </div>
+    </div>
+  </div>
+</div>
 
 
 

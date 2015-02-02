@@ -4,178 +4,82 @@
 @stop
 @section('content')
 
-  <div class="span well">
-  <table class="table table-striped table-bordered" id="myTable">
-    <col width="50">
-      <col width="180">
-      <col width="100">
-      <col width="90">
-      <col width="120">
-      <col width="180">
-       <col width="50">
-        <col width="50">
-         <col width="50">
-          <col width="50">
-     <h4> Information</h4>
-                    <thead>
-                    <tr>
-                       <td><input name="checkbox" type="checkbox" id="checkbox" class="checkbox" value="">
-                       </td>
-                        <th>Applicant's name</th>
-                        <th>Father's Name</th>
-                        <th>Mother's Name</th>
-                        <th>Father's occupation</th>
-                        <th>Father's Phone</th>
-                        <th>Freedom fighter</th>
-                        <th>Mother's occupation</th>
-                        <th>Mother's Phone</th>
-                        <th>National_id</th>
-                        <th>driving_license</th>
-                        <th>passport</th>
-                        <th>place_of_birth</th>
-                        <th>marital_status</th>
-                        <th>nationality</th>
-                        <th>religion</th>
-                        <th>signature</th>
-                        <th>present_address</th>
-                        <th>parmanent_address</th>
-                        <th>Action</th>
+  <div class='control-group'>
+   <legend style="color: #0088cc">Sign Up Here.......</legend>
+  <div class="span6 well">
+
+  {{ Form::open(array('class'=>'form-horizontal','url' => 'applicant/store', 'method' =>'post', 'files'=>'true','id'=>'signup-form')) }}
 
 
-                    </tr>
-                  </thead>
+   <div class="form-group">
+      <span class="text-muted"><em><span style="color:red;">  * </span><b>Indicates required field</b> </em></span>
+   </div>
 
-        <tbody>
+   <div class="control-group @if ($errors->has('first_name')) has-error @endif">
 
-                @foreach ($applicant_list as $applicants)
-                                    <tr >
-                                       <td><input type="checkbox" name="ids[]"  id="check" class="myCheckbox" value="{{ $applicants->id }}"></td>
+     <span style="color:red;">*</span>
+             {{ Form::label('first_name', 'First Name:') }}
+             {{ Form::text('first_name',Input::old('first_name'), array('class' => 'form-control','placeholder'=>'Enter your  name')) }}
+     @if ($errors->has('first_name')) <p class="help-block">{{ $errors->first('first_name') }}</p> @endif</div>
 
-                                       <td align="left" class="Applicant">{{ User::getUserName($applicants->user_id) }}</td>
+     <div class="control-group @if ($errors->has('username')) has-error @endif">
 
-                                        <td>{{ $applicants->fathers_name }}</td>
-                                        <td>{{ $applicants->mothers_name }}</td>
-                                        <td>{{ $applicants->fathers_occupation }}</td>
-                                        <td>{{ $applicants->fathers_phone }}</td>
-                                        <td>{{ $applicants->freedom_fighter }}</td>
-                                        <td>{{ $applicants->mothers_occupation }}</td>
-                                        <td>{{ $applicants->mothers_phone }}</td>
-                                        <td>{{ $applicants->national_id }}</td>
-                                        <td>{{ $applicants->driving_license }}</td>
-                                        <td>{{ $applicants->passport }}</td>
-                                        <td>{{ $applicants->place_of_birth }}</td>
-                                        <td>{{ $applicants->marital_status }}</td>
-                                        <td>{{ $applicants->nationality }}</td>
-                                        <td>{{ $applicants->religion }}</td>
-                                        <td>{{ $applicants->signature }}</td>
-                                        <td>{{ $applicants->present_address }}</td>
-                                        <td>{{ $applicants->parmanent_address }}</td>
+       <span style="color:red;">*</span>
+               {{ Form::label('last_name', 'Last Name:') }}
+               {{ Form::text('last_name',Input::old('last_name'), array('class' => 'form-control','placeholder'=>'Enter your  name')) }}
+       @if ($errors->has('last_name')) <p class="help-block">{{ $errors->first('last_name') }}</p> @endif</div>
+
+
+  <div class="control-group @if ($errors->has('username')) has-error @endif">
+
+  <span style="color:red;">*</span>
+          {{ Form::label('username', 'User Name:') }}
+          {{ Form::text('username',Input::old('username'), array('class' => 'form-control','placeholder'=>'Enter your user name')) }}
+  @if ($errors->has('username')) <p class="help-block">{{ $errors->first('username') }}</p> @endif</div>
+
+  <div class="control-group @if ($errors->has('email_address')) has-error @endif">
+
+  <span style="color:red;">*</span>
+          {{ Form::label('email_address', 'Email') }}
+          {{ Form::text('email_address', Input::old('email_address'), array('class'=>'form-control','placeholder'=>'Enter a valid email address','required')) }}
+  @if ($errors->has('email_address')) <p class="help-block" >{{ $errors->first('email_address') }}</p> @endif</div>
+
+  <div class="control-group @if ($errors->has('password')) has-error @endif">
+
+  <span style="color:red;">*</span>
+          {{ Form::label('password', 'Password') }}
+          {{ Form::password('password', array('placeholder'=>'........','class'=>'form-control')) }}
+  @if ($errors->has('password')) <p class="help-block">{{ $errors->first('password') }}</p> @endif</div>
+
+  <div class="control-group @if ($errors->has('confirmpassword')) has-error @endif">
+
+  <span style="color:red;">*</span>
+          {{ Form::label('confirmpassword', 'ConfirmPassword') }}
+          {{ Form::password('confirmpassword', array('placeholder'=>'........','class'=>'form-control')) }}
+  @if ($errors->has('confirmpassword')) <p class="help-block">{{ $errors->first('confirmpassword') }}</p> @endif</div>
+
+
+            <br>
+
+          {{--{{ HTML::image(Captcha::img(), 'Captha image') }}--}}
+
+
+          {{--{{ Form::text('captcha_value', null, ['class'=>'form-control']) }}--}}
+          {{--<div class="g-recaptcha" data-sitekey="6LeYvf4SAAAAAE72M_jBFJdzfx7mglsnK_0C4cr6"></div>--}}
 
 
 
+           <br>
 
-                                        <td>
-                                        <a data-href="{{ URL::to('applicant/delete/'.$applicants->id) }}" class="btn btn-sm btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><span class="glyphicon glyphicon-trash text-danger"></span></a>
-                                        <a href="{{ URL::to('applicant/show/'.$applicants->id) }}" class="btn btn-sm btn-default" data-toggle="modal" data-target="#confirm-show"><span class="glyphicon glyphicon-eye-open text-danger"></span></a>
-                                         <a class="btn btn-sm btn-info" href="{{ URL::to('roletask/edit/' . $roletask->id ) }}" data-toggle="modal" data-target="#myeditModal" >Edit...</a>
-                                        <a class="btn btn-sm btn-info" href="{{ URL::to('applicant/edit/' . $applicants->id ) }}" data-toggle="modal" data-target="#myeditModal" >Edit...</a>
-                                        </td>
+          {{ Form::submit('Submit', array('class' => 'btn btn-primary')) }}
 
-                                    </tr>
-                                @endforeach
-                                 <br><br>
-     {{--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#CreateModal">--}}
-           {{--Add New--}}
-     {{--</button>--}}
+  <br>
+  <br>
 
-        </tbody>
-    </table>
+  {{ Form::close() }}
+
   </div>
 
-
-<!-- Modal :: Delete Confirmation -->
-<div class="modal fade " id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-               <div class="modal-dialog">
-                 <div class="modal-content">
-                       <div class="modal-header">
-                         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-                         <h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>
-                       </div>
-                       <div class="modal-body">
-                             <strong>Are you sure to delete?</strong>
-                       </div>
-                       <div class="modal-footer">
-                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                         <a href="#" class="btn btn-danger danger">Delete</a>
-
-                       </div>
-                 </div>
-               </div>
-             </div>
-
-
-<!--Model: for showing single row info -->
-<div class="modal fade " id="confirm-show" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-               <div class="modal-dialog">
-                 <div class="modal-content">
-                       <div class="modal-header">
-                         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-                         <h4 class="modal-title" id="myModalLabel"></h4>
-                       </div>
-                <div class="modal-body">
-
-                </div>
-
- <div class="modal-footer">
-      <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-      <a href="" class="btn btn-default" >Close</a>
- </div>
- </div>
- </div>
- </div>
-
-<!-- Modal :Add new applicant-->
-<div class="modal fade" id="CreateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-<div class="modal-dialog">
-<div class="modal-content">
-<div class="modal-header">
-<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-<h4 class="modal-title" id="myModalLabel">Add New Applicant</h4>
-</div>
-<div class="modal-body">
-{{ Form::open(array('url' => 'applicant/store', 'method' =>'post', 'role'=>'form','files'=>'true')) }}
-@include('applicant::applicants._form')
-{{ Form::close() }}
-</div>
-<div class="modal-footer">
-</div>
-</div>
-</div>
-</div>
-
-<!-- Modal : edit -->
-<div class="modal fade" id="myeditModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="myModalLabel">Edit</h4>
-      </div>
-      <div class="modal-body">
-
-      </div>
-
-
-      <div class="modal-footer">
-
-      </div>
-    </div>
   </div>
-</div>
-
-
-
-
-
 @stop
 

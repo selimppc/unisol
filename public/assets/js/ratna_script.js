@@ -200,11 +200,11 @@ function addCourseListItem()
 
         str += '<td><input type="text" name="actual_marks[]" class="amw_actual_marks" /> </td>';
 
-        str += '<td width="120"><span><input type="checkbox" name="isReadOnly[]" value="1" class="amw_isReadOnly"/></span></td>';
+        str += '<td><span><input type="checkbox" name="isReadOnly'+trLen+'" value="1" class="amw_isReadOnly"/></span></td>';
 
-        str += '<td width="120"><input type="radio" name="isDefault[]" value="1" class="amw_isDefault"/></td>';
+        str += '<td><input type="radio" name="isDefault[]" value="1" class="amw_isDefault" /></td>';
 
-        str += '<td width="120"><input type="radio" name="isAttendance[]" value="1" class="amw_isAttendance"/></td>';
+        str += '<td><input type="radio" name="isAttendance[]" value="1" class="amw_isAttendance'+trLen+'" /></td>';
 
         str += '<td><a class="btn btn-default btn-sm" id="removeTrId'+trLen+'" onClick="deleteNearestTr(this.id)"><span class="glyphicon glyphicon-trash text-danger"></span></a></td>';
 
