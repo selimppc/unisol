@@ -25,7 +25,7 @@
                 <td>{{$value->course->subject->department->title}}</td>
                 <td>{{$value->year->title}}</td>
                 <td>{{$value->semester->title}}</td>
-                <td>1</td>
+                <td>{{ AcmCourseConfig::getCourseItemStatus($value->course_id, $value->course->evaluation_total_marks) }}</td>
 
                 <td>
                     <a href="{{ URL::route('coursefind.show', ['course_id'=>$value->id])  }}" class="btn btn-primary" data-toggle="modal" data-target="#addNew" data-toggle="tooltip" data-placement="left" title="Show/View" href="">MarksDistConfig</a>

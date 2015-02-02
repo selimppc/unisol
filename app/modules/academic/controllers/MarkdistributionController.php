@@ -156,87 +156,105 @@ class MarkdistributionController extends \BaseController
 //            ->where('course_id', '=', $course_id)
 //            ->get();
         $data = DB::table('course')
-             ->select(
-                 'course.id as course_id',
-                 'course.title as course_title',
-                 'course.evaluation_total_marks as evaluation_total_marks',
-                 'course_type.title as course_type_title',
-                 'course_type.id as course_type_id'
-             )
-             ->join('course_type', 'course.course_type', '=', 'course_type.id')
-             ->where('course.id', $course_id)
-             ->first();
-        return View::make('academic::mark_distribution_courses.amw.show_course_to_insert')->with('datas', $data);
-        //first means one array return and get means object return
+            ->select(
+                'course.id as course_id',
+                'course.title as course_title',
+                'course.evaluation_total_marks as evaluation_total_marks',
+                'course_type.title as course_type_title',
+                'course_type.id as course_type_id'
+            )
+            ->join('course_type', 'course.course_type', '=', 'course_type.id')
+            ->where('course.id', $course_id)
+            ->first();
+        // return View::make('academic::mark_distribution_courses.amw.show_course_to_insert')->with('datas', $data);
+        //first() means one array return and get() means object return
 
-//To edit and update retrived data from Database
-//        $course_data = DB::table('acm_course_config')
-//            ->select(
-//                'acm_course_config.id',
-//                'acm_course_config.acm_marks_dist_item_id as item_id',
-//                'acm_course_config.readonly',
-//                'acm_course_config.default_item',
-//                'acm_course_config.is_attendance',
-//                'acm_course_config.marks as actual_marks',
-//                'acm_marks_dist_item.title as acm_dist_item_title',
-//                'course.id as course_id2',
-//                'course.evaluation_total_marks as evaluation_total_marks',
-//                'course_type.id as course_type_id'
-//            )
-//            ->join('course','acm_course_config.course_id','=', 'course.id')
-//            ->join('acm_marks_dist_item','acm_course_config.acm_marks_dist_item_id','=', 'acm_marks_dist_item.id')
-//            ->join('course_type', 'course.course_type', '=', 'course_type.id')
-//            ->where('course.id', $course_id)
-//            ->get();
-//        print_r($course_data);
-//        exit;
-//
-//        return View::make('academic::mark_distribution_courses.amw.show_course_to_insert')->with('datas', $data)->with('course_data', $course_data);
+        //To edit and update retrived data from Database
+        $course_data = DB::table('acm_course_config')
+            ->select(
+                'acm_course_config.id as isConfigId',
+                'acm_course_config.acm_marks_dist_item_id as item_id',
+                'acm_course_config.readonly',
+                'acm_course_config.default_item',
+                'acm_course_config.is_attendance',
+                'acm_course_config.marks as actual_marks',
+                'acm_marks_dist_item.title as acm_dist_item_title',
+                'course.id as course_id2',
+                'course.evaluation_total_marks as evaluation_total_marks',
+                'course_type.id as course_type_id'
+            )
+            ->join('course','acm_course_config.course_id','=', 'course.id')
+            ->join('acm_marks_dist_item','acm_course_config.acm_marks_dist_item_id','=', 'acm_marks_dist_item.id')
+            ->join('course_type', 'course.course_type', '=', 'course_type.id')
+            ->where('course.id', $course_id)
+            ->get();
+
+        return View::make('academic::mark_distribution_courses.amw.show_course_to_insert')->with('datas', $data)->with('course_data', $course_data);
 
    }
     public function save_acm_course_config_data()
     {
         $data = Input::all();
-        $is_attendance = Input::get('isAttendance');
-        $count = count(Input::get('acm_marks_dist_item_id'));
+        $isDefault = Input::get('isDefault');
+        $isAttendance = Input::get('isAttendance');
+        $isReadOnly = Input::get('isReadOnly');
 
-        for ($i = 0; $i < $count; $i++) {
-            $model1 = ($data['acm_config_id'][$i]) ? AcmCourseConfig::updateOrCreate(array('id' => $data['acm_config_id'][$i])) : new AcmCourseConfig;
+        $acm_config_id = Input::get('acm_config_id');
+        $count = count(Input::get('acm_marks_dist_item_id'));
+        for($i=0; $i < $count; $i++) {
+            $model1 = $data['acm_config_id'][$i] ? AcmCourseConfig::find($acm_config_id[$i]) : new AcmCourseConfig;
+            $model1->acm_marks_dist_item_id = $data['acm_marks_dist_item_id'][$i];
+            $model1->course_id = $data['course_id'][$i];
+            $model1->marks = $data['actual_marks'][$i];
+
+            $model1->default_item = 0;
+            foreach($isDefault as $isd){
+                if($isd == $i)
+                    $model1->default_item = 1;
+            }
+
+            $model1->is_attendance = 0;
+            foreach($isAttendance as $isa){
+                if($isa == $i) {
+                    $model1->is_attendance = 1;
+//                    $acm_config = new AcmAttendanceConfig();
+                    $acm_config = $data['acm_attendance_config_id'][$i] ? AcmAttendanceConfig::find($acm_attendance_config_id[$i]) : new AcmAttendanceConfig;
+                    $acm_config->course_type_id = Input::get('course_type_id');
+                    $acm_config->acm_marks_dist_item_id =$data['acm_marks_dist_item_id'][$i];
+                    $acm_config->save();
+                }
+            }
+
+            $model1->readonly = 0;
+            foreach($isReadOnly as $isr){
+                if($isr == $i)
+                    $model1->readonly = 1;
+            }
+
+            $model1->save();
+        }
+
+        /*for($i=0; $i < $count; $i++) {
+            $model1 = $data['acm_config_id'][$i] ? AcmCourseConfig::find($acm_config_id[$i]) : new AcmCourseConfig;
+           // $model1 = ($data['acm_config_id'][$i]) ? AcmCourseConfig::updateOrCreate(array('id' => $data['acm_config_id'][$i])) : new AcmCourseConfig;
             $model1->acm_marks_dist_item_id = $data['acm_marks_dist_item_id'][$i];
             $model1->course_id = $data['course_id'][$i];
             $model1->marks = $data['actual_marks'][$i];
             $model1->readonly = (Input::has('isReadOnly' . $i) == 1) ? 1 : 0;
-            $model1->default_item = (Input::has('isDefault')[$i]) ? 1 : 0;
-            $model1->is_attendance = (Input::has('isAttendance')[$i]) ? 1 : 0;
+            $model1->default_item = (Input::has('isDefault' . $i) == 1) ? 1 : 0;
+            $model1->is_attendance = (Input::has('isAttendance' . $i) == 1) ? 1 : 0;
             $model1->save();
+        }*/
 
 
-//        print_r($data);
-//        exit;
 
-            /*   for ($idx = 0; $idx < count(Input::get('acm_marks_dist_item_id')); $idx++) {
-                   //insert-a-new-record-if-not-exist-and-update-if-exist-laravel-eloquent
-                   $values = ($data['acm_config_id'][$idx]) ? AcmCourseConfig::updateOrCreate(array('id' => $data['acm_config_id'][$idx])) : new AcmCourseConfig;
-                   $values->acm_marks_dist_item_id = $data['acm_marks_dist_item_id'][$idx];
-                   $values->course_id = $data['course_id'][$idx];
-                   $values->marks = $data['actual_marks'][$idx];
-       //          $values->readonly = (Input::has('isReadOnly') == 1) ? 1 : 0;
-       //          $values->default_item = Input::get('isDefault' . $idx);
-                   $values->readonly = ($data['isReadOnly'][$idx] == 1) ? "1" : "0";
-                   $values->default_item = ($data['isDefault'][$idx] == 1) ? "1" : "0";
-                   $values->is_attendance = ($data['isAttendance'][$idx] == 1) ? "1": "0";
-
-                   $values->save();
-
-               }*/
-
-            // redirect
-            Session::flash('message', 'ACM Course Configuration Data Successfully Added !!');
-            return Redirect::to('amw/config/index');
-
-        }
+        // redirect
+        Session::flash('message', 'ACM Course Configuration Data Successfully Added !!');
+        return Redirect::to('amw/config/index');
 
     }
+
+
 //End code
 
 

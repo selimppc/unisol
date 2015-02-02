@@ -26,7 +26,7 @@
 
 
     {{ Form::open(array('url'=>'amw/course/marks/save','method' => '')) }}
-    <table class="table table-bordered small-header-table">
+    <table class="table table-bordered small-header-table" id="amwCourseConfig">
         <thead>
         <th>Item</th>
         <th>Marks (%)</th>
@@ -38,26 +38,30 @@
         </thead>
 
         <tbody class="acm_course_config_list">
-        {{ Form::hidden('course_type_id', $datas->course_type_id, ['class'=>'course_type_id'])}}
+        {{ Form::text('course_type_id', $datas->course_type_id, ['class'=>'course_type_id'])}}
+        <?php $counter = 0;?>
         @foreach($course_data as $key=>$value)
             <tr>
                 <td width="130">
                     {{ Form::hidden('acm_config_id[]', $value->isConfigId)}}
-                    {{ Form::hidden('acm_marks_dist_item_id[]', $value->item_id, ['class'=>'acm_marks_dist_item_id'])}}
+                    {{ Form::text('acm_marks_dist_item_id[]', $value->item_id, ['class'=>'acm_marks_dist_item_id'])}}
                     {{ Form::hidden('course_id[]', $value->course_id2, ['class'=>'get_course_id']) }}
                     {{ $value->acm_dist_item_title}}
                 </td>
-                <td> <input type="text" name="marks_percent[]" value="{{ ($value->actual_marks/$value->evaluation_total_marks) * 100 }}" class="amw_marks_percent{{$key}}" onkeyup="calculateActualMarks(this.className, {{$value->evaluation_total_marks}},this.value)" required/> </td>
+                <td><input type="text" name="marks_percent[]" value="{{ ($value->actual_marks/$value->evaluation_total_marks) * 100 }}" class="amw_marks_percent{{$key}}" onkeyup="calculateActualMarks(this.className, {{$value->evaluation_total_marks}},this.value)" required/> </td>
                 <td>
                     <input type="text" name="actual_marks[]" value="{{$value->actual_marks}}" class="amw_actual_marks" readonly/>
                 </td>
-                <td>{{ Form::checkbox('isReadOnly'.$key, 1, ($value->readonly)? $value->readonly : Input::old('isReadOnly'.$key)) }}</td>
-                <td>{{ Form::radio('isDefault[]', 1, ($value->default_item) ? $value->default_item : "") }}</td>
-                <td>{{ Form::radio('isAttendance[]', 1, ($value->is_attendance) ? $value->is_attendance : "", ['class'=>'amw_isAttendance'.$key,'onClick'=>'getAttendanceValues(this.className)']) }}</td>
+
+                <td>{{ Form::checkbox('isReadOnly[]', $counter, ($value->readonly)? $value->readonly : Input::old('isReadOnly'.$key)) }}</td>
+                <td>{{ Form::radio('isDefault[]', $counter, ($value->default_item) ? $value->default_item : Input::old('isDefault'.$key)) }}</td>
+                <td>{{ Form::radio('isAttendance[]', $counter, ($value->is_attendance) ? $value->is_attendance : Input::old('isAttendance'.$key)) }}</td>
 
                 <td><a class="btn btn-default btn-sm" id="removeTrId{{$key}}" onClick="deleteNearestTr(this.id)"><span class="glyphicon glyphicon-trash text-danger"></span></a>
                 </td>
             </tr>
+            <?php $counter++;?>
+
         @endforeach
         </tbody>
 

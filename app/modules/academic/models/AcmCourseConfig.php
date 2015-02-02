@@ -33,12 +33,12 @@ class AcmCourseConfig extends Eloquent
             }
             else
             {
-                return 'No';
+                return 'Distribution Item added';
             }
         }
         else
         {
-            return 'No DistributionItem added';
+            return 'No Distribution Item added';
         }
 
     }
