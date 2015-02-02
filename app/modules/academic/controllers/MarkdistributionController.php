@@ -197,73 +197,46 @@ class MarkdistributionController extends \BaseController
     public function save_acm_course_config_data()
     {
         $data = Input::all();
-        $is_attendance = Input::get('is_attendance');
+        $is_attendance = Input::get('isAttendance');
         $count = count(Input::get('acm_marks_dist_item_id'));
 
-        //Save to   acm_course_config: dist_id, course_id, marks, readonly, default_item, is_attendance
-        $model1 = new AcmCourseConfig();
-        $model1->acm_marks_dist_item_id = $data['acm_marks_dist_item_id'][$i];
+        for ($i = 0; $i < $count; $i++) {
+            $model1 = ($data['acm_config_id'][$i]) ? AcmCourseConfig::updateOrCreate(array('id' => $data['acm_config_id'][$i])) : new AcmCourseConfig;
+            $model1->acm_marks_dist_item_id = $data['acm_marks_dist_item_id'][$i];
+            $model1->course_id = $data['course_id'][$i];
+            $model1->marks = $data['actual_marks'][$i];
+            $model1->readonly = (Input::has('isReadOnly' . $i) == 1) ? 1 : 0;
+            $model1->default_item = (Input::has('isDefault')[$i]) ? 1 : 0;
+            $model1->is_attendance = (Input::has('isAttendance')[$i]) ? 1 : 0;
+            $model1->save();
 
-
-
-
-//        if($is_attendance == 1){
-//            for($i=0; $i < $count; $i++){
-//                $model1 = new AcmCourseConfig();
-//                $model1->acm_marks_dist_item_id = $data['acm_marks_dist_item_id'][$i];
-//                $model1->course_id = $data['course_id'][$i];
-//                $model1->marks = $data['actual_marks'][$i];
-//                $model1->readonly = ($data['isReadOnly'][$i] == 1) ? 1 : 0;
-//                $model1->default_item = ($data['isDefault'][$i] == 1) ? 1 : 0;
-//                $model1->is_attendance = ($data['isAttendance'][$i] == 1) ? 1 : 0;
-//                $model1->save();
-//            }
-//                $model2 = new AcmAttendanceConfig();
-//                $model2->course_type_id = $is_attendance;
-//
-//                $model2->acm_marks_dist_item_id = $data['acm_marks_dist_item_id'][$i];
-//                $model2->save();
-//
-//        }else{
-            /*if(readonly && default_item )
-            {
-                $model1 = new AcmCourseConfig();
-                $model1->acm_marks_dist_item_id = $data['acm_marks_dist_item_id'][$i];
-                $model1->course_id = $data['course_id'][$i];
-                $model1->marks = $data['actual_marks'][$i];
-                $model1->readonly = ($data['isReadOnly'][$i] == 1) ? 1 : 0;
-                $model1->default_item = ($data['isDefault'][$i] == 1) ? 1 : 0;
-                $model1->is_attendance = ($data['isAttendance'][$i] == 1) ? 1 : 0;
-                $model1->save();
-            }*/
-      // }
 
 //        print_r($data);
 //        exit;
 
-     /*   for ($idx = 0; $idx < count(Input::get('acm_marks_dist_item_id')); $idx++) {
-            //insert-a-new-record-if-not-exist-and-update-if-exist-laravel-eloquent
-            $values = ($data['acm_config_id'][$idx]) ? AcmCourseConfig::updateOrCreate(array('id' => $data['acm_config_id'][$idx])) : new AcmCourseConfig;
-            $values->acm_marks_dist_item_id = $data['acm_marks_dist_item_id'][$idx];
-            $values->course_id = $data['course_id'][$idx];
-            $values->marks = $data['actual_marks'][$idx];
-//          $values->readonly = (Input::has('isReadOnly') == 1) ? 1 : 0;
-//          $values->default_item = Input::get('isDefault' . $idx);
-            $values->readonly = ($data['isReadOnly'][$idx] == 1) ? "1" : "0";
-            $values->default_item = ($data['isDefault'][$idx] == 1) ? "1" : "0";
-            $values->is_attendance = ($data['isAttendance'][$idx] == 1) ? "1": "0";
+            /*   for ($idx = 0; $idx < count(Input::get('acm_marks_dist_item_id')); $idx++) {
+                   //insert-a-new-record-if-not-exist-and-update-if-exist-laravel-eloquent
+                   $values = ($data['acm_config_id'][$idx]) ? AcmCourseConfig::updateOrCreate(array('id' => $data['acm_config_id'][$idx])) : new AcmCourseConfig;
+                   $values->acm_marks_dist_item_id = $data['acm_marks_dist_item_id'][$idx];
+                   $values->course_id = $data['course_id'][$idx];
+                   $values->marks = $data['actual_marks'][$idx];
+       //          $values->readonly = (Input::has('isReadOnly') == 1) ? 1 : 0;
+       //          $values->default_item = Input::get('isDefault' . $idx);
+                   $values->readonly = ($data['isReadOnly'][$idx] == 1) ? "1" : "0";
+                   $values->default_item = ($data['isDefault'][$idx] == 1) ? "1" : "0";
+                   $values->is_attendance = ($data['isAttendance'][$idx] == 1) ? "1": "0";
 
-            $values->save();
+                   $values->save();
 
-        }*/
+               }*/
 
-        // redirect
-        Session::flash('message', 'ACM Course Configuration Data Successfully Added !!');
-        return Redirect::to('amw/config/index');
+            // redirect
+            Session::flash('message', 'ACM Course Configuration Data Successfully Added !!');
+            return Redirect::to('amw/config/index');
+
+        }
 
     }
-
-
 //End code
 
 
