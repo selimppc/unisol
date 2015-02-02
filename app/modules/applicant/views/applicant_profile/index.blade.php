@@ -37,7 +37,7 @@
                          <tr>
                                   <td>profile_image</td>
 
-                                  <td>{{ HTML::image('/applicant_images' . $profile->profile_image) }}</td>
+                                  <td>{{ HTML::image('applicant_images/' . $profile->profile_image) }}</td>
 
                                   </td>
                               </tr>

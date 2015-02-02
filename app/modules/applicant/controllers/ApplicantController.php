@@ -296,11 +296,14 @@ class ApplicantController extends \BaseController
 
 
          $applicant_id = Auth::user()->id;
+//         echo $applicant_id;
+//         exit;
 
 
 
         $profile = ApplicantProfile::where('applicant_id', '=',$applicant_id )->first();
-//        echo $applicant_id;
+
+//        echo $profile;
 //        exit;
 
         return View::make('applicant::applicant_profile.index',compact('profile'));
@@ -345,7 +348,7 @@ class ApplicantController extends \BaseController
 //            echo $destinationPath;
 //            exit;
             $extension = $file->getClientOriginalExtension();
-            $filename = str_random(3) . '.' . $extension;
+            $filename = str_random(12) . '.' . $extension;
             Input::file('profile_image')->move($destinationPath, $filename);
             $profile->profile_image = $filename;
 //            echo $profile->profile_image;
