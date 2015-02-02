@@ -51,6 +51,10 @@ Route::any('applicant/profile/edit/{id}','ApplicantController@editApplicantProfi
 
 Route::post('applicant/profile/update/{id}','ApplicantController@updateApplicantProfile');
 
+Route::any('applicant/profile_image/edit/{id}','ApplicantController@editProfileImage');
+
+Route::any('applicant/profile_image/update/{id}','ApplicantController@updateProfileImage');
+
 
 
 //Route::any('applicant/profile/view','ApplicantController@applicantProfileView');

@@ -8,6 +8,6 @@
 
 class ApplicantProfile extends Eloquent{
 
-    protected $table = 'applicants_profile';
+    protected $table = 'applicant_profile';
 
 } 

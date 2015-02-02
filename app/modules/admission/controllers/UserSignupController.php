@@ -117,7 +117,7 @@ class UserSignupController extends \BaseController {
     public function UserLogin() {
 
         $credentials = array(
-            'email_address'=> Input::get('email'),
+            'email'=> Input::get('email'),
             'password'=>Input::get('password'),
 
         );
@@ -166,7 +166,7 @@ class UserSignupController extends \BaseController {
     public function userPasswordResetMail(){
 
         $rules = array(
-            'email_address' => 'Required|email|exists:user',
+            'email' => 'Required|email|exists:user',
         );
         $validator = Validator::make(Input::all(), $rules);
         if($validator->Fails()){
@@ -176,7 +176,7 @@ class UserSignupController extends \BaseController {
         }
         else{
             $email_address = Input::get('email_address');
-            $users = DB::table('user')->where('email_address', $email_address)->first();
+            $users = DB::table('user')->where('email', $email_address)->first();
             $user_id = $users->id;
 
             //random number with 30 character
@@ -271,7 +271,7 @@ class UserSignupController extends \BaseController {
     public  function usernameResetMail(){
 
         $rules = array(
-            'email_address' => 'Required|email|exists:user',
+            'email' => 'Required|email|exists:user',
         );
         $validator = Validator::make(Input::all(), $rules);
         if($validator->Fails()){
@@ -280,7 +280,7 @@ class UserSignupController extends \BaseController {
             return Redirect::back();
 
         }else{
-                $userData = User::where('email_address', Input::get('email_address'))->first();
+                $userData = User::where('email', Input::get('email_address'))->first();
                 $username = $userData->username;
 
                 $email_address = Input::get('email_address');
