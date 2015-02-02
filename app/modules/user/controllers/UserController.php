@@ -52,7 +52,7 @@ class UserController extends \BaseController {
 
 
     public function login(){
-
+        //return View::make('user::user.login');
         return View::make('user::user.login');
     }
 

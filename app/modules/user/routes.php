@@ -11,4 +11,7 @@
 |
 */
 
-Route::any('user/login','UserController@login');
+Route::any("user/login", [
+    "as"   => "user/login",
+    "uses" => "UserController@login"
+]);
