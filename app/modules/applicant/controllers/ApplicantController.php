@@ -18,37 +18,113 @@ class ApplicantController extends \BaseController
 
     public function store()
     {
+        $token = csrf_token();
+
         $rules = array(
-            'fathers_name' => 'required',
+
+            'email_address' => 'Required|email|unique:applicant',
+            'username' => 'Required',
+            'password' => 'regex:((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})|required',
+            'confirmpassword' => 'Required|same:password',
+
+
         );
+
         $validator = Validator::make(Input::all(), $rules);
-        if ($validator->passes()) {
-            $model = new Applicant;
-            $model->user_id = Input::get('user_id');
-            $model->fathers_name = Input::get('fathers_name');
-            $model->mothers_name = Input::get('mothers_name');
-            $model->fathers_occupation = Input::get('fathers_occupation');
-            $model->fathers_phone = Input::get('fathers_phone');
-            $model->freedom_fighter = Input::get('freedom_fighter');
-            $model->mothers_occupation = Input::get('mothers_occupation');
-            $model->mothers_phone = Input::get('mothers_phone');
-            $model->national_id = Input::get('national_id');
-            $model->driving_license = Input::get('driving_license');
-            $model->passport = Input::get('passport');
-            $model->place_of_birth = Input::get('place_of_birth');
-            $model->national_id = Input::get('national_id');
-            $model->marital_status = Input::get('marital_status');
-            $model->nationality = Input::get('nationality');
-            $model->religion = Input::get('religion');
-            $model->signature = Input::file('signature');
-            $model->present_address = Input::get('present_address');
-            $model->parmanent_address = Input::get('parmanent_address');
-            $model->save();
-// return Redirect::to('crud')->with('message', 'Successfully added Country!');
-            return Redirect::back()->with('message', 'Successfully Added Information!');
+
+        if ($validator->Fails()) {
+            Session::flash('message', 'Data not saved');
+            return Redirect::to('applicant')->withErrors($validator)->withInput();
+
         } else {
-            return Redirect::to('applicant')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
+            $verified_code = str_random(30);
+            if ($token == Input::get('_token')) {
+                $data = new Applicant();
+
+                $data->email_address = Input::get('email_address');
+                $data->username = Input::get('username');
+                $data->password = Hash::make(Input::get('password'));//dd($data->password);
+                $data->verified_code = $verified_code;
+
+                if ($data->save()) {
+                    $email=$data->email_address;
+
+                    Mail::send('admission::signup.verify', array('link' => $verified_code),  function($message) use ($email)
+                    {
+                        $message->from('test@edutechsolutionsbd.com', 'Mail Notification');
+                        $message->to($email);
+                        $message->cc('tanintjt@gmail.com');
+                        $message->subject('Notification');
+                    });
+
+                    return View::make('admission::signup.notification');
+
+                } else {
+                    Session::flash('message', 'not sending email. try again');
+
+                    return Redirect::to('applicant/index')->with('message', 'Signup Here ');
+                }
+            }
         }
+    }
+
+    public function confirm($verified_code)
+    {
+        $user = Applicant::where('verified_code','=',$verified_code);
+        if($user->count())
+        {
+            $user = $user->first();
+            $user->verified_code = '';
+        }
+        Session::flash('message','Your account activated successfully. You can signin now.');
+
+        return Redirect::to('usersign/login');
+
+    }
+
+    public function Login()
+    {
+        return View::make('admission::signup.login');
+    }
+
+    public function applicantLogin() {
+
+        $credentials = array(
+            'email_address'=> Input::get('email'),
+            'password'=>Input::get('password'),
+
+        );
+//        echo  $credentials;
+//        exit;
+
+        if(Auth::check()){
+            //$user_id = Auth::applicant()->username;
+            $user_id = Auth::user()->username;
+            $pageTitle = 'You are already logged in!';
+            echo $pageTitle;
+            //return View::make('usersign/dashboard', compact('user_id', 'pageTitle'));
+        }else{
+            if ( Auth::attempt($credentials) ) {
+                return Redirect::to('usersign/dashboard')->with('message', 'Logged in!');
+            } else {
+                return Redirect::to('usersign/login') ->with('message', 'Your username/password combination was incorrect! Please try again....')
+                    ->withInput();
+            }
+        }
+    }
+
+    public function applicantLogout() {
+
+        //$model= User::find(Auth::user()->id);
+
+//        date_default_timezone_set("Asia/Dacca");
+//        $time=date('Y-m-d h:i:s', time());;
+//        $model->last_visit = $time;
+//        $model->save();
+        Auth::logout();
+
+        return Redirect::to('applicant/login')->with('message', 'Your are now logged out!');
+
     }
 
     public function show($id)
@@ -128,9 +204,9 @@ class ApplicantController extends \BaseController
 
     public function applicantMetaData()
     {
-        $user_id = Auth::user()->id;
+        $applicant_id = Auth::user()->id;
 
-        $data = Applicant::where('user_id', '=', $user_id)->first();
+        $data = Applicant::where('user_id', '=', $applicant_id)->first();
 
         return View::make('applicant::applicants.meta_data', compact('data'));
 
@@ -207,6 +283,125 @@ class ApplicantController extends \BaseController
             return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
         }
 
+    }
+
+
+    public function applicantIndex(){
+
+        return View::make('applicant::applicants.index');
+    }
+
+
+    public function applicantProfileIndex(){
+
+
+         $applicant_id = Auth::user()->id;
+
+
+
+        $profile = ApplicantProfile::where('applicant_id', '=',$applicant_id )->first();
+//        echo $applicant_id;
+//        exit;
+
+        return View::make('applicant::applicant_profile.index',compact('profile'));
+
+    }
+
+    public function applicantProfileView(){
+
+
+        $applicant_id = Auth::user()->id;
+//        echo $user_id;
+//        exit;
+
+        $profile = ApplicantProfile::where('applicant_id', '=', $applicant_id)->first();
+
+//        echo $profile;
+//        exit;
+
+        return View::make('applicant::applicant_profile.index', compact('profile'));
+    }
+
+    public function applicantProfileCreate()
+    {
+        return View::make('applicant::applicant_profile._form');
+    }
+
+    public function applicantProfileStore(){
+
+        $rules = array(
+            'profile_image' => 'required',
+        );
+        $validator = Validator::make(Input::all(), $rules);
+        if ($validator->passes()) {
+            $profile =new ApplicantProfile();
+            $profile->applicant_id = Input::get('applicant_id');
+            $profile->date_of_birth = Input::get('date_of_birth');
+            $profile->birth_place = Input::get('birth_place');
+            $profile->gender = Input::get('gender');
+
+            $file = Input::file('profile_image');
+            $destinationPath = public_path().'/applicant_images';
+//            echo $destinationPath;
+//            exit;
+            $extension = $file->getClientOriginalExtension();
+            $filename = str_random(3) . '.' . $extension;
+            Input::file('profile_image')->move($destinationPath, $filename);
+            $profile->profile_image = $filename;
+//            echo $profile->profile_image;
+//            exit;
+
+            $profile->city = Input::get('city');
+            $profile->state = Input::get('state');
+            $profile->country = Input::get('country');
+            $profile->zip_code = Input::get('zip_code');
+            $profile->save();
+
+            return Redirect::back()->with('message', 'Successfully added Information!');
+        } else {
+            return Redirect::to('applicant/profile/create')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
+        }
+
+
+
+
+    }
+
+    public function editApplicantProfile($id){
+
+        $profile = ApplicantProfile::find($id);
+
+        return View::make('applicant::applicant_profile.edit', compact('profile'));
+
+    }
+
+    public function updateApplicantProfile($id){
+
+        $rules = array(
+            'date_of_birth' => 'required',
+        );
+        $validator = Validator::make(Input::all(), $rules);
+        if ($validator->passes()) {
+
+            $profile = ApplicantProfile::find($id);
+            $profile->date_of_birth = Input::get('date_of_birth');
+            $profile->birth_place = Input::get('birth_place');
+            $profile->gender = Input::get('gender');
+            $profile->city = Input::get('city');
+            $profile->state = Input::get('state');
+            $profile->country = Input::get('country');
+
+            $profile->save();
+            return Redirect::back()->with('message', 'Successfully updated Information!');
+        } else {
+            return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
+        }
+
+    }
+
+    public function Dashboard(){
+
+        return View::make('applicant::applicants.dashboard');
     }
 }
 

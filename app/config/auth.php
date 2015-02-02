@@ -29,7 +29,7 @@ return array(
 	*/
 
 	'model' => 'User',
-    //'model' => 'UserSignup',
+    'model' => 'Applicant',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -45,7 +45,8 @@ return array(
 
 	//'table' => 'users',
     //'table' => 'user_signup',
-	'table' => 'user',
+    'table' => 'user',
+   'table' => 'applicant',
 
 
 	/*
