@@ -32,12 +32,13 @@ class CreateApplicantManagementRl extends Migration {
             $table->unsignedInteger('applicant_id')->nullable();
             $table->string('phone',16);
             $table->date('date_of_birth');
+            $table->string('place_of_birth', 128);
             $table->string('gender',64);
             $table->string('profile_image',128);
             $table->string('city',32);
             $table->string('state',32);
             $table->string('country',64);
-            $table->tinyInteger('zip_code', false, 5);
+            $table->integer('zip_code', false, 5);
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
