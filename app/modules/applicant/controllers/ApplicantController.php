@@ -22,7 +22,7 @@ class ApplicantController extends \BaseController
 
         $rules = array(
 
-            'email_address' => 'Required|email|unique:applicant',
+            'email' => 'Required|email|unique:applicant',
             'username' => 'Required',
             'password' => 'regex:((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})|required',
             'confirmpassword' => 'Required|same:password',
@@ -41,13 +41,13 @@ class ApplicantController extends \BaseController
             if ($token == Input::get('_token')) {
                 $data = new Applicant();
 
-                $data->email_address = Input::get('email_address');
+                $data->email = Input::get('email_address');
                 $data->username = Input::get('username');
                 $data->password = Hash::make(Input::get('password'));//dd($data->password);
                 $data->verified_code = $verified_code;
 
                 if ($data->save()) {
-                    $email=$data->email_address;
+                    $email=$data->email;
 
                     Mail::send('admission::signup.verify', array('link' => $verified_code),  function($message) use ($email)
                     {
@@ -90,7 +90,7 @@ class ApplicantController extends \BaseController
     public function applicantLogin() {
 
         $credentials = array(
-            'email_address'=> Input::get('email'),
+            'email'=> Input::get('email'),
             'password'=>Input::get('password'),
 
         );
@@ -242,8 +242,6 @@ class ApplicantController extends \BaseController
             return Redirect::to('applicant/extra_curricular/create')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
         }
 
-
-
     }
 
     public function applicantExtraCurricularActivities()
@@ -291,23 +289,11 @@ class ApplicantController extends \BaseController
         return View::make('applicant::applicants.index');
     }
 
-
     public function applicantProfileIndex(){
-
-
-         $applicant_id = Auth::user()->id;
-//         echo $applicant_id;
-//         exit;
-
-
-
+        $applicant_id = Applicant::find(5)->id;
         $profile = ApplicantProfile::where('applicant_id', '=',$applicant_id )->first();
 
-//        echo $profile;
-//        exit;
-
         return View::make('applicant::applicant_profile.index',compact('profile'));
-
     }
 
     public function applicantProfileView(){
@@ -340,19 +326,16 @@ class ApplicantController extends \BaseController
             $profile =new ApplicantProfile();
             $profile->applicant_id = Input::get('applicant_id');
             $profile->date_of_birth = Input::get('date_of_birth');
-            $profile->birth_place = Input::get('birth_place');
+//            $profile->birth_place = Input::get('birth_place');
             $profile->gender = Input::get('gender');
 
             $file = Input::file('profile_image');
             $destinationPath = public_path().'/applicant_images';
-//            echo $destinationPath;
-//            exit;
+
             $extension = $file->getClientOriginalExtension();
             $filename = str_random(12) . '.' . $extension;
             Input::file('profile_image')->move($destinationPath, $filename);
             $profile->profile_image = $filename;
-//            echo $profile->profile_image;
-//            exit;
 
             $profile->city = Input::get('city');
             $profile->state = Input::get('state');
@@ -364,9 +347,6 @@ class ApplicantController extends \BaseController
         } else {
             return Redirect::to('applicant/profile/create')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
         }
-
-
-
 
     }
 
@@ -388,7 +368,7 @@ class ApplicantController extends \BaseController
 
             $profile = ApplicantProfile::find($id);
             $profile->date_of_birth = Input::get('date_of_birth');
-            $profile->birth_place = Input::get('birth_place');
+//            $profile->birth_place = Input::get('birth_place');
             $profile->gender = Input::get('gender');
             $profile->city = Input::get('city');
             $profile->state = Input::get('state');
@@ -405,6 +385,39 @@ class ApplicantController extends \BaseController
     public function Dashboard(){
 
         return View::make('applicant::applicants.dashboard');
+    }
+
+    public function editProfileImage($id){
+
+        $profile = ApplicantProfile::find($id);
+
+        return View::make('applicant::applicant_profile.edit_image', compact('profile'));
+    }
+
+    public function updateProfileImage($id){
+
+        $rules = array(
+            'profile_image' => 'required',
+        );
+        $validator = Validator::make(Input::all(), $rules);
+        if ($validator->passes()) {
+
+            $profile = ApplicantProfile::find($id);
+
+            $file = Input::file('profile_image');
+            $destinationPath = public_path().'/applicant_images';
+            $extension = $file->getClientOriginalExtension();
+            $filename = str_random(12) . '.' . $extension;
+            Input::file('profile_image')->move($destinationPath, $filename);
+            $profile->profile_image = $filename;
+
+            $profile->save();
+
+            return Redirect::back()->with('message', 'Successfully updated Information!');
+        } else {
+            return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
+        }
+
     }
 }
 

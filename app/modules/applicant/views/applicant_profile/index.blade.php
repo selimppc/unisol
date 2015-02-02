@@ -22,11 +22,11 @@
                             </td>
                           </tr>
 
-                          <tr>
-                            <td>birth_place</td>
-                              <td>{{$profile->birth_place}}
-                          </td>
-                         </tr>
+                          {{--<tr>--}}
+                            {{--<td>birth_place</td>--}}
+                              {{--<td>{{$profile->birth_place}}--}}
+                          {{--</td>--}}
+                         {{--</tr>--}}
 
                           <tr>
                              <td>gender</td>
@@ -37,7 +37,15 @@
                          <tr>
                                   <td>profile_image</td>
 
-                                  <td>{{ HTML::image('applicant_images/' . $profile->profile_image) }}</td>
+                                  <td>{{ HTML::image('applicant_images/' . $profile->profile_image) }}
+
+                                  {{--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#changeImageModal">--}}
+                                     {{--Change Image--}}
+                                  {{--</button>--}}
+
+                                  <a class=" btn btn-sm btn-info" href="{{ URL::to('applicant/profile_image/edit/' . $profile->id ) }}" data-toggle="modal" data-target="#changeImageModal" >changeImage...</a>
+                                   {{--<a href="{{URL::to('applicant/profile_image/edit/'.$profile->profile_image) }}">Change Image</a>--}}
+                                  </td>
 
                                   </td>
                               </tr>
@@ -68,9 +76,7 @@
 
 
      <br><br>
-     {{--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#CreateModal">--}}
-           {{--Edit--}}
-     {{--</button>--}}
+
 
         </tbody>
     </table>
@@ -98,6 +104,29 @@
   </div>
 </div>
 
+{{--modal: change image--}}
+
+<div class="modal fade" id="changeImageModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">change Image</h4>
+      </div>
+      <div class="modal-body">
+
+
+
+
+      </div>
+
+
+      <div class="modal-footer">
+
+      </div>
+    </div>
+  </div>
+</div>
 
 
 

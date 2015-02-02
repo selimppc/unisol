@@ -31,12 +31,12 @@
         {{--{{ Form::text('date_of_birth',Input::old('date_of_birth'), array('class' => 'form-control','placeholder'=>'')) }}--}}
 @if ($errors->has('date_of_birth')) <p class="help-block">{{ $errors->first('date_of_birth') }}</p> @endif</div>
 
-<div class="control-group @if ($errors->has('birth_place')) has-error @endif">
+{{--<div class="control-group @if ($errors->has('birth_place')) has-error @endif">--}}
 
-<span style="color:red;">*</span>
-        {{ Form::label('birth_place', 'birth_place') }}
-        {{ Form::text('birth_place', Input::old('birth_place'), array('class'=>'form-control','placeholder'=>'')) }}
-@if ($errors->has('birth_place')) <p class="help-block" >{{ $errors->first('birth_place') }}</p> @endif</div>
+{{--<span style="color:red;">*</span>--}}
+        {{--{{ Form::label('birth_place', 'birth_place') }}--}}
+        {{--{{ Form::text('birth_place', Input::old('birth_place'), array('class'=>'form-control','placeholder'=>'')) }}--}}
+{{--@if ($errors->has('birth_place')) <p class="help-block" >{{ $errors->first('birth_place') }}</p> @endif</div>--}}
 
 <div class="control-group @if ($errors->has('gender')) has-error @endif">
 
