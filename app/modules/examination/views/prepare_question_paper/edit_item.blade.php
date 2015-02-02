@@ -28,25 +28,17 @@
              <div class="form-group">
                  {{ Form::label('gender','Answer Type:') }}
                  {{ Form::label('mcq','Single Answer', array('class'=>'radio-inline')) }}
-                 {{ Form::radio('question_type', 'mcq_single',array('checked')) }}
-
+                 {{ Form::radio('r_question_type', 'mcq_single',true) }}
                  {{ Form::label('mcq','Multiple Answer', array('class'=>'radio-inline')) }}
-                 {{ Form::radio('question_type', 'mcq_multiple') }}
-             </div>
-        @elseif($qid->question_type == 'checkbox')
-             <div class="form-group">
-                 {{ Form::label('gender','Answer Type:') }}
-                 {{ Form::label('mcq','Single Answer', array('class'=>'radio-inline')) }}
-                 {{ Form::radio('question_type', 'mcq_single') }}
-
-                 {{ Form::label('mcq','Multiple Answer', array('class'=>'radio-inline')) }}
-                 {{ Form::radio('question_type', 'mcq_multiple',array('checked')) }}
+                 {{ Form::radio('r_question_type', 'mcq_multiple') }}
              </div>
              <div class="row">
                 <div class="col-sm-12">
                     <div class="col-sm-6"><strong>Option </strong></div>
                     <div class="col-sm-6"><strong>Answer </strong></div>
                 </div>
+
+                <?php $counter = 0;?>
                 @foreach($options as $op)
                     <div class="col-sm-12">
                         <div class="col-sm-6">
@@ -54,44 +46,49 @@
                                 {{ Form::text('option_title[]',$op->title,['class'=>'form-control']) }}
                         </div>
                         <div class="col-sm-6">
-                             @if($op->answer == 1)
-                                {{Form::checkbox('answer',$op->answer ,array('checked'))}}
-                             @elseif($op->answer == 0)
-                                {{Form::checkbox('answer', $op->answer)}}
-                             @endif
+                              @if($op->answer == 1)
+                                {{ Form::checkbox('answer[]', $counter,array('checked'))}}
+                              @elseif($op->answer == 0)
+                                {{ Form::checkbox('answer[]',$counter)}}
+                              @endif
                         </div>
                     </div>
+                    <?php $counter++; ?>
                 @endforeach
+            </div>
              </div>
-        {{--@elseif($qid->question_type == 'checkbox')--}}
-             {{--<div class="form-group">--}}
-                 {{--{{ Form::label('gender','Answer Type') }}--}}
-                 {{--{{ Form::label('mcq','Single Answer', array('class'=>'radio-inline')) }}--}}
-                 {{--{{ Form::radio('question_type', 'mcq_single') }}--}}
-                 {{--{{ Form::label('mcq','Multiple Answer', array('class'=>'radio-inline')) }}--}}
-                 {{--{{ Form::radio('question_type', 'mcq_multiple', array('checked')) }}--}}
-             {{--</div>--}}
-            {{--<div class="row">--}}
-                {{--<div class="col-sm-12">--}}
-                    {{--<div class="col-sm-6"><strong>Option </strong></div>--}}
-                    {{--<div class="col-sm-6"><strong>Answer </strong></div>--}}
-                {{--</div>--}}
-                {{--@foreach($options as $op)--}}
-                    {{--<div class="col-sm-12">--}}
-                        {{--<div class="col-sm-6">--}}
-                                {{--{{ Form::hidden('id[]', $op->id, ['class'=>'form-control'])}}--}}
-                                {{--{{ Form::text('option_title[]',$op->title,['class'=>'form-control']) }}--}}
-                        {{--</div>--}}
-                        {{--<div class="col-sm-6">--}}
-                              {{--@if($op->answer == 1)--}}
-                                {{--{{ Form::checkbox('answer', $op->answer,array('checked'))}}--}}
-                              {{--@elseif($op->answer == 0)--}}
-                                {{--{{ Form::checkbox('answer',$op->answer)}}--}}
-                              {{--@endif--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-                {{--@endforeach--}}
-            {{--</div>--}}
+        @elseif($qid->question_type == 'checkbox')
+             <div class="form-group">
+                 {{ Form::label('gender','Answer Type') }}
+                 {{ Form::label('mcq','Single Answer', array('class'=>'radio-inline')) }}
+                 {{ Form::radio('r_question_type', 'mcq_single') }}
+                 {{ Form::label('mcq','Multiple Answer', array('class'=>'radio-inline')) }}
+                 {{ Form::radio('r_question_type', 'mcq_multiple', true) }}
+             </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="col-sm-6"><strong>Option </strong></div>
+                    <div class="col-sm-6"><strong>Answer </strong></div>
+                </div>
+
+                <?php $counter = 0;?>
+                @foreach($options as $op)
+                    <div class="col-sm-12">
+                        <div class="col-sm-6">
+                                {{ Form::hidden('id[]', $op->id, ['class'=>'form-control'])}}
+                                {{ Form::text('option_title[]',$op->title,['class'=>'form-control']) }}
+                        </div>
+                        <div class="col-sm-6">
+                              @if($op->answer == 1)
+                                {{ Form::checkbox('answer[]', $counter,array('checked'))}}
+                              @elseif($op->answer == 0)
+                                {{ Form::checkbox('answer[]',$counter)}}
+                              @endif
+                        </div>
+                    </div>
+                    <?php $counter++; ?>
+                @endforeach
+            </div>
         @else
            <div class="text-center">
                 {{ Form::textarea('desc', 'Write Your Answer', ['size' => '40x6']) }}

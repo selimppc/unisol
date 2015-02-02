@@ -22,7 +22,7 @@ $(function () {
 // add field js
 
 $(function() {
-    var count = 2;
+    var count = $('#exmQuestionOptionAns tr').length - 2;;
     window.createInput = function(){
         var field_area = document.getElementById('fields1')
         var div = document.createElement("div");

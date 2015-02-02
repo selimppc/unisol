@@ -215,7 +215,7 @@ class ExmPrepareQuestionPaperController extends \BaseController {
             $faculty_store_question_items->marks = Input::get('marks');
 
             if( strtolower(Input::get('mcq')) == 'mcq'){
-                if( strtolower(Input::get('question_type')) == 'mcq_single'){
+                if( strtolower(Input::get('r_question_type')) == 'mcq_single'){
                     $faculty_store_question_items->question_type = 'radio';
                     if($faculty_store_question_items->save()) {
                         $exm_question_items_id = $faculty_store_question_items->id;
@@ -384,7 +384,7 @@ class ExmPrepareQuestionPaperController extends \BaseController {
             $faculty_store_question_items->marks = Input::get('marks');
 
             if( strtolower(Input::get('mcq')) == 'mcq'){
-                if( strtolower(Input::get('question_type')) == 'mcq_single'){
+                if( strtolower(Input::get('r_question_type')) == 'mcq_single'){
                     $faculty_store_question_items->question_type = 'radio';
                     if($faculty_store_question_items->save()) {
                         $exm_question_items_id = Input::get('id');
@@ -416,22 +416,26 @@ class ExmPrepareQuestionPaperController extends \BaseController {
                         $exm_question_items_id = Input::get('id');
                         $opt_title = Input::get('option_title');
                         $opt_answer = Input::get('answer');
+
+
                         $i = 0;
                         foreach($opt_title as $key => $value){
                             //Re-declare model each time you want to save data as loop.
                             $exm_question_opt = ExmQuestionOptionAnswer::find($exm_question_items_id[$i]);
                             $exm_question_opt->title = $value;
 
-//                            foreach ($opt_answer as $oa) {
-//                                if ($oa == $key)
-//                                    $exm_question_opt->answer = $opt_answer;
-//                            }
+//                            $exm_question_opt->answer = $opt_answer;
+                            $exm_question_opt->answer = 0;
+                            foreach ($opt_answer as $oa) {
+                                if ($oa == $key)
+                                    $exm_question_opt->answer = 1;
+                            }
 
-                            $exm_question_opt->answer = $opt_answer;
                             $exm_question_opt->save();
                             $i++;
 
                         } /// saving last single data
+
 
                         echo "Option Data : Multiple Answer Saved!";
                     }else{
