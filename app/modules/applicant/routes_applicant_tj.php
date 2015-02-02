@@ -40,7 +40,7 @@ Route::any('applicant/extra_curricular/edit/{id}','ApplicantController@editExtra
 
 Route::post('applicant/extra_curricular/update/{id}','ApplicantController@updateExtraCurricular');
 
-////////////////////////Applicant_profile////////////////////
+//Applicant_profile
 Route::any('applicant/profile/create','ApplicantController@applicantProfileCreate');
 
 Route::any('applicant/profile/store','ApplicantController@applicantProfileStore');
@@ -55,6 +55,16 @@ Route::any('applicant/profile_image/edit/{id}','ApplicantController@editProfileI
 
 Route::any('applicant/profile_image/update/{id}','ApplicantController@updateProfileImage');
 
+// Applicant Personal Information
+
+Route::any('applicant/personal_info/create','ApplicantController@applicantPersonalInfoCreate');
+
+Route::any('applicant/personal_info/store','ApplicantController@applicantPersonalInfoStore');
+
+Route::any('applicant/personal_info/index','ApplicantController@applicantPersonalInfoIndex');
+
+Route::any('applicant/personal_info/edit/{id}','ApplicantController@applicantPersonalInfoEdit');
+
+Route::any('applicant/personal_info/update/{id}','ApplicantController@applicantPersonalInfoUpdate');
 
 
-//Route::any('applicant/profile/view','ApplicantController@applicantProfileView');

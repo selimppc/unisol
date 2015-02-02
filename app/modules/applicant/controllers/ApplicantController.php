@@ -196,25 +196,82 @@ class ApplicantController extends \BaseController
         }
     }
 
-    public function applicantProfile(){
+    public function applicantPersonalInfoCreate(){
 
-        return View::make('applicant::applicants.profile');
+        return View::make('applicant::applicant_personal_info._form');
 
     }
 
-    public function applicantMetaData()
+    public function applicantPersonalInfoStore(){
+
+        $rules = array(
+            'national_id' => 'required',
+        );
+        $validator = Validator::make(Input::all(), $rules);
+        if ($validator->passes()) {
+            $applicant_personal_info =new ApplicantPersonalInfo();
+            $applicant_personal_info->applicant_id = Input::get('applicant_id');
+            $applicant_personal_info->fathers_name = Input::get('fathers_name');
+            $applicant_personal_info->mothers_name = Input::get('mothers_name');
+            $applicant_personal_info->fathers_occupation = Input::get('fathers_occupation');
+            $applicant_personal_info->fathers_phone = Input::get('fathers_phone');
+            $applicant_personal_info->freedom_fighter = Input::get('freedom_fighter');
+            $applicant_personal_info->mothers_occupation = Input::get('mothers_occupation');
+            $applicant_personal_info->mothers_phone = Input::get('mothers_phone');
+            $applicant_personal_info->national_id = Input::get('national_id');
+            $applicant_personal_info->driving_licence = Input::get('driving_licence');
+            $applicant_personal_info->passport = Input::get('passport');
+            $applicant_personal_info->place_of_birth = Input::get('place_of_birth');
+            $applicant_personal_info->national_id = Input::get('national_id');
+            $applicant_personal_info->marital_status = Input::get('marital_status');
+            $applicant_personal_info->nationality = Input::get('nationality');
+            $applicant_personal_info->religion = Input::get('religion');
+            $applicant_personal_info->signature = Input::file('signature');
+            $applicant_personal_info->present_address = Input::get('present_address');
+            $applicant_personal_info->permanent_address = Input::get('permanent_address');
+            $applicant_personal_info->save();
+            return Redirect::back()->with('message', 'Successfully updated Information!');
+        } else {
+            return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
+        }
+
+
+    }
+
+    public function applicantPersonalInfoIndex()
     {
-        $applicant_id = Auth::user()->id;
+        $applicant_id = Applicant::find(5)->id;
+        $applicant_personal_info = ApplicantPersonalInfo::where('applicant_id', '=',$applicant_id )->first();
 
-        $data = Applicant::where('user_id', '=', $applicant_id)->first();
-
-        return View::make('applicant::applicants.meta_data', compact('data'));
-
+        return View::make('applicant::applicant_personal_info.index',compact('applicant_personal_info'));
     }
 
-    public function applicantMetaDataView(){
+    public function applicantPersonalInfoEdit($id){
+
+        $applicant_personal_info = ApplicantPersonalInfo::find($id);
+
+        return View::make('applicant::applicant_personal_info.edit', compact('applicant_personal_info'));
+    }
+
+    public function applicantPersonalInfoUpdate($id){
+
+        $rules = array(
+            'national_id' => 'required',
+        );
+        $validator = Validator::make(Input::all(), $rules);
+        if ($validator->passes()) {
+            $applicant_personal_info = ApplicantPersonalInfo::find($id);
+            $applicant_personal_info->national_id = Input::get('national_id');
+            $applicant_personal_info->fathers_name = Input::get('fathers_name');
+//            $applicant_personal_info->achivement = Input::get('achivement');
+//            $applicant_personal_info->certificate_medal = Input::file('certificate_medal');
 
 
+            $applicant_personal_info->save();
+            return Redirect::back()->with('message', 'Successfully updated Information!');
+        } else {
+            return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
+        }
     }
 
     public function applicantExtraCurricular()
@@ -280,9 +337,7 @@ class ApplicantController extends \BaseController
         } else {
             return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
         }
-
     }
-
 
     public function applicantIndex(){
 
@@ -294,21 +349,6 @@ class ApplicantController extends \BaseController
         $profile = ApplicantProfile::where('applicant_id', '=',$applicant_id )->first();
 
         return View::make('applicant::applicant_profile.index',compact('profile'));
-    }
-
-    public function applicantProfileView(){
-
-
-        $applicant_id = Auth::user()->id;
-//        echo $user_id;
-//        exit;
-
-        $profile = ApplicantProfile::where('applicant_id', '=', $applicant_id)->first();
-
-//        echo $profile;
-//        exit;
-
-        return View::make('applicant::applicant_profile.index', compact('profile'));
     }
 
     public function applicantProfileCreate()
@@ -326,12 +366,11 @@ class ApplicantController extends \BaseController
             $profile =new ApplicantProfile();
             $profile->applicant_id = Input::get('applicant_id');
             $profile->date_of_birth = Input::get('date_of_birth');
-//            $profile->birth_place = Input::get('birth_place');
             $profile->gender = Input::get('gender');
 
             $file = Input::file('profile_image');
-            $destinationPath = public_path().'/applicant_images';
 
+            $destinationPath = public_path().'/applicant_images';
             $extension = $file->getClientOriginalExtension();
             $filename = str_random(12) . '.' . $extension;
             Input::file('profile_image')->move($destinationPath, $filename);
@@ -373,6 +412,7 @@ class ApplicantController extends \BaseController
             $profile->city = Input::get('city');
             $profile->state = Input::get('state');
             $profile->country = Input::get('country');
+            $profile->zip_code = Input::get('zip_code');
 
             $profile->save();
             return Redirect::back()->with('message', 'Successfully updated Information!');
@@ -405,10 +445,11 @@ class ApplicantController extends \BaseController
             $profile = ApplicantProfile::find($id);
 
             $file = Input::file('profile_image');
-            $destinationPath = public_path().'/applicant_images';
             $extension = $file->getClientOriginalExtension();
             $filename = str_random(12) . '.' . $extension;
-            Input::file('profile_image')->move($destinationPath, $filename);
+            $path = public_path("images/applicant_profile/" . $filename);
+            Image::make($file->getRealPath())->resize(60, 60)->save($path);
+
             $profile->profile_image = $filename;
 
             $profile->save();
