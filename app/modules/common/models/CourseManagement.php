@@ -17,7 +17,7 @@ class CourseManagement extends Eloquent
     }
 
     public function coursetype(){
-        return $this->belongsTo('CourseType');
+        return $this->belongsTo('CourseType', 'course_type_id', 'id');
     }
 
     public function course(){
@@ -28,11 +28,12 @@ class CourseManagement extends Eloquent
         return $this->belongsTo('DegreeProgram');
     }
 
-
-
     public static function getCourseInfo($exmId){
         $data = CourseManagement::find($exmId);
         return $data->start_date;
     }
-
+    public static function getCourseManagementName($courseMId){
+        $data = CourseManagement::find($courseMId);
+        return $data->title;
+    }
 }

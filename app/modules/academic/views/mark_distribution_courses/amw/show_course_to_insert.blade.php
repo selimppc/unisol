@@ -9,8 +9,8 @@
 
     <div class="form-horizontal">
         <div class="form-group">
-            {{ Form::hidden('course_id', $datas->course_id, ['class'=>'form-control course_id'])}}
-            {{ Form::hidden('course_title', $datas->course_title, ['class'=>'form-control course_title'])}}
+            {{ Form::text('course_id', $datas->course_id, ['class'=>'form-control course_id'])}}
+            {{ Form::text('course_title', $datas->course_title, ['class'=>'form-control course_title'])}}
             {{--{{ Form::text('course_type', $datas->course_type_title, ['class'=>'form-control course_type'])}}--}}
             {{ Form::hidden('course_evaluation_total_marks', $datas->evaluation_total_marks, ['class'=>'form-control course_evalution_marks'])}}
         </div>
