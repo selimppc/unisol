@@ -166,8 +166,8 @@ $('.datepicker').datepicker({
 $tableItemCounter = 0;//To stop additem if exist
 var $arrayItems=[];//To stop additem if exist
 
-function addCourseListItem()
-{
+function addCourseListItem(){
+
     var listItem = $('.addConfigListItem').val();
     var listItemTitle = $( ".addConfigListItem option:selected" ).text();
 
@@ -181,6 +181,9 @@ function addCourseListItem()
     }
 
     else{
+        //get the sequence number of that table item
+        counter = $('#amwCourseConfig tr').length - 2;
+
         var course_id = $('.course_id').val();
         var course_title = $('.course_title').val();
         var course_evalution_marks = $('.course_evalution_marks').val();
@@ -200,11 +203,11 @@ function addCourseListItem()
 
         str += '<td><input type="text" name="actual_marks[]" class="amw_actual_marks" /> </td>';
 
-        str += '<td><span><input type="checkbox" name="isReadOnly'+trLen+'" value="1" class="amw_isReadOnly"/></span></td>';
+        str += '<td><span><input type="checkbox" name="isReadOnly[]" value="'+counter+'" class="amw_isReadOnly"/></span></td>';
 
-        str += '<td><input type="radio" name="isDefault[]" value="1" class="amw_isDefault" /></td>';
+        str += '<td><input type="radio" name="isDefault[]" value="'+counter+'" class="amw_isDefault" /></td>';
 
-        str += '<td><input type="radio" name="isAttendance[]" value="1" class="amw_isAttendance'+trLen+'" /></td>';
+        str += '<td><input type="radio" name="isAttendance[]" value="'+counter+'" class="amw_isAttendance'+trLen+'" /></td>';
 
         str += '<td><a class="btn btn-default btn-sm" id="removeTrId'+trLen+'" onClick="deleteNearestTr(this.id)"><span class="glyphicon glyphicon-trash text-danger"></span></a></td>';
 
@@ -212,6 +215,8 @@ function addCourseListItem()
 
         contentBody.append(str);
         $arrayItems.push($item_id);//To stop additem if exist
+
+        //counter = counter + 1;
     }
 
 }
