@@ -3,7 +3,7 @@
 {{ HTML::style('assets/css/datepicker.css')}}
 <div style="padding: 20px;">
 
-<h3>Edit {{$profile->id}}'s Profile </h3>
+<h3>Edit {{ Applicant::find($profile->applicant_id)->username; }}'s Profile </h3>
 
 {{Form::open(array('url'=>'applicant/profile/update/'.$profile->id, 'class'=>'form-horizontal','files'=>true))}}
 
