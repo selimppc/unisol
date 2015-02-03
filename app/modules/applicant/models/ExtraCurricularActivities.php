@@ -8,6 +8,6 @@
 
 class ExtraCurricularActivities extends Eloquent{
 
-    protected $table = 'user_extra_curricular_activities';
+    protected $table = 'applicant_extra_curricular_activity';
 
 }

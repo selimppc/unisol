@@ -7,7 +7,7 @@
 <div class="span9 well">
 <table class="table table-striped table-bordered" id="myTable">
 
-     <h4> {{$applicant_personal_info->mothers_name}}'s Personal Information </h4>
+     <h4> Personal Information </h4>
 
 
       <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('applicant/personal_info/edit/' . $applicant_personal_info->id ) }}" data-toggle="modal" data-target="#myeditModal" >Edit...</a>

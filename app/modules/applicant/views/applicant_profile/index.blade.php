@@ -10,11 +10,12 @@
      <h4>Applicant Proifle </h4>
 
       <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('applicant/profile/edit/' . $profile->id ) }}" data-toggle="modal" data-target="#myeditModal" >Edit...</a>
+
                     <thead>
 
 
                          <tr>
-                            <td>Date of Birth</td>
+                            <th>Date of Birth</th>
                                <td>{{$profile->date_of_birth}}
                             </td>
                           </tr>
@@ -26,13 +27,13 @@
                          {{--</tr>--}}
 
                           <tr>
-                             <td>Gender</td>
+                             <th>Gender</th>
                                <td>{{$profile->gender}}
                              </td>
                          </tr>
 
                          <tr>
-                                  <td>Profile picture</td>
+                                  <th>Profile picture</th>
 
                                   <td>{{ HTML::image('images/applicant_profile/' . $profile->profile_image) }}
 
@@ -44,24 +45,24 @@
                               </tr>
 
                           <tr>
-                               <td>City</td>
+                               <th>City</th>
                                  <td>{{$profile->city}}
                                </td>
                            </tr>
 
                             <tr>
-                              <td>State</td>
+                              <th>State</th>
                                 <td>{{$profile->state}}
                               </td>
                           </tr>
                            <tr>
-                             <td>Country</td>
+                             <th>Country</th>
                                <td>{{$profile->country}}
                              </td>
                          </tr>
 
                          <tr>
-                              <td>Zip Code</td>
+                              <th>Zip Code</th>
                                 <td>{{$profile->zip_code}}
                               </td>
                          </tr>
@@ -81,8 +82,9 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
+
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="myModalLabel">Edit</h4>
+        <h3 class="modal-title" id="myModalLabel"></h3>
       </div>
       <div class="modal-body">
 
@@ -103,7 +105,8 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="myModalLabel">change Image</h4>
+        {{--<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>--}}
+        <h4 class="modal-title" id="myModalLabel"></h4>
       </div>
       <div class="modal-body">
       </div>

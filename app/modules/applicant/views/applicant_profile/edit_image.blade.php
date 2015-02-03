@@ -1,14 +1,13 @@
 
-
 <div style="padding: 20px;">
+<h4>Edit Profile Picture </h4>
 
 {{Form::open(array('url'=>'applicant/profile_image/update/'.$profile->id, 'class'=>'form-horizontal','files'=>true))}}
 
-  <tr>
-      <td>profile_image</td>
-      <td>{{ HTML::image('applicant_images/' . $profile->profile_image) }}</td>
-  </tr>
-
+{{ Form::label('profile_image', 'Profile Picture:') }}<br>
+{{ HTML::image('images/applicant_profile/' . $profile->profile_image) }}
+<br><br>
+{{ Form::label('profile_image', 'Select Profile Picture :') }}
 {{ Form::file('profile_image',array('multiple'=>true)) }}
 
 <p>&nbsp;</p>

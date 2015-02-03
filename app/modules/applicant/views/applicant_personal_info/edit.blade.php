@@ -7,10 +7,17 @@
 {{ Form::label('fathers_name','Fathers Name:') }}
 {{ Form::text('fathers_name',$applicant_personal_info->fathers_name , array('type' => 'text', 'class' => 'form-control datepicker','placeholder' => 'Pick the date this task should be completed', 'id' => 'date')) }}
 
+{{ Form::label('fathers_occupation','Fathers occupation:') }}
+{{ Form::text('fathers_occupation', $applicant_personal_info->fathers_occupation, array('class' => 'form-control')) }}
+
 {{ Form::label('mothers_name','Mothers name:') }}
 {{ Form::text('mothers_name', $applicant_personal_info->mothers_name, array('class' => 'form-control')) }}
 
-{{ Form::label('national_id', 'national_id:') }}
+{{ Form::label('mothers_occupation','Mothers occupation:') }}
+{{ Form::text('mothers_occupation', $applicant_personal_info->mothers_occupation, array('class' => 'form-control')) }}
+
+
+{{ Form::label('national_id', 'National ID:') }}
 {{ Form::text('national_id',$applicant_personal_info->national_id, array('class' => 'form-control')) }}
 
 {{--{{ Form::label('gender','Gender:') }}--}}
@@ -18,9 +25,8 @@
            {{--'Female' => 'Female', 'Male' => 'Male'),$profile->gender,--}}
            {{--array('class' => 'form-control', 'required'=> true)) }}--}}
 
-{{--{{ Form::label('city','City:') }}--}}
-{{--{{ Form::text('city',$applicant_personal_info->city, array('class' => 'form-control')) }}--}}
-
+{{ Form::label('passport', 'Passport:') }}
+{{ Form::text('passport',$applicant_personal_info->passport, array('class' => 'form-control')) }}
 {{--{{ Form::label('state','State:') }}--}}
 {{--{{ Form::text('state',$profile->state, array('class' => 'form-control')) }}--}}
 
