@@ -30,23 +30,18 @@
                                     <tbody>
                                       @foreach($datas as $prepare_question_paper_amw)
                                         <tr>
-
-                                            <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $prepare_question_paper_amw->id }}"></td>
-                                            <td>{{ $prepare_question_paper_amw->title }}</td>
-                                            <td>{{ $prepare_question_paper_amw->deadline }}</td>
-
-                                            <td>{{ $prepare_question_paper_amw->d_title }} </td>
-
-                                            <td></td><td></td>
-                                            {{--<td>{{ Year::getYearsName($prepare_question_paper_amw->year_id) }} </td>--}}
-                                            {{--<td>{{ Semester::getSemesterName($prepare_question_paper_amw->semester_id) }} </td>--}}
+                                            <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $prepare_question_paper_amw['id'] }}"></td>
+                                            <td>{{$prepare_question_paper_amw['title']}} </td>
+                                            <td>{{$prepare_question_paper_amw['deadline']}}</td>
+                                            <td>{{$prepare_question_paper_amw['coursemanagement']['course']['subject']['department']['title']}}</td>
+                                            <td>{{$prepare_question_paper_amw['coursemanagement']['year']['title']}} </td>
+                                            <td>{{$prepare_question_paper_amw['coursemanagement']['semester']['title']}}</td>
                                             <td> Mr. </td>
-                                           <td>
-                                                   <a href="{{ URL::route('prepare_question_paper.amw_ViewQuestion', ['id'=>$prepare_question_paper_amw->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#ViewQuestionPaperModal" data-placement="left" title="Show" href="#">View</a>
-                                                   <a href="{{ URL::route('prepare_question_paper.amw_editQuestionPaper', ['id'=>$prepare_question_paper_amw->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#edit_amw_QuestionPapermodal" data-placement="left" title="Edit" href="#">Edit</a>
-                                                   <br>
-                                              <a class="btn btn-default" href="{{ action('ExmPrepareQuestionPaperController@assignTo') }}">Assign</a>
-                                           </td>
+                                            <td>
+                                               <a href="{{ URL::route('prepare_question_paper.amw_ViewQuestion', ['id'=>$prepare_question_paper_amw->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#ViewQuestionPaperModal" data-placement="left" title="Show" href="#">View</a>
+                                               <a href="{{ URL::route('prepare_question_paper.amw_editQuestionPaper', ['id'=>$prepare_question_paper_amw->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#edit_amw_QuestionPapermodal" data-placement="left" title="Edit" href="#">Edit</a>
+                                               <a class="btn btn-default" href="{{ action('ExmPrepareQuestionPaperController@assignTo') }}">Assign</a>
+                                            </td>
                                         </tr>
                                             @endforeach
                                     </tbody>

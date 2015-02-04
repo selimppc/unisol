@@ -374,8 +374,6 @@ class ApplicantController extends \BaseController
             $profile->gender = Input::get('gender');
 
             $file = Input::file('profile_image');
-//            echo $file;
-//            exit;
 
             $destinationPath = public_path().'/applicant_images';
             $extension = $file->getClientOriginalExtension();
@@ -464,8 +462,7 @@ class ApplicantController extends \BaseController
             $profile = ApplicantProfile::find($id);
 
             $file = Input::file('profile_image');
-            //echo $file;
-            //exit;
+
             $extension = $file->getClientOriginalExtension();
             $filename = str_random(12) . '.' . $extension;
             $path = public_path("images/applicant_profile/" . $filename);
@@ -486,7 +483,147 @@ class ApplicantController extends \BaseController
 
     public function applicantSupportingDocsIndex(){
 
-        return View::make('applicant::applicant_supporting_docs.index');
+        $supporting_docs = ApplicantSupportingDocs::where('id', '=', '19')->first();
+        //print_r($supporting_docs);
+        //exit;
+
+
+        return View::make('applicant::applicant_supporting_docs.index')->with('supporting_docs',$supporting_docs);
     }
+
+    public function applicantSupportingDocsCreate(){
+
+        return View::make('applicant::applicant_supporting_docs._form');
+    }
+
+    public function applicantSupportingDocsStore(){
+
+        $rules = array(
+            'academic_goal_statement' => 'required',
+        );
+        $validator = Validator::make(Input::all(), $rules);
+        if ($validator->passes()) {
+
+            $supporting_docs =new ApplicantSupportingDocs();
+
+            $supporting_docs->applicant_id = Input::get('applicant_id');
+
+            $file = Input::file('academic_goal_statement');
+
+            $extension = $file->getClientOriginalExtension();
+            $filename = str_random(12) . '.' . $extension;
+            $path = public_path("images/goal_statements/" . $filename);
+            Image::make($file->getRealPath())->resize(60, 60)->save($path);
+
+            $supporting_docs->academic_goal_statement = $filename;
+
+
+
+            $supporting_docs->save();
+
+            return Redirect::back()->with('message', 'Successfully added Information!');
+        } else {
+            return Redirect::to('applicant/supporting_docs/create')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
+        }
+
+    }
+
+    public function editApplicantGoalStatement($id){
+
+        $supporting_docs = ApplicantSupportingDocs::find($id);
+
+        return View::make('applicant::applicant_supporting_docs.edit_goal', compact('supporting_docs'));
+    }
+    public function updateApplicantGoalStatement($id){
+
+                 $supporting_docs = ApplicantSupportingDocs::find($id);
+                 $file = Input::file('academic_goal_statement');
+
+                $extension = $file->getClientOriginalExtension();
+                $filename = str_random(12) . '.' . $extension;
+                $path = public_path("images/goal_statements/" . $filename);
+                Image::make($file->getRealPath())->resize(60, 60)->save($path);
+
+                $supporting_docs->academic_goal_statement = $filename;
+                $supporting_docs->save();
+
+                return Redirect::back()->with('message', 'Successfully updated Information!');
+
+    }
+    public function applicantGoalStatementAdd($id){
+
+        $supporting_docs = ApplicantSupportingDocs::find($id);
+        return View::make('applicant::applicant_supporting_docs.add_goal',compact('supporting_docs'));
+
+    }
+    public function applicantGoalStatementStore($id){
+
+         $supporting_docs = ApplicantSupportingDocs::find($id);
+
+
+         $file = Input::file('academic_goal_statement');
+
+          $extension = $file->getClientOriginalExtension();
+          $filename = str_random(12) . '.' . $extension;
+          $path = public_path("images/goal_statements/" . $filename);
+          Image::make($file->getRealPath())->resize(60, 60)->save($path);
+
+          $supporting_docs->academic_goal_statement = $filename;
+
+
+          $supporting_docs->save();
+
+          return Redirect::back()->with('message', 'Successfully updated Information!');
+
+
+    }
+    public function applicantEssayCreate($id){
+
+        $supporting_docs = ApplicantSupportingDocs::find($id);
+        return View::make('applicant::applicant_supporting_docs.add_essay',compact('supporting_docs'));
+    }
+    public function  applicantEssayStore($id){
+
+        $supporting_docs = ApplicantSupportingDocs::find($id);
+
+        $file = Input::file('essay');
+
+        $extension = $file->getClientOriginalExtension();
+        $filename = str_random(12) . '.' . $extension;
+        $path = public_path("images/applicant_essay/" . $filename);
+        Image::make($file->getRealPath())->resize(60, 60)->save($path);
+
+        $supporting_docs->essay = $filename;
+
+
+        $supporting_docs->save();
+
+        return Redirect::back()->with('message', 'Successfully added Information!');
+}
+    public function editApplicantEssay($id){
+
+        $supporting_docs = ApplicantSupportingDocs::find($id);
+
+        return View::make('applicant::applicant_supporting_docs.edit_essay', compact('supporting_docs'));
+
+    }
+    public function updateApplicantEssay($id){
+        $supporting_docs = ApplicantSupportingDocs::find($id);
+        $file = Input::file('essay');
+
+        $extension = $file->getClientOriginalExtension();
+        $filename = str_random(12) . '.' . $extension;
+        $path = public_path("images/applicant_essay/" . $filename);
+        Image::make($file->getRealPath())->resize(60, 60)->save($path);
+
+        $supporting_docs->essay = $filename;
+        $supporting_docs->save();
+
+        return Redirect::back()->with('message', 'Successfully updated Information!');
+
+
+    }
+
+
 }
 

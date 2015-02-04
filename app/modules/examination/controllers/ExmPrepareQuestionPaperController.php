@@ -13,36 +13,16 @@ class ExmPrepareQuestionPaperController extends \BaseController {
 // method for amw_index
     public function amw_index()
     {
-        $datas = DB::table('exm_question')
-            ->select(
-                'exm_question.id as id', 'exm_question.title as title','exm_question.deadline as deadline',
-                //'exm_exam_list.course_management_id as cm_id',
-                //'course_management.year_id as year_id','course_management.semester_id as semester_id', 'course_management.course_id as course_id',
-                //'course.subject_id as c_s_id',
-                //'subject.department_id as s_d_id',
-                'department.title as d_title'
-            )
-            ->join('exm_exam_list','exm_question.exm_exam_list_id','=','exm_exam_list.id')
-            //->join('course_management','exm_exam_list.course_management_id','=','course_management.id')
-//            ->join('exm_question', 'course_management.year_id', '=', 'year.id' )
-
-            ->join('subject', 'exm_exam_list.id', '=', 'subject.id' )
-            ->join('department', 'subject.department_id', '=', 'department.id' )
-            //->where('exm_questions.id', 6)
+        $data = ExmQuestion::with('coursemanagement', 'coursemanagement.year', 'coursemanagement.semester','coursemanagement.course.subject.department')
             ->get();
-
-
-        return View::make('examination::prepare_question_paper.amw_index')->with('datas',$datas);
-
+        return View::make('examination::prepare_question_paper.amw_index')->with('datas',$data);
     }
 
 // method for faculty_index
     public function faculty_index()
     {
-
-        $data = ExmQuestion::with('coursemanagement', 'coursemanagement.year', 'coursemanagement.semester')
+        $data = ExmQuestion::with('coursemanagement', 'coursemanagement.year', 'coursemanagement.semester','coursemanagement.course.subject.department')
             ->get();
-
         return View::make('examination::prepare_question_paper.faculty_index')->with('datas', $data);
     }
 
@@ -102,7 +82,7 @@ class ExmPrepareQuestionPaperController extends \BaseController {
         {
             // success code
             $prepare_question_paper->exm_exam_list_id = Input::get('exm_exam_list_id');
-            $prepare_question_paper->course_management_id = '1';
+            $prepare_question_paper->course_management_id = '3';
             $prepare_question_paper->examiner_faculty_user_id = '1';
             $prepare_question_paper->title = Input::get('title');
             $prepare_question_paper->deadline = Input::get('deadline');
