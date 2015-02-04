@@ -6,9 +6,9 @@ class CourseType extends Eloquent
 
     protected $table = 'course_type';
 
-    public function coursemanagement(){
-        return $this->belongsTo('CourseManagement');
-    }
+//    public function coursemanagement(){
+//        return $this->belongsTo('CourseManagement');
+//    }
 
     public static function getCourseName($courseId){
         $data = CourseType::find($courseId);

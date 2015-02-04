@@ -166,6 +166,9 @@ class MarkdistributionController extends \BaseController
             ->join('course_type', 'course.course_type', '=', 'course_type.id')
             ->where('course.id', $course_id)
             ->first();
+
+        //print_r($data);
+        //exit;
         // return View::make('academic::mark_distribution_courses.amw.show_course_to_insert')->with('datas', $data);
         //first() means one array return and get() means object return
 
@@ -198,7 +201,6 @@ class MarkdistributionController extends \BaseController
         $isDefault = Input::get('isDefault');
         $isAttendance = Input::get('isAttendance');
         $isReadOnly = Input::get('isReadOnly');
-
         $acm_config_id = Input::get('acm_config_id');
         $count = count(Input::get('acm_marks_dist_item_id'));
         for($i=0; $i < $count; $i++) {
@@ -206,31 +208,33 @@ class MarkdistributionController extends \BaseController
             $model1->acm_marks_dist_item_id = $data['acm_marks_dist_item_id'][$i];
             $model1->course_id = $data['course_id'][$i];
             $model1->marks = $data['actual_marks'][$i];
-
             $model1->default_item = 0;
-            foreach($isDefault as $isd){
-                if($isd == $i)
-                    $model1->default_item = 1;
-            }
-
-            $model1->is_attendance = 0;
-            foreach($isAttendance as $isa){
-                if($isa == $i) {
-                    $model1->is_attendance = 1;
-//                    $acm_config = new AcmAttendanceConfig();
-                    $acm_config = $data['acm_attendance_config_id'][$i] ? AcmAttendanceConfig::find($acm_attendance_config_id[$i]) : new AcmAttendanceConfig;
-                    $acm_config->course_type_id = Input::get('course_type_id');
-                    $acm_config->acm_marks_dist_item_id =$data['acm_marks_dist_item_id'][$i];
-                    $acm_config->save();
+            if($isDefault){
+                foreach($isDefault as $isd){
+                    if($isd == $i)
+                        $model1->default_item = 1;
                 }
             }
-
-            $model1->readonly = 0;
-            foreach($isReadOnly as $isr){
-                if($isr == $i)
-                    $model1->readonly = 1;
+            $model1->is_attendance = 0;
+            if($isAttendance) {
+                foreach ($isAttendance as $isa) {
+                    if ($isa == $i) {
+                        $model1->is_attendance = 1;
+                        $acm_config = new AcmAttendanceConfig();
+                        // $acm_config = $data['acm_attendance_config_id'][$i] ? AcmAttendanceConfig::find($acm_attendance_config_id[$i]) : new AcmAttendanceConfig;
+                        $acm_config->course_type_id = Input::get('course_type_id');
+                        $acm_config->acm_marks_dist_item_id = $data['acm_marks_dist_item_id'][$i];
+                        $acm_config->save();
+                    }
+                }
             }
-
+            $model1->readonly = 0;
+            if($isReadOnly){
+                foreach($isReadOnly as $isr){
+                    if($isr == $i)
+                        $model1->readonly = 1;
+                }
+            }
             $model1->save();
         }
 
@@ -246,15 +250,20 @@ class MarkdistributionController extends \BaseController
             $model1->save();
         }*/
 
-
-
         // redirect
         Session::flash('message', 'ACM Course Configuration Data Successfully Added !!');
         return Redirect::to('amw/config/index');
-
     }
 
+    public function course_config_show($id)
+    {
+        $data= CourseManagement::with('year', 'semester', 'course', 'course.subject.department')
+            ->where('id', '=', $id)
+            ->get();
 
+
+        return View::make('academic::mark_distribution_courses.amw.show_course_config')->with('title', 'Course List')->with('datas', $data);
+    }
 //End code
 
 

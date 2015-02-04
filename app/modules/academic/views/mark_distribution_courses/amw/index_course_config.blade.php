@@ -18,19 +18,20 @@
         </tr>
         </thead>
         {{--<td>{{ AcmCourseConfig::getCourseItemStatus($value->course_id, $value->course->evaluation_total_marks) }}</td>--}}
+        {{--<td>{{$value->course->title}}</td>--}}
         <tbody>
         @foreach ($datas as $value)
             <tr>
-                <td>{{$value->course->title}}</td>
+                <td><a href="{{ URL::route('config.show', ['id'=>$value->course->id])  }}" class="btn btn-link" data-toggle="modal" data-target="#showModal">{{$value->course->title}}</a></td>
                 <td>{{$value->course->subject->department->title}}</td>
                 <td>{{$value->year->title}}</td>
                 <td>{{$value->semester->title}}</td>
                 <td>{{ AcmCourseConfig::getCourseItemStatus($value->course_id, $value->course->evaluation_total_marks) }}</td>
 
                 <td>
-                    <a href="{{ URL::route('coursefind.show', ['course_id'=>$value->id])  }}" class="btn btn-primary" data-toggle="modal" data-target="#addNew" data-toggle="tooltip" data-placement="left" title="Show/View" href="">MarksDistConfig</a>
+                    <a href="{{ URL::route('coursefind.show', ['course_id'=>$value->course_id])  }}" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#addNew" data-toggle="tooltip" data-placement="left" title="Show/View" href="">MarksDistConfig</a>
 
-                    {{--<a href="{{ URL::route('config.show', ['id'=>$value->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#showModal" data-toggle="tooltip" data-placement="left" title="Show/View" href="">View Dist</a>--}}
+                    <a href="" class="btn btn-sm btn-success" data-toggle="modal" data-target="" data-toggle="tooltip" data-placement="left" title="Show/View" href="">ViewDistConfig</a>
                 </td>
             </tr>
         @endforeach
@@ -56,7 +57,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Show Course Item</h4>
+                    <h4 class="modal-title" id="myModalLabel">Show Course Config Information</h4>
                 </div>
                 <div class="modal-body">
 
