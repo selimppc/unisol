@@ -37,7 +37,6 @@
                     <div class="col-sm-6"><strong>Option </strong></div>
                     <div class="col-sm-6"><strong>Answer </strong></div>
                 </div>
-
                 <?php $counter = 0;?>
                 @foreach($options as $op)
                     <div class="col-sm-12">
@@ -56,7 +55,6 @@
                     <?php $counter++; ?>
                 @endforeach
             </div>
-             </div>
         @elseif($qid->question_type == 'checkbox')
              <div class="form-group">
                  {{ Form::label('gender','Answer Type') }}

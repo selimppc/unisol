@@ -1,8 +1,8 @@
 <fieldset style="padding: 10px; width: 90%;">
-            <?php  $exm_exam_lists_id = ExmExamList::lists('title', 'id'); ?>
+            <?php  $exm_exam_list_id = ExmExamList::lists('title', 'id'); ?>
             <div class="form-group">
                    {{ Form::label('exm_exam_lists_id', 'Exam Name') }}
-                   {{ Form::select('exm_exam_lists_id', $exm_exam_lists_id )}}
+                   {{ Form::select('exm_exam_lists_id', $exm_exam_list_id )}}
             </div>
             <div class="form-group">
                    {{ Form::label('title', 'Title') }}

@@ -36,8 +36,10 @@
                                             <td>{{ $prepare_question_paper_amw->deadline }}</td>
 
                                             <td>{{ $prepare_question_paper_amw->d_title }} </td>
-                                            <td>{{ Year::getYearsName($prepare_question_paper_amw->year_id) }} </td>
-                                            <td>{{ Semester::getSemesterName($prepare_question_paper_amw->semester_id) }} </td>
+
+                                            <td></td><td></td>
+                                            {{--<td>{{ Year::getYearsName($prepare_question_paper_amw->year_id) }} </td>--}}
+                                            {{--<td>{{ Semester::getSemesterName($prepare_question_paper_amw->semester_id) }} </td>--}}
                                             <td> Mr. </td>
                                            <td>
                                                    <a href="{{ URL::route('prepare_question_paper.amw_ViewQuestion', ['id'=>$prepare_question_paper_amw->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#ViewQuestionPaperModal" data-placement="left" title="Show" href="#">View</a>

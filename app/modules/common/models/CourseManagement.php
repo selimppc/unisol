@@ -28,6 +28,10 @@ class CourseManagement extends Eloquent
         return $this->belongsTo('DegreeProgram');
     }
 
+    public function exmquestion(){
+        return $this->belongsTo('ExmQuestion');
+    }
+
     public static function getCourseInfo($exmId){
         $data = CourseManagement::find($exmId);
         return $data->start_date;

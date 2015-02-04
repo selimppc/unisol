@@ -2,41 +2,18 @@
 
 class ExmQuestion extends \Eloquent
 {
-    protected $table = 'exm_questions';
+    protected $table = 'exm_question';
 
     private $errors;
 
-//    public function Exmexamlist()
-//    {
-//        return $this->belongsTo('exm_exam_lists', 'exm_exam_lists_id', 'id');
-//
-//    }
+    public function coursemanagement()
+    {
+        return $this->belongsTo('CourseManagement', 'course_management_id', 'id');
+
+    }
 
 
 
-//
-//
-//    public static function getYear($id){
-//        $data = Year::find($id);
-//        return $data->title;
-//    }
-//
-//    public function getCourseManageId($id){
-//        $data = CourseManagement::find($id);
-//        return $data;
-//    }
-//
-//    public function getExamItemList($id){
-//        $data = ExmExamList::find($id);
-//        $course_manage_id = $data->cousre_management_id;
-//        return getCourseManageId($course_manage_id);
-//    }
-
-
-
-
-
-    // 1
     private $rules = array(
 
         'title'  => 'required',
@@ -72,4 +49,3 @@ class ExmQuestion extends \Eloquent
 
 
 }
-?>
