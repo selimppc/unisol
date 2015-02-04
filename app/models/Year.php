@@ -6,9 +6,9 @@ class Year extends \Eloquent
 	protected $table = 'year';
 
 
-	public function coursemanagement(){
-		return $this->HasMany('CourseManagement');
-	}
+//	public function coursemanagement(){
+//		return $this->belongsTo('CourseManagement');
+//	}
 	// ratna code
     public static function getYearsName($yearId){
     $data = Year::find($yearId);

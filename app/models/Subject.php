@@ -19,6 +19,6 @@ class Subject extends \Eloquent
         $data = Subject::find($subId);
         return $data->title;
     }
-	
+
 }
 ?>
