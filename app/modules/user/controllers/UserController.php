@@ -2,6 +2,11 @@
 
 class UserController extends \BaseController {
 
+    public function __construct()
+    {
+        $this->beforeFilter('auth');
+    }
+
     public function login(){
         if ($this->isPostRequest()) {
             $validator = $this->getLoginValidator();
