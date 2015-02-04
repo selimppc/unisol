@@ -44,7 +44,7 @@ Route::any('applicant/extra_curricular/edit/{id}','ApplicantController@editExtra
 
 Route::post('applicant/extra_curricular/update/{id}','ApplicantController@updateExtraCurricular');
 
-//Applicant_profile
+//Applicant_profile..........................................................................
 Route::any('applicant/profile/create','ApplicantController@applicantProfileCreate');
 
 Route::any('applicant/profile/store','ApplicantController@applicantProfileStore');
@@ -59,8 +59,7 @@ Route::any('applicant/profile_image/edit/{id}','ApplicantController@editProfileI
 
 Route::any('applicant/profile_image/update/{id}','ApplicantController@updateProfileImage');
 
-// Applicant Personal Information
-
+// Applicant Personal Information............................................................
 Route::any('applicant/personal_info/create','ApplicantController@applicantPersonalInfoCreate');
 
 Route::any('applicant/personal_info/store','ApplicantController@applicantPersonalInfoStore');
@@ -71,9 +70,34 @@ Route::any('applicant/personal_info/edit/{id}','ApplicantController@applicantPer
 
 Route::any('applicant/personal_info/update/{id}','ApplicantController@applicantPersonalInfoUpdate');
 
-//  Applicant Supporting Docs
-
+//  Applicant Supporting Docs...................................................................
 Route::any('applicant/supporting_docs/index','ApplicantController@applicantSupportingDocsIndex');
+
+Route::any('applicant/supporting_docs/create','ApplicantController@applicantSupportingDocsCreate');
+
+Route::any('applicant/supporting_docs/store','ApplicantController@applicantSupportingDocsStore');
+
+Route::any('applicant/supporting_docs/edit/{id}','ApplicantController@editApplicantGoalStatement');
+
+Route::any('applicant/supporting_docs/update/{id}','ApplicantController@updateApplicantGoalStatement');
+
+//Applicant goal statements........................................................................
+
+Route::any('applicant/goal_statements/add','ApplicantController@applicantGoalStatementAdd');
+
+Route::any('applicant/goal_statements/store/{id}','ApplicantController@applicantGoalStatementStore');
+
+//Applicant Essay.................................................................................
+
+Route::any('applicant/supporting_docs_essay/create','ApplicantController@applicantEssayCreate');
+
+Route::any('applicant/supporting_docs_essay/store/{id}','ApplicantController@applicantEssayStore');
+
+Route::any('applicant/supporting_docs_essay/edit/{id}','ApplicantController@editApplicantEssay');
+
+Route::any('applicant/supporting_docs_essay/update/{id}','ApplicantController@updateApplicantEssay');
+
+
 
 
 
