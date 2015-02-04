@@ -73,6 +73,8 @@ Route::any('applicant/personal_info/update/{id}','ApplicantController@applicantP
 
 //  Applicant Supporting Docs
 
+Route::any('applicant/supporting_docs/index','ApplicantController@applicantSupportingDocsIndex');
+
 
 
 
