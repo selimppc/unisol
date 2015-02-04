@@ -345,7 +345,7 @@ class ApplicantController extends \BaseController
     }
 
     public function applicantProfileIndex(){
-        //$applicant_id = Applicant::find(3)->id;
+        $applicant_id = ApplicantProfile::find(19);
 
         $profile = ApplicantProfile::where('id', '=', '19')->first();
 

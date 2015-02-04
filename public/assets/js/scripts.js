@@ -18,29 +18,24 @@ $(function () {
     });
 });
 
-
 // add field js
-
 $(function() {
-    var count = 2;
+    var count = $('#exmQuestionOptionAns tr').length - 2;;
+    var count_value_option = 2;
     window.createInput = function(){
         var field_area = document.getElementById('fields1')
         var div = document.createElement("div");
         var label = document.createElement("label");
         label.for = "option";
-        label.innerHTML = "Option "+ (count + 1) + ":";
+        label.innerHTML = "Option "+ (count_value_option + 1) + ":";
         div.appendChild(label);
 
-
         var input = document.createElement("input");
-        input.id = 'option'+count;
+        input.id = 'option'+count_value_option;
         input.className = 'option_class';
         input.name = 'option_title[]';
         input.type = "text";
         div.appendChild(input);
-
-
-        //Radio
 
         var input = document.createElement("input");
         input.id = 'answer'+count;
@@ -48,11 +43,9 @@ $(function() {
         input.name = 'answer[]';
         //input.type = "radio";
         input.type = "radio";
-        input.value = count;
-
+        input.value = count_value_option;
 
         div.appendChild(input);
-
         field_area.appendChild(div);
         //remove area
         var removalLink = document.createElement('a');
@@ -64,7 +57,7 @@ $(function() {
             removalLink.appendChild(document.createTextNode('Remove (-)'));
             div.appendChild(removalLink);
             count++;
+            count_value_option++;
         }
-
 });
 

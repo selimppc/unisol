@@ -1,4 +1,3 @@
-
 <!-- Modal for Create -->
 <div class="modal fade" id="CreateModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true">
     <div class="modal-dialog">
@@ -8,13 +7,9 @@
                 <h4 class="modal-title" id="myModalLabel">Create Question paper</h4>
             </div>
             <div class="modal-body">
-
                 {{ Form::open(array('url' => 'prepare_question_paper/store', 'method' =>'post', 'role'=>'form','files'=>'true'))  }}
-
                     @include('examination::prepare_question_paper/_amw_form')
-
                 {{ Form::close() }}
-
             </div>
             <div class="modal-footer">
             </div>
@@ -22,8 +17,7 @@
     </div>
 </div>
 
- {{--Modal for View Question Paper--}}
-
+{{--Modal for View Question Paper--}}
  <div class="modal fade" id="ViewQuestionPaperModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true">
                              <div class="modal-dialog">
                                  <div class="modal-content">
@@ -32,14 +26,12 @@
                                          <h4 class="modal-title" id="myModalLabel">View Question Paper</h4>
                                       </div>
                                       <div class="modal-body">
-
                                       </div>
                                       <div class="modal-footer">
                                       </div>
                                  </div>
                              </div>
 </div>
-
 
 <!-- Modal for Edit Amw Question Paper -->
 <div class="modal fade" id="edit_amw_QuestionPapermodal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true">
@@ -57,10 +49,6 @@
     </div>
 </div>
 
-
-
-
-
 <!-- Modal for Edit -->
 <div class="modal fade" id="edit-modal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true">
     <div class="modal-dialog">
@@ -77,8 +65,6 @@
     </div>
 </div>
 
-
-
 <!-- Show Modal -->
                     <div class="modal fade" id="showModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true">
                       <div class="modal-dialog">
@@ -88,9 +74,6 @@
                             <h4 class="modal-title" id="myModalLabel">Show Semester</h4>
                           </div>
                           <div class="modal-body">
-
-
-
                           </div>
                           <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-dismiss="modal" >Cencel</button>
@@ -98,8 +81,6 @@
                         </div>
                       </div>
                     </div>
-
-
 
 <!-- Modal for delete -->
 <div class="modal fade " id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -111,18 +92,14 @@
             </div>
             <div class="modal-body">
                 <strong>Are you sure to delete?</strong>
-
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                 <a href="#" class="btn btn-danger danger">Delete</a>
-
             </div>
         </div>
     </div>
 </div>
-
-
 
  <!-- Modal for Edit Question  -->
                     <div class="modal fade" id="EditQuestionItems" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true">
@@ -133,8 +110,6 @@
                                         <h4 class="modal-title" id="myModalLabel">Edit Question Items</h4>
                                      </div>
                                      <div class="modal-body">
-
-
                                      </div>
                                      <div class="modal-footer">
                                      </div>
@@ -142,18 +117,12 @@
                             </div>
                     </div>
 
-
-
-
-
-
 <!-- Modal for AddQuestionItemsModal -->
              <div class="modal fade" id="AddQuestionItemsModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                  <div class="modal-header">
                                          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-
                                  </div>
                                  <div class="modal-body">
                                  </div>
@@ -163,24 +132,16 @@
                         </div>
              </div>
 
-
-
-
 <!-- View Question Items Modal -->
                     <div class="modal fade" id="ViewQuestionItems" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true">
                       <div class="modal-dialog">
                         <div class="modal-content">
                           <div class="modal-header">
                              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-
                           </div>
                           <div class="modal-body">
-
-
-
                           </div>
                           <div class="modal-footer">
-
                           </div>
                         </div>
                       </div>
