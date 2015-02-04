@@ -1,7 +1,11 @@
 <?php
 
+// Applicant
+
 Route::any('applicant/index','ApplicantController@index');
+
 Route::any('applicant/store','ApplicantController@store');
+
 Route::get('register/verify/{verified_code}','ApplicantController@confirm');
 
 Route::any('applicant/signin', 'ApplicantController@Login');
@@ -66,5 +70,9 @@ Route::any('applicant/personal_info/index','ApplicantController@applicantPersona
 Route::any('applicant/personal_info/edit/{id}','ApplicantController@applicantPersonalInfoEdit');
 
 Route::any('applicant/personal_info/update/{id}','ApplicantController@applicantPersonalInfoUpdate');
+
+//  Applicant Supporting Docs
+
+
 
 

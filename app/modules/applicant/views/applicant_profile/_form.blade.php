@@ -41,9 +41,11 @@
 <div class="control-group @if ($errors->has('gender')) has-error @endif">
 
 <span style="color:red;">*</span>
-        {{ Form::label('gender', 'gender') }}
+      {{ Form::label('gender', 'gender') }}
 
-        {{ Form::text ('gender', Input::old('gender'),['class'=>'form-control','size' => '30x5']) }}
+      {{ Form::select('gender', array('' => 'Select one',
+                 'Female' => 'Female', 'Male' => 'Male','Common'=>'Common'),
+                 array('class' => 'form-control', 'required'=> true)) }}
 @if ($errors->has('gender')) <p class="help-block">{{ $errors->first('gender') }}</p> @endif</div>
 
 <div class="control-group @if ($errors->has('profile_image')) has-error @endif">

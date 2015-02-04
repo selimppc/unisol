@@ -5,14 +5,11 @@ class UserController extends \BaseController {
     public function login(){
         if ($this->isPostRequest()) {
             $validator = $this->getLoginValidator();
-
             if ($validator->passes()) {
                 $credentials = $this->getLoginCredentials();
-
                 if (Auth::attempt($credentials)) {
                     return Redirect::route("user/profile");
                 }
-
                 return Redirect::back()->withErrors([
                     "password" => ["Credentials invalid."]
                 ]);
@@ -22,7 +19,6 @@ class UserController extends \BaseController {
                     ->withErrors($validator);
             }
         }
-
         return View::make('user::user.login');
     }
 
@@ -56,17 +52,14 @@ class UserController extends \BaseController {
     {
         if ($this->isPostRequest()) {
             $response = $this->getPasswordRemindResponse();
-
             if ($this->isInvalidUser($response)) {
                 return Redirect::back()
                     ->withInput()
                     ->with("error", Lang::get($response));
             }
-
             return Redirect::back()
                 ->with("status", Lang::get($response));
         }
-
         return View::make("user/request");
     }
 
@@ -91,16 +84,13 @@ class UserController extends \BaseController {
                 ) + compact("token");
 
             $response = $this->resetPassword($credentials);
-
             if ($response === Password::PASSWORD_RESET) {
                 return Redirect::route("user/profile");
             }
-
             return Redirect::back()
                 ->withInput()
                 ->with("error", Lang::get($response));
         }
-
         return View::make("user/reset", compact("token"));
     }
 
