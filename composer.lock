@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "158192391a55e57ff1c5bcd9dc96896f",
+    "hash": "31daef0b748a9cae58080b5809cc856f",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -618,7 +618,7 @@
         },
         {
             "name": "intervention/image",
-            "version": "2.1.1",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Intervention/image.git",
@@ -2581,7 +2581,9 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "intervention/image": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
