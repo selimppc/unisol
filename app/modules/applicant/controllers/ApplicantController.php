@@ -235,14 +235,13 @@ class ApplicantController extends \BaseController
             return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
         }
 
-
     }
 
     public function applicantPersonalInfoIndex()
     {
-        $applicant_id = Applicant::find(5)->id;
-        $applicant_personal_info = ApplicantPersonalInfo::where('applicant_id', '=',$applicant_id )->first();
+        $applicant_id = Applicant::find(3)->id;
 
+        $applicant_personal_info = ApplicantPersonalInfo::where('applicant_id', '=',$applicant_id )->first();
         return View::make('applicant::applicant_personal_info.index',compact('applicant_personal_info'));
     }
 
@@ -263,9 +262,10 @@ class ApplicantController extends \BaseController
             $applicant_personal_info = ApplicantPersonalInfo::find($id);
             $applicant_personal_info->national_id = Input::get('national_id');
             $applicant_personal_info->fathers_name = Input::get('fathers_name');
-//            $applicant_personal_info->achivement = Input::get('achivement');
-//            $applicant_personal_info->certificate_medal = Input::file('certificate_medal');
-
+            $applicant_personal_info->mothers_name = Input::get('mothers_name');
+            $applicant_personal_info->fathers_occupation = Input::get('fathers_occupation');
+            $applicant_personal_info->passport = Input::get('passport');
+            $applicant_personal_info->mothers_occupation = Input::get('mothers_occupation');
 
             $applicant_personal_info->save();
             return Redirect::back()->with('message', 'Successfully updated Information!');
@@ -287,7 +287,7 @@ class ApplicantController extends \BaseController
         $validator = Validator::make(Input::all(), $rules);
         if ($validator->passes()) {
             $extra_curricular =new ExtraCurricularActivities();
-            $extra_curricular->user_id = Input::get('user_id');
+            $extra_curricular->applicant_id = Input::get('applicant_id');
             $extra_curricular->title = Input::get('title');
             $extra_curricular->description = Input::get('description');
             $extra_curricular->achivement = Input::get('achivement');
@@ -345,10 +345,11 @@ class ApplicantController extends \BaseController
     }
 
     public function applicantProfileIndex(){
-        $applicant_id = Applicant::find(5)->id;
-        $profile = ApplicantProfile::where('applicant_id', '=',$applicant_id )->first();
+        $applicant_id = ApplicantProfile::find(19);
 
-        return View::make('applicant::applicant_profile.index',compact('profile'));
+        $profile = ApplicantProfile::where('id', '=', '19')->first();
+
+        return View::make('applicant::applicant_profile.index')->with('profile',$profile);
     }
 
     public function applicantProfileCreate()
@@ -369,6 +370,8 @@ class ApplicantController extends \BaseController
             $profile->gender = Input::get('gender');
 
             $file = Input::file('profile_image');
+//            echo $file;
+//            exit;
 
             $destinationPath = public_path().'/applicant_images';
             $extension = $file->getClientOriginalExtension();
@@ -414,7 +417,19 @@ class ApplicantController extends \BaseController
             $profile->country = Input::get('country');
             $profile->zip_code = Input::get('zip_code');
 
+            $file = Input::file('profile_image');
+
+            if($file){
+                $extension = $file->getClientOriginalName();
+                $filename = str_random(12) . '.' . $extension;
+                $path = public_path("images/applicant_profile/" . $filename);
+                Image::make($file->getRealPath())->resize(80, 80)->save($path);
+
+                $profile->profile_image = $filename;
+            }
+
             $profile->save();
+
             return Redirect::back()->with('message', 'Successfully updated Information!');
         } else {
             return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
@@ -445,6 +460,8 @@ class ApplicantController extends \BaseController
             $profile = ApplicantProfile::find($id);
 
             $file = Input::file('profile_image');
+            //echo $file;
+            //exit;
             $extension = $file->getClientOriginalExtension();
             $filename = str_random(12) . '.' . $extension;
             $path = public_path("images/applicant_profile/" . $filename);
