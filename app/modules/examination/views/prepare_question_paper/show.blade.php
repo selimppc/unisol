@@ -1,10 +1,6 @@
 <div style="padding: 10px; width: 90%;">
-
-
    <h1>Show A Question</h1> </br>
-
     {{ Form::open(array('route'=>'prepare_question_paper.show','method' => '')) }}
-
         <div class="jumbotron text-center">
             <h2><strong>Name :</strong>{{ $prepareQuestionPaper->title }}</h2>
             <p>
@@ -17,5 +13,4 @@
         </div>
         <a href="{{URL::to('prepare_question_paper/index')}}" class="btn btn-default">Close </a>
     {{ Form::close() }}
-
 </div>

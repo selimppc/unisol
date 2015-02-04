@@ -13,19 +13,20 @@ class ExmPrepareQuestionPaperController extends \BaseController {
 // method for amw_index
     public function amw_index()
     {
-        $datas = DB::table('exm_questions')
+        $datas = DB::table('exm_question')
             ->select(
-                'exm_questions.id as id', 'exm_questions.title as title','exm_questions.deadline as deadline',
-                'exm_exam_lists.course_management_id as cm_id',
-                'course_management.year_id as year_id','course_management.semester_id as semester_id', 'course_management.course_id as course_id',
+                'exm_question.id as id', 'exm_question.title as title','exm_question.deadline as deadline',
+                //'exm_exam_list.course_management_id as cm_id',
+                //'course_management.year_id as year_id','course_management.semester_id as semester_id', 'course_management.course_id as course_id',
                 //'course.subject_id as c_s_id',
                 //'subject.department_id as s_d_id',
                 'department.title as d_title'
             )
-            ->join('exm_exam_lists','exm_questions.exm_exam_lists_id','=','exm_exam_lists.id')
-            ->join('course_management','exm_exam_lists.course_management_id','=','course_management.id')
-            ->join('course', 'course_management.course_id', '=', 'course.id' )
-            ->join('subject', 'course.subject_id', '=', 'subject.id' )
+            ->join('exm_exam_list','exm_question.exm_exam_list_id','=','exm_exam_list.id')
+            //->join('course_management','exm_exam_list.course_management_id','=','course_management.id')
+//            ->join('exm_question', 'course_management.year_id', '=', 'year.id' )
+
+            ->join('subject', 'exm_exam_list.id', '=', 'subject.id' )
             ->join('department', 'subject.department_id', '=', 'department.id' )
             //->where('exm_questions.id', 6)
             ->get();
@@ -39,25 +40,10 @@ class ExmPrepareQuestionPaperController extends \BaseController {
     public function faculty_index()
     {
 
-        $datas = DB::table('exm_questions')
-            ->select(
-                    'exm_questions.id as id', 'exm_questions.title as title','exm_questions.deadline as deadline',
-                    'exm_exam_lists.course_management_id as cm_id',
-                    'course_management.year_id as year_id','course_management.semester_id as semester_id', 'course_management.course_id as course_id',
-                    //'course.subject_id as c_s_id',
-                    //'subject.department_id as s_d_id',
-                    'department.title as d_title'
-            )
-            ->join('exm_exam_lists','exm_questions.exm_exam_lists_id','=','exm_exam_lists.id')
-            ->join('course_management','exm_exam_lists.course_management_id','=','course_management.id')
-            ->join('course', 'course_management.course_id', '=', 'course.id' )
-            ->join('subject', 'course.subject_id', '=', 'subject.id' )
-            ->join('department', 'subject.department_id', '=', 'department.id' )
-            //->where('exm_questions.id', 6)
+        $data = ExmQuestion::with('coursemanagement', 'coursemanagement.year', 'coursemanagement.semester')
             ->get();
 
-
-        return View::make('examination::prepare_question_paper.faculty_index')->with('datas',$datas);
+        return View::make('examination::prepare_question_paper.faculty_index')->with('datas', $data);
     }
 
 // method for view question : past
@@ -87,30 +73,24 @@ class ExmPrepareQuestionPaperController extends \BaseController {
             return View::make('examination::prepare_question_paper.amw_viewQuestion')->with('viewPrepareQuestionPaperAmw', $view_question_amw);
         }
     }
-
-
-
 // method for Question Item List : AMW
     public function amw_QuestionList()
     {
-        $question_list_amw = ExmQuestionItems::orderBy('id', 'DESC')->paginate(6);
+        $question_list_amw = ExmQuestionItems::orderBy('id', 'DESC')->paginate(15);
         return View::make('examination::prepare_question_paper.amw_QuestionList')->with('QuestionListAmw',$question_list_amw);
     }
-
 // method for Question Item List : Faculty
     public function faculty_QuestionList()
     {
-        $question_list_faculty = ExmQuestionItems::orderBy('id', 'DESC')->paginate(6);
+        $question_list_faculty = ExmQuestionItems::orderBy('id', 'DESC')->paginate(15);
         return View::make('examination::prepare_question_paper.faculty_QuestionList')->with('QuestionListFaculty',$question_list_faculty);
     }
-
 // method for Create Question  Paper : AMW
 	public function amw_createQuestionPaper()
 	{
         return View::make('examination::prepare_question_paper.create');
         //ok
 	}
-
 // method for Store Question Paper : AMW
 	public function amw_storeQuestionPaper()
 	{
@@ -121,7 +101,9 @@ class ExmPrepareQuestionPaperController extends \BaseController {
         if ($prepare_question_paper->validate($data))
         {
             // success code
-            $prepare_question_paper->exm_exam_lists_id = Input::get('exm_exam_lists_id');
+            $prepare_question_paper->exm_exam_list_id = Input::get('exm_exam_list_id');
+            $prepare_question_paper->course_management_id = '1';
+            $prepare_question_paper->examiner_faculty_user_id = '1';
             $prepare_question_paper->title = Input::get('title');
             $prepare_question_paper->deadline = Input::get('deadline');
             $prepare_question_paper->total_marks = Input::get('total_marks');
@@ -163,7 +145,6 @@ class ExmPrepareQuestionPaperController extends \BaseController {
         return View::make('examination::prepare_question_paper.amw_editQuestionPaper')->with('edit_AmwQuestionPaper',$prepare_question_paper);
         //ok
     }
-
 // method for Update Question Paper : AMW
     public function amw_updateQuestionPaper($id)
     {
@@ -206,7 +187,7 @@ class ExmPrepareQuestionPaperController extends \BaseController {
 // method for Add Question Items : Faculty
     public function faculty_add_question_items($qid){
         $qid = ExmQuestion::find($qid);
-        return View::make('examination::prepare_question_paper.edit_test', compact('qid'));
+        return View::make('examination::prepare_question_paper.faculty_add_question_item', compact('qid'));
     }
 
 // method for Store Question Items : Faculty
@@ -216,7 +197,6 @@ class ExmPrepareQuestionPaperController extends \BaseController {
 
         $faculty_store_question_items = new ExmQuestionItems();
 
-
         if ($faculty_store_question_items->validate($data))
         {
             $faculty_store_question_items->title = Input::get('title');
@@ -224,28 +204,25 @@ class ExmPrepareQuestionPaperController extends \BaseController {
             $faculty_store_question_items->marks = Input::get('marks');
 
             if( strtolower(Input::get('mcq')) == 'mcq'){
-                if( strtolower(Input::get('question_type')) == 'mcq_single'){
+                if( strtolower(Input::get('r_question_type')) == 'mcq_single'){
                     $faculty_store_question_items->question_type = 'radio';
-
-                    //$faculty_store_question_items->save();
-
                     if($faculty_store_question_items->save()) {
                         $exm_question_items_id = $faculty_store_question_items->id;
                         $opt_title = Input::get('option_title');
                         $opt_answer = Input::get('answer');
                         $i = 0;
                         foreach ($opt_title as $key => $value) {
-
                             //Re-declare model each time you want to save data as loop.
                             $exm_question_opt = new ExmQuestionOptionAnswer();
-
                             $exm_question_opt->exm_question_items_id = $exm_question_items_id;
-                            $exm_question_opt->title = $value;#$opt_title[$i];
-                            foreach ($opt_answer as $oa) {
+                            $exm_question_opt->title = $value;
+
+                            $exm_question_opt->answer = 0;
+
+                                foreach ($opt_answer as $oa) {
                                 if ($oa == $key)
                                     $exm_question_opt->answer = 1;
-                            }
-
+                                }
                             $exm_question_opt->save();
                             $i++;
                         }
@@ -253,8 +230,6 @@ class ExmPrepareQuestionPaperController extends \BaseController {
                     }else {
                         echo "NO";
                     }
-
-
                 }else{
                     $faculty_store_question_items->question_type = 'checkbox';
                     if($faculty_store_question_items->save()){
@@ -263,37 +238,32 @@ class ExmPrepareQuestionPaperController extends \BaseController {
                         $opt_answer = Input::get('answer');
                         $i = 0;
                         foreach($opt_title as $key => $value){
-
                             //Re-declare model each time you want to save data as loop.
                             $exm_question_opt = new ExmQuestionOptionAnswer();
-
                             $exm_question_opt->exm_question_items_id = $exm_question_items_id;
-                            $exm_question_opt->title = $value;#$opt_title[$i];
+                            $exm_question_opt->title = $value;
+
+                            $exm_question_opt->answer = 0;
+
                             foreach($opt_answer as $oa){
                                 if($oa == $key)
                                     $exm_question_opt->answer = 1;
                             }
-
                             $exm_question_opt->save();
                             $i++;
                         } /// saving last single data
-
                         echo "Option Data : Multiple Answer Saved!";
                     }else{
                         echo "NO";
                     }
                 }
-
-
-
             }else{
-                $faculty_store_question_items->question_type = 'text';
-                if($faculty_store_question_items->save()){
-                        echo "Save";
-
-                }else{
-                    echo "No";
-                }
+                  $faculty_store_question_items->question_type = 'text';
+                    if($faculty_store_question_items->save()){
+                            echo "Save";
+                    }else{
+                        echo "No";
+                    }
                 }
 
             // redirect
@@ -351,10 +321,7 @@ class ExmPrepareQuestionPaperController extends \BaseController {
 
 // method for Assign Question Paper Creation Task to teacher : AMW
     public function assignTo()
-    {
-        echo "Not Done Yet";
-
-    }
+    { echo "Not Done Yet"; }
 
 //// method for delete : AMW
 //    public function destroy($id)
@@ -377,8 +344,6 @@ class ExmPrepareQuestionPaperController extends \BaseController {
     }
     //ok
 
-
-
 // method for Edit Question Items : Faculty
     public function faculty_EditQuestionItems($id)
     {
@@ -398,52 +363,38 @@ class ExmPrepareQuestionPaperController extends \BaseController {
 
     }
 
-
 // method for Update Question Items : Faculty
     public function faculty_updateQuestionItems($id)
     {
         $data = Input::all($id);
-
         $faculty_store_question_items = new ExmQuestionItems();
-
-
         if ($faculty_store_question_items->validate($data))
         {
             $faculty_store_question_items = ExmQuestionItems::find($id);
-
             $faculty_store_question_items->title = Input::get('title');
             $faculty_store_question_items->exm_questions_id = Input::get('qid');
             $faculty_store_question_items->marks = Input::get('marks');
 
-
-
             if( strtolower(Input::get('mcq')) == 'mcq'){
-
-                if( strtolower(Input::get('question_type')) == 'mcq_single'){
-
+                if( strtolower(Input::get('r_question_type')) == 'mcq_single'){
                     $faculty_store_question_items->question_type = 'radio';
 
-                    //$faculty_store_question_items->save();
-
                     if($faculty_store_question_items->save()) {
-
                         $exm_question_items_id = Input::get('id');
                         $opt_title = Input::get('option_title');
                         $opt_answer = Input::get('answer');
-
                         $i = 0;
                         foreach ($opt_title as $key => $value) {
 
                             //Re-declare model each time you want to save data as loop.
-                            $exm_question_opt = ExmQuestionOptionAnswer::find($id);
-
-                            $exm_question_opt->exm_question_items_id = $exm_question_items_id;
+                            $exm_question_opt = ExmQuestionOptionAnswer::find($exm_question_items_id[$i]);
                             $exm_question_opt->title = $value;
+                            $exm_question_opt->answer = 0;
+
                             foreach ($opt_answer as $oa) {
                                 if ($oa == $key)
                                     $exm_question_opt->answer = 1;
                             }
-
                             $exm_question_opt->save();
                             $i++;
                         }
@@ -451,62 +402,40 @@ class ExmPrepareQuestionPaperController extends \BaseController {
                     }else {
                         echo "NO";
                     }
-
-
                 }else{
-
                     $faculty_store_question_items->question_type = 'checkbox';
-                    if($faculty_store_question_items->save()){
 
+                    if($faculty_store_question_items->save()){
                         $exm_question_items_id = Input::get('id');
                         $opt_title = Input::get('option_title');
-                        //$opt_answer = Input::get('answer');
-                        $opt_answer = array(1,1,1);
-
-
+                        $opt_answer = Input::get('answer');
                         $i = 0;
-
-
-
                         foreach($opt_title as $key => $value){
-
                             //Re-declare model each time you want to save data as loop.
-                            $exm_question_opt = ExmQuestionOptionAnswer::find($exm_question_items_id);
-
-                            //$exm_question_opt->exm_question_items_id = $exm_question_items_id;
+                            $exm_question_opt = ExmQuestionOptionAnswer::find($exm_question_items_id[$i]);
                             $exm_question_opt->title = $value;
-                            $exm_question_opt->answer = $opt_answer;
+                            $exm_question_opt->answer = 0;
 
-//                            print_r($opt_answer);
-//                            exit;
-
-//                            foreach($opt_answer as $oa){
-//                                if($oa == $key)
-//                                    $exm_question_opt->answer = 1;
-//                            }
+                            foreach ($opt_answer as $oa) {
+                                if ($oa == $key)
+                                    $exm_question_opt->answer = 1;
+                            }
                             $exm_question_opt->save();
-
                             $i++;
-                        } /// saving last single data
-
+                        }
                         echo "Option Data : Multiple Answer Saved!";
                     }else{
                         echo "NO";
                     }
                 }
-
-
-
             }else{
                 $faculty_store_question_items->question_type = 'text';
                 if($faculty_store_question_items->save()){
                     echo "Descriptive Answer Saved";
-
                 }else{
                     echo "No";
                 }
             }
-
             // redirect
             Session::flash('message', 'Successfully Added!');
             return Redirect::to('prepare_question_paper/faculty_QuestionList');
@@ -516,11 +445,7 @@ class ExmPrepareQuestionPaperController extends \BaseController {
             // failure, get errors
             $errors = $faculty_store_question_items->errors();
             Session::flash('errors', $errors);
-
             return Redirect::to('prepare_question_paper/faculty_index');
         }
-
     }
-
-
 }
