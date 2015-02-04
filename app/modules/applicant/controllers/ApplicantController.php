@@ -196,6 +196,8 @@ class ApplicantController extends \BaseController
         }
     }
 
+    //  Applicant's PersonalInformations: Methods......................................
+
     public function applicantPersonalInfoCreate(){
 
         return View::make('applicant::applicant_personal_info._form');
@@ -344,10 +346,12 @@ class ApplicantController extends \BaseController
         return View::make('applicant::applicants.index');
     }
 
+    //  Applicant's Profile: Methods.....................................................
+
     public function applicantProfileIndex(){
         $applicant_id = ApplicantProfile::find(19);
 
-        $profile = ApplicantProfile::where('id', '=', '19')->first();
+        $profile = ApplicantProfile::where('id', '=', '1')->first();
 
         return View::make('applicant::applicant_profile.index')->with('profile',$profile);
     }
@@ -476,6 +480,13 @@ class ApplicantController extends \BaseController
             return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
         }
 
+    }
+
+//  Applicant's Supporting Docs: Methods......................................
+
+    public function applicantSupportingDocsIndex(){
+
+        return View::make('applicant::applicant_supporting_docs.index');
     }
 }
 
