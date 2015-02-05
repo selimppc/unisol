@@ -4,12 +4,12 @@ class Course extends \Eloquent
 {
     protected $table = 'course';
 
-    public function coursemanagement(){
+    public function relCourseManagement(){
         return $this->belongsTo('CourseManagement');
     }
 
-    public function subject(){
-        return $this->belongsTo('Subject');
+    public function relSubject(){
+        return $this->belongsTo('Subject', 'subject_id', 'id');
     }
 
     public static function getCourseName($courseId){

@@ -16,10 +16,11 @@
 
             @foreach($datas as $value)
                 <tr>
-                    <td>{{$value->course->title}}</td>
-                    <td>{{$value->course->subject->department->title}}</td>
-                    <td>{{$value->year->title}}</td>
-                    <td>{{$value->semester->title}}</td>
+                    <td>{{$value['relCourse']['title']}}</td>
+                    <td>{{$value->relCourse->relSubject->relDepartment->title}}</td>
+                    <td>{{$value['relYear']['title']}}</td>
+                    <td>{{$value['relSemester']['title']}}</td>
+
                 </tr>
             @endforeach
             </tbody>
