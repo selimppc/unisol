@@ -47,7 +47,7 @@
                         <div class="col-sm-6">
                               @if($op->answer == 1)
                                 {{ Form::checkbox('answer[]', $counter,array('checked'))}}
-                              @elseif($op->answer == 0)
+                              @else
                                 {{ Form::checkbox('answer[]',$counter)}}
                               @endif
                         </div>
@@ -79,7 +79,7 @@
                         <div class="col-sm-6">
                               @if($op->answer == 1)
                                 {{ Form::checkbox('answer[]', $counter,array('checked'))}}
-                              @elseif($op->answer == 0)
+                              @else
                                 {{ Form::checkbox('answer[]',$counter)}}
                               @endif
                         </div>

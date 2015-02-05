@@ -12,8 +12,6 @@ class ExmQuestion extends \Eloquent
 
     }
 
-
-
     private $rules = array(
 
         'title'  => 'required',
