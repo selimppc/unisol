@@ -1,4 +1,5 @@
-{{Form::hidden('qid', $qid->id, ['class'=>'form-control'])}}
+{{Form::hidden('qid', $qid->exm_question_id, ['class'=>'form-control'])}}
+{{--{{Form::hidden('qitemid', $qid->id, ['class'=>'form-control'])}}--}}
  <div class='form-group'>
      {{ Form::label('title', 'Question Title') }}
      {{ Form::text('title', null, ['class'=>'form-control', 'required'=>'required']) }}
@@ -46,9 +47,9 @@
                         </div>
                         <div class="col-sm-6">
                               @if($op->answer == 1)
-                                {{ Form::checkbox('answer[]', $counter,array('checked'))}}
+                                {{ Form::radio('answer[]', $counter,array('checked'))}}
                               @else
-                                {{ Form::checkbox('answer[]',$counter)}}
+                                {{ Form::radio('answer[]',$counter)}}
                               @endif
                         </div>
                     </div>
