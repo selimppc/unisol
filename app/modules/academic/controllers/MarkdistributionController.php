@@ -240,8 +240,8 @@ class MarkdistributionController extends \BaseController
             $model1->save();
         }
         /*for($i=0; $i < $count; $i++) {
-            $model1 = $data['acm_config_id'][$i] ? AcmCourseConfig::find($acm_config_id[$i]) : new AcmCourseConfig;
-           // $model1 = ($data['acm_config_id'][$i]) ? AcmCourseConfig::updateOrCreate(array('id' => $data['acm_config_id'][$i])) : new AcmCourseConfig;
+
+           $model1 = ($data['acm_config_id'][$i]) ? AcmCourseConfig::updateOrCreate(array('id' => $data['acm_config_id'][$i])) : new AcmCourseConfig;
             $model1->acm_marks_dist_item_id = $data['acm_marks_dist_item_id'][$i];
             $model1->course_id = $data['course_id'][$i];
             $model1->marks = $data['actual_marks'][$i];
@@ -270,14 +270,15 @@ class MarkdistributionController extends \BaseController
         }
     }
 
-    public function course_config_show($id)
+    public function course_config_show($course_id)
     {
         $data= CourseManagement::with('year', 'semester', 'course', 'course.subject.department')
-            ->where('id', '=', $id)
+            ->where('course_id', '=', $course_id)
             ->get();
-
-
-        return View::make('academic::mark_distribution_courses.amw.show_course_config')->with('datas', $data);
+        $config_data= AcmCourseConfig::with('relAcmMarksDistItem', 'relCourse')
+            ->where('course_id', '=', $course_id)
+            ->get();
+        return View::make('academic::mark_distribution_courses.amw.show_course_config')->with('datas', $data)->with('config_data',$config_data);
     }
 
     public function item_config_show($course_id)
