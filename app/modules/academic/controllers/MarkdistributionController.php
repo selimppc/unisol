@@ -15,7 +15,7 @@ class MarkdistributionController extends \BaseController
     public function amw_index()
     {
         $data = AcmMarksDist::orderBy('id', 'ASC')->paginate(5);
-        return View::make('academic::mark_distribution_courses.amw.index')->with('datas', $data)->with('title', 'All Course Item List');
+        return View::make('academic::mark_distribution_courses.amw.index')->with('datas', $data)->with('title', 'Course Marks Distribution Item List');
     }
 
     /**
@@ -147,7 +147,7 @@ class MarkdistributionController extends \BaseController
     {
         $course_data= CourseManagement::with('year', 'semester', 'course', 'course.subject.department')
             ->get();
-        return View::make('academic::mark_distribution_courses.amw.index_course_config')->with('title', 'Course List')->with('datas', $course_data);
+        return View::make('academic::mark_distribution_courses.amw.index_course_config')->with('title', 'CourseManagement List')->with('datas', $course_data);
     }
 
     public function find_course_info($course_id)
@@ -166,13 +166,9 @@ class MarkdistributionController extends \BaseController
             ->join('course_type', 'course.course_type', '=', 'course_type.id')
             ->where('course.id', $course_id)
             ->first();
+             //first() means one array return and get() means object return
 
-        //print_r($data);
-        //exit;
-        // return View::make('academic::mark_distribution_courses.amw.show_course_to_insert')->with('datas', $data);
-        //first() means one array return and get() means object return
-
-        //To edit and update retrived data from Database
+             //To edit and update retrived data from Database
         $course_data = DB::table('acm_course_config')
             ->select(
                 'acm_course_config.id as isConfigId',
@@ -191,6 +187,12 @@ class MarkdistributionController extends \BaseController
             ->join('course_type', 'course.course_type', '=', 'course_type.id')
             ->where('course.id', $course_id)
             ->get();
+//        $course_management= DB::table('course_management')
+//            ->select(
+//                'course_management.id as cmid'
+//            )
+//            ->where('course.id', $course_id)
+//            ->get();
 
         return View::make('academic::mark_distribution_courses.amw.show_course_to_insert')->with('datas', $data)->with('course_data', $course_data);
 
@@ -237,7 +239,6 @@ class MarkdistributionController extends \BaseController
             }
             $model1->save();
         }
-
         /*for($i=0; $i < $count; $i++) {
             $model1 = $data['acm_config_id'][$i] ? AcmCourseConfig::find($acm_config_id[$i]) : new AcmCourseConfig;
            // $model1 = ($data['acm_config_id'][$i]) ? AcmCourseConfig::updateOrCreate(array('id' => $data['acm_config_id'][$i])) : new AcmCourseConfig;
@@ -254,6 +255,20 @@ class MarkdistributionController extends \BaseController
         Session::flash('message', 'ACM Course Configuration Data Successfully Added !!');
         return Redirect::to('amw/config/index');
     }
+    //Ajax delete in modal
+    public function ajax_delete_acm_course_config()
+    {
+        if(Request::ajax())
+        {
+            $course_config_id = Input::get('acm_course_config_id');
+
+            $data = AcmCourseConfig::find($course_config_id)->first();
+            if($data->delete())
+                return Response::json(['msg'=> 'Data Successfully Deleted']);
+            else
+                return Response::json(['msg'=> 'Data Successfully Not Deleted']);
+        }
+    }
 
     public function course_config_show($id)
     {
@@ -262,8 +277,22 @@ class MarkdistributionController extends \BaseController
             ->get();
 
 
-        return View::make('academic::mark_distribution_courses.amw.show_course_config')->with('title', 'Course List')->with('datas', $data);
+        return View::make('academic::mark_distribution_courses.amw.show_course_config')->with('datas', $data);
     }
+
+    public function item_config_show($course_id)
+    {
+        $data= AcmCourseConfig::with('relAcmMarksDistItem', 'relCourse')
+                ->where('course_id', '=', $course_id)
+                //->where('is_attendance', '=', 1)
+                ->get();
+        //print_r($data);
+       // exit;
+
+        return View::make('academic::mark_distribution_courses.amw.show_marks_dist_item')->with('datas', $data);
+    }
+
+
 //End code
 
 

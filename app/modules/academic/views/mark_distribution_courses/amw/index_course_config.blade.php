@@ -22,16 +22,16 @@
         <tbody>
         @foreach ($datas as $value)
             <tr>
-                <td><a href="{{ URL::route('config.show', ['id'=>$value->course->id])  }}" class="btn btn-link" data-toggle="modal" data-target="#showModal">{{$value->course->title}}</a></td>
+                <td><a href="{{ URL::route('config.show', ['id'=>$value->id])  }}" class="btn btn-link" data-toggle="modal" data-target="#showModal">{{$value->course->title}}</a></td>
                 <td>{{$value->course->subject->department->title}}</td>
                 <td>{{$value->year->title}}</td>
                 <td>{{$value->semester->title}}</td>
                 <td>{{ AcmCourseConfig::getCourseItemStatus($value->course_id, $value->course->evaluation_total_marks) }}</td>
 
                 <td>
-                    <a href="{{ URL::route('coursefind.show', ['course_id'=>$value->course_id])  }}" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#addNew" data-toggle="tooltip" data-placement="left" title="Show/View" href="">MarksDistConfig</a>
+                    <a href="{{ URL::route('coursefind.show', ['course_id'=>$value->course_id])  }}" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#addNew" data-toggle="tooltip" data-placement="left" title="Mark/Dist" href="">MarksDistConfig</a>
 
-                    <a href="" class="btn btn-sm btn-success" data-toggle="modal" data-target="" data-toggle="tooltip" data-placement="left" title="Show/View" href="">ViewDistConfig</a>
+                    <a href="{{ URL::route('marksdist.show', ['course_id'=>$value->course_id]) }}" class="btn btn-sm btn-success" data-toggle="modal" data-target="#marksDistModal" data-toggle="tooltip" data-placement="left" title="Show/Dist" href="">ViewDistConfig</a>
                 </td>
             </tr>
         @endforeach
@@ -51,23 +51,21 @@
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 
-    <!-- Show Modal -->
+    <!-- Show course info Modal -->
     <div class="modal fade" id="showModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Show Course Config Information</h4>
-                </div>
-                <div class="modal-body">
 
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
 
+    <!-- Show course marksdistribution Modal -->
+    <div class="modal fade" id="marksDistModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
 
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal" >Cencel</button>
-                </div>
-            </div>
-        </div>
-    </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
 @stop

@@ -18,3 +18,14 @@ Ratna
 */
 include("routes_academic_ra.php");
 
+Route::any("academic/faculty", [
+    "as"   => "academic/faculty",
+    "uses" => "AcmFacultyController@index"
+]);
+
+Route::any("academic/faculty/create", [
+    "as"   => "academic/faculty/create",
+    "uses" => "AcmFacultyController@create"
+]);
+
+

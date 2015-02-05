@@ -10,9 +10,11 @@
     <div class="form-horizontal">
         <div class="form-group">
             {{ Form::hidden('course_id', $datas->course_id, ['class'=>'form-control course_id'])}}
+            {{--{{ Form::text('course_management_id', $datas->course_management_id, ['class'=>'form-control course_management_id'])}}--}}
             {{ Form::hidden('course_title', $datas->course_title, ['class'=>'form-control course_title'])}}
             {{--{{ Form::text('course_type', $datas->course_type_title, ['class'=>'form-control course_type'])}}--}}
             {{ Form::hidden('course_evaluation_total_marks', $datas->evaluation_total_marks, ['class'=>'form-control course_evalution_marks'])}}
+            {{--{{ Form::text('course_management[}', $management->cmid)}}--}}
         </div>
         <div class="form-group">
             <div class="col-md-4">
@@ -57,10 +59,17 @@
                 <td>{{ Form::radio('isDefault[]', $counter, ($value->default_item) ? $value->default_item : Input::old('isDefault'.$key)) }}</td>
                 <td>{{ Form::radio('isAttendance[]', $counter, ($value->is_attendance) ? $value->is_attendance : Input::old('isAttendance'.$key)) }}</td>
 
-                <td><a class="btn btn-default btn-sm" id="removeTrId{{$key}}" onClick="deleteNearestTr(this.id)"><span class="glyphicon glyphicon-trash text-danger"></span></a>
+                <td><a class="btn btn-default btn-sm" id="removeTrId{{$key}}" onClick="deleteNearestTr(this.id, {{$value->isConfigId}})"><span class="glyphicon glyphicon-trash text-danger"></span></a>
                 </td>
             </tr>
             <?php $counter++;?>
+
+            <script>
+                // Add item is to arrayList at edit time.
+                item_id = <?php echo($value->item_id)?>;
+                editCourseListItem(item_id);
+            </script>
+
 
         @endforeach
         </tbody>

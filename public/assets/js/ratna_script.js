@@ -164,24 +164,25 @@ $('.datepicker').datepicker({
 
 /***********************ACM COURSE CONFIG GENERATION STARTS***********************/
 $tableItemCounter = 0;//To stop additem if exist
-var $arrayItems=[];//To stop additem if exist
+var arrayItems=[];//To stop additem if exist
+
+function editCourseListItem(itemid){
+    arrayItems.push(itemid);
+}
 
 function addCourseListItem(){
 
     var listItem = $('.addConfigListItem').val();
     var listItemTitle = $( ".addConfigListItem option:selected" ).text();
 
-    $item_id = $( ".addConfigListItem option:selected" ).val();//To stop additem if exist
-    var index = $.inArray($item_id, $arrayItems);//To stop additem if exist
+    item_id = parseInt($( ".addConfigListItem option:selected" ).val());//To stop additem if exist
+    var index = $.inArray(item_id, arrayItems);//To stop additem if exist
 
     //To stop additem if exist
     if(index>=0){
         alert("Already Added!");
-        exit;
-    }
-
-    else{
-
+        return;
+    }else{
         counter = $('#amwCourseConfig tr').length - 2; //get the sequence number of that table item
 
         var course_id = $('.course_id').val();
@@ -191,15 +192,15 @@ function addCourseListItem(){
         var contentBody = $('.acm_course_config_list');
         var trLen = $('.acm_course_config_list tr').length;
 
-
-        // $( ".addConfigListItem option:selected" ).remove();
+        // Insert item_id as INT to array otherwise it may be added like string
+        arrayItems.push(parseInt(item_id));//To stop additem if exist
 
         var str = '';
         str += '<tr><input type="hidden" name="acm_config_id[]" value="" />';
 
         str += '<td width="130"><input type="hidden" name="course_id[]" value="'+course_id+'" /><input type="hidden" name="acm_marks_dist_item_id[]" value="'+listItem+'" />'+listItemTitle+'</td>';
 
-        str += '<td><input type="text" name="marks_percent[]" class="amw_marks_percent'+trLen+'" onchange="calculateActualMarks(this.className, '+course_evalution_marks+',this.value)" required/> </td>';
+        str += '<td><input type="text" name="marks_percent[]" class="amw_marks_percent'+trLen+'" onkeyup="calculateActualMarks(this.className, '+course_evalution_marks+',this.value)" required/> </td>';
 
         str += '<td><input type="text" name="actual_marks[]" class="amw_actual_marks" /> </td>';
 
@@ -209,14 +210,11 @@ function addCourseListItem(){
 
         str += '<td><input type="radio" name="isAttendance[]" value="'+counter+'" class="amw_isAttendance'+trLen+'" /></td>';
 
-        str += '<td><a class="btn btn-default btn-sm" id="removeTrId'+trLen+'" onClick="deleteNearestTr(this.id)"><span class="glyphicon glyphicon-trash text-danger"></span></a></td>';
+        str += '<td><a class="btn btn-default btn-sm" id="removeTrId'+trLen+'" onClick="deleteNearestTr(this.id, 0)"><span class="glyphicon glyphicon-trash text-danger"></span></a></td>';
 
         str += '</tr>';
 
         contentBody.append(str);
-        $arrayItems.push($item_id);//To stop additem if exist
-
-        //counter = counter + 1;
     }
 
 }
@@ -228,11 +226,40 @@ function calculateActualMarks(class_name, course_evalution_marks, selected_perce
     // console.log(class_name+"//"+total);
 }
 
-function deleteNearestTr(getId)
+function deleteNearestTr(getId, acmId)
 {
-    console.log(getId);
-    var whichtr = $('#'+getId).closest("tr");
-    whichtr.fadeOut(500).remove();
+    var is_config_id = acmId;
+    if(is_config_id > 0){
+
+        var check = confirm("Are you sure to delete this item??");
+        if(check)
+        {
+            $.ajax({
+                url: 'acmconfigdelete/ajax',
+                type: 'POST',
+                dataType: 'json',
+                data: {acm_course_config_id: is_config_id}
+            })
+                .done(function(msg) {
+                    //console.log(msg);
+                    var whichtr = $('#'+getId).closest("tr");
+                    whichtr.fadeOut(500).remove();
+                    arrayItems.pop(getId);//To stop additem if exist
+                });
+        }
+        else
+        {
+            return false;
+        }
+
+
+    }else{
+        //if acm_course_config id not found jst remove the tr form the popup. that not delete the data form the db.
+        var whichtr = $('#'+getId).closest("tr");
+        whichtr.fadeOut(500).remove();
+        arrayItems.pop(getId);//To stop additem if exist
+    }
+
 }
 
 
