@@ -16,7 +16,7 @@
 
                  <tr>
                     <td>
-                     <a href="{{ action('ExmPrepareQuestionPaperController@amw_QuestionList') }}"> Question List</a> <span class="label label-success"></span>
+                     <a href="{{ action('ExmPrepareQuestionPaperController@amw_QuestionList') }}"> Question Items</a> <span class="label label-success"></span>
                     </td>
                  </tr>
             </table>
@@ -38,7 +38,7 @@
                     </tr>
                     <tr>
                         <td>
-                         <a href="{{ action('ExmPrepareQuestionPaperController@faculty_QuestionList') }}"> Question List</a> <span class="label label-success"></span>
+                         <a href="{{ action('ExmPrepareQuestionPaperController@faculty_QuestionList') }}"> Question Items</a> <span class="label label-success"></span>
                         </td>
                     </tr>
                 </table>

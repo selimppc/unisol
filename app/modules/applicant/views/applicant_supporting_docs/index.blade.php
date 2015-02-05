@@ -6,8 +6,6 @@
 
 <div class="span9 well">
 <table class="table table-striped table-bordered" id="myTable">
-{{--<col width="80">--}}
-{{--<col width="200">--}}
 
      <h4>Supporting  Documents</h4>
 
@@ -50,47 +48,7 @@
                                  @endif
                            </tr>
 
-                           {{--<tr>--}}
-                             {{--<td>Letter of intent</td>--}}
-                               {{--<td>{{$supporting_docs->letter_of_intent}}--}}
-                               {{--</td>--}}
-                           {{--</tr>--}}
 
-                          {{--<tr>--}}
-                            {{--<td>Personal statement</td>--}}
-                            {{--<td>{{$supporting_docs->personal_statement}}--}}
-                          {{--</td>--}}
-                         {{--</tr>--}}
-
-                           {{--<tr>--}}
-                             {{--<td>Research Statement</td>--}}
-                               {{--<td>{{$supporting_docs->research_statement}}--}}
-                             {{--</td>--}}
-                         {{--</tr>--}}
-
-                         {{--<tr>--}}
-                           {{--<td>Portfolio</td>--}}
-                               {{--<td>{{$supporting_docs->portfolio}}--}}
-                               {{--</td>--}}
-                         {{--</tr>--}}
-
-                         {{--<tr>--}}
-                            {{--<td>Resume</td>--}}
-                              {{--<td>{{$supporting_docs->passport}}--}}
-                              {{--</td>--}}
-                         {{--</tr>--}}
-
-                         {{--<tr>--}}
-                             {{--<td>Readmission Personal Details</td>--}}
-                               {{--<td>{{$supporting_docs->national_id}}--}}
-                               {{--</td>--}}
-                          {{--</tr>--}}
-
-                           {{--<tr>--}}
-                              {{--<td>Others</td>--}}
-                             {{--<td>{{$supporting_docs->other}}--}}
-                               {{--</td>--}}
-                           {{--</tr>--}}
 
            </thead>
 
@@ -113,10 +71,7 @@
       </div>
       <div class="modal-body">
 
-
-
       </div>
-
 
       <div class="modal-footer">
 

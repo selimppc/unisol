@@ -484,10 +484,6 @@ class ApplicantController extends \BaseController
     public function applicantSupportingDocsIndex(){
 
         $supporting_docs = ApplicantSupportingDocs::where('id', '=', '19')->first();
-        //print_r($supporting_docs);
-        //exit;
-
-
         return View::make('applicant::applicant_supporting_docs.index')->with('supporting_docs',$supporting_docs);
     }
 
@@ -498,15 +494,24 @@ class ApplicantController extends \BaseController
 
     public function applicantSupportingDocsStore(){
 
-        $rules = array(
-            'academic_goal_statement' => 'required',
-        );
-        $validator = Validator::make(Input::all(), $rules);
-        if ($validator->passes()) {
+        $applicant_id = Applicant::find(3)->id;
 
-            $supporting_docs =new ApplicantSupportingDocs();
+//        if( $applicant_info = ApplicantSupportingDocs::where('applicant_id', '=',$applicant_id )){
+//
+//
+//         }
 
-            $supporting_docs->applicant_id = Input::get('applicant_id');
+        $exists = DB::table('applicant_supporting_doc')->where('applicant_id', $applicant_id)->first();
+//        print_r($exists) ;
+//        exit;
+        if($exists){
+            $sodc_id = $exists->id;
+            $model=ApplicantSupportingDocs::find($sodc_id);
+            
+
+        }
+        else{
+            $supporting_docs=new ApplicantSupportingDocs();
 
             $file = Input::file('academic_goal_statement');
 
@@ -517,14 +522,32 @@ class ApplicantController extends \BaseController
 
             $supporting_docs->academic_goal_statement = $filename;
 
-
-
             $supporting_docs->save();
-
-            return Redirect::back()->with('message', 'Successfully added Information!');
-        } else {
-            return Redirect::to('applicant/supporting_docs/create')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
         }
+
+    }
+
+    public function editApplicantSDoc($id){
+
+        $supporting_docs = ApplicantSupportingDocs::find($id);
+        return View::make('applicant::applicant_supporting_docs.edit_goal', compact('supporting_docs'));
+    }
+
+    public function updateApplicantSDoc($id){
+
+
+        $supporting_docs = ApplicantSupportingDocs::find($id);
+        $file = Input::file('academic_goal_statement');
+
+        $extension = $file->getClientOriginalExtension();
+        $filename = str_random(12) . '.' . $extension;
+        $path = public_path("images/goal_statements/" . $filename);
+        Image::make($file->getRealPath())->resize(60, 60)->save($path);
+
+        $supporting_docs->academic_goal_statement = $filename;
+        $supporting_docs->save();
+
+        return Redirect::back()->with('message', 'Successfully updated Information!');
 
     }
 
@@ -623,6 +646,7 @@ class ApplicantController extends \BaseController
 
 
     }
+
 
 
 }

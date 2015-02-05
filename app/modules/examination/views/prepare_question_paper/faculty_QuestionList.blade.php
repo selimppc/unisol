@@ -5,7 +5,7 @@
 @stop
 
 @section('content')
-             <h1>Welcome to Question List : Faculty </h1> <br>
+             <h1>Welcome to Question Items : Faculty </h1> <br>
                 {{ Form::open(array('url' => 'prepare_question_paper/batchDelete')) }}
               <table id="example" class="table table-striped  table-bordered"  >
                      <thead>

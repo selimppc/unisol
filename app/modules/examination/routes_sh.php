@@ -3,23 +3,28 @@
 //examination
 Route::any('examination/index','ExaminationController@index');
 Route::any('examination/create','ExaminationController@create');
+
 //enrollment
 Route::any('enrollment/index','ExmEnrollmentController@index');
 Route::any('enrollment/create','ExmEnrollmentController@create');
+
 //generate certificate
 Route::any('generate_certificate/index','ExmGenerateCertificateController@index');
 Route::any('generate_certificate/create','ExmGenerateCertificateController@create');
+
 //manage examination center
 Route::get('manage_examination_center/index','ExmManageExaminationCenterController@index');
 Route::any('manage_examination_center/create','ExmManageExaminationCenterController@create');
+
 //manage examiner
 Route::get('manage_examiner/index','ExmManageExaminerController@index');
 Route::any('manage_examiner/create','ExmManageExaminerController@create');
+
 //prepare tabulation
 Route::get('prepare_tabulation/index','ExmPrepareTabulationController@index');
 Route::any('prepare_tabulation/create','ExmPrepareTabulationController@create');
-//prepare question paper
 
+//prepare question paper
 Route::any('prepare_question_paper/index','ExmPrepareQuestionPaperController@index');
 Route::any('prepare_question_paper/create','ExmPrepareQuestionPaperController@amw_createQuestionPaper');
 Route::any('prepare_question_paper/store','ExmPrepareQuestionPaperController@amw_storeQuestionPaper');
@@ -49,7 +54,6 @@ Route::any('prepare_question_paper/faculty_index','ExmPrepareQuestionPaperContro
 Route::any('prepare_question_paper/faculty_ViewQuestion/{id}', [ 'as' => 'prepare_question_paper.faculty_ViewQuestion', 'uses' => 'ExmPrepareQuestionPaperController@faculty_ViewQuestion' ]);
 Route::any('prepare_question_paper/faculty_QuestionList','ExmPrepareQuestionPaperController@faculty_QuestionList');
 
-
 Route::any('prepare_question_paper/faculty_add_question_items/{qid}', ['as' => 'prepare_question_paper.faculty_add_question_items', 'uses' => 'ExmPrepareQuestionPaperController@faculty_add_question_items'] );
 Route::any('prepare_question_paper/faculty_store_Question_Items','ExmPrepareQuestionPaperController@faculty_storeQuestionItems');
 
@@ -60,7 +64,5 @@ Route::any('prepare_question_paper/faculty_updateQuestionItems/{id}', ['as' => '
 Route::any('prepare_question_paper/faculty_ViewQuestionItems/{id}', [ 'as' => 'prepare_question_paper.faculty_ViewQuestionItems', 'uses' => 'ExmPrepareQuestionPaperController@faculty_ViewQuestionItems' ]);
 
 
-
-
-
+//examination/ : shob route er age dite hobe
 
