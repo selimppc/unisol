@@ -6,12 +6,15 @@ class AcmCourseConfig extends Eloquent
 
     protected $table = 'acm_course_config';
 
-
-    public function acmmarksdist(){
+    public function relAcmMarksDistItem(){
         return $this->belongsTo('AcmMarksDist', 'acm_marks_dist_item_id', 'id');
     }
-    //static function to calculate either partial done or no starts
 
+    public function relCourse(){
+        return $this->belongsTo('Course', 'course_id', 'id');
+    }
+
+    //static function to calculate either partial done or no starts
     public static function getCourseItemStatus($course_id, $evalution_marks)
     {
         $totalEntry = 0;
