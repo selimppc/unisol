@@ -77,15 +77,20 @@ Route::any('applicant/supporting_docs/create','ApplicantController@applicantSupp
 
 Route::any('applicant/supporting_docs/store','ApplicantController@applicantSupportingDocsStore');
 
+//Route::any('applicant/supporting_docs/view/{doc_type}/{sdoc_id}','as' => 'applicant/supporting_docs/view', 'uses' => 'ApplicantController@applicantSupportingDocsView');
+Route::any("applicant/supporting_docs/view/{doc_type}/{sdoc_id}", [
+    "as"   => "applicant.supporting_docs.view",
+    "uses" => "ApplicantController@applicantSupportingDocsView"
+]);
 Route::any('applicant/supporting_docs/edit/{id}','ApplicantController@editApplicantGoalStatement');
 
 Route::any('applicant/supporting_docs/update/{id}','ApplicantController@updateApplicantGoalStatement');
 
 //Applicant goal statements........................................................................
 
-Route::any('applicant/goal_statements/add','ApplicantController@applicantGoalStatementAdd');
+Route::any('applicant/supporting_docs/add','ApplicantController@applicantGoalStatementAdd');
 
-Route::any('applicant/goal_statements/store/{id}','ApplicantController@applicantGoalStatementStore');
+Route::any('applicant/supporting_docs/store','ApplicantController@applicantSupportingDocsStore');
 
 //Applicant Essay.................................................................................
 

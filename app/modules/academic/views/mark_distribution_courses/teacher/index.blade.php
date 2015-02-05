@@ -7,25 +7,23 @@
 
     <table id="example" class="table table-bordered table-hover table-striped">
         <thead>
-        <tr>
-            <th>CourseName</th>
-            <th>Department</th>
-            <th>Year</th>
-            <th>Semester</th>
-            <th>Status</th>
-            <th>Action</th>
-        </tr>
+        <th>CourseName</th>
+        <th>Department</th>
+        <th>Year</th>
+        <th>Semester</th>
+        <th>Status</th>
+        <th>Action</th>
         </thead>
-
         <tbody>
         @foreach ($datas as $value)
             <tr>
 
-                <td>{{ Course::getCourseName($value->course_id) }}</td>
-                <td>{{$value->d_title}}</td>
-                <td>{{ Year::getYearsName($value->year_id ) }}</td>
-                <td>{{ Semester::getSemesterName($value->semester_id ) }}</td>
-                <td></td>
+                <td><a href="" class="btn btn-link" data-toggle="modal" data-target="#showModal">{{$value->relCourse->title}}</a></td>
+                <td>{{$value->relCourse->relSubject->relDepartment->title}}</td>
+                <td>{{$value->relYear->title}}</td>
+                <td>{{$value->relSemester->title}}</td>
+                {{--<td>{{ AcmCourseConfig::getCourseItemStatus($value->course_id, $value->relCourse->evaluation_total_marks) }}</td>--}}
+                <td>Done</td>
 
                 <td>
                     <a href="" class="btn btn-primary" data-toggle="modal" data-target="#addNew" data-toggle="tooltip" data-placement="left" title="Show/View" href="">Marks Dist</a>

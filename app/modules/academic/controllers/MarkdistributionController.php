@@ -282,25 +282,10 @@ class MarkdistributionController extends \BaseController
 
     public function  teacher_index()
     {
-        $datas = DB::table('course_management')
-            ->select(
-                'course_management.id', 'course_management.course_id as course_id','course_management.year_id as year_id',
-                'course_management.semester_id as semester_id',
-                //'course.title as c_title',
-                //'course.evaluation_total_marks as evaluation_total_marks',
-                'course.subject_id as c_s_id',
-                'subject.department_id as s_d_id',
-                'department.title as d_title'
-            )
-            ->join('course', 'course_management.course_id', '=', 'course.id' )
-            ->join('subject', 'course.subject_id', '=', 'subject.id' )
-            ->join('department', 'subject.department_id', '=', 'department.id' )
-            //->where('course_management.id', 1)
+        $datas= CourseManagement::with('relYear', 'relSemester', 'relCourse', 'relCourse.relSubject.relDepartment','relCourseType')
             ->get();
-
         return View::make('academic::mark_distribution_courses.teacher.index')->with('title', 'Course List')->with('datas', $datas);
     }
-
 
 //End code
 

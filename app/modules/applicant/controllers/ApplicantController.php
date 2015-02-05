@@ -483,169 +483,50 @@ class ApplicantController extends \BaseController
 
     public function applicantSupportingDocsIndex(){
 
-        $supporting_docs = ApplicantSupportingDocs::where('id', '=', '19')->first();
-        return View::make('applicant::applicant_supporting_docs.index')->with('supporting_docs',$supporting_docs);
+        $supporting_docs = ApplicantSupportingDocs::where('applicant_id', '=', 4)->first();
+
+        if(!$supporting_docs){
+            $supporting_docs = new ApplicantSupportingDocs();
+            $supporting_docs->applicant_id = 4;
+            $supporting_docs->save();
+        }
+
+        return View::make('applicant::applicant_supporting_docs.index', compact('supporting_docs', 'doc_type'));
+    }
+
+    public function applicantSupportingDocsView($doc_type, $sdoc_id){
+
+        $supporting_docs = ApplicantSupportingDocs::where('id', '=', $sdoc_id)->first();
+        if(!$supporting_docs)
+            $supporting_docs = null;
+
+        return View::make('applicant::applicant_supporting_docs.modals.supporting_docs', compact('supporting_docs', 'doc_type'));
     }
 
     public function applicantSupportingDocsCreate(){
 
-        return View::make('applicant::applicant_supporting_docs._form');
+       // return View::make('applicant::applicant_supporting_docs._form');
+       //$supporting_docs = ApplicantSupportingDocs::find();
+        return View::make('applicant::applicant_supporting_docs.add_goal',compact('supporting_docs'));
     }
 
     public function applicantSupportingDocsStore(){
+        $data = Input::all();
+        $sdoc = $data['id'] ? ApplicantSupportingDocs::find($data['id']) : new ApplicantSupportingDocs;
+        $file = Input::file('doc_file');
 
-        $applicant_id = Applicant::find(3)->id;
-
-//        if( $applicant_info = ApplicantSupportingDocs::where('applicant_id', '=',$applicant_id )){
-//
-//
-//         }
-
-        $exists = DB::table('applicant_supporting_doc')->where('applicant_id', $applicant_id)->first();
-//        print_r($exists) ;
-//        exit;
-        if($exists){
-            $sodc_id = $exists->id;
-            $model=ApplicantSupportingDocs::find($sodc_id);
-            
-
-        }
-        else{
-            $supporting_docs=new ApplicantSupportingDocs();
-
-            $file = Input::file('academic_goal_statement');
-
-            $extension = $file->getClientOriginalExtension();
-            $filename = str_random(12) . '.' . $extension;
-            $path = public_path("images/goal_statements/" . $filename);
-            Image::make($file->getRealPath())->resize(60, 60)->save($path);
-
-            $supporting_docs->academic_goal_statement = $filename;
-
-            $supporting_docs->save();
-        }
-
-    }
-
-    public function editApplicantSDoc($id){
-
-        $supporting_docs = ApplicantSupportingDocs::find($id);
-        return View::make('applicant::applicant_supporting_docs.edit_goal', compact('supporting_docs'));
-    }
-
-    public function updateApplicantSDoc($id){
-
-
-        $supporting_docs = ApplicantSupportingDocs::find($id);
-        $file = Input::file('academic_goal_statement');
-
+        $destinationPath = public_path().'/applicant_images';
         $extension = $file->getClientOriginalExtension();
         $filename = str_random(12) . '.' . $extension;
-        $path = public_path("images/goal_statements/" . $filename);
-        Image::make($file->getRealPath())->resize(60, 60)->save($path);
+        Input::file('doc_file')->move($destinationPath, $filename);
+        $sdoc->$data['doc_type'] = $filename;
 
-        $supporting_docs->academic_goal_statement = $filename;
-        $supporting_docs->save();
-
-        return Redirect::back()->with('message', 'Successfully updated Information!');
-
+        if($sdoc->save())
+            return Redirect::to('applicant/supporting_docs/index')->with('message','successfully added');
+        else
+            return Redirect::to('applicant/supporting_docs/index')->with('message','Not Added');
     }
 
-    public function editApplicantGoalStatement($id){
-
-        $supporting_docs = ApplicantSupportingDocs::find($id);
-
-        return View::make('applicant::applicant_supporting_docs.edit_goal', compact('supporting_docs'));
-    }
-    public function updateApplicantGoalStatement($id){
-
-                 $supporting_docs = ApplicantSupportingDocs::find($id);
-                 $file = Input::file('academic_goal_statement');
-
-                $extension = $file->getClientOriginalExtension();
-                $filename = str_random(12) . '.' . $extension;
-                $path = public_path("images/goal_statements/" . $filename);
-                Image::make($file->getRealPath())->resize(60, 60)->save($path);
-
-                $supporting_docs->academic_goal_statement = $filename;
-                $supporting_docs->save();
-
-                return Redirect::back()->with('message', 'Successfully updated Information!');
-
-    }
-    public function applicantGoalStatementAdd($id){
-
-        $supporting_docs = ApplicantSupportingDocs::find($id);
-        return View::make('applicant::applicant_supporting_docs.add_goal',compact('supporting_docs'));
-
-    }
-    public function applicantGoalStatementStore($id){
-
-         $supporting_docs = ApplicantSupportingDocs::find($id);
-
-
-         $file = Input::file('academic_goal_statement');
-
-          $extension = $file->getClientOriginalExtension();
-          $filename = str_random(12) . '.' . $extension;
-          $path = public_path("images/goal_statements/" . $filename);
-          Image::make($file->getRealPath())->resize(60, 60)->save($path);
-
-          $supporting_docs->academic_goal_statement = $filename;
-
-
-          $supporting_docs->save();
-
-          return Redirect::back()->with('message', 'Successfully updated Information!');
-
-
-    }
-    public function applicantEssayCreate($id){
-
-        $supporting_docs = ApplicantSupportingDocs::find($id);
-        return View::make('applicant::applicant_supporting_docs.add_essay',compact('supporting_docs'));
-    }
-    public function  applicantEssayStore($id){
-
-        $supporting_docs = ApplicantSupportingDocs::find($id);
-
-        $file = Input::file('essay');
-
-        $extension = $file->getClientOriginalExtension();
-        $filename = str_random(12) . '.' . $extension;
-        $path = public_path("images/applicant_essay/" . $filename);
-        Image::make($file->getRealPath())->resize(60, 60)->save($path);
-
-        $supporting_docs->essay = $filename;
-
-
-        $supporting_docs->save();
-
-        return Redirect::back()->with('message', 'Successfully added Information!');
-}
-    public function editApplicantEssay($id){
-
-        $supporting_docs = ApplicantSupportingDocs::find($id);
-
-        return View::make('applicant::applicant_supporting_docs.edit_essay', compact('supporting_docs'));
-
-    }
-    public function updateApplicantEssay($id){
-        $supporting_docs = ApplicantSupportingDocs::find($id);
-        $file = Input::file('essay');
-
-        $extension = $file->getClientOriginalExtension();
-        $filename = str_random(12) . '.' . $extension;
-        $path = public_path("images/applicant_essay/" . $filename);
-        Image::make($file->getRealPath())->resize(60, 60)->save($path);
-
-        $supporting_docs->essay = $filename;
-        $supporting_docs->save();
-
-        return Redirect::back()->with('message', 'Successfully updated Information!');
-
-
-    }
 
 
 
