@@ -2,13 +2,14 @@
 
 class UserController extends \BaseController {
 
-    public function __construct()
-    {
-        $this->beforeFilter('auth');
-    }
+
+//    public function __construct()
+//    {
+//        $this->beforeFilter('auth');
+//    }
 
     public function login(){
-        if ($this->isPostRequest()) {
+        /*if ($this->isPostRequest()) {
             $validator = $this->getLoginValidator();
             if ($validator->passes()) {
                 $credentials = $this->getLoginCredentials();
@@ -23,7 +24,7 @@ class UserController extends \BaseController {
                     ->withInput()
                     ->withErrors($validator);
             }
-        }
+        }*/
         return View::make('user::user.login');
     }
 
