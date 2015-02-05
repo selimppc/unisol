@@ -8,7 +8,6 @@
     <table id="example" class="table table-bordered table-hover table-striped">
         <thead>
         <tr>
-            {{--<td>{{ AcmCourseConfig::getCourseItemStatus($value->id, $value->evaluation_total_marks) }}</td>--}}
             <th>CourseName</th>
             <th>Department</th>
             <th>Year</th>
@@ -17,8 +16,6 @@
             <th>Action</th>
         </tr>
         </thead>
-        {{--<td>{{ AcmCourseConfig::getCourseItemStatus($value->course_id, $value->course->evaluation_total_marks) }}</td>--}}
-        {{--<td>{{$value->course->title}}</td>--}}
         <tbody>
         @foreach ($datas as $value)
             {{--<tr>--}}
