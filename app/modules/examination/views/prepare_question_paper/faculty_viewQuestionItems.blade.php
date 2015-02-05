@@ -25,7 +25,7 @@
                                                     </div>
                                                     <div class="col-sm-6">
                                                          @if($op->answer == 1)
-                                                            {{Form::checkbox('checkbox', '',array('checked'))}}<br>
+                                                            {{Form::radio('checkbox', '',array('checked'))}}<br>
                                                          @endif
                                                     </div>
                                                 </div>
