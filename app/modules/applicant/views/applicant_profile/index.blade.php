@@ -41,7 +41,7 @@
                                    @if($profile != null)
 
                                   <td>{{ HTML::image('images/applicant_profile/' .$profile->profile_image) }}
-                                  <a class=" btn btn-sm btn-info" href="{{ URL::to('applicant/profile_image/edit/' . $profile->id ) }}" data-toggle="modal" data-target="#changeImageModal" >changeImage...</a>
+                                  <a class=" btn btn-sm btn-info" href="{{ URL::to('applicant/profile_image/edit/' . $profile->id ) }}" data-toggle="modal" data-target="#changeImageModal" >changeImage...</a></td>
 
 
                                   @endif
@@ -50,9 +50,7 @@
 
                                   {{--<a class=" btn btn-sm btn-info" href="{{ URL::to('applicant/profile_image/edit/' . $profile->id ) }}" data-toggle="modal" data-target="#changeImageModal" >changeImage...</a>--}}
                                    {{--<a href="{{URL::to('applicant/profile_image/edit/'.$profile->profile_image) }}">Change Image</a>--}}
-                                  </td>
 
-                                  </td>
                               </tr>
 
                           <tr>
