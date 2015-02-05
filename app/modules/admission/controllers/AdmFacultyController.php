@@ -1,6 +1,6 @@
 <?php
 
-class ExmFaculty extends \BaseController {
+class AdmFacultyController extends \BaseController {
 
 	/**
 	 * Display a listing of the resource.
