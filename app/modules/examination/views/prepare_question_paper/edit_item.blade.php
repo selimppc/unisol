@@ -6,8 +6,9 @@
  </div>
  <div class='form-group'>
      {{ Form::label('marks', 'Marks') }}
-     {{ Form::text('marks', null, array('class' => 'form-control','required'=>'required')) }}o
+     {{ Form::text('marks', null, array('class' => 'form-control','required'=>'required')) }}
  </div>
+
 
  <div class="form-group" id="myRadioGroup">
      {{ Form::label('gender','Question Type:') }}
@@ -90,8 +91,7 @@
                         @endforeach
                     </div>
                 @else
-                            <div id="MCQ" class="descriptive">
-
+                            <div id="mcq_r" class="descriptive_rl">
                                   <div class="form-group">
                                     {{ Form::label('gender','Answer Type') }}
                                     {{ Form::label('mcq','Single Answer', array('class'=>'radio-inline')) }}
@@ -117,8 +117,6 @@
                                   </div>
 
 
-
-
                             </div>
 
                 @endif
@@ -138,12 +136,22 @@
                                  $(".descriptive").hide();
                                  $("#"+test).show();
                              });
+
+//                             $("input[name='mcq_r']").click(function() {
+//
+//                                  var test = $(this).val();
+//                                  $(".descriptive_rl").hide();
+//                                  $("#"+test).show();
+//                             });
+
+
                              $('#multiple').on('click', function () {
                                  $('.radiocheck').attr('type', 'checkbox');
                              });
                              $('#single').on('click', function () {
                                  $('.radiocheck').attr('type', 'radio');
                              });
+
                          });
                      });
 
