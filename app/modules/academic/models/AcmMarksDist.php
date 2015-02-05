@@ -13,11 +13,9 @@ class AcmMarksDist extends Eloquent
     // ratna code
     public static function AcmMarksDistName($itemId)
     {
-        $data = AcmMarksDist::find($itemId);
+        $data = AcmMarksDistItem::find($itemId);
         return $data->title;
     }
-
-
 
     private $errors;
     // 1 Create data validation

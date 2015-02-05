@@ -4,17 +4,18 @@
 </div>
 <div class="modal-body">
 
-    <p> Total Marks: {{ $datas->evaluation_total_marks}}</p>
+
+    <p> Total Marks: {{ $datas->relCourse->evaluation_total_marks}}</p>
 
 
     <div class="form-horizontal">
         <div class="form-group">
             {{ Form::hidden('course_id', $datas->course_id, ['class'=>'form-control course_id'])}}
-            {{--{{ Form::text('course_management_id', $datas->course_management_id, ['class'=>'form-control course_management_id'])}}--}}
-            {{ Form::hidden('course_title', $datas->course_title, ['class'=>'form-control course_title'])}}
-            {{--{{ Form::text('course_type', $datas->course_type_title, ['class'=>'form-control course_type'])}}--}}
-            {{ Form::hidden('course_evaluation_total_marks', $datas->evaluation_total_marks, ['class'=>'form-control course_evalution_marks'])}}
-            {{--{{ Form::text('course_management[}', $management->cmid)}}--}}
+            {{ Form::hidden('course_management_id', $datas->id, ['class'=>'form-control course_management_id'])}}
+            {{ Form::hidden('course_title', $datas->relCourse->course_title, ['class'=>'form-control course_title'])}}
+            {{ Form::hidden('course_type', $datas->relCourseType->id, ['class'=>'form-control course_type'])}}
+            {{--{{ Form::text('course_evaluation_total_marks', $datas->relCourse->evaluation_total_marks, ['class'=>'form-control course_evalution_marks'])}}--}}
+            {{ Form::hidden('course_management[]', $datas->id)}}
         </div>
         <div class="form-group">
             <div class="col-md-4">
@@ -40,14 +41,14 @@
         </thead>
 
         <tbody class="acm_course_config_list">
-        {{ Form::hidden('course_type_id', $datas->course_type_id, ['class'=>'course_type_id'])}}
+        {{--{{ Form::hidden('course_type_id', $datas->course_type_id, ['class'=>'course_type_id'])}}--}}
         <?php $counter = 0;?>
         @foreach($course_data as $key=>$value)
             <tr>
                 <td width="130">
-                    {{ Form::hidden('acm_config_id[]', $value->isConfigId)}}
-                    {{ Form::hidden('acm_marks_dist_item_id[]', $value->item_id, ['class'=>'acm_marks_dist_item_id'])}}
-                    {{ Form::hidden('course_id[]', $value->course_id2, ['class'=>'get_course_id']) }}
+                    {{ Form::text('acm_course_config_id[]', $value->isConfigId)}}
+                    {{ Form::text('acm_marks_dist_item_id[]', $value->item_id, ['class'=>'acm_marks_dist_item_id'])}}
+                    {{ Form::text('course_id[]', $value->course_id2, ['class'=>'get_course_id']) }}
                     {{ $value->acm_dist_item_title}}
                 </td>
                 <td><input type="text" name="marks_percent[]" value="{{ ($value->actual_marks/$value->evaluation_total_marks) * 100 }}" class="amw_marks_percent{{$key}}" onchange="calculateActualMarks(this.className, {{$value->evaluation_total_marks}},this.value)" required/> </td>
