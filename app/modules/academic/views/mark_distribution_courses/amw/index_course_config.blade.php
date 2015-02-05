@@ -21,12 +21,12 @@
         {{--<td>{{$value->course->title}}</td>--}}
         <tbody>
         @foreach ($datas as $value)
-            <tr>
-                <td><a href="{{ URL::route('config.show', ['id'=>$value->id])  }}" class="btn btn-link" data-toggle="modal" data-target="#showModal">{{$value->course->title}}</a></td>
-                <td>{{$value->course->subject->department->title}}</td>
-                <td>{{$value->year->title}}</td>
-                <td>{{$value->semester->title}}</td>
-                <td>{{ AcmCourseConfig::getCourseItemStatus($value->course_id, $value->course->evaluation_total_marks) }}</td>
+            {{--<tr>--}}
+                <td><a href="{{ URL::route('config.show', ['course_id'=>$value->course_id])  }}" class="btn btn-link" data-toggle="modal" data-target="#showModal">{{$value->relCourse->title}}</a></td>
+                <td>{{$value->relCourse->relSubject->relDepartment->title}}</td>
+                <td>{{$value->relYear->title}}</td>
+                <td>{{$value->relSemester->title}}</td>
+                <td>{{ AcmCourseConfig::getCourseItemStatus($value->course_id, $value->relCourse->evaluation_total_marks) }}</td>
 
                 <td>
                     <a href="{{ URL::route('coursefind.show', ['course_id'=>$value->course_id])  }}" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#addNew" data-toggle="tooltip" data-placement="left" title="Mark/Dist" href="">MarksDistConfig</a>

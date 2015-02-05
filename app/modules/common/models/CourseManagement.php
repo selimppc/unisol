@@ -8,27 +8,27 @@ class CourseManagement extends Eloquent
 
     protected $table = 'course_management';
 
-    public function year(){
-        return $this->belongsTo('Year');
+    public function relYear(){
+        return $this->belongsTo('Year', 'year_id', 'id');
     }
 
-    public function semester(){
-        return $this->belongsTo('Semester');
+    public function relSemester(){
+        return $this->belongsTo('Semester', 'semester_id', 'id');
     }
 
-    public function coursetype(){
+    public function relCourseType(){
         return $this->belongsTo('CourseType', 'course_type_id', 'id');
     }
 
-    public function course(){
-        return $this->belongsTo('Course');
+    public function relCourse(){
+        return $this->belongsTo('Course', 'course_id', 'id');
     }
 
-    public function degreeprogram(){
+    public function relDegreeProgram(){
         return $this->belongsTo('DegreeProgram');
     }
 
-    public function exmquestion(){
+    public function relExmQuestion(){
         return $this->belongsTo('ExmQuestion');
     }
 

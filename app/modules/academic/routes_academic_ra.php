@@ -29,7 +29,7 @@ Route::any('amw/batch/delete','MarkdistributionController@amw_batchdelete');
 Route::get('amw/config/index','MarkdistributionController@config_index');
 Route::any('amw/course/show/{course_id}',['as' => 'coursefind.show', 'uses'=> 'MarkdistributionController@find_course_info']);
 Route::post('amw/course/marks/save', 'MarkdistributionController@save_acm_course_config_data');
-Route::any('amw/config/show/{id}',['as' => 'config.show', 'uses'=> 'MarkdistributionController@course_config_show']);
+Route::any('amw/config/show/{course_id}',['as' => 'config.show', 'uses'=> 'MarkdistributionController@course_config_show']);
 Route::any('amw/marks/dist/{id}',['as' => 'marksdist.show', 'uses'=> 'MarkdistributionController@item_config_show']);
 
 Route::post('amw/config/acmconfigdelete/ajax', 'MarkdistributionController@ajax_delete_acm_course_config');

@@ -6,12 +6,12 @@ class Subject extends \Eloquent
 	protected $table = 'subject';
 
 
-    public function course(){
-        return $this->belongsTo('Course');
-    }
+//    public function relCourse(){
+//        return $this->belongsTo('Course');
+//    }
 
-    public function department(){
-        return $this->belongsTo('Department');
+    public function relDepartment(){
+        return $this->belongsTo('Department', 'department_id', 'id');
     }
 
     //Shafi
