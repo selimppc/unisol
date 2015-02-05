@@ -23,9 +23,7 @@
             @endforeach
             </tbody>
         </table>
-
-
-    </div>
+  </div>
 </div>
 <div class="modal-footer">
     <a href="{{URL::to('amw/config/index')}}" class="btn btn-default">Close </a>

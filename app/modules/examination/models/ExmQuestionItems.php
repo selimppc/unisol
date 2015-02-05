@@ -9,11 +9,9 @@ class ExmQuestionItems extends \Eloquent
 
     private $rules = array(
 
-//        'title'  => 'required',
+        'title'  => 'required',
 //        'question_type'  => 'required',
-//        'marks' => 'required',
-
-
+        'marks' => 'required',
     );
 
 

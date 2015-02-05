@@ -40,6 +40,6 @@
                                     </tbody>
                         </table>
                     {{form::close() }}
-                              <br><br><br>
+
 @include('examination::prepare_question_paper/_modal')
 @stop
