@@ -12,7 +12,7 @@
     }else{
         $sdoc_id = 'null';
     }
-    //exit;
+
 ?>
 
 <table class="table table-striped table-bordered" id="myTable">
