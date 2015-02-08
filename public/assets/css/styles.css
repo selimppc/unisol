@@ -33,6 +33,7 @@
 .option_class{
        width: 200px;
        padding: 3px;
+       margin-left: 10px;
        margin-bottom: 10px;
 }
 
@@ -40,6 +41,7 @@
 .answer_class{
     width: 200px;
     padding: 3px;
+    margin-left: 10px;
     margin-bottom: 10px;
 }
 

@@ -63,6 +63,8 @@
             $('#single').on('click', function () {
                 $('.radiocheck').attr('type', 'radio');
             });
+
+
         });
     });
 </script>

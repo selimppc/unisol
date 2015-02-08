@@ -362,10 +362,13 @@ class ExmPrepareQuestionPaperController extends \BaseController {
             $faculty_store_question_items->marks = Input::get('marks');
             //print_r($faculty_store_question_items);exit;
             if( strtolower(Input::get('mcq')) == 'mcq'){
+
                 if( strtolower(Input::get('r_question_type')) == 'mcq_single'){
+
                     $faculty_store_question_items->question_type = 'radio';
 
                     if($faculty_store_question_items->save()) {
+
                         $exm_question_items_id = Input::get('id');
                         $opt_title = Input::get('option_title');
                         $opt_answer = Input::get('answer');
@@ -373,7 +376,10 @@ class ExmPrepareQuestionPaperController extends \BaseController {
                         foreach ($opt_title as $key => $value) {
 
                             //Re-declare model each time you want to save data as loop.
-                            $exm_question_opt = ExmQuestionOptionAnswer::find($exm_question_items_id[$i]);
+                            $exm_question_opt = (isset($exm_question_items_id)) ? ExmQuestionOptionAnswer::find($exm_question_items_id[$i]) : new ExmQuestionOptionAnswer() ;
+                            if(isset($exm_question_items_id) == null){
+                                $exm_question_opt->exm_question_items_id = $faculty_store_question_items->id;
+                            }
                             $exm_question_opt->title = $value;
                             $exm_question_opt->answer = 0;
 
@@ -395,12 +401,13 @@ class ExmPrepareQuestionPaperController extends \BaseController {
                         $exm_question_items_id = Input::get('id');
                         $opt_title = Input::get('option_title');
                         $opt_answer = Input::get('answer');
-                        //print_r($exm_question_items_id);exit;
-
                         $i = 0;
                         foreach($opt_title as $key => $value){
                             //Re-declare model each time you want to save data as loop.
-                            $exm_question_opt = ExmQuestionOptionAnswer::find($exm_question_items_id[$i]);
+                            $exm_question_opt = (isset($exm_question_items_id)) ? ExmQuestionOptionAnswer::find($exm_question_items_id[$i]) : new ExmQuestionOptionAnswer() ;
+                            if(isset($exm_question_items_id) == null){
+                                $exm_question_opt->exm_question_items_id = $faculty_store_question_items->id;
+                            }
                             $exm_question_opt->title = $value;
                             $exm_question_opt->answer = 0;
 
