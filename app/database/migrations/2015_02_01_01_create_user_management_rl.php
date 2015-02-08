@@ -20,18 +20,16 @@ class CreateUserManagementRl extends Migration {
         });
 
 
-
         Schema::create('department', function(Blueprint $table) {
             $table->increments('id');
             $table->string('title', 128);
             $table->text('description');
+            $table->integer('dept_head_user_id', false, 11);
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
             $table->engine = 'InnoDB';
         });
-
-
 
 
         Schema::create('user', function(Blueprint $table) {
@@ -41,7 +39,7 @@ class CreateUserManagementRl extends Migration {
             $table->string('email')->unique();
             $table->unsignedInteger('role_id')->nullable();
             $table->unsignedInteger('department_id')->nullable();
-            $table->date('joint_date');
+            $table->date('join_date');
             $table->dateTime('last_visit');
             $table->string('ip_address', 16);
             $table->string('verified_code', 64);

@@ -9,6 +9,7 @@
 class Department extends Eloquent {
 
     protected $table = 'department';
+    protected $fillable = array('title','description','dept_head_user_id','created_by','updated_by');
 
     private $errors;
 
