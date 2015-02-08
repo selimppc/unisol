@@ -13,7 +13,7 @@ class ExmPrepareQuestionPaperController extends \BaseController {
 // method for amw_index
     public function amw_index()
     {
-        $data = ExmQuestion::with('coursemanagement', 'coursemanagement.year', 'coursemanagement.semester','coursemanagement.course.subject.department')
+        $data = ExmQuestion::with('relCourseManagement', 'relCourseManagement.relYear', 'relCourseManagement.relSemester','relCourseManagement.relCourse.relSubject.relDepartment')
             ->get();
         return View::make('examination::prepare_question_paper.amw_index')->with('datas',$data);
     }
@@ -21,7 +21,7 @@ class ExmPrepareQuestionPaperController extends \BaseController {
 // method for faculty_index
     public function faculty_index()
     {
-        $data = ExmQuestion::with('coursemanagement', 'coursemanagement.year', 'coursemanagement.semester','coursemanagement.course.subject.department')
+        $data = ExmQuestion::with('relCourseManagement', 'relCourseManagement.relYear', 'relCourseManagement.relSemester','relCourseManagement.relCourse.relSubject.relDepartment')
         ->get();
         return View::make('examination::prepare_question_paper.faculty_index')->with('datas', $data);
     }
@@ -279,8 +279,6 @@ class ExmPrepareQuestionPaperController extends \BaseController {
 
     }
 
-
-
 // method for View Question Items: AMW
     public function amw_ViewQuestionItems($id)
     {
@@ -338,10 +336,6 @@ class ExmPrepareQuestionPaperController extends \BaseController {
 // method for Edit Question Items : Faculty
     public function faculty_EditQuestionItems($id)
     {
-//        $qid = ExmQuestionItems::find($qid);
-//        return View::make('examination::prepare_question_paper.faculty_editQuestionItems',compact('qid'));
-
-
         $qid = DB::table('exm_question_items')
             ->where('id', $id)
             ->first();
@@ -361,6 +355,7 @@ class ExmPrepareQuestionPaperController extends \BaseController {
         $faculty_store_question_items = new ExmQuestionItems();
         if ($faculty_store_question_items->validate($data))
         {
+
             $faculty_store_question_items = ExmQuestionItems::find($id);
             $faculty_store_question_items->title = Input::get('title');
             $faculty_store_question_items->exm_question_id = Input::get('qid');
@@ -425,6 +420,7 @@ class ExmPrepareQuestionPaperController extends \BaseController {
                 $faculty_store_question_items->question_type = 'text';
                 if($faculty_store_question_items->save()){
                     echo "Descriptive Answer Saved";
+
                 }else{
                     echo "No";
                 }

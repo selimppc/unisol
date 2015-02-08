@@ -31,11 +31,11 @@
                                       @foreach($datas as $prepare_question_paper_amw)
                                             <tr>
                                                 <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $prepare_question_paper_amw['id'] }}"></td>
-                                                <td>{{$prepare_question_paper_amw['title']}} </td>
-                                                <td>{{$prepare_question_paper_amw['deadline']}}</td>
-                                                <td>{{$prepare_question_paper_amw['coursemanagement']['course']['subject']['department']['title']}}</td>
-                                                <td>{{$prepare_question_paper_amw['coursemanagement']['year']['title']}} </td>
-                                                <td>{{$prepare_question_paper_amw['coursemanagement']['semester']['title']}}</td>
+                                                <td>{{$prepare_question_paper_amw->title}} </td>
+                                                <td>{{$prepare_question_paper_amw->deadline}}</td>
+                                                <td>{{$prepare_question_paper_amw->relCourseManagement->relCourse->relSubject->relDepartment->title}}</td>
+                                                <td>{{$prepare_question_paper_amw->relCourseManagement->relYear->title }} </td>
+                                                <td>{{$prepare_question_paper_amw->relCourseManagement->relSemester->title}}</td>
                                                 <td> Mr. </td>
                                                 <td>
                                                    <a href="{{ URL::route('prepare_question_paper.amw_ViewQuestion', ['id'=>$prepare_question_paper_amw->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#ViewQuestionPaperModal" data-placement="left" title="Show" href="#">View</a>
