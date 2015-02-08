@@ -467,7 +467,7 @@ return array(
     'UserResetPassword' => $baseDir . '/app/modules/admission/models/UserResetPassword.php',
     'UserSignup' => $baseDir . '/app/modules/admission/models/UserSignup.php',
     'UserSignupController' => $baseDir . '/app/modules/admission/controllers/UserSignupController.php',
-    'Usermeta' => $baseDir . '/app/modules/user/models/Usermeta.php',
+    'Usermeta' => $baseDir . '/app/modules/user/models/UserMeta.php',
     'ValidationController' => $baseDir . '/app/controllers/ValidationController.php',
     'Whoops\\Module' => $vendorDir . '/filp/whoops/src/deprecated/Zend/Module.php',
     'Whoops\\Provider\\Zend\\ExceptionStrategy' => $vendorDir . '/filp/whoops/src/deprecated/Zend/ExceptionStrategy.php',
