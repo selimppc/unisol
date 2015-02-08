@@ -10,7 +10,8 @@ class AcmFacultyController extends \BaseController {
 
 	public function index()
 	{
-		echo "Index";
+        $mcq = "M";
+        return View::make('academic::test.test', compact('mcq'));
 	}
 
 

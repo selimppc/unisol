@@ -441,4 +441,7 @@ class ExmPrepareQuestionPaperController extends \BaseController {
             return Redirect::to('prepare_question_paper/faculty_index');
         }
     }
+
+
+
 }
