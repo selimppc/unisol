@@ -10,7 +10,7 @@
         'portfolio' => 'Portfolio',
         'resume' => 'Resume',
         'readmission_personal_details' => 'Re-admission Personal Details',
-         'other' => 'Other',
+        'other'=>'Other',
     )
 ?>
     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
@@ -24,14 +24,20 @@
         {{Form::open(array('url'=>'applicant/supporting_docs/store', 'class'=>'form-horizontal','files'=>true))}}
 
         <div class='form-group'>
-            <div>{{ Form::label('Doc Type', $doc_type_arr[$doc_type]) }}</div>
-            <div>{{ Form::file('doc_file', Input::old($doc_type),['class'=>'form-control ']) }}</div>
-            @if($supporting_docs->$doc_type != null)
-            <div>
-                {{ HTML::image('applicant_images/' .$supporting_docs->$doc_type) }}
-            </div>
+            @if($doc_type_arr[$doc_type] == 'Other')
+                     <div>{{ Form::label('other', $doc_type_arr[$doc_type]) }}</div>
+                     <div>{{ Form::textarea ('other', Input::old($doc_type),['class'=>'form-control']) }}</div>
+            @else
+                <div>{{ Form::label('Doc Type', $doc_type_arr[$doc_type]) }}</div>
+                <div>{{ Form::file('doc_file', Input::old($doc_type),['class'=>'form-control ']) }}</div>
             @endif
-         </div>
+
+            @if($supporting_docs->$doc_type != null)
+                <div>
+                    {{ HTML::image('applicant_images/' .$supporting_docs->$doc_type) }}
+                </div>
+            @endif
+        </div>
 
         <p>&nbsp;</p>
         {{ Form::hidden('id', $supporting_docs->id, ['class'=>'form-control sdoc_id'])}}
