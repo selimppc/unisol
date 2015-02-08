@@ -6,7 +6,7 @@ class ExmQuestion extends \Eloquent
 
     private $errors;
 
-    public function coursemanagement()
+    public function relCourseManagement()
     {
         return $this->belongsTo('CourseManagement', 'course_management_id', 'id');
 
