@@ -548,7 +548,14 @@ class ApplicantController extends \BaseController
         $data = ApplicantMiscellaneousInfo::find(19);
         $data = ApplicantMiscellaneousInfo::where('id', '=', '1')->first();
 
-      //$data = ApplicantMiscellaneousInfo::where('id', '=', '1')->first();
+//        $data = ApplicantSupportingDocs::where('applicant_id', '=', 4)->first();
+//
+//        if(!$data){
+//            $data = new ApplicantMiscellaneousInfo();
+//            $data->applicant_id = 4;
+//            $data->save();
+//        }
+
 
         return View::make('applicant::applicant_miscellaneous_info.index',compact('data'));
 
