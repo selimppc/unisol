@@ -38,10 +38,6 @@ App::after(function($request, $response){
 | Authentication Filters
 |--------------------------------------------------------------------------
 |
-| The following filters are used to verify that the user of the current
-| session is logged into this application. The "basic" filter easily
-| integrates HTTP Basic authentication for quick, simple checking.
-|
 */
 
 Route::filter('auth', function(){
@@ -54,16 +50,100 @@ Route::filter('auth', function(){
 	}
 });
 
+/*======================================================================
+//For Academic Module
+========================================================================*/
+Route::filter('academicFaculty', function()
+{
+    if (Auth::check()){
+        $role_id = Auth::user()->role_id;
+        $role = User::hasRole($role_id);
+        if($role != 'admin')
+            return Redirect::guest('user/login');
+    }else{
+        return Redirect::guest('user/login');
+    }
+
+});
+Route::filter('academicAmw', function()
+{
+    if (Auth::check()){
+        $role_id = Auth::user()->role_id;
+        $role = User::hasRole($role_id);
+        if($role != 'amw')
+            return Redirect::guest('user/login');
+    }else{
+        return Redirect::guest('user/login');
+    }
+
+});
+
+
+/*======================================================================
+//For admission Module
+========================================================================*/
+Route::filter('admFaculty', function()
+{
+    if (Auth::check()){
+        $role_id = Auth::user()->role_id;
+        $role = User::hasRole($role_id);
+        if($role != 'faculty')
+            return Redirect::guest('user/login');
+    }else{
+        return Redirect::guest('user/login');
+    }
+
+});
+Route::filter('admAmw', function()
+{
+    if (Auth::check()){
+        $role_id = Auth::user()->role_id;
+        $role = User::hasRole($role_id);
+        if($role != 'amw')
+            return Redirect::guest('user/login');
+    }else{
+        return Redirect::guest('user/login');
+    }
+
+});
+
+
+/*======================================================================
+//For Examination Module
+========================================================================*/
+Route::filter('exmFaculty', function()
+{
+    if (Auth::check()){
+        $role_id = Auth::user()->role_id;
+        $role = User::hasRole($role_id);
+        if($role != 'faculty')
+            return Redirect::guest('user/login');
+    }else{
+        return Redirect::guest('user/login');
+    }
+
+});
+Route::filter('exmAmw', function()
+{
+    if (Auth::check()){
+        $role_id = Auth::user()->role_id;
+        $role = User::hasRole($role_id);
+        if($role != 'amw')
+            return Redirect::guest('user/login');
+    }else{
+        return Redirect::guest('user/login');
+    }
+
+});
+
+
+
+
 
 /*
 |--------------------------------------------------------------------------
 | Guest Filter
 |--------------------------------------------------------------------------
-|
-| The "guest" filter is the counterpart of the authentication filters as
-| it simply checks that the current user is not logged in. A redirect
-| response will be issued if they are, which you may freely change.
-|
 */
 
 Route::filter('auth.basic', function() {
@@ -87,11 +167,6 @@ Route::filter("auth", function() {
 |--------------------------------------------------------------------------
 | CSRF Protection Filter
 |--------------------------------------------------------------------------
-|
-| The CSRF filter is responsible for protecting your application against
-| cross-site request forgery attacks. If this special token in a user
-| session does not match the one given in this request, we'll bail.
-|
 */
 
 Route::filter('csrf', function()

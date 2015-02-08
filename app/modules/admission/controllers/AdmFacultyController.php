@@ -2,11 +2,9 @@
 
 class AdmFacultyController extends \BaseController {
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
+    function __construct() {
+        $this->beforeFilter('admFaculty', array('except' => array('index')));
+    }
 	public function index()
 	{
 		//

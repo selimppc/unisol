@@ -89,18 +89,22 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     }
 
     public function relRole() {
-        return $this->belongsToMany('Role');
+        return $this->belongsToMany('Role', 'role_id', 'id');
     }
 
-
-    public function hasRole($key) {
-        foreach($this->relRole as $role){
-            if($role->title === $key)
+    public static function hasRole($key) {
+        /*foreach($this->relRole as $role){
+            if($role->id === $key)
             {
-                return true;
+                return $role->title;
             }
         }
-        return false;
+        //return false; */
+        if($key){
+            $role = Role::find($key);
+            return $role->title;
+        }
+            return false;
     }
 
 }

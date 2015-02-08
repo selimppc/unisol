@@ -2,11 +2,10 @@
 
 class ExmAmwController extends \BaseController {
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
+    function __construct() {
+        $this->beforeFilter('exmAmw', array('except' => array('index')));
+    }
+
 	public function index()
 	{
 		//

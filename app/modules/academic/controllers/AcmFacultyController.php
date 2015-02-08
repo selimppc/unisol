@@ -3,7 +3,7 @@
 class AcmFacultyController extends \BaseController {
 
     function __construct() {
-        $this->beforeFilter('auth', array('except' => array('index', 'show')));
+        $this->beforeFilter('academicFaculty', array('except' => array('index')));
     }
 
 	public function index()
