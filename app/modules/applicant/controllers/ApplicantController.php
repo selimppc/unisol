@@ -510,24 +510,122 @@ class ApplicantController extends \BaseController
         return View::make('applicant::applicant_supporting_docs.add_goal',compact('supporting_docs'));
     }
 
-    public function applicantSupportingDocsStore(){
+    public function applicantSupportingDocsStore()
+    {
         $data = Input::all();
+
         $sdoc = $data['id'] ? ApplicantSupportingDocs::find($data['id']) : new ApplicantSupportingDocs;
-        $file = Input::file('doc_file');
 
-        $destinationPath = public_path().'/applicant_images';
-        $extension = $file->getClientOriginalExtension();
-        $filename = str_random(12) . '.' . $extension;
-        Input::file('doc_file')->move($destinationPath, $filename);
-        $sdoc->$data['doc_type'] = $filename;
 
-        if($sdoc->save())
-            return Redirect::to('applicant/supporting_docs/index')->with('message','successfully added');
-        else
-            return Redirect::to('applicant/supporting_docs/index')->with('message','Not Added');
+        if ($data = 'other') {
+
+            $sdoc->other = Input::get('other');
+            //print_r($sdoc) ;
+            //exit;
+            //$sdoc->save();
+        } else {
+            //echo 'null';}
+            //exit;
+
+            $file = Input::file('doc_file');
+            $extension = $file->getClientOriginalExtension();
+            $filename = str_random(12) . '.' . $extension;
+            $path = public_path("applicant_images/" . $filename);
+            Image::make($file->getRealPath())->resize(60, 60)->save($path);
+
+            $sdoc->$data['doc_type'] = $filename;
+
+        }
+            if ($sdoc->save())
+                return Redirect::to('applicant/supporting_docs/index')->with('message', 'successfully added');
+            else
+                return Redirect::to('applicant/supporting_docs/index')->with('message', 'Not Added');
+        }
+
+    public function applicantMiscellaneousInfoIndex(){
+
+
+        $data = ApplicantMiscellaneousInfo::find(19);
+        $data = ApplicantMiscellaneousInfo::where('id', '=', '1')->first();
+
+//        $data = ApplicantSupportingDocs::where('applicant_id', '=', 4)->first();
+//
+//        if(!$data){
+//            $data = new ApplicantMiscellaneousInfo();
+//            $data->applicant_id = 4;
+//            $data->save();
+//        }
+
+
+        return View::make('applicant::applicant_miscellaneous_info.index',compact('data'));
+
+    }
+    public function applicantMiscellaneousInfoCreate(){
+
+
+        return View::make('applicant::applicant_miscellaneous_info.modal.miscellaneous');
     }
 
+    public function miscInfoStore(){
 
+        $data=Input::all();
+
+        $rules = array(
+            'ever_admit_this_university' => 'required',
+        );
+        $validator = Validator::make(Input::all(), $rules);
+        if ($validator->passes()) {
+            $data =new ApplicantMiscellaneousInfo();
+            $data->applicant_id = Input::get('applicant_id');
+            $data->ever_admit_this_university = Input::get('ever_admit_this_university');
+            $data->ever_dismiss = Input::get('ever_dismiss');
+            $data->academic_honors_received = Input::get('academic_honors_received');
+            $data->ever_admit_other_university = Input::get('ever_admit_other_university');
+            $data->admission_test_center = Input::get('admission_test_center');
+
+            $data->save();
+
+            return Redirect::back()->with('message', 'Successfully added Information!');
+        } else {
+           return Redirect::to('applicant/miscellaneous_info/create')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
+        }
+
+    }
+
+    public function miscInfoEdit($id){
+
+
+        $data = ApplicantMiscellaneousInfo::find($id);
+       // print_r($data);exit;
+
+        return View::make('applicant::applicant_miscellaneous_info.modal.edit', compact('data'));
+    }
+
+    public function miscInfoUpdate($id){
+        $data= Input::all();
+
+        $rules = array(
+            'ever_admit_this_university' => 'required',
+        );
+        $validator = Validator::make(Input::all(), $rules);
+        if ($validator->passes()) {
+
+            $model = ApplicantMiscellaneousInfo::find($id);
+
+            $model->ever_admit_this_university = Input::get('ever_admit_this_university');
+            $model->ever_dismiss = Input::get('ever_dismiss');
+
+            $model->academic_honors_received = Input::get('academic_honors_received');
+            $model->ever_admit_other_university = Input::get('ever_admit_other_university');
+            $model->admission_test_center = Input::get('admission_test_center');
+
+            $model->save();
+            return Redirect::back()->with('message', 'Successfully updated Information!');
+        } else {
+            return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
+        }
+
+    }
 
 
 }

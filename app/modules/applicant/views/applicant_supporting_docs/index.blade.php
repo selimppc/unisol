@@ -110,7 +110,7 @@
             </tr>
 
             <tr>
-               <th>Readmission_personal_details</th>
+               <th>Readmission personal details</th>
 
                @if($supporting_docs->readmission_personal_details != null)
                  <td>  {{ HTML::image('applicant_images/' .$supporting_docs->readmission_personal_details) }}
@@ -126,11 +126,11 @@
                <th>Other</th>
 
                @if($supporting_docs->other != null)
-                 <td>  {{ HTML::image('applicant_images/' .$supporting_docs->other) }}
-                 <a class=" btn btn-xs btn-info" href="{{URL::route('applicant.supporting_docs.view', array('doc_type' => 'other', 'sdoc_id'=>$sdoc_id))}}" data-toggle="modal" data-target="#addgoalModal" >Edit</a>
+                 <td>  {{ $supporting_docs->other }}
+                 <a class=" btn btn-xs btn-info" href="{{URL::route('applicant.supporting_docs.view', array('doc_type' => 'other', 'sdoc_id'=>$sdoc_id))}}"  data-toggle="modal" data-target="#addgoalModal" >Edit</a>
                 @else
                   <td>
-                  <a class=" btn btn-xs btn-info" href="{{URL::route('applicant.supporting_docs.view', ['doc_type' => 'other', 'sdoc_id'=>$sdoc_id])}}" data-toggle="modal" data-target="#addgoalModal" >add</a>
+                  <a class=" btn btn-xs btn-info" href="{{URL::route('applicant.supporting_docs.view', array('doc_type' => 'other', 'sdoc_id'=>$sdoc_id))}}"  data-toggle="modal" data-target="#addgoalModal" >add</a>
                  </td>
                   @endif
             </tr>
@@ -154,5 +154,13 @@
         </div>
       </div>
     </div>
+
+
+     <div class="modal fade" id="sdocs_otherModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+            </div>
+          </div>
+        </div>
 
 @stop

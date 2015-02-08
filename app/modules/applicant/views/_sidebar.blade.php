@@ -7,6 +7,6 @@
     <a href="{{URL::to('applicant/supporting_docs/index') }}" class="list-group-item">Supporting Documents</a>
     <a href="{{URL::to('applicant/extra_curricular') }}" class="list-group-item active">Extra-curricular Activities</a>
 
-    <a href="{{URL::to('applicant/') }}" class="list-group-item">Miscellaneous Information</a>
+    <a href="{{URL::to('applicant/miscellaneous_info/index') }}" class="list-group-item">Miscellaneous Information</a>
 
 </div>

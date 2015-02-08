@@ -92,6 +92,17 @@ Route::any('applicant/supporting_docs/add','ApplicantController@applicantGoalSta
 
 Route::any('applicant/supporting_docs/store','ApplicantController@applicantSupportingDocsStore');
 
+Route::any('applicant/miscellaneous_info/index','ApplicantController@applicantMiscellaneousInfoIndex');
+
+Route::any('applicant/miscellaneous_info/create','ApplicantController@applicantMiscellaneousInfoCreate');
+Route::any('applicant/miscInfoStore','ApplicantController@miscInfoStore');
+
+Route::any('applicant/miscellaneous_info/edit/{id}','ApplicantController@miscInfoEdit');
+
+Route::any('applicant/miscellaneous_info/update/{id}','ApplicantController@miscInfoUpdate');
+
+
+
 
 
 
