@@ -46,63 +46,32 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         return $this->errors;
     }
 
-
-    /**
-     * Get the e-mail address where password reminders are sent.
-     *
-     * @return string
-     */
     public function getReminderEmail()
     {
         return $this->email_address;
     }
 
-    /**
-     * Get the unique identifier for the user.
-     *
-     * @return mixed
-     */
     public function getAuthIdentifier()
     {
         return $this->getKey();
     }
 
-    /**
-     * Get the password for the user.
-     *
-     * @return string
-     */
     public function getAuthPassword()
     {
         return $this->password;
     }
 
-    /**
-     * Get the token value for the "remember me" session.
-     *
-     * @return string
-     */
     public function getRememberToken()
     {
         // TODO: Implement getRememberToken() method.
     }
 
-    /**
-     * Set the token value for the "remember me" session.
-     *
-     * @param  string $value
-     * @return void
-     */
     public function setRememberToken($value)
     {
         // TODO: Implement setRememberToken() method.
     }
 
-    /**
-     * Get the column name for the "remember me" token.
-     *
-     * @return string
-     */
+
     public function getRememberTokenName()
     {
         // TODO: Implement getRememberTokenName() method.
@@ -115,25 +84,27 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     }
 
 
+    public function relUserMeta(){
+        return $this->belongsTo('UserMeta');
+    }
 
+    public function relRole() {
+        return $this->belongsToMany('Role', 'role_id', 'id');
+    }
 
-//    public static $rules = array(
-//        'title' => 'required',
-//        'body' => 'required'
-//    );
-//
-//    public static function passesValidation($data) {
-//        $validation = Validator::make($data, static::$rules);
-//        if($validation->passes()) {
-//            return true;
-//        }
-//        static::$messages = $validation->messages();
-//        return false;
-//    }
-
-
-    public function usermeta(){
-        return $this->belongsTo('usermeta');
+    public static function hasRole($key) {
+        /*foreach($this->relRole as $role){
+            if($role->id === $key)
+            {
+                return $role->title;
+            }
+        }
+        //return false; */
+        if($key){
+            $role = Role::find($key);
+            return $role->title;
+        }
+            return false;
     }
 
 }
