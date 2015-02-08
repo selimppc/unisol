@@ -92,16 +92,6 @@ Route::any('applicant/supporting_docs/add','ApplicantController@applicantGoalSta
 
 Route::any('applicant/supporting_docs/store','ApplicantController@applicantSupportingDocsStore');
 
-//Applicant Essay.................................................................................
-
-Route::any('applicant/supporting_docs_essay/create','ApplicantController@applicantEssayCreate');
-
-Route::any('applicant/supporting_docs_essay/store/{id}','ApplicantController@applicantEssayStore');
-
-Route::any('applicant/supporting_docs_essay/edit/{id}','ApplicantController@editApplicantEssay');
-
-Route::any('applicant/supporting_docs_essay/update/{id}','ApplicantController@updateApplicantEssay');
-
 
 
 
