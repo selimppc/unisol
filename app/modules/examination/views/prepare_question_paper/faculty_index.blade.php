@@ -26,11 +26,11 @@
                                         <tr>
                                             <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $prepare_question_paper_faculty['id'] }}"></td>
                                             {{--<td>{{$prepare_question_paper_faculty['id']}} </td>--}}
-                                            <td>{{$prepare_question_paper_faculty['title']}} </td>
-                                            <td>{{$prepare_question_paper_faculty['deadline']}}</td>
-                                            <td>{{$prepare_question_paper_faculty['coursemanagement']['course']['subject']['department']['title']}}</td>
-                                            <td>{{$prepare_question_paper_faculty['coursemanagement']['year']['title']}} </td>
-                                            <td>{{$prepare_question_paper_faculty['coursemanagement']['semester']['title']}}</td>
+                                            <td>{{$prepare_question_paper_faculty->title}} </td>
+                                            <td>{{$prepare_question_paper_faculty->deadline}}</td>
+                                            <td>{{$prepare_question_paper_faculty->relCourseManagement->relCourse->relSubject->relDepartment->title}}</td>
+                                            <td>{{$prepare_question_paper_faculty->relCourseManagement->relYear->title }} </td>
+                                            <td>{{$prepare_question_paper_faculty->relCourseManagement->relSemester->title}}</td>
                                             <td>
                                               <a href="{{ URL::route('prepare_question_paper.faculty_ViewQuestion', ['qid'=>$prepare_question_paper_faculty->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#ViewQuestionPaperModal" data-placement="left" title="Show" href="#">View</a>
                                               <a href="{{ URL::route('prepare_question_paper.faculty_add_question_items', ['qid'=>$prepare_question_paper_faculty->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#AddQuestionItemsModal" data-toggle="tooltip" data-placement="left" title="Edit" href="#">Add Question Item</a>

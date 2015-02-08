@@ -2,11 +2,10 @@
 
 class ExmFacultyController extends \BaseController {
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
+    function __construct() {
+        $this->beforeFilter('exmFaculty', array('except' => array('index')));
+    }
+
 	public function index()
 	{
 		//

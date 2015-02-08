@@ -2,11 +2,10 @@
 
 class AdmAmwController extends \BaseController {
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
+    function __construct() {
+        $this->beforeFilter('admAmw', array('except' => array('index')));
+    }
+
 	public function index()
 	{
 		//
