@@ -66,11 +66,22 @@ Route::filter('auth', function(){
 |
 */
 
+Route::filter('auth.basic', function() {
+    return Auth::basic();
+});
+
+Route::filter('guest', function() {
+    if (Auth::check()) return Redirect::to('user/login');
+});
+
+
 Route::filter("auth", function() {
     if (Auth::guest()) {
         return Redirect::route("user/login");
     }
 });
+
+
 
 /*
 |--------------------------------------------------------------------------
