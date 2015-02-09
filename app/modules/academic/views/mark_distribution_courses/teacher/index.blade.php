@@ -18,7 +18,7 @@
         @foreach ($datas as $value)
             <tr>
 
-                <td><a href="" class="btn btn-link" data-toggle="modal" data-target="#showModal">{{$value->relCourse->title}}</a></td>
+                <td><a href="{{ URL::route('coursemarksdist.show', ['course_id'=>$value->course_id])  }}" class="btn btn-link" data-toggle="modal" data-target="#showModal">{{$value->relCourse->title}}</a></td>
                 <td>{{$value->relCourse->relSubject->relDepartment->title}}</td>
                 <td>{{$value->relYear->title}}</td>
                 <td>{{$value->relSemester->title}}</td>
@@ -26,7 +26,7 @@
                 <td>Done</td>
 
                 <td>
-                    <a href="" class="btn btn-primary" data-toggle="modal" data-target="#addNew" data-toggle="tooltip" data-placement="left" title="Show/View" href="">Marks Dist</a>
+                    <a href="{{ URL::route('marksdistfind.show', ['course_id'=>$value->course_id])  }}" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#marksDist" data-toggle="tooltip" data-placement="left" title="Mark/Dist" href="">MarksDist</a>
 
                     {{--<a href="{{ URL::route('config.show', ['id'=>$value->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#showModal" data-toggle="tooltip" data-placement="left" title="Show/View" href="">View Dist</a>--}}
 
@@ -40,8 +40,17 @@
     {{--Start all modal for amw--}}
     {{---------------------------------------------}}
 
-    <!-- Add New Item Modal -->
-    <div class="modal fade" id="addNew" tabindex="-1" role="dialog" aria-labelledby="addScholarship" aria-hidden="true">
+    <!-- Add New marks dist Item Modal -->
+    <div class="modal fade" id="marksDist" tabindex="-1" role="dialog" aria-labelledby="addScholarship" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content ">
+
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <!-- Show course info and marks_distribution Modal -->
+    <div class="modal fade" id="showModal" tabindex="-1" role="dialog" aria-labelledby="addScholarship" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
 
@@ -50,6 +59,6 @@
     </div><!-- /.modal -->
 
 
-@stop
+
 
 @stop
