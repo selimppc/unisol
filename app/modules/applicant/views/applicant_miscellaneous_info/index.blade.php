@@ -4,11 +4,13 @@
 @stop
 @section('content')
 
-<div class="span8 well">
+<div class="well well-lg">
 
 <table class="table table-striped table-bordered" id="myTable">
+<col width="150">
+<col width="80">
 
-     <h4>Applicant Miscellaneous Information </h4>
+     <h4 style="font-size: large">Applicant Miscellaneous Information </h4>
         @if($data != null)
             <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('applicant/miscellaneous_info/edit/' . $data->id  ) }}" data-toggle="modal" data-target="#myeditModal" >Edit </a>
         @else
@@ -17,9 +19,8 @@
         @endif
                     <thead>
 
-
-                         <tr>
-                            <th>Ever admit this university</th>
+                         <tr >
+                            <th style="font-size: small">Ever Admit this University</th>
                                <td>@if($data != null)
 
                                  {{ $data->ever_admit_this_university ==1 ? 'Yes' : 'No' }}
@@ -31,7 +32,7 @@
                           </tr>
 
                           <tr>
-                            <th>Ever dismiss</th>
+                            <th style="font-size: small">Ever Dismiss</th>
 
                             <td>@if($data != null)
 
@@ -44,7 +45,7 @@
                          </tr>
 
                          <tr>
-                             <th>Academic honors received</th>
+                             <th style="font-size: small">Academic Honors Received</th>
 
                            <td>@if($data != null)
 
@@ -56,7 +57,7 @@
                           </tr>
 
                           <tr>
-                               <th>Ever admit other university</th>
+                               <th style="font-size: small">Ever Admit other University</th>
 
                              <td>@if($data != null)
 
@@ -68,11 +69,11 @@
                             </tr>
 
                           <tr>
-                             <th>Admission test center</th>
+                             <th style="font-size: small">Admission test Center</th>
 
                               <td>@if($data != null)
 
-                              {{ $data->admission_test_center ==1 ? 'Yes' : 'No' }}
+                              {{ $data->admission_test_center  }}
                               @else
 
                              @endif
@@ -93,7 +94,8 @@
  <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
-        </div>
+
+       </div>
       </div>
     </div>
 
@@ -102,6 +104,6 @@
             <div class="modal-content">
             </div>
           </div>
-        </div>
+    </div>
 
 @stop

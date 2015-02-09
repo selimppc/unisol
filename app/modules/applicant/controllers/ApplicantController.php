@@ -513,65 +513,42 @@ class ApplicantController extends \BaseController
     public function applicantSupportingDocsStore()
     {
         $data = Input::all();
-
         $sdoc = $data['id'] ? ApplicantSupportingDocs::find($data['id']) : new ApplicantSupportingDocs;
 
-
-        if ($data = 'other') {
-
+        if ($data['doc_type']=='other') {
             $sdoc->other = Input::get('other');
-            //print_r($sdoc) ;
-            //exit;
-            //$sdoc->save();
         } else {
-            //echo 'null';}
-            //exit;
-
             $file = Input::file('doc_file');
             $extension = $file->getClientOriginalExtension();
             $filename = str_random(12) . '.' . $extension;
             $path = public_path("applicant_images/" . $filename);
             Image::make($file->getRealPath())->resize(60, 60)->save($path);
-
             $sdoc->$data['doc_type'] = $filename;
+        }
+        if ($sdoc->save())
+            return Redirect::to('applicant/supporting_docs/index')->with('message', 'successfully added');
+        else
+            return Redirect::to('applicant/supporting_docs/index')->with('message', 'Not Added');
+    }
 
-        }
-            if ($sdoc->save())
-                return Redirect::to('applicant/supporting_docs/index')->with('message', 'successfully added');
-            else
-                return Redirect::to('applicant/supporting_docs/index')->with('message', 'Not Added');
-        }
+
+    //applicant Miscellaneous Info  miscelnfo
 
     public function applicantMiscellaneousInfoIndex(){
-
-
-        $data = ApplicantMiscellaneousInfo::find(19);
-        $data = ApplicantMiscellaneousInfo::where('id', '=', '1')->first();
-
-//        $data = ApplicantSupportingDocs::where('applicant_id', '=', 4)->first();
-//
-//        if(!$data){
-//            $data = new ApplicantMiscellaneousInfo();
-//            $data->applicant_id = 4;
-//            $data->save();
-//        }
-
-
+        $data = ApplicantMiscellaneousInfo::where('applicant_id', '=', '3')->first();
         return View::make('applicant::applicant_miscellaneous_info.index',compact('data'));
-
     }
     public function applicantMiscellaneousInfoCreate(){
-
-
         return View::make('applicant::applicant_miscellaneous_info.modal.miscellaneous');
     }
 
     public function miscInfoStore(){
-
-        $data=Input::all();
-
         $rules = array(
             'ever_admit_this_university' => 'required',
+            'ever_dismiss' => 'required',
+            'academic_honors_received' => 'required',
+            'ever_admit_other_university' => 'required',
+            'admission_test_center' => 'required',
         );
         $validator = Validator::make(Input::all(), $rules);
         if ($validator->passes()) {
@@ -587,17 +564,13 @@ class ApplicantController extends \BaseController
 
             return Redirect::back()->with('message', 'Successfully added Information!');
         } else {
-           return Redirect::to('applicant/miscellaneous_info/create')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
+           return Redirect::to('applicant/miscellaneous_info/index')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
         }
 
     }
 
     public function miscInfoEdit($id){
-
-
         $data = ApplicantMiscellaneousInfo::find($id);
-       // print_r($data);exit;
-
         return View::make('applicant::applicant_miscellaneous_info.modal.edit', compact('data'));
     }
 
