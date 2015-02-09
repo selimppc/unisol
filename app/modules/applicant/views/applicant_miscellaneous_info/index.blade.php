@@ -104,6 +104,6 @@
             <div class="modal-content">
             </div>
           </div>
-        </div>
+    </div>
 
 @stop
