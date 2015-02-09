@@ -61,6 +61,8 @@ class CreateMarksDistributionRl extends Migration {
             $table->unsignedInteger('acm_marks_policy_id')->nullable();
             $table->tinyInteger('is_attendance', false, 1);
             $table->unsignedInteger('acm_attendance_config_id')->nullable();
+            $table->tinyInteger('is_default', false, 1)->length(1);
+            $table->tinyInteger('is_readonly', false, 1)->length(1);
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();

@@ -49,6 +49,63 @@ class RoleTableSeeder extends Seeder {
             'updated_at' => new DateTime
         ));
 
+        Role::create(array(
+            'code' => 'accounts',
+            'title' => 'accounts',
+            'description' => 'Accounts',
+            'status' => 1,
+            'created_by' => 1,
+            'updated_by' => 1,
+            'created_at' => new DateTime,
+            'updated_at' => new DateTime
+        ));
+
+        Role::create(array(
+            'code' => 'librarian',
+            'title' => 'librarian',
+            'description' => 'Librarian',
+            'status' => 1,
+            'created_by' => 1,
+            'updated_by' => 1,
+            'created_at' => new DateTime,
+            'updated_at' => new DateTime
+        ));
+
+        Role::create(array(
+            'code' => 'hr',
+            'title' => 'hr',
+            'description' => 'HR',
+            'status' => 1,
+            'created_by' => 1,
+            'updated_by' => 1,
+            'created_at' => new DateTime,
+            'updated_at' => new DateTime
+        ));
+
+        Role::create(array(
+            'code' => 'alumni',
+            'title' => 'alumni',
+            'description' => 'alumni',
+            'status' => 1,
+            'created_by' => 1,
+            'updated_by' => 1,
+            'created_at' => new DateTime,
+            'updated_at' => new DateTime
+        ));
+
+        Role::create(array(
+            'code' => 'employer',
+            'title' => 'employer',
+            'description' => 'employer',
+            'status' => 1,
+            'created_by' => 1,
+            'updated_by' => 1,
+            'created_at' => new DateTime,
+            'updated_at' => new DateTime
+        ));
+
+
+
 
     }
 }
