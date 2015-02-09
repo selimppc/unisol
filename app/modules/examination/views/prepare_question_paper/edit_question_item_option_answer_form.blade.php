@@ -59,24 +59,28 @@
                                       {{ Form::text('option_title[]',$op->title,['class'=>'form-control']) }}
                               </div>
                               <div class="col-sm-6">
+
                                      @if($qid->question_type == 'radio')
 
-                                            @if($op->answer == 1)
-                                            {{ Form::radio('answer[]', $counter,array('class'=>'radiocheck','checked'))}}
-                                            @else
-                                            {{ Form::radio('answer[]',$counter,array('class'=>'radiocheck'))}}
-                                            @endif
+                                          @if($op->answer == 1)
+                                            {{ Form::radio('answer[]', $counter,array('checked'))}}
+                                          @else
+                                            {{ Form::radio('answer[]',$counter)}}
+                                          @endif
 
                                      @elseif($qid->question_type == 'checkbox')
 
-                                            @if($op->answer == 1)
-                                            {{ Form::checkbox('answer[]', $counter,array('class'=>'radiocheck','checked'))}}
-                                            @else
-                                            {{ Form::checkbox('answer[]',$counter,array('class'=>'radiocheck'))}}
-                                            @endif
+                                          @if($op->answer == 1)
+                                            {{ Form::checkbox('answer[]', $counter,array('checked'))}}
+                                          @else
+                                            {{ Form::checkbox('answer[]',$counter)}}
+                                          @endif
 
                                      @endif
                               </div>
+
+
+
                           </div>
                           <?php $counter++; ?>
                       @endforeach
