@@ -45,6 +45,7 @@ Route::any('prepare_question_paper/amw_editQuestionPaper/{id}', ['as' => 'prepar
 Route::any('prepare_question_paper/amw_updateQuestionPaper/{id}', ['as' => 'prepare_question_paper.amw_updateQuestionPaper','uses' => 'ExmPrepareQuestionPaperController@amw_updateQuestionPaper' ]);
 
 Route::any('prepare_question_paper/assignto','ExmPrepareQuestionPaperController@assignTo');
+Route::any('prepare_question_paper/batchItemsDelete','ExmPrepareQuestionPaperController@batchItemsDelete');
 
 // question item View
 Route::any('prepare_question_paper/amw_ViewQuestionItems/{id}', [ 'as' => 'prepare_question_paper.amw_ViewQuestionItems', 'uses' => 'ExmPrepareQuestionPaperController@amw_ViewQuestionItems' ]);
@@ -59,6 +60,7 @@ Route::any('prepare_question_paper/faculty_store_Question_Items','ExmPrepareQues
 
 Route::any('prepare_question_paper/faculty_EditQuestionItems/{id}', ['as' => 'prepare_question_paper.editQuestionItems', 'uses' => 'ExmPrepareQuestionPaperController@faculty_EditQuestionItems' ]);
 Route::any('prepare_question_paper/faculty_updateQuestionItems/{id}', ['as' => 'prepare_question_paper.updateQuestionItems','uses' => 'ExmPrepareQuestionPaperController@faculty_updateQuestionItems' ]);
+Route::any('prepare_question_paper/batchItemsDelete','ExmPrepareQuestionPaperController@batchItemsDelete');
 
 // question item View
 Route::any('prepare_question_paper/faculty_ViewQuestionItems/{id}', [ 'as' => 'prepare_question_paper.faculty_ViewQuestionItems', 'uses' => 'ExmPrepareQuestionPaperController@faculty_ViewQuestionItems' ]);

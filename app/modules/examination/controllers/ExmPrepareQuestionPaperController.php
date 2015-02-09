@@ -312,26 +312,48 @@ class ExmPrepareQuestionPaperController extends \BaseController {
     public function assignTo()
     { echo "Not Done Yet"; }
 
-//// method for delete : AMW
-//    public function destroy($id)
-//    {
-//        try {
-//            ExmQuestion::find($id)->delete();
-//            return Redirect::back()->with('message', 'Successfully deleted Information!');
-//        }
-//        catch(exception $ex){
-//            return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
-//
-//        }
-//        //ok
-//    }
+// method for delete : AMW
+    public function destroy($id)
+    {
+        try {
+            ExmQuestion::find($id)->delete();
+            return Redirect::back()->with('message', 'Successfully deleted Information!');
+        }
+        catch(exception $ex){
+            return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+
+        }
+        //ok
+    }
 
     public function batchDelete()
     {
-        ExmQuestion::destroy(Request::get('id'));
-        return Redirect::back();
-    }
+        try {
+            ExmQuestion::destroy(Request::get('id'));
+            return Redirect::back()->with('message', 'Successfully deleted Information!');
+        }
+        catch
+            (exception $ex){
+                return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+
+            }
     //ok
+    }
+
+
+    public function batchItemsDelete()
+    {
+        try {
+            ExmQuestionItems::destroy(Request::get('id'));
+            return Redirect::back()->with('message', 'Successfully deleted Information!');
+        }
+        catch
+        (exception $ex){
+            return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+
+        }
+        //ok
+    }
 
 // method for Edit Question Items : Faculty
     public function faculty_EditQuestionItems($id)
