@@ -12,7 +12,8 @@ class UserController extends \BaseController {
     }
 
 
-    public function login(){
+    public function login()
+    {
         if ($this->isPostRequest()) {
             $validator = $this->getLoginValidator();
             if ($validator->passes()) {
@@ -22,7 +23,7 @@ class UserController extends \BaseController {
                     return Redirect::to("usersign/dashboard");
                 }
                 return Redirect::back()->withErrors([
-                    "password" => ["Credentials invalid."]
+                    "password" => ["Username / Password invalid."]
                 ]);
             } else {
                 return Redirect::back()

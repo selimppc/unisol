@@ -7,13 +7,15 @@
  */
 
 Route::get('/index','EnrollmentController@index');
+
+
 //Applicant enrollment
 Route::get('student/index','EnrollmentController@create');
 //Theory Class start
 //class
 Route::get('class/index','TheoryclassController@class_index');
-//Mark_distribution_courses start
-//amw dist item
+//**********Mark_distribution_courses start************
+//*****************amw dist item*****************
 Route::get('amw/index',
     'MarkdistributionController@amw_index'
 );
@@ -38,8 +40,7 @@ Route::get('amw/delete/{id}',
 Route::any('amw/batch/delete',
     'MarkdistributionController@amw_batchdelete'
 );
-
-//amw course config
+//*****************amw course config***************
 Route::get('amw/config/index',
     'MarkdistributionController@config_index'
 );
@@ -60,12 +61,19 @@ Route::any('amw/marks/dist/{id}',[
 ]);
 Route::post('amw/config/acmconfigdelete/ajax', 'MarkdistributionController@ajax_delete_acm_course_config'
 );
-
-//teacher
+//******************Faculty marksdistribution***********
 Route::get('academic/teacher/',
     'MarkdistributionController@teacher_index'
 );
+Route::any('acdemic/faculty/course/marksdistitem/show/{course_id}',[
+    'as' => 'coursemarksdist.show',
+    'uses'=> 'MarkdistributionController@course_marks_dist_show'
+]);
 
+Route::any('amw/marksdist/show/{course_id}',[
+    'as' => 'marksdistfind.show',
+    'uses'=> 'MarkdistributionController@find_marksdist_info'
+]);
 
 
 
