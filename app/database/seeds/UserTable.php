@@ -11,12 +11,22 @@ class UserTable extends Seeder {
     public function run(){
 
         DB::table('user')->delete();
-        User::create(array(
+
+        $admin_role_id = DB::table('role')->select('id')->where('title', 'admin')->first()->id;
+        $faculty_role_id = DB::table('role')->select('id')->where('title', 'faculty')->first()->id;
+        $amw_role_id = DB::table('role')->select('id')->where('title', 'amw')->first()->id;
+        $student_role_id = DB::table('role')->select('id')->where('title', 'student')->first()->id;
+
+        $cse_dept_id = DB::table('department')->select('id')->where('title', 'CSE')->first()->id;
+        $eee_dept_id = DB::table('department')->select('id')->where('title', 'EEE')->first()->id;
+
+
+        User::insert(array(
             'username' => 'admin',
             'password' => Hash::make('admin'),
             'email' => 'admin@admin.com',
-            'role_id' => 21,
-            'department_id' => 21,
+            'role_id' => $admin_role_id,
+            'department_id' => $cse_dept_id,
             //'join_date' => '2000-12-12',
             'last_visit' => '2000-12-12',
             'ip_address' => '192.168.1.1',
@@ -31,12 +41,12 @@ class UserTable extends Seeder {
             'updated_at' => new DateTime
         ));
 
-        User::create(array(
+        User::insert(array(
             'username' => 'faculty',
             'password' => Hash::make('faculty'),
             'email' => 'faculty@faculty.com',
-            'role_id' => 22,
-            'department_id' => 19,
+            'role_id' => $faculty_role_id,
+            'department_id' => $cse_dept_id,
             //'join_date' => '2000-12-12',
             'last_visit' => '2000-12-12',
             'ip_address' => '192.168.1.1',
@@ -51,12 +61,12 @@ class UserTable extends Seeder {
             'updated_at' => new DateTime
         ));
 
-        User::create(array(
+        User::insert(array(
             'username' => 'amw',
             'password' => Hash::make('amw'),
             'email' => 'amw@amw.com',
-            'role_id' => 23,
-            'department_id' => 20,
+            'role_id' => $amw_role_id,
+            'department_id' => $eee_dept_id,
             //'join_date' => '2000-12-12',
             'last_visit' => '2000-12-12',
             'ip_address' => '192.168.1.1',
@@ -71,12 +81,12 @@ class UserTable extends Seeder {
             'updated_at' => new DateTime
         ));
 
-        User::create(array(
+        User::insert(array(
             'username' => 'student',
             'password' => Hash::make('student'),
             'email' => 'student@student.com',
-            'role_id' => 24,
-            'department_id' => 21,
+            'role_id' => $student_role_id,
+            'department_id' => $eee_dept_id,
             //'join_date' => '2000-12-12',
             'last_visit' => '2000-12-12',
             'ip_address' => '192.168.1.1',
