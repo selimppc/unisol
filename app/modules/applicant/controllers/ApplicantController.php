@@ -600,6 +600,15 @@ class ApplicantController extends \BaseController
 
     }
 
+    // applicant Academic Records.............
+
+    public function academicIndex(){
+        return View::make('applicant::apt_academic_records.index');
+    }
+    public function academicCreate(){
+        return View::make('applicant::apt_academic_records.create');
+    }
+
 
 }
 
