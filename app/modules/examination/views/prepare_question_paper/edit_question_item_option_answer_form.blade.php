@@ -1,5 +1,4 @@
 {{Form::hidden('qid', $qid->exm_question_id, ['class'=>'form-control'])}}
-
 {{--{{Form::hidden('qitemid', $qid->id, ['class'=>'form-control'])}}--}}
 
      <div class='form-group'>
@@ -15,7 +14,7 @@
         <div class="radio">
              <label>
                   {{ Form::radio('mcq', 'MCQ', ($qid->question_type != 'text'), ['id'=>'mcq_change', 'class'=>'radio']) }}
-                  MCQ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  MCQ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
              </label>
              <label>
                   {{ Form::radio('mcq', 'Descriptive', ($qid->question_type == 'text'), ['id'=>'des_change', 'class'=>'radio']) }}
@@ -28,9 +27,6 @@
         <div class="row">
            @if($qid->question_type != 'text')
                <div id="mcq_all" class="mcq_all_item" >
-
-
-
                      <div class="form-group" style="display: inline-block;">
                              {{ Form::label('Answer Type:') }}
                              <div class="radio">
@@ -46,55 +42,47 @@
                      </div>
 
 
-                   <div class="row">
-                      <div class="col-sm-12">
-                          <div class="col-sm-6"><strong>Option </strong></div>
-                          <div class="col-sm-6"><strong>Answer </strong></div>
-                      </div>
-                      <?php $counter = 0;?>
-                      @foreach($options as $op)
+                     <div class="row">
                           <div class="col-sm-12">
-                              <div class="col-sm-6">
-                                      {{ Form::hidden('id[]', $op->id, ['class'=>'form-control'])}}
-                                      {{ Form::text('option_title[]',$op->title,['class'=>'form-control']) }}
-                              </div>
-                              <div class="col-sm-6">
-
-                                     @if($qid->question_type == 'radio')
-
-                                          @if($op->answer == 1)
-                                            {{ Form::radio('answer[]', $counter,array('checked'))}}
-                                          @else
-                                            {{ Form::radio('answer[]',$counter)}}
-                                          @endif
-
-                                     @elseif($qid->question_type == 'checkbox')
-
-                                          @if($op->answer == 1)
-                                            {{ Form::checkbox('answer[]', $counter,array('checked'))}}
-                                          @else
-                                            {{ Form::checkbox('answer[]',$counter)}}
-                                          @endif
-
-                                     @endif
-                              </div>
-
-
-
+                              <div class="col-sm-6"><strong>Option </strong></div>
+                              <div class="col-sm-6"><strong>Answer </strong></div>
                           </div>
-                          <?php $counter++; ?>
-                      @endforeach
-                   </div>
+                          <?php $counter = 0;?>
+                          @foreach($options as $op)
+                              <div class="col-sm-12">
+                                  <div class="col-sm-6">
+                                          {{ Form::hidden('id[]', $op->id, ['class'=>'form-control'])}}
+                                          {{ Form::text('option_title[]',$op->title,['class'=>'form-control']) }}
+                                  </div>
+                                  <div class="col-sm-6">
+
+                                         @if($qid->question_type == 'radio')
+
+                                              {{ Form::radio('answer[]',$counter, ($op->answer == 1), ['id'=>'single','class'=>'radiocheck']) }}
+
+                                         @elseif($qid->question_type == 'checkbox')
+
+                                               {{ Form::checkbox('answer[]',$counter, ($op->answer == 1), ['id'=>'multiple','class'=>'radiocheck']) }}
+
+                                         @endif
+                                  </div>
+
+                              </div>
+                              <?php $counter++; ?>
+                          @endforeach
+                     </div>
+
+
                </div>
            @else
                    <div id="mcq_all" class="mcq_all_item" style="display: none">
 
                           <div class="form-group">
-                               {{ Form::label('gender','Answer Type:') }}
+                               {{ Form::label('','Answer Type:') }}
                                {{ Form::label('','Single Answer', array('class'=>'radio-inline')) }}
-                               {{ Form::radio('r_question_type', 'mcq_single',array('id'=>'single')) }}
+                               {{ Form::radio('r_question_type', 'mcq_single',Input::old('r_question_type'), ['id'=>'single', 'checked']) }}
                                {{ Form::label('','Multiple Answer', array('class'=>'radio-inline')) }}
-                               {{ Form::radio('r_question_type', 'mcq_multiple',array('id'=>'multiple')) }}
+                               {{ Form::radio('r_question_type', 'mcq_multiple', Input::old('r_question_type'), ['id'=>'multiple']) }}
                           </div>
 
                           <div id="myRadioGroup">
@@ -116,9 +104,7 @@
                   </div>
 
                   <div id="des_one" class="des_one_item" >
-
                     {{-- nothing to show here --}}
-
                   </div>
            @endif
         </div>
