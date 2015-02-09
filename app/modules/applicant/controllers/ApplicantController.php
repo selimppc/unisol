@@ -521,9 +521,10 @@ class ApplicantController extends \BaseController
             $file = Input::file('doc_file');
             $extension = $file->getClientOriginalExtension();
             $filename = str_random(12) . '.' . $extension;
-            $path = public_path("applicant_images/" . $filename);
+            $sdoc_file=strtolower($filename);              // rename file name to lower
+            $path = public_path("applicant_images/" . $sdoc_file);
             Image::make($file->getRealPath())->resize(60, 60)->save($path);
-            $sdoc->$data['doc_type'] = $filename;
+            $sdoc->$data['doc_type'] =$sdoc_file;
         }
         if ($sdoc->save())
             return Redirect::to('applicant/supporting_docs/index')->with('message', 'successfully added');
@@ -598,6 +599,15 @@ class ApplicantController extends \BaseController
             return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
         }
 
+    }
+
+    // applicant Academic Records.............
+
+    public function academicIndex(){
+        return View::make('applicant::apt_academic_records.index');
+    }
+    public function academicCreate(){
+        return View::make('applicant::apt_academic_records.create');
     }
 
 
