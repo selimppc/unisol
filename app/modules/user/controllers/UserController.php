@@ -2,19 +2,24 @@
 
 class UserController extends \BaseController {
 
+    function __construct() {
+        $this->beforeFilter('userAuth', array('except' => array('login')));
+    }
 
-//    public function __construct()
-//    {
-//        $this->beforeFilter('auth');
-//    }
+    protected function isPostRequest()
+    {
+        return Input::server("REQUEST_METHOD") == "POST";
+    }
+
 
     public function login(){
-        /*if ($this->isPostRequest()) {
+        if ($this->isPostRequest()) {
             $validator = $this->getLoginValidator();
             if ($validator->passes()) {
                 $credentials = $this->getLoginCredentials();
                 if (Auth::attempt($credentials)) {
-                    return Redirect::route("user/profile");
+                    //return Redirect::route("user/profile");
+                    return Redirect::to("usersign/dashboard");
                 }
                 return Redirect::back()->withErrors([
                     "password" => ["Credentials invalid."]
@@ -24,7 +29,7 @@ class UserController extends \BaseController {
                     ->withInput()
                     ->withErrors($validator);
             }
-        }*/
+        }
         return View::make('user::user.login');
     }
 

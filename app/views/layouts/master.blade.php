@@ -211,7 +211,7 @@
                             <li><a tabindex="-1" href="">Profile</a>
                             </li>
                             <li class="divider"></li>
-                            <li><a tabindex="-1" href="">Logout</a></li>
+                            <li><a tabindex="-1" href="{{URL::route('user/logout') }}">Logout</a></li>
                         </ul>
                     </li>
                 </ul>

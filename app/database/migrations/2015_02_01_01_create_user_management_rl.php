@@ -31,6 +31,20 @@ class CreateUserManagementRl extends Migration {
             $table->engine = 'InnoDB';
         });
 
+        Schema::create('waiver', function(Blueprint $table) {
+            $table->increments('id');
+            $table->string('title', 128);
+            $table->text('description');
+            $table->string('waiver_type', 64);
+            $table->tinyInteger('is_percentage', false, 1)->lenght(1);
+            $table->string('amount', 64);
+            $table->integer('acm_billing_item_id', false, 11);
+            $table->integer('created_by', false, 11);
+            $table->integer('updated_by', false, 11);
+            $table->timestamps();
+            $table->engine = 'InnoDB';
+        });
+
 
         Schema::create('user', function(Blueprint $table) {
             $table->increments('id');
@@ -42,8 +56,11 @@ class CreateUserManagementRl extends Migration {
             $table->date('join_date');
             $table->dateTime('last_visit');
             $table->string('ip_address', 16);
+            $table->tinyInteger('status', false)->length(1);
             $table->string('verified_code', 64);
             $table->string('csrf_token', 64);
+            $table->integer('applicant_id', false)->length(11);
+            $table->unsignedInteger('waiver_id')->nullable();
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
@@ -52,6 +69,7 @@ class CreateUserManagementRl extends Migration {
         Schema::table('user', function($table) {
             $table->foreign('role_id')->references('id')->on('role');
             $table->foreign('department_id')->references('id')->on('department');
+            $table->foreign('waiver_id')->references('id')->on('waiver');
         });
 
 
@@ -235,6 +253,7 @@ class CreateUserManagementRl extends Migration {
 	{
         Schema::drop('role');
         Schema::drop('department');
+        Schema::drop('waiver');
         Schema::drop('user');
         Schema::drop('user_profile');
         Schema::drop('user_meta');
