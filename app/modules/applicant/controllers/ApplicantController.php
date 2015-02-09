@@ -609,6 +609,41 @@ class ApplicantController extends \BaseController
     public function academicCreate(){
         return View::make('applicant::apt_academic_records.create');
     }
+    public function academicStore(){
+
+        $rules = array(
+            'level_of_education' => 'required',
+            'degree_name' => 'required',
+            'institute_name' => 'required',
+            'group' => 'required',
+            'board' => 'required',
+            'major_subject' => 'required',
+            'result' => 'required',
+            'roll_number' => 'required',
+        );
+        $validator = Validator::make(Input::all(), $rules);
+        if ($validator->passes()) {
+            $model =new AptAcademic();
+            $model->level_of_education = Input::get('level_of_education');
+            $model->degree_name = Input::get('degree_name');
+            $model->institute_name = Input::get('institute_name');
+            $model->group = Input::get('group');
+            $model->board = Input::get('board');
+            $model->major_subject = Input::get('major_subject');
+            $model->result_type = Input::get('result_type');
+            $model->result = Input::get('result');
+            $model->roll_number = Input::get('roll_number');
+            $model->registration_number = Input::get('registration_number');
+            $model->year_of_passing = Input::get('year_of_passing');
+            $model->duration = Input::get('duration');
+
+            $model->save();
+            return Redirect::back()->with('message', 'Successfully added Information!');
+        } else {
+            return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
+        }
+
+    }
 
 
 }

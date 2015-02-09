@@ -109,6 +109,8 @@ Route::any('applicant/academic_records/index','ApplicantController@academicIndex
 
 Route::any('applicant/academic_records/create','ApplicantController@academicCreate');
 
+Route::any('applicant/academic_records/store','ApplicantController@academicStore');
+
 
 
 

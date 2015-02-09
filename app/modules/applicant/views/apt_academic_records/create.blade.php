@@ -40,8 +40,23 @@
 <div >{{ Form::label('major_subject', 'Major Subject') }}</div >
 <div >{{ Form::text('major_subject', Input::old('major_subject'),['class'=>'form-control ']) }}</div>
 
-{{--<div >{{ Form::label('major_subject', 'Major Subject') }}</div >--}}
-{{--<div >{{ Form::text('major_subject', Input::old('major_subject'),['class'=>'form-control ']) }}</div>--}}
+
+<div>{{ Form::label('result_type', 'Result Type') }}</div>
+<div><label class="small">{{ Form::radio('result_type','Division') }} Division/Class </label>
+<label class="small">{{ Form::radio('result_type','CGPA') }} CGPA</label></div>
+
+<div style="display:none" class="division">
+<input type="text" name="division" placeholder="3rd Class First">
+</div>
+
+<div style="display:none" class="gpa">
+<input type="text" name="gpa" placeholder="3.00">
+<input type="text" name="gpa_scale" placeholder="5.00">
+</div>
+
+<button id="division">Division</button>
+<button id="gpa">GPA</button>
+
 
 <div >{{ Form::label('result', 'Result') }}</div >
 <div >{{ Form::text('result',Input::old('result')) }}  Out Of
@@ -58,9 +73,22 @@
 <div >{{ Form::label('year_of_passing', 'Passing Year') }}</div >
 <div >{{ Form::text('year_of_passing', Input::old('year_of_passing'),['class'=>'form-control ']) }}</div>
 
+<div >{{ Form::label('duration', 'duration') }}</div >
+<div >{{ Form::text('duration', Input::old('duration'),['class'=>'form-control ']) }}</div>
 
 
-
+<script>
+$(document).ready(function(){
+    $("#division").click(function(){
+        $(".division").show();
+        $(".gpa").hide();
+    });
+    $("#gpa").click(function(){
+        $(".division").hide();
+        $(".gpa").show();
+    });
+});
+</script>
 
 
 
