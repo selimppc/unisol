@@ -15,12 +15,13 @@
                                                 <div class="col-sm-6"><strong>Option </strong></div>
                                                 <div class="col-sm-6"><strong>Answer </strong></div>
                                             </div>
+                                             </br>
 
                                             @foreach($options as $op)
 
                                                 <div class="col-sm-12">
                                                     <div class="col-sm-6">
-                                                            {{Form::radio('options', '')}}
+
                                                             {{$op->title}}
                                                     </div>
                                                     <div class="col-sm-6">
@@ -38,12 +39,13 @@
                                                     <div class="col-sm-6"><strong>Option </strong></div>
                                                     <div class="col-sm-6"><strong>Answer </strong></div>
                                                </div>
+                                               </br>
 
                                                 @foreach($options as $op)
 
                                                     <div class="col-sm-12">
                                                         <div class="col-sm-6">
-                                                                {{Form::radio('options', '')}}
+
                                                                 {{$op->title}}
                                                         </div>
                                                         <div class="col-sm-6">

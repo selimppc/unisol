@@ -7,7 +7,6 @@ class CreateApplicantManagementRl extends Migration {
 
     public function up()
     {
-
         Schema::create('applicant', function(Blueprint $table) {
             $table->increments('id');
             $table->string('first_name', 128);
@@ -24,7 +23,6 @@ class CreateApplicantManagementRl extends Migration {
             $table->timestamps();
             $table->engine = 'InnoDB';
         });
-
 
 
         Schema::create('applicant_profile', function(Blueprint $table) {
@@ -48,9 +46,6 @@ class CreateApplicantManagementRl extends Migration {
             $table->foreign('applicant_id')->references('id')->on('applicant');
             $table->foreign('country_id')->references('id')->on('country');
         });
-
-
-
 
 
         Schema::create('applicant_meta', function(Blueprint $table) {
@@ -83,8 +78,6 @@ class CreateApplicantManagementRl extends Migration {
         });
 
 
-
-
         Schema::create('applicant_academic_record', function(Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('applicant_id')->nullable();
@@ -113,7 +106,7 @@ class CreateApplicantManagementRl extends Migration {
             $table->enum('study_at', array(
                 'national', 'abroad'
             ));
-            $table->tinyInteger('year_of_passing', false, 4);
+            $table->integer('year_of_passing', false, 4);
             $table->string('duration',64);
             $table->string('certificate',64);
             $table->string('transcript',128);
@@ -125,9 +118,6 @@ class CreateApplicantManagementRl extends Migration {
         Schema::table('applicant_academic_record', function($table) {
             $table->foreign('applicant_id')->references('id')->on('applicant');
         });
-
-
-
 
 
         Schema::create('applicant_miscellaneous_info', function(Blueprint $table) {
@@ -148,8 +138,6 @@ class CreateApplicantManagementRl extends Migration {
         });
 
 
-
-
         Schema::create('applicant_extra_curricular_activity', function(Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('applicant_id')->nullable();
@@ -165,8 +153,6 @@ class CreateApplicantManagementRl extends Migration {
         Schema::table('applicant_extra_curricular_activity', function($table) {
             $table->foreign('applicant_id')->references('id')->on('applicant');
         });
-
-
 
 
         Schema::create('applicant_supporting_doc', function(Blueprint $table) {
@@ -189,8 +175,6 @@ class CreateApplicantManagementRl extends Migration {
         Schema::table('applicant_supporting_doc', function($table) {
             $table->foreign('applicant_id')->references('id')->on('applicant');
         });
-
-
 
 
         Schema::create('applicant_reset_password', function(Blueprint $table)
