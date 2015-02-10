@@ -134,23 +134,35 @@ class CreateUserManagementRl extends Migration {
 
 
         Schema::create('user_academic_record', function(Blueprint $table) {
+
             $table->increments('id');
             $table->unsignedInteger('user_id')->nullable();
-            $table->string('level_of_education',64);
+            $table->enum('level_of_education',array(
+                'psc', 'jsc', 'ssc', 'hsc', 'grad', 'under_grad', 'bachelor', 'diploma', 'post_grad', 'o_level', 'a_level'
+            ));
             $table->string('degree_name',64);
             $table->string('institute_name',128);
-            $table->string('board',32);
-            $table->string('group',32);
+            $table->enum('board_type',array(
+                'board', 'university', 'other'
+            ));
+            $table->string('board_university',128);
+            $table->string('academic_group',32);
             $table->string('major_subject',64);
-            $table->string('result_type',64);
+            $table->enum('result_type',array(
+                'division', 'gpa'
+            ));
             $table->string('result',64);
-            $table->string('grade',16);
-            $table->decimal('grade_scale', 3, 2);
-            $table->decimal('cgpa', 3, 2);
-            $table->string('candidate_number', 64);
-            $table->string('education_medium', 64);
-            $table->string('study_at', 64);
-            $table->tinyInteger('year_of_passing', false, 4);
+            $table->decimal('gpa', 3,2);
+            $table->decimal('gpa_scale', 3, 2);
+            $table->string('registration_number', 64);
+            $table->string('roll_number', 64);
+            $table->enum('education_medium', array(
+                'english', 'bangla'
+            ));
+            $table->enum('study_at', array(
+                'national', 'abroad'
+            ));
+            $table->integer('year_of_passing', false, 4);
             $table->string('duration',64);
             $table->string('certificate',64);
             $table->string('transcript',128);
@@ -158,6 +170,7 @@ class CreateUserManagementRl extends Migration {
             $table->integer('updated_by', false, 11);
             $table->timestamps();
             $table->engine = 'InnoDB';
+
         });
         Schema::table('user_academic_record', function($table) {
             $table->foreign('user_id')->references('id')->on('user');
