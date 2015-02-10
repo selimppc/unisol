@@ -14,6 +14,7 @@
 
 {{ Form::open(array('class'=>'form-horizontal','url' => 'applicant/academic_records/store', 'method' =>'post', 'files'=>'true','id'=>'signup-form')) }}
 
+{{ Form::hidden('applicant_id', $applicant_id = 3, array('class'=>'form-control')) }}
 <br><br>
 <div>{{ Form::label('level_of_education', 'Level of Education ') }}
 {{ Form::select('level_of_education', array('' => 'Select one',
@@ -21,7 +22,7 @@
     array('class' => 'form-control')) }}</div>
 
 
-<div >{{ Form::label('degree_name', 'Degree Name') }}</div >
+<div >{{ Form::label('degree_name', 'Name of Examination') }}</div >
 <div >{{ Form::text('degree_name', Input::old('degree_name'),['class'=>'form-control ']) }}</div>
 
 <div >{{ Form::label('institute_name', 'Institute Name') }}</div >
@@ -40,41 +41,45 @@
 <div >{{ Form::label('major_subject', 'Major Subject') }}</div >
 <div >{{ Form::text('major_subject', Input::old('major_subject'),['class'=>'form-control ']) }}</div>
 
+<br>
+<div >{{ Form::label('result_type', 'Result Type') }}   (Select one : Division/Class OR CGPA )</div>
 
-<div>{{ Form::label('result_type', 'Result Type') }}</div>
-<div><label class="small">{{ Form::radio('result_type','Division') }} Division/Class </label>
-<label class="small">{{ Form::radio('result_type','CGPA') }} CGPA</label></div>
-
+<div id="division"><label class="small">{{ Form::radio('result_type','Division') }} Division/Class </label>
 <div style="display:none" class="division">
-<input type="text" name="division" placeholder="3rd Class First">
+{{ Form::text('result', Input::old('result'),['class'=>'form-control ','placeholder'=>"3rd Class First"]) }}
 </div>
+
+</div>
+
+<div id="gpa"><label class="small">{{ Form::radio('result_type','CGPA') }} CGPA</label>
 
 <div style="display:none" class="gpa">
-<input type="text" name="gpa" placeholder="3.00">
-<input type="text" name="gpa_scale" placeholder="5.00">
+<div class="col-lg-3">{{ Form::text('gpa', Input::old('gpa'),['class'=>'form-control input-sm','placeholder'=>"3.20"]) }}</div>
+<div class="col-lg-3">{{ Form::text('gpa_scale', Input::old('gpa_scale'),['class'=>'form-control input-sm','placeholder'=>"5"]) }}
+</div>
 </div>
 
-<button id="division">Division</button>
-<button id="gpa">GPA</button>
-
-
-<div >{{ Form::label('result', 'Result') }}</div >
-<div >{{ Form::text('result',Input::old('result')) }}  Out Of
-      {{ Form::text('Result', 5) }}
 </div>
 
-<div >{{ Form::label('roll_number', 'Roll') }}</div >
+<br><br>
+<div >{{ Form::label('roll_number', 'Roll No') }}</div >
 <div >{{ Form::text('roll_number', Input::old('roll_number'),['class'=>'form-control ']) }}</div>
 
-<div >{{ Form::label('registration_number', 'Registration') }}</div >
+<div >{{ Form::label('registration_number', 'Registration Number') }}</div >
 <div >{{ Form::text('registration_number', Input::old('registration_number'),['class'=>'form-control ']) }}</div>
+
 
 
 <div >{{ Form::label('year_of_passing', 'Passing Year') }}</div >
 <div >{{ Form::text('year_of_passing', Input::old('year_of_passing'),['class'=>'form-control ']) }}</div>
 
-<div >{{ Form::label('duration', 'duration') }}</div >
+<div >{{ Form::label('duration', 'Duration') }}</div >
 <div >{{ Form::text('duration', Input::old('duration'),['class'=>'form-control ']) }}</div>
+
+<div>{{ Form::label('study_at', 'Study At ') }}
+{{ Form::select('study_at', array('' => 'Select one',
+   'National' => 'National', 'Abroad' => 'Abroad'), Input::old('study_at'),
+    array('class' => 'form-control')) }}</div>
 
 
 <script>
