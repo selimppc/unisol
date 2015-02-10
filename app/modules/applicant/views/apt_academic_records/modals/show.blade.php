@@ -30,7 +30,7 @@
 
       <tr>
         <th> Academic Group:</th>
-        <td>{{ $model->group }}</td>
+        <td>{{ $model->academic_group }}</td>
 
       </tr>
       <tr>

@@ -223,6 +223,8 @@ function addCourseListItem(){
 
 }
 
+//This function is working for amw and faculty calculateActualMarks in text filed
+
 function calculateActualMarks(class_name, course_evalution_marks, selected_percent_marks)
 {
     var total = (selected_percent_marks/100)*course_evalution_marks;
@@ -267,8 +269,6 @@ function deleteNearestTr(getId, acmId)
 }
 
 
-
-/***********************ACM COURSE CONFIG GENERATION ENDS***********************/
 /***********************FACULTY MARKS DISTRIBUTION GENERATION START***********************/
 $tableItemCounter = 0;//To stop additem if exist
 var arrayItems=[];//To stop additem if exist
@@ -278,8 +278,6 @@ function editCourseListItem(itemid){
 }
 
 function addMarksDistItem() {
-
-   // var myArray = ["1", "2", "3", "4", "5"];
 
     var listItem = $('.addDistListItem').val();
     var listItemTitle = $(".addDistListItem option:selected").text();
@@ -318,7 +316,8 @@ function addMarksDistItem() {
         str += '<td><input type="radio" name="isDefault[]" value="' + counter + '" class="amw_isDefault" /></td>';
 
         str += '<td><input type="radio" name="isAttendance[]" value="' + counter + '" class="amw_isAttendance' + trLen + '" /></td>';
-        str += '<td><select><option value="">' + '<?php echo "1" ?>' + '</option></select></td>';
+        
+        str += '<td><select name="policy_id[]" class="form-control"><option value="">Select Option</option><option value="1">Attendance</option><option value="2">BestOne</option><option value="3">Average</option><option value="4">Average of Top N</option><option value="5">Sum</option><option value="6">Single</option></select></td>';
 
         str += '<td><a class="btn btn-default btn-sm" id="removeTrId' + trLen + '" onClick="deleteNearestTr(this.id, 0)"><span class="glyphicon glyphicon-trash text-danger"></span></a></td>';
 
