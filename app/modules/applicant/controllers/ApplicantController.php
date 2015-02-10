@@ -612,14 +612,14 @@ class ApplicantController extends \BaseController
     public function academicStore(){
 
         $rules = array(
-            'level_of_education' => 'required',
-            'degree_name' => 'required',
-            'institute_name' => 'required',
-            'group' => 'required',
-            'board' => 'required',
-            'major_subject' => 'required',
-            'result' => 'required',
-            'roll_number' => 'required',
+//            'level_of_education' => 'required',
+//            'degree_name' => 'required',
+//            'institute_name' => 'required',
+//            'group' => 'required',
+//            'board' => 'required',
+//            'major_subject' => 'required',
+//            'result' => 'required',
+//            'roll_number' => 'required',
         );
         $validator = Validator::make(Input::all(), $rules);
         if ($validator->passes()) {

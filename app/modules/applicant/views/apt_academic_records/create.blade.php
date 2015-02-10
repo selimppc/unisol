@@ -6,8 +6,8 @@
 
 @section('content')
 
- <div class='control-group'>
- <legend style="color: #0088cc"></legend>
+<div class='control-group'>
+<legend style="color: #0088cc"></legend>
 
 <div class="span6 well">
 <h3>Add</h3>
@@ -18,7 +18,7 @@
 <div>{{ Form::label('level_of_education', 'Level of Education ') }}
 {{ Form::select('level_of_education', array('' => 'Select one',
    'PSC' => 'PSC', 'JSC' => 'JSC', 'SSC'=>'SSC','HSC'=>'HSC'), Input::old('level_of_education'),
-    array('class' => 'form-control', 'required'=> true)) }}</div>
+    array('class' => 'form-control')) }}</div>
 
 
 <div >{{ Form::label('degree_name', 'Degree Name') }}</div >
