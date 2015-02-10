@@ -41,8 +41,9 @@ class CreateCourseManagementRl extends Migration {
         });
 
 
-
-
+        //TODO
+        //This should not be here as it can be used as ENUM values
+        // Values: 'Under Graduate', 'Graduate', 'Post Graduate', 'Post Doctorate'
         Schema::create('degree_level', function(Blueprint $table){
             $table->increments('id');
             $table->string('title', 128);
@@ -53,9 +54,7 @@ class CreateCourseManagementRl extends Migration {
             $table->engine = 'InnoDB';
         });
 
-
-
-
+        // TODO : This table seed will be after removing of degree_program table
         Schema::create('degree_program', function($table) {
             $table->increments('id');
             $table->unsignedInteger('degree_level_id');
@@ -69,9 +68,6 @@ class CreateCourseManagementRl extends Migration {
         Schema::table('degree_program', function($table) {
             $table->foreign('degree_level_id')->references('id')->on('degree_level');
         });
-
-
-
 
         Schema::create('subject', function(Blueprint $table)
         {
@@ -110,6 +106,9 @@ class CreateCourseManagementRl extends Migration {
         });
 
 
+        //TODO
+        //This should not be here as it will be used as ENUM
+        // Values: 'Automatic', 'Manual'
         Schema::create('evolution_system', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title', 128);
