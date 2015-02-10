@@ -33,7 +33,6 @@
 .option_class{
        width: 200px;
        padding: 3px;
-       margin-left: 10px;
        margin-bottom: 10px;
 }
 
@@ -41,7 +40,6 @@
 .answer_class{
     width: 200px;
     padding: 3px;
-    margin-left: 10px;
     margin-bottom: 10px;
 }
 
@@ -72,4 +70,10 @@
 .small-header-table th{
     font-size: 12px;
     font-weight: bold;
+}
+
+/**********For Academic faculty marks distribution******************/
+#amwCourseConfig input[type="text"]
+{
+    width: 80px;
 }
