@@ -40,8 +40,9 @@ class CreateMarksDistributionRl extends Migration {
             $table->foreign('acm_marks_dist_item_id')->references('id')->on('acm_marks_dist_item');
         });
 
-
-        Schema::create('acm_marks_policy', function(Blueprint $table) {
+        //TODO remove this table as it will be used as ENUM
+        // Values: 'attendance', 'best_one', 'avarage', 'avarage_top_n', 'sum', 'single'
+        /*Schema::create('acm_marks_policy', function(Blueprint $table) {
             $table->increments('id');
             $table->string('title', 128);
             $table->text('description');
@@ -49,7 +50,7 @@ class CreateMarksDistributionRl extends Migration {
             $table->integer('updated_by', false, 11);
             $table->timestamps();
             $table->engine = 'InnoDB';
-        });
+        });*/
 
 
         Schema::create('acm_marks_distribution', function(Blueprint $table) {
@@ -58,11 +59,13 @@ class CreateMarksDistributionRl extends Migration {
             $table->unsignedInteger('acm_marks_dist_item_id')->nullable();
             $table->string('marks', 128);
             $table->text('note');
-            $table->unsignedInteger('acm_marks_policy_id')->nullable();
+            $table->enum('acm_marks_policy', array(
+                'attendance', 'best_one', 'avarage', 'avarage_top_n', 'sum', 'single'
+            ));
             $table->tinyInteger('is_attendance', false, 1);
             $table->unsignedInteger('acm_attendance_config_id')->nullable();
-            $table->tinyInteger('is_default', false, 1)->length(1);
-            $table->tinyInteger('is_readonly', false, 1)->length(1);
+            $table->tinyInteger('default_item', false, 1)->length(1);
+            $table->tinyInteger('readonly', false, 1)->length(1);
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
@@ -71,7 +74,7 @@ class CreateMarksDistributionRl extends Migration {
         Schema::table('acm_marks_distribution', function($table) {
             $table->foreign('course_management_id')->references('id')->on('course_management');
             $table->foreign('acm_marks_dist_item_id')->references('id')->on('acm_marks_dist_item');
-            $table->foreign('acm_marks_policy_id')->references('id')->on('acm_marks_policy');
+            /*$table->foreign('acm_marks_policy_id')->references('id')->on('acm_marks_policy'); */
             $table->foreign('acm_attendance_config_id')->references('id')->on('acm_attendance_config');
         });
 
