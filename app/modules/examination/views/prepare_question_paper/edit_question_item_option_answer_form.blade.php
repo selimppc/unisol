@@ -47,7 +47,9 @@
                               <div class="col-sm-6"><strong>Option </strong></div>
                               <div class="col-sm-6"><strong>Answer </strong></div>
                           </div>
+
                           <?php $counter = 0;?>
+
                           @foreach($options as $op)
                               <div class="col-sm-12">
                                   <div class="col-sm-6">
@@ -57,22 +59,28 @@
                                   <div class="col-sm-6">
 
                                          @if($qid->question_type == 'radio')
-
                                               {{ Form::radio('answer[]',$counter, ($op->answer == 1), ['id'=>'single','class'=>'radiocheck']) }}
 
+                                              <a onclick="removalLink" class="remove">Remove (-)</a>
+
                                          @elseif($qid->question_type == 'checkbox')
+                                              {{ Form::checkbox('answer[]',$counter, ($op->answer == 1), ['id'=>'multiple','class'=>'radiocheck']) }}
 
-                                               {{ Form::checkbox('answer[]',$counter, ($op->answer == 1), ['id'=>'multiple','class'=>'radiocheck']) }}
-
+                                              <a onclick="removalLink" class="remove">Remove (-)</a>
                                          @endif
                                   </div>
 
                               </div>
                               <?php $counter++; ?>
                           @endforeach
+
+                           <div class="col-sm-12">
+                               <div class="col-sm-6">
+                                    <a onclick="createInput()" class="add_button">Add (+)</a>
+                               </div>
+                           </div>
+
                      </div>
-
-
                </div>
            @else
                    <div id="mcq_all" class="mcq_all_item" style="display: none">
@@ -126,14 +134,6 @@
                   $(".mcq_all_item").hide();
                   $(".des_one_item").show();
              });
-
-
-//             $("input[id='mcq_r']").click(function() {
-//                   var test = $(this).val();
-//                   $(".descriptive_rl").hide();
-//                   $("#"+test).show();
-//             });
-
 
              $('#multiple').on('click', function () {
                  $('.radiocheck').attr('type', 'checkbox');

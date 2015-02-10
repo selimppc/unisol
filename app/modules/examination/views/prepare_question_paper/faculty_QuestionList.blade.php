@@ -32,7 +32,7 @@
                                 <a href="{{ URL::route('prepare_question_paper.editQuestionItems', ['id'=>$question_list_faculty->id])  }}" class="btn btn-info" data-toggle="modal" data-target="#EditQuestionItems"> Edit </a>
                             </td>
                          </tr>
-                             @endforeach
+                       @endforeach
                      </tbody>
               </table>
              {{form::close() }}
