@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCommonRl extends Migration {
+class CommonRl extends Migration {
 
 	public function up()
 	{
