@@ -28,10 +28,7 @@ class DatabaseSeeder extends Seeder {
        /* $this->call('SubjectTable');
         $this->command->info('Subjecte table seeded!');*/
 
-        //This is be seeded after evaluation_system table is deleted.
-        /*$this->call('CourseManagementTable');
-        $this->command->info('Course Management table seeded!');*/
-
+        
 	}
 
 }
