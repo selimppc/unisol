@@ -46,7 +46,15 @@
               </div>
             </div>
 
-            {{ Form::submit('Submit', array('class'=>'btn btn-primary')) }}
+
+            <input id="total_marks_all" value="40" readonly>
+            <input id="new_input_area_one" >
+            <input id="new_input_area_two">
+            <input id="new_input_area_three">
+
+
+
+            {{ Form::submit('Submit', array('id'=>'submit_if', 'class'=>'btn btn-primary')) }}
             <a href="{{URL::to('prepare_question_paper/faculty_index')}}" class="btn btn-default">Close </a>
         </fieldset>
 {{ Form::close() }}
@@ -64,6 +72,25 @@
             });
             $('#single').on('click', function () {
                 $('.radiocheck').attr('type', 'radio');
+            });
+
+            $('#submit_if').on('click', function () {
+                var totalMarks = parseInt(document.getElementById("total_marks_all").value);
+
+                var one = document.getElementById("new_input_area_one").value;
+                var two = document.getElementById("new_input_area_two").value;
+                var three = document.getElementById("new_input_area_three").value;
+
+                totals = parseInt(one) + parseInt(two) + parseInt(three);
+
+                if(totalMarks < totals){
+                    alert('Exceed the total marks >'+totalMarks);
+                    return false;
+                }else{
+                    alert('Good to go with marks  '+totals);
+                    return true;
+                }
+
             });
 
 

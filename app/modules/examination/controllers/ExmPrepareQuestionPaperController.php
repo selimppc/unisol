@@ -198,31 +198,7 @@ class ExmPrepareQuestionPaperController extends \BaseController {
         {
             $faculty_store_question_items->title = Input::get('title');
             $faculty_store_question_items->exm_question_id = Input::get('qid');
-
-//            $faculty_store_question_items->marks = Input::get('marks');
-
-//                $question_total_marks = new ExmQuestion();
-                  $question_total_marks = ExmQuestion::find($faculty_store_question_items->exm_question_id);
-
-
-                if($faculty_store_question_items->marks = Input::get('marks') > $question_total_marks->total_marks){
-
-                    #print_r($question_total_marks->total_marks);exit;
-
-                    $remaining_marks = $faculty_store_question_items->marks = Input::get('marks') - $question_total_marks->total_marks;
-
-
-
-
-
-                    Session::flash('error', 'Your Question item Marks is larger thanQuestion total marks, You can only add '.$remaining_marks.'   marks ');
-
-                   return Redirect::to('prepare_question_paper/faculty_index');
-                }
-                else{
-                    $faculty_store_question_items->marks = Input::get('marks');
-                }
-
+            $faculty_store_question_items->marks = Input::get('marks');
 
             if( strtolower(Input::get('mcq')) == 'mcq'){
                 if( strtolower(Input::get('r_question_type')) == 'mcq_single'){
