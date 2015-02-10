@@ -6,10 +6,25 @@
                 {{ Form::label('title', 'Question Title') }}
                 {{ Form::text('title', Input::old('title'),['class'=>'form-control', 'required'=>'required']) }}
             </div>
+
+            {{--<div class="form-group">--}}
+               {{--{{ Form::label('marks', 'Marks') }}--}}
+               {{--{{ Form::text('marks', Input::old('marks'), array('class' => 'form-control','required'=>'required')) }}--}}
+            {{--</div>--}}
+
+
+            <input id="total_marks_all" value="40" readonly>
+
+             {{ Form::hidden('marks', Input::old('marks'), array('id'=>'total_marks_all')) }}
+
+            {{--<input id="new_input_area_one" >--}}
+
             <div class="form-group">
                {{ Form::label('marks', 'Marks') }}
-               {{ Form::text('marks', Input::old('marks'), array('class' => 'form-control','required'=>'required')) }}
+               {{ Form::text('marks', Input::old('marks'), array('id'=>'new_input_area_one','class' => 'form-control','required'=>'required')) }}
             </div>
+
+
 
 
             <div class="form-group" id="myRadioGroup">
@@ -47,11 +62,8 @@
             </div>
 
 
-            <input id="total_marks_all" value="40" readonly>
-            <input id="new_input_area_one" >
-            <input id="new_input_area_two">
-            <input id="new_input_area_three">
-
+            {{--<input id="total_marks_all" value="40" readonly>--}}
+            {{--<input id="new_input_area_one" >--}}
 
 
             {{ Form::submit('Submit', array('id'=>'submit_if', 'class'=>'btn btn-primary')) }}
@@ -76,18 +88,11 @@
 
             $('#submit_if').on('click', function () {
                 var totalMarks = parseInt(document.getElementById("total_marks_all").value);
-
-                var one = document.getElementById("new_input_area_one").value;
-                var two = document.getElementById("new_input_area_two").value;
-                var three = document.getElementById("new_input_area_three").value;
-
-                totals = parseInt(one) + parseInt(two) + parseInt(three);
-
-                if(totalMarks < totals){
+                var one = parseInt(document.getElementById("new_input_area_one").value);
+                if(totalMarks < one){
                     alert('Exceed the total marks >'+totalMarks);
                     return false;
                 }else{
-                    alert('Good to go with marks  '+totals);
                     return true;
                 }
 
