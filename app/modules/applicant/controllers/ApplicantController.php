@@ -571,8 +571,8 @@ class ApplicantController extends \BaseController
     }
 
     public function miscInfoEdit($id){
-        $data = ApplicantMiscellaneousInfo::find($id);
-        return View::make('applicant::applicant_miscellaneous_info.modal.edit', compact('data'));
+        $model= ApplicantMiscellaneousInfo::find($id);
+        return View::make('applicant::applicant_miscellaneous_info.modal.edit', compact('model'));
     }
 
     public function miscInfoUpdate($id){
@@ -604,7 +604,8 @@ class ApplicantController extends \BaseController
     // applicant Academic Records.............
 
     public function academicIndex(){
-        return View::make('applicant::apt_academic_records.index');
+        $model = AptAcademic::where('applicant_id', '=', '3')->first();
+        return View::make('applicant::apt_academic_records.index',compact('model'));
     }
     public function academicCreate(){
         return View::make('applicant::apt_academic_records.create');
@@ -624,6 +625,7 @@ class ApplicantController extends \BaseController
         $validator = Validator::make(Input::all(), $rules);
         if ($validator->passes()) {
             $model =new AptAcademic();
+            $model->applicant_id = Input::get('applicant_id');
             $model->level_of_education = Input::get('level_of_education');
             $model->degree_name = Input::get('degree_name');
             $model->institute_name = Input::get('institute_name');
@@ -631,11 +633,15 @@ class ApplicantController extends \BaseController
             $model->board = Input::get('board');
             $model->major_subject = Input::get('major_subject');
             $model->result_type = Input::get('result_type');
+
             $model->result = Input::get('result');
+            $model->gpa = Input::get('gpa');
+            $model->gpa_scale = Input::get('gpa_scale');
             $model->roll_number = Input::get('roll_number');
             $model->registration_number = Input::get('registration_number');
             $model->year_of_passing = Input::get('year_of_passing');
             $model->duration = Input::get('duration');
+            $model->study_at = Input::get('study_at');
 
             $model->save();
             return Redirect::back()->with('message', 'Successfully added Information!');
@@ -645,6 +651,11 @@ class ApplicantController extends \BaseController
 
     }
 
+    public function academicShow($id)
+    {
+        $model = AptAcademic::find($id);
 
+        return View::make('applicant::apt_academic_records.modals.show',compact('model'));
+    }
 }
 
