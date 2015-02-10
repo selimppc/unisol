@@ -1,9 +1,0 @@
-<script type="text/javascript">
-		$(document).ready(function() {
-				$('#myTable').dataTable({
-                paging: false
-
-				});
-
-		} );
-</script>

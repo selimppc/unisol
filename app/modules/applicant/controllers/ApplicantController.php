@@ -513,65 +513,43 @@ class ApplicantController extends \BaseController
     public function applicantSupportingDocsStore()
     {
         $data = Input::all();
-
         $sdoc = $data['id'] ? ApplicantSupportingDocs::find($data['id']) : new ApplicantSupportingDocs;
 
-
-        if ($data = 'other') {
-
+        if ($data['doc_type']=='other') {
             $sdoc->other = Input::get('other');
-            //print_r($sdoc) ;
-            //exit;
-            //$sdoc->save();
         } else {
-            //echo 'null';}
-            //exit;
-
             $file = Input::file('doc_file');
             $extension = $file->getClientOriginalExtension();
             $filename = str_random(12) . '.' . $extension;
-            $path = public_path("applicant_images/" . $filename);
+            $sdoc_file=strtolower($filename);              // rename file name to lower
+            $path = public_path("applicant_images/" . $sdoc_file);
             Image::make($file->getRealPath())->resize(60, 60)->save($path);
-
-            $sdoc->$data['doc_type'] = $filename;
-
+            $sdoc->$data['doc_type'] =$sdoc_file;
         }
-            if ($sdoc->save())
-                return Redirect::to('applicant/supporting_docs/index')->with('message', 'successfully added');
-            else
-                return Redirect::to('applicant/supporting_docs/index')->with('message', 'Not Added');
-        }
+        if ($sdoc->save())
+            return Redirect::to('applicant/supporting_docs/index')->with('message', 'successfully added');
+        else
+            return Redirect::to('applicant/supporting_docs/index')->with('message', 'Not Added');
+    }
+
+
+    //applicant Miscellaneous Info  miscelnfo
 
     public function applicantMiscellaneousInfoIndex(){
-
-
-        $data = ApplicantMiscellaneousInfo::find(19);
-        $data = ApplicantMiscellaneousInfo::where('id', '=', '1')->first();
-
-//        $data = ApplicantSupportingDocs::where('applicant_id', '=', 4)->first();
-//
-//        if(!$data){
-//            $data = new ApplicantMiscellaneousInfo();
-//            $data->applicant_id = 4;
-//            $data->save();
-//        }
-
-
+        $data = ApplicantMiscellaneousInfo::where('applicant_id', '=', '3')->first();
         return View::make('applicant::applicant_miscellaneous_info.index',compact('data'));
-
     }
     public function applicantMiscellaneousInfoCreate(){
-
-
         return View::make('applicant::applicant_miscellaneous_info.modal.miscellaneous');
     }
 
     public function miscInfoStore(){
-
-        $data=Input::all();
-
         $rules = array(
             'ever_admit_this_university' => 'required',
+            'ever_dismiss' => 'required',
+            'academic_honors_received' => 'required',
+            'ever_admit_other_university' => 'required',
+            'admission_test_center' => 'required',
         );
         $validator = Validator::make(Input::all(), $rules);
         if ($validator->passes()) {
@@ -587,18 +565,14 @@ class ApplicantController extends \BaseController
 
             return Redirect::back()->with('message', 'Successfully added Information!');
         } else {
-           return Redirect::to('applicant/miscellaneous_info/create')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
+           return Redirect::to('applicant/miscellaneous_info/index')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
         }
 
     }
 
     public function miscInfoEdit($id){
-
-
-        $data = ApplicantMiscellaneousInfo::find($id);
-       // print_r($data);exit;
-
-        return View::make('applicant::applicant_miscellaneous_info.modal.edit', compact('data'));
+        $model= ApplicantMiscellaneousInfo::find($id);
+        return View::make('applicant::applicant_miscellaneous_info.modal.edit', compact('model'));
     }
 
     public function miscInfoUpdate($id){
@@ -627,6 +601,61 @@ class ApplicantController extends \BaseController
 
     }
 
+    // applicant Academic Records.............
 
+    public function academicIndex(){
+        $model = AptAcademic::where('applicant_id', '=', '3')->first();
+        return View::make('applicant::apt_academic_records.index',compact('model'));
+    }
+    public function academicCreate(){
+        return View::make('applicant::apt_academic_records.create');
+    }
+    public function academicStore(){
+
+        $rules = array(
+//            'level_of_education' => 'required',
+//            'degree_name' => 'required',
+//            'institute_name' => 'required',
+//            'group' => 'required',
+//            'board' => 'required',
+//            'major_subject' => 'required',
+//            'result' => 'required',
+//            'roll_number' => 'required',
+        );
+        $validator = Validator::make(Input::all(), $rules);
+        if ($validator->passes()) {
+            $model =new AptAcademic();
+            $model->applicant_id = Input::get('applicant_id');
+            $model->level_of_education = Input::get('level_of_education');
+            $model->degree_name = Input::get('degree_name');
+            $model->institute_name = Input::get('institute_name');
+            $model->group = Input::get('group');
+            $model->board = Input::get('board');
+            $model->major_subject = Input::get('major_subject');
+            $model->result_type = Input::get('result_type');
+
+            $model->result = Input::get('result');
+            $model->gpa = Input::get('gpa');
+            $model->gpa_scale = Input::get('gpa_scale');
+            $model->roll_number = Input::get('roll_number');
+            $model->registration_number = Input::get('registration_number');
+            $model->year_of_passing = Input::get('year_of_passing');
+            $model->duration = Input::get('duration');
+            $model->study_at = Input::get('study_at');
+
+            $model->save();
+            return Redirect::back()->with('message', 'Successfully added Information!');
+        } else {
+            return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
+        }
+
+    }
+
+    public function academicShow($id)
+    {
+        $model = AptAcademic::find($id);
+
+        return View::make('applicant::apt_academic_records.modals.show',compact('model'));
+    }
 }
 

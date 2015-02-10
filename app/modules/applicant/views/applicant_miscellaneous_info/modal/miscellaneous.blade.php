@@ -1,5 +1,4 @@
 
-<!-- Modal : add goal -->
 <div class="modal-header">
 
     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
@@ -10,50 +9,48 @@
   <div style="padding: 20px;">
         <h4> </h4>
 
-        {{Form::open(array('url'=>'applicant/miscInfoStore', 'class'=>'form-horizontal','files'=>true))}}
+  {{Form::open(array('url'=>'applicant/miscInfoStore', 'class'=>'form-horizontal','files'=>true))}}
 
-        <div class="form-group">
-         {{ Form::label('applicant_id','Name of Applicant' ) }}
-         {{ Form::select('applicant_id', Applicant::orderBy('username')->lists('username', 'id')+[''=>'Select Option'] ,'', ['class'=>'form-control']) }}
-         </div>
+  {{ Form::hidden('applicant_id', $applicant_id = 3, array('class'=>'form-control')) }}
 
-         <div class='form-group'>
-                      {{ Form::label('ever_admit_this_university', 'Ever admit this university') }}
-                      {{ Form::radio('ever_admit_this_university','1') }} Yes
-                      {{ Form::radio('ever_admit_this_university','0') }} No
-                 </div>
+<div class='form-group'>
+      <div>{{ Form::label('ever_admit_this_university', 'Ever admit this university ?') }}</div>
+      <div><label class="small">{{ Form::radio('ever_admit_this_university','1') }} Yes</label>
+      <label class="small">{{ Form::radio('ever_admit_this_university','0') }} No</label></div>
+</div>
 
-         <div class='form-group'>
-             {{ Form::label('ever_dismiss', 'Ever dismiss') }}
-             {{ Form::radio('ever_dismiss','1') }} Yes
-             {{ Form::radio('ever_dismiss','0') }} No
-         </div>
+<div class='form-group'>
+      <div>{{ Form::label('ever_dismiss', 'Ever dismiss ?') }}</div>
+      <div><label class="small">{{ Form::radio('ever_dismiss','1') }} Yes</label>
+      <label class="small">{{ Form::radio('ever_dismiss','0') }} No</label></div>
+</div>
 
-          <div class='form-group'>
-              {{ Form::label('academic_honors_received', 'Academic honors received') }}
-              {{ Form::radio('academic_honors_received','1') }} Yes
-              {{ Form::radio('academic_honors_received','0') }} No
-          </div>
+<div class='form-group'>
+       <div>{{ Form::label('academic_honors_received', 'Academic honors received ?') }}</div>
+       <div><label class="small">{{ Form::radio('academic_honors_received','1') }} Yes</label>
+       <label class="small">{{ Form::radio('academic_honors_received','0') }} No</label></div>
+</div>
 
-          <div class='form-group'>
-            {{ Form::label('ever_admit_other_university', 'Ever admit other university') }}
-            {{ Form::radio('ever_admit_other_university','1') }} Yes
-            {{ Form::radio('ever_admit_other_university','0') }} No
-          </div>
+<div class='form-group'>
+      <div>{{ Form::label('ever_admit_other_university', 'Ever admit other university ?') }}</div>
+      <div><label class="small">{{ Form::radio('ever_admit_other_university','1') }} Yes</label>
+      <label class="small">{{ Form::radio('ever_admit_other_university','0') }} No</label></div>
+</div>
 
-           <div class='form-group'>
-              {{ Form::label('admission_test_center', 'Admission test center') }}
-              {{ Form::radio('admission_test_center','1') }} Yes
-              {{ Form::radio('admission_test_center','0') }} No
-           </div>
+<div class='form-group'>
+     {{ Form::label('admission_test_center', 'Admission test Center ') }}
+    {{ Form::select('admission_test_center', array('' => 'Select one',
+       'Dhaka' => 'Dhaka', 'Chittagong' => 'Chittagong', 'Comilla'=>'Comilla','Khulna'=>'Khulna','Syllhet'=>'Syllhet'),
+        array('class' => 'form-control', 'required'=> true)) }}
+</div>
+<p>&nbsp;</p>
 
-        <p>&nbsp;</p>
-        {{--{{ Form::hidden('id', $supporting_docs->id, ['class'=>'form-control sdoc_id'])}}--}}
-        {{--{{ Form::hidden('doc_type', $doc_type, ['class'=>'form-control sdoc_id'])}}--}}
-        {{ Form::submit('Save ', array('class'=>'btn btn-primary')) }}
-        <a href="" class="btn btn-default" span class="glyphicon-refresh">Close</a>
-        {{Form::close()}}
-  </div>
+{{ Form::submit('Save ', array('class'=>'btn btn-primary')) }}
+<a href="{{URL::to('applicant/miscellaneous_info/index') }}" class="btn btn-default" span class="glyphicon-refresh">Close</a>
+
+{{Form::close()}}
+
+</div>
 </div>
 <div class="modal-footer">
 

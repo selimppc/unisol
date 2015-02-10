@@ -37,7 +37,7 @@ class CreateApplicantManagementRl extends Migration {
             $table->string('profile_image',128);
             $table->string('city',32);
             $table->string('state',32);
-            $table->string('country',64);
+            $table->unsignedInteger('country_id')->nullable();
             $table->integer('zip_code', false, 5);
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
@@ -46,6 +46,7 @@ class CreateApplicantManagementRl extends Migration {
         });
         Schema::table('applicant_profile', function($table) {
             $table->foreign('applicant_id')->references('id')->on('applicant');
+            $table->foreign('country_id')->references('id')->on('country');
         });
 
 
@@ -87,19 +88,31 @@ class CreateApplicantManagementRl extends Migration {
         Schema::create('applicant_academic_record', function(Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('applicant_id')->nullable();
-            $table->string('level_of_education',64);
+            $table->enum('level_of_education',array(
+                'psc', 'jsc', 'ssc', 'hsc', 'grad', 'under_grad', 'bachelor', 'diploma', 'post_grad', 'o_level', 'a_level'
+            ));
             $table->string('degree_name',64);
             $table->string('institute_name',128);
-            $table->string('board',32);
-            $table->string('group',32);
+            $table->enum('board_type',array(
+                'board', 'university', 'other'
+            ));
+            $table->string('board_university',128);
+            $table->string('academic_group',32);
             $table->string('major_subject',64);
-            $table->string('result_type',64);
+            $table->enum('result_type',array(
+                'division', 'gpa'
+            ));
             $table->string('result',64);
-            $table->string('gpa',16);
+            $table->decimal('gpa', 3,2);
             $table->decimal('gpa_scale', 3, 2);
             $table->string('registration_number', 64);
             $table->string('roll_number', 64);
-            $table->string('study_at', 64);
+            $table->enum('education_medium', array(
+                'english', 'bangla'
+            ));
+            $table->enum('study_at', array(
+                'national', 'abroad'
+            ));
             $table->tinyInteger('year_of_passing', false, 4);
             $table->string('duration',64);
             $table->string('certificate',64);
@@ -112,6 +125,7 @@ class CreateApplicantManagementRl extends Migration {
         Schema::table('applicant_academic_record', function($table) {
             $table->foreign('applicant_id')->references('id')->on('applicant');
         });
+
 
 
 
@@ -159,7 +173,7 @@ class CreateApplicantManagementRl extends Migration {
             $table->increments('id');
             $table->unsignedInteger('applicant_id')->nullable();
             $table->string('academic_goal_statement', 128);
-            $table->text('essay');
+            $table->string('essay', 128);
             $table->string('letter_of_intent', 128);
             $table->string('personal_statement', 128);
             $table->string('research_statement', 128);

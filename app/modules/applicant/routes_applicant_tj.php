@@ -86,20 +86,32 @@ Route::any('applicant/supporting_docs/edit/{id}','ApplicantController@editApplic
 
 Route::any('applicant/supporting_docs/update/{id}','ApplicantController@updateApplicantGoalStatement');
 
-//Applicant goal statements........................................................................
+//Applicant supporting_docs........................................................................
 
 Route::any('applicant/supporting_docs/add','ApplicantController@applicantGoalStatementAdd');
 
 Route::any('applicant/supporting_docs/store','ApplicantController@applicantSupportingDocsStore');
 
+//applicant miscellaneous_info
 Route::any('applicant/miscellaneous_info/index','ApplicantController@applicantMiscellaneousInfoIndex');
 
 Route::any('applicant/miscellaneous_info/create','ApplicantController@applicantMiscellaneousInfoCreate');
+
 Route::any('applicant/miscInfoStore','ApplicantController@miscInfoStore');
 
 Route::any('applicant/miscellaneous_info/edit/{id}','ApplicantController@miscInfoEdit');
 
 Route::any('applicant/miscellaneous_info/update/{id}','ApplicantController@miscInfoUpdate');
+
+//applicant academic records..........................................................................
+
+Route::any('applicant/academic_records/index','ApplicantController@academicIndex');
+
+Route::any('applicant/academic_records/create','ApplicantController@academicCreate');
+
+Route::any('applicant/academic_records/store','ApplicantController@academicStore');
+
+Route::any('applicant/academic_records/show/{id}','ApplicantController@academicShow');
 
 
 

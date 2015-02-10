@@ -24,7 +24,8 @@
 
     {{ HTML::script('assets/js/jquery-2.1.1.min.js') }}
     {{ HTML::script('assets/js/jquery-1.11.1.min.js')}}
-    {{--{{ HTML::script('assets/js/jquery-1.4.3.min.js')}}--}}
+    {{--{{ HTML::script('assets/js/custom.js')}}--}}
+
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
         <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -211,7 +212,7 @@
                             <li><a tabindex="-1" href="">Profile</a>
                             </li>
                             <li class="divider"></li>
-                            <li><a tabindex="-1" href="">Logout</a></li>
+                            <li><a tabindex="-1" href="{{URL::route('user/logout') }}">Logout</a></li>
                         </ul>
                     </li>
                 </ul>

@@ -4,7 +4,7 @@
 @stop
 @section('content')
 
-<div class="span8 well">
+<div class="well well-lg">
 <table class="table table-striped table-bordered" id="myTable">
 
      <h4>Applicant Proifle </h4>
