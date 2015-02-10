@@ -10,6 +10,8 @@
                {{ Form::label('marks', 'Marks') }}
                {{ Form::text('marks', Input::old('marks'), array('class' => 'form-control','required'=>'required')) }}
             </div>
+
+
             <div class="form-group" id="myRadioGroup">
                {{ Form::label('gender','Question Type') }}
                {{ Form::label('mcq','MCQ',array('class'=>'radio-inline')) }}
@@ -38,7 +40,7 @@
                     </div>
                     <div id="fields">
                     </div>
-                    <a onclick="createInput()" class="add_button">Add (+)</a>
+
               </div>
               <div id="Descriptive" class="descriptive">
               </div>
