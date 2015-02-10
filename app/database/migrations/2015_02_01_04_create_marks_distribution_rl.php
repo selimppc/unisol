@@ -40,7 +40,8 @@ class CreateMarksDistributionRl extends Migration {
             $table->foreign('acm_marks_dist_item_id')->references('id')->on('acm_marks_dist_item');
         });
 
-
+        //TODO remove this table as it will be used as ENUM
+        // Values: 'attendance', 'best_one', 'avarage', 'avarage_top_n', 'sum', 'single'
         Schema::create('acm_marks_policy', function(Blueprint $table) {
             $table->increments('id');
             $table->string('title', 128);
