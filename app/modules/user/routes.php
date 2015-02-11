@@ -21,6 +21,12 @@ Route::any("user/logout", [
     "uses" => "UserController@logout"
 ]);
 
+Route::any("user/dashboard", [
+    "as"   => "user/dashboard",
+    "uses" => "UserController@userDashboard"
+]);
+
+
 Route::group(["before" => "auth"], function() {
 
     Route::any("/profile", [
@@ -39,4 +45,5 @@ Route::any("/reset/{token}", [
     "as"   => "user/reset",
     "uses" => "UserController@reset"
 ]);
+
 
