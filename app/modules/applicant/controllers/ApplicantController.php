@@ -123,6 +123,10 @@ class ApplicantController extends \BaseController
         return Redirect::to('applicant/login')->with('message', 'Your are now logged out!');
 
     }
+    public function Dashboard(){
+
+        return View::make('applicant::applicants.dashboard');
+    }
     public function show($id)
     {
         $applicant = Applicant::find($id);
@@ -331,17 +335,13 @@ class ApplicantController extends \BaseController
 
     public function applicantProfileIndex(){
         $applicant_id = ApplicantProfile::find(19);
-
         $profile = ApplicantProfile::where('id', '=', '1')->first();
-
         return View::make('applicant::applicant_profile.index')->with('profile',$profile);
     }
-
     public function applicantProfileCreate()
     {
         return View::make('applicant::applicant_profile._form');
     }
-
     public function applicantProfileStore(){
 
         $rules = array(
@@ -374,7 +374,6 @@ class ApplicantController extends \BaseController
         }
 
     }
-
     public function editApplicantProfile($id){
 
         $profile = ApplicantProfile::find($id);
@@ -382,7 +381,6 @@ class ApplicantController extends \BaseController
         return View::make('applicant::applicant_profile.edit', compact('profile'));
 
     }
-
     public function updateApplicantProfile($id){
 
         $rules = array(
@@ -420,10 +418,7 @@ class ApplicantController extends \BaseController
 
     }
 
-    public function Dashboard(){
 
-        return View::make('applicant::applicants.dashboard');
-    }
 
     public function editProfileImage($id){
 
@@ -460,41 +455,30 @@ class ApplicantController extends \BaseController
 
     }
 
-//  Applicant's Supporting Docs: Methods......................................
+//  Applicant's Supporting Docs: Methods.......
 
-    public function applicantSupportingDocsIndex(){
-
-        $supporting_docs = ApplicantSupportingDocs::where('applicant_id', '=', 4)->first();
+    public function sDocsIndex(){
+        $supporting_docs = AptSDocs::where('applicant_id', '=', 1)->first();
 
         if(!$supporting_docs){
-            $supporting_docs = new ApplicantSupportingDocs();
+            $supporting_docs = new AptSDocs();
             $supporting_docs->applicant_id = 4;
             $supporting_docs->save();
         }
-
         return View::make('applicant::applicant_supporting_docs.index', compact('supporting_docs', 'doc_type'));
     }
+    public function sDocsView($doc_type, $sdoc_id){
 
-    public function applicantSupportingDocsView($doc_type, $sdoc_id){
-
-        $supporting_docs = ApplicantSupportingDocs::where('id', '=', $sdoc_id)->first();
+        $supporting_docs = AptSDocs::where('id', '=', $sdoc_id)->first();
         if(!$supporting_docs)
             $supporting_docs = null;
 
         return View::make('applicant::applicant_supporting_docs.modals.supporting_docs', compact('supporting_docs', 'doc_type'));
     }
-
-    public function applicantSupportingDocsCreate(){
-
-       // return View::make('applicant::applicant_supporting_docs._form');
-       //$supporting_docs = ApplicantSupportingDocs::find();
-        return View::make('applicant::applicant_supporting_docs.add_goal',compact('supporting_docs'));
-    }
-
-    public function applicantSupportingDocsStore()
+    public function sDocsStore()
     {
         $data = Input::all();
-        $sdoc = $data['id'] ? ApplicantSupportingDocs::find($data['id']) : new ApplicantSupportingDocs;
+        $sdoc = $data['id'] ? AptSDocs::find($data['id']) : new AptSDocs;
 
         if ($data['doc_type']=='other') {
             $sdoc->other = Input::get('other');
@@ -508,13 +492,13 @@ class ApplicantController extends \BaseController
             $sdoc->$data['doc_type'] =$sdoc_file;
         }
         if ($sdoc->save())
-            return Redirect::to('applicant/supporting_docs/index')->with('message', 'successfully added');
+            return Redirect::to('apt/supporting_docs/index')->with('message', 'successfully added');
         else
-            return Redirect::to('applicant/supporting_docs/index')->with('message', 'Not Added');
+            return Redirect::to('apt/supporting_docs/index')->with('message', 'Not Added');
     }
 
 
-    //applicant Miscellaneous Info  miscelnfo
+//applicant Miscellaneous Information.......
 
     public function miscInfoIndex(){
         $data = AptMiscInfo::where('applicant_id', '=', '1')->first();
@@ -579,17 +563,17 @@ class ApplicantController extends \BaseController
 
     }
 
-    // applicant Academic Records.............
+// applicant Academic Records.............
 
-    public function academicIndex(){
+    public function acmRecordsIndex(){
+
         $model = AptAcademic::where('applicant_id', '=', '1')->get();
-
         return View::make('applicant::apt_academic_records.index', compact('model'));
     }
-    public function academicCreate(){
+    public function acmRecordsCreate(){
         return View::make('applicant::apt_academic_records.create');
     }
-    public function academicStore(){
+    public function acmRecordsStore(){
 
         $rules = array(
 //            'level_of_education' => 'required',
@@ -629,14 +613,11 @@ class ApplicantController extends \BaseController
         }
 
     }
-
-    public function academicShow($id)
+    public function acmRecordsShow($id)
     {
         $model = AptAcademic::find($id);
-
         return View::make('applicant::apt_academic_records.modals.show',compact('model'));
     }
-
     public function academicDelete($id){
 
         try {

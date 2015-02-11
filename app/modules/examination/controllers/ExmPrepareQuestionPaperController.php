@@ -1,6 +1,6 @@
 <?php
 
-class E_ExmPrepareQuestionPaperController extends \BaseController {
+class ExmPrepareQuestionPaperController extends \BaseController {
 
 // method for index : past
 //	public function index()
@@ -22,10 +22,9 @@ class E_ExmPrepareQuestionPaperController extends \BaseController {
     public function faculty_index()
     {
         $data = ExmQuestion::with('relCourseManagement', 'relCourseManagement.relYear', 'relCourseManagement.relSemester','relCourseManagement.relCourse.relSubject.relDepartment')
-        ->get();
+            ->get();
         return View::make('examination::prepare_question_paper.faculty_index')->with('datas', $data);
     }
-//converted
 
 // method for view question : past
 //    public function ViewQuestion()
@@ -63,7 +62,6 @@ class E_ExmPrepareQuestionPaperController extends \BaseController {
         return View::make('examination::prepare_question_paper.faculty_viewQuestion')->with('viewPrepareQuestionPaperFaculty',$view_question_faculty);
 
     }
-    //converted
 
 
 
@@ -82,20 +80,17 @@ class E_ExmPrepareQuestionPaperController extends \BaseController {
         $question_list_faculty = ExmQuestionItems::orderBy('id', 'DESC')->paginate(15);
         return View::make('examination::prepare_question_paper.faculty_QuestionList')->with('QuestionListFaculty',$question_list_faculty);
     }
-    //converted
-
-
 // method for Create Question  Paper : AMW
-	public function amw_createQuestionPaper()
-	{
+    public function amw_createQuestionPaper()
+    {
         return View::make('examination::prepare_question_paper.create')->compact('crt_question_ppr');
         //ok
-	}
+    }
     //converted
 
 // method for Store Question Paper : AMW
-	public function amw_storeQuestionPaper()
-	{
+    public function amw_storeQuestionPaper()
+    {
         $data = Input::all();
 
         $prepare_question_paper = new ExmQuestion();
@@ -129,7 +124,7 @@ class E_ExmPrepareQuestionPaperController extends \BaseController {
             return Redirect::to('prepare_question_paper/create');
         }
         //ok
-	}
+    }
 // method for edit Question Paper : Past
 //    public function edit($id)
 //    {
@@ -204,13 +199,12 @@ class E_ExmPrepareQuestionPaperController extends \BaseController {
 
         return View::make('examination::prepare_question_paper.faculty_add_question_item', compact('total_marks', 'qid2'));
     }
-    //converted
 
 // method for Store Question Items : Faculty
     public function faculty_storeQuestionItems()
     {
 
-       $data = Input::all();
+        $data = Input::all();
 
         $faculty_store_question_items = new ExmQuestionItems();
 
@@ -239,10 +233,10 @@ class E_ExmPrepareQuestionPaperController extends \BaseController {
                             $exm_question_opt->exm_question_items_id = $exm_question_items_id;
                             $exm_question_opt->title = $value;
                             $exm_question_opt->answer = 0;
-                                foreach ($opt_answer as $oa) {
+                            foreach ($opt_answer as $oa) {
                                 if ($oa == $key)
                                     $exm_question_opt->answer = 1;
-                                }
+                            }
                             $exm_question_opt->save();
                             $i++;
                         }
@@ -280,13 +274,13 @@ class E_ExmPrepareQuestionPaperController extends \BaseController {
                     }
                 }
             }else{
-                  $faculty_store_question_items->question_type = 'text';
-                    if($faculty_store_question_items->save()){
-                            echo "Save";
-                    }else{
-                        echo "No";
-                    }
+                $faculty_store_question_items->question_type = 'text';
+                if($faculty_store_question_items->save()){
+                    echo "Save";
+                }else{
+                    echo "No";
                 }
+            }
 
             // redirect
             Session::flash('message', 'Successfully Added!');
@@ -302,7 +296,7 @@ class E_ExmPrepareQuestionPaperController extends \BaseController {
         }
 
     }
-//converted
+
 // method for View Question Items: AMW
     public function amw_ViewQuestionItems($id)
     {
@@ -332,13 +326,8 @@ class E_ExmPrepareQuestionPaperController extends \BaseController {
 
         return View::make('examination::prepare_question_paper.faculty_viewQuestionItems', compact('faculty_ViewQuestionItems', 'options'));
     }
-<<<<<<< HEAD
-//converted
-// method for Assign Question Paper Creation Task to teacher : AMW
-=======
 
 // method for Assign Question Paper Creation Task to faculty : AMW
->>>>>>> 25f0aba3773e0c535af6939987de9f26ee1f9f89
     public function assignTo()
     { echo "Not Done Yet"; }
     //converted
@@ -356,7 +345,7 @@ class E_ExmPrepareQuestionPaperController extends \BaseController {
         }
         //ok
     }
-//converted
+
     public function batchDelete()
     {
         try {
@@ -364,13 +353,14 @@ class E_ExmPrepareQuestionPaperController extends \BaseController {
             return Redirect::back()->with('message', 'Successfully deleted Information!');
         }
         catch
-            (exception $ex){
-                return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+        (exception $ex){
+            return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
 
-            }
-    //ok
+        }
+        //ok
     }
-//converted
+
+
     public function batchItemsDelete()
     {
         try {
@@ -384,7 +374,7 @@ class E_ExmPrepareQuestionPaperController extends \BaseController {
         }
         //ok
     }
-//converted
+
     public function batchOptionAnswerDelete()
     {
 
@@ -401,7 +391,7 @@ class E_ExmPrepareQuestionPaperController extends \BaseController {
         }
         //ok
     }
-//converted
+
 // method for Edit Question Items : Faculty
     public function faculty_EditQuestionItems($id)
     {
@@ -416,7 +406,7 @@ class E_ExmPrepareQuestionPaperController extends \BaseController {
         return View::make('examination::prepare_question_paper.faculty_editQuestionItems', compact('qid', 'options'));
 
     }
-//converted
+
 // method for Update Question Items : Faculty
     public function faculty_updateQuestionItems($id)
     {
@@ -509,13 +499,13 @@ class E_ExmPrepareQuestionPaperController extends \BaseController {
                 }
             }else {
 
-                    $faculty_store_question_items->question_type = 'text';
-                    $faculty_store_question_items->save();
+                $faculty_store_question_items->question_type = 'text';
+                $faculty_store_question_items->save();
 
 
-                    $exm_question_opt = new ExmQuestionOptionAnswer();
+                $exm_question_opt = new ExmQuestionOptionAnswer();
 
-                    $exm_question_opt->destroy(Request::get('id'));
+                $exm_question_opt->destroy(Request::get('id'));
 
 
 

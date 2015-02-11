@@ -241,7 +241,7 @@ function deleteNearestTr(getId, acmId)
         if(check)
         {
             $.ajax({
-                url: 'acmconfigdelete/ajax',
+                url: '/academic/amw/config/acmconfigdelete/ajax',
                 type: 'POST',
                 dataType: 'json',
                 data: {acm_course_config_id: is_config_id}
@@ -270,12 +270,12 @@ function deleteNearestTr(getId, acmId)
 
 
 /***********************FACULTY MARKS DISTRIBUTION GENERATION START***********************/
-$tableItemCounter = 0;//To stop additem if exist
-var arrayItems=[];//To stop additem if exist
-
-function editCourseListItem(itemid){
-    arrayItems.push(itemid);
-}
+//$tableItemCounter = 0;//To stop additem if exist
+//var arrayItems=[];//To stop additem if exist
+//
+//function editCourseListItem(itemid){
+//    arrayItems.push(itemid);
+//}
 
 function addMarksDistItem() {
 

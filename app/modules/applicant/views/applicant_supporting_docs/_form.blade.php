@@ -12,14 +12,16 @@
 <h3>Personal Information</h3>
 {{ Form::open(array('class'=>'form-horizontal','url' => 'applicant/supporting_docs/store', 'method' =>'post', 'files'=>'true','id'=>'signup-form')) }}
 
+{{ Form::hidden('applicant_id', $applicant_id = 1, array('class'=>'form-control')) }}
+
  <div class="form-group">
     <span class="text-muted"><em><span style="color:red;">  * </span><b>Indicates required field</b> </em></span>
  </div>
 
- <div class="form-group">
- {{ Form::label('applicant_id','Name of Applicant' ) }}
- {{ Form::select('applicant_id', Applicant::orderBy('username')->lists('username', 'id')+[''=>'Select Option'] ,'', ['class'=>'form-control']) }}
- </div>
+ {{--<div class="form-group">--}}
+ {{--{{ Form::label('applicant_id','Name of Applicant' ) }}--}}
+ {{--{{ Form::select('applicant_id', Applicant::orderBy('username')->lists('username', 'id')+[''=>'Select Option'] ,'', ['class'=>'form-control']) }}--}}
+ {{--</div>--}}
 
  <div class='form-group'>
  <div>{{ Form::label('academic_goal_statement', 'academic_goal_statement') }}</div>
