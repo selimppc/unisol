@@ -6,7 +6,7 @@
  * Time: 2:07 PM
  */
 
-class ApplicantPersonalInfo extends Eloquent{
+class AptPersonalInfo extends Eloquent{
 
     protected $table = 'applicant_meta';
 

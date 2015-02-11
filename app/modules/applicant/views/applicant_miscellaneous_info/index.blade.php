@@ -12,9 +12,9 @@
 
      <h4 style="font-size: large">Applicant Miscellaneous Information </h4>
         @if($data != null)
-            <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('applicant/miscellaneous_info/edit/' . $data->id  ) }}" data-toggle="modal" data-target="#myeditModal" >Edit </a>
+            <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('apt/misc_info/edit/' . $data->id  ) }}" data-toggle="modal" data-target="#myeditModal" >Edit </a>
         @else
-            <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('applicant/miscellaneous_info/create')}}" data-toggle="modal" data-target="#addModal" >Add  Data</a>
+            <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('apt/misc_info/create')}}" data-toggle="modal" data-target="#addModal" >Add  Data</a>
 
         @endif
                     <thead>

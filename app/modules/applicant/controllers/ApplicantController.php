@@ -81,12 +81,10 @@ class ApplicantController extends \BaseController
         return Redirect::to('usersign/login');
 
     }
-
     public function Login()
     {
         return View::make('admission::signup.login');
     }
-
     public function applicantLogin() {
 
         $credentials = array(
@@ -112,7 +110,6 @@ class ApplicantController extends \BaseController
             }
         }
     }
-
     public function applicantLogout() {
 
         //$model= User::find(Auth::user()->id);
@@ -126,13 +123,11 @@ class ApplicantController extends \BaseController
         return Redirect::to('applicant/login')->with('message', 'Your are now logged out!');
 
     }
-
     public function show($id)
     {
         $applicant = Applicant::find($id);
         return View::make('applicant::applicants.show', compact('applicant'));
     }
-
     public function edit($id)
     {
         $applicant = Applicant::find($id);
@@ -196,22 +191,24 @@ class ApplicantController extends \BaseController
         }
     }
 
-    //  Applicant's PersonalInformations: Methods......................................
-
-    public function applicantPersonalInfoCreate(){
-
-        return View::make('applicant::applicant_personal_info._form');
-
+    //  Applicant's PersonalInformations: Methods.................................................
+    public function personalInfoIndex()
+    {
+        $applicant_id = Applicant::find(2)->id;
+        $applicant_personal_info = AptPersonalInfo::where('applicant_id', '=',$applicant_id )->first();
+        return View::make('applicant::applicant_personal_info.index',compact('applicant_personal_info'));
     }
-
-    public function applicantPersonalInfoStore(){
+    public function personalInfoCreate(){
+        return View::make('applicant::applicant_personal_info._form');
+    }
+    public function personalInfoStore(){
 
         $rules = array(
             'national_id' => 'required',
         );
         $validator = Validator::make(Input::all(), $rules);
         if ($validator->passes()) {
-            $applicant_personal_info =new ApplicantPersonalInfo();
+            $applicant_personal_info =new AptPersonalInfo();
             $applicant_personal_info->applicant_id = Input::get('applicant_id');
             $applicant_personal_info->fathers_name = Input::get('fathers_name');
             $applicant_personal_info->mothers_name = Input::get('mothers_name');
@@ -238,30 +235,18 @@ class ApplicantController extends \BaseController
         }
 
     }
-
-    public function applicantPersonalInfoIndex()
-    {
-        $applicant_id = Applicant::find(3)->id;
-
-        $applicant_personal_info = ApplicantPersonalInfo::where('applicant_id', '=',$applicant_id )->first();
-        return View::make('applicant::applicant_personal_info.index',compact('applicant_personal_info'));
-    }
-
-    public function applicantPersonalInfoEdit($id){
-
-        $applicant_personal_info = ApplicantPersonalInfo::find($id);
-
+    public function personalInfoEdit($id){
+        $applicant_personal_info = AptPersonalInfo::find($id);
         return View::make('applicant::applicant_personal_info.edit', compact('applicant_personal_info'));
     }
-
-    public function applicantPersonalInfoUpdate($id){
+    public function personalInfoUpdate($id){
 
         $rules = array(
             'national_id' => 'required',
         );
         $validator = Validator::make(Input::all(), $rules);
         if ($validator->passes()) {
-            $applicant_personal_info = ApplicantPersonalInfo::find($id);
+            $applicant_personal_info = AptPersonalInfo::find($id);
             $applicant_personal_info->national_id = Input::get('national_id');
             $applicant_personal_info->fathers_name = Input::get('fathers_name');
             $applicant_personal_info->mothers_name = Input::get('mothers_name');
@@ -276,11 +261,11 @@ class ApplicantController extends \BaseController
         }
     }
 
+    // Applicant's Extra-Curricular Activities......................................................
     public function applicantExtraCurricular()
     {
         return View::make('applicant::extra_curricular._form');
     }
-
     public function applicantExtraCurricularStore(){
 
         $rules = array(
@@ -302,7 +287,6 @@ class ApplicantController extends \BaseController
         }
 
     }
-
     public function applicantExtraCurricularActivities()
     {
         $user_id = Auth::user()->id;
@@ -312,14 +296,12 @@ class ApplicantController extends \BaseController
         return View::make('applicant::extra_curricular.index', compact('data'));
 
     }
-
     public function editExtraCurricular($id)
     {
         $extra_curricular = ExtraCurricularActivities::find($id);
 
         return View::make('applicant::extra_curricular.edit', compact('extra_curricular'));
     }
-
     public function updateExtraCurricular($id){
 
         $rules = array(
@@ -340,7 +322,6 @@ class ApplicantController extends \BaseController
             return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
         }
     }
-
     public function applicantIndex(){
 
         return View::make('applicant::applicants.index');
@@ -535,14 +516,13 @@ class ApplicantController extends \BaseController
 
     //applicant Miscellaneous Info  miscelnfo
 
-    public function applicantMiscellaneousInfoIndex(){
-        $data = ApplicantMiscellaneousInfo::where('applicant_id', '=', '3')->first();
+    public function miscInfoIndex(){
+        $data = AptMiscInfo::where('applicant_id', '=', '1')->first();
         return View::make('applicant::applicant_miscellaneous_info.index',compact('data'));
     }
-    public function applicantMiscellaneousInfoCreate(){
+    public function miscInfoCreate(){
         return View::make('applicant::applicant_miscellaneous_info.modal.miscellaneous');
     }
-
     public function miscInfoStore(){
         $rules = array(
             'ever_admit_this_university' => 'required',
@@ -553,7 +533,7 @@ class ApplicantController extends \BaseController
         );
         $validator = Validator::make(Input::all(), $rules);
         if ($validator->passes()) {
-            $data =new ApplicantMiscellaneousInfo();
+            $data =new AptMiscInfo();
             $data->applicant_id = Input::get('applicant_id');
             $data->ever_admit_this_university = Input::get('ever_admit_this_university');
             $data->ever_dismiss = Input::get('ever_dismiss');
@@ -565,16 +545,14 @@ class ApplicantController extends \BaseController
 
             return Redirect::back()->with('message', 'Successfully added Information!');
         } else {
-           return Redirect::to('applicant/miscellaneous_info/index')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
+           return Redirect::to('apt/misc_info/index')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
         }
 
     }
-
     public function miscInfoEdit($id){
-        $model= ApplicantMiscellaneousInfo::find($id);
+        $model= AptMiscInfo::find($id);
         return View::make('applicant::applicant_miscellaneous_info.modal.edit', compact('model'));
     }
-
     public function miscInfoUpdate($id){
         $data= Input::all();
 
@@ -584,7 +562,7 @@ class ApplicantController extends \BaseController
         $validator = Validator::make(Input::all(), $rules);
         if ($validator->passes()) {
 
-            $model = ApplicantMiscellaneousInfo::find($id);
+            $model = AptMiscInfo::find($id);
 
             $model->ever_admit_this_university = Input::get('ever_admit_this_university');
             $model->ever_dismiss = Input::get('ever_dismiss');

@@ -9,9 +9,9 @@
   <div style="padding: 20px;">
         <h4> </h4>
 
-  {{Form::open(array('url'=>'applicant/miscInfoStore', 'class'=>'form-horizontal','files'=>true))}}
+  {{Form::open(array('url'=>'apt/misc_info/store', 'class'=>'form-horizontal','files'=>true))}}
 
-  {{ Form::hidden('applicant_id', $applicant_id = 3, array('class'=>'form-control')) }}
+  {{ Form::hidden('applicant_id', $applicant_id = 1, array('class'=>'form-control')) }}
 
 <div class='form-group'>
       <div>{{ Form::label('ever_admit_this_university', 'Ever admit this university ?') }}</div>

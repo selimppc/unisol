@@ -114,4 +114,11 @@ class UserController extends \BaseController {
         });
     }
 
+
+
+    /* Tanin */
+    public function userDashboard(){
+
+    }
+
 }
