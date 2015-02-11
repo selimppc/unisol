@@ -13,7 +13,7 @@
     <p class="alert">{{ Session::get('message') }}</p>
     @endif
 
-    <p>Welcome to your Dashboard. You rock!</p>
+    <p>Welcome to your Dashboard. You are <b class="btn btn-sm btn-info">{{Auth::user()->username}}</b>! </p>
 
 
     {{ HTML::linkAction('UserController@logout', 'Logout') }}
