@@ -114,7 +114,8 @@
                   <ul class="dropdown-menu">
                        <li><a tabindex="-1" a href="{{URL::to('/') }}"> Enrollment </a></li>
                        <li class="divider"></li>
-                       <li><a tabindex="-1" a href="{{URL::to('academic/amw/') }}">Mark Distribution Courses</a></li>
+                       <li><a tabindex="-1" a href="{{URL::to('academic/amw/') }}">Mark Distribution Amw</a></li>
+                      <li><a tabindex="-1" a href="{{URL::to('academic/faculty/') }}">Mark Distribution Faculty</a></li>
                        <li class="divider"></li>
                        <li><a tabindex="-1" a href="{{URL::to('class/') }}">Theory Class </a></li>
                        <li class="divider"></li>
@@ -161,8 +162,10 @@
                      {{--<li><a tabindex="-1" href="{{ action('ExmManageExaminerController@index') }}"> Manage Examiner </a></li>--}}
                      <li class="divider"></li>
 
-                    <li><a tabindex="-1" href="{{ action('ExmAmwController@index') }}"> Prepare Question Paper </a></li>
+                    <li><a tabindex="-1" href="{{ action('Exm'. ucwords( Role::find(Auth::user()->role_id)->title ) .'Controller@index') }}"> Prepare Question Paper </a></li>
                     <li class="divider"></li>
+                    {{--<li><a tabindex="-1" href="{{ action('ExmFctController@index') }}"> Prepare Question Paper : Faculty </a></li>--}}
+                    {{--<li class="divider"></li>--}}
 
                     {{--<li><a tabindex="-1" href="{{ action('ExmPrepareTabulationController@index') }}"> Prepare Tabulation </a></li>--}}
                     <li class="divider"></li>
@@ -205,7 +208,8 @@
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a href="" role="button" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-user"></i>Admin<i class="caret"></i>
+
+                        <a href="" role="button" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-user"></i> Admin <i class="caret"></i>
 
                         </a>
                         <ul class="dropdown-menu">

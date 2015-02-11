@@ -2,14 +2,20 @@
 
 class AcmFacultyController extends \BaseController {
 
-//    function __construct() {
-//        $this->beforeFilter('academicFaculty', array('except' => array('index')));
-//    }
+    function __construct() {
+        $this->beforeFilter('academicFaculty', array('except' => array('')));
+		//$this->beforeFilter('academicFaculty', array('except' => array('index')));
+    }
 
 //**********************Start faculty code********************
 
+	public function create(){
+		echo "create";
+	}
+
 	public function  index()
 	{
+
 		$datas= CourseManagement::with('relYear', 'relSemester', 'relCourse', 'relCourse.relSubject.relDepartment','relCourseType')
 			->get();
 		return View::make('academic::mark_distribution_courses.faculty.index')->with('title', 'Course List')->with('datas', $datas);

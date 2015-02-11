@@ -1,10 +1,10 @@
 @extends('layouts.master')
 @section('sidebar')
-    @include('examination::prepare_question_paper._sidebar')
+    @include('examination::amw.prepare_question_paper._sidebar')
 @stop
 @section('content')
              <h1>Welcome to Question Items : AMW </h1> <br>
-              {{ Form::open(array('url' => 'prepare_question_paper/batchItemsDelete')) }}
+              {{ Form::open(array('url' => 'examination/amw/batchItemsDelete')) }}
               <table id="example" class="table table-striped  table-bordered"  >
                      <thead>
                           <br>
@@ -26,7 +26,7 @@
                              <td>{{ $question_list_amw->question_type }}</td>
                              <td>{{ $question_list_amw->marks }}</td>
                              <td>
-                              <a href="{{ URL::route('prepare_question_paper.amw_ViewQuestionItems', ['id'=>$question_list_amw->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#ViewQuestionItems" data-placement="left" title="Show" href="#"> View </a>
+                              <a href="{{ URL::route('examination.amw.viewQuestionItems', ['id'=>$question_list_amw->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#ViewQuestionItems" data-placement="left" title="Show" href="#"> View </a>
                              </td>
                          </tr>
                        @endforeach
@@ -34,5 +34,5 @@
               </table>
               {{form::close() }}
 
-    @include('examination::prepare_question_paper/_modal');
+    @include('examination::amw.prepare_question_paper._modal');
 @stop

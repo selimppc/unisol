@@ -22,7 +22,7 @@ class ExmPrepareQuestionPaperController extends \BaseController {
     public function faculty_index()
     {
         $data = ExmQuestion::with('relCourseManagement', 'relCourseManagement.relYear', 'relCourseManagement.relSemester','relCourseManagement.relCourse.relSubject.relDepartment')
-        ->get();
+            ->get();
         return View::make('examination::prepare_question_paper.faculty_index')->with('datas', $data);
     }
 
@@ -81,16 +81,16 @@ class ExmPrepareQuestionPaperController extends \BaseController {
         return View::make('examination::prepare_question_paper.faculty_QuestionList')->with('QuestionListFaculty',$question_list_faculty);
     }
 // method for Create Question  Paper : AMW
-	public function amw_createQuestionPaper()
-	{
+    public function amw_createQuestionPaper()
+    {
         return View::make('examination::prepare_question_paper.create')->compact('crt_question_ppr');
         //ok
-	}
+    }
     //converted
 
 // method for Store Question Paper : AMW
-	public function amw_storeQuestionPaper()
-	{
+    public function amw_storeQuestionPaper()
+    {
         $data = Input::all();
 
         $prepare_question_paper = new ExmQuestion();
@@ -124,7 +124,7 @@ class ExmPrepareQuestionPaperController extends \BaseController {
             return Redirect::to('prepare_question_paper/create');
         }
         //ok
-	}
+    }
 // method for edit Question Paper : Past
 //    public function edit($id)
 //    {
@@ -204,7 +204,7 @@ class ExmPrepareQuestionPaperController extends \BaseController {
     public function faculty_storeQuestionItems()
     {
 
-       $data = Input::all();
+        $data = Input::all();
 
         $faculty_store_question_items = new ExmQuestionItems();
 
@@ -233,10 +233,10 @@ class ExmPrepareQuestionPaperController extends \BaseController {
                             $exm_question_opt->exm_question_items_id = $exm_question_items_id;
                             $exm_question_opt->title = $value;
                             $exm_question_opt->answer = 0;
-                                foreach ($opt_answer as $oa) {
+                            foreach ($opt_answer as $oa) {
                                 if ($oa == $key)
                                     $exm_question_opt->answer = 1;
-                                }
+                            }
                             $exm_question_opt->save();
                             $i++;
                         }
@@ -274,13 +274,13 @@ class ExmPrepareQuestionPaperController extends \BaseController {
                     }
                 }
             }else{
-                  $faculty_store_question_items->question_type = 'text';
-                    if($faculty_store_question_items->save()){
-                            echo "Save";
-                    }else{
-                        echo "No";
-                    }
+                $faculty_store_question_items->question_type = 'text';
+                if($faculty_store_question_items->save()){
+                    echo "Save";
+                }else{
+                    echo "No";
                 }
+            }
 
             // redirect
             Session::flash('message', 'Successfully Added!');
@@ -353,11 +353,11 @@ class ExmPrepareQuestionPaperController extends \BaseController {
             return Redirect::back()->with('message', 'Successfully deleted Information!');
         }
         catch
-            (exception $ex){
-                return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+        (exception $ex){
+            return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
 
-            }
-    //ok
+        }
+        //ok
     }
 
 
@@ -499,13 +499,13 @@ class ExmPrepareQuestionPaperController extends \BaseController {
                 }
             }else {
 
-                    $faculty_store_question_items->question_type = 'text';
-                    $faculty_store_question_items->save();
+                $faculty_store_question_items->question_type = 'text';
+                $faculty_store_question_items->save();
 
 
-                    $exm_question_opt = new ExmQuestionOptionAnswer();
+                $exm_question_opt = new ExmQuestionOptionAnswer();
 
-                    $exm_question_opt->destroy(Request::get('id'));
+                $exm_question_opt->destroy(Request::get('id'));
 
 
 

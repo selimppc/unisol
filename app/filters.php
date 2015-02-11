@@ -151,6 +151,7 @@ Route::filter('exmFaculty', function()
     }
 
 });
+
 Route::filter('exmAmw', function()
 {
     if (Auth::check()){

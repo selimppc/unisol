@@ -1,63 +1,77 @@
 <?php
+//AMW ROUTE CONFIGURATION
+Route::any('examination/amw/index','ExmAmwController@index');
 
-//examination
-Route::any('examination/index','ExaminationController@index');
-Route::any('examination/create','ExaminationController@create');
+Route::any('examination/amw/storeQuestionPaper','ExmAmwController@storeQuestionPaper');
 
-//enrollment
-Route::any('enrollment/index','ExmEnrollmentController@index');
-Route::any('enrollment/create','ExmEnrollmentController@create');
+Route::any('examination/amw/viewQuestion/{id}', [
+    'as' => 'examination.amw.viewQuestion',
+    'uses' => 'ExmAmwController@viewQuestion'
+]);
+Route::any('examination/amw/create','ExmAmwController@createQuestionPaper');
 
-//generate certificate
-Route::any('generate_certificate/index','ExmGenerateCertificateController@index');
-Route::any('generate_certificate/create','ExmGenerateCertificateController@create');
+Route::any('examination/amw/store','ExmAmwController@storeQuestionPaper');
 
-//manage examination center
-Route::get('manage_examination_center/index','ExmManageExaminationCenterController@index');
-Route::any('manage_examination_center/create','ExmManageExaminationCenterController@create');
+Route::any('examination/amw/assignto','ExmAmwController@assignTo');
 
-//manage examiner
-Route::get('manage_examiner/index','ExmManageExaminerController@index');
-Route::any('manage_examiner/create','ExmManageExaminerController@create');
+Route::any('examination/amw/editQuestionPaper/{id}', [
+    'as' => 'examination.amw.editQuestionPaper',
+    'uses' => 'ExmAmwController@editQuestionPaper'
+]);
+Route::any('examination/amw/updateQuestionPaper/{id}', [
+    'as' => 'examination.amw.updateQuestionPaper',
+    'uses' => 'ExmAmwController@updateQuestionPaper' ]);
 
-//prepare tabulation
-Route::get('prepare_tabulation/index','ExmPrepareTabulationController@index');
-Route::any('prepare_tabulation/create','ExmPrepareTabulationController@create');
+Route::any('examination/amw/questionList','ExmAmwController@questionList');
 
-//prepare question paper
-Route::any('prepare_question_paper/index','ExmPrepareQuestionPaperController@index');
-Route::any('prepare_question_paper/create','ExmPrepareQuestionPaperController@amw_createQuestionPaper');
-Route::any('prepare_question_paper/store','ExmPrepareQuestionPaperController@amw_storeQuestionPaper');
-Route::any('prepare_question_paper/show/{id}', [ 'as' => 'prepare_question_paper.show', 'uses' => 'ExmPrepareQuestionPaperController@show' ]);
-Route::any('prepare_question_paper/edit/{id}', ['as' => 'prepare_question_paper.edit', 'uses' => 'ExmPrepareQuestionPaperController@edit' ]);
+Route::any('examination/amw/viewQuestionItems/{id}', [
+    'as' => 'examination.amw.viewQuestionItems',
+    'uses' => 'ExmAmwController@viewQuestionItems' ]);
 
-Route::any('prepare_question_paper/destroy/{id}', ['as' => 'prepare_question_paper.destroy', 'uses' => 'ExmPrepareQuestionPaperController@destroy' ]);
-Route::any('prepare_question_paper/batchDelete','ExmPrepareQuestionPaperController@batchDelete');
+Route::any('examination/amw/destroy/{id}', ['as' => 'examination.amw.destroy', 'uses' => 'ExmAmwController@destroy' ]);
 
-Route::any('prepare_question_paper/faculty_ViewQuestionItems/{id}', [ 'as' => 'prepare_question_paper.faculty_ViewQuestion', 'uses' => 'ExmPrepareQuestionPaperController@faculty_ViewQuestion' ]);
+Route::any('examination/amw/batchDelete','ExmAmwController@batchDelete');
 
-// AMW Part
-Route::any('prepare_question_paper/amw_index','ExmPrepareQuestionPaperController@amw_index');
-Route::any('prepare_question_paper/amw_ViewQuestion/{id}', [ 'as' => 'prepare_question_paper.amw_ViewQuestion', 'uses' => 'ExmPrepareQuestionPaperController@amw_ViewQuestion' ]);
-Route::any('prepare_question_paper/amw_QuestionList','ExmPrepareQuestionPaperController@amw_QuestionList');
-Route::any('prepare_question_paper/amw_editQuestionPaper/{id}', ['as' => 'prepare_question_paper.amw_editQuestionPaper', 'uses' => 'ExmPrepareQuestionPaperController@amw_editQuestionPaper' ]);
-Route::any('prepare_question_paper/amw_updateQuestionPaper/{id}', ['as' => 'prepare_question_paper.amw_updateQuestionPaper','uses' => 'ExmPrepareQuestionPaperController@amw_updateQuestionPaper' ]);
-
-Route::any('prepare_question_paper/amw_ViewQuestionItems/{id}', [ 'as' => 'prepare_question_paper.amw_ViewQuestionItems', 'uses' => 'ExmPrepareQuestionPaperController@amw_ViewQuestionItems' ]);
-
-Route::any('prepare_question_paper/assignto','ExmPrepareQuestionPaperController@assignTo');
-// Faculty Part
-Route::any('prepare_question_paper/faculty_index','ExmPrepareQuestionPaperController@faculty_index');
-Route::any('prepare_question_paper/faculty_ViewQuestion/{id}', [ 'as' => 'prepare_question_paper.faculty_ViewQuestion', 'uses' => 'ExmPrepareQuestionPaperController@faculty_ViewQuestion' ]);
-Route::any('prepare_question_paper/faculty_QuestionList','ExmPrepareQuestionPaperController@faculty_QuestionList');
-Route::any('prepare_question_paper/faculty_add_question_items/{qid}', ['as' => 'prepare_question_paper.faculty_add_question_items', 'uses' => 'ExmPrepareQuestionPaperController@faculty_add_question_items'] );
-Route::any('prepare_question_paper/faculty_store_Question_Items','ExmPrepareQuestionPaperController@faculty_storeQuestionItems');
-Route::any('prepare_question_paper/faculty_EditQuestionItems/{id}', ['as' => 'prepare_question_paper.editQuestionItems', 'uses' => 'ExmPrepareQuestionPaperController@faculty_EditQuestionItems' ]);
-Route::any('prepare_question_paper/faculty_updateQuestionItems/{id}', ['as' => 'prepare_question_paper.updateQuestionItems','uses' => 'ExmPrepareQuestionPaperController@faculty_updateQuestionItems' ]);
-Route::any('prepare_question_paper/faculty_ViewQuestionItems/{id}', [ 'as' => 'prepare_question_paper.faculty_ViewQuestionItems', 'uses' => 'ExmPrepareQuestionPaperController@faculty_ViewQuestionItems' ]);
+Route::any('examination/amw/batchItemsDelete','ExmAmwController@batchItemsDelete');
 
 
-//examination/ : shob route er age dite hobe
 
-Route::any('prepare_question_paper/batchItemsDelete','ExmPrepareQuestionPaperController@batchItemsDelete');
-Route::any('prepare_question_paper/batchOptionAnswerDelete','ExmPrepareQuestionPaperController@batchOptionAnswerDelete');
+//FACULTY ROUTE CONFIGURATION
+Route::any('examination/faculty/index','ExmFacultyController@index');
+
+Route::any('examination/faculty/viewQuestion/{id}', [
+    'as' => 'examination.faculty.viewQuestion',
+    'uses' => 'ExmFacultyController@viewQuestion'
+]);
+
+Route::any('examination/faculty/questionList','ExmFacultyController@questionList');
+
+Route::any('examination/faculty/add_question_items/{qid}', [
+    'as' => 'examination.faculty.add_question_items',
+    'uses' => 'ExmFacultyController@add_question_items'
+] );
+
+Route::any('examination/faculty/viewQuestionItems/{id}', [
+    'as' => 'examination.faculty.viewQuestionItems',
+    'uses' => 'ExmFacultyController@viewQuestionItems'
+]);
+
+Route::any('examination/faculty/editQuestionItems/{id}', [
+    'as' => 'examination.faculty.editQuestionItems',
+    'uses' => 'ExmFacultyController@editQuestionItems' ]);
+
+Route::any('examination/faculty/store_Question_Items','ExmFacultyController@storeQuestionItems');
+
+
+Route::any('examination/faculty/updateQuestionItems/{id}', [
+    'as' => 'examination.faculty.updateQuestionItems',
+    'uses' => 'ExmFacultyController@updateQuestionItems'
+]);
+
+Route::any('examination/faculty/batchDelete','ExmFacultyController@batchDelete');
+
+Route::any('examination/faculty/batchItemsDelete','ExmFacultyController@batchItemsDelete');
+
+Route::any('examination/faculty/batchOptionAnswerDelete','ExmFacultyController@batchOptionAnswerDelete');
+
+

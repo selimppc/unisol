@@ -1,10 +1,10 @@
 @extends('layouts.master')
 @section('sidebar')
-    @include('examination::prepare_question_paper._sidebar')
+    @include('examination::amw.prepare_question_paper._sidebar')
 @stop
 @section('content')
         <h1>Welcome to Prepare Question paper : AMW </h1> <br>
-                    {{ Form::open(array('url' => 'prepare_question_paper/batchDelete')) }}
+                    {{ Form::open(array('url' => 'examination/amw/batchDelete')) }}
                         <table id="example" class="table table-striped  table-bordered"  >
                                     <thead>
                                           <div class="btn-group" style="margin-right: 10px">
@@ -38,9 +38,9 @@
                                                 <td>{{$prepare_question_paper_amw->relCourseManagement->relSemester->title}}</td>
                                                 <td> Mr. </td>
                                                 <td>
-                                                   <a href="{{ URL::route('prepare_question_paper.amw_ViewQuestion', ['id'=>$prepare_question_paper_amw->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#ViewQuestionPaperModal" data-placement="left" title="Show" href="#">View</a>
-                                                   <a href="{{ URL::route('prepare_question_paper.amw_editQuestionPaper', ['id'=>$prepare_question_paper_amw->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#edit_amw_QuestionPapermodal" data-placement="left" title="Edit" href="#">Edit</a>
-                                                   <a class="btn btn-default" href="{{ action('ExmPrepareQuestionPaperController@assignTo') }}">Assign</a>
+                                                   <a href="{{ URL::route('examination.amw.viewQuestion', ['id'=>$prepare_question_paper_amw->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#ViewQuestionPaperModal" data-placement="left" title="Show" href="#">View</a>
+                                                   <a href="{{ URL::route('examination.amw.editQuestionPaper', ['id'=>$prepare_question_paper_amw->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#edit_amw_QuestionPapermodal" data-placement="left" title="Edit" href="#">Edit</a>
+                                                   <a class="btn btn-default" href="{{ action('ExmAmwController@assignTo') }}">Assign</a>
                                                 </td>
                                             </tr>
                                       @endforeach
@@ -48,5 +48,5 @@
                         </table>
                     {{form::close() }}
 
-@include('examination::prepare_question_paper/_modal')
+@include('examination::amw.prepare_question_paper._modal')
 @stop

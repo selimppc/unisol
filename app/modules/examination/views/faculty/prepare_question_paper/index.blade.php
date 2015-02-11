@@ -1,10 +1,10 @@
 @extends('layouts.master')
 @section('sidebar')
-    @include('examination::prepare_question_paper._sidebar')
+    @include('examination::faculty.prepare_question_paper._sidebar')
 @stop
 @section('content')
         <h1>Welcome to Prepare Question paper : Faculty </h1> <br>
-                    {{ Form::open(array('url' => 'prepare_question_paper/batchDelete')) }}
+                    {{ Form::open(array('url' => 'examination/faculty/batchDelete')) }}
 
                         <table id="example" class="table table-striped  table-bordered"  >
                                     <thead>
@@ -32,8 +32,8 @@
                                             <td>{{$prepare_question_paper_faculty->relCourseManagement->relYear->title }} </td>
                                             <td>{{$prepare_question_paper_faculty->relCourseManagement->relSemester->title}}</td>
                                             <td>
-                                              <a href="{{ URL::route('prepare_question_paper.faculty_ViewQuestion', ['qid'=>$prepare_question_paper_faculty->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#ViewQuestionPaperModal" data-placement="left" title="Show" href="#">View</a>
-                                              <a href="{{ URL::route('prepare_question_paper.faculty_add_question_items', ['qid'=>$prepare_question_paper_faculty->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#AddQuestionItemsModal" data-toggle="tooltip" data-placement="left" title="Edit" href="#">Add Question Item</a>
+                                              <a href="{{ URL::route('examination.faculty.viewQuestion', ['qid'=>$prepare_question_paper_faculty->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#ViewQuestionPaperModal" data-placement="left" title="Show" href="#">View</a>
+                                              <a href="{{ URL::route('examination.faculty.add_question_items', ['qid'=>$prepare_question_paper_faculty->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#AddQuestionItemsModal" data-toggle="tooltip" data-placement="left" title="Edit" href="#">Add Question Item</a>
                                            </td>
                                          </tr>
                                       @endforeach
@@ -41,5 +41,5 @@
                         </table>
                     {{form::close() }}
 
-@include('examination::prepare_question_paper/_modal')
+@include('examination::faculty.prepare_question_paper._modal')
 @stop
