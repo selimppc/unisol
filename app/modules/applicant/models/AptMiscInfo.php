@@ -6,7 +6,7 @@
  * Time: 12:41 PM
  */
 
-class ApplicantMiscellaneousInfo extends Eloquent{
+class AptMiscInfo extends Eloquent{
 
     protected $table = 'applicant_miscellaneous_info';
 

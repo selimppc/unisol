@@ -93,13 +93,13 @@ Route::any('applicant/supporting_docs/add','ApplicantController@applicantGoalSta
 Route::any('applicant/supporting_docs/store','ApplicantController@applicantSupportingDocsStore');
 
 //applicant miscellaneous_info
-Route::any('applicant/miscellaneous_info/index','ApplicantController@applicantMiscellaneousInfoIndex');
+Route::any('apt/misc_info/index','ApplicantController@miscInfoIndex');
 
-Route::any('applicant/miscellaneous_info/create','ApplicantController@applicantMiscellaneousInfoCreate');
+Route::any('apt/misc_info/create','ApplicantController@miscInfoCreate');
 
-Route::any('applicant/miscInfoStore','ApplicantController@miscInfoStore');
+Route::any('apt/misc_info/store','ApplicantController@miscInfoStore');
 
-Route::any('applicant/miscellaneous_info/edit/{id}','ApplicantController@miscInfoEdit');
+Route::any('apt/misc_info/edit/{id}','ApplicantController@miscInfoEdit');
 
 Route::any('applicant/miscellaneous_info/update/{id}','ApplicantController@miscInfoUpdate');
 
