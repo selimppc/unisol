@@ -6,7 +6,7 @@
  * Time: 9:55 AM
  */
 
-class ApplicantSupportingDocs extends Eloquent{
+class AptSDocs extends Eloquent{
 
     protected $table = 'applicant_supporting_doc';
 

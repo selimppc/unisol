@@ -7,17 +7,7 @@
 
 <section class="content">
 <div class="box-body">
-
-    {{--<p>--}}
-        {{--<a class="pull-right btn btn-sm btn-info" href="{{ URL::to('applicant/academic_records/create')}}">Add Academic Records</a>--}}
-    {{--</p>--}}
-     {{--@if($model != null)--}}
-                    {{--<a class="pull-right btn btn-sm btn-info" href="" data-toggle="modal" data-target="#myeditModal" >Edit </a>--}}
-                {{--@else--}}
-                    {{--<a class="pull-right btn btn-sm btn-info" href="{{ URL::to('applicant/miscellaneous_info/create')}}" data-toggle="modal" data-target="#addModal" >Add  Data</a>--}}
-        <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('applicant/academic_records/create')}}">Add Academic Records</a>
-                {{--@endif--}}
-
+ <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('apt/acm_records/create')}}">Add Academic Records</a>
 </div>
 <div class="row">
 <div class="col-xs-12">
@@ -60,7 +50,7 @@
                <td>{{ $value->year_of_passing}}</td>
                <td>{{ $value->gpa }}</td>
                <td>
-                    <a href="{{ URL::to('applicant/academic_records/show/'.'1') }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal"><span class="glyphicon glyphicon-eye-open text-danger"></span></a>
+                    <a href="{{ URL::to('apt/acm_records/show/'.'1') }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal"><span class="glyphicon glyphicon-eye-open text-danger"></span></a>
                    <a class="btn btn-xs btn-default" href="" data-toggle="modal" data-target="#myeditModal" ><span class="glyphicon glyphicon-edit"></span></a>
                    <a data-href="{{ URL::to('applicant/academic_records/delete/'.'1') }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><span class="glyphicon glyphicon-trash text-danger"></span></a>
                </td>
