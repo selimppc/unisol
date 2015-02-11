@@ -7,8 +7,8 @@
                 <h4 class="modal-title" id="myModalLabel">Create Question paper</h4>
             </div>
             <div class="modal-body">
-                {{ Form::open(array('url' => 'prepare_question_paper/store', 'method' =>'post', 'role'=>'form','files'=>'true'))  }}
-                        @include('examination::prepare_question_paper/_amw_form')
+                {{ Form::open(array('url' => 'examination/amw/store', 'method' =>'post', 'role'=>'form','files'=>'true'))  }}
+                        @include('examination::prepare_question_paper/amw/_form')
                 {{ Form::close() }}
             </div>
             <div class="modal-footer">
