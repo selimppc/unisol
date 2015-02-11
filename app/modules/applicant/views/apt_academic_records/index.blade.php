@@ -45,14 +45,23 @@
 
       @foreach($model as $value)
           <tr>
-               <td>{{ $value->level_of_education }}</td>
-               <td></td>
+               <td>{{strtoupper($value->level_of_education ) }}</td>
+               <td>{{ $value->board_university}}</td>
                <td>{{ $value->year_of_passing}}</td>
-               <td>{{ $value->gpa }}</td>
                <td>
-                    <a href="{{ URL::to('apt/acm_records/show/'.'1') }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal"><span class="glyphicon glyphicon-eye-open text-danger"></span></a>
-                   <a class="btn btn-xs btn-default" href="" data-toggle="modal" data-target="#myeditModal" ><span class="glyphicon glyphicon-edit"></span></a>
-                   <a data-href="{{ URL::to('applicant/academic_records/delete/'.'1') }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><span class="glyphicon glyphicon-trash text-danger"></span></a>
+
+               @if($value->result_type =='division')
+               {{ $value->result }}
+               @else
+               {{$value->gpa}}
+               @endif
+
+               </td>
+
+               <td>
+                    <a href="{{ URL::to('apt/acm_records/show/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal"><span class="glyphicon glyphicon-eye-open text-danger"></span></a>
+                   <a class="btn btn-xs btn-default" href="{{ URL::to('apt/acm_records/edit/'.$value->id) }}" data-toggle="modal" data-target="#myeditModal" ><span class="glyphicon glyphicon-edit"></span></a>
+                   <a data-href="{{ URL::to('apt/acm_records/delete/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><span class="glyphicon glyphicon-trash text-danger"></span></a>
                </td>
 
           </tr>
@@ -97,6 +106,13 @@
 </div>
 </div>
 </div>
+
+<div class="modal fade" id="myeditModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+            </div>
+          </div>
+    </div>
 
 
 @stop

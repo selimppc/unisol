@@ -11,13 +11,13 @@ class ExmAmwController extends \BaseController {
         $data = ExmQuestion::with('relCourseManagement', 'relCourseManagement.relYear',
                                   'relCourseManagement.relSemester','relCourseManagement.relCourse.relSubject.relDepartment')
                                   ->get();
-        return View::make('examination::prepare_question_paper.amw.index')->with('datas',$data);
+        return View::make('examination::amw.prepare_question_paper.index')->with('datas',$data);
 	}
 	public function viewQuestion($id)
 	{
         $view_question_amw = ExmQuestion::find($id);
 
-        return View::make('examination::prepare_question_paper.amw.viewQuestion')->with('viewPrepareQuestionPaperAmw', $view_question_amw);
+        return View::make('examination::amw.prepare_question_paper.viewQuestion')->with('viewPrepareQuestionPaperAmw', $view_question_amw);
 	}
     public function assignTo()
     {
@@ -25,7 +25,7 @@ class ExmAmwController extends \BaseController {
     }
     public function createQuestionPaper()
     {
-        return View::make('examination::prepare_question_paper.amw.create')->compact('crt_question_ppr');
+        return View::make('examination::amw.prepare_question_paper.create')->compact('crt_question_ppr');
         //ok
     }
     public function storeQuestionPaper()
@@ -69,7 +69,7 @@ class ExmAmwController extends \BaseController {
         $prepare_question_paper = ExmQuestion::find($id);
 
         // Show the edit employee form.
-        return View::make('examination::prepare_question_paper.amw.editQuestionPaper')->with('edit_AmwQuestionPaper',$prepare_question_paper);
+        return View::make('examination::amw.prepare_question_paper.editQuestionPaper')->with('edit_AmwQuestionPaper',$prepare_question_paper);
         //ok
     }
     public function updateQuestionPaper($id)
@@ -106,7 +106,7 @@ class ExmAmwController extends \BaseController {
     public function questionList()
     {
         $question_list_amw = ExmQuestionItems::orderBy('id', 'DESC')->paginate(15);
-        return View::make('examination::prepare_question_paper.amw.questionList')->with('QuestionListAmw',$question_list_amw);
+        return View::make('examination::amw.prepare_question_paper.questionList')->with('QuestionListAmw',$question_list_amw);
     }
     public function viewQuestionItems($id)
     {
@@ -118,7 +118,7 @@ class ExmAmwController extends \BaseController {
             ->where('exm_question_items_id', $amw_ViewQuestionItems->id)
             ->get();
 
-        return View::make('examination::prepare_question_paper.amw.viewQuestionItems', compact('amw_ViewQuestionItems', 'options'));
+        return View::make('examination::amw.prepare_question_paper.viewQuestionItems', compact('amw_ViewQuestionItems', 'options'));
 
     }
     public function destroy($id)
@@ -159,13 +159,6 @@ class ExmAmwController extends \BaseController {
         }
         //ok
     }
-
-
-
-
-
-
-
 
 
 }

@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('sidebar')
-    @include('examination::prepare_question_paper.amw._sidebar')
+    @include('examination::amw.prepare_question_paper._sidebar')
 @stop
 @section('content')
              <h1>Welcome to Question Items : AMW </h1> <br>
@@ -34,5 +34,5 @@
               </table>
               {{form::close() }}
 
-    @include('examination::prepare_question_paper/_modal');
+    @include('examination::amw.prepare_question_paper._modal');
 @stop

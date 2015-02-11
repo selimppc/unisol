@@ -6,7 +6,7 @@
  * Time: 2:47 PM
  */
 
-class AptAcademic  extends Eloquent{
+class AptAcmRecords  extends Eloquent{
 
     protected $table = 'applicant_academic_record';
 }

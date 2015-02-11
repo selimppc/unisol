@@ -91,7 +91,11 @@ Route::any('apt/acm_records/store','ApplicantController@acmRecordsStore');
 
 Route::any('apt/acm_records/show/{id}','ApplicantController@acmRecordsShow');
 
-Route::any('apt/acm_records/delete/{id}','ApplicantController@acmRecordsDelete');
+Route::any('apt/acm_records/edit/{id}','ApplicantController@acmRecordsEdit');
+
+Route::any('apt/acm_records/update/{id}','ApplicantController@acmRecordsUpdate');
+
+Route::any('apt/acm_records/delete/{id}','ApplicantController@academicDelete');
 
 // Applicant Personal Information............................................................
 Route::any('apt/personal_info/index','ApplicantController@personalInfoIndex');

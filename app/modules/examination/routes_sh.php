@@ -37,41 +37,41 @@ Route::any('examination/amw/batchItemsDelete','ExmAmwController@batchItemsDelete
 
 
 //FACULTY ROUTE CONFIGURATION
-Route::any('examination/fct/index','ExmFacultyController@index');
+Route::any('examination/faculty/index','ExmFacultyController@index');
 
-Route::any('examination/fct/viewQuestion/{id}', [
-    'as' => 'examination.fct.viewQuestion',
+Route::any('examination/faculty/viewQuestion/{id}', [
+    'as' => 'examination.faculty.viewQuestion',
     'uses' => 'ExmFacultyController@viewQuestion'
 ]);
 
-Route::any('examination/fct/questionList','ExmFacultyController@questionList');
+Route::any('examination/faculty/questionList','ExmFacultyController@questionList');
 
-Route::any('examination/fct/add_question_items/{qid}', [
-    'as' => 'examination.fct.add_question_items',
+Route::any('examination/faculty/add_question_items/{qid}', [
+    'as' => 'examination.faculty.add_question_items',
     'uses' => 'ExmFacultyController@add_question_items'
 ] );
 
-Route::any('examination/fct/viewQuestionItems/{id}', [
-    'as' => 'examination.fct.viewQuestionItems',
+Route::any('examination/faculty/viewQuestionItems/{id}', [
+    'as' => 'examination.faculty.viewQuestionItems',
     'uses' => 'ExmFacultyController@viewQuestionItems'
 ]);
 
-Route::any('examination/fct/editQuestionItems/{id}', [
-    'as' => 'examination.fct.editQuestionItems',
+Route::any('examination/faculty/editQuestionItems/{id}', [
+    'as' => 'examination.faculty.editQuestionItems',
     'uses' => 'ExmFacultyController@editQuestionItems' ]);
 
-Route::any('examination/fct/store_Question_Items','ExmFacultyController@storeQuestionItems');
+Route::any('examination/faculty/store_Question_Items','ExmFacultyController@storeQuestionItems');
 
 
-Route::any('examination/fct/updateQuestionItems/{id}', [
-    'as' => 'examination.fct.updateQuestionItems',
+Route::any('examination/faculty/updateQuestionItems/{id}', [
+    'as' => 'examination.faculty.updateQuestionItems',
     'uses' => 'ExmFacultyController@updateQuestionItems'
 ]);
 
-Route::any('examination/fct/batchDelete','ExmFacultyController@batchDelete');
+Route::any('examination/faculty/batchDelete','ExmFacultyController@batchDelete');
 
-Route::any('examination/fct/batchItemsDelete','ExmFacultyController@batchItemsDelete');
+Route::any('examination/faculty/batchItemsDelete','ExmFacultyController@batchItemsDelete');
 
-Route::any('examination/fct/batchOptionAnswerDelete','ExmFacultyController@batchOptionAnswerDelete');
+Route::any('examination/faculty/batchOptionAnswerDelete','ExmFacultyController@batchOptionAnswerDelete');
 
 
