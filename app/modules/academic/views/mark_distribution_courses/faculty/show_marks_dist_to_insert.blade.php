@@ -54,22 +54,29 @@
                     {{ Form::hidden('course_id[]', $value->course_id2, ['class'=>'get_course_id']) }}
                     {{ $value->acm_dist_item_title}}
                 </td>
-                <td>
 
-                    {{--To check readonly field--}}
-                    @if($value->readonly == 1)
+                {{--To check readonly field--}}
+                <td>
+                     @if($value->readonly == 1)
                         <input type="text" name="marks_percent[]" value="{{ ($value->actual_marks/$datas->relCourse->evaluation_total_marks) * 100 }}" class="amw_marks_percent{{$key}}" onchange="calculateActualMarks(this.className, {{$datas->relCourse->evaluation_total_marks}},this.value)" readonly required />
                     @else
                         <input type="text" name="marks_percent[]" value="{{ ($value->actual_marks/$datas->relCourse->evaluation_total_marks) * 100 }}" class="amw_marks_percent{{$key}}" onchange="calculateActualMarks(this.className, {{$datas->relCourse->evaluation_total_marks}},this.value)" required />
                     @endif
-
-
                 </td>
+
                 <td>
                     <input type="text" name="actual_marks[]" value="{{$value->actual_marks}}" class="amw_actual_marks" readonly/>
                 </td>
 
-                <td>{{ Form::checkbox('isReadOnly[]', $counter, ($value->readonly)? $value->readonly : Input::old('isReadOnly'.$key)) }}</td>
+                {{--<td>--}}
+                    {{--@if($value->readonly == 1)--}}
+                        {{--{{ Form::checkbox('isReadOnly[]', $counter, ($value->readonly == 1) ? true : false, ['class'=>'form-control'] }}--}}
+                    {{--@else--}}
+                       {{--{{ Form::checkbox('isReadOnly[]', $counter, ($value->readonly)? $value->readonly : Input::old('isReadOnly'.$key)) }}--}}
+                    {{--@endif--}}
+                {{--</td>--}}
+
+
                 <td>{{ Form::radio('isDefault[]', $counter, ($value->default_item) ? $value->default_item : Input::old('isDefault'.$key)) }}</td>
                 <td>{{ Form::radio('isAttendance[]', $counter, ($value->is_attendance) ? $value->is_attendance : Input::old('isAttendance'.$key)) }}</td>
                 <td>
