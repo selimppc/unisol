@@ -641,7 +641,7 @@ class ApplicantController extends \BaseController
             $model->degree_name = Input::get('degree_name');
             $model->institute_name = Input::get('institute_name');
             $model->academic_group = Input::get('academic_group');
-//update board or university according to board_type
+ //update board or university according to board_type
             $model->board_type = Input::get('board_type');
             if($model->board_type == 'board')
                 $board_university = Input::get('board_university_board');
