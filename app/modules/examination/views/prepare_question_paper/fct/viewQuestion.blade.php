@@ -1,6 +1,6 @@
 <div style="padding: 10px; width: 90%;">
              <h2>Welcome to View Question : Faculty </h2> </br>
-             {{ Form::open(array('route'=>'prepare_question_paper.faculty_ViewQuestion','method' => '')) }}
+             {{ Form::open(array('route'=>'examination.fct.viewQuestion','method' => '')) }}
                      <div class="jumbotron text-center">
                          <h3><strong>Name of Examination :</strong>{{ ExmExamList::getExamName($viewPrepareQuestionPaperFaculty->exm_exam_list_id) }}</h3> </br>
                          {{--ExmExamList::getExamName($prepareQuestionPaper->exm_exam_list_id)--}}
@@ -11,6 +11,6 @@
                              <strong> Assign To:</strong> Coming Soon...</br>
                          </p>
                      </div>
-                     <a href="{{URL::to('prepare_question_paper/faculty_index')}}" class="btn btn-default">Close </a>
+                     <a href="{{URL::to('examination/fct/index')}}" class="btn btn-default">Close </a>
              {{ Form::close() }}
 </div>

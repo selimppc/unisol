@@ -1,10 +1,10 @@
 @extends('layouts.master')
 @section('sidebar')
-    @include('examination::prepare_question_paper._sidebar')
+    @include('examination::prepare_question_paper.amw._sidebar')
 @stop
 @section('content')
              <h1>Welcome to Question Items : AMW </h1> <br>
-              {{ Form::open(array('url' => 'prepare_question_paper/batchItemsDelete')) }}
+              {{ Form::open(array('url' => 'examination/amw/batchItemsDelete')) }}
               <table id="example" class="table table-striped  table-bordered"  >
                      <thead>
                           <br>

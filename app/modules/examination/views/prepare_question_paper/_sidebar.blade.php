@@ -32,15 +32,15 @@
             <div class="panel-body">
                 <table class="table">
                     <tr>
-                        {{--<td>--}}
-                         {{--<a href="{{ action('ExmPrepareQuestionPaperController@faculty_index') }}"> Home</a> <span class="label label-success"></span>--}}
-                        {{--</td>--}}
-                    {{--</tr>--}}
-                    {{--<tr>--}}
-                        {{--<td>--}}
-                         {{--<a href="{{ action('ExmPrepareQuestionPaperController@faculty_QuestionList') }}"> Question Items</a> <span class="label label-success"></span>--}}
-                        {{--</td>--}}
-                    {{--</tr>--}}
+                        <td>
+                         <a href="{{ action('ExmFacultyController@index') }}"> Home</a> <span class="label label-success"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                         <a href="{{ action('ExmFacultyController@questionList') }}"> Question Items</a> <span class="label label-success"></span>
+                        </td>
+                    </tr>
                 </table>
             </div>
     </div>
