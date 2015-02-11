@@ -604,8 +604,9 @@ class ApplicantController extends \BaseController
     // applicant Academic Records.............
 
     public function academicIndex(){
-        $model = AptAcademic::where('applicant_id', '=', '3')->first();
-        return View::make('applicant::apt_academic_records.index',compact('model'));
+        $model = AptAcademic::where('applicant_id', '=', '1')->get();
+
+        return View::make('applicant::apt_academic_records.index', compact('model'));
     }
     public function academicCreate(){
         return View::make('applicant::apt_academic_records.create');
@@ -629,8 +630,8 @@ class ApplicantController extends \BaseController
             $model->level_of_education = Input::get('level_of_education');
             $model->degree_name = Input::get('degree_name');
             $model->institute_name = Input::get('institute_name');
-            $model->group = Input::get('group');
-            $model->board = Input::get('board');
+            $model->academic_group = Input::get('group');
+//            $model->board = Input::get('board');
             $model->major_subject = Input::get('major_subject');
             $model->result_type = Input::get('result_type');
 
@@ -656,6 +657,17 @@ class ApplicantController extends \BaseController
         $model = AptAcademic::find($id);
 
         return View::make('applicant::apt_academic_records.modals.show',compact('model'));
+    }
+
+    public function academicDelete($id){
+
+        try {
+            AptAcademic::find($id)->delete();
+            return Redirect::back()->with('message', 'Successfully deleted Information!');
+        }
+        catch(exception $ex){
+            return Redirect::back()->with('message', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+        }
     }
 }
 

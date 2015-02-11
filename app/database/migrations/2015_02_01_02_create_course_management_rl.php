@@ -44,7 +44,7 @@ class CreateCourseManagementRl extends Migration {
         //TODO
         //This should not be here as it can be used as ENUM values
         // Values: 'Under Graduate', 'Graduate', 'Post Graduate', 'Post Doctorate'
-        Schema::create('degree_level', function(Blueprint $table){
+        /*Schema::create('degree_level', function(Blueprint $table){
             $table->increments('id');
             $table->string('title', 128);
             $table->text('description');
@@ -52,12 +52,14 @@ class CreateCourseManagementRl extends Migration {
             $table->integer('updated_by', false, 11);
             $table->timestamps();
             $table->engine = 'InnoDB';
-        });
+        });*/
 
         // TODO : This table seed will be after removing of degree_program table
         Schema::create('degree_program', function($table) {
             $table->increments('id');
-            $table->unsignedInteger('degree_level_id');
+            $table->enum('degree_level', array(
+                'under_graduate', 'graduate', 'post_graduate', 'post_doctorate'
+            ));
             $table->string('title', 128);
             $table->string('description');
             $table->integer('created_by', false, 11);
@@ -65,9 +67,7 @@ class CreateCourseManagementRl extends Migration {
             $table->timestamps();
             $table->engine = 'InnoDB';
         });
-        Schema::table('degree_program', function($table) {
-            $table->foreign('degree_level_id')->references('id')->on('degree_level');
-        });
+
 
         Schema::create('subject', function(Blueprint $table)
         {
@@ -128,9 +128,16 @@ class CreateCourseManagementRl extends Migration {
             $table->unsignedInteger('year_id')->nullable();
             $table->unsignedInteger('semester_id')->nullable();
             $table->unsignedInteger('course_type_id')->nullable();
-            $table->unsignedInteger('evolution_system_id')->nullable();
+            $table->enum('evolution_system', array(
+                'automatic', 'manual'
+            ));
             $table->dateTime('start_date');
             $table->dateTime('end_date');
+            $table->enum('major_minor', array(
+                'major', 'minor'
+            ));
+            $table->integer('degree_id', false, 11);
+
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
@@ -143,7 +150,7 @@ class CreateCourseManagementRl extends Migration {
             $table->foreign('year_id')->references('id')->on('year');
             $table->foreign('semester_id')->references('id')->on('semester');
             $table->foreign('course_type_id')->references('id')->on('course_type');
-            $table->foreign('evolution_system_id')->references('id')->on('evolution_system');
+            //$table->foreign('evolution_system_id')->references('id')->on('evolution_system');
         });
 
 	}

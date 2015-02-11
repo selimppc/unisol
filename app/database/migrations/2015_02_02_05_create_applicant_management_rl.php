@@ -106,7 +106,7 @@ class CreateApplicantManagementRl extends Migration {
             $table->enum('study_at', array(
                 'national', 'abroad'
             ));
-            $table->tinyInteger('year_of_passing', false, 4);
+            $table->integer('year_of_passing', false, 4);
             $table->string('duration',64);
             $table->string('certificate',64);
             $table->string('transcript',128);
