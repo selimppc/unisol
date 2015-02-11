@@ -10,13 +10,13 @@
             <table class="table">
                 <tr>
                     <td>
-                     <a href="{{ action('ExmPrepareQuestionPaperController@amw_index') }}"> Home</a> <span class="label label-success"></span>
+                     <a href="{{ action('ExmAmwController@index') }}"> Home</a> <span class="label label-success"></span>
                     </td>
                 </tr>
 
                  <tr>
                     <td>
-                     <a href="{{ action('ExmPrepareQuestionPaperController@amw_QuestionList') }}"> Question Items</a> <span class="label label-success"></span>
+                     <a href="{{ action('ExmAmwController@questionList') }}"> Question Items</a> <span class="label label-success"></span>
                     </td>
                  </tr>
             </table>
@@ -32,15 +32,15 @@
             <div class="panel-body">
                 <table class="table">
                     <tr>
-                        <td>
-                         <a href="{{ action('ExmPrepareQuestionPaperController@faculty_index') }}"> Home</a> <span class="label label-success"></span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                         <a href="{{ action('ExmPrepareQuestionPaperController@faculty_QuestionList') }}"> Question Items</a> <span class="label label-success"></span>
-                        </td>
-                    </tr>
+                        {{--<td>--}}
+                         {{--<a href="{{ action('ExmPrepareQuestionPaperController@faculty_index') }}"> Home</a> <span class="label label-success"></span>--}}
+                        {{--</td>--}}
+                    {{--</tr>--}}
+                    {{--<tr>--}}
+                        {{--<td>--}}
+                         {{--<a href="{{ action('ExmPrepareQuestionPaperController@faculty_QuestionList') }}"> Question Items</a> <span class="label label-success"></span>--}}
+                        {{--</td>--}}
+                    {{--</tr>--}}
                 </table>
             </div>
     </div>
