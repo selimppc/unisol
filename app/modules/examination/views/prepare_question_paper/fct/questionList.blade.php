@@ -1,12 +1,12 @@
 @extends('layouts.master')
 
 @section('sidebar')
-    @include('examination::prepare_question_paper._sidebar')
+    @include('examination::prepare_question_paper.fct._sidebar')
 @stop
 
 @section('content')
              <h1>Welcome to Question Items : Faculty </h1> <br>
-                {{ Form::open(array('url' => 'prepare_question_paper/batchItemsDelete')) }}
+                {{ Form::open(array('url' => 'examination/fct/batchItemsDelete')) }}
               <table id="example" class="table table-striped  table-bordered"  >
                      <thead>
                           <br>
@@ -28,8 +28,8 @@
                              <td>{{ $question_list_faculty->question_type }}</td>
                              <td>{{ $question_list_faculty->marks }}</td>
                             <td>
-                                <a href="{{ URL::route('prepare_question_paper.faculty_ViewQuestionItems', ['id'=>$question_list_faculty->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#ViewQuestionItems" data-placement="left" title="Show" href="#"> View </a>
-                                <a href="{{ URL::route('prepare_question_paper.editQuestionItems', ['id'=>$question_list_faculty->id])  }}" class="btn btn-info" data-toggle="modal" data-target="#EditQuestionItems"> Edit </a>
+                                <a href="{{ URL::route('examination.fct.viewQuestionItems', ['id'=>$question_list_faculty->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#ViewQuestionItems" data-placement="left" title="Show" href="#"> View </a>
+                                <a href="{{ URL::route('examination.fct.editQuestionItems', ['id'=>$question_list_faculty->id])  }}" class="btn btn-info" data-toggle="modal" data-target="#EditQuestionItems"> Edit </a>
                             </td>
                          </tr>
                        @endforeach

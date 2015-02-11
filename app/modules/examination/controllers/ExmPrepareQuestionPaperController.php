@@ -1,6 +1,6 @@
 <?php
 
-class ExmPrepareQuestionPaperController extends \BaseController {
+class E_ExmPrepareQuestionPaperController extends \BaseController {
 
 // method for index : past
 //	public function index()
@@ -25,6 +25,7 @@ class ExmPrepareQuestionPaperController extends \BaseController {
         ->get();
         return View::make('examination::prepare_question_paper.faculty_index')->with('datas', $data);
     }
+//converted
 
 // method for view question : past
 //    public function ViewQuestion()
@@ -62,6 +63,7 @@ class ExmPrepareQuestionPaperController extends \BaseController {
         return View::make('examination::prepare_question_paper.faculty_viewQuestion')->with('viewPrepareQuestionPaperFaculty',$view_question_faculty);
 
     }
+    //converted
 
 
 
@@ -80,6 +82,9 @@ class ExmPrepareQuestionPaperController extends \BaseController {
         $question_list_faculty = ExmQuestionItems::orderBy('id', 'DESC')->paginate(15);
         return View::make('examination::prepare_question_paper.faculty_QuestionList')->with('QuestionListFaculty',$question_list_faculty);
     }
+    //converted
+
+
 // method for Create Question  Paper : AMW
 	public function amw_createQuestionPaper()
 	{
@@ -199,6 +204,7 @@ class ExmPrepareQuestionPaperController extends \BaseController {
 
         return View::make('examination::prepare_question_paper.faculty_add_question_item', compact('total_marks', 'qid2'));
     }
+    //converted
 
 // method for Store Question Items : Faculty
     public function faculty_storeQuestionItems()
@@ -296,7 +302,7 @@ class ExmPrepareQuestionPaperController extends \BaseController {
         }
 
     }
-
+//converted
 // method for View Question Items: AMW
     public function amw_ViewQuestionItems($id)
     {
@@ -326,7 +332,7 @@ class ExmPrepareQuestionPaperController extends \BaseController {
 
         return View::make('examination::prepare_question_paper.faculty_viewQuestionItems', compact('faculty_ViewQuestionItems', 'options'));
     }
-
+//converted
 // method for Assign Question Paper Creation Task to teacher : AMW
     public function assignTo()
     { echo "Not Done Yet"; }
@@ -345,7 +351,7 @@ class ExmPrepareQuestionPaperController extends \BaseController {
         }
         //ok
     }
-
+//converted
     public function batchDelete()
     {
         try {
@@ -359,8 +365,7 @@ class ExmPrepareQuestionPaperController extends \BaseController {
             }
     //ok
     }
-
-
+//converted
     public function batchItemsDelete()
     {
         try {
@@ -374,7 +379,7 @@ class ExmPrepareQuestionPaperController extends \BaseController {
         }
         //ok
     }
-
+//converted
     public function batchOptionAnswerDelete()
     {
 
@@ -391,7 +396,7 @@ class ExmPrepareQuestionPaperController extends \BaseController {
         }
         //ok
     }
-
+//converted
 // method for Edit Question Items : Faculty
     public function faculty_EditQuestionItems($id)
     {
@@ -406,7 +411,7 @@ class ExmPrepareQuestionPaperController extends \BaseController {
         return View::make('examination::prepare_question_paper.faculty_editQuestionItems', compact('qid', 'options'));
 
     }
-
+//converted
 // method for Update Question Items : Faculty
     public function faculty_updateQuestionItems($id)
     {

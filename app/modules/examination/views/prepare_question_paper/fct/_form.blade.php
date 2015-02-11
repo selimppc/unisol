@@ -34,5 +34,5 @@
            {{--</div>--}}
 
             {{ Form::submit('Create', array('class' => 'btn btn-primary')) }}
-            <a href="{{URL::to('prepare_question_paper/faculty_index')}}" class="btn btn-default">Close </a>
+            <a href="{{URL::to('examination/fct/index')}}" class="btn btn-default">Close </a>
     </fieldset>

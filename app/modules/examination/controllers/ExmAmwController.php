@@ -2,9 +2,9 @@
 
 class ExmAmwController extends \BaseController {
 
-//    function __construct() {
-//        $this->beforeFilter('exmAmw', array('except' => array('index')));
-//    }
+    function __construct() {
+        $this->beforeFilter('exmAmw', array('except' => array('index')));
+    }
 
 	public function index()
 	{
@@ -41,7 +41,7 @@ class ExmAmwController extends \BaseController {
 
 //            print_r($prepare_question_paper->exm_exam_list_id);exit;
 
-            $prepare_question_paper->course_management_id = '3';
+            $prepare_question_paper->course_management_id = '1';
             $prepare_question_paper->examiner_faculty_user_id = '1';
             $prepare_question_paper->title = Input::get('title');
             $prepare_question_paper->deadline = Input::get('deadline');
@@ -103,13 +103,11 @@ class ExmAmwController extends \BaseController {
         }
         //ok
     }
-
-    public function QuestionList()
+    public function questionList()
     {
         $question_list_amw = ExmQuestionItems::orderBy('id', 'DESC')->paginate(15);
         return View::make('examination::prepare_question_paper.amw.questionList')->with('QuestionListAmw',$question_list_amw);
     }
-
     public function viewQuestionItems($id)
     {
         $amw_ViewQuestionItems = DB::table('exm_question_items')
@@ -123,7 +121,6 @@ class ExmAmwController extends \BaseController {
         return View::make('examination::prepare_question_paper.amw.viewQuestionItems', compact('amw_ViewQuestionItems', 'options'));
 
     }
-
     public function destroy($id)
     {
         try {
@@ -136,7 +133,6 @@ class ExmAmwController extends \BaseController {
         }
         //ok
     }
-
     public function batchDelete()
     {
         try {
@@ -150,8 +146,6 @@ class ExmAmwController extends \BaseController {
         }
         //ok
     }
-
-
     public function batchItemsDelete()
     {
         try {
@@ -166,22 +160,8 @@ class ExmAmwController extends \BaseController {
         //ok
     }
 
-    public function batchOptionAnswerDelete()
-    {
 
-        try {
 
-            ExmQuestionOptionAnswer::destroy(Request::get('id'));
-            return Redirect::back()->with('message', 'Successfully deleted Information!');
-
-        }
-        catch
-        (exception $ex){
-            return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
-
-        }
-        //ok
-    }
 
 
 
