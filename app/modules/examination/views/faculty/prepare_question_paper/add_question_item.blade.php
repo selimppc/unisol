@@ -1,5 +1,5 @@
 <h4 style="padding: 20px">Add Question Item for <b>{{$qid2->title}} </b></h4>
-{{ Form::open(array('url' => 'examination/fct/store_Question_Items', 'method' =>'post', 'role'=>'form','files'=>'true'))  }}
+{{ Form::open(array('url' => 'examination/faculty/store_Question_Items', 'method' =>'post', 'role'=>'form','files'=>'true'))  }}
     {{Form::hidden('qid', $qid2->id, ['class'=>'form-control'])}}
         <fieldset style="padding: 10px; width: 90%; padding: 20px">
             <div class='form-group'>
@@ -66,7 +66,7 @@
 
 
             {{ Form::submit('Submit', array('id'=>'submit_if', 'class'=>'btn btn-primary')) }}
-            <a href="{{URL::to('examination/fct/index')}}" class="btn btn-default">Close </a>
+            <a href="{{URL::to('examination/faculty/index')}}" class="btn btn-default">Close </a>
         </fieldset>
 {{ Form::close() }}
 

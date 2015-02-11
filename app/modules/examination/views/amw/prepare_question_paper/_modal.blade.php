@@ -8,7 +8,7 @@
             </div>
             <div class="modal-body">
                 {{ Form::open(array('url' => 'examination/amw/store', 'method' =>'post', 'role'=>'form','files'=>'true'))  }}
-                        @include('examination::prepare_question_paper/amw/_form')
+                        @include('examination::amw/prepare_question_paper/_form')
                 {{ Form::close() }}
             </div>
             <div class="modal-footer">

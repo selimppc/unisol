@@ -11,12 +11,12 @@ class ExmFacultyController extends \BaseController {
         $data = ExmQuestion::with('relCourseManagement', 'relCourseManagement.relYear',
                 'relCourseManagement.relSemester','relCourseManagement.relCourse.relSubject.relDepartment')
                 ->get();
-        return View::make('examination::prepare_question_paper.fct.index')->with('datas', $data);
+        return View::make('examination::faculty.prepare_question_paper.index')->with('datas', $data);
     }
     public function questionList()
     {
         $question_list_faculty = ExmQuestionItems::orderBy('id', 'DESC')->paginate(15);
-        return View::make('examination::prepare_question_paper.fct.questionList')->with('QuestionListFaculty',$question_list_faculty);
+        return View::make('examination::faculty.prepare_question_paper.questionList')->with('QuestionListFaculty',$question_list_faculty);
     }
     public function editQuestionItems($id)
     {
@@ -28,14 +28,14 @@ class ExmFacultyController extends \BaseController {
             ->where('exm_question_items_id', $qid->id)
             ->get();
 
-        return View::make('examination::prepare_question_paper.fct.editQuestionItems', compact('qid', 'options'));
+        return View::make('examination::faculty.prepare_question_paper.editQuestionItems', compact('qid', 'options'));
 
     }
     public function viewQuestion($id)
     {
         $view_question_faculty = ExmQuestion::find($id);
 
-        return View::make('examination::prepare_question_paper.fct.viewQuestion')->with('viewPrepareQuestionPaperFaculty',$view_question_faculty);
+        return View::make('examination::faculty.prepare_question_paper.viewQuestion')->with('viewPrepareQuestionPaperFaculty',$view_question_faculty);
 
     }
     public function add_question_items($qid){
@@ -47,7 +47,7 @@ class ExmFacultyController extends \BaseController {
             ->first();
 
 
-        return View::make('examination::prepare_question_paper.fct.add_question_item', compact('total_marks', 'qid2'));
+        return View::make('examination::faculty.prepare_question_paper.add_question_item', compact('total_marks', 'qid2'));
     }
     public function storeQuestionItems()
     {
@@ -132,7 +132,7 @@ class ExmFacultyController extends \BaseController {
 
             // redirect
             Session::flash('message', 'Successfully Added!');
-            return Redirect::to('examination/fct/questionList');
+            return Redirect::to('examination/faculty/questionList');
         }
         else
         {
@@ -140,7 +140,7 @@ class ExmFacultyController extends \BaseController {
             $errors = $faculty_store_question_items->errors();
             Session::flash('errors', $errors);
 
-            return Redirect::to('examination/fct/index');
+            return Redirect::to('examination/faculty/index');
         }
 
     }
@@ -154,7 +154,7 @@ class ExmFacultyController extends \BaseController {
             ->where('exm_question_items_id', $faculty_ViewQuestionItems->id)
             ->get();
 
-        return View::make('examination::prepare_question_paper.fct.viewQuestionItems', compact('faculty_ViewQuestionItems', 'options'));
+        return View::make('examination::faculty.prepare_question_paper.viewQuestionItems', compact('faculty_ViewQuestionItems', 'options'));
     }
     public function updateQuestionItems($id)
     {
@@ -260,14 +260,14 @@ class ExmFacultyController extends \BaseController {
             }
             // redirect
             Session::flash('message', 'Successfully Updated!');
-            return Redirect::to('examination/fct/questionList');
+            return Redirect::to('examination/faculty/questionList');
         }
         else
         {
             // failure, get errors
             $errors = $faculty_store_question_items->errors();
             Session::flash('errors', $errors);
-            return Redirect::to('examination/fct/index');
+            return Redirect::to('examination/faculty/index');
         }
     }
     public function batchDelete()
@@ -312,8 +312,6 @@ class ExmFacultyController extends \BaseController {
         }
         //ok
     }
-
-
 
 
 }

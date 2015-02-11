@@ -119,7 +119,7 @@
      </div>
 
 {{ Form::submit('Submit', array('class'=>'btn btn-primary')) }}
-<a href="{{URL::to('examination/fct/questionList')}}" class="btn btn-default">Close </a>
+<a href="{{URL::to('examination/faculty/questionList')}}" class="btn btn-default">Close </a>
 
 
 <script>

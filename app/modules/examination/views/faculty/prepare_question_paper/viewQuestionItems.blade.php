@@ -1,7 +1,7 @@
 <div style="padding: 10px; width: 90%;">
 
                  <h3>Welcome to View Question Items: Faculty </h3>
-                 {{ Form::open(array('route'=>'examination.fct.viewQuestionItems','method' => '')) }}
+                 {{ Form::open(array('route'=>'examination.faculty.viewQuestionItems','method' => '')) }}
                      <div class="jumbotron text-left">
                              <strong> Title:</strong> &nbsp &nbsp {{ $faculty_ViewQuestionItems->title }}
                              </br>
@@ -64,6 +64,6 @@
                                </div>
                              </div>
                      </div>
-                    <a href="{{URL::to('examination/fct/questionList')}}" class="btn btn-default">Close </a>
+                    <a href="{{URL::to('examination/faculty/questionList')}}" class="btn btn-default">Close </a>
                  {{ Form::close() }}
 </div>
