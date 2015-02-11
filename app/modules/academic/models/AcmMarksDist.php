@@ -40,7 +40,7 @@ class AcmMarksDist extends Eloquent
 
     // 2 update data validation
 
-    /*private $rules2 = array(
+    private $rules2 = array(
         'title' => 'required|min :3'
 
     );
@@ -60,7 +60,7 @@ class AcmMarksDist extends Eloquent
 
         // validation pass
         return true;
-    }*/
+    }
 
     public function errors()
     {

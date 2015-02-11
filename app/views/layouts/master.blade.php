@@ -112,11 +112,11 @@
                         <i class="icon-user"></i> Academic Module <i class="caret"></i>
                  </a>
                   <ul class="dropdown-menu">
-                       <li><a tabindex="-1" a href="{{URL::to('/index') }}"> Enrollment </a></li>
+                       <li><a tabindex="-1" a href="{{URL::to('/') }}"> Enrollment </a></li>
                        <li class="divider"></li>
-                       <li><a tabindex="-1" a href="{{URL::to('amw/index') }}">Mark Distribution Courses</a></li>
+                       <li><a tabindex="-1" a href="{{URL::to('academic/amw/') }}">Mark Distribution Courses</a></li>
                        <li class="divider"></li>
-                       <li><a tabindex="-1" a href="{{URL::to('class/index') }}">Theory Class </a></li>
+                       <li><a tabindex="-1" a href="{{URL::to('class/') }}">Theory Class </a></li>
                        <li class="divider"></li>
                        <li><a tabindex="-1" a href="{{URL::to('') }}"> </a></li>
                        <li class="divider"></li>
@@ -146,25 +146,25 @@
                     <i class="icon-user"></i> Examination Management Module <i class="caret"></i>
              </a>
              <ul class="dropdown-menu">
-                    <li><a tabindex="-1" href="{{ action('ExaminationController@index') }}"> Home </a></li>
-                    <li class="divider"></li>
+                    {{--<li><a tabindex="-1" href="{{ action('ExaminationController@index') }}"> Home </a></li>--}}
+                    {{--<li class="divider"></li>--}}
 
-                    <li><a tabindex="-1" href="{{ action('ExmEnrollmentController@index') }}"> Enrollment </a></li>
-                    <li class="divider"></li>
+                    {{--<li><a tabindex="-1" href="{{ action('ExmEnrollmentController@index') }}"> Enrollment </a></li>--}}
+                    {{--<li class="divider"></li>--}}
 
-                    <li><a tabindex="-1" href="{{ action('ExmGenerateCertificateController@index') }}"> Generate Certificate </a></li>
-                    <li class="divider"></li>
+                    {{--<li><a tabindex="-1" href="{{ action('ExmGenerateCertificateController@index') }}"> Generate Certificate </a></li>--}}
+                    {{--<li class="divider"></li>--}}
 
-                    <li><a tabindex="-1" href="{{ action('ExmManageExaminationCenterController@index') }}"> Manage Examination Center </a></li>
-                    <li class="divider"></li>
+                    {{--<li><a tabindex="-1" href="{{ action('ExmManageExaminationCenterController@index') }}"> Manage Examination Center </a></li>--}}
+                    {{--<li class="divider"></li>--}}
 
-                     <li><a tabindex="-1" href="{{ action('ExmManageExaminerController@index') }}"> Manage Examiner </a></li>
+                     {{--<li><a tabindex="-1" href="{{ action('ExmManageExaminerController@index') }}"> Manage Examiner </a></li>--}}
                      <li class="divider"></li>
 
-                    <li><a tabindex="-1" href="{{ action('ExmPrepareQuestionPaperController@amw_index') }}"> Prepare Question Paper </a></li>
+                    <li><a tabindex="-1" href="{{ action('ExmAmwController@index') }}"> Prepare Question Paper </a></li>
                     <li class="divider"></li>
 
-                    <li><a tabindex="-1" href="{{ action('ExmPrepareTabulationController@index') }}"> Prepare Tabulation </a></li>
+                    {{--<li><a tabindex="-1" href="{{ action('ExmPrepareTabulationController@index') }}"> Prepare Tabulation </a></li>--}}
                     <li class="divider"></li>
 
 

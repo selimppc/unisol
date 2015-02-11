@@ -5,7 +5,7 @@
 
 	<div style="padding: 10px; width: 90%;">
 
-		{{ Form::model($editamw,array('url'=> array('amw/update',$editamw->id), 'method' => 'POST')) }}
+		{{ Form::model($editamw,array('url'=> array('academic/amw/update',$editamw->id), 'method' => 'POST')) }}
 
 		  @include('academic::mark_distribution_courses.amw._form')
 

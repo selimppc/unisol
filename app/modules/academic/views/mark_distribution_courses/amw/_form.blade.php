@@ -5,6 +5,6 @@
 </div>
 <div>
     {{ Form::submit('Submit', array('class'=>'btn btn-primary')) }}
-    <a href="{{URL::to('amw/index')}}" class="btn btn-default">Close </a>
+    <a href="{{URL::to('academic/amw/')}}" class="btn btn-default">Close </a>
 </div>
 

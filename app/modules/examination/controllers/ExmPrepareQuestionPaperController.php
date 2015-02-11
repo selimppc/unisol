@@ -15,9 +15,9 @@ class ExmPrepareQuestionPaperController extends \BaseController {
     {
         $data = ExmQuestion::with('relCourseManagement', 'relCourseManagement.relYear', 'relCourseManagement.relSemester','relCourseManagement.relCourse.relSubject.relDepartment')
             ->get();
-        return View::make('examination::prepare_question_paper.amw_index')->with('datas',$data);
+        return View::make('examination::prepare_question_paper.amw.amw_index')->with('datas',$data);
     }
-
+//converted
 // method for faculty_index
     public function faculty_index()
     {
@@ -52,6 +52,7 @@ class ExmPrepareQuestionPaperController extends \BaseController {
         return View::make('examination::prepare_question_paper.amw_viewQuestion')->with('viewPrepareQuestionPaperAmw', $view_question_amw);
 
     }
+//converted
 
 // method for View Question : Faculty
     public function faculty_ViewQuestion($id)
@@ -70,6 +71,9 @@ class ExmPrepareQuestionPaperController extends \BaseController {
         $question_list_amw = ExmQuestionItems::orderBy('id', 'DESC')->paginate(15);
         return View::make('examination::prepare_question_paper.amw_QuestionList')->with('QuestionListAmw',$question_list_amw);
     }
+    //converted
+//
+
 // method for Question Item List : Faculty
     public function faculty_QuestionList()
     {
@@ -82,6 +86,7 @@ class ExmPrepareQuestionPaperController extends \BaseController {
         return View::make('examination::prepare_question_paper.create')->compact('crt_question_ppr');
         //ok
 	}
+    //converted
 
 // method for Store Question Paper : AMW
 	public function amw_storeQuestionPaper()
@@ -120,7 +125,6 @@ class ExmPrepareQuestionPaperController extends \BaseController {
         }
         //ok
 	}
-
 // method for edit Question Paper : Past
 //    public function edit($id)
 //    {
@@ -130,6 +134,7 @@ class ExmPrepareQuestionPaperController extends \BaseController {
 //        return View::make('examination::prepare_question_paper.edit')->with('prepareQuestionPaper',$prepare_question_paper);
 //        //ok
 //    }
+    //converted
 
 // method for Edit Question Paper : AMW
     public function amw_editQuestionPaper($id)
@@ -140,6 +145,8 @@ class ExmPrepareQuestionPaperController extends \BaseController {
         return View::make('examination::prepare_question_paper.amw_editQuestionPaper')->with('edit_AmwQuestionPaper',$prepare_question_paper);
         //ok
     }
+    //converted
+
 // method for Update Question Paper : AMW
     public function amw_updateQuestionPaper($id)
     {
@@ -178,6 +185,7 @@ class ExmPrepareQuestionPaperController extends \BaseController {
         //ok
 
     }
+    //converted
 
 // method for Add Question Items : Faculty
     public function faculty_add_question_items($qid){
@@ -303,6 +311,7 @@ class ExmPrepareQuestionPaperController extends \BaseController {
         return View::make('examination::prepare_question_paper.amw_viewQuestionItems', compact('amw_ViewQuestionItems', 'options'));
 
     }
+    //converted
 
 // method for View Question Items: Faculty
     public function faculty_ViewQuestionItems($id)
@@ -318,9 +327,10 @@ class ExmPrepareQuestionPaperController extends \BaseController {
         return View::make('examination::prepare_question_paper.faculty_viewQuestionItems', compact('faculty_ViewQuestionItems', 'options'));
     }
 
-// method for Assign Question Paper Creation Task to teacher : AMW
+// method for Assign Question Paper Creation Task to faculty : AMW
     public function assignTo()
     { echo "Not Done Yet"; }
+    //converted
 
 // method for delete : AMW
     public function destroy($id)

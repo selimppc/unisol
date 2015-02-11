@@ -25,7 +25,7 @@
     </div>
 
 
-    {{ Form::open(array('url'=>'acdemic/faculty/marks/distribution/save','method' => '')) }}
+    {{ Form::open(array('url'=>'academic/faculty/marks/distribution/save','method' => '')) }}
     <table class="table table-bordered small-header-table" id="amwCourseConfig">
         <thead>
         <th>Item</th>
@@ -110,5 +110,5 @@
 
 </div>
 <div class="modal-footer">
-    <a href="{{URL::to('academic/teacher/')}}" class="btn btn-default">Close </a>
+    <a href="{{URL::to('academic/faculty/')}}" class="btn btn-default">Close </a>
 </div>

@@ -15,8 +15,10 @@
                     {{Form::password('password', ['class'=>'form-control', 'placeholder'=>'Password', 'required'=>'required'])}}
                 </div>
                 <div class="form-group">
-                    {{Form::checkbox('remember_me', null)}}
-                    {{Form::label('remember_me', 'Remember Me')}}
+                    <label>
+                        {{Form::checkbox('remember_me', null)}}
+                         Remember Me
+                    </label>
                 </div>
             </div>
             <div>
