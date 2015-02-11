@@ -59,38 +59,16 @@ Route::any('applicant/profile_image/edit/{id}','ApplicantController@editProfileI
 
 Route::any('applicant/profile_image/update/{id}','ApplicantController@updateProfileImage');
 
-// Applicant Personal Information............................................................
-Route::any('apt/personal_info/index','ApplicantController@personalInfoIndex');
-
-Route::any('apt/personal_info/create','ApplicantController@personalInfoCreate');
-
-Route::any('apt/personal_info/store','ApplicantController@personalInfoStore');
-
-Route::any('apt/personal_info/edit/{id}','ApplicantController@personalInfoEdit');
-
-Route::any('apt/personal_info/update/{id}','ApplicantController@personalInfoUpdate');
-
 //  Applicant Supporting Docs...................................................................
-Route::any('applicant/supporting_docs/index','ApplicantController@applicantSupportingDocsIndex');
 
-Route::any('applicant/supporting_docs/create','ApplicantController@applicantSupportingDocsCreate');
+Route::any('apt/supporting_docs/index','ApplicantController@sDocsIndex');
 
-Route::any('applicant/supporting_docs/store','ApplicantController@applicantSupportingDocsStore');
-
-//Route::any('applicant/supporting_docs/view/{doc_type}/{sdoc_id}','as' => 'applicant/supporting_docs/view', 'uses' => 'ApplicantController@applicantSupportingDocsView');
-Route::any("applicant/supporting_docs/view/{doc_type}/{sdoc_id}", [
+Route::any("apt/supporting_docs/view/{doc_type}/{sdoc_id}", [
     "as"   => "applicant.supporting_docs.view",
-    "uses" => "ApplicantController@applicantSupportingDocsView"
+    "uses" => "ApplicantController@sDocsView"
 ]);
-Route::any('applicant/supporting_docs/edit/{id}','ApplicantController@editApplicantGoalStatement');
 
-Route::any('applicant/supporting_docs/update/{id}','ApplicantController@updateApplicantGoalStatement');
-
-//Applicant supporting_docs........................................................................
-
-Route::any('applicant/supporting_docs/add','ApplicantController@applicantGoalStatementAdd');
-
-Route::any('applicant/supporting_docs/store','ApplicantController@applicantSupportingDocsStore');
+Route::any('apt/supporting_docs/store','ApplicantController@sDocsStore');
 
 //applicant miscellaneous_info
 Route::any('apt/misc_info/index','ApplicantController@miscInfoIndex');
@@ -101,19 +79,30 @@ Route::any('apt/misc_info/store','ApplicantController@miscInfoStore');
 
 Route::any('apt/misc_info/edit/{id}','ApplicantController@miscInfoEdit');
 
-Route::any('applicant/miscellaneous_info/update/{id}','ApplicantController@miscInfoUpdate');
+Route::any('apt/misc_info/update/{id}','ApplicantController@miscInfoUpdate');
 
-//applicant academic records..........................................................................
+//Applicant academic records..........................................................................
 
-Route::any('applicant/academic_records/index','ApplicantController@academicIndex');
+Route::any('apt/acm_records/index','ApplicantController@acmRecordsIndex');
 
-Route::any('applicant/academic_records/create','ApplicantController@academicCreate');
+Route::any('apt/acm_records/create','ApplicantController@acmRecordsCreate');
 
-Route::any('applicant/academic_records/store','ApplicantController@academicStore');
+Route::any('apt/acm_records/store','ApplicantController@acmRecordsStore');
 
-Route::any('applicant/academic_records/show/{id}','ApplicantController@academicShow');
+Route::any('apt/acm_records/show/{id}','ApplicantController@acmRecordsShow');
 
-Route::any('applicant/academic_records/delete/{id}','ApplicantController@academicDelete');
+Route::any('apt/acm_records/delete/{id}','ApplicantController@acmRecordsDelete');
+
+// Applicant Personal Information............................................................
+Route::any('apt/personal_info/index','ApplicantController@personalInfoIndex');
+
+Route::any('apt/personal_info/create','ApplicantController@personalInfoCreate');
+
+Route::any('apt/personal_info/store','ApplicantController@personalInfoStore');
+
+Route::any('apt/personal_info/edit/{id}','ApplicantController@personalInfoEdit');
+
+Route::any('apt/personal_info/update/{id}','ApplicantController@personalInfoUpdate');
 
 
 

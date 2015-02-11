@@ -21,7 +21,7 @@
   <div style="padding: 20px;">
         <h4> </h4>
 
-        {{Form::open(array('url'=>'applicant/supporting_docs/store', 'class'=>'form-horizontal','files'=>true))}}
+        {{Form::open(array('url'=>'apt/supporting_docs/store', 'class'=>'form-horizontal','files'=>true))}}
 
         <div class='form-group'>
             @if($doc_type_arr[$doc_type] == 'Other')
