@@ -150,7 +150,7 @@ class CreateCourseManagementRl extends Migration {
             $table->foreign('year_id')->references('id')->on('year');
             $table->foreign('semester_id')->references('id')->on('semester');
             $table->foreign('course_type_id')->references('id')->on('course_type');
-            $table->foreign('evolution_system_id')->references('id')->on('evolution_system');
+            //$table->foreign('evolution_system_id')->references('id')->on('evolution_system');
         });
 
 	}
