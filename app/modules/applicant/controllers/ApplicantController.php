@@ -669,6 +669,5 @@ class ApplicantController extends \BaseController
             return Redirect::back()->with('message', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
         }
     }
-
 }
 
