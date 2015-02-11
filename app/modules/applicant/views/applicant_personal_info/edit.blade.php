@@ -2,7 +2,7 @@
 <div style="padding: 20px;">
 
 
-{{Form::open(array('url'=>'applicant/personal_info/update/'.$applicant_personal_info->id, 'class'=>'form-horizontal'))}}
+{{Form::open(array('url'=>'apt/personal_info/update/'.$applicant_personal_info->id, 'class'=>'form-horizontal'))}}
 
 {{ Form::label('fathers_name','Fathers Name:') }}
 {{ Form::text('fathers_name',$applicant_personal_info->fathers_name , array('type' => 'text', 'class' => 'form-control datepicker','placeholder' => 'Pick the date this task should be completed', 'id' => 'date')) }}

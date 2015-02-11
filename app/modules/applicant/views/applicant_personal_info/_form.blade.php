@@ -10,7 +10,7 @@
  <legend style="color: #0088cc"></legend>
 <div class="span6 well">
 <h3>Personal Information</h3>
-{{ Form::open(array('class'=>'form-horizontal','url' => 'applicant/personal_info/store', 'method' =>'post', 'files'=>'true','id'=>'signup-form')) }}
+{{ Form::open(array('class'=>'form-horizontal','url' => 'apt/personal_info/store', 'method' =>'post', 'files'=>'true','id'=>'signup-form')) }}
 
  <div class="form-group">
     <span class="text-muted"><em><span style="color:red;">  * </span><b>Indicates required field</b> </em></span>

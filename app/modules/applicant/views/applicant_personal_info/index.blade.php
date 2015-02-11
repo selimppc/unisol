@@ -10,7 +10,7 @@
      <h4> Personal Information </h4>
 
 
-      <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('applicant/personal_info/edit/' . $applicant_personal_info->id ) }}" data-toggle="modal" data-target="#myeditModal" >Edit...</a>
+      <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('apt/personal_info/edit/' . $applicant_personal_info->id ) }}" data-toggle="modal" data-target="#myeditModal" >Edit...</a>
                     <thead>
 
 

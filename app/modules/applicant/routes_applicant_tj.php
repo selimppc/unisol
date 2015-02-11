@@ -60,15 +60,15 @@ Route::any('applicant/profile_image/edit/{id}','ApplicantController@editProfileI
 Route::any('applicant/profile_image/update/{id}','ApplicantController@updateProfileImage');
 
 // Applicant Personal Information............................................................
-Route::any('applicant/personal_info/create','ApplicantController@applicantPersonalInfoCreate');
+Route::any('apt/personal_info/index','ApplicantController@personalInfoIndex');
 
-Route::any('applicant/personal_info/store','ApplicantController@applicantPersonalInfoStore');
+Route::any('apt/personal_info/create','ApplicantController@personalInfoCreate');
 
-Route::any('applicant/personal_info/index','ApplicantController@applicantPersonalInfoIndex');
+Route::any('apt/personal_info/store','ApplicantController@personalInfoStore');
 
-Route::any('applicant/personal_info/edit/{id}','ApplicantController@applicantPersonalInfoEdit');
+Route::any('apt/personal_info/edit/{id}','ApplicantController@personalInfoEdit');
 
-Route::any('applicant/personal_info/update/{id}','ApplicantController@applicantPersonalInfoUpdate');
+Route::any('apt/personal_info/update/{id}','ApplicantController@personalInfoUpdate');
 
 //  Applicant Supporting Docs...................................................................
 Route::any('applicant/supporting_docs/index','ApplicantController@applicantSupportingDocsIndex');
