@@ -535,14 +535,13 @@ class ApplicantController extends \BaseController
 
     //applicant Miscellaneous Info  miscelnfo
 
-    public function applicantMiscellaneousInfoIndex(){
-        $data = ApplicantMiscellaneousInfo::where('applicant_id', '=', '3')->first();
+    public function miscInfoIndex(){
+        $data = AptMiscInfo::where('applicant_id', '=', '1')->first();
         return View::make('applicant::applicant_miscellaneous_info.index',compact('data'));
     }
-    public function applicantMiscellaneousInfoCreate(){
+    public function miscInfoCreate(){
         return View::make('applicant::applicant_miscellaneous_info.modal.miscellaneous');
     }
-
     public function miscInfoStore(){
         $rules = array(
             'ever_admit_this_university' => 'required',
@@ -553,7 +552,7 @@ class ApplicantController extends \BaseController
         );
         $validator = Validator::make(Input::all(), $rules);
         if ($validator->passes()) {
-            $data =new ApplicantMiscellaneousInfo();
+            $data =new AptMiscInfo();
             $data->applicant_id = Input::get('applicant_id');
             $data->ever_admit_this_university = Input::get('ever_admit_this_university');
             $data->ever_dismiss = Input::get('ever_dismiss');
@@ -565,16 +564,14 @@ class ApplicantController extends \BaseController
 
             return Redirect::back()->with('message', 'Successfully added Information!');
         } else {
-           return Redirect::to('applicant/miscellaneous_info/index')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
+           return Redirect::to('apt/misc_info/index')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
         }
 
     }
-
     public function miscInfoEdit($id){
-        $model= ApplicantMiscellaneousInfo::find($id);
+        $model= AptMiscInfo::find($id);
         return View::make('applicant::applicant_miscellaneous_info.modal.edit', compact('model'));
     }
-
     public function miscInfoUpdate($id){
         $data= Input::all();
 
@@ -584,7 +581,7 @@ class ApplicantController extends \BaseController
         $validator = Validator::make(Input::all(), $rules);
         if ($validator->passes()) {
 
-            $model = ApplicantMiscellaneousInfo::find($id);
+            $model = AptMiscInfo::find($id);
 
             $model->ever_admit_this_university = Input::get('ever_admit_this_university');
             $model->ever_dismiss = Input::get('ever_dismiss');
