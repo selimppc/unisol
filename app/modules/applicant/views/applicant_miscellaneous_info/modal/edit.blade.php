@@ -9,7 +9,7 @@
 <div class="modal-body">
   <div style="padding: 20px;">
 
-        {{Form::open(array('url'=>'applicant/miscellaneous_info/update/'.$model->id, 'class'=>'form-horizontal','files'=>true))}}
+        {{Form::open(array('url'=>'apt/misc_info/update/'.$model->id, 'class'=>'form-horizontal','files'=>true))}}
 
         <div class='form-group'>
              {{ Form::label('ever_admit_this_university', 'Ever admit this university') }}

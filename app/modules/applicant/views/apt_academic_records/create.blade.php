@@ -12,7 +12,7 @@
 <div class="span6 well">
 <h3>Add</h3>
 
-{{ Form::open(array('class'=>'form-horizontal','url' => 'applicant/academic_records/store', 'method' =>'post', 'files'=>'true','id'=>'signup-form')) }}
+{{ Form::open(array('class'=>'form-horizontal','url' => 'apt/acm_records/store', 'method' =>'post', 'files'=>'true','id'=>'signup-form')) }}
 
 {{ Form::hidden('applicant_id', $applicant_id = 1, array('class'=>'form-control')) }}
 <br><br>

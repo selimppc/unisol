@@ -82,7 +82,7 @@
 
         <p>&nbsp;</p>
 
-        <a href="{{URL::to('applicant/academic_records/index') }} " class="pull-right btn btn-default" span class="glyphicon-refresh">Close</a>
+        <a href="{{URL::to('apt/acm_records/index') }} " class="pull-right btn btn-default" span class="glyphicon-refresh">Close</a>
 <br>
         {{Form::close()}}
   </div>
