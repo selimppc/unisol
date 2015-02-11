@@ -192,6 +192,8 @@ class ExmPrepareQuestionPaperController extends \BaseController {
 
         $faculty_store_question_items = new ExmQuestionItems();
 
+
+
         if ($faculty_store_question_items->validate($data))
         {
             $faculty_store_question_items->title = Input::get('title');
@@ -355,6 +357,23 @@ class ExmPrepareQuestionPaperController extends \BaseController {
         //ok
     }
 
+    public function batchOptionAnswerDelete()
+    {
+
+        try {
+
+            ExmQuestionOptionAnswer::destroy(Request::get('id'));
+            return Redirect::back()->with('message', 'Successfully deleted Information!');
+
+        }
+        catch
+        (exception $ex){
+            return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+
+        }
+        //ok
+    }
+
 // method for Edit Question Items : Faculty
     public function faculty_EditQuestionItems($id)
     {
@@ -402,6 +421,9 @@ class ExmPrepareQuestionPaperController extends \BaseController {
                             if(isset($exm_question_items_id) == null){
                                 $exm_question_opt->exm_question_items_id = $faculty_store_question_items->id;
                             }
+
+                            #print_r($exm_question_items_id);exit;
+
                             $exm_question_opt->title = $value;
                             $exm_question_opt->answer = 0;
 
@@ -409,6 +431,7 @@ class ExmPrepareQuestionPaperController extends \BaseController {
                                 if ($oa == $key)
                                     $exm_question_opt->answer = 1;
                             }
+
                             $exm_question_opt->save();
                             $i++;
                         }
@@ -419,16 +442,26 @@ class ExmPrepareQuestionPaperController extends \BaseController {
                 }else{
                     $faculty_store_question_items->question_type = 'checkbox';
 
+
                     if($faculty_store_question_items->save()){
                         $exm_question_items_id = Input::get('id');
+
+                        #print_r($exm_question_items_id); exit;
+
                         $opt_title = Input::get('option_title');
                         $opt_answer = Input::get('answer');
                         $i = 0;
+                        #print_r($opt_title);exit;
                         foreach($opt_title as $key => $value){
                             //Re-declare model each time you want to save data as loop.
+
                             $exm_question_opt = (isset($exm_question_items_id)) ? ExmQuestionOptionAnswer::find($exm_question_items_id[$i]) : new ExmQuestionOptionAnswer() ;
+
+                            #print_r($exm_question_items_id); exit;
+
                             if(isset($exm_question_items_id) == null){
                                 $exm_question_opt->exm_question_items_id = $faculty_store_question_items->id;
+
                             }
                             $exm_question_opt->title = $value;
                             $exm_question_opt->answer = 0;
@@ -437,6 +470,7 @@ class ExmPrepareQuestionPaperController extends \BaseController {
                                 if ($oa == $key)
                                     $exm_question_opt->answer = 1;
                             }
+
                             $exm_question_opt->save();
                             $i++;
                         }
@@ -445,17 +479,21 @@ class ExmPrepareQuestionPaperController extends \BaseController {
                         echo "NO";
                     }
                 }
-            }else{
-                $faculty_store_question_items->question_type = 'text';
-                if($faculty_store_question_items->save()){
-                    echo "Descriptive Answer Saved";
+            }else {
 
-                }else{
-                    echo "No";
-                }
+                    $faculty_store_question_items->question_type = 'text';
+                    $faculty_store_question_items->save();
+
+
+                    $exm_question_opt = new ExmQuestionOptionAnswer();
+
+                    $exm_question_opt->destroy(Request::get('id'));
+
+
+
             }
             // redirect
-            Session::flash('message', 'Successfully Added!');
+            Session::flash('message', 'Successfully Updated!');
             return Redirect::to('prepare_question_paper/faculty_QuestionList');
         }
         else

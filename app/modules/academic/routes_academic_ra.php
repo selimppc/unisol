@@ -65,15 +65,19 @@ Route::post('amw/config/acmconfigdelete/ajax', 'MarkdistributionController@ajax_
 Route::get('academic/teacher/',
     'MarkdistributionController@teacher_index'
 );
-Route::any('acdemic/faculty/course/marksdistitem/show/{course_id}',[
+Route::any('acdemic/faculty/course/marksdistitem/show/{cm_id}',[
     'as' => 'coursemarksdist.show',
     'uses'=> 'MarkdistributionController@course_marks_dist_show'
 ]);
+Route::post('acdemic/faculty/marks/distribution/save',
+    'MarkdistributionController@save_acm_marks_distribution_data'
+);
 
 Route::any('amw/marksdist/show/{course_id}',[
     'as' => 'marksdistfind.show',
     'uses'=> 'MarkdistributionController@find_marksdist_info'
 ]);
+
 
 
 

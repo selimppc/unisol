@@ -14,7 +14,7 @@
 
 {{ Form::open(array('class'=>'form-horizontal','url' => 'applicant/academic_records/store', 'method' =>'post', 'files'=>'true','id'=>'signup-form')) }}
 
-{{ Form::hidden('applicant_id', $applicant_id = 3, array('class'=>'form-control')) }}
+{{ Form::hidden('applicant_id', $applicant_id = 1, array('class'=>'form-control')) }}
 <br><br>
 <div>{{ Form::label('level_of_education', 'Level of Education ') }}
 {{ Form::select('level_of_education', array('' => 'Select one',
@@ -30,13 +30,37 @@
 
 <div >{{ Form::label('group', 'Academic Group') }}</div >
 {{ Form::select('group', array('' => 'Select one',
-         'Science' => 'Science', 'Arts' => 'Arts', 'Commerce'=>'Commerce'), Input::old('group'),
+         'Science' => 'Science', 'Arts' => 'Arts', 'Commerce'=>'Commerce'),
+          Input::old('group'),
           array('class' => 'form-control')) }}
+<br>
 
-<div >{{ Form::label('board', 'Board') }}</div >
+<div >{{ Form::label('board_type', 'Board Type') }}   (Select one : Division/ University/Other )</div>
+
+<div id="board"><label class="small">{{ Form::radio('board_type','Board') }} Board </label>
+<div style="display:none" class="board">
 {{ Form::select('board', array('' => 'Select one',
-          'Dhaka' => 'Dhaka', 'Chittagong' => 'Chittagong', 'Comilla'=>'Comilla','Khulna'=>'Khulna','Syllhet'=>'Syllhet'), Input::old('board'),
+          'Dhaka' => 'Dhaka', 'Chittagong' => 'Chittagong', 'Comilla'=>'Comilla','Khulna'=>'Khulna','Syllhet'=>'Syllhet'),
+          Input::old('board'),
           array('class' => 'form-control')) }}
+</div>
+</div>
+
+<div id="university"><label class="small">{{ Form::radio('board_type','university') }} University</label>
+<div style="display:none" class="university">
+{{ Form::select('university', array('' => 'Select one',
+          'Dhaka' => 'Dhaka', 'Chittagong' => 'Chittagong', 'Comilla'=>'Comilla','Khulna'=>'Khulna','Syllhet'=>'Syllhet'),
+          Input::old('board'),
+          array('class' => 'form-control')) }}
+</div>
+</div>
+
+<div id="other"><label class="small">{{ Form::radio('board_type','Board') }} Other</label>
+<div style="display:none" class="other">
+
+{{ Form::text('other', Input::old('other'),['class'=>'form-control ']) }}
+</div>
+</div>
 
 <div >{{ Form::label('major_subject', 'Major Subject') }}</div >
 <div >{{ Form::text('major_subject', Input::old('major_subject'),['class'=>'form-control ']) }}</div>
@@ -82,21 +106,34 @@
     array('class' => 'form-control')) }}</div>
 
 
+{{--<script>--}}
+{{--$(document).ready(function(){--}}
+    {{--$("#division").click(function(){--}}
+        {{--$(".division").show();--}}
+        {{--$(".gpa").hide();--}}
+    {{--});--}}
+    {{--$("#gpa").click(function(){--}}
+        {{--$(".division").hide();--}}
+        {{--$(".gpa").show();--}}
+    {{--});--}}
+{{--});--}}
+{{--</script>--}}
+
+
 <script>
 $(document).ready(function(){
-    $("#division").click(function(){
-        $(".division").show();
-        $(".gpa").hide();
+    $("#board").click(function(){
+        $(".board").show();
+        $(".university").hide();
+        $(".other").hide();
     });
-    $("#gpa").click(function(){
-        $(".division").hide();
-        $(".gpa").show();
+    $("#university").click(function(){
+        $(".board").hide();
+        $(".other").hide();
+        $(".university").show();
     });
 });
 </script>
-
-
-
 
 
 

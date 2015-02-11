@@ -6,10 +6,27 @@
                 {{ Form::label('title', 'Question Title') }}
                 {{ Form::text('title', Input::old('title'),['class'=>'form-control', 'required'=>'required']) }}
             </div>
+
+            {{--<div class="form-group">--}}
+               {{--{{ Form::label('marks', 'Marks') }}--}}
+               {{--{{ Form::text('marks', Input::old('marks'), array('class' => 'form-control','required'=>'required')) }}--}}
+            {{--</div>--}}
+
+
+            <input id="total_marks_all" value="40" readonly>
+
+             {{ Form::hidden('marks', Input::old('marks'), array('id'=>'total_marks_all')) }}
+
+            {{--<input id="new_input_area_one" >--}}
+
             <div class="form-group">
                {{ Form::label('marks', 'Marks') }}
-               {{ Form::text('marks', Input::old('marks'), array('class' => 'form-control','required'=>'required')) }}
+               {{ Form::text('marks', Input::old('marks'), array('id'=>'new_input_area_one','class' => 'form-control','required'=>'required')) }}
             </div>
+
+
+
+
             <div class="form-group" id="myRadioGroup">
                {{ Form::label('gender','Question Type') }}
                {{ Form::label('mcq','MCQ',array('class'=>'radio-inline')) }}
@@ -38,13 +55,18 @@
                     </div>
                     <div id="fields">
                     </div>
-                    <a onclick="createInput()" class="add_button">Add (+)</a>
+
               </div>
               <div id="Descriptive" class="descriptive">
               </div>
             </div>
 
-            {{ Form::submit('Submit', array('class'=>'btn btn-primary')) }}
+
+            {{--<input id="total_marks_all" value="40" readonly>--}}
+            {{--<input id="new_input_area_one" >--}}
+
+
+            {{ Form::submit('Submit', array('id'=>'submit_if', 'class'=>'btn btn-primary')) }}
             <a href="{{URL::to('prepare_question_paper/faculty_index')}}" class="btn btn-default">Close </a>
         </fieldset>
 {{ Form::close() }}
@@ -62,6 +84,18 @@
             });
             $('#single').on('click', function () {
                 $('.radiocheck').attr('type', 'radio');
+            });
+
+            $('#submit_if').on('click', function () {
+                var totalMarks = parseInt(document.getElementById("total_marks_all").value);
+                var one = parseInt(document.getElementById("new_input_area_one").value);
+                if(totalMarks < one){
+                    alert('Exceed the total marks >'+totalMarks);
+                    return false;
+                }else{
+                    return true;
+                }
+
             });
 
 
