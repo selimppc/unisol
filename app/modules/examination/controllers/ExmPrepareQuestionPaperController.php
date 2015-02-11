@@ -318,7 +318,7 @@ class ExmPrepareQuestionPaperController extends \BaseController {
         return View::make('examination::prepare_question_paper.faculty_viewQuestionItems', compact('faculty_ViewQuestionItems', 'options'));
     }
 
-// method for Assign Question Paper Creation Task to teacher : AMW
+// method for Assign Question Paper Creation Task to faculty : AMW
     public function assignTo()
     { echo "Not Done Yet"; }
 

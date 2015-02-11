@@ -22,13 +22,13 @@
                 <td>{{$value->relCourse->relSubject->relDepartment->title}}</td>
                 <td>{{$value->relYear->title}}</td>
                 <td>{{$value->relSemester->title}}</td>
-                {{--<td>{{ AcmCourseConfig::getCourseItemStatus($value->course_id, $value->relCourse->evaluation_total_marks) }}</td>--}}
-                <td>Done</td>
+                <td>{{ AcmMarksDistribution::getCourseItemStatus($value->course_id, $value->relCourse->evaluation_total_marks) }}</td>
+
 
                 <td>
                     <a href="{{ URL::route('marksdistfind.show', ['course_id'=>$value->course_id])  }}" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#marksDist" data-toggle="tooltip" data-placement="left" title="Mark/Dist" href="">MarksDist</a>
 
-                    {{--<a href="{{ URL::route('config.show', ['id'=>$value->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#showModal" data-toggle="tooltip" data-placement="left" title="Show/View" href="">View Dist</a>--}}
+                    <a href="" class="btn btn-success" data-toggle="modal" data-target="#showModal" data-toggle="tooltip" data-placement="left" title="Show/View" href="">View Dist</a>
 
                 </td>
             </tr>

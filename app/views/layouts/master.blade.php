@@ -112,11 +112,11 @@
                         <i class="icon-user"></i> Academic Module <i class="caret"></i>
                  </a>
                   <ul class="dropdown-menu">
-                       <li><a tabindex="-1" a href="{{URL::to('/index') }}"> Enrollment </a></li>
+                       <li><a tabindex="-1" a href="{{URL::to('/') }}"> Enrollment </a></li>
                        <li class="divider"></li>
-                       <li><a tabindex="-1" a href="{{URL::to('amw/index') }}">Mark Distribution Courses</a></li>
+                       <li><a tabindex="-1" a href="{{URL::to('academic/amw/') }}">Mark Distribution Courses</a></li>
                        <li class="divider"></li>
-                       <li><a tabindex="-1" a href="{{URL::to('class/index') }}">Theory Class </a></li>
+                       <li><a tabindex="-1" a href="{{URL::to('class/') }}">Theory Class </a></li>
                        <li class="divider"></li>
                        <li><a tabindex="-1" a href="{{URL::to('') }}"> </a></li>
                        <li class="divider"></li>

@@ -7,75 +7,74 @@
  */
 
 Route::get('/index','EnrollmentController@index');
-
-
 //Applicant enrollment
-Route::get('student/index','EnrollmentController@create');
+Route::get('student/','EnrollmentController@create');
 //Theory Class start
 //class
-Route::get('class/index','TheoryclassController@class_index');
+Route::get('class/','TheoryclassController@class_index');
 //**********Mark_distribution_courses start************
 //*****************amw dist item*****************
-Route::get('amw/index',
-    'MarkdistributionController@amw_index'
+Route::get('academic/amw/',
+    'AcmAmwController@amw_index'
 );
-Route::any('amw/save',
-    'MarkdistributionController@amw_save'
+Route::any('academic/amw/save',
+    'AcmAmwController@amw_save'
 );
-Route::get('amw/edit/{id}', [
+Route::get('academic/amw/edit/{id}', [
     'as' => 'amw.edit',
-    'uses' => 'MarkdistributionController@amw_edit'
+    'uses' => 'AcmAmwController@amw_edit'
 ]);
-Route::any('amw/update/{id}', [
+Route::any('academic/amw/update/{id}', [
     'as' => 'amw/update',
-    'uses' => 'MarkdistributionController@amw_update'
+    'uses' => 'AcmAmwController@amw_update'
 ]);
-Route::any('amw/show/{id}',[
+Route::any('academic/amw/show/{id}',[
     'as' => 'amw.show',
-    'uses'=> 'MarkdistributionController@show_one'
+    'uses'=> 'AcmAmwController@show_one'
 ]);
-Route::get('amw/delete/{id}',
-    'MarkdistributionController@amw_delete'
+Route::get('academic/amw/delete/{id}',
+    'AcmAmwController@amw_delete'
 );
-Route::any('amw/batch/delete',
-    'MarkdistributionController@amw_batchdelete'
+Route::any('academic/amw/batch/delete',
+    'AcmAmwController@amw_batchdelete'
 );
 //*****************amw course config***************
-Route::get('amw/config/index',
-    'MarkdistributionController@config_index'
+Route::get('academic/amw/config/',
+    'AcmAmwController@config_index'
 );
-Route::any('amw/course/show/{course_id}',[
+Route::any('academic/amw/course/show/{course_id}',[
     'as' => 'coursefind.show',
-    'uses'=> 'MarkdistributionController@find_course_info'
+    'uses'=> 'AcmAmwController@find_course_info'
 ]);
-Route::post('amw/course/marks/save',
-    'MarkdistributionController@save_acm_course_config_data'
+Route::post('academic/amw/course/marks/save',
+    'AcmAmwController@save_acm_course_config_data'
 );
-Route::any('amw/config/show/{course_id}',[
+Route::any('academic/amw/config/show/{course_id}',[
     'as' => 'config.show',
-    'uses'=> 'MarkdistributionController@course_config_show'
+    'uses'=> 'AcmAmwController@course_config_show'
 ]);
-Route::any('amw/marks/dist/{id}',[
+Route::any('academic/amw/marks/dist/{id}',[
     'as' => 'marksdist.show',
-    'uses'=> 'MarkdistributionController@item_config_show'
+    'uses'=> 'AcmAmwController@item_config_show'
 ]);
-Route::post('amw/config/acmconfigdelete/ajax', 'MarkdistributionController@ajax_delete_acm_course_config'
+Route::post('academic/amw/config/acmconfigdelete/ajax',
+    'AcmAmwController@ajax_delete_acm_course_config'
 );
 //******************Faculty marksdistribution***********
-Route::get('academic/teacher/',
-    'MarkdistributionController@teacher_index'
+Route::get('academic/faculty/',
+    'AcmFacultyController@index'
 );
-Route::any('acdemic/faculty/course/marksdistitem/show/{cm_id}',[
+Route::any('academic/faculty/course/marksdistitem/show/{cm_id}',[
     'as' => 'coursemarksdist.show',
-    'uses'=> 'MarkdistributionController@course_marks_dist_show'
+    'uses'=> 'AcmFacultyController@course_marks_dist_show'
 ]);
-Route::post('acdemic/faculty/marks/distribution/save',
-    'MarkdistributionController@save_acm_marks_distribution_data'
+Route::post('academic/faculty/marks/distribution/save',
+    'AcmFacultyController@save_acm_marks_distribution_data'
 );
 
-Route::any('amw/marksdist/show/{course_id}',[
+Route::any('academic/faculty/marksdist/show/{course_id}',[
     'as' => 'marksdistfind.show',
-    'uses'=> 'MarkdistributionController@find_marksdist_info'
+    'uses'=> 'AcmFacultyController@find_marksdist_info'
 ]);
 
 

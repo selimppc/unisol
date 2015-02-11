@@ -11,7 +11,7 @@
 
 
 
-     {{ Form::open(array('url' => 'amw/batch/delete')) }}
+     {{ Form::open(array('url' => 'academic/amw/batch/delete')) }}
         <table id="example" class="table table-bordered table-hover table-striped">
         <thead>
             <tr>
@@ -31,7 +31,7 @@
                 <td>{{$value->title}}</td>
 
                 <td>
-                  <a data-href="{{ URL::to('amw/delete/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><span class="glyphicon glyphicon-trash text-danger"></span></a>
+                  <a data-href="{{ URL::to('academic/amw/delete/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><span class="glyphicon glyphicon-trash text-danger"></span></a>
 
                    <a href="{{ URL::route('amw.edit', ['id'=>$value->id]) }}" class="subEdit btn btn-xs btn-default" data-toggle="modal" data-target="#edit-modal" href="" ><span class="glyphicon glyphicon-edit text-info"></span></a>
 
@@ -45,12 +45,6 @@
     {{ Form::close() }}
 
     {{ $datas->links() }}
-
-
-
-
-
-
 
 
 {{---------------------------------------------}}
@@ -67,7 +61,7 @@
             </div>
             <div class="modal-body">
 
-             {{ Form::open(array('url' => 'amw/save', 'method' =>'post', 'role'=>'form','files'=>'true')) }}
+             {{ Form::open(array('url' => 'academic/amw/save', 'method' =>'post', 'role'=>'form','files'=>'true')) }}
 
                @include('academic::mark_distribution_courses.amw._form')
 

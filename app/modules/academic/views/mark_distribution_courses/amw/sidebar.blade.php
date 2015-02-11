@@ -12,12 +12,12 @@
 
                 <tr>
                 <td>
-                 <a href="{{ action('MarkdistributionController@amw_index') }}">All Item List</a> <span class="label label-success"></span>
+                 <a href="{{ action('AcmAmwController@amw_index') }}">All Item List</a> <span class="label label-success"></span>
                 </td>
                 </tr>
                 <tr>
                 <td>
-                  <a href="{{ action('MarkdistributionController@config_index') }}">Course Config</a> <span class="label label-info"></span>
+                  <a href="{{ action('AcmAmwController@config_index') }}">Course Config</a> <span class="label label-info"></span>
                 </td>
 
                 </tr>
@@ -41,7 +41,7 @@
             <table class="table">
                 <tr>
                     <td>
-                     <a href="{{ action('MarkdistributionController@teacher_index') }}">Mark Distribution</a> <span class="label label-success"></span>
+                     <a href="{{ action('AcmFacultyController@index') }}">Mark Distribution</a> <span class="label label-success"></span>
                     </td>
                 </tr>
                 {{--<tr>--}}

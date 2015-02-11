@@ -50,7 +50,7 @@
 
 <span style="color:red;">*</span>
         {{ Form::label('targetrole', 'Target Role') }}
-        {{ Form::select('targetrole', array(''=>'Select One','applicant' => 'Applicant', 'teacher' => 'Teacher','staff'=>'Staff','alumni'=>'Alumni','employer' => 'Employer'), '', array('class' => 'form-control'))}}
+        {{ Form::select('targetrole', array(''=>'Select One','applicant' => 'Applicant', faculty => 'Teacher','staff'=>'Staff','alumni'=>'Alumni','employer' => 'Employer'), '', array('class' => 'form-control'))}}
 @if ($errors->has('targetrole')) <p class="help-block">{{ $errors->first('targetrole') }}</p> @endif</div>
           <br>
 
