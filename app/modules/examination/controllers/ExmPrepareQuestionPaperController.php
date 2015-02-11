@@ -181,24 +181,32 @@ class ExmPrepareQuestionPaperController extends \BaseController {
 
 // method for Add Question Items : Faculty
     public function faculty_add_question_items($qid){
-        $qid = ExmQuestion::find($qid);
-        return View::make('examination::prepare_question_paper.faculty_add_question_item', compact('qid'));
+        $qid2 = ExmQuestion::find($qid);
+
+        $total_marks = DB::table('exm_question_items')
+            ->select(DB::raw('SUM(marks) as question_total_marks'))
+            ->where('exm_question_id', '=', $qid)
+            ->first();
+
+
+        return View::make('examination::prepare_question_paper.faculty_add_question_item', compact('total_marks', 'qid2'));
     }
 
 // method for Store Question Items : Faculty
     public function faculty_storeQuestionItems()
     {
-        $data = Input::all();
+
+       $data = Input::all();
 
         $faculty_store_question_items = new ExmQuestionItems();
-
-
 
         if ($faculty_store_question_items->validate($data))
         {
             $faculty_store_question_items->title = Input::get('title');
             $faculty_store_question_items->exm_question_id = Input::get('qid');
             $faculty_store_question_items->marks = Input::get('marks');
+
+
 
             if( strtolower(Input::get('mcq')) == 'mcq'){
                 if( strtolower(Input::get('r_question_type')) == 'mcq_single'){

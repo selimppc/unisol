@@ -1,6 +1,6 @@
-<h4 style="padding: 20px">Add Question Item for <b>{{$qid->title}} </b></h4>
+<h4 style="padding: 20px">Add Question Item for <b>{{$qid2->title}} </b></h4>
 {{ Form::open(array('url' => 'prepare_question_paper/faculty_store_Question_Items', 'method' =>'post', 'role'=>'form','files'=>'true'))  }}
-    {{Form::hidden('qid', $qid->id, ['class'=>'form-control'])}}
+    {{Form::hidden('qid', $qid2->id, ['class'=>'form-control'])}}
         <fieldset style="padding: 10px; width: 90%; padding: 20px">
             <div class='form-group'>
                 {{ Form::label('title', 'Question Title') }}
@@ -12,12 +12,11 @@
                {{--{{ Form::text('marks', Input::old('marks'), array('class' => 'form-control','required'=>'required')) }}--}}
             {{--</div>--}}
 
+            {{--<input id="total_marks_all" value="40" readonly>--}}
 
-            <input id="total_marks_all" value="40" readonly>
+             {{ Form::label('Total Marks :') }}
+             {{ Form::text('remaining_marks', $total_marks->question_total_marks , array('id'=>'total_marks_all','readonly')) }}
 
-             {{ Form::hidden('marks', Input::old('marks'), array('id'=>'total_marks_all')) }}
-
-            {{--<input id="new_input_area_one" >--}}
 
             <div class="form-group">
                {{ Form::label('marks', 'Marks') }}
@@ -88,6 +87,9 @@
 
             $('#submit_if').on('click', function () {
                 var totalMarks = parseInt(document.getElementById("total_marks_all").value);
+
+//                var remainingMarks = (parseInt(document.getElementById("total_marks_all").value - parseInt(document.getElementById("#").value )));
+
                 var one = parseInt(document.getElementById("new_input_area_one").value);
                 if(totalMarks < one){
                     alert('Exceed the total marks >'+totalMarks);
