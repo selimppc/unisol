@@ -56,7 +56,7 @@
                      </div>
 
 
-                     <div class="row">
+                     <div id="myRadioGroup" class="row">
                           <div class="col-sm-12">
                               <div class="col-sm-6"><strong>Option </strong></div>
                               <div class="col-sm-6"><strong>Answer </strong></div>
@@ -71,30 +71,30 @@
                                           {{ Form::text('option_title[]',$op->title,['class'=>'form-control']) }}
                                   </div>
                                   <div class="col-sm-6">
-
                                          @if($qid->question_type == 'radio')
                                               {{ Form::radio('answer[]',$counter, ($op->answer == 1), ['id'=>'single','class'=>'radiocheck']) }}
 
-                                              <a onclick="removalLink" class="remove">Remove (-)</a>
+                                              {{--<a onclick="removalLink" class="remove">Remove (-)</a>--}}
 
                                          @elseif($qid->question_type == 'checkbox')
                                               {{ Form::checkbox('answer[]',$counter, ($op->answer == 1), ['id'=>'multiple','class'=>'radiocheck']) }}
 
-                                              <a onclick="removalLink" class="remove">Remove (-)</a>
+                                              {{--<a onclick="removalLink" class="remove">Remove (-)</a>--}}
                                          @endif
-
-
                                   </div>
-
                               </div>
                               <?php $counter++; ?>
                           @endforeach
 
-                           <div class="col-sm-12">
-                               <div class="col-sm-6">
-                                    <a onclick="createInput()" class="add_button">Add (+)</a>
-                               </div>
-                           </div>
+                           {{--<div class="col-sm-12">--}}
+                               {{--<div class="col-sm-6">--}}
+
+                                    {{--<div id="fields">--}}
+                                    {{--</div>--}}
+
+                                    {{--<a onclick="createInput()" class="add_button">Add (+)</a>--}}
+                               {{--</div>--}}
+                           {{--</div>--}}
 
                      </div>
                </div>

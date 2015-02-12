@@ -3,7 +3,7 @@
     @include('examination::_sidebar')
 @stop
 @section('content')
-        <h1>Welcome to Prepare Question paper : AMW </h1> <br>
+        <h1>Welcome to Prepare Question paper : <strong>{{ ucwords(Auth::user()->username) }}</strong> </h1> <br>
                     {{ Form::open(array('url' => 'examination/amw/batchDelete')) }}
                         <table id="example" class="table table-striped  table-bordered"  >
                                     <thead>
@@ -15,6 +15,7 @@
                                           </div>
                                          <br>
                                            {{ Form::submit('Delete Items', array('class'=>'btn btn-danger', 'id'=>'hide-button', 'style'=>'display:none'))}}
+
                                          <br>
                                          <tr>
                                             <th><input name="id" type="checkbox" id="checkbox" class="checkbox" value=""></th>

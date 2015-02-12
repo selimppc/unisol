@@ -5,12 +5,12 @@
 @stop
 
 @section('content')
-             <h1>Welcome to Question Items : Faculty </h1> <br>
+             <h1>Welcome to Question Items : <strong>{{ ucwords(Auth::user()->username) }}</strong> </h1> <br>
                 {{ Form::open(array('url' => 'examination/faculty/batchItemsDelete')) }}
               <table id="example" class="table table-striped  table-bordered"  >
                      <thead>
                           <br>
-                               {{ Form::submit('Delete Items', array('class'=>'btn btn-danger', 'id'=>'hide-button', 'style'=>'display:none'))}}
+                               {{ Form::submit('Delete Items', array('class'=>'btn btn-danger', 'id'=>'hide-button', 'style'=>'display:none','data-toggle'=>'modal', 'data-target'=>'#confirm-delete'))}}
                           <br>
                          <tr>
                              <th><input name="id" type="checkbox" id="checkbox" class="checkbox" value=""></th>

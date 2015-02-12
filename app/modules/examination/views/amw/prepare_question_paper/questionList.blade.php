@@ -3,7 +3,7 @@
     @include('examination::_sidebar')
 @stop
 @section('content')
-             <h1>Welcome to Question Items : AMW </h1> <br>
+             <h1>Welcome to Question Items : <strong>{{ ucwords(Auth::user()->username) }}</strong> </h1> <br>
               {{ Form::open(array('url' => 'examination/amw/batchItemsDelete')) }}
               <table id="example" class="table table-striped  table-bordered"  >
                      <thead>

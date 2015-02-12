@@ -80,6 +80,7 @@ class AcmFacultyController extends \BaseController {
 					'acm_course_config.readonly',
 					'acm_course_config.default_item',
 					'acm_course_config.is_attendance',
+					'acm_course_config.created_by',
 					'acm_course_config.marks as actual_marks',
 					'acm_marks_dist_item.title as acm_dist_item_title',
 					'course.id as course_id2',
@@ -106,6 +107,7 @@ class AcmFacultyController extends \BaseController {
 		$acm_item_id = Input::get('acm_marks_dist_item_id');
 		$acm_marks_policy_id = Input::get('policy_id');
 		$actual_marks = Input::get('actual_marks');
+		$created_by_amw = Input::get('created_by_amw');
 
 		$count = count($acm_item_id);
 
@@ -159,9 +161,19 @@ class AcmFacultyController extends \BaseController {
 						$marks_dist->is_readonly = 1;
 				}
 			}
-			echo $marks_dist->is_readonly." is readonly <br>";
+			#echo $marks_dist->is_readonly." is readonly <br>";
 
 			// $marks_dist->acm_attendance_config_id = $attendance_id;
+
+			// Assign created_by and updated_by user id
+			if( isset($created_by_amw) && isset($created_by_amw[$i]) )
+				$marks_dist->created_by = $created_by_amw[$i];
+			elseif(!isset($acm_marks_distribution_id[$i]))
+				$marks_dist->created_by = Auth::user()->id;
+			else
+				$marks_dist->updated_by = Auth::user()->id;
+
+
 			$marks_dist->save();
 
 		}
@@ -170,7 +182,20 @@ class AcmFacultyController extends \BaseController {
 		Session::flash('message', 'ACM Course Configuration Data Successfully Added !!');
 		return Redirect::to('academic/faculty');
 	}
+	//Ajax delete in modal
+	public function ajax_delete_acm_marks_dist()
+	{
+		if(Request::ajax())
+		{
+			$acm_marks_distribution_id = Input::get('acm_marks_distribution_id');
 
+			$data = AcmMarksDistribution::find($acm_marks_distribution_id)->first();
+			if($data->delete())
+				return Response::json(['msg'=> 'Data Successfully Deleted']);
+			else
+				return Response::json(['msg'=> 'Data Successfully Not Deleted']);
+		}
+	}
 //End code
 
 
