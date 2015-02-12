@@ -169,6 +169,12 @@ class AcmAmwController extends \BaseController {
 		for($i=0; $i < $count; $i++) {
 			//$model1 = $data['acm_config_id'][$i] ? AcmCourseConfig::find($acm_config_id[$i]) : new AcmCourseConfig;
 			$model1 = ($acm_config_id[$i]) ? AcmCourseConfig::find($acm_config_id[$i]) : new AcmCourseConfig;
+
+			if($acm_config_id[$i])
+				$model1->updated_by = Auth::user()->id;
+			else
+				$model1->created_by = Auth::user()->id;
+
 			$model1->acm_marks_dist_item_id = $acm_item_id[$i];
 			$model1->course_id = $data['course_id'][$i];
 			$model1->marks = $data['actual_marks'][$i];
