@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('sidebar')
-  @include('academic::mark_distribution_courses.amw.sidebar')
+  @include('academic::amw.mark_distribution_courses.sidebar')
 @stop
 @section('content')
 <h4>{{$title}}</h4>
@@ -63,7 +63,7 @@
 
              {{ Form::open(array('url' => 'academic/amw/save', 'method' =>'post', 'role'=>'form','files'=>'true')) }}
 
-               @include('academic::mark_distribution_courses.amw._form')
+               @include('academic::amw.mark_distribution_courses._form')
 
              {{ Form::close() }}
 
