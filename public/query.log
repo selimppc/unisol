@@ -1,0 +1,6 @@
+[2015-02-12 12:36:08] log.INFO: select * from `user` where `user`.`id` = ? limit 1 {"bindings":[2],"time":4.17} []
+[2015-02-12 12:36:08] log.INFO: select * from `role` where `role`.`id` = ? limit 1 {"bindings":[2],"time":2.45} []
+[2015-02-12 12:39:32] log.INFO: select * from `user` where `user`.`id` = ? limit 1 {"bindings":[2],"time":3.64} []
+[2015-02-12 12:39:32] log.INFO: select * from `role` where `role`.`id` = ? limit 1 {"bindings":[2],"time":2.38} []
+[2015-02-12 12:39:42] log.INFO: select * from `user` where `user`.`id` = ? limit 1 {"bindings":[2],"time":3.52} []
+[2015-02-12 12:39:42] log.INFO: select * from `role` where `role`.`id` = ? limit 1 {"bindings":[2],"time":1.91} []
