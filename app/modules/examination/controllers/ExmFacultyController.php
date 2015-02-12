@@ -53,7 +53,6 @@ class ExmFacultyController extends \BaseController {
 
     public function editQuestionItems($id)
     {
-
         $qid = DB::table('exm_question_items')
             ->where('id', $id)
             ->first();
@@ -82,6 +81,8 @@ class ExmFacultyController extends \BaseController {
             $faculty_store_question_items->title = Input::get('title');
             $faculty_store_question_items->exm_question_id = Input::get('qid');
             $faculty_store_question_items->marks = Input::get('marks');
+            $faculty_store_question_items->created_by = Auth::user()->id;
+            $faculty_store_question_items->updated_by = Auth::user()->id;
 
 
 

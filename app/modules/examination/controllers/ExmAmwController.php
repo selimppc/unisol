@@ -46,8 +46,8 @@ class ExmAmwController extends \BaseController {
             $prepare_question_paper->title = Input::get('title');
             $prepare_question_paper->deadline = Input::get('deadline');
             $prepare_question_paper->total_marks = Input::get('total_marks');
-            $prepare_question_paper->created_by = '0';
-            $prepare_question_paper->updated_by = '0';
+            $prepare_question_paper->created_by = Auth::user()->id;
+            $prepare_question_paper->updated_by = Auth::user()->id;
             $prepare_question_paper->save();
 
             // redirect
@@ -86,8 +86,8 @@ class ExmAmwController extends \BaseController {
             $prepare_question_paper->title = Input::get('title');
             $prepare_question_paper->deadline = Input::get('deadline');
             $prepare_question_paper->total_marks = Input::get('total_marks');
-            $prepare_question_paper->created_by = '0';
-            $prepare_question_paper->updated_by = '0';
+            $prepare_question_paper->created_by = Auth::user()->id;
+            $prepare_question_paper->updated_by = Auth::user()->id;
             $prepare_question_paper->save();
             // redirect
             Session::flash('message', 'Successfully Added!');
