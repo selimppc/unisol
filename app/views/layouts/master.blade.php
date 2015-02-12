@@ -212,7 +212,7 @@
 
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a tabindex="-1" href="">Admin</a>
+                            <li><a tabindex="-1" href=""><strong>{{ ucwords(Auth::user()->username) }}</strong></a>
                             </li>
                             <li class="divider"></li>
                             <li><a tabindex="-1" href="{{URL::route('user/logout') }}">Logout</a></li>
