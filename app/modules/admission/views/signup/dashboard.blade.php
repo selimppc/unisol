@@ -13,10 +13,10 @@
     <p class="alert">{{ Session::get('message') }}</p>
     @endif
 
-    <p>Welcome to your Dashboard. You rock!</p>
+    <p>Welcome to your Dashboard. You are <b class="btn btn-sm btn-info">{{Auth::user()->username}}</b>! </p>
 
 
-    {{ HTML::linkAction('UserSignupController@usersLogout', 'Logout') }}
+    {{ HTML::linkAction('UserController@logout', 'Logout') }}
     <br>
     <a href= "{{URL::to('applicant/profile') }}" class="btn btn-sm btn-info">Create Profile</a>
 

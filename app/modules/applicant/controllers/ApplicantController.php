@@ -567,7 +567,7 @@ class ApplicantController extends \BaseController
 
     public function acmRecordsIndex(){
 
-        $model = AptAcademic::where('applicant_id', '=', '1')->get();
+        $model = AptAcmRecords::where('applicant_id', '=', '1')->get();
         return View::make('applicant::apt_academic_records.index', compact('model'));
     }
     public function acmRecordsCreate(){
@@ -579,21 +579,31 @@ class ApplicantController extends \BaseController
 //            'level_of_education' => 'required',
 //            'degree_name' => 'required',
 //            'institute_name' => 'required',
-//            'group' => 'required',
-//            'board' => 'required',
+//            'academic_group' => 'required',
+//            'board_type' => 'required',
 //            'major_subject' => 'required',
-//            'result' => 'required',
-//            'roll_number' => 'required',
         );
         $validator = Validator::make(Input::all(), $rules);
         if ($validator->passes()) {
-            $model =new AptAcademic();
+            $model =new AptAcmRecords();
             $model->applicant_id = Input::get('applicant_id');
             $model->level_of_education = Input::get('level_of_education');
             $model->degree_name = Input::get('degree_name');
             $model->institute_name = Input::get('institute_name');
-            $model->academic_group = Input::get('group');
-//            $model->board = Input::get('board');
+            $model->academic_group = Input::get('academic_group'); //TO DO (academic group :University)
+
+            //save board or university according to board_type
+            $model->board_type = Input::get('board_type');
+
+            if($model->board_type == 'board')
+                    $board_university = Input::get('board_university_board');
+                if($model->board_type == 'university')
+                        $board_university = Input::get('board_university_university');
+                    if($model->board_type == 'other')
+                            $board_university = Input::get('board_university_other');
+
+            $model->board_university = $board_university;
+
             $model->major_subject = Input::get('major_subject');
             $model->result_type = Input::get('result_type');
 
@@ -607,7 +617,53 @@ class ApplicantController extends \BaseController
             $model->study_at = Input::get('study_at');
 
             $model->save();
+            //echo $model;
             return Redirect::back()->with('message', 'Successfully added Information!');
+        } else {
+            return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
+        }
+
+    }
+    public function acmRecordsEdit($id){
+        $model= AptAcmRecords::find($id);
+        return View::make('applicant::apt_academic_records.modals.edit', compact('model'));
+    }
+    public function acmRecordsUpdate($id){
+        $rules = array(
+//            'level_of_education' => 'required',
+        );
+        $validator = Validator::make(Input::all(), $rules);
+        if ($validator->passes()) {
+
+            $model = AptAcmRecords::find($id);
+
+            $model->level_of_education = Input::get('level_of_education');
+            $model->degree_name = Input::get('degree_name');
+            $model->institute_name = Input::get('institute_name');
+            $model->academic_group = Input::get('academic_group');
+ //update board or university according to board_type
+            $model->board_type = Input::get('board_type');
+            if($model->board_type == 'board')
+                $board_university = Input::get('board_university_board');
+            if($model->board_type == 'university')
+                $board_university = Input::get('board_university_university');
+            if($model->board_type == 'other')
+                $board_university = Input::get('board_university_other');
+
+            $model->board_university = $board_university;
+
+            $model->major_subject = Input::get('major_subject');
+            $model->result_type = Input::get('result_type');
+            $model->result = Input::get('result');
+            $model->gpa = Input::get('gpa');
+            $model->gpa_scale = Input::get('gpa_scale');
+            $model->roll_number = Input::get('roll_number');
+            $model->registration_number = Input::get('registration_number');
+            $model->year_of_passing = Input::get('year_of_passing');
+            $model->duration = Input::get('duration');
+            $model->study_at = Input::get('study_at');
+            $model->save();
+            return Redirect::back()->with('message', 'Successfully updated Information!');
         } else {
             return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
         }
@@ -615,18 +671,13 @@ class ApplicantController extends \BaseController
     }
     public function acmRecordsShow($id)
     {
-        $model = AptAcademic::find($id);
+        $model = AptAcmRecords::find($id);
         return View::make('applicant::apt_academic_records.modals.show',compact('model'));
     }
     public function academicDelete($id){
 
-        try {
-            AptAcademic::find($id)->delete();
-            return Redirect::back()->with('message', 'Successfully deleted Information!');
-        }
-        catch(exception $ex){
-            return Redirect::back()->with('message', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
-        }
+        AptAcmRecords::find($id)->delete();
+        return Redirect::back()->with('message', 'Successfully deleted Information!');
     }
 }
 
