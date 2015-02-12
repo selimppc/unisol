@@ -3,7 +3,7 @@
 class ExmAmwController extends \BaseController {
 
     function __construct() {
-        $this->beforeFilter('exmAmw', array('except' => array('index')));
+        $this->beforeFilter('exmAmw', array('except' => array('')));
     }
 
 	public function index()

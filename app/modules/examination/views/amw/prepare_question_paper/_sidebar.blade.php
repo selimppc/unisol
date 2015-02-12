@@ -2,7 +2,7 @@
     <div class="panel-heading">
             <h4 class="panel-title">
                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><span class="glyphicon glyphicon-user">
-                </span>Prepare Question Paper : AMW </a>
+                </span>You loggged in as <strong>{{ ucwords(Auth::user()->username) }} </strong></a>
             </h4>
     </div>
     <div id="collapseTwo" class="panel-collapse collapse in">
