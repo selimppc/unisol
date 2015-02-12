@@ -12,6 +12,7 @@
 
 {{ Form::open(array('class'=>'form-horizontal','url' => 'applicant/extra_curricular_store', 'method' =>'post', 'files'=>'true','id'=>'signup-form')) }}
 
+{{ Form::hidden('applicant_id', $applicant_id = 1, array('class'=>'form-control')) }}
 
  <div class="form-group">
     <span class="text-muted"><em><span style="color:red;">  * </span><b>Indicates required field</b> </em></span>

@@ -16,10 +16,10 @@
 
 {{ Form::hidden('applicant_id', $applicant_id = 1, array('class'=>'form-control')) }}
 <br><br>
-<div>{{ Form::label('level_of_education', 'Level of Education ') }}
-{{ Form::select('level_of_education', array('' => 'Select one',
-   'psc' => 'PSC', 'jsc' => 'JSC', 'ssc'=>'SSC','hsc'=>'HSC','grad'=>'Grad','under_gr'=>'Under Grad'), Input::old('level_of_education'),
-    array('class' => 'form-control')) }}
+<div >{{ Form::label('level_of_education', 'Level of Education ') }}
+{{ Form::select ('level_of_education',  array('' => 'Select one',
+   'psc' => 'PSC', 'jsc' => 'JSC', 'ssc'=>'SSC','hsc'=>'HSC','grad'=>'Grad','under_grad'=>'Under Grad'), Input::old('level_of_education'),
+    array('class' => 'level')) }}
 </div>
 
 
@@ -29,13 +29,18 @@
 <div >{{ Form::label('institute_name', 'Institute Name') }}</div >
 <div >{{ Form::text('institute_name', Input::old('institute_name'),['class'=>'form-control ']) }}</div>
 
-<div >{{ Form::label('academic_group', 'Academic Group') }}</div >
+<div id="acm_group" style="display:none">{{ Form::label('academic_group', 'Academic Group') }}
 {{ Form::text('academic_group', Input::old('academic_group'),['class'=>'form-control ']) }}
+</div >
 <br>
 
-<div >{{ Form::label('board_type', 'Board Type') }}   (Select one : Board/ University/Other )</div>
+<div id="subject" style="display:none">{{ Form::label('major_subject', 'Major Subject') }}
+{{ Form::text('major_subject', Input::old('major_subject'),['class'=>'form-control ']) }}
+</div>
 
-<div id="board"><label class="small">{{ Form::radio('board_type','board',null) }} Board</label>
+<div  id='board_type' style="display:none">{{ Form::label('board_type', 'Board Type') }}   (Select one : Board/ University/Other )</div>
+
+<div id="board" style="display:none"><label class="small">{{ Form::radio('board_type','board',null) }} Board</label>
     <div style="display:none" class="board">
       {{ Form::select('board_university_board', array('' => 'Select one',
             'Dhaka' => 'Dhaka', 'Chittagong' => 'Chittagong', 'Comilla'=>'Comilla','Khulna'=>'Khulna','Syllhet'=>'Syllhet'),
@@ -44,7 +49,7 @@
     </div>
 </div>
 
-<div id="university"><label class="small">{{ Form::radio('board_type','university',null) }} University</label>
+<div id="university" style="display:none"><label class="small">{{ Form::radio('board_type','university',null) }} University</label>
     <div style="display:none" class="university">
       {{ Form::select('board_university_university', array('' => 'Select one',
             'Dhaka University' => 'Dhaka University', 'Chittagong University' => 'Chittagong University', 'Khulna University'=>'Khulna University'),
@@ -53,15 +58,13 @@
     </div>
 </div>
 
-<div id="other"><label class="small">{{ Form::radio('board_type','other',null) }} Other</label>
+<div id="other" style="display:none"><label class="small">{{ Form::radio('board_type','other',null) }} Other</label>
     <div style="display:none" class="other">
        {{ Form::text('board_university_other', Input::old('board_university'),['class'=>'form-control ']) }}
     </div>
 </div>
 
 
-<div >{{ Form::label('major_subject', 'Major Subject') }}</div >
-<div >{{ Form::text('major_subject', Input::old('major_subject'),['class'=>'form-control ']) }}</div>
 
 <br>
 <div >{{ Form::label('result_type', 'Result Type') }}   (Select one : Division/Class OR CGPA )</div>
@@ -100,8 +103,52 @@
     array('class' => 'form-control')) }}</div>
 
 
+<br>
+<br>
+{{ Form::submit('Save', array('class' => 'btn btn-primary')) }}
+
+<br>
+<br>
+{{ Form::close() }}
+
+</div>
+</div>
+
+
+{{-------------------js: show board_type for selected level of education value---------------------------}}
 <script>
-//$(document).ready(function(){
+$('select[class=level]').change(function () {
+    if ($(this).val()=="grad" || $(this).val()=="under_grad") {
+        $('#board_type').show();
+        $('#university').show();
+        $('#other').show();
+        $('#board').hide();
+    }else{
+        $('#board_type').show();
+        $('#board').show();
+        $('#university').hide();
+        $('#other').hide();
+    }
+});
+</script>
+
+{{-------------------------js:show major subject / academic group-----------------------------------------}}
+<script>
+$('select[class=level]').change(function () {
+    if ($(this).val()=="grad" || $(this).val()=="under_grad") {
+        $('#subject').show();
+        $('#acm_group').hide();
+    }else{
+        $('#acm_group').show();
+        $('#subject').hide();
+    }
+
+});
+</script>
+
+{{--------------------------------js: selection for division or cgpa------------------------------------}}
+<script>
+
     $("#division").click(function(){
         $(".division").show();
         $(".gpa").hide();
@@ -110,10 +157,10 @@
         $(".division").hide();
         $(".gpa").show();
     });
-//});
+
 </script>
 
-
+{{-------------------------------js: selection for board/university/other------------------------------------}}
 <script>
 $(document).ready(function(){
     $("#board").click(function(){
@@ -134,27 +181,18 @@ $(document).ready(function(){
 });
 </script>
 
+{{---------------------------------js: selection for retult_type--------------------------------------------}}
+<script>
 
+    $("#division").click(function(){
+        $(".division").show();
+        $(".gpa").hide();
+    });
+    $("#gpa").click(function(){
+        $(".division").hide();
+        $(".gpa").show();
+    });
 
-
-
-
-
-
-
-
-
-
-<br>
-<br>
-{{ Form::submit('Save', array('class' => 'btn btn-primary')) }}
-
-<br>
-<br>
-{{ Form::close() }}
-
-</div>
-</div>
-
+</script>
 
 @stop

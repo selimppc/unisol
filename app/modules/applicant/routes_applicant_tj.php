@@ -34,7 +34,8 @@ Route::any('applicant/profile','ApplicantController@applicantProfile');
 
 Route::any('applicant/meta_data','ApplicantController@applicantMetaData');//meta-data
 
-Route::any('applicant/extra_curricular','ApplicantController@applicantExtraCurricularActivities');
+//Extra_Curricular Activities.................................................................
+Route::any('apt/extra_curricular/index','ApplicantController@extraCurricularIndex');
 
 Route::any('applicant/extra_curricular/create','ApplicantController@applicantExtraCurricular');
 

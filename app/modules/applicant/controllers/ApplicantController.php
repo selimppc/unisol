@@ -266,9 +266,11 @@ class ApplicantController extends \BaseController
     }
 
     // Applicant's Extra-Curricular Activities......................................................
-    public function applicantExtraCurricular()
+    public function extraCurricularIndex()
     {
-        return View::make('applicant::extra_curricular._form');
+        //return View::make('applicant::extra_curricular._form');
+        $data = ApplicantProfile::where('applicant_id', '=', '1')->first();
+        return View::make('applicant::extra_curricular.index', compact('data'));
     }
     public function applicantExtraCurricularStore(){
 
@@ -291,14 +293,10 @@ class ApplicantController extends \BaseController
         }
 
     }
-    public function applicantExtraCurricularActivities()
+    public function excActivities()
     {
-        $user_id = Auth::user()->id;
-
-        $data = ExtraCurricularActivities::where('user_id', '=', $user_id)->first();
-
-        return View::make('applicant::extra_curricular.index', compact('data'));
-
+        $profile = ApplicantProfile::where('applicant_id', '=', '1')->first();
+        return View::make('applicant::extra_curricular.index', compact('profile'));
     }
     public function editExtraCurricular($id)
     {
@@ -331,16 +329,15 @@ class ApplicantController extends \BaseController
         return View::make('applicant::applicants.index');
     }
 
-    //  Applicant's Profile: Methods.....................................................
+  //  Applicant's Profile: Methods.....................................................
 
     public function applicantProfileIndex(){
-        $applicant_id = ApplicantProfile::find(19);
-        $profile = ApplicantProfile::where('id', '=', '1')->first();
-        return View::make('applicant::applicant_profile.index')->with('profile',$profile);
+        $profile = ApplicantProfile::where('applicant_id', '=', '1')->first();
+        return View::make('applicant::applicant_profile.index',compact('profile'));
     }
     public function applicantProfileCreate()
     {
-        return View::make('applicant::applicant_profile._form');
+        return View::make('applicant::applicant_profile.create');
     }
     public function applicantProfileStore(){
 
@@ -352,6 +349,7 @@ class ApplicantController extends \BaseController
             $profile =new ApplicantProfile();
             $profile->applicant_id = Input::get('applicant_id');
             $profile->date_of_birth = Input::get('date_of_birth');
+            $profile->place_of_birth = Input::get('place_of_birth');
             $profile->gender = Input::get('gender');
 
             $file = Input::file('profile_image');
@@ -417,9 +415,6 @@ class ApplicantController extends \BaseController
         }
 
     }
-
-
-
     public function editProfileImage($id){
 
         $profile = ApplicantProfile::find($id);
@@ -590,7 +585,7 @@ class ApplicantController extends \BaseController
             $model->level_of_education = Input::get('level_of_education');
             $model->degree_name = Input::get('degree_name');
             $model->institute_name = Input::get('institute_name');
-            $model->academic_group = Input::get('academic_group'); //TO DO (academic group :University)
+            $model->academic_group = Input::get('academic_group');
 
             //save board or university according to board_type
             $model->board_type = Input::get('board_type');
@@ -618,7 +613,8 @@ class ApplicantController extends \BaseController
 
             $model->save();
             //echo $model;
-            return Redirect::back()->with('message', 'Successfully added Information!');
+            //return Redirect::back()->with('message', 'Successfully added Information!');
+            return Redirect::to('apt/acm_records/index')->with('message', 'successfully added');
         } else {
             return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
         }
