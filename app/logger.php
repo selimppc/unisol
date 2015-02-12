@@ -106,4 +106,5 @@ if( Config::get('app.debug') === true ){
 //        $monolog->info($level, compact('message', 'context'));
 //    });
 //
-//}
+
+}
