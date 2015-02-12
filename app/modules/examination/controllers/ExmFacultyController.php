@@ -3,7 +3,7 @@
 class ExmFacultyController extends \BaseController {
 
     function __construct() {
-        $this->beforeFilter('exmFaculty', array('except' => array('index')));
+        $this->beforeFilter('exmFaculty', array('except' => array('')));
     }
 
     public function index()
@@ -11,6 +11,7 @@ class ExmFacultyController extends \BaseController {
         $data = ExmQuestion::with('relCourseManagement', 'relCourseManagement.relYear',
                 'relCourseManagement.relSemester','relCourseManagement.relCourse.relSubject.relDepartment')
                 ->get();
+
         return View::make('examination::faculty.prepare_question_paper.index')->with('datas', $data);
     }
     public function questionList()
@@ -48,11 +49,17 @@ class ExmFacultyController extends \BaseController {
             ->where('id', $id)
             ->first();
 
+//        $q_marks = ExmQuestion::find($id);
+//        print_r($q_marks);exit;
+
+
+        $total_marks = $this->totalMarks($qid->exm_question_id);
+
         $options = DB::table('exm_question_opt_ans')
             ->where('exm_question_items_id', $qid->id)
             ->get();
 
-        return View::make('examination::faculty.prepare_question_paper.editQuestionItems', compact('qid', 'options'));
+        return View::make('examination::faculty.prepare_question_paper.editQuestionItems', compact('q_marks','total_marks','qid', 'options'));
 
     }
     public function storeQuestionItems()
