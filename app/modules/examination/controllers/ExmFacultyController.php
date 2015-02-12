@@ -59,7 +59,7 @@ class ExmFacultyController extends \BaseController {
             ->first();
 
         $exm_q_marks = ExmQuestion::find($qid->exm_question_id)->total_marks;
-        
+
         $item_total_marks = $this->totalMarks($qid->exm_question_id);
 
 
