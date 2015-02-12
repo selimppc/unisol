@@ -8,13 +8,14 @@
 
 
       {{ Form::label('Marks added till now :') }}
-      {{ Form::text('total_marks', $total_marks->question_total_marks , array('placeholder' => '0','id'=>'total_marks_all','readonly')) }}
+      {{ Form::text('total_marks', $item_total_marks->question_total_marks , array('placeholder' => '0','id'=>'total_marks_all','readonly')) }}
 
       </br>
 
       {{ Form::label('Remaining Marks to add:') }}
+      {{ Form::text('remaining_marks', ($exm_q_marks - $item_total_marks->question_total_marks) , array('id'=>'remaining_marks','readonly')) }}
 
-      {{ Form::text('remaining_marks', ($total_marks->question_total_marks) , array('id'=>'remaining_marks','readonly')) }}
+{{--      {{ Form::text('remaining_marks', ($qid2->total_marks) , array('id'=>'remaining_marks','readonly')) }}--}}
 
 {{--$q_marks->total_marks - --}}
 
@@ -81,6 +82,8 @@
 
                                               <a onclick="removalLink" class="remove">Remove (-)</a>
                                          @endif
+
+
                                   </div>
 
                               </div>

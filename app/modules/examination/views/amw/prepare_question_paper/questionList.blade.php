@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('sidebar')
-    @include('examination::amw.prepare_question_paper._sidebar')
+    @include('examination::_sidebar')
 @stop
 @section('content')
              <h1>Welcome to Question Items : AMW </h1> <br>
