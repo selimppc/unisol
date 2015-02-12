@@ -52,6 +52,9 @@
                     <?php }?>
                     {{ Form::hidden('acm_marks_dist_item_id[]', $value->item_id, ['class'=>'acm_marks_dist_item_id'])}}
                     {{ Form::hidden('course_id[]', $value->course_id2, ['class'=>'get_course_id']) }}
+                    @if(isset($value->created_by))
+                        {{ Form::hidden('created_by_amw[]', $value->created_by)}}
+                    @endif
                     {{ $value->acm_dist_item_title}}
                 </td>
                 <td>
@@ -76,12 +79,9 @@
                         No
                     @endif
                         {{--{{ Form::text('isReadOnly[]', $value->readonly) }}--}}
-
                 </td>
                 <td>{{ Form::radio('isDefault[]', $counter, ($value->default_item) ? $value->default_item : Input::old('isDefault'.$key)) }}
                 </td>
-
-                {{--{{ Form::radio('isDefault[]', '1', $value->default_item==1, ['class'=>'radio'] ) }}--}}
 
                 <td>{{ Form::radio('isAttendance[]', $counter, ($value->is_attendance) ? $value->is_attendance : Input::old('isAttendance'.$key)) }}</td>
                 <td>
@@ -91,11 +91,13 @@
                         {{ Form::select('policy_id[]', array(''=>'Select Option','1' => 'Attendance', '2' => 'Best One','3'=>'Average','4'=>'Average of Top N','5' => 'Sum','6' => 'Single'), array('data-parsley-trigger'=>'change','required'=>'required'))}}
                    @endif
 
-                </td>
+                       @if($value->created_by == 2)
+                      <td><a class="btn btn-default btn-sm" id="removedistTrId{{$key}}" onClick="deleteMarkDistNearestTr(this.id, {{$value->isMarksId}})"><span class="glyphicon glyphicon-trash text-danger"></span></a></td>
+                    @else
+                      <td>
 
-                <td>
-
-                </td>
+                      </td>
+                    @endif
             </tr>
             <?php $counter++;?>
 
@@ -104,7 +106,6 @@
                 item_id = <?php echo($value->item_id) ?>;
                 editMarksListItem(item_id);
             </script>
-
 
         @endforeach
 
