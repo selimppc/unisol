@@ -2,7 +2,7 @@
 <div class="modal-header">
 
     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-    <h4 class="modal-title" id="myModalLabel">Edit ....</h4>
+    <h4 class="modal-title" id="myModalLabel">Edit Academic Records....</h4>
 </div>
 
 <div class="modal-body">
@@ -29,7 +29,7 @@
 {{ Form::label('board_type', 'Board Type') }}
 
 <div id="board"><label class="small">{{ Form::radio('board_type','board',($model->board_type == 'board')) }} Board</label>
-    <div style="display:none" class="board">
+    <div style="display:{{($model->board_type=='board')? 'block':'none'}}" class="board">
       {{ Form::select('board_university_board', array('' => 'Select one',
             'Dhaka' => 'Dhaka', 'Chittagong' => 'Chittagong', 'Comilla'=>'Comilla','Khulna'=>'Khulna','Syllhet'=>'Syllhet'),
             $model->board_university,
@@ -38,7 +38,7 @@
 </div>
 
 <div id="university"><label class="small">{{ Form::radio('board_type','university',($model->board_type == 'university')) }} University</label>
-    <div style="display:none" class="university">
+    <div style="display:{{($model->board_type=='university')? 'block':'none'}}" class="university">
       {{ Form::select('board_university_university', array('' => 'Select one',
             'Dhaka University' => 'Dhaka University', 'Chittagong University' => 'Chittagong University', 'Khulna University'=>'Khulna University'),
             $model->board_university,
@@ -47,17 +47,10 @@
 </div>
 
 <div id="other"><label class="small">{{ Form::radio('board_type','other',($model->board_type == 'other')) }} Other</label>
-    <div style="display:none" class="other">
+    <div style="display:{{($model->board_type=='other')? 'block':'none'}}" class="other">
        {{ Form::text('board_university_other', $model->board_university,['class'=>'form-control ']) }}
     </div>
 </div>
-
-{{--<div >{{ Form::label('result_type', 'Result Type') }}</div>--}}
-
-  {{--<div id="division"><label class="small">{{ Form::radio('result_type','division',$model->result_type == 'division')}} Division/Class </label></div>--}}
-     {{--<div style="display:none" class="other">--}}
-        {{--{{ Form::text('result', Input::old('result'),['class'=>'form-control ','placeholder'=>"3rd Class First"]) }}--}}
-     {{--</div>--}}
 
 
      <div >{{ Form::label('result_type', 'Result Type') }}   (Select one : Division/Class OR CGPA )</div>

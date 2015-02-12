@@ -16,6 +16,7 @@ class UserTable extends Seeder {
         $faculty_role_id = DB::table('role')->select('id')->where('title', 'faculty')->first()->id;
         $amw_role_id = DB::table('role')->select('id')->where('title', 'amw')->first()->id;
         $student_role_id = DB::table('role')->select('id')->where('title', 'student')->first()->id;
+        $applicant_role_id = DB::table('role')->select('id')->where('title', 'applicant')->first()->id;
 
         $cse_dept_id = DB::table('department')->select('id')->where('title', 'CSE')->first()->id;
         $eee_dept_id = DB::table('department')->select('id')->where('title', 'EEE')->first()->id;
@@ -86,6 +87,26 @@ class UserTable extends Seeder {
             'password' => Hash::make('student'),
             'email' => 'student@student.com',
             'role_id' => $student_role_id,
+            'department_id' => $eee_dept_id,
+            'join_date' => '2000-12-12',
+            'last_visit' => '2000-12-12',
+            'ip_address' => '192.168.1.1',
+            'status' => '1',
+            'verified_code' => '9875656457890867869778',
+            'csrf_token' => 'fioyugpuiesiorgjhprauehrigpi',
+            'applicant_id' => '1',
+            'waiver_id' => '1',
+            'created_by' => '1',
+            'updated_by' => '1',
+            'created_at' => new DateTime,
+            'updated_at' => new DateTime
+        ));
+
+        User::insert(array(
+            'username' => 'applicant',
+            'password' => Hash::make('applicant'),
+            'email' => 'applicant@applicant.com',
+            'role_id' => $applicant_role_id,
             'department_id' => $eee_dept_id,
             'join_date' => '2000-12-12',
             'last_visit' => '2000-12-12',

@@ -104,6 +104,18 @@ class RoleTableSeeder extends Seeder {
             'updated_at' => new DateTime
         ));
 
+        Role::create(array(
+            'code' => 'applicant',
+            'title' => 'applicant',
+            'description' => 'applicant',
+            'status' => 1,
+            'created_by' => 1,
+            'updated_by' => 1,
+            'created_at' => new DateTime,
+            'updated_at' => new DateTime
+        ));
+
+
 
 
 

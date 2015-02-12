@@ -7,15 +7,14 @@ class AcmFacultyController extends \BaseController {
 		//$this->beforeFilter('academicFaculty', array('except' => array('index')));
     }
 
-//**********************Start faculty code********************
-
-	public function create(){
-		echo "create";
-	}
+//**********************Start faculty code*********************
+//
+//	public function create(){
+//		echo "create";
+//	}
 
 	public function  index()
 	{
-
 		$datas= CourseManagement::with('relYear', 'relSemester', 'relCourse', 'relCourse.relSubject.relDepartment','relCourseType')
 			->get();
 		return View::make('academic::faculty.mark_distribution_courses.index')->with('title', 'Course List')->with('datas', $datas);
@@ -33,6 +32,15 @@ class AcmFacultyController extends \BaseController {
 
 		return View::make('academic::faculty.mark_distribution_courses.show')->with(['data'=>$data,
 			'config_data'=>$config_data]);
+	}
+	public function marks_dist_show($cm_id)
+	{
+		$dist_data = AcmMarksDistribution::with('relAcmMarksDistItem', 'relCourseManagement.relCourse','relAcmMarksPolicy')
+			->where('course_management_id', '=', $cm_id)
+			->get();
+
+		return View::make('academic::faculty.mark_distribution_courses.show_marks_distribution')->with(
+			'dist_data',$dist_data);
 	}
 
 	public function find_marksdist_info($course_id)
@@ -85,7 +93,6 @@ class AcmFacultyController extends \BaseController {
 		return View::make('academic::faculty.mark_distribution_courses.show_marks_dist_to_insert')->with('course_result',$result)->with('datas',$data);
 	}
 
-
 	public function save_acm_marks_distribution_data()
 	{
 		$data = Input::all();
@@ -94,6 +101,7 @@ class AcmFacultyController extends \BaseController {
 		$course_type_id = Input::get('course_type_id');
 		$isAttendance = Input::get('isAttendance');
 		$isReadOnly = Input::get('isReadOnly');
+		//print_r($isReadOnly);exit;
 		$acm_marks_distribution_id=Input::get('acm_marks_distribution_id');
 		$acm_item_id = Input::get('acm_marks_dist_item_id');
 		$acm_marks_policy_id = Input::get('policy_id');
@@ -157,7 +165,6 @@ class AcmFacultyController extends \BaseController {
 			$marks_dist->save();
 
 		}
-
 
 		// redirect
 		Session::flash('message', 'ACM Course Configuration Data Successfully Added !!');

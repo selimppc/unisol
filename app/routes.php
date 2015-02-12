@@ -14,6 +14,13 @@
 
 Route::get('/hellow','TestController@index');
 
+Route::get('/logs','HomeController@logs');
+
+//Route::get('/logs', function(){
+//    throw new RuntimeException('Hello');
+//    return View::make('error.missing');
+//});
+
 
 Route::group( array('before' => 'auth'), function(){
 

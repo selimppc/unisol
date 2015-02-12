@@ -113,4 +113,12 @@ class HomeController extends BaseController {
     }
 
 
+    public function logs(){
+
+        return View::make('errors.missing');
+        //$monolog = Log::getMonolog();
+        //print_r($monolog);
+    }
+
+
 }
