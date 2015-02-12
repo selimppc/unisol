@@ -4,7 +4,7 @@
         <fieldset style="padding: 10px; width: 90%; padding: 20px">
             <div class='form-group'>
                 {{ Form::label('title', 'Question Title') }}
-                {{ Form::text('title', Input::old('title'),['class'=>'form-control', 'required'=>'required']) }}
+                {{ Form::text('title', Input::old('title'),['class'=>'form-control', 'required'=>'required','autofocus' => 'autofocus']) }}
             </div>
 
             {{--<div class="form-group">--}}
@@ -12,19 +12,20 @@
                {{--{{ Form::text('marks', Input::old('marks'), array('class' => 'form-control','required'=>'required')) }}--}}
             {{--</div>--}}
 
-            {{--<input id="total_marks_all" value="40" readonly>--}}
 
-             {{ Form::label('Total Marks :') }}
-             {{ Form::text('remaining_marks', $total_marks->question_total_marks , array('id'=>'total_marks_all','readonly')) }}
+             {{ Form::label('Marks added till now :') }}
+             {{ Form::text('total_marks', $total_marks->question_total_marks , array('placeholder' => '0','id'=>'total_marks_all','readonly')) }}
+
+             </br>
+
+             {{ Form::label('Remaining Marks to add:') }}
+             {{ Form::text('remaining_marks', ($qid2->total_marks - $total_marks->question_total_marks) , array('id'=>'remaining_marks','readonly')) }}
 
 
             <div class="form-group">
                {{ Form::label('marks', 'Marks') }}
-               {{ Form::text('marks', Input::old('marks'), array('id'=>'new_input_area_one','class' => 'form-control','required'=>'required')) }}
+               {{ Form::text('marks', Input::old('marks'), array('id'=>'new_input_area_one','class' => 'form-control','required'=>'required','autofocus' => 'autofocus')) }}
             </div>
-
-
-
 
             <div class="form-group" id="myRadioGroup">
                {{ Form::label('gender','Question Type') }}
@@ -54,16 +55,12 @@
                     </div>
                     <div id="fields">
                     </div>
+                     <a onclick="createInput()" class="add_button">Add (+)</a>
 
               </div>
               <div id="Descriptive" class="descriptive">
               </div>
             </div>
-
-
-            {{--<input id="total_marks_all" value="40" readonly>--}}
-            {{--<input id="new_input_area_one" >--}}
-
 
             {{ Form::submit('Submit', array('id'=>'submit_if', 'class'=>'btn btn-primary')) }}
             <a href="{{URL::to('examination/faculty/index')}}" class="btn btn-default">Close </a>
@@ -86,13 +83,13 @@
             });
 
             $('#submit_if').on('click', function () {
-                var totalMarks = parseInt(document.getElementById("total_marks_all").value);
+               // var totalMarks = parseInt(document.getElementById("total_marks_all").value);
 
-//                var remainingMarks = (parseInt(document.getElementById("total_marks_all").value - parseInt(document.getElementById("#").value )));
+                var remainingMarks = parseInt(document.getElementById("remaining_marks").value);
 
                 var one = parseInt(document.getElementById("new_input_area_one").value);
-                if(totalMarks < one){
-                    alert('Exceed the total marks >'+totalMarks);
+                if(remainingMarks < one){
+                    alert('Exceed the remaining marks :'+remainingMarks);
                     return false;
                 }else{
                     return true;
