@@ -18,6 +18,30 @@ class ExmFacultyController extends \BaseController {
         $question_list_faculty = ExmQuestionItems::orderBy('id', 'DESC')->paginate(15);
         return View::make('examination::faculty.prepare_question_paper.questionList')->with('QuestionListFaculty',$question_list_faculty);
     }
+
+    public function viewQuestion($id)
+    {
+        $view_question_faculty = ExmQuestion::find($id);
+
+        return View::make('examination::faculty.prepare_question_paper.viewQuestion')->with('viewPrepareQuestionPaperFaculty',$view_question_faculty);
+
+    }
+
+    protected function totalMarks($qid){
+        $result = DB::table('exm_question_items')
+            ->select(DB::raw('SUM(marks) as question_total_marks'))
+            ->where('exm_question_id', '=', $qid)
+            ->first();
+        return $result;
+    }
+    public function add_question_items($qid){
+        $qid2 = ExmQuestion::find($qid);
+        $total_marks = $this->totalMarks($qid);
+
+        return View::make('examination::faculty.prepare_question_paper.add_question_item', compact('total_marks', 'qid2'));
+    }
+
+
     public function editQuestionItems($id)
     {
         $qid = DB::table('exm_question_items')
@@ -30,24 +54,6 @@ class ExmFacultyController extends \BaseController {
 
         return View::make('examination::faculty.prepare_question_paper.editQuestionItems', compact('qid', 'options'));
 
-    }
-    public function viewQuestion($id)
-    {
-        $view_question_faculty = ExmQuestion::find($id);
-
-        return View::make('examination::faculty.prepare_question_paper.viewQuestion')->with('viewPrepareQuestionPaperFaculty',$view_question_faculty);
-
-    }
-    public function add_question_items($qid){
-        $qid2 = ExmQuestion::find($qid);
-
-        $total_marks = DB::table('exm_question_items')
-            ->select(DB::raw('SUM(marks) as question_total_marks'))
-            ->where('exm_question_id', '=', $qid)
-            ->first();
-
-
-        return View::make('examination::faculty.prepare_question_paper.add_question_item', compact('total_marks', 'qid2'));
     }
     public function storeQuestionItems()
     {
