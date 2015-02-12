@@ -3,7 +3,7 @@
 class ExmFacultyController extends \BaseController {
 
     function __construct() {
-        $this->beforeFilter('exmFaculty', array('except' => array('index')));
+        $this->beforeFilter('exmFaculty', array('except' => array('')));
     }
 
     public function index()
@@ -11,6 +11,7 @@ class ExmFacultyController extends \BaseController {
         $data = ExmQuestion::with('relCourseManagement', 'relCourseManagement.relYear',
                 'relCourseManagement.relSemester','relCourseManagement.relCourse.relSubject.relDepartment')
                 ->get();
+
         return View::make('examination::faculty.prepare_question_paper.index')->with('datas', $data);
     }
     public function questionList()
@@ -18,19 +19,7 @@ class ExmFacultyController extends \BaseController {
         $question_list_faculty = ExmQuestionItems::orderBy('id', 'DESC')->paginate(15);
         return View::make('examination::faculty.prepare_question_paper.questionList')->with('QuestionListFaculty',$question_list_faculty);
     }
-    public function editQuestionItems($id)
-    {
-        $qid = DB::table('exm_question_items')
-            ->where('id', $id)
-            ->first();
 
-        $options = DB::table('exm_question_opt_ans')
-            ->where('exm_question_items_id', $qid->id)
-            ->get();
-
-        return View::make('examination::faculty.prepare_question_paper.editQuestionItems', compact('qid', 'options'));
-
-    }
     public function viewQuestion($id)
     {
         $view_question_faculty = ExmQuestion::find($id);
@@ -38,16 +27,40 @@ class ExmFacultyController extends \BaseController {
         return View::make('examination::faculty.prepare_question_paper.viewQuestion')->with('viewPrepareQuestionPaperFaculty',$view_question_faculty);
 
     }
-    public function add_question_items($qid){
-        $qid2 = ExmQuestion::find($qid);
 
-        $total_marks = DB::table('exm_question_items')
+    protected function totalMarks($qid){
+        $result = DB::table('exm_question_items')
             ->select(DB::raw('SUM(marks) as question_total_marks'))
             ->where('exm_question_id', '=', $qid)
             ->first();
-
+        return $result;
+    }
+    public function add_question_items($qid){
+        $qid2 = ExmQuestion::find($qid);
+        $total_marks = $this->totalMarks($qid);
 
         return View::make('examination::faculty.prepare_question_paper.add_question_item', compact('total_marks', 'qid2'));
+    }
+
+
+    public function editQuestionItems($id)
+    {
+        $qid = DB::table('exm_question_items')
+            ->where('id', $id)
+            ->first();
+
+//        $q_marks = ExmQuestion::find($id);
+//        print_r($q_marks);exit;
+
+
+        $total_marks = $this->totalMarks($qid->exm_question_id);
+
+        $options = DB::table('exm_question_opt_ans')
+            ->where('exm_question_items_id', $qid->id)
+            ->get();
+
+        return View::make('examination::faculty.prepare_question_paper.editQuestionItems', compact('q_marks','total_marks','qid', 'options'));
+
     }
     public function storeQuestionItems()
     {

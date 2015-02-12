@@ -162,10 +162,9 @@
                      {{--<li><a tabindex="-1" href="{{ action('ExmManageExaminerController@index') }}"> Manage Examiner </a></li>--}}
                      <li class="divider"></li>
 
+
                     <li><a tabindex="-1" href="{{ action('Exm'. ucwords( Role::find(Auth::user()->role_id)->title ) .'Controller@index') }}"> Prepare Question Paper </a></li>
                     <li class="divider"></li>
-                    {{--<li><a tabindex="-1" href="{{ action('ExmFctController@index') }}"> Prepare Question Paper : Faculty </a></li>--}}
-                    {{--<li class="divider"></li>--}}
 
                     {{--<li><a tabindex="-1" href="{{ action('ExmPrepareTabulationController@index') }}"> Prepare Tabulation </a></li>--}}
                     <li class="divider"></li>
@@ -213,7 +212,7 @@
 
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a tabindex="-1" href="">Profile</a>
+                            <li><a tabindex="-1" href="">Admin</a>
                             </li>
                             <li class="divider"></li>
                             <li><a tabindex="-1" href="{{URL::route('user/logout') }}">Logout</a></li>
