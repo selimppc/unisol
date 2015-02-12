@@ -22,11 +22,11 @@ class ApplicantController extends \BaseController
 
         $rules = array(
 
-            'email' => 'Required|email|unique:applicant',
-            'username' => 'Required',
-            'password' => 'regex:((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})|required',
-            'confirmpassword' => 'Required|same:password',
-
+            'email' => 'required',
+            'username' => 'required',
+//            'password' => 'regex:((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})|required',
+            //'password'=>'required',
+            'confirmpassword' => 'required|same:password',
 
         );
 
@@ -41,7 +41,7 @@ class ApplicantController extends \BaseController
             if ($token == Input::get('_token')) {
                 $data = new Applicant();
 
-                $data->email = Input::get('email_address');
+                $data->email = Input::get('email');
                 $data->username = Input::get('username');
                 $data->password = Hash::make(Input::get('password'));//dd($data->password);
                 $data->verified_code = $verified_code;
