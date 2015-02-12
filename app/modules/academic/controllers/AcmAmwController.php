@@ -11,7 +11,7 @@ class AcmAmwController extends \BaseController {
 	public function amw_index()
 	{
 		$data = AcmMarksDist::orderBy('id', 'ASC')->paginate(5);
-		return View::make('academic::mark_distribution_courses.amw.index')->with('datas', $data)->with('title', 'Course Marks Distribution Item List');
+		return View::make('academic::amw.mark_distribution_courses.index')->with('datas', $data)->with('title', 'Course Marks Distribution Item List');
 	}
 
 	public function amw_save()
@@ -48,7 +48,7 @@ class AcmAmwController extends \BaseController {
 	public function amw_edit($id)
 	{
 		$data = AcmMarksDist::find($id);
-		return View::make('academic::mark_distribution_courses.amw.edit')->with('editamw', $data);
+		return View::make('academic::amw.mark_distribution_courses.edit')->with('editamw', $data);
 	}
 
 	public function amw_update($id)
@@ -76,7 +76,7 @@ class AcmAmwController extends \BaseController {
 	public function show_one($id)
 	{
 		$data = AcmMarksDist::find($id);
-		return View::make('academic::mark_distribution_courses.amw.show')->with('datas', $data);
+		return View::make('academic::amw.mark_distribution_courses.show')->with('datas', $data);
 	}
 
 	public function amw_delete($id)
@@ -121,7 +121,7 @@ class AcmAmwController extends \BaseController {
 	{
 		$course_data= CourseManagement::with('relYear', 'relSemester', 'relCourse', 'relCourse.relSubject.relDepartment','relCourseType')
 			->get();
-		return View::make('academic::mark_distribution_courses.amw.index_course_config')->with('title', 'CourseManagement List')->with('datas', $course_data);
+		return View::make('academic::amw.mark_distribution_courses.index_course_config')->with('title', 'CourseManagement List')->with('datas', $course_data);
 	}
 
 	public function find_course_info($course_id)
@@ -151,7 +151,7 @@ class AcmAmwController extends \BaseController {
 			->join('acm_marks_dist_item','acm_course_config.acm_marks_dist_item_id','=', 'acm_marks_dist_item.id')
 			->where('course.id', $course_id)
 			->get();
-		return View::make('academic::mark_distribution_courses.amw.show_course_to_insert')->with('datas', $data)->with('course_data', $course_data);
+		return View::make('academic::amw.mark_distribution_courses.show_course_to_insert')->with('datas', $data)->with('course_data', $course_data);
 
 	}
 	public function save_acm_course_config_data()
@@ -241,7 +241,7 @@ class AcmAmwController extends \BaseController {
 		$config_data= AcmCourseConfig::with('relAcmMarksDistItem', 'relCourse')
 			->where('course_id', '=', $course_id)
 			->get();
-		return View::make('academic::mark_distribution_courses.amw.show_course_config')->with('datas', $data)->with('config_data',$config_data);
+		return View::make('academic::amw.mark_distribution_courses.show_course_config')->with('datas', $data)->with('config_data',$config_data);
 	}
 
 	public function item_config_show($course_id)
@@ -251,7 +251,7 @@ class AcmAmwController extends \BaseController {
 			//->where('is_attendance', '=', 1)
 			->get();
 
-		return View::make('academic::mark_distribution_courses.amw.show_marks_dist_item')->with('datas', $data);
+		return View::make('academic::amw.mark_distribution_courses.show_marks_dist_item')->with('datas', $data);
 	}
 
 //End code

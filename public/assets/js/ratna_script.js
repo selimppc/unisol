@@ -270,28 +270,27 @@ function deleteNearestTr(getId, acmId)
 
 
 /***********************FACULTY MARKS DISTRIBUTION GENERATION START***********************/
-//$tableItemCounter = 0;//To stop additem if exist
-//var arrayItems=[];//To stop additem if exist
-//
-//function editCourseListItem(itemid){
-//    arrayItems.push(itemid);
-//}
+$tableItemCounter = 0;//To stop additem if exist
+var arrayItems=[];//To stop additem if exist
+
+function editMarksListItem(itemid){
+    arrayItems.push(itemid);
+}
 
 function addMarksDistItem() {
 
     var listItem = $('.addDistListItem').val();
     var listItemTitle = $(".addDistListItem option:selected").text();
 
-    item_id = parseInt($(".addConfigListItem option:selected").val());//To stop additem if exist
+    item_id = parseInt($(".addDistListItem option:selected").val());//To stop additem if exist
     var index = $.inArray(item_id, arrayItems);//To stop additem if exist
 
     //To stop additem if exist
     if (index >= 0) {
-        alert("Already Added!");
+        alert("Already Added Marks Distribution Item!");
 
     } else {
-        counter = $('#amwCourseConfig tr').length - 2; //get the sequence number of that table item
-
+        counter = $('#facultyMarksDist tr').length-2; //get the sequence number of that table item
         var course_id = $('.course_id').val();
         var course_title = $('.course_title').val();
         var course_evalution_marks = $('.course_evalution_marks').val();
@@ -311,13 +310,13 @@ function addMarksDistItem() {
 
         str += '<td><input type="text" name="actual_marks[]" class="amw_actual_marks" /> </td>';
 
-        str += '<td><span><input type="checkbox" name="isReadOnly[]" value="' + counter + '" class="amw_isReadOnly"/></span></td>';
+        str += '<td><span></span></td>';
 
         str += '<td><input type="radio" name="isDefault[]" value="' + counter + '" class="amw_isDefault" /></td>';
 
         str += '<td><input type="radio" name="isAttendance[]" value="' + counter + '" class="amw_isAttendance' + trLen + '" /></td>';
         
-        str += '<td><select name="policy_id[]" class="form-control"><option value="">Select Option</option><option value="1">Attendance</option><option value="2">BestOne</option><option value="3">Average</option><option value="4">Average of Top N</option><option value="5">Sum</option><option value="6">Single</option></select></td>';
+        str += '<td><select name="policy_id[]"><option value="">Select Option</option><option value="1">Attendance</option><option value="2">BestOne</option><option value="3">Average</option><option value="4">Average of Top N</option><option value="5">Sum</option><option value="6">Single</option></select></td>';
 
         str += '<td><a class="btn btn-default btn-sm" id="removeTrId' + trLen + '" onClick="deleteNearestTr(this.id, 0)"><span class="glyphicon glyphicon-trash text-danger"></span></a></td>';
 

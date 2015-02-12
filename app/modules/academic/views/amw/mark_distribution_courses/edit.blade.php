@@ -7,7 +7,7 @@
 
 		{{ Form::model($editamw,array('url'=> array('academic/amw/update',$editamw->id), 'method' => 'POST')) }}
 
-		  @include('academic::mark_distribution_courses.amw._form')
+		  @include('academic::amw.mark_distribution_courses._form')
 
 		{{ Form::close() }}
 

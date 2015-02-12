@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('sidebar')
-    @include('academic::mark_distribution_courses.amw.sidebar')
+    @include('academic::amw.mark_distribution_courses.sidebar')
 @stop
 @section('content')
     <h4>{{$title}}</h4>
@@ -22,13 +22,12 @@
                 <td>{{$value->relCourse->relSubject->relDepartment->title}}</td>
                 <td>{{$value->relYear->title}}</td>
                 <td>{{$value->relSemester->title}}</td>
-                <td>{{ AcmMarksDistribution::getCourseItemStatus($value->course_id, $value->relCourse->evaluation_total_marks) }}</td>
-
+                <td>{{ AcmMarksDistribution::getMarksDistItemStatus($value->id, $value->relCourse->evaluation_total_marks) }}</td>
 
                 <td>
                     <a href="{{ URL::route('marksdistfind.show', ['course_id'=>$value->course_id])  }}" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#marksDist" data-toggle="tooltip" data-placement="left" title="Mark/Dist" href="">MarksDist</a>
 
-                    <a href="" class="btn btn-success" data-toggle="modal" data-target="#showModal" data-toggle="tooltip" data-placement="left" title="Show/View" href="">View Dist</a>
+                    <a href="{{ URL::route('marksdist.show', ['cm_id'=>$value->id])  }}" class="btn btn-success" data-toggle="modal" data-target="#showMarksDist" data-toggle="tooltip" data-placement="left" title="Show/View" href="">View Dist</a>
 
                 </td>
             </tr>
@@ -58,6 +57,14 @@
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 
+    <!-- Show marks_distribution Modal -->
+    <div class="modal fade" id="showMarksDist" tabindex="-1" role="dialog" aria-labelledby="addScholarship" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
 
 
 

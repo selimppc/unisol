@@ -5,9 +5,22 @@
          {{ Form::label('title', 'Question Title') }}
          {{ Form::text('title', null, ['class'=>'form-control', 'required'=>'required']) }}
      </div>
+
+
+      {{ Form::label('Marks added till now :') }}
+      {{ Form::text('total_marks', $total_marks->question_total_marks , array('placeholder' => '0','id'=>'total_marks_all','readonly')) }}
+
+      </br>
+
+      {{ Form::label('Remaining Marks to add:') }}
+
+      {{ Form::text('remaining_marks', ($total_marks->question_total_marks) , array('id'=>'remaining_marks','readonly')) }}
+
+{{--$q_marks->total_marks - --}}
+
      <div class='form-group'>
          {{ Form::label('marks', 'Marks') }}
-         {{ Form::text('marks', null, array('class' => 'form-control','required'=>'required')) }}
+         {{ Form::text('marks', null, array('id'=>'new_input_area_one','class' => 'form-control','required'=>'required')) }}
      </div>
      <div class="form-group" id="myRadioGroup" style="display: inline-block;">
         {{ Form::label('Question Type:') }}
@@ -118,7 +131,7 @@
         </div>
      </div>
 
-{{ Form::submit('Submit', array('class'=>'btn btn-primary')) }}
+{{ Form::submit('Submit', array('id'=>'submit_if','class'=>'btn btn-primary')) }}
 <a href="{{URL::to('examination/faculty/questionList')}}" class="btn btn-default">Close </a>
 
 
@@ -141,6 +154,22 @@
 
              $('#single').on('click', function () {
                  $('.radiocheck').attr('type', 'radio');
+             });
+
+             $('#submit_if').on('click', function () {
+
+                 //var totalMarks = parseInt(document.getElementById("total_marks_all").value);
+
+                 var remainingMarks = parseInt(document.getElementById("remaining_marks").value);
+
+                 var one = parseInt(document.getElementById("new_input_area_one").value);
+                 if(remainingMarks < one){
+                     alert('Exceed the total marks >'+remainingMarks);
+                     return false;
+                 }else{
+                     return true;
+                 }
+
              });
 
          });
