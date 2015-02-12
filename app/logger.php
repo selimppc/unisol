@@ -19,26 +19,26 @@ if( Config::get('app.debug') === true ){
 
     // add records to the log
 
-    $log->addRecord($logLevels, $message, $context = array(
-        'message'=> $message,
-        //'user_id'=> Auth::user()->username,
-    ));
-
-
-
-    Log::listen(function($logLevels, $message, $context)
-        //DB::listen(function($sql, $bindings, $time)
-    {
-        print_r("OK");exit;
-        $message = 'MMy message.';
-        $logFile = storage_path('logs/query.log');
-        $user_id =  Auth::user()->username;
-
-        $monolog = Log::getMonolog();
-        $monolog->pushHandler(new StreamHandler($logFile), Logger::INFO);
-        $monolog->info($level, compact('message', 'context', 'user_id'));
-    });
-}
+//    $log->addRecord($levels, $message, $context = array(
+//        'message'=> $message,
+//        //'user_id'=> Auth::user()->username,
+//    ));
+//
+//
+//
+//    Log::listen(function($levels, $message, $context)
+//        //DB::listen(function($sql, $bindings, $time)
+//    {
+//        print_r("OK");exit;
+//        $message = 'MMy message.';
+//        $logFile = storage_path('logs/query.log');
+//        //$user_id =  Auth::user()->username;
+//
+//        $monolog = Log::getMonolog();
+//        $monolog->pushHandler(new StreamHandler($logFile), Logger::INFO);
+//        $monolog->info($level, compact('message', 'context', 'user_id'));
+//    });
+//}
 
 
 //// some handlers
