@@ -1,3 +1,6 @@
+
+
+
 <?php
 
 class ExmFacultyController extends \BaseController {
@@ -9,8 +12,8 @@ class ExmFacultyController extends \BaseController {
     public function index()
     {
         $data = ExmQuestion::with('relCourseManagement', 'relCourseManagement.relYear',
-                'relCourseManagement.relSemester','relCourseManagement.relCourse.relSubject.relDepartment')
-                ->get();
+            'relCourseManagement.relSemester','relCourseManagement.relCourse.relSubject.relDepartment')
+            ->get();
 
         return View::make('examination::faculty.prepare_question_paper.index')->with('datas', $data);
     }
@@ -35,8 +38,13 @@ class ExmFacultyController extends \BaseController {
             ->first();
         return $result;
     }
+
+
+
     public function add_question_items($qid){
         $qid2 = ExmQuestion::find($qid);
+
+
         $total_marks = $this->totalMarks($qid);
 
         return View::make('examination::faculty.prepare_question_paper.add_question_item', compact('total_marks', 'qid2'));
@@ -45,21 +53,21 @@ class ExmFacultyController extends \BaseController {
 
     public function editQuestionItems($id)
     {
+
         $qid = DB::table('exm_question_items')
             ->where('id', $id)
             ->first();
 
-//        $q_marks = ExmQuestion::find($id);
-//        print_r($q_marks);exit;
+        $exm_q_marks = ExmQuestion::find($qid->exm_question_id)->total_marks;
 
+        $item_total_marks = $this->totalMarks($qid->exm_question_id);
 
-        $total_marks = $this->totalMarks($qid->exm_question_id);
 
         $options = DB::table('exm_question_opt_ans')
             ->where('exm_question_items_id', $qid->id)
             ->get();
 
-        return View::make('examination::faculty.prepare_question_paper.editQuestionItems', compact('q_marks','total_marks','qid', 'options'));
+        return View::make('examination::faculty.prepare_question_paper.editQuestionItems', compact('exm_q_marks','item_total_marks','qid', 'options'));
 
     }
     public function storeQuestionItems()

@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('sidebar')
-    @include('examination::faculty.prepare_question_paper._sidebar')
+    @include('examination::_sidebar')
 @stop
 
 @section('content')
