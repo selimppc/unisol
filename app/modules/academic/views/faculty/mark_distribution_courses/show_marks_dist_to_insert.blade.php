@@ -26,7 +26,7 @@
 
 
     {{ Form::open(array('url'=>'academic/faculty/marks/distribution/save','method' => '')) }}
-    <table class="table table-bordered small-header-table" id="amwCourseConfig">
+    <table class="table table-bordered small-header-table" id="facultyMarksDist" >
         <thead>
         <th>Item</th>
         <th>Marks (%)</th>
@@ -63,45 +63,33 @@
                         <input type="text" name="marks_percent[]" value="{{ ($value->actual_marks/$datas->relCourse->evaluation_total_marks) * 100 }}" class="amw_marks_percent{{$key}}" onchange="calculateActualMarks(this.className, {{$datas->relCourse->evaluation_total_marks}},this.value)" required />
                     @endif
 
-
                 </td>
                 <td>
-                    <input type="text" name="actual_marks[]" value="{{$value->actual_marks}}" class="amw_actual_marks" readonly/>
-                </td>
-
-                 <td>{{$value->readonly}}
-                     {{ Form::checkbox('isReadOnly[]', 1, ($value->readonly)? $value->readonly : Input::old('isReadOnly'.$key)) }} Yes
-                    {{--@if($value->readonly == 1)--}}
-                        {{--{{ Form::checkbox('isReadOnly[]', ($value->readonly)? $value->readonly : Input::old('isReadOnly'.$key), true) }} Yes--}}
-                    {{--@else--}}
-                     {{--{{ Form::checkbox('isReadOnly[]', ($value->readonly)? $value->readonly : Input::old('isReadOnly'.$key)) }}--}}
-                    {{--@endif--}}
+                      <input type="text" name="actual_marks[]" value="{{$value->actual_marks}}" class="amw_actual_marks" readonly/>
                 </td>
 
                 <td>
-                    {{--@if($value->readonly==1)--}}
-                         {{ Form::radio('isDefault[]', '1', $value->default_item==1, ['class'=>'radio'] ) }}
-                    {{--@else--}}
-                        {{--{{ Form::radio('isDefault[]', '1', $value->default_item==1, ['class'=>'radio']) }}--}}
-                    {{--@endif--}}
+                    @if($value->readonly=='1')
+                        Yes
+                        {{ Form::checkbox('isReadOnly[]', $counter, ($value->readonly)? $value->readonly : Input::old('isReadOnly'.$key)) }}
+                    @else
+                        No
+                    @endif
+                        {{--{{ Form::text('isReadOnly[]', $value->readonly) }}--}}
 
                 </td>
-                <td>
-                    {{--@if($value->readonly!=1)--}}
-                        {{--{{ Form::radio('isAttendance[]', '1', ($value->is_attendance==1)) }}--}}
-                    {{--@else--}}
-                        {{ Form::radio('isAttendance[]', $value->is_attendance==1, ['class'=>'radio']) }}
-                    {{--@endif--}}
-
+                <td>{{ Form::radio('isDefault[]', $counter, ($value->default_item) ? $value->default_item : Input::old('isDefault'.$key)) }}
                 </td>
+
+                {{--{{ Form::radio('isDefault[]', '1', $value->default_item==1, ['class'=>'radio'] ) }}--}}
+
+                <td>{{ Form::radio('isAttendance[]', $counter, ($value->is_attendance) ? $value->is_attendance : Input::old('isAttendance'.$key)) }}</td>
                 <td>
                    @if(isset($value->isMarksId))
                         {{ Form::select('policy_id[]', array(''=>'Select Option','1' => 'Attendance', '2' => 'Best One','3'=>'Average','4'=>'Average of Top N','5' => 'Sum','6' => 'Single'), $value->acm_marks_policy_id, array('data-parsley-trigger'=>'change','required'=>'required'))}}
                    @else
                         {{ Form::select('policy_id[]', array(''=>'Select Option','1' => 'Attendance', '2' => 'Best One','3'=>'Average','4'=>'Average of Top N','5' => 'Sum','6' => 'Single'), array('data-parsley-trigger'=>'change','required'=>'required'))}}
                    @endif
-
-
 
                 </td>
 
@@ -114,7 +102,7 @@
             <script>
                 // Add item is to arrayList at edit time.
                 item_id = <?php echo($value->item_id) ?>;
-                editCourseListItem(item_id);
+                editMarksListItem(item_id);
             </script>
 
 

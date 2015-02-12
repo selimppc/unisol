@@ -18,10 +18,10 @@ class AcmMarksDistribution extends \Eloquent
 
     //static function to calculate either partial done or no starts
 
-    public static function getMarksDistItemStatus($course_id, $evalution_marks)
+    public static function getMarksDistItemStatus($course_management_id, $evalution_marks)
     {
         $totalEntry = 0;
-        $datas = AcmMarksDistribution::where('course_id', '=', $course_id)->get();
+        $datas = AcmMarksDistribution::where('course_management_id', '=', $course_management_id)->get();
         if (count($datas) > 0) {
             foreach ($datas as $item_marks) {
                 if($item_marks->marks > 0)
@@ -50,6 +50,4 @@ class AcmMarksDistribution extends \Eloquent
 
     }
     //static function ends here
-
-
 }
