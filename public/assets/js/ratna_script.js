@@ -317,7 +317,7 @@ function addMarksDistItem() {
 
         str += '<td><input type="radio" name="isAttendance[]" value="' + counter + '" class="amw_isAttendance' + trLen + '" /></td>';
         
-        str += '<td><select name="policy_id[]" class="form-control"><option value="">Select Option</option><option value="1">Attendance</option><option value="2">BestOne</option><option value="3">Average</option><option value="4">Average of Top N</option><option value="5">Sum</option><option value="6">Single</option></select></td>';
+        str += '<td><select name="policy_id[]"><option value="">Select Option</option><option value="1">Attendance</option><option value="2">BestOne</option><option value="3">Average</option><option value="4">Average of Top N</option><option value="5">Sum</option><option value="6">Single</option></select></td>';
 
         str += '<td><a class="btn btn-default btn-sm" id="removeTrId' + trLen + '" onClick="deleteNearestTr(this.id, 0)"><span class="glyphicon glyphicon-trash text-danger"></span></a></td>';
 

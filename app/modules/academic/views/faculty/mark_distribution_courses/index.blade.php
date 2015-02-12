@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('sidebar')
-    @include('academic::mark_distribution_courses.amw.sidebar')
+    @include('academic::amw.mark_distribution_courses.sidebar')
 @stop
 @section('content')
     <h4>{{$title}}</h4>
@@ -22,7 +22,8 @@
                 <td>{{$value->relCourse->relSubject->relDepartment->title}}</td>
                 <td>{{$value->relYear->title}}</td>
                 <td>{{$value->relSemester->title}}</td>
-                <td>{{ AcmMarksDistribution::getCourseItemStatus($value->course_id, $value->relCourse->evaluation_total_marks) }}</td>
+                {{--<td>{{ AcmMarksDistribution::getMarksDistItemStatus($value->course_id, $value->relCourse->evaluation_total_marks) }}</td>--}}
+                <td>No</td>
 
 
                 <td>

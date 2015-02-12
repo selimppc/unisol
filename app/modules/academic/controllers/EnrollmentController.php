@@ -9,7 +9,7 @@ class EnrollmentController extends \BaseController {
 	 */
     public function index()
     {
-        return View::make('academic::enrollment.applicant.home');
+        return View::make('academic::g_enrollment.applicant.home');
     }
 
 	/**
@@ -20,7 +20,7 @@ class EnrollmentController extends \BaseController {
 
     public function create()
     {
-        return View::make('academic::enrollment.applicant.index');
+        return View::make('academic::g_enrollment.applicant.index');
     }
 
 	/**

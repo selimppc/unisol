@@ -54,41 +54,55 @@
                     {{ Form::hidden('course_id[]', $value->course_id2, ['class'=>'get_course_id']) }}
                     {{ $value->acm_dist_item_title}}
                 </td>
-
-                {{--To check readonly field--}}
                 <td>
-                     @if($value->readonly == 1)
+
+                    {{--To check readonly field--}}
+                    @if($value->readonly == 1)
                         <input type="text" name="marks_percent[]" value="{{ ($value->actual_marks/$datas->relCourse->evaluation_total_marks) * 100 }}" class="amw_marks_percent{{$key}}" onchange="calculateActualMarks(this.className, {{$datas->relCourse->evaluation_total_marks}},this.value)" readonly required />
                     @else
                         <input type="text" name="marks_percent[]" value="{{ ($value->actual_marks/$datas->relCourse->evaluation_total_marks) * 100 }}" class="amw_marks_percent{{$key}}" onchange="calculateActualMarks(this.className, {{$datas->relCourse->evaluation_total_marks}},this.value)" required />
                     @endif
-                </td>
 
+
+                </td>
                 <td>
                     <input type="text" name="actual_marks[]" value="{{$value->actual_marks}}" class="amw_actual_marks" readonly/>
                 </td>
 
-                {{--<td>--}}
+                 <td>{{$value->readonly}}
+                     {{ Form::checkbox('isReadOnly[]', 1, ($value->readonly)? $value->readonly : Input::old('isReadOnly'.$key)) }} Yes
                     {{--@if($value->readonly == 1)--}}
-                        {{--{{ Form::checkbox('isReadOnly[]', $counter, ($value->readonly == 1) ? true : false, ['class'=>'form-control'] }}--}}
+                        {{--{{ Form::checkbox('isReadOnly[]', ($value->readonly)? $value->readonly : Input::old('isReadOnly'.$key), true) }} Yes--}}
                     {{--@else--}}
-                       {{--{{ Form::checkbox('isReadOnly[]', $counter, ($value->readonly)? $value->readonly : Input::old('isReadOnly'.$key)) }}--}}
+                     {{--{{ Form::checkbox('isReadOnly[]', ($value->readonly)? $value->readonly : Input::old('isReadOnly'.$key)) }}--}}
                     {{--@endif--}}
-                {{--</td>--}}
+                </td>
 
-
-                <td>{{ Form::radio('isDefault[]', $counter, ($value->default_item) ? $value->default_item : Input::old('isDefault'.$key)) }}</td>
-                <td>{{ Form::radio('isAttendance[]', $counter, ($value->is_attendance) ? $value->is_attendance : Input::old('isAttendance'.$key)) }}</td>
                 <td>
-                    <select name="policy_id[]" class="form-control" required="required">
-                        <option value="">Select Option</option>
-                        <option value="1">Attendance</option>
-                        <option value="2">Best One</option>
-                        <option value="3">Average</option>
-                        <option value="4">Average of Top N</option>
-                        <option value="5">Sum</option>
-                        <option value="6">Single</option>
-                    </select>
+                    {{--@if($value->readonly==1)--}}
+                         {{ Form::radio('isDefault[]', '1', $value->default_item==1, ['class'=>'radio'] ) }}
+                    {{--@else--}}
+                        {{--{{ Form::radio('isDefault[]', '1', $value->default_item==1, ['class'=>'radio']) }}--}}
+                    {{--@endif--}}
+
+                </td>
+                <td>
+                    {{--@if($value->readonly!=1)--}}
+                        {{--{{ Form::radio('isAttendance[]', '1', ($value->is_attendance==1)) }}--}}
+                    {{--@else--}}
+                        {{ Form::radio('isAttendance[]', $value->is_attendance==1, ['class'=>'radio']) }}
+                    {{--@endif--}}
+
+                </td>
+                <td>
+                   @if(isset($value->isMarksId))
+                        {{ Form::select('policy_id[]', array(''=>'Select Option','1' => 'Attendance', '2' => 'Best One','3'=>'Average','4'=>'Average of Top N','5' => 'Sum','6' => 'Single'), $value->acm_marks_policy_id, array('data-parsley-trigger'=>'change','required'=>'required'))}}
+                   @else
+                        {{ Form::select('policy_id[]', array(''=>'Select Option','1' => 'Attendance', '2' => 'Best One','3'=>'Average','4'=>'Average of Top N','5' => 'Sum','6' => 'Single'), array('data-parsley-trigger'=>'change','required'=>'required'))}}
+                   @endif
+
+
+
                 </td>
 
                 <td>

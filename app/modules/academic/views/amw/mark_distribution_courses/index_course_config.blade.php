@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('sidebar')
-    @include('academic::mark_distribution_courses.amw.sidebar')
+    @include('academic::amw.mark_distribution_courses.sidebar')
 @stop
 @section('content')
     <h4>{{$title}}</h4>
