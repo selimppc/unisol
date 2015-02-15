@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('sidebar')
-    @include('admission::_sidebar')
+    {{--@include('admission::_sidebar')--}}
 @stop
 
 @section('content')
@@ -9,7 +9,7 @@
 <div class="span6 well">
 {{ Form::open(array('url'=>'applicant/login', 'class'=>'form-signin')) }}
 
-         <h4 class="form-signin-heading">Login</h4>
+         <h4 class="form-signin-heading">Login....</h4>
 
          {{ Form::label('email','Username or Email address') }}
          <label for="username">
