@@ -3,7 +3,8 @@
 class AcmAmwController extends \BaseController {
 
     function __construct() {
-        $this->beforeFilter('academicAmw', array('except' => array('index')));
+        $this->beforeFilter('academicAmw', array('except' => array('')));
+//		$this->beforeFilter('academicAmw', array('except' => array('index')));
     }
 
 

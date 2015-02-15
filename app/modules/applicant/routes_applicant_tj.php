@@ -2,7 +2,7 @@
 
 // Applicant
 
-Route::any('applicant/index','ApplicantController@index');
+Route::any('applicant','ApplicantController@index');
 
 Route::any('applicant/store','ApplicantController@store');
 
@@ -12,11 +12,13 @@ Route::any('applicant/signin', 'ApplicantController@Login');
 
 Route::any('applicant/login', 'ApplicantController@applicantLogin');
 
+//Route::any('applicant/login', 'ApplicantController@applicantLogin');
+
 Route::any('applicant/logout', 'ApplicantController@applicantLogout');
 
-Route::any('applicant','ApplicantController@index');
+//Route::any('applicant','ApplicantController@index');
 
-Route::any('applicant/store','ApplicantController@store');
+//Route::any('applicant/store','ApplicantController@store');
 
 Route::any('applicant/dashboard', 'ApplicantController@Dashboard');
 

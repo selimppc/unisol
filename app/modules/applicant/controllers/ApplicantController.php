@@ -5,10 +5,10 @@ class ApplicantController extends \BaseController
     public function index()
 
     {
-        //$applicant_list = Applicant::orderBy('id', 'DESC');
-        $applicant_list = Applicant::all();
+//        //$applicant_list = Applicant::orderBy('id', 'DESC');
+//        $applicant_list = Applicant::all();
 
-        return View::make('applicant::applicants.index', compact('applicant_list'));
+        return View::make('applicant::applicants.index');
     }
 
     public function create()
@@ -26,7 +26,7 @@ class ApplicantController extends \BaseController
             'username' => 'required',
 //            'password' => 'regex:((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})|required',
             //'password'=>'required',
-            'confirmpassword' => 'required|same:password',
+//            'confirmpassword' => 'required|same:password',
 
         );
 
@@ -78,37 +78,39 @@ class ApplicantController extends \BaseController
         }
         Session::flash('message','Your account activated successfully. You can signin now.');
 
-        return Redirect::to('usersign/login');
+        //return Redirect::to('applicant::applicants.login');
+        return View::make('applicant::applicants.login');
+
+
 
     }
     public function Login()
     {
-        return View::make('admission::signup.login');
+        return View::make('applicant::applicants.login');
     }
     public function applicantLogin() {
-
         $credentials = array(
             'email'=> Input::get('email'),
             'password'=>Input::get('password'),
 
         );
-//        echo  $credentials;
-//        exit;
+        //print_r($credentials) ;exit;
 
-        if(Auth::check()){
-            //$user_id = Auth::applicant()->username;
-            $user_id = Auth::user()->username;
-            $pageTitle = 'You are already logged in!';
-            echo $pageTitle;
-            //return View::make('usersign/dashboard', compact('user_id', 'pageTitle'));
-        }else{
+//        if(Auth::check()){
+//            $user_id = Auth::applicant()->username;
+//            $pageTitle = 'You are already logged in!';
+//            echo $pageTitle;
+//            //return View::make('usersign/dashboard', compact('user_id', 'pageTitle'));
+//        }else{
             if ( Auth::attempt($credentials) ) {
-                return Redirect::to('usersign/dashboard')->with('message', 'Logged in!');
+                return Redirect::to('applicant/dashboard')->with('message', 'Logged in!');
+                //return View::make('applicant::applicants.dashboard');
             } else {
                 return Redirect::to('usersign/login') ->with('message', 'Your username/password combination was incorrect! Please try again....')
                     ->withInput();
             }
-        }
+//        }
+
     }
     public function applicantLogout() {
 
@@ -120,7 +122,7 @@ class ApplicantController extends \BaseController
 //        $model->save();
         Auth::logout();
 
-        return Redirect::to('applicant/login')->with('message', 'Your are now logged out!');
+        return Redirect::to('usersign/login')->with('message', 'Your are now logged out!');
 
     }
     public function Dashboard(){

@@ -5,32 +5,38 @@
 @section('content')
 
 
-
-
 <div class="span8 well">
 <table class="table table-striped table-bordered" id="myTable">
 
      <h4>Extra-Curricular Activities </h4>
+      @if($data != null)
+                 {{--<a class="pull-right btn btn-sm btn-info" href="{{ URL::to('applicant/profile/edit/' . $profile->id  ) }}" data-toggle="modal" data-target="#myeditModal" >Edit Profile</a>--}}
+             {{--@else--}}
+                 {{--<a class="pull-right btn btn-sm btn-info" href="{{ URL::to('applicant/profile/create')}}" data-toggle="modal" data-target="#addModal" >Add Profile Data</a>--}}
 
       <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('applicant/extra_curricular/edit/' . $data->id ) }}" data-toggle="modal" data-target="#myeditModal" >Edit...</a>
+       @endif
                     <thead>
 
 
                          <tr>
                             <td>title</td>
-                               <td>{{$data->title}}
+
+                               <td>{{ $data != null ? $data->title : null }}
                             </td>
                           </tr>
 
                           <tr>
                             <td>Description</td>
-                              <td>{{$data->description}}
+                              <td>
+                              {{ $data != null ? $data->description : null }}
                           </td>
                          </tr>
 
                           <tr>
                              <td>Achievement</td>
-                               <td>{{$data->achivement}}
+                               <td>
+                               {{ $data != null ? $data->achivement : null }}
                              </td>
                          </tr>
 
