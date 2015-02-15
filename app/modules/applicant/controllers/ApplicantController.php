@@ -200,8 +200,8 @@ class ApplicantController extends \BaseController
     //  Applicant's PersonalInformations: Methods.................................................
     public function personalInfoIndex()
     {
-        $applicant_id = Applicant::find(2)->id;
-        $applicant_personal_info = ApplicantMeta::where('applicant_id', '=',$applicant_id )->first();
+        //$applicant_id = Applicant::find(2)->id;
+        $applicant_personal_info = ApplicantMeta::where('applicant_id', '=','1' )->first();
         return View::make('applicant::applicant_personal_info.index',compact('applicant_personal_info'));
     }
     public function personalInfoCreate(){
@@ -270,26 +270,34 @@ class ApplicantController extends \BaseController
     // Applicant's Extra-Curricular Activities......................................................
     public function extraCurricularIndex()
     {
-        //return View::make('applicant::extra_curricular._form');
-        $data = ApplicantProfile::where('applicant_id', '=', '1')->first();
+
+        $data = ApplicantExtraCurrActivity::where('applicant_id', '=', '1')->first();
+        //$data = ApplicantMiscInfo::where('applicant_id', '=', '1')->first();
+        //echo $data;exit;
         return View::make('applicant::extra_curricular.index', compact('data'));
     }
+    public function extraCurricularCreate(){
+        return View::make('applicant::extra_curricular._form');
+    }
+
+
     public function applicantExtraCurricularStore(){
 
         $rules = array(
-            'title' => 'required',
+//            'title' => 'required',
         );
         $validator = Validator::make(Input::all(), $rules);
         if ($validator->passes()) {
             $extra_curricular =new ApplicantExtraCurrActivity();
-            $extra_curricular->applicant_id = Input::get('applicant_id');
+            //print_r($extra_curricular);exit;
+
             $extra_curricular->title = Input::get('title');
             $extra_curricular->description = Input::get('description');
-            $extra_curricular->achivement = Input::get('achivement');
-            $extra_curricular->certificate_medal = Input::file('certificate_medal');
+            //$extra_curricular->achivement = Input::get('achivement');
+//            $extra_curricular->certificate_medal = Input::file('certificate_medal');
             $extra_curricular->save();
 
-            return Redirect::back()->with('message', 'Successfully updated Information!');
+            return Redirect::back()->with('message', 'Successfully added Information!');
         } else {
             return Redirect::to('applicant/extra_curricular/create')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
         }
@@ -297,7 +305,7 @@ class ApplicantController extends \BaseController
     }
     public function excActivities()
     {
-        $profile = ApplicantProfile::where('applicant_id', '=', '1')->first();
+        $profile = ApplicantExtraCurrActivity::where('applicant_id', '=', '1')->first();
         return View::make('applicant::extra_curricular.index', compact('profile'));
     }
     public function editExtraCurricular($id)

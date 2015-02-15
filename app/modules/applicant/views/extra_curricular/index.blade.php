@@ -11,7 +11,7 @@
      <h4>Extra-Curricular Activities </h4>
       @if($data != null)
                  {{--<a class="pull-right btn btn-sm btn-info" href="{{ URL::to('applicant/profile/edit/' . $profile->id  ) }}" data-toggle="modal" data-target="#myeditModal" >Edit Profile</a>--}}
- <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('applicant/extra_curricular/edit/' . $data->id ) }}" data-toggle="modal" data-target="#myeditModal" >Edit...</a>
+      <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('applicant/extra_curricular/edit/' . $data->id ) }}" data-toggle="modal" data-target="#myeditModal" >Edit...</a>
        @else
       <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('applicant/extra_curricular/create')}}" data-toggle="modal" data-target="#addModal" >Add </a>
 
