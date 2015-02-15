@@ -9,8 +9,6 @@
          Add New Item
         </button>
 
-
-
      {{ Form::open(array('url' => 'academic/amw/batch/delete')) }}
         <table id="example" class="table table-bordered table-hover table-striped">
         <thead>
