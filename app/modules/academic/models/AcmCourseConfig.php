@@ -7,7 +7,7 @@ class AcmCourseConfig extends Eloquent
     protected $table = 'acm_course_config';
 
     public function relAcmMarksDistItem(){
-        return $this->belongsTo('AcmMarksDist', 'acm_marks_dist_item_id', 'id');
+        return $this->belongsTo('AcmMarksDistItem', 'acm_marks_dist_item_id', 'id');
     }
 
     public function relCourse(){

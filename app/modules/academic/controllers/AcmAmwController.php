@@ -11,7 +11,7 @@ class AcmAmwController extends \BaseController {
 	//*****************Start amw dist item code***********************
 	public function amw_index()
 	{
-		$data = AcmMarksDist::orderBy('id', 'ASC')->paginate(5);
+		$data = AcmMarksDistItem::orderBy('id', 'ASC')->paginate(5);
 		return View::make('academic::amw.mark_distribution_courses.index')->with('datas', $data)->with('title', 'Course Marks Distribution Item List');
 	}
 
@@ -19,7 +19,7 @@ class AcmAmwController extends \BaseController {
 	{
 		$data = Input::all();
 		// create a new model instance
-		$datas = new AcmMarksDist();
+		$datas = new AcmMarksDistItem();
 		// attempt validation
 		if ($datas->validate($data)) {
 			$datas->title = Input::get('title');
@@ -48,7 +48,7 @@ class AcmAmwController extends \BaseController {
 
 	public function amw_edit($id)
 	{
-		$data = AcmMarksDist::find($id);
+		$data = AcmMarksDistItem::find($id);
 		return View::make('academic::amw.mark_distribution_courses.edit')->with('editamw', $data);
 	}
 
@@ -57,11 +57,11 @@ class AcmAmwController extends \BaseController {
 		// get the POST data
 		$data = Input::all($id);
 		// create a new model instance
-		$datas = new AcmMarksDist();
+		$datas = new AcmMarksDistItem();
 		// attempt validation
 		if ($datas->validate2($data)) {
 			// success code
-			$datas = AcmMarksDist::find($id);
+			$datas = AcmMarksDistItem::find($id);
 			$datas->title = Input::get('title');
 			$datas->save();
 			Session::flash('message', 'Successfully Updated!');
@@ -76,14 +76,14 @@ class AcmAmwController extends \BaseController {
 
 	public function show_one($id)
 	{
-		$data = AcmMarksDist::find($id);
+		$data = AcmMarksDistItem::find($id);
 		return View::make('academic::amw.mark_distribution_courses.show')->with('datas', $data);
 	}
 
 	public function amw_delete($id)
 	{
 		try {
-			$data = AcmMarksDist::find($id);
+			$data = AcmMarksDistItem::find($id);
 			if ($data->delete()) {
 				Session::flash('danger', "Items Deleted successfully");
 				return Redirect::to('academic/amw/')->with('title', 'All Courses Item List');
@@ -99,7 +99,7 @@ class AcmAmwController extends \BaseController {
 	public function amw_batchdelete()
 	{
 		try {
-			AcmMarksDist::destroy(Request::get('id'));
+            AcmMarksDistItem::destroy(Request::get('id'));
 			Session::flash('danger', "Items Deleted successfully");
 			return Redirect::to('academic/amw/')->with('title', 'All Courses Item List');
 		}

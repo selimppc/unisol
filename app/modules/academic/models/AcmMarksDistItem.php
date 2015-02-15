@@ -1,7 +1,7 @@
 <?php
 
 
-class AcmMarksDist extends Eloquent
+class AcmMarksDistItem extends Eloquent
 {
 
     protected $table = 'acm_marks_dist_item';

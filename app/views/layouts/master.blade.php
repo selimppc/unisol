@@ -100,7 +100,8 @@
                         <i class="icon-user"></i> Academic <i class="caret"></i>
                  </a>
                   <ul class="dropdown-menu">
-                       <li><a tabindex="-1" a href="{{URL::to('academic/'.Role::find(Auth::user()->role_id)->title.'/') }}">Mark Distribution at Courses</a></li>
+                       <li><a tabindex="-1" a href="{{URL::to('academic/faculty/') }}">Mark Distribution (Faculty)</a></li>
+                       <li><a tabindex="-1" a href="{{URL::to('academic/amw/') }}">Mark Distribution (Amw)</a></li>
 
                   </ul>
          </li>
