@@ -9,8 +9,8 @@
         "phpunit/phpunit": "3.7.*",
         "doctrine/dbal": "v2.4.2",
         "intervention/image": "dev-master"
-
 	},
+
 	"autoload": {
 		"classmap": [
 			"app/commands",
