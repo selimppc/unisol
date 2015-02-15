@@ -90,20 +90,18 @@
                 <td>{{ Form::radio('isAttendance[]', $counter, ($value->is_attendance) ? $value->is_attendance : Input::old('isAttendance'.$key)) }}</td>
                 <td>
                    @if(isset($value->isMarksId))
-                        {{ Form::select('policy_id[]', array(''=>'Select Option','1' => 'Attendance', '2' => 'Best One','3'=>'Average','4'=>'Average of Top N','5' => 'Sum','6' => 'Single'), $value->acm_marks_policy_id, array('data-parsley-trigger'=>'change','required'=>'required'))}}
+                        {{ Form::select('policy_id[]', array(''=>'Select Option','1' => 'Attendance', '2' => 'Best One','3'=>'Average','4'=>'Average of Top N','5' => 'Sum','6' => 'Single'), $value->acm_marks_policy_id, array('class' => 'form-control','required'=>'required'))}}
                    @else
-                        {{ Form::select('policy_id[]', array(''=>'Select Option','1' => 'Attendance', '2' => 'Best One','3'=>'Average','4'=>'Average of Top N','5' => 'Sum','6' => 'Single'), array('data-parsley-trigger'=>'change','required'=>'required'))}}
+                        {{ Form::select('policy_id[]', array(''=>'Select Option','1' => 'Attendance', '2' => 'Best One','3'=>'Average','4'=>'Average of Top N','5' => 'Sum','6' => 'Single'), array('class' => 'form-control','required'=>'required'))}}
                    @endif
                     {{Auth::user()->id}}
                 </td>
 
-                    {{--Ajax delete if find faculty created_by= 2--}}
+                    {{--Ajax delete if find faculty created_by and auth id=2--}}
                 @if(isset($value->CBid ) && $value->CBid == Auth::user()->id )
-                    <td><a class="btn btn-default btn-sm" id="removedistTrId{{$key}}" onClick="deleteMarkDistNearestTr(this.id, {{$value->isMarksId}})"><span class="glyphicon glyphicon-trash text-danger"></span></a></td>
+                {{--@if($value->CBid )--}}
+                    <td><a class="btn btn-default btn-sm" id="removedistTrId{{$key}}" onClick="deleteMarkDistTr(this.id, {{$value->isMarksId}})"><span class="glyphicon glyphicon-trash text-danger"></span></a></td>
                 @else
-                    <td>
-
-                    </td>
                 @endif
             </tr>
             <?php $counter++;?>
@@ -112,6 +110,39 @@
                 // Add item is to arrayList at edit time.
                 item_id = <?php echo($value->item_id) ?>;
                 editMarksListItem(item_id);
+
+                function deleteMarkDistTr(getId, distId) {
+                   // alert('OK');
+                    //exit;
+                    var is_marksdist_id = distId;
+                    if (is_marksdist_id > 0) {
+
+                        var check = confirm("Are you sure to delete this item??");
+                        if (check) {
+                            $.ajax({
+                                url: 'faculty/marksdist/acmmarksdistdelete/ajax',
+                                type: 'POST',
+                                dataType: 'json',
+                                data: {acm_marks_distribution_id: is_marksdist_id}
+                            })
+                                    .done(function (msg) {
+                                        //console.log(msg);
+                                        var whichtr = $('#' + getId).closest("tr");
+                                        whichtr.fadeOut(500).remove();
+                                        arrayItems.pop(getId);//To stop additem if exist
+                                    });
+                        }
+                        else {
+                            return false;
+                        }
+                    } else {
+                        //if acm_course_config id not found jst remove the tr form the popup. that not delete the data form the db.
+                        var whichtr = $('#' + getId).closest("tr");
+                        whichtr.fadeOut(500).remove();
+                        arrayItems.pop(getId);//To stop additem if exist
+                    }
+                }
+
             </script>
 
         @endforeach

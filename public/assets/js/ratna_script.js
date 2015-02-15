@@ -258,7 +258,6 @@ function deleteNearestTr(getId, acmId)
             return false;
         }
 
-
     }else{
         //if acm_course_config id not found jst remove the tr form the popup. that not delete the data form the db.
         var whichtr = $('#'+getId).closest("tr");
@@ -318,43 +317,12 @@ function addMarksDistItem() {
 
         str += '<td><select name="policy_id[]"><option value="">Select Option</option><option value="1">Attendance</option><option value="2">BestOne</option><option value="3">Average</option><option value="4">Average of Top N</option><option value="5">Sum</option><option value="6">Single</option></select></td>';
 
-        str += '<td><a class="btn btn-default btn-sm" id="removedistTrId' + trLen + '" onClick="deleteNearestTr(this.id, 0)"><span class="glyphicon glyphicon-trash text-danger"></span></a></td>';
-
+        str += '<td><a class="btn btn-default btn-sm" id="removedistTrId' + trLen + '" onClick="deleteMarkDistTr(this.id, 0)"><span class="glyphicon glyphicon-trash text-danger"></span></a></td>';
 
         str += '</tr>';
 
         contentBody.append(str);
     }
-    function deleteMarkDistNearestTr(getId, acmId) {
-        var is_marksdist_id = acmId;
-        if (is_marksdist_id > 0) {
-
-            var check = confirm("Are you sure to delete this item??");
-            if (check) {
-                $.ajax({
-                    url: '/academic/faculty/marksdist/acmmarksdistdelete/ajax',
-                    type: 'POST',
-                    dataType: 'json',
-                    data: {acm_marks_distribution_id: is_marksdist_id}
-                })
-                    .done(function (msg) {
-                        //console.log(msg);
-                        var whichtr = $('#' + getId).closest("tr");
-                        whichtr.fadeOut(500).remove();
-                        arrayItems.pop(getId);//To stop additem if exist
-                    });
-            }
-            else {
-                return false;
-            }
-
-        } else {
-            //if acm_course_config id not found jst remove the tr form the popup. that not delete the data form the db.
-            var whichtr = $('#' + getId).closest("tr");
-            whichtr.fadeOut(500).remove();
-            arrayItems.pop(getId);//To stop additem if exist
-        }
 
 
-    }
 }
