@@ -290,10 +290,10 @@ class ApplicantController extends \BaseController
         if ($validator->passes()) {
             $extra_curricular =new ApplicantExtraCurrActivity();
             //print_r($extra_curricular);exit;
-
+            $extra_curricular->applicant_id = Input::get('applicant_id');
             $extra_curricular->title = Input::get('title');
             $extra_curricular->description = Input::get('description');
-            //$extra_curricular->achivement = Input::get('achivement');
+            $extra_curricular->achievement = Input::get('achivement');
 //            $extra_curricular->certificate_medal = Input::file('certificate_medal');
             $extra_curricular->save();
 
@@ -324,7 +324,7 @@ class ApplicantController extends \BaseController
             $extra_curricular = ApplicantExtraCurrActivity::find($id);
             $extra_curricular->title = Input::get('title');
             $extra_curricular->description = Input::get('description');
-            $extra_curricular->achivement = Input::get('achivement');
+            $extra_curricular->achievement = Input::get('achivement');
             $extra_curricular->certificate_medal = Input::file('certificate_medal');
 
 

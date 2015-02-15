@@ -10,6 +10,7 @@
 
      <h4>Extra-Curricular Activities </h4>
       @if($data != null)
+      {{----}}
                  {{--<a class="pull-right btn btn-sm btn-info" href="{{ URL::to('applicant/profile/edit/' . $profile->id  ) }}" data-toggle="modal" data-target="#myeditModal" >Edit Profile</a>--}}
       <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('applicant/extra_curricular/edit/' . $data->id ) }}" data-toggle="modal" data-target="#myeditModal" >Edit...</a>
        @else
@@ -22,9 +23,16 @@
                          <tr>
                             <td>title</td>
 
-                               <td>{{ $data != null ? $data->title : null }}
-                            </td>
-                          </tr>
+
+
+                            <td>@if($data != null)
+
+                              {{ $data->title  }}
+                              @else
+
+                             @endif
+                               </td>
+
 
                           <tr>
                             <td>Description</td>
@@ -36,7 +44,7 @@
                           <tr>
                              <td>Achievement</td>
                                <td>
-                               {{ $data != null ? $data->achivement : null }}
+                               {{ $data != null ? $data->achievement : null }}
                              </td>
                          </tr>
 
