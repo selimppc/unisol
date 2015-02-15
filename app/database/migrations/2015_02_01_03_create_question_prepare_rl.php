@@ -10,7 +10,7 @@ class CreateQuestionPrepareRl extends Migration {
         Schema::create('acm_marks_dist_item', function(Blueprint $table) {
             $table->increments('id');
             $table->enum('code', array(
-                'clss', 'clst', 'avarage', 'avarage_top_n', 'sum', 'single'
+                'CLAS', 'AGMT', 'CLAT', 'MIDT', 'FINT', 'LABT', 'PROP', 'PRPR', 'PRST', 'IMPL', 'RPPS', 'FNPT', 'FLDW', 'ATTN'
             ));
             $table->string('title', 128);
             $table->tinyInteger('is_associate',false, 1);
