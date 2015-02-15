@@ -3,7 +3,7 @@
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 use Monolog\Handler\FirePHPHandler;
-use Illuminate\Log;
+
 //// create a log channel
     $log = new Logger('log');
     $logFile = storage_path('logs/query.log');
