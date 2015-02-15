@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('sidebar')
-    @include('applicant::_sidebar')
+    {{--@include('applicant::_sidebar')--}}
 @stop
 @section('content')
 
