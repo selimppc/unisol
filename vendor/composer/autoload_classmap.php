@@ -30,6 +30,7 @@ return array(
     'Applicant' => $baseDir . '/app/modules/applicant/models/Applicant.php',
     'ApplicantController' => $baseDir . '/app/modules/applicant/controllers/ApplicantController.php',
     'ApplicantProfile' => $baseDir . '/app/modules/applicant/models/ApplicantProfile.php',
+    'ApplicantsSeeder' => $baseDir . '/app/database/seeds/ApplicantTable.php',
     'AptAcmRecords' => $baseDir . '/app/modules/applicant/models/AptAcmRecords.php',
     'AptMiscInfo' => $baseDir . '/app/modules/applicant/models/AptMiscInfo.php',
     'AptPersonalInfo' => $baseDir . '/app/modules/applicant/models/AptPersonalInfo.php',

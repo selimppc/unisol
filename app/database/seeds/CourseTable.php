@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: SELIM
- * Date: 2/9/2015
- * Time: 1:46 PM
- */
 
 class CourseTable extends Seeder{
     public function run(){
