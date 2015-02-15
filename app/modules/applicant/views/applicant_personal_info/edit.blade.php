@@ -5,7 +5,7 @@
 {{Form::open(array('url'=>'apt/personal_info/update/'.$applicant_personal_info->id, 'class'=>'form-horizontal'))}}
 
 {{ Form::label('fathers_name','Fathers Name:') }}
-{{ Form::text('fathers_name',$applicant_personal_info->fathers_name , array('type' => 'text', 'class' => 'form-control datepicker','placeholder' => 'Pick the date this task should be completed', 'id' => 'date')) }}
+{{ Form::text('fathers_name',$applicant_personal_info->fathers_name , array('type' => 'text', 'class' => 'form-control')) }}
 
 {{ Form::label('fathers_occupation','Fathers occupation:') }}
 {{ Form::text('fathers_occupation', $applicant_personal_info->fathers_occupation, array('class' => 'form-control')) }}

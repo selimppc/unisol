@@ -11,10 +11,10 @@
      <h4>Extra-Curricular Activities </h4>
       @if($data != null)
                  {{--<a class="pull-right btn btn-sm btn-info" href="{{ URL::to('applicant/profile/edit/' . $profile->id  ) }}" data-toggle="modal" data-target="#myeditModal" >Edit Profile</a>--}}
-             {{--@else--}}
-                 {{--<a class="pull-right btn btn-sm btn-info" href="{{ URL::to('applicant/profile/create')}}" data-toggle="modal" data-target="#addModal" >Add Profile Data</a>--}}
+ <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('applicant/extra_curricular/edit/' . $data->id ) }}" data-toggle="modal" data-target="#myeditModal" >Edit...</a>
+       @else
+      <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('applicant/extra_curricular/create')}}" data-toggle="modal" data-target="#addModal" >Add </a>
 
-      <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('applicant/extra_curricular/edit/' . $data->id ) }}" data-toggle="modal" data-target="#myeditModal" >Edit...</a>
        @endif
                     <thead>
 
@@ -79,7 +79,14 @@
   </div>
 </div>
 
+{{--Model : Add Data--}}
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
 
+       </div>
+      </div>
+ </div>
 
 
 

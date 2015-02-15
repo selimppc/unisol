@@ -23,11 +23,7 @@
                             </td>
                           </tr>
 
-                          {{--<tr>--}}
-                            {{--<td>birth_place</td>--}}
-                              {{--<td>{{$profile->birth_place}}--}}
-                          {{--</td>--}}
-                         {{--</tr>--}}
+
 
                           <tr>
                              <th>Gender</th>
@@ -46,10 +42,6 @@
 
                                   @endif
 
-                                  {{--<td>{{ $profile != null ?$profile->profile_image : null }}--}}
-
-                                  {{--<a class=" btn btn-sm btn-info" href="{{ URL::to('applicant/profile_image/edit/' . $profile->id ) }}" data-toggle="modal" data-target="#changeImageModal" >changeImage...</a>--}}
-                                   {{--<a href="{{URL::to('applicant/profile_image/edit/'.$profile->profile_image) }}">Change Image</a>--}}
 
                               </tr>
 

@@ -18,12 +18,6 @@
     <span class="text-muted"><em><span style="color:red;">  * </span><b>Indicates required field</b> </em></span>
  </div>
 
- <div class="form-group">
- {{ Form::label('user_id','Name of Applicant' ) }}
- {{ Form::select('user_id', User::orderBy('username')->lists('username', 'id')+[''=>'Select Option'] ,'', ['class'=>'form-control']) }}
- </div>
-
-
 <div class="control-group @if ($errors->has('title')) has-error @endif">
 
 <span style="color:red;">*</span>
