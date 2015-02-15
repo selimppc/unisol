@@ -34,7 +34,7 @@ class DatabaseSeeder extends Seeder {
         $this->call('ApplicantsSeeder');
         $this->command->info('Applicant table seeded!'); */
 
-        
+
         $this->call('AcmMarksDistItemTable');
         $this->command->info('Academic Marks Distribution Item table seeded!');
 	}
