@@ -64,6 +64,14 @@ return array(
 	|
 	*/
 
+    /*'multi' => array(
+        'applicant' => array(
+            'driver' => 'eloquent',
+            'model' => 'Applicant',
+            'table' => 'applicant',
+        )
+    ),*/
+
 	'reminder' => array(
 		'email' => 'emails.auth.reminder',
 		'table' => 'password_reminders',
