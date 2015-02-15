@@ -13,6 +13,7 @@ class CreateApplicantManagementRl extends Migration {
             $table->string('last_name', 128);
             $table->string('username')->unique();
             $table->string('email')->unique();
+            $table->string('password', 64);
             $table->date('reg_date');
             $table->dateTime('last_visit');
             $table->string('ip_address', 16);
