@@ -200,8 +200,8 @@ class ApplicantController extends \BaseController
     //  Applicant's PersonalInformations: Methods.................................................
     public function personalInfoIndex()
     {
-        $applicant_id = Applicant::find(2)->id;
-        $applicant_personal_info = AptPersonalInfo::where('applicant_id', '=',$applicant_id )->first();
+        //$applicant_id = Applicant::find(2)->id;
+        $applicant_personal_info = ApplicantMeta::where('applicant_id', '=','1' )->first();
         return View::make('applicant::applicant_personal_info.index',compact('applicant_personal_info'));
     }
     public function personalInfoCreate(){
@@ -214,7 +214,7 @@ class ApplicantController extends \BaseController
         );
         $validator = Validator::make(Input::all(), $rules);
         if ($validator->passes()) {
-            $applicant_personal_info =new AptPersonalInfo();
+            $applicant_personal_info =new ApplicantMeta();
             $applicant_personal_info->applicant_id = Input::get('applicant_id');
             $applicant_personal_info->fathers_name = Input::get('fathers_name');
             $applicant_personal_info->mothers_name = Input::get('mothers_name');
@@ -242,7 +242,7 @@ class ApplicantController extends \BaseController
 
     }
     public function personalInfoEdit($id){
-        $applicant_personal_info = AptPersonalInfo::find($id);
+        $applicant_personal_info = ApplicantMeta::find($id);
         return View::make('applicant::applicant_personal_info.edit', compact('applicant_personal_info'));
     }
     public function personalInfoUpdate($id){
@@ -252,7 +252,7 @@ class ApplicantController extends \BaseController
         );
         $validator = Validator::make(Input::all(), $rules);
         if ($validator->passes()) {
-            $applicant_personal_info = AptPersonalInfo::find($id);
+            $applicant_personal_info = ApplicantMeta::find($id);
             $applicant_personal_info->national_id = Input::get('national_id');
             $applicant_personal_info->fathers_name = Input::get('fathers_name');
             $applicant_personal_info->mothers_name = Input::get('mothers_name');
@@ -270,26 +270,34 @@ class ApplicantController extends \BaseController
     // Applicant's Extra-Curricular Activities......................................................
     public function extraCurricularIndex()
     {
-        //return View::make('applicant::extra_curricular._form');
-        $data = ApplicantProfile::where('applicant_id', '=', '1')->first();
+
+        $data = ApplicantExtraCurrActivity::where('applicant_id', '=', '1')->first();
+        //$data = ApplicantMiscInfo::where('applicant_id', '=', '1')->first();
+        //echo $data;exit;
         return View::make('applicant::extra_curricular.index', compact('data'));
     }
+    public function extraCurricularCreate(){
+        return View::make('applicant::extra_curricular._form');
+    }
+
+
     public function applicantExtraCurricularStore(){
 
         $rules = array(
-            'title' => 'required',
+//            'title' => 'required',
         );
         $validator = Validator::make(Input::all(), $rules);
         if ($validator->passes()) {
-            $extra_curricular =new ExtraCurricularActivities();
+            $extra_curricular =new ApplicantExtraCurrActivity();
+            //print_r($extra_curricular);exit;
             $extra_curricular->applicant_id = Input::get('applicant_id');
             $extra_curricular->title = Input::get('title');
             $extra_curricular->description = Input::get('description');
-            $extra_curricular->achivement = Input::get('achivement');
-            $extra_curricular->certificate_medal = Input::file('certificate_medal');
+            $extra_curricular->achievement = Input::get('achivement');
+//            $extra_curricular->certificate_medal = Input::file('certificate_medal');
             $extra_curricular->save();
 
-            return Redirect::back()->with('message', 'Successfully updated Information!');
+            return Redirect::back()->with('message', 'Successfully added Information!');
         } else {
             return Redirect::to('applicant/extra_curricular/create')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
         }
@@ -297,12 +305,12 @@ class ApplicantController extends \BaseController
     }
     public function excActivities()
     {
-        $profile = ApplicantProfile::where('applicant_id', '=', '1')->first();
+        $profile = ApplicantExtraCurrActivity::where('applicant_id', '=', '1')->first();
         return View::make('applicant::extra_curricular.index', compact('profile'));
     }
     public function editExtraCurricular($id)
     {
-        $extra_curricular = ExtraCurricularActivities::find($id);
+        $extra_curricular = ApplicantExtraCurrActivity::find($id);
 
         return View::make('applicant::extra_curricular.edit', compact('extra_curricular'));
     }
@@ -313,10 +321,10 @@ class ApplicantController extends \BaseController
         );
         $validator = Validator::make(Input::all(), $rules);
         if ($validator->passes()) {
-            $extra_curricular = ExtraCurricularActivities::find($id);
+            $extra_curricular = ApplicantExtraCurrActivity::find($id);
             $extra_curricular->title = Input::get('title');
             $extra_curricular->description = Input::get('description');
-            $extra_curricular->achivement = Input::get('achivement');
+            $extra_curricular->achievement = Input::get('achivement');
             $extra_curricular->certificate_medal = Input::file('certificate_medal');
 
 
@@ -455,10 +463,10 @@ class ApplicantController extends \BaseController
 //  Applicant's Supporting Docs: Methods.......
 
     public function sDocsIndex(){
-        $supporting_docs = AptSDocs::where('applicant_id', '=', 1)->first();
+        $supporting_docs = ApplicantSupportingDoc::where('applicant_id', '=', 1)->first();
 
         if(!$supporting_docs){
-            $supporting_docs = new AptSDocs();
+            $supporting_docs = new ApplicantSupportingDoc();
             $supporting_docs->applicant_id = 4;
             $supporting_docs->save();
         }
@@ -466,7 +474,7 @@ class ApplicantController extends \BaseController
     }
     public function sDocsView($doc_type, $sdoc_id){
 
-        $supporting_docs = AptSDocs::where('id', '=', $sdoc_id)->first();
+        $supporting_docs = ApplicantSupportingDoc::where('id', '=', $sdoc_id)->first();
         if(!$supporting_docs)
             $supporting_docs = null;
 
@@ -475,7 +483,7 @@ class ApplicantController extends \BaseController
     public function sDocsStore()
     {
         $data = Input::all();
-        $sdoc = $data['id'] ? AptSDocs::find($data['id']) : new AptSDocs;
+        $sdoc = $data['id'] ? ApplicantSupportingDoc::find($data['id']) : new ApplicantSupportingDoc;
 
         if ($data['doc_type']=='other') {
             $sdoc->other = Input::get('other');
@@ -498,7 +506,7 @@ class ApplicantController extends \BaseController
 //applicant Miscellaneous Information.......
 
     public function miscInfoIndex(){
-        $data = AptMiscInfo::where('applicant_id', '=', '1')->first();
+        $data = ApplicantMiscInfo::where('applicant_id', '=', '1')->first();
         return View::make('applicant::applicant_miscellaneous_info.index',compact('data'));
     }
     public function miscInfoCreate(){
@@ -514,7 +522,7 @@ class ApplicantController extends \BaseController
         );
         $validator = Validator::make(Input::all(), $rules);
         if ($validator->passes()) {
-            $data =new AptMiscInfo();
+            $data =new ApplicantMiscInfo();
             $data->applicant_id = Input::get('applicant_id');
             $data->ever_admit_this_university = Input::get('ever_admit_this_university');
             $data->ever_dismiss = Input::get('ever_dismiss');
@@ -531,7 +539,7 @@ class ApplicantController extends \BaseController
 
     }
     public function miscInfoEdit($id){
-        $model= AptMiscInfo::find($id);
+        $model= ApplicantMiscInfo::find($id);
         return View::make('applicant::applicant_miscellaneous_info.modal.edit', compact('model'));
     }
     public function miscInfoUpdate($id){
@@ -543,7 +551,7 @@ class ApplicantController extends \BaseController
         $validator = Validator::make(Input::all(), $rules);
         if ($validator->passes()) {
 
-            $model = AptMiscInfo::find($id);
+            $model = ApplicantMiscInfo::find($id);
 
             $model->ever_admit_this_university = Input::get('ever_admit_this_university');
             $model->ever_dismiss = Input::get('ever_dismiss');
@@ -564,7 +572,7 @@ class ApplicantController extends \BaseController
 
     public function acmRecordsIndex(){
 
-        $model = AptAcmRecords::where('applicant_id', '=', '1')->get();
+        $model = ApplicantAcademicRecords::where('applicant_id', '=', '1')->get();
         return View::make('applicant::apt_academic_records.index', compact('model'));
     }
     public function acmRecordsCreate(){
@@ -582,7 +590,7 @@ class ApplicantController extends \BaseController
         );
         $validator = Validator::make(Input::all(), $rules);
         if ($validator->passes()) {
-            $model =new AptAcmRecords();
+            $model =new ApplicantAcademicRecords();
             $model->applicant_id = Input::get('applicant_id');
             $model->level_of_education = Input::get('level_of_education');
             $model->degree_name = Input::get('degree_name');
@@ -623,7 +631,7 @@ class ApplicantController extends \BaseController
 
     }
     public function acmRecordsEdit($id){
-        $model= AptAcmRecords::find($id);
+        $model= ApplicantAcademicRecords::find($id);
         return View::make('applicant::apt_academic_records.modals.edit', compact('model'));
     }
     public function acmRecordsUpdate($id){
@@ -633,7 +641,7 @@ class ApplicantController extends \BaseController
         $validator = Validator::make(Input::all(), $rules);
         if ($validator->passes()) {
 
-            $model = AptAcmRecords::find($id);
+            $model = ApplicantAcademicRecords::find($id);
 
             $model->level_of_education = Input::get('level_of_education');
             $model->degree_name = Input::get('degree_name');
@@ -669,12 +677,12 @@ class ApplicantController extends \BaseController
     }
     public function acmRecordsShow($id)
     {
-        $model = AptAcmRecords::find($id);
+        $model = ApplicantAcademicRecords::find($id);
         return View::make('applicant::apt_academic_records.modals.show',compact('model'));
     }
     public function academicDelete($id){
 
-        AptAcmRecords::find($id)->delete();
+        ApplicantAcademicRecords::find($id)->delete();
         return Redirect::back()->with('message', 'Successfully deleted Information!');
     }
 }

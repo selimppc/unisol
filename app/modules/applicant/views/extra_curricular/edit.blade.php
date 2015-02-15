@@ -11,7 +11,7 @@
 {{ Form::text('description',$extra_curricular->description, array('class' => 'form-control')) }}
 
 {{ Form::label('achivement','Achivement:') }}
-{{ Form::text('achivement',$extra_curricular->achivement, array('class' => 'form-control')) }}
+{{ Form::text('achivement',$extra_curricular->achievement, array('class' => 'form-control')) }}
 
 <p>&nbsp;</p>
 {{ Form::submit('Save Changes', array('class'=>'btn btn-primary')) }}
