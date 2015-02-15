@@ -5,7 +5,7 @@
         <div class="panel-heading">
             <h4 class="panel-title">
                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><span class="glyphicon glyphicon-user">
-                    </span>You loggged in as <strong>{{ ucwords(Auth::user()->username) }} </strong></a>
+                    </span>You are loggged in as <strong>{{ ucwords(Auth::user()->username) }} </strong></a>
             </h4>
         </div>
         <div id="collapseOne" class="panel-collapse collapse in">
@@ -35,7 +35,7 @@
         <div class="panel-heading">
             <h4 class="panel-title">
                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree"><span class="glyphicon glyphicon-in">
-                        </span>You loggged in as <strong>{{ ucwords(Auth::user()->username) }} </strong></a>
+                        </span>You are loggged in as <strong>{{ ucwords(Auth::user()->username) }} </strong></a>
             </h4>
         </div>
         <div id="collapseFour" class="panel-collapse collapse">

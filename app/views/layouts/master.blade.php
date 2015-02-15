@@ -113,8 +113,7 @@
                  </a>
                   <ul class="dropdown-menu">
                        {{--<li><a tabindex="-1" a href="{{URL::to('/') }}"> Enrollment </a></li>--}}
-                       {{--<li class="divider"></li>--}}
-
+                       <li class="divider"></li>
                        <li><a tabindex="-1" a href="{{URL::to('academic/'.Role::find(Auth::user()->role_id)->title.'/') }}">Mark Distribution</a></li>
                       {{--<li><a tabindex="-1" a href="{{URL::to('academic/faculty/') }}">Mark Distribution Faculty</a></li>--}}
                        {{--<li class="divider"></li>--}}
