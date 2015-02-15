@@ -49,7 +49,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="">Control Panel  :: ( {{ isset(\Illuminate\Support\Facades\Auth::user()->username) ? ucwords(\Illuminate\Support\Facades\Auth::user()->username) : '' }} )</a>
+                <a class="navbar-brand" href="">Control Panel  ( {{ isset(\Illuminate\Support\Facades\Auth::user()->username) ? ucwords(\Illuminate\Support\Facades\Auth::user()->username) : '' }} )</a>
 
             </div>
             <!-- /.navbar-header -->
