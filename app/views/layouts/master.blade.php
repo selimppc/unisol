@@ -57,171 +57,82 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
-                        <a href="" role="button" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="icon-user"></i> Common Module <i class="caret"></i>
-                        </a>
-                        <ul class="dropdown-menu">
+                <li class="dropdown">
+                    <a href="" role="button" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="icon-user"></i> Common Module <i class="caret"></i>
+                    </a>
+                    <ul class="dropdown-menu">
 
-                            <li><a tabindex="-1" href="{{ action('CourseController@index') }}"> Course Management </a></li>
-                            <li class="divider"></li>
-
-                            <li><a tabindex="-1" href="{{ action('CourseTypeController@index') }}"> Course Type </a></li>
-                            <li class="divider"></li>
-
-                            <li><a tabindex="-1" href="{{ action('DegreeLevelController@index') }}"> Degree Level </a></li>
-                            <li class="divider"></li>
-
-                            <li><a tabindex="-1" href="{{ action('DegreeProgController@index') }}"> Degree / Program Name </a></li>
-                            <li class="divider"></li>
-
-                            <li><a tabindex="-1" href="{{ action('DepartmentController@index') }}"> Department Management </a></li>
-                            <li class="divider"></li>
-
-                            <li><a tabindex="-1" href="{{ action('SemesterController@index') }}"> Semester </a></li>
-                            <li class="divider"></li>
-
-                            <li><a tabindex="-1" href="{{ action('TargetRoleController@index') }}"> Target Role </a></li>
-                            <li class="divider"></li>
-
-                            <li><a tabindex="-1" href="{{ action('TaskListRoleController@index') }}"> Task List </a></li>
-                            <li class="divider"></li>
-
-                            <li><a tabindex="-1" href="{{ action('RoleTaskController@index') }}"> Role Task </a></li>
-                            <li class="divider"></li>
-
-                            <li><a tabindex="-1" href="{{ action('RoleTaskUserController@index') }}"> Role Task User </a></li>
-
-                            <li class="divider"></li>
-                            <li><a tabindex="-1" a href="{{URL::to('subject/list') }}"> Subject Management </a></li>
-                            <li class="divider"></li>
-                            <li class="divider"></li>
-                            <li><a tabindex="-1" a href="{{URL::to('year/show') }}"> Year Management </a></li>
-                            <li class="divider"></li>
-                            <li class="divider"></li>
-                            <li><a tabindex="-1" a href="{{URL::to('term/show') }}"> All Course Management </a></li>
-                            <li class="divider"></li>
+                        <li><a tabindex="-1" href="{{ action('CourseController@index') }}"> Course Management </a></li>
+                        <li><a tabindex="-1" href="{{ action('CourseTypeController@index') }}"> Course Type </a></li>
+                        <li><a tabindex="-1" href="{{ action('DegreeLevelController@index') }}"> Degree Level </a></li>
+                        <li><a tabindex="-1" href="{{ action('DegreeProgController@index') }}"> Degree / Program Name </a></li>
+                        <li><a tabindex="-1" href="{{ action('DepartmentController@index') }}"> Department Management </a></li>
+                        <li><a tabindex="-1" href="{{ action('SemesterController@index') }}"> Semester </a></li>
+                        <li><a tabindex="-1" href="{{ action('TargetRoleController@index') }}"> Target Role </a></li>
+                        <li><a tabindex="-1" href="{{ action('TaskListRoleController@index') }}"> Task List </a></li>
+                        <li><a tabindex="-1" href="{{ action('RoleTaskController@index') }}"> Role Task </a></li>
+                        <li><a tabindex="-1" href="{{ action('RoleTaskUserController@index') }}"> Role Task User </a></li>
+                        <li><a tabindex="-1" a href="{{URL::to('subject/list') }}"> Subject Management </a></li>
+                        <li><a tabindex="-1" a href="{{URL::to('year/show') }}"> Year Management </a></li>
+                        <li><a tabindex="-1" a href="{{URL::to('term/show') }}"> All Course Management </a></li>
+                    </ul>
+                </li>
 
 
-                        </ul>
-                    </li>
+         {{--Start Admission Module--}}
+
+          <li class="dropdown">
+              <a href="" role="button" class="dropdown-toggle" data-toggle="dropdown">
+                     <i class="icon-user"></i> Admission <i class="caret"></i>
+              </a>
+               <ul class="dropdown-menu">
+                    <li><a tabindex="-1" a href=""> Admission </a></li>
+
+               </ul>
+          </li>
+         {{-- Ends Academic Module--}}
 
         {{--Start Academic Module--}}
 
          <li class="dropdown">
                  <a href="" role="button" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="icon-user"></i> Academic Module <i class="caret"></i>
+                        <i class="icon-user"></i> Academic <i class="caret"></i>
                  </a>
                   <ul class="dropdown-menu">
-                       {{--<li><a tabindex="-1" a href="{{URL::to('/') }}"> Enrollment </a></li>--}}
-                       <li class="divider"></li>
                        <li><a tabindex="-1" a href="{{URL::to('academic/'.Role::find(Auth::user()->role_id)->title.'/') }}">Mark Distribution at Courses</a></li>
-                      {{--<li><a tabindex="-1" a href="{{URL::to('academic/faculty/') }}">Mark Distribution Faculty</a></li>--}}
-                       {{--<li class="divider"></li>--}}
-                       {{--<li><a tabindex="-1" a href="{{URL::to('class/') }}">Theory Class </a></li>--}}
-                       {{--<li class="divider"></li>--}}
-                       {{--<li><a tabindex="-1" a href="{{URL::to('') }}"> </a></li>--}}
-                       {{--<li class="divider"></li>--}}
-                       {{--<li><a tabindex="-1" a href="{{URL::to('') }}"> </a></li>--}}
-                       {{--<li class="divider"></li>--}}
-                       {{--<li><a tabindex="-1" a href="{{URL::to('') }}"> </a></li>--}}
-                       {{--<li class="divider"></li>--}}
-                       {{--<li><a tabindex="-1" a href="{{URL::to('') }}"> </a></li>--}}
-                       {{--<li class="divider"></li>--}}
-                       {{--<li><a tabindex="-1" a href="{{URL::to('') }}"> </a></li>--}}
-                       {{--<li class="divider"></li>--}}
-                       {{--<li><a tabindex="-1" a href="{{URL::to('') }}"> </a></li>--}}
-                       {{--<li class="divider"></li>--}}
-                       {{--<li><a tabindex="-1" a href="{{URL::to('') }}"> </a></li>--}}
-                       {{--<li class="divider"></li>--}}
 
                   </ul>
          </li>
         {{-- Ends Academic Module--}}
 
 
-    {{--Examination Manageemnt Modules--}}
+            {{--Examination Manageemnt Modules--}}
+            <li class="dropdown">
+                 <a href="" role="button" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="icon-user"></i> Examination<i class="caret"></i>
+                 </a>
+                 <ul class="dropdown-menu">
 
+                        <li><a tabindex="-1" href="{{ action('ExmFacultyController@index') }}"> Prepare Question Paper </a></li>
+                        <li><a tabindex="-1" href="{{ action('ExmAmwController@index') }}"> Prepare Question Paper </a></li>
 
-    <li class="dropdown">
-             <a href="" role="button" class="dropdown-toggle" data-toggle="dropdown">
-                    <i class="icon-user"></i> Examination Management Module <i class="caret"></i>
-             </a>
-             <ul class="dropdown-menu">
-                    {{--<li><a tabindex="-1" href="{{ action('ExaminationController@index') }}"> Home </a></li>--}}
-                    {{--<li class="divider"></li>--}}
+                 </ul>
+            </li>
+             {{-- End of Examination Module--}}
+                <li class="dropdown">
 
-                    {{--<li><a tabindex="-1" href="{{ action('ExmEnrollmentController@index') }}"> Enrollment </a></li>--}}
-                    {{--<li class="divider"></li>--}}
+                    <a href="" role="button" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-user"></i> Setting <i class="caret"></i>
 
-                    {{--<li><a tabindex="-1" href="{{ action('ExmGenerateCertificateController@index') }}"> Generate Certificate </a></li>--}}
-                    {{--<li class="divider"></li>--}}
-
-                    {{--<li><a tabindex="-1" href="{{ action('ExmManageExaminationCenterController@index') }}"> Manage Examination Center </a></li>--}}
-                    {{--<li class="divider"></li>--}}
-
-                     {{--<li><a tabindex="-1" href="{{ action('ExmManageExaminerController@index') }}"> Manage Examiner </a></li>--}}
-                     <li class="divider"></li>
-
-
-                    <li><a tabindex="-1" href="{{ action('ExmFacultyController@index') }}"> Prepare Question Paper </a></li>
-                    <li><a tabindex="-1" href="{{ action('ExmAmwController@index') }}"> Prepare Question Paper </a></li>
-
-                    <li class="divider"></li>
-
-                    {{--<li><a tabindex="-1" href="{{ action('ExmPrepareTabulationController@index') }}"> Prepare Tabulation </a></li>--}}
-                    <li class="divider"></li>
-
-
-             </ul>
-    </li>
-
-
-
-     {{-- End of Examination Module--}}
-
-
-
-
-
-
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            Dropdown
-                            <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="#">Action</a>
-                            </li>
-                            <li>
-                                <a href="#">Another action</a>
-                            </li>
-                            <li>
-                                <a href="#">Something else here</a>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                <a href="#">Separated link</a>
-                            </li>
-                            <li>
-                                <a href="#">One more separated link</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-
-                        <a href="" role="button" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-user"></i> Admin <i class="caret"></i>
-
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a tabindex="-1" href=""><strong>{{ ucwords(Auth::user()->username) }}</strong></a>
-                            </li>
-                            <li class="divider"></li>
-                            <li><a tabindex="-1" href="{{URL::route('user/logout') }}">Logout</a></li>
-                        </ul>
-                    </li>
-                </ul>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a tabindex="-1" href=""><strong>{{ ucwords(Auth::user()->username) }}</strong></a>
+                        </li>
+                        <li class="divider"></li>
+                        <li><a tabindex="-1" href="{{URL::route('user/logout') }}">Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
             </div>
             <!-- /.navbar-collapse -->
         </div>

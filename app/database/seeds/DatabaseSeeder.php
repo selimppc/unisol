@@ -4,7 +4,7 @@ class DatabaseSeeder extends Seeder {
 
 	public function run()
 	{
-       /* $this->call('RoleTableSeeder');
+        /* $this->call('RoleTableSeeder');
         $this->command->info('Role table seeded!');
 
         $this->call('DepartmentTable');
@@ -29,10 +29,10 @@ class DatabaseSeeder extends Seeder {
         $this->command->info('Subject table seeded!');
 
         $this->call('CourseTable');
-        $this->command->info('Course table seeded!'); */
+        $this->command->info('Course table seeded!');
 
         $this->call('ApplicantsSeeder');
-        $this->command->info('Applicant table seeded!');
+        $this->command->info('Applicant table seeded!'); */
 	}
 
 }
