@@ -12,16 +12,37 @@ class AcmMarksDistItemTable extends Seeder {
 
         DB::table('acm_marks_dist_item')->delete();
 
-        AcmMarksDistItem::insert(array(
-            'code' => '',
-            'title' => '',
-            'is_associative' => '',
-            'is_exam' => '',
-            'created_by' => '1',
-            'updated_by' => '1',
-            'created_at' => new DateTime,
-            'updated_at' => new DateTime
-        ));
+
+        $items = array(
+            'Class' => 'CLAS',
+            'Assignment' => 'AGMT',
+            'Class Test' => 'CLAT',
+            'Mid Term' => 'MIDT',
+            'Final Term' => 'FINT',
+            'Lab Task' => 'LABT',
+            'Proposal' => 'PROP',
+            'Proposal Presentation' => 'PRPR',
+            'Presentation' => 'PRST',
+            'Implementation' => 'IMPL',
+            'Report Presentation' => 'RPPS',
+            'Final Report' => 'FNPT',
+            'Field Work' => 'FLDW',
+            'Attendance' => 'ATTN',
+        );
+
+
+        foreach($items as $key => $val) {
+            AcmMarksDistItem::insert(array(
+                'code' => $val,
+                'title' => $key,
+                'is_associate' => ($val == 'CLAS') ?1 : 0,
+                'is_exam' => ($val == 'MIDT' || $val == 'FINT') ? 1 : 0,
+                'created_by' => '1',
+                'updated_by' => '1',
+                'created_at' => new DateTime,
+                'updated_at' => new DateTime
+            ));
+        }
 
 
 
