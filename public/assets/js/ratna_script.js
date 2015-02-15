@@ -320,7 +320,7 @@ function addMarksDistItem() {
 
         str += '<td><a class="btn btn-default btn-sm" id="removedistTrId' + trLen + '" onClick="deleteNearestTr(this.id, 0)"><span class="glyphicon glyphicon-trash text-danger"></span></a></td>';
 
-        
+
         str += '</tr>';
 
         contentBody.append(str);
@@ -347,7 +347,6 @@ function addMarksDistItem() {
             else {
                 return false;
             }
-
 
         } else {
             //if acm_course_config id not found jst remove the tr form the popup. that not delete the data form the db.

@@ -64,6 +64,7 @@ class AcmFacultyController extends \BaseController {
 					'acm_marks_distribution.is_readonly as readonly',
 					'acm_marks_distribution.is_default as default_item',
 					'acm_marks_distribution.is_attendance',
+					'acm_marks_distribution.created_by as CBid',
 					'acm_marks_distribution.acm_marks_policy_id',
 					'course.id as course_id2'
 				)
@@ -161,8 +162,6 @@ class AcmFacultyController extends \BaseController {
 						$marks_dist->is_readonly = 1;
 				}
 			}
-			#echo $marks_dist->is_readonly." is readonly <br>";
-
 			// $marks_dist->acm_attendance_config_id = $attendance_id;
 
 			// Assign created_by and updated_by user id
@@ -172,7 +171,6 @@ class AcmFacultyController extends \BaseController {
 				$marks_dist->created_by = Auth::user()->id;
 			else
 				$marks_dist->updated_by = Auth::user()->id;
-
 
 			$marks_dist->save();
 

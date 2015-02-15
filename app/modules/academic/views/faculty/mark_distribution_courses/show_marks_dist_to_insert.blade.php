@@ -47,14 +47,18 @@
 
             <tr>
                 <td width="130">
-                    <?php if(isset($value->isMarksId)){?>
-                    {{ Form::hidden('acm_marks_distribution_id[]', $value->isMarksId)}}
-                    <?php }?>
+                    @if(isset($value->isMarksId))
+                    {{ Form::hidden('acm_marks_distribution_id[]', $value->isMarksId,['class'=>'form-control'])}}
+                    @endif
                     {{ Form::hidden('acm_marks_dist_item_id[]', $value->item_id, ['class'=>'acm_marks_dist_item_id'])}}
                     {{ Form::hidden('course_id[]', $value->course_id2, ['class'=>'get_course_id']) }}
-                    @if(isset($value->created_by))
-                        {{ Form::hidden('created_by_amw[]', $value->created_by)}}
+                    @if(isset($value->CBid))
+                        {{ Form::text('created_by_faculty[]', $value->CBid, ['class'=>'form-control']) }}
                     @endif
+                    @if(isset($value->created_by))
+                        {{ Form::text('created_by_amw[]', $value->created_by, ['class'=>'form-control'])}}
+                    @endif
+                    {{--to show item title from db --}}
                     {{ $value->acm_dist_item_title}}
                 </td>
                 <td>
@@ -90,14 +94,17 @@
                    @else
                         {{ Form::select('policy_id[]', array(''=>'Select Option','1' => 'Attendance', '2' => 'Best One','3'=>'Average','4'=>'Average of Top N','5' => 'Sum','6' => 'Single'), array('data-parsley-trigger'=>'change','required'=>'required'))}}
                    @endif
+                    {{Auth::user()->id}}
+                </td>
 
-                       @if($value->created_by == 2)
-                      <td><a class="btn btn-default btn-sm" id="removedistTrId{{$key}}" onClick="deleteMarkDistNearestTr(this.id, {{$value->isMarksId}})"><span class="glyphicon glyphicon-trash text-danger"></span></a></td>
-                    @else
-                      <td>
+                    {{--Ajax delete if find faculty created_by= 2--}}
+                @if(isset($value->CBid ) && $value->CBid == Auth::user()->id )
+                    <td><a class="btn btn-default btn-sm" id="removedistTrId{{$key}}" onClick="deleteMarkDistNearestTr(this.id, {{$value->isMarksId}})"><span class="glyphicon glyphicon-trash text-danger"></span></a></td>
+                @else
+                    <td>
 
-                      </td>
-                    @endif
+                    </td>
+                @endif
             </tr>
             <?php $counter++;?>
 
