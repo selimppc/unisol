@@ -38,7 +38,7 @@
 </div>
 
 <div class='form-group'>
-     {{ Form::label('admission_test_center', 'Admission test Center ') }}
+    {{ Form::label('admission_test_center', 'Admission test Center ') }}
     {{ Form::select('admission_test_center', array('' => 'Select one',
        'Dhaka' => 'Dhaka', 'Chittagong' => 'Chittagong', 'Comilla'=>'Comilla','Khulna'=>'Khulna','Syllhet'=>'Syllhet'),
         array('class' => 'form-control', 'required'=> true)) }}
