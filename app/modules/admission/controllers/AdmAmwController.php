@@ -14,19 +14,20 @@ class AdmAmwController extends \BaseController {
 	public function create()
 
 	{
-        $role_id = Role::where('title', '=','faculty' )->first()->code;
+        $role_id = Role::where('title', '=','faculty' )->first()->id;
        // echo $role_id;exit;
-        $user_faculty=User::where('username', '=', $role_id)->first();
-        echo $user_faculty;exit;
+        $user_faculty=User::where('role_id', '=', $role_id)->first()->role_id;
+        //echo $user_faculty;exit;
         //retrieve data
-        
+
+        $faculty=User::lists('role_id','id');
         $courseType = CourseType::lists('title', 'id');
         $year = Year::lists('title', 'id');
         $course=Course::lists('title', 'id');
         $semester=Semester::lists('title', 'id');
-        $user=User::lists('username', 'id');
+        //$user=User::lists('username', 'id');
 
-        return View::make('admission::amw.modals._form', compact('courseType','year','course','semester','user'));
+        return View::make('admission::amw.modals._form', compact('courseType','year','course','semester','user','faculty'));
     }
 
 	public function store()

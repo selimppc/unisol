@@ -44,7 +44,7 @@
 <div class='form-group'>
 
   <div>{{ Form::label('user_id', 'Assigned Faculty') }}</div>
-  <div>{{ Form::select('user_id',$user,Input::old('user_id'),['class'=>'form-control ']) }}</div>
+  <div>{{ Form::select('user_id',$faculty,Input::old('user_id'),['class'=>'form-control ']) }}</div>
 </div>
 
 <div class='form-group'>
