@@ -33,20 +33,12 @@ class CreateAdmissionBillingRl extends Migration {
             $table->increments('id');
             $table->string('title', 128);
             $table->text('description');
-            $table->unsignedInteger('department_id')->nullable();
-            $table->enum('degree_level', array(
-                'under_graduate', 'graduate', 'post_graduate', 'post_doctorate'
-            ));
-            $table->string('cost', 16);
-            $table->tinyInteger('is_common', false)->lenght(1);
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
             $table->engine = 'InnoDB';
         });
-        Schema::table('billing_item', function($table) {
-            $table->foreign('department_id')->references('id')->on('department');
-        });
+
 
         Schema::table('waiver', function($table) {
             $table->foreign('billing_item_id')->references('id')->on('billing_item');
