@@ -1,10 +1,12 @@
 <?php
 
 class ExmAmwController extends \BaseController {
-
+    //amw: filter
     function __construct() {
         $this->beforeFilter('exmAmw', array('except' => array('')));
     }
+
+    //amw: Question papers index
 
 	public function index()
 	{
@@ -13,21 +15,25 @@ class ExmAmwController extends \BaseController {
                                   ->get();
         return View::make('examination::amw.prepare_question_paper.index')->with('datas',$data);
 	}
+    //amw: View question paper
 	public function viewQuestion($id)
 	{
         $view_question_amw = ExmQuestion::find($id);
 
         return View::make('examination::amw.prepare_question_paper.viewQuestion')->with('viewPrepareQuestionPaperAmw', $view_question_amw);
 	}
+    //amw: assignTo
     public function assignTo()
     {
         echo "Not Done Yet";
     }
+    //amw: Create Question Paper
     public function createQuestionPaper()
     {
         return View::make('examination::amw.prepare_question_paper.create')->compact('crt_question_ppr');
         //ok
     }
+    //amw: Store Question Paper
     public function storeQuestionPaper()
     {
         $data = Input::all();
@@ -64,6 +70,7 @@ class ExmAmwController extends \BaseController {
         }
         //ok
     }
+    //amw: Edit Question Paper
     public function editQuestionPaper($id)
     {
         $prepare_question_paper = ExmQuestion::find($id);
@@ -72,6 +79,7 @@ class ExmAmwController extends \BaseController {
         return View::make('examination::amw.prepare_question_paper.editQuestionPaper')->with('edit_AmwQuestionPaper',$prepare_question_paper);
         //ok
     }
+    //amw: Update Question Paper
     public function updateQuestionPaper($id)
     {
         // get the POST data
@@ -103,11 +111,13 @@ class ExmAmwController extends \BaseController {
         }
         //ok
     }
+    //amw: Question List
     public function questionList()
     {
         $question_list_amw = ExmQuestionItems::orderBy('id', 'DESC')->paginate(15);
         return View::make('examination::amw.prepare_question_paper.questionList')->with('QuestionListAmw',$question_list_amw);
     }
+    //amw: View Question Items
     public function viewQuestionItems($id)
     {
         $amw_ViewQuestionItems = DB::table('exm_question_items')
@@ -121,6 +131,7 @@ class ExmAmwController extends \BaseController {
         return View::make('examination::amw.prepare_question_paper.viewQuestionItems', compact('amw_ViewQuestionItems', 'options'));
 
     }
+    //amw: Destroy
     public function destroy($id)
     {
         try {
@@ -133,6 +144,7 @@ class ExmAmwController extends \BaseController {
         }
         //ok
     }
+    //amw: batch delete->question
     public function batchDelete()
     {
         try {
@@ -146,6 +158,7 @@ class ExmAmwController extends \BaseController {
         }
         //ok
     }
+    //amw: batch delete->Question item
     public function batchItemsDelete()
     {
         try {
@@ -157,8 +170,29 @@ class ExmAmwController extends \BaseController {
             return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
 
         }
-        //ok
     }
 
+    //amw: examination
+    public function examination(){
+        $examination = ExmExamList::orderBy('id', 'DESC')->paginate(6);
+
+        return View::make('examination::amw.prepare_question_paper.examination')->with('examination',$examination);
+    }
+
+    public function addExamination(){
+
+    }
+
+    public function storeExamination(){
+
+    }
+
+    public function viewExamination(){
+
+    }
+
+    public function editExamination(){
+
+    }
 
 }

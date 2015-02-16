@@ -1,10 +1,5 @@
 <fieldset style="padding: 10px; width: 90%;">
-            <?php  $exm_exam_list_id = ExmExamList::lists('title', 'id'); ?>
 
-            <div class="form-group">
-                   {{ Form::label('exm_exam_list_id', 'Exam Name') }}
-                   {{ Form::select('exm_exam_list_id', $exm_exam_list_id, Input::old('exm_exam_list_id') )}}
-            </div>
             <div class="form-group">
                    {{ Form::label('title', 'Title') }}
                    {{ Form::text('title', Input::old('title'), array('class' => 'form-control','required'=>'required')) }}
@@ -30,5 +25,5 @@
                   {{--{{ Form::select('assign_to', Input::old('assign_to'), array('class' => 'form-control','required'=>'required'))}}--}}
             {{--</div>--}}
             {{ Form::submit('Submit', array('class' => 'btn btn-primary')) }}
-            <a href="{{URL::to('examination/amw/index')}}" class="btn btn-default">Close </a>
+            <a href="{{URL::to('examination/amw/examination')}}" class="btn btn-default">Close </a>
 </fieldset>

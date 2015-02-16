@@ -3,14 +3,14 @@
     @include('examination::_sidebar')
 @stop
 @section('content')
-        <h1>Welcome to Prepare Question paper : <strong>{{ ucwords(Auth::user()->username) }}</strong> </h1> <br>
-                    {{ Form::open(array('url' => 'examination/amw/batchDelete')) }}
+        <h1>Welcome to Examination : <strong>{{ ucwords(Auth::user()->username) }}</strong> </h1> <br>
+                    {{--{{ Form::open(array('url' => 'examination/amw/batchDelete')) }}--}}
                         <table id="example" class="table table-striped  table-bordered"  >
                                     <thead>
                                           <div class="btn-group" style="margin-right: 10px">
                                                 <button type="button" class="btn btn-default" data-toggle="modal"
-                                                          data-target="#CreateModal">
-                                                            Create Question paper
+                                                          data-target="#AddExamination">
+                                                            Add Examination
                                                 </button>
                                           </div>
                                          <br>
@@ -20,28 +20,25 @@
                                          <tr>
                                             <th><input name="id" type="checkbox" id="checkbox" class="checkbox" value=""></th>
                                             <th>Title</th>
-                                            <th>Deadline</th>
-                                            <th>Department</th>
-                                            <th>Year</th>
-                                            <th>Term</th>
-                                            <th>Assigned</th>
+                                            {{--<th>Deadline</th>--}}
+                                            {{--<th>Department</th>--}}
+                                            {{--<th>Year</th>--}}
+                                            {{--<th>Term</th>--}}
+                                            {{--<th>Assigned</th>--}}
                                             <th>Action</th>
                                          </tr>
                                     </thead>
                                     <tbody>
-                                      @foreach($datas as $prepare_question_paper_amw)
+                                      @foreach($examination as $exam_list)
                                             <tr>
-                                                <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $prepare_question_paper_amw['id'] }}"></td>
-                                                <td>{{$prepare_question_paper_amw->title}} </td>
-                                                <td>{{$prepare_question_paper_amw->deadline}}</td>
-                                                <td>{{$prepare_question_paper_amw->relCourseManagement->relCourse->relSubject->relDepartment->title}}</td>
-                                                <td>{{$prepare_question_paper_amw->relCourseManagement->relYear->title }} </td>
-                                                <td>{{$prepare_question_paper_amw->relCourseManagement->relSemester->title}}</td>
-                                                <td> Mr. </td>
+                                                <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $exam_list['id'] }}"></td>
+                                                <td>{{ $exam_list->title }} </td>
+
+
                                                 <td>
-                                                   <a href="{{ URL::route('examination.amw.viewQuestion', ['id'=>$prepare_question_paper_amw->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#ViewQuestionPaperModal" data-placement="left" title="Show" href="#">View</a>
-                                                   <a href="{{ URL::route('examination.amw.editQuestionPaper', ['id'=>$prepare_question_paper_amw->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#edit_amw_QuestionPapermodal" data-placement="left" title="Edit" href="#">Edit</a>
-                                                   {{--<a class="btn btn-default" href="{{ action('ExmAmwController@assignTo') }}">Assign</a>--}}
+                                                   <a href="{{ URL::route('examination.amw.viewExamination', ['id'=>$exam_list->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#ViewExamination" data-placement="left" title="Show" href="#">View</a>
+                                                   <a href="{{ URL::route('examination.amw.editExamination', ['id'=>$exam_list->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#EditExamination" data-placement="left" title="Edit" href="#">Edit</a>
+
                                                 </td>
                                             </tr>
                                       @endforeach

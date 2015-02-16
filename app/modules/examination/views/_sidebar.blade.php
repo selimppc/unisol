@@ -13,14 +13,20 @@
                 <table class="table">
                     <tr>
                         <td>
-                         <a href="{{ action('ExmAmwController@index') }}"> Home</a> <span class="label label-success"></span>
+                         <a href="{{ action('ExmAmwController@index') }}"> Question Papers</a> <span class="label label-success"></span>
                         </td>
                     </tr>
 
                      <tr>
                         <td>
-                         <a href="{{ action('ExmAmwController@questionList') }}"> Question Items</a> <span class="label label-success"></span>
+                         <a href="{{ action('ExmAmwController@questionList') }}"> Question List</a> <span class="label label-success"></span>
                         </td>
+                     </tr>
+
+                     <tr>
+                         <td>
+                          <a href="{{ action('ExmAmwController@examination') }}"> Examination</a> <span class="label label-success"></span>
+                         </td>
                      </tr>
                 </table>
             </div>
@@ -39,12 +45,12 @@
                     <table class="table">
                         <tr>
                             <td>
-                             <a href="{{ action('ExmFacultyController@index') }}"> Home</a> <span class="label label-success"></span>
+                             <a href="{{ action('ExmFacultyController@index') }}"> Question Papers</a> <span class="label label-success"></span>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                             <a href="{{ action('ExmFacultyController@questionList') }}"> Question Items</a> <span class="label label-success"></span>
+                             <a href="{{ action('ExmFacultyController@questionList') }}"> Question List</a> <span class="label label-success"></span>
                             </td>
                         </tr>
                     </table>
