@@ -14,15 +14,17 @@ class DegreeProgramTable extends Seeder {
 
         $items = array(
             'under_graduate' => 'Under Graduate',
-            'graduate' => 'Graduate',
+            'masters' => 'masters',
             'post_graduate' => 'Post Graduate',
+            'doctorate' => 'Doctorate',
             'post_doctorate' => 'Post Doctorate',
         );
 
         //DegreeLevel: 'under_graduate','graduate','post_graduate','post_doctorate'
         foreach($items as $key => $val){
             DegreeProgram::insert(array(
-                'title' => $key,
+                'code' =>$key,
+                'title' => $val,
                 'description' => $val,
                 'created_by' => '1',
                 'updated_by' => '1',
