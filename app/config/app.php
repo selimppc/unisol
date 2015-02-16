@@ -130,6 +130,7 @@ return array(
         'App\Modules\User\ServiceProvider',
         'App\Modules\Applicant\ServiceProvider',
         'Intervention\Image\ImageServiceProvider',
+        'App\Modules\Fees\ServiceProvider',
 	),
 
 	/*
