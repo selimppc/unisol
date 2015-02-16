@@ -230,7 +230,7 @@
 {{ HTML::script('assets/js/bootstrap-datepicker.js') }}
 {{HTML::script('assets/js/ratna_script.js')}}
 
-
+@yield('script_section')
 
 </body>
 </html>
