@@ -52,7 +52,7 @@
 
       {{--@foreach($model as $value)--}}
           {{--<tr>--}}
-               {{--<td>{{strtoupper($value->level_of_education ) }}</td>--}}
+               {{--<td>{{ $value->level_of_education ) }}</td>--}}
                {{--<td>{{ $value->board_university}}</td>--}}
                {{--<td>{{ $value->year_of_passing}}</td>--}}
                {{--<td>--}}
