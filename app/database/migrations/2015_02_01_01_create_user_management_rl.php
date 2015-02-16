@@ -38,7 +38,7 @@ class CreateUserManagementRl extends Migration {
             $table->string('waiver_type', 64);
             $table->tinyInteger('is_percentage', false, 1)->lenght(1);
             $table->string('amount', 64);
-            $table->integer('acm_billing_item_id', false, 11);
+            $table->unsignedInteger('billing_details_id')->nullable();
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();

@@ -48,31 +48,31 @@
             <tr>
                 <td width="130">
                     @if(isset($value->isMarksId))
-                    {{ Form::hidden('acm_marks_distribution_id[]', $value->isMarksId,['class'=>'form-control'])}}
+                        {{ Form::hidden('acm_marks_distribution_id[]', $value->isMarksId,['class'=>'form-control'])}}
                     @endif
                     {{ Form::hidden('acm_marks_dist_item_id[]', $value->item_id, ['class'=>'acm_marks_dist_item_id'])}}
                     {{ Form::hidden('course_id[]', $value->course_id2, ['class'=>'get_course_id']) }}
                     @if(isset($value->CBid))
-                        {{ Form::text('created_by_faculty[]', $value->CBid, ['class'=>'form-control']) }}
+                        {{ Form::hidden('created_by_faculty[]', $value->CBid, ['class'=>'form-control']) }}
                     @endif
                     @if(isset($value->created_by))
-                        {{ Form::text('created_by_amw[]', $value->created_by, ['class'=>'form-control'])}}
+                        {{ Form::hidden('created_by_amw[]', $value->created_by, ['class'=>'form-control'])}}
                     @endif
                     {{--to show item title from db --}}
                     {{ $value->acm_dist_item_title}}
                 </td>
                 <td>
-
                     {{--To check readonly field--}}
                     @if($value->readonly == 1)
-                        <input type="text" name="marks_percent[]" value="{{ ($value->actual_marks/$datas->relCourse->evaluation_total_marks) * 100 }}" class="amw_marks_percent{{$key}}" onchange="calculateActualMarks(this.className, {{$datas->relCourse->evaluation_total_marks}},this.value)" readonly required />
+                        <input type="text" name="marks_percent[]" value="{{ ($value->actual_marks/$datas->relCourse->evaluation_total_marks) * 100 }}" class="form-control totalPer amw_marks_percent{{$key}}" id="marks_percent_id{{$key}}" onchange="calculateActualMarksFaculty(this.id, {{$datas->relCourse->evaluation_total_marks}},this.value)" onblur="calculateTotalMarksPercent(this)" readonly required />
                     @else
-                        <input type="text" name="marks_percent[]" value="{{ ($value->actual_marks/$datas->relCourse->evaluation_total_marks) * 100 }}" class="amw_marks_percent{{$key}}" onchange="calculateActualMarks(this.className, {{$datas->relCourse->evaluation_total_marks}},this.value)" required />
+                        <input type="text" name="marks_percent[]" value="{{ ($value->actual_marks/$datas->relCourse->evaluation_total_marks) * 100 }}" class="form-control totalPer amw_marks_percent{{$key}}"  id="marks_percent_id{{$key}}" onchange="calculateActualMarksFaculty(this.id, {{$datas->relCourse->evaluation_total_marks}},this.value)" onblur="calculateTotalMarksPercent(this)" required />
                     @endif
 
                 </td>
                 <td>
-                      <input type="text" name="actual_marks[]" value="{{$value->actual_marks}}" class="amw_actual_marks" readonly/>
+                    <!-- <input type="text" name="actual_marks[]" value="{{$value->actual_marks}}" class="amw_actual_marks" readonly/> -->
+                    {{ Form::text('actual_marks[]', $value->actual_marks, ['class'=> 'form-control amw_actual_marks','required' => 'required', 'readonly'=>'true']) }}
                 </td>
 
                 <td>
@@ -82,24 +82,24 @@
                     @else
                         No
                     @endif
-                        {{--{{ Form::text('isReadOnly[]', $value->readonly) }}--}}
+                    {{--{{ Form::text('isReadOnly[]', $value->readonly) }}--}}
                 </td>
                 <td>{{ Form::radio('isDefault[]', $counter, ($value->default_item) ? $value->default_item : Input::old('isDefault'.$key)) }}
                 </td>
 
                 <td>{{ Form::radio('isAttendance[]', $counter, ($value->is_attendance) ? $value->is_attendance : Input::old('isAttendance'.$key)) }}</td>
                 <td>
-                   @if(isset($value->isMarksId))
+                    @if(isset($value->isMarksId))
                         {{ Form::select('policy_id[]', array(''=>'Select Option','1' => 'Attendance', '2' => 'Best One','3'=>'Average','4'=>'Average of Top N','5' => 'Sum','6' => 'Single'), $value->acm_marks_policy_id, array('class' => 'form-control','required'=>'required'))}}
-                   @else
-                        {{ Form::select('policy_id[]', array(''=>'Select Option','1' => 'Attendance', '2' => 'Best One','3'=>'Average','4'=>'Average of Top N','5' => 'Sum','6' => 'Single'), array('class' => 'form-control','required'=>'required'))}}
-                   @endif
-                    {{Auth::user()->id}}
+                    @else
+                        {{ Form::select('policy_id[]', array(''=>'Select Option','1' => 'Attendance', '2' => 'Best One','3'=>'Average','4'=>'Average of Top N','5' => 'Sum','6' => 'Single'), '', array('class' => 'form-control','required'=>'required'))}}
+                    @endif
+                    {{--Auth::user()->id--}}
                 </td>
 
-                    {{--Ajax delete if find faculty created_by and auth id=2--}}
+                {{--Ajax delete if find faculty created_by and auth id=2--}}
                 @if(isset($value->CBid ) && $value->CBid == Auth::user()->id )
-                {{--@if($value->CBid )--}}
+                    {{--@if($value->CBid )--}}
                     <td><a class="btn btn-default btn-sm" id="removedistTrId{{$key}}" onClick="deleteMarkDistTr(this.id, {{$value->isMarksId}})"><span class="glyphicon glyphicon-trash text-danger"></span></a></td>
                 @else
                 @endif
@@ -112,9 +112,9 @@
                 editMarksListItem(item_id);
 
                 function deleteMarkDistTr(getId, distId) {
-                   // alert('OK');
-                    //exit;
+
                     var is_marksdist_id = distId;
+
                     if (is_marksdist_id > 0) {
 
                         var check = confirm("Are you sure to delete this item??");
@@ -150,7 +150,8 @@
         </tbody>
 
         <tr>
-            <td colspan="8">{{ Form::submit('Submit', ['class'=>'btn btn-info'] ) }}</td>
+            <td colspan="6"><span class="totalPerSum"></span></td>
+            <td colspan="2">{{ Form::submit('Submit', ['class'=>'btn btn-info saveInMarksDist'] ) }}</td>
         </tr>
 
     </table>
@@ -158,5 +159,5 @@
 
 </div>
 <div class="modal-footer">
-    <a href="{{URL::to('academic/faculty/')}}" class="btn btn-default">Close </a>
+    <a href="{{URL::to('academic/faculty/')}}" class="btn btn-default pull-right">Close </a>
 </div>

@@ -232,7 +232,7 @@ function calculateActualMarks(class_name, course_evalution_marks, selected_perce
     // console.log(class_name+"//"+total);
 }
 
-function deleteNearestTr(getId, acmId)
+/*function deleteNearestTr(getId, acmId)
 {
     var is_config_id = acmId;
     if(is_config_id > 0){
@@ -247,7 +247,7 @@ function deleteNearestTr(getId, acmId)
                 data: {acm_course_config_id: is_config_id}
             })
                 .done(function(msg) {
-                    //console.log(msg);
+                    console.log(msg);
                     var whichtr = $('#'+getId).closest("tr");
                     whichtr.fadeOut(500).remove();
                     arrayItems.pop(getId);//To stop additem if exist
@@ -266,7 +266,7 @@ function deleteNearestTr(getId, acmId)
     }
 
 }
-
+*/
 
 /***********************FACULTY MARKS DISTRIBUTION GENERATION START***********************/
 $tableItemCounter = 0;//To stop additem if exist
@@ -323,6 +323,35 @@ function addMarksDistItem() {
 
         contentBody.append(str);
     }
+
+    //*******************
+//This function is used to calculate the total percent when add an item into popup. if total percent is more than 100, submit button will disapper instantly.
+// if total marks percent is less than 100 then submit button will appear soon. This function is decleared in marks_percent text box in "onblur" event.
+//*******************
+//
+//    function calculateTotalMarksPercent( src ) {
+//        var sum = 0,
+//            tbl = $(src).closest('tbody');
+//
+//        tbl.find('input.totalPer').each(function( index, elem ) {
+//            var val = parseInt($(elem).val());
+//            if( !isNaN( val ) ) {
+//                sum += val;
+//            }
+//        });
+//
+//        if(sum > 100)
+//        {
+//            $('.saveInMarksDist').fadeOut(500);
+//            $('body').find('.totalPerSum').html('<span class="text-danger">Total marks percent is more than 100.</span>');
+//        }
+//        else
+//        {
+//            $('.saveInMarksDist').fadeIn(500);
+//            $('body').find('.totalPerSum').html('<strong>Total marks percent is : '+ sum.toFixed(2) +'</strong>');
+//        }
+//        //console.log("total marks is : "+ sum.toFixed(2));
+//    }
 
 
 }

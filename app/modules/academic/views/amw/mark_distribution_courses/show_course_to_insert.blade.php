@@ -7,7 +7,6 @@
 
     <p> Total Marks: {{ $datas->relCourse->evaluation_total_marks}}</p>
 
-
     <div class="form-horizontal">
         <div class="form-group">
             {{ Form::hidden('course_id', $datas->course_id, ['class'=>'form-control course_id'])}}
