@@ -51,6 +51,11 @@ Route::any('user/set_cookie', 'UserSignupController@setCookie');
 Route::any('user/get_cookie', 'UserSignupController@getCookie');
 
 
-//-------------------------------------------------------------------------------
+//-------------------------------- Amw: Course Management-----------------------------------------------
+
+Route::any('course_manage/index','AdmAmwController@index');
+
+Route::any('course_manage/create','AdmAmwController@create');
+
 
 
