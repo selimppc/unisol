@@ -10,8 +10,8 @@ class DatabaseSeeder extends Seeder {
         $this->call('DepartmentTable');
         $this->command->info('Department table seeded!');
 
-        $this->call('WaiverTable');
-        $this->command->info('Waiver table seeded!');
+        /*$this->call('WaiverTable');
+        $this->command->info('Waiver table seeded!');*/
 
         $this->call('UserTable');
         $this->command->info('User table seeded!');

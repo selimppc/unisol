@@ -115,8 +115,10 @@
                  </a>
                  <ul class="dropdown-menu">
 
-                        <li><a tabindex="-1" href="{{ action('ExmFacultyController@index') }}"> Prepare Question Paper </a></li>
-                        <li><a tabindex="-1" href="{{ action('ExmAmwController@index') }}"> Prepare Question Paper </a></li>
+                  {{--<li><a tabindex="-1" href="{{ action('Exm'.ucwords(Auth::user()->username).'Controller@index') }}"> Prepare Question Paper </a></li>--}}
+
+                        <li><a tabindex="-1" href="{{ action('ExmFacultyController@index') }}"> Prepare Question Paper (Faculty) </a></li>
+                        <li><a tabindex="-1" href="{{ action('ExmAmwController@index') }}"> Prepare Question Paper (Amw) </a></li>
 
                  </ul>
             </li>
@@ -230,7 +232,7 @@
 {{ HTML::script('assets/js/bootstrap-datepicker.js') }}
 {{HTML::script('assets/js/ratna_script.js')}}
 
-
+@yield('script_section')
 
 </body>
 </html>

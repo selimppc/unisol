@@ -64,6 +64,14 @@
     width: 60px;
 }
 /***********For amw course config************/
+/*.acm_course_config_list input{*/
+/*width: 70px;*/
+/*}*/
+.small-header-table th{font-size: 12px; }
+.acm_course_config_list input[type="text"]{
+    width: 60px;
+}
+/***********For amw course config************/
 .acm_course_config_list input[type=text]{
     width: 60px;
 }
@@ -73,7 +81,7 @@
 }
 
 /**********For Academic faculty marks distribution******************/
-#amwCourseConfig input[type="text"]
+#amwCourseConfig input[type="text"], .acm_marks_dist_list input[type="text"]
 {
-    width: 80px;
+    width: 70px;
 }

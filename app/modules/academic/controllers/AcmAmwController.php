@@ -232,7 +232,7 @@ class AcmAmwController extends \BaseController {
 		{
 			$course_config_id = Input::get('acm_course_config_id');
 
-			$data = AcmCourseConfig::find($course_config_id)->first();
+			$data = AcmCourseConfig::find($course_config_id);
 			if($data->delete())
 				return Response::json(['msg'=> 'Data Successfully Deleted']);
 			else
