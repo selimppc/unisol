@@ -31,7 +31,9 @@
             "app/modules/user/controllers",
             "app/modules/user/models",
             "app/modules/applicant/controllers",
-            "app/modules/applicant/models"
+            "app/modules/applicant/models",
+            "app/modules/fees/controllers",
+            "app/modules/fees/models"
 		]
 	},
 	"scripts": {
