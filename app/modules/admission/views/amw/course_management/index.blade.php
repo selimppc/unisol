@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('sidebar')
-    @include('applicant::_sidebar')
+    {{--@include('applicant::_sidebar')--}}
 @stop
 @section('content')
 
@@ -25,21 +25,25 @@
 
 <table id="example1" class="table table-bordered table-striped">
 
-<col width="25">
-<col width="250">
+<col width="150">
+<col width="200">
 <col width="100">
 <col width="120">
-<col width="170">
+<col width="20">
+<col width="20">
 
 
 <thead>
 <tr>
 
-   <th>Level Of Education</th>
-   <th>Board / University</th>
-   <th>Passing Year</th>
+   <th>Title</th>
+   <th>Degree</th>
+   <th>Major/Minor</th>
 
-   <th>Result</th>
+   <th>Department</th>
+   <th>Year</th>
+   <th>Semester</th>
+   <th>Faculty</th>
    <th>Action</th>
 
 </tr>
@@ -62,9 +66,9 @@
                {{--</td>--}}
 
                {{--<td>--}}
-                    {{--<a href="{{ URL::to('apt/acm_records/show/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal"><span class="glyphicon glyphicon-eye-open text-danger"></span></a>--}}
-                   {{--<a class="btn btn-xs btn-default" href="{{ URL::to('apt/acm_records/edit/'.$value->id) }}" data-toggle="modal" data-target="#myeditModal" ><span class="glyphicon glyphicon-edit"></span></a>--}}
-                   {{--<a data-href="{{ URL::to('apt/acm_records/delete/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><span class="glyphicon glyphicon-trash text-danger"></span></a>--}}
+                    {{--<a href="" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal"><span class="glyphicon glyphicon-eye-open text-danger"></span></a>--}}
+                   {{--<a class="btn btn-xs btn-default" href="" data-toggle="modal" data-target="#myeditModal" ><span class="glyphicon glyphicon-edit"></span></a>--}}
+                   {{--<a data-href="" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><span class="glyphicon glyphicon-trash text-danger"></span></a>--}}
                {{--</td>--}}
 
           {{--</tr>--}}

@@ -6,9 +6,9 @@
 
 <div class="modal-body">
   <div style="padding: 20px;">
- <div class='form-group'>
 
 
+ {{Form::open(array('url'=>'course_manage/store', 'class'=>'form-horizontal','files'=>true))}}
 
 
  {{--<div class='form-group'>--}}
@@ -47,21 +47,21 @@
   <div>{{ Form::select('user_id',$user,Input::old('user_id'),['class'=>'form-control ']) }}</div>
 </div>
 
-{{--<div class='form-group'>--}}
+<div class='form-group'>
 
-  {{--<div>{{ Form::label('evolution_system', 'Evaluation System') }}</div>--}}
-  {{--<div>{{ Form::select ('evolution_system',  array('' => 'Select one',--}}
-          {{--'automatic' => 'Automatic', 'manual' => 'Manual'), Input::old('evolution_system'),--}}
-           {{--array('class' => 'form-control')) }}</div>--}}
-{{--</div>--}}
+  <div>{{ Form::label('evolution_system', 'Evaluation System') }}</div>
+  <div>{{ Form::select ('evolution_system',  array('' => 'Select one',
+          'automatic' => 'Automatic', 'manual' => 'Manual'), Input::old('evolution_system'),
+           array('class' => 'form-control')) }}</div>
+</div>
 
-{{--<div class='form-group'>--}}
+<div class='form-group'>
 
-  {{--<div>{{ Form::label('major_minor', 'Major /Minor') }}</div>--}}
-  {{--<div>{{ Form::select ('major_minor',  array('' => 'Select one',--}}
-          {{--'major' => 'Major', 'minor' => 'Minor'), Input::old('major_minor'),--}}
-           {{--array('class' => 'form-control')) }}</div>--}}
-{{--</div>--}}
+  <div>{{ Form::label('major_minor', 'Major /Minor') }}</div>
+  <div>{{ Form::select ('major_minor',  array('' => 'Select one',
+          'major' => 'Major', 'minor' => 'Minor'), Input::old('major_minor'),
+           array('class' => 'form-control')) }}</div>
+</div>
 
 {{--<div class='form-group'>--}}
 {{--<div >{{ Form::label('start_date', 'Start date') }}</div >--}}
@@ -74,17 +74,13 @@
 {{--</div>--}}
 
 
+{{ Form::submit('Save ', array('class'=>'pull-right btn btn-primary')) }}
 
 
-
-
-
- </div>
+{{Form::close()}}
 
 </div>
 </div>
-<div class="modal-footer">
 
-</div>
 
 
