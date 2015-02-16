@@ -38,6 +38,7 @@ return array(
     'ApplicantSupportingDoc' => $baseDir . '/app/modules/applicant/models/ApplicantSupportingDoc.php',
     'ApplicantsSeeder' => $baseDir . '/app/database/seeds/ApplicantTable.php',
     'BaseController' => $baseDir . '/app/controllers/BaseController.php',
+    'BillingDetails' => $baseDir . '/app/modules/admission/models/BillingDetails.php',
     'BillingItem' => $baseDir . '/app/modules/admission/models/BillingItem.php',
     'BillingSchedule' => $baseDir . '/app/modules/admission/models/BillingSchedule.php',
     'CommonController' => $baseDir . '/app/modules/common/controllers/CommonController.php',
