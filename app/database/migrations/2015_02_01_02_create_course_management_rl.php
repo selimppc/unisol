@@ -57,6 +57,7 @@ class CreateCourseManagementRl extends Migration {
         // TODO : This table seed will be after removing of degree_program table
         Schema::create('degree_program', function($table) {
             $table->increments('id');
+            $table->string('code', 128);
             $table->string('title', 128);
             $table->string('description');
             $table->integer('created_by', false, 11);
