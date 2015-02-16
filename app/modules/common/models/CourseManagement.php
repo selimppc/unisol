@@ -39,6 +39,13 @@ class CourseManagement extends Eloquent
         return $this->belongsTo('DegreeProgram');
     }
 
+    public function relUser(){
+        return $this->belongsTo('User','user_id','id');
+    }
+    public function relUserProfile(){
+        return $this->belongsTo('UserProfile','user_id','id');
+    }
+
     public function relExmQuestion(){
         return $this->belongsTo('ExmQuestion');
     }

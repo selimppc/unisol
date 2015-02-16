@@ -11,8 +11,16 @@
 <h3> Course Management </h3>
 
 
-<a class="pull-left btn btn-sm btn-info" href="{{ URL::to('course_manage/create')}}" data-toggle="modal" data-target="#addModal" >Add  Course</a>
+<a class="pull-right btn btn-sm btn-info" href="{{ URL::to('course_manage/create')}}" data-toggle="modal" data-target="#addModal" >Add New Course</a>
 
+{{--<div class="pagination-tool">--}}
+        {{--<div class="paginate-area">--}}
+            {{--Displaying <span style="color: red"> {{$viewCount}} </span> of {{$countAll}} entries.--}}
+        {{--</div>--}}
+        {{--<div class="pull-right paginate-button">--}}
+            {{--{{$courseDataList->links()}}--}}
+        {{--</div>--}}
+{{--</div>--}}
 
 </div>
 <div class="row">
@@ -25,23 +33,63 @@
 <div class="box-body table-responsive">
 
 <br>
-<div>
+
+ <div class="span10 well">
+
         {{ Form::open(array('class'=>'form-horizontal')) }}
 
-        {{ Form::label('semester_id', 'Semester') }}
-        {{ Form::select('semester_id',$semester) }}
+        <div  class="col-lg-3">{{ Form::label('semester_id', 'Semester') }}
+        {{ Form::select('semester_id',$semester ,Input::old('degree_id'),['class'=>'form-control input-sm '])}}</div>
 
-        {{ Form::label('degree_id', 'Degree') }}
-        {{ Form::select('degree_id',$degree) }}
+         <div  class="col-lg-3">{{ Form::label('degree_id', 'Degree') }}
+         {{ Form::select('degree_id',$degree ,Input::old('degree_id'),['class'=>'form-control input-sm '])}}</div>
 
-        {{ Form::label('dep_id', 'Department') }}
-        {{ Form::select('dep_id',$department) }}
 
-        {{ Form::label('year_id', 'Year') }}
-        {{ Form::select('year_id',$year) }}
+        <div  class="col-lg-3">{{ Form::label('dep_id', 'Department') }}
+        {{ Form::select('dep_id',$department ,Input::old('dep_id'),['class'=>'form-control input-sm '])}}</div>
+
+
+        {{--{{ Form::label('year_id', 'Year') }}--}}
+        {{--{{ Form::select('year_id',$year) }}--}}
+        <div  class="col-lg-3">{{ Form::label('year_id', 'Year') }}
+        {{ Form::select('year_id',$year ,Input::old('year_id'),['class'=>'form-control input-sm '])}}</div>
+
 
         {{ Form::close() }}
-    </div>
+   </div>
+{{--</div>--}}
+
+
+{{--<!-- for search box -->--}}
+         {{--<div class="row m-t-sm">--}}
+          {{--<div class="col-md-10">--}}
+            {{--<section class="panel panel-default">--}}
+              {{--<div class="panel-body">--}}
+
+              {{--<div class="col-md-8 pull-right">--}}
+               {{--<div class="wrapper text-right no-padder">--}}
+               {{--{{ Form::open(array('class'=>'form-horizontal')) }}--}}
+
+                       {{--<div>{{ Form::label('semester_id', 'Semester') }}</div>--}}
+                       {{--<div class="col-lg-3">{{ Form::select('semester_id',$semester ,Input::old('degree_id'),['class'=>'form-control input-sm '])}}</div>--}}
+
+                       {{--{{ Form::label('degree_id', 'Degree') }}--}}
+                       {{--{{ Form::select('degree_id',$degree) }}--}}
+
+                       {{--{{ Form::label('dep_id', 'Department') }}--}}
+                       {{--{{ Form::select('dep_id',$department) }}--}}
+
+                       {{--{{ Form::label('year_id', 'Year') }}--}}
+                       {{--{{ Form::select('year_id',$year) }}--}}
+
+                       {{--{{ Form::close() }}--}}
+              {{--</div>--}}
+            {{--</div>--}}
+          {{--</div>--}}
+        {{--</section>--}}
+      {{--</div>--}}
+    {{--</div>--}}
+
 <table id="example1" class="table table-bordered table-striped">
 
 <col width="120">
@@ -78,7 +126,7 @@
                <td>{{ $value->relCourse->relSubject->relDepartment->title }}</td>
                <td>{{ $value->relYear->title }}</td>
                <td>{{ $value->relSemester->title }}</td>
-               <td></td>
+               <td>{{ $value->relUser->username }}</td>
 
                <td>
                    <a href="{{ URL::to('course_manage/show/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal"><span class="glyphicon glyphicon-eye-open text-danger"></span></a>
@@ -92,6 +140,16 @@
 </tbody>
 
 </table>
+
+<div class="pagination-tool">
+        <div class="paginate-area">
+            {{--Displaying <span style="color: red"> {{$viewCount}} </span> of {{$countAll}} entries.--}}
+        </div>
+        <div class="pull-right paginate-button">
+            {{$courseDataList->links()}}
+        </div>
+</div>
+
 </div><!-- /.box-body -->
 </div><!-- /.box -->
 </div>

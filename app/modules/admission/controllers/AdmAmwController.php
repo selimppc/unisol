@@ -9,14 +9,16 @@ class AdmAmwController extends \BaseController {
 	public function index()
 	{
         $model = CourseManagement::all();
-
+        $courseDataList = CourseManagement::orderBy('id', 'DESC')->paginate(2);
         $semester=Semester::lists('title', 'id');
         $year = Year::lists('title', 'id');
         $degree=Degree::lists('title', 'id');
         $department=Department::lists('title','id');
-//        $department_id=
-        //echo $model;exit;
-        return View::make('admission::amw.course_management.index',compact('model','semester','year','degree','department'));
+
+//        $role_id = Role::where('title', '=', 'faculty')->first()->id;
+//        $facultyList = User::where('role_id', '=', $role_id)->lists('username', 'id');
+
+        return View::make('admission::amw.course_management.index',compact('model','semester','year','degree','department','courseDataList'));
 	}
 
 	public function create()
@@ -38,14 +40,12 @@ class AdmAmwController extends \BaseController {
 
 	public function store()
 	{
-       // echo 'ok';exit;
+
         $rules = array(
 //            'national_id' => 'required',
         );
         $validator = Validator::make(Input::all(), $rules);
         if ($validator->passes()) {
-
-
 
             $course_model = new CourseManagement();
 
@@ -78,10 +78,7 @@ class AdmAmwController extends \BaseController {
 
 
 	public function edit($id)
-
-
     {
-
         $course_model = CourseManagement::find($id);
         $role_id = Role::where('title', '=', 'faculty')->first()->id;
         $facultyList = User::where('role_id', '=', $role_id)->lists('username', 'id');
@@ -129,6 +126,11 @@ class AdmAmwController extends \BaseController {
 	{
 		//
 	}
+    public function search(){
+
+
+    }
+
 
     //TODO: course Management
 

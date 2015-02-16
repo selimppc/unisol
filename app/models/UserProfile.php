@@ -6,6 +6,7 @@
  * Time: 3:45 PM
  */
 
-class UserProfile {
+class UserProfile extends \Eloquent {
+    protected $table='user_profile';
 
 } 
