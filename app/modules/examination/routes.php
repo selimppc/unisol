@@ -19,3 +19,15 @@ Shafi
 
 include("routes_sh.php");
 
+
+Route::any('examination/amw/examination','ExmAmwController@examination');
+
+Route::any('examination/amw/viewExamination/{id}', [
+    'as' => 'examination.amw.viewExamination',
+    'uses' => 'ExmAmwController@viewExamination'
+]);
+
+Route::any('examination/amw/editExamination/{id}', [
+    'as' => 'examination.amw.editExamination',
+    'uses' => 'ExmAmwController@editExamination'
+]);
