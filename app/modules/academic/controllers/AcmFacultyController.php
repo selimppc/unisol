@@ -180,14 +180,16 @@ class AcmFacultyController extends \BaseController {
 		Session::flash('message', 'ACM Course Configuration Data Successfully Added !!');
 		return Redirect::to('academic/faculty');
 	}
-	//Ajax delete in modal
+//Ajax delete in modal
 	public function ajax_delete_acm_marks_dist()
 	{
 		if(Request::ajax())
 		{
 			$acm_marks_distribution_id = Input::get('acm_marks_distribution_id');
 
-			$data = AcmMarksDistribution::find($acm_marks_distribution_id)->first();
+
+			$data = AcmMarksDistribution::find($acm_marks_distribution_id);
+
 			if($data->delete())
 				return Response::json(['msg'=> 'Data Successfully Deleted']);
 			else
@@ -195,6 +197,7 @@ class AcmFacultyController extends \BaseController {
 		}
 	}
 //End code
+
 
 
 }

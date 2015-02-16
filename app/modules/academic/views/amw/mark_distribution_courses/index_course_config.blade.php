@@ -19,17 +19,17 @@
         <tbody>
         @foreach ($datas as $value)
             {{--<tr>--}}
-                <td><a href="{{ URL::route('config.show', ['course_id'=>$value->course_id])  }}" class="btn btn-link" data-toggle="modal" data-target="#showModal">{{$value->relCourse->title}}</a></td>
-                <td>{{$value->relCourse->relSubject->relDepartment->title}}</td>
-                <td>{{$value->relYear->title}}</td>
-                <td>{{$value->relSemester->title}}</td>
-                <td>{{ AcmCourseConfig::getCourseItemStatus($value->course_id, $value->relCourse->evaluation_total_marks) }}</td>
+            <td><a href="{{ URL::route('config.show', ['course_id'=>$value->course_id])  }}" class="btn btn-link" data-toggle="modal" data-target="#showModal">{{$value->relCourse->title}}</a></td>
+            <td>{{$value->relCourse->relSubject->relDepartment->title}}</td>
+            <td>{{$value->relYear->title}}</td>
+            <td>{{$value->relSemester->title}}</td>
+            <td>{{ AcmCourseConfig::getCourseItemStatus($value->course_id, $value->relCourse->evaluation_total_marks) }}</td>
 
-                <td>
-                    <a href="{{ URL::route('coursefind.show', ['course_id'=>$value->course_id])  }}" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#addNew" data-toggle="tooltip" data-placement="left" title="Mark/Dist" href="">MarksDistConfig</a>
+            <td>
+                <a href="{{ URL::route('coursefind.show', ['course_id'=>$value->course_id])  }}" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#addNew" data-toggle="tooltip" data-placement="left" title="Mark/Dist" href="">MarksDistConfig</a>
 
-                    <a href="{{ URL::route('marksdist.show', ['course_id'=>$value->course_id]) }}" class="btn btn-sm btn-success" data-toggle="modal" data-target="#marksDistModal" data-toggle="tooltip" data-placement="left" title="Show/Dist" href="">ViewDistConfig</a>
-                </td>
+                <a href="{{ URL::route('marksdist.show', ['course_id'=>$value->course_id]) }}" class="btn btn-sm btn-success" data-toggle="modal" data-target="#marksDistModal" data-toggle="tooltip" data-placement="left" title="Show/Dist" href="">ViewDistConfig</a>
+            </td>
             </tr>
         @endforeach
         </tbody>
@@ -64,4 +64,49 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
+@stop
+
+{{--amw ajax delete in popup--}}
+
+@section('script_section')
+
+    <script>
+        function deleteNearestTr(getId, acmId)
+        {
+            var is_config_id = acmId;
+            var url = '{{URL::to('academic/amw/config/acmconfigdelete/ajax')}}' ;
+            console.log(url);
+            if(is_config_id > 0){
+
+                var check = confirm("Are you sure to delete this item??");
+                if(check)
+                {
+                    $.ajax({
+                        url: url,
+                        type: 'POST',
+                        dataType: 'json',
+                        data: {acm_course_config_id: is_config_id}
+                    })
+                            .done(function(msg) {
+                                console.log(msg);
+                                var whichtr = $('#'+getId).closest("tr");
+                                whichtr.fadeOut(500).remove();
+                                arrayItems.pop(getId);//To stop additem if exist
+                            });
+                }
+                else
+                {
+                    return false;
+                }
+
+            }else{
+                //if acm_course_config id not found jst remove the tr form the popup. that will not delete the data form the db.
+                var whichtr = $('#'+getId).closest("tr");
+                whichtr.fadeOut(500).remove();
+                arrayItems.pop(getId);//To stop additem if exist
+            }
+
+        }
+    </script>
+
 @stop
