@@ -3,7 +3,7 @@
 class DatabaseSeeder extends Seeder {
     public function run()
     {
-        /*$this->call('RoleTableSeeder');
+        $this->call('RoleTableSeeder');
         $this->command->info('Role table seeded!');
 
         $this->call('DepartmentTable');
@@ -37,7 +37,7 @@ class DatabaseSeeder extends Seeder {
         $this->command->info('Academic Marks Distribution Item table seeded!');
 
         $this->call('DegreeProgramTable');
-        $this->command->info('Degree Program table seeded!');*/
+        $this->command->info('Degree Program table seeded!');
 
         $this->call('BillingItemTable');
         $this->command->info('Billing Item table seeded!');

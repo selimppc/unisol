@@ -57,9 +57,6 @@ class CreateCourseManagementRl extends Migration {
         // TODO : This table seed will be after removing of degree_program table
         Schema::create('degree_program', function($table) {
             $table->increments('id');
-            $table->enum('degree_level', array(
-                'under_graduate', 'graduate', 'post_graduate', 'post_doctorate'
-            ));
             $table->string('title', 128);
             $table->string('description');
             $table->integer('created_by', false, 11);
@@ -109,7 +106,7 @@ class CreateCourseManagementRl extends Migration {
         //TODO
         //This should not be here as it will be used as ENUM
         // Values: 'Automatic', 'Manual'
-        Schema::create('evolution_system', function (Blueprint $table) {
+        /*Schema::create('evolution_system', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title', 128);
             $table->text('description');
@@ -117,7 +114,7 @@ class CreateCourseManagementRl extends Migration {
             $table->integer('updated_by', false, 11);
             $table->timestamps();
             $table->engine = 'InnoDB';
-        });
+        }); */
 
 
         Schema::create('course_management', function(Blueprint $table){
@@ -164,7 +161,7 @@ class CreateCourseManagementRl extends Migration {
         Schema::drop('degree_program');
         Schema::drop('subject');
         Schema::drop('course');
-        Schema::drop('evolution_system');
+        //Schema::drop('evolution_system');
         Schema::drop('course_management');
 
 	}

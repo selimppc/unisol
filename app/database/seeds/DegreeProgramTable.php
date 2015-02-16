@@ -12,14 +12,11 @@ class DegreeProgramTable extends Seeder {
 
         DB::table('degree_program')->delete();
 
-
         $items = array(
-            'Bangla' => 'Description of Bangla.',
-            'English' => 'Description of English.',
-            'Mathematics' => 'Description of Mathematics.',
-            'Computer Science' => 'Description of Computer Science.',
-            'Finance' => 'Description of Finance.',
-            'Account' => 'Description of Account.',
+            'under_graduate' => 'Under Graduate',
+            'graduate' => 'Graduate',
+            'post_graduate' => 'Post Graduate',
+            'post_doctorate' => 'Post Doctorate',
         );
 
         //DegreeLevel: 'under_graduate','graduate','post_graduate','post_doctorate'
@@ -27,7 +24,6 @@ class DegreeProgramTable extends Seeder {
             DegreeProgram::insert(array(
                 'title' => $key,
                 'description' => $val,
-                'degree_level' => 'under_graduate',
                 'created_by' => '1',
                 'updated_by' => '1',
                 'created_at' => new DateTime,
