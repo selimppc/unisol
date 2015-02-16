@@ -74,7 +74,7 @@ return array(
     'CreateAcmMarksDistItemTable' => $baseDir . '/app/database/migrations/bak/2015_01_12_000100_create_acm_marks_dist_item_table.php',
     'CreateAcmMarksDistributionTable' => $baseDir . '/app/database/migrations/bak/2015_01_15_000107_create_acm_marks_distribution_table.php',
     'CreateAcmMarksPolicyTable' => $baseDir . '/app/database/migrations/bak/2015_01_15_000106_create_acm_marks_policy_table.php',
-    'CreateAdmission' => $baseDir . '/app/database/migrations/2015_02_16_07_create_admission_rl.php',
+    'CreateAdmission' => $baseDir . '/app/database/migrations/2015_02_16_07_create_admission_billing_rl.php',
     'CreateApplicantManagementRl' => $baseDir . '/app/database/migrations/2015_02_02_05_create_applicant_management_rl.php',
     'CreateCourseManagementRl' => $baseDir . '/app/database/migrations/2015_02_01_02_create_course_management_rl.php',
     'CreateCourseManagementTable' => $baseDir . '/app/database/migrations/bak/2015_01_14_000103_create_course_management_table.php',
