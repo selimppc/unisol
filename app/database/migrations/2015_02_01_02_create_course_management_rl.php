@@ -160,7 +160,7 @@ class CreateCourseManagementRl extends Migration {
         Schema::drop('year');
         Schema::drop('semester');
         Schema::drop('course_type');
-        Schema::drop('degree_level');
+        //Schema::drop('degree_level');
         Schema::drop('degree_program');
         Schema::drop('subject');
         Schema::drop('course');
