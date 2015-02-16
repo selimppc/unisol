@@ -40,9 +40,9 @@ class CreateAdmissionBillingRl extends Migration {
         });
 
 
-        Schema::table('waiver', function($table) {
-            $table->foreign('billing_item_id')->references('id')->on('billing_item');
-        });
+        /* Schema::table('waiver', function($table) {
+            $table->foreign('billing_details_id')->references('id')->on('billing_item');
+        }); */
 
 
         Schema::create('degree_waiver', function(Blueprint $table) {
@@ -114,7 +114,7 @@ class CreateAdmissionBillingRl extends Migration {
 	{
         Schema::drop('degree');
         Schema::drop('billing_item');
-        Schema::drop('waiver');
+        //Schema::drop('waiver');
         Schema::drop('degree_waiver');
         Schema::drop('waiver_constraint');
         Schema::drop('billing_schedule');

@@ -39,6 +39,7 @@ return array(
     'ApplicantsSeeder' => $baseDir . '/app/database/seeds/ApplicantTable.php',
     'BaseController' => $baseDir . '/app/controllers/BaseController.php',
     'BillingItem' => $baseDir . '/app/modules/admission/models/BillingItem.php',
+    'BillingSchedule' => $baseDir . '/app/modules/admission/models/BillingSchedule.php',
     'CommonController' => $baseDir . '/app/modules/common/controllers/CommonController.php',
     'CommonRl' => $baseDir . '/app/database/migrations/2015_02_00_create_common_rl.php',
     'Course' => $baseDir . '/app/models/Course.php',
