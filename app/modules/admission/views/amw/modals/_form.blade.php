@@ -11,7 +11,7 @@
  {{Form::open(array('url'=>'course_manage/store', 'class'=>'form-horizontal','files'=>true))}}
 
  <div class='form-group'>
-        <div>{{ Form::label('degree_id', 'Degree Program') }}</div>
+        <div>{{ Form::label('degree_id', 'Degree') }}</div>
         <div>{{ Form::select('degree_id',$degree,Input::old('degree_id'),['class'=>'form-control ']) }}</div>
  </div>
 
@@ -73,11 +73,13 @@
 
 <div class='form-group'>
 <div >{{ Form::label('end_date', 'End date') }}</div >
-<div >{{ Form::text('end_date', Input::old('end_date'),['class'=>'form-control ']) }}</div>
+<div>{{ Form::text('end_date', Input::old('end_date'), array('type' => 'text', 'class' => 'form-control datepicker','placeholder' => 'Pick the date this task should be completed', 'id' => 'date')) }}</div>
 </div>
 
+{{--{{ Form::text('date_of_birth',$profile->date_of_birth , array('type' => 'text', 'class' => 'form-control datepicker','placeholder' => 'Pick the date this task should be completed', 'id' => 'date')) }}--}}
 
 {{ Form::submit('Save ', array('class'=>'pull-right btn btn-primary')) }}
+
 
 
 {{Form::close()}}
