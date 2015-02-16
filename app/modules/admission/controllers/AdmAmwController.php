@@ -9,8 +9,14 @@ class AdmAmwController extends \BaseController {
 	public function index()
 	{
         $model = CourseManagement::all();
+
+        $semester=Semester::lists('title', 'id');
+        $year = Year::lists('title', 'id');
+        $degree=Degree::lists('title', 'id');
+        $department=Department::lists('title','id');
+//        $department_id=
         //echo $model;exit;
-        return View::make('admission::amw.course_management.index',compact('model'));
+        return View::make('admission::amw.course_management.index',compact('model','semester','year','degree','department'));
 	}
 
 	public function create()

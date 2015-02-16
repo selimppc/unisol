@@ -25,12 +25,23 @@
 <div class="box-body table-responsive">
 
 <br>
-{{--<div class="search">--}}
-        {{--{{ Form::model(null) }}--}}
-        {{--{{ Form::text('query', null, array('class' => 'form-control', 'placeholder' => 'Search query...', 'required'=>'required' )) }}--}}
-        {{--{{ Form::submit('Search', array('class'=>"btn btn-success")) }}--}}
-        {{--{{ Form::close() }}--}}
-    {{--</div>--}}
+<div>
+        {{ Form::open(array('class'=>'form-horizontal')) }}
+
+        {{ Form::label('semester_id', 'Semester') }}
+        {{ Form::select('semester_id',$semester) }}
+
+        {{ Form::label('degree_id', 'Degree') }}
+        {{ Form::select('degree_id',$degree) }}
+
+        {{ Form::label('dep_id', 'Department') }}
+        {{ Form::select('dep_id',$department) }}
+
+        {{ Form::label('year_id', 'Year') }}
+        {{ Form::select('year_id',$year) }}
+
+        {{ Form::close() }}
+    </div>
 <table id="example1" class="table table-bordered table-striped">
 
 <col width="120">
@@ -119,3 +130,16 @@
 
 
 @stop
+
+{{--<script>--}}
+             {{--$(document).ready(function() {--}}
+                 {{--$('#example1').DataTable({--}}
+{{--//                     "paging":   false,--}}
+{{--//                     "oLanguage": {--}}
+{{--//                          "sSearch": "Filter _INPUT_ ",--}}
+{{--//                          "sInfoFiltered": " - filtered from ( _MAX_ ) items"--}}
+{{--//                        }--}}
+                 {{--});--}}
+            {{--}--}}
+
+         {{--</script>--}}
