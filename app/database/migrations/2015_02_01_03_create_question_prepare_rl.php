@@ -28,6 +28,7 @@ class CreateQuestionPrepareRl extends Migration {
             $table->increments('id');
             $table->unsignedInteger('year_id')->nullable();
             $table->unsignedInteger('semester_id')->nullable();
+            $table->unsignedInteger('course_management_id')->nullable();
             $table->string('title', 128);
             $table->unsignedInteger('acm_marks_dist_item_id')->nullable();
             $table->tinyInteger('status',false, 1);
@@ -40,6 +41,7 @@ class CreateQuestionPrepareRl extends Migration {
             $table->foreign('year_id')->references('id')->on('year');
             $table->foreign('semester_id')->references('id')->on('semester');
             $table->foreign('acm_marks_dist_item_id')->references('id')->on('acm_marks_dist_item');
+            $table->foreign('course_management_id')->references('id')->on('course_management');
         });
 
 
