@@ -9,9 +9,8 @@ class UserMeta extends Eloquent {
 
     protected $table = 'user_meta';
 
-
     public function relUser(){
-        return $this->belongsTo('User', 'user_id', id);
+        return $this->belongsTo('User');
     }
 
 }

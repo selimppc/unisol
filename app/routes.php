@@ -34,8 +34,7 @@ Route::group( array('before' => 'auth'), function(){
     Route::any('user/create','HomeController@userCreate');
 
     Route::any('user/sign','HomeController@userSign');
-    Route::any('user/dashboard','HomeController@userDashboard');
-    //Route::any('user/logout','HomeController@userLogout');
+
     Route::any('user/registration','HomeController@userSignUp');
     Route::any('user/infostore','HomeController@userInfoStore');
     Route::any('user/usermeta','HomeController@testUserMeta');

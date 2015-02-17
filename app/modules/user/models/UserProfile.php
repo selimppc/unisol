@@ -10,7 +10,7 @@ class UserProfile extends Eloquent {
     protected $table = 'user_profile';
 
     public function relUser(){
-        return $this->belongsTo('User', 'user_id', id);
+        return $this->belongsTo('User');
     }
 
 

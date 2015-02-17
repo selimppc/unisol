@@ -119,7 +119,8 @@ class UserController extends \BaseController {
 
     /* Tanin */
     public function userDashboard(){
-
+        $result = User::with('relUserMeta')->get();
+        return View::make('user::test.test');
     }
 
 }
