@@ -1,9 +1,9 @@
-<div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-    <h4 class="modal-title">Show Course Config Information</h4>
-</div>
-<div class="modal-body">
-    <div style="padding: 10px; width: 90%;">
+@extends('layouts.master')
+@section('sidebar')
+    @include('academic::_sidebar')
+@stop
+@section('content')
+    {{--<h4>{{$title}}</h4>--}}
 
         <table class="table table-bordered">
             <thead>
@@ -28,6 +28,7 @@
         <p>Following is the MarksDistribution of this course.</p>
 
 
+
         <table class="table table-bordered">
             <thead>
             <th>Item</th>
@@ -37,6 +38,10 @@
             <th>IsAttendance</th>
             </thead>
             <tbody>
+            {{--Determine whether a variable is considered to be empty. A variable is considered empty if it does not exist or if its value equals FALSE. empty() does not generate a warning if the variable does not exist.--}}
+            {{--@if(!empty($notFound))--}}
+            {{--<p>Sorry nothing found for your query!</p>--}}
+            {{--@else--}}
             @foreach($config_data as  $dkey => $dvalue)
 
                 <tr>
@@ -47,11 +52,14 @@
                     <td>{{($dvalue->is_attendance == 1) ? 'Yes' : '';}}</td>
                 </tr>
             @endforeach
+            {{--@endif--}}
             </tbody>
         </table>
-        <p>If Marks Distribution is not done then go to distribution and make it done first.</p>
+        <p>If Marks Distribution is not done then go to distribution and make it done first.<a href="{{URL::to('academic/faculty/')}}" class="btn btn-link">MarksDist</a>
+        </p>
     </div>
 </div>
 <div class="modal-footer">
-    <a href="{{URL::to('academic/faculty/')}}" class="btn btn-default">Close </a>
+    <a href="{{URL::to('academic/faculty/')}}" class="btn btn-default">Back </a>
 </div>
+@stop

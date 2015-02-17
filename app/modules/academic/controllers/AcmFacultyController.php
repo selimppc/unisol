@@ -6,30 +6,17 @@ class AcmFacultyController extends \BaseController {
         $this->beforeFilter('academicFaculty', array('except' => array('')));
 		//$this->beforeFilter('academicFaculty', array('except' => array('index')));
     }
-
-//**********************Start faculty code*********************
-//
-//	public function create(){
-//		echo "create";
-//	}
-
+	//*******courses marks distribution************
 	public function  index()
 	{
 		$title = 'Course List';
 		$faculty_id = Auth::user()->id;
-
 		$datas= CourseManagement::with('relYear', 'relSemester', 'relCourse', 'relCourse.relSubject.relDepartment','relCourseType')
-			->where('user_id', '=', $faculty_id)
-			->get();
-
-		$sidebar_data = AcmMarksDistribution::with('relAcmMarksDistItem', 'relCourseManagement.relCourse')
-			//->where('course_management_id', '=', $cm_id)
-			->get();
-
+				->where('user_id', '=', $faculty_id)
+				->get();
 		return View::make('academic::faculty.mark_distribution_courses.index', compact(
-				'title', 'datas', 'sidebar_data'
+				'title', 'datas'
 		));
-		//->with('title', 'Course List')->with('datas', $datas);
 	}
 
 	public function course_marks_dist_show($cm_id)
@@ -37,8 +24,6 @@ class AcmFacultyController extends \BaseController {
 		$data= CourseManagement::with('relYear', 'relSemester', 'relCourse', 'relCourse.relSubject.relDepartment')
 			->where('id', '=', $cm_id)
 			->get();
-//		print_r($data);exit;
-
 		$config_data = AcmMarksDistribution::with('relAcmMarksDistItem', 'relCourseManagement.relCourse','relAcmMarksPolicy')
 			->where('course_management_id', '=', $cm_id)
 			->get();
@@ -51,7 +36,6 @@ class AcmFacultyController extends \BaseController {
 		$dist_data = AcmMarksDistribution::with('relAcmMarksDistItem', 'relCourseManagement.relCourse','relAcmMarksPolicy')
 			->where('course_management_id', '=', $cm_id)
 			->get();
-//		print_r($dist_data);exit;
 
 		return View::make('academic::faculty.mark_distribution_courses.show_marks_distribution')->with(
 			'dist_data',$dist_data);
@@ -123,9 +107,7 @@ class AcmFacultyController extends \BaseController {
 		$acm_marks_policy_id = Input::get('policy_id');
 		$actual_marks = Input::get('actual_marks');
 		$created_by_amw = Input::get('created_by_amw');
-
 		$count = count($acm_item_id);
-
 		for($i=0; $i < $count; $i++)
 		{
 			$marks_dist = (isset($acm_marks_distribution_id[$i])) ? AcmMarksDistribution::find($acm_marks_distribution_id[$i]) : new AcmMarksDistribution;
@@ -142,7 +124,6 @@ class AcmFacultyController extends \BaseController {
 
 				}
 			}
-
 			$marks_dist->is_attendance = 0;
 			if($isAttendance) {
 				foreach ($isAttendance as $isa) {
@@ -168,7 +149,6 @@ class AcmFacultyController extends \BaseController {
 					}
 				}
 			}
-
 			$marks_dist->is_readonly = 0;
 			if($isReadOnly){
 				foreach($isReadOnly as $isr){
@@ -210,19 +190,16 @@ class AcmFacultyController extends \BaseController {
 				return Response::json(['msg'=> 'Data Successfully Not Deleted']);
 		}
 	}
-
-
-	public function show_marksdist_item_sidebar($cm_id)
+	//*******marks distribution item class************
+	public function class_index()
 	{
-		$item_data = AcmMarksDistribution::with('relAcmMarksDistItem', 'relCourseManagement.relCourse')
-			//->where('course_management_id', '=', $cm_id)
-			->get();
-		print_r($item_data);exit;
-
-		return View::make('academic::faculty.mark_distribution_courses.index')->with(
-			'item_datas',$item_data);
+		$title = 'Class List Item';
+//		$datas= CourseManagement::with('relYear', 'relSemester', 'relCourse', 'relCourse.relSubject.relDepartment','relCourseType')
+//			->get();
+		return View::make('academic::faculty.mark_distribution_courses.marks_dist_item_class.index', compact(
+			'title'
+		));
 	}
-//End code
 
 
 
