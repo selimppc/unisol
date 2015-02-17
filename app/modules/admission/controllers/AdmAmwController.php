@@ -27,12 +27,12 @@ class AdmAmwController extends \BaseController {
         $role_id = Role::where('title', '=','faculty' )->first()->id;
         $facultyList = User::where('role_id', '=', $role_id)->lists('username', 'id');
 
-        $courseType = CourseType::lists('title', 'id');
-        $year = Year::lists('title', 'id');
-        $course=Course::lists('title', 'id');
-        $semester=Semester::lists('title', 'id');
-        $degree=Degree::lists('title', 'id');
-        $degreeProgram=DegreeProgram::lists('title', 'id');
+        $courseType =array('' => 'Please Select Course Type') + CourseType::lists('title', 'id');
+        $year = array('' => 'Please Select Year') + Year::lists('title', 'id');
+        $course= array('' => 'Please Select Course') + Course::lists('title', 'id');
+        $semester= array('' => 'Please Select Semester') + Semester::lists('title', 'id');
+        $degree= array('' => 'Please Select Degree') + Degree::lists('title', 'id');
+        $degreeProgram= array('' => 'Please Select DegreeProgram') + DegreeProgram::lists('title', 'id');
 
 
         return View::make('admission::amw.modals._form', compact('courseType','year','course','semester','user','facultyList','degree','degreeProgram'));
