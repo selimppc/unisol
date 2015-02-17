@@ -199,6 +199,7 @@ class ExmAmwController extends \BaseController {
         return View::make('examination::amw.prepare_question_paper.examination')->with('examination',$examination);
 
 
+        
 //
 //
 //        $exam_data = ExmQuestion::with('relCourseManagement', 'relCourseManagement.relYear',
