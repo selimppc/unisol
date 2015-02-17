@@ -25,12 +25,14 @@
 
 <br>
 {{-----------------------------------Search Form :Starts---------------------------------------------------------------}}
+
  <div class="well well-lg">
+
     <table id="example1">
 
         {{ Form::open(array('class'=>'form-horizontal')) }}
 
-        <div  class="col-lg-3">{{ Form::label('semester_id', 'Semester') }}
+        <div  class="col-lg-2">{{ Form::label('semester_id', 'Semester') }}
         {{ Form::select('semester_id',$semester ,Input::old('degree_id'),['class'=>'form-control input-sm '])}}</div>
 
          <div  class="col-lg-3">{{ Form::label('degree_id', 'Degree') }}
@@ -40,12 +42,19 @@
         <div  class="col-lg-3">{{ Form::label('dep_id', 'Department') }}
         {{ Form::select('dep_id',$department ,Input::old('dep_id'),['class'=>'form-control input-sm '])}}</div>
 
-        <div  class="col-lg-3">{{ Form::label('year_id', 'Year') }}
+        <div  class="col-lg-2">{{ Form::label('year_id', 'Year') }}
         {{ Form::select('year_id',$year ,Input::old('year_id'),['class'=>'form-control input-sm '])}}</div>
 
+<br><br><br>
+         <div class="col-lg-2">
+         {{ Form::submit('Search ',['class'=>'form-control input-sm  '] ) }}
+         </div>
 
-        {{ Form::close() }}
+
+
+
     </table>
+    {{ Form::close() }}
  </div>
 
 {{-----------------------------------------------Search Form :Ends----------------------------------------------------------}}
