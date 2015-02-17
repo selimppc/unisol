@@ -24,7 +24,6 @@
         </div>
     </div>
 
-
     {{ Form::open(array('url'=>'academic/faculty/marks/distribution/save','method' => '')) }}
     <table class="table table-bordered small-header-table" id="facultyMarksDist" >
         <thead>

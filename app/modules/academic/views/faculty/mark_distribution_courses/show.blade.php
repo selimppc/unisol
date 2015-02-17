@@ -4,7 +4,6 @@
 @stop
 @section('content')
     {{--<h4>{{$title}}</h4>--}}
-
         <table class="table table-bordered">
             <thead>
             <th>CourseName</th>
