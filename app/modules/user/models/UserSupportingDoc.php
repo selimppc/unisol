@@ -10,7 +10,7 @@ class UserSupportingDoc extends Eloquent {
     protected $table = 'user_supporting_doc';
 
     public function relUser(){
-        return $this->belongsTo('User', 'user_id', id);
+        return $this->belongsTo('User');
     }
 
 
