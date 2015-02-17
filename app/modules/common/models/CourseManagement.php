@@ -42,9 +42,6 @@ class CourseManagement extends Eloquent
     public function relUser(){
         return $this->belongsTo('User','user_id','id');
     }
-    public function relUserProfile(){
-        return $this->belongsTo('UserProfile','user_id','id');
-    }
 
     public function relExmQuestion(){
         return $this->belongsTo('ExmQuestion');
