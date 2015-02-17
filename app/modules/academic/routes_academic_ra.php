@@ -83,7 +83,9 @@ Route::any('academic/faculty/marks/dist/{cm_id}',[
 Route::post('academic/faculty/marksdist/acmmarksdistdelete/ajax',
     'AcmFacultyController@ajax_delete_acm_marks_dist'
 );
-
+Route::get('academic/faculty/marksdistitem/class',
+    'AcmFacultyController@class_index'
+);
 
 
 

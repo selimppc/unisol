@@ -2,7 +2,7 @@
 //AMW ROUTE CONFIGURATION
 Route::any('examination/amw/index','ExmAmwController@index');
 
-Route::any('examination/amw/storeQuestionPaper','ExmAmwController@storeQuestionPaper');
+//Route::any('examination/amw/storeQuestionPaper','ExmAmwController@storeQuestionPaper');
 
 Route::any('examination/amw/viewQuestion/{id}', [
     'as' => 'examination.amw.viewQuestion',

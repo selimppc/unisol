@@ -15,10 +15,11 @@
         <th>Action</th>
         </thead>
         <tbody>
+
         @foreach ($datas as $value)
             <tr>
 
-                <td><a href="{{ URL::route('coursemarksdist.show', ['cm_id'=>$value->id])  }}" class="btn btn-link" data-toggle="modal" data-target="#showModal">{{$value->relCourse->title}}</a></td>
+                <td><a href="{{ URL::route('coursemarksdist.show', ['cm_id'=>$value->id])  }}" class="btn btn-link">{{$value->relCourse->title}}</a></td>
                 <td>{{$value->relCourse->relSubject->relDepartment->title}}</td>
                 <td>{{$value->relYear->title}}</td>
                 <td>{{$value->relSemester->title}}</td>
@@ -32,6 +33,7 @@
                 </td>
             </tr>
         @endforeach
+
         </tbody>
 
     </table>
@@ -49,13 +51,13 @@
     </div><!-- /.modal -->
 
     <!-- Show course info and marks_distribution Modal -->
-    <div class="modal fade" id="showModal" tabindex="-1" role="dialog" aria-labelledby="addScholarship" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
+    {{--<div class="modal fade" id="showModal" tabindex="-1" role="dialog" aria-labelledby="addScholarship" aria-hidden="true">--}}
+        {{--<div class="modal-dialog">--}}
+            {{--<div class="modal-content">--}}
 
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
+            {{--</div><!-- /.modal-content -->--}}
+        {{--</div><!-- /.modal-dialog -->--}}
+    {{--</div><!-- /.modal -->--}}
 
     <!-- Show marks_distribution Modal -->
     <div class="modal fade" id="showMarksDist" tabindex="-1" role="dialog" aria-labelledby="addScholarship" aria-hidden="true">
