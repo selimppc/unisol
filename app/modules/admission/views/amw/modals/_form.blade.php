@@ -12,42 +12,42 @@
 
  <div class='form-group'>
         <div>{{ Form::label('degree_id', 'Degree') }}</div>
-        <div>{{ Form::select('degree_id',$degree,Input::old('degree_id'),['class'=>'form-control ']) }}</div>
+        <div>{{ Form::select('degree_id',$degree,Input::old('degree_id'),['class'=>'form-control ','required']) }}</div>
  </div>
 
 
  <div class='form-group'>
        <div>{{ Form::label('degree_program_id', 'Degree Program') }}</div>
-       <div>{{ Form::select('degree_program_id',$degreeProgram,Input::old('degree_program_id'),['class'=>'form-control ']) }}</div>
+       <div>{{ Form::select('degree_program_id',$degreeProgram,Input::old('degree_program_id'),['class'=>'form-control ','required']) }}</div>
  </div>
 
 
  <div class='form-group'>
      <div>{{ Form::label('course_type', 'Course Type') }}</div>
-     <div>{{ Form::select('course_type_id', $courseType, Input::old('course_type_id'),['class'=>'form-control '] )}}</div>
+     <div>{{ Form::select('course_type_id', $courseType, Input::old('course_type_id'),['class'=>'form-control ','required'] )}}</div>
  </div>
 
   <div class='form-group'>
        <div>{{ Form::label('course_id', 'Course') }}</div>
-       <div>{{ Form::select('course_id',$course,Input::old('course_id'),['class'=>'form-control '] )}}</div>
+       <div>{{ Form::select('course_id',$course,Input::old('course_id'),['class'=>'form-control ','required'] )}}</div>
   </div>
 
 <div class='form-group'>
 
   <div>{{ Form::label('year_id', 'Year') }}</div>
-  <div>{{ Form::select('year_id', $year, Input::old('year_id') ,['class'=>'form-control '])}}</div>
+  <div>{{ Form::select('year_id', $year, Input::old('year_id') ,['class'=>'form-control ','required'])}}</div>
 </div>
 
 <div class='form-group'>
 
   <div>{{ Form::label('semester_id', 'Semester') }}</div>
-  <div>{{ Form::select('semester_id',$semester,Input::old('semester_id'),['class'=>'form-control ']) }}</div>
+  <div>{{ Form::select('semester_id',$semester,Input::old('semester_id'),['class'=>'form-control ','required']) }}</div>
 </div>
 
 <div class='form-group'>
 
   <div>{{ Form::label('user_id', 'Assigned Faculty') }}</div>
-  <div>{{ Form::select('user_id',$facultyList,Input::old('user_id'),['class'=>'form-control ']) }}</div>
+  <div>{{ Form::select('user_id',$facultyList,Input::old('user_id'),['class'=>'form-control ','required']) }}</div>
 </div>
 
 <div class='form-group'>
