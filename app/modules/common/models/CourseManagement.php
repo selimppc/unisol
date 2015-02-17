@@ -8,12 +8,19 @@ class CourseManagement extends Eloquent
 
     protected $table = 'course_management';
 
+    public function relDepartment(){
+        return $this->belongsTo('Department', 'id');
+    }
+
     public function relYear(){
         return $this->belongsTo('Year', 'year_id', 'id');
     }
 
     public function relSemester(){
         return $this->belongsTo('Semester', 'semester_id', 'id');
+    }
+    public function relSubject(){
+        return $this->belongsTo('Subject', 'subject_id', 'id');
     }
 
     public function relCourseType(){
@@ -24,8 +31,19 @@ class CourseManagement extends Eloquent
         return $this->belongsTo('Course', 'course_id', 'id');
     }
 
+    public function relDegree(){
+        return $this->belongsTo('Degree','degree_id','id');
+    }
+
     public function relDegreeProgram(){
         return $this->belongsTo('DegreeProgram');
+    }
+
+    public function relUser(){
+        return $this->belongsTo('User','user_id','id');
+    }
+    public function relUserProfile(){
+        return $this->belongsTo('UserProfile','user_id','id');
     }
 
     public function relExmQuestion(){
