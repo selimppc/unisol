@@ -8,8 +8,9 @@ class AdmAmwController extends \BaseController {
 
 	public function index()
 	{
-        $model = CourseManagement::all();
-        $courseDataList = CourseManagement::orderBy('id', 'DESC')->paginate(2);
+       // $model = CourseManagement::all();
+        //$courseDataList = CourseManagement::orderBy('id', 'DESC')->paginate(2);
+        $model = CourseManagement::orderBy('id', 'DESC')->paginate(2);
         $semester=Semester::lists('title', 'id');
         $year = Year::lists('title', 'id');
         $degree=Degree::lists('title', 'id');
@@ -18,14 +19,14 @@ class AdmAmwController extends \BaseController {
 //        $role_id = Role::where('title', '=', 'faculty')->first()->id;
 //        $facultyList = User::where('role_id', '=', $role_id)->lists('username', 'id');
 
-        return View::make('admission::amw.course_management.index',compact('model','semester','year','degree','department','courseDataList'));
+        return View::make('admission::amw.course_management.index',compact('model','semester','year','degree','department'));
 	}
 
 	public function create()
 
 	{
         $role_id = Role::where('title', '=','faculty' )->first()->id;
-        $facultyList = User::where('role_id', '=', $role_id)->lists('username', 'id');
+        $facultyList = array('' => 'Please Select One') +  User::where('role_id', '=', $role_id)->lists('username', 'id');
 
         $courseType =array('' => 'Please Select Course Type') + CourseType::lists('title', 'id');
         $year = array('' => 'Please Select Year') + Year::lists('title', 'id');
