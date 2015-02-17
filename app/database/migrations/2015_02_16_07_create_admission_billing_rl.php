@@ -108,6 +108,11 @@ class CreateAdmissionBillingRl extends Migration {
             $table->foreign('billing_schedule_id')->references('id')->on('billing_schedule');
             $table->foreign('degree_id')->references('id')->on('degree');
         });
+
+
+        Schema::table('applicant', function($table) {
+            $table->foreign('degree_id')->references('id')->on('degree');
+        });
 	}
 
 	public function down()
@@ -119,6 +124,7 @@ class CreateAdmissionBillingRl extends Migration {
         Schema::drop('waiver_constraint');
         Schema::drop('billing_schedule');
         Schema::drop('billing_details');
+        Schema::drop('applicant');
 	}
 
 }

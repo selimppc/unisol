@@ -8,5 +8,20 @@ class Degree extends Eloquent{
 
     protected $table='degree';
 
+    public function relYear(){
+        return $this->hasMany('Year');
+    }
+
+    public function relSemester(){
+        return $this->hasMany('Semester');
+    }
+
+    public function relApplicantDegree(){
+        return $this->belongsTo('ApplicantDegree');
+    }
+
+    public function relDepartment(){
+        return $this->hasMany('Department');
+    }
 
 } 

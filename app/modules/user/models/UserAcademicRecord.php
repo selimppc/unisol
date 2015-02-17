@@ -10,7 +10,7 @@ class UserAcademicRecord extends Eloquent {
     protected $table = 'user_academic_record';
 
     public function relUser(){
-        return $this->belongsTo('User', 'user_id', id);
+        return $this->belongsTo('User', 'user_id', 'id');
     }
 
 

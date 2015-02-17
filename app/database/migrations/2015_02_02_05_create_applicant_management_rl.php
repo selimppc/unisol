@@ -19,6 +19,7 @@ class CreateApplicantManagementRl extends Migration {
             $table->string('ip_address', 16);
             $table->string('verified_code', 64);
             $table->string('csrf_token', 64);
+            $table->unsignedInteger('degree_id')->nullable();
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
