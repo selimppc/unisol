@@ -79,11 +79,6 @@ class HomeController extends BaseController {
         }
     }
 
-    public function userDashboard() {
-        $user_id = Auth::user()->username;
-        $pageTitle = '';
-        return View::make('test.dashboard', compact('user_id', 'pageTitle'));
-    }
 
     public function userLogout() {
         Auth::logout();

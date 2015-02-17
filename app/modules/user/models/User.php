@@ -85,9 +85,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     }
 
 
-    public function relUserMeta(){
-        return $this->belongsTo('UserMeta');
-    }
+
 
     public function relRole() {
         return $this->belongsToMany('Role', 'role_id', 'id');
@@ -106,6 +104,36 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
             return $role->title;
         }
             return false;
+    }
+
+
+    /// TODO:: User Model Relationship
+    public function relUserMeta(){
+        return $this->hasOne('UserMeta');
+    }
+
+    public function relUserAcademicRecord(){
+        return $this->hasMany('UserAcademicRecord');
+    }
+
+    public function relUserExtraCurricularActivity(){
+        return $this->hasMany('UserExtraCurricularActivity');
+    }
+
+    public function relUserMiscellaneousInfo(){
+        return $this->hasMany('UserMiscellaneousInfo');
+    }
+
+    public function relUserProfile(){
+        return $this->hasOne('UserProfile');
+    }
+
+    public function relUserResetPassword(){
+        return $this->hasOne('UserResetPassword');
+    }
+
+    public function relUserSupportingDoc(){
+        return $this->hasOne('UserSupportingDoc');
     }
 
 }

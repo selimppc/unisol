@@ -55,6 +55,7 @@ class UserController extends \BaseController {
         return Redirect::to('user/login');
     }
 
+
     public function profile(){
         return View::make("user/profile");
     }
@@ -118,7 +119,8 @@ class UserController extends \BaseController {
 
     /* Tanin */
     public function userDashboard(){
-
+        $result = User::with('relUserMeta')->get();
+        return View::make('user::test.test');
     }
 
 }
