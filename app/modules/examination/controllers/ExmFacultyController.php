@@ -215,12 +215,19 @@ class ExmFacultyController extends \BaseController {
                             $exm_question_opt->exm_question_items_id = $exm_question_items_id;
                             $exm_question_opt->title = $value;
                             $exm_question_opt->answer = 0;
-                            foreach ($opt_answer as $oa) {
-                                if ($oa == $key)
-                                    $exm_question_opt->answer = 1;
-                            }
-                            $exm_question_opt->save();
-                            $i++;
+
+
+//                            if (isset($opt_answer))
+                                foreach ($opt_answer as $oa) {
+                                    if ($oa == $key)
+                                        $exm_question_opt->answer = 1;
+
+
+                                }
+
+
+                                $exm_question_opt->save();
+                                $i++;
                         }
                         echo "Option Data : Single Answer Saved!";
                     }else {
@@ -243,12 +250,17 @@ class ExmFacultyController extends \BaseController {
                             $exm_question_opt->title = $value;
                             $exm_question_opt->answer = 0;
 
+
                             foreach($opt_answer as $oa){
                                 if($oa == $key)
                                     $exm_question_opt->answer = 1;
                             }
                             $exm_question_opt->save();
                             $i++;
+
+
+
+
                         } /// saving last single data
                         echo "Option Data : Multiple Answer Saved!";
                     }else{

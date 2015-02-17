@@ -20,11 +20,11 @@
                                          <tr>
                                             <th><input name="id" type="checkbox" id="checkbox" class="checkbox" value=""></th>
                                             <th>Title</th>
-                                            {{--<th>Deadline</th>--}}
-                                            {{--<th>Department</th>--}}
-                                            {{--<th>Year</th>--}}
-                                            {{--<th>Term</th>--}}
-                                            {{--<th>Assigned</th>--}}
+                                            <th>Dept</th>
+                                            <th>Course</th>
+                                            <th>Type</th>
+                                            <th>Year</th>
+                                            <th>Term</th>
                                             <th>Action</th>
                                          </tr>
                                     </thead>
@@ -33,7 +33,11 @@
                                             <tr>
                                                 <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $exam_list['id'] }}"></td>
                                                 <td>{{ $exam_list->title }} </td>
-
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td>{{ Year::getYearsName($exam_list->year_id) }}</td>
+                                                <td>{{ Semester::getSemesterName($exam_list->semester_id) }}</td>
 
                                                 <td>
                                                    <a href="{{ URL::route('examination.amw.viewExamination', ['id'=>$exam_list->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#ViewExamination" data-placement="left" title="Show" href="#">View</a>

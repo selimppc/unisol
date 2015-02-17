@@ -1,5 +1,12 @@
 <fieldset style="padding: 10px; width: 90%;">
-            <?php  $exm_exam_list_id = ExmExamList::lists('title', 'id'); ?>
+            <?php
+
+                $exm_exam_list_id = ExmExamList::lists('title', 'id');
+
+
+            ?>
+
+            {{--$course_management_id = CourseManagement::lists('title', 'id');--}}
 
             <div class="form-group">
                    {{ Form::label('exm_exam_list_id', 'Exam Name') }}
@@ -17,6 +24,15 @@
                  {{ Form::label('total_marks', 'Total Marks') }}
                  {{ Form::text('total_marks', Input::old('total_marks'), array('class' => 'form-control','required'=>'required')) }}
            </div>
+
+           {{--<div class="form-group">--}}
+                  {{--{{ Form::label('course_management_id', 'Course Name') }}--}}
+                  {{--{{ Form::select('course_management_id', $courseList, Input::old('course_management_id') )}}--}}
+           {{--</div>--}}
+
+
+
+
             {{--<div class="form-group">--}}
                  {{--{{ Form::label('created_by', 'Created by') }}--}}
                  {{--{{ Form::text('created_by', Input::old('created_by'), array('class' => 'form-control','required'=>'required')) }}--}}

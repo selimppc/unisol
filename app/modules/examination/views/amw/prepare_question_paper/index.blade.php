@@ -12,6 +12,8 @@
                                                           data-target="#CreateModal">
                                                             Create Question paper
                                                 </button>
+
+                                                {{--<a href="{{ URL::route('examination.amw.create') }}" class="btn btn-default" data-toggle="modal" data-target="#CreateModal" data-placement="left" title="Show" href="#">Create Q P</a>--}}
                                           </div>
                                          <br>
                                            {{ Form::submit('Delete Items', array('class'=>'btn btn-danger', 'id'=>'hide-button', 'style'=>'display:none'))}}
@@ -41,7 +43,7 @@
                                                 <td>
                                                    <a href="{{ URL::route('examination.amw.viewQuestion', ['id'=>$prepare_question_paper_amw->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#ViewQuestionPaperModal" data-placement="left" title="Show" href="#">View</a>
                                                    <a href="{{ URL::route('examination.amw.editQuestionPaper', ['id'=>$prepare_question_paper_amw->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#edit_amw_QuestionPapermodal" data-placement="left" title="Edit" href="#">Edit</a>
-                                                   {{--<a class="btn btn-default" href="{{ action('ExmAmwController@assignTo') }}">Assign</a>--}}
+                                                   <a class="btn btn-default" href="{{ action('ExmAmwController@assignTo') }}">Assign</a>
                                                 </td>
                                             </tr>
                                       @endforeach
