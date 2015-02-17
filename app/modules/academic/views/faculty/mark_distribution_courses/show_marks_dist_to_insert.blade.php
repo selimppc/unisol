@@ -24,7 +24,6 @@
         </div>
     </div>
 
-
     {{ Form::open(array('url'=>'academic/faculty/marks/distribution/save','method' => '')) }}
     <table class="table table-bordered small-header-table" id="facultyMarksDist" >
         <thead>
@@ -40,7 +39,7 @@
 
         <tbody class="acm_marks_dist_list">
 
-        {{ Form::hidden('course_management_id', $datas->id, ['class'=>'form-control course_management_id'])}}
+        {{ Form::text('course_management_id', $datas->id, ['class'=>'form-control course_management_id'])}}
         {{ Form::hidden('course_type_id', $datas->course_type_id, ['class'=>'form-control course_type'])}}
         <?php $counter = 0;?>
         @foreach($course_result as $key=>$value)

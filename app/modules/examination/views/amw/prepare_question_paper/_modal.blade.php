@@ -16,7 +16,6 @@
         </div>
     </div>
 </div>
-
 {{--Modal for View Question Paper--}}
  <div class="modal fade" id="ViewQuestionPaperModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true">
          <div class="modal-dialog">
@@ -33,8 +32,6 @@
              </div>
          </div>
 </div>
-
-
 <!-- Modal for Edit Amw Question Paper -->
 <div class="modal fade" id="edit_amw_QuestionPapermodal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true">
     <div class="modal-dialog">
@@ -50,7 +47,6 @@
         </div>
     </div>
 </div>
-
 <!-- Modal for Edit -->
 <div class="modal fade" id="edit-modal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true">
     <div class="modal-dialog">
@@ -66,7 +62,6 @@
         </div>
     </div>
 </div>
-
 <!-- Show Modal -->
 <div class="modal fade" id="showModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true">
   <div class="modal-dialog">
@@ -83,7 +78,6 @@
     </div>
   </div>
 </div>
-
 <!-- View Question Items Modal -->
 <div class="modal fade" id="ViewQuestionItems" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true">
   <div class="modal-dialog">
@@ -98,7 +92,6 @@
     </div>
   </div>
 </div>
-
 {{--<!-- Modal for delete -->--}}
 <div class="modal fade " id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -117,9 +110,7 @@
         </div>
     </div>
 </div>
-
 {{--New Modification start from here--}}
-
 <!-- Modal for Create -->
 <div class="modal fade" id="AddExamination" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true">
     <div class="modal-dialog">
@@ -132,13 +123,43 @@
                 {{ Form::open(array('url' => 'examination/amw/storeExamination', 'method' =>'post', 'role'=>'form','files'=>'true'))  }}
                         @include('examination::amw/prepare_question_paper/_addExamination_form')
                 {{ Form::close() }}
-
-                Add Examination
-
-
             </div>
             <div class="modal-footer">
             </div>
         </div>
     </div>
 </div>
+
+
+<!-- View Examination Modal -->
+<div class="modal fade" id="ViewExamination" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+      </div>
+      <div class="modal-body">
+         ! Hi ! View Examination
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Edit Examinationn Modal -->
+<div class="modal fade" id="EditExamination" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+      </div>
+      <div class="modal-body">
+        ! Hi ! Edit Examination
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
+

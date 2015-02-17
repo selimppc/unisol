@@ -20,20 +20,26 @@
                                          <tr>
                                             <th><input name="id" type="checkbox" id="checkbox" class="checkbox" value=""></th>
                                             <th>Title</th>
-                                            {{--<th>Deadline</th>--}}
-                                            {{--<th>Department</th>--}}
-                                            {{--<th>Year</th>--}}
-                                            {{--<th>Term</th>--}}
-                                            {{--<th>Assigned</th>--}}
+                                            <th>Dept</th>
+                                            <th>Course</th>
+                                            <th>Type</th>
+                                            <th>Year</th>
+                                            <th>Term</th>
                                             <th>Action</th>
                                          </tr>
                                     </thead>
                                     <tbody>
-                                      @foreach($examination as $exam_list)
+                                      @foreach($exam_data as $exam_list)
                                             <tr>
                                                 <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $exam_list['id'] }}"></td>
                                                 <td>{{ $exam_list->title }} </td>
+                                                <td>{{ $exam_list->relCourseManagement->relCourse->relSubject->relDepartment->title }}</td>
+                                                <td>{{ $exam_list->relCourseManagement->relCourse->title }}</td>
 
+                                                 <td>{{ $exam_list->relAcmMarksDistItem->title }}</td>
+
+                                                <td>{{ Year::getYearsName($exam_list->year_id) }}</td>
+                                                <td>{{ Semester::getSemesterName($exam_list->semester_id) }}</td>
 
                                                 <td>
                                                    <a href="{{ URL::route('examination.amw.viewExamination', ['id'=>$exam_list->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#ViewExamination" data-placement="left" title="Show" href="#">View</a>

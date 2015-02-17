@@ -19,7 +19,7 @@
         <tbody>
         @foreach ($datas as $value)
             {{--<tr>--}}
-            <td><a href="{{ URL::route('config.show', ['course_id'=>$value->course_id])  }}" class="btn btn-link" data-toggle="modal" data-target="#showModal">{{$value->relCourse->title}}</a></td>
+            <td><a href="{{ URL::route('config.show', ['course_id'=>$value->course_id])  }}" class="btn btn-link">{{$value->relCourse->title}}</a></td>
             <td>{{$value->relCourse->relSubject->relDepartment->title}}</td>
             <td>{{$value->relYear->title}}</td>
             <td>{{$value->relSemester->title}}</td>

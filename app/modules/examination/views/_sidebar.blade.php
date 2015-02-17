@@ -11,6 +11,34 @@
         <div id="collapseTwo" class="panel-collapse collapse in">
             <div class="panel-body">
                 <table class="table">
+
+                    <tr>
+                        <td>
+                         <a href="{{ action('ExmAmwController@deshboard') }}"> Home </a> <span class="label label-success"></span>
+                        </td>
+                    </tr>
+
+                    <tr>
+                         <td>
+                          <a href="{{ action('ExmAmwController@examination') }}"> Examination</a> <span class="label label-success"></span>
+                         </td>
+                    </tr>
+
+
+
+                    <tr>
+                         <td>
+                          <a href="{{ action('ExmAmwController@courses') }}"> Courses</a> <span class="label label-success"></span>
+                         </td>
+                    </tr>
+
+                    <tr>
+                         <td>
+                          <a href="{{ action('ExmAmwController@examiners') }}"> Examiners</a> <span class="label label-success"></span>
+                         </td>
+                    </tr>
+
+
                     <tr>
                         <td>
                          <a href="{{ action('ExmAmwController@index') }}"> Question Papers</a> <span class="label label-success"></span>
@@ -23,11 +51,7 @@
                         </td>
                      </tr>
 
-                     <tr>
-                         <td>
-                          <a href="{{ action('ExmAmwController@examination') }}"> Examination</a> <span class="label label-success"></span>
-                         </td>
-                     </tr>
+
                 </table>
             </div>
         </div>
@@ -43,6 +67,19 @@
         <div id="collapseThree" class="panel-collapse collapse in">
                 <div class="panel-body">
                     <table class="table">
+
+                        <tr>
+                            <td>
+                                <a href=""> Home </a> <span class="label label-success"></span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                             <td>
+                              <a href=""> Examination</a> <span class="label label-success"></span>
+                             </td>
+                        </tr>
+
                         <tr>
                             <td>
                              <a href="{{ action('ExmFacultyController@index') }}"> Question Papers</a> <span class="label label-success"></span>

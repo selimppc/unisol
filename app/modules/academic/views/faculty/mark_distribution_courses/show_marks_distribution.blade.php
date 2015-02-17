@@ -4,7 +4,6 @@
 </div>
 <div class="modal-body">
     <div style="padding: 10px; width: 90%;">
-
         <table class="table table-bordered">
             <thead>
             <th>Item</th>
