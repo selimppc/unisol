@@ -120,6 +120,12 @@ class UserController extends \BaseController {
     /* Tanin */
     public function userDashboard(){
         $result = User::with('relUserMeta')->get();
+
+        $result = User::with(['relUserMeta' => function ($query){
+            $query->where('id', 2);
+        }])->get();
+
+        //print_r($playlist);exit;
         return View::make('user::test.test');
     }
 

@@ -83,4 +83,31 @@ class ExaminationController extends \BaseController {
 	}
 
 
+    public function examinationTest(){
+
+        $result = ExmExamList::with(
+            [
+                'relCourseManagement', 'relCourseManagement.relCourse',
+                'relCourseManagement.relCourse.relSubject.relDepartment',
+                'relMeta' => function ($query){
+                    $query->where('is_exam', 1);
+                }
+            ]
+        )->get();
+
+        print_r($result);exit;
+
+        $exam_data = ExmExamList::with('relCourseManagement','relCourseManagement.relCourse',
+            'relCourseManagement.relCourse.relSubject.relDepartment',
+            'relMeta')
+//            ->where('ExmExamList.relAcmMarksDistItem.is_exam','=',1)
+            ->get();
+
+        return View::make('examination::amw.prepare_question_paper.examination',compact('exam_data','duet'));
+
+
+
+    }
+
+
 }
