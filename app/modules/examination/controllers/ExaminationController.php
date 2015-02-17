@@ -97,16 +97,6 @@ class ExaminationController extends \BaseController {
 
         print_r($result);exit;
 
-        $exam_data = ExmExamList::with('relCourseManagement','relCourseManagement.relCourse',
-            'relCourseManagement.relCourse.relSubject.relDepartment',
-            'relMeta')
-//            ->where('ExmExamList.relAcmMarksDistItem.is_exam','=',1)
-            ->get();
-
-        return View::make('examination::amw.prepare_question_paper.examination',compact('exam_data','duet'));
-
-
-
     }
 
 
