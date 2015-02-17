@@ -10,6 +10,8 @@
 
 <h3> Course Management </h3>
 
+
+
 <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('course_manage/create')}}" data-toggle="modal" data-target="#addModal" >Add New Course</a>
 
 
@@ -25,27 +27,31 @@
 
 <br>
 {{-----------------------------------Search Form :Starts---------------------------------------------------------------}}
+
  <div class="well well-lg">
+
     <table id="example1">
 
-        {{ Form::open(array('class'=>'form-horizontal')) }}
+        {{ Form::open(array('url'=>'course_manage/search','class'=>'form-horizontal')) }}
 
-        <div  class="col-lg-3">{{ Form::label('semester_id', 'Semester') }}
-        {{ Form::select('semester_id',$semester ,Input::old('degree_id'),['class'=>'form-control input-sm '])}}</div>
+         <div  class="col-lg-3">{{ Form::label('search_department', 'Department') }}
+         {{ Form::select('search_department',$department ,Input::old('search_department'),['class'=>'form-control input-sm '])}}</div>
 
-         <div  class="col-lg-3">{{ Form::label('degree_id', 'Degree') }}
-         {{ Form::select('degree_id',$degree ,Input::old('degree_id'),['class'=>'form-control input-sm '])}}</div>
+        <div  class="col-lg-2">{{ Form::label('search_semester', 'Semester') }}
+        {{ Form::select('search_semester',$semester ,Input::old('search_semester'),['class'=>'form-control input-sm '])}}</div>
+
+        <div  class="col-lg-2">{{ Form::label('search_year', 'Year') }}
+        {{ Form::select('search_year',$year ,Input::old('search_year'),['class'=>'form-control input-sm '])}}</div>
+
+        <div  class="col-lg-3">{{ Form::label('search_degree', 'Degree') }}
+        {{ Form::select('search_degree',$degree ,Input::old('search_degree'),['class'=>'form-control input-sm '])}}</div>
 
 
-        <div  class="col-lg-3">{{ Form::label('dep_id', 'Department') }}
-        {{ Form::select('dep_id',$department ,Input::old('dep_id'),['class'=>'form-control input-sm '])}}</div>
+<br>
+{{ Form::submit('Search ', array('class'=>'pull-right btn btn-sm btn btn-info')) }}
 
-        <div  class="col-lg-3">{{ Form::label('year_id', 'Year') }}
-        {{ Form::select('year_id',$year ,Input::old('year_id'),['class'=>'form-control input-sm '])}}</div>
-
-
-        {{ Form::close() }}
     </table>
+    {{ Form::close() }}
  </div>
 
 {{-----------------------------------------------Search Form :Ends----------------------------------------------------------}}
@@ -87,14 +93,15 @@
                <td>{{ $value->relCourse->relSubject->relDepartment->title }}</td>
                <td>{{ $value->relYear->title }}</td>
                <td>{{ $value->relSemester->title }}</td>
-               <td>{{ $value->relUser->username }}</td>
+               <td>{{ $value->relUser->relUserProfile->first_name.' '.$value->relUser->relUserProfile->last_name }}</td>
 
                <td>
                    <a href="{{ URL::to('course_manage/show/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal"><span class="glyphicon glyphicon-eye-open text-danger"></span></a>
                    <a class="btn btn-xs btn-default" href="{{ URL::to('course_manage/edit/'.$value->id) }}" data-toggle="modal" data-target="#editModal" ><span class="glyphicon glyphicon-edit"></span></a>
-                   {{--<a data-href="" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><span class="glyphicon glyphicon-trash text-danger"></span></a>--}}
+                   <a data-href="" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><span class="glyphicon glyphicon-trash text-danger"></span></a>
                </td>
 
+            {{--{{ $value->relCourse->title }}--}}
           </tr>
       @endforeach
 

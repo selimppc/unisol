@@ -7,18 +7,16 @@
 <div class="modal-body">
   <div style="padding: 20px;">
 
-
- {{Form::open(array('url'=>'course_manage/store', 'class'=>'form-horizontal','files'=>true))}}
+{{Form::open(array('url'=>'course_manage/store', 'class'=>'form-horizontal','files'=>true))}}
 
  <div class='form-group'>
         <div>{{ Form::label('degree_id', 'Degree') }}</div>
         <div>{{ Form::select('degree_id',$degree,Input::old('degree_id'),['class'=>'form-control ','required']) }}</div>
  </div>
 
-
  <div class='form-group'>
-       <div>{{ Form::label('degree_program_id', 'Degree Program') }}</div>
-       <div>{{ Form::select('degree_program_id',$degreeProgram,Input::old('degree_program_id'),['class'=>'form-control ','required']) }}</div>
+       <div>{{ Form::label('degree_program_id', 'Degree Program') }} </div>
+       <div>{{ Form::select('degree_program_id',$degreeProgram,Input::old('degree_program_id'),['class'=>'form-control ','required']) }} </div>
  </div>
 
 
@@ -32,17 +30,17 @@
        <div>{{ Form::select('course_id',$course,Input::old('course_id'),['class'=>'form-control ','required'] )}}</div>
   </div>
 
-<div class='form-group'>
+  <div class='form-group'>
 
-  <div>{{ Form::label('year_id', 'Year') }}</div>
-  <div>{{ Form::select('year_id', $year, Input::old('year_id') ,['class'=>'form-control ','required'])}}</div>
-</div>
+      <div>{{ Form::label('year_id', 'Year') }}</div>
+      <div>{{ Form::select('year_id', $year, Input::old('year_id') ,['class'=>'form-control ','required'])}}</div>
+  </div>
 
-<div class='form-group'>
+  <div class='form-group'>
 
-  <div>{{ Form::label('semester_id', 'Semester') }}</div>
-  <div>{{ Form::select('semester_id',$semester,Input::old('semester_id'),['class'=>'form-control ','required']) }}</div>
-</div>
+      <div>{{ Form::label('semester_id', 'Semester') }}</div>
+      <div>{{ Form::select('semester_id',$semester,Input::old('semester_id'),['class'=>'form-control ','required']) }}</div>
+  </div>
 
 <div class='form-group'>
 
@@ -67,16 +65,17 @@
 </div>
 
 <div class='form-group'>
-<div >{{ Form::label('start_date', 'Start date') }}</div >
-<div >{{ Form::text('start_date', Input::old('start_date'),['class'=>'form-control ']) }}</div>
+  <div >{{ Form::label('start_date', 'Start date') }}</div >
+  <div >{{ Form::text('start_date', Input::old('start_date'),['class'=>'form-control ']) }}</div>
 </div>
 
 <div class='form-group'>
-<div >{{ Form::label('end_date', 'End date') }}</div >
-<div>{{ Form::text('end_date', Input::old('end_date'), array('type' => 'text', 'class' => 'form-control datepicker','placeholder' => 'Pick the date this task should be completed', 'id' => 'date')) }}</div>
+
+   <div >{{ Form::label('end_date', 'End date') }}</div >
+   <div>{{ Form::text('end_date', Input::old('end_date'), array('type' => 'text', 'class' => 'form-control datepicker','placeholder' => 'Pick the date this task should be completed', 'id' => 'date')) }}</div>
+
 </div>
 
-{{--{{ Form::text('date_of_birth',$profile->date_of_birth , array('type' => 'text', 'class' => 'form-control datepicker','placeholder' => 'Pick the date this task should be completed', 'id' => 'date')) }}--}}
 
 {{ Form::submit('Save ', array('class'=>'pull-right btn btn-primary')) }}
 

@@ -8,16 +8,11 @@ class AdmAmwController extends \BaseController {
 
 	public function index()
 	{
-       // $model = CourseManagement::all();
-        //$courseDataList = CourseManagement::orderBy('id', 'DESC')->paginate(2);
-        $model = CourseManagement::orderBy('id', 'DESC')->paginate(2);
-        $semester=Semester::lists('title', 'id');
+        $model = CourseManagement::orderBy('id', 'DESC')->paginate(5);
+        $semester = Semester::lists('title', 'id');
         $year = Year::lists('title', 'id');
-        $degree=Degree::lists('title', 'id');
-        $department=Department::lists('title','id');
-
-//        $role_id = Role::where('title', '=', 'faculty')->first()->id;
-//        $facultyList = User::where('role_id', '=', $role_id)->lists('username', 'id');
+        $degree = Degree::lists('title', 'id');
+        $department = Department::lists('title','id');
 
         return View::make('admission::amw.course_management.index',compact('model','semester','year','degree','department'));
 	}
@@ -127,8 +122,38 @@ class AdmAmwController extends \BaseController {
 	{
 		//
 	}
+
     public function search(){
 
+        $search_department =Input::get('search_department');
+        //echo $search_department;exit;
+        $search_semester =Input::get('search_semester');
+        $search_degree =Input::get('search_degree');
+        $search_year =Input::get('search_year');
+
+
+        echo "Department ".$search_department."<br>";
+        echo "Semester ".$search_semester."<br>";
+        echo "Degree ".$search_degree."<br>";
+        echo "Year ".$search_year."<br>";
+
+        $model  = CourseManagement::with('relSemester','relDegree','relYear', 'relCourse.relSubject.relDepartment')
+                            ->where('semester_id', 'LIKE', '%'. $search_semester .'%')
+                            ->where('degree_id', 'LIKE', '%'. $search_degree .'%')
+                            ->where('year_id', 'LIKE', '%'. $search_year .'%')
+                            ->where('degree_id', 'LIKE', '%'. $search_department .'%')
+                            ->paginate(5);
+        //print_r($model); exit;
+
+
+        $semester = array('' => 'Select Semester ') +  Semester::lists('title', 'id');
+        $year = array('' => 'Select Year ') +  Year::lists('title', 'id');
+        $degree = array('' => 'Select Degree ') + Degree::lists('title', 'id');
+        $course = array('' => 'Select Course ') + Course::lists('title', 'id');
+        $department = array('' => 'Select Department ') + Department::lists('title','id');
+
+
+        return View::make('admission::amw.course_management.index', compact('model','semester','department','course','degree','year'));
 
     }
 
