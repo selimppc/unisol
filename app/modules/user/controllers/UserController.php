@@ -55,6 +55,7 @@ class UserController extends \BaseController {
         return Redirect::to('user/login');
     }
 
+
     public function profile(){
         return View::make("user/profile");
     }

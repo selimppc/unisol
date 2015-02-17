@@ -3,11 +3,7 @@ class ApplicantController extends \BaseController
 {
 
     public function index()
-
     {
-//        //$applicant_list = Applicant::orderBy('id', 'DESC');
-//        $applicant_list = Applicant::all();
-
         return View::make('applicant::applicants.index');
     }
 
@@ -19,28 +15,18 @@ class ApplicantController extends \BaseController
     public function store()
     {
         $token = csrf_token();
-
         $rules = array(
-
             'email' => 'required',
             'username' => 'required',
-//            'password' => 'regex:((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})|required',
-            //'password'=>'required',
-//            'confirmpassword' => 'required|same:password',
-
         );
-
         $validator = Validator::make(Input::all(), $rules);
-
         if ($validator->Fails()) {
             Session::flash('message', 'Data not saved');
             return Redirect::to('applicant')->withErrors($validator)->withInput();
-
         } else {
             $verified_code = str_random(30);
             if ($token == Input::get('_token')) {
                 $data = new Applicant();
-
                 $data->email = Input::get('email');
                 $data->username = Input::get('username');
                 $data->password = Hash::make(Input::get('password'));//dd($data->password);
@@ -48,7 +34,6 @@ class ApplicantController extends \BaseController
 
                 if ($data->save()) {
                     $email=$data->email;
-
                     Mail::send('admission::signup.verify', array('link' => $verified_code),  function($message) use ($email)
                     {
                         $message->from('test@edutechsolutionsbd.com', 'Mail Notification');
@@ -56,12 +41,9 @@ class ApplicantController extends \BaseController
                         $message->cc('tanintjt@gmail.com');
                         $message->subject('Notification');
                     });
-
                     return View::make('admission::signup.notification');
-
                 } else {
                     Session::flash('message', 'not sending email. try again');
-
                     return Redirect::to('applicant/index')->with('message', 'Signup Here ');
                 }
             }
@@ -77,8 +59,6 @@ class ApplicantController extends \BaseController
             $user->verified_code = '';
         }
         Session::flash('message','Your account activated successfully. You can signin now.');
-
-        //return Redirect::to('applicant::applicants.login');
         return View::make('applicant::applicants.login');
 
 
@@ -94,41 +74,23 @@ class ApplicantController extends \BaseController
             'password'=>Input::get('password'),
 
         );
-        //print_r($credentials) ;exit;
-
-//        if(Auth::check()){
-//            $user_id = Auth::applicant()->username;
-//            $pageTitle = 'You are already logged in!';
-//            echo $pageTitle;
-//            //return View::make('usersign/dashboard', compact('user_id', 'pageTitle'));
-//        }else{
             if ( Auth::attempt($credentials) ) {
                 return Redirect::to('applicant/dashboard')->with('message', 'Logged in!');
-                //return View::make('applicant::applicants.dashboard');
             } else {
                 return Redirect::to('usersign/login') ->with('message', 'Your username/password combination was incorrect! Please try again....')
                     ->withInput();
             }
-//        }
-
     }
+
     public function applicantLogout() {
-
-        //$model= User::find(Auth::user()->id);
-
-//        date_default_timezone_set("Asia/Dacca");
-//        $time=date('Y-m-d h:i:s', time());;
-//        $model->last_visit = $time;
-//        $model->save();
         Auth::logout();
-
         return Redirect::to('usersign/login')->with('message', 'Your are now logged out!');
-
     }
-    public function Dashboard(){
 
+    public function Dashboard(){
         return View::make('applicant::applicants.dashboard');
     }
+
     public function show($id)
     {
         $applicant = Applicant::find($id);
@@ -137,16 +99,10 @@ class ApplicantController extends \BaseController
     public function edit($id)
     {
         $applicant = Applicant::find($id);
-
         return View::make('applicant::applicants.edit', compact('applicant'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  int $id
-     * @return Response
-     */
+
     public function update($id)
     {
         $rules = array(
@@ -181,12 +137,7 @@ class ApplicantController extends \BaseController
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int $id
-     * @return Response
-     */
+
     public function destroy($id)
     {
         try {
@@ -200,7 +151,6 @@ class ApplicantController extends \BaseController
     //  Applicant's PersonalInformations: Methods.................................................
     public function personalInfoIndex()
     {
-        //$applicant_id = Applicant::find(2)->id;
         $applicant_personal_info = ApplicantMeta::where('applicant_id', '=','1' )->first();
         return View::make('applicant::applicant_personal_info.index',compact('applicant_personal_info'));
     }
@@ -246,7 +196,6 @@ class ApplicantController extends \BaseController
         return View::make('applicant::applicant_personal_info.edit', compact('applicant_personal_info'));
     }
     public function personalInfoUpdate($id){
-
         $rules = array(
             'national_id' => 'required',
         );
@@ -270,10 +219,7 @@ class ApplicantController extends \BaseController
     // Applicant's Extra-Curricular Activities......................................................
     public function extraCurricularIndex()
     {
-
         $data = ApplicantExtraCurrActivity::where('applicant_id', '=', '1')->first();
-        //$data = ApplicantMiscInfo::where('applicant_id', '=', '1')->first();
-        //echo $data;exit;
         return View::make('applicant::extra_curricular.index', compact('data'));
     }
     public function extraCurricularCreate(){

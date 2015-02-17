@@ -85,9 +85,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     }
 
 
-    public function relUserMeta(){
-        return $this->belongsTo('UserMeta');
-    }
+
 
     public function relRole() {
         return $this->belongsToMany('Role', 'role_id', 'id');
@@ -106,6 +104,12 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
             return $role->title;
         }
             return false;
+    }
+
+
+    /// TODO:: User Model Relationship
+    public function relUserMeta(){
+        return $this->belongsTo('UserMeta');
     }
 
 }
