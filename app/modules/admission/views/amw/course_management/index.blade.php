@@ -48,9 +48,6 @@
         <div  class="col-lg-3">{{ Form::label('dep_id', 'Department') }}
         {{ Form::select('dep_id',$department ,Input::old('dep_id'),['class'=>'form-control input-sm '])}}</div>
 
-
-        {{--{{ Form::label('year_id', 'Year') }}--}}
-        {{--{{ Form::select('year_id',$year) }}--}}
         <div  class="col-lg-3">{{ Form::label('year_id', 'Year') }}
         {{ Form::select('year_id',$year ,Input::old('year_id'),['class'=>'form-control input-sm '])}}</div>
 
@@ -60,35 +57,7 @@
 {{--</div>--}}
 
 
-{{--<!-- for search box -->--}}
-         {{--<div class="row m-t-sm">--}}
-          {{--<div class="col-md-10">--}}
-            {{--<section class="panel panel-default">--}}
-              {{--<div class="panel-body">--}}
 
-              {{--<div class="col-md-8 pull-right">--}}
-               {{--<div class="wrapper text-right no-padder">--}}
-               {{--{{ Form::open(array('class'=>'form-horizontal')) }}--}}
-
-                       {{--<div>{{ Form::label('semester_id', 'Semester') }}</div>--}}
-                       {{--<div class="col-lg-3">{{ Form::select('semester_id',$semester ,Input::old('degree_id'),['class'=>'form-control input-sm '])}}</div>--}}
-
-                       {{--{{ Form::label('degree_id', 'Degree') }}--}}
-                       {{--{{ Form::select('degree_id',$degree) }}--}}
-
-                       {{--{{ Form::label('dep_id', 'Department') }}--}}
-                       {{--{{ Form::select('dep_id',$department) }}--}}
-
-                       {{--{{ Form::label('year_id', 'Year') }}--}}
-                       {{--{{ Form::select('year_id',$year) }}--}}
-
-                       {{--{{ Form::close() }}--}}
-              {{--</div>--}}
-            {{--</div>--}}
-          {{--</div>--}}
-        {{--</section>--}}
-      {{--</div>--}}
-    {{--</div>--}}
 
 <table id="example1" class="table table-bordered table-striped">
 
