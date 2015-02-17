@@ -12,6 +12,24 @@ class ExmExamList extends \Eloquent
         return $data->title;
     }
 
+    public function relCourseManagement()
+    {
+        return $this->belongsTo('CourseManagement', 'course_management_id', 'id');
+
+    }
+
+    public function relAcmMarksDistItem()
+    {
+        return $this->belongsTo('AcmMarksDistItem', 'acm_marks_dist_item_id', 'id');
+
+    }
+
+    public function relMeta()
+    {
+        return $this->belongsTo('AcmMarksDistItem','acm_marks_dist_item_id', 'id')->where('is_exam','=',1);
+    }
+
+
 
     private $rules = array(
 
