@@ -17,6 +17,28 @@ class AcmMarksDistItem extends Eloquent
         return $data->title;
     }
 
+    //shafi code
+
+//    public static function AcmMarksDistItemIsExam($itemId)
+//    {
+//        $data = AcmMarksDistItem::find($itemId);
+//        return $data->is_exam;
+//    }
+
+
+
+//    public function relAcmMarksDistItem(){
+//        return $this->belongsTo('relAcmMarksDistItem');
+//    }
+
+    public function relExmExamList(){
+        return $this->belongsTo('ExmExamList');
+    }
+
+    //shafi code ends here
+
+
+
     private $errors;
     // 1 Create data validation
     private $rules = array(

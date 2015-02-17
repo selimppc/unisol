@@ -194,27 +194,28 @@ class ExmAmwController extends \BaseController {
 
     }
     public function examination(){
-        $examination = ExmExamList::orderBy('id', 'DESC')->paginate(6);
 
-        return View::make('examination::amw.prepare_question_paper.examination')->with('examination',$examination);
+//        $examination = ExmExamList::orderBy('id', 'DESC')->paginate(6);
+//        return View::make('examination::amw.prepare_question_paper.examination')->with('examination',$examination);
+
+        $exam_data = ExmExamList::with('relCourseManagement','relCourseManagement.relCourse',
+            'relCourseManagement.relCourse.relSubject.relDepartment',
+            'relMeta')
+//            ->where('ExmExamList.relAcmMarksDistItem.is_exam','=',1)
+            ->get();
+
+//        $duet = AcmMarksDistItem::where('is_exam', '=', '1')
+//            ->first();
 
 
-        
-//
-//
-//        $exam_data = ExmQuestion::with('relCourseManagement', 'relCourseManagement.relYear',
-//            'relCourseManagement.relSemester','relCourseManagement.relCourse.relSubject.relDepartment')
-//            ->get();
-//
-//        print_r($exam_data);exit;
-//
-//
+        return View::make('examination::amw.prepare_question_paper.examination',compact('exam_data','duet'));
+
+
 //        $data = ExmQuestion::with('relCourseManagement', 'relCourseManagement.relYear',
 //            'relCourseManagement.relSemester','relCourseManagement.relCourse.relSubject.relDepartment')
 //            ->get();
 
 
-//
 //        return View::make('examination::amw.prepare_question_paper.index')->with('datas',$data);
 
 
