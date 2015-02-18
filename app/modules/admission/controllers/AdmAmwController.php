@@ -8,7 +8,7 @@ class AdmAmwController extends \BaseController {
 
 	public function index()
 	{
-        $model = CourseManagement::orderBy('id', 'DESC')->paginate(5);
+        $model = CourseManagement::orderBy('id', 'DESC')->paginate(3);
         $semester = Semester::lists('title', 'id');
         $year = Year::lists('title', 'id');
         $degree = Degree::lists('title', 'id');
@@ -125,28 +125,27 @@ class AdmAmwController extends \BaseController {
 
     public function search(){
 
-        $search_department =Input::get('search_department');
+        //$search_department =Input::get('search_department');
         //echo $search_department;exit;
         $search_semester =Input::get('search_semester');
         $search_degree =Input::get('search_degree');
         $search_year =Input::get('search_year');
 
-
-        echo "Department ".$search_department."<br>";
+        //echo "Department ".$search_department."<br>";
         echo "Semester ".$search_semester."<br>";
         echo "Degree ".$search_degree."<br>";
         echo "Year ".$search_year."<br>";
 
-        $model  = CourseManagement::with('relSemester','relDegree','relYear', 'relCourse.relSubject.relDepartment')
+        $model  = CourseManagement::with('relSemester','relYear','relDegree')
+
                             ->where('semester_id', 'LIKE', '%'. $search_semester .'%')
-                            ->where('degree_id', 'LIKE', '%'. $search_degree .'%')
                             ->where('year_id', 'LIKE', '%'. $search_year .'%')
-                            ->where('degree_id', 'LIKE', '%'. $search_department .'%')
-                            ->paginate(5);
+                            ->where('degree_id', 'LIKE', '%'. $search_degree .'%')
+
+//                            ->orWhere('dep_id', 'LIKE', '%'. $search_department .'%')
+                            ->get();
         //print_r($model); exit;
-
-
-        $semester = array('' => 'Select Semester ') +  Semester::lists('title', 'id');
+       $semester = array('' => 'Select Semester ') +  Semester::lists('title', 'id');
         $year = array('' => 'Select Year ') +  Year::lists('title', 'id');
         $degree = array('' => 'Select Degree ') + Degree::lists('title', 'id');
         $course = array('' => 'Select Course ') + Course::lists('title', 'id');

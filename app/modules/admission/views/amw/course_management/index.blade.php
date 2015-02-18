@@ -35,7 +35,7 @@
         {{ Form::open(array('url'=>'course_manage/search','class'=>'form-horizontal')) }}
 
          <div  class="col-lg-3">{{ Form::label('search_department', 'Department') }}
-         {{ Form::select('search_department',$department ,Input::old('search_department'),['class'=>'form-control input-sm '])}}</div>
+         {{ Form::select('search_department',$department , $department ? 'search_department': Input::old('search_semester'),['class'=>'form-control input-sm '])}}</div>
 
         <div  class="col-lg-2">{{ Form::label('search_semester', 'Semester') }}
         {{ Form::select('search_semester',$semester ,Input::old('search_semester'),['class'=>'form-control input-sm '])}}</div>
@@ -98,7 +98,7 @@
                <td>
                    <a href="{{ URL::to('course_manage/show/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal"><span class="glyphicon glyphicon-eye-open text-danger"></span></a>
                    <a class="btn btn-xs btn-default" href="{{ URL::to('course_manage/edit/'.$value->id) }}" data-toggle="modal" data-target="#editModal" ><span class="glyphicon glyphicon-edit"></span></a>
-                   <a data-href="" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><span class="glyphicon glyphicon-trash text-danger"></span></a>
+                   {{--<a data-href="" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><span class="glyphicon glyphicon-trash text-danger"></span></a>--}}
                </td>
 
             {{--{{ $value->relCourse->title }}--}}
@@ -112,7 +112,7 @@
 
 {{--------Pagination Link--------------------------}}
 <div class="pull-right paginate-button">
-    {{$model->links()}}
+    {{--{{$model->links()}}--}}
 </div>
 
 
