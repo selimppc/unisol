@@ -121,7 +121,6 @@ class CreateCourseManagementRl extends Migration {
         Schema::create('course_management', function(Blueprint $table){
             $table->increments('id');
             $table->unsignedInteger('user_id');
-            $table->unsignedInteger('degree_program_id')->nullable();
             $table->unsignedInteger('course_id')->nullable();
             $table->unsignedInteger('year_id')->nullable();
             $table->unsignedInteger('semester_id')->nullable();
@@ -143,7 +142,6 @@ class CreateCourseManagementRl extends Migration {
         });
         Schema::table('course_management', function($table) {
             $table->foreign('user_id')->references('id')->on('user');
-            $table->foreign('degree_program_id')->references('id')->on('degree_program');
             $table->foreign('course_id')->references('id')->on('course');
             $table->foreign('year_id')->references('id')->on('year');
             $table->foreign('semester_id')->references('id')->on('semester');

@@ -81,6 +81,7 @@ class CreateAdmissionBillingRl extends Migration {
 
         Schema::create('billing_schedule', function(Blueprint $table) {
             $table->increments('id');
+            $table->string('code', 16);
             $table->string('title', 128);
             $table->text('description');
             $table->integer('created_by', false, 11);

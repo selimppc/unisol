@@ -55,7 +55,7 @@
                     <h4 class="modal-title">Add New Class</h4>
                 </div>
                 <div class="modal-body">
-                    {{ Form::open(array('url' => '', 'method' =>'post', 'role'=>'form','files'=>'true')) }}
+                    {{ Form::open(array('url' => 'academic/faculty/marksdistitem/class/save', 'method' =>'post', 'role'=>'form','files'=>'true')) }}
                     @include('academic::faculty.mark_distribution_courses.marks_dist_item_class.._form')
                     {{ Form::close() }}
                 </div>
@@ -66,5 +66,4 @@
             </div>
         </div>
     </div>
-
 @stop
