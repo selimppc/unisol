@@ -19,13 +19,13 @@
                     <td>{{$dvalue['relAcmMarksDistItem']['title']}}</td>
                     {{--<td>{{(($dvalue->marks * 100)/$dvalue['relCourse']['evaluation_total_marks'])}}</td>--}}
                     <td>{{$dvalue->marks}}</td>
-                    <td>{{$dvalue['relAcmMarksPolicy']['title']}}</td>
+                    <td>{{$dvalue->acm_marks_policy}}</td>
                     <td>{{($dvalue->is_attendance == 1) ? 'Yes' : '';}}</td>
                 </tr>
             @endforeach
             </tbody>
         </table>
-        <p>If Marks Distribution is not done then go to distribution and make it done first.</p>
+        <p>If Marks Distribution is not done then go to distribution and make it done first.<a href="{{URL::to('academic/faculty/')}}" class="btn btn-link">MarksDistribution</a></p>
     </div>
 </div>
 <div class="modal-footer">
