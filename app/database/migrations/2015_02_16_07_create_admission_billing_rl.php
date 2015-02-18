@@ -29,6 +29,12 @@ class CreateAdmissionBillingRl extends Migration {
             $table->foreign('department_id')->references('id')->on('department');
         });
 
+        Schema::table('course_management', function($table) {
+            $table->foreign('degree_id')->references('id')->on('degree');
+        });
+
+
+
         Schema::create('billing_item', function(Blueprint $table) {
             $table->increments('id');
             $table->string('title', 128);
@@ -127,11 +133,43 @@ class CreateAdmissionBillingRl extends Migration {
         });
 
 
+        Schema::create('degree_applicant', function(Blueprint $table) {
+            $table->increments('id');
+            $table->unsignedInteger('degree_id')->nullable();
+            $table->unsignedInteger('applicant_id')->nullable();
+            $table->tinyInteger('status', false)->length(11);
+            $table->integer('created_by', false, 11);
+            $table->integer('updated_by', false, 11);
+            $table->timestamps();
+            $table->engine = 'InnoDB';
+        });
+        Schema::table('degree_applicant', function($table) {
+            $table->foreign('degree_id')->references('id')->on('degree');
+            $table->foreign('applicant_id')->references('id')->on('applicant');
+        });
+
+        Schema::create('degree_education_constraint', function(Blueprint $table) {
+            $table->increments('id');
+            $table->unsignedInteger('degree_id')->nullable();
+            $table->unsignedInteger('applicant_id')->nullable();
+            $table->tinyInteger('status', false)->length(11);
+            $table->integer('created_by', false, 11);
+            $table->integer('updated_by', false, 11);
+            $table->timestamps();
+            $table->engine = 'InnoDB';
+        });
+        Schema::table('degree_education_constraint', function($table) {
+            $table->foreign('degree_id')->references('id')->on('degree');
+            $table->foreign('applicant_id')->references('id')->on('applicant');
+        });
+
+
 	}
 
 	public function down()
 	{
         Schema::drop('degree');
+        Schema::drop('course_management');
         Schema::drop('billing_item');
         //Schema::drop('waiver');
         Schema::drop('degree_waiver');
@@ -140,6 +178,8 @@ class CreateAdmissionBillingRl extends Migration {
         Schema::drop('billing_details');
         Schema::drop('applicant');
         Schema::drop('degree_program');
+        Schema::drop('degree_applicant');
+        Schema::drop('degree_education_constraint');
 	}
 
 }

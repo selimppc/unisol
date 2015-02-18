@@ -133,7 +133,7 @@ class CreateCourseManagementRl extends Migration {
             $table->enum('major_minor', array(
                 'major', 'minor'
             ));
-            $table->integer('degree_id', false, 11);
+            $table->unsignedInteger('degree_id')->nullable();
 
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
