@@ -21,7 +21,7 @@ class Degree extends Eloquent{
     }
 
     public function relDepartment(){
-        return $this->hasMany('Department');
+        return $this->belongsTo('Department', 'department_id', 'id');
     }
 
 } 
