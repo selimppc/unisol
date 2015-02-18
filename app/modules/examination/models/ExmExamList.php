@@ -18,15 +18,15 @@ class ExmExamList extends \Eloquent
 
     }
 
-    public function relAcmMarksDistItem()
-    {
-        return $this->belongsTo('AcmMarksDistItem', 'acm_marks_dist_item_id', 'id');
-
-    }
+//    public function relAcmMarksDistItem()
+//    {
+//        return $this->belongsTo('AcmMarksDistItem', 'acm_marks_dist_item_id', 'id');
+//
+//    }
 
     public function relMeta()
     {
-        return $this->belongsTo('AcmMarksDistItem','acm_marks_dist_item_id', 'id')->where('is_exam','=',1);
+        return $this->belongsTo('AcmMarksDistItem', 'acm_marks_dist_item_id', 'id');
     }
 
 

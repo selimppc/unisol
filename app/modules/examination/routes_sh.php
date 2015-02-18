@@ -75,3 +75,5 @@ Route::any('examination/faculty/batchItemsDelete','ExmFacultyController@batchIte
 Route::any('examination/faculty/batchOptionAnswerDelete','ExmFacultyController@batchOptionAnswerDelete');
 
 
+Route::any('examination/test','ExaminationController@examinationTest');
+

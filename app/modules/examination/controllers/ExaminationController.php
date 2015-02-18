@@ -83,4 +83,21 @@ class ExaminationController extends \BaseController {
 	}
 
 
+    public function examinationTest(){
+
+        $result = ExmExamList::with(
+            [
+                'relCourseManagement', 'relCourseManagement.relCourse',
+                'relCourseManagement.relCourse.relSubject.relDepartment',
+                'relMeta' => function ($query){
+                    $query->where('is_exam', 1);
+                }
+            ]
+        )->get();
+
+        print_r($result);exit;
+
+    }
+
+
 }

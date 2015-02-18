@@ -27,10 +27,6 @@ class AcmMarksDistItem extends Eloquent
 
 
 
-//    public function relAcmMarksDistItem(){
-//        return $this->belongsTo('relAcmMarksDistItem');
-//    }
-
     public function relExmExamList(){
         return $this->belongsTo('ExmExamList');
     }
