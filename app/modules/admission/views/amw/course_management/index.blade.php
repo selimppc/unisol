@@ -35,22 +35,25 @@
         {{ Form::open(array('url'=>'course_manage/search','class'=>'form-horizontal')) }}
 
          <div  class="col-lg-3">{{ Form::label('search_department', 'Department') }}
-         {{ Form::select('search_department',$department ,Input::old('search_department'),['class'=>'form-control input-sm '])}}</div>
+         {{ Form::select('search_department', $department , Input::old('search_semester'),['class'=>'form-control input-sm '])}}</div>
 
         <div  class="col-lg-2">{{ Form::label('search_semester', 'Semester') }}
-        {{ Form::select('search_semester',$semester ,Input::old('search_semester'),['class'=>'form-control input-sm '])}}</div>
+        {{ Form::select('search_semester', $semester ,Input::old('search_semester'),['class'=>'form-control input-sm '])}}</div>
 
         <div  class="col-lg-2">{{ Form::label('search_year', 'Year') }}
-        {{ Form::select('search_year',$year ,Input::old('search_year'),['class'=>'form-control input-sm '])}}</div>
+        {{ Form::select('search_year', $year ,Input::old('search_year'),['class'=>'form-control input-sm '])}}</div>
 
         <div  class="col-lg-3">{{ Form::label('search_degree', 'Degree') }}
-        {{ Form::select('search_degree',$degree ,Input::old('search_degree'),['class'=>'form-control input-sm '])}}</div>
+        {{ Form::select('search_degree', $degree ,Input::old('search_degree'),['class'=>'form-control input-sm '])}}</div>
 
 
 <br>
 {{ Form::submit('Search ', array('class'=>'pull-right btn btn-sm btn btn-info')) }}
 
     </table>
+
+
+
     {{ Form::close() }}
  </div>
 
@@ -84,13 +87,14 @@
 </tr>
 </thead>
 <tbody>
-
+{{$model}}
       @foreach($model as $value)
           <tr>
                <td>{{ $value->relCourse->title }}</td>
                <td>{{ $value->relDegree->title }}</td>
-               <td>{{ $value->major_minor }}</td>
-               <td>{{ $value->relCourse->relSubject->relDepartment->title }}</td>
+               <td>{{ strtoupper($value->major_minor) }}</td>
+               <td>{{ $value->relDegree->relDepartment->title }}</td>
+
                <td>{{ $value->relYear->title }}</td>
                <td>{{ $value->relSemester->title }}</td>
                <td>{{ $value->relUser->relUserProfile->first_name.' '.$value->relUser->relUserProfile->last_name }}</td>
@@ -98,7 +102,7 @@
                <td>
                    <a href="{{ URL::to('course_manage/show/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal"><span class="glyphicon glyphicon-eye-open text-danger"></span></a>
                    <a class="btn btn-xs btn-default" href="{{ URL::to('course_manage/edit/'.$value->id) }}" data-toggle="modal" data-target="#editModal" ><span class="glyphicon glyphicon-edit"></span></a>
-                   <a data-href="" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><span class="glyphicon glyphicon-trash text-danger"></span></a>
+                   {{--<a data-href="" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><span class="glyphicon glyphicon-trash text-danger"></span></a>--}}
                </td>
 
             {{--{{ $value->relCourse->title }}--}}
@@ -112,7 +116,7 @@
 
 {{--------Pagination Link--------------------------}}
 <div class="pull-right paginate-button">
-    {{$model->links()}}
+    {{--{{$model->links()}}--}}
 </div>
 
 
@@ -155,15 +159,3 @@
 
 @stop
 
-{{--<script>--}}
-             {{--$(document).ready(function() {--}}
-                 {{--$('#example1').DataTable({--}}
-{{--//                     "paging":   false,--}}
-{{--//                     "oLanguage": {--}}
-{{--//                          "sSearch": "Filter _INPUT_ ",--}}
-{{--//                          "sInfoFiltered": " - filtered from ( _MAX_ ) items"--}}
-{{--//                        }--}}
-                 {{--});--}}
-            {{--}--}}
-
-         {{--</script>--}}

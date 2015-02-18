@@ -116,4 +116,43 @@ class HomeController extends BaseController {
     }
 
 
+    public function testSearch(){
+        $dept_id = 1;
+        $deg_id = 2;
+        $sem_id = 3;
+        $yr_id = 4;
+
+        $result = CourseManagement::with([
+                'relDegree' => function ($query) use ($dept_id){
+                    if(isset($dept_id))
+                    $query->where('department_id', '=', $dept_id);
+                }
+            ]);
+        if(isset($deg_id))
+            $result->where('degree_id', '=', $deg_id);
+        if(isset($sem_id))
+            $result->where('semester_id', '=', $sem_id);
+        if(isset($yr_id))
+            $result->where('year_id', '=', $yr_id);
+        $result->get();
+//        dd(DB::getQueryLog($result));
+//        exit;
+
+            /*$result->where(function($query) use ($deg_id, $sem_id, $yr_id) {
+                if(isset($deg_id))
+                    $query->where('degree_id', '=', $deg_id);
+                if(isset($sem_id))
+                    $query->where('semester_id', '=', $sem_id);
+                if(isset($yr_id))
+                    $query->where('year_id', '=', $yr_id);
+            })
+            ->get();*/
+       // dd(DBH::q());exit;
+        dd(DB::getQueryLog($result));
+
+        print_r($result);
+        exit;
+    }
+
+
 }
