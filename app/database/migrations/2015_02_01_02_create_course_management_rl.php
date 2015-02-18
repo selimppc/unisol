@@ -55,7 +55,7 @@ class CreateCourseManagementRl extends Migration {
         });*/
 
         // TODO : This table seed will be after removing of degree_program table
-        Schema::create('degree_program', function($table) {
+        /*Schema::create('degree_program', function($table) {
             $table->increments('id');
             $table->string('code', 128);
             $table->string('title', 128);
@@ -64,7 +64,7 @@ class CreateCourseManagementRl extends Migration {
             $table->integer('updated_by', false, 11);
             $table->timestamps();
             $table->engine = 'InnoDB';
-        });
+        });*/
 
 
         Schema::create('subject', function(Blueprint $table)
@@ -121,7 +121,6 @@ class CreateCourseManagementRl extends Migration {
         Schema::create('course_management', function(Blueprint $table){
             $table->increments('id');
             $table->unsignedInteger('user_id');
-            $table->unsignedInteger('degree_program_id')->nullable();
             $table->unsignedInteger('course_id')->nullable();
             $table->unsignedInteger('year_id')->nullable();
             $table->unsignedInteger('semester_id')->nullable();
@@ -134,7 +133,7 @@ class CreateCourseManagementRl extends Migration {
             $table->enum('major_minor', array(
                 'major', 'minor'
             ));
-            $table->integer('degree_id', false, 11);
+            $table->unsignedInteger('degree_id')->nullable();
 
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
@@ -143,7 +142,6 @@ class CreateCourseManagementRl extends Migration {
         });
         Schema::table('course_management', function($table) {
             $table->foreign('user_id')->references('id')->on('user');
-            $table->foreign('degree_program_id')->references('id')->on('degree_program');
             $table->foreign('course_id')->references('id')->on('course');
             $table->foreign('year_id')->references('id')->on('year');
             $table->foreign('semester_id')->references('id')->on('semester');
@@ -159,7 +157,7 @@ class CreateCourseManagementRl extends Migration {
         Schema::drop('semester');
         Schema::drop('course_type');
         //Schema::drop('degree_level');
-        Schema::drop('degree_program');
+        //Schema::drop('degree_program');
         Schema::drop('subject');
         Schema::drop('course');
         //Schema::drop('evolution_system');

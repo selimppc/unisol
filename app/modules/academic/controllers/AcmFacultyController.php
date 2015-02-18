@@ -174,7 +174,7 @@ class AcmFacultyController extends \BaseController {
 		Session::flash('message', 'ACM Course Configuration Data Successfully Added !!');
 		return Redirect::to('academic/faculty');
 	}
-//Ajax delete in modal
+    //Ajax delete in modal
 	public function ajax_delete_acm_marks_dist()
 	{
 		if(Request::ajax())
@@ -201,6 +201,26 @@ class AcmFacultyController extends \BaseController {
 		));
 	}
 
+	public function save_marksdist_item_class_data()
+	{
+		$data = Input::all();
+		// create a new model instance
+		$datas = new AcmAcademic();
+		// attempt validation
+		if ($datas->validate($data)) {
+			$datas->title = Input::get('title');
+			$datas->save();
+
+			// redirect
+			Session::flash('message', 'Successfully Added!');
+			return Redirect::to('academic/faculty/marksdistitem/class');
+		} else {
+			// failure, get errors
+			$errors = $datas->errors();
+			Session::flash('errors', $errors);
+			return Redirect::to('academic/faculty/marksdistitem/class');
+		}
+	}
 
 
 }
