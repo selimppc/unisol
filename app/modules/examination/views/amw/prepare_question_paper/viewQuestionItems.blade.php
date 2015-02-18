@@ -2,6 +2,9 @@
               <h3>Welcome to View Question Items : <strong>{{ ucwords(Auth::user()->username) }}</strong> </h3> </br>
               {{ Form::open(array('route'=>'examination.amw.viewQuestionItems','method' => '')) }}
                      <div class="jumbotron text-left">
+
+                             <strong> Question Paper:</strong> &nbsp &nbsp {{ ExmQuestionItems::getQuestionsName($amw_ViewQuestionItems->exm_question_id) }}
+                             </br>
                              <strong> Title:</strong> &nbsp &nbsp {{ $amw_ViewQuestionItems->title }}
                              </br>
                              <strong> Marks:</strong> &nbsp &nbsp {{ $amw_ViewQuestionItems->marks }}

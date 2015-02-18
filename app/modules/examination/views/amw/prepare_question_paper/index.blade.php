@@ -7,14 +7,35 @@
                     {{ Form::open(array('url' => 'examination/amw/batchDelete')) }}
                         <table id="example" class="table table-striped  table-bordered"  >
                                     <thead>
-                                          <div class="btn-group" style="margin-right: 10px">
-                                                <button type="button" class="btn btn-default" data-toggle="modal"
-                                                          data-target="#CreateModal">
-                                                            Create Question paper
-                                                </button>
 
-                                                {{--<a href="{{ URL::route('examination.amw.create') }}" class="btn btn-default" data-toggle="modal" data-target="#CreateModal" data-placement="left" title="Show" href="#">Create Q P</a>--}}
-                                          </div>
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="col-sm-6">
+
+                                                       <strong> Year :</strong>  {{--{{ Year::getYearsName($course_data->year_id) }} </br>--}}
+                                                       </br>
+                                                       <strong> Semester :</strong>{{--{{ Semester::getSemesterName($course_data->semester_id) }} </br>--}}
+
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="btn-group" style="margin-right: 10px">
+                                                        <button type="button" class="btn btn-default" data-toggle="modal"
+                                                                  data-target="#CreateModal">
+                                                                    Create Question paper
+                                                        </button>
+
+                                                        {{--<a href="{{ URL::route('examination.amw.create') }}" class="btn btn-default" data-toggle="modal" data-target="#CreateModal" data-placement="left" title="Show" href="#">Create Q P</a>--}}
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+
                                          <br>
                                            {{ Form::submit('Delete Items', array('class'=>'btn btn-danger', 'id'=>'hide-button', 'style'=>'display:none'))}}
 
@@ -34,16 +55,21 @@
                                       @foreach($datas as $prepare_question_paper_amw)
                                             <tr>
                                                 <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $prepare_question_paper_amw['id'] }}"></td>
-                                                <td>{{$prepare_question_paper_amw->title}} </td>
+
+                                                <td> {{ HTML::linkAction('ExmAmwController@index', $prepare_question_paper_amw->title) }} </td>
                                                 <td>{{$prepare_question_paper_amw->deadline}}</td>
                                                 <td>{{$prepare_question_paper_amw->relCourseManagement->relCourse->relSubject->relDepartment->title}}</td>
                                                 <td>{{$prepare_question_paper_amw->relCourseManagement->relYear->title }} </td>
                                                 <td>{{$prepare_question_paper_amw->relCourseManagement->relSemester->title}}</td>
-                                                <td> Mr. </td>
+                                                <td> </td>
+                                                {{--<td>{{ $prepare_question_paper_amw->relUser->relUserProfile->first_name.' '.$prepare_question_paper_amw->relUser->relUserProfile->middle_name.' '.$prepare_question_paper_amw->relUser->relUserProfile->last_name }}</td>--}}
                                                 <td>
                                                    <a href="{{ URL::route('examination.amw.viewQuestion', ['id'=>$prepare_question_paper_amw->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#ViewQuestionPaperModal" data-placement="left" title="Show" href="#">View</a>
                                                    <a href="{{ URL::route('examination.amw.editQuestionPaper', ['id'=>$prepare_question_paper_amw->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#edit_amw_QuestionPapermodal" data-placement="left" title="Edit" href="#">Edit</a>
-                                                   <a class="btn btn-default" href="{{ action('ExmAmwController@assignTo') }}">Assign</a>
+                                                   <a href="{{ URL::to('examination/amw/index') }}" class="btn btn-default" data-toggle="modal" data-target="#edit_amw_QuestionPapermodal" data-placement="left" title="Edit" href="#">VQs</a>
+                                                   <a href="{{ URL::to('examination/amw/index') }}" class="btn btn-default" >AAF</a>
+                                                   <a href="{{ URL::to('examination/amw/index') }}" class="btn btn-default" >AF</a>
+
                                                 </td>
                                             </tr>
                                       @endforeach

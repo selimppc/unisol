@@ -3,19 +3,29 @@
 
                 $exm_exam_list_id = ExmExamList::lists('title', 'id');
 
+                $course_name = Course::lists('title','id');
+
 
             ?>
 
             {{--$course_management_id = CourseManagement::lists('title', 'id');--}}
 
+             {{--$assign_to = UserProfile::lists('first_name'.'middle_name'.'last_name' ,'id');--}}
+
             <div class="form-group">
-                   {{ Form::label('exm_exam_list_id', 'Exam Name') }}
+                   {{ Form::label('exm_exam_list_id', 'Name of Examination ') }}
                    {{ Form::select('exm_exam_list_id', $exm_exam_list_id, Input::old('exm_exam_list_id') )}}
             </div>
             <div class="form-group">
                    {{ Form::label('title', 'Title') }}
                    {{ Form::text('title', Input::old('title'), array('class' => 'form-control','required'=>'required')) }}
             </div>
+
+             <div class="form-group">
+                   {{ Form::label('course_name', 'Course Name') }}
+                   {{ Form::select('course_name', $course_name, Input::old('exm_exam_list_id') )}}
+             </div>
+
            <div class="form-group">
                 {{ Form::label('deadline', 'Deadline') }}
                 {{ Form::text('deadline', Input::old('deadline'), array('class' => 'form-control datepicker','required'=>'required')) }}
@@ -25,26 +35,11 @@
                  {{ Form::text('total_marks', Input::old('total_marks'), array('class' => 'form-control','required'=>'required')) }}
            </div>
 
-           {{--<div class="form-group">--}}
-                  {{--{{ Form::label('course_management_id', 'Course Name') }}--}}
-                  {{--{{ Form::select('course_management_id', $courseList, Input::old('course_management_id') )}}--}}
-           {{--</div>--}}
-
-
-
-
-            {{--<div class="form-group">--}}
-                 {{--{{ Form::label('created_by', 'Created by') }}--}}
-                 {{--{{ Form::text('created_by', Input::old('created_by'), array('class' => 'form-control','required'=>'required')) }}--}}
-            {{--</div>--}}
-           {{--<div class="form-group">--}}
-                  {{--{{ Form::label('updated_by', 'Updated By') }}--}}
-                  {{--{{ Form::text('updated_by', Input::old('updated_by'), array('class' => 'form-control','required'=>'required')) }}--}}
-           {{--</div>--}}
             {{--<div class="form-group">--}}
                   {{--{{ Form::label('assign_to', 'Assign To') }}--}}
-                  {{--{{ Form::select('assign_to', Input::old('assign_to'), array('class' => 'form-control','required'=>'required'))}}--}}
+                  {{--{{ Form::select('assign_to',Input::old('assign_to'), array('class' => 'form-control','required'=>'required'))}}--}}
             {{--</div>--}}
+
             {{ Form::submit('Submit', array('class' => 'btn btn-primary')) }}
             <a href="{{URL::to('examination/amw/index')}}" class="btn btn-default">Close </a>
 </fieldset>

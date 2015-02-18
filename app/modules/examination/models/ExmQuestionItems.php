@@ -14,8 +14,11 @@ class ExmQuestionItems extends \Eloquent
         'marks' => 'required',
     );
 
+    public static function getQuestionsName($quesId){
+        $data = ExmQuestion::find($quesId);
+        return $data->title;
 
-
+    }
 
     public function validate($data)
     {
