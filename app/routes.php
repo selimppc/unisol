@@ -16,6 +16,8 @@ Route::get('/hellow','TestController@index');
 
 Route::get('/logs','HomeController@logs');
 
+Route::get('/test-search','HomeController@testSearch');
+
 //Route::get('/logs', function(){
 //    throw new RuntimeException('Hello');
 //    return View::make('error.missing');

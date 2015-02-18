@@ -4,8 +4,13 @@ class AcmAcademic extends \Eloquent
     protected $fillable = [];
     protected $table = 'acm_academic';
 
+    public function relAcmMarksDistribution()
+    {
+        return $this->belongsTo('AcmMarksDistribution','acm_marks_distribution_id','id');
+    }
 
-//    validation for save_marksdist_item_class_data method
+//validation for save_marksdist_item_class_data method
+
     private $errors;
     // 1 Create data validation
     private $rules = array(

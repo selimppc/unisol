@@ -71,7 +71,6 @@ Route::any('academic/faculty/course/marksdistitem/show/{cm_id}',[
 Route::post('academic/faculty/marks/distribution/save',
     'AcmFacultyController@save_acm_marks_distribution_data'
 );
-
 Route::any('academic/faculty/marksdist/show/{course_id}',[
     'as' => 'marksdistfind.show',
     'uses'=> 'AcmFacultyController@find_marksdist_info'
@@ -84,9 +83,16 @@ Route::post('academic/faculty/marksdist/acmmarksdistdelete/ajax',
     'AcmFacultyController@ajax_delete_acm_marks_dist'
 );
 //******************Faculty marksdistribution item class***********
-Route::get('academic/faculty/marksdistitem/class',
+//Route::any('academic/faculty/marksdistitem/class/{md_id}',
+//    'AcmFacultyController@class_index'
+//);
+Route::any('academic/faculty/marksdistitem/class',
     'AcmFacultyController@class_index'
 );
+Route::any('academic/faculty/marksdistitem/class/show/{md_id}',[
+    'as' => 'marksdistinfo.show',
+    'uses'=> 'AcmFacultyController@find_marksdist_item_info'
+]);
 Route::post('academic/faculty/marksdistitem/class/save',
     'AcmFacultyController@save_marksdist_item_class_data'
 );

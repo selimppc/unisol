@@ -39,7 +39,7 @@
 
         <tbody class="acm_marks_dist_list">
 
-        {{ Form::text('course_management_id', $datas->id, ['class'=>'form-control course_management_id'])}}
+        {{ Form::hidden('course_management_id', $datas->id, ['class'=>'form-control course_management_id'])}}
         {{ Form::hidden('course_type_id', $datas->course_type_id, ['class'=>'form-control course_type'])}}
         <?php $counter = 0;?>
         @foreach($course_result as $key=>$value)
@@ -89,11 +89,13 @@
                 <td>{{ Form::radio('isAttendance[]', $counter, ($value->is_attendance) ? $value->is_attendance : Input::old('isAttendance'.$key)) }}</td>
                 <td>
                     @if(isset($value->isMarksId))
-                        {{ Form::select('policy_id[]', array(''=>'Select Option','1' => 'Attendance', '2' => 'Best One','3'=>'Average','4'=>'Average of Top N','5' => 'Sum','6' => 'Single'), $value->acm_marks_policy_id, array('class' => 'form-control','required'=>'required'))}}
+                        {{ Form::select('policy_id[]', array(''=>'Select Option','1' => 'Attendance', '2' => 'Best One','3'=>'Average','4'=>'Average of Top N','5' => 'Sum','6' => 'Single'), $value->acm_marks_policy, array('class' => 'form-control','required'=>'required'))}}
                     @else
-                        {{ Form::select('policy_id[]', array(''=>'Select Option','1' => 'Attendance', '2' => 'Best One','3'=>'Average','4'=>'Average of Top N','5' => 'Sum','6' => 'Single'), '', array('class' => 'form-control','required'=>'required'))}}
+                        {{ Form::select('policy_id[]', array(''=>'Select Option','attendance' => 'Attendance', 'best_one' => 'Best One','avarage'=>'Average','avarage_top_n'=>'Average of Top N','sum' => 'Sum','single' => 'Single'), '', array('class' => 'form-control','required'=>'required'))}}
                     @endif
                     {{--Auth::user()->id--}}
+
+
                 </td>
 
                 {{--Ajax delete if find faculty created_by and auth id=2--}}
