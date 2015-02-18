@@ -94,7 +94,7 @@ return array(
     'CreateAcmMarksPolicyTable' => $baseDir . '/app/database/migrations/bak/2015_01_15_000106_create_acm_marks_policy_table.php',
     'CreateAdmissionBillingRl' => $baseDir . '/app/database/migrations/2015_02_16_07_create_admission_billing_rl.php',
     'CreateApplicantManagementRl' => $baseDir . '/app/database/migrations/2015_02_02_05_create_applicant_management_rl.php',
-    'CreateClassScheduleRl' => $baseDir . '/app/database/migrations/2015_02_18_104346_create_class_schedule_rl.php',
+    'CreateClassScheduleRl' => $baseDir . '/app/database/migrations/2015_02_18_09_create_class_schedule_rl.php',
     'CreateCourseManagementRl' => $baseDir . '/app/database/migrations/2015_02_01_02_create_course_management_rl.php',
     'CreateCourseManagementTable' => $baseDir . '/app/database/migrations/bak/2015_01_14_000103_create_course_management_table.php',
     'CreateCourseTable' => $baseDir . '/app/database/migrations/bak/2014_12_15_000005_create_course_table.php',
