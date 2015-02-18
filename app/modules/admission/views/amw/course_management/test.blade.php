@@ -1,3 +1,4 @@
+<?print_r($model);?>
 @foreach($model as $value)
     Course Management ID: {{ $value->id }} <br>
     Degree Title: {{ $value->relDegree->title }} <br>

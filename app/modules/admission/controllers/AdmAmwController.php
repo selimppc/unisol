@@ -18,7 +18,6 @@ class AdmAmwController extends \BaseController {
 	}
 
 	public function create()
-
 	{
         $role_id = Role::where('title', '=','faculty' )->first()->id;
         $facultyList = array('' => 'Please Select One') +  User::where('role_id', '=', $role_id)->lists('username', 'id');
@@ -129,19 +128,34 @@ class AdmAmwController extends \BaseController {
         $search_semester_id =Input::get('search_semester');
         $search_degree_id =Input::get('search_degree');
         $search_year_id =Input::get('search_year');
-        echo "Department_id ".$search_department_id."<br>";
+        /*echo "Department_id ".$search_department_id."<br>";
         echo "Degree_id ".$search_degree_id."<br><br>";
+        echo "semester_id ".$search_semester_id."<br><br>";
+        echo "year_id ".$search_year_id."<br><br>";*/
 
         $model = CourseManagement::with([
             'relDegree' => function($query) use($search_department_id){
-                $query->where('department_id', $search_department_id);
-            }])
-            ->where('semester_id', 'LIKE', '%'.$search_semester_id.'%')
-            ->where('year_id', 'LIKE', '%'.$search_year_id.'%')
-            ->where('degree_id', 'LIKE', '%'.$search_degree_id.'%')
-            ->get();
+                if(isset($search_department_id))
+                    $query->where('department_id', $search_department_id);
+            }]);
+        /*if(isset($search_department_id) && !empty($search_department_id)) {
+            #echo($search_department_id.'fdfdf');exit;
+            $model->join('relDegree', 'department_id', '=','relDegree.department_id');
+            $model->where('relDegree.department_id', '=', '%' . $search_department_id . '%');
+            #print_r($model->toSql());exit;
+        }*/
 
-        //print_r($model);exit;
+        if(isset($search_semester_id) && !empty($search_semester_id))
+            $model->where('semester_id', '=', $search_semester_id);
+        if(isset($search_semester_id) && !empty($search_semester_id))
+            $model->where('year_id', '=', $search_year_id);
+        if(isset($search_degree_id) && !empty($search_degree_id))
+            $model->where('degree_id', '=', $search_degree_id);
+
+
+        $model->get();
+        dd(DB::getQueryLog($model));
+        #print_r($model->toSql);exit;
 
 
         $semester = array('' => 'Select Semester ') +  Semester::lists('title', 'id');
@@ -151,8 +165,8 @@ class AdmAmwController extends \BaseController {
         $department = array('' => 'Select Department ') + Department::lists('title','id');
 
 
-        return View::make('admission::amw.course_management.index', compact('model','semester','department','course','degree','year'));
-        //return View::make('admission::amw.course_management.test', compact('model'));
+        //return View::make('admission::amw.course_management.index', compact('model','semester','department','course','degree','year'));
+        return View::make('admission::amw.course_management.test', compact('model'));
 
     }
 
