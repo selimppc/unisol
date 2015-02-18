@@ -3,7 +3,7 @@
     @include('academic::_sidebar')
 @stop
 @section('content')
-    <h4>{{$title}}</h4>
+    {{--<h4>{{$title}}</h4>--}}
 
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addClass">Add Class</button>
 
@@ -60,8 +60,7 @@
                     {{ Form::close() }}
                 </div>
                 <div class="modal-footer">
-                    {{ Form::submit('Submit', array('class'=>'btn btn-primary')) }}
-                    <a href="{{URL::to('academic/faculty/marksdistitem/class')}}" class="btn btn-default">Close </a>
+
                 </div>
             </div>
         </div>

@@ -16,5 +16,9 @@
         <div>{{ Form::label('imagename', 'Upload File') }}</div>
         <div>{{Form::file('images[]', ['multiple' => true], ['class'=>'form-control'])}}</div>
         </div>
+        <div>
+        {{ Form::submit('Submit', array('class'=>'btn btn-primary')) }}
+        <a href="{{URL::to('academic/faculty/marksdistitem/class')}}" class="btn btn-default">Close </a></div>
+
 
 

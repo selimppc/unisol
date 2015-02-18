@@ -45,15 +45,20 @@
                             <a href="{{ action('AcmFacultyController@index') }}">Courses</a> <span class="label label-success"></span>
                         </td>
                     </tr>
+                    @if(isset($data))
+                        @foreach($data as $key => $value)
+                            <tr>
+                                <td>{{$value['relCourse']['title']}}</td>
+                            </tr>
+                        @endforeach
+                    @endif
 
                     @if(isset($config_data))
                         @foreach($config_data as  $dkey => $dvalue)
                             <tr>
                                 <td>
-                                    <?php $check_array = array(1,2,3,4,10); ?>
-
-                                    @if(in_array($dvalue['relAcmMarksDistItem']['id'], $check_array))
-                                        <a href=""> {{$dvalue['relAcmMarksDistItem']['title']}}</a>
+                                    <?php $check_array = array(1,2,3,4,5); ?>
+                                    @if(in_array($dvalue['relAcmMarksDistItem']['id'], $check_array))<a href="{{ URL::to('academic/faculty/marksdistitem/class')  }}">{{$dvalue['relAcmMarksDistItem']['title']}}</a>
                                     @else
                                         {{$dvalue['relAcmMarksDistItem']['title']}}
                                     @endif
