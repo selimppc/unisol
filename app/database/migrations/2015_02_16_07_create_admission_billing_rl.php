@@ -29,6 +29,12 @@ class CreateAdmissionBillingRl extends Migration {
             $table->foreign('department_id')->references('id')->on('department');
         });
 
+        Schema::table('course_management', function($table) {
+            $table->foreign('degree_id')->references('id')->on('degree');
+        });
+
+
+
         Schema::create('billing_item', function(Blueprint $table) {
             $table->increments('id');
             $table->string('title', 128);
@@ -163,6 +169,7 @@ class CreateAdmissionBillingRl extends Migration {
 	public function down()
 	{
         Schema::drop('degree');
+        Schema::drop('course_management');
         Schema::drop('billing_item');
         //Schema::drop('waiver');
         Schema::drop('degree_waiver');
