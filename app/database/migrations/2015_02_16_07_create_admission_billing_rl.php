@@ -113,6 +113,19 @@ class CreateAdmissionBillingRl extends Migration {
         Schema::table('applicant', function($table) {
             $table->foreign('degree_id')->references('id')->on('degree');
         });
+
+        Schema::create('degree_program', function($table) {
+            $table->increments('id');
+            $table->string('code', 128);
+            $table->string('title', 128);
+            $table->string('description');
+            $table->integer('created_by', false, 11);
+            $table->integer('updated_by', false, 11);
+            $table->timestamps();
+            $table->engine = 'InnoDB';
+        });
+
+
 	}
 
 	public function down()
@@ -125,6 +138,7 @@ class CreateAdmissionBillingRl extends Migration {
         Schema::drop('billing_schedule');
         Schema::drop('billing_details');
         Schema::drop('applicant');
+        Schema::drop('degree_program');
 	}
 
 }

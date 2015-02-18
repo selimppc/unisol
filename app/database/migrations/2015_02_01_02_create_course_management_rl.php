@@ -55,7 +55,7 @@ class CreateCourseManagementRl extends Migration {
         });*/
 
         // TODO : This table seed will be after removing of degree_program table
-        Schema::create('degree_program', function($table) {
+        /*Schema::create('degree_program', function($table) {
             $table->increments('id');
             $table->string('code', 128);
             $table->string('title', 128);
@@ -64,7 +64,7 @@ class CreateCourseManagementRl extends Migration {
             $table->integer('updated_by', false, 11);
             $table->timestamps();
             $table->engine = 'InnoDB';
-        });
+        });*/
 
 
         Schema::create('subject', function(Blueprint $table)
@@ -159,7 +159,7 @@ class CreateCourseManagementRl extends Migration {
         Schema::drop('semester');
         Schema::drop('course_type');
         //Schema::drop('degree_level');
-        Schema::drop('degree_program');
+        //Schema::drop('degree_program');
         Schema::drop('subject');
         Schema::drop('course');
         //Schema::drop('evolution_system');
