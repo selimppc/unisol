@@ -58,6 +58,11 @@ class CreateClassScheduleRl extends Migration {
             $table->foreign('acm_class_room_id')->references('id')->on('acm_class_room');
         });
 
+
+        Schema::table('acm_academic', function($table) {
+            $table->foreign('acm_class_schedule_id')->references('id')->on('acm_class_schedule');
+        });
+
 	}
 
 
@@ -66,6 +71,7 @@ class CreateClassScheduleRl extends Migration {
         Schema::drop('acm_class_time');
         Schema::drop('acm_class_room');
         Schema::drop('acm_class_schedule');
+        Schema::drop('acm_academic');
 	}
 
 }
