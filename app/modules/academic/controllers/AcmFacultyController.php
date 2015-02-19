@@ -27,7 +27,6 @@ class AcmFacultyController extends \BaseController {
 		$config_data = AcmMarksDistribution::with('relAcmMarksDistItem', 'relCourseManagement.relCourse')
 			->where('course_management_id', '=', $cm_id)
 			->get();
-
 		return View::make('academic::faculty.mark_distribution_courses.show')->with(['data'=>$data,
 			'config_data'=>$config_data]);
 	}
@@ -143,7 +142,7 @@ class AcmFacultyController extends \BaseController {
 							$acm_config->course_type_id = $course_type_id;
 							$acm_config->acm_marks_dist_item_id = $acm_item_id[$i];
 							$acm_config->save();
-							// $attendance_id = $acm_config->id;//to get last inserted id
+							//$attendance_id = $acm_config->id;//to get last inserted id
 						}
 					}
 				}
@@ -155,7 +154,6 @@ class AcmFacultyController extends \BaseController {
 						$marks_dist->readonly = 1;
 				}
 			}
-			// $marks_dist->acm_attendance_config_id = $attendance_id;
 
 			// Assign created_by and updated_by user id
 			if( isset($created_by_amw) && isset($created_by_amw[$i]) )
@@ -165,8 +163,9 @@ class AcmFacultyController extends \BaseController {
 			else
 				$marks_dist->updated_by = Auth::user()->id;
 
+			//$marks_dist->acm_attendance_config_id = $attendance_id;
 			$marks_dist->save();
-
+			//$acm_config->acm_attendance_config_id->save($marks_dist);
 		}
 
 		// redirect
@@ -179,10 +178,7 @@ class AcmFacultyController extends \BaseController {
 		if(Request::ajax())
 		{
 			$acm_marks_distribution_id = Input::get('acm_marks_distribution_id');
-
-
 			$data = AcmMarksDistribution::find($acm_marks_distribution_id);
-
 			if($data->delete())
 				return Response::json(['msg'=> 'Data Successfully Deleted']);
 			else
@@ -206,35 +202,38 @@ class AcmFacultyController extends \BaseController {
 	public function save_marksdist_item_class_data()
 	{
 		$data = Input::all();
-		$file =Input::get('file');
-		$datas = new AcmAcademic();
-		$data = new AcmAcademicDetails();
-
+		$file =Input::file('file');
+    	$datas = new AcmAcademic();
+     //	$academic_data = new AcmAcademicDetails();
 		// attempt validation
 		if ($datas->validate($data)) {
 			$datas->title = Input::get('title');
 			$datas->description = Input::get('description');
 			$datas->created_by = Auth::user()->id;
+			//multiple file upload
+//			if(isset($file))
+//			{
+//				$destinationPath = public_path() . '/file/item_class/photos/';
+//				$thumbsDir = public_path() . '/file/item_class/thumbs/';
+//				$filename = $file->getClientOriginalName();
+//				$imageName = time('d-m-y').'_'.$filename;
+//				$upload_success = Input::file('file')->move($destinationPath, $imageName);
+//				if ($upload_success) {
+//					// resizing an uploaded file
+//					Image::make($destinationPath . $imageName)->resize(100, 100)->save($thumbsDir . "thumbs_" . $imageName);
+//					$data = new AcmAcademicDetails;
+//					$data->created_by = Auth::user()->id;
+//					$data->file = $imageName;
+//					$data->save();
+//					return Response::json('success', 200);
+//				}
+//				else
+//				{
+//					return Response::json('error', 400);
+//				}
+//
+//			}
 			$datas->save();
-
-			if(isset($file))
-			{
-
-				//$attendance_id = $acm_config->id;//to get last inserted id
-			}
-			// create new product and save it
-			$product = new Product;
-			$product->name = "Product 1";
-			$product->description = "Description 1";
-			$product->save();
-
-// create new brand and save it
-			$brand = new Brand;
-			$brand->name = "Brand 1";
-			$brand->save();
-
-// now add the product to the brand's list of products it owns
-			$brand->products()->save($product);
 			// redirect
 			Session::flash('message', 'Successfully Added!');
 			return Redirect::to('academic/faculty/marksdistitem/class');
@@ -245,6 +244,7 @@ class AcmFacultyController extends \BaseController {
 			return Redirect::to('academic/faculty/marksdistitem/class');
 		}
 	}
+
 
 
 }
