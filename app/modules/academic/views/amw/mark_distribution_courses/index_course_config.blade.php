@@ -67,9 +67,7 @@
 @stop
 
 {{--amw ajax delete in popup--}}
-
 @section('script_section')
-
     <script>
         function deleteNearestTr(getId, acmId)
         {
