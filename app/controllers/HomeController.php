@@ -122,6 +122,10 @@ class HomeController extends BaseController {
         $sem_id = 1;
         $yr_id = 4;
 
+        $user_id = 3;
+
+        print_r(User::FacultyList());exit;
+
         $model = CourseManagement::join('Degree', function($query) use($dept_id)
         {
             $query->on('degree.id', '=', 'course_management.degree_id');
