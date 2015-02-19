@@ -17,26 +17,25 @@
         </thead>
         <tbody>
 
-        {{--@foreach ($datas as $value)--}}
-            {{--<tr>--}}
+        @foreach ($datas as $value)
+            <tr>
         {{--link in blade page :--}}
         {{--{{ HTML::linkAction('method', 'name', ['id' => 1], ['class' => 'abc']) }}--}}
         {{--{{ HTML::linkAction('UserController@logout', 'Logout') }}--}}
+        {{--{{ HTML::linkRoute( 'users.delete', 'Delete' , [ 'id' => $user->id ]) }}--}}
 
-                {{--<td><a href="{{ URL::route('coursemarksdist.show', ['cm_id'=>$value->id])  }}" class="btn btn-link">{{$value->relCourse->title}}</a></td>--}}
-                {{--<td>{{$value->relCourse->relSubject->relDepartment->title}}</td>--}}
-                {{--<td>{{$value->relYear->title}}</td>--}}
-                {{--<td>{{$value->relSemester->title}}</td>--}}
-                {{--<td>{{ AcmMarksDistribution::getMarksDistItemStatus($value->id, $value->relCourse->evaluation_total_marks) }}</td>--}}
+                <td>{{$value->title}}</td>
+                <td>{{$value->description}}</td>
+                <td>{{$value->status}}</td>
+                <td></td>
 
-                {{--<td>--}}
-                    {{--<a href="{{ URL::route('marksdistfind.show', ['course_id'=>$value->course_id])  }}" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#marksDist" data-toggle="tooltip" data-placement="left" title="Mark/Dist" href="">MarksDist</a>--}}
+                <td>
+                    <a href="" class="subEdit btn btn-xs btn-default" data-toggle="modal" data-target="#edit-modal" href="" ><span class="glyphicon glyphicon-edit text-info"></span></a>
 
-                    {{--<a href="{{ URL::route('marksdist.show', ['cm_id'=>$value->id])  }}" class="btn btn-success" data-toggle="modal" data-target="#showMarksDist" data-toggle="tooltip" data-placement="left" title="Show/View" href="">View Dist</a>--}}
-
-                {{--</td>--}}
-            {{--</tr>--}}
-        {{--@endforeach--}}
+                    <a href="" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" href=""><span class="glyphicon glyphicon-list-alt text-info"></span></a>
+                </td>
+            </tr>
+        @endforeach
 
         </tbody>
 

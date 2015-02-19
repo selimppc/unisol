@@ -190,31 +190,26 @@ class AcmFacultyController extends \BaseController {
 		}
 	}
 	//*******marks distribution item class************
-//	public function class_index($md_id)
-//	{
-//		$data= CourseManagement::with('relYear', 'relSemester', 'relCourse', 'relCourse.relSubject.relDepartment')
-//			  ->where('id', '=', $md_id)
-//			  ->get();
-//		$config_data = AcmMarksDistribution::with('relAcmMarksDistItem', 'relCourseManagement.relCourse')
-//			        ->where('course_management_id', '=', $md_id)
-//		        	->get();
-//		return View::make('academic::faculty.mark_distribution_courses.marks_dist_item_class.index')->with(['data'=>$data,
-//			'config_data'=>$config_data]);
-//	}
-	public function class_index()
+	public function class_index($marks_dist_id,$course_management_id)
 	{
-		return View::make('academic::faculty.mark_distribution_courses.marks_dist_item_class.index');
-	}
-	public function find_marksdist_item_info($md_id)
-	{
-
+		$title = 'Course List';
+		$datas = AcmAcademic::orderBy('id', 'ASC')->paginate(5);
+		$data= CourseManagement::with('relYear', 'relSemester', 'relCourse', 'relCourse.relSubject.relDepartment')
+			->where('id', '=', $course_management_id)
+			->get();
+		$config_data = AcmMarksDistribution::with('relAcmMarksDistItem', 'relCourseManagement.relCourse')
+			->where('course_management_id', '=', $course_management_id)
+			->get();
+		return View::make('academic::faculty.mark_distribution_courses.marks_dist_item_class.index', compact('title', 'datas', 'config_data','data'));
 	}
 
 	public function save_marksdist_item_class_data()
 	{
 		$data = Input::all();
-		// create a new model instance
+		$file =Input::get('file');
 		$datas = new AcmAcademic();
+		$data = new AcmAcademicDetails();
+
 		// attempt validation
 		if ($datas->validate($data)) {
 			$datas->title = Input::get('title');
@@ -222,6 +217,24 @@ class AcmFacultyController extends \BaseController {
 			$datas->created_by = Auth::user()->id;
 			$datas->save();
 
+			if(isset($file))
+			{
+
+				//$attendance_id = $acm_config->id;//to get last inserted id
+			}
+			// create new product and save it
+			$product = new Product;
+			$product->name = "Product 1";
+			$product->description = "Description 1";
+			$product->save();
+
+// create new brand and save it
+			$brand = new Brand;
+			$brand->name = "Brand 1";
+			$brand->save();
+
+// now add the product to the brand's list of products it owns
+			$brand->products()->save($product);
 			// redirect
 			Session::flash('message', 'Successfully Added!');
 			return Redirect::to('academic/faculty/marksdistitem/class');
