@@ -87,7 +87,7 @@
 </tr>
 </thead>
 <tbody>
-{{$model}}
+{{--{{$model}}--}}
       @foreach($model as $value)
           <tr>
                <td>{{ $value->relCourse->title }}</td>
