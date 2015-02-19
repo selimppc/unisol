@@ -44,6 +44,12 @@ class DatabaseSeeder extends Seeder {
 
         $this->call('BillingScheduleTable');
         $this->command->info('Billing Schedule table seeded!');
+
+        $this->call('ClassTimeTable');
+        $this->command->info('Class Time table seeded!');
+
+        $this->call('ClassRoomTable');
+        $this->command->info('Class Room table seeded!');
 	}
 
 }
