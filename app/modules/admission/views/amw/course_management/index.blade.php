@@ -90,24 +90,20 @@
 {{--{{$model}}--}}
       @foreach($model as $value)
 
-      {{--{{ Course::where('id', '=', $value->course_id)->first()->title; }}--}}
+
           <tr>
-          <td>{{ Course::where('id', '=', $value->course_id)->first()->title; }}</td>
-          <td>{{ Degree::where('id','=',$value->deg_id)->first()->title;}}</td>
-
-
-               <td>{{ strtoupper($value->major_minor) }}</td>
-               <td>{{ Department::where('id', '=', $value->dept_id)->first()->title }}</td>
-               <td>{{Year::where('id', '=', $value->yr_id)->first()->title;  }}</td>
-               <td>{{ Semester::where('id', '=', $value->sem_id)->first()->title; }}</td>
-
-               <td>{{ $value->relUser->relUserProfile->first_name.' '.$value->relUser->relUserProfile->last_name }}</td>
-
-               <td>
-                   <a href="{{ URL::to('course_manage/show/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal"><span class="glyphicon glyphicon-eye-open text-danger"></span></a>
-                   <a class="btn btn-xs btn-default" href="{{ URL::to('course_manage/edit/'.$value->id) }}" data-toggle="modal" data-target="#editModal" ><span class="glyphicon glyphicon-edit"></span></a>
+          <td>{{ $value->relCourse->title }}</td>
+          <td>{{ $value->relDegree->title}}</td>
+          <td>{{ strtoupper($value->major_minor) }}</td>
+          <td>{{  $value->relCourse->relSubject->relDepartment->title }}</td>
+          <td>{{ $value->relYear->title }}</td>
+          <td>{{ $value->relSemester->title }}</td>
+          <td>{{ $value->relUser->relUserProfile->first_name.' '.$value->relUser->relUserProfile->last_name }}</td>
+          <td>
+               <a href="{{ URL::to('course_manage/show/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal"><span class="glyphicon glyphicon-eye-open text-danger"></span></a>
+               <a class="btn btn-xs btn-default" href="{{ URL::to('course_manage/edit/'.$value->id) }}" data-toggle="modal" data-target="#editModal" ><span class="glyphicon glyphicon-edit"></span></a>
                    {{--<a data-href="" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><span class="glyphicon glyphicon-trash text-danger"></span></a>--}}
-               </td>
+          </td>
 
             {{--{{ $value->relCourse->title }}--}}
           </tr>
@@ -120,7 +116,7 @@
 
 {{--------Pagination Link--------------------------}}
 <div class="pull-right paginate-button">
-    {{$model->links()}}
+    {{$model->links();}}
 </div>
 
 
