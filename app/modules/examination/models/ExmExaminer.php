@@ -6,7 +6,6 @@ class ExmExaminer extends \Eloquent
 
     private $errors;
 
-
     private $rules = array(
 
 //        'title'  => 'required',

@@ -322,7 +322,14 @@ class ExmAmwController extends \BaseController {
 
     public function examiners(){
         $examiners_home = ExmExaminer::orderBy('id', 'DESC')->paginate(15);
-        return View::make('examination::amw.prepare_question_paper.examiners',compact('examiners_home'));
+
+        $role_id = Role::where('title', '=', 'faculty')->first()->id;
+        $user_id = User::where('role_id', '=', $role_id)->first()->id;
+
+        $user_profile = UserProfile::where('user_id', '=', $user_id)->first()->first_name;
+
+
+        return View::make('examination::amw.prepare_question_paper.examiners',compact('examiners_home','role_id','facultyList','user_profile'));
     }
 
     public function addExaminers(){

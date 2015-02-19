@@ -136,4 +136,11 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         return $this->hasOne('UserSupportingDoc');
     }
 
+
+    public function scopeFullName($query , $user_id){
+        $result = UserProfile::select(DB::raw('CONCAT(first_name, " ", last_name) AS full_name'))
+                ->where('user_id', '=', $user_id)
+                ->first()->full_name;
+        return $result;
+    }
 }

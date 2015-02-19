@@ -15,4 +15,5 @@ class UserProfile extends Eloquent {
 
 
 
+
 }
