@@ -13,7 +13,7 @@ class CreateAcmAcademicRl extends Migration {
             $table->unsignedInteger('acm_marks_distribution_id')->nullable();
             $table->string('title', 128);
             $table->text('description');
-            $table->dateTime('deadline');
+            $table->unsignedInteger('acm_class_schedule_id')->nullable();
             $table->tinyInteger('status', false, 1);
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
