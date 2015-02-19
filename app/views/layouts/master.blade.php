@@ -87,7 +87,7 @@
                      <i class="icon-user"></i> Admission <i class="caret"></i>
               </a>
                <ul class="dropdown-menu">
-                    <li><a tabindex="-1" a href=""> Admission </a></li>
+                    <li><a tabindex="-1" a href="{{URL::to('course_manage/amw') }}"> Course Management(Amw) </a></li>
 
                </ul>
           </li>
