@@ -151,7 +151,7 @@ class AdmAmwController extends \BaseController {
         //var_dump( DB::getQueryLog() );
 
         //print_r($model);
-        // exit;
+        //exit;
 
         $semester = array('' => 'Select Semester ') +  Semester::lists('title', 'id');
         $year = array('' => 'Select Year ') +  Year::lists('title', 'id');

@@ -93,10 +93,10 @@
           <tr>
           <td>{{ Course::where('id', '=', $value->course_id)->first()->title; }}</td>
                <td>{{ Degree::where('id','=',$value->deg_id)->first()->title;}}</td>
-               {{--<td>{{ Degree::where('id','=',$value->dep_id)->first()->title }}</td>--}}
-               
+
+
                <td>{{ strtoupper($value->major_minor) }}</td>
-               <td></td>
+               <td>{{ Department::where('id','=',$value->dep_id)->first()->title }}</td>
 
                <td>{{Year::where('id', '=', $value->yr_id)->first()->title;  }}</td>
                <td>{{ Semester::where('id', '=', $value->sem_id)->first()->title; }}</td>
