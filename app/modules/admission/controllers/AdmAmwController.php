@@ -124,24 +124,34 @@ class AdmAmwController extends \BaseController {
 
     public function search(){
 
-        $search_department_id =Input::get('search_department');
-        $search_semester_id =Input::get('search_semester');
-        $search_degree_id =Input::get('search_degree');
-        $search_year_id =Input::get('search_year');
-        /*echo "Department_id ".$search_department_id."<br>";
-        echo "Degree_id ".$search_degree_id."<br><br>";
-        echo "semester_id ".$search_semester_id."<br><br>";
-        echo "year_id ".$search_year_id."<br><br>";*/
+        $dep_id =Input::get('search_department');
+        $semester_id =Input::get('search_semester');
+        $degree_id =Input::get('search_degree');
+        $year_id =Input::get('search_year');
+        echo "Department_id ".$dep_id."<br>";
+        echo "Degree_id ".$degree_id."<br><br>";
+        echo "semester_id ".$semester_id."<br><br>";
+        echo "year_id ".$year_id."<br><br>";
 
-        $model = CourseManagement::with([
-            'relDegree' => function($query) use($search_department_id){
-                if(isset($search_department_id))
-                    $query->where('department_id', $search_department_id);
-            }]);
+        $model = CourseManagement::join('Degree', function($query) use($dep_id)
+        {
+            $query->on('degree.id', '=', 'course_management.degree_id');
+            $query->where('degree.department_id', '=', $dep_id);
+        })
+            ->select(['course_management.semester_id as sem_id', 'course_management.year_id as yr_id',
+                    'course_management.id as cm_id',
+                    'course_management.degree_id as deg_id', 'course_management.major_minor as major_minor',
+                    'course_management.course_id as course_id', 'course_management.user_id as user_id',
+                    'degree.department_id as dept_id', 'degree.title as deg_title' ])
+            ->where('course_management.semester_id','=',$semester_id)
+            ->where('course_management.year_id','=',$year_id)
+            ->where('course_management.degree_id', '=', $degree_id)
+            ->get();
 
-        $model->get();
+        //var_dump( DB::getQueryLog() );
 
-
+        //print_r($model);
+        // exit;
 
         $semester = array('' => 'Select Semester ') +  Semester::lists('title', 'id');
         $year = array('' => 'Select Year ') +  Year::lists('title', 'id');
