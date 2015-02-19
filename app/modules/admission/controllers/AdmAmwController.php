@@ -8,7 +8,7 @@ class AdmAmwController extends \BaseController {
 
 	public function index()
 	{
-        $model = CourseManagement::all();
+        $model = CourseManagement::orderby('id','DESC')->paginate(3);
         $semester = array('' => 'Select Semester ') + Semester::lists('title', 'id');
         $year = array('' => 'Select Year ') + Year::lists('title', 'id');
         $degree = array('' => 'Select Degree ') + Degree::lists('title', 'id');
@@ -19,8 +19,7 @@ class AdmAmwController extends \BaseController {
 
 	public function create()
 	{
-        $role_id = Role::where('title', '=','faculty' )->first()->id;
-        $facultyList = array('' => 'Please Select One') +  User::where('role_id', '=', $role_id)->lists('username', 'id');
+        $facultyList = User::FacultyList();
 
         $courseType =array('' => 'Please Select Course Type') + CourseType::lists('title', 'id');
         $year = array('' => 'Please Select Year') + Year::lists('title', 'id');
@@ -75,8 +74,7 @@ class AdmAmwController extends \BaseController {
 	public function edit($id)
     {
         $course_model = CourseManagement::find($id);
-        $role_id = Role::where('title', '=', 'faculty')->first()->id;
-        $facultyList = User::where('role_id', '=', $role_id)->lists('username', 'id');
+        $facultyList = User::FacultyList();
 
         $courseType = CourseType::lists('title', 'id');
         $year = Year::lists('title', 'id');
@@ -128,10 +126,10 @@ class AdmAmwController extends \BaseController {
         $semester_id =Input::get('search_semester');
         $degree_id =Input::get('search_degree');
         $year_id =Input::get('search_year');
-        echo "Department_id ".$dep_id."<br>";
-        echo "Degree_id ".$degree_id."<br><br>";
-        echo "semester_id ".$semester_id."<br><br>";
-        echo "year_id ".$year_id."<br><br>";
+//        echo "Department_id ".$dep_id."<br>";
+//        echo "Degree_id ".$degree_id."<br><br>";
+//        echo "semester_id ".$semester_id."<br><br>";
+//        echo "year_id ".$year_id."<br><br>";
 
         $model = CourseManagement::join('Degree', function($query) use($dep_id)
         {
@@ -150,8 +148,7 @@ class AdmAmwController extends \BaseController {
 
         //var_dump( DB::getQueryLog() );
 
-        //print_r($model);
-        //exit;
+
 
         $semester = array('' => 'Select Semester ') +  Semester::lists('title', 'id');
         $year = array('' => 'Select Year ') +  Year::lists('title', 'id');
