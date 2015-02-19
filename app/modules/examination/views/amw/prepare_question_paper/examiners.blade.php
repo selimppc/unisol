@@ -44,23 +44,18 @@
                                 <th>Dept</th>
                                 <th>Status</th>
                                 <th>Action</th>
-                                <th>lamsam</th>
-                                <th>jodumodu</th>
-
-                                <th>qq</th>
-                                <th>Action</th>
                              </tr>
                         </thead>
                         <tbody>
                           @foreach($examiners_home as $examiners_list)
                                 <tr>
                                     <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $examiners_list['id'] }}"></td>
-                                     <td> {{ $examiners_list->exm_exam_list_id }} </td>
-                                     <td> {{ $examiners_list->user_id }} </td>
+                                     {{--<td> {{ $examiners_list->exm_exam_list_id }} </td>--}}
+                                     <td> {{ $user_profile }} </td>
                                      <td> {{ $examiners_list->type }} </td>
-                                     <td> {{ $examiners_list->assigned_by }} </td>
-                                     <td> {{ $examiners_list->deadline }} </td>
-                                     <td> {{ $examiners_list->note }} </td>
+                                     {{--<td> {{ $examiners_list->assigned_by }} </td>--}}
+                                     {{--<td> {{ $examiners_list->deadline }} </td>--}}
+                                     {{--<td> {{ $examiners_list->note }} </td>--}}
                                      <td> {{ $examiners_list->status }} </td>
 
                                     <td>

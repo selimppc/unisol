@@ -9,8 +9,8 @@ class CreateClassScheduleRl extends Migration {
 	{
         Schema::create('acm_class_time', function(Blueprint $table) {
             $table->increments('id');
-            $table->dateTime('start_time');
-            $table->dateTime('end_time');
+            $table->time('start_time');
+            $table->time('end_time');
             $table->tinyInteger('is_break', false)->length(1);
             $table->integer('created_by', false)->length(11);
             $table->integer('updated_by', false)->length(11);
