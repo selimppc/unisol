@@ -1,3 +1,5 @@
+{{ HTML::script('assets/js/bootstrap-datepicker.js') }}
+{{ HTML::style('assets/css/datepicker.css')}}
 
 <div class="modal-header">
 
@@ -12,7 +14,7 @@
 
  <div class='form-group'>
         <div>{{ Form::label('degree_id', 'Degree') }}</div>
-        <div>{{ Form::select('degree_id',$degree,Input::old('degree_id'),['class'=>'form-control ']) }}</div>
+        <div>{{ Form::select('degree_id',$degree,Input::old('degree_id'),['class'=>'form-control','required']) }}</div>
  </div>
 
  <div class='form-group'>
@@ -65,18 +67,18 @@
            array('class' => 'form-control')) }}</div>
 </div>
 
+
 <div class='form-group'>
   <div >{{ Form::label('start_date', 'Start date') }}</div >
-  <div >{{ Form::text('start_date', Input::old('start_date'),['class'=>'form-control ','id'=>'datetimepicker1']) }}</div>
+  <div >{{ Form::text('start_date', Input::old('start_date'),['class'=>'form-control ','id'=>'datepicker']) }}</div>
 </div>
 
 <div class='form-group'>
 
    <div >{{ Form::label('end_date', 'End date') }}</div >
-   <div>{{ Form::text('end_date', Input::old('end_date'), array('type' => 'text', 'class' => 'form-control datepicker','placeholder' => 'Pick the date this task should be completed', 'id' => 'date')) }}</div>
+   <div >{{ Form::text('end_date', Input::old('end_date'),['class'=>'form-control ','id'=>'datepicker'])  }}</div>
 
 </div>
-
 
 {{ Form::submit('Save ', array('class'=>'pull-right btn btn-primary')) }}
 
@@ -85,9 +87,10 @@
 </div>
 </div>
 
-{{--<script type="text/javascript">--}}
-            {{--$(function () {--}}
-                {{--$('#datetimepicker1').datetimepicker();--}}
-            {{--});--}}
-        {{--</script>--}}
+{{--<script>--}}
+  {{--$(function() {--}}
+    {{--$( "#datepicker" ).datepicker();--}}
+
+  {{--});--}}
+  {{--</script>--}}
 

@@ -26,7 +26,7 @@ return array(
 	|
 	*/
 
-	'url' => 'http://localhost',
+	'url' => 'http://localhost/unisol',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -82,6 +82,8 @@ return array(
 	'key' => 'Wic4ljV0BxBP5t1qCKRngEWRg5YhqI0z',
 
 	'cipher' => MCRYPT_RIJNDAEL_128,
+
+    'profiler' => true,
 
 	/*
 	|--------------------------------------------------------------------------
