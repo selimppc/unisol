@@ -120,10 +120,12 @@ class AdmAmwController extends \BaseController {
 		//
 	}
 
+
+
     public function search(){
 
-        $dep_id =Input::get('search_department');
-        $semester_id =Input::get('search_semester');
+        $dep_id = Input::get('search_department');
+        $semester_id = Input::get('search_semester');
         $degree_id =Input::get('search_degree');
         $year_id =Input::get('search_year');
 //        echo "Department_id ".$dep_id."<br>";
@@ -137,17 +139,16 @@ class AdmAmwController extends \BaseController {
             $query->where('degree.department_id', '=', $dep_id);
         })
             ->select(['course_management.semester_id as sem_id', 'course_management.year_id as yr_id',
-                    'course_management.id as cm_id',
-                    'course_management.degree_id as deg_id', 'course_management.major_minor as major_minor',
-                    'course_management.course_id as course_id', 'course_management.user_id as user_id',
-                    'degree.department_id as dept_id', 'degree.title as deg_title' ])
+                'course_management.id as cm_id',
+                'course_management.degree_id as deg_id', 'course_management.major_minor as major_minor',
+                'course_management.course_id as course_id', 'course_management.user_id as user_id',
+                'degree.department_id as dept_id', 'degree.title as deg_title' ])
             ->where('course_management.semester_id','=',$semester_id)
             ->where('course_management.year_id','=',$year_id)
             ->where('course_management.degree_id', '=', $degree_id)
             ->get();
 
         //var_dump( DB::getQueryLog() );
-
 
 
         $semester = array('' => 'Select Semester ') +  Semester::lists('title', 'id');
@@ -157,7 +158,7 @@ class AdmAmwController extends \BaseController {
         $department = array('' => 'Select Department ') + Department::lists('title','id');
 
 
-        return View::make('admission::amw.course_management.index', compact('model','semester','department','course','degree','year'));
+        return View::make('admission::amw.course_management.search', compact('model','semester','department','course','degree','year'));
         //return View::make('admission::amw.course_management.test', compact('model'));
 
     }

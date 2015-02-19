@@ -76,7 +76,7 @@
 <div class='form-group'>
 
    <div >{{ Form::label('end_date', 'End date') }}</div >
-   <div >{{ Form::text('end_date', Input::old('end_date'),['class'=>'form-control ','id'=>'datepicker'])  }}</div>
+   <div >{{ Form::text('end_date', Input::old('end_date'),['class'=>'form-control ','id'=>'datepicker1'])  }}</div>
 
 </div>
 
@@ -87,10 +87,12 @@
 </div>
 </div>
 
-{{--<script>--}}
-  {{--$(function() {--}}
-    {{--$( "#datepicker" ).datepicker();--}}
+<script>
+  $(function() {
+    $( "#datepicker" ).datepicker();
 
-  {{--});--}}
-  {{--</script>--}}
+     $( "#datepicker1" ).datepicker();
+
+  });
+  </script>
 

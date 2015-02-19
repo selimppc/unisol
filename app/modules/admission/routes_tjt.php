@@ -67,5 +67,7 @@ Route::any('course_manage/update/{id}','AdmAmwController@update');
 
 Route::any('course_manage/search','AdmAmwController@search');
 
+Route::any('course_manage/search_view','AdmAmwController@cmSearchView');
+
 
 
