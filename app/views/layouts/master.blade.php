@@ -226,11 +226,11 @@
 <!--/.fluid-container-->
 
 {{ HTML::script('assets/js/bootstrap.min.js') }}
-{{HTML::script('assets/js/scripts.js')}}
-{{HTML::script('assets/js/jquery.dataTables.min.js')}}
+{{ HTML::script('assets/js/scripts.js')}}
+{{ HTML::script('assets/js/jquery.dataTables.min.js')}}
 {{ HTML::script('assets/js/jquery.tablesorter.min.js') }}
 {{ HTML::script('assets/js/bootstrap-datepicker.js') }}
-{{HTML::script('assets/js/ratna_script.js')}}
+{{ HTML::script('assets/js/ratna_script.js')}}
 
 @yield('script_section')
 
