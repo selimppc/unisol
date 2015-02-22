@@ -48,8 +48,9 @@
 
 
 <br>
-{{ Form::submit('Search ', array('class'=>'pull-right btn btn-sm btn btn-info')) }}
-
+        {{ Form::submit('Search',['class'=>'pull-right btn btn-sm btn btn-info']) }}
+{{--{{ HTML::linkAction('AdmAmwController@cmSearchView', 'Search') }}--}}
+ {{--<a href="{{URL::to('course_manage/search_view') }} " class="btn btn-default" span class="glyphicon-refresh">Search</a>--}}
     </table>
 
 
@@ -116,7 +117,7 @@
 
 {{--------Pagination Link--------------------------}}
 <div class="pull-right paginate-button">
-    {{$model->links();}}
+    {{$model->links()}}
 </div>
 
 

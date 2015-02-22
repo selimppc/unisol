@@ -51,7 +51,7 @@ Route::any('user/set_cookie', 'UserSignupController@setCookie');
 Route::any('user/get_cookie', 'UserSignupController@getCookie');
 
 
-//-------------------------------- Amw: Course Management-----------------------------------------------
+//-------------------------------- Amw: Course Management starts-----------------------------------------------
 
 Route::any('course_manage/amw','AdmAmwController@index');
 
@@ -67,5 +67,11 @@ Route::any('course_manage/update/{id}','AdmAmwController@update');
 
 Route::any('course_manage/search','AdmAmwController@search');
 
+Route::any('course_manage/search_view','AdmAmwController@cmSearchView');
 
+//------------------------------Amw : Degree Management starts--------------------------------------------
+
+Route::any('degree_manage/amw','AdmAmwController@dgmIndex');
+
+Route::any('degree_manage/create','AdmAmwController@dgmCreate');
 
