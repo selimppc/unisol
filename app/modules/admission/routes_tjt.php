@@ -75,3 +75,8 @@ Route::any('degree_manage/amw','AdmAmwController@dgmIndex');
 
 Route::any('degree_manage/create','AdmAmwController@dgmCreate');
 
+//Route::any('degree_manage/store','AdmAmwController@dgmStore');
+
+Route::any('degree_manage/store', ['as' => 'degree_manage.store','uses' => 'AdmAmwController@dgmStore' ]);
+
+Route::any('degree_manage/show/{id}', ['as' => 'degree_manage.show','uses' => 'AdmAmwController@dgmShow' ]);
