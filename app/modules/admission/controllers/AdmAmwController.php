@@ -29,7 +29,7 @@ class AdmAmwController extends \BaseController {
         $degreeProgram= array('' => 'Please Select DegreeProgram') + DegreeProgram::lists('title', 'id');
 
 
-        return View::make('admission::amw.modals._form', compact('courseType','year','course','semester','user','facultyList','degree','degreeProgram'));
+        return View::make('admission::amw.course_management.modals._form', compact('courseType','year','course','semester','user','facultyList','degree','degreeProgram'));
     }
 
 	public function store()
@@ -67,7 +67,7 @@ class AdmAmwController extends \BaseController {
 	public function show($id)
 	{
         $model = CourseManagement::find($id);
-        return View::make('admission::amw.modals.show',compact('model'));
+        return View::make('admission::amw.course_management.modals.show',compact('model'));
 	}
 
     public function edit($id)
@@ -81,7 +81,7 @@ class AdmAmwController extends \BaseController {
         $semester = Semester::lists('title', 'id');
         $degree = Degree::lists('title', 'id');
         $degreeProgram = DegreeProgram::lists('title', 'id');
-        return View::make('admission::amw.modals.edit', compact('course_model', 'courseType', 'year', 'course', 'semester', 'user', 'facultyList', 'degree', 'degreeProgram'));
+        return View::make('admission::amw.course_management.modals.edit', compact('course_model', 'courseType', 'year', 'course', 'semester', 'user', 'facultyList', 'degree', 'degreeProgram'));
     }
 
     public function update($id)
@@ -136,8 +136,7 @@ class AdmAmwController extends \BaseController {
         if(isset($semester_id) && !empty($semester_id)) $model = $model->where('course_management.semester_id','=',$semester_id);
         if(isset($year_id) && !empty($year_id)) $model = $model->where('course_management.year_id','=',$year_id);
         if(isset($degree_id) && !empty($degree_id)) $model = $model->where('course_management.degree_id', '=', $degree_id);
-        $model = $model->get();
-
+        $model = $model->paginate();
 
 
         $semester = array('' => 'Select Semester ') +  Semester::lists('title', 'id');
@@ -153,6 +152,50 @@ class AdmAmwController extends \BaseController {
 
 //.........................Admission :Degree Management starts here with method prefix-Dgm..................
 
-//public function dgmIn
+   public function dgmIndex(){
+
+       return View::make('admission::amw.degree_management.index');
+   }
+    public function dgmCreate(){
+
+        $department = array('' => 'Select Department ') + Department::lists('title','id');
+        $semester = array('' => 'Select Semester ') +  Semester::lists('title', 'id');
+        $year = array('' => 'Please Select Year') + Year::lists('title', 'id');
+
+        return View::make('admission::amw.degree_management.dgm_modals._form',compact('year','semester','department'));
+    }
+
+    public function dgmStore(){
+
+        $rules = array(
+//            'course_id' => 'required',
+        );
+        $validator = Validator::make(Input::all(), $rules);
+        if ($validator->passes()) {
+
+            $course_model = new CourseManagement();
+
+            $course_model->title = Input::get('title');
+            $course_model->year_id = Input::get('year_id');
+            $course_model->semester_id = Input::get('semester_id');
+            $course_model->course_type_id = Input::get('course_type_id');
+            $course_model->evolution_system = Input::get('evolution_system');
+            $course_model->start_date = Input::get('start_date');
+            $course_model->end_date = Input::get('end_date');
+            $course_model->major_minor = Input::get('major_minor');
+            $course_model->degree_id = Input::get('degree_id');
+            $course_model->user_id = Input::get('user_id');
+
+            if( $course_model->save()){
+                return Redirect::to('course_manage/amw')->with('message', 'Successfully added Information!');
+            }
+        } else {
+            return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
+        }
+
+    }
+
+
+
 
 }

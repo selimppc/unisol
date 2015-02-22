@@ -1,8 +1,3 @@
-{{--{{ HTML::script('assets/js/bootstrap-datepicker.js') }}--}}
-{{--{{ HTML::style('assets/css/datepicker.css')}}--}}
-{{--{{ HTML::script('assets/js/jquery-2.1.1.min.js') }}--}}
-{{--{{ HTML::script('assets/js/jquery-1.11.1.min.js')}}--}}
-{{--{{ HTML::script('assets/js/ratna_script.js')}}--}}
 
 {{--{{ HTML::script('assets/js/bootstrap-datepicker.js') }}--}}
 {{--{{ HTML::style('assets/css/datepicker.css')}}--}}
