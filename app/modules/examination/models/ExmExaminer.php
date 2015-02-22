@@ -6,6 +6,14 @@ class ExmExaminer extends \Eloquent
 
     private $errors;
 
+    public function relExmExamList(){
+        return $this->belongsTo('ExmExamList','exm_exam_list_id','id');
+    }
+
+    public function relUser(){
+        return $this->belongsTo('User','user_id','id');
+    }
+
     private $rules = array(
 
 //        'title'  => 'required',

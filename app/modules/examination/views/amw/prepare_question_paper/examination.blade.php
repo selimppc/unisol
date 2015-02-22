@@ -62,7 +62,8 @@
                                       @foreach($exam_data as $exam_list)
                                             <tr>
                                                 <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $exam_list['id'] }}"></td>
-                                                <td> {{ HTML::linkAction('ExmAmwController@courses', $exam_list->title) }} </td>
+                                                {{--<td> {{ HTML::linkAction('ExmAmwController@courses', $exam_list->title) }} </td>--}}
+                                                <td>{{ HTML::linkAction('ExmAmwController@courses', $exam_list->title, ['mark_dist_item_id'=>$exam_list->relMeta['id'] ])  }} </td>
                                                 <td>{{ $exam_list->relCourseManagement->relCourse->relSubject->relDepartment->title }}</td>
                                                 <td>{{ $exam_list->relCourseManagement->relCourse->title }}</td>
                                                 <td>{{ $exam_list->relMeta['title'] }}</td>

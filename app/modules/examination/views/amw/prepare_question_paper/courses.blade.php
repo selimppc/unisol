@@ -7,7 +7,7 @@
                     {{--{{ Form::open(array('url' => 'examination/amw/batchDelete')) }}--}}
                         <table id="example" class="table table-striped  table-bordered"  >
                                     <thead>
-                                             {{--<strong> Year:</strong>{{ Year::getYearsName($course_data->year_id) }} </br>--}}
+{{--                                             <strong> Year:</strong>{{ $course_data->year_id }} </br>--}}
 
                                              {{--<strong> Semester:</strong>{{ Semester::getSemesterName($course_data->semester_id) }} </br>--}}
 

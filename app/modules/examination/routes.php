@@ -39,7 +39,7 @@ Route::any('examination/amw/updateExamination/{id}', [
 ]);
 
 
-Route::any('examination/amw/courses','ExmAmwController@courses');
+Route::any('examination/amw/courses/{mark_dist_item_id}','ExmAmwController@courses');
 
 Route::any('examination/amw/examiners','ExmAmwController@examiners');
 Route::any('examination/amw/addExaminers','ExmAmwController@addExaminers');
@@ -49,3 +49,4 @@ Route::any('examination/amw/viewExaminers/{id}', [
     'as' => 'examination.amw.viewExaminers',
     'uses' => 'ExmAmwController@viewExaminers'
 ]);
+
