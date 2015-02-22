@@ -5,10 +5,10 @@ class AdmAmwController extends \BaseController {
     function __construct() {
         $this->beforeFilter('admAmw', array('except' => array('index')));
     }
-
+// Admission : Course Management starts here...........................................................
 	public function index()
 	{
-        $model = CourseManagement::orderby('id','DESC')->paginate(3);
+        $model = CourseManagement::orderby('id','DESC')->paginate(5);
         $semester = array('' => 'Select Semester ') + Semester::lists('title', 'id');
         $year = array('' => 'Select Year ') + Year::lists('title', 'id');
         $degree = array('' => 'Select Degree ') + Degree::lists('title', 'id');
@@ -36,7 +36,7 @@ class AdmAmwController extends \BaseController {
 	{
 
         $rules = array(
-//            'national_id' => 'required',
+//            'course_id' => 'required',
         );
         $validator = Validator::make(Input::all(), $rules);
         if ($validator->passes()) {
@@ -70,8 +70,7 @@ class AdmAmwController extends \BaseController {
         return View::make('admission::amw.modals.show',compact('model'));
 	}
 
-
-	public function edit($id)
+    public function edit($id)
     {
         $course_model = CourseManagement::find($id);
         $facultyList = User::FacultyList();
@@ -85,8 +84,7 @@ class AdmAmwController extends \BaseController {
         return View::make('admission::amw.modals.edit', compact('course_model', 'courseType', 'year', 'course', 'semester', 'user', 'facultyList', 'degree', 'degreeProgram'));
     }
 
-
-	public function update($id)
+    public function update($id)
 	{
         $rules = array(
 //            'ever_admit_this_university' => 'required',
@@ -115,21 +113,19 @@ class AdmAmwController extends \BaseController {
         }
 	}
 
-	public function destroy($id)
-	{
-		//
-	}
+//Multiple dropdown filtering..........................................
 
     public function search(){
 
-        $dep_id =Input::get('search_department');
-        $semester_id =Input::get('search_semester');
+        $dep_id = Input::get('search_department');
+        $semester_id = Input::get('search_semester');
         $degree_id =Input::get('search_degree');
         $year_id =Input::get('search_year');
 
         $model = CourseManagement::join('Degree', function($query) use($dep_id)
         {
             $query->on('degree.id', '=', 'course_management.degree_id');
+
             if(isset($dep_id) && !empty($dep_id)) $query->where('degree.department_id', '=', $dep_id);
         });
         $model = $model->select(['course_management.semester_id as sem_id', 'course_management.year_id as yr_id',
@@ -143,21 +139,20 @@ class AdmAmwController extends \BaseController {
         $model = $model->get();
 
 
+
         $semester = array('' => 'Select Semester ') +  Semester::lists('title', 'id');
         $year = array('' => 'Select Year ') +  Year::lists('title', 'id');
         $degree = array('' => 'Select Degree ') + Degree::lists('title', 'id');
         $course = array('' => 'Select Course ') + Course::lists('title', 'id');
         $department = array('' => 'Select Department ') + Department::lists('title','id');
 
-
-        return View::make('admission::amw.course_management.index', compact('model','semester','department','course','degree','year'));
-        //return View::make('admission::amw.course_management.test', compact('model'));
+        return View::make('admission::amw.course_management.search', compact('model','semester','department','course','degree','year'));
 
     }
+// ......................................Admission : Course Management ends ................................
 
+//.........................Admission :Degree Management starts here with method prefix-Dgm..................
 
-    //TODO: course Management
-
-
+//public function dgmIn
 
 }
