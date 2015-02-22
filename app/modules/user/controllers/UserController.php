@@ -20,6 +20,8 @@ class UserController extends \BaseController {
                 $credentials = $this->getLoginCredentials();
                 if (Auth::attempt($credentials)) {
                     //return Redirect::route("user/profile");
+                    Session::put('user_id', Auth::user()->id);
+                    Session::put('username', Auth::user()->username);
                     return Redirect::to("usersign/dashboard");
                 }
                 return Redirect::back()->withErrors([
@@ -52,6 +54,7 @@ class UserController extends \BaseController {
 
     public function logout() {
         Auth::logout();
+        Session::flush(); //delete the session
         return Redirect::to('user/login');
     }
 

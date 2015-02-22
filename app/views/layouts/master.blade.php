@@ -87,7 +87,7 @@
                      <i class="icon-user"></i> Admission <i class="caret"></i>
               </a>
                <ul class="dropdown-menu">
-                    <li><a tabindex="-1" a href=""> Admission </a></li>
+                    <li><a tabindex="-1" a href="{{URL::to('course_manage/amw') }}"> Course Management(Amw) </a></li>
 
                </ul>
           </li>
@@ -226,11 +226,11 @@
 <!--/.fluid-container-->
 
 {{ HTML::script('assets/js/bootstrap.min.js') }}
-{{HTML::script('assets/js/scripts.js')}}
-{{HTML::script('assets/js/jquery.dataTables.min.js')}}
+{{ HTML::script('assets/js/scripts.js')}}
+{{ HTML::script('assets/js/jquery.dataTables.min.js')}}
 {{ HTML::script('assets/js/jquery.tablesorter.min.js') }}
 {{ HTML::script('assets/js/bootstrap-datepicker.js') }}
-{{HTML::script('assets/js/ratna_script.js')}}
+{{ HTML::script('assets/js/ratna_script.js')}}
 
 @yield('script_section')
 

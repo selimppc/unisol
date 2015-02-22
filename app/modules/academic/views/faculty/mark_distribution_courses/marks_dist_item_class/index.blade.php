@@ -3,10 +3,15 @@
     @include('academic::_sidebar')
 @stop
 @section('content')
+    {{--css link--}}
+    {{ HTML::style('assets/css/dropzone/dropzone.css') }}
+
     {{--<h4>{{$title}}</h4>--}}
-
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addClass">Add Class</button>
-
+    {{--<div>--}}
+    {{--{{ Form::text('course_management_id', $data->id, ['class'=>'form-control course_management_id'])}}--}}
+    {{--{{ Form::text('acm_marks_distribution_id',$config_data->id ,['class'=>'form-control'])}}--}}
+    {{--</div>--}}
     <table id="example" class="table table-bordered table-hover table-striped">
         <thead>
         <th>Title</th>
@@ -16,35 +21,26 @@
         <th>Action</th>
         </thead>
         <tbody>
-
-        {{--@foreach ($datas as $value)--}}
-            {{--<tr>--}}
-        {{--link in blade page :--}}
-        {{--{{ HTML::linkAction('method', 'name', ['id' => 1], ['class' => 'abc']) }}--}}
-        {{--{{ HTML::linkAction('UserController@logout', 'Logout') }}--}}
-
-                {{--<td><a href="{{ URL::route('coursemarksdist.show', ['cm_id'=>$value->id])  }}" class="btn btn-link">{{$value->relCourse->title}}</a></td>--}}
-                {{--<td>{{$value->relCourse->relSubject->relDepartment->title}}</td>--}}
-                {{--<td>{{$value->relYear->title}}</td>--}}
-                {{--<td>{{$value->relSemester->title}}</td>--}}
-                {{--<td>{{ AcmMarksDistribution::getMarksDistItemStatus($value->id, $value->relCourse->evaluation_total_marks) }}</td>--}}
-
-                {{--<td>--}}
-                    {{--<a href="{{ URL::route('marksdistfind.show', ['course_id'=>$value->course_id])  }}" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#marksDist" data-toggle="tooltip" data-placement="left" title="Mark/Dist" href="">MarksDist</a>--}}
-
-                    {{--<a href="{{ URL::route('marksdist.show', ['cm_id'=>$value->id])  }}" class="btn btn-success" data-toggle="modal" data-target="#showMarksDist" data-toggle="tooltip" data-placement="left" title="Show/View" href="">View Dist</a>--}}
-
-                {{--</td>--}}
-            {{--</tr>--}}
-        {{--@endforeach--}}
-
+        @foreach ($datas as $value)
+            <tr>
+                {{--link in blade page :--}}
+                {{--{{ HTML::linkAction('method', 'name', ['id' => 1], ['class' => 'abc']) }}--}}
+                {{--{{ HTML::linkAction('UserController@logout', 'Logout') }}--}}
+                {{--{{ HTML::linkRoute( 'users.delete', 'Delete' , [ 'id' => $user->id ]) }}--}}
+                <td>{{$value->title}}</td>
+                <td>{{$value->description}}</td>
+                <td>{{$value->status}}</td>
+                <td></td>
+                <td>
+                    <a href="" class="subEdit btn btn-xs btn-default" data-toggle="modal" data-target="#edit-modal" href="" ><span class="glyphicon glyphicon-edit text-info"></span></a>
+                    <a href="" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" href=""><span class="glyphicon glyphicon-list-alt text-info"></span></a>
+                </td>
+            </tr>
+        @endforeach
         </tbody>
-
     </table>
-
     {{--Start all modal for amw--}}
     {{---------------------------------------------}}
-
     <!-- Add New class Modal -->
     <!-- Modal add new subject -->
     <div id="addClass" class="modal fade">
@@ -60,9 +56,12 @@
                     {{ Form::close() }}
                 </div>
                 <div class="modal-footer">
-
+                    {{--<a href="{{URL::to('academic/faculty/marksdistitem/class/')}}" class="btn btn-default">Close</a>--}}
                 </div>
             </div>
         </div>
     </div>
+
+    {{HTML::script('assets/js/dropzone/dropzone.js')}}
+
 @stop

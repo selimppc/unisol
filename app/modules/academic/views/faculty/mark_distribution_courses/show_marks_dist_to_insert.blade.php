@@ -3,17 +3,13 @@
     <h4 class="modal-title">Show Course Item config</h4>
 </div>
 <div class="modal-body">
-
     <p> Total Marks: {{ $datas->relCourse->evaluation_total_marks}}</p>
-
     <div class="form-horizontal">
         <div class="form-group">
             {{ Form::hidden('course_id', $datas->course_id, ['class'=>'form-control course_id'])}}
             {{ Form::hidden('course_title', $datas->relCourse->course_title, ['class'=>'form-control course_title'])}}
             {{ Form::hidden('course_evaluation_total_marks', $datas->relCourse->evaluation_total_marks, ['class'=>'course_evalution_marks'])}}
-
         </div>
-
         <div class="form-group">
             <div class="col-md-4">
                 {{ Form::select('acm_marks_dist_item_id', [''=>'Select Option'] + AcmMarksDistItem::orderBy('title')->lists('title', 'id'),Input::old('acm_marks_dist_item_id'), ['class'=>'form-control addDistListItem']) }}
@@ -23,7 +19,6 @@
             </div>
         </div>
     </div>
-
     {{ Form::open(array('url'=>'academic/faculty/marks/distribution/save','method' => '')) }}
     <table class="table table-bordered small-header-table" id="facultyMarksDist" >
         <thead>
@@ -36,14 +31,11 @@
         <th>Policy</th>
         <th>Action</th>
         </thead>
-
         <tbody class="acm_marks_dist_list">
-
         {{ Form::hidden('course_management_id', $datas->id, ['class'=>'form-control course_management_id'])}}
         {{ Form::hidden('course_type_id', $datas->course_type_id, ['class'=>'form-control course_type'])}}
         <?php $counter = 0;?>
         @foreach($course_result as $key=>$value)
-
             <tr>
                 <td width="130">
                     @if(isset($value->isMarksId))
@@ -67,13 +59,11 @@
                     @else
                         <input type="text" name="marks_percent[]" value="{{ ($value->actual_marks/$datas->relCourse->evaluation_total_marks) * 100 }}" class="form-control totalPer amw_marks_percent{{$key}}"  id="marks_percent_id{{$key}}" onchange="calculateActualMarksFaculty(this.id, {{$datas->relCourse->evaluation_total_marks}},this.value)" onblur="calculateTotalMarksPercent(this)" required />
                     @endif
-
                 </td>
                 <td>
                     <!-- <input type="text" name="actual_marks[]" value="{{$value->actual_marks}}" class="amw_actual_marks" readonly/> -->
                     {{ Form::text('actual_marks[]', $value->actual_marks, ['class'=> 'form-control amw_actual_marks','required' => 'required', 'readonly'=>'true']) }}
                 </td>
-
                 <td>
                     @if($value->readonly=='1')
                         Yes
@@ -95,9 +85,7 @@
                     @endif
                     {{--Auth::user()->id--}}
 
-
                 </td>
-
                 {{--Ajax delete if find faculty created_by and auth id=2--}}
                 @if(isset($value->CBid ) && $value->CBid == Auth::user()->id )
                     {{--@if($value->CBid )--}}
@@ -113,11 +101,8 @@
                 editMarksListItem(item_id);
 
                 function deleteMarkDistTr(getId, distId) {
-
                     var is_marksdist_id = distId;
-
                     if (is_marksdist_id > 0) {
-
                         var check = confirm("Are you sure to delete this item??");
                         if (check) {
                             $.ajax({
@@ -127,7 +112,7 @@
                                 data: {acm_marks_distribution_id: is_marksdist_id}
                             })
                                     .done(function (msg) {
-                                        //console.log(msg);
+                                       //console.log(msg);
                                         var whichtr = $('#' + getId).closest("tr");
                                         whichtr.fadeOut(500).remove();
                                         arrayItems.pop(getId);//To stop additem if exist
@@ -137,27 +122,21 @@
                             return false;
                         }
                     } else {
-                        //if acm_course_config id not found jst remove the tr form the popup. that not delete the data form the db.
+                        //if acm_course_config id not found jst remove the tr form the popup. that will not delete the data form the db.
                         var whichtr = $('#' + getId).closest("tr");
                         whichtr.fadeOut(500).remove();
                         arrayItems.pop(getId);//To stop additem if exist
                     }
                 }
-
             </script>
-
         @endforeach
-
         </tbody>
-
         <tr>
             <td colspan="6"><span class="totalPerSum"></span></td>
             <td colspan="2">{{ Form::submit('Submit', ['class'=>'btn btn-info saveInMarksDist'] ) }}</td>
         </tr>
-
     </table>
     {{Form::close()}}
-
 </div>
 <div class="modal-footer">
     <a href="{{URL::to('academic/faculty/')}}" class="btn btn-default pull-right">Close </a>

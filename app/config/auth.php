@@ -16,6 +16,8 @@ return array(
 	*/
 
 	'driver' => 'eloquent',
+    'username' => 'username',
+    'password' => 'hashed_password',
 	'model' => 'User',
     'table' => 'user',
 
