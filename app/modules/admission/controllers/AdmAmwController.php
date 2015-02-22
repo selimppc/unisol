@@ -5,7 +5,7 @@ class AdmAmwController extends \BaseController {
     function __construct() {
         $this->beforeFilter('admAmw', array('except' => array('index')));
     }
-
+// Admission : Course Management starts here...........................................................
 	public function index()
 	{
         $model = CourseManagement::orderby('id','DESC')->paginate(5);
@@ -113,12 +113,7 @@ class AdmAmwController extends \BaseController {
         }
 	}
 
-	public function destroy($id)
-	{
-		//
-	}
-
-    // TODO: multiple dropdown filtering
+//Multiple dropdown filtering..........................................
 
     public function search(){
 
@@ -154,6 +149,10 @@ class AdmAmwController extends \BaseController {
         return View::make('admission::amw.course_management.search', compact('model','semester','department','course','degree','year'));
 
     }
+// ......................................Admission : Course Management ends ................................
 
+//.........................Admission :Degree Management starts here with method prefix-Dgm..................
+
+//public function dgmIn
 
 }
