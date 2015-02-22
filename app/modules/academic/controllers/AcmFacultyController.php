@@ -186,65 +186,72 @@ class AcmFacultyController extends \BaseController {
 		}
 	}
 	//*******marks distribution item class************
-	public function class_index($marks_dist_id,$course_management_id)
+	public function class_index($marks_dist_id,$cmid)
 	{
-		$title = 'Course List';
-		$datas = AcmAcademic::orderBy('id', 'ASC')->paginate(5);
-		$data= CourseManagement::with('relYear', 'relSemester', 'relCourse', 'relCourse.relSubject.relDepartment')
-			->where('id', '=', $course_management_id)
+		$date_time= array('' => 'Select class Time') + AcmClassSchedule::lists('day', 'id');
+		$title = 'All Class List';
+
+		$datas = AcmAcademic::with('relAcmClassSchedule')
+			->where('course_management_id', '=', $cmid)
 			->get();
+
+		$data= CourseManagement::with( 'relCourse')
+			->where('id', '=', $cmid)
+			->get();
+
 		$config_data = AcmMarksDistribution::with('relAcmMarksDistItem', 'relCourseManagement.relCourse')
-			->where('course_management_id', '=', $course_management_id)
+			->where('course_management_id', '=', $cmid)
 			->get();
-		return View::make('academic::faculty.mark_distribution_courses.marks_dist_item_class.index', compact('title', 'datas', 'config_data','data'));
+
+		return View::make('academic::faculty.mark_distribution_courses.marks_dist_item_class.index', compact('title', 'datas', 'config_data','data', 'marks_dist_id', 'cmid','date_time'));
 	}
 
 	public function save_marksdist_item_class_data()
 	{
 		$data = Input::all();
-		$file =Input::file('file');
-    	$datas = new AcmAcademic();
-     //	$academic_data = new AcmAcademicDetails();
-		// attempt validation
+		$datas = new AcmAcademic();
+		$academic_details = new AcmAcademicDetails();
+
 		if ($datas->validate($data)) {
+			$datas->course_management_id = Input::get('course_management_id');
+			$datas->acm_marks_distribution_id = Input::get('marks_dist_id');
 			$datas->title = Input::get('title');
 			$datas->description = Input::get('description');
+			$datas->acm_class_schedule_id = Input::get('classtime');
 			$datas->created_by = Auth::user()->id;
-			//multiple file upload
-//			if(isset($file))
-//			{
-//				$destinationPath = public_path() . '/file/item_class/photos/';
-//				$thumbsDir = public_path() . '/file/item_class/thumbs/';
-//				$filename = $file->getClientOriginalName();
-//				$imageName = time('d-m-y').'_'.$filename;
-//				$upload_success = Input::file('file')->move($destinationPath, $imageName);
-//				if ($upload_success) {
-//					// resizing an uploaded file
-//					Image::make($destinationPath . $imageName)->resize(100, 100)->save($thumbsDir . "thumbs_" . $imageName);
-//					$data = new AcmAcademicDetails;
-//					$data->created_by = Auth::user()->id;
-//					$data->file = $imageName;
-//					$data->save();
-//					return Response::json('success', 200);
-//				}
-//				else
-//				{
-//					return Response::json('error', 400);
-//				}
-//
-//			}
 			$datas->save();
+			$academic_id = $datas->id;//to get last inserted id
+		    //file upload starts here
+			$imagefile=Input::file('file');
+			if ($imagefile)
+			{
+				$directory=public_path().'/file/item_class_file';
+				$imageName=Input::file('file')->getClientOriginalName();
+				$fileimagename = date('d.m.y')."_".$imageName;
+				Input::file('file')->move($directory,$fileimagename);
+				$academic_details->file=$fileimagename;
+				$academic_details->acm_academic_id = $academic_id;
+				$academic_details->save();
+     		}
+			//file upload ends
 			// redirect
 			Session::flash('message', 'Successfully Added!');
-			return Redirect::to('academic/faculty/marksdistitem/class');
+			return Redirect::to('academic/faculty/marksdistitem/class/');
 		} else {
 			// failure, get errors
 			$errors = $datas->errors();
 			Session::flash('errors', $errors);
-			return Redirect::to('academic/faculty/marksdistitem/class');
+			return Redirect::to('academic/faculty/marksdistitem/class/');
 		}
 	}
-
+	public function show_class($id)
+	{
+		$data = AcmAcademic::find($id);
+		$datas = AcmAcademicDetails::with('relAcmAcademic')
+			->where('acm_academic_id','=' ,$id)
+			->first();
+		return View::make('academic::faculty.mark_distribution_courses.marks_dist_item_class.show',compact('data','datas'));
+	}
 
 
 }
