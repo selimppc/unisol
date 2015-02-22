@@ -60,7 +60,9 @@
 {{-----------------------------------------------Search Form :Ends----------------------------------------------------------}}
 
 {{---------------------------------------------Data Table: Starts-----------------------------------------------------------------}}
+@if ($model->count())
 <table id="example1" class="table table-bordered table-striped">
+
 
 <col width="120">
 <col width="150">
@@ -92,7 +94,7 @@
                     <td>{{ Course::where('id', '=', $value->course_id)->first()->title; }}</td>
                     <td>{{ Degree::where('id','=',$value->deg_id)->first()->title;}}</td>
                      <td>{{ strtoupper($value->major_minor) }}</td>
-                     {{--<td>{{ Department::where('id', '=', $value->dept_id)->first()->title }}</td>--}}
+                     <td>{{ Department::where('id', '=', $value->dept_id)->first()->title }}</td>
                      <td>{{Year::where('id', '=', $value->yr_id)->first()->title;  }}</td>
                      <td>{{ Semester::where('id', '=', $value->sem_id)->first()->title; }}</td>
                      <td>{{ $value->relUser->relUserProfile->first_name.' '.$value->relUser->relUserProfile->last_name }}
@@ -103,13 +105,24 @@
                 </tr>
           @endforeach
     </tbody>
+
+
 </table>
-    <div class="col-xs-12" style="text-align: center;">
-      @if(!empty($model))
+@else
+
+     <div class="col-xs-12" style="text-align: center;">
+
           No data found !
-          <span class="btn btn-sm btn btn-info" style="color: #ffffff;">{{ HTML::linkAction('AdmAmwController@index', 'View All'  ) }}</span>
-      @endif
-    </div>
+          <span class="btn btn-sm btn btn-default" style="color: #fdfdfd;">{{ HTML::linkAction('AdmAmwController@index', 'View All'  ) }}</span>
+
+     </div>
+@endif
+    {{--<div class="col-xs-12" style="text-align: center;">--}}
+      {{--@if(!empty($model))--}}
+          {{--No data found !--}}
+          {{--<span class="btn btn-sm btn btn-info" style="color: #ffffff;">{{ HTML::linkAction('AdmAmwController@index', 'View All'  ) }}</span>--}}
+      {{--@endif--}}
+    {{--</div>--}}
 {{-----------------------------------Data Table : Ends---------------------------------------------------------------------------}}
 
 {{--------Pagination Link--------------------------}}
