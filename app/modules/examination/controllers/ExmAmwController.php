@@ -208,6 +208,29 @@ class ExmAmwController extends \BaseController {
 
         return View::make('examination::amw.prepare_question_paper.examination',compact('exam_data','year_id','semester_id'));
     }
+
+    public function courses($mark_dist_item_id){
+//        $course_data = ExmExamList::with(
+//            [
+//                'relCourseManagement', 'relCourseManagement.relCourse',
+//                'relCourseManagement.relCourse.relSubject.relDepartment',
+//                'relMeta' => function ($query)
+//                { $query->where('is_exam', 1); }
+//            ]
+//        )->get();
+
+       //print_r($mark_dist_item_id);exit;
+
+        $course_data = ExmExamList::where('acm_marks_dist_item_id' ,'=', $mark_dist_item_id)
+            ->get();
+
+
+        return View::make('examination::amw.prepare_question_paper.courses',compact('course_data'));
+
+    }
+
+
+
 //    public function createExamination(){
 //
 //        $year_id = Year::lists('title', 'id');
@@ -306,30 +329,20 @@ class ExmAmwController extends \BaseController {
 
 
 
-    public function courses(){
-        $course_data = ExmExamList::with(
-            [
-                'relCourseManagement', 'relCourseManagement.relCourse',
-                'relCourseManagement.relCourse.relSubject.relDepartment',
-                'relMeta' => function ($query)
-                { $query->where('is_exam', 1); }
-            ]
-        )->get();
-        return View::make('examination::amw.prepare_question_paper.courses',compact('course_data'));
-
-    }
 
 
     public function examiners(){
         $examiners_home = ExmExaminer::orderBy('id', 'DESC')->paginate(15);
 
-        $role_id = Role::where('title', '=', 'faculty')->first()->id;
-        $user_id = User::where('role_id', '=', $role_id)->first()->id;
+//        $role_id = Role::where('title', '=', 'faculty')->first()->id;
+//        $user_id = User::where('role_id', '=', $role_id)->first()->id;
 
-        $user_profile = UserProfile::where('user_id', '=', $user_id)->first()->first_name;
+//        $user_profile = User::fullName($user_id);
+
+        #print_r($user_profile);exit;
 
 
-        return View::make('examination::amw.prepare_question_paper.examiners',compact('examiners_home','role_id','facultyList','user_profile'));
+        return View::make('examination::amw.prepare_question_paper.examiners',compact('examiners_home','role_id','facultyList','user_id'));
     }
 
     public function addExaminers(){
@@ -338,6 +351,10 @@ class ExmAmwController extends \BaseController {
     }
 
     public function storeExaminers(){
+
+    }
+
+    public function viewExaminers(){
 
     }
 

@@ -26,7 +26,7 @@
 
 
 
-                               <strong> Year :</strong>  {{--{{ Year::getYearsName($course_data->year_id) }} </br>--}}
+{{--                              <strong> Year :</strong>  {{$examiners_home['relExmExamList']['year_id'] }} </br>--}}
                                </br>
                                <strong> Semester :</strong>{{--{{ Semester::getSemesterName($course_data->semester_id) }} </br>--}}
                                </br>
@@ -51,12 +51,15 @@
                                 <tr>
                                     <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $examiners_list['id'] }}"></td>
                                      {{--<td> {{ $examiners_list->exm_exam_list_id }} </td>--}}
-                                     <td> {{ $user_profile }} </td>
-                                     <td> {{ $examiners_list->type }} </td>
+                                     <td>{{ HTML::linkAction('ExmAmwController@viewExaminers',($examiners_list->relUser->relUserProfile->first_name.' '.$examiners_list->relUser->relUserProfile->middle_name.' '.$examiners_list->relUser->relUserProfile->last_name)) }}</td>
+
+                                     <td>{{ $examiners_list->relExmExamList->relCourseManagement->relCourse->relSubject->relDepartment->title }}</td>
+
+                                     {{--<td>{{ $examiners_list->type }} </td>--}}
                                      {{--<td> {{ $examiners_list->assigned_by }} </td>--}}
                                      {{--<td> {{ $examiners_list->deadline }} </td>--}}
                                      {{--<td> {{ $examiners_list->note }} </td>--}}
-                                     <td> {{ $examiners_list->status }} </td>
+                                     <td>{{ $examiners_list->status }} </td>
 
                                     <td>
                                           <a href="{{ URL::route('examination.amw.viewExaminers', ['id'=>$examiners_list->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#ViewExaminer" data-placement="left" title="Show" href="#">View</a>
