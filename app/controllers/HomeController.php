@@ -122,9 +122,28 @@ class HomeController extends BaseController {
         $sem_id = 1;
         $yr_id = null;
 
+        $data = [
+            //'id' => '1',
+            'username' => 'a',
+        ];
+
+        //print_r($data);exit;
         $user = new User();
-        $result = $user->search($dept_id);
+        $result = $user->search($data);
+
         print_r($result);exit;
+
+
+
+
+
+
+
+
+
+
+
+
 
         $model = CourseManagement::join('Degree', function($query) use($dept_id)
         {

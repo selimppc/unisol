@@ -137,19 +137,18 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     }
 
 
-    //TODO :: Search
-    public function search($query)
+    //TODO :: Search option with array data
+    public function search(array $query)
     {
-        $model = $this->model;
-        return $model;
-        /*foreach ($query as $column => $term)
+        $model = $this;
+        foreach ($query as $column => $term)
         {
             if (! empty($term) && $column != 'password')
             {
-                $model = $model->where($column, 'LIKE', "%$term%");
+                $model = $model->where($column, 'LIKE', "$term%");
             }
         }
-        return $model->get();*/
+        return $model->get();
     }
 
 
