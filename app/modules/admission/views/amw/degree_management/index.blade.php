@@ -53,30 +53,32 @@
 
 </tr>
 </thead>
-<tbody>
+ <tbody>
 
-      {{--@foreach($model as $value)--}}
+      @foreach($degree_model as $value)
+    <tr>
+          <td>{{ $value->title }}</td>
+          <td>{{  $value->relDepartment->title }}</td>
+          {{--<td></td>--}}
+          <td>{{ $value->relYear->title }}</td>
+          <td>{{ $value->relSemester->title }}</td>
+          <td>{{ $value->total_credit}}</td>
+          <td>{{ $value->duration }}</td>
+          <td>{{ $value->status == 0?'open':'APLD' }}</td>
+          {{--<td></td>--}}
+
+          <td>
+               <a href="{{ URL::route('degree_manage.show', $value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal"><span class="glyphicon glyphicon-eye-open text-danger"></span></a>
+               <a class="btn btn-xs btn-default" href="{{ URL::route('degree_manage.edit', $value->id) }}" data-toggle="modal" data-target="#editModal" ><span class="glyphicon glyphicon-edit"></span></a>
+               <a href="{{ URL::route('degree_manage.waiver', $value->id) }}">MW</a>
+
+          </td>
 
 
-          {{--<tr>--}}
-          {{--<td>{{ $value->relCourse->title }}</td>--}}
-          {{--<td>{{ $value->relDegree->title}}</td>--}}
-          {{--<td>{{ strtoupper($value->major_minor) }}</td>--}}
-          {{--<td>{{  $value->relCourse->relSubject->relDepartment->title }}</td>--}}
-          {{--<td>{{ $value->relYear->title }}</td>--}}
-          {{--<td>{{ $value->relSemester->title }}</td>--}}
-          {{--<td>{{ $value->relUser->relUserProfile->first_name.' '.$value->relUser->relUserProfile->last_name }}</td>--}}
-          {{--<td>--}}
-               {{--<a href="{{ URL::to('course_manage/show/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal"><span class="glyphicon glyphicon-eye-open text-danger"></span></a>--}}
-               {{--<a class="btn btn-xs btn-default" href="{{ URL::to('course_manage/edit/'.$value->id) }}" data-toggle="modal" data-target="#editModal" ><span class="glyphicon glyphicon-edit"></span></a>--}}
-                  {{----}}
-          {{--</td>--}}
+    </tr>
+      @endforeach
 
-            {{----}}
-          {{--</tr>--}}
-      {{--@endforeach--}}
-
-</tbody>
+ </tbody>
 
 </table>
 {{-----------------------------------Data Table : Ends---------------------------------------------------------------------------}}

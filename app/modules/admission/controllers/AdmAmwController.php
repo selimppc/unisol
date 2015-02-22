@@ -154,15 +154,18 @@ class AdmAmwController extends \BaseController {
 
    public function dgmIndex(){
 
-       return View::make('admission::amw.degree_management.index');
+       $degree_model = Degree::orderby('id','DESC')->paginate(5);
+
+       return View::make('admission::amw.degree_management.index',compact('degree_model'));
    }
     public function dgmCreate(){
 
         $department = array('' => 'Select Department ') + Department::lists('title','id');
         $semester = array('' => 'Select Semester ') +  Semester::lists('title', 'id');
         $year = array('' => 'Please Select Year') + Year::lists('title', 'id');
+        $degree_program = array('' => 'Please Select ') + DegreeProgram::lists('title', 'id');
 
-        return View::make('admission::amw.degree_management.dgm_modals._form',compact('year','semester','department'));
+        return View::make('admission::amw.degree_management.dgm_modals._form',compact('year','semester','department','degree_program'));
     }
 
     public function dgmStore(){
@@ -173,29 +176,82 @@ class AdmAmwController extends \BaseController {
         $validator = Validator::make(Input::all(), $rules);
         if ($validator->passes()) {
 
-            $course_model = new CourseManagement();
+            $degree_model = new Degree();
 
-            $course_model->title = Input::get('title');
-            $course_model->year_id = Input::get('year_id');
-            $course_model->semester_id = Input::get('semester_id');
-            $course_model->course_type_id = Input::get('course_type_id');
-            $course_model->evolution_system = Input::get('evolution_system');
-            $course_model->start_date = Input::get('start_date');
-            $course_model->end_date = Input::get('end_date');
-            $course_model->major_minor = Input::get('major_minor');
-            $course_model->degree_id = Input::get('degree_id');
-            $course_model->user_id = Input::get('user_id');
+            $degree_model->title = Input::get('title');
+            $degree_model->description = Input::get('description');
+            $degree_model->year_id = Input::get('year_id');
+            $degree_model->semester_id = Input::get('semester_id');
+            $degree_model->department_id = Input::get('department_id');
+            $degree_model->degree_program_id = Input::get('degree_program_id');
+            $degree_model->start_date = Input::get('start_date');
+            $degree_model->end_date = Input::get('end_date');
+            $degree_model->total_credit = Input::get('total_credit');
+            $degree_model->duration = Input::get('duration');
+            //$degree_model->seat = Input::get('seat');
+            //$degree_model->admission_deadline = Input::get('admission_deadline');
+//            $degree_model->status = Input::get('status');
 
-            if( $course_model->save()){
-                return Redirect::to('course_manage/amw')->with('message', 'Successfully added Information!');
+            if( $degree_model->save()){
+                return Redirect::to('degree_manage/amw')->with('message', 'Successfully added Information!');
             }
         } else {
             return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
         }
 
     }
+    public function dgmShow($id){
 
+        $degree_model = Degree::find($id);
+        return View::make('admission::amw.degree_management.dgm_modals.show',compact('degree_model'));
+    }
+    public function dgmEdit($id){
 
+        $degree_model = Degree::find($id);
+        $year = Year::lists('title', 'id');
+        $department =  Department::lists('title','id');
+        $semester = Semester::lists('title', 'id');
+        $degree_program =  DegreeProgram::lists('title', 'id');
+        return View::make('admission::amw.degree_management.dgm_modals.edit',compact('degree_model','department','year','semester','degree_program','semester'));
+    }
+    public function dgmUpdate($id){
+        $rules = array(
+//            'ever_admit_this_university' => 'required',
+        );
+        $validator = Validator::make(Input::all(), $rules);
+        if ($validator->passes()) {
+
+            $degree_model = Degree::find($id);
+
+            $degree_model->title = Input::get('title');
+            $degree_model->description = Input::get('description');
+            $degree_model->year_id = Input::get('year_id');
+            $degree_model->semester_id = Input::get('semester_id');
+            $degree_model->department_id = Input::get('department_id');
+            $degree_model->degree_program_id = Input::get('degree_program_id');
+            $degree_model->start_date = Input::get('start_date');
+            $degree_model->end_date = Input::get('end_date');
+            $degree_model->total_credit = Input::get('total_credit');
+            $degree_model->duration = Input::get('duration');
+            $degree_model->status = Input::get('status');
+            //  $course_model->user_id = Input::get('user_id');
+
+            $degree_model->save();
+            return Redirect::back()->with('message', 'Successfully updated Information!');
+        } else {
+            return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
+        }
+
+    }
+    public function degreeWaiverIndex($id){
+
+        $degree_model = Degree::find($id);
+        return View::make('admission::amw.waiver_management.index_waiver',compact('degree_model'));
+    }
+    public function waiverCreate(){
+
+        return View::make('admission::amw.waiver_management._form');
+    }
 
 
 }

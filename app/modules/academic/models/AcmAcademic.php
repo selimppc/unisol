@@ -8,6 +8,10 @@ class AcmAcademic extends \Eloquent
     {
         return $this->belongsTo('AcmMarksDistribution','acm_marks_distribution_id','id');
     }
+    public function relAcmClassSchedule()
+    {
+        return $this->belongsTo('AcmClassSchedule','acm_class_schedule_id','id');
+    }
 
 //validation for save_marksdist_item_class_data method
 
