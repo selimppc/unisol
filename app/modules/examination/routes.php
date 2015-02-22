@@ -50,3 +50,9 @@ Route::any('examination/amw/viewExaminers/{id}', [
     'uses' => 'ExmAmwController@viewExaminers'
 ]);
 
+Route::any('examination/amw/questionItemsList/{exm_question_id}','ExmAmwController@questionsItemShow');
+
+Route::any('examination/amw/index/{exam_list_id}','ExmAmwController@index');
+//
+Route::any('examination/amw/index','ExmAmwController@index');
+

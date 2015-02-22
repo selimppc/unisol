@@ -39,17 +39,17 @@
                     </tr>
 
 
-                    <tr>
-                        <td>
-                         <a href="{{ action('ExmAmwController@index') }}"> Question Papers</a> <span class="label label-success"></span>
-                        </td>
-                    </tr>
+                    {{--<tr>--}}
+                        {{--<td>--}}
+                         {{--<a href="{{ action('ExmAmwController@index') }}"> Question Papers</a> <span class="label label-success"></span>--}}
+                        {{--</td>--}}
+                    {{--</tr>--}}
 
-                     <tr>
-                        <td>
-                         <a href="{{ action('ExmAmwController@questionList') }}"> Question List</a> <span class="label label-success"></span>
-                        </td>
-                     </tr>
+                     {{--<tr>--}}
+                        {{--<td>--}}
+                         {{--<a href="{{ action('ExmAmwController@questionList') }}"> Question List</a> <span class="label label-success"></span>--}}
+                        {{--</td>--}}
+                     {{--</tr>--}}
 
 
                 </table>

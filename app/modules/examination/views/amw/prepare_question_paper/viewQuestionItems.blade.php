@@ -28,7 +28,7 @@
                                                     </div>
                                                     <div class="col-sm-6">
                                                          @if($op->answer == 1)
-                                                            {{Form::checkbox('checkbox', '',array('checked'))}}<br>
+                                                            {{Form::radio('checkbox', '',array('checked'))}}<br>
                                                          @endif
                                                     </div>
                                                 </div>
@@ -63,6 +63,6 @@
                                </div>
                              </div>
                      </div>
-                     <a href="{{URL::to('examination/amw/questionList')}}" class="btn btn-default">Close </a>
+                     <a href="{{URL::previous()}}" class="btn btn-default">Close </a>
               {{ Form::close() }}
 </div>

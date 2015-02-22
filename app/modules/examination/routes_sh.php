@@ -1,6 +1,6 @@
 <?php
 //AMW ROUTE CONFIGURATION
-Route::any('examination/amw/index','ExmAmwController@index');
+
 
 //Route::any('examination/amw/storeQuestionPaper','ExmAmwController@storeQuestionPaper');
 
