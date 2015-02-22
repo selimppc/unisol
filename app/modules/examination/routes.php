@@ -20,11 +20,17 @@ Shafi
 include("routes_sh.php");
 
 
-Route::any('examination/amw/deshboard','ExmAmwController@deshboard');
+Route::any('examination/amw/deshboard', [
+    'as' => 'examination.amw.deshboard',
+    'uses' => 'ExmAmwController@deshboard'
+]);
 
 Route::any('examination/amw/examination','ExmAmwController@examination');
+
 Route::any('examination/amw/createExamination','ExmAmwController@createExamination');
+
 Route::any('examination/amw/storeExamination','ExmAmwController@storeExamination');
+
 Route::any('examination/amw/viewExamination/{id}', [
     'as' => 'examination.amw.viewExamination',
     'uses' => 'ExmAmwController@viewExamination'
@@ -52,7 +58,19 @@ Route::any('examination/amw/viewExaminers/{id}', [
 
 Route::any('examination/amw/questionItemsList/{exm_question_id}','ExmAmwController@questionsItemShow');
 
-Route::any('examination/amw/index/{exam_list_id}','ExmAmwController@index');
-//
-Route::any('examination/amw/index','ExmAmwController@index');
 
+
+Route::any('examination/amw/index/{exam_list_id}',[
+    'as' => 'examination/amw/index',
+    'uses' => 'ExmAmwController@index'
+]);
+
+//Route::any('examination/amw/index/{exam_list_id}','ExmAmwController@index');
+
+
+
+
+Route::any('examination/amw/viewExaminers/{id}', [
+    'as' => 'examination.amw.viewExaminers',
+    'uses' => 'ExmAmwController@viewExaminers'
+]);

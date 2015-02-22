@@ -2,15 +2,10 @@
             <?php
 
                 $exm_exam_list_id = ExmExamList::lists('title', 'id');
-
                 $course_name = Course::lists('title','id');
-
-
             ?>
 
-            {{--$course_management_id = CourseManagement::lists('title', 'id');--}}
 
-             {{--$assign_to = UserProfile::lists('first_name'.'middle_name'.'last_name' ,'id');--}}
 
             <div class="form-group">
                    {{ Form::label('exm_exam_list_id', 'Name of Examination ') }}

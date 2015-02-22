@@ -37,7 +37,7 @@
 
 
                                          <br>
-                                           {{ Form::submit('Delete Items', array('class'=>'btn btn-danger', 'id'=>'hide-button', 'style'=>'display:none'))}}
+                                           {{ Form::submit('Delete Items', array('class'=>'btn btn-danger', 'id'=>'hide-button','data-target'=>'#confirm-delete','data-toggle'=>'modal', 'style'=>'display:none'))}}
 
                                          <br>
                                          <tr>
@@ -68,8 +68,8 @@
                                                    <a href="{{ URL::route('examination.amw.viewQuestion', ['id'=>$prepare_question_paper_amw->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#ViewQuestionPaperModal" data-placement="left" title="Show" href="#">View</a>
                                                    <a href="{{ URL::route('examination.amw.editQuestionPaper', ['id'=>$prepare_question_paper_amw->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#edit_amw_QuestionPapermodal" data-placement="left" title="Edit" href="#">Edit</a>
 
-                                                   <a href="{{ URL::to('examination/amw/index') }}" class="btn btn-default" >AAF</a>
-                                                   <a href="{{ URL::to('examination/amw/index') }}" class="btn btn-default" >AF</a>
+                                                   <a href="{{ URL::to('#') }}" class="btn btn-default" >AAF</a>
+                                                   <a href="{{ URL::to('#') }}" class="btn btn-default" >AF</a>
 
                                                 </td>
                                             </tr>
@@ -78,5 +78,7 @@
                         </table>
                     {{form::close() }}
 
-@include('examination::amw.prepare_question_paper._modal')
+@include('examination::amw.prepare_question_paper._modal._create_question_paper')
+@include('examination::amw.prepare_question_paper._modal._view_question_paper')
+@include('examination::amw.prepare_question_paper._modal._edit_question_paper')
 @stop

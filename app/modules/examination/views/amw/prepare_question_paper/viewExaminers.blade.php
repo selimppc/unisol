@@ -4,9 +4,8 @@
              {{ Form::open(array('route'=>'examination.faculty.viewExaminers','method' => '')) }}
                      <div class="jumbotron text-center">
 
-                      <h3><strong> Department:</strong>{{ $view_examination_amw->title }} </h3> </br>
+                      <h3><strong> Department:</strong>{{ $view_examiner_amw->title }} </h3> </br>
 
-                         <p>
                             <strong> Subject:</strong></br>
                             <strong> Name of Faculty:</strong> </br>
                             <strong> Status:</strong> </br>
@@ -18,7 +17,7 @@
 
                             </div>
 
-                         </p>
+
                      </div>
                      <a href="{{URL::to('examination/amw/examiners')}}" class="btn btn-default">Close </a>
                      {{ Form::submit('Comments', array('class' => 'btn btn-primary')) }}
