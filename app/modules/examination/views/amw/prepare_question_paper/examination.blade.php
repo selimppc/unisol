@@ -4,7 +4,7 @@
 @stop
 @section('content')
         <h1>Welcome to Examination : <strong>{{ ucwords(Auth::user()->username) }}</strong> </h1> <br>
-                    {{--{{ Form::open(array('url' => 'examination/amw/batchDelete')) }}--}}
+                    {{ Form::open(array('url' => 'examination/amw/batchDelete')) }}
                         <table id="example" class="table table-striped  table-bordered"  >
                                     <thead>
                                          <div class="row">

@@ -3,7 +3,7 @@
     @include('academic::_sidebar')
 @stop
 @section('content')
-    <h4>{{$title}}</h4>
+    <h4 style="text-align: center">{{$title}}</h4>
     <table id="example" class="table table-bordered table-hover table-striped">
         <thead>
         <th>CourseName</th>

@@ -6,16 +6,7 @@ class ExmAmwController extends \BaseController {
         $this->beforeFilter('exmAmw', array('except' => array('')));
     }
 
-    //amw: Question papers index
 
-    public function index()
-    {
-        $data = ExmQuestion::with('relCourseManagement', 'relCourseManagement.relYear',
-            'relCourseManagement.relSemester','relCourseManagement.relCourse.relSubject.relDepartment')
-            ->get();
-
-        return View::make('examination::amw.prepare_question_paper.index')->with('datas',$data);
-    }
     //amw: View question paper
     public function viewQuestion($id)
     {
@@ -210,27 +201,12 @@ class ExmAmwController extends \BaseController {
     }
 
     public function courses($mark_dist_item_id){
-//        $course_data = ExmExamList::with(
-//            [
-//                'relCourseManagement', 'relCourseManagement.relCourse',
-//                'relCourseManagement.relCourse.relSubject.relDepartment',
-//                'relMeta' => function ($query)
-//                { $query->where('is_exam', 1); }
-//            ]
-//        )->get();
-
-       //print_r($mark_dist_item_id);exit;
 
         $course_data = ExmExamList::where('acm_marks_dist_item_id' ,'=', $mark_dist_item_id)
             ->get();
-
-
         return View::make('examination::amw.prepare_question_paper.courses',compact('course_data'));
 
     }
-
-
-
 //    public function createExamination(){
 //
 //        $year_id = Year::lists('title', 'id');
@@ -290,7 +266,6 @@ class ExmAmwController extends \BaseController {
         $edit_examination = ExmExamList::find($id);
         return View::make('examination::amw.prepare_question_paper.editExamination',compact('edit_examination'));
     }
-
     public function updateExamination($id)
     {
         $data = Input::all();
@@ -326,11 +301,6 @@ class ExmAmwController extends \BaseController {
             return Redirect::to('examination/amw/edit');
         }
     }
-
-
-
-
-
     public function examiners(){
         $examiners_home = ExmExaminer::orderBy('id', 'DESC')->paginate(15);
 
@@ -344,18 +314,41 @@ class ExmAmwController extends \BaseController {
 
         return View::make('examination::amw.prepare_question_paper.examiners',compact('examiners_home','role_id','facultyList','user_id'));
     }
-
     public function addExaminers(){
         return View::make('examination::amw.prepare_question_paper._addExamination_form', compact('add_examiner'));
-
     }
-
     public function storeExaminers(){
 
     }
-
     public function viewExaminers(){
 
     }
+    public function questionsItemShow($question_item_id){
+
+        $questions_item = ExmQuestionItems::where('exm_question_id' ,'=', $question_item_id)
+            ->get();
+        return View::make('examination::amw.prepare_question_paper.question_items',compact('questions_item'));
+
+
+    }
+    //amw: Questions
+    public function index($exam_list_id)
+    {
+//        $data = ExmQuestion::with('relCourseManagement', 'relCourseManagement.relYear',
+//            'relCourseManagement.relSemester','relCourseManagement.relCourse.relSubject.relDepartment')
+//            ->get();
+
+        $question_paper = ExmQuestion::where('exm_exam_list_id' ,'=', $exam_list_id)
+            ->get();
+
+
+        return View::make('examination::amw.prepare_question_paper.index',compact('question_paper'));
+
+
+
+
+//        return View::make('examination::amw.prepare_question_paper.index')->with('datas',$data);
+    }
+
 
 }

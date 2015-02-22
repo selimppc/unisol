@@ -89,6 +89,10 @@ Route::any('academic/faculty/marksdistitem/class/{marks_dist_id}/{course_managem
 Route::post('academic/faculty/marksdistitem/class/save',
     'AcmFacultyController@save_marksdist_item_class_data'
 );
+Route::any('academic/faculty/class/show/{id}',[
+    'as' => 'class.show',
+    'uses'=> 'AcmFacultyController@show_class'
+]);
 
 
 

@@ -11,6 +11,6 @@
                                      <strong> Assign To:</strong> Coming Soon...</br>
                                  </p>
                              </div>
-                              <a href="{{URL::to('examination/amw/index')}}" class="btn btn-default">Close </a>
+                              <a href="{{ URL::previous()}}" class="btn btn-default">Close </a>
                      {{ Form::close() }}
 </div>
