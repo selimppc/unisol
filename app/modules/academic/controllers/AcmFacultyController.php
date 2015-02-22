@@ -210,7 +210,8 @@ class AcmFacultyController extends \BaseController {
 	{
 		$data = Input::all();
 		$datas = new AcmAcademic();
-		$academic_details = new AcmAcademicDetails();
+		$file =Input::file('file');
+		//$academic_details = new AcmAcademicDetails();
 
 		if ($datas->validate($data)) {
 			$datas->course_management_id = Input::get('course_management_id');
@@ -221,32 +222,36 @@ class AcmFacultyController extends \BaseController {
 			$datas->created_by = Auth::user()->id;
 			$datas->save();
 			$academic_id = $datas->id;//to get last inserted id
-		    //file upload starts here
-			$imagefile=Input::file('file');
-			if ($imagefile)
-			{
-				$directory=public_path().'/file/item_class_file';
-				$imageName=Input::file('file')->getClientOriginalName();
-				$fileimagename = date('d.m.y')."_".$imageName;
-				Input::file('file')->move($directory,$fileimagename);
-				$academic_details->file=$fileimagename;
-				$academic_details->acm_academic_id = $academic_id;
-				$academic_details->save();
-     		}
+			//file upload starts here
+			$files = Input::file('images');
+			foreach($files as $file) {
+				if($file){
+					$destinationPath = public_path().'/file/item_class_file';
+					$filename = $file->getClientOriginalName();
+					$upload_success = $file->move($destinationPath, $filename);
+					$hashname = date('d.m.y')."_".$filename;
+					$academic_details = new AcmAcademicDetails;
+					$academic_details->file = $hashname;
+					$academic_details->acm_academic_id = $academic_id;
+					$academic_details->save();
+					
+				}
+			}
 			//file upload ends
-			// redirect
-			Session::flash('message', 'Successfully Added!');
-			return Redirect::to('academic/faculty/marksdistitem/class/');
+			return Redirect::back()->with('message','Successfully added!');
 		} else {
 			// failure, get errors
 			$errors = $datas->errors();
 			Session::flash('errors', $errors);
-			return Redirect::to('academic/faculty/marksdistitem/class/');
+			return Redirect::to('academic/faculty/marksdistitem/class');
 		}
 	}
 	public function show_class($id)
 	{
-		$data = AcmAcademic::find($id);
+//		$data = AcmAcademic::find($id);
+		$data = AcmAcademic::with('relAcmClassSchedule','relAcmClassSchedule.relAcmClassTime')
+			->where('id','=' ,$id)
+			->get();
 		$datas = AcmAcademicDetails::with('relAcmAcademic')
 			->where('acm_academic_id','=' ,$id)
 			->first();
