@@ -137,6 +137,22 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     }
 
 
+    //TODO :: Search option with array data
+    public function search(array $query)
+    {
+        $model = $this;
+        foreach ($query as $column => $term)
+        {
+            if (! empty($term) && $column != 'password')
+            {
+                $model = $model->where($column, 'LIKE', "$term%");
+            }
+        }
+        return $model->get();
+    }
+
+
+
     public function scopeFullName($query , $user_id){
         $query = UserProfile::select(DB::raw('CONCAT(first_name, " ", last_name) AS full_name'))
                 ->where('user_id', '=', $user_id)

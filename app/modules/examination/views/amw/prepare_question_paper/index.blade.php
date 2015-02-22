@@ -52,11 +52,12 @@
                                          </tr>
                                     </thead>
                                     <tbody>
-                                      @foreach($datas as $prepare_question_paper_amw)
+                                      @foreach($question_paper as $prepare_question_paper_amw)
                                             <tr>
                                                 <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $prepare_question_paper_amw['id'] }}"></td>
 
-                                                <td> {{ HTML::linkAction('ExmAmwController@index', $prepare_question_paper_amw->title) }} </td>
+                                                <td> {{ HTML::linkAction('ExmAmwController@questionsItemShow', $prepare_question_paper_amw->title,['question_item_id'=>$prepare_question_paper_amw['id']]) }} </td>
+
                                                 <td>{{$prepare_question_paper_amw->deadline}}</td>
                                                 <td>{{$prepare_question_paper_amw->relCourseManagement->relCourse->relSubject->relDepartment->title}}</td>
                                                 <td>{{$prepare_question_paper_amw->relCourseManagement->relYear->title }} </td>
@@ -66,7 +67,7 @@
                                                 <td>
                                                    <a href="{{ URL::route('examination.amw.viewQuestion', ['id'=>$prepare_question_paper_amw->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#ViewQuestionPaperModal" data-placement="left" title="Show" href="#">View</a>
                                                    <a href="{{ URL::route('examination.amw.editQuestionPaper', ['id'=>$prepare_question_paper_amw->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#edit_amw_QuestionPapermodal" data-placement="left" title="Edit" href="#">Edit</a>
-                                                   <a href="{{ URL::to('examination/amw/index') }}" class="btn btn-default" data-toggle="modal" data-target="#edit_amw_QuestionPapermodal" data-placement="left" title="Edit" href="#">VQs</a>
+
                                                    <a href="{{ URL::to('examination/amw/index') }}" class="btn btn-default" >AAF</a>
                                                    <a href="{{ URL::to('examination/amw/index') }}" class="btn btn-default" >AF</a>
 

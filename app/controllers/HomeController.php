@@ -117,27 +117,45 @@ class HomeController extends BaseController {
 
 
     public function testSearch(){
-        $dept_id = 1;
+        $dept_id = "";
         $deg_id = 2;
         $sem_id = 1;
-        $yr_id = 4;
+        $yr_id = null;
 
-        $user_id = 3;
+        $data = [
+            //'id' => '1',
+            'username' => 'a',
+        ];
 
-        print_r(User::FacultyList());exit;
+        //print_r($data);exit;
+        $user = new User();
+        $result = $user->search($data);
+
+        print_r($result);exit;
+
+
+
+
+
+
+
+
+
+
+
+
 
         $model = CourseManagement::join('Degree', function($query) use($dept_id)
         {
             $query->on('degree.id', '=', 'course_management.degree_id');
-            $query->where('degree.department_id', '=', $dept_id);
-        })
-        ->where('course_management.degree_id', '=', $deg_id)
-        ->where('course_management.semester_id','=',$sem_id)
-        ->where('course_management.year_id','=',$yr_id)
-        ->get();
+            if(isset($dept_id) && !empty($dept_id)) $query->where('degree.department_id', '=', $dept_id);
+        });
+        if(isset($deg_id) && !empty($deg_id)) $model = $model->where('course_management.degree_id', '=', $deg_id);
+        if(isset($sem_id) && !empty($sem_id)) $model = $model->where('course_management.semester_id','=',$sem_id);
+        if(isset($yr_id) && !empty($yr_id)) $model = $model->where('course_management.year_id','=',$yr_id);
+        $model = $model->get();
         print_r($model);exit;
 
-        print_r($model);exit;
         dd(DB::getQueryLog($model));
 
 //        dd(DB::getQueryLog($result));

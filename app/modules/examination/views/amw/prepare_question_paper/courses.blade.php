@@ -4,7 +4,7 @@
 @stop
 @section('content')
         <h1>Welcome to Courses : <strong>{{ ucwords(Auth::user()->username) }}</strong> </h1> <br>
-                    {{--{{ Form::open(array('url' => 'examination/amw/batchDelete')) }}--}}
+                    {{ Form::open(array('url' => 'examination/amw/batchDelete')) }}
                         <table id="example" class="table table-striped  table-bordered"  >
                                     <thead>
 {{--                                             <strong> Year:</strong>{{ $course_data->year_id }} </br>--}}
@@ -34,7 +34,8 @@
 
                                                 <td>
                                                    <a href="{{ URL::to('examination/amw/examiners')  }}" class="btn btn-default" >Examiner</a>
-                                                   <a href="{{ URL::to('examination/amw/index')  }}" class="btn btn-default" >Questions</a>
+                                                   <a href="{{ URL::to('examination/amw/index',['exam_list_id'=>$course_list->id]) }}" class="btn btn-default">Question Paper</a>
+
                                                 </td>
                                             </tr>
                                       @endforeach

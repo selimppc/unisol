@@ -7,16 +7,34 @@ class CreateAdmissionBillingRl extends Migration {
 
 	public function up()
 	{
+
+        Schema::create('degree_program', function($table) {
+            $table->increments('id');
+            $table->string('code', 128);
+            $table->string('title', 128);
+            $table->string('description');
+            $table->integer('created_by', false, 11);
+            $table->integer('updated_by', false, 11);
+            $table->timestamps();
+            $table->engine = 'InnoDB';
+        });
+
+
         Schema::create('degree', function(Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('year_id')->nullable();
+            $table->unsignedInteger('semester_id')->nullable();
             $table->unsignedInteger('department_id')->nullable();
+            $table->unsignedInteger('degree_program_id')->nullable();
             $table->string('title', 128);
             $table->text('description');
             $table->dateTime('start_date');
             $table->dateTime('end_date');
             $table->string('total_credit', 16);
             $table->string('duration', 16);
+
+            $table->string('seat', 16);
+            $table->dateTime('admission_deadline');
 
             $table->tinyInteger('status', false)->lenght(1);
             $table->integer('created_by', false, 11);
@@ -26,7 +44,9 @@ class CreateAdmissionBillingRl extends Migration {
         });
         Schema::table('degree', function($table) {
             $table->foreign('year_id')->references('id')->on('year');
+            $table->foreign('semester_id')->references('id')->on('semester');
             $table->foreign('department_id')->references('id')->on('department');
+            $table->foreign('degree_program_id')->references('id')->on('degree_program');
         });
 
         Schema::table('course_management', function($table) {
@@ -121,16 +141,6 @@ class CreateAdmissionBillingRl extends Migration {
             $table->foreign('degree_id')->references('id')->on('degree');
         });
 
-        Schema::create('degree_program', function($table) {
-            $table->increments('id');
-            $table->string('code', 128);
-            $table->string('title', 128);
-            $table->string('description');
-            $table->integer('created_by', false, 11);
-            $table->integer('updated_by', false, 11);
-            $table->timestamps();
-            $table->engine = 'InnoDB';
-        });
 
 
         Schema::create('degree_applicant', function(Blueprint $table) {
@@ -168,6 +178,7 @@ class CreateAdmissionBillingRl extends Migration {
 
 	public function down()
 	{
+        Schema::drop('degree_program');
         Schema::drop('degree');
         Schema::drop('course_management');
         Schema::drop('billing_item');
@@ -177,7 +188,6 @@ class CreateAdmissionBillingRl extends Migration {
         Schema::drop('billing_schedule');
         Schema::drop('billing_details');
         Schema::drop('applicant');
-        Schema::drop('degree_program');
         Schema::drop('degree_applicant');
         Schema::drop('degree_education_constraint');
 	}
