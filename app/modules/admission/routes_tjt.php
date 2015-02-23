@@ -53,7 +53,7 @@ Route::any('user/get_cookie', 'UserSignupController@getCookie');
 
 //-------------------------------- Amw: Course Management starts-----------------------------------------------
 
-Route::any('course_manage/amw','AdmAmwController@index');
+Route::any('amw/course_manage','AdmAmwController@index');
 
 Route::any('course_manage/create','AdmAmwController@create');
 
@@ -77,12 +77,12 @@ Route::any('degree_manage/create','AdmAmwController@dgmCreate');
 
 //Route::any('degree_manage/store','AdmAmwController@dgmStore');
 
-Route::any('degree_manage/store', ['as' => 'degree_manage.store','uses' => 'AdmAmwController@dgmStore' ]);
+Route::any('degree_manage/store', ['as' => 'degree_manage.store','uses' => 'AdmAmwController@dgmStore']);
 
-Route::any('degree_manage/show/{id}', ['as' => 'degree_manage.show','uses' => 'AdmAmwController@dgmShow' ]);
+Route::any('degree_manage/show/{id}', ['as' => 'degree_manage.show','uses' => 'AdmAmwController@dgmShow']);
 
-Route::any('degree_manage/edit/{id}', ['as' => 'degree_manage.edit','uses' => 'AdmAmwController@dgmEdit' ]);
+Route::any('degree_manage/edit/{id}', ['as' => 'degree_manage.edit','uses' => 'AdmAmwController@dgmEdit']);
 
-Route::any('degree_manage/update/{id}', ['as' => 'degree_manage.update','uses' => 'AdmAmwController@dgmUpdate' ]);
+Route::any('degree_manage/update/{id}', ['as' => 'degree_manage.update','uses' => 'AdmAmwController@dgmUpdate']);
 
-Route::any('degree_manage/waiver/{id}', ['as' => 'degree_manage.waiver','uses' => 'AdmAmwController@degreeWaiverIndex' ]);
+Route::any('degree_manage/waiver/{id}', ['as' => 'degree_manage.waiver','uses' => 'AdmAmwController@degreeWaiverIndex']);

@@ -121,9 +121,11 @@
           <div class="modal-dialog">
             <div class="modal-content">
 
-           </div>
-          </div>
-    </div>
+
+        </div>
+      </div>
+</div>
+
 
      <!-- Modal :: show Information -->
      <div class="modal fade" id="showModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
