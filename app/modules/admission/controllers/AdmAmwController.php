@@ -37,7 +37,8 @@ class AdmAmwController extends \BaseController
     public function store()
     {
 
-        $rules = array(//            'course_id' => 'required',
+        $rules = array(
+        //            'course_id' => 'required',
         );
         $validator = Validator::make(Input::all(), $rules);
         if ($validator->passes()) {
