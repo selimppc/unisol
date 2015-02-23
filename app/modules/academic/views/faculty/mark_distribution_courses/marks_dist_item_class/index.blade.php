@@ -24,7 +24,7 @@
                 <td>{{($value->status == 1) ? 'Active' : 'Inactive';}}</td>
                 <td>{{$value->relAcmClassSchedule->day}}</td>
                 <td>
-                    <a href="" class="subEdit btn btn-xs btn-default" data-toggle="modal" data-target="#edit-modal" href="" ><span class="glyphicon glyphicon-edit text-info"></span></a>
+                    <a href="{{ URL::route('class.edit', ['id'=>$value->id]) }}" class="subEdit btn btn-xs btn-default" data-toggle="modal" data-target="#editModal" href="" ><span class="glyphicon glyphicon-edit text-info"></span></a>
                     <a href="{{ URL::route('class.show', ['id'=>$value->id])  }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" href=""><span class="glyphicon glyphicon-list-alt text-info"></span></a>
 
                 </td>
@@ -55,18 +55,39 @@
         </div>
     </div>
 
-    <!-- Show single class info -->
+    {{--Show single class info --}}
     <div class="modal fade" id="showModal" tabindex="-1" role="dialog" aria-labelledby="addScholarship" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
 
+
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <!-- Edit Class Modal -->
+
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="addScholarship" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                {{--<div class="modal-header">--}}
+                    {{--<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>--}}
+                    {{--<h4 class="modal-title">Edit class Item</h4>--}}
+                {{--</div>--}}
+                {{--<div class="modal-body">--}}
+
+
+                {{--</div>--}}
+                {{--<div class="modal-footer">--}}
+
+                {{--</div>--}}
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 
 @stop
 
-@section('script_section')
-    {{HTML::script('assets/js/dropzone/dropzone.js')}}
+{{--@section('script_section')--}}
+    {{--{{HTML::script('assets/js/dropzone/dropzone.js')}}--}}
 
-@stop
+{{--@stop--}}

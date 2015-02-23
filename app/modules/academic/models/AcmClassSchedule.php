@@ -7,7 +7,7 @@ class AcmClassSchedule extends \Eloquent
 
     public function relAcmClassTime()
     {
-        return $this->belongsTo('AcmClassTime','acm_class_time','id');
+        return $this->belongsTo('AcmClassTime','acm_class_time_id','id');
     }
 
 

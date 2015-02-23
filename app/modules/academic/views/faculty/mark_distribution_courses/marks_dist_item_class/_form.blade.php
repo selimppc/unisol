@@ -1,19 +1,20 @@
 <div class='form-group'>
-        <div>{{ Form::label('title', 'ClassTitle') }}</div>
-        <div>{{ Form::text('title', Input::old('title'),['class'=>'form-control','spellcheck'=> 'true','required'=>'required']) }}</div>
+        {{ Form::label('title', 'Class Title') }}
+        {{ Form::text('title', Input::old('title'),['class'=>'form-control','spellcheck'=> 'true','required'=>'required']) }}
 </div>
+
 <div class='form-group'>
-        <div>{{ Form::label('description', 'Description') }}</div>
-        <div>{{ Form::textarea('description', Input::old('description'),['class'=>'form-control','spellcheck'=> 'true','required'=>'required','size'=>'30x10']) }}</div>
+        {{ Form::label('description', 'Description') }}
+        {{ Form::textarea('description', Input::old('description'),['class'=>'form-control','spellcheck'=> 'true','required'=>'required','size'=>'30x10']) }}
 </div>
-{{--This field will come from acm_class_schedule tb day filed--}}
+
 <div class='form-group'>
-        <div>{{ Form::label('classtime', 'ClassTime') }}</div>
-        <div>{{ Form::select('classtime',$date_time,Input::old('classtime'),['class'=>'form-control','required']) }}</div>
+        {{ Form::label('class_time', 'Class Time') }}
+        {{ Form::select('class_time',$date_time,Input::old('class_time'),['class'=>'form-control','required']) }}
 </div>
-</div>
+
 <div class='form-group'>
-        {{ Form::label('file', 'Upload File') }}
+        {{ Form::label('images', 'Upload File') }}
         {{ Form::file('images[]', array('multiple'=>true)) }}
 </div>
 
