@@ -19,7 +19,7 @@
             "Illuminate\\Support": ""
         },
         "files": [
-            "Illuminate/Support/helpers.php"
+            "Illuminate/Support/Helpers.php"
         ]
     },
     "target-dir": "Illuminate/Support",

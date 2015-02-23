@@ -117,6 +117,24 @@ class HomeController extends BaseController {
 
 
     public function testSearch(){
+
+        $a = Helpers::doMessage();
+
+        $choiceList = [
+            ''
+        ];
+        $centerCapacity = [];
+
+        $helper = new Helpers();
+        $b = $helper->selectCenter($choiceList, $centerCapacity);
+        print_r($b);exit;
+
+
+
+
+
+
+
         $dept_id = "";
         $deg_id = 2;
         $sem_id = 1;
