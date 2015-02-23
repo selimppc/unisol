@@ -6,6 +6,11 @@ class ExmAmwController extends \BaseController {
         $this->beforeFilter('exmAmw', array('except' => array('')));
     }
 
+    protected function isPostRequest()
+    {
+        return Input::server("REQUEST_METHOD") == "POST";
+    }
+
 
     //amw: View question paper
     public function viewQuestion($id)
@@ -202,21 +207,7 @@ class ExmAmwController extends \BaseController {
 
     }
 
-    public function examination(){
-        $exam_data = ExmExamList::with(
-            [
-                'relCourseManagement', 'relCourseManagement.relCourse',
-                'relCourseManagement.relCourse.relSubject.relDepartment',
-                'relMeta' => function ($query)
-                { $query->where('is_exam', 1); }
-            ]
-        )->get();
 
-        $year_id = Year::lists('title', 'id');
-        $semester_id = Semester::lists('title', 'id');
-
-        return View::make('examination::amw.prepare_question_paper.examination',compact('exam_data','year_id','semester_id'));
-    }
 
     public function courses($mark_dist_item_id){
 
@@ -363,12 +354,63 @@ class ExmAmwController extends \BaseController {
         $question_paper = ExmQuestion::where('exm_exam_list_id' ,'=', $exam_list_id)
             ->get();
 
-
-
         return View::make('examination::amw.prepare_question_paper.index',compact('question_paper','exam_list_id'));
 
 
     }
 
+    public function examination(){
+
+        $exam_data = ExmExamList::with(
+            [
+                'relCourseManagement', 'relCourseManagement.relCourse',
+                'relCourseManagement.relCourse.relSubject.relDepartment',
+                'relMeta' => function ($query)
+                { $query->where('is_exam', 1); }
+            ]
+        )->get();
+
+        $year_id = Year::lists('title', 'id');
+        $semester_id = Semester::lists('title', 'id');
+
+        return View::make('examination::amw.prepare_question_paper.examination',compact('exam_data','year_id','semester_id'));
+    }
+
+
+
+    public function search(){
+
+        $searchQuery = [
+            'year_id' =>   Input::get('year_id'),
+            'semester_id' =>   Input::get('semester_id'),
+        ];
+
+        $model = new ExmExamList();
+        $helper = new Helpers();
+        $result = $helper->search($searchQuery, $model);
+
+        $exam_data = '';
+        foreach($result as $value){
+            $model = ExmExamList::with(
+                [
+                    'relCourseManagement', 'relCourseManagement.relCourse',
+                    'relCourseManagement.relCourse.relSubject.relDepartment',
+                    'relMeta' => function ($query)
+                    {
+                        $query->where('is_exam', 1);
+                    }
+                ]
+            );
+            $model = new ExmExamList();
+            $model = $model->where('id', '=', $value->id);
+            $exam_data[] = $model->get();
+        }
+
+
+        $year_id = Year::lists('title', 'id');
+        $semester_id = Semester::lists('title', 'id');
+
+        return View::make('examination::amw.prepare_question_paper._search_examination',compact('exam_data','year_id','semester_id'));
+    }
 
 }

@@ -9,4 +9,7 @@ class Waiver extends Eloquent{
     protected $table='waiver';
     protected $fillable= array('title', 'description', 'waiver_type', 'is_percentage', 'amount', 'acm_billing_item_id', 'created_by', 'updated_by');
 
+    public function relBillingDetails() {
+        return $this->belongsTo('BillingDetails', 'billing_details_id', 'id');
+    }
 } 

@@ -35,11 +35,7 @@
                        </div>
                </div>
            </div>
-        </div>
-
-
-
-
+       </div>
 
            {{ Form::open(array('url' => 'examination/amw/batchDelete')) }}
                <table id="example" class="table table-striped  table-bordered"  >
@@ -59,29 +55,38 @@
                              </tr>
                       </thead>
                       <tbody>
-                          @foreach($exam_data as $exam_list)
+
+                          @if(!empty($exam_data))
+                            <?php $i = 0; ?>
+                            @foreach($exam_data as $exam_list)
                                 <tr>
-                                    <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $exam_list['id'] }}"></td>
+                                    <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $exam_list[$i]['id'] }}"></td>
                                     {{--<td> {{ HTML::linkAction('ExmAmwController@courses', $exam_list->title) }} </td>--}}
-                                    <td>{{ HTML::linkAction('ExmAmwController@courses', $exam_list->title, ['mark_dist_item_id'=>$exam_list->relMeta['id'] ])  }} </td>
-                                    <td>{{ $exam_list->relCourseManagement->relCourse->relSubject->relDepartment->title }}</td>
-                                    <td>{{ $exam_list->relCourseManagement->relCourse->title }}</td>
-                                    <td>{{ $exam_list->relMeta['title'] }}</td>
-                                    <td>{{ Year::getYearsName($exam_list->year_id) }}</td>
-                                    <td>{{ Semester::getSemesterName($exam_list->semester_id) }}</td>
+                                    <td>{{ HTML::linkAction('ExmAmwController@courses', $exam_list[$i]['title'], ['mark_dist_item_id'=>$exam_list[$i]['relMeta']['id'] ])  }} </td>
+                                    <td>{{ $exam_list[$i]['relCourseManagement']['relCourse']['relSubject']['relDepartment']['title'] }}</td>
+                                    <td>{{ $exam_list[$i]['relCourseManagement']['relCourse']['title'] }}</td>
+                                    <td>{{ $exam_list[$i]['relMeta']['title'] }}</td>
+                                    <td>{{ Year::getYearsName($exam_list[$i]['year_id']) }}</td>
+                                    <td>{{ Semester::getSemesterName($exam_list[$i]['semester_id']) }}</td>
 
                                     <td>
-                                       <a href="{{ URL::route('examination.amw.viewExamination', ['id'=>$exam_list->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#modal" data-placement="left" title="Show" href="#">View</a>
-                                       <a href="{{ URL::route('examination.amw.editExamination', ['id'=>$exam_list->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#modal" data-placement="left" title="Edit" href="#">Edit</a>
+                                       <a href="{{ URL::route('examination.amw.viewExamination', [ 'id'=>$exam_list[$i]['id'] ])  }}" class="btn btn-default" data-toggle="modal" data-target="#modal" data-placement="left" title="Show" href="#">View</a>
+                                       <a href="{{ URL::route('examination.amw.editExamination', [ 'id'=>$exam_list[$i]['id'] ])  }}" class="btn btn-default" data-toggle="modal" data-target="#modal" data-placement="left" title="Edit" href="#">Edit</a>
                                     </td>
                                 </tr>
-                          @endforeach
+                            @endforeach
+
+
+                          @endif
+
                       </tbody>
                </table>
            {{form::close() }}
 
 
-        <p>&nbsp;</p><p>&nbsp;</p>
+           <p>&nbsp;</p>
+           <p>&nbsp;</p>
+
 @include('examination::amw.prepare_question_paper._modal._add_examination')
 @include('examination::amw.prepare_question_paper._modal._common_modal')
 

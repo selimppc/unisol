@@ -19,15 +19,17 @@ Shafi
 
 include("routes_sh.php");
 
-Route::any('examination/amw/deshboard', [
-    'as' => 'examination.amw.deshboard',
-    'uses' => 'ExmAmwController@deshboard'
-]);
-
 //Route::any('',[
 //    'as' =>'',
 //    'uses' => ''
 //]);
+
+
+
+Route::any('examination/amw/deshboard', [
+    'as' => 'examination.amw.deshboard',
+    'uses' => 'ExmAmwController@deshboard'
+]);
 
 Route::any('examination/amw/examination',[
     'as' =>'examination/amw/examination',
@@ -96,3 +98,13 @@ Route::any('examination/amw/viewExaminers/{id}', [
     'as' => 'examination.amw.viewExaminers',
     'uses' => 'ExmAmwController@viewExaminers'
 ]);
+
+Route::any('examination/amw/search', [
+    'as' => 'examination.amw.search',
+    'uses' => 'ExmAmwController@search'
+]);
+
+//Route::any('',[
+//    'as' =>'',
+//    'uses' => ''
+//]);
