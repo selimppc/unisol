@@ -13,7 +13,7 @@
 {{---------------------------------------------Data Table: Starts-----------------------------------------------------------------}}
 <table id="example1" class="table table-bordered table-striped">
 
-    <col width="100">
+    <col width="150">
     <col width="100">
     <col width="100">
     <col width="100">
@@ -35,26 +35,27 @@
     </thead>
   <tbody>
 
-      {{--@foreach($model as $value)--}}
+      @foreach($waiver_model as $value)
 
 
-          {{--<tr>--}}
-          {{--<td>{{ $value->relCourse->title }}</td>--}}
-          {{--<td>{{ $value->relDegree->title}}</td>--}}
-          {{--<td>{{ strtoupper($value->major_minor) }}</td>--}}
-          {{--<td>{{  $value->relCourse->relSubject->relDepartment->title }}</td>--}}
-          {{--<td>{{ $value->relYear->title }}</td>--}}
-          {{--<td>{{ $value->relSemester->title }}</td>--}}
+          <tr>
+          <td>{{ $value->title }}</td>
+          <td></td>
+          <td>{{ $value->is_percentage == 1 ? 'Yes' : 'No' }}</td>
+
+          <td>{{  $value->amount }}</td>
+          <td></td>
+
           {{--<td>{{ $value->relUser->relUserProfile->first_name.' '.$value->relUser->relUserProfile->last_name }}</td>--}}
-          {{--<td>--}}
-               {{--<a href="{{ URL::to('course_manage/show/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal"><span class="glyphicon glyphicon-eye-open text-danger"></span></a>--}}
-               {{--<a class="btn btn-xs btn-default" href="{{ URL::to('degree_manage/edit/'.$value->id) }}" data-toggle="modal" data-target="#editModal" ><span class="glyphicon glyphicon-edit"></span></a>--}}
+          <td>
+               <a href="{{ URL::route('waiver_manage.show', $value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#addModal"><span class="glyphicon glyphicon-eye-open text-danger"></span></a>
+               <a class="btn btn-xs btn-default" href="{{ URL::route('waiver_manage.edit',$value->id) }}" data-toggle="modal" data-target="#addModal" ><span class="glyphicon glyphicon-edit"></span></a>
                   {{----}}
-          {{--</td>--}}
+          </td>
 
-           {{----}}
-          {{--</tr>--}}
-      {{--@endforeach--}}
+
+          </tr>
+      @endforeach
 
   </tbody>
 
@@ -63,7 +64,7 @@
 
 {{--------Pagination Link--------------------------}}
  <div class="pull-right paginate-button">
-    {{--{{$model->links()}}--}}
+    {{$waiver_model->links()}}
  </div>
 
 {{---------------------------------------------------Modals-----------------------------------------------}}
