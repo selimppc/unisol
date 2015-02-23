@@ -19,4 +19,9 @@ class BillingDetails extends Eloquent{
     }
 
 
+    public function relBillingItem() {
+        return $this->belongsToMany('BillingItem', 'billing_item_id', 'id');
+    }
+
+
 } 

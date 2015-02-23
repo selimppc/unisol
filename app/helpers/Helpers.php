@@ -15,11 +15,12 @@ class Helpers {
     }
 
     /**
-     * @param $selectedApplicantListWithChoiceList
-     * @param $centerListWithCurrentCapacity
+     * @param $selectedApplicantListWithChoiceList :: Choice List of Center for Applicant
+     * @param $centerListWithCurrentCapacity :: Center List with Current Capacity
+     * @param $user :: User would be single or multiple
      * @return mixed
      */
-    public function selectCenter($selectedApplicantListWithChoiceList, $centerListWithCurrentCapacity, $user){
+    public function selectCenter($selectedApplicantListWithChoiceList, $centerListWithCurrentCapacity){
         foreach( $selectedApplicantListWithChoiceList as $salwcl){
             foreach($salwcl['clist'] as $pcl){
                 if( $centerListWithCurrentCapacity[$pcl]['capacity'] > 0 ){
