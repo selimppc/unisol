@@ -12,7 +12,7 @@
 
         <div class='form-group'>
                <div>{{ Form::label('degree_id', 'Degree') }}</div>
-               <div>{{ Form::select('degree_id',$degree,$course_model->degree_program_id,['class'=>'form-control ']) }}</div>
+               <div>{{ Form::select('degree_id',$degree,$course_model->degree_id,['class'=>'form-control ']) }}</div>
         </div>
 
          <div class='form-group'>
