@@ -26,10 +26,8 @@ class AdmAmwController extends \BaseController {
         $course= array('' => 'Please Select Course') + Course::lists('title', 'id');
         $semester= array('' => 'Please Select Semester') + Semester::lists('title', 'id');
         $degree= array('' => 'Please Select Degree') + Degree::lists('title', 'id');
-        $degreeProgram= array('' => 'Please Select DegreeProgram') + DegreeProgram::lists('title', 'id');
 
-
-        return View::make('admission::amw.course_management.modals._form', compact('courseType','year','course','semester','user','facultyList','degree','degreeProgram'));
+        return View::make('admission::amw.course_management.modals._form', compact('courseType','year','course','semester','user','facultyList','degree'));
     }
 
 	public function store()
@@ -43,7 +41,6 @@ class AdmAmwController extends \BaseController {
 
             $course_model = new CourseManagement();
 
-            $course_model->degree_program_id = Input::get('degree_program_id');
             $course_model->course_id = Input::get('course_id');
             $course_model->year_id = Input::get('year_id');
             $course_model->semester_id = Input::get('semester_id');
@@ -56,7 +53,7 @@ class AdmAmwController extends \BaseController {
             $course_model->user_id = Input::get('user_id');
 
             if( $course_model->save()){
-                return Redirect::to('course_manage/amw')->with('message', 'Successfully added Information!');
+                return Redirect::to('amw/course_manage')->with('message', 'Successfully added Information!');
             }
         } else {
             return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
@@ -80,8 +77,8 @@ class AdmAmwController extends \BaseController {
         $course = Course::lists('title', 'id');
         $semester = Semester::lists('title', 'id');
         $degree = Degree::lists('title', 'id');
-        $degreeProgram = DegreeProgram::lists('title', 'id');
-        return View::make('admission::amw.course_management.modals.edit', compact('course_model', 'courseType', 'year', 'course', 'semester', 'user', 'facultyList', 'degree', 'degreeProgram'));
+
+        return View::make('admission::amw.course_management.modals.edit', compact('course_model', 'courseType', 'year', 'course', 'semester', 'user', 'facultyList', 'degree'));
     }
 
     public function update($id)
@@ -94,7 +91,6 @@ class AdmAmwController extends \BaseController {
 
             $course_model = CourseManagement::find($id);
 
-            $course_model->degree_program_id = Input::get('degree_program_id');
             $course_model->course_id = Input::get('course_id');
             $course_model->year_id = Input::get('year_id');
             $course_model->semester_id = Input::get('semester_id');
@@ -104,7 +100,6 @@ class AdmAmwController extends \BaseController {
             $course_model->end_date = Input::get('end_date');
             $course_model->major_minor = Input::get('major_minor');
             $course_model->degree_id = Input::get('degree_id');
-          //  $course_model->user_id = Input::get('user_id');
 
             $course_model->save();
             return Redirect::back()->with('message', 'Successfully updated Information!');
@@ -248,7 +243,7 @@ class AdmAmwController extends \BaseController {
         $degree_model = Degree::find($id);
         return View::make('admission::amw.waiver_management.index_waiver',compact('degree_model'));
     }
-    public function waiverCreate(){
+    public function degreeWaiverCreate(){
 
         return View::make('admission::amw.waiver_management._form');
     }

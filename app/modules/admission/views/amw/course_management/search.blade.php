@@ -87,8 +87,8 @@
    <th>Action</th>
 
 </tr>
-</thead>
-    <tbody>
+  </thead>
+     <tbody>
           @foreach($model as $value)
                 <tr>
                     <td>{{ Course::where('id', '=', $value->course_id)->first()->title; }}</td>
@@ -104,7 +104,7 @@
                      </td>
                 </tr>
           @endforeach
-    </tbody>
+     </tbody>
 
 
 </table>
@@ -117,30 +117,20 @@
 
      </div>
 @endif
-    {{--<div class="col-xs-12" style="text-align: center;">--}}
-      {{--@if(!empty($model))--}}
-          {{--No data found !--}}
-          {{--<span class="btn btn-sm btn btn-info" style="color: #ffffff;">{{ HTML::linkAction('AdmAmwController@index', 'View All'  ) }}</span>--}}
-      {{--@endif--}}
-    {{--</div>--}}
+
 {{-----------------------------------Data Table : Ends---------------------------------------------------------------------------}}
 
 {{--------Pagination Link--------------------------}}
-<div class="pull-right paginate-button">
+         <div class="pull-right paginate-button">
     {{--{{$model->links()}}--}}
-</div>
+         </div>
 
 
 {{--</div><!-- /.box-body -->--}}
-</div><!-- /.box -->
-</div>
-</div>
+      </div><!-- /.box -->
+    </div>
+ </div>
 </section>
-
-
-
-
-
 
 
 @stop
