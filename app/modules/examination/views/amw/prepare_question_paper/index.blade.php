@@ -54,6 +54,7 @@
                                 <td>{{$prepare_question_paper_amw->relCourseManagement->relCourse->relSubject->relDepartment->title}}</td>
                                 <td>{{$prepare_question_paper_amw->relCourseManagement->relYear->title }} </td>
                                 <td>{{$prepare_question_paper_amw->relCourseManagement->relSemester->title}}</td>
+
                                 <td> </td>
                                 {{--<td>{{ $prepare_question_paper_amw->relUser->relUserProfile->first_name.' '.$prepare_question_paper_amw->relUser->relUserProfile->middle_name.' '.$prepare_question_paper_amw->relUser->relUserProfile->last_name }}</td>--}}
                                 <td>
