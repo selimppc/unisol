@@ -1,4 +1,3 @@
-
 {{--{{ HTML::script('assets/js/bootstrap-datepicker.js') }}--}}
 {{--{{ HTML::style('assets/css/datepicker.css')}}--}}
 <div class="modal-header">
@@ -65,8 +64,6 @@
 {{--<script>--}}
   {{--$(function() {--}}
     {{--$( "#datepicker" ).datepicker();--}}
-
      {{--$( "#datepicker1" ).datepicker();--}}
-
   {{--});--}}
   {{--</script>--}}

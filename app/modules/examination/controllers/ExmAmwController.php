@@ -52,7 +52,9 @@ class ExmAmwController extends \BaseController {
         if ($prepare_question_paper->validate($data))
         {
             // success code
-            $prepare_question_paper->exm_exam_list_id = Input::get('exm_exam_list_id');
+            $prepare_question_paper->exm_exam_list_id = Input::get('exam_list_id');
+
+//            print_r($prepare_question_paper->exm_exam_list_id);exit;
 
 //            print_r($prepare_question_paper->exm_exam_list_id);exit;
 
@@ -80,11 +82,11 @@ class ExmAmwController extends \BaseController {
         //ok
     }
     //amw: Edit Question Paper
-    public function editQuestionPaper($id)
+    public function editQuestionPaper($exam_list_id)
     {
-        $prepare_question_paper = ExmQuestion::find($id);
+        $prepare_question_paper = ExmQuestion::find($exam_list_id);
 
-        $exam_list_id = Input::get('exam_list_id');
+//        $exam_list_id = Input::get('exam_list_id');
 
         // Show the edit employee form.
         return View::make('examination::amw.prepare_question_paper.editQuestionPaper',compact('prepare_question_paper','exam_list_id'));
@@ -96,23 +98,32 @@ class ExmAmwController extends \BaseController {
         // get the POST data
         $data = Input::all($id);
         $exam_list_id = Input::get('exam_list_id');
+
+//        print_r($exam_list_id);exit;
         // create a new model instance
         $prepare_question_paper = new ExmQuestion();
         // attempt validation
         if ($prepare_question_paper->validate($data))
         {
             $prepare_question_paper = ExmQuestion::find($id);
+//           print_r($prepare_question_paper);exit;
+
             $prepare_question_paper->exm_exam_list_id = Input::get('exm_exam_list_id');
             $prepare_question_paper->title = Input::get('title');
             $prepare_question_paper->deadline = Input::get('deadline');
             $prepare_question_paper->total_marks = Input::get('total_marks');
             $prepare_question_paper->created_by = Auth::user()->id;
             $prepare_question_paper->updated_by = Auth::user()->id;
+
+//            print_r($exam_list_id);exit;
+
             $prepare_question_paper->save();
             // redirect
-            Session::flash('message', 'Successfully Added!');
+            Session::flash('message', 'Successfully Updated!');
 
-            return Redirect::route('examination/amw/index', ['exam_list_id'=>$exam_list_id]);
+            return Redirect::back();
+
+//            return Redirect::route('examination/amw/index', ['exam_list_id'=>$exam_list_id]);
 
         }
         else
@@ -121,7 +132,7 @@ class ExmAmwController extends \BaseController {
             $errors = $prepare_question_paper->errors();
             Session::flash('errors', $errors);
 
-            return Redirect::to('examination/amw/editQuestionPaper');
+            return Redirect::to('examination/amw/index');
         }
         //ok
     }

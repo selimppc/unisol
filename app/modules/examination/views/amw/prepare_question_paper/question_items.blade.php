@@ -44,7 +44,7 @@
         </td>
         <td>{{ $question_list->marks }}</td>
         <td>
-            <a href="{{ URL::route('examination.amw.viewQuestionItems', ['id'=>$question_list->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#ViewQuestionItems" data-placement="left" title="Show" href="#"> View </a>
+            <a href="{{ URL::route('examination.amw.viewQuestionItems', ['id'=>$question_list->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#modal" data-placement="left" title="Show" href="#"> View </a>
 
         </td>
     </tr>
@@ -53,5 +53,5 @@
 </table>
 {{form::close() }}
 
-@include('examination::amw.prepare_question_paper._modal')
+@include('examination::amw.prepare_question_paper._modal._common_modal')
 @stop
