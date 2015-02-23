@@ -69,9 +69,9 @@ Route::any('course_manage/search','AdmAmwController@search');
 
 Route::any('course_manage/search_view','AdmAmwController@cmSearchView');
 
-//------------------------------Amw : Degree Management starts--------------------------------------------
+//------------------------------ Amw : Degree Management starts  --------------------------------------------
 
-Route::any('degree_manage/amw','AdmAmwController@dgmIndex');
+Route::any('amw/degree_manage','AdmAmwController@dgmIndex');
 
 Route::any('degree_manage/create','AdmAmwController@dgmCreate');
 
@@ -86,3 +86,10 @@ Route::any('degree_manage/edit/{id}', ['as' => 'degree_manage.edit','uses' => 'A
 Route::any('degree_manage/update/{id}', ['as' => 'degree_manage.update','uses' => 'AdmAmwController@dgmUpdate']);
 
 Route::any('degree_manage/waiver/{id}', ['as' => 'degree_manage.waiver','uses' => 'AdmAmwController@degreeWaiverIndex']);
+
+
+//------------------------------Amw : Waiver Management starts  --------------------------------------------
+
+Route::any('amw/waiver_manage', ['as' => 'waiver_manage.index','uses' => 'AdmAmwController@waiverIndex']);
+
+Route::any('amw/waiver_manage/create', ['as' => 'waiver_manage.create','uses' => 'AdmAmwController@waiverCreate']);

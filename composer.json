@@ -34,7 +34,11 @@
             "app/modules/applicant/models",
             "app/modules/fees/controllers",
             "app/modules/fees/models"
-		]
+		],
+
+        "files":[
+            "app/helpers/helpers.php"
+        ]
 	},
 	"scripts": {
 		"post-install-cmd": [

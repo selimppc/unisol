@@ -88,6 +88,8 @@
               </a>
                <ul class="dropdown-menu">
                     <li><a tabindex="-1" a href="{{URL::to('amw/course_manage') }}"> Course Management(Amw) </a></li>
+                    <li><a tabindex="-1" a href="{{URL::to('amw/degree_manage') }}"> Degree Management(Amw) </a></li>
+                    <li><a tabindex="-1" a href="{{URL::to('amw/waiver_manage') }}"> Waiver Management(Amw) </a></li>
 
                </ul>
           </li>
