@@ -21,6 +21,7 @@ class AdmAmwController extends \BaseController {
 	{
         $facultyList = User::FacultyList();
 
+
         $courseType =array('' => 'Please Select Course Type') + CourseType::lists('title', 'id');
         $year = array('' => 'Please Select Year') + Year::lists('title', 'id');
         $course= array('' => 'Please Select Course') + Course::lists('title', 'id');
@@ -188,7 +189,7 @@ class AdmAmwController extends \BaseController {
 //            $degree_model->status = Input::get('status');
 
             if( $degree_model->save()){
-                return Redirect::to('degree_manage/amw')->with('message', 'Successfully added Information!');
+                return Redirect::to('amw/degree_manage')->with('message', 'Successfully added Information!');
             }
         } else {
             return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
@@ -248,5 +249,16 @@ class AdmAmwController extends \BaseController {
         return View::make('admission::amw.waiver_management._form');
     }
 
+
+//.............................  Waiver Management starts  ...................................................
+
+    public function waiverIndex(){
+
+        return View::make('admission::amw.waiver_management.index');
+    }
+
+    public function waiverCreate(){
+        return View::make('admission::amw.waiver_management.waiver_modals._form');
+    }
 
 }
