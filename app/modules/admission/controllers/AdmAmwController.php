@@ -302,4 +302,14 @@ class AdmAmwController extends \BaseController
         }
     }
 
+    public function waiverShow(){
+
+    }
+    public function waiverEdit(){
+
+    }
+    public function waiverUpdate(){
+
+    }
+
 }
