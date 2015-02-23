@@ -118,15 +118,32 @@ class HomeController extends BaseController {
 
     public function testSearch(){
 
-        $a = Helpers::doMessage();
-
-        $choiceList = [
-            ''
+        $selectedApplicantListWithChoiceList  = [
+            array('id' => 1,
+                'clist' => array(2,1,4,3,6,5)),
+            array('id' => 2,
+                'clist' => array(1,3,2,6,5,4)),
+            array('id' => 3,
+                'clist' => array(3,1,2,4,5,6)),
         ];
-        $centerCapacity = [];
+
+        $centerListWithCurrentCapacity = [
+            2 => array(
+                'capacity' => 0),
+            1 => array(
+                'capacity' => 95),
+            3 => array(
+                'capacity' => 20),
+            4 => array(
+                'capacity' => 30),
+            5 => array(
+                'capacity' => 40),
+            6 => array(
+                'capacity' => 25),
+        ];
 
         $helper = new Helpers();
-        $b = $helper->selectCenter($choiceList, $centerCapacity);
+        $b = $helper->selectCenter($selectedApplicantListWithChoiceList, $centerListWithCurrentCapacity);
         print_r($b);exit;
 
 
