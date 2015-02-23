@@ -4,7 +4,7 @@
 @stop
 @section('content')
     {{--css link--}}
-    {{ HTML::style('assets/css/dropzone/dropzone.css') }}
+    {{--{{ HTML::style('assets/css/dropzone/dropzone.css') }}--}}
     <h4 style="text-align: center">{{$title}}</h4>
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addClass">Add Class</button>
     <table id="example" class="table table-bordered table-hover table-striped">
@@ -26,7 +26,6 @@
                 <td>
                     <a href="{{ URL::route('class.edit', ['id'=>$value->id]) }}" class="subEdit btn btn-xs btn-default" data-toggle="modal" data-target="#editModal" href="" ><span class="glyphicon glyphicon-edit text-info"></span></a>
                     <a href="{{ URL::route('class.show', ['id'=>$value->id])  }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" href=""><span class="glyphicon glyphicon-list-alt text-info"></span></a>
-
                 </td>
             </tr>
         @endforeach
@@ -50,7 +49,6 @@
                     @include('academic::faculty.mark_distribution_courses.marks_dist_item_class._form')
                     {{ Form::close() }}
                 </div>
-
             </div>
         </div>
     </div>
@@ -60,27 +58,15 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
 
-
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 
     <!-- Edit Class Modal -->
-
     <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="addScholarship" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                {{--<div class="modal-header">--}}
-                    {{--<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>--}}
-                    {{--<h4 class="modal-title">Edit class Item</h4>--}}
-                {{--</div>--}}
-                {{--<div class="modal-body">--}}
 
-
-                {{--</div>--}}
-                {{--<div class="modal-footer">--}}
-
-                {{--</div>--}}
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
@@ -88,6 +74,6 @@
 @stop
 
 {{--@section('script_section')--}}
-    {{--{{HTML::script('assets/js/dropzone/dropzone.js')}}--}}
+{{--{{HTML::script('assets/js/dropzone/dropzone.js')}}--}}
 
 {{--@stop--}}
