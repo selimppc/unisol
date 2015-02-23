@@ -118,6 +118,9 @@ class HomeController extends BaseController {
 
     public function testSearch(){
 
+        $result = BillingDetails::BillingItem();
+        print_r($result);exit;
+
         $selectedApplicantListWithChoiceList  = [
             array('id' => 1,
                 'clist' => array(2,1,4,3,6,5)),
