@@ -85,3 +85,7 @@
 {
     width: 70px;
 }
+
+.modal-dialog{
+    margin: 50px auto;
+}
