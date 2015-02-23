@@ -32,8 +32,8 @@ class Helpers {
 
 
     /**
-     * @param array $query
-     * @param $model
+     * @param array $query :: array of data ;
+     * @param $model :: declare in which model;
      * @return mixed
      */
     public function search(array $query, $model)

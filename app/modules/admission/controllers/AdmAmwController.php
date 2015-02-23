@@ -22,7 +22,9 @@ class AdmAmwController extends \BaseController
 
     public function create()
     {
-        $facultyList = User::FacultyList();
+        //$facultyList = User::FacultyList();
+        $role_id = Role::where('title', '=','faculty' )->first()->id;
+        $facultyList = array('' => 'Please Select One') +  User::where('role_id', '=', $role_id)->lists('username', 'id');
 
 
         $courseType = array('' => 'Please Select Course Type') + CourseType::lists('title', 'id');
@@ -171,8 +173,8 @@ class AdmAmwController extends \BaseController
 
     public function dgmStore()
     {
-
-        $rules = array(//            'course_id' => 'required',
+        $rules = array(
+        //    'course_id' => 'required',
         );
         $validator = Validator::make(Input::all(), $rules);
         if ($validator->passes()) {
@@ -222,7 +224,8 @@ class AdmAmwController extends \BaseController
 
     public function dgmUpdate($id)
     {
-        $rules = array(//            'ever_admit_this_university' => 'required',
+        $rules = array(
+        //            'ever_admit_this_university' => 'required',
         );
         $validator = Validator::make(Input::all(), $rules);
         if ($validator->passes()) {
@@ -252,16 +255,90 @@ class AdmAmwController extends \BaseController
 
     public function degreeWaiverIndex($id)
     {
-
         $degree_model = Degree::find($id);
         return View::make('admission::amw.waiver_management.index_waiver', compact('degree_model'));
     }
 
     public function degreeWaiverCreate()
     {
-
         return View::make('admission::amw.waiver_management._form');
     }
 
+//..............................    Waiver Management : starts ...................................................
+
+    public function waiverIndex()
+
+    {
+        $waiver_model = Waiver::orderby('id', 'DESC')->paginate(5);
+
+        return View::make('admission::amw.waiver_management.index',compact('waiver_model'));
+    }
+
+    public function waiverCreate()
+    {
+        $billing_item = BillingDetails::BillingItem();
+
+        return View::make('admission::amw.waiver_management.waiver_modals._form',compact('billing_item'));
+    }
+
+    public function waiverStore(){
+
+        $rules = array(
+            //    'course_id' => 'required',
+        );
+        $validator = Validator::make(Input::all(), $rules);
+        if ($validator->passes()) {
+
+            $waiver_model = new Waiver();
+
+            $waiver_model->title = Input::get('title');
+            $waiver_model->description = Input::get('description');
+            $waiver_model->amount = Input::get('amount');
+            $waiver_model->is_percentage = Input::get('is_percentage');
+            $waiver_model->billing_details_id = Input::get('billing_details_id');
+
+            if ($waiver_model->save()) {
+                return Redirect::to('amw/waiver_manage')->with('message', 'Successfully added Information!');
+            }
+        } else {
+            return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
+        }
+    }
+
+    public function waiverShow($id){
+
+        $waiver_model = Waiver::find($id);
+        return View::make('admission::amw.waiver_management.waiver_modals.show',compact('waiver_model'));
+    }
+    public function waiverEdit($id){
+
+        $waiver_model = Waiver::find($id);
+        return View::make('admission::amw.waiver_management.waiver_modals.edit',compact('waiver_model'));
+    }
+    public function waiverUpdate($id){
+
+        $rules = array(
+            //   'billing_details_id' => 'required',
+        );
+        $validator = Validator::make(Input::all(), $rules);
+        if ($validator->passes()) {
+
+            $waiver_model = Waiver::find($id);
+
+            $waiver_model->title = Input::get('title');
+            $waiver_model->description = Input::get('description');
+            $waiver_model->amount = Input::get('amount');
+            $waiver_model->is_percentage = Input::get('is_percentage');
+            $waiver_model->billing_details_id = Input::get('billing_details_id');
+
+            $waiver_model->save();
+
+            return Redirect::back()->with('message', 'Successfully updated Information!');
+        } else {
+            return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
+        }
+
+
+    }
 
 }

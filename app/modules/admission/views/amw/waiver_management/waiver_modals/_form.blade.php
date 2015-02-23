@@ -7,10 +7,10 @@
 <div class="modal-body">
    <div style="padding: 20px;">
 
-{{--{{ Form::open(['route' => ['degree_waiver.store'], 'class'=>'form-horizontal','files' => true,]) }}--}}
+{{ Form::open(['route' => ['waiver_manage.store'], 'class'=>'form-horizontal','files' => true,]) }}
 
      {{ Form::label('title', 'Title') }}
-     {{ Form::text('title', Input::old('title'),array('class' => 'form-control input-sm','placeholder'=>'Enter waiver title')) }}
+     {{ Form::text('title', Input::old('title'),array('class' => 'form-control input-sm','placeholder'=>'Enter waiver title','required')) }}
 
       <br>
 
@@ -26,10 +26,18 @@
      <p>&nbsp;</p>
 
      {{ Form::label('amount', 'Amount') }}
-     {{ Form::text('amount', Input::old('amount'),array('class' => 'form-control input-sm')) }}
+     {{ Form::text('amount', Input::old('amount'),array('class' => 'form-control input-sm' ,'required')) }}
 
+     <br>
+
+     {{ Form::label('billing_details_id', 'Billing Item') }}
+     {{ Form::select('billing_details_id',$billing_item,Input::old('billing_details_id'),['class'=>'form-control input-sm','required']) }}
+
+     <p>&nbsp;</p>
 
      {{ Form::submit('Save ', array('class'=>'pull-right btn btn-primary')) }}
+
+     <p>&nbsp;</p>
 
      {{Form::close()}}
 
