@@ -113,7 +113,7 @@
      <div class="col-xs-12" style="text-align: center;">
 
           No data found !
-          <span class="btn btn-sm btn btn-default" style="color: #fdfdfd;">{{ HTML::linkAction('AdmAmwController@index', 'View All'  ) }}</span>
+          <span class="btn btn-xs btn btn-info" style="color: #e02222;">{{ HTML::linkAction('AdmAmwController@index' ,'View All'  ) }}</span>
 
      </div>
 @endif

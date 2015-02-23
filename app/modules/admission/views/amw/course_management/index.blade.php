@@ -130,12 +130,11 @@
 {{---------------------------------------------------Modals-----------------------------------------------}}
  <!-- Modal :: add Information -->
 <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
+     <div class="modal-dialog">
+         <div class="modal-content">
 
-
-        </div>
-      </div>
+         </div>
+     </div>
 </div>
 
  <!-- Modal :: show Information -->
