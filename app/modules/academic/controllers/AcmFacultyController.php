@@ -6,7 +6,7 @@ class AcmFacultyController extends \BaseController {
         $this->beforeFilter('academicFaculty', array('except' => array('')));
 		//$this->beforeFilter('academicFaculty', array('except' => array('index')));
     }
-	//*******courses marks distribution************
+	//*********************courses marks distribution start***************************
 	public function  index()
 	{
 		$title = 'Course List';
@@ -185,7 +185,7 @@ class AcmFacultyController extends \BaseController {
 				return Response::json(['msg'=> 'Data Successfully Not Deleted']);
 		}
 	}
-	//*******marks distribution item class************
+	//************************marks distribution item class start************************
 	public function class_index($marks_dist_id,$cmid)
 	{
 		$date_time= array('' => 'Select class Time') + AcmClassSchedule::lists('day', 'id');
@@ -210,7 +210,7 @@ class AcmFacultyController extends \BaseController {
 	{
 		$data = Input::all();
 		$datas = new AcmAcademic();
-		$file =Input::file('file');
+//		$file =Input::file('file');
 		//$academic_details = new AcmAcademicDetails();
 
 		if ($datas->validate($data)) {
@@ -218,7 +218,7 @@ class AcmFacultyController extends \BaseController {
 			$datas->acm_marks_distribution_id = Input::get('marks_dist_id');
 			$datas->title = Input::get('title');
 			$datas->description = Input::get('description');
-			$datas->acm_class_schedule_id = Input::get('classtime');
+			$datas->acm_class_schedule_id = Input::get('class_time');
 			$datas->created_by = Auth::user()->id;
 			$datas->save();
 			$academic_id = $datas->id;//to get last inserted id
@@ -228,13 +228,13 @@ class AcmFacultyController extends \BaseController {
 				if($file){
 					$destinationPath = public_path().'/file/item_class_file';
 					$filename = $file->getClientOriginalName();
-					$upload_success = $file->move($destinationPath, $filename);
-					$hashname = date('d.m.y')."_".$filename;
+					$hashname = date("d-m-Y")."_".$filename;
+					$upload_success = $file->move($destinationPath, $hashname);
 					$academic_details = new AcmAcademicDetails;
 					$academic_details->file = $hashname;
 					$academic_details->acm_academic_id = $academic_id;
 					$academic_details->save();
-					
+
 				}
 			}
 			//file upload ends
@@ -248,15 +248,67 @@ class AcmFacultyController extends \BaseController {
 	}
 	public function show_class($id)
 	{
-//		$data = AcmAcademic::find($id);
 		$data = AcmAcademic::with('relAcmClassSchedule','relAcmClassSchedule.relAcmClassTime')
 			->where('id','=' ,$id)
 			->get();
 		$datas = AcmAcademicDetails::with('relAcmAcademic')
 			->where('acm_academic_id','=' ,$id)
-			->first();
+			->get();
+
 		return View::make('academic::faculty.mark_distribution_courses.marks_dist_item_class.show',compact('data','datas'));
 	}
+
+	public function edit_class($id)
+	{
+		$date_time= array('' => 'Select class Time') + AcmClassSchedule::lists('day', 'id');
+		$model = new AcmAcademic();
+		$edit_data = $model->find($id);
+		$datas = AcmAcademicDetails::with('relAcmAcademic')
+			->where('acm_academic_id','=' ,$id)
+			->get();
+		return View::make('academic::faculty.mark_distribution_courses.marks_dist_item_class.edit',compact('edit_data','date_time','datas'));
+	}
+
+	public function update_class($id)
+	{
+		$data = Input::all($id);
+		$datas = new AcmAcademic();
+		$file =Input::file('file');
+
+		if ($datas->validate($data)) {
+			$datas->course_management_id = Input::get('course_management_id');
+			$datas->acm_marks_distribution_id = Input::get('marks_dist_id');
+			$datas->title = Input::get('title');
+			$datas->description = Input::get('description');
+			$datas->acm_class_schedule_id = Input::get('class_time');
+			$datas->created_by = Auth::user()->id;
+			$datas->save();
+			$academic_id = $datas->id;//to get last inserted id
+			//file upload starts here
+			$files = Input::file('images');
+			foreach($files as $file) {
+				if($file){
+					$destinationPath = public_path().'/file/item_class_file';
+					$filename = $file->getClientOriginalName();
+					$hashname = date("d-m-Y")."_".$filename;
+					$upload_success = $file->move($destinationPath, $hashname);
+					$academic_details = new AcmAcademicDetails;
+					$academic_details->file = $hashname;
+					$academic_details->acm_academic_id = $academic_id;
+					$academic_details->save();
+
+				}
+			}
+			//file upload ends
+			return Redirect::back()->with('message','Successfully added!');
+		} else {
+			// failure, get errors
+			$errors = $datas->errors();
+			Session::flash('errors', $errors);
+			return Redirect::to('academic/faculty/marksdistitem/class');
+		}
+	}
+
 
 
 }

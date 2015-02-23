@@ -5,15 +5,8 @@
  * Date: 06-Jan-15
  * Time: 5:02 PM
  */
-
-Route::get('/index','EnrollmentController@index');
-//Applicant enrollment
-Route::get('student/','EnrollmentController@create');
-//Theory Class start
-//class
-Route::get('class/','TheoryclassController@class_index');
 //**********Mark_distribution_courses start************
-//*****************amw dist item*****************
+//*****************amw dist item********************
 Route::get('academic/amw/',
     'AcmAmwController@amw_index'
 );
@@ -38,7 +31,7 @@ Route::get('academic/amw/delete/{id}',
 Route::any('academic/amw/batch/delete',
     'AcmAmwController@amw_batchdelete'
 );
-//*****************amw course config***************
+//*****************amw course config*****************
 Route::get('academic/amw/config/',
     'AcmAmwController@config_index'
 );
@@ -93,7 +86,14 @@ Route::any('academic/faculty/class/show/{id}',[
     'as' => 'class.show',
     'uses'=> 'AcmFacultyController@show_class'
 ]);
-
+Route::get('class-edit/{id}', [
+    'as' => 'class.edit',
+    'uses' => 'AcmFacultyController@edit_class'
+]);
+Route::any('class-update/{id}', [
+    'as' => 'class/update',
+    'uses' => 'AcmFacultyController@update_class'
+]);
 
 
 
