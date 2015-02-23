@@ -1,96 +1,72 @@
 
+{{--{{ HTML::script('assets/js/bootstrap-datepicker.js') }}--}}
+{{--{{ HTML::style('assets/css/datepicker.css')}}--}}
 <div class="modal-header">
+
     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-    <h4 class="modal-title" id="myModalLabel"> Add Course</h4>
+    <h4 class="modal-title" id="myModalLabel"> Add Degree</h4>
 </div>
 
-<div class="modal-body" style="padding: 50px;">
+<div class="modal-body">
+ <div style="padding: 20px;">
 
-    {{Form::open(array('url'=>'course_manage/store', 'class'=>'form-horizontal','files'=>true))}}
+{{ Form::open(['route' => ['degree_manage.store'], 'class'=>'form-horizontal','files' => true,]) }}
 
-     <div class='form-group'>
-            {{ Form::label('degree_id', 'Degree') }}
-            {{ Form::select('degree_id',$degree,Input::old('degree_id'),['class'=>'form-control input-sm','required']) }}
-     </div>
+{{ Form::label('title', 'Title') }}
+{{ Form::text('title', Input::old('title'),array('class' => 'form-control input-sm','placeholder'=>'Enter your course name')) }}
 
-     {{--<div class='form-group'>--}}
-           {{--{{ Form::label('degree_program_id', 'Degree Program') }}--}}
-           {{--{{ Form::select('degree_program_id',$degreeProgram,Input::old('degree_program_id'),['class'=>'form-control input-sm']) }}--}}
-     {{--</div>--}}
+{{ Form::label('description', 'Description') }}
+{{ Form::textarea('description', Input::old('description'),array('class' => 'form-control input-sm','placeholder'=>'Enter Description','size' => '30x5')) }}
 
+{{ Form::label('department_id', 'Department') }}
+{{ Form::select('department_id', $department, Input::old('department_id') ,['class'=>'form-control input-sm','required'])}}
 
-     <div class='form-group'>
-         {{ Form::label('course_type', 'Course Type') }}
-         {{ Form::select('course_type_id', $courseType, Input::old('course_type_id'),['class'=>'form-control input-sm'] )}}
-     </div>
+{{ Form::label('degree_program_id', 'Degree Program') }}
+{{ Form::select('degree_program_id',$degree_program,Input::old('degree_program_id'),['class'=>'form-control input-sm']) }}
 
-      <div class='form-group'>
-           {{ Form::label('course_id', 'Course') }}
-           {{ Form::select('course_id',$course,Input::old('course_id'),['class'=>'form-control input-sm'] )}}
-      </div>
+{{ Form::label('year_id', 'Year') }}
+{{ Form::select('year_id', $year, Input::old('year_id') ,['class'=>'form-control input-sm'])}}
 
-      <div class='form-group'>
-
-          {{ Form::label('year_id', 'Year') }}
-          {{ Form::select('year_id', $year, Input::old('year_id') ,['class'=>'form-control input-sm'])}}
-      </div>
-
-      <div class='form-group'>
-
-          {{ Form::label('semester_id', 'Semester') }}
-          {{ Form::select('semester_id',$semester,Input::old('semester_id'),['class'=>'form-control input-sm']) }}
-      </div>
-
-        <div class='form-group'>
-
-          {{ Form::label('user_id', 'Assigned Faculty') }}
-          {{ Form::select('user_id',$facultyList,Input::old('user_id'),['class'=>'form-control input-sm']) }}
-        </div>
-
-        <div class='form-group'>
-
-          {{ Form::label('evolution_system', 'Evaluation System') }}
-          {{ Form::select ('evolution_system',  array('' => 'Select one',
-                  'automatic' => 'Automatic', 'manual' => 'Manual'), Input::old('evolution_system'),
-                   array('class' => 'form-control input-sm')) }}
-        </div>
-
-        <div class='form-group'>
-
-          {{ Form::label('major_minor', 'Major/Minor') }}
-          {{ Form::select ('major_minor',  array('' => 'Select one',
-                  'major' => 'Major', 'minor' => 'Minor'), Input::old('major_minor'),
-                   array('class' => 'form-control input-sm')) }}
-        </div>
+{{ Form::label('semester_id', 'Semester') }}
+{{ Form::select('semester_id',$semester,Input::old('semester_id'),['class'=>'form-control input-sm']) }}
 
 
-        <div class='form-group'>
-          {{ Form::label('start_date', 'Start date') }}
-            {{ Form::text('start_date', Input::old('start_date'),['class'=>'form-control input-sm datepicker','id'=>'datetimepicker2']) }}
-        </div>
+{{ Form::label('total_credit', 'Total Credit') }}
+{{ Form::text('total_credit', Input::old('total_credit'),array('class' => 'form-control input-sm')) }}
 
-        <div class='form-group'>
-           {{ Form::label('end_date', 'End date') }}
-           {{ Form::text('end_date', Input::old('end_date'),['class'=>'form-control input-sm datepicker','id'=>'datetimepicker2'])  }}
-        </div>
 
-        {{ Form::submit('Save ', array('class'=>'pull-right btn btn-primary')) }}
 
-        {{Form::close()}}
+{{ Form::label('duration', 'Duration (In Year)') }}
+{{ Form::select ('duration',  array('' => 'Select one',
+   '1' => '1', '2' => '2', '3'=>'4','5'=>'5','6'=>'6','7'=>'7'), Input::old('duration'),
+    array('class' => 'form-control input-sm')) }}
+
+
+{{ Form::label('start_date', 'Start date') }}
+{{ Form::text('start_date', Input::old('start_date'),['class'=>'form-control input-sm','id'=>'datepicker']) }}
+
+
+{{ Form::label('end_date', 'End date') }}
+{{ Form::text('end_date', Input::old('end_date'),['class'=>'form-control input-sm','id'=>'datepicker1'])  }}
+
+
+<br>
+{{ Form::submit('Save ', array('class'=>'pull-right btn btn-primary')) }}
+
+{{Form::close()}}
+
 
 </div>
 
-<div class="modal-footer">
-  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-  <button type="button" class="btn btn-primary">Save changes</button>
 </div>
 
 
 
-<script>
-  $(function() {
-    $( "#datepicker" ).datepicker();
-     $( "#datepicker1" ).datepicker();
-  });
-</script>
+{{--<script>--}}
+  {{--$(function() {--}}
+    {{--$( "#datepicker" ).datepicker();--}}
 
+     {{--$( "#datepicker1" ).datepicker();--}}
+
+  {{--});--}}
+  {{--</script>--}}
