@@ -43,7 +43,7 @@ class AdmAmwController extends \BaseController {
 
             $course_model = new CourseManagement();
 
-            $course_model->degree_program_id = Input::get('degree_program_id');
+            //$course_model->degree_program_id = Input::get('degree_program_id');
             $course_model->course_id = Input::get('course_id');
             $course_model->year_id = Input::get('year_id');
             $course_model->semester_id = Input::get('semester_id');
