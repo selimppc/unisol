@@ -251,10 +251,10 @@ class AcmAmwController extends \BaseController {
 		return View::make('academic::amw.mark_distribution_courses.show_course_config')->with('datas', $data)->with('config_data',$config_data);
 	}
 
-	public function item_config_show($course_id)
+	public function show_config($id)
 	{
 		$data= AcmCourseConfig::with('relAcmMarksDistItem', 'relCourse')
-			->where('course_id', '=', $course_id)
+			->where('course_id', '=', $id)
 			//->where('is_attendance', '=', 1)
 			->get();
 
