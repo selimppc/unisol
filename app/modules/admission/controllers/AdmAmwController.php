@@ -171,8 +171,8 @@ class AdmAmwController extends \BaseController
 
     public function dgmStore()
     {
-
-        $rules = array(//            'course_id' => 'required',
+        $rules = array(
+        //    'course_id' => 'required',
         );
         $validator = Validator::make(Input::all(), $rules);
         if ($validator->passes()) {
@@ -252,16 +252,64 @@ class AdmAmwController extends \BaseController
 
     public function degreeWaiverIndex($id)
     {
-
         $degree_model = Degree::find($id);
         return View::make('admission::amw.waiver_management.index_waiver', compact('degree_model'));
     }
 
     public function degreeWaiverCreate()
     {
-
         return View::make('admission::amw.waiver_management._form');
     }
 
+//..............................    Waiver Management : starts ...................................................
+
+    public function waiverIndex()
+    {
+        return View::make('admission::amw.waiver_management.index');
+    }
+
+    public function waiverCreate()
+    {
+        $billing_item = BillingDetails::BillingItem();
+            //Billi$billing_item BillingDetails::BillingItem();
+        print_r($billing_item);exit;
+
+//        $facultyList = User::FacultyList();
+        return View::make('admission::amw.waiver_management.waiver_modals._form',compact('billing_item'));
+    }
+
+    public function waiverStore(){
+
+        $rules = array(
+            //    'course_id' => 'required',
+        );
+        $validator = Validator::make(Input::all(), $rules);
+        if ($validator->passes()) {
+
+            $waiver_model = new Waiver();
+
+            $waiver_model->title = Input::get('title');
+            $waiver_model->description = Input::get('description');
+            $waiver_model->amount = Input::get('amount');
+            $waiver_model->is_percentage = Input::get('is_percentage');
+            $waiver_model->billing_details_id = Input::get('billing_details_id');
+
+            if ($waiver_model->save()) {
+                return Redirect::to('amw/waiver_manage')->with('message', 'Successfully added Information!');
+            }
+        } else {
+            return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
+        }
+    }
+
+    public function waiverShow(){
+
+    }
+    public function waiverEdit(){
+
+    }
+    public function waiverUpdate(){
+
+    }
 
 }

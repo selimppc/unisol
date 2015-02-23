@@ -28,8 +28,21 @@
      {{ Form::label('amount', 'Amount') }}
      {{ Form::text('amount', Input::old('amount'),array('class' => 'form-control input-sm')) }}
 
+     <br>
+
+     {{ Form::label('billing_details_id', 'Billing Item') }}
+     {{ Form::select('billing_details_id',['class'=>'form-control input-sm','required']) }}
+
+{{--<div>{{ Form::label('user_id', 'Assigned Faculty') }}</div>--}}
+{{--<div>{{ Form::select('user_id',$facultyList,Input::old('user_id'),['class'=>'form-control input-sm','required']) }}</div>--}}
+
+
+
+     <p>&nbsp;</p>
 
      {{ Form::submit('Save ', array('class'=>'pull-right btn btn-primary')) }}
+
+     <p>&nbsp;</p>
 
      {{Form::close()}}
 

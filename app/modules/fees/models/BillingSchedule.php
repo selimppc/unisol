@@ -9,4 +9,7 @@ class BillingSchedule extends Eloquent{
     protected $table='billing_schedule';
 
 
+
+
+
 } 
