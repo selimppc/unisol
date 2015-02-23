@@ -21,5 +21,5 @@
 
                 </div>
             {{ Form::submit('Submit', array('class' => 'btn btn-primary')) }}
-            <a href="{{URL::previous()}}" class="btn btn-default">Close </a>
+            <a href="{{URL::to('examination/amw/examiners')}}" class="btn btn-default">Close </a>
 </fieldset>
