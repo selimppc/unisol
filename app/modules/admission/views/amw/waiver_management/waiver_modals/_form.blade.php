@@ -20,8 +20,8 @@
      <br>
 
      {{ Form::label('is_percentage', 'Is Percentage ?') }}
-     <label class="small">{{ Form::radio('is_percentage','1') }} Yes</label>
-     <label class="small">{{ Form::radio('is_percentage','0') }} No</label>
+     <label class="small">{{ Form::radio('is_percentage','1', false, ['required'=>true]) }} Yes</label>
+     <label class="small">{{ Form::radio('is_percentage','0', false, ['required'=>true]) }} No</label>
 
      <p>&nbsp;</p>
 
