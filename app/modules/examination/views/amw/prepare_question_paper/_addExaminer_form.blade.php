@@ -1,6 +1,4 @@
 <fieldset style="padding: 10px; width: 90%;">
-
-
                 {{--Title:</strong>{{ $view_examination_amw->title }}--}}
 
                 <div class="form-group">
@@ -22,8 +20,6 @@
                          {{ Form::textarea('comment', Null, ['size' => '40x6','placeholder'=>'Your Comments Here']) }}
 
                 </div>
-
-
             {{ Form::submit('Submit', array('class' => 'btn btn-primary')) }}
             <a href="{{URL::previous()}}" class="btn btn-default">Close </a>
 </fieldset>

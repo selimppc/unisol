@@ -1,7 +1,7 @@
 <div style="padding: 10px; width: 90%;">
 
              <h2>Welcome to View Examiners : <strong>{{ ucwords(Auth::user()->username) }}</strong> </h2> </br>
-             {{ Form::open(array('route'=>'examination.faculty.viewExaminers','method' => '')) }}
+             {{ Form::open(array('route'=>'examination.amw.viewExaminers','method' => '')) }}
                      <div class="jumbotron text-center">
 
                       <h3><strong> Department:</strong>{{ $view_examiner_amw->title }} </h3> </br>

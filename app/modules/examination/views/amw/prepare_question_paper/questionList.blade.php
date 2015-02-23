@@ -34,5 +34,5 @@
               </table>
               {{form::close() }}
 
-    @include('examination::amw.prepare_question_paper._modal');
+    @include('examination::amw.prepare_question_paper._modal._common_modal');
 @stop
