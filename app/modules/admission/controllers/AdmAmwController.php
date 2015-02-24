@@ -295,6 +295,18 @@ class AdmAmwController extends \BaseController
 //        }
     }
 
+    public function degWaiverConstIndex($id){
+
+        $degree_model = DegreeWaiver::find($id);
+
+        $deg_waiver = DegreeWaiver::with('relDegree')
+            ->where('degree_id', '=', $id)
+            ->get();
+        return View::make('admission::amw.degree_management.deg_waiver_const',
+            compact('degree_model','deg_waiver'));
+
+    }
+
 //..............................    Waiver Management : starts ...................................................
 
     public function waiverIndex()
@@ -368,8 +380,6 @@ class AdmAmwController extends \BaseController
         } else {
             return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
         }
-
-
     }
 
 }

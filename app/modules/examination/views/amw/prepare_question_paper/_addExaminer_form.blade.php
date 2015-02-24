@@ -1,7 +1,6 @@
 <fieldset style="padding: 10px; width: 90%;">
                 {{--Title:</strong>{{ $view_examination_amw->title }}--}}
 
-
                 <div class="form-group">
                        {{ Form::label('department', 'Department') }}
                        {{ Form::text('department', Input::old('department'), array('class' => 'form-control','required'=>'required')) }}
@@ -14,7 +13,7 @@
 
                 <div class="form-group">
                         {{ Form::label('', 'Name of Faculty') }}
-                        {{ Form::text('list',$list ,Input::old('') ) }}
+                        {{ Form::text('', 'DropDown Hobe',Input::old(''), array('class' => 'form-control','required'=>'required') ) }}
                 </div>
                 <div class="form-group">
                          {{ Form::label('comment', 'Comment') }}

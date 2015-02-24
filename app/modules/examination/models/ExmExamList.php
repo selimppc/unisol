@@ -18,6 +18,10 @@ class ExmExamList extends \Eloquent
 
     }
 
+    public function ExmExaminer(){
+        return $this->belongsTo('ExmExaminer');
+    }
+
 //    public function relAcmMarksDistItem()
 //    {
 //        return $this->belongsTo('AcmMarksDistItem', 'acm_marks_dist_item_id', 'id');

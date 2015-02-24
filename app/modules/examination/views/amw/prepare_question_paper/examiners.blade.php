@@ -23,7 +23,7 @@
                         </div>
 
 
-    {{--               <strong> Year :</strong>  {{$examiners_home['relExmExamList']['year_id'] }} </br>--}}
+                       <strong> Year :</strong>  {{--{{ Year::getYearsName($examiners_home->year_id) }} </br>--}}
                        </br>
                        <strong> Semester :</strong>{{--{{ Semester::getSemesterName($course_data->semester_id) }} </br>--}}
                        </br>
@@ -57,6 +57,7 @@
                              {{--<td> {{ $examiners_list->deadline }} </td>--}}
                              {{--<td> {{ $examiners_list->note }} </td>--}}
                              <td>{{ $examiners_list->status }} </td>
+
 
                             <td>
                                   <a href="{{ URL::route('examination.amw.viewExaminers', ['id'=>$examiners_list->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#modal" data-placement="left" title="Show" href="#">View</a>
