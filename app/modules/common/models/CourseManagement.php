@@ -47,6 +47,10 @@ class CourseManagement extends Eloquent
         return $this->belongsTo('ExmQuestion');
     }
 
+    public function relExmExamList(){
+        return $this->belongsTo('ExmExamList');
+    }
+
     public static function getCourseInfo($exmId){
         $data = CourseManagement::find($exmId);
         return $data->start_date;

@@ -7,9 +7,10 @@
                     {{ Form::open(array('url' => 'examination/amw/batchDelete')) }}
                         <table id="example" class="table table-striped  table-bordered"  >
                                     <thead>
-{{--                                             <strong> Year:</strong>{{ $course_data->year_id }} </br>--}}
+                                            <strong> Year: </strong>{{Year::getYearsName($year_id) }}
+                                            </br>
 
-                                             {{--<strong> Semester:</strong>{{ Semester::getSemesterName($course_data->semester_id) }} </br>--}}
+                                             <strong> Semester: </strong>{{Semester::getSemesterName($semester_id) }} </br>
 
                                            {{ Form::submit('Delete Items', array('class'=>'btn btn-danger', 'id'=>'hide-button', 'style'=>'display:none'))}}
 
