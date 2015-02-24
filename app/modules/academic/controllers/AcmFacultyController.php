@@ -245,7 +245,6 @@ class AcmFacultyController extends \BaseController {
 			->get();
 		return View::make('academic::faculty.mark_distribution_courses.marks_dist_item_class.show',compact('data','datas'));
 	}
-
 	public function edit_class($id)
 	{
 		$date_time= array('' => 'Select class Time') + AcmClassSchedule::lists('day', 'id');
@@ -259,19 +258,20 @@ class AcmFacultyController extends \BaseController {
 
 	public function update_class($id)
 	{
-		$data = Input::all($id);
-		$datas = new AcmAcademic();
-		if ($datas->validate($data)) {
-			$datas->course_management_id = Input::get('course_management_id');
-			$datas->acm_marks_distribution_id = Input::get('marks_dist_id');
+		$data = Input::all();
+		$redirect_url = Input::get('redirect_url');
+		if ($data) {
+			/*$datas->course_management_id = Input::get('course_management_id');
+			$datas->acm_marks_distribution_id = Input::get('marks_dist_id');*/
+			$datas = AcmAcademic::find($id);
 			$datas->title = Input::get('title');
 			$datas->description = Input::get('description');
 			$datas->acm_class_schedule_id = Input::get('class_time');
 			$datas->created_by = Auth::user()->id;
 			$datas->save();
-			$academic_id = $datas->id;//to get last inserted id
+			$academic_id = $id;// update exiting data that contains a id
 			//file upload starts here
-			$files = Input::file('images');
+			$files = $data['images'];
 			foreach($files as $file) {
 				if($file){
 					$destinationPath = public_path().'/file/item_class_file';
@@ -280,20 +280,39 @@ class AcmFacultyController extends \BaseController {
 					$upload_success = $file->move($destinationPath, $hashname);
 					$academic_details = new AcmAcademicDetails;
 					$academic_details->file = $hashname;
-					$academic_details->acm_academic_id = $academic_id;
+					$academic_details->acm_academic_id = $id;
 					$academic_details->save();
 				}
 			}
 			//file upload ends
-			return Redirect::back()->with('message','Successfully added!');
+			return Redirect::to($redirect_url)->with('message','Successfully added!');
 		} else {
 			// failure, get errors
 			$errors = $datas->errors();
 			Session::flash('errors', $errors);
-			return Redirect::to('academic/faculty/marksdistitem/class');
+			return Redirect::to($redirect_url)->with('message',$errors);
 		}
 	}
 
+	public function ajax_delete_aca_academic_details()
+	{
+		if(Request::ajax())
+		{
+			$aca_academic_details_id = Input::get('aca_academic_details_id');
+			$token = Input::get('token');
+			if (Session::token() == $token)
+			{
+				$data = AcmAcademicDetails::find($aca_academic_details_id);
+				if($data->delete())
+				{
+					return Response::json(['msg'=> 'Data Successfully Deleted']);
+				}
+				else
+					return Response::json(['msg'=> 'Data Successfully Not Deleted']);
+			}
+
+		}
+	}
 
 
 }

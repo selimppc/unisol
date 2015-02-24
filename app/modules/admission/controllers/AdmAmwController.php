@@ -256,12 +256,55 @@ class AdmAmwController extends \BaseController
     public function degreeWaiverIndex($id)
     {
         $degree_model = Degree::find($id);
-        return View::make('admission::amw.waiver_management.index_waiver', compact('degree_model'));
+        $degree_waiver = DegreeWaiver::with('relWaiver')
+                        ->where('degree_id', '=', $id)
+                        ->get();
+        return View::make('admission::amw.degree_management.degree_waiver_index',
+            compact('degree_model', 'degree_waiver'));
     }
 
-    public function degreeWaiverCreate()
+    public function degreeWaiverCreate($degree_id)
     {
-        return View::make('admission::amw.waiver_management._form');
+        $waiverList = array('' => 'Select Waiver Item ') + Waiver::lists('title','id');
+        return View::make('admission::amw.degree_management.degree_modals.add_degree_waiver',
+            compact('waiverList', 'degree_id'));
+    }
+
+    public function degreeWaiverStore(){
+
+        $dw_model = new DegreeWaiver();
+
+        $dw_model->degree_id = Input::get('degree_id');
+        $dw_model->waiver_id = Input::get('waiver_id');
+
+        if ($dw_model->save()) {
+            return Redirect::back()->with('message', 'Successfully added Information!');
+        }
+    }
+
+    public function degreeWaiverDelete($id){
+       // echo 'ok';exit;
+//        try {
+            DegreeWaiver::find($id)->delete();
+        //DegreeWaiver::find($id)->get();
+        //exit;
+            return Redirect::back()->with('message', 'Successfully deleted Information!');
+//        }
+//        catch(exception $ex){
+//            return Redirect::back()->with('message', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+//        }
+    }
+
+    public function degWaiverConstIndex($id){
+
+        $degree_model = DegreeWaiver::find($id);
+
+        $deg_waiver = DegreeWaiver::with('relDegree')
+            ->where('degree_id', '=', $id)
+            ->get();
+        return View::make('admission::amw.degree_management.deg_waiver_const',
+            compact('degree_model','deg_waiver'));
+
     }
 
 //..............................    Waiver Management : starts ...................................................
@@ -337,8 +380,6 @@ class AdmAmwController extends \BaseController
         } else {
             return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
         }
-
-
     }
 
 }
