@@ -315,13 +315,13 @@ class ExmAmwController extends \BaseController {
 
 //        $role_id = Role::where('title', '=', 'faculty')->first()->id;
 //        $user_id = User::where('role_id', '=', $role_id)->first()->id;
-
 //        $user_profile = User::fullName($user_id);
+          #print_r($user_profile);exit;
 
-        #print_r($user_profile);exit;
+        $list = User::AmwList();
 
 
-        return View::make('examination::amw.prepare_question_paper.examiners',compact('examiners_home','role_id','facultyList','user_id'));
+        return View::make('examination::amw.prepare_question_paper.examiners',compact('examiners_home','role_id','facultyList','user_id','list'));
     }
     public function addExaminers(){
         return View::make('examination::amw.prepare_question_paper._addExamination_form', compact('add_examiner'));
