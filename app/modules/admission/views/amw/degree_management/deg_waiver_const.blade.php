@@ -4,13 +4,10 @@
 @stop
 @section('content')
 
-
 <section class="content">
  <div class="box-body">
 
     <h3> Degree Waiver Constraint</h3>
-
-
 </div>
  <div class="row">
     <div class="col-xs-12">
@@ -19,8 +16,6 @@
         <div class="box-header">
 
         </div><!-- /.box-header -->
-
-
 <br>
 
 {{------------------------------------Degree Data Table: Starts-------------------------------------------------}}
@@ -43,25 +38,6 @@
                                  <td>{{ $degree_model->relWaiver->waiver_type }}</td>
                          </tr>
 
-                         {{--<tr>--}}
-                                 {{--<th> Semester:</th>--}}
-                                 {{--<td>{{ $degree_model->relSemester->title }}</td>--}}
-
-                         {{--</tr>--}}
-
-                         {{--<tr>--}}
-                                  {{--<th>Duration:</th>--}}
-                                  {{--<td>{{ $degree_model->duration }}</td>--}}
-
-                         {{--</tr>--}}
-
-                         {{--<tr>--}}
-                                  {{--<th>Total Credit :</th>--}}
-                                  {{--<td>{{ $degree_model->total_credit }}</td>--}}
-
-                         {{--</tr>--}}
-
-
 
               </table>
 
@@ -69,57 +45,42 @@
 {{----------------------------------------Degree Data Table :Ends-----------------------------------------------------------------------}}
 
 
-{{----------------------------------------Degree Waiver Table : Starts-----------------------------------------------------------------------}}
+{{----------------------------------------Degree Waiver Const Table : Starts-----------------------------------------------------------------------}}
 
-{{--<a class="pull-right btn btn-sm btn-info" href="{{ URL::route('degree_waiver.create', ['degree_id'=>$degree_model->id] )}}" data-toggle="modal" data-target="#addWaiver" >Add Waiver</a>--}}
+<a class="pull-right btn btn-sm btn-info" href="{{ URL::route('deg_waiver_const.create', $degree_model->id )}}" data-toggle="modal" data-target="#add" >Add Time Constraint</a>
 
-{{--<a class="pull-left btn btn-sm btn-info" href="{{ URL::to('amw/degree_manage' )}}" >Degree Management</a>--}}
+ <p>&nbsp;</p>
 
- {{--<p>&nbsp;</p>--}}
- {{--<p>&nbsp;</p>--}}
+    <table id="example1" class="table table-bordered table-striped">
 
-    {{--<table id="example1" class="table table-bordered table-striped">--}}
+    <h4>Time Dependent Info</h4>
 
-      {{--<col width="120">--}}
-      {{--<col width="120">--}}
-      {{--<col width="100">--}}
-      {{--<col width="120">--}}
-      {{--<col width="120">--}}
+         <thead>
+              <tr>
+                 <th>Start Date</th>
+                 <th>End Date</th>
+                 <th>Action</th>
+              </tr>
+         </thead>
+               <tbody>
+                    @foreach($deg_waiver_const as $value)
+                                      <tr>
+                                            <td>{{ $value->start_date }}</td>
 
-         {{--<thead>--}}
-              {{--<tr>--}}
+                                            <td>{{ $value->end_date }}</td>
 
-                 {{--<th>Degree Title</th>--}}
-                 {{--<th>Waiver</th>--}}
-                 {{--<th>Amount</th>--}}
-                 {{--<th>Status</th>--}}
-                 {{--<th>Action</th>--}}
+                                            <td>
+                                                 <a data-href="{{ URL::to('amw/degree_manage/waiver_const/delete/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><span class="glyphicon glyphicon-trash text-danger"></span></a>
+                                                 {{--<a href="{{ URL::to('department/show/'.$department->id) }}" class="btn btn-sm btn-default" data-toggle="modal" data-target="#confirm-show"><span class="glyphicon glyphicon-eye-open text-danger"></span></a>--}}
+                                            </td>
 
-              {{--</tr>--}}
-         {{--</thead>--}}
-               {{--<tbody>--}}
+                                      </tr>
+                    @endforeach
 
-                {{--@foreach($degree_waiver as $value)--}}
-                      {{--<tr>--}}
-                            {{--<td>{{ $degree_model->title }}</td>--}}
 
-                            {{--<td>{{ $value->relWaiver->title }}</td>--}}
-                            {{--<td>{{ $value->relWaiver->amount }}</td>--}}
-                            {{--<td></td>--}}
+              </tbody>
 
-                            {{--<td>--}}
-                                 {{--<a data-href = "{{ URL::route('degree_waiver.delete'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete"  ><span class="glyphicon glyphicon-trash text-danger"></span></a>--}}
-                                 {{--<a href="{{ URL::to('department/show/'.$department->id) }}" class="btn btn-sm btn-default" data-toggle="modal" data-target="#confirm-show"><span class="glyphicon glyphicon-eye-open text-danger"></span></a>--}}
-                               {{--<a data-href="{{ URL::to('amw/degree_waiver/delete/'.$value->id) }}" class="btn btn-sm btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><span class="glyphicon glyphicon-trash text-danger"></span></a>--}}
-                               {{--<a href="{{ URL::route('degree_manage.waiver', $value->id) }}">Const</a>--}}
-                            {{--</td>--}}
-
-                      {{--</tr>--}}
-                {{--@endforeach--}}
-
-              {{--</tbody>--}}
-
-    {{--</table>--}}
+    </table>
 {{---------------------------------------Degree Waiver Table :Ends------------------------------------------------------}}
 
         </div><!-- /.box -->
@@ -132,7 +93,7 @@
 
 {{---------------------------------------------------Modals-----------------------------------------------}}
  <!-- Modal :: add Information -->
-<div data-backdrop="static" data-keyboard="false" class="modal fade" id="addWaiver" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div data-backdrop="static" data-keyboard="false" class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
 
@@ -140,10 +101,27 @@
       </div>
  </div>
 
+<!-- Modal :: Delete Confirmation -->
 
- <!-- Modal :: Delete Confirmation -->
+  <div class="modal fade " id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>
+            </div>
+            <div class="modal-body">
+                  <strong>Are you sure to delete?</strong>
+            </div>
 
+            <div class="modal-footer">
 
+              <a href="#" class="btn btn-danger danger">Delete</a>
+              <a href=" {{URL::previous()}}" class="btn btn-default">Close </a>
+            </div>
+      </div>
+    </div>
+  </div>
 
 @stop
 

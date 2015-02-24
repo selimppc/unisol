@@ -6,7 +6,10 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 
 class WaiverConstraint extends Eloquent{
 
-    protected $table='degree_constraint';
+    protected $table='waiver_constraint';
 
 
+    public function relDegreeWaiver(){
+        return $this->belongsTo('DegreeWaiver', 'degree_waiver_id', 'id');
+    }
 } 

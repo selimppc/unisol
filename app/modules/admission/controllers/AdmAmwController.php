@@ -283,28 +283,48 @@ class AdmAmwController extends \BaseController
     }
 
     public function degreeWaiverDelete($id){
-       // echo 'ok';exit;
-//        try {
+        try {
             DegreeWaiver::find($id)->delete();
-        //DegreeWaiver::find($id)->get();
-        //exit;
             return Redirect::back()->with('message', 'Successfully deleted Information!');
-//        }
-//        catch(exception $ex){
-//            return Redirect::back()->with('message', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
-//        }
+        }
+        catch(exception $ex){
+           return Redirect::back()->with('message', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+       }
     }
 
     public function degWaiverConstIndex($id){
 
         $degree_model = DegreeWaiver::find($id);
 
-        $deg_waiver = DegreeWaiver::with('relDegree')
-            ->where('degree_id', '=', $id)
+        $deg_waiver_const = WaiverConstraint::with('relDegreeWaiver')
+            ->where('degree_waiver_id', '=', $id)
             ->get();
         return View::make('admission::amw.degree_management.deg_waiver_const',
-            compact('degree_model','deg_waiver'));
+            compact('degree_model','deg_waiver','deg_waiver_const'));
 
+    }
+
+    public function degWaiverConstCreate($degree_waiver_id){
+
+//        $degree_model = DegreeWaiver::find($id);
+        return View::make('admission::amw.degree_management.degree_modals.add_waiver_const', compact('degree_waiver_id'));
+    }
+    public function degWaiverConstStore(){
+
+        $dw_const_model = new WaiverConstraint();
+
+        $dw_const_model->degree_waiver_id = Input::get('degree_waiver_id');
+        $dw_const_model->start_date = Input::get('start_date');
+        $dw_const_model->end_date = Input::get('end_date');
+
+        if ($dw_const_model->save()) {
+            return Redirect::back()->with('message', 'Successfully added Information!');
+        }
+    }
+    public function degWaiverConstDelete($id){
+
+        WaiverConstraint::find($id)->delete();
+        return Redirect::back()->with('message', 'Successfully deleted Information!');
     }
 
 //..............................    Waiver Management : starts ...................................................
