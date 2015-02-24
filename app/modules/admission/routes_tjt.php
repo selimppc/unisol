@@ -85,10 +85,29 @@ Route::any('degree_manage/edit/{id}', ['as' => 'degree_manage.edit','uses' => 'A
 
 Route::any('degree_manage/update/{id}', ['as' => 'degree_manage.update','uses' => 'AdmAmwController@dgmUpdate']);
 
-Route::any('degree_manage/waiver/{id}', ['as' => 'degree_manage.waiver','uses' => 'AdmAmwController@degreeWaiverIndex']);
+//------------------------------Amw : Degree - Waiver starts  --------------------------------------------
+
+Route::any('amw/degree_manage/waiver/{id}', [
+    'as' => 'degree_manage.waiver',
+    'uses' => 'AdmAmwController@degreeWaiverIndex']);
 
 
-//------------------------------Amw : Waiver Management starts  --------------------------------------------
+Route::any('amw/degree_waiver/create/{degree_id}', [
+    'as' => 'degree_waiver.create',
+    'uses' => 'AdmAmwController@degreeWaiverCreate'
+]);
+
+Route::any('amw/degree_waiver/store', [
+    'as' => 'degree_waiver.store',
+    'uses' => 'AdmAmwController@degreeWaiverStore'
+]);
+
+Route::any('amw/degree_waiver/delete/{id}', [
+    'as' => 'degree_waiver.delete',
+    'uses' => 'AdmAmwController@degreeWaiverDelete'
+]);
+
+//--------------------------------  Amw : Waiver Management starts  --------------------------------------------
 
 Route::any('amw/waiver_manage', ['as' => 'waiver_manage.index','uses' => 'AdmAmwController@waiverIndex']);
 
