@@ -43,6 +43,7 @@
     <!-- Add New marks dist Item Modal -->
     <div class="modal fade" id="marksDist" tabindex="-1" role="dialog" aria-labelledby="addScholarship" aria-hidden="true">
         <div class="modal-dialog modal-lg">
+        {{--<div class="modal-dialog" style="width: 980px; height: 350px;">--}}
             <div class="modal-content ">
 
             </div><!-- /.modal-content -->
