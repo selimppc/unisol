@@ -6,7 +6,7 @@ class AcmFacultyController extends \BaseController {
         $this->beforeFilter('academicFaculty', array('except' => array('')));
 		//$this->beforeFilter('academicFaculty', array('except' => array('index')));
     }
-	//*********************courses marks distribution start***************************
+	//*********************Marks Distribution at Start***************************
 	public function  index()
 	{
 		$title = 'Course List';
@@ -182,13 +182,13 @@ class AcmFacultyController extends \BaseController {
 				return Response::json(['msg'=> 'Data Successfully Not Deleted']);
 		}
 	}
-	//************************marks distribution item class start************************
+	//************************Marks Distribution Item Class Start************************
 	public function class_index($marks_dist_id,$cmid)
 	{
 		$date_time= array('' => 'Select class Time') + AcmClassSchedule::lists('day', 'id');
 		$title = 'All Class List';
 		$datas = AcmAcademic::with('relAcmClassSchedule')
-			->where('course_management_id', '=', $cmid)
+			->where('acm_marks_distribution_id', '=', $marks_dist_id)
 			->get();
 		$data= CourseManagement::with( 'relCourse')
 			->where('id', '=', $cmid)
@@ -313,6 +313,140 @@ class AcmFacultyController extends \BaseController {
 
 		}
 	}
+
+	//************************Marks Distribution Item Class Test Start************************
+	public function class_test_index($marks_dist_id,$cmid)
+	{
+		$date_time= array('' => 'Select class Time') + AcmClassSchedule::lists('day', 'id');
+		$title = 'All Class List';
+		$datas = AcmAcademic::with('relAcmClassSchedule')
+			->where('acm_marks_distribution_id', '=', $marks_dist_id)
+			->get();
+		$data= CourseManagement::with( 'relCourse')
+			->where('id', '=', $cmid)
+			->get();
+		$config_data = AcmMarksDistribution::with('relAcmMarksDistItem', 'relCourseManagement.relCourse')
+			->where('course_management_id', '=', $cmid)
+			->get();
+		return View::make('academic::faculty.mark_distribution_courses.marks_dist_item_class_test.index', compact('title', 'datas', 'config_data','data', 'marks_dist_id', 'cmid','date_time'));
+	}
+	public function save_class_test_data()
+	{
+		$data = Input::all();
+		$datas = new AcmAcademic();
+		if ($datas->validate($data)) {
+			$datas->course_management_id = Input::get('course_management_id');
+			$datas->acm_marks_distribution_id = Input::get('marks_dist_id');
+			$datas->title = Input::get('title');
+			$datas->description = Input::get('description');
+			$datas->acm_class_schedule_id = Input::get('class_time');
+			$datas->created_by = Auth::user()->id;
+			$datas->save();
+			$academic_id = $datas->id;//to get last inserted id
+			//file upload starts here
+			$files = Input::file('images');
+			foreach($files as $file) {
+				if($file){
+					$destinationPath = public_path().'/file/item_class_file';
+					$filename = $file->getClientOriginalName();
+					$hashname = date("d-m-Y")."_".$filename;
+					$upload_success = $file->move($destinationPath, $hashname);
+					$academic_details = new AcmAcademicDetails;
+					$academic_details->file = $hashname;
+					$academic_details->acm_academic_id = $academic_id;
+					$academic_details->save();
+				}
+			}
+			//file upload ends
+			return Redirect::back()->with('message','Successfully added!');
+		} else {
+			// failure, get errors
+			$errors = $datas->errors();
+			Session::flash('errors', $errors);
+			return Redirect::to('academic/faculty/marks/dist/item/class_test/');
+		}
+	}
+	public function show_class_test($id)
+	{
+		$data = AcmAcademic::with('relAcmClassSchedule','relAcmClassSchedule.relAcmClassTime')
+			->where('id','=' ,$id)
+			->get();
+		$datas = AcmAcademicDetails::with('relAcmAcademic')
+			->where('acm_academic_id','=' ,$id)
+			->get();
+		return View::make('academic::faculty.mark_distribution_courses.marks_dist_item_class_test.show',compact('data','datas'));
+	}
+	public function edit_class_test($id)
+	{
+		$date_time= array('' => 'Select class Time') + AcmClassSchedule::lists('day', 'id');
+		$model = new AcmAcademic();
+		$edit_data = $model->find($id);
+		$datas = AcmAcademicDetails::with('relAcmAcademic')
+			->where('acm_academic_id','=' ,$id)
+			->get();
+		return View::make('academic::faculty.mark_distribution_courses.marks_dist_item_class_test.edit',compact('edit_data','date_time','datas'));
+	}
+	public function update_class_test($id)
+	{
+		$data = Input::all();
+		$redirect_url = Input::get('redirect_url');
+		if ($data) {
+			/*$datas->course_management_id = Input::get('course_management_id');
+			$datas->acm_marks_distribution_id = Input::get('marks_dist_id');*/
+			$datas = AcmAcademic::find($id);
+			$datas->title = Input::get('title');
+			$datas->description = Input::get('description');
+			$datas->acm_class_schedule_id = Input::get('class_time');
+			$datas->created_by = Auth::user()->id;
+			$datas->save();
+			$academic_id = $id;// update exiting data that contains a id
+			//file upload starts here
+			$files = $data['images'];
+			foreach($files as $file) {
+				if($file){
+					$destinationPath = public_path().'/file/item_class_file';
+					$filename = $file->getClientOriginalName();
+					$hashname = date("d-m-Y")."_".$filename;
+					$upload_success = $file->move($destinationPath, $hashname);
+					$academic_details = new AcmAcademicDetails;
+					$academic_details->file = $hashname;
+					$academic_details->acm_academic_id = $id;
+					$academic_details->save();
+				}
+			}
+			//file upload ends
+			return Redirect::to($redirect_url)->with('message','Successfully added!');
+		} else {
+			// failure, get errors
+			$errors = $datas->errors();
+			Session::flash('errors', $errors);
+			return Redirect::to($redirect_url)->with('message',$errors);
+		}
+	}
+	public function ajax_delete_aca_academic_details_class_test()
+	{
+		if(Request::ajax())
+		{
+			$aca_academic_details_id = Input::get('aca_academic_details_id');
+			$token = Input::get('token');
+			if (Session::token() == $token)
+			{
+				$data = AcmAcademicDetails::find($aca_academic_details_id);
+				if($data->delete())
+				{
+					return Response::json(['msg'=> 'Data Successfully Deleted']);
+				}
+				else
+					return Response::json(['msg'=> 'Data Successfully Not Deleted']);
+			}
+
+		}
+	}
+
+
+
+
+
 
 
 }

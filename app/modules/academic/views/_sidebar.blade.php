@@ -70,7 +70,7 @@
                                                 $url_link = 'academic/faculty/marksdistitem/assignment/'.$marks_dist_id.'/'.$course_management_id;
                                                 break;
                                             case 3:
-                                                $url_link = 'academic/faculty/marksdistitem/class_test/'.$marks_dist_id.'/'.$course_management_id;
+                                                $url_link = 'academic/faculty/marks/dist/item/class_test/'.$marks_dist_id.'/'.$course_management_id;
                                                 break;
                                             case 4:
                                                 $url_link = 'academic/faculty/marksdistitem/mid_term/'.$marks_dist_id.'/'.$course_management_id;
