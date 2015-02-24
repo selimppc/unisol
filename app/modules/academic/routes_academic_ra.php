@@ -46,9 +46,9 @@ Route::any('academic/amw/config/show/{course_id}',[
     'as' => 'config.show',
     'uses'=> 'AcmAmwController@course_config_show'
 ]);
-Route::any('academic/amw/marks/dist/{id}',[
-    'as' => 'marksdist.show',
-    'uses'=> 'AcmAmwController@item_config_show'
+Route::any('marks-dist/{id}',[
+    'as' => 'dist.show',
+    'uses'=> 'AcmAmwController@show_config'
 ]);
 Route::post('academic/amw/config/acmconfigdelete/ajax',
     'AcmAmwController@ajax_delete_acm_course_config'
@@ -68,7 +68,10 @@ Route::any('academic/faculty/marksdist/show/{course_id}',[
     'as' => 'marksdistfind.show',
     'uses'=> 'AcmFacultyController@find_marksdist_info'
 ]);
-Route::any('academic/faculty/marks/dist/{cm_id}',[
+
+
+
+Route::any('marks-item/{cm_id}',[
     'as' => 'marksdist.show',
     'uses'=> 'AcmFacultyController@marks_dist_show'
 ]);

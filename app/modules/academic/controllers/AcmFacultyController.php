@@ -154,7 +154,6 @@ class AcmFacultyController extends \BaseController {
 						$marks_dist->readonly = 1;
 				}
 			}
-
 			// Assign created_by and updated_by user id
 			if( isset($created_by_amw) && isset($created_by_amw[$i]) )
 				$marks_dist->created_by = $created_by_amw[$i];
@@ -162,12 +161,10 @@ class AcmFacultyController extends \BaseController {
 				$marks_dist->created_by = Auth::user()->id;
 			else
 				$marks_dist->updated_by = Auth::user()->id;
-
 			//$marks_dist->acm_attendance_config_id = $attendance_id;
 			$marks_dist->save();
 			//$acm_config->acm_attendance_config_id->save($marks_dist);
 		}
-
 		// redirect
 		Session::flash('message', 'ACM Course Configuration Data Successfully Added !!');
 		return Redirect::to('academic/faculty');
@@ -190,19 +187,15 @@ class AcmFacultyController extends \BaseController {
 	{
 		$date_time= array('' => 'Select class Time') + AcmClassSchedule::lists('day', 'id');
 		$title = 'All Class List';
-
 		$datas = AcmAcademic::with('relAcmClassSchedule')
 			->where('course_management_id', '=', $cmid)
 			->get();
-
 		$data= CourseManagement::with( 'relCourse')
 			->where('id', '=', $cmid)
 			->get();
-
 		$config_data = AcmMarksDistribution::with('relAcmMarksDistItem', 'relCourseManagement.relCourse')
 			->where('course_management_id', '=', $cmid)
 			->get();
-
 		return View::make('academic::faculty.mark_distribution_courses.marks_dist_item_class.index', compact('title', 'datas', 'config_data','data', 'marks_dist_id', 'cmid','date_time'));
 	}
 
@@ -210,9 +203,6 @@ class AcmFacultyController extends \BaseController {
 	{
 		$data = Input::all();
 		$datas = new AcmAcademic();
-//		$file =Input::file('file');
-		//$academic_details = new AcmAcademicDetails();
-
 		if ($datas->validate($data)) {
 			$datas->course_management_id = Input::get('course_management_id');
 			$datas->acm_marks_distribution_id = Input::get('marks_dist_id');
@@ -234,7 +224,6 @@ class AcmFacultyController extends \BaseController {
 					$academic_details->file = $hashname;
 					$academic_details->acm_academic_id = $academic_id;
 					$academic_details->save();
-
 				}
 			}
 			//file upload ends
@@ -254,7 +243,6 @@ class AcmFacultyController extends \BaseController {
 		$datas = AcmAcademicDetails::with('relAcmAcademic')
 			->where('acm_academic_id','=' ,$id)
 			->get();
-
 		return View::make('academic::faculty.mark_distribution_courses.marks_dist_item_class.show',compact('data','datas'));
 	}
 
@@ -273,8 +261,6 @@ class AcmFacultyController extends \BaseController {
 	{
 		$data = Input::all($id);
 		$datas = new AcmAcademic();
-		$file =Input::file('file');
-
 		if ($datas->validate($data)) {
 			$datas->course_management_id = Input::get('course_management_id');
 			$datas->acm_marks_distribution_id = Input::get('marks_dist_id');
@@ -296,7 +282,6 @@ class AcmFacultyController extends \BaseController {
 					$academic_details->file = $hashname;
 					$academic_details->acm_academic_id = $academic_id;
 					$academic_details->save();
-
 				}
 			}
 			//file upload ends

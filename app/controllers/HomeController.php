@@ -118,6 +118,14 @@ class HomeController extends BaseController {
 
     public function testSearch(){
 
+
+        if($_POST){
+            echo "ok";
+        }else{
+            echo "no";
+        }
+        exit;
+
         $result = BillingDetails::BillingItem();
         print_r($result);exit;
 

@@ -39,17 +39,18 @@
 
 
           <tr>
-          <td>{{ $value->title }}</td>
-          <td></td>
-          <td>{{ $value->is_percentage == 1 ? 'Yes' : 'No' }}</td>
+          <td>{{ $value['title'] }}</td>
+          <td>{{ $value['waiver_type'] }}</td>
+          {{--<td></td>--}}
+          <td>{{ $value['is_percentage'] == 1 ? 'Yes' : 'No' }}</td>
 
-          <td>{{  $value->amount }}</td>
-          <td></td>
+          <td>{{  $value['amount'] }}</td>
+          <td> {{ $value['relBillingDetails']['relBillingItem']['title'] }} </td>
 
-          {{--<td>{{ $value->relUser->relUserProfile->first_name.' '.$value->relUser->relUserProfile->last_name }}</td>--}}
+{{--          <td>{{ $value->relUser->relUserProfile->first_name.' '.$value->relUser->relUserProfile->last_name }}</td>--}}
           <td>
-               <a href="{{ URL::route('waiver_manage.show', $value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#addModal"><span class="glyphicon glyphicon-eye-open text-danger"></span></a>
-               <a class="btn btn-xs btn-default" href="{{ URL::route('waiver_manage.edit',$value->id) }}" data-toggle="modal" data-target="#addModal" ><span class="glyphicon glyphicon-edit"></span></a>
+               <a href="{{ URL::route('waiver_manage.show', $value['id']) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#addModal"><span class="glyphicon glyphicon-eye-open text-danger"></span></a>
+               <a class="btn btn-xs btn-default" href="{{ URL::route('waiver_manage.edit',$value['id']) }}" data-toggle="modal" data-target="#addModal" ><span class="glyphicon glyphicon-edit"></span></a>
                   {{----}}
           </td>
 
@@ -64,12 +65,15 @@
 
 {{--------Pagination Link--------------------------}}
  <div class="pull-right paginate-button">
-    {{$waiver_model->links()}}
+{{--    {{$waiver_model->links()}}--}}
  </div>
 
+
+<p> &nbsp; </p>
+<p> &nbsp; </p>
 {{---------------------------------------------------Modals-----------------------------------------------}}
  <!-- Modal :: add Information -->
-<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div data-backdrop="static" data-keyboard="false" class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
      <div class="modal-dialog">
          <div class="modal-content">
 

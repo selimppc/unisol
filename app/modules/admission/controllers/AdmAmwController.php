@@ -267,11 +267,11 @@ class AdmAmwController extends \BaseController
 //..............................    Waiver Management : starts ...................................................
 
     public function waiverIndex()
-
     {
-        $waiver_model = Waiver::orderby('id', 'DESC')->paginate(5);
-
-        return View::make('admission::amw.waiver_management.index',compact('waiver_model'));
+        $waiver_model = Waiver::with('relBillingDetails', 'relBillingDetails.relBillingItem')
+                    ->orderBy('id', 'DESC')
+                    ->paginate(15);
+        return View::make('admission::amw.waiver_management.index', compact('waiver_model'));
     }
 
     public function waiverCreate()
