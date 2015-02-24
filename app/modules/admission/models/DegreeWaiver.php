@@ -12,6 +12,9 @@ class DegreeWaiver extends Eloquent{
     public function relWaiver(){
         return $this->belongsTo('Waiver', 'waiver_id', 'id');
     }
+    public function relDegree(){
+        return $this->belongsTo('Degree', 'degree_id', 'id');
+    }
 
 
 } 

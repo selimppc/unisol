@@ -26,7 +26,7 @@
 {{------------------------------------Degree Data Table: Starts-------------------------------------------------}}
           <div class="well well-sm">
              <table id="example1" class="table table-bordered table-striped">
-
+                <h4>Degree Information</h4>
                          <tr>
                                 <th> Degree Title :</th>
                                 <td>{{ $degree_model->title }}</td>
@@ -101,12 +101,16 @@
                 @foreach($degree_waiver as $value)
                       <tr>
                             <td>{{ $degree_model->title }}</td>
+
                             <td>{{ $value->relWaiver->title }}</td>
                             <td>{{ $value->relWaiver->amount }}</td>
-                            <td> </td>
+                            <td></td>
+
                             <td>
-                                 <a href = "{{ URL::to('degree_waiver.delete'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><span class="glyphicon glyphicon-trash text-danger"></span></a>
+                                 {{--<a data-href = "{{ URL::route('degree_waiver.delete'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete"  ><span class="glyphicon glyphicon-trash text-danger"></span></a>--}}
                                  {{--<a href="{{ URL::to('department/show/'.$department->id) }}" class="btn btn-sm btn-default" data-toggle="modal" data-target="#confirm-show"><span class="glyphicon glyphicon-eye-open text-danger"></span></a>--}}
+                               <a data-href="{{ URL::to('amw/degree_waiver/delete/'.$value->id) }}" class="btn btn-sm btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><span class="glyphicon glyphicon-trash text-danger"></span></a>
+                               <a href="{{ URL::route('degree_manage.waiver_const', $value->id) }}">Const</a>
                             </td>
 
                       </tr>
