@@ -25,6 +25,7 @@
                 <td>{{$value->relAcmClassSchedule->day}}</td>
                 <td>
                     <a href="{{ URL::route('class.edit', ['id'=>$value->id]) }}" class="subEdit btn btn-xs btn-default" data-toggle="modal" data-target="#editModal" href="" ><span class="glyphicon glyphicon-edit text-info"></span></a>
+
                     <a href="{{ URL::route('class.show', ['id'=>$value->id])  }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" href=""><span class="glyphicon glyphicon-list-alt text-info"></span></a>
                 </td>
             </tr>
@@ -40,7 +41,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">Add New Class</h4>
+                    <h4 class="modal-title" style="text-align: center">Marks Distribution Item:Class</h4>
                 </div>
                 <div class="modal-body">
                     {{ Form::open(array('url' => 'academic/faculty/marksdistitem/class/save', 'method' =>'post', 'role'=>'form','files'=>'true')) }}
@@ -72,8 +73,37 @@
     </div><!-- /.modal -->
 
 @stop
+@section('script_section')
+    <script>
+        function deleteAcaDetailsImage(getId, acaId)
+        {
+            var aca_details_id = acaId;
+            var url = '{{URL::to('academic/faculty/acadetailsdelete/ajax')}}' ;
+            var token = $('.edit_modal_aca').find('input[name="_token"]').val();
+            //console.log(url);
+            if(aca_details_id > 0){
 
-{{--@section('script_section')--}}
-{{--{{HTML::script('assets/js/dropzone/dropzone.js')}}--}}
+                var check = confirm("Are you sure to delete this item??");
+                if(check)
+                {
+                    $.ajax({
+                        url: url,
+                        type: 'POST',
+                        dataType: 'json',
+                        data: {aca_academic_details_id: aca_details_id, token: token}
+                    })
+                            .done(function(msg) {
+                                console.log(msg);
+                                var whichtr = $('#'+getId).closest("p");
+                                whichtr.fadeOut(500).remove();
+                            });
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+    </script>
 
-{{--@stop--}}
+@stop
