@@ -89,7 +89,7 @@ class ExaminationController extends \BaseController {
             [
                 'relCourseManagement', 'relCourseManagement.relCourse',
                 'relCourseManagement.relCourse.relSubject.relDepartment',
-                'relMeta' => function ($query){
+                'relAcmMarksDistItem' => function ($query){
                     $query->where('is_exam', 1);
                 }
             ]

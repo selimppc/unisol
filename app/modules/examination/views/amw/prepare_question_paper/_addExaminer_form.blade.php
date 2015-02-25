@@ -1,6 +1,7 @@
 <fieldset style="padding: 10px; width: 90%;">
                 {{--Title:</strong>{{ $view_examination_amw->title }}--}}
 
+
                 <div class="form-group">
                        {{ Form::label('department', 'Department') }}
                        {{ Form::text('department', Input::old('department'), array('class' => 'form-control','required'=>'required')) }}

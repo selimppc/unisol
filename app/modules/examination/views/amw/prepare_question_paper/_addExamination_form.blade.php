@@ -3,6 +3,7 @@
                 $year_id = Year::lists('title', 'id');
                 $semester_id = Semester::lists('title', 'id');
                 $exam_type = AcmMarksDistItem::lists('title','id');
+
                 $course_name = Course::lists('title','id');
             ?>
 
@@ -15,12 +16,12 @@
                         {{ Form::select('acm_marks_dist_item_id',$exam_type, Input::old('acm_marks_dist_item_id'), array('class' => 'form-control','required'=>'required')) }}
                 </div>
                 <div class="form-group">
-                        {{ Form::label('year', 'Year') }}
-                        {{ Form::select('year',$year_id, Input::old('year'), array('class' => 'form-control','required'=>'required') ) }}
+                        {{ Form::label('year_id', 'Year') }}
+                        {{ Form::select('year_id',$year_id, Input::old('year_id'), array('class' => 'form-control','required'=>'required') ) }}
                 </div>
                 <div class="form-group">
-                         {{ Form::label('semester', 'Semester') }}
-                         {{ Form::select('semester',$semester_id, Input::old('semester'), array('class' => 'form-control','required'=>'required')) }}
+                         {{ Form::label('semester_id', 'Semester') }}
+                         {{ Form::select('semester_id',$semester_id, Input::old('semester_id'), array('class' => 'form-control','required'=>'required')) }}
                 </div>
                 <div class="form-group">
                          {{ Form::label('course_name', 'Course Name') }}

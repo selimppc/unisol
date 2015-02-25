@@ -28,7 +28,7 @@ class ExmExamList extends \Eloquent
 //
 //    }
 
-    public function relMeta()
+    public function relAcmMarksDistItem()
     {
         return $this->belongsTo('AcmMarksDistItem', 'acm_marks_dist_item_id', 'id');
     }
