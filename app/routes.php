@@ -17,6 +17,16 @@ Route::get('/hellow','TestController@index');
 Route::get('/logs','HomeController@logs');
 
 Route::get('/test-search','HomeController@testSearch');
+Route::get('/bootstrap-modal','HomeController@bootstrapModal');
+Route::any("bootstrap/test", [
+    "as"   => "bootstrap.test",
+    "uses" => "UserController@login"
+]);
+
+Route::any("update/{id}", [
+    "as"   => "bootstrap.test",
+    "uses" => "UserController@login"
+]);
 
 //Route::get('/logs', function(){
 //    throw new RuntimeException('Hello');

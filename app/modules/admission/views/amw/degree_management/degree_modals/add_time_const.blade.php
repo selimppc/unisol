@@ -9,7 +9,7 @@
 
           {{ Form::open(['route' => ['deg_waiver_time_const.store'], 'class'=>'form-horizontal', 'files' => true,]) }}
 
-          {{Form::text('degree_waiver_id', $degree_waiver_id)}}
+          {{Form::hidden('degree_waiver_id', $degree_waiver_id)}}
           {{Form::hidden('is_time_dependent', 1)}}
 
           {{ Form::label('start_date', 'Start Time') }}

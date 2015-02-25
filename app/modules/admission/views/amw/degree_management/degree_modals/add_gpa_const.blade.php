@@ -6,7 +6,7 @@
 <div class="modal-body">
     <div style="padding: 20px;">
 
-          {{ Form::open(['route' => ['deg_waiver_const.store'], 'class'=>'form-horizontal','files' => true,]) }}
+          {{ Form::open(['route' => ['deg_waiver_gpa_const.store'], 'class'=>'form-horizontal','files' => true,]) }}
 
           {{ Form::hidden('degree_waiver_id', $degree_waiver_id)}}
           {{ Form::hidden('is_time_dependent', 0)}}
@@ -16,8 +16,8 @@
             'psc' => 'PSC', 'jsc' => 'JSC', 'ssc'=>'SSC','hsc'=>'HSC','grad'=>'Grad','under_grad'=>'Under Grad'), Input::old('level_of_education'),
              array('class' => 'form-control')) }}
 
-           {{ Form::label('end_date', 'GPA') }}
-           {{ Form::text('end_date', Input::old('end_date'),['class'=>'form-control date_picker'])  }}
+           {{ Form::label('gpa', 'GPA') }}
+           {{ Form::text('gpa', Input::old('gpa'),['class'=>'form-control'])  }}
 
 
           <p>&nbsp;</p>

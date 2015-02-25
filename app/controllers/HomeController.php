@@ -117,7 +117,7 @@ class HomeController extends BaseController {
 
 
     public function testSearch(){
-        
+
 
         if($_POST){
             echo "ok";
@@ -212,6 +212,25 @@ class HomeController extends BaseController {
 
         print_r($result);
         exit;
+    }
+
+
+
+    public function bootstrapModal(){
+
+        return View::make('test.bootstrap_modal');
+    }
+
+    public function update($id)
+    {
+        $user = User::findOrFail($id);
+        $validator = Validator::make($data = Input::all(), User::$rules);
+        if ($validator->fails())
+        {
+            //return Redirect::back()->withErrors($validator)->withInput();
+            return Redirect::back()->withErrors($validator)->withInput()->with('id', $id);
+        }
+        return View::make('test.bootstrap_modal');
     }
 
 
