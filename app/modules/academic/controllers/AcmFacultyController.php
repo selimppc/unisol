@@ -260,7 +260,7 @@ class AcmFacultyController extends \BaseController {
 	{
 		$data = Input::all();
 		$redirect_url = Input::get('redirect_url');
-		if ($data) {
+		if (($data)) {
 			/*$datas->course_management_id = Input::get('course_management_id');
 			$datas->acm_marks_distribution_id = Input::get('marks_dist_id');*/
 			$datas = AcmAcademic::find($id);
@@ -353,6 +353,7 @@ class AcmFacultyController extends \BaseController {
 					$upload_success = $file->move($destinationPath, $hashname);
 					$academic_details = new AcmAcademicDetails;
 					$academic_details->file = $hashname;
+//					strtolower ( $filename)
 					$academic_details->acm_academic_id = $academic_id;
 					$academic_details->save();
 				}

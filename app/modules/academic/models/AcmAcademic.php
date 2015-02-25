@@ -18,8 +18,10 @@ class AcmAcademic extends \Eloquent
     private $errors;
     // 1 Create data validation
     private $rules = array(
-        'title' => 'required|min :3',
-        'description'=>'required|min :3'
+        'title' => 'required|alpha_spaces|min :3',
+        'description'=>'required|alpha_spaces|min :3'
+          // 'file' => 'required|mimes:png,gif,jpeg'
+          //'photo' => 'mimes:jpeg,bmp,png'
 
     );
 
@@ -40,7 +42,9 @@ class AcmAcademic extends \Eloquent
     // 2 update data validation
 
     private $rules2 = array(
-        'title' => 'required|min :3'
+        'title' => 'required|min :3',
+        'description'=>'required|min :3'
+//        'file' => 'required|mimes:png,gif,jpeg'
 
     );
 

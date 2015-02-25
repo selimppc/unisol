@@ -4,7 +4,7 @@
 @stop
 @section('content')
     <h4 style="text-align: center">{{$title}}</h4>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addClassTest">Add Class</button>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addClassTest">Add CT</button>
     <table id="example" class="table table-bordered table-hover table-striped">
         <thead>
         <th>Title</th>
@@ -24,7 +24,7 @@
                     <a href="{{ URL::route('class_test.edit', ['id'=>$value->id]) }}" class="subEdit btn btn-xs btn-default" data-toggle="modal" data-target="#editModal" href="" ><span class="glyphicon glyphicon-edit text-info"></span></a>
 
                     <a href="{{ URL::route('class_test.show', ['id'=>$value->id])  }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" href=""><span class="glyphicon glyphicon-list-alt text-info"></span></a>
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="">Add Class</button>
+                    <button type="button" class="btn btn-xs" data-toggle="modal" data-target="">Assign</button>
                 </td>
             </tr>
         @endforeach
