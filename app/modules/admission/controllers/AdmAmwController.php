@@ -168,7 +168,7 @@ class AdmAmwController extends \BaseController
         $year = array('' => 'Please Select Year') + Year::lists('title', 'id');
         $degree_program = array('' => 'Please Select ') + DegreeProgram::lists('title', 'id');
 
-        return View::make('admission::amw.degree_management.dgm_modals._form', compact('year', 'semester', 'department', 'degree_program'));
+        return View::make('admission::amw.degree_management.degree_modals._form', compact('year', 'semester', 'department', 'degree_program'));
     }
 
     public function dgmStore()
@@ -208,7 +208,7 @@ class AdmAmwController extends \BaseController
     {
 
         $degree_model = Degree::find($id);
-        return View::make('admission::amw.degree_management.dgm_modals.show', compact('degree_model'));
+        return View::make('admission::amw.degree_management.degree_modals.show', compact('degree_model'));
     }
 
     public function dgmEdit($id)
@@ -219,7 +219,7 @@ class AdmAmwController extends \BaseController
         $department = Department::lists('title', 'id');
         $semester = Semester::lists('title', 'id');
         $degree_program = DegreeProgram::lists('title', 'id');
-        return View::make('admission::amw.degree_management.dgm_modals.edit', compact('degree_model', 'department', 'year', 'semester', 'degree_program', 'semester'));
+        return View::make('admission::amw.degree_management.degree_modals.edit', compact('degree_model', 'department', 'year', 'semester', 'degree_program', 'semester'));
     }
 
     public function dgmUpdate($id)
