@@ -311,7 +311,6 @@ class AdmAmwController extends \BaseController
             compact('degree_waiver_id'));
     }
     public function degWaiverConstTimeStore(){
-        //echo 'ok';exit;
 
         $data = Input::all();
         if (WaiverConstraint::create($data)) {
