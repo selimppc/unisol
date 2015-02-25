@@ -23,6 +23,11 @@ Route::any("bootstrap/test", [
     "uses" => "UserController@login"
 ]);
 
+Route::any("update/{id}", [
+    "as"   => "bootstrap.test",
+    "uses" => "UserController@login"
+]);
+
 //Route::get('/logs', function(){
 //    throw new RuntimeException('Hello');
 //    return View::make('error.missing');

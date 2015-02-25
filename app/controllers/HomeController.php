@@ -221,5 +221,16 @@ class HomeController extends BaseController {
         return View::make('test.bootstrap_modal');
     }
 
+    public function update($id)
+    {
+        $attendee = User::findOrFail($id);
+        $validator = Validator::make($data = Input::all(), Attendee::$rules);
+        if ($validator->fails())
+        {
+            return Redirect::back()->withErrors($validator)->withInput();
+        }
+        return View::make('test.bootstrap_modal');
+    }
+
 
 }
