@@ -78,13 +78,10 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         // TODO: Implement getRememberTokenName() method.
     }
 
-    //Shafi
-    public static function getUserName($userId){
-        $data = User::find($userId);
-        return $data->username;
+
+    public function setPasswordAttribute($password){
+        $this->attributes['password'] = Hash::make($password);
     }
-
-
 
 
     public function relRole() {
@@ -182,5 +179,8 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
             ->lists('full_name', 'user_id');
         return $query;
     }
+
+
+
 
 }
