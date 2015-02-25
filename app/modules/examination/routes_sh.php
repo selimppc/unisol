@@ -14,25 +14,13 @@ Route::any('examination/amw/create',[
     'uses' => 'ExmAmwController@createQuestionPaper'
 ]);
 
-Route::any('examination/amw/store',[
-    'as' =>'examination/amw/store',
-    'uses' => 'ExmAmwController@storeQuestionPaper'
-]);
+
 
 Route::any('examination/amw/assignto',[
     'as' =>'examination/amw/assignto',
     'uses' => 'ExmAmwController@assignTo'
 ]);
 
-Route::any('examination/amw/editQuestionPaper/{id}', [
-    'as' => 'examination.amw.editQuestionPaper',
-    'uses' => 'ExmAmwController@editQuestionPaper'
-]);
-
-Route::any('examination/amw/updateQuestionPaper/{id}', [
-    'as' => 'examination.amw.updateQuestionPaper',
-    'uses' => 'ExmAmwController@updateQuestionPaper'
-]);
 
 Route::any('examination/amw/questionList',[
     'as' =>'examination/amw/questionList',

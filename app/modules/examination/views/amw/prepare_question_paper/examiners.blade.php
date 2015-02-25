@@ -50,12 +50,16 @@
                              {{--<td> {{ $examiners_list->exm_exam_list_id }} </td>--}}
                              <td>{{ HTML::linkAction('ExmAmwController@viewExaminers',($examiners_list->relUser->relUserProfile->first_name.' '.$examiners_list->relUser->relUserProfile->middle_name.' '.$examiners_list->relUser->relUserProfile->last_name),['id'=>$examiners_list->id]) }}</td>
 
+                             {{--<td> <span href="{{ URL::route('examination.amw.viewExaminers',($examiners_list->relUser->relUserProfile->first_name),['id'=>$examiners_list->id]) }}" class="btn btn-default" data-toggle="modal" data-target="#modal" data-placement="left" title="Show" href="#">View</span></td>--}}
+
                              <td>{{ $examiners_list->relExmExamList->relCourseManagement->relCourse->relSubject->relDepartment->title }}</td>
+
 
                              {{--<td>{{ $examiners_list->type }} </td>--}}
                              {{--<td> {{ $examiners_list->assigned_by }} </td>--}}
                              {{--<td> {{ $examiners_list->deadline }} </td>--}}
                              {{--<td> {{ $examiners_list->note }} </td>--}}
+
                              <td>{{ $examiners_list->status }} </td>
 
 

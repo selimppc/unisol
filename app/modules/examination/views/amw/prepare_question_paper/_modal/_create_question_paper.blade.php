@@ -8,6 +8,9 @@
             <div class="modal-body">
                 {{ Form::open(array('url' => 'examination/amw/store', 'method' =>'post', 'role'=>'form','files'=>'true'))  }}
                     {{ Form::hidden('exam_list_id',$exam_list_id, Input::old('exam_list_id')) }}
+                    {{ Form::hidden('course_man_id',$course_man_id, Input::old('course_man_id')) }}
+
+
                         @include('examination::amw/prepare_question_paper/_form')
                 {{ Form::close() }}
             </div>
