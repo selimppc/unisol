@@ -306,8 +306,8 @@ class AdmAmwController extends \BaseController
 
     public function degWaiverConstCreate($degree_waiver_id){
 
-//        $degree_model = DegreeWaiver::find($id);
-        return View::make('admission::amw.degree_management.degree_modals.add_waiver_const', compact('degree_waiver_id'));
+        return View::make('admission::amw.degree_management.degree_modals.add_waiver_const',
+            compact('degree_waiver_id'));
     }
     public function degWaiverConstStore(){
 

@@ -2,7 +2,6 @@
  * Created by User on 2/9/2015.
  */
 
-
 (function () {
     'use strict';
     if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
@@ -15,3 +14,25 @@
         document.querySelector('head').appendChild(msViewportStyle)
     }
 })();
+
+
+
+/**
+ * Tanin
+ */
+
+
+//date_picker
+$('.date_picker').each(function() {
+
+    var $picker = $(this);
+    $picker.datepicker({
+        format: 'yyyy-mm-dd'
+    });
+
+    var pickerObject = $picker.data('date_picker');
+
+    $picker.on('changeDate', function(ev){
+        $picker.datepicker('hide');
+    });
+});

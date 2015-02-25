@@ -11,12 +11,12 @@
 
           {{Form::hidden('degree_waiver_id', $degree_waiver_id)}}
           {{ Form::label('start_date', 'Start Time') }}
-          {{ Form::text('start_date', Input::old('start_date'),['class'=>'form-control input-sm','id'=>'datepicker','required'=>'required']) }}
+          {{ Form::text('start_date', Input::old('start_date'),['class'=>'form-control date_picker','required'=>'required']) }}
 
           <p>&nbsp;</p>
 
           {{ Form::label('end_date', 'End Time') }}
-          {{ Form::text('end_date', Input::old('end_date'),['class'=>'form-control input-sm','id'=>'datepicker1','required'=>'required'])  }}
+          {{ Form::text('end_date', Input::old('end_date'),['class'=>'form-control date_picker','required'=>'required'])  }}
 
            <p>&nbsp;</p>
 
@@ -34,17 +34,4 @@
 
 </div>
 
-<script>
-  $(function() {
-    $( "#datepicker" ).datepicker({
-       formatSubmit : 'mm/dd/yyyy'
-    });
-
-     $( "#datepicker1" ).datepicker({
-        formatSubmit : 'mm/dd/yyyy'
-     });
-
-
-  });
-  </script>
-
+{{ HTML::script('assets/js/custom.js')}}
