@@ -443,7 +443,16 @@ class AcmFacultyController extends \BaseController {
 
 		}
 	}
-
+	public  function assign_class_test($id)
+	{
+		$data = AcmAcademic::with('relAcmClassSchedule','relAcmClassSchedule.relAcmClassTime')
+			->where('id','=' ,$id)
+			->get();
+		$datas = AcmAcademicDetails::with('relAcmAcademic')
+			->where('acm_academic_id','=' ,$id)
+			->get();
+		return View::make('academic::faculty.mark_distribution_courses.marks_dist_item_class_test.assign',compact('data','datas'));
+	}
 
 
 
