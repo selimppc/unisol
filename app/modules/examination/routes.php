@@ -59,29 +59,9 @@ Route::any('examination/amw/updateExamination/{exam_list_id}', [
     'uses' => 'ExmAmwController@updateExamination'
 ]);
 
-Route::any('examination/amw/courses/{mark_dist_item_id}',[
+Route::any('examination/amw/courses/{year_id}/{semester_id}',[
     'as' =>'examination/amw/courses',
     'uses' => 'ExmAmwController@courses'
-]);
-
-Route::any('examination/amw/examiners',[
-    'as' =>'examination/amw/examiners',
-    'uses' => 'ExmAmwController@examiners'
-]);
-
-Route::any('examination/amw/addExaminers',[
-    'as' =>'examination/amw/addExaminers',
-    'uses' => 'ExmAmwController@addExaminers'
-]);
-
-Route::any('examination/amw/storeExaminers',[
-    'as' =>'examination/amw/storeExaminers',
-    'uses' => 'ExmAmwController@storeExaminers'
-]);
-
-Route::any('examination/amw/viewExaminers/{id}', [
-    'as' => 'examination.amw.viewExaminers',
-    'uses' => 'ExmAmwController@viewExaminers'
 ]);
 
 Route::any('examination/amw/questionItemsList/{exm_question_id}',[
@@ -108,3 +88,24 @@ Route::any('examination/amw/search', [
 //    'as' =>'',
 //    'uses' => ''
 //]);
+
+
+Route::any('examination/amw/examiners',[
+    'as' =>'examination/amw/examiners',
+    'uses' => 'ExmAmwController@examiners'
+]);
+
+Route::any('examination/amw/addExaminers',[
+    'as' =>'examination/amw/addExaminers',
+    'uses' => 'ExmAmwController@addExaminers'
+]);
+
+Route::any('examination/amw/storeExaminers',[
+    'as' =>'examination/amw/storeExaminers',
+    'uses' => 'ExmAmwController@storeExaminers'
+]);
+
+Route::any('examination/amw/viewExaminers/{id}', [
+    'as' => 'examination.amw.viewExaminers',
+    'uses' => 'ExmAmwController@viewExaminers'
+]);

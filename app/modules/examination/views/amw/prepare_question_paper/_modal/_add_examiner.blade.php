@@ -1,4 +1,4 @@
-<div class="modal fade" id="AddExaminer" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true">
+<div class="modal fade" id="AddExaminer" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">

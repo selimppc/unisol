@@ -85,10 +85,47 @@ Route::any('degree_manage/edit/{id}', ['as' => 'degree_manage.edit','uses' => 'A
 
 Route::any('degree_manage/update/{id}', ['as' => 'degree_manage.update','uses' => 'AdmAmwController@dgmUpdate']);
 
-Route::any('degree_manage/waiver/{id}', ['as' => 'degree_manage.waiver','uses' => 'AdmAmwController@degreeWaiverIndex']);
+//------------------------------Amw : Degree - Waiver starts  --------------------------------------------
+
+Route::any('amw/degree_manage/waiver/{id}', [
+    'as' => 'degree_manage.waiver',
+    'uses' => 'AdmAmwController@degreeWaiverIndex']);
 
 
-//------------------------------Amw : Waiver Management starts  --------------------------------------------
+Route::any('amw/degree_waiver/create/{degree_id}', [
+    'as' => 'degree_waiver.create',
+    'uses' => 'AdmAmwController@degreeWaiverCreate'
+]);
+
+Route::any('amw/degree_waiver/store', [
+    'as' => 'degree_waiver.store',
+    'uses' => 'AdmAmwController@degreeWaiverStore'
+]);
+
+Route::any('amw/degree_waiver/delete/{id}', [
+    'as' => 'degree_waiver.delete',
+    'uses' => 'AdmAmwController@degreeWaiverDelete'
+]);
+
+Route::any('amw/degree_waiver/delete/{id}','AdmAmwController@degreeWaiverDelete');
+
+Route::any('amw/degree_manage/waiver_const/{id}', [
+    'as' => 'degree_manage.waiver_const',
+    'uses' => 'AdmAmwController@degWaiverConstIndex']);
+
+Route::any('amw/degree_manage/waiver_const/create/{id}', [
+    'as' => 'deg_waiver_const.create',
+    'uses' => 'AdmAmwController@degWaiverConstCreate'
+]);
+
+Route::any('amw/degree_manage/waiver_const/store/{id}', [
+    'as' => 'deg_waiver_const.store',
+    'uses' => 'AdmAmwController@degWaiverConstStore'
+]);
+
+Route::any('amw/degree_manage/waiver_const/delete/{id}','AdmAmwController@degWaiverConstDelete');
+
+//--------------------------------  Amw : Waiver Management starts  --------------------------------------------
 
 Route::any('amw/waiver_manage', ['as' => 'waiver_manage.index','uses' => 'AdmAmwController@waiverIndex']);
 

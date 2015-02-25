@@ -11,9 +11,9 @@
                             <div class="col-sm-12">
                                 <div class="col-sm-6">
 
-                                       <strong> Year :</strong>  {{--{{ Year::getYearsName($course_data->year_id) }} </br>--}}
-                                       </br>
-                                       <strong> Semester :</strong>{{--{{ Semester::getSemesterName($course_data->semester_id) }} </br>--}}
+                                     {{--<strong> Year :</strong> {{ $data->relExmExamList->year_id }} </br>--}}
+                                       {{--</br>--}}
+                                     {{--<strong> Semester :</strong>{{ $data->relExmExamList->semester_id }} </br>--}}
 
                                 </div>
                                 <div class="col-sm-6">
@@ -36,9 +36,10 @@
                             <th>Title</th>
                             <th>Deadline</th>
                             <th>Department</th>
-                            <th>Year</th>
-                            <th>Term</th>
+                            {{--<th>Year</th>--}}
+                            {{--<th>Term</th>--}}
                             <th>Assigned</th>
+                            <th>Status</th>
                             <th>Action</th>
                          </tr>
                     </thead>
@@ -52,9 +53,10 @@
 
                                 <td>{{$prepare_question_paper_amw->deadline}}</td>
                                 <td>{{$prepare_question_paper_amw->relCourseManagement->relCourse->relSubject->relDepartment->title}}</td>
-                                <td>{{$prepare_question_paper_amw->relCourseManagement->relYear->title }} </td>
-                                <td>{{$prepare_question_paper_amw->relCourseManagement->relSemester->title}}</td>
+                                {{--<td>{{$prepare_question_paper_amw->relCourseManagement->relYear->title }} </td>--}}
+                                {{--<td>{{$prepare_question_paper_amw->relCourseManagement->relSemester->title}}</td>--}}
 
+                                <td> </td>
                                 <td> </td>
                                 {{--<td>{{ $prepare_question_paper_amw->relUser->relUserProfile->first_name.' '.$prepare_question_paper_amw->relUser->relUserProfile->middle_name.' '.$prepare_question_paper_amw->relUser->relUserProfile->last_name }}</td>--}}
                                 <td>

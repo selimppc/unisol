@@ -5,7 +5,7 @@
 <div class="modal-body edit_modal_aca">
     <div style="padding: 10px; width: 90%;">
 
-        {{ Form::model($edit_data,array('route'=> array('class/update',$edit_data->id), 'method' => 'POST', 'files' => true)) }}
+        {{ Form::model($edit_data,array('route'=> array('class_test/update',$edit_data->id), 'method' => 'POST', 'files' => true)) }}
         <div class='form-group'>
             {{ Form::label('title', 'Class Title') }}
             {{ Form::text('title', Input::old('title'),['class'=>'form-control','spellcheck'=> 'true','required'=>'required']) }}
@@ -23,7 +23,7 @@
                 {{--{{ HTML::image('file/item_class_file/'.$value->file, $value->file,['class'=>'col-md-4'])}}--}}
                 <p>
                     {{$value->file}}
-                    <a class="btn btn-default btn-sm pull-right" id="removeId{{$rkey}}" onClick="deleteAcaDetailsImage(this.id, {{$value->id}})"><span class="glyphicon glyphicon-trash text-danger"></span></a>
+                    <a class="btn btn-default btn-sm pull-right" id="removeId{{$rkey}}" onClick="deleteAcaDetailsImageCT(this.id, {{$value->id}})"><span class="glyphicon glyphicon-trash text-danger"></span></a>
                 </p>
             @endforeach
         </div>
@@ -34,7 +34,7 @@
         <div class="modal-footer">
             {{ Form::hidden('redirect_url', URL::previous()) }}
             {{ Form::submit('Submit', array('class'=>'btn btn-primary')) }}
-            <a href="{{URL::previous('academic/faculty/marksdistitem/class/')}}" class="btn btn-default">Close</a>
+            <a href="{{URL::previous('academic/faculty/marks/dist/item/class_test/')}}" class="btn btn-default">Close</a>
         </div>
         {{ Form::close() }}
     </div>

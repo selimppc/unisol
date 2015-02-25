@@ -5,8 +5,8 @@
  * Date: 06-Jan-15
  * Time: 5:02 PM
  */
-//**********Mark_distribution_courses start************
-//*****************amw dist item********************
+//**********Mark_distribution_courses start******************
+//*****************Amw Dist Item*******************************************
 Route::get('academic/amw/',
     'AcmAmwController@amw_index'
 );
@@ -31,7 +31,7 @@ Route::get('academic/amw/delete/{id}',
 Route::any('academic/amw/batch/delete',
     'AcmAmwController@amw_batchdelete'
 );
-//*****************amw course config*****************
+//*****************Amw Course Config**************************************
 Route::get('academic/amw/config/',
     'AcmAmwController@config_index'
 );
@@ -53,7 +53,7 @@ Route::any('marks-dist/{id}',[
 Route::post('academic/amw/config/acmconfigdelete/ajax',
     'AcmAmwController@ajax_delete_acm_course_config'
 );
-//******************Faculty marksdistribution***********
+//******************Faculty Marks Distribution*****************************
 Route::get('academic/faculty/',
     'AcmFacultyController@index'
 );
@@ -68,9 +68,6 @@ Route::any('academic/faculty/marksdist/show/{course_id}',[
     'as' => 'marksdistfind.show',
     'uses'=> 'AcmFacultyController@find_marksdist_info'
 ]);
-
-
-
 Route::any('marks-item/{cm_id}',[
     'as' => 'marksdist.show',
     'uses'=> 'AcmFacultyController@marks_dist_show'
@@ -78,8 +75,8 @@ Route::any('marks-item/{cm_id}',[
 Route::post('academic/faculty/marksdist/acmmarksdistdelete/ajax',
     'AcmFacultyController@ajax_delete_acm_marks_dist'
 );
-//******************Faculty marksdistribution item class***********
-Route::any('academic/faculty/marksdistitem/class/{marks_dist_id}/{course_management_id}',
+//******************Faculty Marks Distribution Item Class*****************
+Route::any('academic/faculty/marksdistitem/class/{marks_dist_id}/{cmid}',
     'AcmFacultyController@class_index'
 );
 Route::post('academic/faculty/marksdistitem/class/save',
@@ -97,7 +94,28 @@ Route::any('class-update/{id}', [
     'as' => 'class/update',
     'uses' => 'AcmFacultyController@update_class'
 ]);
-
-
-
-
+Route::post('academic/faculty/acadetailsdelete/ajax',
+    'AcmFacultyController@ajax_delete_aca_academic_details'
+);
+//******************Faculty Marks Distribution Item Class Test*****************
+Route::any('academic/faculty/marks/dist/item/class_test/{marks_dist_id}/{cmid}',
+    'AcmFacultyController@class_test_index'
+);
+Route::post('class_test/save',
+    'AcmFacultyController@save_class_test_data'
+);
+Route::any('class_test/show/{id}',[
+    'as' => 'class_test.show',
+    'uses'=> 'AcmFacultyController@show_class_test'
+]);
+Route::get('class_test-edit/{id}', [
+    'as' => 'class_test.edit',
+    'uses' => 'AcmFacultyController@edit_class_test'
+]);
+Route::any('class_test-update/{id}', [
+    'as' => 'class_test/update',
+    'uses' => 'AcmFacultyController@update_class_test'
+]);
+Route::post('academic/faculty/acadetailsdelete/class_test/ajax',
+    'AcmFacultyController@ajax_delete_aca_academic_details_class_test'
+);
