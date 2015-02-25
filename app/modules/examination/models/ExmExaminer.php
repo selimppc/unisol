@@ -26,6 +26,7 @@ class ExmExaminer extends \Eloquent
 
 //        'exm_exam_list_id'  => 'required',
 //        'user_id'  => 'required',
+
 //        'type'  => 'required',
 //        'assigned_by'  => 'required',
 //        'deadline'  => 'required',

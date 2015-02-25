@@ -29,13 +29,13 @@
                                                 <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $course_list['id'] }}"></td>
                                                 <td> {{ $course_list->relCourseManagement->relCourse->title }} </td>
 
-                                                 <td>{{ $course_list->relMeta['title'] }}</td>
+                                                 <td>{{ $course_list->relAcmMarksDistItem['title'] }}</td>
 
                                                 <td>{{ $course_list->relCourseManagement->relCourse->relSubject->relDepartment->title }}</td>
 
                                                 <td>
                                                    <a href="{{ URL::to('examination/amw/examiners')  }}" class="btn btn-default" >Examiner</a>
-                                                   <a href="{{ URL::to('examination/amw/index',['exam_list_id'=>$course_list->id]) }}" class="btn btn-default">Question Paper</a>
+                                                   <a href="{{ URL::to('examination/amw/index',['exam_list_id'=>$course_list->id , 'course_man_id'=>$course_list->course_management_id]) }}" class="btn btn-default">Question Paper</a>
 
                                                 </td>
                                             </tr>

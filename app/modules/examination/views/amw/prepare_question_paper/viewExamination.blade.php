@@ -7,7 +7,7 @@
                       <h3><strong> Title:</strong>{{ $view_examination_amw->title }} </h3> </br>
 
                          <p>
-                            <strong> Exam Type:</strong>{{ $view_examination_amw->relMeta['title'] }} </br>
+                            <strong> Exam Type:</strong>{{ $view_examination_amw->relAcmMarksDistItem['title'] }} </br>
 
                              <strong> Year:</strong>{{ Year::getYearsName($view_examination_amw->year_id) }} </br>
 

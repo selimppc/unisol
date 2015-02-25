@@ -62,10 +62,10 @@
                                 <tr>
                                     <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $exam_list[$i]['id'] }}"></td>
                                     {{--<td> {{ HTML::linkAction('ExmAmwController@courses', $exam_list->title) }} </td>--}}
-                                    <td>{{ HTML::linkAction('ExmAmwController@courses', $exam_list[$i]['title'], ['mark_dist_item_id'=>$exam_list[$i]['relMeta']['id'] ])  }} </td>
+                                    <td>{{ HTML::linkAction('ExmAmwController@courses', $exam_list[$i]['title'], ['mark_dist_item_id'=>$exam_list[$i]['relAcmMarksDistItem']['id'] ])  }} </td>
                                     <td>{{ $exam_list[$i]['relCourseManagement']['relCourse']['relSubject']['relDepartment']['title'] }}</td>
                                     <td>{{ $exam_list[$i]['relCourseManagement']['relCourse']['title'] }}</td>
-                                    <td>{{ $exam_list[$i]['relMeta']['title'] }}</td>
+                                    <td>{{ $exam_list[$i]['relAcmMarksDistItem']['title'] }}</td>
                                     <td>{{ Year::getYearsName($exam_list[$i]['year_id']) }}</td>
                                     <td>{{ Semester::getSemesterName($exam_list[$i]['semester_id']) }}</td>
 

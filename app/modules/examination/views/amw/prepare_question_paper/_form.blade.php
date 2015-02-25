@@ -34,4 +34,15 @@
             {{ Form::submit('Submit', array('class' => 'btn btn-primary')) }}
 
              <a href="{{URL::previous()}}" class="btn btn-default">Close </a>
+
+
+             <script>
+                 $('.datepicker').each(function() {
+                     var $picker = $(this);
+                     $picker.on('changeDate', function(ev){
+                         $picker.datepicker('hide');
+                     });
+                 });
+
+             </script>
 </fieldset>
