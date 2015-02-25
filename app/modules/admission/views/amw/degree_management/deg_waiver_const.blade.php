@@ -47,7 +47,7 @@
 
 {{-------------------------Degree Waiver Const Table (Time dependent):Starts-----------------------------------------------------------------------}}
 
-<a class="pull-right btn btn-sm btn-info" href="{{ URL::route('deg_waiver_const.create', $degree_model->id )}}" data-toggle="modal" data-target="#add" >Add Time Constraint</a>
+<a class="pull-right btn btn-sm btn-info" href="{{ URL::route('deg_waiver_time_const.create', ['degree_waiver_id'=>$degree_model->id ] )}}" data-toggle="modal" data-target="#add" >Add Time Constraint</a>
 
  <p>&nbsp;</p>
 
@@ -76,8 +76,6 @@
 
                                       </tr>
                     @endforeach
-
-
               </tbody>
 
     </table>
@@ -85,7 +83,7 @@
 
 {{--------------------------------Degree Waiver Const Table (GPA dependent):Starts-------------------------------------------------}}
 
-<a class="pull-right btn btn-sm btn-info" href="{{ URL::route('deg_waiver_const.create', $degree_model->id )}}" data-toggle="modal" data-target="#add" >Add GPA Constraint</a>
+<a class="pull-right btn btn-sm btn-info" href="{{ URL::route('deg_waiver_gpa_const.create', $degree_model->id )}}" data-toggle="modal" data-target="#add" >Add GPA Constraint</a>
 
  <p>&nbsp;</p>
 
