@@ -12,7 +12,7 @@ class AdmAmwController extends \BaseController
     public function index()
     {
         //$model = CourseManagement::orderby('id', 'DESC')->paginate(5);
-        $model= CourseManagement::with('relCourse','relDegree','relCourse.relSubject.relDepartment','relSemester','relYear');
+        $model= CourseManagement::with('relCourse','relDegree','relCourse.relSubject.relDepartment','relSemester','relYear')->paginate(5);
         $semester = array('' => 'Select Semester ') + Semester::lists('title', 'id');
         $year = array('' => 'Select Year ') + Year::lists('title', 'id');
         $degree = array('' => 'Select Degree ') + Degree::lists('title', 'id');
