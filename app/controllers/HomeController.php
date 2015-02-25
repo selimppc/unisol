@@ -118,7 +118,6 @@ class HomeController extends BaseController {
 
     public function testSearch(){
 
-
         if($_POST){
             echo "ok";
         }else{
