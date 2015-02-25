@@ -10,6 +10,8 @@
 
 <h3> Course Management </h3>
 
+
+
 <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('course_manage/create')}}" data-toggle="modal" data-target="#addModal" >Add New Course</a>
 
 
@@ -86,7 +88,7 @@
 </tr>
 </thead>
 <tbody>
-{{$model}}
+
       @foreach($model as $value)
 
           <tr>
@@ -95,15 +97,16 @@
           <td>{{ strtoupper($value->major_minor) }}</td>
           <td>{{  $value->relCourse->relSubject->relDepartment->title }}</td>
           <td>{{ $value->relYear->title }}</td>
+          <td>{{ $value->relSemester->title }}</td>
           <td>{{User::FullName($value->user_id)}}</td>
 
           <td>
                <a href="{{ URL::to('course_manage/show/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal"><span class="glyphicon glyphicon-eye-open text-danger"></span></a>
                <a class="btn btn-xs btn-default" href="{{ URL::to('course_manage/edit/'.$value->id) }}" data-toggle="modal" data-target="#editModal" ><span class="glyphicon glyphicon-edit"></span></a>
-                   <a data-href="" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><span class="glyphicon glyphicon-trash text-danger"></span></a>
+
           </td>
 
-            {{ $value->relCourse->title }}
+
           </tr>
       @endforeach
 
