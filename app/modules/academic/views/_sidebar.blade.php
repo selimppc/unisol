@@ -12,7 +12,7 @@
                 <table class="table">
                     <tr>
                         <td>
-                            <a href="{{ action('AcmAmwController@amw_index') }}">All Item List</a> <span class="label label-success"></span>
+                            <a href="{{ action('AcmAmwController@amw_index') }}">Marks Distribution Item</a> <span class="label label-success"></span>
                         </td>
                     </tr>
                     <tr>

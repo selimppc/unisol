@@ -22,6 +22,9 @@ class AcmAcademic extends \Eloquent
         'description'=>'required|min :3'
 
     );
+//'description'=>'required|alpha_spaces|min :3'
+    // 'file' => 'required|mimes:png,gif,jpeg'
+    //'photo' => 'mimes:jpeg,bmp,png'
 
     public function validate($data)
     {

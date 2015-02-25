@@ -97,7 +97,7 @@
                      <td>{{ Department::where('id', '=', $value->dept_id)->first()->title }}</td>
                      <td>{{Year::where('id', '=', $value->yr_id)->first()->title;  }}</td>
                      <td>{{ Semester::where('id', '=', $value->sem_id)->first()->title; }}</td>
-                     <td>{{ $value->relUser->relUserProfile->first_name.' '.$value->relUser->relUserProfile->last_name }}
+                     <td>{{User::FullName($value->user_id)}}</td>
                      <td>
                          <a href="{{ URL::to('course_manage/show/'.$value->id) }}" class="btn btn-xs btn-default" data- toggle="modal" data-target="#showModal"><span class="glyphicon glyphicon-eye-open text-danger"></span></a>
                          <a class="btn btn-xs btn-default" href="{{ URL::to('course_manage/edit/'.$value->id) }}" data- toggle="modal" data-target="#editModal" ><span class="glyphicon glyphicon-edit"></span></a>
