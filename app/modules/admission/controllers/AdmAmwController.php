@@ -11,7 +11,8 @@ class AdmAmwController extends \BaseController
 // Admission : Course Management starts here...........................................................
     public function index()
     {
-        $model = CourseManagement::orderby('id', 'DESC')->paginate(5);
+        //$model = CourseManagement::orderby('id', 'DESC')->paginate(5);
+        $model= CourseManagement::with('relCourse','relDegree','relCourse.relSubject.relDepartment','relSemester','relYear');
         $semester = array('' => 'Select Semester ') + Semester::lists('title', 'id');
         $year = array('' => 'Select Year ') + Year::lists('title', 'id');
         $degree = array('' => 'Select Degree ') + Degree::lists('title', 'id');
@@ -168,7 +169,7 @@ class AdmAmwController extends \BaseController
         $year = array('' => 'Please Select Year') + Year::lists('title', 'id');
         $degree_program = array('' => 'Please Select ') + DegreeProgram::lists('title', 'id');
 
-        return View::make('admission::amw.degree_management.dgm_modals._form', compact('year', 'semester', 'department', 'degree_program'));
+        return View::make('admission::amw.degree_management.degree_modals._form', compact('year', 'semester', 'department', 'degree_program'));
     }
 
     public function dgmStore()
@@ -208,7 +209,7 @@ class AdmAmwController extends \BaseController
     {
 
         $degree_model = Degree::find($id);
-        return View::make('admission::amw.degree_management.dgm_modals.show', compact('degree_model'));
+        return View::make('admission::amw.degree_management.degree_modals.show', compact('degree_model'));
     }
 
     public function dgmEdit($id)
@@ -219,7 +220,7 @@ class AdmAmwController extends \BaseController
         $department = Department::lists('title', 'id');
         $semester = Semester::lists('title', 'id');
         $degree_program = DegreeProgram::lists('title', 'id');
-        return View::make('admission::amw.degree_management.dgm_modals.edit', compact('degree_model', 'department', 'year', 'semester', 'degree_program', 'semester'));
+        return View::make('admission::amw.degree_management.degree_modals.edit', compact('degree_model', 'department', 'year', 'semester', 'degree_program', 'semester'));
     }
 
     public function dgmUpdate($id)
@@ -283,27 +284,78 @@ class AdmAmwController extends \BaseController
     }
 
     public function degreeWaiverDelete($id){
-       // echo 'ok';exit;
-//        try {
+        try {
             DegreeWaiver::find($id)->delete();
-        //DegreeWaiver::find($id)->get();
-        //exit;
             return Redirect::back()->with('message', 'Successfully deleted Information!');
-//        }
-//        catch(exception $ex){
-//            return Redirect::back()->with('message', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
-//        }
+        }
+        catch(exception $ex){
+           return Redirect::back()->with('message', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+       }
     }
 
     public function degWaiverConstIndex($id){
 
         $degree_model = DegreeWaiver::find($id);
 
-        $deg_waiver = DegreeWaiver::with('relDegree')
-            ->where('degree_id', '=', $id)
+        $deg_waiver_const = WaiverConstraint::with('relDegreeWaiver')
+            ->where('degree_waiver_id', '=', $id)
             ->get();
         return View::make('admission::amw.degree_management.deg_waiver_const',
-            compact('degree_model','deg_waiver'));
+            compact('degree_model','deg_waiver','deg_waiver_const'));
+
+    }
+
+    public function degWaiverTimeConstCreate($degree_waiver_id){
+
+        return View::make('admission::amw.degree_management.degree_modals.add_time_const',
+            compact('degree_waiver_id'));
+    }
+    public function degWaiverConstTimeStore(){
+        //echo 'ok';exit;
+
+        $data = Input::all();
+        if (WaiverConstraint::create($data)) {
+
+           return Redirect::back()->with('message', 'Successfully added Information!');
+        }
+        else{
+            return Redirect::back()->with('message', 'invalid');
+        }
+    }
+
+//    public function test(){
+//
+//        $data = Input::all();
+//        if (WaiverConstraint::create($data)) {
+//            return "OK";
+//            //return Redirect::back()->with('message', 'Successfully added Information!');
+//        }
+//
+//    }
+
+    public function degWaiverConstGpaStore(){
+
+        $dw_const_model = new WaiverConstraint();
+
+        $dw_const_model->degree_waiver_id = Input::get('degree_waiver_id');
+        $dw_const_model->is_time_dependent = 0;
+        $dw_const_model->level_of_education = Input::get('level_of_education');
+        $dw_const_model->gpa = Input::get('gpa');
+
+        if ($dw_const_model->save()) {
+            return Redirect::back()->with('message', 'Successfully added Information!');
+        }
+    }
+
+    public function degWaiverConstDelete($id){
+
+        WaiverConstraint::find($id)->delete();
+        return Redirect::back()->with('message', 'Successfully deleted Information!');
+    }
+
+    public function degWaiverGpaConstCreate($degree_waiver_id){
+        return View::make('admission::amw.degree_management.degree_modals.add_gpa_const',
+            compact('degree_waiver_id'));
 
     }
 
