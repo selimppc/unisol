@@ -45,7 +45,7 @@
 {{----------------------------------------Degree Data Table :Ends-----------------------------------------------------------------------}}
 
 
-{{----------------------------------------Degree Waiver Const Table : Starts-----------------------------------------------------------------------}}
+{{-------------------------Degree Waiver Const Table (Time dependent):Starts-----------------------------------------------------------------------}}
 
 <a class="pull-right btn btn-sm btn-info" href="{{ URL::route('deg_waiver_const.create', $degree_model->id )}}" data-toggle="modal" data-target="#add" >Add Time Constraint</a>
 
@@ -82,6 +82,44 @@
 
     </table>
 {{---------------------------------------Degree Waiver Table :Ends------------------------------------------------------}}
+
+{{--------------------------------Degree Waiver Const Table (GPA dependent):Starts-------------------------------------------------}}
+
+<a class="pull-right btn btn-sm btn-info" href="{{ URL::route('deg_waiver_const.create', $degree_model->id )}}" data-toggle="modal" data-target="#add" >Add GPA Constraint</a>
+
+ <p>&nbsp;</p>
+
+    <table id="example1" class="table table-bordered table-striped">
+
+    <h4>GPA Dependent Info</h4>
+
+         <thead>
+              <tr>
+                 <th>Level of Education</th>
+                 <th>GPA</th>
+                 <th>Action</th>
+              </tr>
+         </thead>
+               <tbody>
+                    {{--@foreach($deg_waiver_const as $value)--}}
+                                      {{--<tr>--}}
+                                            {{--<td>{{ $value->start_date }}</td>--}}
+
+                                            {{--<td>{{ $value->end_date }}</td>--}}
+
+                                            {{--<td>--}}
+                                                 {{--<a data-href="{{ URL::to('amw/degree_manage/waiver_const/delete/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><span class="glyphicon glyphicon-trash text-danger"></span></a>--}}
+                                                 {{--<a href="{{ URL::to('department/show/'.$department->id) }}" class="btn btn-sm btn-default" data-toggle="modal" data-target="#confirm-show"><span class="glyphicon glyphicon-eye-open text-danger"></span></a>--}}
+                                            {{--</td>--}}
+
+                                      {{--</tr>--}}
+                    {{--@endforeach--}}
+
+
+              </tbody>
+
+    </table>
+{{--------------------------------Degree Waiver Const Table (GPA dependent):Ends-------------------------------------------------}}
 
         </div><!-- /.box -->
        </div>

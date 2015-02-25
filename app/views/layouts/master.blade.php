@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
     <title>{{ isset($pageTitle) ? $pageTitle : 'Edu Tech Solutions' }}</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -24,7 +25,6 @@
 
     {{ HTML::script('assets/js/jquery-2.1.1.min.js') }}
     {{ HTML::script('assets/js/jquery-1.11.1.min.js')}}
-    {{--{{ HTML::script('assets/js/custom.js')}}--}}
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -89,8 +89,7 @@
                <ul class="dropdown-menu">
                     <li><a tabindex="-1" a href="{{URL::to('amw/course_manage') }}"> Course Management(Amw) </a></li>
                     <li><a tabindex="-1" a href="{{URL::to('amw/degree_manage') }}"> Degree Management(Amw) </a></li>
-                    <li><a tabindex="-1" a href="{{URL::to('amw/waiver_manage') }}"> Waiver Management(Amw) </a></li>
-
+                    <li><a tabindex="-1" a href="{{URL::to('amw/waiver_manage') }}"> Waiver Management(Amw)</a></li>
                </ul>
           </li>
          {{-- Ends Academic Module--}}
