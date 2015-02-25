@@ -117,7 +117,7 @@ class HomeController extends BaseController {
 
 
     public function testSearch(){
-        
+
 
         if($_POST){
             echo "ok";
@@ -212,6 +212,13 @@ class HomeController extends BaseController {
 
         print_r($result);
         exit;
+    }
+
+
+
+    public function bootstrapModal(){
+
+        return View::make('test.bootstrap_modal');
     }
 
 
