@@ -50,6 +50,7 @@ class ExmAmwController extends \BaseController {
     {
         $data = Input::all();
         $exam_list_id = Input::get('exam_list_id');
+        $course_man_id = Input::get('course_man_id');
 //        print_r($exam_list_id);exit;
 
         $prepare_question_paper = new ExmQuestion();
@@ -58,13 +59,8 @@ class ExmAmwController extends \BaseController {
         {
             // success code
             $prepare_question_paper->exm_exam_list_id = Input::get('exam_list_id');
-
-//            print_r($prepare_question_paper->exm_exam_list_id);exit;
-
-//            print_r($prepare_question_paper->exm_exam_list_id);exit;
-
-            $prepare_question_paper->course_management_id = '2';
-            $prepare_question_paper->examiner_faculty_user_id = '1';
+            $prepare_question_paper->course_management_id = Input::get('course_man_id');
+//            $prepare_question_paper->examiner_faculty_user_id = Input::get('examiner_faculty_user_id');
             $prepare_question_paper->title = Input::get('title');
             $prepare_question_paper->deadline = Input::get('deadline');
             $prepare_question_paper->total_marks = Input::get('total_marks');
@@ -73,8 +69,8 @@ class ExmAmwController extends \BaseController {
             $prepare_question_paper->save();
 
             // redirect
-            Session::flash('message', 'Successfully Added!');
-            return Redirect::route('examination/amw/index', ['exam_list_id'=>$exam_list_id]);
+            Session::flash('message', 'Question Paper Successfully Added!');
+            return Redirect::back();
         }
         else
         {
@@ -94,7 +90,7 @@ class ExmAmwController extends \BaseController {
 //        $exam_list_id = Input::get('exam_list_id');
 
         // Show the edit employee form.
-        return View::make('examination::amw.prepare_question_paper.editQuestionPaper',compact('prepare_question_paper','exam_list_id'));
+        return View::make('examination::amw.prepare_question_paper.editQuestionPaper',compact('prepare_question_paper','exam_list_id','course_man_id'));
         //ok
     }
     //amw: Update Question Paper
@@ -103,6 +99,7 @@ class ExmAmwController extends \BaseController {
         // get the POST data
         $data = Input::all($id);
         $exam_list_id = Input::get('exam_list_id');
+//        $course_man_id= Input::get('course_man_id');
 
 //        print_r($exam_list_id);exit;
         // create a new model instance
@@ -113,7 +110,10 @@ class ExmAmwController extends \BaseController {
             $prepare_question_paper = ExmQuestion::find($id);
 //           print_r($prepare_question_paper);exit;
 
-            $prepare_question_paper->exm_exam_list_id = Input::get('exm_exam_list_id');
+            $prepare_question_paper->exm_exam_list_id = Input::get('exam_list_id');
+            $prepare_question_paper->course_management_id = Input::get('course_man_id');
+            $prepare_question_paper->examiner_faculty_user_id = Input::get('examiner_faculty_user_id');
+
             $prepare_question_paper->title = Input::get('title');
             $prepare_question_paper->deadline = Input::get('deadline');
             $prepare_question_paper->total_marks = Input::get('total_marks');
@@ -124,7 +124,7 @@ class ExmAmwController extends \BaseController {
 
             $prepare_question_paper->save();
             // redirect
-            Session::flash('message', 'Successfully Updated!');
+            Session::flash('message', 'Question Paper Successfully Updated!');
 
             return Redirect::back();
 
@@ -230,12 +230,10 @@ class ExmAmwController extends \BaseController {
         {
             // success code
             $store_exam->title = Input::get('title');
-            $store_exam->year_id = Input::get('year');
+            $store_exam->year_id = Input::get('year_id');
 //            print_r($store_exam->year_id);exit;
-            $store_exam->semester_id = Input::get('semester');
-
+            $store_exam->semester_id = Input::get('semester_id');
             $store_exam->course_management_id = Input::get('course_management_id');
-
             $store_exam->acm_marks_dist_item_id = Input::get('acm_marks_dist_item_id');
             $store_exam->status = '0';
 
@@ -246,7 +244,7 @@ class ExmAmwController extends \BaseController {
             $store_exam->save();
 
             // redirect
-            Session::flash('message', 'Successfully Added!');
+            Session::flash('message', 'Examination Successfully Added!');
             return Redirect::to('examination/amw/examination');
         }
         else
@@ -278,11 +276,9 @@ class ExmAmwController extends \BaseController {
             // success code
             $update_exam = ExmExamList::find($id);
             $update_exam->title = Input::get('title');
-            $update_exam->year_id = Input::get('year');
-            $update_exam->semester_id = Input::get('semester');
-
+            $update_exam->year_id = Input::get('year_id');
+            $update_exam->semester_id = Input::get('semester_id');
             $update_exam->course_management_id = Input::get('course_management_id');
-
             $update_exam->acm_marks_dist_item_id = Input::get('acm_marks_dist_item_id');
             $update_exam->status = '0';
             $update_exam->created_by = Auth::user()->id;
@@ -292,7 +288,7 @@ class ExmAmwController extends \BaseController {
             $update_exam->save();
 
             // redirect
-            Session::flash('message', 'Successfully Added!');
+            Session::flash('message', 'Examination Successfully Updated!');
             return Redirect::to('examination/amw/examination');
         }
         else
@@ -316,7 +312,7 @@ class ExmAmwController extends \BaseController {
 
     }
     //amw: Questions
-    public function index($exam_list_id)
+    public function index($exam_list_id,$course_man_id)
     {
         $data = ExmQuestion::with('relCourseManagement', 'relCourseManagement.relYear',
             'relCourseManagement.relSemester','relCourseManagement.relCourse.relSubject.relDepartment')
@@ -324,21 +320,11 @@ class ExmAmwController extends \BaseController {
 
 
         $question_paper = ExmQuestion::where('exm_exam_list_id' ,'=', $exam_list_id)
+            ->where('course_management_id' ,'=', $course_man_id)
             ->get();
 
-        return View::make('examination::amw.prepare_question_paper.index',compact('question_paper','exam_list_id','data'));
+        return View::make('examination::amw.prepare_question_paper.index',compact('question_paper','exam_list_id','data','course_man_id'));
 
-
-    }
-
-    public function courses($year_id, $semester_id){
-
-        $course_data = ExmExamList::where('year_id' ,'=', $year_id)
-            ->where('semester_id' ,'=', $semester_id)
-
-            ->get();
-        return View::make('examination::amw.prepare_question_paper.courses',
-            compact('course_data', 'year_id', 'semester_id'));
 
     }
 
@@ -350,7 +336,7 @@ class ExmAmwController extends \BaseController {
             [
                 'relCourseManagement', 'relCourseManagement.relCourse',
                 'relCourseManagement.relCourse.relSubject.relDepartment',
-                'relMeta' => function ($query)
+                'relAcmMarksDistItem' => function ($query)
                 { $query->where('is_exam', 1); }
             ]
         )->get();
@@ -360,6 +346,20 @@ class ExmAmwController extends \BaseController {
 
         return View::make('examination::amw.prepare_question_paper.examination',compact('exam_data','year_id','semester_id'));
     }
+
+    public function courses($acm_marks_dist_item_id , $year_id , $semester_id , $course_management_id){
+        $course_data = ExmExamList::where('year_id' ,'=', $year_id)
+            ->where('semester_id' ,'=', $semester_id)
+            ->where('course_management_id' ,'=', $course_management_id)
+            ->where('acm_marks_dist_item_id','=', $acm_marks_dist_item_id)
+            ->get();
+        return View::make('examination::amw.prepare_question_paper.courses',
+            compact('course_data', 'year_id', 'semester_id','course_management_id','acm_marks_dist_item_id'));
+
+    }
+
+
+
 
     public function search(){
 
@@ -378,7 +378,7 @@ class ExmAmwController extends \BaseController {
                 [
                     'relCourseManagement', 'relCourseManagement.relCourse',
                     'relCourseManagement.relCourse.relSubject.relDepartment',
-                    'relMeta' => function ($query)
+                    'relAcmMarksDistItem' => function ($query)
                     {
                         $query->where('is_exam', 1);
                     }
@@ -398,16 +398,15 @@ class ExmAmwController extends \BaseController {
 
 
 
-public function examiners(){
-//    $examiners_home = ExmExaminer::orderBy('id', 'DESC')->paginate(15);
+    public function examiners(){
+    //    $examiners_home = ExmExaminer::orderBy('id', 'DESC')->paginate(15);
 
+        $examiners_home = ExmExaminer::with('relExmExamList','relExmExamList.relCourseManagement', 'relExmExamList.relCourseManagement.relYear',
+                'relExmExamList.relCourseManagement.relSemester','relExmExamList.relCourseManagement.relCourse.relSubject.relDepartment')
+                ->get();
 
-    $examiners_home = ExmExaminer::with('relExmExamList','relExmExamList.relCourseManagement', 'relExmExamList.relCourseManagement.relYear',
-            'relExmExamList.relCourseManagement.relSemester','relExmExamList.relCourseManagement.relCourse.relSubject.relDepartment')
-            ->get();
-
-    return View::make('examination::amw.prepare_question_paper.examiners',compact('examiners_home','year_id'));
-}
+        return View::make('examination::amw.prepare_question_paper.examiners',compact('examiners_home','year_id'));
+    }
 
 
     public function storeExaminers(){
@@ -430,7 +429,7 @@ public function examiners(){
             $store_exam->save();
 
             // redirect
-            Session::flash('message', 'Successfully Added!');
+            Session::flash('message', 'Examiner Successfully Added!');
             return Redirect::to('examination/amw/examiners');
         }
         else
