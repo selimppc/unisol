@@ -7,16 +7,18 @@
 <div class="modal-body">
     <div style="padding: 20px;">
 
-          {{ Form::open(['route' => ['deg_waiver_const.store'], 'class'=>'form-horizontal','files' => true,]) }}
+          {{ Form::open(['route' => ['deg_waiver_time_const.store'], 'class'=>'form-horizontal', 'files' => true,]) }}
 
-          {{Form::hidden('degree_waiver_id', $degree_waiver_id)}}
+          {{Form::text('degree_waiver_id', $degree_waiver_id)}}
+          {{Form::hidden('is_time_dependent', 1)}}
+
           {{ Form::label('start_date', 'Start Time') }}
-          {{ Form::text('start_date', Input::old('start_date'),['class'=>'form-control date_picker','required'=>'required']) }}
+          {{ Form::text('start_date', Input::old('start_date'),['class'=>'form-control date_picker']) }}
 
           <p>&nbsp;</p>
 
           {{ Form::label('end_date', 'End Time') }}
-          {{ Form::text('end_date', Input::old('end_date'),['class'=>'form-control date_picker','required'=>'required'])  }}
+          {{ Form::text('end_date', Input::old('end_date'),['class'=>'form-control date_picker'])  }}
 
            <p>&nbsp;</p>
 
