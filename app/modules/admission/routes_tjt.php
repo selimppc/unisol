@@ -117,9 +117,9 @@ Route::any('amw/degree_manage/waiver_const/create/{degree_waiver_id}', [
     'as' => 'deg_waiver_time_const.create',
     'uses' => 'AdmAmwController@degWaiverTimeConstCreate'
 ]);
-
-Route::any('amw/degree_manage/waiver_const/store', [
-    'as' => 'deg_waiver_const.store',
+//Time dependent
+Route::any('amw/degree_manage/time_const/store', [
+    'as' => 'deg_waiver_time_const.store',
     'uses' => 'AdmAmwController@degWaiverConstTimeStore'
 ]);
 

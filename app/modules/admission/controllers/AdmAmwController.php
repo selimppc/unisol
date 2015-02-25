@@ -11,7 +11,8 @@ class AdmAmwController extends \BaseController
 // Admission : Course Management starts here...........................................................
     public function index()
     {
-        $model = CourseManagement::orderby('id', 'DESC')->paginate(5);
+        //$model = CourseManagement::orderby('id', 'DESC')->paginate(5);
+        $model= CourseManagement::with('relCourse','relDegree','relCourse.relSubject.relDepartment','relSemester','relYear');
         $semester = array('' => 'Select Semester ') + Semester::lists('title', 'id');
         $year = array('' => 'Select Year ') + Year::lists('title', 'id');
         $degree = array('' => 'Select Degree ') + Degree::lists('title', 'id');
@@ -310,28 +311,27 @@ class AdmAmwController extends \BaseController
             compact('degree_waiver_id'));
     }
     public function degWaiverConstTimeStore(){
-
-        $dw_const_model = new WaiverConstraint();
-
-        $dw_const_model->degree_waiver_id = Input::get('degree_waiver_id');
-        $dw_const_model->is_time_dependent = 1;
-        $dw_const_model->start_date = Input::get('start_date');
-        $dw_const_model->end_date = Input::get('end_date');
-
-        if ($dw_const_model->save()) {
-            return Redirect::back()->with('message', 'Successfully added Information!');
-        }
-    }
-
-    public function test(){
+        //echo 'ok';exit;
 
         $data = Input::all();
         if (WaiverConstraint::create($data)) {
-            return "OK";
-            //return Redirect::back()->with('message', 'Successfully added Information!');
-        }
 
+           return Redirect::back()->with('message', 'Successfully added Information!');
+        }
+        else{
+            return Redirect::back()->with('message', 'invalid');
+        }
     }
+
+//    public function test(){
+//
+//        $data = Input::all();
+//        if (WaiverConstraint::create($data)) {
+//            return "OK";
+//            //return Redirect::back()->with('message', 'Successfully added Information!');
+//        }
+//
+//    }
 
     public function degWaiverConstGpaStore(){
 
