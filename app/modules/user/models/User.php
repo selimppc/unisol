@@ -157,6 +157,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         return $query;
     }
 
+
     public function scopeFacultyList($query){
         $role_id = Role::where('code', '=', 'faculty')->first()->id;
         $query = $this::join('user_profile', function($query){
