@@ -51,7 +51,7 @@
           <td>
                <a href="{{ URL::route('waiver_manage.show', $value['id']) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#addModal"><span class="glyphicon glyphicon-eye-open text-danger"></span></a>
                <a class="btn btn-xs btn-default" href="{{ URL::route('waiver_manage.edit',$value['id']) }}" data-toggle="modal" data-target="#addModal" ><span class="glyphicon glyphicon-edit"></span></a>
-                  {{----}}
+
           </td>
 
 

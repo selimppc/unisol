@@ -54,7 +54,7 @@
         <p>&nbsp;</p>
 
          {{ Form::submit('Save ', array('class'=>'btn btn-primary')) }}
-          <a href="{{URL::to('degree_manage/amw') }} " class="btn btn-default" span class="glyphicon-refresh">Close</a>
+          <a href="{{URL::to('amw/degree_manage') }} " class="pull-right btn btn-default" span class="glyphicon-refresh">Close</a>
 
         {{Form::close()}}
   </div>
