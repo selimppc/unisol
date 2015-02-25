@@ -118,7 +118,7 @@
 
 {{--------Pagination Link--------------------------}}
 <div class="pull-right paginate-button">
-    {{--{{$model->links()}}--}}
+    {{$model->links()}}
 </div>
 
 
