@@ -88,7 +88,7 @@ class CreateAdmissionTestRl extends Migration {
             $table->engine = 'InnoDB';
         });
         Schema::table('adm_question', function($table) {
-            $table->foreign('degree_admtest_subject_id')->references('id')->on('degree_admtest_subject');
+                   $table->foreign('degree_admtest_subject_id')->references('id')->on('degree_admtest_subject');
             $table->foreign('examiner_faculty_id')->references('id')->on('user');
         });
 
