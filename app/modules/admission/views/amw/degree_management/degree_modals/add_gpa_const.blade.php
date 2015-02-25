@@ -11,13 +11,17 @@
           {{ Form::hidden('degree_waiver_id', $degree_waiver_id)}}
           {{ Form::hidden('is_time_dependent', 0)}}
 
-          {{ Form::label('start_date', 'Start Time') }}
-          {{ Form::text('start_date', Input::old('start_date'),['class'=>'form-control date_picker','required'=>'required']) }}
+          {{ Form::label('level_of_education', 'Level of Education ') }}
+          {{ Form::select ('level_of_education',  array('' => 'Select one',
+            'psc' => 'PSC', 'jsc' => 'JSC', 'ssc'=>'SSC','hsc'=>'HSC','grad'=>'Grad','under_grad'=>'Under Grad'), Input::old('level_of_education'),
+             array('class' => 'form-control')) }}
+
+           {{ Form::label('end_date', 'GPA') }}
+           {{ Form::text('end_date', Input::old('end_date'),['class'=>'form-control date_picker'])  }}
+
 
           <p>&nbsp;</p>
 
-          {{ Form::label('end_date', 'End Time') }}
-          {{ Form::text('end_date', Input::old('end_date'),['class'=>'form-control date_picker','required'=>'required'])  }}
 
            <p>&nbsp;</p>
 
