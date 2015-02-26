@@ -113,32 +113,40 @@ Route::any('amw/degree_manage/waiver_const/{id}', [
     'as' => 'degree_manage.waiver_const',
     'uses' => 'AdmAmwController@degWaiverConstIndex']);
 
+//Time dependent
+
 Route::any('amw/degree_manage/waiver_const/create/{degree_waiver_id}', [
     'as' => 'deg_waiver_time_const.create',
     'uses' => 'AdmAmwController@degWaiverTimeConstCreate'
 ]);
-//Time dependent
-Route::any('amw/degree_manage/time_const/store', [
-    'as' => 'deg_waiver_time_const.store',
-    'uses' => 'AdmAmwController@degWaiverConstTimeStore'
+
+Route::any('amw/degree_manage/const/store', [
+    'as' => 'deg_waiver_const.store',
+    'uses' => 'AdmAmwController@degWaiverConstStore'
 ]);
 
-//Route::any('amw/test', [
-//    'as' => 'amw.test',
-//    'uses' => 'AdmAmwController@test'
-//]);
+Route::any('amw/degree_manage/waiver_const/edit/{id}', [
+    'as' => 'deg_waiver_time_const.edit',
+    'uses' => 'AdmAmwController@degWaiverTimeConstEdit'
+]);
 
-Route::any('amw/degree_manage/waiver_const/delete/{id}','AdmAmwController@degWaiverConstDelete');
+Route::post('amw/degree_manage/waiver_const/update/{id}', [
+    'as' => 'deg_waiver_const.update',
+    'uses' => 'AdmAmwController@degWaiverConstUpdate'
+]);
 
+//GPA dependent
 Route::any('amw/degree_manage/gpa_const/create/{id}', [
     'as' => 'deg_waiver_gpa_const.create',
     'uses' => 'AdmAmwController@degWaiverGpaConstCreate'
 ]);
 
-Route::any('amw/degree_manage/gpa_const/store', [
-    'as' => 'deg_waiver_gpa_const.store',
-    'uses' => 'AdmAmwController@degWaiverConstGpaStore'
+Route::any('amw/degree_manage/gpa_const/edit/{id}', [
+    'as' => 'deg_waiver_gpa_const.edit',
+    'uses' => 'AdmAmwController@degWaiverGpaConstEdit'
 ]);
+
+Route::any('amw/degree_manage/waiver_const/delete/{id}','AdmAmwController@degWaiverConstDelete');
 
 //--------------------------------  Amw : Waiver Management starts  --------------------------------------------
 
