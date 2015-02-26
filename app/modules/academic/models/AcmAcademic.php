@@ -4,6 +4,10 @@ class AcmAcademic extends \Eloquent
     protected $fillable = [];
     protected $table = 'acm_academic';
 
+    public function relCourseManagement()
+    {
+        return $this->belongsTo('CourseManagement','course_management_id','id');
+    }
     public function relAcmMarksDistribution()
     {
         return $this->belongsTo('AcmMarksDistribution','acm_marks_distribution_id','id');
