@@ -64,23 +64,23 @@
               </tr>
          </thead>
                <tbody>
-               {{--@if()--}}
-                    @foreach($deg_waiver_const as $value)
-                                      <tr>
-                                            <td>{{ $value->start_date }}</td>
+        @foreach($deg_waiver_const as $value)
+                                       <tr>
 
-                                            <td>{{ $value->end_date }}</td>
+                                            @if($value->is_time_dependent == 1)
 
-                                            <td>
-                                                 <a data-href="{{ URL::to('amw/degree_manage/waiver_const/delete/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><span class="glyphicon glyphicon-trash text-danger"></span></a>
-                                                 {{--<a href="{{ URL::to('department/show/'.$department->id) }}" class="btn btn-sm btn-default" data-toggle="modal" data-target="#confirm-show"><span class="glyphicon glyphicon-eye-open text-danger"></span></a>--}}
-                                            </td>
+                                                <td>{{ $value->start_date }}</td>
+                                                <td>{{ $value->end_date }}</td>
+                                                <td>
+                                                     <a data-href="{{ URL::to('amw/degree_manage/waiver_const/delete/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><span class="glyphicon glyphicon-trash text-danger"></span></a>
+                                                     <a class="btn btn-xs btn-default" href="{{ URL::route('deg_waiver_time_const.edit', $value->id) }}" data-toggle="modal" data-target="#addModal" ><span class="glyphicon glyphicon-edit"></span></a>
+                                                </td>
+                                            @endif
 
-                                      </tr>
+                                       </tr>
                     @endforeach
-                    {{--@endif--}}
-              </tbody>
 
+               </tbody>
     </table>
 {{---------------------------------------Degree Waiver Table :Ends------------------------------------------------------}}
 
@@ -104,22 +104,18 @@
                <tbody>
                     @foreach($deg_waiver_const as $value)
                                       <tr>
-                                            <td>{{ $value->level_of_education }}</td>
 
-                                            <td>{{ $value->gpa }}</td>
-
-                                            <td>
-                                                 <a data-href="{{ URL::to('amw/degree_manage/waiver_const/delete/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><span class="glyphicon glyphicon-trash text-danger"></span></a>
-                                                 {{--<a data-href="{{ URL::to('amw/degree_manage/waiver_const/delete/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><span class="glyphicon glyphicon-trash text-danger"></span></a>--}}
-                                                 {{--<a href="{{ URL::to('department/show/'.$department->id) }}" class="btn btn-sm btn-default" data-toggle="modal" data-target="#confirm-show"><span class="glyphicon glyphicon-eye-open text-danger"></span></a>--}}
-                                            </td>
+                                         @if($value->is_time_dependent == 0)
+                                                <td>{{ $value->level_of_education }}</td>
+                                                <td>{{ $value->gpa }}</td>
+                                                <td>
+                                                     <a data-href="{{ URL::to('amw/degree_manage/waiver_const/delete/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><span class="glyphicon glyphicon-trash text-danger"></span></a>
+                                                </td>
+                                         @endif
 
                                       </tr>
                     @endforeach
-
-
-              </tbody>
-
+               </tbody>
     </table>
 {{--------------------------------Degree Waiver Const Table (GPA dependent):Ends-------------------------------------------------}}
 
@@ -133,7 +129,7 @@
 
 {{---------------------------------------------------Modals-----------------------------------------------}}
  <!-- Modal :: add Information -->
-<div data-backdrop="static" data-keyboard="false" class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div data-backdrop="static" data-keyboard="false" class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
 
