@@ -63,7 +63,7 @@
                                    <a href="{{ URL::route('examination.amw.viewQuestion', ['id'=>$prepare_question_paper_amw->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#modal" data-placement="left" title="Show" href="#">View</a>
                                    <a href="{{ URL::route('examination.amw.editQuestionPaper', ['id'=>$prepare_question_paper_amw->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#modal" data-placement="left" title="Edit" href="#">Edit</a>
 
-                                   <a href="{{ URL::route('examination.amw.assignFaculty', ['id'=>$prepare_question_paper_amw->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#modal" data-placement="left" title="Edit" href="#">Assign Faculty</a>
+                                   <a href="{{ URL::route('examination.amw.assignFaculty', ['id'=>$prepare_question_paper_amw->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#modal" data-placement="left" title="Assign Faculty" href="#">Assign Faculty</a>
 
                                 </td>
                             </tr>

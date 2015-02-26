@@ -2,8 +2,7 @@
 
 
                 <div class="form-group">
-                       {{ Form::label('title', 'Question Title') }}
-                       {{ Form::Text('title', Input::old('title'), array('class' => 'form-control','required'=>'required')) }}
+                      <strong>Question Title : </strong> {{ $data->title }}
                 </div>
 
                 <div class="form-group">
@@ -16,5 +15,5 @@
                          {{ Form::select('comments', Input::old('comments'), array('class' => 'form-control','required'=>'required')) }}
                 </div>
             {{ Form::submit('Submit', array('class' => 'btn btn-primary')) }}
-             <a href="{{URL::to('examination/amw/examination')}}" class="btn btn-default">Close </a>
+             <a href="{{URL::previous('examination/amw/index/')}}" class="btn btn-default">Close </a>
 </fieldset>

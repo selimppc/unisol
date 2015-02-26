@@ -2,10 +2,8 @@
             <?php
                 $year_id = Year::lists('title', 'id');
                 $semester_id = Semester::lists('title', 'id');
-                $exam_type = AcmMarksDistItem::lists('title','id');
-
+                $exam_type = AcmMarksDistItem::where('is_exam','=',1)->lists('title','id');
                 $course_list = ExmExamList::CourseList();
-
             ?>
 
                 <div class="form-group">
