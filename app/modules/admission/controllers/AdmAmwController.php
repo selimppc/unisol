@@ -342,6 +342,15 @@ class AdmAmwController extends \BaseController
         return View::make('admission::amw.degree_management.degree_modals.edit_time_const',compact('time_const_model'));
 
     }
+
+    public function degWaiverGpaConstEdit($id){
+
+        $gpa_const_model = WaiverConstraint::find($id);
+
+        return View::make('admission::amw.degree_management.degree_modals.edit_gpa_const',compact('gpa_const_model'));
+
+    }
+
     public function degWaiverConstUpdate($id){
 
         $const_model = WaiverConstraint::find($id);

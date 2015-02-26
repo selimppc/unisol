@@ -110,6 +110,7 @@
                                                 <td>{{ $value->gpa }}</td>
                                                 <td>
                                                      <a data-href="{{ URL::to('amw/degree_manage/waiver_const/delete/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><span class="glyphicon glyphicon-trash text-danger"></span></a>
+                                                     <a class="btn btn-xs btn-default" href="{{ URL::route('deg_waiver_gpa_const.edit', $value->id) }}" data-toggle="modal" data-target="#addModal" ><span class="glyphicon glyphicon-edit"></span></a>
                                                 </td>
                                          @endif
 

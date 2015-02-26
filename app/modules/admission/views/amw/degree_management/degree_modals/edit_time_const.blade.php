@@ -23,7 +23,9 @@
            <p>&nbsp;</p>
            <p>&nbsp;</p>
 
-         {{ Form::submit('Update', array('class'=>'pull-right btn btn-primary')) }}
+
+          {{ Form::submit('Update ', array('class'=>'btn btn-primary')) }}
+          <a href="{{URL::previous()}}" class="pull-right btn btn-default" span class="glyphicon-refresh">Close</a>
 
           <p>&nbsp;</p>
 

@@ -141,6 +141,11 @@ Route::any('amw/degree_manage/gpa_const/create/{id}', [
     'uses' => 'AdmAmwController@degWaiverGpaConstCreate'
 ]);
 
+Route::any('amw/degree_manage/gpa_const/edit/{id}', [
+    'as' => 'deg_waiver_gpa_const.edit',
+    'uses' => 'AdmAmwController@degWaiverGpaConstEdit'
+]);
+
 Route::any('amw/degree_manage/waiver_const/delete/{id}','AdmAmwController@degWaiverConstDelete');
 
 //--------------------------------  Amw : Waiver Management starts  --------------------------------------------
