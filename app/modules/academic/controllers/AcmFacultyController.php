@@ -444,21 +444,24 @@ class AcmFacultyController extends \BaseController {
 		}
 	}
 
-	public  function assign_class_test_index($id,$cmid,$marksid)
+	public  function assign_class_test($acm_id, $cm_id, $mark_dist_id)
 	{
-		$datas = AcmAcademic::with('relAcmClassSchedule','relAcmClassSchedule.relAcmClassTime')
-			->where('id','=' ,$id)
+
+		$cm_data = CourseManagement::with('relSemester','relYear','relUser','relCourse.relSubject.relDepartment')
+			//->where('course_management_id','=' ,$cm_id)
+			->where('year_id','=' , 17)
+			->where('semester_id','=' ,2)
+//			->where('course_id','=' , 1)
+			//->where('department_id','=' , 1)
 			->get();
-		$cm_data = AcmAcademic::with('relCourseManagement','relCourseManagement.relSemester','relCourseManagement.relYear','relCourseManagement.relUser','relCourseManagement.relCourse.relSubject.relDepartment')
-			->where('course_management_id','=' ,$id)
-			->get();
+
 		$data= CourseManagement::with( 'relCourse')
-			->where('id', '=', $cmid)
+			->where('id', '=', $cm_id)
 			->get();
 		$config_data = AcmMarksDistribution::with('relAcmMarksDistItem', 'relCourseManagement.relCourse')
-			->where('course_management_id', '=', $cmid)
+			->where('course_management_id', '=', $cm_id)
 			->get();
-		return View::make('academic::faculty.mark_distribution_courses.marks_dist_item_class_test.assign',compact('datas','data','config_data'));
+		return View::make('academic::faculty.mark_distribution_courses.marks_dist_item_class_test.assign',compact('data','config_data','cm_data'));
 	}
 
 }

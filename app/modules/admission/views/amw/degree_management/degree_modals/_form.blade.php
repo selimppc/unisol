@@ -36,7 +36,7 @@
 
 {{ Form::label('duration', 'Duration (In Year)') }}
 {{ Form::select ('duration',  array('' => 'Select one',
-   '1' => 'APLD', '2' => '2', '3'=>'4','5'=>'5','6'=>'6','7'=>'7'), Input::old('duration'),
+   '1' => '1', '2' => '2', '3'=>'4','5'=>'5','6'=>'6','7'=>'7'), Input::old('duration'),
     array('class' => 'form-control input-sm')) }}
 
 {{ Form::label('start_date', 'Start Time') }}

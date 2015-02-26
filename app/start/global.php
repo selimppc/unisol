@@ -143,4 +143,4 @@ require_once app_path('logger.php');
 //*/
 
 require app_path().'/filters.php';
-require_once app_path().'/helpers/Helpers.php';
+require_once app_path().'/helpers/helpers.php';
