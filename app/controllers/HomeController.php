@@ -214,10 +214,8 @@ class HomeController extends BaseController {
         exit;
     }
 
-
-
+    //return back to modal with old data
     public function bootstrapModal(){
-
         return View::make('test.bootstrap_modal');
     }
 
@@ -234,4 +232,19 @@ class HomeController extends BaseController {
     }
 
 
+    //dependable drop-down list in this application
+
+    public function dropDownForm(){
+        return View::make('test.dropdown_form');
+    }
+
+    public function dropDownData(){
+        $input = Input::get('option');
+        $user_profile = UserProfile::where('user_id', '=', $input)->lists('first_name', 'id');
+        if($user_profile){
+            return Response::make(['please select one']+ $user_profile);
+        }else{
+            return Response::make(['no data found']);
+        }
+    }
 }

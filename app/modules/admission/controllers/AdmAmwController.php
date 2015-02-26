@@ -310,7 +310,15 @@ class AdmAmwController extends \BaseController
         return View::make('admission::amw.degree_management.degree_modals.add_time_const',
             compact('degree_waiver_id'));
     }
-    public function degWaiverConstTimeStore(){
+
+    public function degWaiverGpaConstCreate($degree_waiver_id){
+
+        return View::make('admission::amw.degree_management.degree_modals.add_gpa_const',
+            compact('degree_waiver_id'));
+    }
+
+//    Degree Waiver Time/GPA Constraint Store method
+    public function degWaiverConstStore(){
 
         $data = Input::all();
         if (WaiverConstraint::create($data)) {
@@ -322,43 +330,40 @@ class AdmAmwController extends \BaseController
         }
     }
 
-
-//    public function test(){
-//
-//        $data = Input::all();
-//        if (WaiverConstraint::create($data)) {
-//            return "OK";
-//            //return Redirect::back()->with('message', 'Successfully added Information!');
-//        }
-//
-//    }
-    public function degWaiverGpaConstCreate($degree_waiver_id){
-
-        return View::make('admission::amw.degree_management.degree_modals.add_gpa_const',
-            compact('degree_waiver_id'));
-    }
-
-    public function degWaiverConstGpaStore(){
-
-        $deg_waiver_const = new WaiverConstraint();
-
-        $deg_waiver_const->degree_waiver_id = Input::get('degree_waiver_id');
-        $deg_waiver_const->is_time_dependent = 0;
-        $deg_waiver_const->level_of_education = Input::get('level_of_education');
-        $deg_waiver_const->gpa = Input::get('gpa');
-
-        if ($deg_waiver_const->save()) {
-            return Redirect::back()->with('message', 'Successfully added Information!');
-        }
-    }
-
     public function degWaiverConstDelete($id){
 
         WaiverConstraint::find($id)->delete();
         return Redirect::back()->with('message', 'Successfully deleted Information!');
     }
+    public function degWaiverTimeConstEdit($id){
 
+        $time_const_model = WaiverConstraint::find($id);
 
+        return View::make('admission::amw.degree_management.degree_modals.edit_time_const',compact('time_const_model'));
+
+    }
+
+    public function degWaiverGpaConstEdit($id){
+
+        $gpa_const_model = WaiverConstraint::find($id);
+
+        return View::make('admission::amw.degree_management.degree_modals.edit_gpa_const',compact('gpa_const_model'));
+
+    }
+
+    public function degWaiverConstUpdate($id){
+
+        $const_model = WaiverConstraint::find($id);
+        $data = Input::all();
+
+        $const_model->fill($data);
+
+        if ($const_model->save()) {
+            return Redirect::back()->with('message', 'Successfully Updated Information!');
+        }else{
+            return Redirect::back();
+        }
+    }
 
 //..............................    Waiver Management : starts ...................................................
 

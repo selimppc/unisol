@@ -28,6 +28,23 @@ Route::any("update/{id}", [
     "uses" => "UserController@login"
 ]);
 
+Route::any("drop-down", [
+    "as"   => "dropdown",
+    "uses" => "HomeController@dropDownForm"
+]);
+Route::any("dropdown/data", [
+    "as"   => "dropdown/data",
+    "uses" => "HomeController@dropDownData"
+]);
+
+/*Route::get('drop-down-list', function(){
+    $input = Input::get('option');
+    $maker = Maker::find($input);
+    $models = $maker->models();
+    return Response::make($models->get(['id','name']));
+});*/
+
+
 //Route::get('/logs', function(){
 //    throw new RuntimeException('Hello');
 //    return View::make('error.missing');

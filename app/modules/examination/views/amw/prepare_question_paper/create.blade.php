@@ -59,3 +59,7 @@
 {{--</div>--}}
 
 
+
+
+<td>{{ HTML::linkAction('ExmAmwController@courses', $exam_list[$i]['title'], ['mark_dist_item_id'=>$exam_list[$i]['relAcmMarksDistItem']['id']],['year_id'=>$exam_list[$i]['year_id']],['semester_id'=>$exam_list[$i]['semester_id']],['course_management_id'=>$exam_list[$i]['course_management_id']])  }} </td>
+

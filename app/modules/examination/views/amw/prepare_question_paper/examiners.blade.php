@@ -23,13 +23,13 @@
                         </div>
 
 
-                       <strong> Year :</strong>  {{--{{ Year::getYearsName($examiners_home->year_id) }} </br>--}}
+                       <strong> Year: </strong>{{ Year::getYearsName($year_id) }}
                        </br>
-                       <strong> Semester :</strong>{{--{{ Semester::getSemesterName($course_data->semester_id) }} </br>--}}
+                       <strong> Semester: </strong>{{Semester::getSemesterName($semester_id) }}
                        </br>
-                       <strong> Course Title :</strong>{{--{{ Year::getYearsName($course_data->year_id) }} </br>--}}
+                       <strong> Course Title :</strong>{{ CourseManagement::getCourseManagementsCourseName($course_management_id) }}
                        </br>
-                       <strong> Exam Type :</strong>{{--{{ Year::getYearsName($course_data->year_id) }} </br>--}}
+                       <strong> Exam Type :</strong>{{ AcmMarksDistItem::AcmMarksDistName($acm_marks_dist_item_id) }} </br>
                        </br>
 
                        {{ Form::submit('Delete Items', array('class'=>'btn btn-danger', 'id'=>'hide-button', 'style'=>'display:none'))}}
@@ -47,9 +47,9 @@
                   @foreach($examiners_home as $examiners_list)
                         <tr>
                             <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $examiners_list['id'] }}"></td>
-                             {{--<td> {{ $examiners_list->exm_exam_list_id }} </td>--}}
-                             <td>{{ HTML::linkAction('ExmAmwController@viewExaminers',($examiners_list->relUser->relUserProfile->first_name.' '.$examiners_list->relUser->relUserProfile->middle_name.' '.$examiners_list->relUser->relUserProfile->last_name),['id'=>$examiners_list->id]) }}</td>
 
+{{--                             <td>{{ HTML::linkAction('ExmAmwController@viewExaminers',($examiners_list->relUser->relUserProfile->first_name.' '.$examiners_list->relUser->relUserProfile->middle_name.' '.$examiners_list->relUser->relUserProfile->last_name),['id'=>$examiners_list->id]) }}</td>--}}
+                             <td><span data-toggle="modal" data-target="#modal" data-placement="left" title="View" href="#">{{ HTML::linkAction('ExmAmwController@viewExaminers',($examiners_list->relUser->relUserProfile->first_name.' '.$examiners_list->relUser->relUserProfile->middle_name.' '.$examiners_list->relUser->relUserProfile->last_name),['id'=>$examiners_list->id]) }}</span></td>
                              {{--<td> <span href="{{ URL::route('examination.amw.viewExaminers',($examiners_list->relUser->relUserProfile->first_name),['id'=>$examiners_list->id]) }}" class="btn btn-default" data-toggle="modal" data-target="#modal" data-placement="left" title="Show" href="#">View</span></td>--}}
 
                              <td>{{ $examiners_list->relExmExamList->relCourseManagement->relCourse->relSubject->relDepartment->title }}</td>
@@ -64,7 +64,7 @@
 
 
                             <td>
-                                  <a href="{{ URL::route('examination.amw.viewExaminers', ['id'=>$examiners_list->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#modal" data-placement="left" title="Show" href="#">View</a>
+                                  <a href="{{ URL::route('examination.amw.viewExaminers', ['id'=>$examiners_list->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#modal" data-placement="left" title="View" href="#">View</a>
                             </td>
                         </tr>
                   @endforeach

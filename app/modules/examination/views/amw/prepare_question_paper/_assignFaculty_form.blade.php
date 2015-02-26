@@ -1,6 +1,5 @@
 <fieldset style="padding: 10px; width: 90%;">
 
-          <?php #$year_id = Year::lists('title', 'id'); ?>
 
                 <div class="form-group">
                        {{ Form::label('title', 'Question Title') }}
