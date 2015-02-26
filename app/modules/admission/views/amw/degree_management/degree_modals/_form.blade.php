@@ -1,6 +1,4 @@
 
-{{--{{ HTML::script('assets/js/bootstrap-datepicker.js') }}--}}
-{{--{{ HTML::style('assets/css/datepicker.css')}}--}}
 <div class="modal-header">
 
     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
@@ -22,13 +20,13 @@
 {{ Form::select('department_id', $department, Input::old('department_id') ,['class'=>'form-control input-sm','required'])}}
 
 {{ Form::label('degree_program_id', 'Degree Program') }}
-{{ Form::select('degree_program_id',$degree_program,Input::old('degree_program_id'),['class'=>'form-control input-sm']) }}
+{{ Form::select('degree_program_id',$degree_program,Input::old('degree_program_id'),['class'=>'form-control input-sm','required']) }}
 
 {{ Form::label('year_id', 'Year') }}
-{{ Form::select('year_id', $year, Input::old('year_id') ,['class'=>'form-control input-sm'])}}
+{{ Form::select('year_id', $year, Input::old('year_id') ,['class'=>'form-control input-sm','required'])}}
 
 {{ Form::label('semester_id', 'Semester') }}
-{{ Form::select('semester_id',$semester,Input::old('semester_id'),['class'=>'form-control input-sm']) }}
+{{ Form::select('semester_id',$semester,Input::old('semester_id'),['class'=>'form-control input-sm','required']) }}
 
 
 {{ Form::label('total_credit', 'Total Credit') }}
@@ -41,33 +39,30 @@
    '1' => '1', '2' => '2', '3'=>'4','5'=>'5','6'=>'6','7'=>'7'), Input::old('duration'),
     array('class' => 'form-control input-sm')) }}
 
+{{ Form::label('start_date', 'Start Time') }}
+{{ Form::text('start_date', Input::old('start_date'),['class'=>'form-control date_picker']) }}
 
-{{ Form::label('start_date', 'Start date') }}
-{{ Form::text('start_date', Input::old('start_date'),['class'=>'form-control input-sm','id'=>'datepicker']) }}
-
-
-{{ Form::label('end_date', 'End date') }}
-{{ Form::text('end_date', Input::old('end_date'),['class'=>'form-control input-sm','id'=>'datepicker1'])  }}
+{{ Form::label('end_date', 'End Time') }}
+{{ Form::text('end_date', Input::old('end_date'),['class'=>'form-control date_picker'])  }}
 
 
-<br>
-{{ Form::submit('Save ', array('class'=>'pull-right btn btn-primary')) }}
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+{{ Form::submit('Save ', array('class'=>'btn btn-primary')) }}
+<a href="{{URL::previous()}}" class="pull-right btn btn-default" span class="glyphicon-refresh">Close</a>
+
+ <p>&nbsp;</p>
 
 {{Form::close()}}
 
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
 
 </div>
 
 </div>
 
-
-
-{{--<script>--}}
-  {{--$(function() {--}}
-    {{--$( "#datepicker" ).datepicker();--}}
-
-     {{--$( "#datepicker1" ).datepicker();--}}
-
-  {{--});--}}
-  {{--</script>--}}
-
+{{ HTML::script('assets/js/custom.js')}}
