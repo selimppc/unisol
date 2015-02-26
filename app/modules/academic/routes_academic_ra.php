@@ -119,8 +119,18 @@ Route::any('class_test-update/{id}', [
 Route::post('academic/faculty/acadetailsdelete/class_test/ajax',
     'AcmFacultyController@ajax_delete_aca_academic_details_class_test'
 );
-Route::any('class_test/assign/{id}',[
+//**********class test assign start*************
+Route::any('class_test/assign/{id}/{cmid}/{marksid}',[
     'as' => 'class/test.assign',
-    'uses'=> 'AcmFacultyController@assign_class_test'
+    'uses'=> 'AcmFacultyController@assign_class_test_index'
 ]);
+
+
+
+
+
+
+
+
+
 //******************Faculty Marks Distribution Item Assignment*****************
