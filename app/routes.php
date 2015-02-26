@@ -28,14 +28,14 @@ Route::any("update/{id}", [
     "uses" => "UserController@login"
 ]);
 
-    Route::any("drop-down", [
-        "as"   => "dropdown",
-        "uses" => "HomeController@dropDownForm"
-    ]);
-    Route::any("dropdown/data", [
-        "as"   => "dropdown/data",
-        "uses" => "HomeController@dropDownData"
-    ]);
+Route::any("drop-down", [
+    "as"   => "dropdown",
+    "uses" => "HomeController@dropDownForm"
+]);
+Route::any("dropdown/data", [
+    "as"   => "dropdown/data",
+    "uses" => "HomeController@dropDownData"
+]);
 
 /*Route::get('drop-down-list', function(){
     $input = Input::get('option');
