@@ -12,7 +12,6 @@ class ExmQuestion extends \Eloquent
 
     }
 
-
     public static function getExamName($exmId){
         $data = ExmExamList::find($exmId);
         return $data->title;

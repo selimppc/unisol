@@ -10,9 +10,11 @@
     {{ Form::open(array('url' => 'examination/amw/batchDelete')) }}
 <table id="example" class="table table-striped  table-bordered"  >
     <thead>
-    <strong> Course Title:</strong>
+   <strong> Course Title:</strong>
+{{--   {{ExmQuestion::getExamName($question_name) }}--}}
     </br>
     <strong> Question Paper:</strong>
+{{--    {{ExmQuestion::getExamName($question_name) }}--}}
 
     {{ Form::submit('Delete Items', array('class'=>'btn btn-danger', 'id'=>'hide-button', 'style'=>'display:none'))}}
 

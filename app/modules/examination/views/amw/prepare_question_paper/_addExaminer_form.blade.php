@@ -1,5 +1,5 @@
 <fieldset style="padding: 10px; width: 90%;">
-                {{--Title:</strong>{{ $view_examination_amw->title }}--}}
+
 
 
                 <div class="form-group">
@@ -14,7 +14,7 @@
 
                 <div class="form-group">
                         {{ Form::label('', 'Name of Faculty') }}
-                        {{ Form::text('', 'DropDown Hobe',Input::old(''), array('class' => 'form-control','required'=>'required') ) }}
+                        {{ Form::text('user_id',Input::old('user_id'), array('class' => 'form-control','required'=>'required') ) }}
                 </div>
                 <div class="form-group">
                          {{ Form::label('comment', 'Comment') }}
