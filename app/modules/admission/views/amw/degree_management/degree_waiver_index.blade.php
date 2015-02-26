@@ -6,9 +6,15 @@
 
 
 <section class="content">
- <div class="box-body">
+<h3> Degree Waiver</h3>
+<a class="pull-right btn btn-sm btn-default" href="{{ URL::to('amw/degree_manage' )}}"><span class="glyphicon glyphicon-chevron-left"></span>Back To Degree Management</a>
 
-    <h3> Degree Waiver</h3>
+ <div class="box-body">
+       <div class="box-header">
+
+
+        </div>
+
 
 
 </div>
@@ -16,12 +22,11 @@
     <div class="col-xs-12">
 
       <div class="box">
-        <div class="box-header">
-
-        </div><!-- /.box-header -->
+       <!-- /.box-header -->
 
 
 <br>
+
 
 {{------------------------------------Degree Data Table: Starts-------------------------------------------------}}
           <div class="well well-sm">
@@ -71,8 +76,6 @@
 {{----------------------------------------Degree Waiver Table : Starts-----------------------------------------------------------------------}}
 
 <a class="pull-right btn btn-sm btn-info" href="{{ URL::route('degree_waiver.create', ['degree_id'=>$degree_model->id] )}}" data-toggle="modal" data-target="#addWaiver" >Add Waiver</a>
-
-<a class="pull-left btn btn-sm btn-info" href="{{ URL::to('amw/degree_manage' )}}">Back To Degree Management</a>
 
  <p>&nbsp;</p>
  <p>&nbsp;</p>
