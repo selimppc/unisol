@@ -73,7 +73,13 @@
    <div>{{ Form::text('end_date', Input::old('end_date'),['class'=>'form-control input-sm','id'=>'datepicker1'])  }}</div>
 </div>
 
-{{ Form::submit('Save ', array('class'=>'pull-right btn btn-primary')) }}
+<p>&nbsp;</p>
+
+{{ Form::submit('Save ', array('class'=>'btn btn-primary')) }}
+<a href="{{URL::to('amw/course_manage') }} " class="pull-right btn btn-default" span class="glyphicon-refresh">Close</a>
+
+
+
 
 <p>&nbsp;</p>
 {{Form::close()}}

@@ -70,7 +70,7 @@
         <p>&nbsp;</p>
 
          {{ Form::submit('Save ', array('class'=>'btn btn-primary')) }}
-          <a href="{{URL::to('amw/course_manage') }} " class="btn btn-default" span class="glyphicon-refresh">Close</a>
+          <a href="{{URL::to('amw/course_manage') }} " class="pull-right btn btn-info" span class="glyphicon-refresh">Close</a>
 
         {{Form::close()}}
   </div>

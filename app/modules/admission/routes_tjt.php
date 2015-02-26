@@ -123,16 +123,21 @@ Route::any('amw/degree_manage/time_const/store', [
     'uses' => 'AdmAmwController@degWaiverConstTimeStore'
 ]);
 
-Route::any('amw/test', [
-    'as' => 'amw.test',
-    'uses' => 'AdmAmwController@test'
-]);
+//Route::any('amw/test', [
+//    'as' => 'amw.test',
+//    'uses' => 'AdmAmwController@test'
+//]);
 
 Route::any('amw/degree_manage/waiver_const/delete/{id}','AdmAmwController@degWaiverConstDelete');
 
-Route::any('amw/degree_manage/waiver_const/create/{id}', [
+Route::any('amw/degree_manage/gpa_const/create/{id}', [
     'as' => 'deg_waiver_gpa_const.create',
     'uses' => 'AdmAmwController@degWaiverGpaConstCreate'
+]);
+
+Route::any('amw/degree_manage/gpa_const/store', [
+    'as' => 'deg_waiver_gpa_const.store',
+    'uses' => 'AdmAmwController@degWaiverConstGpaStore'
 ]);
 
 //--------------------------------  Amw : Waiver Management starts  --------------------------------------------
