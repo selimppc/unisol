@@ -48,7 +48,7 @@
 
 {{-------------------------Degree Waiver Const Table (Time dependent):Starts-----------------------------------------------------------------------}}
 
-    <a class="pull-right btn btn-sm btn-info" href="{{ URL::route('deg_waiver_time_const.create', ['degree_waiver_id'=>$degree_model->id ] )}}" data-toggle="modal" data-target="#add" >Add Time Constraint</a>
+    <a class="pull-right btn btn-sm btn-info" href="{{ URL::route('deg_waiver_time_const.create', ['degree_waiver_id'=>$degree_model->id ] )}}" data-toggle="modal" data-target="#addModal" >Add Time Constraint</a>
 
  <p>&nbsp;</p>
 
@@ -86,7 +86,7 @@
 
 {{--------------------------------Degree Waiver Const Table (GPA dependent):Starts-------------------------------------------------}}
 
-<a class="pull-right btn btn-sm btn-info" href="{{ URL::route('deg_waiver_gpa_const.create', ['degree_waiver_id'=>$degree_model->id ] )}}" data-toggle="modal" data-target="#add" >Add GPA Constraint</a>
+<a class="pull-right btn btn-sm btn-info" href="{{ URL::route('deg_waiver_gpa_const.create', ['degree_waiver_id'=>$degree_model->id ] )}}" data-toggle="modal" data-target="#addModal" >Add GPA Constraint</a>
 
  <p>&nbsp;</p>
 
@@ -160,14 +160,6 @@
   </div>
 
 
-
-  <div data-backdrop="static" data-keyboard="false" class="modal fade" id="addGpa" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-
-         </div>
-        </div>
-   </div>
 
 @stop
 
