@@ -26,7 +26,8 @@
                     <a href="{{ URL::route('class_test.show', ['id'=>$value->id])  }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" href=""><span class="glyphicon glyphicon-list-alt text-info"></span></a>
 
                     {{--<button href="{{ URL::route('class/test.assign', ['id'=>$value->id])  }}" class="btn btn-xs">Assign</button>--}}
-                    <a href="{{ URL::route('class/test.assign',['id'=>$value->id])  }}"  type="button" class="btn btn-xs"> Assign </a>
+                    <a href="{{ URL::route('class/test.assign',['id'=>$value->id, 'cmid'=>$value->course_management_id, 'marksid'=>$value->acm_marks_distribution_id])  }}" class="btn btn-default btn-xs"> Assign </a>
+                    {{--{{ HTML::link('/for-advertiser', 'Details >>', ['class'=>'btn btn-default btn-sm text-md text-blue round-btn'])}}--}}
                 </td>
             </tr>
         @endforeach
