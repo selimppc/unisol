@@ -4,10 +4,10 @@
 @stop
 @section('content')
 
-    <div class="col-md-4">
-        <div>{{ Form::label('exam_question', 'Examination Question:') }}</div>
-        {{ Form::select('acm_marks_dist_item_id', [''=>'Select Option'] + AcmMarksDistItem::orderBy('title')->lists('title', 'id'),Input::old('acm_marks_dist_item_id'), ['class'=>'form-control addConfigListItem']) }}
-    </div>
+    {{--<div class="col-md-4">--}}
+        {{--<div>{{ Form::label('exam_question', 'Examination Question:') }}</div>--}}
+        {{--{{ Form::select('acm_marks_dist_item_id', [''=>'Select Option'] + AcmMarksDistItem::orderBy('title')->lists('title', 'id'),Input::old('acm_marks_dist_item_id'), ['class'=>'form-control addConfigListItem']) }}--}}
+    {{--</div>--}}
     {{--{{ Form::open(array('url' => 'batch/delete')) }}--}}
     <table id="example" class="table table-bordered table-hover table-striped">
         <thead>
