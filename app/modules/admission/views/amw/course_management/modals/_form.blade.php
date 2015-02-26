@@ -1,7 +1,4 @@
 
-{{--{{ HTML::script('assets/js/bootstrap-datepicker.js') }}--}}
-{{--{{ HTML::style('assets/css/datepicker.css')}}--}}
-
 <div class="modal-header">
 
     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
@@ -64,39 +61,33 @@
 
 
 <div class='form-group'>
-  <div >{{ Form::label('start_date', 'Start date') }}</div >
-  <div >{{ Form::text('start_date', Input::old('start_date'),['class'=>'form-control input-sm','id'=>'datepicker']) }}</div>
-</div>
+ {{ Form::label('start_date', 'Start Time') }}
+ {{ Form::text('start_date', Input::old('start_date'),['class'=>'form-control date_picker']) }}
 
-<div class='form-group'>
-   <div >{{ Form::label('end_date', 'End date') }}</div >
-   <div>{{ Form::text('end_date', Input::old('end_date'),['class'=>'form-control input-sm','id'=>'datepicker1'])  }}</div>
+ {{ Form::label('end_date', 'End Time') }}
+ {{ Form::text('end_date', Input::old('end_date'),['class'=>'form-control date_picker'])  }}
+
 </div>
 
 <p>&nbsp;</p>
 
-{{ Form::submit('Save ', array('class'=>'btn btn-primary')) }}
-<a href="{{URL::to('amw/course_manage') }} " class="pull-right btn btn-default" span class="glyphicon-refresh">Close</a>
 
+<div><a  href="{{URL::previous() }}" class="pull-right btn btn-default">Close</a></div>
+{{--<a class="pull-right btn btn-sm btn-info input-large" href="{{ URL::to('amw/degree_manage' )}}">Close</a>--}}
 
+{{ Form::submit('Save ', array('class'=>'pull-right btn btn-primary input-small')) }}
 
 
 <p>&nbsp;</p>
 {{Form::close()}}
 
-
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
 </div>
 
 </div>
 
-
-
-<script>
-  $(function() {
-    $( "#datepicker" ).datepicker();
-
-     $( "#datepicker1" ).datepicker();
-
-  });
-  </script>
-
+<p>&nbsp;</p>
+{{ HTML::script('assets/js/custom.js')}}

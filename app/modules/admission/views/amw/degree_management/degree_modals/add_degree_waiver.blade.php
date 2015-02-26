@@ -17,7 +17,9 @@
        <p>&nbsp;</p>
        <p>&nbsp;</p>
 
-     {{ Form::submit('Save ', array('class'=>'pull-right btn btn-primary')) }}
+
+{{ Form::submit('Save ', array('class'=>'btn btn-primary')) }}
+<a href="{{URL::previous()}} " class="pull-right btn btn-default" span class="glyphicon-refresh">Close</a>
 
     <p>&nbsp;</p>
    {{Form::close()}}

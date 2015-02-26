@@ -37,7 +37,7 @@ class Helpers {
      * @param $model :: declare in which model;
      * @return mixed
      */
-    public function search(array $query, $model)
+    public static function search(array $query, $model)
     {
         $model = $model;
         foreach ($query as $column => $term)
@@ -48,6 +48,25 @@ class Helpers {
             }
         }
         return $model->get();
+    }
+
+
+    /**
+     * @param $student_id
+     * @return mixed
+     */
+    public static function extractStudentId($student_id){
+        $degree_id = substr( $student_id, 0, -3);
+
+        $degree = Degree::where('id', '=', $degree_id)->first();
+        //Do a query by this degree_id and get all the following id
+
+        $extract_result['dept_id'] = $degree->department_id;
+        $extract_result['year_id'] = $degree->year_id;
+        $extract_result['semester_id'] = $degree->semester_id;
+        $extract_result['degree_program_id'] = $degree->degree_program_id;
+
+        return $extract_result;
     }
 
 } 
