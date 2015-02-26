@@ -2,7 +2,7 @@
                  <h2>Welcome to View Question : <strong>{{ ucwords(Auth::user()->username) }}</strong> </h2>
                      {{ Form::open(array('route'=>'examination.amw.viewQuestion','method' => '')) }}
                              <div class="jumbotron text-center">
-                                 <h3><strong>Name of Examination :</strong>{{ ExmExamList::getExamName($viewPrepareQuestionPaperAmw->exm_exam_list_id) }}</h3> </br>
+                                 <h3><strong>Name of Examination :</strong>{{ ExmQuestion::getExamName($viewPrepareQuestionPaperAmw->exm_exam_list_id) }}</h3> </br>
 
                                  <p>
                                      <strong> Title:</strong>{{ $viewPrepareQuestionPaperAmw->title }} </br>

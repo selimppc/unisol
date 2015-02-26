@@ -4,7 +4,8 @@
                 $semester_id = Semester::lists('title', 'id');
                 $exam_type = AcmMarksDistItem::lists('title','id');
 
-                $course_name = Course::lists('title','id');
+                $course_list = ExmExamList::CourseList();
+
             ?>
 
                 <div class="form-group">
@@ -25,7 +26,7 @@
                 </div>
                 <div class="form-group">
                          {{ Form::label('course_name', 'Course Name') }}
-                         {{ Form::select('course_management_id', $course_name, Input::old('semester'), array('class' => 'form-control','required'=>'required')) }}
+                         {{ Form::select('course_management_id', $course_list, Input::old('semester'), array('class' => 'form-control','required'=>'required')) }}
                 </div>
             {{ Form::submit('Submit', array('class' => 'btn btn-primary')) }}
              <a href="{{URL::to('examination/amw/examination')}}" class="btn btn-default">Close </a>
