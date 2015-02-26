@@ -1,20 +1,17 @@
 <fieldset style="padding: 10px; width: 90%;">
 
 
-
                 <div class="form-group">
-                       {{ Form::label('department', 'Department') }}
-                       {{ Form::text('department', Input::old('department'), array('class' => 'form-control','required'=>'required')) }}
+                       <strong> Department: </strong>  {{ $examiners_list->relExmExamList->relCourseManagement->relCourse->relSubject->relDepartment->title  }}
                 </div>
 
                 <div class="form-group">
-                        {{ Form::label('subject', 'Subject') }}
-                        {{ Form::text('subject', Input::old('subject'), array('class' => 'form-control','required'=>'required')) }}
+                       <strong> Subject: </strong> {{ $examiners_list->relExmExamList->relCourseManagement->relCourse->relSubject->title }}
                 </div>
 
                 <div class="form-group">
-                        {{ Form::label('', 'Name of Faculty') }}
-                        {{ Form::text('user_id',Input::old('user_id'), array('class' => 'form-control','required'=>'required') ) }}
+                        {{ Form::label('user_id', 'Name of Faculty') }}
+                        {{ Form::select('user_id', User::FacultyList(), array('class' => 'form-control','required'=>'required') ) }}
                 </div>
                 <div class="form-group">
                          {{ Form::label('comment', 'Comment') }}
