@@ -4,10 +4,6 @@ class AcmAcademic extends \Eloquent
     protected $fillable = [];
     protected $table = 'acm_academic';
 
-    public function relCourseManagement()
-    {
-        return $this->belongsTo('CourseManagement','course_management_id','id');
-    }
     public function relAcmMarksDistribution()
     {
         return $this->belongsTo('AcmMarksDistribution','acm_marks_distribution_id','id');
@@ -16,7 +12,10 @@ class AcmAcademic extends \Eloquent
     {
         return $this->belongsTo('AcmClassSchedule','acm_class_schedule_id','id');
     }
-
+    public function relCourseManagement()
+    {
+        return $this->belongsTo('CourseManagement','course_management_id','id');
+    }
 //validation for save_marksdist_item_class_data method
 
     private $errors;
@@ -70,6 +69,18 @@ class AcmAcademic extends \Eloquent
     public function errors()
     {
         return $this->errors;
+    }
+
+
+    public static function boot(){
+        parent::boot();
+        static::creating(function($query){
+            $query->created_by = Auth::user()->id;
+            $query->updated_by = Auth::user()->id;
+        });
+        static::updating(function($query){
+            $query->updated_by = Auth::user()->id;
+        });
     }
 
 

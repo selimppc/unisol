@@ -59,4 +59,21 @@ class CourseManagement extends Eloquent
         $data = CourseManagement::find($courseMId);
         return $data->title;
     }
+
+    public static function getCourseManagementsCourseName($courseMId){
+        $data = CourseManagement::find($courseMId);
+        return $data->course_id;
+    }
+
+
+    public static function boot(){
+        parent::boot();
+        static::creating(function($query){
+            $query->created_by = Auth::user()->id;
+            $query->updated_by = Auth::user()->id;
+        });
+        static::updating(function($query){
+            $query->updated_by = Auth::user()->id;
+        });
+    }
 }

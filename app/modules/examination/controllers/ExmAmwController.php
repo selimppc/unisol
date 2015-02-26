@@ -351,17 +351,6 @@ class ExmAmwController extends \BaseController {
         return View::make('examination::amw.prepare_question_paper.examination',compact('exam_data','year_id','semester_id'));
     }
 
-    public function courses($acm_marks_dist_item_id , $year_id , $semester_id , $course_management_id){
-        $course_data = ExmExamList::where('year_id' ,'=', $year_id)
-            ->where('semester_id' ,'=', $semester_id)
-            ->where('course_management_id' ,'=', $course_management_id)
-            ->where('acm_marks_dist_item_id','=', $acm_marks_dist_item_id)
-            ->get();
-        return View::make('examination::amw.prepare_question_paper.courses',
-            compact('course_data', 'year_id', 'semester_id','course_management_id','acm_marks_dist_item_id'));
-
-    }
-
 
 
 
@@ -400,18 +389,33 @@ class ExmAmwController extends \BaseController {
         return View::make('examination::amw.prepare_question_paper._search_examination',compact('exam_data','year_id','semester_id'));
     }
 
+    public function courses($acm_marks_dist_item_id , $year_id , $semester_id , $course_management_id){
+        $course_data = ExmExamList::where('year_id' ,'=', $year_id)
+            ->where('semester_id' ,'=', $semester_id)
+            ->where('course_management_id' ,'=', $course_management_id)
+            ->where('acm_marks_dist_item_id','=', $acm_marks_dist_item_id)
+            ->get();
+        return View::make('examination::amw.prepare_question_paper.courses',
+            compact('course_data', 'year_id', 'semester_id','course_management_id','acm_marks_dist_item_id'));
 
+    }
 
-    public function examiners(){
-    //    $examiners_home = ExmExaminer::orderBy('id', 'DESC')->paginate(15);
+    
+
+    public function examiners( $year_id, $semester_id,$course_management_id,$acm_marks_dist_item_id){
+
+//        $year_id = Year::lists('title', 'id');
+//        $semester_id = Semester::lists('title', 'id');
 
         $examiners_home = ExmExaminer::with('relExmExamList','relExmExamList.relCourseManagement', 'relExmExamList.relCourseManagement.relYear',
                 'relExmExamList.relCourseManagement.relSemester','relExmExamList.relCourseManagement.relCourse.relSubject.relDepartment')
+//                ->where('year_id' ,'=', $year_id)
+//                ->where('semester_id' ,'=', $semester_id)
                 ->get();
 
-        $list_fclty = User::FacultyList();
 
-        return View::make('examination::amw.prepare_question_paper.examiners',compact('examiners_home','year_id','list_fclty'));
+
+        return View::make('examination::amw.prepare_question_paper.examiners',compact('examiners_home','acm_marks_dist_item_id','course_management_id', 'year_id', 'semester_id','list_fclty','course_id'));
     }
 
 

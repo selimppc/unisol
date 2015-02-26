@@ -29,17 +29,20 @@ Route::any("update/{id}", [
 ]);
 
 Route::any("drop-down", [
-    "as"   => "bootstrap.test",
-    "uses" => "UserController@login"
+    "as"   => "dropdown",
+    "uses" => "HomeController@dropDownForm"
+]);
+Route::any("dropdown/data", [
+    "as"   => "dropdown/data",
+    "uses" => "HomeController@dropDownData"
 ]);
 
-
-Route::get('drop-down-list', function(){
+/*Route::get('drop-down-list', function(){
     $input = Input::get('option');
     $maker = Maker::find($input);
     $models = $maker->models();
     return Response::make($models->get(['id','name']));
-});
+});*/
 
 
 //Route::get('/logs', function(){

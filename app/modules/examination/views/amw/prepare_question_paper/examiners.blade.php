@@ -23,13 +23,13 @@
                         </div>
 
 
-                       <strong> Year :</strong>  {{--{{ Year::getYearsName($examiners_home->year_id) }} </br>--}}
+                       <strong> Year: </strong>{{ Year::getYearsName($year_id) }}
                        </br>
-                       <strong> Semester :</strong>{{--{{ Semester::getSemesterName($course_data->semester_id) }} </br>--}}
+                       <strong> Semester: </strong>{{Semester::getSemesterName($semester_id) }}
                        </br>
-                       <strong> Course Title :</strong>{{--{{ Year::getYearsName($course_data->year_id) }} </br>--}}
+                       <strong> Course Title :</strong>{{ CourseManagement::getCourseManagementsCourseName($course_management_id) }}
                        </br>
-                       <strong> Exam Type :</strong>{{--{{ Year::getYearsName($course_data->year_id) }} </br>--}}
+                       <strong> Exam Type :</strong>{{ AcmMarksDistItem::AcmMarksDistName($acm_marks_dist_item_id) }} </br>
                        </br>
 
                        {{ Form::submit('Delete Items', array('class'=>'btn btn-danger', 'id'=>'hide-button', 'style'=>'display:none'))}}
