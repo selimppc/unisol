@@ -4,10 +4,10 @@
 @stop
 @section('content')
 
-    <div class="col-md-4">
-        <div>{{ Form::label('exam_question', 'Examination Question') }}</div>
-        {{ Form::select('acm_marks_dist_item_id', [''=>'Select Option'] + AcmMarksDistItem::orderBy('title')->lists('title', 'id'),Input::old('acm_marks_dist_item_id'), ['class'=>'form-control addConfigListItem']) }}
-    </div>
+    {{--<div class="col-md-4">--}}
+        {{--<div>{{ Form::label('exam_question', 'Examination Question:') }}</div>--}}
+        {{--{{ Form::select('acm_marks_dist_item_id', [''=>'Select Option'] + AcmMarksDistItem::orderBy('title')->lists('title', 'id'),Input::old('acm_marks_dist_item_id'), ['class'=>'form-control addConfigListItem']) }}--}}
+    {{--</div>--}}
     {{--{{ Form::open(array('url' => 'batch/delete')) }}--}}
     <table id="example" class="table table-bordered table-hover table-striped">
         <thead>
@@ -25,14 +25,14 @@
         </thead>
 
         <tbody>
-        @foreach ($datas as $value)
+        @foreach ($cm_data as $cm_data)
             <tr>
                 <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="">
                 </td>
-                <td>{{$value->relCourseManagement->relUser->username}}</td>
-                <td>{{$value->relCourseManagement->relSemester->title}}</td>
-                <td>{{$value->relCourseManagement->relYear->title}}</td>
-                <td>{{$value->relCourseManagement->relCourse->relSubject->relDepartment->title}}</td>
+                <td>{{$cm_data->relUser->username}}</td>
+                <td>{{$cm_data->relSemester->title}}</td>
+                <td>{{$cm_data->relYear->title}}</td>
+                <td>{{$cm_data->relCourse->relSubject->relDepartment->title}}</td>
                 <td></td>
                 <td>
                     <a href="" class="btn btn-info btn-xs"> Comments </a>
@@ -46,7 +46,7 @@
         </tbody>
         {{--{{ Form::submit('Delete Items', array('class'=>'btn btn-danger', 'id'=>'hide-button', 'style'=>'display:none'))}}--}}
     </table>
-    <div class="button" style="margin-top: 20px">
+    <div class="button" style="margin-top: 10px">
     {{--<button type="button" style="margin-left: 72px" class="btn btn-info btn-xs">Close</button>--}}
     <a href="{{URL::previous()}}" class="btn btn-info btn-xs" style="margin-left: 72px">Back</a>
     <button type="button" style="margin-left: 5px"  class="btn btn-success btn-xs">Do Assign</button>

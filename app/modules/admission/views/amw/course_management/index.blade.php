@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('sidebar')
-    {{--@include('applicant::_sidebar')--}}
+
 @stop
 @section('content')
 
@@ -49,9 +49,7 @@
 
 <br>
         {{ Form::submit('Search',['class'=>'pull-right btn btn-sm btn btn-info']) }}
-{{--{{ HTML::linkAction('AdmAmwController@cmSearchView', 'Search') }}--}}
- {{--<a href="{{URL::to('course_manage/search_view') }} " class="btn btn-default" span class="glyphicon-refresh">Search</a>--}}
-    </table>
+   </table>
 
 
 

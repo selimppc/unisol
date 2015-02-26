@@ -29,8 +29,10 @@
 
 {{ Form::label('1', 'Status') }}
 {{ Form::select ('status',  array('' => 'Select one',
-          'APLD' => 'Applied', 'DOCC' => 'Docs Checking','AADV','RADV','RIAS','PDAS','CFAT','ATAT',
-          'NAAD','PAAT','NPAT','RATE','MRTL','WTGL','NAML','CFAD','DNAD','ADMD'),
+          'APLD' => 'Applied', 'DOCC' => 'Docs Checking','AADV'=>'AADV','RADV'=>'RADV',
+          'RIAS'=>'RIAS','PDAS'=>'PDAS','CFAT'=>'CFAT','ATAT'=>'ATAT', 'NAAD'=>'NAAD',
+          'PAAT'=>'PAAT','NPAT'=>'NPAT','RATE'=>'RATE','MRTL'=>'MRTL','WTGL'=>'WTGL',
+          'NAML'=>'NAML','CFAD'=>'CFAD','DNAD'=>'DNAD','ADMD'=>'ADMD'),
            $degree_model->status ,
            array('class' => 'form-control input-sm')) }}
 
