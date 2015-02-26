@@ -214,10 +214,8 @@ class HomeController extends BaseController {
         exit;
     }
 
-
-
+    //return back to modal with old data
     public function bootstrapModal(){
-
         return View::make('test.bootstrap_modal');
     }
 
@@ -233,5 +231,12 @@ class HomeController extends BaseController {
         return View::make('test.bootstrap_modal');
     }
 
+
+    //dependable drop-down list in this application
+
+    public function dropDownForm(){
+
+        return View::make('test.dropdown_form');
+    }
 
 }
