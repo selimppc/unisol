@@ -117,7 +117,7 @@ class HomeController extends BaseController {
 
 
     public function testSearch(){
-        
+
 
         if($_POST){
             echo "ok";
@@ -214,5 +214,29 @@ class HomeController extends BaseController {
         exit;
     }
 
+    //return back to modal with old data
+    public function bootstrapModal(){
+        return View::make('test.bootstrap_modal');
+    }
+
+    public function update($id)
+    {
+        $user = User::findOrFail($id);
+        $validator = Validator::make($data = Input::all(), User::$rules);
+        if ($validator->fails())
+        {
+            //return Redirect::back()->withErrors($validator)->withInput();
+            return Redirect::back()->withErrors($validator)->withInput()->with('id', $id);
+        }
+        return View::make('test.bootstrap_modal');
+    }
+
+
+    //dependable drop-down list in this application
+
+    public function dropDownForm(){
+
+        return View::make('test.dropdown_form');
+    }
 
 }

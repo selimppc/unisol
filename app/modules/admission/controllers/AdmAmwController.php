@@ -12,7 +12,7 @@ class AdmAmwController extends \BaseController
     public function index()
     {
         //$model = CourseManagement::orderby('id', 'DESC')->paginate(5);
-        $model= CourseManagement::with('relCourse','relDegree','relCourse.relSubject.relDepartment','relSemester','relYear');
+        $model= CourseManagement::with('relCourse','relDegree','relCourse.relSubject.relDepartment','relSemester','relYear')->paginate(5);
         $semester = array('' => 'Select Semester ') + Semester::lists('title', 'id');
         $year = array('' => 'Select Year ') + Year::lists('title', 'id');
         $degree = array('' => 'Select Degree ') + Degree::lists('title', 'id');
@@ -311,7 +311,6 @@ class AdmAmwController extends \BaseController
             compact('degree_waiver_id'));
     }
     public function degWaiverConstTimeStore(){
-        //echo 'ok';exit;
 
         $data = Input::all();
         if (WaiverConstraint::create($data)) {
@@ -323,6 +322,7 @@ class AdmAmwController extends \BaseController
         }
     }
 
+
 //    public function test(){
 //
 //        $data = Input::all();
@@ -332,17 +332,22 @@ class AdmAmwController extends \BaseController
 //        }
 //
 //    }
+    public function degWaiverGpaConstCreate($degree_waiver_id){
+
+        return View::make('admission::amw.degree_management.degree_modals.add_gpa_const',
+            compact('degree_waiver_id'));
+    }
 
     public function degWaiverConstGpaStore(){
 
-        $dw_const_model = new WaiverConstraint();
+        $deg_waiver_const = new WaiverConstraint();
 
-        $dw_const_model->degree_waiver_id = Input::get('degree_waiver_id');
-        $dw_const_model->is_time_dependent = 0;
-        $dw_const_model->level_of_education = Input::get('level_of_education');
-        $dw_const_model->gpa = Input::get('gpa');
+        $deg_waiver_const->degree_waiver_id = Input::get('degree_waiver_id');
+        $deg_waiver_const->is_time_dependent = 0;
+        $deg_waiver_const->level_of_education = Input::get('level_of_education');
+        $deg_waiver_const->gpa = Input::get('gpa');
 
-        if ($dw_const_model->save()) {
+        if ($deg_waiver_const->save()) {
             return Redirect::back()->with('message', 'Successfully added Information!');
         }
     }
@@ -353,11 +358,7 @@ class AdmAmwController extends \BaseController
         return Redirect::back()->with('message', 'Successfully deleted Information!');
     }
 
-    public function degWaiverGpaConstCreate($degree_waiver_id){
-        return View::make('admission::amw.degree_management.degree_modals.add_gpa_const',
-            compact('degree_waiver_id'));
 
-    }
 
 //..............................    Waiver Management : starts ...................................................
 

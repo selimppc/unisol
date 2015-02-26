@@ -17,6 +17,30 @@ Route::get('/hellow','TestController@index');
 Route::get('/logs','HomeController@logs');
 
 Route::get('/test-search','HomeController@testSearch');
+Route::get('/bootstrap-modal','HomeController@bootstrapModal');
+Route::any("bootstrap/test", [
+    "as"   => "bootstrap.test",
+    "uses" => "UserController@login"
+]);
+
+Route::any("update/{id}", [
+    "as"   => "bootstrap.test",
+    "uses" => "UserController@login"
+]);
+
+Route::any("drop-down", [
+    "as"   => "bootstrap.test",
+    "uses" => "UserController@login"
+]);
+
+
+Route::get('drop-down-list', function(){
+    $input = Input::get('option');
+    $maker = Maker::find($input);
+    $models = $maker->models();
+    return Response::make($models->get(['id','name']));
+});
+
 
 //Route::get('/logs', function(){
 //    throw new RuntimeException('Hello');

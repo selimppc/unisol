@@ -72,7 +72,7 @@
 
 <a class="pull-right btn btn-sm btn-info" href="{{ URL::route('degree_waiver.create', ['degree_id'=>$degree_model->id] )}}" data-toggle="modal" data-target="#addWaiver" >Add Waiver</a>
 
-<a class="pull-left btn btn-sm btn-info" href="{{ URL::to('amw/degree_manage' )}}" >Degree Management</a>
+<a class="pull-left btn btn-sm btn-info" href="{{ URL::to('amw/degree_manage' )}}">Back To Degree Management</a>
 
  <p>&nbsp;</p>
  <p>&nbsp;</p>

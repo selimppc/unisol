@@ -29,7 +29,6 @@ $('.date_picker').each(function() {
     $picker.datepicker({
        format:'yyyy-mm-dd'
     });
-
     var pickerObject = $picker.data('date_picker');
 
     $picker.on('changeDate', function(ev){

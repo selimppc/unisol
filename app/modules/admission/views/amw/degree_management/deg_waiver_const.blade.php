@@ -64,6 +64,7 @@
               </tr>
          </thead>
                <tbody>
+               {{--@if()--}}
                     @foreach($deg_waiver_const as $value)
                                       <tr>
                                             <td>{{ $value->start_date }}</td>
@@ -77,6 +78,7 @@
 
                                       </tr>
                     @endforeach
+                    {{--@endif--}}
               </tbody>
 
     </table>
@@ -84,7 +86,7 @@
 
 {{--------------------------------Degree Waiver Const Table (GPA dependent):Starts-------------------------------------------------}}
 
-<a class="pull-right btn btn-sm btn-info" href="{{ URL::route('deg_waiver_gpa_const.create', $degree_model->id )}}" data-toggle="modal" data-target="#add" >Add GPA Constraint</a>
+<a class="pull-right btn btn-sm btn-info" href="{{ URL::route('deg_waiver_gpa_const.create', ['degree_waiver_id'=>$degree_model->id ] )}}" data-toggle="modal" data-target="#add" >Add GPA Constraint</a>
 
  <p>&nbsp;</p>
 
@@ -100,19 +102,20 @@
               </tr>
          </thead>
                <tbody>
-                    {{--@foreach($deg_waiver_const as $value)--}}
-                                      {{--<tr>--}}
-                                            {{--<td>{{ $value->start_date }}</td>--}}
+                    @foreach($deg_waiver_const as $value)
+                                      <tr>
+                                            <td>{{ $value->level_of_education }}</td>
 
-                                            {{--<td>{{ $value->end_date }}</td>--}}
+                                            <td>{{ $value->gpa }}</td>
 
-                                            {{--<td>--}}
+                                            <td>
+                                                 <a data-href="{{ URL::to('amw/degree_manage/waiver_const/delete/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><span class="glyphicon glyphicon-trash text-danger"></span></a>
                                                  {{--<a data-href="{{ URL::to('amw/degree_manage/waiver_const/delete/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><span class="glyphicon glyphicon-trash text-danger"></span></a>--}}
                                                  {{--<a href="{{ URL::to('department/show/'.$department->id) }}" class="btn btn-sm btn-default" data-toggle="modal" data-target="#confirm-show"><span class="glyphicon glyphicon-eye-open text-danger"></span></a>--}}
-                                            {{--</td>--}}
+                                            </td>
 
-                                      {{--</tr>--}}
-                    {{--@endforeach--}}
+                                      </tr>
+                    @endforeach
 
 
               </tbody>
@@ -159,6 +162,16 @@
       </div>
     </div>
   </div>
+
+
+
+  <div data-backdrop="static" data-keyboard="false" class="modal fade" id="addGpa" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+
+         </div>
+        </div>
+   </div>
 
 @stop
 

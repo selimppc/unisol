@@ -88,9 +88,8 @@
 </tr>
 </thead>
 <tbody>
-{{--{{$model}}--}}
-      @foreach($model as $value)
 
+      @foreach($model as $value)
 
           <tr>
           <td>{{ $value->relCourse->title }}</td>
@@ -99,15 +98,15 @@
           <td>{{  $value->relCourse->relSubject->relDepartment->title }}</td>
           <td>{{ $value->relYear->title }}</td>
           <td>{{ $value->relSemester->title }}</td>
-          <td></td>
-          {{--<td>{{ $value->relUser->relUserProfile->first_name.' '.$value->relUser->relUserProfile->last_name }}</td>--}}
+          <td>{{User::FullName($value->user_id)}}</td>
+
           <td>
                <a href="{{ URL::to('course_manage/show/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal"><span class="glyphicon glyphicon-eye-open text-danger"></span></a>
                <a class="btn btn-xs btn-default" href="{{ URL::to('course_manage/edit/'.$value->id) }}" data-toggle="modal" data-target="#editModal" ><span class="glyphicon glyphicon-edit"></span></a>
-                   {{--<a data-href="" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><span class="glyphicon glyphicon-trash text-danger"></span></a>--}}
+
           </td>
 
-            {{--{{ $value->relCourse->title }}--}}
+
           </tr>
       @endforeach
 
@@ -118,7 +117,7 @@
 
 {{--------Pagination Link--------------------------}}
 <div class="pull-right paginate-button">
-    {{--{{$model->links()}}--}}
+    {{$model->links()}}
 </div>
 
 

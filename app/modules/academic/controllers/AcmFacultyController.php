@@ -260,7 +260,7 @@ class AcmFacultyController extends \BaseController {
 	{
 		$data = Input::all();
 		$redirect_url = Input::get('redirect_url');
-		if ($data) {
+		if (($data)) {
 			/*$datas->course_management_id = Input::get('course_management_id');
 			$datas->acm_marks_distribution_id = Input::get('marks_dist_id');*/
 			$datas = AcmAcademic::find($id);
@@ -353,6 +353,7 @@ class AcmFacultyController extends \BaseController {
 					$upload_success = $file->move($destinationPath, $hashname);
 					$academic_details = new AcmAcademicDetails;
 					$academic_details->file = $hashname;
+//					strtolower ( $filename)
 					$academic_details->acm_academic_id = $academic_id;
 					$academic_details->save();
 				}
@@ -442,7 +443,17 @@ class AcmFacultyController extends \BaseController {
 
 		}
 	}
-
+	//public  function assign_class_test($id,$cmid)
+	public  function assign_class_test($id)
+	{
+		$data = AcmAcademic::with('relCourseManagement','relAcmClassSchedule','relAcmClassSchedule.relAcmClassTime')
+			->where('id','=' ,$id)
+			->get();
+//		$config_data = AcmMarksDistribution::with('relAcmMarksDistItem', 'relCourseManagement.relCourse')
+//			->where('course_management_id', '=', $cmid)
+//			->get();
+		return View::make('academic::faculty.mark_distribution_courses.marks_dist_item_class_test.assign',compact('data','datas'));
+	}
 
 
 
