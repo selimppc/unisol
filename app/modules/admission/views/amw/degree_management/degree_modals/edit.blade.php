@@ -29,31 +29,15 @@
 
 {{ Form::label('1', 'Status') }}
 {{ Form::select ('status',  array('' => 'Select one',
-          '1' => 'APLD', 'minor' => 'Minor'),$degree_model->status ,
+          'APLD' => 'Applied', 'DOCC' => 'Docs Checking','AADV','RADV','RIAS','PDAS','CFAT','ATAT',
+          'NAAD','PAAT','NPAT','RATE','MRTL','WTGL','NAML','CFAD','DNAD','ADMD'),
+           $degree_model->status ,
            array('class' => 'form-control input-sm')) }}
-
-  {{--<div class='form-group'>--}}
-               {{--<div>{{ Form::label('degree_id', 'Degree') }}</div>--}}
-               {{--<div>{{ Form::select('degree_id',$degree,$degree_model->degree_program_id,['class'=>'form-control ']) }}</div>--}}
-        {{--</div>--}}
-
-         {{--<div class='form-group'>--}}
-
-           {{--<div>{{ Form::label('year_id', 'Year') }}</div>--}}
-           {{--<div>{{ Form::select('year_id', $year,$degree_model->year_id  ,['class'=>'form-control '])}}</div>--}}
-         {{--</div>--}}
-
-         {{--<div class='form-group'>--}}
-
-           {{--<div>{{ Form::label('semester_id', 'Semester') }}</div>--}}
-           {{--<div>{{ Form::select('semester_id',$semester,$degree_model->semester_id,['class'=>'form-control ']) }}</div>--}}
-         {{--</div>--}}
-
 
 
         <p>&nbsp;</p>
 
-         {{ Form::submit('Save ', array('class'=>'btn btn-primary')) }}
+         {{ Form::submit('Update', array('class'=>'btn btn-primary')) }}
           <a href="{{URL::to('amw/degree_manage') }} " class="pull-right btn btn-default" span class="glyphicon-refresh">Close</a>
 
         {{Form::close()}}
