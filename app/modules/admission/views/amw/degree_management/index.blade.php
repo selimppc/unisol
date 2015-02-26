@@ -64,11 +64,10 @@
           <td>{{ $value->relSemester->title }}</td>
           <td>{{ $value->total_credit}}</td>
           <td>{{ $value->duration }}</td>
-          <td>{{ $value->status == 0?'open':'APLD' }}</td>
-          {{--<td></td>--}}
-
+          {{--<td>{{ $value->status == null ? "No Status added": $value->status }}</td>--}}
+          <td>{{$value->status}}</td>
           <td>
-               <a href="{{ URL::route('degree_manage.show', $value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal"><span class="glyphicon glyphicon-eye-open text-danger"></span></a>
+               <a href="{{ URL::route('degree_manage.show', $value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal"><span class="glyphicon glyphicon-eye-open"></span></a>
                <a class="btn btn-xs btn-default" href="{{ URL::route('degree_manage.edit', $value->id) }}" data-toggle="modal" data-target="#editModal" ><span class="glyphicon glyphicon-edit"></span></a>
                <a href="{{ URL::route('degree_manage.waiver', $value->id) }}">MW</a>
 
