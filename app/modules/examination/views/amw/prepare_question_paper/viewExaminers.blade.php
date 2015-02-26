@@ -16,6 +16,7 @@
                         </div>
 
                      </div>
+
                      <a href="{{URL::previous()}}" class="btn btn-default">Close </a>
                      {{ Form::submit('Comments', array('class' => 'btn btn-primary')) }}
              {{ Form::close() }}

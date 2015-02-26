@@ -112,6 +112,7 @@ Route::any('examination/amw/assignFaculty/{id}',[
 ]);
 
 
+
 Route::any('examination/amw/examiners/{year_id}/{semester_id}/{course_management_id}/{acm_marks_dist_item_id}',[
     'as' =>'examination/amw/examiners',
     'uses' => 'ExmAmwController@examiners'
