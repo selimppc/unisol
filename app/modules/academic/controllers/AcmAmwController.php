@@ -172,9 +172,9 @@ class AcmAmwController extends \BaseController {
 			$model1 = ($acm_config_id[$i]) ? AcmCourseConfig::find($acm_config_id[$i]) : new AcmCourseConfig;
 
 			if($acm_config_id[$i])
-				$model1->updated_by = Auth::user()->id;
+				$model1->updated_by = Auth::user()->get()->role_id;
 			else
-				$model1->created_by = Auth::user()->id;
+				$model1->created_by =Auth::user()->get()->id;
 
 			$model1->acm_marks_dist_item_id = $acm_item_id[$i];
 			$model1->course_id = $data['course_id'][$i];
