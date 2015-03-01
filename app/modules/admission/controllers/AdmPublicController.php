@@ -6,9 +6,11 @@ class AdmPublicController extends \BaseController {
         $this->beforeFilter('admPublic', array('except' => array('')));
     }*/
 
-	public function index()
+	public function admIndex()
 	{
-		//
+        $degreeList = Degree::orderby('id', 'DESC')->paginate(5);
+        return View::make('admission::adm_public.admission.index',compact('degreeList'));
+
 	}
 
 	public function create()
