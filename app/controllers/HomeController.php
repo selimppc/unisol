@@ -251,6 +251,9 @@ class HomeController extends BaseController {
 
 
     public function getFile(){
+
+        $filename = "D:\xampp\htdocs\unisol\public\file\item_class_file\25-02-2015_call details.pdf";
+
         try{
             $contents = File::get($filename);
         }
