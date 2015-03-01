@@ -9,6 +9,8 @@ class DegreeApplicant extends Eloquent{
     protected $table='degree_applicant';
 
 
+
+
     public static function boot(){
         parent::boot();
         static::creating(function($query){
