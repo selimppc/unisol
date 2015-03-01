@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('sidebar')
-    @include('examination::amw.prepare_question_paper._sidebar_examiner')
+    @include('examination::amw.prepare_question_paper._sidebar_examiner_for_course')
 @stop
 @section('content')
         <h1>Welcome to Courses : <strong>{{ ucwords(Auth::user()->username) }}</strong> </h1> <br>
@@ -25,6 +25,7 @@
                                 <tbody>
                                   @foreach($course_data as $course_list)
                                         <tr>
+
                                             <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $course_list['id'] }}"></td>
                                             <td> {{ $course_list->relCourseManagement->relCourse->title }} </td>
 
@@ -33,7 +34,7 @@
                                             <td>{{ $course_list->relCourseManagement->relCourse->relSubject->relDepartment->title }}</td>
 
                                             <td>
-                                               <a href="{{ URL::to('examination/amw/examiners',['year_id'=>$course_list->year_id , 'semester_id'=>$course_list->semester_id, 'course_management_id'=>$course_list->course_management_id,'acm_marks_dist_item_id'=>$course_list->acm_marks_dist_item_id])  }}" class="btn btn-default" >Examiner</a>
+                                               <a href="{{ URL::to('examination/amw/examiners',['year_id'=>$course_list->year_id , 'semester_id'=>$course_list->semester_id, 'course_management_id'=>$course_list->course_management_id,'acm_marks_dist_item_id'=>$course_list->acm_marks_dist_item_id, 'exm_exam_list_id'=>$course_list->id])  }}" class="btn btn-default" >Examiner</a>
                                                <a href="{{ URL::to('examination/amw/index',['exam_list_id'=>$course_list->id , 'course_man_id'=>$course_list->course_management_id]) }}" class="btn btn-default">Question Paper</a>
 
                                             </td>

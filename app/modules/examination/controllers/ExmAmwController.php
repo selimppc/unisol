@@ -392,8 +392,8 @@ class ExmAmwController extends \BaseController {
     public function courses($acm_marks_dist_item_id , $year_id , $semester_id , $course_management_id){
         $course_data = ExmExamList::where('year_id' ,'=', $year_id)
             ->where('semester_id' ,'=', $semester_id)
-
             ->where('acm_marks_dist_item_id','=', $acm_marks_dist_item_id)
+            ->where('course_management_id','=', $course_management_id)
             ->get();
         return View::make('examination::amw.prepare_question_paper.courses',
             compact('course_data', 'year_id', 'semester_id','course_management_id','acm_marks_dist_item_id'));
@@ -402,11 +402,15 @@ class ExmAmwController extends \BaseController {
 
 
 
-    public function examiners( $year_id, $semester_id, $course_management_id, $acm_marks_dist_item_id){
+    public function examiners( $year_id, $semester_id, $course_management_id, $acm_marks_dist_item_id,$exm_exam_list_id){
+
 
         $examiners_home = ExmExaminer::with('relExmExamList','relExmExamList.relCourseManagement', 'relExmExamList.relCourseManagement.relYear',
                 'relExmExamList.relCourseManagement.relSemester','relExmExamList.relCourseManagement.relCourse.relSubject.relDepartment')
+                ->where('exm_exam_list_id', '=', $exm_exam_list_id)
                 ->get();
+
+//        print_r($examiners_home);exit;
 
         $course_title = CourseManagement::with('relCourse')->where('id' ,'=', $course_management_id)->first()->relCourse->title;
 
@@ -415,7 +419,22 @@ class ExmAmwController extends \BaseController {
 
         return View::make('examination::amw.prepare_question_paper.examiners',
             compact('examiners_home','acm_marks_dist_item_id','course_management_id', 'year_id',
-                    'semester_id', 'course_title'));
+                    'semester_id', 'course_title','exm_exam_list_id'));
+    }
+
+    public function get_all_examiners( ){
+
+        $examiners_list = ExmExaminer::with('relExmExamList','relExmExamList.relCourseManagement', 'relExmExamList.relCourseManagement.relYear',
+            'relExmExamList.relCourseManagement.relSemester','relExmExamList.relCourseManagement.relCourse.relSubject.relDepartment')
+            ->get();
+
+//        $course_title = CourseManagement::with('relCourse')->where('id' ,'=', $course_management_id)->first()->relCourse->title;
+
+//        $exam_list_id = ExmExaminer::where('exm_exam_list_id' ,'=', $exam_list_id)
+//            ->get();
+
+        return View::make('examination::amw.prepare_question_paper.examiners_all',
+            compact('examiners_list'));
     }
 
 

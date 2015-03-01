@@ -113,10 +113,17 @@ Route::any('examination/amw/assign_faculty',[
 
 
 
-Route::any('examination/amw/examiners/{year_id}/{semester_id}/{course_management_id}/{acm_marks_dist_item_id}',[
+Route::any('examination/amw/examiners/{year_id}/{semester_id}/{course_management_id}/{acm_marks_dist_item_id}/{exm_exam_list_id}',[
     'as' =>'examination/amw/examiners',
     'uses' => 'ExmAmwController@examiners'
 ]);
+
+Route::any('examination/amw/get-all-examiners',[
+    'as' =>'examination.amw.get_all_examiners',
+    'uses' => 'ExmAmwController@get_all_examiners'
+]);
+
+
 
 Route::any('examination/amw/addExaminers',[
     'as' =>'examination/amw/addExaminers',

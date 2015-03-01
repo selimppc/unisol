@@ -1,6 +1,7 @@
 @extends('layouts.master')
 @section('sidebar')
     @include('examination::_sidebar')
+{{--    @include('examination::amw.prepare_question_paper._sidebar_examiner')--}}
 @stop
 @section('content')
        <h1>Welcome to Examination : <strong>{{ ucwords(Auth::user()->username) }}</strong> </h1> <br>
