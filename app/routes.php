@@ -42,19 +42,6 @@ Route::any("get-file", [
     "uses" => "HomeController@getFile"
 ]);
 
-/*Route::get('drop-down-list', function(){
-    $input = Input::get('option');
-    $maker = Maker::find($input);
-    $models = $maker->models();
-    return Response::make($models->get(['id','name']));
-});*/
-
-
-//Route::get('/logs', function(){
-//    throw new RuntimeException('Hello');
-//    return View::make('error.missing');
-//});
-
 
 Route::group( array('before' => 'auth'), function(){
 
@@ -239,3 +226,14 @@ Route::group( array('before' => 'auth'), function(){
 
 });
 
+
+// if Missing any error
+/*Route::get('/logs', function(){
+    throw new RuntimeException('Hello');
+    return View::make('error.missing');
+});*/
+
+App::missing(function($exception)
+{
+    return Response::view('errors.missing', array(), 404);
+});

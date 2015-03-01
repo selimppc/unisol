@@ -135,6 +135,19 @@ Route::filter('admStudent', function()
 
 });
 
+/*Route::filter('admPublic', function()
+{
+    if (Auth::check()){
+        $role_id = Auth::user()->role_id;
+        $role = User::hasRole($role_id);
+        if($role != 'public')
+            return Redirect::guest('usersign/dashboard');
+    }else{
+        return Redirect::guest('user/login');
+    }
+
+});*/
+
 
 /*======================================================================
 //For Examination Module
