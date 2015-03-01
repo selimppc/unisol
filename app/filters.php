@@ -19,7 +19,7 @@ App::before(function($request)
 
 App::after(function($request, $response){
     $cookieName = Auth::getRecallerName();
-    if (Session::has('cookie_expiration') && Auth::check() && isset($_COOKIE[$cookieName])) {
+    if (Session::has('cookie_expiration') && Auth::user()->check() && isset($_COOKIE[$cookieName])) {
         // get the (current/new) cookie values
         $cookieValue = Cookie::get($cookieName);
         $expiration = Session::get('cookie_expiration');
@@ -39,9 +39,14 @@ App::after(function($request, $response){
 |--------------------------------------------------------------------------
 |
 */
+Route::filter('auth', function()
+{
+    if (Auth::admin()->guest()) return Redirect::guest('login');
+});
 
 Route::filter('auth', function(){
-	if (Auth::guest()){
+	//if (Auth::guest()){
+    if (Auth::admin()->guest()){
 		if (Request::ajax()){
 			return Response::make('Unauthorized', 401);
 		}else{
@@ -55,8 +60,8 @@ Route::filter('auth', function(){
 ========================================================================*/
 Route::filter('academicFaculty', function()
 {
-    if (Auth::check()){
-        $role_id = Auth::user()->role_id;
+    if (Auth::user()->check()){
+        $role_id = Auth::user()->get()->role_id;
         $role = User::hasRole($role_id);
         if($role != 'faculty')
             return Redirect::guest('usersign/dashboard');
@@ -68,8 +73,8 @@ Route::filter('academicFaculty', function()
 
 Route::filter('academicAmw', function()
 {
-    if (Auth::check()){
-        $role_id = Auth::user()->role_id;
+    if (Auth::user()->check()){
+        $role_id = Auth::user()->get()->role_id;
         $role = User::hasRole($role_id);
         if($role != 'amw')
             return Redirect::guest('usersign/dashboard');
@@ -82,8 +87,8 @@ Route::filter('academicAmw', function()
 
 Route::filter('academicStudent', function()
 {
-    if (Auth::check()){
-        $role_id = Auth::user()->role_id;
+    if (Auth::user()->check()){
+        $role_id = Auth::user()->get()->role_id;
         $role = User::hasRole($role_id);
         if($role != 'student')
             return Redirect::guest('usersign/dashboard');
@@ -99,8 +104,8 @@ Route::filter('academicStudent', function()
 ========================================================================*/
 Route::filter('admFaculty', function()
 {
-    if (Auth::check()){
-        $role_id = Auth::user()->role_id;
+    if (Auth::user()->check()){
+        $role_id = Auth::user()->get()->role_id;
         $role = User::hasRole($role_id);
         if($role != 'faculty')
             return Redirect::guest('usersign/dashboard');
@@ -111,8 +116,8 @@ Route::filter('admFaculty', function()
 });
 Route::filter('admAmw', function()
 {
-    if (Auth::check()){
-        $role_id = Auth::user()->role_id;
+    if (Auth::user()->check()){
+        $role_id = Auth::user()->get()->role_id;
         $role = User::hasRole($role_id);
         if($role != 'amw')
             return Redirect::guest('usersign/dashboard');
@@ -124,8 +129,8 @@ Route::filter('admAmw', function()
 
 Route::filter('admStudent', function()
 {
-    if (Auth::check()){
-        $role_id = Auth::user()->role_id;
+    if (Auth::user()->check()){
+        $role_id = Auth::user()->get()->role_id;
         $role = User::hasRole($role_id);
         if($role != 'student')
             return Redirect::guest('usersign/dashboard');
@@ -137,8 +142,8 @@ Route::filter('admStudent', function()
 
 /*Route::filter('admPublic', function()
 {
-    if (Auth::check()){
-        $role_id = Auth::user()->role_id;
+    if (Auth::user()->check()){
+        $role_id = Auth::user()->get()->role_id;
         $role = User::hasRole($role_id);
         if($role != 'public')
             return Redirect::guest('usersign/dashboard');
@@ -154,8 +159,8 @@ Route::filter('admStudent', function()
 ========================================================================*/
 Route::filter('exmFaculty', function()
 {
-    if (Auth::check()){
-        $role_id = Auth::user()->role_id;
+    if (Auth::user()->check()){
+        $role_id = Auth::user()->get()->role_id;
         $role = User::hasRole($role_id);
         if($role != 'faculty')
             return Redirect::guest('usersign/dashboard');
@@ -167,8 +172,8 @@ Route::filter('exmFaculty', function()
 
 Route::filter('exmAmw', function()
 {
-    if (Auth::check()){
-        $role_id = Auth::user()->role_id;
+    if (Auth::user()->check()){
+        $role_id = Auth::user()->get()->role_id;
         $role = User::hasRole($role_id);
         if($role != 'amw')
             return Redirect::guest('usersign/dashboard');
@@ -180,8 +185,8 @@ Route::filter('exmAmw', function()
 
 Route::filter('exmStudent', function()
 {
-    if (Auth::check()){
-        $role_id = Auth::user()->role_id;
+    if (Auth::user()->check()){
+        $role_id = Auth::user()->get()->role_id;
         $role = User::hasRole($role_id);
         if($role != 'student')
             return Redirect::guest('usersign/dashboard');
@@ -206,12 +211,13 @@ Route::filter('auth.basic', function() {
 });
 
 Route::filter('guest', function() {
-    if (Auth::check()) return Redirect::to('user/login');
+    if (Auth::user()->check()) return Redirect::to('user/login');
 });
 
 
 Route::filter("auth", function() {
-    if (Auth::guest()) {
+    //if (Auth::guest()) {
+    if (Auth::admin()->guest()) {
         return Redirect::route("user/login");
     }
 });
@@ -237,7 +243,7 @@ Route::filter('csrf', function()
 //});
 
 //Route::filter('localization', function() {
-//    App::setLocale(Auth::user()->locale);
+//    App::setLocale(Auth::user()->get()->locale);
 //});
 
 Route::filter('localization', function() {
