@@ -23,18 +23,14 @@ class AdmPublicController extends \BaseController {
         }
         exit("OK");
 
-       if($data->save()) {
-           echo 'ok';
-       }
-        else{
-            return 0;
-        }
+    }
+    public function admDegreeDetails($id){
 
+        $degree_model = Degree::with('relYear', 'relSemester', 'relDegreeWaiver.relWaiver')
+                        ->where('id', '=', $id)
+                        ->first();
+        return View::make('admission::adm_public.admission.degree_details',compact('degree_model'));
 
-
-//        $degree_list = new DegreeApplicant();
-
-        //print_r($check_id) ;exit;
     }
 
 	public function create()

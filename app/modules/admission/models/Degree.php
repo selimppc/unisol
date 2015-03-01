@@ -24,6 +24,10 @@ class Degree extends Eloquent{
         return $this->belongsTo('Department', 'department_id', 'id');
     }
 
+    public function relDegreeWaiver(){
+        return $this->belongsTo('DegreeWaiver', 'id', 'degree_id');
+    }
+
     public static function boot(){
         parent::boot();
         static::creating(function($query){
