@@ -8,7 +8,9 @@ class DegreeApplicant extends Eloquent{
 
     protected $table='degree_applicant';
 
-
+    public function relDegree(){
+        return $this->belongsTo('Degree', 'degree_id', 'id');
+    }
 
 
     public static function boot(){

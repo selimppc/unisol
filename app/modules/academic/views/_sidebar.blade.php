@@ -1,9 +1,9 @@
 <div class="panel panel-default">
-    @if((Role::find(Auth::user()->role_id)->title)=='amw')
+    @if((Role::find(Auth::user()->get()->role_id)->title)=='amw')
         <div class="panel-heading">
             <h4 class="panel-title">
                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><span class="glyphicon glyphicon-user">
-            </span>You are loggged in as <strong>{{ ucwords(Auth::user()->username) }} </strong></a>
+            </span>You are loggged in as <strong>{{ ucwords(Auth::user()->get()->username) }} </strong></a>
             </h4>
         </div>
         {{-- sidebar for courseconfig for amw--}}
@@ -25,11 +25,11 @@
         </div>
         {{--End courseconfig--}}
 
-    @elseif((Role::find(Auth::user()->role_id)->title)=='faculty')
+    @elseif((Role::find(Auth::user()->get()->role_id)->title)=='faculty')
         <div class="panel-heading">
             <h4 class="panel-title">
                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree"><span class="glyphicon glyphicon-in">
-            </span>You loggged in as <strong>{{ ucwords(Auth::user()->username) }} </strong></a>
+            </span>You loggged in as <strong>{{ ucwords(Auth::user()->get()->username) }} </strong></a>
             </h4>
         </div>
         {{-- sidebar for marks distribution at courses and item for faculty--}}

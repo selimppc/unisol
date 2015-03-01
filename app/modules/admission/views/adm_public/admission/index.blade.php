@@ -35,20 +35,24 @@
         <thead>
             <tr>
                <td class="col-lg-1"><input name="checkbox" type="checkbox" id="checkbox" class="checkbox" value=""></td>
-               <th class="col-lg-4">degree Name</th>
+               <th class="col-lg-4" > degree Name</th>
                <th >Description</th>
             </tr>
         </thead>
 
-       <tbody>
-          @foreach($degreeList as $value)
-               <tr>
-                  <td ><input type="checkbox" name="ids[]"  id="check" class="myCheckbox" value="{{ $value->id }}"></td>
-                  <td>{{ $value->title }}</td>
-                  <td>{{ $value->description }}</td>
-               </tr>
-          @endforeach
-       </tbody>
+               <tbody>
+                  @foreach($degreeList as $value)
+                       <tr >
+                          <td> <input type="checkbox" name="ids[]"  id="check" class="myCheckbox" value="{{ $value->id }}"></td>
+                          <td id="title">{{ $value->title }}
+                          <a  href="{{ URL::route('admission.degree_details', $value->id) }}">details</a>
+                          </td>
+                          <td>{{ $value->description }}</td>
+
+                       </tr>
+
+                  @endforeach
+               </tbody>
     </table>
 
 
@@ -78,24 +82,6 @@
        </div>
       </div>
  </div>
-
- <!-- Modal :: show Information -->
- <div class="modal fade" id="showModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-       <div class="modal-dialog">
-         <div class="modal-content">
-
-        </div>
-       </div>
-  </div>
-
-  <!-- Modal :: edit Information -->
-   <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-         <div class="modal-dialog">
-           <div class="modal-content">
-
-          </div>
-         </div>
-    </div>
 
 
 

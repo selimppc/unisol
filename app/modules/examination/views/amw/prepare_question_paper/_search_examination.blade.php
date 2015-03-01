@@ -3,7 +3,7 @@
     @include('examination::_sidebar')
 @stop
 @section('content')
-       <h1>Welcome to Examination : <strong>{{ ucwords(Auth::user()->username) }}</strong> </h1> <br>
+       <h1>Welcome to Examination : <strong></strong> </h1> <br>
 
        <div class="row">
            <div class="col-sm-12">
@@ -21,14 +21,14 @@
                         </div>
                         <div class="col-sm-2">
                             </br>
-                            {{ Form::submit('Filter', array('class'=>'btn btn-success'))}}
+                            {{ Form::submit('Filter', array('class'=>'btn btn-success btn-xs'))}}
                         </div>
                    </div>
                {{ Form::close() }}
 
                <div class="col-sm-4">
                        <div class="btn-group" style="margin-right: 10px">
-                           <button type="button" class="btn btn-info" data-toggle="modal"
+                           <button type="button" class="btn btn-info btn-xs" data-toggle="modal"
                                      data-target="#AddExamination">
                                        Add Examination
                            </button>
@@ -71,8 +71,8 @@
                                    <td>{{ Semester::getSemesterName($exam_list[$i]->semester_id) }}</td>
 
                                     <td>
-                                       <a href="{{ URL::route('examination.amw.viewExamination', [ 'id'=>$exam_list[$i]['id'] ])  }}" class="btn btn-default" data-toggle="modal" data-target="#modal" data-placement="left" title="Show" href="#">View</a>
-                                       <a href="{{ URL::route('examination.amw.editExamination', [ 'id'=>$exam_list[$i]['id'] ])  }}" class="btn btn-default" data-toggle="modal" data-target="#modal" data-placement="left" title="Edit" href="#">Edit</a>
+                                       <a href="{{ URL::route('examination.amw.viewExamination', [ 'id'=>$exam_list[$i]['id'] ])  }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal" data-placement="left" title="Show" href="#">View</a>
+                                       <a href="{{ URL::route('examination.amw.editExamination', [ 'id'=>$exam_list[$i]['id'] ])  }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal" data-placement="left" title="Edit" href="#">Edit</a>
                                     </td>
                                 </tr>
                             @endforeach
