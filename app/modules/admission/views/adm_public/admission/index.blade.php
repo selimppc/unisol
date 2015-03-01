@@ -28,18 +28,23 @@
 <br>
 
 {{ Form::open(['route' => ['admission.apt_details']]) }}
+
+
     {{---------------------------------------------Data Table: Starts-----------------------------------------------------------------}}
     <table id="example1" class="table table-bordered table-striped">
         <thead>
             <tr>
                <td class="col-lg-1"><input name="checkbox" type="checkbox" id="checkbox" class="checkbox" value=""></td>
+
                <th class="col-lg-4">degree Name</th>
+
                <th >Description</th>
             </tr>
         </thead>
 
        <tbody>
           @foreach($degreeList as $value)
+
                <tr>
                   <td ><input type="checkbox" name="ids[]"  id="check" class="myCheckbox" value="{{ $value->id }}"></td>
                   <td>{{ $value->title }}</td>
@@ -49,7 +54,7 @@
        </tbody>
 
     </table>
-    {{--<a class="pull-right btn btn-sm btn-info" href="{{ URL::route('admission.apt_details')}}">Apply</a>--}}
+
 
     {{ Form::submit('Apply All', array('class'=>'pull-right btn btn-info'))}}
 

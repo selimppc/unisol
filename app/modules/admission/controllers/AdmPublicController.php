@@ -14,9 +14,24 @@ class AdmPublicController extends \BaseController {
 	}
     public function admAptDetails(){
 
-        $check_id = Input::get('ids');
+        $data = new DegreeApplicant();
 
-        $degree_list = 
+        $data->degree_id = Input::get('ids[]');
+
+       if($data->save()) {
+           echo 'ok';
+       }
+        else{
+            return 0;
+        }
+
+
+
+
+
+
+//        $degree_list = new DegreeApplicant();
+
         //print_r($check_id) ;exit;
     }
 
