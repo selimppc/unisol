@@ -12,6 +12,13 @@ class AdmPublicController extends \BaseController {
         return View::make('admission::adm_public.admission.index',compact('degreeList'));
 
 	}
+    public function admAptDetails(){
+
+        $check_id = Input::get('ids');
+
+        $degree_list = 
+        //print_r($check_id) ;exit;
+    }
 
 	public function create()
 	{
