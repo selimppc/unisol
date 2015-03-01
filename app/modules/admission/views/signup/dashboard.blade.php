@@ -13,7 +13,7 @@
     <p class="alert">{{ Session::get('message') }}</p>
     @endif
 
-    <p>Welcome to your Dashboard. You are <b class="btn btn-sm btn-info">{{Auth::user()->get()->username}}</b>! </p>
+    <p>Welcome to your Dashboard. You are <b class="btn btn-sm btn-info">{{ isset(Auth::user()->get()->username) ? Auth::user()->get()->username : Auth::applicant()->get()->username}}</b>! </p>
 
 
     {{ HTML::linkAction('UserController@logout', 'Logout') }}
