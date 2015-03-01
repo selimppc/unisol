@@ -37,6 +37,11 @@ Route::any("dropdown/data", [
     "uses" => "HomeController@dropDownData"
 ]);
 
+Route::any("get-file", [
+    "as"   => "getFile",
+    "uses" => "HomeController@getFile"
+]);
+
 /*Route::get('drop-down-list', function(){
     $input = Input::get('option');
     $maker = Maker::find($input);

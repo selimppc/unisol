@@ -247,4 +247,15 @@ class HomeController extends BaseController {
             return Response::make(['no data found']);
         }
     }
+
+
+
+    public function getFile(){
+        try{
+            $contents = File::get($filename);
+        }
+        catch (Illuminate\Filesystem\FileNotFoundException $exception){
+            die("The file doesn't exist");
+        }
+    }
 }
