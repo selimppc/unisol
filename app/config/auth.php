@@ -15,20 +15,26 @@ return array(
 	|
 	*/
 
-	'driver' => 'eloquent',
+	/*'driver' => 'eloquent',
     'username' => 'username',
     'password' => 'hashed_password',
 	'model' => 'User',
-    'table' => 'user',
+    'table' => 'user',*/
 
-
-    /*'multi' => array(
+    'multi' => array(
         'applicant' => array(
             'driver' => 'eloquent',
             'model' => 'Applicant',
             'table' => 'applicant',
+        ),
+        'user' => array(
+            'driver' => 'eloquent',
+            'username' => 'username',
+            'password' => 'hashed_password',
+            'model' => 'User',
+            'table' => 'user',
         )
-    ),*/
+    ),
 
 
 	'reminder' => array(

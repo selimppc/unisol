@@ -252,13 +252,32 @@ class HomeController extends BaseController {
 
     public function getFile(){
 
-        $filename = "file\item_class_file\25-02-2015_call details.pdf";
+        $array = array('foo' => array('bar' => 'baz'));
 
-        try{
-            $contents = File::get($filename);
+        $array = array_dot($array);
+        print_r($string = str_random(10));exit;
+
+        $marks = [  95 => [1],
+                    90 => [9,2,3],
+                    85 => [8,2,3,4,5,6],
+                    80 => [7,2,3,4,5,6-15]
+                ];
+
+        $result = [];
+        $i = 0;
+        foreach ($marks as $key => $val) {
+            $j = 0;
+            foreach ($val as $value) {
+                if ($j == 0) {
+                    $result[] = $value;
+                    $j = 1;
+                }
+            }
+            $i++;
         }
-        catch (Illuminate\Filesystem\FileNotFoundException $exception){
-            die("The file doesn't exist");
-        }
+        print_r($result);
     }
+
+
+
 }

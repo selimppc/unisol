@@ -162,3 +162,9 @@ Route::any('amw/waiver_manage/show/{id}', ['as' => 'waiver_manage.show','uses' =
 Route::any('amw/waiver_manage/edit/{id}', ['as' => 'waiver_manage.edit','uses' => 'AdmAmwController@waiverEdit']);
 
 Route::any('amw/waiver_manage/update/{id}', ['as' => 'waiver_manage.update','uses' => 'AdmAmwController@waiverUpdate']);
+
+// ----------------------------Public : Admission starts----------------------------------------------------------
+
+Route::any('public/admission', ['as' => 'admission.index','uses' => 'AdmPublicController@admIndex']);
+
+Route::post('public/admission/apt_details', ['as' => 'admission.apt_details','uses' => 'AdmPublicController@admAptDetails']);
