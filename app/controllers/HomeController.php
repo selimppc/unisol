@@ -247,4 +247,18 @@ class HomeController extends BaseController {
             return Response::make(['no data found']);
         }
     }
+
+
+
+    public function getFile(){
+
+        $filename = "D:\xampp\htdocs\unisol\public\file\item_class_file\25-02-2015_call details.pdf";
+
+        try{
+            $contents = File::get($filename);
+        }
+        catch (Illuminate\Filesystem\FileNotFoundException $exception){
+            die("The file doesn't exist");
+        }
+    }
 }
