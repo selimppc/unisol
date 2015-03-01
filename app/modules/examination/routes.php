@@ -106,8 +106,8 @@ Route::any('examination/amw/search', [
 //    'uses' => ''
 //]);
 
-Route::any('examination/amw/assignFaculty/{id}',[
-    'as' =>'examination.amw.assignFaculty',
+Route::any('examination/amw/assign_faculty',[
+    'as' =>'examination.amw.assign_faculty',
     'uses' => 'ExmAmwController@assignFaculty'
 ]);
 

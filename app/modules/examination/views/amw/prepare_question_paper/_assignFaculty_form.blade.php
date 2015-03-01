@@ -1,8 +1,7 @@
-<fieldset style="padding: 10px; width: 90%;">
-
+<div style="padding: 10px; width: 90%;">
 
                 <div class="form-group">
-                      <strong>Question Title : </strong> {{ $data->title }}
+                      <strong>Question Title : </strong> {{--{{ $data->title }}--}}
                 </div>
 
                 <div class="form-group">
@@ -16,4 +15,4 @@
                 </div>
             {{ Form::submit('Submit', array('class' => 'btn btn-primary')) }}
              <a href="{{URL::previous('examination/amw/index/')}}" class="btn btn-default">Close </a>
-</fieldset>
+</div>
