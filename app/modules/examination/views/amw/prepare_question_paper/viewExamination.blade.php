@@ -1,6 +1,6 @@
 <div style="padding: 10px; width: 90%;">
 
-             <h2>Welcome to View Examination : <strong>{{ ucwords(Auth::user()->username) }}</strong> </h2> </br>
+             <h2>Welcome to View Examination : <strong></strong> </h2> </br>
              {{ Form::open(array('route'=>'examination.amw.viewExamination','method' => '')) }}
                      <div class="jumbotron text-center">
 
@@ -18,6 +18,6 @@
                              {{--<strong> Assign To:</strong> Coming Soon...</br>--}}
                          </p>
                      </div>
-                     <a href="{{URL::to('examination/amw/examination')}}" class="btn btn-default">Close </a>
+                     <a href="{{URL::to('examination/amw/examination')}}" class="btn btn-default btn-xs">Close </a>
              {{ Form::close() }}
 </div>

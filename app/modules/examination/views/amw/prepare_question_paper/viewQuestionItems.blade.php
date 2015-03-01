@@ -1,5 +1,5 @@
 <div style="padding: 10px; width: 90%;">
-              <h3>Welcome to View Question Items : <strong>{{ ucwords(Auth::user()->username) }}</strong> </h3> </br>
+              <h3>Welcome to View Question Items : <strong></strong> </h3> </br>
               {{ Form::open(array('route'=>'examination.amw.viewQuestionItems','method' => '')) }}
                      <div class="jumbotron text-left">
 

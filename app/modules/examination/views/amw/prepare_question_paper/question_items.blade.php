@@ -6,7 +6,7 @@
 
 @section('content')
 
-<h1>Welcome to Courses : <strong>{{ ucwords(Auth::user()->username) }}</strong> </h1> <br>
+<h1>Welcome to Courses : <strong></strong> </h1> <br>
     {{ Form::open(array('url' => 'examination/amw/batchDelete')) }}
 <table id="example" class="table table-striped  table-bordered"  >
     <thead>
@@ -46,7 +46,7 @@
         </td>
         <td>{{ $question_list->marks }}</td>
         <td>
-            <a href="{{ URL::route('examination.amw.viewQuestionItems', ['id'=>$question_list->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#modal" data-placement="left" title="Show" href="#"> View </a>
+            <a href="{{ URL::route('examination.amw.viewQuestionItems', ['id'=>$question_list->id])  }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal" data-placement="left" title="Show" href="#"> View </a>
 
         </td>
     </tr>
