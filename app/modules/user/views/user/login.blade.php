@@ -7,11 +7,11 @@
         {{ Form::open(array('url'=>'user/login', 'class'=>'form-signin')) }}
             <div>
                 <div class="form-group">
-                    {{  $errors->first('username', '<div class="alert alert-danger"><b>:message</b></div>')  }}
+                    {{ $errors->first('username', '<div class="alert alert-danger"><b>:message</b></div>')  }}
                     {{Form::text('username', null, ['class'=>'form-control', 'placeholder'=>'Username', 'required'=>'required'])}}
                 </div>
                 <div class="form-group">
-                    {{  $errors->first('password', '<div class="alert alert-danger"><b>:message</b></div>')  }}
+                    {{ $errors->first('password', '<div class="alert alert-danger"><b>:message</b></div>')  }}
                     {{Form::password('password', ['class'=>'form-control', 'placeholder'=>'Password', 'required'=>'required'])}}
                 </div>
                 <div class="form-group">
