@@ -39,14 +39,11 @@ App::after(function($request, $response){
 |--------------------------------------------------------------------------
 |
 */
-Route::filter('auth', function()
-{
-    if (Auth::admin()->guest()) return Redirect::guest('login');
-});
 
 Route::filter('auth', function(){
 	//if (Auth::guest()){
-    if (Auth::admin()->guest()){
+    //if (Auth::admin()->guest()){
+    if (Auth::user()->guest()){
 		if (Request::ajax()){
 			return Response::make('Unauthorized', 401);
 		}else{
@@ -213,15 +210,6 @@ Route::filter('auth.basic', function() {
 Route::filter('guest', function() {
     if (Auth::user()->check()) return Redirect::to('user/login');
 });
-
-
-Route::filter("auth", function() {
-    //if (Auth::guest()) {
-    if (Auth::admin()->guest()) {
-        return Redirect::route("user/login");
-    }
-});
-
 
 
 /*
