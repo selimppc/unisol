@@ -30,6 +30,7 @@ return array(
     'AdmExaminer' => $baseDir . '/app/modules/admission/models/AdmExaminer.php',
     'AdmExaminerComments' => $baseDir . '/app/modules/admission/models/AdmExaminerComments.php',
     'AdmFacultyController' => $baseDir . '/app/modules/admission/controllers/AdmFacultyController.php',
+    'AdmPublicController' => $baseDir . '/app/modules/admission/controllers/AdmPublicController.php',
     'AdmQuestion' => $baseDir . '/app/modules/admission/models/AdmQuestion.php',
     'AdmQuestionComments' => $baseDir . '/app/modules/admission/models/AdmQuestionComments.php',
     'AdmQuestionItems' => $baseDir . '/app/modules/admission/models/AdmQuestionItems.php',
