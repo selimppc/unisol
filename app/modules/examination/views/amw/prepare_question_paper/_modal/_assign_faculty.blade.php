@@ -1,4 +1,4 @@
-<div class="modal fade" id="AddExamination" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+<div class="modal fade" id="ass_fac" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -6,9 +6,6 @@
                 <h4 class="modal-title" id="myModalLabel">Assign Facutly</h4>
             </div>
             <div class="modal-body">
-                {{ Form::open(array('url' => 'examination/amw/assignFaculty', 'method' =>'post', 'role'=>'form','files'=>'true'))  }}
-                        @include('examination::amw/prepare_question_paper/_assignFaculty_form')
-                {{ Form::close() }}
             </div>
             <div class="modal-footer">
             </div>

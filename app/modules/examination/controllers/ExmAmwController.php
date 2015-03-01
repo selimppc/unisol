@@ -463,8 +463,8 @@ class ExmAmwController extends \BaseController {
 
     public function assignFaculty($id){
 
-//        $assign_faculty = ExmExaminer::find($id);
-//        return View::make('examination::amw.prepare_question_paper.viewQuestion',compact('assign_faculty'));
+        $assign_faculty = ExmExaminer::find($id);
+        return View::make('examination::amw.prepare_question_paper.assign_faculty',compact('assign_faculty'));
 
     }
 
