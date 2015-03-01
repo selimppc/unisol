@@ -3,7 +3,7 @@
     @include('examination::_sidebar')
 @stop
 @section('content')
-        <h1>Welcome to Examiners : <strong>{{ ucwords(Auth::user()->username) }}</strong> </h1> <br>
+        <h1>Welcome to Examiners : <strong></strong> </h1> <br>
         {{ Form::open(array('url' => 'examination/amw/batchDelete')) }}
             <table id="example" class="table table-striped  table-bordered"  >
                   <thead>
@@ -13,7 +13,7 @@
                                     </div>
                                     <div class="pull-right col-sm-6">
                                         <div class="btn-group" style="margin-right: 10px">
-                                            <button type="button" class="btn btn-info" data-toggle="modal"
+                                            <button type="button" class="btn btn-info btn-xs" data-toggle="modal"
                                                       data-target="#AddExaminer">
                                                         Add Examiner
                                             </button>
@@ -32,7 +32,7 @@
                        <strong> Exam Type: </strong>{{ AcmMarksDistItem::AcmMarksDistName($acm_marks_dist_item_id) }} </br>
                        </br>
 
-                       {{ Form::submit('Delete Items', array('class'=>'btn btn-danger', 'id'=>'hide-button', 'style'=>'display:none'))}}
+                       {{ Form::submit('Delete Items', array('class'=>'btn btn-danger btn-xs', 'id'=>'hide-button', 'style'=>'display:none'))}}
 
                          <br>
                          <tr>
@@ -68,7 +68,7 @@
 
 
                             <td>
-                                  <a href="{{ URL::route('examination.amw.viewExaminers', ['id'=>$examiners_list->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#modal" data-placement="left" title="View" href="#">View</a>
+                                  <a href="{{ URL::route('examination.amw.viewExaminers', ['id'=>$examiners_list->id])  }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal" data-placement="left" title="View" href="#">View</a>
                             </td>
                         </tr>
                   @endforeach

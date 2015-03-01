@@ -1,5 +1,5 @@
 <div style="padding: 10px; width: 90%;">
-                 <h2>Welcome to View Question : <strong>{{ ucwords(Auth::user()->username) }}</strong> </h2>
+                 <h2>Welcome to View Question : <strong></strong> </h2>
                      {{ Form::open(array('route'=>'examination.amw.viewQuestion','method' => '')) }}
                              <div class="jumbotron text-center">
                                  <h3><strong>Name of Examination :</strong>{{ ExmQuestion::getExamName($viewPrepareQuestionPaperAmw->exm_exam_list_id) }}</h3> </br>
@@ -11,6 +11,6 @@
                                      <strong> Assign To:</strong> Coming Soon...</br>
                                  </p>
                              </div>
-                              <a href="{{ URL::previous()}}" class="btn btn-default">Close </a>
+                              <a href="{{ URL::previous()}}" class="btn btn-default btn-xs">Close </a>
                      {{ Form::close() }}
 </div>
