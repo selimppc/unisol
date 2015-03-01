@@ -18,6 +18,7 @@ class AdmPublicController extends \BaseController {
 
         $data->degree_id = Input::get('ids[]');
 
+
        if($data->save()) {
            echo 'ok';
        }
