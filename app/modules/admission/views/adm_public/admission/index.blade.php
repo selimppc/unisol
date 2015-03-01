@@ -35,16 +35,13 @@
         <thead>
             <tr>
                <td class="col-lg-1"><input name="checkbox" type="checkbox" id="checkbox" class="checkbox" value=""></td>
-
                <th class="col-lg-4">degree Name</th>
-
                <th >Description</th>
             </tr>
         </thead>
 
        <tbody>
           @foreach($degreeList as $value)
-
                <tr>
                   <td ><input type="checkbox" name="ids[]"  id="check" class="myCheckbox" value="{{ $value->id }}"></td>
                   <td>{{ $value->title }}</td>
@@ -52,7 +49,6 @@
                </tr>
           @endforeach
        </tbody>
-
     </table>
 
 

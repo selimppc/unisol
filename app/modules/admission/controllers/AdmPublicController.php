@@ -14,10 +14,14 @@ class AdmPublicController extends \BaseController {
 	}
     public function admAptDetails(){
 
-        $data = new DegreeApplicant();
-
-        $data->degree_id = Input::get('ids[]');
-
+        $degree_ids = Input::get('ids');
+        foreach($degree_ids as $key => $value){
+            $data = new DegreeApplicant();
+            $data->degree_id = $value;
+            $data->applicant_id = 2;
+            $data->save();
+        }
+        exit("OK");
 
        if($data->save()) {
            echo 'ok';
