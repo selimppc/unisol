@@ -237,3 +237,8 @@ App::missing(function($exception)
 {
     return Response::view('errors.missing', array(), 404);
 });
+
+/*
+App::error(function(ModelNotFoundException $e) {
+    return Response::make('Not Found', 404);
+});*/

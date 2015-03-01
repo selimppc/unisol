@@ -18,10 +18,10 @@ class UserController extends \BaseController {
             $validator = $this->getLoginValidator();
             if ($validator->passes()) {
                 $credentials = $this->getLoginCredentials();
-                if (Auth::attempt($credentials)) {
+                if (Auth::user()->attempt($credentials)) {
                     //return Redirect::route("user/profile");
-                    Session::put('user_id', Auth::user()->id);
-                    Session::put('username', Auth::user()->username);
+                    Session::put('user_id', Auth::user()->get()->id);
+                    Session::put('username', Auth::user()->get()->username);
                     return Redirect::to("usersign/dashboard");
                 }
                 return Redirect::back()->withErrors([

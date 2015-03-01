@@ -71,4 +71,37 @@ class Helpers {
         }
     }
 
+
+    public static function meritList($student_passed_at_test, $total_quota){
+        $merit_position = 1;
+        foreach($student_passed_at_test as $k => $v){
+            if(isArray($v)){
+                arsort($v);
+                foreach($v as $kv => $vv){
+                    if( $total_quota > 0 )
+                        $merit_status = 'm';
+                    else
+                        $merit_status = 'w';
+                    // Update merit_postion and merit_status at degree_applicant table
+                    $merit_position ++;
+                    $total_quota--;
+                }
+            }else{
+                if( $total_quota > 0 )
+                    $merit_status = 'm';
+                else
+                    $merit_status = 'w';
+                // Update merit_postion and merit_status at degree_applicant table
+                $merit_position ++;
+                $total_quota--;
+            }
+        }
+    }
+
+
+
+
+
+
+
 } 

@@ -49,7 +49,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="">Control Panel  ( {{ isset(\Illuminate\Support\Facades\Auth::user()->username) ? ucwords(\Illuminate\Support\Facades\Auth::user()->username) : '' }} )</a>
+                <a class="navbar-brand" href="">Control Panel  ( {{ isset(Auth::user()->get()->username) ? ucwords(Auth::user()->get()->username) : '' }} )</a>
 
             </div>
             <!-- /.navbar-header -->
@@ -131,7 +131,7 @@
 
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a tabindex="-1" href=""><strong>{{ ucwords(Auth::user()->username) }}</strong></a>
+                        <li><a tabindex="-1" href=""><strong>{{ ucwords(Auth::user()->get()->username) }}</strong></a>
                         </li>
                         <li class="divider"></li>
                         <li><a tabindex="-1" href="{{URL::route('user/logout') }}">Logout</a></li>
