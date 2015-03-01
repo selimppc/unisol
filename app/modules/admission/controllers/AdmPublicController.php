@@ -27,9 +27,6 @@ class AdmPublicController extends \BaseController {
 
 
 
-
-
-
 //        $degree_list = new DegreeApplicant();
 
         //print_r($check_id) ;exit;
