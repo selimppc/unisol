@@ -3,7 +3,7 @@
     @include('examination::amw.prepare_question_paper._sidebar_examiner_for_course')
 @stop
 @section('content')
-        <h1>Welcome to Courses : <strong>{{ ucwords(Auth::user()->username) }}</strong> </h1> <br>
+        <h1>Welcome to Courses : <strong></strong> </h1> <br>
                     {{ Form::open(array('url' => 'examination/amw/batchDelete')) }}
                         <table id="example" class="table table-striped  table-bordered"  >
                                 <thead>
@@ -34,8 +34,8 @@
                                             <td>{{ $course_list->relCourseManagement->relCourse->relSubject->relDepartment->title }}</td>
 
                                             <td>
-                                               <a href="{{ URL::to('examination/amw/examiners',['year_id'=>$course_list->year_id , 'semester_id'=>$course_list->semester_id, 'course_management_id'=>$course_list->course_management_id,'acm_marks_dist_item_id'=>$course_list->acm_marks_dist_item_id, 'exm_exam_list_id'=>$course_list->id])  }}" class="btn btn-default" >Examiner</a>
-                                               <a href="{{ URL::to('examination/amw/index',['exam_list_id'=>$course_list->id , 'course_man_id'=>$course_list->course_management_id]) }}" class="btn btn-default">Question Paper</a>
+                                               <a href="{{ URL::to('examination/amw/examiners',['year_id'=>$course_list->year_id , 'semester_id'=>$course_list->semester_id, 'course_management_id'=>$course_list->course_management_id,'acm_marks_dist_item_id'=>$course_list->acm_marks_dist_item_id, 'exm_exam_list_id'=>$course_list->id])  }}" class="btn btn-default btn-xs" >Examiner</a>
+                                               <a href="{{ URL::to('examination/amw/index',['exam_list_id'=>$course_list->id , 'course_man_id'=>$course_list->course_management_id]) }}" class="btn btn-default btn-xs">Question Paper</a>
 
                                             </td>
                                         </tr>

@@ -64,8 +64,6 @@ class ExmAmwController extends \BaseController {
             $prepare_question_paper->title = Input::get('title');
             $prepare_question_paper->deadline = Input::get('deadline');
             $prepare_question_paper->total_marks = Input::get('total_marks');
-            $prepare_question_paper->created_by = Auth::user()->id;
-            $prepare_question_paper->updated_by = Auth::user()->id;
             $prepare_question_paper->save();
 
             // redirect
@@ -117,8 +115,7 @@ class ExmAmwController extends \BaseController {
             $prepare_question_paper->title = Input::get('title');
             $prepare_question_paper->deadline = Input::get('deadline');
             $prepare_question_paper->total_marks = Input::get('total_marks');
-            $prepare_question_paper->created_by = Auth::user()->id;
-            $prepare_question_paper->updated_by = Auth::user()->id;
+
 
 //            print_r($exam_list_id);exit;
 
@@ -237,10 +234,7 @@ class ExmAmwController extends \BaseController {
             $store_exam->acm_marks_dist_item_id = Input::get('acm_marks_dist_item_id');
             $store_exam->status = '0';
 
-            $store_exam->created_by = Auth::user()->id;
-            $store_exam->updated_by = Auth::user()->id;
-            $store_exam->created_at = Input::get('created_at');
-            $store_exam->updated_at = Input::get('updated_at');
+
             $store_exam->save();
 
             // redirect
@@ -283,10 +277,7 @@ class ExmAmwController extends \BaseController {
             $update_exam->course_management_id = Input::get('course_management_id');
             $update_exam->acm_marks_dist_item_id = Input::get('acm_marks_dist_item_id');
             $update_exam->status = '0';
-            $update_exam->created_by = Auth::user()->id;
-            $update_exam->updated_by = Auth::user()->id;
-            $update_exam->created_at = Input::get('created_at');
-            $update_exam->updated_at = Input::get('updated_at');
+
             $update_exam->save();
 
             // redirect
@@ -480,12 +471,17 @@ class ExmAmwController extends \BaseController {
 //        return View::make('examination::amw.prepare_question_paper._addExamination_form', compact('add_examiner'));
 //    }
 
-    public function assignFaculty($id){
+//    public function assignFaculty($id){
+//
+//        $assign_faculty = ExmExaminer::find($id);
+//        return View::make('examination::amw.prepare_question_paper._assignFaculty_form',compact('assign_faculty'));
+//
+//    }
 
-        $assign_faculty = ExmExaminer::find($id);
-        return View::make('examination::amw.prepare_question_paper.assign_faculty',compact('assign_faculty'));
+public function assignFaculty(){
 
-    }
+
+}
 
 
 

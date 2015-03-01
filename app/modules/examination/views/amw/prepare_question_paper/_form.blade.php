@@ -31,9 +31,9 @@
                       {{--{{ Form::select('assign_to',Input::old('assign_to'), array('class' => 'form-control','required'=>'required'))}}--}}
                 {{--</div>--}}
 
-            {{ Form::submit('Submit', array('class' => 'btn btn-primary')) }}
+            {{ Form::submit('Submit', array('class' => 'btn btn-primary btn-xs')) }}
 
-             <a href="{{URL::previous()}}" class="btn btn-default">Close </a>
+             <a href="{{URL::previous()}}" class="btn btn-default btn-xs">Close </a>
 
 
              <script>
