@@ -72,6 +72,7 @@
                <a class="btn btn-xs btn-default" href="{{ URL::route('degree_manage.edit', $value->id) }}" data-toggle="modal" data-target="#editModal" ><span class="glyphicon glyphicon-edit"></span></a>
                <a href="{{ URL::route('degree_manage.waiver', $value->id) }}">MW</a>
 
+
           </td>
 
 
