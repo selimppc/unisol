@@ -15,6 +15,7 @@
                 </div>
                 <div class="form-group">
                          {{ Form::label('comment', 'Comment') }}
+
                          {{ Form::textarea('comment', Null, ['size' => '40x6','placeholder'=>'Your Comments Here']) }}
 
                 </div>

@@ -8,7 +8,7 @@
 
             <div class="modal-body">
                 {{ Form::open(array('url' => 'examination/amw/storeExaminers', 'method' =>'post', 'role'=>'form','files'=>'true'))  }}
-                        {{--{{ Form::text('exm_exam_list_id', 3 ) }}--}}
+                        {{ Form::text('exm_exam_list_id', $exm_exam_list_id ) }}
                         @include('examination::amw.prepare_question_paper._addExaminer_form')
                 {{ Form::close() }}
             </div>
