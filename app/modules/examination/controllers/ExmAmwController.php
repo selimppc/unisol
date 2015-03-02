@@ -395,9 +395,8 @@ class ExmAmwController extends \BaseController {
 
 
 
-    public function examiners( $year_id, $semester_id, $course_management_id, $acm_marks_dist_item_id,$exm_exam_list_id){
-
-
+    public function examiners( $year_id, $semester_id, $course_management_id, $acm_marks_dist_item_id,$exm_exam_list_id)
+    {
         $examiners_home = ExmExaminer::with('relExmExamList','relExmExamList.relCourseManagement', 'relExmExamList.relCourseManagement.relYear',
                 'relExmExamList.relCourseManagement.relSemester','relExmExamList.relCourseManagement.relCourse.relSubject.relDepartment')
                 ->where('exm_exam_list_id', '=', $exm_exam_list_id)
