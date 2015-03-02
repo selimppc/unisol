@@ -61,7 +61,7 @@ Route::filter('academicFaculty', function()
         $role_id = Auth::user()->get()->role_id;
         $role = User::hasRole($role_id);
         if($role != 'faculty')
-            return Redirect::guest('usersign/dashboard');
+            return Redirect::guest('user-access');
     }else{
         return Redirect::guest('user/login');
     }

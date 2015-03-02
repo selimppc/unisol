@@ -10,7 +10,7 @@ class AcmFacultyController extends \BaseController {
 	public function  index()
 	{
 		$title = 'Course List';
-		$faculty_id = Auth::user()->id;
+		$faculty_id = Auth::user()->get()->id;
 		$datas= CourseManagement::with('relYear', 'relSemester', 'relCourse', 'relCourse.relSubject.relDepartment','relCourseType')
 				->where('user_id', '=', $faculty_id)
 				->get();
@@ -158,9 +158,9 @@ class AcmFacultyController extends \BaseController {
 			if( isset($created_by_amw) && isset($created_by_amw[$i]) )
 				$marks_dist->created_by = $created_by_amw[$i];
 			elseif(!isset($acm_marks_distribution_id[$i]))
-				$marks_dist->created_by = Auth::user()->id;
+				$marks_dist->created_by = Auth::user()->get()->id;
 			else
-				$marks_dist->updated_by = Auth::user()->id;
+				$marks_dist->updated_by = Auth::user()->get()->id;
 			//$marks_dist->acm_attendance_config_id = $attendance_id;
 			$marks_dist->save();
 			//$acm_config->acm_attendance_config_id->save($marks_dist);
@@ -209,7 +209,7 @@ class AcmFacultyController extends \BaseController {
 			$datas->title = Input::get('title');
 			$datas->description = Input::get('description');
 			$datas->acm_class_schedule_id = Input::get('class_time');
-			$datas->created_by = Auth::user()->id;
+			$datas->created_by = Auth::user()->get()->id;
 			$datas->save();
 			$academic_id = $datas->id;//to get last inserted id
 			//file upload starts here
@@ -267,7 +267,7 @@ class AcmFacultyController extends \BaseController {
 			$datas->title = Input::get('title');
 			$datas->description = Input::get('description');
 			$datas->acm_class_schedule_id = Input::get('class_time');
-			$datas->created_by = Auth::user()->id;
+			$datas->created_by = Auth::user()->get()->id;
 			$datas->save();
 			$academic_id = $id;// update exiting data that contains a id
 			//file upload starts here
@@ -288,9 +288,10 @@ class AcmFacultyController extends \BaseController {
 			return Redirect::to($redirect_url)->with('message','Successfully added!');
 		} else {
 			// failure, get errors
-			$errors = $datas->errors();
-			Session::flash('errors', $errors);
-			return Redirect::to($redirect_url)->with('message',$errors);
+		//	$errors = $datas->errors();
+			//Session::flash('errors', $errors);
+			//return Redirect::to($redirect_url)->with('message',$errors);
+			return Redirect::to($redirect_url)->with('message','Data not saved');
 		}
 	}
 
@@ -340,7 +341,7 @@ class AcmFacultyController extends \BaseController {
 			$datas->title = Input::get('title');
 			$datas->description = Input::get('description');
 			$datas->acm_class_schedule_id = Input::get('class_time');
-			$datas->created_by = Auth::user()->id;
+			$datas->created_by = Auth::user()->get()->id;
 			$datas->save();
 			$academic_id = $datas->id;//to get last inserted id
 			//file upload starts here
@@ -398,7 +399,7 @@ class AcmFacultyController extends \BaseController {
 			$datas->title = Input::get('title');
 			$datas->description = Input::get('description');
 			$datas->acm_class_schedule_id = Input::get('class_time');
-			$datas->created_by = Auth::user()->id;
+			$datas->created_by = Auth::user()->get()->id;
 			$datas->save();
 			$academic_id = $id;// update exiting data that contains a id
 			//file upload starts here
@@ -419,9 +420,10 @@ class AcmFacultyController extends \BaseController {
 			return Redirect::to($redirect_url)->with('message','Successfully added!');
 		} else {
 			// failure, get errors
-			$errors = $datas->errors();
-			Session::flash('errors', $errors);
-			return Redirect::to($redirect_url)->with('message',$errors);
+			//$errors = $datas->errors();
+			//Session::flash('errors', $errors);
+			//return Redirect::to($redirect_url)->with('message',$errors);
+			return Redirect::to($redirect_url)->with('message','data not updated');
 		}
 	}
 	public function ajax_delete_aca_academic_details_class_test()
@@ -446,12 +448,15 @@ class AcmFacultyController extends \BaseController {
 
 	public  function assign_class_test($acm_id, $cm_id, $mark_dist_id)
 	{
-
+		$acm_data = AcmAcademic::with('relAcmClassSchedule')
+			->where('id', '=', $acm_id)
+			->first();
+		$exam_questions= array('' => 'Select Examination Question') + ExmQuestion::lists('title', 'id');
 		$cm_data = CourseManagement::with('relSemester','relYear','relUser','relCourse.relSubject.relDepartment')
 			//->where('course_management_id','=' ,$cm_id)
-			->where('year_id','=' , 17)
-			->where('semester_id','=' ,2)
-//			->where('course_id','=' , 1)
+			//->where('year_id','=' , 17)
+			//->where('semester_id','=' ,$cm_id)
+			//->where('course_id','=' , 1)
 			//->where('department_id','=' , 1)
 			->get();
 
@@ -461,7 +466,26 @@ class AcmFacultyController extends \BaseController {
 		$config_data = AcmMarksDistribution::with('relAcmMarksDistItem', 'relCourseManagement.relCourse')
 			->where('course_management_id', '=', $cm_id)
 			->get();
-		return View::make('academic::faculty.mark_distribution_courses.marks_dist_item_class_test.assign',compact('data','config_data','cm_data'));
+		return View::make('academic::faculty.mark_distribution_courses.marks_dist_item_class_test.assign',compact('data','config_data','cm_data','exam_questions','acm_data'));
+	}
+	public function batch_assign_class_test()
+	{
+
+		$data=Input::all();
+		$chk=Input::get('chk');
+		$aca_id=Input::get('acm_academic_id');
+		$exam_id=Input::get('exam_question');
+
+		foreach($chk as $key => $value) {
+			$model = new AcmAcademicAssignStudent();
+			$model->acm_academic_id = $aca_id;
+			$model->exm_question_id = $exam_id;
+			$model->assigned_by = Auth::user()->get()->id;
+			$model->user_id = $value;
+			$model->save();
+		}
+		return Redirect::back()->with('message','Successfully added!');
+
 	}
 
 }
