@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('sidebar')
     @include('examination::_sidebar')
-{{--    @include('examination::amw.prepare_question_paper._sidebar_examiner')--}}
+{{--    @include('examination::amw.prepare_question_paper._sidebar_examiner_for_examination')--}}
 @stop
 @section('content')
        <h1>Welcome to Examination : <strong></strong> </h1> <br>
