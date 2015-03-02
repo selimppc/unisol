@@ -126,7 +126,7 @@ Route::any('academic/faculty/marks-dist-item/class_test/assign/{acm_id}/{cm_id}/
     'uses'=> 'AcmFacultyController@assign_class_test'
 ]);
 Route::any('batch/assign',[
-    'as' => 'batch/assign',
+    'as' => 'batch.assign',
     'uses'=> 'AcmFacultyController@batch_assign_class_test'
 ]);
 

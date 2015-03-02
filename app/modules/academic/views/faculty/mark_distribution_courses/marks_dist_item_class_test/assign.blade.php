@@ -10,6 +10,7 @@
             {{ Form::label('exam_question', 'Examination Question:') }}
             {{ Form::select('exam_question',$exam_questions,Input::old('exam_question'),['class'=>'form-control','required']) }}
         </div>
+        <p style="color: cornflowerblue">Help Text: If CT question is not prepared then tell faculty to create question paper.</p>
     </div>
     <table id="example" class="table table-bordered table-hover table-striped">
         <thead>
@@ -43,11 +44,13 @@
             </tr>
         @endforeach
         </tbody>
-        <div class="button" style="margin-top: 10px">
-            <a href="{{URL::previous('academic/faculty/marks/dist/item/class_test/')}}" class="btn btn-info btn-xs " style="margin-left: 72px">Back</a>
-            {{ Form::submit('Do Assign ', array('class'=>'btn btn-success btn-xs'))}}
-            {{ Form::submit('Do Revoke', array('class'=>'btn btn-danger btn-xs'))}}
-        </div>
     </table>
+    <div class="button" style="margin-top: 10px">
+        <a href="{{URL::previous('academic/faculty/marks/dist/item/class_test/')}}" class="btn btn-info btn-xs ">Back</a>
+        {{ Form::submit('Do Assign ', array('class'=>'btn btn-success btn-xs'))}}
+        {{ Form::submit('Do Revoke', array('class'=>'btn btn-danger btn-xs'))}}
+
+    </div>
     {{ Form::close() }}
 @stop
+
