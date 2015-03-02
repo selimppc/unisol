@@ -12,7 +12,6 @@
                         @include('examination::amw.prepare_question_paper._addExaminer_form')
                 {{ Form::close() }}
             </div>
-
             <div class="modal-footer">
             </div>
         </div>

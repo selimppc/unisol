@@ -24,8 +24,6 @@
                          </td>
                     </tr>
 
-
-
                     {{--<tr>--}}
                          {{--<td>--}}
                           {{--<a href="{{ action('ExmAmwController@courses') }}"> Courses</a> <span class="label label-success"></span>--}}

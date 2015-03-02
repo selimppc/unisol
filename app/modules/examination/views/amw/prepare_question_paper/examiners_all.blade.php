@@ -39,24 +39,9 @@
                         <tr>
                             <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $examiners_list['id'] }}"></td>
 
-{{--                             <td>{{ HTML::linkAction('ExmAmwController@viewExaminers',($examiners_list->relUser->relUserProfile->first_name.' '.$examiners_list->relUser->relUserProfile->middle_name.' '.$examiners_list->relUser->relUserProfile->last_name),['id'=>$examiners_list->id]) }}</td>--}}
                              <td><span data-toggle="modal" data-target="#modal" data-placement="left" title="View" href="#">{{ HTML::linkAction('ExmAmwController@viewExaminers',($examiners_list->relUser->relUserProfile->first_name.' '.$examiners_list->relUser->relUserProfile->middle_name.' '.$examiners_list->relUser->relUserProfile->last_name),['id'=>$examiners_list->id]) }}</span></td>
-                             {{--<td> <span href="{{ URL::route('examination.amw.viewExaminers',($examiners_list->relUser->relUserProfile->first_name),['id'=>$examiners_list->id]) }}" class="btn btn-default" data-toggle="modal" data-target="#modal" data-placement="left" title="Show" href="#">View</span></td>--}}
-
-                                {{--<td><label type="button" class="label" data-toggle="modal" data-target="#modal">--}}
-                                 {{--{{ HTML::linkAction('ExmAmwController@viewExaminers',($examiners_list->relUser->relUserProfile->first_name.' '.$examiners_list->relUser->relUserProfile->middle_name.' '.$examiners_list->relUser->relUserProfile->last_name),['id'=>$examiners_list->id]) }}--}}
-                                {{--</label></td>--}}
-
                              <td>{{ $examiners_list->relExmExamList->relCourseManagement->relCourse->relSubject->relDepartment->title }}</td>
-
-
-                             {{--<td>{{ $examiners_list->type }} </td>--}}
-                             {{--<td> {{ $examiners_list->assigned_by }} </td>--}}
-                             {{--<td> {{ $examiners_list->deadline }} </td>--}}
-                             {{--<td> {{ $examiners_list->note }} </td>--}}
-
                              <td>{{ $examiners_list->status }} </td>
-
 
                             <td>
                                   <a href="{{ URL::route('examination.amw.viewExaminers', ['id'=>$examiners_list->id])  }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal" data-placement="left" title="View" href="#">View</a>

@@ -4,4 +4,5 @@
                     @include('examination::amw/prepare_question_paper/_assignFaculty_form')
               {{ Form::close() }}
 
+
 </div>

@@ -26,7 +26,6 @@
                                 <tbody>
                                   @foreach($course_data as $course_list)
                                         <tr>
-
                                             <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $course_list['id'] }}"></td>
                                             <td> {{ $course_list->relCourseManagement->relCourse->title }} </td>
 

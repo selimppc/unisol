@@ -76,15 +76,10 @@
                                     </td>
                                 </tr>
                             @endforeach
-
-
                           @endif
-
                       </tbody>
                </table>
            {{form::close() }}
-
-
            <p>&nbsp;</p>
            <p>&nbsp;</p>
 

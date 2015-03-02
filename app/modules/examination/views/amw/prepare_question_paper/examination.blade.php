@@ -36,10 +36,7 @@
                        </div>
                </div>
            </div>
-        </div>
-
-
-
+       </div>
 
 
            {{ Form::open(array('url' => 'examination/amw/batchDelete')) }}

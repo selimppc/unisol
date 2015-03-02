@@ -407,8 +407,7 @@ class ExmAmwController extends \BaseController {
 
         $course_title = CourseManagement::with('relCourse')->where('id' ,'=', $course_management_id)->first()->relCourse->title;
 
-//        $exam_list_id = ExmExaminer::where('exm_exam_list_id' ,'=', $exam_list_id)
-//            ->get();
+//        $exam_list_id = ExmExaminer::where('exm_exam_list_id' ,'=', $exam_list_id)->get();
 
         return View::make('examination::amw.prepare_question_paper.examiners',
             compact('examiners_home','acm_marks_dist_item_id','course_management_id', 'year_id',
@@ -423,9 +422,7 @@ class ExmAmwController extends \BaseController {
             ->get();
 
 //        $course_title = CourseManagement::with('relCourse')->where('id' ,'=', $course_management_id)->first()->relCourse->title;
-
-//        $exam_list_id = ExmExaminer::where('exm_exam_list_id' ,'=', $exam_list_id)
-//            ->get();
+//        $exam_list_id = ExmExaminer::where('exm_exam_list_id' ,'=', $exam_list_id)->get();
 
         return View::make('examination::amw.prepare_question_paper.examiners_all',
             compact('examiners_list'));

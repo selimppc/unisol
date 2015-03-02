@@ -1,14 +1,10 @@
 <fieldset style="padding: 10px; width: 90%;">
 
-            <?php
-                $examiner_comments = ExmExaminerComments::where('exm_exam_list_id','=', $exam_list_id)->get();
-            ?>
-
+            <?php $examiner_comments = ExmExaminerComments::where('exm_exam_list_id','=', $exam_list_id)->get(); ?>
 
                 <div class="form-group">
                       <strong>Question Title : </strong> {{ $prepare_question_paper_amw->title }}
                 </div>
-
 
                 <div class="form-group">
                          {{ Form::label('user_id', 'Examiner') }}
@@ -25,19 +21,12 @@
 
                                             As &nbsp; <strong>{{  strtoupper(Role::RoleName($examiner_comments->commented_by)) }} </strong>
 
-
-
-
-
-
-                                               {{--{{ UserProfile::lists('middle_name','user_id') }}--}}
                                                </br></br>
                                                &nbsp; &nbsp; {{ $examiner_comments->comment }}
 
                                                </br> </br>
                                          @endforeach
                                  </div>
-
 
                          {{ Form::textarea('comment', Input::old('comments'), array('size' => '40x4','class' => 'form-control','required'=>'required')) }}
                 </div>
