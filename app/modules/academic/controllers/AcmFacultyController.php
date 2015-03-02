@@ -445,7 +445,6 @@ class AcmFacultyController extends \BaseController {
 
 		}
 	}
-
 	public  function assign_class_test($acm_id, $cm_id, $mark_dist_id)
 	{
 		$acm_data = AcmAcademic::with('relAcmClassSchedule')
@@ -470,7 +469,6 @@ class AcmFacultyController extends \BaseController {
 	}
 	public function batch_assign_class_test()
 	{
-
 		$data=Input::all();
 		$chk=Input::get('chk');
 		$aca_id=Input::get('acm_academic_id');
