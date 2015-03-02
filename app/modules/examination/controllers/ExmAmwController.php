@@ -417,6 +417,7 @@ class ExmAmwController extends \BaseController {
 
     public function get_all_examiners( ){
 
+
         $examiners_list = ExmExaminer::with('relExmExamList','relExmExamList.relCourseManagement', 'relExmExamList.relCourseManagement.relYear',
             'relExmExamList.relCourseManagement.relSemester','relExmExamList.relCourseManagement.relCourse.relSubject.relDepartment')
             ->get();
