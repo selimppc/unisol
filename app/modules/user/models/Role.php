@@ -13,7 +13,6 @@ class Role extends Eloquent {
         return $this->belongsToMany('User');
     }
 
-
     public static function boot(){
         parent::boot();
         static::creating(function($query){
@@ -23,6 +22,14 @@ class Role extends Eloquent {
         static::updating(function($query){
             $query->updated_by = Auth::user()->get()->id;
         });
+    }
+
+
+    public function scopeRoleName($query , $role_id){
+        $query = UserProfile::select(DB::raw('title AS role_name'))
+            ->where('id', '=', $role_id)
+            ->first()->role_name;
+        return $query;
     }
 
 } 
