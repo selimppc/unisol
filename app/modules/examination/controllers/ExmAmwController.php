@@ -438,6 +438,7 @@ class ExmAmwController extends \BaseController {
             // success code
             $examiner_mdeol->exm_exam_list_id = Input::get('exm_exam_list_id');
             $examiner_mdeol->user_id = Input::get('user_id');
+            $examiner_mdeol->type = 'type as examiners';
 
             if($examiner_mdeol->save()){
 
@@ -445,7 +446,7 @@ class ExmAmwController extends \BaseController {
                 $examiner_comments->exm_exam_list_id = Input::get('exm_exam_list_id');
                 $examiner_comments->comment = Input::get('comment');
                 $examiner_comments->commented_to = Input::get('user_id');
-                $examiner_comments->commented_by = Auth::user()->id;
+                $examiner_comments->commented_by = Auth::user()->get()->id;
 
                 if($examiner_comments->save()){
                     Session::flash('message', 'Examiner Successfully Added!');
@@ -478,8 +479,38 @@ class ExmAmwController extends \BaseController {
 //
 //    }
 
-public function assignFaculty(){
+public function assign_faculty(){
+    $data = Input::all();
+    $examiner_mdeol = new ExmExaminer();
 
+    if ($examiner_mdeol->validate($data))
+    {
+        // success code
+        $examiner_mdeol->exm_exam_list_id = Input::get('exm_exam_list_id');
+        $examiner_mdeol->user_id = Input::get('user_id');
+        $examiner_mdeol->type = 'type as faculty';
+
+        if($examiner_mdeol->save()){
+
+            $examiner_comments = new ExmExaminerComments();
+            $examiner_comments->exm_exam_list_id = Input::get('exm_exam_list_id');
+            $examiner_comments->comment = Input::get('comment');
+            $examiner_comments->commented_to = Input::get('user_id');
+            $examiner_comments->commented_by = Auth::user()->get()->id;
+
+            if($examiner_comments->save()){
+                Session::flash('message', 'Faculty Successfully Assigned!');
+                return Redirect::back();
+            }
+        }else{
+            // redirect
+            Session::flash('error', 'Failed!');
+            return Redirect::back();
+        }
+//        // redirect
+//        Session::flash('message', 'Examiner Successfully Added!');
+//        return Redirect::to('examination/amw/examiners');
+    }
 
 }
 
