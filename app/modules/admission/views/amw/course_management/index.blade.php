@@ -6,15 +6,7 @@
 
 
 <section class="content">
-@if(!empty($error_code) && $error_code == 5)
-    <script>
-        $( document ).ready(function() {
-            $(function() {
-                $('#showModal').modal('show');
-            });
-        });
-    </script>
-@endif
+
 
 <div class="box-body">
 

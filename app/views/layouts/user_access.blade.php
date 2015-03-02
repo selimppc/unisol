@@ -5,10 +5,10 @@
 @stop
 
 @section('content')
-    @if( Session::has('user-access'))
+    @if( Session::has('user-access'=='you'))
         <script type="text/javascript">
             //$(document).ready(function() {
-                $('#popupmodal').modal();
+                $('#popupmodal').modal('show');
             //});
         </script>
 
