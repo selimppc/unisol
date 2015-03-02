@@ -37,6 +37,7 @@
             if ( {{Input::old('autoOpenModal', 'false')}} ){
                 $('#myModalLogin').foundation('reveal', 'open');
             }
+            
         });
     </script>
 
