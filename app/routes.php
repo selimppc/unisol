@@ -11,6 +11,7 @@
 |
 */
 
+Route::get('user-access','HomeController@userAccess');
 
 Route::get('/hellow','TestController@index');
 

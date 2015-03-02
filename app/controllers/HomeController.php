@@ -18,6 +18,13 @@ class HomeController extends BaseController {
 	|
 	*/
 
+
+    public function userAccess(){
+        return View::make('layouts.user_access')->with("user-access", "You must ");
+    }
+
+
+
 	public function showWelcome()
 	{
 		return View::make('hello');
