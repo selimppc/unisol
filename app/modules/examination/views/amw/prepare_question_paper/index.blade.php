@@ -9,13 +9,10 @@
                     <thead>
                         <div class="row">
                             <div class="col-sm-12">
+
                                 <div class="col-sm-6">
-
-                                     {{--<strong> Year :</strong> {{ $data->relExmExamList->year_id }} </br>--}}
-                                       {{--</br>--}}
-                                     {{--<strong> Semester :</strong>{{ $data->relExmExamList->semester_id }} </br>--}}
-
                                 </div>
+                                
                                 <div class="col-sm-6">
                                     <div class="btn-group" style="margin-right: 10px">
                                         <button type="button" class="btn btn-default btn-xs" data-toggle="modal"
@@ -24,6 +21,7 @@
                                         </button>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
 

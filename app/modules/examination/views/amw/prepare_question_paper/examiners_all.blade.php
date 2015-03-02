@@ -36,6 +36,7 @@
 
               <tbody>
                   @foreach($examiners_list as $examiners_list)
+
                         <tr>
                             <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $examiners_list['id'] }}"></td>
 
@@ -51,6 +52,7 @@
               </tbody>
             </table>
         {{form::close() }}
+
 
 @include('examination::amw.prepare_question_paper._modal._common_modal')
 @include('examination::amw.prepare_question_paper._modal._add_examiner')
