@@ -3,8 +3,6 @@
                 $exm_exam_list_id = ExmExamList::lists('title', 'id');
                 $course_name = Course::lists('title','id');
             ?>
-
-
                 <div class="form-group">
                        {{ Form::label('exm_exam_list_id', 'Name of Examination ') }}
                        {{ Form::select('exm_exam_list_id', $exm_exam_list_id, Input::old('exm_exam_list_id') )}}
@@ -26,15 +24,9 @@
                      {{ Form::text('total_marks', Input::old('total_marks'), array('class' => 'form-control','required'=>'required')) }}
                 </div>
 
-                {{--<div class="form-group">--}}
-                      {{--{{ Form::label('assign_to', 'Assign To') }}--}}
-                      {{--{{ Form::select('assign_to',Input::old('assign_to'), array('class' => 'form-control','required'=>'required'))}}--}}
-                {{--</div>--}}
-
             {{ Form::submit('Submit', array('class' => 'btn btn-primary btn-xs')) }}
 
              <a href="{{URL::previous()}}" class="btn btn-default btn-xs">Close </a>
-
 
              <script>
                  $('.datepicker').each(function() {

@@ -7,8 +7,11 @@
                       <h4><strong> Department:</strong>{{ $view_examiner_amw->relExmExamList->relCourseManagement->relCourse->relSubject->relDepartment->title  }}</h4> </br>
 
                         <strong> Subject:</strong> {{ $view_examiner_amw->relExmExamList->relCourseManagement->relCourse->relSubject->title }} </br>
+
                         <strong> Name of Faculty:</strong> {{ $view_examiner_amw->relUser->relUserProfile->first_name.' '.$view_examiner_amw->relUser->relUserProfile->middle_name.' '.$view_examiner_amw->relUser->relUserProfile->last_name }} </br>
+
                         <strong> Status:</strong> {{ $view_examiner_amw->status }} </br>
+
                         <strong> Comments:</strong> </br> {{ $view_examiner_amw->comment }}
 
                         <div class="form-group">

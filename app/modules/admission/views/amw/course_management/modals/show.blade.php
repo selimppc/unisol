@@ -72,6 +72,7 @@
         <p>&nbsp;</p>
 
         <a href="{{URL::to('amw/course_manage') }} " class="pull-right btn btn-default" span class="glyphicon-refresh">Close</a>
+
 <br>
         {{Form::close()}}
   </div>

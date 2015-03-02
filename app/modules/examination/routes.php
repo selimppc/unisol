@@ -25,7 +25,6 @@ include("routes_sh.php");
 //]);
 
 
-
 Route::any('examination/amw/deshboard', [
     'as' => 'examination.amw.deshboard',
     'uses' => 'ExmAmwController@deshboard'
@@ -74,8 +73,6 @@ Route::any('examination/amw/updateQuestionPaper/{id}', [
     'uses' => 'ExmAmwController@updateQuestionPaper'
 ]);
 
-
-
 Route::any('examination/amw/courses/{acm_marks_dist_item_id}/{year_id}/{semester_id}/{c_m_id}',[
     'as' =>'examination/amw/courses',
     'uses' => 'ExmAmwController@courses'
@@ -111,8 +108,6 @@ Route::any('examination/amw/assign_faculty',[
     'uses' => 'ExmAmwController@assign_faculty'
 ]);
 
-
-
 Route::any('examination/amw/examiners/{year_id}/{semester_id}/{course_management_id}/{acm_marks_dist_item_id}/{exm_exam_list_id}',[
     'as' =>'examination/amw/examiners',
     'uses' => 'ExmAmwController@examiners'
@@ -122,8 +117,6 @@ Route::any('examination/amw/get-all-examiners',[
     'as' =>'examination.amw.get_all_examiners',
     'uses' => 'ExmAmwController@get_all_examiners'
 ]);
-
-
 
 Route::any('examination/amw/addExaminers',[
     'as' =>'examination/amw/addExaminers',

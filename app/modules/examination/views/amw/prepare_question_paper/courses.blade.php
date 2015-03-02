@@ -1,6 +1,7 @@
 @extends('layouts.master')
 @section('sidebar')
-    @include('examination::amw.prepare_question_paper._sidebar_examiner_for_course')
+     {{-- @include('examination::amw.prepare_question_paper._sidebar_examiner_for_course')--}}
+       @include('examination::_sidebar')
 @stop
 @section('content')
         <h1>Welcome to Courses : <strong></strong> </h1> <br>
@@ -25,7 +26,6 @@
                                 <tbody>
                                   @foreach($course_data as $course_list)
                                         <tr>
-
                                             <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $course_list['id'] }}"></td>
                                             <td> {{ $course_list->relCourseManagement->relCourse->title }} </td>
 

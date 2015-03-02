@@ -1,9 +1,5 @@
 <div class="panel panel-default">
         <div class="panel-heading">
-                {{--<h4 class="panel-title">--}}
-                    {{--<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><span class="glyphicon glyphicon-user">--}}
-
-                {{--</h4>--}}
         </div>
         <div id="collapseTwo" class="panel-collapse collapse in">
             <div class="panel-body">
@@ -20,7 +16,6 @@
                           <a href="{{ action('ExmAmwController@examination') }}"> Examination</a> <span class="label label-success"></span>
                          </td>
                     </tr>
-
 
 
                     {{--<tr>--}}
@@ -47,7 +42,6 @@
                          {{--<a href="{{ action('ExmAmwController@questionList') }}"> Question List</a> <span class="label label-success"></span>--}}
                         {{--</td>--}}
                      {{--</tr>--}}
-
 
                 </table>
             </div>

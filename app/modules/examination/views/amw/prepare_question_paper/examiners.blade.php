@@ -72,6 +72,7 @@
                             </td>
                         </tr>
                   @endforeach
+
               </tbody>
             </table>
         {{form::close() }}

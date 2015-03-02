@@ -6,6 +6,8 @@
 
 
 <section class="content">
+
+
 <div class="box-body">
 
 <h3> Course Management </h3>

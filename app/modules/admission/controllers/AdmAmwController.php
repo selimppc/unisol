@@ -8,6 +8,9 @@ class AdmAmwController extends \BaseController
         $this->beforeFilter('admAmw', array('except' => array('index')));
     }
 
+    public function back(){
+        return Redirect::back()->with('error_code', 5);;
+    }
 // Admission : Course Management starts here...........................................................
     public function index()
     {

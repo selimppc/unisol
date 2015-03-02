@@ -15,6 +15,7 @@
   </div>
 </div>
 
+
 {{--<!-- Modal for delete -->--}}
 <div class="modal fade " id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog">
