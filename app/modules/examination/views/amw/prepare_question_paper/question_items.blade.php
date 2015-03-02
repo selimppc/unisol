@@ -28,29 +28,27 @@
     </tr>
     </thead>
     <tbody>
-    @foreach($questions_item as $question_list)
-        <tr>
-            <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $question_list['id'] }}"></td>
+        @foreach($questions_item as $question_list)
+            <tr>
+                <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $question_list['id'] }}"></td>
 
-            <td> {{ $question_list->title }} </td>
-            <td>
-                @if($question_list->question_type == 'text')
-                  Descriptive
-                @elseif($question_list->question_type == "radio")
-                  MCQ / Single
-                @else
-                  MCQ / Multiple
-                @endif
-            </td>
-            <td>{{ $question_list->marks }}</td>
-            <td>
-                <a href="{{ URL::route('examination.amw.viewQuestionItems', ['id'=>$question_list->id])  }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal" data-placement="left" title="Show" href="#"> View </a>
+                <td> {{ $question_list->title }} </td>
+                <td>
+                    @if($question_list->question_type == 'text')
+                      Descriptive
+                    @elseif($question_list->question_type == "radio")
+                      MCQ / Single
+                    @else
+                      MCQ / Multiple
+                    @endif
+                </td>
+                <td>{{ $question_list->marks }}</td>
+                <td>
+                    <a href="{{ URL::route('examination.amw.viewQuestionItems', ['id'=>$question_list->id])  }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal" data-placement="left" title="Show" href="#"> View </a>
 
-            </td>
-        </tr>
-        
-
-    @endforeach
+                </td>
+            </tr>
+        @endforeach
     </tbody>
 </table>
 {{form::close() }}
