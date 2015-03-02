@@ -58,11 +58,13 @@
                                     @else
                                            <div class="text-center">
                                                 {{ Form::textarea('desc', 'Write Your Answer', ['size' => '40x6']) }}
-                                            </div>
+                                           </div>
                                     @endif
                                </div>
                              </div>
                      </div>
+
                      <a href="{{URL::previous()}}" class="btn btn-default">Close </a>
+
               {{ Form::close() }}
 </div>
