@@ -20,12 +20,19 @@
 
                                  <div class="jumbotron text-left" style="padding-top: 2px; padding-left: 2px; padding-bottom: 5px; background-color: #FF8C95;">
                                          @foreach($examiner_comments as $examiner_comments)
+
                                                &nbsp; <strong>{{ User::FullName($examiner_comments->commented_by) }} </strong>
 
-                                               {{--As &nbsp; <strong>{{ User::FullName($examiner_comments->commented_to) }} </strong>--}}
+                                            As &nbsp; <strong>{{  strtoupper(Role::RoleName($examiner_comments->commented_by)) }} </strong>
 
+
+
+
+
+
+                                               {{--{{ UserProfile::lists('middle_name','user_id') }}--}}
                                                </br></br>
-                                               &nbsp; As &nbsp; {{ Role::RoleName($examiner_comments->commented_by) }}
+                                               &nbsp; &nbsp; {{ $examiner_comments->comment }}
 
                                                </br> </br>
                                          @endforeach

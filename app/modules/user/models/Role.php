@@ -26,7 +26,7 @@ class Role extends Eloquent {
 
     public function scopeRoleName($query , $user_id){
         $role_id = User::find($user_id)->role_id;
-        $query = UserProfile::select(DB::raw('title AS role_name'))
+        $query = $this::select(DB::raw('title AS role_name'))
             ->where('id', '=', $role_id)
             ->first()->role_name;
         return $query;
