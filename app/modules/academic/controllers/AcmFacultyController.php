@@ -445,19 +445,30 @@ class AcmFacultyController extends \BaseController {
 
 		}
 	}
+
+	/**
+	 * @param $acm_id
+	 * @param $cm_id
+	 * @param $mark_dist_id
+	 * @return mixed
+     */
 	public  function assign_class_test($acm_id, $cm_id, $mark_dist_id)
 	{
-		$acm_data = AcmAcademic::with('relAcmClassSchedule')
+		$acm= AcmAcademic::with('relAcmClassSchedule')
 			->where('id', '=', $acm_id)
 			->first();
-		$exam_questions= array('' => 'Select Examination Question') + ExmQuestion::lists('title', 'id');
-		$cm_data = CourseManagement::with('relSemester','relYear','relUser','relCourse.relSubject.relDepartment')
-			//->where('course_management_id','=' ,$cm_id)
-			//->where('year_id','=' , 17)
-			//->where('semester_id','=' ,$cm_id)
-			//->where('course_id','=' , 1)
-			//->where('department_id','=' , 1)
+		$acm_data = AcmAcademic::with('relAcmClassSchedule','relCourseManagement.relSemester','relCourseManagement.relYear','relCourseManagement.relUser','relCourseManagement.relCourse.relSubject.relDepartment')
+			->where('id', '=', $acm_id)
 			->get();
+		//print_r($acm_data);exit;
+		$exam_questions= array('' => 'Select Examination Question') + ExmQuestion::lists('title', 'id');
+//		$cm_data = CourseManagement::with('relSemester','relYear','relUser','relCourse.relSubject.relDepartment')
+//			//->where('course_management_id','=' ,$cm_id)
+//			//->where('year_id','=' , 17)
+//			//->where('semester_id','=' ,$cm_id)
+//			//->where('course_id','=' , 1)
+//			//->where('department_id','=' , 1)
+//			->get();
 
 		$data= CourseManagement::with( 'relCourse')
 			->where('id', '=', $cm_id)
@@ -465,7 +476,7 @@ class AcmFacultyController extends \BaseController {
 		$config_data = AcmMarksDistribution::with('relAcmMarksDistItem', 'relCourseManagement.relCourse')
 			->where('course_management_id', '=', $cm_id)
 			->get();
-		return View::make('academic::faculty.mark_distribution_courses.marks_dist_item_class_test.assign',compact('data','config_data','cm_data','exam_questions','acm_data'));
+		return View::make('academic::faculty.mark_distribution_courses.marks_dist_item_class_test.assign',compact('acm','data','config_data','exam_questions','acm_data'));
 	}
 	public function batch_assign_class_test()
 	{
@@ -473,17 +484,26 @@ class AcmFacultyController extends \BaseController {
 		$chk=Input::get('chk');
 		$aca_id=Input::get('acm_academic_id');
 		$exam_id=Input::get('exam_question');
-
-		foreach($chk as $key => $value) {
+		if(Input::get('save')) {
+			foreach($chk as $key => $value) {
 			$model = new AcmAcademicAssignStudent();
 			$model->acm_academic_id = $aca_id;
 			$model->exm_question_id = $exam_id;
 			$model->assigned_by = Auth::user()->get()->id;
+			$model->status = 'A';
 			$model->user_id = $value;
 			$model->save();
-		}
-		return Redirect::back()->with('message','Successfully added!');
+		    }
+			return Redirect::back()->with('message','Successfully added!');
 
+		}
+		if(Input::get('update')) {
+			foreach($chk as $key => $value) {
+			AcmAcademicAssignStudent::destroy(Request::get('id'));
+			return Redirect::back()->with('message','Successfully Deleted!');
+			}
+		}
 	}
+
 
 }
