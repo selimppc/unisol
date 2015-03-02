@@ -12,7 +12,7 @@
 
                                 <div class="col-sm-6">
                                 </div>
-                                
+
                                 <div class="col-sm-6">
                                     <div class="btn-group" style="margin-right: 10px">
                                         <button type="button" class="btn btn-default btn-xs" data-toggle="modal"
