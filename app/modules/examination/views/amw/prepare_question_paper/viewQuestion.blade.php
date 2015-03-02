@@ -6,11 +6,16 @@
 
                                  <p>
                                      <strong> Title:</strong>{{ $viewPrepareQuestionPaperAmw->title }} </br>
+
                                      <strong> Deadline:</strong>{{ $viewPrepareQuestionPaperAmw->deadline  }} </br>
+
                                      <strong> Total Marks:</strong>{{ $viewPrepareQuestionPaperAmw->total_marks }} </br>
+
                                      <strong> Assign To:</strong> Coming Soon...</br>
                                  </p>
                              </div>
+
                               <a href="{{ URL::previous()}}" class="btn btn-default btn-xs">Close </a>
+                              
                      {{ Form::close() }}
 </div>
