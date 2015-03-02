@@ -318,6 +318,8 @@ class ExmAmwController extends \BaseController {
             ->where('course_management_id' ,'=', $course_man_id)
             ->get();
 
+//        print_r($question_paper);exit;
+
         return View::make('examination::amw.prepare_question_paper.index',compact('question_paper','exam_list_id','data','course_man_id'));
 
 
