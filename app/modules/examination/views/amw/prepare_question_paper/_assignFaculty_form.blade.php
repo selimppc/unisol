@@ -3,7 +3,7 @@
             <?php $examiner_comments = ExmExaminerComments::where('exm_exam_list_id','=', $exam_list_id)->get(); ?>
 
                 <div class="form-group">
-                      <strong>Question Title : </strong> {{ $prepare_question_paper_amw->title }}
+                      <strong>Question Title : </strong> {{ isset($prepare_question_paper_amw) ? $prepare_question_paper_amw->title : 'no question found!' }}
                 </div>
 
                 <div class="form-group">

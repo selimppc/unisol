@@ -114,6 +114,7 @@ class CreateAdmissionTestRl extends Migration {
 
         Schema::create('adm_question_opt_ans', function(Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('adm_question_items_id')->nullable();
             $table->string('title', 128);
             $table->tinyInteger('answer', false)->length(1);
             $table->integer('created_by', false, 11);
