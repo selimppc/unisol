@@ -27,19 +27,30 @@
         </tr>
         </thead>
         <tbody>
-        @foreach ($acm_data as $value)
+        @foreach ($cm_data as $value)
             <tr>
-                <td><input type="checkbox" name="chk[]"  id="checkbox" class="myCheckbox" value="{{$value->relCourseManagement->relUser->id}}">
+                {{--<td><input type="checkbox" name="chk[]"  id="checkbox" class="myCheckbox" value="{{$value->relCourseManagement->relUser->id}}">--}}
+                {{--</td>--}}
+                {{--<td>{{$value->relCourseManagement->relUser->username}}</td>--}}
+                {{--<td>{{$value->relCourseManagement->relSemester->title}}</td>--}}
+                {{--<td>{{$value->relCourseManagement->relYear->title}}</td>--}}
+                {{--<td>{{$value->relCourseManagement->relCourse->relSubject->relDepartment->title}}</td>--}}
+                {{--<td>{{ AcmAcademicAssignStudent::getAssignStudentStatus($value->acm_academic_id)}}</td>--}}
+                {{--<td></td>--}}
+
+                <td><input type="checkbox" name="chk[]"  id="checkbox" class="myCheckbox" value="{{$value->relUser->id}}">
                 </td>
-                <td>{{$value->relCourseManagement->relUser->username}}</td>
-                <td>{{$value->relCourseManagement->relSemester->title}}</td>
-                <td>{{$value->relCourseManagement->relYear->title}}</td>
-                <td>{{$value->relCourseManagement->relCourse->relSubject->relDepartment->title}}</td>
-                <td>{{ AcmAcademicAssignStudent::getAssignStudentStatus($value->acm_academic_id)}}</td>
+                <td>{{$value->relUser->username}}</td>
+                <td>{{$value->relSemester->title}}</td>
+                <td>{{$value->relYear->title}}</td>
+                <td>{{$value->relCourse->relSubject->relDepartment->title}}</td>
+                <td></td>
 
                 <td>
-                    <a href="" class="btn btn-info btn-xs"> Comments </a>
+                    <a href="{{ URL::route('assign.comments', ['assign_std'=>$value->user_id]) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#commentsModal"> Comments </a>
+
                     <a href="" class="btn btn-primary btn-xs"> Evaluation </a>
+
                     {{ Form::submit('Assign', ['name' => 'save', 'class' => 'btn btn-success btn-xs']) }}
                 </td>
             </tr>
@@ -57,24 +68,13 @@
     <p>&nbsp;</p>
     <p>&nbsp;</p>
 
-    <!-- Modal for delete -->
-    {{--<div class="modal fade " id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">--}}
-        {{--<div class="modal-dialog">--}}
-            {{--<div class="modal-content">--}}
-                {{--<div class="modal-header">--}}
-                    {{--<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>--}}
-                    {{--<h4 class="modal-title" id="myModalLabel">Revoke assinged CT</h4>--}}
-                {{--</div>--}}
-                {{--<div class="modal-body">--}}
-                    {{--<strong>Are you sure to revoke?</strong>--}}
-                {{--</div>--}}
-                {{--<div class="modal-footer">--}}
-                    {{--<button type="button" class="btn btn-default " data-dismiss="modal">Cancel</button>--}}
-                    {{--<a href="#" class="btn btn-danger danger">revoke</a>--}}
+    {{--Assign comments modal--}}
+    <div class="modal fade" id="commentsModal" tabindex="-1" role="dialog" aria-labelledby="addScholarship" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
 
-                {{--</div>--}}
-            {{--</div>--}}
-        {{--</div>--}}
-    {{--</div>--}}
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
 @stop
 

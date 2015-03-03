@@ -457,18 +457,17 @@ class AcmFacultyController extends \BaseController {
 		$acm= AcmAcademic::with('relAcmClassSchedule')
 			->where('id', '=', $acm_id)
 			->first();
-		$acm_data = AcmAcademic::with('relAcmClassSchedule','relCourseManagement.relSemester','relCourseManagement.relYear','relCourseManagement.relUser','relCourseManagement.relCourse.relSubject.relDepartment')
-			->where('id', '=', $acm_id)
-			->get();
-		//print_r($acm_data);exit;
-		$exam_questions= array('' => 'Select Examination Question') + ExmQuestion::lists('title', 'id');
-//		$cm_data = CourseManagement::with('relSemester','relYear','relUser','relCourse.relSubject.relDepartment')
-//			//->where('course_management_id','=' ,$cm_id)
-//			//->where('year_id','=' , 17)
-//			//->where('semester_id','=' ,$cm_id)
-//			//->where('course_id','=' , 1)
-//			//->where('department_id','=' , 1)
+//		$acm_data = AcmAcademic::with('relAcmClassSchedule','relCourseManagement.relSemester','relCourseManagement.relYear','relCourseManagement.relUser','relCourseManagement.relCourse.relSubject.relDepartment')
+//			->where('id', '=', $acm_id)
 //			->get();
+		$exam_questions= array('' => 'Select Examination Question') + ExmQuestion::lists('title', 'id');
+		$cm_data = CourseManagement::with('relSemester','relYear','relUser','relCourse.relSubject.relDepartment')
+			//->where('course_management_id','=' ,$cm_id)
+			//->where('year_id','=' , 17)
+			//->where('semester_id','=' ,$cm_id)
+			//->where('course_id','=' , 1)
+			//->where('department_id','=' , 1)
+			->get();
 
 		$data= CourseManagement::with( 'relCourse')
 			->where('id', '=', $cm_id)
@@ -476,7 +475,7 @@ class AcmFacultyController extends \BaseController {
 		$config_data = AcmMarksDistribution::with('relAcmMarksDistItem', 'relCourseManagement.relCourse')
 			->where('course_management_id', '=', $cm_id)
 			->get();
-		return View::make('academic::faculty.mark_distribution_courses.marks_dist_item_class_test.assign',compact('acm','data','config_data','exam_questions','acm_data'));
+		return View::make('academic::faculty.mark_distribution_courses.marks_dist_item_class_test.assign',compact('acm','data','config_data','exam_questions','cm_data'));
 	}
 	public function batch_assign_class_test()
 	{
@@ -504,6 +503,15 @@ class AcmFacultyController extends \BaseController {
 			}
 		}
 	}
-
+	public function comments_assign_class_test($assign_std_id)
+	{
+		$comments_info = AcmAcademicAssignStudentComments::with('relAcmAcademicAssignStudent')
+			->where('acm_assign_std_id', '=', $assign_std_id)
+			->get();
+		$assign_std= AcmAcademicAssignStudent::with('relAcmAcademic')
+			->where('user_id', '=', $assign_std_id)
+			->first();
+		return View::make('academic::faculty.mark_distribution_courses.marks_dist_item_class_test.ct_comments',compact('assign_std','comments_info'));
+	}
 
 }
