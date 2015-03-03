@@ -1,5 +1,5 @@
 <div style="padding: 10px; width: 90%;">
-             <h2>Welcome to View Question : <strong>{{ ucwords(Auth::user()->username) }}</strong> </h2> </br>
+             <h2>Welcome to View Question </h2> </br>
              {{ Form::open(array('route'=>'examination.faculty.viewQuestion','method' => '')) }}
                      <div class="jumbotron text-center">
                          <h3><strong>Name of Examination :</strong>{{ ExmQuestion::getExamName($viewPrepareQuestionPaperFaculty->exm_exam_list_id) }}</h3> </br>

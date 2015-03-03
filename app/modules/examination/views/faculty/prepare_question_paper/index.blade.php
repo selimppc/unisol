@@ -3,7 +3,7 @@
     @include('examination::_sidebar')
 @stop
 @section('content')
-        <h1>Welcome to Prepare Question paper : <strong>{{ ucwords(Auth::user()->username) }}</strong> </h1> <br>
+        <h1>Welcome to Prepare Question paper </h1> <br>
                     {{ Form::open(array('url' => 'examination/faculty/batchDelete')) }}
 
                         <table id="example" class="table table-striped  table-bordered"  >

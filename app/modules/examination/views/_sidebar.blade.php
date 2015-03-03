@@ -69,11 +69,11 @@
                             </td>
                         </tr>
 
-                        <tr>
-                             <td>
-                              <a href=""> Examination</a> <span class="label label-success"></span>
-                             </td>
-                        </tr>
+                        {{--<tr>--}}
+                             {{--<td>--}}
+                              {{--<a href=""> Examination</a> <span class="label label-success"></span>--}}
+                             {{--</td>--}}
+                        {{--</tr>--}}
 
                         <tr>
                             <td>

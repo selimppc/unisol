@@ -1,4 +1,4 @@
-<h4 style="padding: 20px">Add Question Item for <b>{{$qid2->title}} : <strong>{{ ucwords(Auth::user()->username) }}</strong> </b></h4>
+<h4 style="padding: 20px">Add Question Item for <b>{{$qid2->title}} </b></h4>
 {{ Form::open(array('url' => 'examination/faculty/store_Question_Items', 'method' =>'post', 'role'=>'form','files'=>'true'))  }}
     {{Form::hidden('qid', $qid2->id, ['class'=>'form-control'])}}
         <fieldset style="padding: 10px; width: 90%; padding: 20px">
