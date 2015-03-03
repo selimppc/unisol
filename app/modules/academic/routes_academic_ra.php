@@ -133,6 +133,8 @@ Route::any('class_test/assign/comments/{assign_std_id}',[
     'as' => 'assign.comments',
     'uses'=> 'AcmFacultyController@comments_assign_class_test'
 ]);
-
+Route::post('comments/save',
+    'AcmFacultyController@save_comments'
+);
 
 //******************Faculty Marks Distribution Item Assignment*****************

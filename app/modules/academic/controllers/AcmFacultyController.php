@@ -512,6 +512,26 @@ class AcmFacultyController extends \BaseController {
 			->where('user_id', '=', $assign_std_id)
 			->first();
 		return View::make('academic::faculty.mark_distribution_courses.marks_dist_item_class_test.ct_comments',compact('assign_std','comments_info'));
-	}
 
+	}
+	public function save_comments()
+	{
+		$data = Input::all();
+		$acm_assign_id = Input::get('assign_stu_user_id');
+		$comments = Input::get('comments');
+		$datas = new AcmAcademicAssignStudentComments();
+		if ($data) {
+			$datas->acm_assign_std_id = $acm_assign_id;
+			$datas->comments = $comments;
+			$datas->commented_by = Auth::user()->get()->id;
+			$datas->save();
+			//file upload ends
+			return Redirect::back()->with('message','Successfully added!');
+		} else {
+			// failure, get errors
+			$errors = $datas->errors();
+			Session::flash('errors', $errors);
+			return Redirect::to('academic/faculty/marks-dist-item/class_test/assign/');
+		}
+	}
 }
