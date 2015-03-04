@@ -1,5 +1,8 @@
 <p class="lead">Quick Navigation</p>
 <div class="list-group">
+
+
+
  @if(!Auth::check())
 
         <a href="{{URL::to('user') }}" class="list-group-item">Signup</a>

@@ -21,4 +21,16 @@ include("routes_tjt.php");
 
 
 
+// ----------------------------Public : Admission Test starts----------------------------------------------------------
+
+Route::any('amw/admission_test/index',[
+    'as' => 'amw.admission_test.index',
+    'uses' => 'AdmAmwController@admissionTestIndex'
+]);
+
+Route::any('amw/admission_test/deshboard', [
+    'as' => 'amw.admission_test.deshboard',
+    'uses' => 'AdmAmwController@deshboard'
+]);
+
 
