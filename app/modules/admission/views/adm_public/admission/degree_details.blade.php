@@ -31,7 +31,7 @@
              <table id="example1" class="table table-bordered table-striped">
 
                          <tr>
-                                <th> Degree  :</th>
+                                <th> Degree Name :</th>
                                 <td>{{ $degree_model->title }}</td>
                          </tr>
 
@@ -69,11 +69,22 @@
                          </tr>
 
                          <tr>
-                                 <th>Major Courses :</th>
-                                 <td>{{ $degree_model->major_minor }}</td>
-
+                                <th>Total Seat</th>
+                                <td>{{$degree_model->seat}}</td>
                          </tr>
 
+
+                         <tr>
+                                 <th>Major Courses :</th>
+                                 <td>
+                                 {{--{{ $degree_model->relCourse->title }}--}}
+                                 </td>
+                         </tr>
+
+                         {{--<tr>--}}
+                                {{--<th>Minimum Requirements</th>--}}
+                                {{--<td>Min GPA At</td>--}}
+                         {{--</tr>--}}
 
 
              </table>

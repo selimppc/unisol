@@ -44,8 +44,8 @@
                   @foreach($degreeList as $value)
                        <tr >
                           <td> <input type="checkbox" name="ids[]"  id="check" class="myCheckbox" value="{{ $value->id }}"></td>
-                          <td id="title">{{ $value->title }}
-                          <a  href="{{ URL::route('admission.degree_details', $value->id) }}">details</a>
+                          <td>{{ $value->title }}
+                          <a href="{{ URL::route('admission.degree_details', $value->id) }}">details</a>
                           </td>
                           <td>{{ $value->description }}</td>
 
