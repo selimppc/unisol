@@ -1,6 +1,5 @@
 <fieldset style="padding: 10px; width: 90%;">
 
-
                 <div class="form-group">
                       <strong> Department: </strong>{{ isset($examiners_list) ?  $examiners_list->relExmExamList->relCourseManagement->relCourse->relSubject->relDepartment->title : 'no department found!'  }}
                 </div>
@@ -8,6 +7,7 @@
                 <div class="form-group">
                       <strong> Subject: </strong>{{ isset($examiners_list) ?  $examiners_list->relExmExamList->relCourseManagement->relCourse->relSubject->title : 'no subject found!' }}
                 </div>
+
 
                 <div class="form-group">
                         {{ Form::label('user_id', 'Name of Faculty') }}

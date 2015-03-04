@@ -11,6 +11,30 @@ class AdmAmwController extends \BaseController
     public function back(){
         return Redirect::back()->with('error_code', 5);;
     }
+
+// Admission Test : Admission Test starts here....................................................
+    public function admissionTestIndex()
+    {
+//        admission_test = AdmissionTest::with('relBillingDetails', 'relBillingDetails.relBillingItem')
+//            ->orderBy('id', 'DESC')
+//            ->paginate(15);
+        return View::make('admission::amw.admission_test.index');
+    }
+
+    public function deshboard()
+    {
+        return View::make('admission::amw.admission_test.deshboard');
+    }
+
+
+
+
+
+
+
+
+
+
 // Admission : Course Management starts here...........................................................
     public function index()
     {
@@ -442,5 +466,6 @@ class AdmAmwController extends \BaseController
             return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
         }
     }
+
 
 }

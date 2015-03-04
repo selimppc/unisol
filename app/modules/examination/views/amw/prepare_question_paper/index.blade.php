@@ -55,6 +55,7 @@
                                 {{--<td>{{$prepare_question_paper_amw->relCourseManagement->relSemester->title}}</td>--}}
 
                                 <td> </td>
+
                                 <td> </td>
                                 {{--<td>{{ $prepare_question_paper_amw->relUser->relUserProfile->first_name.' '.$prepare_question_paper_amw->relUser->relUserProfile->middle_name.' '.$prepare_question_paper_amw->relUser->relUserProfile->last_name }}</td>--}}
                                 <td>
@@ -62,13 +63,12 @@
                                    <a href="{{ URL::route('examination.amw.editQuestionPaper', ['id'=>$prepare_question_paper_amw->id])  }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal" data-placement="left" title="Edit" href="#">Edit</a>
 
                                    <a href="" class="btn btn-default btn-xs" data-toggle="modal" data-target="#ass_fac" data-placement="left" title="Assign Faculty" href="#">Assign Faculty</a>
-
-
                                 </td>
                             </tr>
                       @endforeach
                     </tbody>
                 </table>
+
             {{form::close() }}
 
 @include('examination::amw.prepare_question_paper._modal._create_question_paper')
