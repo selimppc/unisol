@@ -67,16 +67,16 @@
                                                 $url_link = 'academic/faculty/marksdistitem/class/'.$marks_dist_id.'/'.$course_management_id;
                                                 break;
                                             case 2:
-                                                $url_link = 'academic/faculty/marksdistitem/assignment/'.$marks_dist_id.'/'.$course_management_id;
+                                                $url_link = 'academic/faculty/marks/dist/item/assignment/'.$marks_dist_id.'/'.$course_management_id;
                                                 break;
                                             case 3:
                                                 $url_link = 'academic/faculty/marks/dist/item/class_test/'.$marks_dist_id.'/'.$course_management_id;
                                                 break;
                                             case 4:
-                                                $url_link = 'academic/faculty/marksdistitem/mid_term/'.$marks_dist_id.'/'.$course_management_id;
+                                                $url_link = ''.$marks_dist_id.'/'.$course_management_id;
                                                 break;
                                             case 5:
-                                                $url_link = 'academic/faculty/marksdistitem/final_term/'.$marks_dist_id.'/'.$course_management_id;
+                                                $url_link = ''.$marks_dist_id.'/'.$course_management_id;
                                                 break;
 
                                             default:
