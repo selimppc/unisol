@@ -33,4 +33,14 @@ Route::any('amw/admission_test/deshboard', [
     'uses' => 'AdmAmwController@deshboard'
 ]);
 
+Route::any('amw/admission_test/examiners', [
+    'as' => 'amw.admission_test.examiners',
+    'uses' => 'AdmAmwController@examiners'
+]);
+
+Route::any('amw/admission_test/question_paper', [
+    'as' => 'amw.admission_test.question_paper',
+    'uses' => 'AdmAmwController@questionPaper'
+]);
+
 
