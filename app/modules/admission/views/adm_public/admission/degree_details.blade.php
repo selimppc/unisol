@@ -91,8 +91,14 @@
                          </tr>
                          <tr>
                                 <th>Minimum Requirements</th>
-                                <td>{{$edu_gpa_model->level_of_education}}</td>
+
+                                <td>
+                                   @foreach($edu_gpa_model as $value)
+                                        Min GPA at {{$value->level_of_education.' : '.$value->min_gpa }}<br><br>
+                                   @endforeach
+                                </td>
                          </tr>
+
 
 
              </table>

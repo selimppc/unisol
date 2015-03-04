@@ -15,13 +15,22 @@ class AdmPublicController extends \BaseController {
     public function admAptDetails(){
 
         $degree_ids = Input::get('ids');
+        //print_r($degree_ids);exit;
         foreach($degree_ids as $key => $value){
             $data = new DegreeApplicant();
             $data->degree_id = $value;
             $data->applicant_id = 2;
-            $data->save();
+            if($data->save()){
+
+                $admList = DegreeApplicant::where('degree_id','=',$data->degree_id)->get();
+
+                //print_r($admList);exit;
+                return View::make('admission::adm_public.admission.adm_details',compact('degree_ids'));
+            }
         }
-        exit("OK");
+
+
+        //exit("OK");
 
     }
     public function admDegreeDetails($id){
@@ -30,8 +39,7 @@ class AdmPublicController extends \BaseController {
             ->where('id', '=', $id)
             ->first();
         $model = CourseManagement::with('relCourse')->where('degree_id','=',$id)->get();
-        $edu_gpa_model = DegreeEducationConstraint::with('relDegree')->where('degree_id','=',$id)->first();
-        //print_r($edu_gpa_model);exit;
+        $edu_gpa_model = DegreeEducationConstraint::with('relDegree')->where('degree_id','=',$id)->get();
 
         return View::make('admission::adm_public.admission.degree_details',compact('degree_model','model','edu_gpa_model'));
 
