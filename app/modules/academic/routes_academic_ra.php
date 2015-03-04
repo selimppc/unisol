@@ -122,9 +122,9 @@ Route::any('class_test-update/{id}', [
 Route::post('academic/faculty/acadetailsdelete/class_test/ajax',
     'AcmFacultyController@ajax_delete_aca_academic_details_class_test'
 );
-//******Ajax delete for all item start End*****
+//**Ajax delete for all item start End**
 
-//**********class test assign start**********
+//*****class test assign start**********
 Route::any('academic/faculty/marks-dist-item/class_test/assign/{acm_id}/{cm_id}/{mark_dist_id}',[
     'as' => 'class/test.assign',
     'uses'=> 'AcmFacultyController@assign_class_test'
@@ -159,19 +159,19 @@ Route::any('assignment-update/{id}',[
     'as' => 'assignment/update',
     'uses' => 'AcmFacultyController@update_assignment'
 ]);
-//**********Assignment assign start**********
+//*******Assignment assign start*********
 Route::any('academic/faculty/marks-dist-item/assignment/assign/{acm_id}/{cm_id}/{mark_dist_id}',[
-    'as' => 'class/test.assign',
-    'uses'=> 'AcmFacultyController@assign_class_test'
+    'as' => 'assign.assign',
+    'uses'=> 'AcmFacultyController@assign_assignment'
 ]);
-Route::any('batch/assign',[
-    'as' => 'batch.assign',
-    'uses'=> 'AcmFacultyController@batch_assign_class_test'
+Route::any('assignment/assign',[
+    'as' => 'assignment.assign',
+    'uses'=> 'AcmFacultyController@batch_assign_assignment'
 ]);
-Route::any('class_test/assign/comments/{assign_std_id}',[
+Route::any('assignment/assign/comments/{assign_std_id}',[
     'as' => 'assign.comments',
-    'uses'=> 'AcmFacultyController@comments_assign_class_test'
+    'uses'=> 'AcmFacultyController@comments_assign_assignment'
 ]);
-Route::post('comments/save',
-    'AcmFacultyController@save_comments'
+Route::post('assignment/comments/save',
+    'AcmFacultyController@save_assignment_comments'
 );

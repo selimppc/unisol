@@ -547,7 +547,7 @@ class AcmFacultyController extends \BaseController {
 	public function assignment_index($marks_dist_id,$cmid)
 	{
 		$date_time= array('' => 'Select class Time') + AcmClassSchedule::lists('day', 'id');
-		$title = 'All Class List';
+		$title = 'All Assignment List';
 		$datas = AcmAcademic::with('relAcmClassSchedule')
 			->where('acm_marks_distribution_id', '=', $marks_dist_id)
 			->get();
@@ -656,10 +656,94 @@ class AcmFacultyController extends \BaseController {
 			return Redirect::to($redirect_url)->with('message','data not updated');
 		}
 	}
+	/**
+	 * @param $acm_id
+	 * @param $cm_id
+	 * @param $mark_dist_id
+	 * @return mixed
+	 */
+	public  function assign_assignment($acm_id, $cm_id, $mark_dist_id)
+	{
+		$acm= AcmAcademic::with('relAcmClassSchedule')
+			->where('id', '=', $acm_id)
+			->first();
+//		$acm_data = AcmAcademic::with('relAcmClassSchedule','relCourseManagement.relSemester','relCourseManagement.relYear','relCourseManagement.relUser','relCourseManagement.relCourse.relSubject.relDepartment')
+//			->where('id', '=', $acm_id)
+//			->get();
+		$exam_questions= array('' => 'Select Examination Question') + ExmQuestion::lists('title', 'id');
+		$cm_data = CourseManagement::with('relSemester','relYear','relUser','relCourse.relSubject.relDepartment')
+			//->where('course_management_id','=' ,$cm_id)
+			//->where('year_id','=' , 17)
+			//->where('semester_id','=' ,$cm_id)
+			//->where('course_id','=' , 1)
+			//->where('department_id','=' , 1)
+			->get();
 
+		$data= CourseManagement::with( 'relCourse')
+			->where('id', '=', $cm_id)
+			->get();
+		$config_data = AcmMarksDistribution::with('relAcmMarksDistItem', 'relCourseManagement.relCourse')
+			->where('course_management_id', '=', $cm_id)
+			->get();
+		return View::make('academic::faculty.mark_distribution_courses.marks_dist_item_assignment.assign',compact('acm','data','config_data','exam_questions','cm_data'));
+	}
+	public function batch_assign_assignment()
+	{
+		$data=Input::all();
+		$chk=Input::get('chk');
+		$aca_id=Input::get('acm_academic_id');
+		$exam_id=Input::get('exam_question');
+		if(Input::get('save')) {
+			foreach($chk as $key => $value) {
+				$model = new AcmAcademicAssignStudent();
+				$model->acm_academic_id = $aca_id;
+				$model->exm_question_id = $exam_id;
+				$model->assigned_by = Auth::user()->get()->id;
+				$model->status = 'A';
+				$model->user_id = $value;
+				$model->save();
+			}
+			return Redirect::back()->with('message','Successfully added!');
 
+		}
+		if(Input::get('update')) {
+			foreach($chk as $key => $value) {
+				AcmAcademicAssignStudent::destroy(Request::get('id'));
+				return Redirect::back()->with('message','Successfully Deleted!');
+			}
+		}
+	}
+	public function comments_assign_assignment($assign_std_id)
+	{
+		$assign_std= AcmAcademicAssignStudent::with('relAcmAcademic')
+			->where('user_id', '=', $assign_std_id)
+			->first();//Execute the query and get the first result.
+		$comments_info = AcmAcademicAssignStudentComments::with('relAcmAcademicAssignStudent')
+			->where('acm_assign_std_id', '=', $assign_std_id)
+			->get();//Execute the query as a "select" statement.
+		return View::make('academic::faculty.mark_distribution_courses.marks_dist_item_assignment.assignment_comments',compact('assign_std','comments_info'));
 
+	}
 
-
+	public function save_assignment_comments()
+	{
+		$data = Input::all();
+		$acm_assign_id = Input::get('assign_stu_user_id');
+		$comments = Input::get('comments');
+		$datas = new AcmAcademicAssignStudentComments();
+		if ($data) {
+			$datas->acm_assign_std_id = $acm_assign_id;
+			$datas->comments = $comments;
+			//	$datas->commented_by = Auth::user()->get()->id;
+			$datas->save();
+			//file upload ends
+			return Redirect::back()->with('message','Successfully added!');
+		} else {
+			// failure, get errors
+			$errors = $datas->errors();
+			Session::flash('errors', $errors);
+			return Redirect::to('academic/faculty/marks-dist-item/assignment/assign/');
+		}
+	}
 
 }
