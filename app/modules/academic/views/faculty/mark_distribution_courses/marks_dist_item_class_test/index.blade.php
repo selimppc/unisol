@@ -48,7 +48,7 @@
                     {{ Form::open(array('url' => 'class_test/save', 'method' =>'post', 'role'=>'form','files'=>'true')) }}
                     {{ Form::hidden('course_management_id', $cmid, ['class'=>'form-control course_management_id'])}}
                     {{ Form::hidden('marks_dist_id', $marks_dist_id, ['class'=>'form-control course_management_id'])}}
-                    @include('academic::faculty.mark_distribution_courses.marks_dist_item_class._form')
+                    @include('academic::faculty.mark_distribution_courses.marks_dist_item_class_test._form')
                     {{ Form::close() }}
                 </div>
             </div>

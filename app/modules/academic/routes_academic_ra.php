@@ -116,9 +116,13 @@ Route::any('class_test-update/{id}', [
     'as' => 'class_test/update',
     'uses' => 'AcmFacultyController@update_class_test'
 ]);
+
+//*****Ajax delete for all 5 item start********
+
 Route::post('academic/faculty/acadetailsdelete/class_test/ajax',
     'AcmFacultyController@ajax_delete_aca_academic_details_class_test'
 );
+//******Ajax delete for all item start End*****
 
 //**********class test assign start**********
 Route::any('academic/faculty/marks-dist-item/class_test/assign/{acm_id}/{cm_id}/{mark_dist_id}',[
@@ -136,5 +140,38 @@ Route::any('class_test/assign/comments/{assign_std_id}',[
 Route::post('comments/save',
     'AcmFacultyController@save_comments'
 );
-
-//******************Faculty Marks Distribution Item Assignment*****************
+//******************Faculty Marks Distribution Item Assignment****************
+Route::any('academic/faculty/marks/dist/item/assignment/{marks_dist_id}/{cmid}',
+    'AcmFacultyController@assignment_index'
+);
+Route::post('assignment/save',
+    'AcmFacultyController@save_assignment_data'
+);
+Route::any('assignment/show/{id}',[
+    'as' => 'assignment.show',
+    'uses'=> 'AcmFacultyController@show_assignment'
+]);
+Route::get('assignment-edit/{id}', [
+    'as' => 'assignment.edit',
+    'uses' => 'AcmFacultyController@edit_assignment'
+]);
+Route::any('assignment-update/{id}',[
+    'as' => 'assignment/update',
+    'uses' => 'AcmFacultyController@update_assignment'
+]);
+//**********Assignment assign start**********
+Route::any('academic/faculty/marks-dist-item/assignment/assign/{acm_id}/{cm_id}/{mark_dist_id}',[
+    'as' => 'class/test.assign',
+    'uses'=> 'AcmFacultyController@assign_class_test'
+]);
+Route::any('batch/assign',[
+    'as' => 'batch.assign',
+    'uses'=> 'AcmFacultyController@batch_assign_class_test'
+]);
+Route::any('class_test/assign/comments/{assign_std_id}',[
+    'as' => 'assign.comments',
+    'uses'=> 'AcmFacultyController@comments_assign_class_test'
+]);
+Route::post('comments/save',
+    'AcmFacultyController@save_comments'
+);
