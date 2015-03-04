@@ -15,15 +15,29 @@ class AdmAmwController extends \BaseController
 // Admission Test : Admission Test starts here....................................................
     public function admissionTestIndex()
     {
-//        admission_test = AdmissionTest::with('relBillingDetails', 'relBillingDetails.relBillingItem')
-//            ->orderBy('id', 'DESC')
-//            ->paginate(15);
-        return View::make('admission::amw.admission_test.index');
+        $admission_test = Degree::orderBy('id', 'DESC')->paginate(5);
+
+        $year_id = Year::lists('title', 'id');
+        $semester_id = Semester::lists('title', 'id');
+
+        return View::make('admission::amw.admission_test.index',compact('admission_test','year_id','semester_id'));
     }
 
     public function deshboard()
     {
         return View::make('admission::amw.admission_test.deshboard');
+    }
+
+    public function examiners()
+    {
+        $adm_examiners_home = AdmExaminer::orderby('id', 'DESC')->paginate(5);
+        return View::make('admission::amw.admission_test.examiners',compact('adm_examiners_home'));
+    }
+
+    public function questionPaper()
+    {
+        $adm_question_paper = AdmQuestion::orderby('id', 'DESC')->paginate(5);
+        return View::make('admission::amw.admission_test.question_paper',compact('adm_question_paper'));
     }
 
 

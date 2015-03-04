@@ -8,6 +8,10 @@ class DegreeEducationConstraint extends Eloquent{
 
     protected $table='degree_education_constraint';
 
+    public function relDegree(){
+        return $this->belongsTo('Degree','degree_id','id');
+    }
+
 
     public static function boot(){
         parent::boot();

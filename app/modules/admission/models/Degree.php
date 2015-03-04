@@ -28,6 +28,11 @@ class Degree extends Eloquent{
         return $this->belongsTo('DegreeWaiver', 'id', 'degree_id');
     }
 
+    public function relCourseManagement(){
+        return $this->hasMany('CourseManagement','degree_id','id');
+    }
+
+
     public static function boot(){
         parent::boot();
         static::creating(function($query){

@@ -25,17 +25,15 @@ class AdmPublicController extends \BaseController {
 
     }
     public function admDegreeDetails($id){
-
-
-
         $degree_model = Degree::with('relYear','relSemester',
             'relDegreeWaiver.relWaiver')
             ->where('id', '=', $id)
             ->first();
-       // print_r($course_mng_model);exit;
+        $model = CourseManagement::with('relCourse')->where('degree_id','=',$id)->get();
+        $edu_gpa_model = DegreeEducationConstraint::with('relDegree')->where('degree_id','=',$id)->first();
+        //print_r($edu_gpa_model);exit;
 
-
-        return View::make('admission::adm_public.admission.degree_details',compact('degree_model'));
+        return View::make('admission::adm_public.admission.degree_details',compact('degree_model','model','edu_gpa_model'));
 
     }
 
