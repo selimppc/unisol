@@ -8,6 +8,10 @@ class AcmAcademicAssignStudent extends \Eloquent
     {
         return $this->belongsTo('AcmAcademic', 'acm_academic_id', 'id');
     }
+//    public function relUser()
+//    {
+//        return $this->belongsTo('User', 'user_id', 'id');
+//    }
     public static function boot()
     {
         parent::boot();

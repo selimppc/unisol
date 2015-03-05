@@ -9,14 +9,14 @@
             @foreach($comments_info as $comments_info)
                 <strong>Comments:</strong><h4> {{ $comments_info->comments }}</h4>
                 <strong>By:</strong>
-                {{--<h4> {{ $comments_info->commented_by }}</h4>--}}
+                <h4> {{ $comments_info->commented_by }}</h4>
                 <br>
             @endforeach
         </div>
 
         {{ Form::open(array('url' => array('comments/save'), 'method' =>'post'))  }}
 
-        {{ Form::hidden('assign_stu_user_id', $assign_std->user_id, ['class'=>'form-control assign_stu_user_id'])}}
+        {{--{{ Form::text('assign_stu_user_id', $assign_std->user_id, ['class'=>'form-control assign_stu_user_id'])}}--}}
 
         <div class='form-group'>
             {{ Form::label('comments', 'CT Comments') }}

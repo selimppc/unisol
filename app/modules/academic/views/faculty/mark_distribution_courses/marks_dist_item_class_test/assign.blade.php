@@ -47,7 +47,7 @@
                 <td></td>
 
                 <td>
-                    <a href="{{ URL::route('assign.comments', ['assign_std'=>$value->user_id]) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#commentsModal"> Comments </a>
+                    <a href="{{ URL::route('classtest.comments', ['assign_std'=>$value->user_id]) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#commentsModal"> Comments </a>
 
                     <a href="" class="btn btn-primary btn-xs"> Evaluation </a>
 
