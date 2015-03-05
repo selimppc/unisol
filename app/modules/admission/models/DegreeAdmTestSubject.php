@@ -15,7 +15,7 @@ class DegreeAdmTestSubject extends Eloquent{
     }
 
     public function relAdmTestSubject(){
-        return $this->belongsTo('Degree','admtest_subject_id','id');
+        return $this->belongsTo('AdmTestSubject','admtest_subject_id','id');
     }
 
     public static function boot(){

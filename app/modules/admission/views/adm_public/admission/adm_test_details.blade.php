@@ -1,6 +1,6 @@
 @extends('layouts.master')
  @section('sidebar')
-    {{--@include('applicant::_sidebar')--}}
+
  @stop
 @section('content')
 
@@ -25,39 +25,29 @@
 </div><!-- /.box-header -->
 
 <br>
-
- {{---------------------------------------------Data Table: Starts-----------------------------------------------------------------}}
+{{---------------------------------------------Data Table: Starts-----------------------------------------------------------------}}
  <table class="table table-bordered table-striped">
 
- {{--<col width="120">--}}
- {{--<col width="120">--}}
- {{--<col width="100">--}}
- {{----}}
- {{----}}
-
      <thead>
-          <tr>
-                <th>Subject Name</th>
-                <th>Marks</th>
-                <th>Test Time Duration(in mins)</th>
-          </tr>
+             <tr>
+                    <th>Subject Name</th>
+                    <th>Marks</th>
+                    <th>Test Time Duration(in Minutes)</th>
+             </tr>
      </thead>
-     <tbody>
+           <tbody>
 
-           {{--@foreach($degree_model as $value)--}}
-                <tr>
-                   <td></td>
-                   <td></td>
-                   <td></td>
-
-                </tr>
-           {{--@endforeach--}}
-
-     </tbody>
+                   @foreach($adm_test_subject as $value)
+                        <tr>
+                               <td>{{$value->relAdmTestSubject->title}}</td>
+                               <td>{{$value->marks}}</td>
+                               <td>{{$value->duration}}</td>
+                        </tr>
+                   @endforeach
+           </tbody>
  </table>
 {{-----------------------------------Data Table : Ends---------------------------------------------------------------------------}}
 
-{{--</div><!-- /.box-body -->--}}
          </div><!-- /.box -->
      </div>
   </div>
