@@ -28,7 +28,6 @@ class AdmPublicController extends \BaseController {
         return Redirect::route('admission.apt_details', ['id' => Auth::applicant()->get()->id]);
     }
 
-
     public function admDegreeApplicantDetails($id){
 
         $degree_model = Degree::with('relYear','relSemester',
