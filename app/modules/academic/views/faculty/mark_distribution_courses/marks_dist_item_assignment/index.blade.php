@@ -10,7 +10,7 @@
         <th>Title</th>
         <th>Description</th>
         <th>status</th>
-        <th>Class date</th>
+        <th>Deadline</th>
         <th>Action</th>
         </thead>
         <tbody>
@@ -42,7 +42,7 @@
                     <h4 class="modal-title" style="text-align: center">Marks Distribution Item:Assignment</h4>
                 </div>
                 <div class="modal-body">
-                    {{ Form::open(array('url' => 'class_test/save', 'method' =>'post', 'role'=>'form','files'=>'true')) }}
+                    {{ Form::open(array('url' => 'assignment/save', 'method' =>'post', 'role'=>'form','files'=>'true')) }}
                     {{ Form::hidden('course_management_id', $cmid, ['class'=>'form-control course_management_id'])}}
                     {{ Form::hidden('marks_dist_id', $marks_dist_id, ['class'=>'form-control course_management_id'])}}
                     @include('academic::faculty.mark_distribution_courses.marks_dist_item_assignment._form')

@@ -7,7 +7,7 @@
     {{ Form::textarea('description', Input::old('description'),['class'=>'form-control','spellcheck'=> 'true','required'=>'required','size'=>'30x10']) }}
 </div>
 <div class='form-group'>
-    {{ Form::label('assignment_date_time', 'Assignment Date') }}
+    {{ Form::label('class_time', 'Assignment Date') }}
     {{ Form::select('class_time',$date_time,Input::old('class_time'),['class'=>'form-control','required']) }}
 </div>
 <div class='form-group'>
