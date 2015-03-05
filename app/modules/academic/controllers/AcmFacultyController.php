@@ -515,9 +515,11 @@ class AcmFacultyController extends \BaseController {
 		$assign_std= AcmAcademicAssignStudent::with('relAcmAcademic')
 			->where('user_id', '=', $assign_std_id)
 			->first();//Execute the query and get the first result.
+
 		$comments_info = AcmAcademicAssignStudentComments::with('relAcmAcademicAssignStudent')
 			->where('acm_assign_std_id', '=', $assign_std_id)
 			->get();//Execute the query as a "select" statement.
+
 		return View::make('academic::faculty.mark_distribution_courses.marks_dist_item_class_test.ct_comments',compact('assign_std','comments_info'));
 
 	}
@@ -724,7 +726,6 @@ class AcmFacultyController extends \BaseController {
 		return View::make('academic::faculty.mark_distribution_courses.marks_dist_item_assignment.assignment_comments',compact('assign_std','comments_info'));
 
 	}
-
 	public function save_assignment_comments()
 	{
 		$data = Input::all();
@@ -745,5 +746,24 @@ class AcmFacultyController extends \BaseController {
 			return Redirect::to('academic/faculty/marks-dist-item/assignment/assign/');
 		}
 	}
+	//************************Marks Distribution Item Midterm Start********************
+	public function midterm_index($marks_dist_id,$cmid)
+	{
+		$date_time= array('' => 'Select class Time') + AcmClassSchedule::lists('day', 'id');
+		$title = 'All Assignment List';
+		$datas = AcmAcademic::with('relAcmClassSchedule')
+			->where('acm_marks_distribution_id', '=', $marks_dist_id)
+			->get();
+		$data= CourseManagement::with( 'relCourse')
+			->where('id', '=', $cmid)
+			->get();
+		$config_data = AcmMarksDistribution::with('relAcmMarksDistItem', 'relCourseManagement.relCourse')
+			->where('course_management_id', '=', $cmid)
+			->get();
+		return View::make('academic::faculty.mark_distribution_courses.marks_dist_item_mid_term.index', compact('title', 'datas', 'config_data','data', 'marks_dist_id', 'cmid','date_time'));
+	}
+
+
+
 
 }

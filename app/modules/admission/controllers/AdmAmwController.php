@@ -40,6 +40,43 @@ class AdmAmwController extends \BaseController
         return View::make('admission::amw.admission_test.question_paper',compact('adm_question_paper'));
     }
 
+    public function searchIndex(){
+
+        $searchQuery = [
+            'year_id' =>   Input::get('year_id'),
+            'semester_id' =>   Input::get('semester_id'),
+        ];
+
+        $model = new Degree();
+//        $helper = Helpers::();
+        $result = Helpers::search($searchQuery, $model);
+
+        $adm_test_data = '';
+        foreach($result as $value){
+//          $model = Degree::with(
+//                [
+//                    'relCourseManagement', 'relCourseManagement.relCourse',
+//                    'relCourseManagement.relCourse.relSubject.relDepartment',
+//                    'relAcmMarksDistItem' => function ($query)
+//                    {
+//                        $query->where('is_exam', 1);
+//                    }
+//                ]
+//            );
+//            $model = Degree();
+            $model = new Degree();
+//            print_r($model);exit;
+            $model = $model->where('id', '=', $value->id);
+            $adm_test_data[] = $model->get();
+        }
+
+
+        $year_id = Year::lists('title', 'id');
+        $semester_id = Semester::lists('title', 'id');
+
+        return View::make('admission::amw.admission_test._search_index',compact('adm_test_data','year_id','semester_id'));
+    }
+
 
 
 
