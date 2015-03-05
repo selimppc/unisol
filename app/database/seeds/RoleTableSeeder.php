@@ -5,119 +5,31 @@ class RoleTableSeeder extends Seeder {
     public function run()
     {
         DB::table('role')->delete();
-        Role::create(array(
-            'code' => 'admin',
-            'title' => 'admin',
-            'description' => 'admin',
-            'status' => 1,
-            'created_by' => 1,
-            'updated_by' => 1,
-            'created_at' => new DateTime,
-            'updated_at' => new DateTime
-        ));
 
-        Role::create(array(
-            'code' => 'faculty',
-            'title' => 'faculty',
-            'description' => 'faculty',
-            'status' => 1,
-            'created_by' => 1,
-            'updated_by' => 1,
-            'created_at' => new DateTime,
-            'updated_at' => new DateTime
-        ));
+        $items = array(
+            array('admin', 'admin', 'admin', 1, 1, 1),
+            array('faculty', 'faculty', 'faculty', 1, 1, 1),
+            array('amw', 'amw', 'amw', 1, 1, 1),
+            array('student', 'student', 'student', 1, 1, 1),
+            array('accounts', 'accounts', 'accounts', 1, 1, 1),
+            array('librarian', 'librarian', 'librarian', 1, 1, 1),
+            array('hr', 'hr', 'hr', 1, 1, 1),
+            array('alumni', 'alumni', 'alumni', 1, 1, 1),
+            array('employer', 'employer', 'employer', 1, 1, 1),
+            array('applicant', 'applicant', 'applicant', 1, 1, 1),
+        );
 
-        Role::create(array(
-            'code' => 'amw',
-            'title' => 'amw',
-            'description' => 'amw',
-            'status' => 1,
-            'created_by' => 1,
-            'updated_by' => 1,
-            'created_at' => new DateTime,
-            'updated_at' => new DateTime
-        ));
-
-        Role::create(array(
-            'code' => 'student',
-            'title' => 'student',
-            'description' => 'student',
-            'status' => 1,
-            'created_by' => 1,
-            'updated_by' => 1,
-            'created_at' => new DateTime,
-            'updated_at' => new DateTime
-        ));
-
-        Role::create(array(
-            'code' => 'accounts',
-            'title' => 'accounts',
-            'description' => 'Accounts',
-            'status' => 1,
-            'created_by' => 1,
-            'updated_by' => 1,
-            'created_at' => new DateTime,
-            'updated_at' => new DateTime
-        ));
-
-        Role::create(array(
-            'code' => 'librarian',
-            'title' => 'librarian',
-            'description' => 'Librarian',
-            'status' => 1,
-            'created_by' => 1,
-            'updated_by' => 1,
-            'created_at' => new DateTime,
-            'updated_at' => new DateTime
-        ));
-
-        Role::create(array(
-            'code' => 'hr',
-            'title' => 'hr',
-            'description' => 'HR',
-            'status' => 1,
-            'created_by' => 1,
-            'updated_by' => 1,
-            'created_at' => new DateTime,
-            'updated_at' => new DateTime
-        ));
-
-        Role::create(array(
-            'code' => 'alumni',
-            'title' => 'alumni',
-            'description' => 'alumni',
-            'status' => 1,
-            'created_by' => 1,
-            'updated_by' => 1,
-            'created_at' => new DateTime,
-            'updated_at' => new DateTime
-        ));
-
-        Role::create(array(
-            'code' => 'employer',
-            'title' => 'employer',
-            'description' => 'employer',
-            'status' => 1,
-            'created_by' => 1,
-            'updated_by' => 1,
-            'created_at' => new DateTime,
-            'updated_at' => new DateTime
-        ));
-
-        Role::create(array(
-            'code' => 'applicant',
-            'title' => 'applicant',
-            'description' => 'applicant',
-            'status' => 1,
-            'created_by' => 1,
-            'updated_by' => 1,
-            'created_at' => new DateTime,
-            'updated_at' => new DateTime
-        ));
-
-
-
-
-
+        foreach($items as $item) {
+            Role::create(array(
+                'code' => $item[0],
+                'title' => $item[1],
+                'description' => $item[2],
+                'status' => $item[3],
+                'created_by' => $item[4],
+                'updated_by' => $item[5],
+                'created_at' => new DateTime,
+                'updated_at' => new DateTime
+            ));
+        }
     }
 }

@@ -34,18 +34,15 @@
                                 <th> Degree Name :</th>
                                 <td>{{ $degree_model->title }}</td>
                          </tr>
-
                          <tr>
                                  <th> Year:</th>
                                  <td>{{ $degree_model->relYear->title }}</td>
                          </tr>
-
                          <tr>
                                  <th> Semester:</th>
                                  <td>{{ $degree_model->relSemester->title }}</td>
 
                          </tr>
-
                          <tr>
                                  <th> Description  :</th>
                                  <td>{{ $degree_model->description }}</td>
@@ -55,36 +52,53 @@
                                 <td>{{ $degree_model->relDegreeWaiver->relWaiver->title }}</td>
 
                          </tr>
-
                          <tr>
                                  <th>Duration:</th>
                                  <td>{{ $degree_model->duration }}</td>
 
                          </tr>
-
                          <tr>
                                  <th>Total Credit :</th>
                                  <td>{{ $degree_model->total_credit }}</td>
 
                          </tr>
-
                          <tr>
                                 <th>Total Seat</th>
                                 <td>{{$degree_model->seat}}</td>
                          </tr>
-
-
                          <tr>
                                  <th>Major Courses :</th>
                                  <td>
-                                 {{--{{ $degree_model->relCourse->title }}--}}
+                                     @foreach($model as $value)
+
+                                          @if($value->major_minor == 'major')
+                                             {{ $value->relCourse->title }}<br>
+                                          @endif
+                                     @endforeach
                                  </td>
                          </tr>
 
-                         {{--<tr>--}}
-                                {{--<th>Minimum Requirements</th>--}}
-                                {{--<td>Min GPA At</td>--}}
-                         {{--</tr>--}}
+                         <tr>
+                                <th>Minor Courses :</th>
+                                <td>
+                                    @foreach($model as $value)
+
+                                          @if($value->major_minor == 'minor')
+                                             {{ $value->relCourse->title }}<br>
+                                          @endif
+                                    @endforeach
+                                </td>
+                         </tr>
+                         <tr>
+                                <th>Minimum Requirements</th>
+
+                                <td>
+                                   @foreach($edu_gpa_model as $value)
+                                        Min GPA at {{$value->level_of_education.' : '.$value->min_gpa }}<br><br>
+                                   @endforeach
+                                </td>
+                         </tr>
+
 
 
              </table>

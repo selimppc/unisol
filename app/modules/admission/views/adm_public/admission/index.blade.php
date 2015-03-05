@@ -27,7 +27,7 @@
 
 <br>
 
-{{ Form::open(['route' => ['admission.apt_details']]) }}
+{{ Form::open(['route' => ['admission.degree_save']]) }}
 
 
     {{---------------------------------------------Data Table: Starts-----------------------------------------------------------------}}

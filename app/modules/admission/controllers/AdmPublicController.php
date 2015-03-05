@@ -12,34 +12,45 @@ class AdmPublicController extends \BaseController {
         return View::make('admission::adm_public.admission.index',compact('degreeList'));
 
 	}
-    public function admAptDetails(){
+    public function admDegreeSave(){
 
         $degree_ids = Input::get('ids');
-        foreach($degree_ids as $key => $value){
-            $data = new DegreeApplicant();
-            $data->degree_id = $value;
-            $data->applicant_id = 2;
-            $data->save();
-        }
-        exit("OK");
+        //print_r($degree_ids);exit;
 
+            foreach($degree_ids as $key => $value){
+                $data = new DegreeApplicant();
+                $data->degree_id = $value;
+                $data->applicant_id = 2;
+                if($data->save()){
+                    print_r($data->degree_id);exit;
+                }
+            }
+        //exit("OK");
     }
     public function admDegreeDetails($id){
-
-
-
         $degree_model = Degree::with('relYear','relSemester',
             'relDegreeWaiver.relWaiver')
             ->where('id', '=', $id)
             ->first();
-       // print_r($course_mng_model);exit;
+        $model = CourseManagement::with('relCourse')->where('degree_id','=',$id)->get();
+        $edu_gpa_model = DegreeEducationConstraint::with('relDegree')->where('degree_id','=',$id)->get();
+
+        return View::make('admission::adm_public.admission.degree_details',compact('degree_model','model','edu_gpa_model'));
+    }
+    public function admAptDetails($id){
+        //echo 'hello';
+       //$degree_ids = Input::get('ids');
+        $data = DegreeApplicant::find($id);
+        print_r($data);exit;
 
 
-        return View::make('admission::adm_public.admission.degree_details',compact('degree_model'));
+
+
+
 
     }
 
-	public function create()
+    public function create()
 	{
 		//
 	}
