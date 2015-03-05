@@ -13,11 +13,11 @@
         <div class="modal-dialog">
             <div class="modal-content">
                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">
+                    <span class="close_button">
                         <a href="{{URL::previous()}}" class="btn btn-info ">
                             <span aria-hidden="true">&times;</span>
                         </a>
-                    </button>
+                    </span>
                     <h4 class="modal-title" id="myModalLabel">
                         You are: <span style="font-weight: bold; color: #002a80;">
                                     {{isset(Auth::user()->get()->id) ? Auth::user()->get()->username : Auth::applicant()->get()->username}}
