@@ -10,7 +10,7 @@
         <th>Title</th>
         <th>Description</th>
         <th>status</th>
-        <th>Class date</th>
+        <th>Deadline</th>
         <th>Action</th>
         </thead>
         <tbody>
@@ -37,7 +37,7 @@
     {{--All Modal--}}
     {{---------------------------------------------}}
     <!-- Add New class Modal -->
-    <div id="addClassTest" class="modal fade">
+    <div id="addClassTest" class="modal fade" data-keyboard="false" data-backdrop="static">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -56,7 +56,7 @@
     </div>
 
     {{--Show single class info --}}
-    <div class="modal fade" id="showModal" tabindex="-1" role="dialog" aria-labelledby="addScholarship" aria-hidden="true">
+    <div class="modal fade" id="showModal" tabindex="-1" role="dialog" aria-labelledby="addScholarship" aria-hidden="true" data-keyboard="false" data-backdrop="static">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
 
@@ -65,7 +65,7 @@
     </div><!-- /.modal -->
 
     <!-- Edit Class Modal -->
-    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="addScholarship" aria-hidden="true">
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="addScholarship" aria-hidden="true" data-keyboard="false" data-backdrop="static">
         <div class="modal-dialog">
             <div class="modal-content">
 
