@@ -106,10 +106,8 @@ class CreateAcmAcademicRl extends Migration {
             $table->unsignedInteger('acm_assign_std_id')->nullable();
             $table->text('comments');
             $table->integer('commented_to', false, 11);
-//            $table->integer('commented_by', false, 11);
-//            $table->integer('created_by', false, 11);
-            $table->string('commented_to', 16);
-            $table->string('commented_by', 16);
+            $table->integer('commented_by', false, 11);
+            $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
             $table->engine = 'InnoDB';
