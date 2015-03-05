@@ -10,7 +10,7 @@
         <th>Title</th>
         <th>Description</th>
         <th>status</th>
-        <th>Class date</th>
+        <th>Deadline</th>
         <th>Action</th>
         </thead>
         <tbody>
