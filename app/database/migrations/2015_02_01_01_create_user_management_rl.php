@@ -59,7 +59,7 @@ class CreateUserManagementRl extends Migration {
             $table->tinyInteger('status', false)->length(1);
             $table->string('verified_code', 64);
             $table->string('csrf_token', 64);
-            $table->integer('applicant_id', false)->length(11);
+            $table->integer('applicant_id', false)->length(11)->nullable();
             $table->unsignedInteger('waiver_id')->nullable();
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);

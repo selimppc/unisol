@@ -22,105 +22,30 @@ class UserTable extends Seeder {
         $eee_dept_id = DB::table('department')->select('id')->where('title', 'EEE')->first()->id;
 
 
-        User::insert(array(
-            'username' => 'admin',
-            'password' => Hash::make('admin'),
-            'email' => 'admin@admin.com',
-            'role_id' => $admin_role_id,
-            'department_id' => $cse_dept_id,
-            'join_date' => '2000-12-12',
-            'last_visit' => '2000-12-12',
-            'ip_address' => '192.168.1.1',
-            'status' => '1',
-            'verified_code' => '9875656457890867869778',
-            'csrf_token' => 'fioyugpuiesiorgjhprauehrigpi',
-            'applicant_id' => '1',
-            'waiver_id' => '1',
-            'created_by' => '1',
-            'updated_by' => '1',
-            'created_at' => new DateTime,
-            'updated_at' => new DateTime
-        ));
+        $users = array(
+            array('admin', Hash::make('admin'), 'admin@admin.com', $admin_role_id, $cse_dept_id, '2000-12-12', '2000-12-12', '192.168.1.1', '9875656457890867869778', 'fioyugpuiesiorgjhprauehrigpi'),
+            array('amw', Hash::make('amw'), 'amw@amw.com', $amw_role_id, $cse_dept_id, '2000-12-12', '2000-12-12', '192.168.1.1', '9875656457890867869778', 'fioyugpuiesiorgjhprauehrigpi'),
+            array('faculty', Hash::make('faculty'), 'faculty@faculty.com', $faculty_role_id, $cse_dept_id, '2000-12-12', '2000-12-12', '192.168.1.1', '9875656457890867869778', 'fioyugpuiesiorgjhprauehrigpi'),
+            array('student', Hash::make('student'), 'student@student.com', $student_role_id, $eee_dept_id, '2000-12-12', '2000-12-12', '192.168.1.1', '9875656457890867869778', 'fioyugpuiesiorgjhprauehrigpi'),
+            array('applicant', Hash::make('applicant'), 'applicant@applicant.com', $applicant_role_id, $eee_dept_id, '2000-12-12', '2000-12-12', '192.168.1.1', '9875656457890867869778', 'fioyugpuiesiorgjhprauehrigpi'),
+        );
 
-        User::insert(array(
-            'username' => 'faculty',
-            'password' => Hash::make('faculty'),
-            'email' => 'faculty@faculty.com',
-            'role_id' => $faculty_role_id,
-            'department_id' => $cse_dept_id,
-            'join_date' => '2000-12-12',
-            'last_visit' => '2000-12-12',
-            'ip_address' => '192.168.1.1',
-            'status' => '1',
-            'verified_code' => '9875656457890867869778',
-            'csrf_token' => 'fioyugpuiesiorgjhprauehrigpi',
-            'applicant_id' => '1',
-            'waiver_id' => '1',
-            'created_by' => '1',
-            'updated_by' => '1',
-            'created_at' => new DateTime,
-            'updated_at' => new DateTime
-        ));
-
-        User::insert(array(
-            'username' => 'amw',
-            'password' => Hash::make('amw'),
-            'email' => 'amw@amw.com',
-            'role_id' => $amw_role_id,
-            'department_id' => $eee_dept_id,
-            'join_date' => '2000-12-12',
-            'last_visit' => '2000-12-12',
-            'ip_address' => '192.168.1.1',
-            'status' => '1',
-            'verified_code' => '9875656457890867869778',
-            'csrf_token' => 'fioyugpuiesiorgjhprauehrigpi',
-            'applicant_id' => '1',
-            'waiver_id' => '1',
-            'created_by' => '1',
-            'updated_by' => '1',
-            'created_at' => new DateTime,
-            'updated_at' => new DateTime
-        ));
-
-        User::insert(array(
-            'username' => 'student',
-            'password' => Hash::make('student'),
-            'email' => 'student@student.com',
-            'role_id' => $student_role_id,
-            'department_id' => $eee_dept_id,
-            'join_date' => '2000-12-12',
-            'last_visit' => '2000-12-12',
-            'ip_address' => '192.168.1.1',
-            'status' => '1',
-            'verified_code' => '9875656457890867869778',
-            'csrf_token' => 'fioyugpuiesiorgjhprauehrigpi',
-            'applicant_id' => '1',
-            'waiver_id' => '1',
-            'created_by' => '1',
-            'updated_by' => '1',
-            'created_at' => new DateTime,
-            'updated_at' => new DateTime
-        ));
-
-        User::insert(array(
-            'username' => 'applicant',
-            'password' => Hash::make('applicant'),
-            'email' => 'applicant@applicant.com',
-            'role_id' => $applicant_role_id,
-            'department_id' => $eee_dept_id,
-            'join_date' => '2000-12-12',
-            'last_visit' => '2000-12-12',
-            'ip_address' => '192.168.1.1',
-            'status' => '1',
-            'verified_code' => '9875656457890867869778',
-            'csrf_token' => 'fioyugpuiesiorgjhprauehrigpi',
-            'applicant_id' => '1',
-            'waiver_id' => '1',
-            'created_by' => '1',
-            'updated_by' => '1',
-            'created_at' => new DateTime,
-            'updated_at' => new DateTime
-        ));
-
+        foreach($users as $user) {
+            User::insert(array(
+                'username' => $user[0],
+                'password' => $user[1],
+                'email' => $user[2],
+                'role_id' => $user[3],
+                'department_id' => $user[4],
+                'join_date' => $user[5],
+                'last_visit' => $user[6],
+                'ip_address' => $user[7],
+                'status' => '1',
+                'verified_code' => $user[8],
+                'csrf_token' => $user[9],
+                'created_at' => new DateTime,
+                'updated_at' => new DateTime
+            ));
+        }
     }
 } 
