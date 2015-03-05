@@ -62,7 +62,7 @@
                                <td>QPE Status</td>
                                <td>
                                   <a href="{{ URL::route('amw.admission_test.examiners', ['year_id'=>$adm_test_mgt->year_id , 'semester_id'=>$adm_test_mgt->semester_id , 'degree_id'=>$adm_test_mgt->id ])  }}" class="btn btn-default btn-xs" >EX</a>
-                                  <a href="{{ URL::route('amw.admission_test.question_paper', ['id'=>$adm_test_mgt->id])  }}" class="btn btn-default btn-xs" >QP</a>
+                                  <a href="{{ URL::route('amw.admission_test.question_paper', ['year_id'=>$adm_test_mgt->year_id , 'semester_id'=>$adm_test_mgt->semester_id ])  }}" class="btn btn-default btn-xs" >QP</a>
                                </td>
                            </tr>
                      @endforeach

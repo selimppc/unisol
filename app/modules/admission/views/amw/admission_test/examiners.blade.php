@@ -30,7 +30,7 @@
                             </br>
                             <strong> Degree: </strong>{{ Degree::getDegreeName($degree_id) }}
                             </br>
-                            <strong> Department: </strong> </br>{{ $department_id  }}
+                            <strong> Department: </strong>{{ $data  }}
                             </br>
 
                            {{ Form::submit('Delete Items', array('class'=>'btn btn-danger btn-xs', 'id'=>'hide-button', 'style'=>'display:none'))}}

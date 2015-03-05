@@ -13,6 +13,11 @@
                             <div class="col-sm-12">
 
                                 <div class="col-sm-6">
+
+                                    <strong> Year: </strong>{{ Year::getYearsName($year_id) }}
+                                    </br>
+                                    <strong> Semester: </strong>{{ Semester::getSemesterName($semester_id) }}
+                                    </br>
                                 </div>
 
                                 <div class="col-sm-6">

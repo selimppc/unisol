@@ -45,7 +45,7 @@ Route::any('amw/admission_test/search-index', [
 
 
 
-Route::any('amw/admission_test/question_paper/{id}', [
+Route::any('amw/admission_test/question_paper/{year_id}/{semester_id}', [
     'as' => 'amw.admission_test.question_paper',
     'uses' => 'AdmAmwController@questionPaper'
 ]);
