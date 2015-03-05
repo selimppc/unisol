@@ -38,7 +38,8 @@ class AdmPublicController extends \BaseController {
         $model = CourseManagement::with('relCourse')->where('degree_id','=',$id)->get();
         $edu_gpa_model = DegreeEducationConstraint::with('relDegree')->where('degree_id','=',$id)->get();
 
-        return View::make('admission::adm_public.admission.degree_details',compact('degree_model','model','edu_gpa_model'));
+        return View::make('admission::adm_public.admission.degree_details',
+                  compact('degree_model','model','edu_gpa_model'));
     }
 
     public function admAptDetails($id){
@@ -53,18 +54,18 @@ class AdmPublicController extends \BaseController {
 
     public function admTestDetails($id){
 
+        //get degree_id
+        $degree_id = DegreeApplicant::where('id','=',$id)->first()->degree_id;
 
-        $degree_id = DegreeApplicant::where('id','=',$id)->get();
-       // print_r($degree_id);exit;
-
-        /*$adm_test_model = DegreeApplicant::with('relDegree','relDegree.relSemester','relDegree.relYear')
+        $adm_test_model = DegreeApplicant::with('relDegree','relDegree.relSemester','relDegree.relYear')
                           ->where('id', '=', $id)
-                         ->first();*/
+                          ->first();
+        //get adm_test_subject according to degree_id
+        $adm_test_subject = DegreeAdmTestSubject::with('relAdmTestSubject')
+                            ->where('degree_id','=',$degree_id)->get();
 
-        $adm_test_subject = DegreeAdmTestSubject::where('id','=',$id)->get();
-        print_r($adm_test_subject);exit;
-
-        return View::make('admission::adm_public.admission.adm_test_details',compact('adm_test_model'));
+        return View::make('admission::adm_public.admission.adm_test_details',
+                  compact('adm_test_model','adm_test_subject'));
     }
 
     public function create()
