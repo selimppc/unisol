@@ -74,7 +74,7 @@ Route::filter('academicAmw', function()
         $role_id = Auth::user()->get()->role_id;
         $role = User::hasRole($role_id);
         if($role != 'amw')
-            return Redirect::guest('usersign/dashboard');
+            return Redirect::guest('user-access');
     }else{
         return Redirect::guest('user/login');
     }
@@ -88,7 +88,7 @@ Route::filter('academicStudent', function()
         $role_id = Auth::user()->get()->role_id;
         $role = User::hasRole($role_id);
         if($role != 'student')
-            return Redirect::guest('usersign/dashboard');
+            return Redirect::guest('user-access');
     }else{
         return Redirect::guest('user/login');
     }
@@ -105,7 +105,7 @@ Route::filter('admFaculty', function()
         $role_id = Auth::user()->get()->role_id;
         $role = User::hasRole($role_id);
         if($role != 'faculty')
-            return Redirect::guest('usersign/dashboard');
+            return Redirect::guest('user-access');
     }else{
         return Redirect::guest('user/login');
     }
@@ -117,7 +117,7 @@ Route::filter('admAmw', function()
         $role_id = Auth::user()->get()->role_id;
         $role = User::hasRole($role_id);
         if($role != 'amw')
-            return Redirect::guest('usersign/dashboard');
+            return Redirect::guest('user-access');
     }else{
         return Redirect::guest('user/login');
     }
@@ -130,7 +130,7 @@ Route::filter('admStudent', function()
         $role_id = Auth::user()->get()->role_id;
         $role = User::hasRole($role_id);
         if($role != 'student')
-            return Redirect::guest('usersign/dashboard');
+            return Redirect::guest('user-access');
     }else{
         return Redirect::guest('user/login');
     }
@@ -160,7 +160,7 @@ Route::filter('exmFaculty', function()
         $role_id = Auth::user()->get()->role_id;
         $role = User::hasRole($role_id);
         if($role != 'faculty')
-            return Redirect::guest('usersign/dashboard');
+            return Redirect::guest('user-access');
     }else{
         return Redirect::guest('user/login');
     }
@@ -173,7 +173,7 @@ Route::filter('exmAmw', function()
         $role_id = Auth::user()->get()->role_id;
         $role = User::hasRole($role_id);
         if($role != 'amw')
-            return Redirect::guest('usersign/dashboard');
+            return Redirect::guest('user-access');
     }else{
         return Redirect::guest('user/login');
     }
@@ -186,7 +186,7 @@ Route::filter('exmStudent', function()
         $role_id = Auth::user()->get()->role_id;
         $role = User::hasRole($role_id);
         if($role != 'student')
-            return Redirect::guest('usersign/dashboard');
+            return Redirect::guest('user-access');
     }else{
         return Redirect::guest('user/login');
     }
