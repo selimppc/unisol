@@ -166,15 +166,21 @@ Route::any('amw/waiver_manage/update/{id}', ['as' => 'waiver_manage.update','use
 
 // ----------------------------Public : Admission starts----------------------------------------------------------
 
-Route::any('public/admission', ['as' => 'admission.index','uses' => 'AdmPublicController@admIndex']);
-
-Route::post('public/admission/apt_details',
-        ['as' => 'admission.apt_details',
-        'uses' => 'AdmPublicController@admAptDetails']);
+Route::any('public/admission',
+                ['as' => 'admission.index',
+                 'uses' => 'AdmPublicController@admIndex']);
 
 Route::any('public/admission/degree_details/{id}',
         ['as' => 'admission.degree_details',
         'uses' => 'AdmPublicController@admDegreeDetails']);
+
+Route::any('public/admission/degree_save',
+    ['as' => 'admission.degree_save',
+        'uses' => 'AdmPublicController@admDegreeSave']);
+
+Route::any('public/admission/apt_details',
+    ['as' => 'admission.apt_details',
+        'uses' => 'AdmPublicController@admAptDetails']);
 
 
 
