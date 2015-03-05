@@ -24,14 +24,14 @@
                             </div>
 
 
-                           <strong> Year: </strong>
-                           </br>
-                           <strong> Semester: </strong>
-                           </br>
-                           <strong> Degree: </strong>
-                           </br>
-                           <strong> Department: </strong> </br>
-                           </br>
+                            <strong> Year: </strong>{{ Year::getYearsName($year_id) }}
+                            </br>
+                            <strong> Semester: </strong>{{ Semester::getSemesterName($semester_id) }}
+                            </br>
+                            <strong> Degree: </strong>{{ Degree::getDegreeName($degree_id) }}
+                            </br>
+                            <strong> Department: </strong> </br>{{ $department_id  }}
+                            </br>
 
                            {{ Form::submit('Delete Items', array('class'=>'btn btn-danger btn-xs', 'id'=>'hide-button', 'style'=>'display:none'))}}
 
@@ -48,19 +48,13 @@
                             <tr>
                                 <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $adm_examiners_list['id'] }}"></td>
 
-    {{--                             <td>{{ HTML::linkAction('ExmAmwController@viewExaminers',($examiners_list->relUser->relUserProfile->first_name.' '.$examiners_list->relUser->relUserProfile->middle_name.' '.$examiners_list->relUser->relUserProfile->last_name),['id'=>$examiners_list->id]) }}</td>--}}
-                                 <td><span data-toggle="modal" data-target="#modal" data-placement="left" title="View" href="#">{{ HTML::linkAction('ExmAmwController@viewExaminers',($adm_examiners_list->relUser->relUserProfile->first_name.' '.$adm_examiners_list->relUser->relUserProfile->middle_name.' '.$adm_examiners_list->relUser->relUserProfile->last_name),['id'=>$adm_examiners_list->id]) }}</span></td>
-                                 {{--<td> <span href="{{ URL::route('examination.amw.viewExaminers',($examiners_list->relUser->relUserProfile->first_name),['id'=>$examiners_list->id]) }}" class="btn btn-default" data-toggle="modal" data-target="#modal" data-placement="left" title="Show" href="#">View</span></td>--}}
-
-                                    {{--<td><label type="button" class="label" data-toggle="modal" data-target="#modal">--}}
-                                     {{--{{ HTML::linkAction('ExmAmwController@viewExaminers',($examiners_list->relUser->relUserProfile->first_name.' '.$examiners_list->relUser->relUserProfile->middle_name.' '.$examiners_list->relUser->relUserProfile->last_name),['id'=>$examiners_list->id]) }}--}}
-                                    {{--</label></td>--}}
-
+                                 {{--<td><span data-toggle="modal" data-target="#modal" data-placement="left" title="View" href="#">{{ HTML::linkAction('AdmAmwController@adm_viewExaminers',($adm_examiners_list->relUser->relUserProfile->first_name.' '.$adm_examiners_list->relUser->relUserProfile->middle_name.' '.$adm_examiners_list->relUser->relUserProfile->last_name),['id'=>$adm_examiners_list->id]) }}</span></td>--}}
 
                                  {{--<td>{{ $examiners_list->type }} </td>--}}
                                  {{--<td> {{ $examiners_list->assigned_by }} </td>--}}
                                  {{--<td> {{ $examiners_list->deadline }} </td>--}}
                                  {{--<td> {{ $examiners_list->note }} </td>--}}
+                                 <td></td>
 
                                  <td>{{ $adm_examiners_list->status }} </td>
 

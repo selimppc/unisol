@@ -28,11 +28,19 @@ class AdmAmwController extends \BaseController
         return View::make('admission::amw.admission_test.deshboard');
     }
 
-    public function examiners()
+
+    public function examiners($year_id, $semester_id, $degree_id)
     {
         $adm_examiners_home = AdmExaminer::orderby('id', 'DESC')->paginate(5);
-        return View::make('admission::amw.admission_test.examiners',compact('adm_examiners_home'));
+//        print_r($adm_examiners_home->degree_id);exit;
+        $data = AdmExaminer::with('relDegree')
+            ->get();
+
+//        $degree_id = ;
+
+        return View::make('admission::amw.admission_test.examiners',compact('adm_examiners_home','year_id','semester_id','degree_id'));
     }
+
 
     public function questionPaper()
     {
@@ -48,28 +56,8 @@ class AdmAmwController extends \BaseController
         ];
 
         $model = new Degree();
-//        $helper = Helpers::();
-        $result = Helpers::search($searchQuery, $model);
 
-        $adm_test_data = '';
-        foreach($result as $value){
-//          $model = Degree::with(
-//                [
-//                    'relCourseManagement', 'relCourseManagement.relCourse',
-//                    'relCourseManagement.relCourse.relSubject.relDepartment',
-//                    'relAcmMarksDistItem' => function ($query)
-//                    {
-//                        $query->where('is_exam', 1);
-//                    }
-//                ]
-//            );
-//            $model = Degree();
-            $model = new Degree();
-//            print_r($model);exit;
-            $model = $model->where('id', '=', $value->id);
-            $adm_test_data[] = $model->get();
-        }
-
+        $adm_test_data = Helpers::search($searchQuery, $model);
 
         $year_id = Year::lists('title', 'id');
         $semester_id = Semester::lists('title', 'id');

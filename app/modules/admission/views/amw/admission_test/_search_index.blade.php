@@ -49,22 +49,21 @@
                     </tr>
              </thead>
                  <tbody>
-                     @if(!empty($exam_data))
-                        <?php $i = 0; ?>
-                         @foreach($admission_test as $adm_test_mgt)
+                     @if(!empty($adm_test_data))
+                         @foreach($adm_test_data as $adm_test_mgt)
                                <tr>
-                                   <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $adm_test_mgt[$i]['id'] }}"></td>
-                                   <td>{{ $adm_test_mgt[$i]->title }}</td>
-                                   <td>{{ Department::getDepartmentName($adm_test_mgt[$i]->department_id) }}</td>
-                                   <td>{{ Year::getYearsName($adm_test_mgt[$i]->year_id) }}</td>
-                                   <td>{{ Semester::getSemesterName($adm_test_mgt[$i]->semester_id) }}</td>
-                                   <td>{{ $adm_test_mgt[$i]->status}}</td>
-                                   <td>{{ $adm_test_mgt[$i]->total_credit }}</td>
-                                   <td style="text-align: center">{{ $adm_test_mgt[$i]->duration }}</td>
+                                   <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $adm_test_mgt['id'] }}"></td>
+                                   <td>{{ $adm_test_mgt->title }}</td>
+                                   <td>{{ Department::getDepartmentName($adm_test_mgt->department_id) }}</td>
+                                   <td>{{ Year::getYearsName($adm_test_mgt->year_id) }}</td>
+                                   <td>{{ Semester::getSemesterName($adm_test_mgt->semester_id) }}</td>
+                                   <td>{{ $adm_test_mgt->status}}</td>
+                                   <td>{{ $adm_test_mgt->total_credit }}</td>
+                                   <td style="text-align: center">{{ $adm_test_mgt->duration }}</td>
                                    <td>QPE Status</td>
                                    <td>
-                                      <a href="{{ URL::route('amw.admission_test.examiners', ['id'=>$adm_test_mgt[$i]->id])  }}" class="btn btn-default btn-xs" >EX</a>
-                                      <a href="{{ URL::route('amw.admission_test.question_paper', ['id'=>$adm_test_mgt[$i]->id])  }}" class="btn btn-default btn-xs" >QP</a>
+                                      <a href="{{ URL::route('amw.admission_test.examiners', ['id'=>$adm_test_mgt->id])  }}" class="btn btn-default btn-xs" >EX</a>
+                                      <a href="{{ URL::route('amw.admission_test.question_paper', ['id'=>$adm_test_mgt->id])  }}" class="btn btn-default btn-xs" >QP</a>
                                    </td>
                                </tr>
                          @endforeach

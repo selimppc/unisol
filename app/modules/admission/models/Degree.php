@@ -8,6 +8,14 @@ class Degree extends Eloquent{
 
     protected $table='degree';
 
+    public static function getDegreeName($degId)
+    {
+        $data = Degree::find($degId);
+        return $data->title;
+    }
+
+
+
     public function relYear(){
         return $this->belongsTo('Year','year_id','id');
     }
