@@ -1,46 +1,31 @@
-<td>{{link_to_route('bootstrap.test','',array(1), array(
-        'class'=>'edit-attendee btn btn-info btn-xs glyphicon glyphicon-pencil',
-        'data-title' => 'Edit Attendee'))}} 
-</td>
-
-<a href="{{ URL::route('bootstrap.test', [1]) }}">
-     <span class="menu-text"> Dashboard </span>
-</a>
-
-@if(!empty(Session::get('id')))
-
-    $(document).ready(function(){
-            url = "{{ URL('attendee') . '/' . Session::get('id'). '/edit' }}";
-            BootstrapDialog.show({
-                title: $(this).data('title'),
-                message: $('<div></div>').load(url),
-                buttons: [{
-                    label: 'Update',
-                    action: function(dialogRef) {
-                        $('form').submit();
-                    }
-                }]
-            });
-    });
-
-    @endif
+@extends('layouts.master')
 
 
-<script>
-    $(document).ready(function(){
-        $('.btn.edit-attendee').click(function(e){
-            e.preventDefault();
-            url = $(this).attr('href');
-            BootstrapDialog.show({
-                title: $(this).data('title'),
-                message: $('<div></div>').load(url),
-                buttons: [{
-                    label: 'Update',
-                    action: function(dialogRef) {
-                        $('form').submit();
-                    }
-                }]
-            });
+@section('content')
+
+    <script>
+        $(document).ready(function(){
+            //$('#CreateModal').modal('show');
+            $('#alertModal').modal('show');
         });
-    });
-</script>
+    </script>
+
+    <!-- Modal for Create -->
+     <div data-backdrop="static" data-keyboard="false" class="modal fade" id="alertModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                         <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <h4 class="modal-title" id="myModalLabel">Create Course</h4>
+                         </div>
+                         <div class="modal-body">
+                                 Hello !
+
+                         </div>
+                         <div class="modal-footer">
+                         </div>
+                    </div>
+                </div>
+     </div>
+
+@stop

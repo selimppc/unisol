@@ -7,7 +7,7 @@
 @section('content')
    <h1>Welcome to Course Management </h1>
 
-<script type="text/javascript" language="javascript" src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+{{--<script type="text/javascript" language="javascript" src="//code.jquery.com/jquery-1.11.1.min.js"></script>--}}
 
 {{--<script>--}}
 {{--$(document).ready(function(){--}}
@@ -30,12 +30,14 @@
 
 {{--</script>--}}
 
+
+
 {{ Form::open(array('url' => 'course/batchDelete')) }}
 
         <table id="example" class="table table-striped  table-bordered"  >
             <thead>
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#CreateModal" style="margin-bottom: 20px">
-                        Add New Course
+                        Add New Course 9090909
                 </button>
 
                      <br>
@@ -95,7 +97,7 @@
 
         <br><br><br>
 
-<!-- Modal for Create -->
+            <!-- Modal for Create -->
              <div class="modal fade" id="CreateModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">

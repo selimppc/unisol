@@ -19,16 +19,8 @@ class HomeController extends BaseController {
 	*/
 
 
-    public function userAccess($length = 10){
-        $characters = '2010';
-        $charactersLength = strlen($characters);
-        $randomString = '';
-
-        for ($i = 0; $i < $length; $i++) {
-            $randomString .= $characters[rand(0, $charactersLength - 1)];
-        }
-        print_r($randomString) ;exit;
-        //return View::make('layouts.user_access')->withError("user-access", "you");
+    public function userAccess(){
+        return View::make('layouts.user_access');
     }
 
 

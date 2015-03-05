@@ -10,7 +10,7 @@
         <th>Title</th>
         <th>Description</th>
         <th>status</th>
-        <th>Class date</th>
+        <th>Deadline</th>
         <th>Action</th>
         </thead>
         <tbody>
@@ -34,18 +34,18 @@
 
     {{--All Modal--}}
     {{-- Add New class Modal --}}
-    <div id="addClassTest" class="modal fade">
+    <div id="addClassTest" class="modal fade" data-keyboard="false" data-backdrop="static">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" style="text-align: center">Marks Distribution Item:ClassTest</h4>
+                    <h4 class="modal-title" style="text-align: center">Marks Distribution Item:Assignment</h4>
                 </div>
                 <div class="modal-body">
-                    {{ Form::open(array('url' => 'class_test/save', 'method' =>'post', 'role'=>'form','files'=>'true')) }}
+                    {{ Form::open(array('url' => 'assignment/save', 'method' =>'post', 'role'=>'form','files'=>'true')) }}
                     {{ Form::hidden('course_management_id', $cmid, ['class'=>'form-control course_management_id'])}}
                     {{ Form::hidden('marks_dist_id', $marks_dist_id, ['class'=>'form-control course_management_id'])}}
-                    @include('academic::faculty.mark_distribution_courses.marks_dist_item_class._form')
+                    @include('academic::faculty.mark_distribution_courses.marks_dist_item_assignment._form')
                     {{ Form::close() }}
                 </div>
             </div>
@@ -53,7 +53,7 @@
     </div>
 
     {{--Show single assignment info--}}
-    <div class="modal fade" id="showModal" tabindex="-1" role="dialog" aria-labelledby="addScholarship" aria-hidden="true">
+    <div class="modal fade" id="showModal" tabindex="-1" role="dialog" aria-labelledby="addScholarship" aria-hidden="true" data-keyboard="false" data-backdrop="static">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
 
@@ -62,7 +62,7 @@
     </div><!-- /.modal -->
 
      {{--Edit assignment Modal --}}
-    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="addScholarship" aria-hidden="true">
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="addScholarship" aria-hidden="true" data-keyboard="false" data-backdrop="static">
         <div class="modal-dialog">
             <div class="modal-content">
 

@@ -172,15 +172,19 @@ Route::any('public/admission',
 
 Route::any('public/admission/degree_details/{id}',
         ['as' => 'admission.degree_details',
-        'uses' => 'AdmPublicController@admDegreeDetails']);
+        'uses' => 'AdmPublicController@admDegreeApplicantDetails']);
 
 Route::any('public/admission/degree_save',
     ['as' => 'admission.degree_save',
-        'uses' => 'AdmPublicController@admDegreeSave']);
+        'uses' => 'AdmPublicController@admDegreeAptSave']);
 
-Route::any('public/admission/apt_details',
+Route::any('public/admission/apt_details/{id}',
     ['as' => 'admission.apt_details',
         'uses' => 'AdmPublicController@admAptDetails']);
+
+Route::any('public/admission/adm_test_details/{id}',
+    ['as' => 'admission.adm_test_details',
+        'uses' => 'AdmPublicController@admTestDetails']);
 
 
 
