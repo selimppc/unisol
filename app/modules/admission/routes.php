@@ -33,7 +33,7 @@ Route::any('amw/admission_test/index',[
     'uses' => 'AdmAmwController@admissionTestIndex'
 ]);
 
-Route::any('amw/admission_test/examiners', [
+Route::any('amw/admission_test/examiners/{year_id}/{semester_id}/{degree_id}', [
     'as' => 'amw.admission_test.examiners',
     'uses' => 'AdmAmwController@examiners'
 ]);
@@ -45,7 +45,7 @@ Route::any('amw/admission_test/search-index', [
 
 
 
-Route::any('amw/admission_test/question_paper', [
+Route::any('amw/admission_test/question_paper/{id}', [
     'as' => 'amw.admission_test.question_paper',
     'uses' => 'AdmAmwController@questionPaper'
 ]);

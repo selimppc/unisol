@@ -8,6 +8,14 @@ class AdmExaminer extends Eloquent{
 
     protected $table='adm_examiner';
 
+    public function relDegree()
+    {
+        return $this->belongsTo('Degree', 'degree_id', 'id');
+
+    }
+
+
+
     public static function boot(){
         parent::boot();
         static::creating(function($query){
