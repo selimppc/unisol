@@ -13,16 +13,12 @@
                 <br>
             @endforeach
         </div>
-
-        {{ Form::open(array('url' => array('comments/save'), 'method' =>'post'))  }}
-
+        {{ Form::open(array('url' => array('assignment/comments/save'), 'method' =>'post'))  }}
         {{--{{ Form::text('assign_stu_user_id', $assign_std->user_id, ['class'=>'form-control assign_stu_user_id'])}}--}}
-
         <div class='form-group'>
             {{ Form::label('comments', 'CT Comments') }}
             {{ Form::textarea('comments', Input::old('comments'),['class'=>'form-control','spellcheck'=> 'true','required'=>'required','size'=>'30x10']) }}
         </div>
-
         <div class="modal-footer">
             {{ Form::submit('Submit', array('class'=>'btn btn-primary')) }}
             <a href="{{URL::previous()}}" class="btn btn-default">Close</a>

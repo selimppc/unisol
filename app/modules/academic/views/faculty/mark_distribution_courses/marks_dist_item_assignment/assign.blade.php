@@ -3,7 +3,7 @@
     @include('academic::_sidebar')
 @stop
 @section('content')
-    {{ Form::open(array('url' => 'batch/assign')) }}
+    {{ Form::open(array('url' => 'assignment/assign')) }}
     {{ Form::hidden('acm_academic_id', $acm->id, ['class'=>'form-control acm_academic_id'])}}
     <div class="col-md-4">
         <div class='form-group'>
@@ -58,7 +58,7 @@
         </tbody>
     </table>
     <div class="button" style="margin-top: 10px">
-        <a href="{{URL::previous('academic/faculty/marks/dist/item/class_test/')}}" class="btn btn-info btn-xs ">Back</a>
+        <a href="{{URL::previous('academic/faculty/marks/dist/item/assignment/')}}" class="btn btn-info btn-xs ">Back</a>
         {{ Form::submit('Do Assign', ['name' => 'save', 'class' => 'btn btn-success btn-xs']) }}
         {{ Form::submit('Do Revoke', ['name' => 'update','class' => 'btn btn-danger btn-xs']) }}
 
