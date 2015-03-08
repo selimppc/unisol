@@ -35,7 +35,7 @@
                                    <tr >
                                           <td> <input type="checkbox" name="ids[]"  id="check" class="myCheckbox" value="{{ $value->id }}"></td>
                                           <td>{{ $value->title }}
-                                          <a href="{{ URL::route('admission.degree_details', $value->id) }}">details</a>
+                                          <a href="{{ URL::route('admission.degree_details', ['degree_id' => $value->id]) }}">details</a>
                                           </td>
                                           <td>{{ $value->description }}</td>
                                    </tr>

@@ -170,7 +170,7 @@ Route::any('admission/public/degree_list',
                 ['as' => 'admission.index',
                  'uses' => 'AdmPublicController@admIndex']);
 
-Route::any('public/admission/degree_details/{id}',
+Route::any('public/admission/degree_details/{degree_id}',
         ['as' => 'admission.degree_details',
         'uses' => 'AdmPublicController@admDegreeApplicantDetails']);
 

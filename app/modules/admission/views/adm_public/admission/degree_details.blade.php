@@ -5,7 +5,6 @@
 @section('content')
 
 
-<section class="content">
   <div class="box-body">
 
 
@@ -27,8 +26,10 @@
 <div class="well well-sm">
 
              <table id="example1" class="table table-bordered table-striped">
+                        {{--@foreach($degree_model as $$degree_model)--}}
 
-                         <tr>
+                        {{--{{$degree_model->title}}--}}
+                         {{--<tr>
                                 <th> Degree Name :</th>
                                 <td>{{ $degree_model->title }}</td>
                          </tr>
@@ -65,8 +66,9 @@
                          <tr>
                                 <th>Total Seat</th>
                                 <td>{{$degree_model->seat}}</td>
-                         </tr>
-                         <tr>
+                         </tr>--}}
+                         {{--@endforeach--}}
+                         {{--<tr>
                                  <th>Major Courses :</th>
                                  <td>
                                      @foreach($model as $value)
@@ -76,9 +78,9 @@
                                           @endif
                                      @endforeach
                                  </td>
-                         </tr>
+                         </tr>--}}
 
-                         <tr>
+                         {{--<tr>
                                 <th>Minor Courses :</th>
                                 <td>
                                     @foreach($model as $value)
@@ -97,7 +99,7 @@
                                         Min GPA at {{$value->level_of_education.' : '.$value->min_gpa }}<br><br>
                                    @endforeach
                                 </td>
-                         </tr>
+                         </tr>--}}
 
 
              </table>
@@ -115,7 +117,7 @@
 </div><!-- /.box -->
 </div>
 </div>
-</section>
+
 
 {{---------------------------------------------------Modals-----------------------------------------------}}
 
