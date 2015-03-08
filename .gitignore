@@ -12,3 +12,4 @@ vendor/
 app/config/database.php
 test//
 public/error_log
+public/file
