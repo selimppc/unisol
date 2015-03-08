@@ -17,28 +17,51 @@ class AdmPublicController extends \BaseController {
             if(Auth::applicant()->check()){
                 $degree_ids = Input::get('ids');
                 foreach($degree_ids as $key => $value){
+
                     $data = new DegreeApplicant();
                     $data->degree_id = $value;
                     $data->applicant_id = Auth::applicant()->get()->id;
+
+            /*select query for inserting(save) unique degree
+                    /*$query = DB::table('degree_applicant')
+                                ->select(DB::raw('1'))
+                                ->where('degree_id','=',18)
+                                ->where('applicant_id','=',1)
+                                ->first();
+
+                    if($query != NULL){
+                        return Redirect::to('public/admission')->with('message', 'Already added this degree!');
+                    }else{
+                        $data->save();
+                    }*/
                     $data->save();
-                }
+              }
             }else{
                 echo " you lost !";
             }
         return Redirect::route('admission.apt_details', ['id' => Auth::applicant()->get()->id]);
     }
 
-    public function admDegreeApplicantDetails($id){
+    public function admDegreeApplicantDetails($degree_id){
 
         $degree_model = Degree::with('relYear','relSemester',
             'relDegreeWaiver.relWaiver')
-            ->where('id', '=', $id)
-            ->first();
-        $model = CourseManagement::with('relCourse')->where('degree_id','=',$id)->get();
-        $edu_gpa_model = DegreeEducationConstraint::with('relDegree')->where('degree_id','=',$id)->get();
+            ->where('id', '=', $degree_id)
+            ->get();
+        //print_r($degree_model);exit;
 
-        return View::make('admission::adm_public.admission.degree_details',
-                  compact('degree_model','model','edu_gpa_model'));
+        $major_courses = CourseManagement::with('relCourse')
+            ->where('degree_id','=',$degree_id)
+            ->where('major_minor','=','major')
+            ->get();
+        $minor_courses = CourseManagement::with('relCourse')
+            ->where('degree_id','=',$degree_id)
+            ->where('major_minor','=','minor')
+            ->get();
+        $edu_gpa_model = DegreeEducationConstraint::with('relDegree')->where('degree_id','=',$degree_id)->get();
+
+        return View::make('admission::adm_public.admission.degree_detail',
+                  compact('degree_model','major_courses', 'minor_courses', 'edu_gpa_model'));
     }
 
     public function admAptDetails($id){

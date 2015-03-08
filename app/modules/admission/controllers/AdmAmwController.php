@@ -62,6 +62,12 @@ class AdmAmwController extends \BaseController
         return View::make('admission::amw.admission_test._search_index',compact('adm_test_data','year_id','semester_id'));
     }
 
+    public function viewExaminers(){
+
+        $adm_view_examiners = AdmQuestion::orderby('id', 'DESC')->paginate(5);
+        return View::make('admission::amw.admission_test.view_examiners',compact('adm_view_examiners'));
+    }
+
 
 
 

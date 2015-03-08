@@ -11,7 +11,10 @@ class AdmExaminer extends Eloquent{
     public function relDegree()
     {
         return $this->belongsTo('Degree', 'degree_id', 'id');
+    }
 
+    public function relUser(){
+        return $this->belongsTo('User','user_id','id');
     }
 
 
