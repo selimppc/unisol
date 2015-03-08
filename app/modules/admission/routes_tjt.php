@@ -166,7 +166,7 @@ Route::any('amw/waiver_manage/update/{id}', ['as' => 'waiver_manage.update','use
 
 // ----------------------------Public : Admission starts----------------------------------------------------------
 
-Route::any('public/admission',
+Route::any('admission/public/degree_list',
                 ['as' => 'admission.index',
                  'uses' => 'AdmPublicController@admIndex']);
 

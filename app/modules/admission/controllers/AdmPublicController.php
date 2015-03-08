@@ -22,8 +22,20 @@ class AdmPublicController extends \BaseController {
                     $data->degree_id = $value;
                     $data->applicant_id = Auth::applicant()->get()->id;
 
+            /*select query for inserting(save) unique degree
+                    /*$query = DB::table('degree_applicant')
+                                ->select(DB::raw('1'))
+                                ->where('degree_id','=',18)
+                                ->where('applicant_id','=',1)
+                                ->first();
+
+                    if($query != NULL){
+                        return Redirect::to('public/admission')->with('message', 'Already added this degree!');
+                    }else{
+                        $data->save();
+                    }*/
                     $data->save();
-                }
+              }
             }else{
                 echo " you lost !";
             }

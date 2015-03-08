@@ -6,23 +6,21 @@
 
 
 <section class="content">
-<div class="box-body">
+  <div class="box-body">
 
 
 
-</div>
-<div class="row">
-<div class="col-xs-12">
+  </div>
+   <div class="row">
+     <div class="col-xs-12">
 
-<div class="box">
-<div class="box-header">
+         <div class="box">
+           <div class="box-header">
 
-</div><!-- /.box-header -->
+           </div><!-- /.box-header -->
 {{--<div class="box-body table-responsive">--}}
 
 <br>
-
-
 
  <h3>Degree Details</h3>
     {{---------------------------------------------Data Table: Starts-----------------------------------------------------------------}}
@@ -49,7 +47,9 @@
                          </tr>
                          <tr>
                                 <th> Waiver:</th>
-                                <td>{{ $degree_model->relDegreeWaiver->relWaiver->title }}</td>
+                                <td>
+                                     {{ $degree_model->relDegreeWaiver->relWaiver->title }}
+                                </td>
 
                          </tr>
                          <tr>
@@ -98,6 +98,7 @@
                                    @endforeach
                                 </td>
                          </tr>
+
 
              </table>
 
