@@ -4,7 +4,6 @@
 </div>
 <div class="modal-body edit_modal_aca">
     <div style="padding: 10px; width: 90%;">
-
         {{ Form::model($edit_data,array('route'=> array('assignment/update',$edit_data->id), 'method' => 'POST', 'files' => true)) }}
         <div class='form-group'>
             {{ Form::label('title', 'Class Title') }}
