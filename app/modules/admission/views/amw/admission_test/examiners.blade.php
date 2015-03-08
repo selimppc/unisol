@@ -48,13 +48,10 @@
                             <tr>
                                 <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $adm_examiners_list['id'] }}"></td>
 
-                                 {{--<td><span data-toggle="modal" data-target="#modal" data-placement="left" title="View" href="#">{{ HTML::linkAction('AdmAmwController@adm_viewExaminers',($adm_examiners_list->relUser->relUserProfile->first_name.' '.$adm_examiners_list->relUser->relUserProfile->middle_name.' '.$adm_examiners_list->relUser->relUserProfile->last_name),['id'=>$adm_examiners_list->id]) }}</span></td>--}}
+                                 <td><span data-toggle="modal" data-target="#modal" data-placement="left" title="View" href="#">{{ HTML::linkAction('AdmAmwController@viewExaminers',($adm_examiners_list->relUser->relUserProfile->first_name.' '.$adm_examiners_list->relUser->relUserProfile->middle_name.' '.$adm_examiners_list->relUser->relUserProfile->last_name),['id'=>$adm_examiners_list->id]) }}</span></td>
 
-                                 {{--<td>{{ $examiners_list->type }} </td>--}}
-                                 {{--<td> {{ $examiners_list->assigned_by }} </td>--}}
-                                 {{--<td> {{ $examiners_list->deadline }} </td>--}}
-                                 {{--<td> {{ $examiners_list->note }} </td>--}}
-                                 <td></td>
+
+                                 {{--<td></td>--}}
 
                                  <td>{{ $adm_examiners_list->status }} </td>
 
