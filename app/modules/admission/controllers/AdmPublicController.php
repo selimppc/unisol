@@ -17,9 +17,11 @@ class AdmPublicController extends \BaseController {
             if(Auth::applicant()->check()){
                 $degree_ids = Input::get('ids');
                 foreach($degree_ids as $key => $value){
+
                     $data = new DegreeApplicant();
                     $data->degree_id = $value;
                     $data->applicant_id = Auth::applicant()->get()->id;
+
                     $data->save();
                 }
             }else{
