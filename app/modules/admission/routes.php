@@ -38,6 +38,13 @@ Route::any('amw/admission_test/examiners/{year_id}/{semester_id}/{degree_id}', [
     'uses' => 'AdmAmwController@examiners'
 ]);
 
+Route::any('amw/admission_test/view_examiners/{id}', [
+    'as' => 'amw.admission_test.view_examiners',
+    'uses' => 'AdmAmwController@viewExaminers'
+]);
+
+
+
 Route::any('amw/admission_test/search-index', [
     'as' => 'amw.admission_test.search_index',
     'uses' => 'AdmAmwController@searchIndex'
