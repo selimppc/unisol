@@ -166,23 +166,24 @@ Route::any('amw/waiver_manage/update/{id}', ['as' => 'waiver_manage.update','use
 
 // ----------------------------Public : Admission starts----------------------------------------------------------
 
+//Degree_list
 Route::any('admission/public/degree_list',
-                ['as' => 'admission.index',
-                 'uses' => 'AdmPublicController@admIndex']);
-
-Route::any('public/admission/degree_details/{degree_id}',
+                ['as' => 'admission.degree_list',
+                 'uses' => 'AdmPublicController@admDegreeList']);
+//Degree Details
+Route::any('admission/public/degree_details/{degree_id}',
         ['as' => 'admission.degree_details',
         'uses' => 'AdmPublicController@admDegreeApplicantDetails']);
+//Degree_applicant Save
+Route::any('admission/public/admission/degree_apt_save',
+    ['as' => 'admission.degree_apt_save',
+        'uses' => 'AdmPublicController@admDegreeApplicantSave']);
+//Adm_applicant_profile
+Route::any('admission/public/admission/apt_profile_details/{id}',
+    ['as' => 'admission.apt_profile_details',
+        'uses' => 'AdmPublicController@admAptProfileDetails']);
 
-Route::any('public/admission/degree_save',
-    ['as' => 'admission.degree_save',
-        'uses' => 'AdmPublicController@admDegreeAptSave']);
-
-Route::any('public/admission/apt_details/{id}',
-    ['as' => 'admission.apt_details',
-        'uses' => 'AdmPublicController@admAptDetails']);
-
-Route::any('public/admission/adm_test_details/{id}',
+Route::any('admission/public/admission/adm_test_details/{id}',
     ['as' => 'admission.adm_test_details',
         'uses' => 'AdmPublicController@admTestDetails']);
 
