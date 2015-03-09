@@ -4,7 +4,7 @@
 @stop
 @section('content')
 
-     <h1>Welcome to Examiners : <strong></strong> </h1> <br>
+     <h1>Welcome to Examiners <strong></strong> </h1> <br>
             {{--{{ Form::open(array('url' => 'examination/amw/batchDelete')) }}--}}
                 <table id="example" class="table table-striped  table-bordered"  >
                       <thead>
@@ -48,7 +48,15 @@
                             <tr>
                                 <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $adm_examiners_list['id'] }}"></td>
 
-                                 <td><span data-toggle="modal" data-target="#modal" data-placement="left" title="View" href="#">{{ HTML::linkAction('AdmAmwController@viewExaminers',($adm_examiners_list->relUser->relUserProfile->first_name.' '.$adm_examiners_list->relUser->relUserProfile->middle_name.' '.$adm_examiners_list->relUser->relUserProfile->last_name),['id'=>$adm_examiners_list->id]) }}</span></td>
+                                 <td>
+                                    {{ HTML::linkAction('AdmAmwController@viewExaminers',
+                                    ($adm_examiners_list->relUser->relUserProfile->first_name.'
+                                    '.$adm_examiners_list->relUser->relUserProfile->middle_name.'
+                                    '.$adm_examiners_list->relUser->relUserProfile->last_name),['id'=>$adm_examiners_list->id],
+                                    ['data-toggle'=>"modal", 'data-target'=>"#modal"]
+                                    ) }}
+                                 </td>
+
 
 
                                  {{--<td></td>--}}

@@ -62,10 +62,13 @@ class AdmAmwController extends \BaseController
         return View::make('admission::amw.admission_test._search_index',compact('adm_test_data','year_id','semester_id'));
     }
 
-    public function viewExaminers(){
+    public function viewExaminers($degree_id){
 
-        $adm_view_examiners = AdmQuestion::orderby('id', 'DESC')->paginate(5);
-        return View::make('admission::amw.admission_test.view_examiners',compact('adm_view_examiners'));
+        $adm_view_examiners = AdmExaminer::where('id' ,'=', $degree_id)->first();
+//      print_r($adm_view_examiners);exit;
+        $data = Degree::with('relDepartment')->where('id' ,'=', $degree_id)->first()->relDepartment->title;
+
+        return View::make('admission::amw.admission_test.view_examiners',compact('data','adm_view_examiners','degree_id'));
     }
 
 
