@@ -71,6 +71,17 @@ class AdmAmwController extends \BaseController
         return View::make('admission::amw.admission_test.view_examiners',compact('data','adm_view_examiners','degree_id'));
     }
 
+    public function storeExaminers(){
+
+
+
+        print_r('hi');exit;
+
+
+
+
+    }
+
 
 
 
