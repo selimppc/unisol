@@ -48,6 +48,7 @@ class UserController extends \BaseController {
         date_default_timezone_set("Asia/Dacca");
         $date = date('Y-m-d H:i:s', time());
         $model->last_visit = $date;
+        $model->ip_address = getHostByName(getHostName());
         $model->save();
     }
     protected function applicantLastVisit($applicant_id){
@@ -55,6 +56,7 @@ class UserController extends \BaseController {
         date_default_timezone_set("Asia/Dacca");
         $date = date('Y-m-d H:i:s', time());
         $model->last_visit = $date;
+        $model->ip_address = getHostByName(getHostName());
         $model->save();
     }
 
@@ -79,12 +81,6 @@ class UserController extends \BaseController {
         Session::flush(); //delete the session
         return Redirect::to('user/login');
     }
-
-
-    public function profile(){
-        return View::make("user/profile");
-    }
-
 
     public function request()
     {
@@ -139,23 +135,7 @@ class UserController extends \BaseController {
             $user->save();
         });
     }
-
-
-
-    /* Tanin */
-    public function userDashboard(){
-        $result = User::with('relUserMeta')->get();
-
-        $result = User::with(['relUserMeta' => function ($query){
-            $query->where('id', 2);
-        }])->get();
-
-        //print_r($playlist);exit;
-        return View::make('user::test.test');
-    }
-
-
-
+    
 
 
 }
