@@ -17,5 +17,5 @@
 
 <div class="modal-footer">
     {{ Form::submit('Submit', array('class'=>'btn btn-primary')) }}
-    <a href="{{URL::previous('academic/faculty/marks/dist/item/midterm/')}}" class="btn btn-default">Close</a>
+    <a href="{{URL::previous('')}}" class="btn btn-default">Close</a>
 </div>

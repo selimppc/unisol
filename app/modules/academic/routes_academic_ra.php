@@ -117,14 +117,15 @@ Route::any('class_test-update/{id}', [
     'uses' => 'AcmFacultyController@update_class_test'
 ]);
 
-//*****Ajax delete for all 5 item start********
+//-------------Ajax delete for all 5 item start------------
 
 Route::post('academic/faculty/acadetailsdelete/class_test/ajax',
     'AcmFacultyController@ajax_delete_aca_academic_details_class_test'
 );
-//**Ajax delete for all item start End**
+//--------------------------------------
 
 //*****class test assign start**********
+
 Route::any('academic/faculty/marks-dist-item/class_test/assign/{acm_id}/{cm_id}/{mark_dist_id}',[
     'as' => 'class/test.assign',
     'uses'=> 'AcmFacultyController@assign_class_test'
@@ -141,6 +142,7 @@ Route::post('comments/save',
     'AcmFacultyController@save_comments'
 );
 //******************Faculty Marks Distribution Item Assignment****************
+
 Route::any('academic/faculty/marks/dist/item/assignment/{marks_dist_id}/{cmid}',
     'AcmFacultyController@assignment_index'
 );
@@ -159,7 +161,9 @@ Route::any('assignment-update/{id}',[
     'as' => 'assignment/update',
     'uses' => 'AcmFacultyController@update_assignment'
 ]);
+
 //*******Assignment assign start*********
+
 Route::any('academic/faculty/marks-dist-item/assignment/assign/{acm_id}/{cm_id}/{mark_dist_id}',[
     'as' => 'assign.assign',
     'uses'=> 'AcmFacultyController@assign_assignment'
@@ -175,7 +179,9 @@ Route::any('assign/comments/{assign_std_id}',[
 Route::post('assignment/comments/save',
     'AcmFacultyController@save_assignment_comments'
 );
+
 //******************Faculty Marks Distribution Item Midterm start****************
+
 Route::any('academic/faculty/marks/dist/item/midterm/{marks_dist_id}/{cmid}',
     'AcmFacultyController@midterm_index'
 );
@@ -194,3 +200,21 @@ Route::any('midterm-update/{id}',[
     'as' => 'midterm/update',
     'uses' => 'AcmFacultyController@update_midterm'
 ]);
+
+//*******Midterm assign start*********
+
+Route::any('academic/faculty/marks-dist-item/midterm/assign/{acm_id}/{cm_id}/{mark_dist_id}',[
+    'as' => 'mid/term.assign',
+    'uses'=> 'AcmFacultyController@assign_midterm'
+]);
+Route::any('midterm/assign',[
+    'as' => 'batch.assign',
+    'uses'=> 'AcmFacultyController@batch_assign_midterm'
+]);
+Route::any('midterm/assign/comments/{assign_std_id}',[
+    'as' => 'midterm.comments',
+    'uses'=> 'AcmFacultyController@comments_assign_midterm'
+]);
+Route::post('midterm/comments/save',
+    'AcmFacultyController@save_midterm_comments'
+);

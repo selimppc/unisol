@@ -6,71 +6,58 @@
 
 
 <section class="content">
-<div class="box-body">
+  <div class="box-body">
 
-<h3> Degree List </h3>
+     <h3> Degree List </h3>
 
+  </div>
+   <div class="row">
+     <div class="col-xs-12">
 
-
-{{--<a class="pull-right btn btn-sm btn-info" href="{{ URL::to('degree_manage/create')}}" data-toggle="modal" data-target="#addModal" >Add New Degree</a>--}}
-
-
-</div>
-<div class="row">
-<div class="col-xs-12">
-
-<div class="box">
-<div class="box-header">
-
-</div><!-- /.box-header -->
-{{--<div class="box-body table-responsive">--}}
+        <div class="box">
 
 <br>
 
 {{ Form::open(['route' => ['admission.degree_save']]) }}
 
+ {{---------------------------------------------Data Table: Starts-----------------------------------------------------------------}}
+            <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                           <td class="col-lg-1"><input name="checkbox" type="checkbox" id="checkbox" class="checkbox" value=""></td>
+                           <th class="col-lg-4" > degree Name</th>
+                           <th >Description</th>
+                    </tr>
+                </thead>
 
-    {{---------------------------------------------Data Table: Starts-----------------------------------------------------------------}}
-    <table id="example1" class="table table-bordered table-striped">
-        <thead>
-            <tr>
-               <td class="col-lg-1"><input name="checkbox" type="checkbox" id="checkbox" class="checkbox" value=""></td>
-               <th class="col-lg-4" > degree Name</th>
-               <th >Description</th>
-            </tr>
-        </thead>
+                       <tbody>
+                             @foreach($degreeList as $value)
+                                   <tr >
+                                          <td> <input type="checkbox" name="ids[]"  id="check" class="myCheckbox" value="{{ $value->id }}"></td>
+                                          <td>{{ $value->title }}
+                                          <a href="{{ URL::route('admission.degree_details', ['degree_id' => $value->id]) }}">details</a>
+                                          </td>
+                                          <td>{{ $value->description }}</td>
+                                   </tr>
 
-               <tbody>
-                  @foreach($degreeList as $value)
-                       <tr >
-                          <td> <input type="checkbox" name="ids[]"  id="check" class="myCheckbox" value="{{ $value->id }}"></td>
-                          <td>{{ $value->title }}
-                          <a href="{{ URL::route('admission.degree_details', $value->id) }}">details</a>
-                          </td>
-                          <td>{{ $value->description }}</td>
-
-                       </tr>
-
-                  @endforeach
-               </tbody>
-    </table>
+                             @endforeach
+                       </tbody>
+            </table>
 
 
-    {{ Form::submit('Apply All', array('class'=>'pull-right btn btn-info'))}}
+  {{ Form::submit('Apply All', array('class'=>'pull-right btn btn-info'))}}
 
-{{ Form::close() }}
+  {{ Form::close() }}
 {{-----------------------------------Data Table : Ends---------------------------------------------------------------------------}}
 
 {{--------Pagination Link--------------------------}}
-<div class="pull-right paginate-button">
+   <div class="pull-right paginate-button">
     {{--{{$model->links()}}--}}
-</div>
+   </div>
 
-
-{{--</div><!-- /.box-body -->--}}
-</div><!-- /.box -->
-</div>
-</div>
+         </div><!-- /.box -->
+      </div>
+   </div>
 </section>
 
 {{---------------------------------------------------Modals-----------------------------------------------}}
@@ -82,8 +69,6 @@
        </div>
       </div>
  </div>
-
-
 
 
 @stop

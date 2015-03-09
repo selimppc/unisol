@@ -33,7 +33,7 @@ class Degree extends Eloquent{
     }
 
     public function relDegreeWaiver(){
-        return $this->belongsTo('DegreeWaiver', 'id', 'degree_id');
+        return $this->hasMany('DegreeWaiver');
     }
 
     public function relCourseManagement(){
