@@ -9,8 +9,9 @@
             <div class="modal-body">
                 {{--{{ Form::open(array('url' => 'admission/amw/storeExaminers', 'method' =>'post', 'role'=>'form','files'=>'true'))  }}--}}
                         {{--{{ Form::text('exm_exam_list_id', $exm_exam_list_id ) }}--}}
-                        {{--@include('examination::amw.prepare_question_paper._addExaminer_form')--}}
+                        {{--@include('admission::amw.admission_test._add_examiners_form')--}}
                 {{--{{ Form::close() }}--}}
+                HI
             </div>
             <div class="modal-footer">
             </div>

@@ -520,7 +520,7 @@ class AcmFacultyController extends \BaseController {
 	}
 	public function comments_assign_class_test($assign_std_id)
 	{
-		$assign_std= AcmAcademicAssignStudent::with('relAcmAcademic')
+		$assign_std= AcmAcademicAssignStudent::with('relAcmAcademic','relAcmAcademic.relCourseManagement')
 			->where('user_id', '=', $assign_std_id)
 			->first();//Execute the query and get the first result.
 
@@ -726,7 +726,7 @@ class AcmFacultyController extends \BaseController {
 	}
 	public function comments_assign_assignment($assign_std_id)
 	{
-		$assign_std= AcmAcademicAssignStudent::with('relAcmAcademic')
+		$assign_std= AcmAcademicAssignStudent::with('relAcmAcademic','relAcmAcademic.relCourseManagement')
 			->where('user_id', '=', $assign_std_id)
 			->first();//Execute the query and get the first result.
 		$comments_info = AcmAcademicAssignStudentComments::with('relAcmAcademicAssignStudent')
@@ -935,7 +935,7 @@ class AcmFacultyController extends \BaseController {
 	}
 	public function comments_assign_midterm($assign_std_id)
 	{
-		$assign_std= AcmAcademicAssignStudent::with('relAcmAcademic')
+		$assign_std= AcmAcademicAssignStudent::with('relAcmAcademic','relAcmAcademic.relCourseManagement')
 			->where('user_id', '=', $assign_std_id)
 			->first();//Execute the query and get the first result.
 
@@ -966,4 +966,6 @@ class AcmFacultyController extends \BaseController {
 			return Redirect::to('academic/faculty/marks-dist-item/class_test/assign/');
 		}
 	}
+
+
 }
