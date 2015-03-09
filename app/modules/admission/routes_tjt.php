@@ -181,7 +181,7 @@ Route::any('admission/public/admission/degree_apt_save',
 //Adm_applicant_profile
 Route::any('admission/public/admission/apt_profile_details/{id}',
     ['as' => 'admission.apt_profile_details',
-        'uses' => 'AdmPublicController@admAptProfileDetails']);
+        'uses' => 'AdmPublicController@admDegAptProfileDetails']);
 
 Route::any('admission/public/admission/adm_test_details/{id}',
     ['as' => 'admission.adm_test_details',

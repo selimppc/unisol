@@ -10,7 +10,7 @@ class ApplicantProfile extends Eloquent{
         return $this->belongsTo('Applicant');
     }
     public function relCountry(){
-        return $this->hasOne('Country','country_id','id');
+        return $this->belongsTo('Country','country_id','id');
     }
 
     public static function boot(){
