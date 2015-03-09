@@ -77,8 +77,10 @@ class AdmPublicController extends \BaseController {
                           ->first();
         $applicant_acm_records = ApplicantAcademicRecords::where('applicant_id', '=',$applicant_id )->get();
 
+        $applicant_meta_records = ApplicantMeta::where('applicant_id', '=',$applicant_id )->first();
+
         return View::make('admission::adm_public.admission.apt_profile_details',
-                  compact('degree_applicant','applicant_personal_info','applicant_acm_records'));
+                  compact('degree_applicant','applicant_personal_info','applicant_acm_records','applicant_meta_records'));
     }
 
     public function admTestDetails($id){

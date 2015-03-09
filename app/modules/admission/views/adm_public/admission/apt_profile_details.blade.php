@@ -120,13 +120,11 @@
                                       <td>{{ $value->board_university}}</td>
                                       <td>{{ $value->year_of_passing}}</td>
                                       <td>
-
-                                      @if($value->result_type =='division')
-                                      {{ $value->result }}
-                                      @else
-                                      {{$value->gpa}}
-                                      @endif
-
+                                           @if($value->result_type =='division')
+                                           {{ $value->result }}
+                                           @else
+                                           {{$value->gpa}}
+                                           @endif
                                       </td>
                                  </tr>
                           @endforeach
@@ -138,6 +136,71 @@
  <p>&nbsp;</p>
 {{-----------------------------------Applicant's Academic Records Ends-------------------------------------------}}
 
+{{-----------------------------------Applicant's Biographical Records Starts-------------------------------------------}}
+<p>&nbsp;</p>
+<h5><b>Applicant's Biographical Information</b></h5>
+
+<div class="well well-sm">
+      <table class="table table-bordered table-striped">
+
+             <tbody>
+                    @if($applicant_meta_records != null)
+                            <tr>
+                                  <th class="col-lg-4">Father's Name</th>
+                                  <td>{{$applicant_meta_records->fathers_name}}</td>
+                            </tr>
+
+                            <tr>
+                                <th class="col-lg-4">Father's Occupation</th>
+                                <td class="col-lg-5">{{$applicant_meta_records->fathers_occupation}}</td>
+                            </tr>
+
+                            <tr>
+                                <th class="col-lg-4">Father's Phone</th>
+                                <td class="col-lg-5">{{$applicant_meta_records->fathers_phone}}</td>
+                            </tr>
+
+                            <tr>
+                                <th class="col-lg-4">Mother's Name</th>
+                                <td class="col-lg-5">{{$applicant_meta_records->mothers_name}}</td>
+                            </tr>
+
+                            <tr >
+                                <th class="col-lg-4">>Mother's Occupation</th>
+                                <td class="col-lg-5">{{$applicant_meta_records->mothers_occupation}}</td>
+                            </tr>
+
+                            <tr>
+                                <th class="col-lg-4">Mother's Phone</th>
+                                <td class="col-lg-5">{{$applicant_meta_records->mothers_phone}}</td>
+                            </tr>
+
+                            <tr>
+                                <th class="col-lg-4">Marital Status</th>
+                                <td class="col-lg-5">{{$applicant_meta_records->marital_status}}</td>
+                            </tr>
+
+                            <tr>
+                                <th class="col-lg-4">Religion</th>
+                                <td class="col-lg-5">{{$applicant_meta_records->religion}}</td>
+                            </tr>
+
+                            <tr>
+                                <th class="col-lg-4">Present Address</th>
+                                <td class="col-lg-5">{{$applicant_meta_records->present_address}}</td>
+                            </tr>
+
+                            <tr>
+                                <th class="col-lg-4">Permanent Address</th>
+                                <td class="col-lg-5">{{$applicant_meta_records->permanent_address}}</td>
+                            </tr>
+                    @endif
+             </tbody>
+      </table>
+</div>
+ <p>&nbsp;</p>
+ <p>&nbsp;</p>
+{{-----------------------------------Applicant's Biographical Records Ends-------------------------------------------}}
 
 @stop
 
