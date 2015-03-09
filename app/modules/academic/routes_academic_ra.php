@@ -122,9 +122,8 @@ Route::any('class_test-update/{id}', [
 Route::post('academic/faculty/acadetailsdelete/class_test/ajax',
     'AcmFacultyController@ajax_delete_aca_academic_details_class_test'
 );
-//--------------------------------------
 
-//*****class test assign start**********
+//+-----class test assign start-----
 
 Route::any('academic/faculty/marks-dist-item/class_test/assign/{acm_id}/{cm_id}/{mark_dist_id}',[
     'as' => 'class/test.assign',
@@ -162,7 +161,7 @@ Route::any('assignment-update/{id}',[
     'uses' => 'AcmFacultyController@update_assignment'
 ]);
 
-//*******Assignment assign start*********
+//+-----Assignment assign start-----
 
 Route::any('academic/faculty/marks-dist-item/assignment/assign/{acm_id}/{cm_id}/{mark_dist_id}',[
     'as' => 'assign.assign',
@@ -201,7 +200,7 @@ Route::any('midterm-update/{id}',[
     'uses' => 'AcmFacultyController@update_midterm'
 ]);
 
-//*******Midterm assign start*********
+//+-----Mid term assign start-----
 
 Route::any('academic/faculty/marks-dist-item/midterm/assign/{acm_id}/{cm_id}/{mark_dist_id}',[
     'as' => 'mid/term.assign',
@@ -239,3 +238,21 @@ Route::any('final-term-update/{id}',[
     'as' => 'final/term/update',
     'uses' => 'AcmFacultyController@update_final_term'
 ]);
+
+//+-----Final term assign start-----
+
+Route::any('academic/faculty/marks-dist-item/final/term/assign/{acm_id}/{cm_id}/{mark_dist_id}',[
+    'as' => 'final/term.assign',
+    'uses'=> 'AcmFacultyController@assign_final_term'
+]);
+Route::any('final/term/assign',[
+    'as' => 'batch.assign',
+    'uses'=> 'AcmFacultyController@batch_assign_final_term'
+]);
+Route::any('final/term/assign/comments/{assign_std_id}',[
+    'as' => 'finalterm.comments',
+    'uses'=> 'AcmFacultyController@comments_assign_final_term'
+]);
+Route::post('finalterm/comments/save',
+    'AcmFacultyController@save_final_term_comments'
+);

@@ -866,7 +866,7 @@ class AcmFacultyController extends \BaseController {
 			return Redirect::to($redirect_url)->with('message','Data not updated');
 		}
 	}
-
+	//***************assign Mid term****************
 	/**
 	 * @param $acm_id
 	 * @param $cm_id
@@ -986,7 +986,6 @@ class AcmFacultyController extends \BaseController {
 	public function save_fina_term_data()
 	{
 		$data = Input::all();
-		$redirect_url = Input::get('redirect_url');
 		$datas = new AcmAcademic();
 		if ($datas->validate($data)) {
 			$datas->course_management_id = Input::get('course_management_id');
@@ -1080,4 +1079,103 @@ class AcmFacultyController extends \BaseController {
 		}
 	}
 
+	//***************assign Final term****************
+	/**
+	 * @param $acm_id
+	 * @param $cm_id
+	 * @param $mark_dist_id
+	 * @return mixed
+	 */
+	public  function assign_final_term($acm_id, $cm_id, $mark_dist_id)
+	{
+		//$model = AcmAcademicAssignStudent::get();
+		/*if($model){
+			echo "OK";
+		}else {
+			echo "M";
+		}exit;*/
+		$acm= AcmAcademic::with('relAcmClassSchedule')
+			->where('id', '=', $acm_id)
+			->first();
+//		$acm_data = AcmAcademic::with('relAcmClassSchedule','relCourseManagement.relSemester','relCourseManagement.relYear','relCourseManagement.relUser','relCourseManagement.relCourse.relSubject.relDepartment')
+//			->where('id', '=', $acm_id)
+//			->get();
+		$exam_questions= array('' => 'Select Examination Question') + ExmQuestion::lists('title', 'id');
+		$cm_data = CourseManagement::with('relSemester','relYear','relUser','relCourse.relSubject.relDepartment')
+			//->where('course_management_id','=' ,$cm_id)
+			//->where('year_id','=' , 17)
+			//->where('semester_id','=' ,$cm_id)
+			//->where('course_id','=' , 1)
+			//->where('department_id','=' , 1)
+			->get();
+
+		$data= CourseManagement::with( 'relCourse')
+			->where('id', '=', $cm_id)
+			->get();
+		$config_data = AcmMarksDistribution::with('relAcmMarksDistItem', 'relCourseManagement.relCourse')
+			->where('course_management_id', '=', $cm_id)
+			->get();
+		return View::make('academic::faculty.mark_distribution_courses.marks_dist_item_final_term.assign',compact('acm','data','config_data','exam_questions','cm_data'));
+	}
+	public function batch_assign_final_term()
+	{
+		$data=Input::all();
+		$chk=Input::get('chk');
+		$aca_id=Input::get('acm_academic_id');
+		$exam_id=Input::get('exam_question');
+		if(Input::get('assign')) {
+			foreach($chk as $key => $value) {
+				$model = new AcmAcademicAssignStudent();
+				$model->acm_academic_id = $aca_id;
+				$model->exm_question_id = $exam_id;
+				$model->assigned_by = Auth::user()->get()->id;
+				$model->status = 'A';
+				$model->user_id = $value;
+				$model->save();
+			}
+			return Redirect::back()->with('message','Successfully added!');
+
+		}
+		if(Input::get('revoke')) {
+			//foreach($chk as $key => $value) {
+			//print_r(Request::get('id'));exit;
+			$model = new AcmAcademicAssignStudent();
+			$model->destroy(Request::get('chk'));
+			return Redirect::back()->with('message','Successfully Deleted!');
+			//}
+		}
+	}
+	public function comments_assign_final_term($assign_std_id)
+	{
+		$assign_std= AcmAcademicAssignStudent::with('relAcmAcademic','relAcmAcademic.relCourseManagement')
+			->where('user_id', '=', $assign_std_id)
+			->first();//Execute the query and get the first result.
+
+		$comments_info = AcmAcademicAssignStudentComments::with('relAcmAcademicAssignStudent')
+			->where('acm_assign_std_id', '=', $assign_std_id)
+			->get();//Execute the query as a "select" statement.
+
+		return View::make('academic::faculty.mark_distribution_courses.marks_dist_item_final_term.final_term_comments',compact('assign_std','comments_info'));
+
+	}
+	public function save_final_term_comments()
+	{
+		$data = Input::all();
+		$acm_assign_id = Input::get('assign_stu_user_id');
+		$comments = Input::get('comments');
+		$datas = new AcmAcademicAssignStudentComments();
+		if ($data) {
+			$datas->acm_assign_std_id = $acm_assign_id;
+			$datas->comments = $comments;
+			//	$datas->commented_by = Auth::user()->get()->id;
+			$datas->save();
+			//file upload ends
+			return Redirect::back()->with('message','Successfully added!');
+		} else {
+			// failure, get errors
+			$errors = $datas->errors();
+			Session::flash('errors', $errors);
+			return Redirect::to('academic/faculty/marks-dist-item/final/term/assign/');
+		}
+	}
 }

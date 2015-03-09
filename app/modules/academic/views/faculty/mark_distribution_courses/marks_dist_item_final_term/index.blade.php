@@ -25,7 +25,7 @@
 
                     <a href="{{ URL::route('finalterm.show', ['id'=>$value->id])  }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" href=""><span class="glyphicon glyphicon-list-alt text-info"></span></a>
 
-                    <a href="" class="btn btn-default btn-xs"> Assign </a>
+                    <a href="{{ URL::route('final/term.assign',['id'=>$value->id, 'cmid'=>$value->course_management_id, 'marksid'=>$value->acm_marks_distribution_id])  }}" class="btn btn-default btn-xs"> Assign </a>
                 </td>
             </tr>
         @endforeach
