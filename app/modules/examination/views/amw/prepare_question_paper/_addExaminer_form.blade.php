@@ -18,6 +18,6 @@
                          {{ Form::textarea('comment', Null, ['size' => '40x6','placeholder'=>'Your Comments Here']) }}
                 </div>
             {{ Form::submit('Submit', array('class' => 'btn btn-primary btn-xs')) }}
-{{--            <a href="{{URL::previous('examination/amw/examiners/')}}" class="btn btn-default btn-xs">Close </a>--}}
-                <a class="btn btn-info close">Close </a>
+            <a href="{{URL::previous('examination/amw/examiners/')}}" class="btn btn-default btn-xs">Close </a>
+                {{--<a class="btn btn-info close">Close </a>--}}
 </fieldset>

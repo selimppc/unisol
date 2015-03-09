@@ -14,9 +14,11 @@
 
                                 <div class="col-sm-6">
 
-                                    <strong> Year: </strong>{{ Year::getYearsName($year_id) }}
+                                    <strong> Department: </strong>{{-- {{ Department::getDepartmentName($department_id) }}--}}
                                     </br>
-                                    <strong> Semester: </strong>{{ Semester::getSemesterName($semester_id) }}
+                                    <strong> Year: </strong>{{-- {{ Year::getYearsName($year_id) }}--}}
+                                    </br>
+                                    <strong> Degree: </strong>{{-- {{ Degree::getDegreeName($degree_id) }}--}}
                                     </br>
                                 </div>
 
@@ -40,9 +42,7 @@
                             <th><input name="id" type="checkbox" id="checkbox" class="checkbox" value=""></th>
                             <th>Title</th>
                             <th>Deadline</th>
-                            <th>Department</th>
-                            {{--<th>Year</th>--}}
-                            {{--<th>Term</th>--}}
+                            <th>Subject</th>
                             <th>Assigned</th>
                             <th>Status</th>
                             <th>Action</th>

@@ -2,7 +2,6 @@
 
                {{ Form::text('degree_id', $degree_id) }}
 
-
                 <div class="form-group">
                        <strong> Degree: </strong>{{ Degree::getDegreeName($degree_id) }}
                 </div>

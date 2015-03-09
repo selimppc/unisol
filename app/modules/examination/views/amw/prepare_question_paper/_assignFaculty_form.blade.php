@@ -28,9 +28,9 @@
                                          @endforeach
                                  </div>
 
-                         {{ Form::textarea('comment', Input::old('comments'), array('size' => '40x4','class' => 'form-control','required'=>'required')) }}
+                         {{ Form::textarea('comment', Input::old('comment'), array('size' => '40x4','class' => 'form-control','required'=>'required')) }}
                 </div>
             {{ Form::submit('Submit', array('class' => 'btn btn-primary btn-xs')) }}
-{{--             <a href="{{URL::previous('examination/amw/index/')}}" class="btn btn-default btn-xs">Close </a>--}}
-                   <a class="btn btn-info close">Close </a>
+             <a href="{{URL::previous('examination/amw/index/')}}" class="btn btn-default btn-xs">Close </a>
+                   {{--<a class="btn btn-info close">Close </a>--}}
 </fieldset>
