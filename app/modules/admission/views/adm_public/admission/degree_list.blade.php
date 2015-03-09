@@ -18,7 +18,7 @@
 
 <br>
 
-{{ Form::open(['route' => ['admission.degree_save']]) }}
+{{ Form::open(['route' => ['admission.degree_apt_save']]) }}
 
  {{---------------------------------------------Data Table: Starts-----------------------------------------------------------------}}
             <table id="example1" class="table table-bordered table-striped">
@@ -34,8 +34,11 @@
                              @foreach($degreeList as $value)
                                    <tr >
                                           <td> <input type="checkbox" name="ids[]"  id="check" class="myCheckbox" value="{{ $value->id }}"></td>
-                                          <td>{{ $value->title }}
-                                          <a href="{{ URL::route('admission.degree_details', ['degree_id' => $value->id]) }}">details</a>
+                                          <td>
+                                                  <a href="{{ URL::route('admission.degree_details',
+                                                  ['degree_id' => $value->id]) }}">
+                                                  {{ $value->title }}
+                                                  </a>
                                           </td>
                                           <td>{{ $value->description }}</td>
                                    </tr>

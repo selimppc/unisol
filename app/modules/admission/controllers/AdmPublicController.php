@@ -6,13 +6,13 @@ class AdmPublicController extends \BaseController {
         $this->beforeFilter('admPublic', array('except' => array('')));
     }*/
 
-	public function admIndex()
+	public function admDegreeList()
 	{
         $degreeList = Degree::orderby('id', 'DESC')->paginate(5);
-        return View::make('admission::adm_public.admission.index',compact('degreeList'));
+        return View::make('admission::adm_public.admission.degree_list',compact('degreeList'));
 
 	}
-    public function admDegreeAptSave(){
+    public function admDegreeApplicantSave(){
 
             if(Auth::applicant()->check()){
                 $degree_ids = Input::get('ids');
@@ -58,7 +58,8 @@ class AdmPublicController extends \BaseController {
             ->where('degree_id','=',$degree_id)
             ->where('major_minor','=','minor')
             ->get();
-        $edu_gpa_model = DegreeEducationConstraint::with('relDegree')->where('degree_id','=',$degree_id)->get();
+        $edu_gpa_model = DegreeEducationConstraint::with('relDegree')
+            ->where('degree_id','=',$degree_id)->get();
 
         return View::make('admission::adm_public.admission.degree_detail',
                   compact('degree_model','major_courses', 'minor_courses', 'edu_gpa_model'));
@@ -71,7 +72,8 @@ class AdmPublicController extends \BaseController {
                            ->where('applicant_id', '=',$applicant_id )->get();
 
         /*$applicant_profile = ApplicantProfile::find($applicant_id);*/
-        return View::make('admission::adm_public.admission.apt_details',compact('degree_applicant'));
+        return View::make('admission::adm_public.admission.apt_details',
+                  compact('degree_applicant'));
     }
 
     public function admTestDetails($id){
