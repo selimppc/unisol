@@ -36,7 +36,7 @@
 
                                    @if($profile != null)
 
-                                  <td>{{ HTML::image('images/applicant_profile/' .$profile->profile_image) }}
+                                  <td>{{ HTML::image('applicant_images/' .$profile->profile_image) }}
                                   <a class=" btn btn-sm btn-info" href="{{ URL::to('applicant/profile_image/edit/' . $profile->id ) }}" data-toggle="modal" data-target="#changeImageModal" >changeImage...</a></td>
 
 
@@ -58,7 +58,7 @@
                           </tr>
                            <tr>
                              <th>Country</th>
-                               <td>{{$profile !=null ? $profile->country: null}}
+                               <td>{{$profile !=null ? $profile->city: null}}
                              </td>
                          </tr>
 

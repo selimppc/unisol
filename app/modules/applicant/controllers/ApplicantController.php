@@ -289,11 +289,15 @@ class ApplicantController extends \BaseController
 
     public function applicantProfileIndex(){
         $profile = ApplicantProfile::where('applicant_id', '=', '1')->first();
-        return View::make('applicant::applicant_profile.index',compact('profile'));
+        $country = ApplicantProfile::with('relCountry');
+        return View::make('applicant::applicant_profile.index',compact('profile',
+                  compact('country')));
     }
     public function applicantProfileCreate()
     {
-        return View::make('applicant::applicant_profile.create');
+        $countryList = array('' => 'Please Select') + Country::lists('title', 'id');
+        return View::make('applicant::applicant_profile.create',
+                  compact('countryList') );
     }
     public function applicantProfileStore(){
 
@@ -313,12 +317,13 @@ class ApplicantController extends \BaseController
             $destinationPath = public_path().'/applicant_images';
             $extension = $file->getClientOriginalExtension();
             $filename = str_random(12) . '.' . $extension;
-            Input::file('profile_image')->move($destinationPath, $filename);
+            $lower_name = strtolower($filename);
+            Input::file('profile_image')->move($destinationPath, $lower_name);
             $profile->profile_image = $filename;
 
             $profile->city = Input::get('city');
             $profile->state = Input::get('state');
-            $profile->country = Input::get('country');
+            $profile->country_id = Input::get('country_id');
             $profile->zip_code = Input::get('zip_code');
             $profile->save();
 
@@ -357,7 +362,8 @@ class ApplicantController extends \BaseController
             if($file){
                 $extension = $file->getClientOriginalName();
                 $filename = str_random(12) . '.' . $extension;
-                $path = public_path("images/applicant_profile/" . $filename);
+                $lower_name = strtolower($filename);
+                $path = public_path("images/applicant_profile/" . $lower_name);
                 Image::make($file->getRealPath())->resize(80, 80)->save($path);
 
                 $profile->profile_image = $filename;

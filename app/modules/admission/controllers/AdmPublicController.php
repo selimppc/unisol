@@ -39,7 +39,7 @@ class AdmPublicController extends \BaseController {
             }else{
                 echo " you lost !";
             }
-        return Redirect::route('admission.apt_details', ['id' => Auth::applicant()->get()->id]);
+        return Redirect::route('admission.apt_profile_details', ['id' => Auth::applicant()->get()->id]);
     }
 
     public function admDegreeApplicantDetails($degree_id){
@@ -65,14 +65,14 @@ class AdmPublicController extends \BaseController {
                   compact('degree_model','major_courses', 'minor_courses', 'edu_gpa_model'));
     }
 
-    public function admAptDetails($id){
+    public function admAptProfileDetails($id){
 
         $applicant_id = $id;
         $degree_applicant = DegreeApplicant::with('relDegree')
                            ->where('applicant_id', '=',$applicant_id )->get();
 
         /*$applicant_profile = ApplicantProfile::find($applicant_id);*/
-        return View::make('admission::adm_public.admission.apt_details',
+        return View::make('admission::adm_public.admission.apt_profile_details',
                   compact('degree_applicant'));
     }
 

@@ -34,8 +34,9 @@
   {{ Form::label('state', 'State') }}
   {{ Form::text('state', Input::old('state'),array('class' => 'form-control','placeholder'=>'')) }}
 
-  {{ Form::label('country', 'Country') }}
-  {{ Form::text('country', Input::old('country'),array('class' => 'form-control','placeholder'=>'')) }}
+  {{ Form::label('country_id', 'Country') }}
+  {{ Form::select('country_id', $countryList,Input::old('country_id'),['class'=>'form-control input-sm','required'])}}
+
 
   {{ Form::label('zip_code', 'Zip Code') }}
   {{ Form::text('zip_code', Input::old('zip_code'),array('class' => 'form-control','placeholder'=>'')) }}

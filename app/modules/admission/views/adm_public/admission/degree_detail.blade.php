@@ -8,7 +8,7 @@
   <h3>Degree Details</h3>
 <div class="well well-sm">
 
-   <table id="example1">
+   <table id="example1" class="table table-bordered table-striped">
 
       @foreach($degree_model as $values)
             <tbody>
