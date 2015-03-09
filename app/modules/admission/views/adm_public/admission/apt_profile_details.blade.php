@@ -166,7 +166,7 @@
                             </tr>
 
                             <tr >
-                                <th class="col-lg-4">>Mother's Occupation</th>
+                                <th class="col-lg-4">Mother's Occupation</th>
                                 <td class="col-lg-5">{{$applicant_meta_records->mothers_occupation}}</td>
                             </tr>
 
