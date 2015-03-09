@@ -13,6 +13,11 @@ class AdmAmwController extends \BaseController
     }
 
 // Admission Test : Admission Test starts here....................................................
+    public function deshboard()
+    {
+        return View::make('admission::amw.admission_test.deshboard');
+    }
+
     public function admissionTestIndex()
     {
         $admission_test = Degree::orderBy('id', 'DESC')->paginate(5);
@@ -21,28 +26,6 @@ class AdmAmwController extends \BaseController
         $semester_id = Semester::lists('title', 'id');
 
         return View::make('admission::amw.admission_test.index',compact('admission_test','year_id','semester_id'));
-    }
-
-    public function deshboard()
-    {
-        return View::make('admission::amw.admission_test.deshboard');
-    }
-
-
-    public function examiners($year_id, $semester_id, $degree_id)
-    {
-        $adm_examiners_home = AdmExaminer::orderby('id', 'DESC')->paginate(5);
-
-        $data = Degree::with('relDepartment')->where('id' ,'=', $degree_id)->first()->relDepartment->title;
-
-        return View::make('admission::amw.admission_test.examiners',compact('data','adm_examiners_home','year_id','semester_id','degree_id'));
-    }
-
-
-    public function questionPaper($year_id, $semester_id)
-    {
-        $adm_question_paper = AdmQuestion::orderby('id', 'DESC')->paginate(5);
-        return View::make('admission::amw.admission_test.question_paper',compact('adm_question_paper','year_id','semester_id'));
     }
 
     public function searchIndex(){
@@ -62,6 +45,21 @@ class AdmAmwController extends \BaseController
         return View::make('admission::amw.admission_test._search_index',compact('adm_test_data','year_id','semester_id'));
     }
 
+
+
+
+    public function examiners($year_id, $semester_id, $degree_id)
+    {
+        $adm_examiners_home = AdmExaminer::orderby('id', 'DESC')->paginate(5);
+
+        $data = Degree::with('relDepartment')->where('id' ,'=', $degree_id)->first()->relDepartment->title;
+
+        return View::make('admission::amw.admission_test.examiners',compact('data','adm_examiners_home','year_id','semester_id','degree_id'));
+    }
+
+
+
+
     public function viewExaminers($degree_id){
 
         $adm_view_examiners = AdmExaminer::where('id' ,'=', $degree_id)->first();
@@ -71,12 +69,62 @@ class AdmAmwController extends \BaseController
         return View::make('admission::amw.admission_test.view_examiners',compact('data','adm_view_examiners','degree_id'));
     }
 
+//    public function addExaminers(){
+//        print_r('hi');exit;
+//    }
+
+    public function storeExaminers(){
+        $data = Input::all();
+        $adm_examiner_model = new AdmExaminer();
+
+        if ($adm_examiner_model->validate($data))
+        {
+            // success code
+            $adm_examiner_model->degree_id = Input::get('degree_id');
+            $adm_examiner_model->user_id = Input::get('user_id');
+            $adm_examiner_model->type = Input::get('type');
+//            print_r( $adm_examiner_model->type);exit;
+
+            $adm_examiner_model->assigned_by = 3;
+            $adm_examiner_model->deadline = '2020-20-20 20:20:20';
+            $adm_examiner_model->note = 'me note';
+            $adm_examiner_model->status = 1;
+
+            if($adm_examiner_model->save()){
+
+                $ad_examiner_comments = new AdmExaminerComments();
+                $ad_examiner_comments->degree_id = Input::get('degree_id');
+                $ad_examiner_comments->comment = Input::get('comment');
+                $ad_examiner_comments->commented_to = Input::get('user_id');
+                $ad_examiner_comments->commented_by = Auth::user()->get()->id;
+
+                $ad_examiner_comments->status = 1;
+
+                if($ad_examiner_comments->save()){
+                    Session::flash('message', 'Examiner Successfully Added!');
+                    return Redirect::back();
+                }
+            }else{
+                // redirect
+                Session::flash('error', 'Failed!');
+                return Redirect::back();
+            }
+            // redirect
+            Session::flash('message', 'Examiner Successfully Added!');
+            return Redirect::to('examination/amw/examiners');
+        }
+    }
 
 
 
 
 
 
+    public function questionPaper($year_id, $semester_id)
+    {
+        $adm_question_paper = AdmQuestion::orderby('id', 'DESC')->paginate(5);
+        return View::make('admission::amw.admission_test.question_paper',compact('adm_question_paper','year_id','semester_id'));
+    }
 
 
 

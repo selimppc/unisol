@@ -20,8 +20,9 @@
 
                      </div>
 
-                     <a href="{{URL::previous('examination/amw/index/')}}" class="btn btn-default btn-xs">Close </a>
+{{--                     <a href="{{URL::previous('examination/amw/index/')}}" class="btn btn-default btn-xs">Close </a>--}}
                      {{--{{ Form::submit('Comments', array('class' => 'btn btn-primary btn-xs')) }}--}}
+                     <a class="btn btn-info close">Close </a>
              {{ Form::close() }}
 
 </div>
