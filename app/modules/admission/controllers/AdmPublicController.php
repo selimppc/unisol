@@ -65,15 +65,22 @@ class AdmPublicController extends \BaseController {
                   compact('degree_model','major_courses', 'minor_courses', 'edu_gpa_model'));
     }
 
-    public function admAptProfileDetails($id){
+    public function admDegAptProfileDetails($id){
 
         $applicant_id = $id;
         $degree_applicant = DegreeApplicant::with('relDegree')
-                           ->where('applicant_id', '=',$applicant_id )->get();
+                           ->where('applicant_id', '=',$applicant_id )
+                           ->get();
 
-        /*$applicant_profile = ApplicantProfile::find($applicant_id);*/
+        $applicant_personal_info = ApplicantProfile::with('relCountry')
+                          ->where('applicant_id', '=',$applicant_id )
+                          ->first();
+        $applicant_acm_records = ApplicantAcademicRecords::where('applicant_id', '=',$applicant_id )->get();
+
+        $applicant_meta_records = ApplicantMeta::where('applicant_id', '=',$applicant_id )->first();
+
         return View::make('admission::adm_public.admission.apt_profile_details',
-                  compact('degree_applicant'));
+                  compact('degree_applicant','applicant_personal_info','applicant_acm_records','applicant_meta_records'));
     }
 
     public function admTestDetails($id){

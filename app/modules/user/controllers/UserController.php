@@ -22,12 +22,14 @@ class UserController extends \BaseController {
                     //return Redirect::route("user/profile");
                     Session::put('user_id', Auth::user()->get()->id);
                     Session::put('username', Auth::user()->get()->username);
-                    return Redirect::to("usersign/dashboard");
+                    $this->userLastVisit(Auth::user()->get()->id);
+                    return Redirect::to("user/profile");
                 }elseif(Auth::applicant()->attempt($credentials)){
                     //return Redirect::route("user/profile");
                     Session::put('user_id', Auth::applicant()->get()->id);
                     Session::put('username', Auth::applicant()->get()->username);
-                    return Redirect::to("usersign/dashboard");
+                    $this->applicantLastVisit(Auth::applicant()->get()->id);
+                    return Redirect::to("user/profile");
                 }
                 return Redirect::back()->withErrors([
                     "password" => ["Username / Password invalid."]
@@ -39,6 +41,23 @@ class UserController extends \BaseController {
             }
         }
         return View::make('user::user.login');
+    }
+
+    protected function userLastVisit($user_id){
+        $model = User::findOrFail($user_id);
+        date_default_timezone_set("Asia/Dacca");
+        $date = date('Y-m-d H:i:s', time());
+        $model->last_visit = $date;
+        $model->ip_address = getHostByName(getHostName());
+        $model->save();
+    }
+    protected function applicantLastVisit($applicant_id){
+        $model = Applicant::findOrFail($applicant_id);
+        date_default_timezone_set("Asia/Dacca");
+        $date = date('Y-m-d H:i:s', time());
+        $model->last_visit = $date;
+        $model->ip_address = getHostByName(getHostName());
+        $model->save();
     }
 
     protected function getLoginValidator()
@@ -62,12 +81,6 @@ class UserController extends \BaseController {
         Session::flush(); //delete the session
         return Redirect::to('user/login');
     }
-
-
-    public function profile(){
-        return View::make("user/profile");
-    }
-
 
     public function request()
     {
@@ -122,23 +135,7 @@ class UserController extends \BaseController {
             $user->save();
         });
     }
-
-
-
-    /* Tanin */
-    public function userDashboard(){
-        $result = User::with('relUserMeta')->get();
-
-        $result = User::with(['relUserMeta' => function ($query){
-            $query->where('id', 2);
-        }])->get();
-
-        //print_r($playlist);exit;
-        return View::make('user::test.test');
-    }
-
-
-
+    
 
 
 }

@@ -1,10 +1,10 @@
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-    <h4 class="modal-title"style="text-align: center ;color: #800080">Edit Assignment</h4>
+    <h4 class="modal-title">Edit Final Term</h4>
 </div>
 <div class="modal-body edit_modal_aca">
     <div style="padding: 10px; width: 90%;">
-        {{ Form::model($edit_data,array('route'=> array('assignment/update',$edit_data->id), 'method' => 'POST', 'files' => true)) }}
+        {{ Form::model($edit_data,array('route'=> array('final/term/update',$edit_data->id), 'method' => 'POST', 'files' => true)) }}
         <div class='form-group'>
             {{ Form::label('title', 'Class Title') }}
             {{ Form::text('title', Input::old('title'),['class'=>'form-control','spellcheck'=> 'true','required'=>'required']) }}
@@ -33,7 +33,7 @@
         <div class="modal-footer">
             {{ Form::hidden('redirect_url', URL::previous()) }}
             {{ Form::submit('Submit', array('class'=>'btn btn-primary')) }}
-            <a href="{{URL::previous('academic/faculty/marks/dist/item/assignment/')}}" class="btn btn-default">Close</a>
+            <a href="{{URL::previous('academic/faculty/marks/dist/item/final/term/')}}" class="btn btn-default">Close</a>
         </div>
         {{ Form::close() }}
     </div>
