@@ -7,11 +7,10 @@
             </div>
 
             <div class="modal-body">
-                {{--{{ Form::open(array('url' => 'admission/amw/storeExaminers', 'method' =>'post', 'role'=>'form','files'=>'true'))  }}--}}
-                        {{--{{ Form::text('exm_exam_list_id', $exm_exam_list_id ) }}--}}
-                        {{--@include('admission::amw.admission_test._add_examiners_form')--}}
-                {{--{{ Form::close() }}--}}
-                HI
+                {{ Form::open(array('route' => 'amw.admission_test.store_examiners', 'method' =>'post', 'role'=>'form','files'=>'true'))  }}
+{{--                        {{ Form::text('adm_examiners_home', $adm_examiners_home ) }}--}}
+                        @include('admission::amw.admission_test._add_examiners_form')
+                {{ Form::close() }}
             </div>
             <div class="modal-footer">
             </div>

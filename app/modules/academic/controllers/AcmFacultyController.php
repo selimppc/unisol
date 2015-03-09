@@ -942,7 +942,7 @@ class AcmFacultyController extends \BaseController {
 			->where('acm_assign_std_id', '=', $assign_std_id)
 			->get();//Execute the query as a "select" statement.
 
-		return View::make('academic::faculty.mark_distribution_courses.marks_dist_item_class_test.ct_comments',compact('assign_std','comments_info'));
+		return View::make('academic::faculty.mark_distribution_courses.marks_dist_item_mid_term.mid_term_comments',compact('assign_std','comments_info'));
 
 	}
 	public function save_midterm_comments()

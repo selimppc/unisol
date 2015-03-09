@@ -44,6 +44,20 @@ Route::any('amw/admission_test/view_examiners/{id}', [
 ]);
 
 
+//Route::any('amw/admission_test/add_examiners', [
+//    'as' => 'amw.admission_test.add_examiners',
+//    'uses' => 'AdmAmwController@addExaminers'
+//]);
+
+
+Route::any('amw/admission_test/store_examiners', [
+    'as' => 'amw.admission_test.store_examiners',
+    'uses' => 'AdmAmwController@storeExaminers'
+]);
+
+
+
+
 
 Route::any('amw/admission_test/search-index', [
     'as' => 'amw.admission_test.search_index',

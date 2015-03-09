@@ -41,7 +41,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" style="text-align: center">Marks Distribution Item:Class</h4>
+                    <h4 class="modal-title"style="text-align: center ;color: #800080">Marks Distribution Item:Class</h4>
                 </div>
                 <div class="modal-body">
                     {{ Form::open(array('url' => 'academic/faculty/marksdistitem/class/save', 'method' =>'post', 'role'=>'form','files'=>'true')) }}

@@ -18,6 +18,7 @@
                      </div>
 
                      <a href="{{URL::to('examination/amw/examination')}}" class="btn btn-default btn-xs">Close </a>
+                        {{--<a class="btn btn-info close">Close </a>--}}
                      
              {{ Form::close() }}
 </div>

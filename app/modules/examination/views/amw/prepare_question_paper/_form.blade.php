@@ -27,6 +27,7 @@
             {{ Form::submit('Submit', array('class' => 'btn btn-primary btn-xs')) }}
 
              <a href="{{URL::previous()}}" class="btn btn-default btn-xs">Close </a>
+                {{--<a class="btn btn-info close">Close </a>--}}
 
              <script>
                  $('.datepicker').each(function() {
