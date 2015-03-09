@@ -1,27 +1,31 @@
 <fieldset style="padding: 10px; width: 90%;">
 
+               {{ Form::text('degree_id', $degree_id) }}
+
+
                 <div class="form-group">
-                      <strong> Degree Name: </strong>{{--{{ isset($examiners_list) ?  $examiners_list->relExmExamList->relCourseManagement->relCourse->relSubject->relDepartment->title : 'no department found!'  }} --}}
+                       <strong> Degree: </strong>{{ Degree::getDegreeName($degree_id) }}
+                </div>
+
+
+                <div class="form-group">
+                       <strong> Department: </strong>{{ $data  }}
+                </div>
+
+
+                <div class="form-group">
+                        {{ Form::label('type', 'Examiner Type :') }}
+                        {{ Form::select('type',['Question Setter'=>'QS','Question Evaluator'=>'QE','Both'=>'BOTH'],array('class' => 'form-control','required'=>'required') ) }}
                 </div>
 
                 <div class="form-group">
-                      <strong> Department: </strong>{{-- {{ isset($examiners_list) ?  $examiners_list->relExmExamList->relCourseManagement->relCourse->relSubject->title : 'no subject found!' }} --}}
-                </div>
-
-
-                <div class="form-group">
-                        {{ Form::label('type', 'Examiner Type') }}
-                        {{ Form::select('type',array('class' => 'form-control','required'=>'required') ) }}
-                </div>
-
-                <div class="form-group">
-                        {{ Form::label('user_id', 'Name of Faculty') }}
+                        {{ Form::label('user_id', 'Name of Faculty:') }}
                         {{ Form::select('user_id', User::FacultyList(), array('class' => 'form-control','required'=>'required') ) }}
                 </div>
                 <div class="form-group">
-                         {{ Form::label('comment', 'Comment') }}
+                         {{ Form::label('comment', 'Comment:') }}
                          {{ Form::textarea('comment', Null, ['size' => '40x6','placeholder'=>'Your Comments Here']) }}
                 </div>
             {{ Form::submit('Submit', array('class' => 'btn btn-primary btn-xs')) }}
-            <button href="#" type="button" class="btn btn-success close">Close </button>
+            <a class="btn btn-primary btn-xs close" style="text-align: left">Close </a>
 </fieldset>

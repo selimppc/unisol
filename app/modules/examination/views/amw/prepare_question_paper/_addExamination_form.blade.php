@@ -31,5 +31,6 @@
                          {{ Form::select('course_management_id', $course_list, Input::old('semester'), array('class' => 'form-control','required'=>'required')) }}
                 </div>
             {{ Form::submit('Submit', array('class' => 'btn btn-primary btn-xs')) }}
-             <a href="{{URL::to('examination/amw/examination')}}" class="btn btn-default btn-xs">Close </a>
+{{--             <a href="{{URL::to('examination/amw/examination')}}" class="btn btn-default btn-xs">Close </a>--}}
+                <a class="btn btn-info close">Close </a>
 </fieldset>
