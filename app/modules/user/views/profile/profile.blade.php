@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 @section('sidebar')
-    @include('layouts._sidebar_layout')
+    @include('user::profile._sidebar_profile')
 @stop
 
 @section('content')

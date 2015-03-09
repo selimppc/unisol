@@ -7,20 +7,15 @@
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
         {{ HTML::style('assets/etsb/etsb_css/bootstrap/bootstrap.min.css') }}
-        <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="{{ URL::asset('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css') }}">
         {{ HTML::style('assets/etsb/etsb_css/ioicons/ionicons.min.css') }}
-
         {{ HTML::style('assets/etsb/etsb_css/morris/morris.css') }}
         {{ HTML::style('assets/etsb/etsb_css/jvectormap/jquery-jvectormap-1.2.2.css') }}
         {{ HTML::style('assets/etsb/etsb_css/datepicker/datepicker3.css') }}
         {{ HTML::style('assets/etsb/etsb_css/daterangepicker/daterangepicker-bs3.css') }}
         {{ HTML::style('assets/etsb/etsb_css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}
         {{ HTML::style('assets/etsb/etsb_css/style.css') }}
-
         {{ HTML::script('assets/js/jquery-2.1.1.min.js') }}
-
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
           <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
           <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
