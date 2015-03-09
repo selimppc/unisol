@@ -1,5 +1,5 @@
 <div class='form-group'>
-    {{ Form::label('title', 'Midterm Title') }}
+    {{ Form::label('title', 'Mid Term Title') }}
     {{ Form::text('title', Input::old('title'),['class'=>'form-control','spellcheck'=> 'true','required'=>'required']) }}
 </div>
 <div class='form-group'>
@@ -7,7 +7,7 @@
     {{ Form::textarea('description', Input::old('description'),['class'=>'form-control','spellcheck'=> 'true','required'=>'required','size'=>'30x10']) }}
 </div>
 <div class='form-group'>
-    {{ Form::label('class_time', 'Midterm Date') }}
+    {{ Form::label('class_time', 'Mid Term Date') }}
     {{ Form::select('class_time',$date_time,Input::old('class_time'),['class'=>'form-control','required']) }}
 </div>
 <div class='form-group'>

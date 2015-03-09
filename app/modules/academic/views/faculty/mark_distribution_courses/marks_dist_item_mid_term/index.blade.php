@@ -4,7 +4,7 @@
 @stop
 @section('content')
     <h4 style="text-align: center">{{$title}}</h4>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addClassTest">Add Midterm</button>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addClassTest">Add Mid Term</button>
     <table id="example" class="table table-bordered table-hover table-striped">
         <thead>
         <th>Title</th>
@@ -40,7 +40,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" style="text-align: center">Marks Distribution Item:Midterm</h4>
+                    <h4 class="modal-title" style="text-align: center">Marks Distribution Item:Mid Term</h4>
                 </div>
                 <div class="modal-body">
                     {{ Form::open(array('url' => 'midterm/save', 'method' =>'post', 'role'=>'form','files'=>'true')) }}
