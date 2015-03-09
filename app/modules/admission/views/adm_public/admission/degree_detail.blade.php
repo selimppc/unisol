@@ -1,11 +1,10 @@
 @extends('layouts.master')
 @section('sidebar')
-    {{--@include('applicant::_sidebar')--}}
+
 @stop
 @section('content')
 
-
-  <h3>Degree Details</h3>
+<h3>Degree Details</h3>
 <div class="well well-sm">
 
    <table id="example1" class="table table-bordered table-striped">
@@ -95,5 +94,9 @@
   </table>
 
 </div>
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
 @stop
 
