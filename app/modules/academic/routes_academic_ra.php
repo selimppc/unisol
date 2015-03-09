@@ -6,7 +6,7 @@
  * Time: 5:02 PM
  */
 //**********Mark_distribution_courses start******************
-//*****************Amw Dist Item*******************************************
+//*****************Amw Marks Dist Item*******************************************
 Route::get('academic/amw/',
     'AcmAmwController@amw_index'
 );
@@ -180,7 +180,7 @@ Route::post('assignment/comments/save',
     'AcmFacultyController@save_assignment_comments'
 );
 
-//******************Faculty Marks Distribution Item Midterm start****************
+//******************Faculty Marks Distribution Item Mid term start****************
 
 Route::any('academic/faculty/marks/dist/item/midterm/{marks_dist_id}/{cmid}',
     'AcmFacultyController@midterm_index'
@@ -218,3 +218,24 @@ Route::any('midterm/assign/comments/{assign_std_id}',[
 Route::post('midterm/comments/save',
     'AcmFacultyController@save_midterm_comments'
 );
+
+//******************Faculty Marks Distribution Item Final term start****************
+
+Route::any('academic/faculty/marks/dist/item/final/term/{marks_dist_id}/{cmid}',
+    'AcmFacultyController@final_term_index'
+);
+Route::post('final/term/save',
+    'AcmFacultyController@save_fina_term_data'
+);
+Route::any('final/term/show/{id}',[
+    'as' => 'finalterm.show',
+    'uses'=> 'AcmFacultyController@show_final_term'
+]);
+Route::get('final-term-edit/{id}', [
+    'as' => 'finalterm.edit',
+    'uses' => 'AcmFacultyController@edit_final_term'
+]);
+Route::any('final-term-update/{id}',[
+    'as' => 'final/term/update',
+    'uses' => 'AcmFacultyController@update_final_term'
+]);

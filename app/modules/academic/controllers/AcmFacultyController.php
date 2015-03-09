@@ -189,7 +189,7 @@ class AcmFacultyController extends \BaseController {
 
 	public function class_index($marks_dist_id,$cmid)
 	{
-		$date_time= array('' => 'Select class Time') + AcmClassSchedule::lists('day', 'id');
+		$date_time= array('' => 'Select Date') + AcmClassSchedule::lists('day', 'id');
 		$title = 'All Class List';
 		$datas = AcmAcademic::with('relAcmClassSchedule')
 			->where('acm_marks_distribution_id', '=', $marks_dist_id)
@@ -251,7 +251,7 @@ class AcmFacultyController extends \BaseController {
 	}
 	public function edit_class($id)
 	{
-		$date_time= array('' => 'Select class Time') + AcmClassSchedule::lists('day', 'id');
+		$date_time= array('' => 'Select Date') + AcmClassSchedule::lists('day', 'id');
 		$model = new AcmAcademic();
 		$edit_data = $model->find($id);
 		$datas = AcmAcademicDetails::with('relAcmAcademic')
@@ -323,7 +323,7 @@ class AcmFacultyController extends \BaseController {
 
 	public function class_test_index($marks_dist_id,$cmid)
 	{
-		$date_time= array('' => 'Select class Time') + AcmClassSchedule::lists('day', 'id');
+		$date_time= array('' => 'Select Date') + AcmClassSchedule::lists('day', 'id');
 		$title = 'All Class Test List';
 		$datas = AcmAcademic::with('relAcmClassSchedule')
 			->where('acm_marks_distribution_id', '=', $marks_dist_id)
@@ -385,7 +385,7 @@ class AcmFacultyController extends \BaseController {
 	}
 	public function edit_class_test($id)
 	{
-		$date_time= array('' => 'Select class Time') + AcmClassSchedule::lists('day', 'id');
+		$date_time= array('' => 'Select Date') + AcmClassSchedule::lists('day', 'id');
 		$model = new AcmAcademic();
 		$edit_data = $model->find($id);
 		$datas = AcmAcademicDetails::with('relAcmAcademic')
@@ -556,7 +556,7 @@ class AcmFacultyController extends \BaseController {
 
 	public function assignment_index($marks_dist_id,$cmid)
 	{
-		$date_time= array('' => 'Select class Time') + AcmClassSchedule::lists('day', 'id');
+		$date_time= array('' => 'Select Date') + AcmClassSchedule::lists('day', 'id');
 		$title = 'All Assignment List';
 		$datas = AcmAcademic::with('relAcmClassSchedule')
 			->where('acm_marks_distribution_id', '=', $marks_dist_id)
@@ -620,7 +620,7 @@ class AcmFacultyController extends \BaseController {
 	}
 	public function edit_assignment($id)
 	{
-		$date_time= array('' => 'Select class Time') + AcmClassSchedule::lists('day', 'id');
+		$date_time= array('' => 'Select Date') + AcmClassSchedule::lists('day', 'id');
 		$model = new AcmAcademic();
 		$edit_data = $model->find($id);
 		$datas = AcmAcademicDetails::with('relAcmAcademic')
@@ -755,10 +755,10 @@ class AcmFacultyController extends \BaseController {
 			return Redirect::to('academic/faculty/marks-dist-item/assignment/assign/');
 		}
 	}
-	//************************Marks Distribution Item Midterm Start********************
+	//************************Marks Distribution Item Mid Term Start********************
 	public function midterm_index($marks_dist_id,$cmid)
 	{
-		$date_time= array('' => 'Select class Time') + AcmClassSchedule::lists('day', 'id');
+		$date_time= array('' => 'Select Date') + AcmClassSchedule::lists('day', 'id');
 		$title = 'All Midterm List';
 		$datas = AcmAcademic::with('relAcmClassSchedule')
 			->where('acm_marks_distribution_id', '=', $marks_dist_id)
@@ -774,7 +774,6 @@ class AcmFacultyController extends \BaseController {
 	public function save_midterm_data()
 	{
 		$data = Input::all();
-		$redirect_url = Input::get('redirect_url');
 		$datas = new AcmAcademic();
 		if ($datas->validate($data)) {
 			$datas->course_management_id = Input::get('course_management_id');
@@ -821,7 +820,7 @@ class AcmFacultyController extends \BaseController {
 	}
 	public function edit_midterm($id)
 	{
-		$date_time= array('' => 'Select class Time') + AcmClassSchedule::lists('day', 'id');
+		$date_time= array('' => 'Select Date') + AcmClassSchedule::lists('day', 'id');
 		$model = new AcmAcademic();
 		$edit_data = $model->find($id);
 		$datas = AcmAcademicDetails::with('relAcmAcademic')
@@ -967,5 +966,118 @@ class AcmFacultyController extends \BaseController {
 		}
 	}
 
+//************************Marks Distribution Item Final Term Start********************
+
+	public function final_term_index($marks_dist_id,$cmid)
+	{
+		$date_time= array('' => 'Select Date') + AcmClassSchedule::lists('day', 'id');
+		$title = 'All Midterm List';
+		$datas = AcmAcademic::with('relAcmClassSchedule')
+			->where('acm_marks_distribution_id', '=', $marks_dist_id)
+			->get();
+		$data= CourseManagement::with( 'relCourse')
+			->where('id', '=', $cmid)
+			->get();
+		$config_data = AcmMarksDistribution::with('relAcmMarksDistItem', 'relCourseManagement.relCourse')
+			->where('course_management_id', '=', $cmid)
+			->get();
+		return View::make('academic::faculty.mark_distribution_courses.marks_dist_item_final_term.index', compact('title', 'datas', 'config_data','data', 'marks_dist_id', 'cmid','date_time'));
+	}
+	public function save_fina_term_data()
+	{
+		$data = Input::all();
+		$redirect_url = Input::get('redirect_url');
+		$datas = new AcmAcademic();
+		if ($datas->validate($data)) {
+			$datas->course_management_id = Input::get('course_management_id');
+			$datas->acm_marks_distribution_id = Input::get('marks_dist_id');
+			$datas->title = Input::get('title');
+			$datas->description = Input::get('description');
+			$datas->acm_class_schedule_id = Input::get('class_time');
+			$datas->created_by = Auth::user()->get()->id;
+			$datas->save();
+			$academic_id = $datas->id;//to get last inserted id
+			//file upload starts here
+			$files = Input::file('images');
+			foreach($files as $file) {
+				if($file){
+					$destinationPath = public_path().'/file/item_class_file';
+					$filename = $file->getClientOriginalName();
+					$hashname = date("d-m-Y")."_".$filename;
+					$upload_success = $file->move($destinationPath, $hashname);
+					$academic_details = new AcmAcademicDetails;
+					$academic_details->file = $hashname;
+//					strtolower ( $filename)
+					$academic_details->acm_academic_id = $academic_id;
+					$academic_details->save();
+				}
+			}
+			//file upload ends
+			return Redirect::back()->with('message','Successfully added!');
+		} else {
+			// failure, get errors
+			$errors = $datas->errors();
+			Session::flash('errors', $errors);
+			return Redirect::to('academic/faculty/marks/dist/item/final/term/');
+		}
+	}
+	public function show_final_term($id)
+	{
+		$data = AcmAcademic::with('relAcmClassSchedule','relAcmClassSchedule.relAcmClassTime')
+			->where('id','=' ,$id)
+			->get();
+		$datas = AcmAcademicDetails::with('relAcmAcademic')
+			->where('acm_academic_id','=' ,$id)
+			->get();
+		return View::make('academic::faculty.mark_distribution_courses.marks_dist_item_final_term.show',compact('data','datas'));
+	}
+	public function edit_final_term($id)
+	{
+		$date_time= array('' => 'Select Date') + AcmClassSchedule::lists('day', 'id');
+		$model = new AcmAcademic();
+		$edit_data = $model->find($id);
+		$datas = AcmAcademicDetails::with('relAcmAcademic')
+			->where('acm_academic_id','=' ,$id)
+			->get();
+		return View::make('academic::faculty.mark_distribution_courses.marks_dist_item_final_term.edit',compact('edit_data','date_time','datas'));
+	}
+	public function update_final_term($id)
+	{
+		$data = Input::all();
+		$redirect_url = Input::get('redirect_url');
+		if ($data) {
+			/*$datas->course_management_id = Input::get('course_management_id');
+			$datas->acm_marks_distribution_id = Input::get('marks_dist_id');*/
+			$datas = AcmAcademic::find($id);
+			$datas->title = Input::get('title');
+			$datas->description = Input::get('description');
+			$datas->acm_class_schedule_id = Input::get('class_time');
+			$datas->created_by = Auth::user()->get()->id;
+			$datas->save();
+			$academic_id = $id;// update exiting data that contains a id
+			//file upload starts here
+			$files = $data['images'];
+			foreach($files as $file) {
+				if($file){
+					$destinationPath = public_path().'/file/item_class_file';
+					$filename = $file->getClientOriginalName();
+					$hashname = date("d-m-Y")."_".$filename;
+					$upload_success = $file->move($destinationPath, $hashname);
+					$academic_details = new AcmAcademicDetails;
+					$academic_details->file = $hashname;
+					$academic_details->acm_academic_id = $id;
+					$academic_details->save();
+				}
+			}
+			//file upload ends
+			return Redirect::to($redirect_url)->with('message','Successfully added!');
+		} else {
+			// failure, get errors
+			//$errors = $datas->errors();
+			//Session::flash('errors', $errors);
+			//return Redirect::to($redirect_url)->with('message',$errors);
+			return Redirect::to($redirect_url)->with('message','Data not updated');
+		}
+	}
 
 }
