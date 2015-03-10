@@ -25,7 +25,7 @@
                                 <tbody>
                                   @foreach($course_data as $course_list)
                                         <tr>
-                                            <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $course_list['id'] }}"></td>
+                                            <td><input type="checkbox" name="id[]" class="myCheckbox" value="{{ $course_list['id'] }}"></td>
                                             <td> {{ $course_list->relCourseManagement->relCourse->title }} </td>
 
                                              <td>{{ $course_list->relAcmMarksDistItem['title'] }}</td>
@@ -42,6 +42,8 @@
                                 </tbody>
                         </table>
                     {{form::close() }}
+
+{{--                    {{ $course_data->links() }}--}}
 
 @include('examination::amw.prepare_question_paper._modal._common_modal')
 @stop

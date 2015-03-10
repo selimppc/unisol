@@ -46,7 +46,7 @@
               <tbody>
                   @foreach($examiners_home as $examiners_list)
                         <tr>
-                            <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $examiners_list['id'] }}"></td>
+                            <td><input type="checkbox" name="id[]" class="myCheckbox" value="{{ $examiners_list['id'] }}"></td>
 
 
 
@@ -77,6 +77,8 @@
               </tbody>
             </table>
         {{form::close() }}
+{{--        {{ $examiners_home->links() }}--}}
+
 
 @include('examination::amw.prepare_question_paper._modal._common_modal')
 @include('examination::amw.prepare_question_paper._modal._add_examiner')

@@ -7,6 +7,8 @@
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addNew" style="margin-bottom: 5px" >
         Add New Item
     </button>
+
+
     {{ Form::open(array('url' => 'academic/amw/batch/delete')) }}
     <table id="example" class="table table-bordered table-hover table-striped">
         <thead>
@@ -21,15 +23,15 @@
         <tbody>
         @foreach ($datas as $value)
             <tr>
-                <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $value->id }}">
+                <td><input type="checkbox" name="id[]"  class="myCheckbox" value="{{ $value->id }}">
                 </td>
                 <td>{{$value->title}}</td>
                 <td>
-                    <a data-href="{{ URL::to('academic/amw/delete/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><span class="glyphicon glyphicon-trash text-danger"></span></a>
+                    <a data-href="{{ URL::to('academic/amw/delete/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa  fa-trash-o" style="font-size: 18px;color: red"></i></a>
 
-                    <a href="{{ URL::route('amw.edit', ['id'=>$value->id]) }}" class="subEdit btn btn-xs btn-default" data-toggle="modal" data-target="#edit-modal" href="" ><span class="glyphicon glyphicon-edit text-info"></span></a>
+                    <a href="{{ URL::route('amw.edit', ['id'=>$value->id]) }}" class="subEdit btn btn-xs btn-default" data-toggle="modal" data-target="#edit-modal" href="" ><i class="fa fa-pencil-square-o" style="font-size: 18px;color: #0044cc"></i></a>
 
-                    <a href="{{ URL::route('amw.show', ['id'=>$value->id])  }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" href=""><span class="glyphicon glyphicon-list-alt text-info"></span></a>
+                    <a href="{{ URL::route('amw.show', ['id'=>$value->id])  }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" href=""><i class="fa fa-eye" style="font-size: 18px;color: green"></i></a>
                 </td>
             </tr>
         @endforeach

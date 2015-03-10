@@ -38,7 +38,7 @@
                   @foreach($examiners_list as $examiners_list)
 
                         <tr>
-                            <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $examiners_list['id'] }}"></td>
+                            <td><input type="checkbox" name="id[]" class="myCheckbox" value="{{ $examiners_list['id'] }}"></td>
 
                              <td><span data-toggle="modal" data-target="#modal" data-placement="left" title="View" href="#">{{ HTML::linkAction('ExmAmwController@viewExaminers',($examiners_list->relUser->relUserProfile->first_name.' '.$examiners_list->relUser->relUserProfile->middle_name.' '.$examiners_list->relUser->relUserProfile->last_name),['id'=>$examiners_list->id]) }}</span></td>
                              <td>{{ $examiners_list->relExmExamList->relCourseManagement->relCourse->relSubject->relDepartment->title }}</td>
@@ -52,6 +52,7 @@
               </tbody>
             </table>
         {{form::close() }}
+        {{ $examiners_list->links() }}
 
 
 @include('examination::amw.prepare_question_paper._modal._common_modal')

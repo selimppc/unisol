@@ -11,7 +11,7 @@ class AcmAmwController extends \BaseController {
 	//*****************Start amw dist item code***********************
 	public function amw_index()
 	{
-		$data = AcmMarksDistItem::orderBy('id', 'ASC')->paginate(5);
+		$data = AcmMarksDistItem::orderBy('id', 'DESC')->paginate(5);
 		return View::make('academic::amw.mark_distribution_courses.index')->with('datas', $data)->with('title', 'Course Marks Distribution Item List');
 	}
 

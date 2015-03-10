@@ -3,7 +3,7 @@
     @include('academic::_sidebar')
 @stop
 @section('content')
-    <h4 style="text-align: center">{{$title}}</h4>
+    <h4 style="text-align: center ;color: #800080; font-size: large">{{$title}}</h4>
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addClassTest" style="margin-bottom: 5px">Add CT</button>
     <table id="example" class="table table-bordered table-hover table-striped">
         <thead>
@@ -21,9 +21,9 @@
                 <td>{{($value->status == 1) ? 'Active' : 'Inactive';}}</td>
                 <td>{{$value->relAcmClassSchedule->day}}</td>
                 <td>
-                    <a href="{{ URL::route('class_test.edit', ['id'=>$value->id]) }}" class="subEdit btn btn-xs btn-default" data-toggle="modal" data-target="#editModal" href="" ><span class="glyphicon glyphicon-edit text-info"></span></a>
+                    <a href="{{ URL::route('class_test.edit', ['id'=>$value->id]) }}" class="subEdit btn btn-xs btn-default" data-toggle="modal" data-target="#editModal" href="" ><i class="fa fa-pencil-square-o" style="font-size: 18px;color: #0044cc"></i></a>
 
-                    <a href="{{ URL::route('class_test.show', ['id'=>$value->id])  }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" href=""><span class="glyphicon glyphicon-list-alt text-info"></span></a>
+                    <a href="{{ URL::route('class_test.show', ['id'=>$value->id])  }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" href=""><i class="fa fa-eye" style="font-size: 18px;color: green"></i></a>
 
                     {{--<button href="{{ URL::route('class/test.assign', ['id'=>$value->id])  }}" class="btn btn-xs">Assign</button>--}}
                     <a href="{{ URL::route('class/test.assign',['id'=>$value->id, 'cmid'=>$value->course_management_id, 'marksid'=>$value->acm_marks_distribution_id])  }}" class="btn btn-default btn-xs"> Assign </a>

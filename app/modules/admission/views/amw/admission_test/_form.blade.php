@@ -13,23 +13,23 @@
 
                 {{--<div class="form-group">--}}
                        {{--{{ Form::label('degree_admtest_subject_id', 'Subject:') }}--}}
-                       {{--{{ Form::text('degree_admtest_subject_id',$subject_id, Input::old('degree_admtest_subject_id'), array('class' => 'form-control','required'=>'required')) }}--}}
+                       {{--{{ Form::select('degree_admtest_subject_id', Input::old('degree_admtest_subject_id'), array('class' => 'form-control')) }}--}}
                 {{--</div>--}}
 
                 <div class="form-group">
                        {{ Form::label('title', 'Title:') }}
-                       {{ Form::text('title', Input::old('title'), array('class' => 'form-control','required'=>'required')) }}
+                       {{ Form::text('title', Input::old('title'), array('class' => 'form-control')) }}
                 </div>
 
                 <div class="form-group">
                     {{ Form::label('deadline', 'Deadline') }}
-                    {{ Form::text('deadline', Input::old('deadline'), array('class' => 'form-control datepicker','required'=>'required')) }}
+                    {{ Form::text('deadline', Input::old('deadline'), array('class' => 'form-control datepicker')) }}
                 </div>
 
-                {{--<div class="form-group">--}}
-                     {{--{{ Form::label('total_marks', 'Total Marks') }}--}}
-                     {{--{{ Form::text('total_marks', Input::old('total_marks'), array('class' => 'form-control','required'=>'required')) }}--}}
-                {{--</div>--}}
+                <div class="form-group">
+                     {{ Form::label('total_marks', 'Total Marks') }}
+                     {{ Form::text('total_marks', Input::old('total_marks'), array('class' => 'form-control')) }}
+                </div>
 
                 {{--<div class="form-group">--}}
                        {{--{{ Form::label('assign_to', 'Assign To') }}--}}

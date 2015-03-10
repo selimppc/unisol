@@ -46,7 +46,7 @@
                       <tbody>
                             @foreach($adm_question_paper as $adm_question_paper_list)
                                   <tr>
-                                      <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $adm_question_paper_list['id'] }}"></td>
+                                      <td><input type="checkbox" name="id[]" class="myCheckbox" value="{{ $adm_question_paper_list['id'] }}"></td>
 
                                       <td>{{ $adm_question_paper_list->title }}</td>
 
@@ -71,6 +71,8 @@
               </table>
 
           {{form::close() }}
+
+{{--          {{ $adm_question_paper->links() }}--}}
 
 {{--@include('admission::amw.admission_test._modal._create_question_paper')--}}
 @include('admission::amw.admission_test._modal._common_modal')

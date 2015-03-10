@@ -58,7 +58,7 @@
                       <tbody>
                           @foreach($exam_data as $exam_list)
                                 <tr>
-                                    <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $exam_list['id'] }}"></td>
+                                    <td><input type="checkbox" name="id[]" class="myCheckbox" value="{{ $exam_list['id'] }}"></td>
                                     {{--<td> {{ HTML::linkAction('ExmAmwController@courses', $exam_list->title) }} </td>--}}
                                     <td>{{ HTML::linkAction('ExmAmwController@courses', $exam_list->title, ['acm_marks_dist_item_id'=>$exam_list->acm_marks_dist_item_id , 'year_id'=>$exam_list->year_id, 'semester_id'=>$exam_list->semester_id, 'course_management_id'=>$exam_list->course_management_id ])  }} </td>
 
@@ -77,6 +77,8 @@
                       </tbody>
                </table>
            {{form::close() }}
+
+{{--           {{ $exam_data->links() }}--}}
 
 
         <p>&nbsp;</p><p>&nbsp;</p>

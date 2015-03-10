@@ -51,7 +51,7 @@
                  <tbody>
                      @foreach($admission_test as $adm_test_mgt)
                            <tr>
-                               <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $adm_test_mgt['id'] }}"></td>
+                               <td><input type="checkbox" name="id[]" class="myCheckbox" value="{{ $adm_test_mgt['id'] }}"></td>
                                <td>{{ $adm_test_mgt->title }}</td>
                                <td>{{ Department::getDepartmentName($adm_test_mgt->department_id) }}</td>
                                <td>{{ Year::getYearsName($adm_test_mgt->year_id) }}</td>
@@ -69,6 +69,8 @@
                  </tbody>
           </table>
       {{form::close() }}
+
+      {{ $admission_test->links() }}
 
 
    <p>&nbsp;</p><p>&nbsp;</p>

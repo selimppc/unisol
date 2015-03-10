@@ -29,7 +29,7 @@
     <tbody>
         @foreach($questions_item as $question_list)
             <tr>
-                <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $question_list['id'] }}"></td>
+                <td><input type="checkbox" name="id[]" class="myCheckbox" value="{{ $question_list['id'] }}"></td>
 
                 <td> {{ $question_list->title }} </td>
                 <td>
@@ -51,6 +51,8 @@
     </tbody>
 </table>
 {{form::close() }}
+
+{{ $questions_item->links() }}
 
 @include('examination::amw.prepare_question_paper._modal._common_modal')
 @stop

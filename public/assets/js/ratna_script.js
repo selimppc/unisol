@@ -26,7 +26,7 @@ $('body').on('hidden.bs.modal', '.modal', function () {
 
 // select All records for batch delete
 
-$("#hide-button").hide();
+/*$("#hide-button").hide();
 
 $(".checkbox").change(function () {
     if (this.checked) {
@@ -46,7 +46,7 @@ $('.myCheckbox').on('change', function (event) {
     } else {
         $("#hide-button").hide();
     }
-});
+});*/
 
 //ends
 
@@ -117,9 +117,9 @@ $('.close').on('click', function (event) {
 });
 
 // To search and filter all datatable
-
 $('#example').dataTable({
-    "bPaginate": false
+    "bPaginate": false,
+    "bSort": false
 });
 $('#example1').dataTable({
     "bPaginate": false
@@ -160,6 +160,7 @@ $('.datepicker').datepicker({
         });
     }
 });
+
 
 
 /***********************ACM COURSE CONFIG GENERATION STARTS***********************/
