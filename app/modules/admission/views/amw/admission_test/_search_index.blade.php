@@ -7,7 +7,7 @@
 
   <div class="row">
       <div class="col-sm-12">
-        {{ Form::open(array('url' => 'amw/admission_test/search-index')) }}
+        {{ Form::open(array('url' => 'admission_test/amw/search-index')) }}
           <div class="col-sm-8">
                <div class="col-sm-3">
                         {{ Form::label('year_id', 'Year') }}

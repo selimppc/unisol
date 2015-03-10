@@ -6,7 +6,7 @@
                 <h4 class="modal-title" id="myModalLabel">Create Question paper</h4>
             </div>
             <div class="modal-body">
-                {{ Form::open(array('route' => 'amw.admission_test.storeQuestionPaper', 'method' =>'post', 'role'=>'form','files'=>'true'))  }}
+                {{ Form::open(array('route' => 'admission_test.amw.storeQuestionPaper', 'method' =>'post', 'role'=>'form','files'=>'true'))  }}
                     {{--{{ Form::hidden('exam_list_id',$exam_list_id, Input::old('exam_list_id')) }}--}}
                     {{--{{ Form::hidden('course_man_id',$course_man_id, Input::old('course_man_id')) }}--}}
                         @include('admission::amw/admission_test/_form')

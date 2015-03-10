@@ -23,51 +23,39 @@ include("routes_tjt.php");
 
 // ----------------------------Public : Admission Test starts----------------------------------------------------------
 
-Route::any('amw/admission_test/deshboard', [
-    'as' => 'amw.admission_test.deshboard',
+Route::any('admission_test/amw/deshboard', [
+    'as' => 'admission_test.amw.deshboard',
     'uses' => 'AdmAmwController@deshboard'
 ]);
 
-Route::any('amw/admission_test/index',[
-    'as' => 'amw.admission_test.index',
+Route::any('admission_test/amw/index',[
+    'as' => 'admission_test.amw.index',
     'uses' => 'AdmAmwController@admissionTestIndex'
 ]);
 
-Route::any('amw/admission_test/examiners/{year_id}/{semester_id}/{degree_id}', [
-    'as' => 'amw.admission_test.examiners',
+Route::any('admission_test/amw/examiners/{year_id}/{semester_id}/{degree_id}', [
+    'as' => 'admission_test.amw.examiners',
     'uses' => 'AdmAmwController@examiners'
 ]);
 
-Route::any('amw/admission_test/view_examiners/{id}', [
-    'as' => 'amw.admission_test.view_examiners',
+Route::any('admission_test/amw/view_examiners/{id}', [
+    'as' => 'admission_test.amw.view_examiners',
     'uses' => 'AdmAmwController@viewExaminers'
 ]);
 
 
-//Route::any('amw/admission_test/add_examiners', [
-//    'as' => 'amw.admission_test.add_examiners',
-//    'uses' => 'AdmAmwController@addExaminers'
-//]);
-
-
-Route::any('amw/admission_test/store_examiners', [
-    'as' => 'amw.admission_test.store_examiners',
+Route::any('admission_test/amw/store_examiners', [
+    'as' => 'admission_test.amw.store_examiners',
     'uses' => 'AdmAmwController@storeExaminers'
 ]);
 
-
-
-
-
-Route::any('amw/admission_test/search-index', [
-    'as' => 'amw.admission_test.search_index',
+Route::any('admission_test/amw/search-index', [
+    'as' => 'admission_test.amw.search_index',
     'uses' => 'AdmAmwController@searchIndex'
 ]);
 
-
-
-Route::any('amw/admission_test/question_paper/{year_id}/{semester_id}', [
-    'as' => 'amw.admission_test.question_paper',
+Route::any('admission_test/amw/question_paper/{year_id}/{semester_id}/{degree_id}', [
+    'as' => 'admission_test.amw.question_paper',
     'uses' => 'AdmAmwController@questionPaper'
 ]);
 

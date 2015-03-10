@@ -11,6 +11,14 @@
                             <div class="row">
                                     <div class="col-sm-12">
                                         <div class="col-sm-6">
+                                            <strong> Year: </strong>{{ Year::getYearsName($year_id) }}
+                                            </br>
+                                            <strong> Semester: </strong>{{ Semester::getSemesterName($semester_id) }}
+                                            </br>
+                                            <strong> Degree: </strong>{{ Degree::getDegreeName($degree_id) }}
+                                            </br>
+                                            <strong> Department: </strong>{{ $data  }}
+                                            </br>
                                         </div>
                                         <div class="pull-right col-sm-6">
                                             <div class="btn-group" style="margin-right: 10px">
@@ -22,16 +30,6 @@
                                         </div>
                                     </div>
                             </div>
-
-
-                            <strong> Year: </strong>{{ Year::getYearsName($year_id) }}
-                            </br>
-                            <strong> Semester: </strong>{{ Semester::getSemesterName($semester_id) }}
-                            </br>
-                            <strong> Degree: </strong>{{ Degree::getDegreeName($degree_id) }}
-                            </br>
-                            <strong> Department: </strong>{{ $data  }}
-                            </br>
 
                            {{ Form::submit('Delete Items', array('class'=>'btn btn-danger btn-xs', 'id'=>'hide-button', 'style'=>'display:none'))}}
 
@@ -57,24 +55,19 @@
                                     ) }}
                                  </td>
 
-
-
-                                 {{--<td></td>--}}
-
                                  <td>{{ $adm_examiners_list->status }} </td>
-
 
                                 <td>
                                       <a href="#" class="btn btn-default btn-xs">cancel</a>
                                 </td>
                             </tr>
                       @endforeach
-
                   </tbody>
                 </table>
             {{form::close() }}
 
+
+
     @include('admission::amw.admission_test._modal._common_modal')
     @include('admission::amw.admission_test._modal._add_examiner')
-
 @stop

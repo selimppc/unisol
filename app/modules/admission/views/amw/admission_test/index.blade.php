@@ -7,7 +7,7 @@
 
   <div class="row">
       <div class="col-sm-12">
-        {{ Form::open(array('url' => 'amw/admission_test/search-index')) }}
+        {{ Form::open(array('url' => 'admission_test/amw/search-index')) }}
           <div class="col-sm-8">
                <div class="col-sm-3">
                         {{ Form::label('year_id', 'Year') }}
@@ -61,8 +61,8 @@
                                <td style="text-align: center">{{ $adm_test_mgt->duration }}</td>
                                <td>QPE Status</td>
                                <td>
-                                  <a href="{{ URL::route('amw.admission_test.examiners', ['year_id'=>$adm_test_mgt->year_id , 'semester_id'=>$adm_test_mgt->semester_id , 'degree_id'=>$adm_test_mgt->id ])  }}" class="btn btn-default btn-xs" >EX</a>
-                                  <a href="{{ URL::route('amw.admission_test.question_paper', ['year_id'=>$adm_test_mgt->year_id , 'semester_id'=>$adm_test_mgt->semester_id ])  }}" class="btn btn-default btn-xs" >QP</a>
+                                  <a href="{{ URL::route('admission_test.amw.examiners', ['year_id'=>$adm_test_mgt->year_id , 'semester_id'=>$adm_test_mgt->semester_id , 'degree_id'=>$adm_test_mgt->id ])  }}" class="btn btn-default btn-xs" >EX</a>
+                                  <a href="{{ URL::route('admission_test.amw.question_paper', ['year_id'=>$adm_test_mgt->year_id , 'semester_id'=>$adm_test_mgt->semester_id , 'degree_id'=>$adm_test_mgt->id ])  }}" class="btn btn-default btn-xs" >QP</a>
                                </td>
                            </tr>
                      @endforeach

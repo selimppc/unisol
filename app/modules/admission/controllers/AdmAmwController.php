@@ -111,7 +111,7 @@ class AdmAmwController extends \BaseController
             }
             // redirect
             Session::flash('message', 'Examiner Successfully Added!');
-            return Redirect::to('examination/amw/examiners');
+            return Redirect::to('admission_test/amw/deshboard');
         }
     }
 
@@ -120,16 +120,38 @@ class AdmAmwController extends \BaseController
 
 
 
-    public function questionPaper($year_id, $semester_id)
+    public function questionPaper($year_id, $semester_id, $degree_id)
     {
         $adm_question_paper = AdmQuestion::orderby('id', 'DESC')->paginate(5);
-        return View::make('admission::amw.admission_test.question_paper',compact('adm_question_paper','year_id','semester_id'));
+        $data = Degree::with('relDepartment')->where('id' ,'=', $degree_id)->first()->relDepartment->title;
+
+        return View::make('admission::amw.admission_test.question_paper',compact(
+            'adm_question_paper','year_id','semester_id','degree_id','data'
+        ));
     }
+
 
     public function storeQuestionPaper(){
 
 
     }
+    public function viewQuestionPaper(){
+
+
+    }
+    public function editQuestionPaper(){
+
+
+    }
+    public function viewQuestionsItem(){
+
+
+    }
+    public function assignFaculty(){
+
+
+    }
+
 
 
 

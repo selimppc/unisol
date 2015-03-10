@@ -1,7 +1,7 @@
 <div style="padding: 5px; width: 90%;">
 
              <h2>Welcome to View Examiners <strong></strong> </h2> </br>
-             {{ Form::open(array('route'=>'amw.admission_test.view_examiners','method' => '')) }}
+             {{ Form::open(array('route'=>'admission_test.amw.view_examiners','method' => '')) }}
                      <div class="jumbotron text-center">
 
                             <strong> Department: </strong>{{ $data }} </br>
@@ -20,7 +20,7 @@
 
                      </div>
 
-                     <a href="{{URL::previous('amw/admission_test/examiners')}}" class="btn btn-default btn-xs">Close </a>
+                     <a href="{{URL::previous('admission_test/amw/examiners')}}" class="btn btn-default btn-xs">Close </a>
                      {{--{{ Form::submit('Comments', array('class' => 'btn btn-primary btn-xs')) }}--}}
              {{ Form::close() }}
 
