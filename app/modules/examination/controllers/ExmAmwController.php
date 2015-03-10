@@ -15,7 +15,7 @@ class ExmAmwController extends \BaseController {
     //amw: View question paper
     public function viewQuestion($id)
     {
-        $view_question_amw = ExmQuestion::find($id);
+        $view_question_amw = ExmQuestion::find($id)->paginate(3);
         return View::make('examination::amw.prepare_question_paper.viewQuestion')->with('viewPrepareQuestionPaperAmw', $view_question_amw);
     }
     //amw: assignTo
@@ -141,7 +141,7 @@ class ExmAmwController extends \BaseController {
     //amw: Question List
     public function questionList()
     {
-        $question_list_amw = ExmQuestionItems::orderBy('id', 'DESC')->paginate(15);
+        $question_list_amw = ExmQuestionItems::orderBy('id', 'DESC')->paginate(5);
         return View::make('examination::amw.prepare_question_paper.questionList')->with('QuestionListAmw',$question_list_amw);
     }
     //amw: View Question Items

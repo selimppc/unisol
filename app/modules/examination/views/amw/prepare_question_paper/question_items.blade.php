@@ -52,5 +52,7 @@
 </table>
 {{form::close() }}
 
+{{ $questions_item->links() }}
+
 @include('examination::amw.prepare_question_paper._modal._common_modal')
 @stop

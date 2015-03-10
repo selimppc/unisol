@@ -72,6 +72,8 @@
 
           {{form::close() }}
 
+          {{ $adm_question_paper->links() }}
+
 {{--@include('admission::amw.admission_test._modal._create_question_paper')--}}
 @include('admission::amw.admission_test._modal._common_modal')
 
