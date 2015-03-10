@@ -33,105 +33,111 @@
  <p>&nbsp;</p>
 {{-----------------------------------Data Table : admission on  degree Starts Ends---------------------------------------------------------------------------}}
 
-<h4><b>Applicant's Profile</b></h4>
+
 {{-----------------------------------Applicant's Profile:Personal Information starts-----------------------------------}}
-<p>&nbsp;</p>
+ <div class="box box-solid box-info">
+    <div class="box-header">
+        <h3 class="box-title">Applicant's Profile</h3>
+        <div class="box-tools pull-right">
+            <button class="btn btn-info btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
+            <button class="btn btn-info btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
+        </div>
+    </div>
 
-<section class="col-lg-6 connectedSortable">
- <h5><b>Applicant's Personal Information</b></h5>
-    <div class="box box-info">
-           <div class="box-header">
-               <h3 class="box-title">Profile Information</h3>
-               <!-- tools box -->
-               <div class="pull-right box-tools">
-                   <button class="btn btn-info btn-sm" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
-               </div><!-- /. tools -->
-           </div>
-           <div class="box-body">
-                <div class="row">
-                    <div class="col-lg-4">
-                        {{ HTML::image('applicant_images/'.$applicant_personal_info->profile_image) }}
-                    </div>
-                    <div class="col-lg-6">
-                        @if(isset($applicant_personal_info))
+         <section class="col-lg-6 connectedSortable">
 
-                            Phone : <b>{{$applicant_personal_info->phone}} </b><br>
-                            Date of Birth : <b>{{$applicant_personal_info->date_of_birth}}</b><br>
-                            Place of Birth : {{$applicant_personal_info->place_of_birth}}<br>
-                            Gender : {{$applicant_personal_info->gender}}<br>
-                            City : {{$applicant_personal_info->city}}<br>
-                            State : {{$applicant_personal_info->state}}<br>
-                            Country : {{$applicant_personal_info->relCountry->title}}
+                   <p>&nbsp;</p>
+                        <div class="box box-info">
+                             <div class="box-header">
+                                 <h3 class="box-title">Personal Information</h3>
+                                 <!-- tools box -->
+                                 <div class="pull-right box-tools">
+                                     <button class="btn btn-info btn-sm" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
+                                 </div><!-- /. tools -->
+                             </div>
+                                 <div class="box-body">
+                                      <div class="row">
+                                          <div class="col-lg-4">
+                                                  @if(isset($applicant_personal_info))
+                                                      {{ HTML::image('applicant_images/'.$applicant_personal_info->profile_image) }}
+                                                  @else
+                                                      {{"Profile Picture Do Not Added !"}}
+                                                  @endif
+                                          </div>
+                                          <div class="col-lg-6">
+                                                  @if(isset($applicant_personal_info))
 
-                        @else
-                            {{"No Profile data found !"}}
-                        @endif
-                    </div>
+                                                      Phone : <b>{{$applicant_personal_info->phone}} </b><br>
+                                                      Date of Birth : <b>{{$applicant_personal_info->date_of_birth}}</b><br>
+                                                      Place of Birth : {{$applicant_personal_info->place_of_birth}}<br>
+                                                      Gender : {{$applicant_personal_info->gender}}<br>
+                                                      City : {{$applicant_personal_info->city}}<br>
+                                                      State : {{$applicant_personal_info->state}}<br>
+                                                      Country : {{$applicant_personal_info->relCountry->title}}
 
-                </div>
-           </div>
-           <div class="box-footer clearfix">
-               <button class="pull-right btn btn-default" id="sendEmail">Edit <i class="fa fa-arrow-circle-right"></i></button>
-           </div>
-       </div>
+                                                  @else
+                                                      {{"No Profile data found !"}}
+                                                  @endif
+                                          </div>
+                                      </div>
+                                 </div>
+                                 <div class="box-footer clearfix">
+                                     <button class="pull-right btn btn-default" id="sendEmail">Edit <i class="fa fa-arrow-circle-right"></i></button>
+                                 </div>
+                        </div>
+                        <div class="box box-info">
+                                                     <div class="box-header">
+                                                         <h3 class="box-title">Academic Information</h3>
+                                                         <!-- tools box -->
+                                                         <div class="pull-right box-tools">
+                                                             <button class="btn btn-info btn-sm" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
+                                                         </div><!-- /. tools -->
+                                                     </div>
+                                                         <div class="box-body">
+                                                              <div class="row">
+
+                                                                  <div class="col-lg-6">
+                                                                     <table>
+                                                                           <thead>
+                                                                                  <tr>
+                                                                                     <th>Level Of Education</th>
+                                                                                     <th>Board / University</th>
+                                                                                     <th>Passing Year</th>
+                                                                                     <th>Result</th>
+                                                                                  </tr>
+                                                                           </thead>
+                                                                                    <tbody>
+                                                                                         @if($applicant_acm_records != null)
+                                                                                                @foreach($applicant_acm_records as $value)
+                                                                                                       <tr>
+                                                                                                            <td>{{($value->level_of_education )}}</td>
+                                                                                                            <td>{{ $value->board_university}}</td>
+                                                                                                            <td>{{ $value->year_of_passing}}</td>
+                                                                                                            <td>
+                                                                                                                 @if($value->result_type =='division')
+                                                                                                                 {{ $value->result }}
+                                                                                                                 @else
+                                                                                                                 {{$value->gpa}}
+                                                                                                                 @endif
+                                                                                                            </td>
+                                                                                                       </tr>
+                                                                                                @endforeach
+                                                                                         @endif
+                                                                                    </tbody>
+
+                                                                     </table>
+                                                                  </div>
+                                                              </div>
+                                                         </div>
+                                                         <div class="box-footer clearfix">
+                                                             <button class="pull-right btn btn-default" id="sendEmail">Edit <i class="fa fa-arrow-circle-right"></i></button>
+                                                         </div>
+                                                </div>
+
 
 </section>
+ </div>
 
-{{--<div class="well well-sm">--}}
-      {{--<table>--}}
-
-             {{--<tbody>--}}
-                    {{--@if($applicant_personal_info != null)--}}
-                            {{--<tr >--}}
-                                  {{--<th class="col-lg-4">Phone</th>--}}
-                                  {{--<td>{{$applicant_personal_info->phone}}</td>--}}
-
-                                  {{--<td rowspan="100%" style="vertical-align:middle">--}}
-                                       {{--<p><b>Profile Picture</b></p>--}}
-                                      {{--{{HTML::image('applicant_images/'.$applicant_personal_info->profile_image)}}--}}
-                                  {{--</td>--}}
-                            {{--</tr>--}}
-
-                            {{--<tr >--}}
-                                {{--<th class="col-lg-4">Date of Birth</th>--}}
-                                {{--<td class="col-lg-5">{{$applicant_personal_info->date_of_birth}}</td>--}}
-                            {{--</tr>--}}
-
-                            {{--<tr >--}}
-                                {{--<th class="col-lg-4">Place of Birth</th>--}}
-                                {{--<td class="col-lg-5">{{$applicant_personal_info->place_of_birth}}</td>--}}
-                            {{--</tr>--}}
-
-                            {{--<tr >--}}
-                                {{--<th class="col-lg-4">Gender</th>--}}
-                                {{--<td class="col-lg-5">{{$applicant_personal_info->gender}}</td>--}}
-                            {{--</tr>--}}
-
-                            {{--<tr >--}}
-                                {{--<th class="col-lg-4">City</th>--}}
-                                {{--<td class="col-lg-5">{{$applicant_personal_info->city}}</td>--}}
-                            {{--</tr>--}}
-
-                            {{--<tr >--}}
-                                {{--<th class="col-lg-4">State</th>--}}
-                                {{--<td class="col-lg-5">{{$applicant_personal_info->state}}</td>--}}
-                            {{--</tr>--}}
-
-                            {{--<tr >--}}
-                                {{--<th class="col-lg-4">Country</th>--}}
-                                {{--<td class="col-lg-5">{{$applicant_personal_info->relCountry->title}}</td>--}}
-                            {{--</tr>--}}
-
-                            {{--<tr >--}}
-                                {{--<th class="col-lg-4">Zip Code</th>--}}
-                                {{--<td class="col-lg-5">{{$applicant_personal_info->zip_code}}</td>--}}
-                            {{--</tr>--}}
-
-                    {{--@endif--}}
-             {{--</tbody>--}}
-
-      {{--</table>--}}
- {{--</div>--}}
  <p>&nbsp;</p>
  <p>&nbsp;</p>
 {{-----------------------------------Applicant's Profile:Personal Information Ends-------------------------}}
