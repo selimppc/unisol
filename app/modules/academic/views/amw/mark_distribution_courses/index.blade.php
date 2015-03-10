@@ -7,6 +7,8 @@
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addNew" style="margin-bottom: 5px" >
         Add New Item
     </button>
+
+
     {{ Form::open(array('url' => 'academic/amw/batch/delete')) }}
     <table id="example" class="table table-bordered table-hover table-striped">
         <thead>
@@ -21,7 +23,7 @@
         <tbody>
         @foreach ($datas as $value)
             <tr>
-                <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $value->id }}">
+                <td><input type="checkbox" name="id[]"  id="checkbox1" class="myCheckbox" value="{{ $value->id }}">
                 </td>
                 <td>{{$value->title}}</td>
                 <td>
