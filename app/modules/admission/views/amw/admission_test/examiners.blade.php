@@ -1,6 +1,6 @@
-@extends('layouts.master')
+@extends('layouts.layout')
 @section('sidebar')
-    @include('admission::_sidebar_admission_test')
+    @include('layouts._sidebar_amw')
 @stop
 @section('content')
 
