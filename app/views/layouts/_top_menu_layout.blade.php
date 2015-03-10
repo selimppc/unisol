@@ -31,7 +31,7 @@
         <li><a tabindex="-1" a href="{{URL::to('amw/degree_manage') }}"> Degree Management(Amw) </a></li>
         <li><a tabindex="-1" a href="{{URL::to('admission/public/degree_list') }}"> Admission (Public) </a></li>
 
-        <li><a tabindex="-1" a href="{{URL::to('amw/admission_test/index') }}"> Admission Test(Amw)</a></li>
+        <li><a tabindex="-1" a href="{{URL::to('admission_test/amw/index') }}"> Admission Test(Amw)</a></li>
     </ul>
 </li>
 

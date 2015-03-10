@@ -36,8 +36,8 @@
 
                     <br>
                     <tr>
-                       <th><input name="id" type="checkbox" id="checkbox" class="checkbox" value=""></th>
-                       <th>Degr</th>
+                       <th><input name="id" id="checkbox" type="checkbox" class="checkbox" value=""></th>
+                       <th>Degree</th>
                        <th>Dept</th>
                        <th>Year</th>
                        <th>Term</th>
