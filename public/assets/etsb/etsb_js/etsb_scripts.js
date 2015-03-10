@@ -1,6 +1,7 @@
 /**
  * Created by SELIM on 3/10/2015.
  */
+
 (function($){
     $(document).ready(function(){
         var triggeredByChild = false;
@@ -45,6 +46,7 @@
         });
 
     });
-}(jQuery.noConflict(true)));
+}(jQuery.noConflict(
 
 
+true)));
