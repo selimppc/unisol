@@ -1,17 +1,17 @@
-@extends('layouts.master')
+@extends('layouts.layout')
 @section('sidebar')
     @include('academic::_sidebar')
 @stop
 @section('content')
     {{ Form::open(array('url' => 'batch/assign')) }}
     {{ Form::hidden('acm_academic_id', $acm->id, ['class'=>'form-control acm_academic_id'])}}
-    <div class="col-md-4">
-        <div class='form-group'>
+    {{--<div class="col-md-4">--}}
+        <div class='form-group' style="width: 300px">
             {{ Form::label('exam_question', 'Examination Question:') }}
             {{ Form::select('exam_question',$exam_questions,Input::old('exam_question'),['class'=>'form-control','required']) }}
         </div>
         <p style="color: cornflowerblue">Help Text: If CT question is not prepared then tell faculty to create question paper.</p>
-    </div>
+    {{--</div>--}}
     <table id="example" class="table table-bordered table-hover table-striped">
         <thead>
         <tr>
@@ -57,7 +57,7 @@
         @endforeach
         </tbody>
     </table>
-    <div class="button" style="margin-top: 10px">
+    <div class="button" style="margin-top: -23px">
         <a href="{{URL::previous('academic/faculty/marks/dist/item/class_test/')}}" class="btn btn-info btn-xs ">Back</a>
         {{ Form::submit('Do Assign', ['name' => 'assign', 'class' => 'btn btn-success btn-xs']) }}
         {{ Form::submit('Do Revoke', ['name' => 'revoke','class' => 'btn btn-danger btn-xs']) }}

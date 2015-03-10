@@ -1,10 +1,10 @@
-@extends('layouts.master')
+@extends('layouts.layout')
 @section('sidebar')
     @include('academic::_sidebar')
 @stop
 @section('content')
     <h4 style="text-align: center">{{$title}}</h4>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addClassTest">Add CT</button>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addClassTest" style="margin-bottom: 5px">Add CT</button>
     <table id="example" class="table table-bordered table-hover table-striped">
         <thead>
         <th>Title</th>
