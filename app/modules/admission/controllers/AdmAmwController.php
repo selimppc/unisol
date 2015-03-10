@@ -20,12 +20,12 @@ class AdmAmwController extends \BaseController
 
     public function admissionTestIndex()
     {
-        $admission_test = Degree::orderBy('id', 'DESC')->paginate(5);
-
+        $admission_test = Degree::orderBy('id', 'DESC')->paginate(3);
         $year_id = Year::lists('title', 'id');
         $semester_id = Semester::lists('title', 'id');
 
-        return View::make('admission::amw.admission_test.index',compact('admission_test','year_id','semester_id'));
+        return View::make('admission::amw.admission_test.index',
+            compact('admission_test','year_id','semester_id'));
     }
 
     public function searchIndex(){
@@ -36,13 +36,12 @@ class AdmAmwController extends \BaseController
         ];
 
         $model = new Degree();
-
         $adm_test_data = Helpers::search($searchQuery, $model);
-
         $year_id = Year::lists('title', 'id');
         $semester_id = Semester::lists('title', 'id');
 
-        return View::make('admission::amw.admission_test._search_index',compact('adm_test_data','year_id','semester_id'));
+        return View::make('admission::amw.admission_test._search_index',
+            compact('adm_test_data','year_id','semester_id'));
     }
 
 
@@ -50,11 +49,11 @@ class AdmAmwController extends \BaseController
 
     public function examiners($year_id, $semester_id, $degree_id)
     {
-        $adm_examiners_home = AdmExaminer::orderby('id', 'DESC')->paginate(5);
-
+        $adm_examiners_home = AdmExaminer::orderby('id', 'DESC')->paginate(3);
         $data = Degree::with('relDepartment')->where('id' ,'=', $degree_id)->first()->relDepartment->title;
 
-        return View::make('admission::amw.admission_test.examiners',compact('data','adm_examiners_home','year_id','semester_id','degree_id'));
+        return View::make('admission::amw.admission_test.examiners',
+            compact('data','adm_examiners_home','year_id','semester_id','degree_id'));
     }
 
 
@@ -63,15 +62,11 @@ class AdmAmwController extends \BaseController
     public function viewExaminers($degree_id){
 
         $adm_view_examiners = AdmExaminer::where('id' ,'=', $degree_id)->first();
-//      print_r($adm_view_examiners);exit;
         $data = Degree::with('relDepartment')->where('id' ,'=', $degree_id)->first()->relDepartment->title;
 
-        return View::make('admission::amw.admission_test.view_examiners',compact('data','adm_view_examiners','degree_id'));
+        return View::make('admission::amw.admission_test.view_examiners',
+            compact('data','adm_view_examiners','degree_id'));
     }
-
-//    public function addExaminers(){
-//        print_r('hi');exit;
-//    }
 
     public function storeExaminers(){
         $data = Input::all();
@@ -83,8 +78,6 @@ class AdmAmwController extends \BaseController
             $adm_examiner_model->degree_id = Input::get('degree_id');
             $adm_examiner_model->user_id = Input::get('user_id');
             $adm_examiner_model->type = Input::get('type');
-//            print_r( $adm_examiner_model->type);exit;
-
             $adm_examiner_model->assigned_by = 3;
             $adm_examiner_model->deadline = '2020-20-20 20:20:20';
             $adm_examiner_model->note = 'me note';
@@ -97,7 +90,6 @@ class AdmAmwController extends \BaseController
                 $ad_examiner_comments->comment = Input::get('comment');
                 $ad_examiner_comments->commented_to = Input::get('user_id');
                 $ad_examiner_comments->commented_by = Auth::user()->get()->id;
-
                 $ad_examiner_comments->status = 1;
 
                 if($ad_examiner_comments->save()){
@@ -115,18 +107,13 @@ class AdmAmwController extends \BaseController
         }
     }
 
-
-
-
-
-
     public function questionPaper($year_id, $semester_id, $degree_id)
     {
-        $adm_question_paper = AdmQuestion::orderby('id', 'DESC')->paginate(5);
+        $adm_question_paper = AdmQuestion::orderby('id', 'DESC')->paginate(3);
         $data = Degree::with('relDepartment')->where('id' ,'=', $degree_id)->first()->relDepartment->title;
 
-        return View::make('admission::amw.admission_test.question_paper',compact(
-            'adm_question_paper','year_id','semester_id','degree_id','data'
+        return View::make('admission::amw.admission_test.question_paper',
+            compact('adm_question_paper','year_id','semester_id','degree_id','data'
         ));
     }
 
@@ -165,7 +152,8 @@ class AdmAmwController extends \BaseController
         $degree = array('' => 'Select Degree ') + Degree::lists('title', 'id');
         $department = array('' => 'Select Department ') + Department::lists('title', 'id');
 
-        return View::make('admission::amw.course_management.index', compact('model', 'semester', 'year', 'degree', 'department'));
+        return View::make('admission::amw.course_management.index',
+            compact('model', 'semester', 'year', 'degree', 'department'));
     }
 
     public function create()
@@ -181,7 +169,8 @@ class AdmAmwController extends \BaseController
         $semester = array('' => 'Please Select Semester') + Semester::lists('title', 'id');
         $degree = array('' => 'Please Select Degree') + Degree::lists('title', 'id');
 
-        return View::make('admission::amw.course_management.modals._form', compact('courseType', 'year', 'course', 'semester', 'user', 'facultyList', 'degree'));
+        return View::make('admission::amw.course_management.modals._form',
+            compact('courseType', 'year', 'course', 'semester', 'user', 'facultyList', 'degree'));
     }
 
     public function store()
@@ -207,10 +196,14 @@ class AdmAmwController extends \BaseController
             $course_model->user_id = Input::get('user_id');
 
             if ($course_model->save()) {
-                return Redirect::to('amw/course_manage')->with('message', 'Successfully added Information!');
+                return Redirect::to('amw/course_manage')
+                    ->with('message', 'Successfully added Information!');
             }
         } else {
-            return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
+            return Redirect::back()
+                ->with('message', 'The following errors occurred')
+                ->withErrors($validator)
+                ->withInput();
         }
 
     }
@@ -218,7 +211,8 @@ class AdmAmwController extends \BaseController
     public function show($id)
     {
         $model = CourseManagement::find($id);
-        return View::make('admission::amw.course_management.modals.show', compact('model'));
+        return View::make('admission::amw.course_management.modals.show',
+            compact('model'));
     }
 
     public function edit($id)
@@ -232,7 +226,8 @@ class AdmAmwController extends \BaseController
         $semester = Semester::lists('title', 'id');
         $degree = Degree::lists('title', 'id');
 
-        return View::make('admission::amw.course_management.modals.edit', compact('course_model', 'courseType', 'year', 'course', 'semester', 'user', 'facultyList', 'degree'));
+        return View::make('admission::amw.course_management.modals.edit',
+            compact('course_model', 'courseType', 'year', 'course', 'semester', 'user', 'facultyList', 'degree'));
     }
 
     public function update($id)
@@ -255,9 +250,13 @@ class AdmAmwController extends \BaseController
             $course_model->degree_id = Input::get('degree_id');
 
             $course_model->save();
-            return Redirect::back()->with('message', 'Successfully updated Information!');
+            return Redirect::back()
+                ->with('message', 'Successfully updated Information!');
         } else {
-            return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
+            return Redirect::back()
+                ->with('message', 'The following errors occurred')
+                ->withErrors($validator)
+                ->withInput();
         }
     }
 
@@ -293,7 +292,8 @@ class AdmAmwController extends \BaseController
         $course = array('' => 'Select Course ') + Course::lists('title', 'id');
         $department = array('' => 'Select Department ') + Department::lists('title', 'id');
 
-        return View::make('admission::amw.course_management.search', compact('model', 'semester', 'department', 'course', 'degree', 'year'));
+        return View::make('admission::amw.course_management.search',
+            compact('model', 'semester', 'department', 'course', 'degree', 'year'));
 
     }
 // ......................................Admission : Course Management ends ................................
@@ -305,7 +305,8 @@ class AdmAmwController extends \BaseController
 
         $degree_model = Degree::orderby('id', 'DESC')->paginate(5);
 
-        return View::make('admission::amw.degree_management.index', compact('degree_model'));
+        return View::make('admission::amw.degree_management.index',
+            compact('degree_model'));
     }
 
     public function dgmCreate()
@@ -316,7 +317,8 @@ class AdmAmwController extends \BaseController
         $year = array('' => 'Please Select Year') + Year::lists('title', 'id');
         $degree_program = array('' => 'Please Select ') + DegreeProgram::lists('title', 'id');
 
-        return View::make('admission::amw.degree_management.degree_modals._form', compact('year', 'semester', 'department', 'degree_program'));
+        return View::make('admission::amw.degree_management.degree_modals._form',
+            compact('year', 'semester', 'department', 'degree_program'));
     }
 
     public function dgmStore()
@@ -344,10 +346,14 @@ class AdmAmwController extends \BaseController
 //            $degree_model->status = Input::get('status');
 
             if ($degree_model->save()) {
-                return Redirect::to('amw/degree_manage')->with('message', 'Successfully added Information!');
+                return Redirect::to('amw/degree_manage')
+                    ->with('message', 'Successfully added Information!');
             }
         } else {
-            return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
+            return Redirect::back()
+                ->with('message', 'The following errors occurred')
+                ->withErrors($validator)
+                ->withInput();
         }
 
     }
@@ -356,7 +362,8 @@ class AdmAmwController extends \BaseController
     {
 
         $degree_model = Degree::find($id);
-        return View::make('admission::amw.degree_management.degree_modals.show', compact('degree_model'));
+        return View::make('admission::amw.degree_management.degree_modals.show',
+            compact('degree_model'));
     }
 
     public function dgmEdit($id)
@@ -367,7 +374,8 @@ class AdmAmwController extends \BaseController
         $department = Department::lists('title', 'id');
         $semester = Semester::lists('title', 'id');
         $degree_program = DegreeProgram::lists('title', 'id');
-        return View::make('admission::amw.degree_management.degree_modals.edit', compact('degree_model', 'department', 'year', 'semester', 'degree_program', 'semester'));
+        return View::make('admission::amw.degree_management.degree_modals.edit',
+            compact('degree_model', 'department', 'year', 'semester', 'degree_program', 'semester'));
     }
 
     public function dgmUpdate($id)
@@ -394,9 +402,13 @@ class AdmAmwController extends \BaseController
             //  $course_model->user_id = Input::get('user_id');
 
             $degree_model->save();
-            return Redirect::back()->with('message', 'Successfully updated Information!');
+            return Redirect::back()
+                ->with('message', 'Successfully updated Information!');
         } else {
-            return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
+            return Redirect::back()
+                ->with('message', 'The following errors occurred')
+                ->withErrors($validator)
+                ->withInput();
         }
 
     }
@@ -426,17 +438,20 @@ class AdmAmwController extends \BaseController
         $dw_model->waiver_id = Input::get('waiver_id');
 
         if ($dw_model->save()) {
-            return Redirect::back()->with('message', 'Successfully added Information!');
+            return Redirect::back()
+                ->with('message', 'Successfully added Information!');
         }
     }
 
     public function degreeWaiverDelete($id){
         try {
             DegreeWaiver::find($id)->delete();
-            return Redirect::back()->with('message', 'Successfully deleted Information!');
+            return Redirect::back()
+                ->with('message', 'Successfully deleted Information!');
         }
         catch(exception $ex){
-           return Redirect::back()->with('message', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+           return Redirect::back()
+               ->with('message', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
        }
     }
 
@@ -470,23 +485,27 @@ class AdmAmwController extends \BaseController
         $data = Input::all();
         if (WaiverConstraint::create($data)) {
 
-           return Redirect::back()->with('message', 'Successfully added Information!');
+           return Redirect::back()
+               ->with('message', 'Successfully added Information!');
         }
         else{
-            return Redirect::back()->with('message', 'invalid');
+            return Redirect::back()
+                ->with('message', 'invalid');
         }
     }
 
     public function degWaiverConstDelete($id){
 
         WaiverConstraint::find($id)->delete();
-        return Redirect::back()->with('message', 'Successfully deleted Information!');
+        return Redirect::back()
+            ->with('message', 'Successfully deleted Information!');
     }
     public function degWaiverTimeConstEdit($id){
 
         $time_const_model = WaiverConstraint::find($id);
 
-        return View::make('admission::amw.degree_management.degree_modals.edit_time_const',compact('time_const_model'));
+        return View::make('admission::amw.degree_management.degree_modals.edit_time_const',
+            compact('time_const_model'));
 
     }
 
@@ -494,7 +513,8 @@ class AdmAmwController extends \BaseController
 
         $gpa_const_model = WaiverConstraint::find($id);
 
-        return View::make('admission::amw.degree_management.degree_modals.edit_gpa_const',compact('gpa_const_model'));
+        return View::make('admission::amw.degree_management.degree_modals.edit_gpa_const',
+            compact('gpa_const_model'));
 
     }
 
@@ -506,7 +526,8 @@ class AdmAmwController extends \BaseController
         $const_model->fill($data);
 
         if ($const_model->save()) {
-            return Redirect::back()->with('message', 'Successfully Updated Information!');
+            return Redirect::back()
+                ->with('message', 'Successfully Updated Information!');
         }else{
             return Redirect::back();
         }
@@ -519,14 +540,16 @@ class AdmAmwController extends \BaseController
         $waiver_model = Waiver::with('relBillingDetails', 'relBillingDetails.relBillingItem')
                     ->orderBy('id', 'DESC')
                     ->paginate(15);
-        return View::make('admission::amw.waiver_management.index', compact('waiver_model'));
+        return View::make('admission::amw.waiver_management.index',
+            compact('waiver_model'));
     }
 
     public function waiverCreate()
     {
         $billing_item = BillingDetails::BillingItem();
 
-        return View::make('admission::amw.waiver_management.waiver_modals._form',compact('billing_item'));
+        return View::make('admission::amw.waiver_management.waiver_modals._form',
+            compact('billing_item'));
     }
 
     public function waiverStore(){
@@ -546,22 +569,28 @@ class AdmAmwController extends \BaseController
             $waiver_model->billing_details_id = Input::get('billing_details_id');
 
             if ($waiver_model->save()) {
-                return Redirect::to('amw/waiver_manage')->with('message', 'Successfully added Information!');
+                return Redirect::to('amw/waiver_manage')
+                    ->with('message', 'Successfully added Information!');
             }
         } else {
-            return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
+            return Redirect::back()
+                ->with('message', 'The following errors occurred')
+                ->withErrors($validator)
+                ->withInput();
         }
     }
 
     public function waiverShow($id){
 
         $waiver_model = Waiver::find($id);
-        return View::make('admission::amw.waiver_management.waiver_modals.show',compact('waiver_model'));
+        return View::make('admission::amw.waiver_management.waiver_modals.show',
+            compact('waiver_model'));
     }
     public function waiverEdit($id){
 
         $waiver_model = Waiver::find($id);
-        return View::make('admission::amw.waiver_management.waiver_modals.edit',compact('waiver_model'));
+        return View::make('admission::amw.waiver_management.waiver_modals.edit',
+            compact('waiver_model'));
     }
     public function waiverUpdate($id){
 
@@ -583,7 +612,10 @@ class AdmAmwController extends \BaseController
 
             return Redirect::back()->with('message', 'Successfully updated Information!');
         } else {
-            return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
+            return Redirect::back()
+                ->with('message', 'The following errors occurred')
+                ->withErrors($validator)
+                ->withInput();
         }
     }
 

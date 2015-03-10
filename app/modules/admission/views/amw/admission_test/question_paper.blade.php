@@ -10,11 +10,11 @@
                       <thead>
                             <div class="row">
                                     <div class="col-sm-12">
-                                       <div class="col-sm-6 pull-right">
+                                       <div class="pull-right col-sm-6">
                                            <div class="btn-group" style="margin-right: 10px">
-                                               <button type="button" class="btn btn-default btn-xs" data-toggle="modal"
+                                               <button type="button" class="btn btn-info btn-xs" data-toggle="modal"
                                                          data-target="#CreateModal">
-                                                           Create Question paper
+                                                           Create Examiner
                                                </button>
                                            </div>
                                        </div>
@@ -74,6 +74,25 @@
 
 {{--@include('admission::amw.admission_test._modal._create_question_paper')--}}
 @include('admission::amw.admission_test._modal._common_modal')
+
+{{-- CreateModal --}}
+<div class="modal fade" id="CreateModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">Create Question paper</h4>
+            </div>
+            <div class="modal-body">
+                {{ Form::open(array('route' => 'admission_test.amw.store_question_paper', 'method' =>'post', 'role'=>'form','files'=>'true'))  }}
+                     @include('admission::amw/admission_test/_form')
+                {{ Form::close() }}
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
 
 
 @stop
