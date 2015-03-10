@@ -21,9 +21,9 @@
                 <td>{{($value->status == 1) ? 'Active' : 'Inactive';}}</td>
                 <td>{{$value->relAcmClassSchedule->day}}</td>
                 <td>
-                    <a href="{{ URL::route('class_test.edit', ['id'=>$value->id]) }}" class="subEdit btn btn-xs btn-default" data-toggle="modal" data-target="#editModal" href="" ><i class="fa fa-pencil-square-o"></i></a>
+                    <a href="{{ URL::route('class_test.edit', ['id'=>$value->id]) }}" class="subEdit btn btn-xs btn-default" data-toggle="modal" data-target="#editModal" href="" ><i class="fa fa-pencil-square-o"style="font-size: 18px"></i></a>
 
-                    <a href="{{ URL::route('class_test.show', ['id'=>$value->id])  }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" href=""><i class="fa fa-eye"></i></a>
+                    <a href="{{ URL::route('class_test.show', ['id'=>$value->id])  }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" href=""><i class="fa fa-eye" style="font-size: 18px"></i></a>
 
                     {{--<button href="{{ URL::route('class/test.assign', ['id'=>$value->id])  }}" class="btn btn-xs">Assign</button>--}}
                     <a href="{{ URL::route('class/test.assign',['id'=>$value->id, 'cmid'=>$value->course_management_id, 'marksid'=>$value->acm_marks_distribution_id])  }}" class="btn btn-default btn-xs"> Assign </a>
