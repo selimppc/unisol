@@ -118,9 +118,40 @@ class AdmAmwController extends \BaseController
     }
 
 
-    public function storeQuestionPaper(){
 
+    public function storeQuestionPaper()
+    {
+        $data = Input::all();
+//        $exam_list_id = Input::get('exam_list_id');
+//        $course_man_id = Input::get('course_man_id');
+//        print_r($exam_list_id);exit;
 
+        $prepare_question_paper = new AdmQuestion();
+
+        if ($prepare_question_paper->validate($data))
+        {
+            // success code
+            $prepare_question_paper->degree_admtest_subject_id = Input::get('degree_admtest_subject_id');
+            $prepare_question_paper->examiner_faculty_id = Input::get('examiner_faculty_id');
+            $prepare_question_paper->title = Input::get('title');
+            $prepare_question_paper->deadline = Input::get('deadline');
+            $prepare_question_paper->total_marks = Input::get('total_marks');
+            $prepare_question_paper->status = 'status';
+            $prepare_question_paper->save();
+
+            // redirect
+            Session::flash('message', 'Question Paper Successfully Added!');
+            return Redirect::back();
+        }
+        else
+        {
+            // failure, get errors
+            $errors = $prepare_question_paper->errors();
+            Session::flash('errors', $errors);
+
+            return Redirect::to('admission_test/amw/question_paper');
+        }
+        //ok
     }
     public function viewQuestionPaper(){
 

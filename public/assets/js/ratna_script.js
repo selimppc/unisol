@@ -161,6 +161,7 @@ $('.datepicker').datepicker({
 });
 
 
+
 /***********************ACM COURSE CONFIG GENERATION STARTS***********************/
 $tableItemCounter = 0;//To stop additem if exist
 var arrayItems=[];//To stop additem if exist

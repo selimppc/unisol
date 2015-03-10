@@ -77,6 +77,8 @@
               </tbody>
             </table>
         {{form::close() }}
+{{--        {{ $examiners_home->links() }}--}}
+
 
 @include('examination::amw.prepare_question_paper._modal._common_modal')
 @include('examination::amw.prepare_question_paper._modal._add_examiner')

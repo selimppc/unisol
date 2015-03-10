@@ -78,6 +78,8 @@
                </table>
            {{form::close() }}
 
+{{--           {{ $exam_data->links() }}--}}
+
 
         <p>&nbsp;</p><p>&nbsp;</p>
 @include('examination::amw.prepare_question_paper._modal._add_examination')
