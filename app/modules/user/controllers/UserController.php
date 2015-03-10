@@ -19,13 +19,11 @@ class UserController extends \BaseController {
             if ($validator->passes()) {
                 $credentials = $this->getLoginCredentials();
                 if (Auth::user()->attempt($credentials)) {
-                    //return Redirect::route("user/profile");
                     Session::put('user_id', Auth::user()->get()->id);
                     Session::put('username', Auth::user()->get()->username);
                     $this->userLastVisit(Auth::user()->get()->id);
                     return Redirect::to("user/profile");
                 }elseif(Auth::applicant()->attempt($credentials)){
-                    //return Redirect::route("user/profile");
                     Session::put('user_id', Auth::applicant()->get()->id);
                     Session::put('username', Auth::applicant()->get()->username);
                     $this->applicantLastVisit(Auth::applicant()->get()->id);
@@ -135,7 +133,7 @@ class UserController extends \BaseController {
             $user->save();
         });
     }
-    
+
 
 
 }
