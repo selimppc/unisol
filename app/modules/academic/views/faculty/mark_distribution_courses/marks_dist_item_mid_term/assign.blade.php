@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.layout')
 @section('sidebar')
     @include('academic::_sidebar')
 @stop
@@ -55,7 +55,7 @@
         @endforeach
         </tbody>
     </table>
-    <div class="button" style="margin-top: 10px">
+    <div class="button" style="margin-top: 5px">
         <a href="{{URL::previous('academic/faculty/marks/dist/item/midterm/')}}" class="btn btn-info btn-xs ">Back</a>
 
         {{ Form::submit('Do Assign', ['name' => 'assign', 'class' => 'btn btn-success btn-xs']) }}
