@@ -15,6 +15,7 @@ class AdmPublicController extends \BaseController {
     public function admDegreeApplicantSave(){
 
             if(Auth::applicant()->check()){
+            // echo Auth::applicant()->get()->id;exit;
                 $degree_ids = Input::get('ids');
                 foreach($degree_ids as $key => $value){
 
@@ -22,24 +23,14 @@ class AdmPublicController extends \BaseController {
                     $data->degree_id = $value;
                     $data->applicant_id = Auth::applicant()->get()->id;
 
-            /*select query for inserting(save) unique degree
-                    /*$query = DB::table('degree_applicant')
-                                ->select(DB::raw('1'))
-                                ->where('degree_id','=',18)
-                                ->where('applicant_id','=',1)
-                                ->first();
-
-                    if($query != NULL){
-                        return Redirect::to('public/admission')->with('message', 'Already added this degree!');
-                    }else{
-                        $data->save();
-                    }*/
                     $data->save();
               }
-            }else{
-                echo " you lost !";
+                    return Redirect::route('admission.apt_profile_details', ['id' => Auth::applicant()->get()->id]);
+            } else {
+                    return Redirect::to('user/login')->with('message','Please login As Applicant !!');
             }
-        return Redirect::route('admission.apt_profile_details', ['id' => Auth::applicant()->get()->id]);
+
+        //return Redirect::route('admission.apt_profile_details', ['id' => Auth::applicant()->get()->id]);
     }
 
     public function admDegreeApplicantDetails($degree_id){
