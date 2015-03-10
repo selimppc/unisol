@@ -13,9 +13,9 @@ class AdmAmwController extends \BaseController
     }
 
 // Admission Test : Admission Test starts here....................................................
-    public function deshboard()
+    public function admAmwDashboard()
     {
-        return View::make('admission::amw.admission_test.deshboard');
+        return View::make('admission::amw.admission_test.dashboard');
     }
 
     public function admissionTestIndex()
