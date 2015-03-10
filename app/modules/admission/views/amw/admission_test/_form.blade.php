@@ -1,30 +1,41 @@
 <fieldset style="padding: 10px; width: 90%;">
-            <?php
-{{--                $exm_exam_list_id = ExmExamList::lists('title', 'id');--}}
-{{--                $course_name = Course::lists('title','id');--}}
+
+             <?php
+                $degree_id = Degree::lists('title', 'id');
+
             ?>
 
-            hi
+
+                <div class="form-group">
+                       {{ Form::label('examiner_faculty_id', 'Name of Examination: ') }}
+                       {{ Form::select('examiner_faculty_id',$degree_id, Input::old('examiner_faculty_user_id') )}}
+                </div>
+
                 {{--<div class="form-group">--}}
-                       {{--{{ Form::label('exm_exam_list_id', 'Name of Examination ') }}--}}
-                       {{--{{ Form::select('exm_exam_list_id', $exm_exam_list_id, Input::old('exm_exam_list_id') )}}--}}
+                       {{--{{ Form::label('degree_admtest_subject_id', 'Subject:') }}--}}
+                       {{--{{ Form::text('degree_admtest_subject_id',$subject_id, Input::old('degree_admtest_subject_id'), array('class' => 'form-control','required'=>'required')) }}--}}
                 {{--</div>--}}
-                {{--<div class="form-group">--}}
-                       {{--{{ Form::label('title', 'Title') }}--}}
-                       {{--{{ Form::text('title', Input::old('title'), array('class' => 'form-control','required'=>'required')) }}--}}
-                {{--</div>--}}
-                {{--<div class="form-group">--}}
-                       {{--{{ Form::label('course_name', 'Course Name') }}--}}
-                       {{--{{ Form::select('course_name', $course_name, Input::old('exm_exam_list_id') )}}--}}
-                {{--</div>--}}
-                {{--<div class="form-group">--}}
-                    {{--{{ Form::label('deadline', 'Deadline') }}--}}
-                    {{--{{ Form::text('deadline', Input::old('deadline'), array('class' => 'form-control datepicker','required'=>'required')) }}--}}
-                {{--</div>--}}
+
+                <div class="form-group">
+                       {{ Form::label('title', 'Title:') }}
+                       {{ Form::text('title', Input::old('title'), array('class' => 'form-control','required'=>'required')) }}
+                </div>
+
+                <div class="form-group">
+                    {{ Form::label('deadline', 'Deadline') }}
+                    {{ Form::text('deadline', Input::old('deadline'), array('class' => 'form-control datepicker','required'=>'required')) }}
+                </div>
+
                 {{--<div class="form-group">--}}
                      {{--{{ Form::label('total_marks', 'Total Marks') }}--}}
                      {{--{{ Form::text('total_marks', Input::old('total_marks'), array('class' => 'form-control','required'=>'required')) }}--}}
                 {{--</div>--}}
+
+                {{--<div class="form-group">--}}
+                       {{--{{ Form::label('assign_to', 'Assign To') }}--}}
+                       {{--{{ Form::select('assign_to', Input::old('assign_to') )}}--}}
+                {{--</div>--}}
+
 
             {{ Form::submit('Submit', array('class' => 'btn btn-primary btn-xs')) }}
 

@@ -36,9 +36,9 @@
             <i class="fa fa-angle-left pull-right"></i>
         </a>
         <ul class="treeview-menu">
-            <li><a tabindex="-1" a href="{{URL::to('amw/course_manage') }}"> Course Management(Amw) </a></li>
-            <li><a tabindex="-1" a href="{{URL::to('amw/degree_manage') }}"> Degree Management(Amw) </a></li>
-            <li><a tabindex="-1" a href="{{URL::to('admission_test/amw/index') }}"> Admission Test(Amw)</a></li>
+            <li><a tabindex="-1" a href="{{URL::to('amw/course_manage') }}"><i class="fa fa-crosshairs"></i> Course Management(Amw) </a></li>
+            <li><a tabindex="-1" a href="{{URL::to('amw/degree_manage') }}"><i class="fa fa-flask"></i> Degree Management(Amw) </a></li>
+            <li><a tabindex="-1" a href="{{URL::to('admission_test/amw/index') }}"><i class="fa fa-thumbs-o-up"></i> Admission Test(Amw)</a></li>
         </ul>
     </li>
     <li class="treeview">
@@ -48,7 +48,7 @@
             <i class="fa fa-angle-left pull-right"></i>
         </a>
         <ul class="treeview-menu">
-            <li><a tabindex="-1" href="{{  URL::to('examination/amw/examination') }}"> Prepare Question Paper (Amw) </a></li>
+            <li><a tabindex="-1" href="{{  URL::to('examination/amw/examination') }}"><i class="fa fa-pencil-square"></i> Prepare Question Paper</a></li>
         </ul>
     </li>
 
