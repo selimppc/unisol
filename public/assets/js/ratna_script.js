@@ -118,7 +118,8 @@ $('.close').on('click', function (event) {
 
 // To search and filter all datatable
 $('#example').dataTable({
-    "bPaginate": false
+    "bPaginate": false,
+    "bSort": false
 });
 $('#example1').dataTable({
     "bPaginate": false

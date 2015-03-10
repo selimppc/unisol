@@ -29,7 +29,7 @@
     <tbody>
         @foreach($questions_item as $question_list)
             <tr>
-                <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $question_list['id'] }}"></td>
+                <td><input type="checkbox" name="id[]" class="myCheckbox" value="{{ $question_list['id'] }}"></td>
 
                 <td> {{ $question_list->title }} </td>
                 <td>
