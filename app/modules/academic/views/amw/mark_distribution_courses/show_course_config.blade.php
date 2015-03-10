@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.layout')
 @section('sidebar')
     @include('academic::_sidebar')
 @stop
@@ -45,9 +45,9 @@
         @endforeach
         </tbody>
     </table>
-    <p>If Marks Distribution is not done then go to distribution and make it done first.<a href="{{URL::to('academic/amw/config/')}}" class="btn btn-link">MarksDist</a>
+    <p>If Marks Distribution is not done then go to distribution and make it done first.<a href="{{URL::to('academic/amw/config/')}}" class="btn btn-link">Marks Distribution</a>
     </p>
     <div class="modal-footer">
-        <a href="{{URL::to('academic/amw/config/')}}" class="btn btn-default">Back</a>
+        <a href="{{URL::to('academic/amw/config/')}}" class="btn btn-primary">Back</a>
     </div>
 @stop
