@@ -52,7 +52,7 @@
         Examination
     </a>
     <ul class="dropdown-menu">
-       {{--<li><a tabindex="-1" href="{{ action('ExmFacultyController@index') }}"> Prepare Question Paper (Faculty) </a></li>--}}
+       <li><a tabindex="-1" href="{{ action('ExmFacultyController@index') }}"> Prepare Question Paper (Faculty) </a></li>
        <li><a tabindex="-1" href="{{ URL::to('examination/amw/examination') }}"> Prepare Question Paper (Amw) </a></li>
     </ul>
 </li>
