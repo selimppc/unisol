@@ -26,5 +26,5 @@
                          {{ Form::textarea('comment', Null, ['size' => '40x6','placeholder'=>'Your Comments Here']) }}
                 </div>
             {{ Form::submit('Submit', array('class' => 'btn btn-primary btn-xs')) }}
-            <a class="btn btn-primary btn-xs close" style="text-align: left">Close </a>
+            <a href="{{ URL::previous() }}" class="btn btn-info btn-xs" style="text-align: left">Close </a>
 </fieldset>

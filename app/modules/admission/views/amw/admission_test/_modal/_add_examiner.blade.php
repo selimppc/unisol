@@ -7,9 +7,9 @@
             </div>
 
             <div class="modal-body">
-                {{ Form::open(array('route' => 'amw.admission_test.store_examiners', 'method' =>'post', 'role'=>'form','files'=>'true'))  }}
+                {{ Form::open(array('route' => 'admission_test.amw.store_examiners', 'method' =>'post', 'role'=>'form','files'=>'true'))  }}
 {{--                        {{ Form::text('adm_examiners_home', $adm_examiners_home ) }}--}}
-                        @include('admission::amw.admission_test._add_examiners_form')
+                        @include('admission::admission_test.amw._add_examiners_form')
                 {{ Form::close() }}
             </div>
             <div class="modal-footer">
