@@ -119,24 +119,19 @@ $('.close').on('click', function (event) {
 // To search and filter all datatable
 
 $('#example').dataTable({
-    paging: false
-
+    "bPaginate": false
 });
 $('#example1').dataTable({
-    paging: false
-
+    "bPaginate": false
 });
 $('#example2').dataTable({
-    paging: false
-
+    "bPaginate": false
 });
 $('#example3').dataTable({
-    paging: false
-
+    "bPaginate": false
 });
 $('#example4').dataTable({
-    paging: false
-
+    "bPaginate": false
 });
 
 
