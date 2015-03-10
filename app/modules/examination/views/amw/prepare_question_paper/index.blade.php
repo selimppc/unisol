@@ -71,6 +71,8 @@
 
             {{form::close() }}
 
+            {{--{{ $question_paper->links() }}--}}
+
 @include('examination::amw.prepare_question_paper._modal._create_question_paper')
 @include('examination::amw.prepare_question_paper._modal._common_modal')
 @include('examination::amw.prepare_question_paper._modal._assign_faculty')

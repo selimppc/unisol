@@ -66,6 +66,8 @@
                 </table>
             {{form::close() }}
 
+            {{ $adm_examiners_home->links() }}
+
 
 
     @include('admission::amw.admission_test._modal._common_modal')

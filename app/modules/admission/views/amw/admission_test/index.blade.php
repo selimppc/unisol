@@ -70,6 +70,8 @@
           </table>
       {{form::close() }}
 
+      {{ $admission_test->links() }}
+
 
    <p>&nbsp;</p><p>&nbsp;</p>
        @include('admission::amw.admission_test._modal._common_modal')

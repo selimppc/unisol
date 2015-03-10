@@ -52,6 +52,7 @@
               </tbody>
             </table>
         {{form::close() }}
+        {{ $examiners_list->links() }}
 
 
 @include('examination::amw.prepare_question_paper._modal._common_modal')
