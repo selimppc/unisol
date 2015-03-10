@@ -1,9 +1,9 @@
-@extends('layouts.master')
+@extends('layouts.layout')
  @section('sidebar')
-
+  @include('layouts._sidebar_applicant')
  @stop
 @section('content')
-<a class="pull-right btn btn-sm btn-info" href="{{ URL::to('degree_manage/create')}}" data-toggle="modal" data-target="#addModal" >Add More Degree</a>
+{{--<a class="pull-right btn btn-sm btn-info" href="{{ URL::to('degree_manage/create')}}" data-toggle="modal" data-target="#addModal" >Add More Degree</a>--}}
 
 <h3>Admission On </h3>
 {{---------------------------------------------Data Table:admission on  degree Starts-----------------------------------------------------------------}}
@@ -36,63 +36,102 @@
 <h4><b>Applicant's Profile</b></h4>
 {{-----------------------------------Applicant's Profile:Personal Information starts-----------------------------------}}
 <p>&nbsp;</p>
-<h5><b>Applicant's Personal Information</b></h5>
 
-<div class="well well-sm">
-      <table class="table table-bordered table-striped">
+<section class="col-lg-6 connectedSortable">
+ <h5><b>Applicant's Personal Information</b></h5>
+    <div class="box box-info">
+           <div class="box-header">
+               <h3 class="box-title">Profile Information</h3>
+               <!-- tools box -->
+               <div class="pull-right box-tools">
+                   <button class="btn btn-info btn-sm" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
+               </div><!-- /. tools -->
+           </div>
+           <div class="box-body">
+                <div class="row">
+                    <div class="col-lg-4">
+                        {{ HTML::image('applicant_images/'.$applicant_personal_info->profile_image) }}
+                    </div>
+                    <div class="col-lg-6">
+                        @if(isset($applicant_personal_info))
 
-             <tbody>
-                    @if($applicant_personal_info != null)
-                            <tr >
-                                  <th class="col-lg-4">Phone</th>
-                                  <td>{{$applicant_personal_info->phone}}</td>
+                            Phone : <b>{{$applicant_personal_info->phone}} </b><br>
+                            Date of Birth : <b>{{$applicant_personal_info->date_of_birth}}</b><br>
+                            Place of Birth : {{$applicant_personal_info->place_of_birth}}<br>
+                            Gender : {{$applicant_personal_info->gender}}<br>
+                            City : {{$applicant_personal_info->city}}<br>
+                            State : {{$applicant_personal_info->state}}<br>
+                            Country : {{$applicant_personal_info->relCountry->title}}
 
-                                  <td rowspan="100%" style="vertical-align:middle">
-                                       <p><b>Profile Picture</b></p>
-                                      {{HTML::image('applicant_images/'.$applicant_personal_info->profile_image)}}
-                                  </td>
-                            </tr>
+                        @else
+                            {{"No Profile data found !"}}
+                        @endif
+                    </div>
 
-                            <tr >
-                                <th class="col-lg-4">Date of Birth</th>
-                                <td class="col-lg-5">{{$applicant_personal_info->date_of_birth}}</td>
-                            </tr>
+                </div>
+           </div>
+           <div class="box-footer clearfix">
+               <button class="pull-right btn btn-default" id="sendEmail">Edit <i class="fa fa-arrow-circle-right"></i></button>
+           </div>
+       </div>
 
-                            <tr >
-                                <th class="col-lg-4">Place of Birth</th>
-                                <td class="col-lg-5">{{$applicant_personal_info->place_of_birth}}</td>
-                            </tr>
+</section>
 
-                            <tr >
-                                <th class="col-lg-4">Gender</th>
-                                <td class="col-lg-5">{{$applicant_personal_info->gender}}</td>
-                            </tr>
+{{--<div class="well well-sm">--}}
+      {{--<table>--}}
 
-                            <tr >
-                                <th class="col-lg-4">City</th>
-                                <td class="col-lg-5">{{$applicant_personal_info->city}}</td>
-                            </tr>
+             {{--<tbody>--}}
+                    {{--@if($applicant_personal_info != null)--}}
+                            {{--<tr >--}}
+                                  {{--<th class="col-lg-4">Phone</th>--}}
+                                  {{--<td>{{$applicant_personal_info->phone}}</td>--}}
 
-                            <tr >
-                                <th class="col-lg-4">State</th>
-                                <td class="col-lg-5">{{$applicant_personal_info->state}}</td>
-                            </tr>
+                                  {{--<td rowspan="100%" style="vertical-align:middle">--}}
+                                       {{--<p><b>Profile Picture</b></p>--}}
+                                      {{--{{HTML::image('applicant_images/'.$applicant_personal_info->profile_image)}}--}}
+                                  {{--</td>--}}
+                            {{--</tr>--}}
 
-                            <tr >
-                                <th class="col-lg-4">Country</th>
-                                <td class="col-lg-5">{{$applicant_personal_info->relCountry->title}}</td>
-                            </tr>
+                            {{--<tr >--}}
+                                {{--<th class="col-lg-4">Date of Birth</th>--}}
+                                {{--<td class="col-lg-5">{{$applicant_personal_info->date_of_birth}}</td>--}}
+                            {{--</tr>--}}
 
-                            <tr >
-                                <th class="col-lg-4">Zip Code</th>
-                                <td class="col-lg-5">{{$applicant_personal_info->zip_code}}</td>
-                            </tr>
+                            {{--<tr >--}}
+                                {{--<th class="col-lg-4">Place of Birth</th>--}}
+                                {{--<td class="col-lg-5">{{$applicant_personal_info->place_of_birth}}</td>--}}
+                            {{--</tr>--}}
 
-                    @endif
-             </tbody>
+                            {{--<tr >--}}
+                                {{--<th class="col-lg-4">Gender</th>--}}
+                                {{--<td class="col-lg-5">{{$applicant_personal_info->gender}}</td>--}}
+                            {{--</tr>--}}
 
-      </table>
- </div>
+                            {{--<tr >--}}
+                                {{--<th class="col-lg-4">City</th>--}}
+                                {{--<td class="col-lg-5">{{$applicant_personal_info->city}}</td>--}}
+                            {{--</tr>--}}
+
+                            {{--<tr >--}}
+                                {{--<th class="col-lg-4">State</th>--}}
+                                {{--<td class="col-lg-5">{{$applicant_personal_info->state}}</td>--}}
+                            {{--</tr>--}}
+
+                            {{--<tr >--}}
+                                {{--<th class="col-lg-4">Country</th>--}}
+                                {{--<td class="col-lg-5">{{$applicant_personal_info->relCountry->title}}</td>--}}
+                            {{--</tr>--}}
+
+                            {{--<tr >--}}
+                                {{--<th class="col-lg-4">Zip Code</th>--}}
+                                {{--<td class="col-lg-5">{{$applicant_personal_info->zip_code}}</td>--}}
+                            {{--</tr>--}}
+
+                    {{--@endif--}}
+             {{--</tbody>--}}
+
+      {{--</table>--}}
+ {{--</div>--}}
  <p>&nbsp;</p>
  <p>&nbsp;</p>
 {{-----------------------------------Applicant's Profile:Personal Information Ends-------------------------}}
@@ -102,7 +141,7 @@
 <h5><b>Applicant's Academic Records</b></h5>
 
 <div class="well well-sm">
-      <table class="table table-bordered table-striped">
+      <table>
            <thead>
                <tr>
                       <th>Level Of Education</th>

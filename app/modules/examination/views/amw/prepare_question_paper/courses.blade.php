@@ -1,7 +1,6 @@
-@extends('layouts.master')
+@extends('layouts.layout')
 @section('sidebar')
-     {{-- @include('examination::amw.prepare_question_paper._sidebar_examiner_for_course')--}}
-       @include('examination::_sidebar')
+    @include('layouts._sidebar_amw')
 @stop
 @section('content')
         <h1>Welcome to Courses : <strong></strong> </h1> <br>

@@ -5,8 +5,11 @@
 @stop
 
 @section('content')
+
    <section class="col-lg-6 connectedSortable">
-       <!-- quick email widget -->
+
+
+       <!-- Profile Information -->
        <div class="box box-info">
            <div class="box-header">
                <h3 class="box-title">Profile Information</h3>
