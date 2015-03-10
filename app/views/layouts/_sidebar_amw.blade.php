@@ -7,7 +7,7 @@
 
     <li class="treeview">
         <a href="#">
-            <i class="fa fa-bar-chart-o"></i>
+            <i class="fa fa-leaf"></i>
             <span>Common</span>
             <i class="fa fa-angle-left pull-right"></i>
         </a>
@@ -18,7 +18,7 @@
 
     <li class="treeview">
         <a href="#">
-            <i class="fa fa-bar-chart-o"></i>
+            <i class="fa fa-book"></i>
             <span>Academic</span>
             <i class="fa fa-angle-left pull-right"></i>
         </a>
@@ -29,7 +29,7 @@
 
     <li class="treeview">
         <a href="#">
-            <i class="fa fa-bar-chart-o"></i>
+            <i class="fa fa-bell-o"></i>
             <span>Admission</span>
             <i class="fa fa-angle-left pull-right"></i>
         </a>
@@ -41,7 +41,7 @@
     </li>
     <li class="treeview">
         <a href="#">
-            <i class="fa fa-bar-chart-o"></i>
+            <i class="fa fa-pencil"></i>
             <span>Examination</span>
             <i class="fa fa-angle-left pull-right"></i>
         </a>
