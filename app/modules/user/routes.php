@@ -7,7 +7,7 @@ Route::any("user/login", [
 
 
 
-Route::group(["before" => "auth"], function() {
+Route::group(["after" => "auth"], function() {
 
     Route::any("user/logout", [
         "as"   => "user/logout",

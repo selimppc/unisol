@@ -3,11 +3,18 @@
 class UserProfileController extends \BaseController {
 
     public function profile(){
-        $user_id = Auth::user()->get()->id;
-        $userMeta = UserMeta::where('user_id', '=', $user_id)->first();
-        $userProfile = UserProfile::where('user_id', '=', $user_id)->first();
-        $academicRecords = UserAcademicRecord::where('user_id', '=', $user_id)->get();
 
+        if(Auth::user()->check()){
+            $user_id = Auth::user()->get()->id;
+            $userMeta = UserMeta::where('user_id', '=', $user_id)->first();
+            $userProfile = UserProfile::where('user_id', '=', $user_id)->first();
+            $academicRecords = UserAcademicRecord::where('user_id', '=', $user_id)->get();
+        }elseif(Auth::applicant()->check()){
+            $user_id = Auth::applicant()->get()->id;
+            $userMeta = ApplicantMeta::where('applicant_id', '=', $user_id)->first();
+            $userProfile = ApplicantProfile::where('applicant_id', '=', $user_id)->first();
+            $academicRecords = ApplicantAcademicRecords::where('applicant_id', '=', $user_id)->get();
+        }
         if($userMeta == NULL){
             Session::flash('info', "User Meta information is missing !");
         }
