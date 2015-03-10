@@ -126,6 +126,11 @@ class AdmAmwController extends \BaseController
         return View::make('admission::amw.admission_test.question_paper',compact('adm_question_paper','year_id','semester_id'));
     }
 
+    public function storeQuestionPaper(){
+
+
+    }
+
 
 
 // Admission : Course Management starts here...........................................................
