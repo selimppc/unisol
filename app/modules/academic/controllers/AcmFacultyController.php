@@ -520,9 +520,9 @@ class AcmFacultyController extends \BaseController {
 	}
 	public function comments_assign_class_test($assign_std_id)
 	{
-		$assign_std= AcmAcademicAssignStudent::with('relAcmAcademic','relAcmAcademic.relCourseManagement')
-			->where('user_id', '=', $assign_std_id)
-			->first();//Execute the query and get the first result.
+//		$assign_std= AcmAcademicAssignStudent::with('relAcmAcademic','relAcmAcademic.relCourseManagement')
+//			->where('user_id', '=', $assign_std_id)
+//			->first();//Execute the query and get the first result.
 
 		$comments_info = AcmAcademicAssignStudentComments::with('relAcmAcademicAssignStudent')
 			->where('acm_assign_std_id', '=', $assign_std_id)
@@ -726,9 +726,9 @@ class AcmFacultyController extends \BaseController {
 	}
 	public function comments_assign_assignment($assign_std_id)
 	{
-		$assign_std= AcmAcademicAssignStudent::with('relAcmAcademic','relAcmAcademic.relCourseManagement')
-			->where('user_id', '=', $assign_std_id)
-			->first();//Execute the query and get the first result.
+//		$assign_std= AcmAcademicAssignStudent::with('relAcmAcademic','relAcmAcademic.relCourseManagement')
+//			->where('user_id', '=', $assign_std_id)
+//			->first();//Execute the query and get the first result.
 		$comments_info = AcmAcademicAssignStudentComments::with('relAcmAcademicAssignStudent')
 			->where('acm_assign_std_id', '=', $assign_std_id)
 			->get();//Execute the query as a "select" statement.
@@ -934,9 +934,9 @@ class AcmFacultyController extends \BaseController {
 	}
 	public function comments_assign_midterm($assign_std_id)
 	{
-		$assign_std= AcmAcademicAssignStudent::with('relAcmAcademic','relAcmAcademic.relCourseManagement')
-			->where('user_id', '=', $assign_std_id)
-			->first();//Execute the query and get the first result.
+//		$assign_std= AcmAcademicAssignStudent::with('relAcmAcademic','relAcmAcademic.relCourseManagement')
+//			->where('user_id', '=', $assign_std_id)
+//			->first();//Execute the query and get the first result.
 
 		$comments_info = AcmAcademicAssignStudentComments::with('relAcmAcademicAssignStudent')
 			->where('acm_assign_std_id', '=', $assign_std_id)
@@ -1147,9 +1147,9 @@ class AcmFacultyController extends \BaseController {
 	}
 	public function comments_assign_final_term($assign_std_id)
 	{
-		$assign_std= AcmAcademicAssignStudent::with('relAcmAcademic','relAcmAcademic.relCourseManagement')
-			->where('user_id', '=', $assign_std_id)
-			->first();//Execute the query and get the first result.
+//		$assign_std= AcmAcademicAssignStudent::with('relAcmAcademic','relAcmAcademic.relCourseManagement')
+//			->where('user_id', '=', $assign_std_id)
+//			->first();//Execute the query and get the first result.
 
 		$comments_info = AcmAcademicAssignStudentComments::with('relAcmAcademicAssignStudent')
 			->where('acm_assign_std_id', '=', $assign_std_id)
