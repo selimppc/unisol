@@ -4,6 +4,8 @@
 @stop
 @section('content')
     {{ Form::open(array('url' => 'batch/assign')) }}
+    {{--{{ Form::text('title', $acm->title, ['class'=>'form-control title'])}}--}}
+    <p style="text-align: center;color: #800080;font-size:large ">Assign of {{$acm->title}} to student</p>
     {{ Form::hidden('acm_academic_id', $acm->id, ['class'=>'form-control acm_academic_id'])}}
     {{--<div class="col-md-4">--}}
         <div class='form-group' style="width: 300px">
@@ -57,7 +59,7 @@
         @endforeach
         </tbody>
     </table>
-    <div class="button" style="margin-top: -23px">
+    <div class="button" style="margin-top: 10px">
         <a href="{{URL::previous('academic/faculty/marks/dist/item/class_test/')}}" class="btn btn-info btn-xs ">Back</a>
         {{ Form::submit('Do Assign', ['name' => 'assign', 'class' => 'btn btn-success btn-xs']) }}
         {{ Form::submit('Do Revoke', ['name' => 'revoke','class' => 'btn btn-danger btn-xs']) }}
