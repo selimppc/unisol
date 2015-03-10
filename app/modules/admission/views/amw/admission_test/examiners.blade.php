@@ -44,7 +44,7 @@
                   <tbody>
                       @foreach($adm_examiners_home as $adm_examiners_list)
                             <tr>
-                                <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $adm_examiners_list['id'] }}"></td>
+                                <td><input type="checkbox" name="id[]" class="myCheckbox" value="{{ $adm_examiners_list['id'] }}"></td>
 
                                  <td>
                                     {{ HTML::linkAction('AdmAmwController@viewExaminers',

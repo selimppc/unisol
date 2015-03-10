@@ -45,7 +45,7 @@
                     <tbody>
                       @foreach($question_paper as $prepare_question_paper_amw)
                             <tr>
-                                <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $prepare_question_paper_amw['id'] }}"></td>
+                                <td><input type="checkbox" name="id[]" class="myCheckbox" value="{{ $prepare_question_paper_amw['id'] }}"></td>
 
                                 <td> {{ HTML::linkAction('ExmAmwController@questionsItemShow', $prepare_question_paper_amw->title,['question_item_id'=>$prepare_question_paper_amw['id']]) }} </td>
 

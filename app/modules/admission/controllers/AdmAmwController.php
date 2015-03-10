@@ -109,7 +109,8 @@ class AdmAmwController extends \BaseController
 
     public function questionPaper($year_id, $semester_id, $degree_id)
     {
-        $adm_question_paper = AdmQuestion::orderby('id', 'DESC')->paginate(3);
+        $adm_question_paper = AdmQuestion::latest('id')->paginate(3);
+//        print_r($adm_question_paper);exit;
         $data = Degree::with('relDepartment')->where('id' ,'=', $degree_id)->first()->relDepartment->title;
 
         return View::make('admission::amw.admission_test.question_paper',
@@ -136,7 +137,7 @@ class AdmAmwController extends \BaseController
             $prepare_question_paper->title = Input::get('title');
             $prepare_question_paper->deadline = Input::get('deadline');
             $prepare_question_paper->total_marks = Input::get('total_marks');
-            $prepare_question_paper->status = 'status';
+            $prepare_question_paper->status = 1;
             $prepare_question_paper->save();
 
             // redirect
