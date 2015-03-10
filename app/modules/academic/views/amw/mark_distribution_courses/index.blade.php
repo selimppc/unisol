@@ -1,10 +1,10 @@
-@extends('layouts.master')
+@extends('layouts.layout')
 @section('sidebar')
-    @include('academic::_sidebar')
+    @include('layouts._sidebar_amw')
 @stop
 @section('content')
-    <h4>{{$title}}</h4>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addNew" >
+    <h4 style="text-align: center">{{$title}}</h4>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addNew" style="margin-bottom: 5px" >
         Add New Item
     </button>
     {{ Form::open(array('url' => 'academic/amw/batch/delete')) }}
@@ -44,7 +44,7 @@
     {{--Start all modal for amw--}}
     {{---------------------------------------------}}
     <!-- Add New Item Modal -->
-    <div class="modal fade" id="addNew" tabindex="-1" role="dialog" aria-labelledby="addScholarship" aria-hidden="true">
+    <div class="modal fade" id="addNew" tabindex="-1" role="dialog" aria-labelledby="addScholarship" aria-hidden="true" data-keyboard="false" data-backdrop="static">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -63,24 +63,17 @@
     </div><!-- /.modal -->
 
     <!-- Edit Item Modal -->
-    <div class="modal fade" id="edit-modal" tabindex="-1" role="dialog" aria-labelledby="addScholarship" aria-hidden="true">
+    <div class="modal fade" id="edit-modal" tabindex="-1" role="dialog" aria-labelledby="addScholarship" aria-hidden="true" data-keyboard="false" data-backdrop="static">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title">Edit Course Item</h4>
-                </div>
-                <div class="modal-body">
 
-                </div>
-                <div class="modal-footer">
-                </div>
+
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 
     <!-- Modal for delete -->
-    <div class="modal fade " id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal fade " id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -99,19 +92,10 @@
     </div>
 
     <!-- Show Modal -->
-    <div class="modal fade" id="showModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true">
+    <div class="modal fade" id="showModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true" data-keyboard="false" data-backdrop="static">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Show Course Item</h4>
-                </div>
-                <div class="modal-body">
 
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal" >Cencel</button>
-                </div>
             </div>
         </div>
     </div>

@@ -60,6 +60,12 @@ Route::any('admission_test/amw/question_paper/{year_id}/{semester_id}/{degree_id
 ]);
 
 
+Route::any('admission_test/amw/store_question_paper', [
+    'as' => 'admission_test.amw.store_question_paper',
+    'uses' => 'AdmAmwController@storeQuestionPaper'
+]);
 
-
-
+Route::any('admission_test/amw/view_question_paper', [
+    'as' => 'admission_test.amw.view_question_paper',
+    'uses' => 'AdmAmwController@viewQuestionPaper'
+]);

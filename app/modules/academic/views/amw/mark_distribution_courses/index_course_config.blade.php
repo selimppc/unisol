@@ -1,9 +1,9 @@
-@extends('layouts.master')
+@extends('layouts.layout')
 @section('sidebar')
-    @include('academic::_sidebar')
+    @include('layouts._sidebar_amw')
 @stop
 @section('content')
-    <h4>{{$title}}</h4>
+    <h4 style="text-align: center;margin-bottom: 30px">{{$title}}</h4>
     <table id="example" class="table table-bordered table-hover table-striped">
         <thead>
         <tr>
@@ -36,7 +36,7 @@
     {{--Start all modal for amw--}}
     {{---------------------------------------------}}
     <!-- Add New Item Modal -->
-    <div class="modal fade" id="addNew" tabindex="-1" role="dialog" aria-labelledby="addScholarship" aria-hidden="true">
+    <div class="modal fade" id="addNew" tabindex="-1" role="dialog" aria-labelledby="addScholarship" aria-hidden="true" data-keyboard="false" data-backdrop="static">
         <div class="modal-dialog modal-lg">
             <div class="modal-content ">
 
@@ -45,7 +45,7 @@
     </div><!-- /.modal -->
 
     <!-- Show course info Modal -->
-    <div class="modal fade" id="showModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true">
+    <div class="modal fade" id="showModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true" data-keyboard="false" data-backdrop="static">
         <div class="modal-dialog">
             <div class="modal-content">
 
@@ -54,7 +54,7 @@
     </div><!-- /.modal -->
 
     <!-- Show course marksdistribution Modal -->
-    <div class="modal fade" id="marksDistModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true">
+    <div class="modal fade" id="marksDistModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true" data-keyboard="false" data-backdrop="static">
         <div class="modal-dialog">
             <div class="modal-content">
 

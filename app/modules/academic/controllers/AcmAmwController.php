@@ -122,7 +122,7 @@ class AcmAmwController extends \BaseController {
 	{
 		$course_data= CourseManagement::with('relYear', 'relSemester', 'relCourse', 'relCourse.relSubject.relDepartment','relCourseType')
 			->get();
-		return View::make('academic::amw.mark_distribution_courses.index_course_config')->with('title', 'CourseManagement List')->with('datas', $course_data);
+		return View::make('academic::amw.mark_distribution_courses.index_course_config')->with('title', 'CourseManagement List to Course Config')->with('datas', $course_data);
 	}
 
 	public function find_course_info($course_id)

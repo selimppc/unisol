@@ -15,7 +15,9 @@
         {{ HTML::style('assets/etsb/etsb_css/daterangepicker/daterangepicker-bs3.css') }}
         {{ HTML::style('assets/etsb/etsb_css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}
         {{ HTML::style('assets/etsb/etsb_css/style.css') }}
+        {{--{{ HTML::script('assets/js/jquery-2.1.1.min.js') }}--}}
         {{ HTML::script('assets/js/jquery-2.1.1.min.js') }}
+            {{ HTML::script('assets/js/jquery-1.11.1.min.js')}}
         <!--[if lt IE 9]>
           <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
           <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
@@ -184,7 +186,7 @@
 
         @yield('script_section')
 
-        <script type="text/javascript">
+        {{--<script type="text/javascript">
             $(function() {
                 $("#example1").dataTable({
                     "bPaginate": false,
@@ -200,7 +202,7 @@
                     "bAutoWidth": false
                 });
             });
-        </script>
+        </script>--}}
 
     </body>
 </html>

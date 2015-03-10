@@ -37,8 +37,8 @@
             <div class="panel-body">
                 <table class="table">
                     <tr>
-                        <td>
-                            <a href="{{ action('AcmFacultyController@index') }}">Courses</a> <span class="label label-success"></span>
+                        <td style="color:blueviolet;font-weight: bold">
+                            <a href="{{ action('AcmFacultyController@index') }}">Course List</a> <span class="label label-success"></span>
                         </td>
                     </tr>
                     @if(isset($data))
@@ -85,8 +85,9 @@
                                         }
                                         ?>
                                         <a href="{{ URL::to($url_link)  }}">{{$dvalue['relAcmMarksDistItem']['title']}}</a>
+
                                     @else
-                                        {{$dvalue['relAcmMarksDistItem']['title']}}
+                                       {{$dvalue['relAcmMarksDistItem']['title']}}
                                     @endif
                                 </td>
                             </tr>
