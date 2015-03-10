@@ -1,17 +1,19 @@
-@extends('layouts.master')
+@extends('layouts.layout')
 @section('sidebar')
     @include('academic::_sidebar')
 @stop
 @section('content')
-    {{ Form::open(array('url' => 'midterm/assign')) }}
+    {{ Form::open(array('url' => 'batch/assign')) }}
+    {{--{{ Form::text('title', $acm->title, ['class'=>'form-control title'])}}--}}
+    <p style="text-align: center;color: #800080;font-size:large ">Assign of {{$acm->title}} to student</p>
     {{ Form::hidden('acm_academic_id', $acm->id, ['class'=>'form-control acm_academic_id'])}}
-    <div class="col-md-4">
-        <div class='form-group'>
-            {{ Form::label('exam_question', 'Examination Question:') }}
-            {{ Form::select('exam_question',$exam_questions,Input::old('exam_question'),['class'=>'form-control','required']) }}
-        </div>
-        <p style="color: cornflowerblue">Help Text: If CT question is not prepared then tell faculty to create question paper.</p>
+    {{--<div class="col-md-4">--}}
+    <div class='form-group' style="width: 300px">
+        {{ Form::label('exam_question', 'Examination Question:') }}
+        {{ Form::select('exam_question',$exam_questions,Input::old('exam_question'),['class'=>'form-control','required']) }}
     </div>
+    <p style="color: cornflowerblue">Help Text: If CT question is not prepared then tell faculty to create question paper.</p>
+    {{--</div>--}}
     <table id="example" class="table table-bordered table-hover table-striped">
         <thead>
         <tr>
@@ -37,6 +39,7 @@
                 {{--<td>{{$value->relCourseManagement->relCourse->relSubject->relDepartment->title}}</td>--}}
                 {{--<td>{{ AcmAcademicAssignStudent::getAssignStudentStatus($value->acm_academic_id)}}</td>--}}
                 {{--<td></td>--}}
+
                 <td><input type="checkbox" name="chk[]"  id="checkbox" class="myCheckbox" value="{{$value->relUser->id}}">
                 </td>
                 <td>{{$value->relUser->username}}</td>
@@ -44,22 +47,23 @@
                 <td>{{$value->relYear->title}}</td>
                 <td>{{$value->relCourse->relSubject->relDepartment->title}}</td>
                 <td></td>
+
                 <td>
-                    <a href="{{ URL::route('midterm.comments', ['assign_std'=>$value->user_id]) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#commentsModal"> Comments </a>
+                    <a href="{{ URL::route('classtest.comments', ['assign_std'=>$value->user_id]) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#commentsModal"> Comments </a>
 
                     <a href="" class="btn btn-primary btn-xs"> Evaluation </a>
 
-                    {{ Form::submit('Do Assign', ['name' => 'assign', 'class' => 'btn btn-success btn-xs']) }}
+                    {{ Form::submit('Assign', ['name' => 'save', 'class' => 'btn btn-success btn-xs']) }}
                 </td>
             </tr>
         @endforeach
         </tbody>
     </table>
     <div class="button" style="margin-top: 10px">
-        <a href="{{URL::previous('academic/faculty/marks/dist/item/midterm/')}}" class="btn btn-info btn-xs ">Back</a>
-
+        <a href="{{URL::previous('academic/faculty/marks/dist/item/class_test/')}}" class="btn btn-info btn-xs ">Back</a>
         {{ Form::submit('Do Assign', ['name' => 'assign', 'class' => 'btn btn-success btn-xs']) }}
         {{ Form::submit('Do Revoke', ['name' => 'revoke','class' => 'btn btn-danger btn-xs']) }}
+
     </div>
     {{ Form::close() }}
 

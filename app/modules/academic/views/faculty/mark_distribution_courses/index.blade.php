@@ -1,6 +1,6 @@
-@extends('layouts.master')
+@extends('layouts.layout')
 @section('sidebar')
-    @include('academic::_sidebar')
+    @include('layouts._sidebar_faculty')
 @stop
 @section('content')
     <h4 style="text-align: center">{{$title}}</h4>
