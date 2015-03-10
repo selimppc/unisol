@@ -186,7 +186,11 @@
 
         <script type="text/javascript">
             $(function() {
-                $("#example1").dataTable();
+                $("#example1").dataTable({
+                    "bPaginate": false,
+                    "bSort": true,
+                    "bInfo": true
+                });
                 $('#example2').dataTable({
                     "bPaginate": true,
                     "bLengthChange": false,
