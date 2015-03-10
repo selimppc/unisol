@@ -14,39 +14,16 @@
 
                     <tr>
                         <td>
-                         <a href="{{ action('ExmAmwController@deshboard') }}"> Home </a> <span class="label label-success"></span>
+                         <a href="{{ URL::to('examination/amw/deshboard') }}"> Home </a> <span class="label label-success"></span>
                         </td>
                     </tr>
 
                     <tr>
                          <td>
-                          <a href="{{ action('ExmAmwController@examination') }}"> Examination</a> <span class="label label-success"></span>
+                          <a href="{{ URL::to('examination/amw/examination') }}"> Examination</a> <span class="label label-success"></span>
                          </td>
                     </tr>
 
-                    {{--<tr>--}}
-                         {{--<td>--}}
-                          {{--<a href="{{ action('ExmAmwController@courses') }}"> Courses</a> <span class="label label-success"></span>--}}
-                         {{--</td>--}}
-                    {{--</tr>--}}
-
-                    <tr>
-                         <td>
-{{--                          <a href="{{ URL::to('examination/amw/get-all-examiners') }}"> Examiners</a> <span class="label label-success"></span>--}}
-                         </td>
-                    </tr>
-
-                    {{--<tr>--}}
-                        {{--<td>--}}
-                         {{--<a href="{{ action('ExmAmwController@index') }}"> Question Papers</a> <span class="label label-success"></span>--}}
-                        {{--</td>--}}
-                    {{--</tr>--}}
-
-                     {{--<tr>--}}
-                        {{--<td>--}}
-                         {{--<a href="{{ action('ExmAmwController@questionList') }}"> Question List</a> <span class="label label-success"></span>--}}
-                        {{--</td>--}}
-                     {{--</tr>--}}
                 </table>
             </div>
         </div>
@@ -69,11 +46,6 @@
                             </td>
                         </tr>
 
-                        {{--<tr>--}}
-                             {{--<td>--}}
-                              {{--<a href=""> Examination</a> <span class="label label-success"></span>--}}
-                             {{--</td>--}}
-                        {{--</tr>--}}
 
                         <tr>
                             <td>

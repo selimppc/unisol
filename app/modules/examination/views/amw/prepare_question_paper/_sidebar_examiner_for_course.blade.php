@@ -1,9 +1,6 @@
 <div class="panel panel-default">
         <div class="panel-heading">
-                {{--<h4 class="panel-title">--}}
-                    {{--<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><span class="glyphicon glyphicon-user">--}}
-                    {{--</span>You loggged in as <strong>{{ ucwords(Auth::user()->username) }} </strong></a>--}}
-                {{--</h4>--}}
+
         </div>
         <div id="collapseTwo" class="panel-collapse collapse in">
             <div class="panel-body">
@@ -11,41 +8,21 @@
 
                     <tr>
                         <td>
-                         <a href="{{ action('ExmAmwController@deshboard') }}"> Home </a> <span class="label label-success"></span>
+                         <a href="{{ URL::to('examination/amw/deshboard') }}"> Home </a> <span class="label label-success"></span>
                         </td>
                     </tr>
 
                     <tr>
                          <td>
-                          <a href="{{ action('ExmAmwController@examination') }}"> Examination</a> <span class="label label-success"></span>
+                          <a href="{{ URL::to('examination/amw/examination') }}"> Examination</a> <span class="label label-success"></span>
                          </td>
                     </tr>
-
-
-                    {{--<tr>--}}
-                         {{--<td>--}}
-                          {{--<a href="{{ action('ExmAmwController@courses') }}"> Courses</a> <span class="label label-success"></span>--}}
-                         {{--</td>--}}
-                    {{--</tr>--}}
 
                     <tr>
                          <td>
                           <a href="{{ URL::to('examination/amw/examiners', ['year_id'=>$year_id,'semester_id'=>$semester_id,'course_management_id'=>$course_management_id,'acm_marks_dist_item_id'=>$acm_marks_dist_item_id]) }}"> Examiners</a> <span class="label label-success"></span>
                          </td>
                     </tr>
-
-                    {{--<tr>--}}
-                        {{--<td>--}}
-                         {{--<a href="{{ action('ExmAmwController@index') }}"> Question Papers</a> <span class="label label-success"></span>--}}
-                        {{--</td>--}}
-                    {{--</tr>--}}
-
-                     {{--<tr>--}}
-                        {{--<td>--}}
-                         {{--<a href="{{ action('ExmAmwController@questionList') }}"> Question List</a> <span class="label label-success"></span>--}}
-                        {{--</td>--}}
-                     {{--</tr>--}}
-
 
                 </table>
             </div>

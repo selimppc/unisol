@@ -13,9 +13,9 @@
         <li><a tabindex="-1" href="{{ action('TaskListRoleController@index') }}"> Task List </a></li>
         <li><a tabindex="-1" href="{{ action('RoleTaskController@index') }}"> Role Task </a></li>
         <li><a tabindex="-1" href="{{ action('RoleTaskUserController@index') }}"> Role Task User </a></li>
-        <li><a tabindex="-1" a href="{{URL::to('subject/list') }}"> Subject Management </a></li>
-        <li><a tabindex="-1" a href="{{URL::to('year/show') }}"> Year Management </a></li>
-        <li><a tabindex="-1" a href="{{URL::to('term/show') }}"> All Course Management </a></li>
+        <li><a tabindex="-1" a href="{{ URL::to('subject/list') }}"> Subject Management </a></li>
+        <li><a tabindex="-1" a href="{{ URL::to('year/show') }}"> Year Management </a></li>
+        <li><a tabindex="-1" a href="{{ URL::to('term/show') }}"> All Course Management </a></li>
     </ul>
 </li>
 
@@ -27,11 +27,10 @@
         Admission
     </a>
     <ul class="dropdown-menu">
-        <li><a tabindex="-1" a href="{{URL::to('amw/course_manage') }}"> Course Management(Amw) </a></li>
-        <li><a tabindex="-1" a href="{{URL::to('amw/degree_manage') }}"> Degree Management(Amw) </a></li>
-        <li><a tabindex="-1" a href="{{URL::to('admission/public/degree_list') }}"> Admission (Public) </a></li>
-
-        <li><a tabindex="-1" a href="{{URL::to('admission_test/amw/index') }}"> Admission Test(Amw)</a></li>
+        <li><a tabindex="-1" a href="{{ URL::to('amw/course_manage') }}"> Course Management(Amw) </a></li>
+        <li><a tabindex="-1" a href="{{ URL::to('amw/degree_manage') }}"> Degree Management(Amw) </a></li>
+        <li><a tabindex="-1" a href="{{ URL::to('admission/public/degree_list') }}"> Admission (Public) </a></li>
+        <li><a tabindex="-1" a href="{{ URL::to('admission_test/amw/index') }}"> Admission Test(Amw)</a></li>
     </ul>
 </li>
 
@@ -41,8 +40,8 @@
         Academic
     </a>
     <ul class="dropdown-menu">
-       <li><a tabindex="-1" a href="{{URL::to('academic/faculty/') }}">Mark Distribution (Faculty)</a></li>
-       <li><a tabindex="-1" a href="{{URL::to('academic/amw/') }}">Mark Distribution (Amw)</a></li>
+       <li><a tabindex="-1" a href="{{ URL::to('academic/faculty/') }}">Mark Distribution (Faculty)</a></li>
+       <li><a tabindex="-1" a href="{{ URL::to('academic/amw/') }}">Mark Distribution (Amw)</a></li>
     </ul>
 </li>
 
@@ -53,8 +52,8 @@
         Examination
     </a>
     <ul class="dropdown-menu">
-       <li><a tabindex="-1" href="{{ action('ExmFacultyController@index') }}"> Prepare Question Paper (Faculty) </a></li>
-       <li><a tabindex="-1" href="{{ action('ExmAmwController@examination') }}"> Prepare Question Paper (Amw) </a></li>
+       {{--<li><a tabindex="-1" href="{{ action('ExmFacultyController@index') }}"> Prepare Question Paper (Faculty) </a></li>--}}
+       <li><a tabindex="-1" href="{{ URL::to('examination/amw/examination') }}"> Prepare Question Paper (Amw) </a></li>
     </ul>
 </li>
 
