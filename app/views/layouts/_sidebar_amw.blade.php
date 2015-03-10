@@ -23,7 +23,9 @@
             <i class="fa fa-angle-left pull-right"></i>
         </a>
         <ul class="treeview-menu">
-            <li><a tabindex="-1" a href="{{URL::to('academic/amw/') }}">Mark Distribution (Amw)</a></li>
+            <li><a tabindex="-1" a href="{{URL::to('academic/amw/') }}">Mark Distribution Item(Amw)</a></li>
+            <li><a tabindex="-1" a href="{{URL::to('academic/amw/config/') }}">Course Config(Amw)</a></li>
+
         </ul>
     </li>
 
