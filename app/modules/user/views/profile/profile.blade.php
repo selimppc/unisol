@@ -5,15 +5,9 @@
 @stop
 
 @section('content')
+
    <section class="col-lg-6 connectedSortable">
-        <div class="checkbox">
-            <div class="icheckbox_minimal" aria-checked="true" aria-disabled="tree" style="position: relative;">
-            <input type="checkbox" style="position: absolute; opacity: 0;">
-            <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);">
-            </ins>
-            </div>
-        </div>
-        <input type="checkbox" class="checkbox">
+
 
        <!-- Profile Information -->
        <div class="box box-info">
