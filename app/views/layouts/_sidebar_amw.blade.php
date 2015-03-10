@@ -46,7 +46,7 @@
             <i class="fa fa-angle-left pull-right"></i>
         </a>
         <ul class="treeview-menu">
-            <li><a tabindex="-1" href="{{ URL::to('amw/examination/index') }}"> Prepare Question Paper (Amw) </a></li>
+            <li><a tabindex="-1" href="{{  URL::to('examination/amw/examination') }}"> Prepare Question Paper (Amw) </a></li>
         </ul>
     </li>
 

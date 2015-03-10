@@ -111,7 +111,7 @@ class AdmAmwController extends \BaseController
             }
             // redirect
             Session::flash('message', 'Examiner Successfully Added!');
-            return Redirect::to('admission_test/amw/deshboard');
+            return Redirect::to('admission_test/amw/examiners');
         }
     }
 

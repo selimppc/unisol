@@ -1,6 +1,6 @@
-@extends('layouts.master')
+@extends('layouts.layout')
 @section('sidebar')
-    @include('examination::_sidebar')
+    @include('layouts._sidebar_amw')
 @stop
 @section('content')
        <h1>Welcome to Examination : <strong></strong> </h1> <br>
