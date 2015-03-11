@@ -3,24 +3,30 @@
 
 
                 <div class="form-group">
-                       <strong> Degree: </strong>
+                       <strong> Degree: </strong> {{ $sbjct_dgre_name }}
                 </div>
 
 
                 <div class="form-group">
-                       <strong> Subject: </strong>
+                        {{ Form::label('admtest_subject_id', 'Subject:') }}
+                        {{ Form::select('admtest_subject_id',$admtest_subject_id,Input::old('subject') , array('class' => 'form-control','required'=>'required') ) }}
                 </div>
 
 
                 <div class="form-group">
                      {{ Form::label('description', 'Description') }}
-                     {{ Form::text('description', Input::old('description'), array('class' => 'form-control')) }}
+                     {{ Form::textarea('description', Input::old('description'), ['size' => '40x6','class' => 'form-control']) }}
                 </div>
 
                 <div class="form-group">
                      {{ Form::label('marks', 'Total marks') }}
                      {{ Form::text('marks', Input::old('marks'), array('class' => 'form-control')) }}
                 </div>
+
+                {{--<div class="form-group">--}}
+                     {{--{{ Form::label('qualify_marks', 'Qualify marks') }}--}}
+                     {{--{{ Form::text('qualify_marks', Input::old('qualify_marks'), array('class' => 'form-control')) }}--}}
+                {{--</div>--}}
 
 
                 <div class="form-group">
