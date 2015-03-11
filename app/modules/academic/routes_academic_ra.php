@@ -207,7 +207,7 @@ Route::any('academic/faculty/marks-dist-item/midterm/assign/{acm_id}/{cm_id}/{ma
     'uses'=> 'AcmFacultyController@assign_midterm'
 ]);
 Route::any('midterm/assign',[
-    'as' => 'batch.assign',
+    'as' => 'midterm/assign',
     'uses'=> 'AcmFacultyController@batch_assign_midterm'
 ]);
 Route::any('midterm/assign/comments/{assign_std_id}',[

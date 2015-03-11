@@ -875,6 +875,7 @@ class AcmFacultyController extends \BaseController {
 	 */
 	public  function assign_midterm($acm_id, $cm_id, $mark_dist_id, $course_id)
 	{
+
 		$student_of_course = CourseManagement::where('course_id', '=', $course_id)->get();
 
 		foreach($student_of_course as $key => $value){
@@ -882,6 +883,7 @@ class AcmFacultyController extends \BaseController {
 				->where('course_id', '=', $value->course_id)
 				->get();
 		}
+
 
 		/*$i = 0;
 		foreach($acm_academic_ass_std as $values){
@@ -922,27 +924,32 @@ class AcmFacultyController extends \BaseController {
 	{
 		$data=Input::all();
 		$chk=Input::get('chk');
+
 		$aca_id=Input::get('acm_academic_id');
 		$exam_id=Input::get('exam_question');
 		if(Input::get('assign')) {
 			foreach($chk as $key => $value) {
-				$model = new AcmAcademicAssignStudent();
-				$model->acm_academic_id = $aca_id;
-				$model->exm_question_id = $exam_id;
-				$model->assigned_by = Auth::user()->get()->id;
+                $model = AcmAcademicAssignStudent::find($value);
+				//$model->acm_academic_id = $aca_id;
+				//$model->exm_question_id = $exam_id;
+				//$model->assigned_by = Auth::user()->get()->id;
 				$model->status = 'A';
-				$model->user_id = $value;
+				//$model->user_id = $value;
 				$model->save();
 			}
 			return Redirect::back()->with('message','Successfully added!');
 
 		}
 		if(Input::get('revoke')) {
-			//foreach($chk as $key => $value) {
-			//print_r(Request::get('id'));exit;
-			$model = new AcmAcademicAssignStudent();
-			$model->destroy(Request::get('chk'));
-			return Redirect::back()->with('message','Successfully Deleted!');
+            foreach($chk as $key => $value) {
+                $model = AcmAcademicAssignStudent::find($value);
+                $model->status = 'NA';
+                $model->save();
+            }
+            return Redirect::back()->with('message','Successfully Deleted!');
+
+
+
 			//}
 		}
 	}
