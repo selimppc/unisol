@@ -157,6 +157,11 @@ Route::any('admission/public/admission/adm_test_details/{id}',
     ['as' => 'admission.adm_test_details',
         'uses' => 'AdmPublicController@admTestDetails']);
 
+//Adm_applicant checkout view
+Route::any('admission/public/admission/checkout/',
+    ['as' => 'admission.adm_checkout',
+        'uses' => 'AdmPublicController@admDegAptCheckout']);
+
 
 
 

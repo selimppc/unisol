@@ -47,15 +47,15 @@
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="glyphicon glyphicon-user"></i>
-                                <span><b> {{ isset(Auth::user()->get()->username) ? ucwords(Auth::user()->get()->username) : ucwords(Auth::applicant()->get()->username) }} </b> <i class="caret"></i></span>
+                                <span><b> {{ isset(Auth::user()->get()->username) ? ucwords(Auth::user()->get()->username) : ( Auth::applicant()->check() ? ucwords(Auth::applicant()->get()->username) : "Guest !" ) }} </b> <i class="caret"></i></span>
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- User image -->
                                 <li class="user-header bg-light-blue">
                                     {{ HTML::image('/img/avatar3.png', 'User Image', ['class'=>'img-circle']) }}
                                     <p>
-                                        <b> {{ isset(Auth::user()->get()->username) ? ucwords(Auth::user()->get()->username) : ucwords(Auth::applicant()->get()->username) }} </b>
-                                        <small>Last Visit : {{ isset(Auth::user()->get()->last_visit) ? ucwords(Auth::user()->get()->last_visit) : ucwords(Auth::applicant()->get()->last_visit) }}</small>
+                                        <b> {{ isset(Auth::user()->get()->username) ? ucwords(Auth::user()->get()->username) : ( Auth::applicant()->check() ? ucwords(Auth::applicant()->get()->username) : "Guest !" ) }} </b>
+                                        <small>Last Visit : {{ isset(Auth::user()->get()->last_visit) ? Auth::user()->get()->last_visit : ( Auth::applicant()->check() ? ucwords(Auth::applicant()->get()->last_visit) : "Guest !" ) }}</small>
                                     </p>
                                 </li>
                                 <!-- Menu Footer-->
@@ -85,7 +85,7 @@
                         </div>
                         <div class="pull-left info">
                             <p>Hello,
-                                <b> {{ isset(Auth::user()->get()->username) ? ucwords(Auth::user()->get()->username) : ucwords(Auth::applicant()->get()->username) }} </b>
+                                <b> {{ isset(Auth::user()->get()->username) ? ucwords(Auth::user()->get()->username) : ( Auth::applicant()->check() ? ucwords(Auth::applicant()->get()->username) : "Guest !" ) }} </b>
                             </p>
                             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                         </div>

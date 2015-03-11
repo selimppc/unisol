@@ -49,7 +49,7 @@
                 <td>{{ Form::checkbox('isReadOnly[]', $counter, ($value->readonly)? $value->readonly : Input::old('isReadOnly'.$key)) }}</td>
                 <td>{{ Form::radio('isDefault[]', $counter, ($value->default_item) ? $value->default_item : Input::old('isDefault'.$key)) }}</td>
                 <td>{{ Form::radio('isAttendance[]', $counter, ($value->is_attendance) ? $value->is_attendance : Input::old('isAttendance'.$key)) }}</td>
-                <td><a class="btn btn-default btn-sm" id="removeTrId{{$key}}" onClick="deleteNearestTr(this.id, {{$value->isConfigId}})"><span class="glyphicon glyphicon-trash text-danger"></span></a>
+                <td><a class="btn btn-default btn-sm" id="removeTrId{{$key}}" onClick="deleteNearestTr(this.id, {{$value->isConfigId}})"><i class="fa  fa-trash-o" style="font-size: 15px;color: red"></i></a>
                 </td>
             </tr>
             <?php $counter++;?>

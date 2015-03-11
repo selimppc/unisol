@@ -211,7 +211,7 @@ function addCourseListItem(){
 
         str += '<td><input type="radio" name="isAttendance[]" value="'+counter+'" class="amw_isAttendance'+trLen+'" /></td>';
 
-        str += '<td><a class="btn btn-default btn-sm" id="removeTrId'+trLen+'" onClick="deleteNearestTr(this.id, 0)"><span class="glyphicon glyphicon-trash text-danger"></span></a></td>';
+        str += '<td><a class="btn btn-default btn-sm" id="removeTrId'+trLen+'" onClick="deleteNearestTr(this.id, 0)"><i class="fa  fa-trash-o" style="font-size: 15px;color: red"></i></a></td>';
 
         str += '</tr>';
 
@@ -315,7 +315,7 @@ function addMarksDistItem() {
         str += '<td><select name="policy_id[]" class="form-control"><option value="">Select Option</option><option value="attendance">Attendance</option><option value="best_one">BestOne</option><option value="avarage">Average</option><option value="avarage_top_n">Average of Top N</option><option value="sum">Sum</option><option value="single">Single</option></select></td>';
 
 
-        str += '<td><a class="btn btn-default btn-sm" id="removedistTrId' + trLen + '" onClick="deleteMarkDistTr(this.id, 0)"><span class="glyphicon glyphicon-trash text-danger"></span></a></td>';
+        str += '<td><a class="btn btn-default btn-sm" id="removedistTrId' + trLen + '" onClick="deleteMarkDistTr(this.id, 0)"><i class="fa  fa-trash-o" style="font-size: 15px;color: red"></i></a></td>';
 
         str += '</tr>';
 

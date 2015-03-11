@@ -22,7 +22,7 @@
                 {{--{{ HTML::image('file/item_class_file/'.$value->file, $value->file,['class'=>'col-md-4'])}}--}}
                 <p>
                     {{$value->file}}
-                    <a class="btn btn-default btn-sm pull-right" id="removeId{{$rkey}}" onClick="deleteAcaDetailsImageCT(this.id, {{$value->id}})"><span class="glyphicon glyphicon-trash text-danger"></span></a>
+                    <a class="btn btn-default btn-sm pull-right" id="removeId{{$rkey}}" onClick="deleteAcaDetailsImageCT(this.id, {{$value->id}})"><i class="fa  fa-trash-o" style="font-size: 15px;color: red"></i></a>
                 </p>
             @endforeach
         </div>
