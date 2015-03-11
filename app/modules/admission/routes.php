@@ -25,47 +25,47 @@ include("routes_tjt.php");
 
 Route::any('admission_test/amw/dashboard', [
     'as' => 'admission_test.amw.dashboard',
-    'uses' => 'AdmAmwController@admAmwDashboard'
+    'uses' => 'AdmissionController@admAmwDashboard'
 ]);
 
 Route::any('admission_test/amw/index',[
     'as' => 'admission_test.amw.index',
-    'uses' => 'AdmAmwController@admissionTestIndex'
+    'uses' => 'AdmissionController@admissionTestIndex'
 ]);
 
 Route::any('admission_test/amw/examiners/{year_id}/{semester_id}/{degree_id}', [
     'as' => 'admission_test.amw.examiners',
-    'uses' => 'AdmAmwController@examiners'
+    'uses' => 'AdmissionController@examiners'
 ]);
 
 Route::any('admission_test/amw/view_examiners/{id}', [
     'as' => 'admission_test.amw.view_examiners',
-    'uses' => 'AdmAmwController@viewExaminers'
+    'uses' => 'AdmissionController@viewExaminers'
 ]);
 
 
 Route::any('admission_test/amw/store_examiners', [
     'as' => 'admission_test.amw.store_examiners',
-    'uses' => 'AdmAmwController@storeExaminers'
+    'uses' => 'AdmissionController@storeExaminers'
 ]);
 
 Route::any('admission_test/amw/search-index', [
     'as' => 'admission_test.amw.search_index',
-    'uses' => 'AdmAmwController@searchIndex'
+    'uses' => 'AdmissionController@searchIndex'
 ]);
 
 Route::any('admission_test/amw/question_paper/{year_id}/{semester_id}/{degree_id}', [
     'as' => 'admission_test.amw.question_paper',
-    'uses' => 'AdmAmwController@questionPaper'
+    'uses' => 'AdmissionController@questionPaper'
 ]);
 
 
 Route::any('admission_test/amw/store_question_paper', [
     'as' => 'admission_test.amw.store_question_paper',
-    'uses' => 'AdmAmwController@storeQuestionPaper'
+    'uses' => 'AdmissionController@storeQuestionPaper'
 ]);
 
 Route::any('admission_test/amw/view_question_paper', [
     'as' => 'admission_test.amw.view_question_paper',
-    'uses' => 'AdmAmwController@viewQuestionPaper'
+    'uses' => 'AdmissionController@viewQuestionPaper'
 ]);
