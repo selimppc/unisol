@@ -15,8 +15,8 @@
             <thead>
                 <tr>
                        <td class="col-lg-1"><input name="checkbox" type="checkbox" id="checkbox" class="checkbox" value=""></td>
-                       <th class="col-lg-4" > degree Name</th>
-                       <th >Description</th>
+                       <th class="col-lg-4" style="font-size: medium">Degree Name</th>
+                       <th style="font-size: medium">Description</th>
                 </tr>
             </thead>
 

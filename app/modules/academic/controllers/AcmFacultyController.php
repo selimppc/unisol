@@ -760,7 +760,7 @@ class AcmFacultyController extends \BaseController {
 	{
 		$date_time= array('' => 'Select Date') + AcmClassSchedule::lists('day', 'id');
 		$title = 'All Midterm List';
-		$datas = AcmAcademic::with('relAcmClassSchedule')
+		$datas = AcmAcademic::with('relAcmClassSchedule', 'relCourseManagement')
 			->where('acm_marks_distribution_id', '=', $marks_dist_id)
 			->get();
 		$data= CourseManagement::with( 'relCourse')
@@ -875,12 +875,6 @@ class AcmFacultyController extends \BaseController {
 	 */
 	public  function assign_midterm($acm_id, $cm_id, $mark_dist_id)
 	{
-		//$model = AcmAcademicAssignStudent::get();
-		/*if($model){
-			echo "OK";
-		}else {
-			echo "M";
-		}exit;*/
 		$acm= AcmAcademic::with('relAcmClassSchedule')
 			->where('id', '=', $acm_id)
 			->first();
