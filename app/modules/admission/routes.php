@@ -79,3 +79,25 @@ Route::any('admission_test/amw/update_question_paper/{id}', [
     'as' => 'admission_test.amw.update_question_paper',
     'uses' => 'AdmissionController@updateQuestionPaper'
 ]);
+
+Route::any('admission_test/amw/mng_adm_test_subject',[
+    'as' => 'admission_test.amw.mng_adm_test_subject',
+    'uses' => 'AdmissionController@mngAdmTestSubject'
+]);
+
+Route::any('admission_test/amw/view_admtest_subject/{id}', [
+    'as' => 'admission_test.amw.view_admtest_subject',
+    'uses' => 'AdmissionController@viewAdmTestSubject'
+]);
+
+Route::any('admission_test/amw/store_admtest_subject', [
+    'as' => 'admission_test.amw.store_admtest_subject',
+    'uses' => 'AdmissionController@storeAdmTestSubject'
+]);
+
+Route::any('admission_test/amw/edit_admtest_subject/{id}', [
+    'as' => 'admission_test.amw.edit_admtest_subject',
+    'uses' => 'AdmissionController@editAdmTestSubject'
+]);
+
+
