@@ -3,9 +3,7 @@
    @include('layouts._sidebar_applicant')
  @stop
 @section('content')
-{{--<a class="pull-right btn btn-sm btn-info" href="{{ URL::to('degree_manage/create')}}" data-toggle="modal" data-target="#addModal" >Add More Degree</a>--}}
-
-{{---------------------------------------------Data Table:admission on  degree Starts-----------------------------------------------------------------}}
+{{---------------------------------------------Data Table:admission on degree :Starts-----------------------------------------------------------------}}
  <div class="box box-solid box-info">
      <div class="box-header">
              <h3 class="box-title">Admission On</h3>
