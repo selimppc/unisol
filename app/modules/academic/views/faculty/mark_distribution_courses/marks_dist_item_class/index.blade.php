@@ -22,9 +22,9 @@
                 <td>{{($value->status == 1) ? 'Active' : 'Inactive';}}</td>
                 <td>{{$value->relAcmClassSchedule->day}}</td>
                 <td>
-                    <a href="{{ URL::route('class.edit', ['id'=>$value->id]) }}" class="subEdit btn btn-xs btn-default" data-toggle="modal" data-target="#editModal" href="" ><i class="fa fa-pencil-square-o" style="font-size: 18px"></i></a>
+                    <a href="{{ URL::route('class.edit', ['id'=>$value->id]) }}" class="subEdit btn btn-xs btn-default" data-toggle="modal" data-target="#editModal" href="" ><i class="fa fa-pencil-square-o" style="font-size: 18px;color: #0044cc"></i></a>
 
-                    <a href="{{ URL::route('class.show', ['id'=>$value->id])  }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" href=""><i class="fa fa-eye" style="font-size: 18px"></i></a>
+                    <a href="{{ URL::route('class.show', ['id'=>$value->id])  }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" href=""><i class="fa fa-eye" style="font-size: 18px;color: green"></i></a>
                 </td>
             </tr>
         @endforeach

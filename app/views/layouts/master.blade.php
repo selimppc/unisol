@@ -233,7 +233,6 @@
 <!--/.fluid-container-->
 
 {{ HTML::script('assets/js/bootstrap.min.js') }}
-{{ HTML::script(etsb_scripts.jss.js')}}
 {{ HTML::script('assets/js/jquery.dataTables.min.js')}}
 {{ HTML::script('assets/js/jquery.tablesorter.min.js') }}
 {{ HTML::script('assets/js/bootstrap-datepicker.js') }}

@@ -88,28 +88,28 @@
 </tr>
 </thead>
 <tbody>
+    @if(isset($model))
+          @foreach($model as $value)
 
-      @foreach($model as $value)
+              <tr>
+              <td>{{ $value->relCourse->title }}</td>
+              <td>{{ $value->relDegree->title}}</td>
+              <td>{{ strtoupper($value->major_minor) }}</td>
+              <td>{{ $value->relCourse->relSubject->relDepartment->title }}</td>
+              <td>{{ $value->relYear->title }}</td>
+              <td>{{ $value->relSemester->title }}</td>
+              <td>{{User::FullName($value->user_id)}}</td>
 
-          <tr>
-          <td>{{ $value->relCourse->title }}</td>
-          <td>{{ $value->relDegree->title}}</td>
-          <td>{{ strtoupper($value->major_minor) }}</td>
-          <td>{{  $value->relCourse->relSubject->relDepartment->title }}</td>
-          <td>{{ $value->relYear->title }}</td>
-          <td>{{ $value->relSemester->title }}</td>
-          <td>{{User::FullName($value->user_id)}}</td>
+              <td>
+                   <a href="{{ URL::to('course_manage/show/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal"><span class="glyphicon glyphicon-eye-open "></span></a>
+                   <a class="btn btn-xs btn-default" href="{{ URL::to('course_manage/edit/'.$value->id) }}" data-toggle="modal" data-target="#editModal" ><span class="glyphicon glyphicon-edit"></span></a>
 
-          <td>
-               <a href="{{ URL::to('course_manage/show/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal"><span class="glyphicon glyphicon-eye-open "></span></a>
-               <a class="btn btn-xs btn-default" href="{{ URL::to('course_manage/edit/'.$value->id) }}" data-toggle="modal" data-target="#editModal" ><span class="glyphicon glyphicon-edit"></span></a>
-
-          </td>
+              </td>
 
 
-          </tr>
-      @endforeach
-
+              </tr>
+          @endforeach
+    @endif
 </tbody>
 
 </table>
