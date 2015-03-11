@@ -14,7 +14,8 @@
                  <button class="btn btn-info btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
              </div>
      </div>
-     {{--<section class="col-lg-6 connectedSortable">--}}
+
+
          <div class="box box-info">
               <div class="box-header">
               <p>&nbsp;</p>
@@ -64,10 +65,12 @@
             <button class="btn btn-info btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
         </div>
     </div>
+    <p>&nbsp;</p>
+    <a class="pull-right btn btn-sm btn-success" href="{{ URL::route('admission.adm_checkout')}}"><b>Next</b><i class="fa fa-arrow-circle-right"></i></a>
 
-         <section class="col-lg-6 connectedSortable">
+          <section class="col-lg-6 connectedSortable">
+                <p>&nbsp;</p><p>&nbsp;</p>
 
-               <p>&nbsp;</p>
                     <div class="box box-info">
                          <div class="box-header">
                              <h3 class="box-title">Personal Information</h3>
@@ -185,12 +188,7 @@
                                  <button class="pull-right btn btn-default" id="sendEmail">Edit <i class="fa fa-arrow-circle-right"></i></button>
                              </div>
                </div>
-               <div class="box box-footer">
-                  <button class="pull-right btn btn-info" id="sendEmail">Next<i class="fa fa-arrow-circle-right"></i></button>
-               </div>
-               <div>
-                    {{--<a class="pull-right btn btn-sm btn-info" href="{{ URL::to('degree_manage/create')}}">Next</a>--}}
-               </div>
+
                <p>&nbsp;</p>
          </section>
          <section class="col-lg-6 connectedSortable">
@@ -271,6 +269,7 @@
                      <button class="pull-right btn btn-default" id="sendEmail">Edit <i class="fa fa-arrow-circle-right"></i></button>
                  </div>
             </div>
+
          </section>
 
  </div>

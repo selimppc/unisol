@@ -26,13 +26,9 @@ class AdmPublicController extends \BaseController {
               }
                     return Redirect::route('admission.apt_profile_details', ['id' => Auth::applicant()->get()->id]);
             } else {
-//                    return Redirect::route('admission.degree_list')->with('message','Please login !!');
-                //echo "NO";exit;
                 Session::flash('danger', "Please Login!");
                 return Redirect::back();
             }
-
-        //return Redirect::route('admission.apt_profile_details', ['id' => Auth::applicant()->get()->id]);
     }
 
     public function admDegreeApplicantDetails($degree_id){
@@ -64,7 +60,7 @@ class AdmPublicController extends \BaseController {
         $degree_applicant = DegreeApplicant::with('relDegree')
                            ->where('applicant_id', '=',$applicant_id )
                            ->get();
-
+        //print_r($degree_applicant);exit;
         $applicant_personal_info = ApplicantProfile::with('relCountry')
                           ->where('applicant_id', '=',$applicant_id )
                           ->first();
@@ -92,13 +88,19 @@ class AdmPublicController extends \BaseController {
                   compact('adm_test_model','adm_test_subject'));
     }
 
-    public function create()
-	{
+    public function admDegAptCheckout(){
 
-	}
+        $applicant_id = Auth::applicant()->get()->id;
+        //echo $applicant_id;
+        $degree_applicant = DegreeApplicant::with('relDegree')
+            ->where('applicant_id', '=',$applicant_id )
+            ->get();
+        //print_r($degree_applicant);exit;
+        return View::make('admission::adm_public.admission.adm_checkouts',
+                  compact('degree_applicant'));
+    }
 
-
-	public function store()
+    public function store()
 	{
 		//
 	}
