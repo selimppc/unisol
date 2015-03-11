@@ -10,6 +10,11 @@ class AdmQuestion extends Eloquent{
 
     private $errors;
 
+    public static function getQuestionName($exmId){
+        $data = AdmQuestion::find($exmId);
+        return $data->title;
+    }
+
     private $rules = array(
 
 
