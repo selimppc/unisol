@@ -45,6 +45,28 @@
             }
         });
 
+        //for radio buttons
+        $('#bank').on('ifChecked', function (event) {
+            $('#bank').iCheck('check');
+            $("#ch_bank").show();
+            $("#ch_bkash").hide();
+            $("#ch_credt_card").hide();
+        });
+
+        $('#bkash').on('ifChecked', function (event) {
+            $('#bkash').iCheck('check');
+            $("#ch_bank").hide();
+            $("#ch_bkash").show();
+            $("#ch_credt_card").hide();
+        });
+
+        $('#credt_card').on('ifChecked', function (event) {
+            $('#credt_card').iCheck('check');
+            $("#ch_bank").hide();
+            $("#ch_bkash").hide();
+            $("#ch_credt_card").show();
+        });
+
     });
 }(jQuery.noConflict(
 
