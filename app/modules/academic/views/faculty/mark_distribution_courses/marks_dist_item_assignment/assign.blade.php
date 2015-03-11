@@ -3,7 +3,7 @@
     @include('academic::_sidebar')
 @stop
 @section('content')
-    {{ Form::open(array('url' => 'batch/assign')) }}
+    {{ Form::open(array('url' => 'assignment/assign')) }}
     {{--{{ Form::text('title', $acm->title, ['class'=>'form-control title'])}}--}}
     <p style="text-align: center;color: #800080;font-size:large ">Assign of {{$acm->title}} to student</p>
     {{ Form::hidden('acm_academic_id', $acm->id, ['class'=>'form-control acm_academic_id'])}}
@@ -31,15 +31,6 @@
         <tbody>
         @foreach ($cm_data as $value)
             <tr>
-                {{--<td><input type="checkbox" name="chk[]"  id="checkbox" class="myCheckbox" value="{{$value->relCourseManagement->relUser->id}}">--}}
-                {{--</td>--}}
-                {{--<td>{{$value->relCourseManagement->relUser->username}}</td>--}}
-                {{--<td>{{$value->relCourseManagement->relSemester->title}}</td>--}}
-                {{--<td>{{$value->relCourseManagement->relYear->title}}</td>--}}
-                {{--<td>{{$value->relCourseManagement->relCourse->relSubject->relDepartment->title}}</td>--}}
-                {{--<td>{{ AcmAcademicAssignStudent::getAssignStudentStatus($value->acm_academic_id)}}</td>--}}
-                {{--<td></td>--}}
-
                 <td><input type="checkbox" name="chk[]"  id="checkbox" class="myCheckbox" value="{{$value->relUser->id}}">
                 </td>
                 <td>{{$value->relUser->username}}</td>
@@ -60,7 +51,7 @@
         </tbody>
     </table>
     <div class="button" style="margin-top: 10px">
-        <a href="{{URL::previous('academic/faculty/marks/dist/item/class_test/')}}" class="btn btn-info btn-xs ">Back</a>
+        <a href="{{URL::previous('academic/faculty/marks-dist-item/assignment/assign/')}}" class="btn btn-info btn-xs ">Back</a>
         {{ Form::submit('Do Assign', ['name' => 'assign', 'class' => 'btn btn-success btn-xs']) }}
         {{ Form::submit('Do Revoke', ['name' => 'revoke','class' => 'btn btn-danger btn-xs']) }}
 
