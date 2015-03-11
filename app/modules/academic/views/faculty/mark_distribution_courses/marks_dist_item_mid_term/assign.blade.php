@@ -3,6 +3,27 @@
     @include('academic::_sidebar')
 @stop
 @section('content')
+
+
+    <?php $i = 0; ?>
+    @foreach($acm_academic_ass_std as $value)
+        {{User::FullName($value[$i]['user_id'])}}
+        {{Semester::find(CourseManagement::where('course_id', '=', $value[0]['course_id'])
+                    ->where('user_id', '=', $value[0]['user_id'])
+                    ->first()->semester_id)->title; }}
+        {{Year::find(CourseManagement::where('course_id', '=', $value[0]['course_id'])
+                    ->where('user_id', '=', $value[0]['user_id'])
+                    ->first()->year_id)->title; }}
+        {{--@foreach($course_management as $cm)
+            {{User::FullName($value[$i]['user_id'])}}
+            {{Semester::find($cm[$i]['semester_id'])->title; }}
+            {{Year::find($cm[$i]['year_id'])->title;}}
+            <br><br>
+        @endforeach--}}
+        <br><br>
+    @endforeach
+
+
     {{ Form::open(array('url' => 'batch/assign')) }}
     {{--{{ Form::text('title', $acm->title, ['class'=>'form-control title'])}}--}}
     <p style="text-align: center;color: #800080;font-size:large ">Assign of {{$acm->title}} to student</p>

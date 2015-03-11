@@ -760,7 +760,7 @@ class AcmFacultyController extends \BaseController {
 	{
 		$date_time= array('' => 'Select Date') + AcmClassSchedule::lists('day', 'id');
 		$title = 'All Midterm List';
-		$datas = AcmAcademic::with('relAcmClassSchedule')
+		$datas = AcmAcademic::with('relAcmClassSchedule', 'relCourseManagement')
 			->where('acm_marks_distribution_id', '=', $marks_dist_id)
 			->get();
 		$data= CourseManagement::with( 'relCourse')
@@ -873,14 +873,25 @@ class AcmFacultyController extends \BaseController {
 	 * @param $mark_dist_id
 	 * @return mixed
 	 */
-	public  function assign_midterm($acm_id, $cm_id, $mark_dist_id)
+	public  function assign_midterm($acm_id, $cm_id, $mark_dist_id, $course_id)
 	{
-		//$model = AcmAcademicAssignStudent::get();
-		/*if($model){
-			echo "OK";
-		}else {
-			echo "M";
-		}exit;*/
+		$student_of_course = CourseManagement::where('course_id', '=', $course_id)->get();
+
+		foreach($student_of_course as $key => $value){
+			$acm_academic_ass_std [] = AcmAcademicAssignStudent::where('user_id', '=', $value->user_id)
+				->where('course_id', '=', $value->course_id)
+				->get();
+		}
+
+		$i = 0;
+		foreach($acm_academic_ass_std as $values){
+			$user_id = $values[$i]['user_id'];
+			$course_id = $values[$i]['course_id'];
+			$course_management []= CourseManagement::where('user_id', '=', $user_id)
+				->where('course_id', '=', $course_id)
+				->get();
+		}
+
 		$acm= AcmAcademic::with('relAcmClassSchedule')
 			->where('id', '=', $acm_id)
 			->first();
@@ -902,7 +913,10 @@ class AcmFacultyController extends \BaseController {
 		$config_data = AcmMarksDistribution::with('relAcmMarksDistItem', 'relCourseManagement.relCourse')
 			->where('course_management_id', '=', $cm_id)
 			->get();
-		return View::make('academic::faculty.mark_distribution_courses.marks_dist_item_mid_term.assign',compact('acm','data','config_data','exam_questions','cm_data'));
+		return View::make('academic::faculty.mark_distribution_courses.marks_dist_item_mid_term.assign',compact(
+			'acm','data','config_data','exam_questions','cm_data','acm_academic_ass_std',
+			'course_management'
+		));
 	}
 	public function batch_assign_midterm()
 	{

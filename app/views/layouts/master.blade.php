@@ -18,9 +18,9 @@
     {{ HTML::style('assets/css/datepicker.css')}}
     {{ HTML::style('assets/css/jquery.dataTables.min.css')}}
 
-   
+
     <style>
-    .datepicker{z-index:1151 !important;}
+        .datepicker{z-index:1151 !important;}
     </style>
 
     {{ HTML::script('assets/js/jquery-2.1.1.min.js') }}
@@ -28,8 +28,8 @@
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
-        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
 
@@ -41,112 +41,112 @@
 <div id="wrapper">
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation" >
-    <div class="navbar-inner">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="">Control Panel  ( {{ isset(Auth::user()->get()->username) ? ucwords(Auth::user()->get()->username) : ucwords(Auth::applicant()->get()->username) }} )</a>
+        <div class="navbar-inner">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="">Control Panel  ( {{ isset(Auth::user()->get()->username) ? ucwords(Auth::user()->get()->username) : ucwords(Auth::applicant()->get()->username) }} )</a>
 
-            </div>
-            <!-- /.navbar-header -->
+                </div>
+                <!-- /.navbar-header -->
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown">
-                    <a href="" role="button" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="icon-user"></i> Common Module <i class="caret"></i>
-                    </a>
-                    <ul class="dropdown-menu">
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="" role="button" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="icon-user"></i> Common Module <i class="caret"></i>
+                            </a>
+                            <ul class="dropdown-menu">
 
-                        <li><a tabindex="-1" href="{{ action('CourseController@index') }}"> Course Management </a></li>
-                        <li><a tabindex="-1" href="{{ action('CourseTypeController@index') }}"> Course Type </a></li>
-                        <li><a tabindex="-1" href="{{ action('DegreeLevelController@index') }}"> Degree Level </a></li>
-                        <li><a tabindex="-1" href="{{ action('DegreeProgController@index') }}"> Degree / Program Name </a></li>
-                        <li><a tabindex="-1" href="{{ action('DepartmentController@index') }}"> Department Management </a></li>
-                        <li><a tabindex="-1" href="{{ action('SemesterController@index') }}"> Semester </a></li>
-                        <li><a tabindex="-1" href="{{ action('TargetRoleController@index') }}"> Target Role </a></li>
-                        <li><a tabindex="-1" href="{{ action('TaskListRoleController@index') }}"> Task List </a></li>
-                        <li><a tabindex="-1" href="{{ action('RoleTaskController@index') }}"> Role Task </a></li>
-                        <li><a tabindex="-1" href="{{ action('RoleTaskUserController@index') }}"> Role Task User </a></li>
-                        <li><a tabindex="-1" a href="{{URL::to('subject/list') }}"> Subject Management </a></li>
-                        <li><a tabindex="-1" a href="{{URL::to('year/show') }}"> Year Management </a></li>
-                        <li><a tabindex="-1" a href="{{URL::to('term/show') }}"> All Course Management </a></li>
-                    </ul>
-                </li>
-
-
-         {{--Start Admission Module--}}
-
-          <li class="dropdown">
-              <a href="" role="button" class="dropdown-toggle" data-toggle="dropdown">
-                     <i class="icon-user"></i> Admission <i class="caret"></i>
-              </a>
-               <ul class="dropdown-menu">
-                    <li><a tabindex="-1" a href="{{URL::to('amw/course_manage') }}"> Course Management(Amw) </a></li>
-                    <li><a tabindex="-1" a href="{{URL::to('amw/degree_manage') }}"> Degree Management(Amw) </a></li>
-                    <li><a tabindex="-1" a href="{{URL::to('admission/public/degree_list') }}"> Admission (Public) </a></li>
-
-                     <li><a tabindex="-1" a href="{{URL::to('amw/admission_test/index') }}"> Admission Test(Amw)</a></li>
-
-
-               </ul>
-          </li>
-         {{-- Ends Academic Module--}}
-
-        {{--Start Academic Module--}}
-
-         <li class="dropdown">
-                 <a href="" role="button" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="icon-user"></i> Academic <i class="caret"></i>
-                 </a>
-                  <ul class="dropdown-menu">
-                       <li><a tabindex="-1" a href="{{URL::to('academic/faculty/') }}">Mark Distribution (Faculty)</a></li>
-                       <li><a tabindex="-1" a href="{{URL::to('academic/amw/') }}">Mark Distribution (Amw)</a></li>
-
-                  </ul>
-         </li>
-        {{-- Ends Academic Module--}}
-
-
-            {{--Examination Manageemnt Modules--}}
-            <li class="dropdown">
-                 <a href="" role="button" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="icon-user"></i> Examination<i class="caret"></i>
-                 </a>
-                 <ul class="dropdown-menu">
-
-                  {{--<li><a tabindex="-1" href="{{ action('Exm'.ucwords(Auth::user()->username).'Controller@index') }}"> Prepare Question Paper </a></li>--}}
-
-                        <li><a tabindex="-1" href="{{ action('ExmFacultyController@index') }}"> Prepare Question Paper (Faculty) </a></li>
-                        <li><a tabindex="-1" href="{{ action('ExmAmwController@examination') }}"> Prepare Question Paper (Amw) </a></li>
-
-                 </ul>
-            </li>
-             {{-- End of Examination Module--}}
-                <li class="dropdown">
-
-                    <a href="" role="button" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-user"></i> Setting <i class="caret"></i>
-
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a tabindex="-1" href=""><strong>{{ isset(Auth::user()->get()->username) ? ucwords(Auth::user()->get()->username) :  ucwords(Auth::applicant()->get()->username) }}</strong></a>
+                                <li><a tabindex="-1" href="{{ action('CourseController@index') }}"> Course Management </a></li>
+                                <li><a tabindex="-1" href="{{ action('CourseTypeController@index') }}"> Course Type </a></li>
+                                <li><a tabindex="-1" href="{{ action('DegreeLevelController@index') }}"> Degree Level </a></li>
+                                <li><a tabindex="-1" href="{{ action('DegreeProgController@index') }}"> Degree / Program Name </a></li>
+                                <li><a tabindex="-1" href="{{ action('DepartmentController@index') }}"> Department Management </a></li>
+                                <li><a tabindex="-1" href="{{ action('SemesterController@index') }}"> Semester </a></li>
+                                <li><a tabindex="-1" href="{{ action('TargetRoleController@index') }}"> Target Role </a></li>
+                                <li><a tabindex="-1" href="{{ action('TaskListRoleController@index') }}"> Task List </a></li>
+                                <li><a tabindex="-1" href="{{ action('RoleTaskController@index') }}"> Role Task </a></li>
+                                <li><a tabindex="-1" href="{{ action('RoleTaskUserController@index') }}"> Role Task User </a></li>
+                                <li><a tabindex="-1" a href="{{URL::to('subject/list') }}"> Subject Management </a></li>
+                                <li><a tabindex="-1" a href="{{URL::to('year/show') }}"> Year Management </a></li>
+                                <li><a tabindex="-1" a href="{{URL::to('term/show') }}"> All Course Management </a></li>
+                            </ul>
                         </li>
-                        <li class="divider"></li>
-                        <li><a tabindex="-1" href="{{URL::route('user/logout') }}">Logout</a></li>
+
+
+                        {{--Start Admission Module--}}
+
+                        <li class="dropdown">
+                            <a href="" role="button" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="icon-user"></i> Admission <i class="caret"></i>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a tabindex="-1" a href="{{URL::to('amw/course_manage') }}"> Course Management(Amw) </a></li>
+                                <li><a tabindex="-1" a href="{{URL::to('amw/degree_manage') }}"> Degree Management(Amw) </a></li>
+                                <li><a tabindex="-1" a href="{{URL::to('admission/public/degree_list') }}"> Admission (Public) </a></li>
+
+                                <li><a tabindex="-1" a href="{{URL::to('amw/admission_test/index') }}"> Admission Test(Amw)</a></li>
+
+
+                            </ul>
+                        </li>
+                        {{-- Ends Academic Module--}}
+
+                        {{--Start Academic Module--}}
+
+                        <li class="dropdown">
+                            <a href="" role="button" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="icon-user"></i> Academic <i class="caret"></i>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a tabindex="-1" a href="{{URL::to('academic/faculty/') }}">Mark Distribution (Faculty)</a></li>
+                                <li><a tabindex="-1" a href="{{URL::to('academic/amw/') }}">Mark Distribution (Amw)</a></li>
+
+                            </ul>
+                        </li>
+                        {{-- Ends Academic Module--}}
+
+
+                        {{--Examination Manageemnt Modules--}}
+                        <li class="dropdown">
+                            <a href="" role="button" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="icon-user"></i> Examination<i class="caret"></i>
+                            </a>
+                            <ul class="dropdown-menu">
+
+                                {{--<li><a tabindex="-1" href="{{ action('Exm'.ucwords(Auth::user()->username).'Controller@index') }}"> Prepare Question Paper </a></li>--}}
+
+                                <li><a tabindex="-1" href="{{ action('ExmFacultyController@index') }}"> Prepare Question Paper (Faculty) </a></li>
+                                <li><a tabindex="-1" href="{{ action('ExmAmwController@examination') }}"> Prepare Question Paper (Amw) </a></li>
+
+                            </ul>
+                        </li>
+                        {{-- End of Examination Module--}}
+                        <li class="dropdown">
+
+                            <a href="" role="button" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-user"></i> Setting <i class="caret"></i>
+
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a tabindex="-1" href=""><strong>{{ isset(Auth::user()->get()->username) ? ucwords(Auth::user()->get()->username) :  ucwords(Auth::applicant()->get()->username) }}</strong></a>
+                                </li>
+                                <li class="divider"></li>
+                                <li><a tabindex="-1" href="{{URL::route('user/logout') }}">Logout</a></li>
+                            </ul>
+                        </li>
                     </ul>
-                </li>
-            </ul>
+                </div>
+                <!-- /.navbar-collapse -->
             </div>
-            <!-- /.navbar-collapse -->
         </div>
-    </div>
     </nav>
     <div style="clear: both"></div>
 
@@ -155,41 +155,41 @@
         <div class="row">
             <div class="col-md-3">
                 <form class="navbar-form navbar-left" role="search">
-                <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Search">
-                </div>
-                <button type="submit" class="btn btn-default">Submit</button>
-              </form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                    </div>
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </form>
                 @section('sidebar')
                 @show
             </div>
 
             <div class="col-md-9">
-                    {{--Error handling--}}
-                    @if ( $errors->count() > 0 )
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach($errors->all() as $message )
-                                    <li>{{ $message }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
+                {{--Error handling--}}
+                @if ( $errors->count() > 0 )
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach($errors->all() as $message )
+                                <li>{{ $message }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
 
-                    {{--set some message after action--}}
-                      @if (Session::has('message'))
-                            <div class="alert alert-success">{{Session::get("message")}}</div>
+                {{--set some message after action--}}
+                @if (Session::has('message'))
+                    <div class="alert alert-success">{{Session::get("message")}}</div>
 
-                      @elseif(Session::has('error'))
-                           <div class="alert alert-warning">{{Session::get("error")}}</div>
+                @elseif(Session::has('error'))
+                    <div class="alert alert-warning">{{Session::get("error")}}</div>
 
-                      @elseif(Session::has('info'))
-                          <div class="alert alert-info">{{Session::get("info")}}</div>
+                @elseif(Session::has('info'))
+                    <div class="alert alert-info">{{Session::get("info")}}</div>
 
-                      @elseif(Session::has('danger'))
-                           <div class="alert alert-danger">{{Session::get("danger")}}</div>
+                @elseif(Session::has('danger'))
+                    <div class="alert alert-danger">{{Session::get("danger")}}</div>
 
-                     @endif
+                @endif
 
                 <div class="navbar">
                     <div class="navbar-inner">
@@ -213,7 +213,7 @@
     <!-- /.container -->
 
 
-     <div class="container">
+    <div class="container">
         <!-- Footer -->
         <footer>
             <div class="row">
