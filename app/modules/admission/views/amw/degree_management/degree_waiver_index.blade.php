@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.layout')
 @section('sidebar')
     {{--@include('applicant::_sidebar')--}}
 @stop
