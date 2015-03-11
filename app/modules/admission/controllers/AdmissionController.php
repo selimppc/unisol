@@ -106,9 +106,11 @@ class AdmissionController extends \BaseController {
         }
     }
 
-    public function questionPaper($year_id, $semester_id, $degree_id)
+    public function questionPaper($year_id, $semester_id, $degree_id )
     {
-        $adm_question_paper = AdmQuestion::latest('id')->paginate(3);
+//        $adm_question_paper = AdmQuestion::latest('id')->get();  , $degree_admtest_subject_id
+        $adm_question_paper = AdmQuestion::latest('id')->get();
+
 //        print_r($adm_question_paper);exit;
         $data = Degree::with('relDepartment')->where('id' ,'=', $degree_id)->first()->relDepartment->title;
 
@@ -153,14 +155,27 @@ class AdmissionController extends \BaseController {
         }
         //ok
     }
-    public function viewQuestionPaper(){
+    public function viewQuestionPaper($id){
+        $view_question_paper = AdmQuestion::find($id);
+
+        return View::make('admission::amw.admission_test.view_question_paper',compact('view_question_paper'));
+
 
 
     }
-    public function editQuestionPaper(){
+    public function editQuestionPaper($id){
+        $edit_question_paper = AdmQuestion::find($id);
 
+        return View::make('admission::amw.admission_test.edit_question_paper',compact('edit_question_paper'));
 
     }
+
+    public function updateQuestionPaper(){
+        echo "ok";
+
+    }
+
+
     public function viewQuestionsItem(){
 
 
