@@ -202,7 +202,7 @@ Route::any('midterm-update/{id}',[
 
 //+-----Mid term assign start-----
 
-Route::any('academic/faculty/marks-dist-item/midterm/assign/{acm_id}/{cm_id}/{mark_dist_id}/{course_id}',[
+Route::any('academic/faculty/marks-dist-item/midterm/assign/{acm_id}/{cm_id}/{mark_dist_id}',[
     'as' => 'mid/term.assign',
     'uses'=> 'AcmFacultyController@assign_midterm'
 ]);
