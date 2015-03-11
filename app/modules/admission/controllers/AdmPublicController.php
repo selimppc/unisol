@@ -15,7 +15,6 @@ class AdmPublicController extends \BaseController {
     public function admDegreeApplicantSave(){
 
             if(Auth::applicant()->check()){
-            // echo Auth::applicant()->get()->id;exit;
                 $degree_ids = Input::get('ids');
                 foreach($degree_ids as $key => $value){
 
@@ -27,7 +26,10 @@ class AdmPublicController extends \BaseController {
               }
                     return Redirect::route('admission.apt_profile_details', ['id' => Auth::applicant()->get()->id]);
             } else {
-                    return Redirect::to('user/login')->with('message','Please login As Applicant !!');
+//                    return Redirect::route('admission.degree_list')->with('message','Please login !!');
+                //echo "NO";exit;
+                Session::flash('danger', "Please Login!");
+                return Redirect::back();
             }
 
         //return Redirect::route('admission.apt_profile_details', ['id' => Auth::applicant()->get()->id]);

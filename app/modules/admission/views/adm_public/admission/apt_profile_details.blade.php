@@ -1,38 +1,60 @@
 @extends('layouts.layout')
  @section('sidebar')
-  @include('layouts._sidebar_applicant')
+   @include('layouts._sidebar_applicant')
  @stop
 @section('content')
 {{--<a class="pull-right btn btn-sm btn-info" href="{{ URL::to('degree_manage/create')}}" data-toggle="modal" data-target="#addModal" >Add More Degree</a>--}}
 
-<h3>Admission On </h3>
 {{---------------------------------------------Data Table:admission on  degree Starts-----------------------------------------------------------------}}
- <div class="well well-sm">
-      <table class="table table-bordered table-striped">
+ <div class="box box-solid box-info">
+     <div class="box-header">
+             <h3 class="box-title">Admission On</h3>
+             <div class="box-tools pull-right">
+                 <button class="btn btn-info btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                 <button class="btn btn-info btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
+             </div>
+     </div>
+     {{--<section class="col-lg-6 connectedSortable">--}}
+         <div class="box box-info">
+              <div class="box-header">
+              <p>&nbsp;</p>
+              </div>
+              <div class="box-body">
+                   <div class="row">
 
-                   <tbody>
-                             <tr>
-                                  <th rowspan="100%" style="vertical-align: middle">
-                                     <b style="font-size: medium">Degree Name</b>
-                                  </th>
-                             </tr>
-                        @foreach($degree_applicant as $value)
+                       <div class="col-lg-12">
+                          <table class="table  table-bordered">
+                                <tbody>
+                                    <tr>
+                                        <th rowspan="70%" style="vertical-align: middle"><b style="font-size: medium">Degree Name</b></th>
+                                    </tr>
+                                    @foreach($degree_applicant as $value)
 
-                                <tr>
-                                     <td>
-                                           <a href="{{ URL::route('admission.adm_test_details',
-                                               ['degree_id' => $value->id]) }}">
-                                               {{ $value->relDegree->title }}
-                                           </a>
-                                     </td>
-                                </tr>
-                        @endforeach
-                   </tbody>
-      </table>
+                                        <tr>
+                                             <td class="col-lg-10">
+                                                   <a href="{{ URL::route('admission.adm_test_details',
+                                                       ['degree_id' => $value->id]) }}">
+                                                       {{ $value->relDegree->title }}
+                                                   </a>
+                                             </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                          </table>
+                       </div>
+                   </div>
+              </div>
+
+              <div class="box-footer clearfix">
+                  <button class="pull-right btn btn-default" id="sendEmail">Edit <i class="fa fa-arrow-circle-right"></i></button>
+              </div>
+         </div>
+     {{--</section>--}}
  </div>
- <p>&nbsp;</p>
-{{-----------------------------------Data Table : admission on  degree Starts Ends---------------------------------------------------------------------------}}
 
+{{-----------------------------------Data Table : admission on  degree Starts Ends---------------------------------------------------------------------------}}
+<p>&nbsp;</p>
+<p>&nbsp;</p>
 {{-----------------------------------Applicant's Profile:Personal Information starts--------------------------------------------------------}}
  <div class="box box-solid box-info">
     <div class="box-header">
@@ -59,8 +81,6 @@
                                       <div class="col-lg-4">
                                               @if(isset($applicant_personal_info))
                                                   {{ HTML::image('applicant_images/'.$applicant_personal_info->profile_image) }}
-                                              @else
-                                                  {{"Profile Picture Do Not Added !"}}
                                               @endif
                                       </div>
                                       <div class="col-lg-8">
@@ -108,10 +128,12 @@
                                       </div>
                                   </div>
                              </div>
+                             <p>&nbsp;</p><p>&nbsp;</p><br>
                              <div class="box-footer clearfix">
                                  <button class="pull-right btn btn-default" id="sendEmail">Edit <i class="fa fa-arrow-circle-right"></i></button>
                              </div>
                     </div>
+                    <p>&nbsp;</p>
                     <div class="box box-info">
                          <div class="box-header">
                              <h3 class="box-title">Academic Information</h3>
@@ -158,10 +180,18 @@
                                       </div>
                                   </div>
                              </div>
+
                              <div class="box-footer clearfix">
                                  <button class="pull-right btn btn-default" id="sendEmail">Edit <i class="fa fa-arrow-circle-right"></i></button>
                              </div>
                </div>
+               <div class="box box-footer">
+                  <button class="pull-right btn btn-info" id="sendEmail">Next<i class="fa fa-arrow-circle-right"></i></button>
+               </div>
+               <div>
+                    {{--<a class="pull-right btn btn-sm btn-info" href="{{ URL::to('degree_manage/create')}}">Next</a>--}}
+               </div>
+               <p>&nbsp;</p>
          </section>
          <section class="col-lg-6 connectedSortable">
          <p>&nbsp;</p>
@@ -236,6 +266,7 @@
                           </div>
                       </div>
                  </div>
+                 <p>&nbsp;</p>
                  <div class="box-footer clearfix">
                      <button class="pull-right btn btn-default" id="sendEmail">Edit <i class="fa fa-arrow-circle-right"></i></button>
                  </div>
@@ -247,5 +278,7 @@
  <p>&nbsp;</p>
  <p>&nbsp;</p>
  <p>&nbsp;</p>
+
+
 @stop
 
