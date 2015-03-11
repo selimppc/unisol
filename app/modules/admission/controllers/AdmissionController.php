@@ -48,15 +48,12 @@ class AdmissionController extends \BaseController {
 
     public function examiners($year_id, $semester_id, $degree_id)
     {
-        $adm_examiners_home = AdmExaminer::orderby('id', 'DESC')->where('degree_id', '=', $degree_id)->paginate(3);
+        $adm_examiners_home = AdmExaminer::latest('id')->paginate(10);
         $data = Degree::with('relDepartment')->where('id' ,'=', $degree_id)->first()->relDepartment->title;
 
         return View::make('admission::amw.admission_test.examiners',
             compact('data','adm_examiners_home','year_id','semester_id','degree_id'));
     }
-
-
-
 
     public function viewExaminers($degree_id){
 
@@ -180,11 +177,38 @@ class AdmissionController extends \BaseController {
 
 
     }
-    public function assignFaculty(){
+    public function assignFaculty()
+    {
+    }
+
+    public function mngAdmTestSubject(){
+        $degree_adm_test_subject = DegreeAdmTestSubject::orderby('id', 'DESC')->paginate(5);
+//        $data = Degree::with('relDepartment')->where('id' ,'=', $degree_id)->first()->relDepartment->title;
+
+        return View::make('admission::amw.admission_test.mng_adm_test_subject',compact('degree_adm_test_subject'));
 
 
     }
 
+    public function storeAdmTestSubject(){
+
+
+
+    }
+
+    public function viewAdmTestSubject($id){
+        $view_question_paper = DegreeAdmTestSubject::find($id);
+
+        return View::make('admission::amw.admission_test.view_question_paper.blade.php',compact('view_question_paper'));
+
+    }
+
+    public function editAdmTestSubject($id){
+        $edit_question_paper = DegreeAdmTestSubject::find($id);
+
+        return View::make('admission::amw.admission_test.edit_admtest_subject',compact('edit_question_paper'));
+
+    }
 
 
 

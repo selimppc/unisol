@@ -10,6 +10,14 @@ class AdmTestSubject extends Eloquent{
 
     protected $table='admtest_subject';
 
+    public static function getTestSubjectName($semId)
+    {
+        $data = AdmTestSubject::find($semId);
+        return $data->title;
+    }
+
+
+
     public static function boot(){
         parent::boot();
         static::creating(function($query){
