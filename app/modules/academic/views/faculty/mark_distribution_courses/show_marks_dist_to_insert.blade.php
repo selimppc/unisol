@@ -99,7 +99,7 @@
                 {{--Ajax delete if find faculty created_by and auth id=2--}}
                 @if(isset($value->CBid ) && $value->CBid == Auth::user()->get()->id )
                     {{--@if($value->CBid )--}}
-                    <td><a class="btn btn-default btn-sm" id="removedistTrId{{$key}}" onClick="deleteMarkDistTr(this.id, {{$value->isMarksId}})"><span class="glyphicon glyphicon-trash text-danger"></span></a></td>
+                    <td><a class="btn btn-default btn-sm" id="removedistTrId{{$key}}" onClick="deleteMarkDistTr(this.id, {{$value->isMarksId}})"><i class="fa  fa-trash-o" style="font-size: 15px;color: red"></i></a></td>
                 @else
                 @endif
             </tr>
