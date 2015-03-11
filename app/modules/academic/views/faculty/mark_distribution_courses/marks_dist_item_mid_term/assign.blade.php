@@ -3,6 +3,45 @@
     @include('academic::_sidebar')
 @stop
 @section('content')
+
+
+    {{--<table>--}}
+    {{--<?php $i = 0; ?>--}}
+    {{--@foreach($acm_academic_ass_std as $value)--}}
+
+            {{--<tr>--}}
+                {{--<td>{{User::FullName($value[$i]['user_id'])}}</td>--}}
+                {{--<td>--}}
+                    {{--{{Semester::find(CourseManagement::where('course_id', '=', $value[0]['course_id'])--}}
+                    {{--->where('user_id', '=', $value[0]['user_id'])--}}
+                    {{--->first()->semester_id)->title; }}--}}
+                {{--</td>--}}
+                {{--<td>--}}
+                    {{--{{Year::find(CourseManagement::where('course_id', '=', $value[0]['course_id'])--}}
+                    {{--->where('user_id', '=', $value[0]['user_id'])--}}
+                    {{--->first()->year_id)->title; }}--}}
+                {{--</td>--}}
+            {{--</tr>--}}
+
+          {{--@foreach($course_management as $cm)--}}
+            {{--{{User::FullName($value[$i]['user_id'])}}--}}
+            {{--{{Semester::find($cm[$i]['semester_id'])->title; }}--}}
+            {{--{{Year::find($cm[$i]['year_id'])->title;}}--}}
+            {{--<br><br>--}}
+        {{--@endforeach--}}
+        {{--<br><br>--}}
+    {{--@endforeach--}}
+    {{--</table>--}}
+        {{--@foreach($course_management as $cm)--}}
+            {{--{{User::FullName($value[$i]['user_id'])}}--}}
+            {{--{{Semester::find($cm[$i]['semester_id'])->title; }}--}}
+            {{--{{Year::find($cm[$i]['year_id'])->title;}}--}}
+            {{--<br><br>--}}
+        {{--@endforeach--}}
+        {{--<br><br>--}}
+
+
+
     {{ Form::open(array('url' => 'batch/assign')) }}
     {{--{{ Form::text('title', $acm->title, ['class'=>'form-control title'])}}--}}
     <p style="text-align: center;color: #800080;font-size:large ">Assign of {{$acm->title}} to student</p>
@@ -18,7 +57,7 @@
         <thead>
         <tr>
             <th>
-                <input name="id" type="checkbox" id="checkbox" class="checkbox" value="">
+                <input name="id" type="checkbox" class="checkbox" value="">
             </th>
             <th>Name</th>
             <th>Semester</th>
@@ -29,23 +68,21 @@
         </tr>
         </thead>
         <tbody>
-        @foreach ($cm_data as $value)
+        <?php $i = 0; ?>
+        @foreach($acm_academic_ass_std as $value)
+            {{$value[$i]['user_id']}}
+        {{--@foreach($acm_academic_ass_std as $value)
             <tr>
-                {{--<td><input type="checkbox" name="chk[]"  id="checkbox" class="myCheckbox" value="{{$value->relCourseManagement->relUser->id}}">--}}
-                {{--</td>--}}
-                {{--<td>{{$value->relCourseManagement->relUser->username}}</td>--}}
-                {{--<td>{{$value->relCourseManagement->relSemester->title}}</td>--}}
-                {{--<td>{{$value->relCourseManagement->relYear->title}}</td>--}}
-                {{--<td>{{$value->relCourseManagement->relCourse->relSubject->relDepartment->title}}</td>--}}
-                {{--<td>{{ AcmAcademicAssignStudent::getAssignStudentStatus($value->acm_academic_id)}}</td>--}}
-                {{--<td></td>--}}
-
-                <td><input type="checkbox" name="chk[]"  id="checkbox" class="myCheckbox" value="{{$value->relUser->id}}">
+                <td><input type="checkbox" name="chk[]"  class="myCheckbox" value=" {{User::FullName($value[$i]['user_id'])}}">
                 </td>
-                <td>{{$value->relUser->username}}</td>
-                <td>{{$value->relSemester->title}}</td>
-                <td>{{$value->relYear->title}}</td>
-                <td>{{$value->relCourse->relSubject->relDepartment->title}}</td>
+                <td>{{User::FullName($value[$i]['user_id'])}}</td>
+                <td>{{Semester::find(CourseManagement::where('course_id', '=', $value[0]['course_id'])
+                    ->where('user_id', '=', $value[0]['user_id'])
+                    ->first()->semester_id)->title; }}</td>
+                <td>{{Year::find(CourseManagement::where('course_id', '=', $value[0]['course_id'])
+                    ->where('user_id', '=', $value[0]['user_id'])
+                    ->first()->year_id)->title; }}</td>
+                <td></td>
                 <td></td>
 
                 <td>
@@ -55,7 +92,7 @@
 
                     {{ Form::submit('Assign', ['name' => 'save', 'class' => 'btn btn-success btn-xs']) }}
                 </td>
-            </tr>
+            </tr>--}}
         @endforeach
         </tbody>
     </table>
