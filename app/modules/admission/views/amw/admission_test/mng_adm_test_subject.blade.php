@@ -20,7 +20,7 @@
                     </div>
                     <div class="col-sm-12">
                         <div class="col-sm-6">
-                            <strong> Degree: </strong>
+                            <strong> Degree: </strong> {{ $sbjct_dgre_name }}
                             </br>
                         </div>
                     </div>
@@ -41,7 +41,7 @@
                              </tr>
                   </thead>
                   <tbody>
-                      @foreach($degree_adm_test_subject as $dgr_adm_tst_add_sbjct)
+                      @foreach($degree_test_sbjct as $dgr_adm_tst_add_sbjct)
                             <tr>
                                 <td><input type="checkbox" name="id[]" class="myCheckbox" value="{{ $dgr_adm_tst_add_sbjct['id'] }}"></td>
                                 <td>{{ AdmTestSubject::getTestSubjectName($dgr_adm_tst_add_sbjct->admtest_subject_id) }} </td>

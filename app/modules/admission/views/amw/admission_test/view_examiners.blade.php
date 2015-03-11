@@ -3,7 +3,6 @@
              <h2>Welcome to View Examiners <strong></strong> </h2> </br>
              {{ Form::open(array('route'=>'admission_test.amw.view_examiners','method' => '')) }}
                      <div class="jumbotron text-center">
-
                             <strong> Department: </strong>{{ $data }} </br>
 
                             <strong> Degree: </strong> {{ Degree::getDegreeName($degree_id) }} </br>

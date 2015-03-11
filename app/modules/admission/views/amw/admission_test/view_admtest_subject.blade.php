@@ -1,5 +1,5 @@
 <div style="padding: 10px; width: 90%;">
-                 <h2>Welcome to View Adm Test Subject  <strong></strong> </h2>
+                 <h2>Welcome to View Adm Test Subject <strong></strong> </h2>
                      {{--{{ Form::open(array('route'=>'admission_test.amw.view_question_paper','method' => '')) }}--}}
                              {{--<div class="jumbotron text-center">--}}
                                  {{--<h3><strong>Name of Examination : </strong> &nbsp; {{ AdmQuestion::getQuestionName($view_question_paper->id) }}</h3> </br>--}}
