@@ -2,19 +2,20 @@
 
              <?php
                 $degree_id = Degree::lists('title', 'id');
+                $dgr_sbjct_id = DegreeAdmTestSubject::lists('admtest_subject_id', 'id');
 
             ?>
 
 
                 <div class="form-group">
-                       {{ Form::label('examiner_faculty_id', 'Name of Examination: ') }}
+                       {{ Form::label('examiner_faculty_id', 'Name of Degree: ') }}
                        {{ Form::select('examiner_faculty_id',$degree_id, Input::old('examiner_faculty_user_id') )}}
                 </div>
 
-                {{--<div class="form-group">--}}
-                       {{--{{ Form::label('degree_admtest_subject_id', 'Subject:') }}--}}
-                       {{--{{ Form::select('degree_admtest_subject_id', Input::old('degree_admtest_subject_id'), array('class' => 'form-control')) }}--}}
-                {{--</div>--}}
+                <div class="form-group">
+                       {{ Form::label('degree_admtest_subject_id', 'Subject:') }}
+                       {{ Form::select('degree_admtest_subject_id',$dgr_sbjct_id, Input::old('degree_admtest_subject_id'), array('class' => 'form-control')) }}
+                </div>
 
                 <div class="form-group">
                        {{ Form::label('title', 'Title:') }}
@@ -24,6 +25,7 @@
                 <div class="form-group">
                     {{ Form::label('deadline', 'Deadline') }}
                     {{ Form::text('deadline', Input::old('deadline'), array('class' => 'form-control datepicker')) }}
+
                 </div>
 
                 <div class="form-group">

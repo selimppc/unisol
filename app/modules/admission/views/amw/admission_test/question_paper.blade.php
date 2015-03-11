@@ -6,30 +6,30 @@
 
      <h1>Welcome to Prepare Question paper <strong></strong> </h1> <br>
             {{--{{ Form::open(array('url' => 'examination/amw/batchDelete')) }}--}}
+
+                <div class="row">
+                        <div class="col-sm-12">
+                           <div class="pull-right col-sm-6">
+                               <div class="btn-group" style="margin-right: 10px">
+                                   <button type="button" class="btn btn-info btn-xs" data-toggle="modal"
+                                             data-target="#CreateModal">
+                                               Create Question Paper
+                                   </button>
+                               </div>
+                           </div>
+                           <div class="col-sm-6">
+                                <strong> Department: </strong>{{ $data }}
+                                </br>
+                                <strong> Year: </strong>{{ Year::getYearsName($year_id) }}
+                                </br>
+                                <strong> Degree: </strong>{{ Degree::getDegreeName($degree_id) }}
+                                </br>
+                           </div>
+                        </div>
+                </div>
+
                 <table id="example" class="table table-striped  table-bordered"  >
                       <thead>
-                            <div class="row">
-                                    <div class="col-sm-12">
-                                       <div class="pull-right col-sm-6">
-                                           <div class="btn-group" style="margin-right: 10px">
-                                               <button type="button" class="btn btn-info btn-xs" data-toggle="modal"
-                                                         data-target="#CreateModal">
-                                                           Create Examiner
-                                               </button>
-                                           </div>
-                                       </div>
-                                       <div class="col-sm-6">
-                                            <strong> Department: </strong>{{ $data }}
-                                            </br>
-                                            <strong> Year: </strong>{{ Year::getYearsName($year_id) }}
-                                            </br>
-                                            <strong> Degree: </strong>{{ Degree::getDegreeName($degree_id) }}
-                                            </br>
-
-                                       </div>
-                                    </div>
-                            </div>
-
                            {{ Form::submit('Delete Items', array('class'=>'btn btn-danger btn-xs', 'id'=>'hide-button', 'style'=>'display:none'))}}
                            <br>
 
@@ -60,10 +60,11 @@
 
 
                                       <td>
-                                         {{--<a href="{{ URL::route('admission.amw.viewQuestion', ['id'=>$adm_question_paper_list->id])  }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal" data-placement="left" title="Show" href="#">View</a>--}}
-                                         {{--<a href="{{ URL::route('admission.amw.editQuestionPaper', ['id'=>$adm_question_paper_list->id])  }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal" data-placement="left" title="Edit" href="#">Edit</a>--}}
+                                         <a href="{{ URL::route('admission_test.amw.view_question_paper', ['id'=>$adm_question_paper_list->id])  }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal" data-placement="left" title="Show" href="#">View</a>
+                                         <a href="{{ URL::route('admission_test.amw.edit_question_paper', ['id'=>$adm_question_paper_list->id])  }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal" data-placement="left" title="Edit" href="#">Edit</a>
 
-                                         {{--<a href="" class="btn btn-default btn-xs" data-toggle="modal" data-target="#ass_fac" data-placement="left" title="Assign Faculty" href="#">Assign Faculty</a>--}}
+                                         <a href="" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal" data-placement="left" title="Assign Faculty" href="#">VQs</a>
+                                         <a href="" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal" data-placement="left" title="Assign Faculty" href="#">AF</a>
                                       </td>
                                   </tr>
                             @endforeach

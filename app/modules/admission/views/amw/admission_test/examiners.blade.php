@@ -6,31 +6,33 @@
 
      <h1>Welcome to Examiners <strong></strong> </h1> <br>
             {{--{{ Form::open(array('url' => 'examination/amw/batchDelete')) }}--}}
+
+            <div class="row">
+                    <div class="col-sm-12">
+                        <div class="col-sm-6">
+                            <strong> Year: </strong>{{ Year::getYearsName($year_id) }}
+                            </br>
+                            <strong> Semester: </strong>{{ Semester::getSemesterName($semester_id) }}
+                            </br>
+                            <strong> Degree: </strong>{{ Degree::getDegreeName($degree_id) }}
+                            </br>
+                            <strong> Department: </strong>{{ $data  }}
+                            </br>
+                        </div>
+                        <div class="pull-right col-sm-6">
+                            <div class="btn-group" style="margin-right: 10px">
+                                <button type="button" class="btn btn-info btn-xs" data-toggle="modal"
+                                          data-target="#AddExaminer">
+                                            Add Examiner
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+
+
                 <table id="example" class="table table-striped  table-bordered"  >
                       <thead>
-                            <div class="row">
-                                    <div class="col-sm-12">
-                                        <div class="col-sm-6">
-                                            <strong> Year: </strong>{{ Year::getYearsName($year_id) }}
-                                            </br>
-                                            <strong> Semester: </strong>{{ Semester::getSemesterName($semester_id) }}
-                                            </br>
-                                            <strong> Degree: </strong>{{ Degree::getDegreeName($degree_id) }}
-                                            </br>
-                                            <strong> Department: </strong>{{ $data  }}
-                                            </br>
-                                        </div>
-                                        <div class="pull-right col-sm-6">
-                                            <div class="btn-group" style="margin-right: 10px">
-                                                <button type="button" class="btn btn-info btn-xs" data-toggle="modal"
-                                                          data-target="#AddExaminer">
-                                                            Add Examiner
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                            </div>
-
                            {{ Form::submit('Delete Items', array('class'=>'btn btn-danger btn-xs', 'id'=>'hide-button', 'style'=>'display:none'))}}
 
                              <br>
@@ -58,7 +60,7 @@
                                  <td>{{ $adm_examiners_list->status }} </td>
 
                                 <td>
-                                      <a href="#" class="btn btn-default btn-xs">cancel</a>
+                                      <a href="{{URL::previous()}}" class="btn btn-default btn-xs">cancel</a>
                                 </td>
                             </tr>
                       @endforeach
