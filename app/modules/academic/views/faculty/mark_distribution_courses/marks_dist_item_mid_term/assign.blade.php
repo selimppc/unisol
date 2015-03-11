@@ -8,13 +8,13 @@
     {{--{{ Form::text('title', $acm->title, ['class'=>'form-control title'])}}--}}
     <p style="text-align: center;color: #800080;font-size:large ">Assign of {{$acm->title}} to student</p>
     {{ Form::hidden('acm_academic_id', $acm->id, ['class'=>'form-control acm_academic_id'])}}
-    {{--<div class="col-md-4">--}}
+
     <div class='form-group' style="width: 300px">
         {{ Form::label('exam_question', 'Examination Question:') }}
         {{ Form::select('exam_question',$exam_questions,Input::old('exam_question'),['class'=>'form-control','']) }}
     </div>
     <p style="color: cornflowerblue">Help Text: If CT question is not prepared then tell faculty to create question paper.</p>
-    {{--</div>--}}
+   
     <table id="example" class="table table-bordered table-hover table-striped">
         <thead>
         <tr>
@@ -31,10 +31,9 @@
         </thead>
         <tbody>
             <?php $i=0; ?>
-            @foreach($acm_academic_ass_std as $value)
+            @foreach($acm_academic_ass_std as $key => $value)
                 <tr>
-                    <td> <input type="checkbox" name="chk[]"  class="myCheckbox" value=" {{$value[$i]['id']}}">
-                                    </td>
+                    <td><input type="checkbox" name="chk[]"  id="checkbox" class="myCheckbox" value="{{$value[$i]['id']}}">
                     <td>{{User::FullName($value[$i]['user_id'])}}</td>
                     <td>
                         {{Semester::find(CourseManagement::where('course_id', '=', $value[0]['course_id'])
@@ -53,14 +52,14 @@
 
                         <a href="" class="btn btn-primary btn-xs"> Evaluation </a>
 
-                        {{ Form::submit('Assign', ['name' => 'save', 'class' => 'btn btn-success btn-xs']) }}
+                        {{ Form::submit('Assign', ['name' => 'assign', 'class' => 'btn btn-success btn-xs']) }}
                     </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
     <div class="button" style="margin-top: 10px">
-        <a href="{{URL::previous('academic/faculty/marks/dist/item/class_test/')}}" class="btn btn-info btn-xs ">Back</a>
+        <a href="{{URL::previous('academic/faculty/marks-dist-item/midterm/assign/')}}" class="btn btn-info btn-xs ">Back</a>
         {{ Form::submit('Do Assign', ['name' => 'assign', 'class' => 'btn btn-success btn-xs']) }}
         {{ Form::submit('Do Revoke', ['name' => 'revoke','class' => 'btn btn-danger btn-xs']) }}
 

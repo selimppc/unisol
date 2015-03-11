@@ -246,7 +246,7 @@ Route::any('academic/faculty/marks-dist-item/final/term/assign/{acm_id}/{cm_id}/
     'uses'=> 'AcmFacultyController@assign_final_term'
 ]);
 Route::any('final/term/assign',[
-    'as' => 'batch.assign',
+    'as' => 'final/term/assign',
     'uses'=> 'AcmFacultyController@batch_assign_final_term'
 ]);
 Route::any('final/term/assign/comments/{assign_std_id}',[

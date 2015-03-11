@@ -883,23 +883,9 @@ class AcmFacultyController extends \BaseController {
 				->where('course_id', '=', $value->course_id)
 				->get();
 		}
-
-
-		/*$i = 0;
-		foreach($acm_academic_ass_std as $values){
-			$user_id = $values[$i]['user_id'];
-			$course_id = $values[$i]['course_id'];
-			$course_management []= CourseManagement::where('user_id', '=', $user_id)
-				->where('course_id', '=', $course_id)
-				->get();
-		}*/
-
 		$acm= AcmAcademic::with('relAcmClassSchedule')
 			->where('id', '=', $acm_id)
 			->first();
-//		$acm_data = AcmAcademic::with('relAcmClassSchedule','relCourseManagement.relSemester','relCourseManagement.relYear','relCourseManagement.relUser','relCourseManagement.relCourse.relSubject.relDepartment')
-//			->where('id', '=', $acm_id)
-//			->get();
 		$exam_questions= array('' => 'Select Examination Question') + ExmQuestion::lists('title', 'id');
 		$cm_data = CourseManagement::with('relSemester','relYear','relUser','relCourse.relSubject.relDepartment')
 			//->where('course_management_id','=' ,$cm_id)
@@ -946,7 +932,7 @@ class AcmFacultyController extends \BaseController {
                 $model->status = 'NA';
                 $model->save();
             }
-            return Redirect::back()->with('message','Successfully Deleted!');
+            return Redirect::back()->with('message','Successfully Revoked!');
 
 
 
@@ -983,7 +969,7 @@ class AcmFacultyController extends \BaseController {
 			// failure, get errors
 			$errors = $datas->errors();
 			Session::flash('errors', $errors);
-			return Redirect::to('academic/faculty/marks-dist-item/class_test/assign/');
+			return Redirect::to('academic/faculty/marks/dist/item/midterm/');
 		}
 	}
 
