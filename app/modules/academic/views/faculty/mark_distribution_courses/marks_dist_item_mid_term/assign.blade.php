@@ -14,7 +14,7 @@
         {{ Form::select('exam_question',$exam_questions,Input::old('exam_question'),['class'=>'form-control','']) }}
     </div>
     <p style="color: cornflowerblue">Help Text: If CT question is not prepared then tell faculty to create question paper.</p>
-   
+
     <table id="example" class="table table-bordered table-hover table-striped">
         <thead>
         <tr>

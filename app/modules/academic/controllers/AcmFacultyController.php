@@ -875,9 +875,7 @@ class AcmFacultyController extends \BaseController {
 	 */
 	public  function assign_midterm($acm_id, $cm_id, $mark_dist_id, $course_id)
 	{
-
 		$student_of_course = CourseManagement::where('course_id', '=', $course_id)->get();
-
 		foreach($student_of_course as $key => $value){
 			$acm_academic_ass_std [] = AcmAcademicAssignStudent::where('user_id', '=', $value->user_id)
 				->where('course_id', '=', $value->course_id)
@@ -887,14 +885,6 @@ class AcmFacultyController extends \BaseController {
 			->where('id', '=', $acm_id)
 			->first();
 		$exam_questions= array('' => 'Select Examination Question') + ExmQuestion::lists('title', 'id');
-		$cm_data = CourseManagement::with('relSemester','relYear','relUser','relCourse.relSubject.relDepartment')
-			//->where('course_management_id','=' ,$cm_id)
-			//->where('year_id','=' , 17)
-			//->where('semester_id','=' ,$cm_id)
-			//->where('course_id','=' , 1)
-			//->where('department_id','=' , 1)
-			->get();
-
 		$data= CourseManagement::with( 'relCourse')
 			->where('id', '=', $cm_id)
 			->get();
