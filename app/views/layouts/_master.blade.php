@@ -281,7 +281,7 @@
 
 
 {{ HTML::script('assets/js/bootstrap.3.2.min.js') }}
-{{HTML::script(etsb_scriptetsb_scripts.jsHTML::script('assets/js/jquery.dataTables.min.js')}}
+{{HTML::script('assets/js/jquery.dataTables.min.js')}}
 {{ HTML::script('assets/js/jquery.tablesorter.min.js') }}
 {{ HTML::script('assets/js/bootstrap-datepicker.js') }}
 {{HTML::script('assets/js/ratna_script.js')}}
