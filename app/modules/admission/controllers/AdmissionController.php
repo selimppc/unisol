@@ -182,7 +182,7 @@ class AdmissionController extends \BaseController {
     }
 
     public function mngAdmTestSubject(){
-        $degree_test_sbjct = DegreeAdmTestSubject::orderby('id', 'DESC')->paginate(5);
+        $degree_test_sbjct = DegreeAdmTestSubject::latest('id')->paginate(5);
 
         $sbjct_dgre_name = DegreeAdmTestSubject::with('relDegree')->where('degree_id' ,'=', 2)->first()->relDegree->title;
 
@@ -192,7 +192,6 @@ class AdmissionController extends \BaseController {
 
         return View::make('admission::amw.admission_test.mng_adm_test_subject',
             compact('degree_test_sbjct','sbjct_dgre_name','sbjct_name','admtest_subject_id'));
-
 
     }
 
