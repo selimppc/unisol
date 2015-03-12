@@ -92,9 +92,9 @@ class AdmPublicController extends \BaseController {
 
         $applicant_id = Auth::applicant()->get()->id;
 
-//        $degree_applicant = DegreeApplicant::with('relDegree')
-//            ->where('applicant_id', '=',$applicant_id )
-//            ->get();
+        $degree_applicant = DegreeApplicant::with('relDegree')
+            ->where('applicant_id', '=',$applicant_id )
+            ->get();
 
         $applicant_personal_info = ApplicantProfile::with('relCountry')
             ->where('applicant_id', '=',$applicant_id )
