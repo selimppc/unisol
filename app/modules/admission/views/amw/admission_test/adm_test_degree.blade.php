@@ -99,7 +99,7 @@
                    </div>
                    <div class="modal-body">
                        {{ Form::open(array('route' => 'admission_test.amw.store_degree_management', 'method' =>'post', 'role'=>'form','files'=>'true'))  }}
-                            @include('admission::amw/admission_test/_form')
+                            @include('admission::amw/admission_test/_adm_test_degree_form')
                        {{ Form::close() }}
                    </div>
                    <div class="modal-footer">

@@ -31,26 +31,26 @@
 
     <li class="treeview">
         <a href="#">
-            <i class="fa fa-bell-o"></i>
+            <i class="fa fa-download" style="color: #803a0f"></i>
             <span>Admission</span>
             <i class="fa fa-angle-left pull-right"></i>
         </a>
         <ul class="treeview-menu">
-            <li><a tabindex="-1" a href="{{URL::to('amw/course_manage') }}"><i class="fa fa-crosshairs"></i> Course Management(Amw) </a></li>
-            <li><a tabindex="-1" a href="{{URL::to('amw/degree_manage') }}"><i class="fa fa-flask"></i> Degree Management(Amw) </a></li>
-            <li><a tabindex="-1" a href="{{URL::to('admission_test/amw/index') }}"><i class="fa fa-thumbs-o-up"></i> Admission Test(Amw)</a></li>
-            <li><a tabindex="-1" a href="{{ URL::to('admission_test/amw/mng_adm_test_subject') }}"><i class="fa fa-frown-o"></i>Mng Admssn Tst Sbjct(Amw)</a></li>
-            <li><a tabindex="-1" a href="{{ URL::to('admission_test/amw/adm-test-degree') }}"><i class="fa fa-frown-o"></i>Admission Test (Degree)(Amw)</a></li>
+            <li><a tabindex="-1" a href="{{URL::to('amw/course_manage') }}"><i class="fa fa-crosshairs" style="color: #184f5d"></i> Course Management(Amw) </a></li>
+            <li><a tabindex="-1" a href="{{URL::to('amw/degree_manage') }}"><i class="fa fa-flask" style="color: #db4509"></i> Degree Management(Amw) </a></li>
+            <li><a tabindex="-1" a href="{{URL::to('admission_test/amw/index') }}"><i class="fa fa-thumbs-o-up" style="color: #1f7ee8"></i> Admission Test(Amw)</a></li>
+            <li><a tabindex="-1" a href="{{ URL::to('admission_test/amw/mng_adm_test_subject') }}"><i class="fa fa-frown-o" style="color: #b12696"></i>Mng Admssn Tst Sbjct(Amw)</a></li>
+            <li><a tabindex="-1" a href="{{ URL::to('admission_test/amw/adm-test-degree') }}"><i class="fa fa-bullhorn" style="color: #aa1c10"></i>Admission Test (Degree)(Amw)</a></li>
         </ul>
     </li>
     <li class="treeview">
         <a href="#">
-            <i class="fa fa-pencil"></i>
+            <i class="fa fa-pencil" style="color: #800080"></i>
             <span>Examination</span>
             <i class="fa fa-angle-left pull-right"></i>
         </a>
         <ul class="treeview-menu">
-            <li><a tabindex="-1" href="{{  URL::to('examination/amw/examination') }}"><i class="fa fa-pencil-square"></i> Prepare Question Paper</a></li>
+            <li><a tabindex="-1" href="{{  URL::to('examination/amw/examination') }}"><i class="fa fa-pencil-square" style="color: #0f8080"></i> Prepare Question Paper</a></li>
         </ul>
     </li>
 
