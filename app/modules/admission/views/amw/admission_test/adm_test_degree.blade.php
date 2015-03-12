@@ -5,38 +5,37 @@
 @section('content')
 <h1><strong>Welcome to ADm Test Degree Management </strong> </h1> <br>
 
-  <div class="row">
-      <div class="col-sm-12">
-          <div class="pull-right col-sm-6">
-             <div class="btn-group" style="margin-right: 10px">
-                 <button type="button" class="btn btn-info btn-xs" data-toggle="modal"
-                           data-target="#addDegreeModal">
-                             Add Degree
-                 </button>
-             </div>
-          </div>
-         <div  class="pull-left col-sm-6">
-             {{--{{ Form::open(array('url' => 'admission_test/amw/search-index')) }}--}}
-                       {{--<div class="col-sm-8">--}}
-                            {{--<div class="col-sm-3">--}}
-                                     {{--{{ Form::label('year_id', 'Year') }}--}}
-                                     {{--{{ Form::select('year_id',$d_m_year_id, Input::old('year_id'), array('class' => 'form-control','required'=>'required') ) }}--}}
+<div class="row">
+           <div class="col-sm-12">
+                <div class="pull-left col-sm-8">
+                       {{ Form::open(array('url' => 'admission_test/amw/search-adm-test-degree')) }}
+                                <div class="col-sm-3">
+                                         {{ Form::label('year_id', 'Year') }}
+                                         {{ Form::select('year_id',$year, Input::old('year_id'), array('class' => 'form-control','required'=>'required') ) }}
 
-                            {{--</div>--}}
-                            {{--<div class="col-sm-3">--}}
-                                     {{--{{ Form::label('semester_id', 'Semester') }}--}}
-                                     {{--{{ Form::select('semester_id',$d_m_semester_id, Input::old('semester_id'), array('class' => 'form-control','required'=>'required')) }}--}}
+                                </div>
+                                <div class="col-sm-3">
+                                         {{ Form::label('semester_id', 'Semester') }}
+                                         {{ Form::select('semester_id',$semester, Input::old('semester_id'), array('class' => 'form-control','required'=>'required')) }}
 
-                            {{--</div>--}}
-                            {{--<div class="col-sm-2">--}}
-                                {{--</br>--}}
-                                {{--{{ Form::submit('Filter', array('class'=>'btn btn-success btn-xs'))}}--}}
-                            {{--</div>--}}
-                       {{--</div>--}}
-             {{--{{ Form::close() }}--}}
-         </div>
-      </div>
-  </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    </br>
+                                    {{ Form::submit('Filter', array('class'=>'btn btn-success btn-xs'))}}
+                                </div>
+                       {{ Form::close() }}
+                </div>
+
+               <div class="pull-right col-sm-4">
+                       <div class="btn-group" style="margin-right: 10px">
+                           <button type="button" class="btn btn-info btn-xs" data-toggle="modal"
+                                      data-target="#addDegreeModal">
+                                        Add Degree
+                           </button>
+                       </div>
+               </div>
+           </div>
+       </div>
 
       {{--{{ Form::open(array('url' => 'examination/amw/batchDelete')) }}--}}
           <table id="example" class="table table-striped  table-bordered"  >
@@ -69,12 +68,13 @@
                                <td>{{ $adm_test_mgt->status}}</td>
                                <td>
 
-                                  <a href="{{ URL::route('admission_test.amw.view_degree_management', ['id'=>$adm_test_mgt->id])  }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal" data-placement="left" title="Show" href="#">View</a>
-                                  <a href="{{ URL::route('admission_test.amw.edit_degree_management', ['id'=>$adm_test_mgt->id])  }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal" data-placement="left" title="Edit" href="#">Edit</a>
+                                  <a href="{{ URL::route('admission_test.amw.view_degree_management', ['id'=>$adm_test_mgt->id])  }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#modal" data-placement="left" title="Show" href="#">View</a>
+                                  <a href="{{ URL::route('admission_test.amw.edit_degree_management', ['id'=>$adm_test_mgt->id])  }}" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modal" data-placement="left" title="Edit" href="#">Edit</a>
 
-                                  <a href="#" class="btn btn-default btn-xs" >MW</a>
-                                  <a href="#" class="btn btn-default btn-xs" >MA</a>
-                                  <a href="#" class="btn btn-default btn-xs" >MATS</a>
+                                  <a href="{{ URL::to('admission_test/amw/mng_adm_test_subject') }}" class="btn btn-primary btn-xs" >MW</a>
+                                  <a href="{{ URL::to('admission_test/amw/mng_adm_test_subject') }}" class="btn btn-success btn-xs" >MA</a>
+                                  <a href="{{ URL::to('admission_test/amw/mng_adm_test_subject') }}" class="btn btn-info btn-xs" >MATS</a>
+
                                </td>
                            </tr>
                      @endforeach
@@ -90,12 +90,12 @@
 
 
        {{-- Add Degree Modal --}}
-       <div class="modal fade" id="addDegreeModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+       <div class="modal fade" id="addDegreeModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true" >
            <div class="modal-dialog">
                <div class="modal-content">
                    <div class="modal-header">
                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                       <h4 class="modal-title" id="myModalLabel">Create Question paper</h4>
+                       <h4 class="modal-title" id="myModalLabel">Add Degree</h4>
                    </div>
                    <div class="modal-body">
                        {{ Form::open(array('route' => 'admission_test.amw.store_degree_management', 'method' =>'post', 'role'=>'form','files'=>'true'))  }}

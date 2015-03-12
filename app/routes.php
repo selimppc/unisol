@@ -43,6 +43,11 @@ Route::any("get-file", [
     "uses" => "HomeController@getFile"
 ]);
 
+Route::any("date-picker", [
+    "as"   => "datePicker",
+    "uses" => "HomeController@datePicker"
+]);
+
 
 Route::group( array('before' => 'auth'), function(){
 

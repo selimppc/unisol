@@ -12,6 +12,7 @@
         {{ HTML::style('assets/etsb/etsb_css/morris/morris.css') }}
         {{ HTML::style('assets/etsb/etsb_css/jvectormap/jquery-jvectormap-1.2.2.css') }}
         {{ HTML::style('assets/etsb/etsb_css/datepicker/datepicker3.css') }}
+        {{ HTML::style('assets/etsb/etsb_css/datepicker/bootstrap-datetimepicker.css') }}
         {{ HTML::style('assets/etsb/etsb_css/daterangepicker/daterangepicker-bs3.css') }}
         {{ HTML::style('assets/etsb/etsb_css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}
         {{ HTML::style('assets/etsb/etsb_css/style.css') }}
@@ -176,6 +177,7 @@
         {{ HTML::script('assets/etsb/etsb_js/jqueryKnob/jquery.knob.js')}}
         {{ HTML::script('assets/etsb/etsb_js/daterangepicker/daterangepicker.js')}}
         {{ HTML::script('assets/etsb/etsb_js/datepicker/bootstrap-datepicker.js')}}
+        {{ HTML::script('assets/etsb/etsb_js/datepicker/moment-with-locales.js')}}
         {{ HTML::script('assets/etsb/etsb_js/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js')}}
         {{--{{ HTML::script('assets/etsb/etsb_js/icheck/icheck.min.js')}}--}}
         {{ HTML::script('assets/etsb/etsb_js/admin/app.js')}}
