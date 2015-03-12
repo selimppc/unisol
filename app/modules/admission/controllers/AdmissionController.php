@@ -23,8 +23,8 @@ class AdmissionController extends \BaseController {
     public function admissionTestIndex()
     {
         $admission_test = Degree::orderBy('id', 'DESC')->paginate(3);
-        $year_id = Year::lists('title', 'id');
-        $semester_id = Semester::lists('title', 'id');
+        $year_id = array('' => 'Select Year ') + Year::lists('title', 'id');
+        $semester_id = array('' => 'Select Semester ') + Semester::lists('title', 'id');
 
         return View::make('admission::amw.admission_test.index',
             compact('admission_test','year_id','semester_id'));
@@ -39,8 +39,8 @@ class AdmissionController extends \BaseController {
 
         $model = new Degree();
         $adm_test_data = Helpers::search($searchQuery, $model);
-        $year_id = Year::lists('title', 'id');
-        $semester_id = Semester::lists('title', 'id');
+        $year_id = array('' => 'Select Year ') + Year::lists('title', 'id');
+        $semester_id = array('' => 'Select Semester ') + Semester::lists('title', 'id');
 
         return View::make('admission::amw.admission_test._search_index',
             compact('adm_test_data','year_id','semester_id'));
@@ -115,8 +115,11 @@ class AdmissionController extends \BaseController {
 //        print_r($adm_question_paper);exit;
         $data = Degree::with('relDepartment')->where('id' ,'=', $degree_id)->first()->relDepartment->title;
 
+        $degree_name = array('' => 'Select Degree ') + Degree::lists('title', 'id');
+        $dgr_sbjct_id = array('' => 'Select Degree Admission Test Subject ') + DegreeAdmTestSubject::lists('admtest_subject_id', 'id');
+
         return View::make('admission::amw.admission_test.question_paper',
-            compact('adm_question_paper','year_id','semester_id','degree_id','data'
+            compact('adm_question_paper','year_id','semester_id','degree_id','data','degree_name','dgr_sbjct_id'
             ));
     }
 
@@ -193,7 +196,7 @@ class AdmissionController extends \BaseController {
 
         $sbjct_dgre_name = DegreeAdmTestSubject::with('relDegree')->where('degree_id' ,'=', 2)->first()->relDegree->title;
 
-        $admtest_subject_id = AdmTestSubject::lists('title','id');
+        $admtest_subject_id = array('' => 'Select Admission Test Subject ') + AdmTestSubject::lists('title','id');
 
 //        print_r($sbjct_dgre_name);exit;
 
@@ -254,33 +257,133 @@ class AdmissionController extends \BaseController {
 //.................................................Degree Management....................................................
 
     public function degreeManagement(){
+
         $degree_management = Degree::orderBy('id', 'DESC')->paginate(10);
-        $d_m_year_id = Year::lists('title', 'id');
-        $d_m_semester_id = Semester::lists('title', 'id');
+
+        $department = array('' => 'Select Department ') + Department::lists('title', 'id');
+        $semester = array('' => 'Select Semester ') + Semester::lists('title', 'id');
+        $year = array('' => 'Select Year ') + Year::lists('title', 'id');
+        $degree_program = array('' => 'Please Select ') + DegreeProgram::lists('title', 'id');
+
 
         return View::make('admission::amw.admission_test.adm_test_degree',
-            compact('degree_management','d_m_year_id','d_m_semester_id'));
+            compact('degree_management','d_m_year_id','d_m_semester_id',
+                'department','semester','year','degree_program'));
 
     }
 
-    public function viewDegreeManagement(){
+    public function searchAdmTestDegree()
+    {
+        $searchQuery = [
+            'year_id' =>   Input::get('year_id'),
+            'semester_id' =>   Input::get('semester_id'),
+        ];
+
+        $model = new Degree();
+        $adm_test_degree = Helpers::search($searchQuery, $model);
+        $year = array('' => 'Select Year ') + Year::lists('title', 'id');
+        $semester = array('' => 'Select Semester ') + Semester::lists('title', 'id');
+        $department = array('' => 'Select Department ') + Department::lists('title', 'id');
+        $degree_program = array('' => 'Please Select ') + DegreeProgram::lists('title', 'id');
+
+        return View::make('admission::amw.admission_test._search_adm_test_degree',
+            compact('adm_test_degree','year','semester','department','degree_program'));
+
 
     }
 
     public function storeDegreeManagement(){
 
+        $data = Input::all();
+
+        $adm_test_degree = new Degree();
+
+        if ($adm_test_degree->validate($data))
+        {
+            $adm_test_degree->title = Input::get('title');
+            $adm_test_degree->description = Input::get('description');
+            $adm_test_degree->department_id = Input::get('department_id');
+            $adm_test_degree->degree_program_id = Input::get('degree_program_id');
+            $adm_test_degree->year_id = Input::get('year_id');
+            $adm_test_degree->semester_id = Input::get('semester_id');
+            $adm_test_degree->total_credit = Input::get('total_credit');
+            $adm_test_degree->duration = Input::get('duration');
+            $adm_test_degree->start_date = Input::get('start_date');
+            $adm_test_degree->end_date = Input::get('end_date');
+
+            if ($adm_test_degree->save()) {
+                return Redirect::to('dmission_test/amw/adm-test-degree')
+                    ->with('message', 'Successfully added Information!');
+            }
+        } else
+        {
+            $errors = $adm_test_degree->errors();
+            Session::flash('errors', $errors);
+
+            return Redirect::back();
+        }
     }
 
-    public function editDegreeManagement(){
+
+    public function viewDegreeManagement($id)
+    {
+        $view_degree_management = Degree::find($id);
+
+        return View::make('admission::amw.admission_test.view_degree_management',compact('view_degree_management'));
+    }
+
+
+    public function editDegreeManagement($id)
+    {
+        $edit_degree_management = Degree::find($id);
+
+        $department = array('' => 'Select Department ') + Department::lists('title', 'id');
+        $semester = array('' => 'Select Semester ') + Semester::lists('title', 'id');
+        $year = array('' => 'Select Year ') + Year::lists('title', 'id');
+        $degree_program = array('' => 'Please Select ') + DegreeProgram::lists('title', 'id');
+
+        return View::make('admission::amw.admission_test.edit_degree_management',
+            compact('edit_degree_management','department','degree_program','year','semester'));
+
+
 
     }
 
-    public function updateDegreeManagement(){
+    public function updateDegreeManagement($id)
+    {
+        $data = Input::all($id);
+
+        $adm_test_degree = new Degree();
+
+        if ($adm_test_degree->validate($data))
+        {
+            $adm_test_degree = Degree::find($id);
+            $adm_test_degree->title = Input::get('title');
+            $adm_test_degree->description = Input::get('description');
+            $adm_test_degree->department_id = Input::get('department_id');
+            $adm_test_degree->degree_program_id = Input::get('degree_program_id');
+            $adm_test_degree->year_id = Input::get('year_id');
+            $adm_test_degree->semester_id = Input::get('semester_id');
+            $adm_test_degree->total_credit = Input::get('total_credit');
+            $adm_test_degree->duration = Input::get('duration');
+            $adm_test_degree->start_date = Input::get('start_date');
+            $adm_test_degree->end_date = Input::get('end_date');
+
+            if ($adm_test_degree->save()) {
+                return Redirect::to('admission_test/amw/adm-test-degree')
+                    ->with('message', 'Successfully Updates Information!');
+            }
+        } else
+        {
+            $errors = $adm_test_degree->errors();
+            Session::flash('errors', $errors);
+
+            return Redirect::back();
+        }
+
+
 
     }
-
-
-
 
 
 

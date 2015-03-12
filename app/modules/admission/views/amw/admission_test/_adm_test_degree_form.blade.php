@@ -1,48 +1,66 @@
 <fieldset style="padding: 10px; width: 90%;">
 
-             <?php
-                $degree_id = Degree::lists('title', 'id');
-                $dgr_sbjct_id = DegreeAdmTestSubject::lists('admtest_subject_id', 'id');
 
-            ?>
+             <div class="form-group">
+                   {{ Form::label('title', 'Title') }}
+                   {{ Form::text('title', Input::old('title'),array('class' => 'form-control input-sm','placeholder'=>'Enter your course name')) }}
+             </div>
 
-                <div class="form-group">
-                       {{ Form::label('examiner_faculty_id', 'Name of Degree: ') }}
-                       {{ Form::select('examiner_faculty_id',$degree_id, Input::old('examiner_faculty_user_id') )}}
-                </div>
+             <div class="form-group">
+                   {{ Form::label('description', 'Description') }}
+                   {{ Form::textarea('description', Input::old('description'),array('class' => 'form-control input-sm','placeholder'=>'Enter Description','size' => '30x5')) }}
+             </div>
 
-                <div class="form-group">
-                       {{ Form::label('degree_admtest_subject_id', 'Subject:') }}
-                       {{ Form::select('degree_admtest_subject_id',$dgr_sbjct_id, Input::old('degree_admtest_subject_id'), array('class' => 'form-control')) }}
-                </div>
+             <div class="form-group">
+                   {{ Form::label('department_id', 'Department') }}
+                   {{ Form::select('department_id', $department, Input::old('department_id') ,['class'=>'form-control input-sm','required'])}}
+             </div>
 
-                <div class="form-group">
-                       {{ Form::label('title', 'Title:') }}
-                       {{ Form::text('title', Input::old('title'), array('class' => 'form-control')) }}
-                </div>
+             <div class="form-group">
+                   {{ Form::label('degree_program_id', 'Degree Program') }}
+                   {{ Form::select('degree_program_id',$degree_program,Input::old('degree_program_id'),['class'=>'form-control input-sm','required']) }}
+             </div>
 
-                <div class="form-group">
-                    {{ Form::label('deadline', 'Deadline') }}
-                    {{ Form::text('deadline', Input::old('deadline'), array('class' => 'form-control datepicker')) }}
+             <div class="form-group">
+                   {{ Form::label('year_id', 'Year') }}
+                   {{ Form::select('year_id', $year, Input::old('year_id') ,['class'=>'form-control input-sm','required'])}}
+             </div>
 
-                </div>
+             <div class="form-group">
+                   {{ Form::label('semester_id', 'Semester') }}
+                   {{ Form::select('semester_id',$semester,Input::old('semester_id'),['class'=>'form-control input-sm','required']) }}
+             </div>
 
-                <div class="form-group">
-                     {{ Form::label('total_marks', 'Total Marks') }}
-                     {{ Form::text('total_marks', Input::old('total_marks'), array('class' => 'form-control')) }}
-                </div>
+             <div class="form-group">
+                   {{ Form::label('total_credit', 'Total Credit') }}
+                   {{ Form::text('total_credit', Input::old('total_credit'),array('class' => 'form-control input-sm','placeholder'=>'Enter Total Credit')) }}
+             </div>
 
+             <div class="form-group">
+                   {{ Form::label('duration', 'Duration (In Year)') }}
+                   {{ Form::select ('duration',
+                            array('' => 'Select one','1' => '1', '2' => '2', '3'=>'3','4' => '4', '5' => '5', '6'=>'6','7'=>'7'),
+                                 Input::old('duration'),array('class' => 'form-control input-sm'))
+                   }}
+             </div>
 
-                {{--<div class="form-group">--}}
-                       {{--{{ Form::label('assign_to', 'Assign To') }}--}}
-                       {{--{{ Form::select('assign_to', Input::old('assign_to') )}}--}}
-                {{--</div>--}}
+             <div class="form-group">
+                   {{ Form::label('start_date', 'Start Date') }}
+                   {{ Form::text('start_date', Input::old('start_date'),['class'=>'form-control datepicker','placeholder'=>'Enter Start Date']) }}
+             </div>
 
+             <div class="form-group">
+                   {{ Form::label('end_date', 'End Date') }}
+                   {{ Form::text('end_date', Input::old('end_date'),['class'=>'form-control datepicker','placeholder'=>'Enter End Date'])  }}
+
+             </div>
 
             {{ Form::submit('Submit', array('class' => 'btn btn-primary btn-xs')) }}
 
-             <a href="{{URL::previous()}}" class="btn btn-default btn-xs">Close </a>
+             <a href="{{URL::to('admission_test/amw/adm-test-degree')}}" class="btn btn-default btn-xs">Close </a>
                 {{--<a class="btn btn-info close">Close </a>--}}
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
              <script>
                  $('.datepicker').each(function() {

@@ -1,15 +1,9 @@
 <fieldset style="padding: 10px; width: 90%;">
 
-             <?php
-                $degree_id = Degree::lists('title', 'id');
-                $dgr_sbjct_id = DegreeAdmTestSubject::lists('admtest_subject_id', 'id');
-
-            ?>
-
 
                 <div class="form-group">
                        {{ Form::label('examiner_faculty_id', 'Name of Degree: ') }}
-                       {{ Form::select('examiner_faculty_id',$degree_id, Input::old('examiner_faculty_user_id') )}}
+                       {{ Form::select('examiner_faculty_id',$degree_name, Input::old('examiner_faculty_user_id') )}}
                 </div>
 
                 <div class="form-group">

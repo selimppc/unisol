@@ -103,19 +103,24 @@ Route::any('admission_test/amw/edit_admtest_subject/{id}', [
     'uses' => 'AdmissionController@editAdmTestSubject'
 ]);
 
-//Degree Management
+//update route
+
+//Adm Degree Management
 
 Route::any('admission_test/amw/adm-test-degree',[
     'as' => 'admission_test.amw.adm-test-degree',
     'uses' => 'AdmissionController@degreeManagement'
 ]);
 
+Route::any('admission_test/amw/search-adm-test-degree', [
+    'as' => 'admission_test.amw./search-adm-test-degree',
+    'uses' => 'AdmissionController@searchAdmTestDegree'
+]);
+
 Route::any('admission_test/amw/store_degree_management', [
     'as' => 'admission_test.amw.store_degree_management',
     'uses' => 'AdmissionController@storeDegreeManagement'
 ]);
-
-
 
 Route::any('admission_test/amw/view_degree_management/{id}', [
     'as' => 'admission_test.amw.view_degree_management',
@@ -126,6 +131,15 @@ Route::any('admission_test/amw/edit_degree_management/{id}', [
     'as' => 'admission_test.amw.edit_degree_management',
     'uses' => 'AdmissionController@editDegreeManagement'
 ]);
+
+
+Route::any('admission_test/amw/update_degree_management/{id}', [
+    'as' => 'admission_test.amw.update_degree_management',
+    'uses' => 'AdmissionController@updateDegreeManagement'
+]);
+
+
+
 
 
 
