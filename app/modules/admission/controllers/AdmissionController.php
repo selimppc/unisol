@@ -325,23 +325,61 @@ class AdmissionController extends \BaseController {
     }
 
 
-    public function viewDegreeManagement()
+    public function viewDegreeManagement($id)
     {
+        $view_degree_management = Degree::find($id);
+
+        return View::make('admission::amw.admission_test.view_degree_management',compact('view_degree_management'));
+    }
+
+
+    public function editDegreeManagement($id)
+    {
+        $edit_degree_management = Degree::find($id);
+
+        $department = array('' => 'Select Department ') + Department::lists('title', 'id');
+        $semester = array('' => 'Select Semester ') + Semester::lists('title', 'id');
+        $year = array('' => 'Select Year ') + Year::lists('title', 'id');
+        $degree_program = array('' => 'Please Select ') + DegreeProgram::lists('title', 'id');
+
+        return View::make('admission::amw.admission_test.edit_degree_management',
+            compact('edit_degree_management','department','degree_program','year','semester'));
 
 
 
     }
 
-
-    public function editDegreeManagement()
+    public function updateDegreeManagement($id)
     {
+        $data = Input::all($id);
 
+        $adm_test_degree = new Degree();
 
+        if ($adm_test_degree->validate($data))
+        {
+            $adm_test_degree = Degree::find($id);
+            $adm_test_degree->title = Input::get('title');
+            $adm_test_degree->description = Input::get('description');
+            $adm_test_degree->department_id = Input::get('department_id');
+            $adm_test_degree->degree_program_id = Input::get('degree_program_id');
+            $adm_test_degree->year_id = Input::get('year_id');
+            $adm_test_degree->semester_id = Input::get('semester_id');
+            $adm_test_degree->total_credit = Input::get('total_credit');
+            $adm_test_degree->duration = Input::get('duration');
+            $adm_test_degree->start_date = Input::get('start_date');
+            $adm_test_degree->end_date = Input::get('end_date');
 
-    }
+            if ($adm_test_degree->save()) {
+                return Redirect::to('admission_test/amw/adm-test-degree')
+                    ->with('message', 'Successfully Updates Information!');
+            }
+        } else
+        {
+            $errors = $adm_test_degree->errors();
+            Session::flash('errors', $errors);
 
-    public function updateDegreeManagement()
-    {
+            return Redirect::back();
+        }
 
 
 

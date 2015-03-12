@@ -33,7 +33,7 @@
 
              <div class="form-group">
                    {{ Form::label('total_credit', 'Total Credit') }}
-                   {{ Form::text('total_credit', Input::old('total_credit'),array('class' => 'form-control input-sm')) }}
+                   {{ Form::text('total_credit', Input::old('total_credit'),array('class' => 'form-control input-sm','placeholder'=>'Enter Total Credit')) }}
              </div>
 
              <div class="form-group">
@@ -46,12 +46,12 @@
 
              <div class="form-group">
                    {{ Form::label('start_date', 'Start Date') }}
-                   {{ Form::text('start_date', Input::old('start_date'),['class'=>'form-control datepicker']) }}
+                   {{ Form::text('start_date', Input::old('start_date'),['class'=>'form-control datepicker','placeholder'=>'Enter Start Date']) }}
              </div>
 
              <div class="form-group">
                    {{ Form::label('end_date', 'End Date') }}
-                   {{ Form::text('end_date', Input::old('end_date'),['class'=>'form-control datepicker'])  }}
+                   {{ Form::text('end_date', Input::old('end_date'),['class'=>'form-control datepicker','placeholder'=>'Enter End Date'])  }}
 
              </div>
 

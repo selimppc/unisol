@@ -103,6 +103,8 @@ Route::any('admission_test/amw/edit_admtest_subject/{id}', [
     'uses' => 'AdmissionController@editAdmTestSubject'
 ]);
 
+//update route
+
 //Adm Degree Management
 
 Route::any('admission_test/amw/adm-test-degree',[
@@ -128,6 +130,12 @@ Route::any('admission_test/amw/view_degree_management/{id}', [
 Route::any('admission_test/amw/edit_degree_management/{id}', [
     'as' => 'admission_test.amw.edit_degree_management',
     'uses' => 'AdmissionController@editDegreeManagement'
+]);
+
+
+Route::any('admission_test/amw/update_degree_management/{id}', [
+    'as' => 'admission_test.amw.update_degree_management',
+    'uses' => 'AdmissionController@updateDegreeManagement'
 ]);
 
 

@@ -46,7 +46,7 @@
                                 <td><input type="checkbox" name="id[]" class="myCheckbox" value="{{ $dgr_adm_tst_add_sbjct['id'] }}"></td>
                                 <td>{{ AdmTestSubject::getTestSubjectName($dgr_adm_tst_add_sbjct->admtest_subject_id) }} </td>
                                 <td>{{ $dgr_adm_tst_add_sbjct->marks }} </td>
-                                <td>{{ $dgr_adm_tst_add_sbjct->duration }} </td>
+                                <td>{{ $dgr_adm_tst_add_sbjct->duration }} &nbsp; Minutes</td>
 
                                 <td>
                                       <a href="{{ URL::route('admission_test.amw.view_admtest_subject', ['id'=>$dgr_adm_tst_add_sbjct->id])  }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal" data-placement="left" title="Show" href="#">View</a>

@@ -71,9 +71,10 @@
                                   <a href="{{ URL::route('admission_test.amw.view_degree_management', ['id'=>$adm_test_mgt->id])  }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#modal" data-placement="left" title="Show" href="#">View</a>
                                   <a href="{{ URL::route('admission_test.amw.edit_degree_management', ['id'=>$adm_test_mgt->id])  }}" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modal" data-placement="left" title="Edit" href="#">Edit</a>
 
-                                  <a href="#" class="btn btn-primary btn-xs" >MW</a>
-                                  <a href="#" class="btn btn-success btn-xs" >MA</a>
-                                  <a href="#" class="btn btn-info btn-xs" >MATS</a>
+                                  <a href="{{ URL::to('admission_test/amw/mng_adm_test_subject') }}" class="btn btn-primary btn-xs" >MW</a>
+                                  <a href="{{ URL::to('admission_test/amw/mng_adm_test_subject') }}" class="btn btn-success btn-xs" >MA</a>
+                                  <a href="{{ URL::to('admission_test/amw/mng_adm_test_subject') }}" class="btn btn-info btn-xs" >MATS</a>
+
                                </td>
                            </tr>
                      @endforeach
@@ -89,7 +90,7 @@
 
 
        {{-- Add Degree Modal --}}
-       <div class="modal fade" id="addDegreeModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+       <div class="modal fade" id="addDegreeModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true" >
            <div class="modal-dialog">
                <div class="modal-content">
                    <div class="modal-header">
