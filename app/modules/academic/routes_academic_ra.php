@@ -241,7 +241,7 @@ Route::any('final-term-update/{id}',[
 
 //+-----Final term assign start-----
 
-Route::any('academic/faculty/marks-dist-item/final/term/assign/{acm_id}/{cm_id}/{mark_dist_id}',[
+Route::any('academic/faculty/marks-dist-item/final/term/assign/{acm_id}/{cm_id}/{mark_dist_id}/{course_id}',[
     'as' => 'final/term.assign',
     'uses'=> 'AcmFacultyController@assign_final_term'
 ]);
