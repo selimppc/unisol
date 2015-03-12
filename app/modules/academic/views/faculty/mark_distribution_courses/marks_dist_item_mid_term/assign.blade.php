@@ -15,7 +15,7 @@
         <thead>
         <tr>
             <th>
-                <input name="id" type="checkbox" class="checkbox" value="">
+                <input name="id" type="checkbox" id="checkbox" >
             </th>
             <th>Name</th>
             <th>Semester</th>

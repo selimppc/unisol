@@ -19,11 +19,11 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript">
+    {{--<script type="text/javascript">
     $(function () {
-    $('#datetimepicker1').datetimepicker();
+        $('#datetimepicker1').datetimepicker();
     });
-    </script>
+    </script>--}}
 </div>
 
 

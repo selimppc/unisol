@@ -902,27 +902,36 @@ class AcmFacultyController extends \BaseController {
 		$chk=Input::get('chk');
 		$aca_id=Input::get('acm_academic_id');
 		$exam_id=Input::get('exam_question');
-		if(Input::get('assign')) {
-			foreach($chk as $key => $value) {
-               $model = AcmAcademicAssignStudent::find($value);
-				//$model->acm_academic_id = $aca_id;
-				//$model->exm_question_id = $exam_id;
-				//$model->assigned_by = Auth::user()->get()->id;
-				$model->status = 'A';
-				$model->save();
-			}
-			return Redirect::back()->with('message','Successfully added!');
 
+		if(Input::get('assign')) {
+            if($chk){
+                foreach($chk as $key => $value) {
+                   $model = AcmAcademicAssignStudent::find($value);
+                    if($aca_id){                $model->acm_academic_id = $aca_id;}
+                    if($exam_id){               $model->exm_question_id = $exam_id;  }
+                    if(Auth::user()->check()){  $model->assigned_by = Auth::user()->get()->id;}
+                    $model->status = 'A';
+                    $model->save();
+                }
+                return Redirect::back()->with('message','Successfully added!');
+            }else{
+                return Redirect::back()->with('error',"You didn't select any Item !");
+            }
 		}
 		if(Input::get('revoke')) {
-            foreach($chk as $key => $value) {
-                $model = AcmAcademicAssignStudent::find($value);
-                $model->status = 'NA';
-                $model->save();
+            if($chk){
+                foreach($chk as $key => $value) {
+                    $model = AcmAcademicAssignStudent::find($value);
+                    if($aca_id){
+                        $model->acm_academic_id = $aca_id;
+                    }
+                    $model->status = 'NA';
+                    $model->save();
+                }
+                return Redirect::back()->with('message','Successfully Revoked!');
+            }else{
+                return Redirect::back()->with('error',"You didn't select any Item !");
             }
-            return Redirect::back()->with('message','Successfully Revoked!');
-
-			//}
 		}
 	}
 	public function comments_assign_midterm($assign_std_id)
