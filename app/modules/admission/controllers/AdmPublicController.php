@@ -37,16 +37,17 @@ class AdmPublicController extends \BaseController {
             'relDegreeWaiver.relWaiver')
             ->where('id', '=', $degree_id)
             ->get();
-        //print_r($degree_model);exit;
 
         $major_courses = CourseManagement::with('relCourse')
             ->where('degree_id','=',$degree_id)
             ->where('major_minor','=','major')
             ->get();
+
         $minor_courses = CourseManagement::with('relCourse')
             ->where('degree_id','=',$degree_id)
             ->where('major_minor','=','minor')
             ->get();
+
         $edu_gpa_model = DegreeEducationConstraint::with('relDegree')
             ->where('degree_id','=',$degree_id)->get();
 
@@ -73,7 +74,6 @@ class AdmPublicController extends \BaseController {
     }
 
     public function admTestDetails($id){
-
         //get degree_id
         $degree_id = DegreeApplicant::where('id','=',$id)->first()->degree_id;
 
@@ -91,13 +91,35 @@ class AdmPublicController extends \BaseController {
     public function admDegAptCheckout(){
 
         $applicant_id = Auth::applicant()->get()->id;
-        //echo $applicant_id;
+
         $degree_applicant = DegreeApplicant::with('relDegree')
             ->where('applicant_id', '=',$applicant_id )
             ->get();
-        //print_r($degree_applicant);exit;
-        return View::make('admission::adm_public.admission.adm_checkouts',
-                  compact('degree_applicant'));
+
+        $applicant_personal_info = ApplicantProfile::with('relCountry')
+            ->where('applicant_id', '=',$applicant_id )
+            ->first();
+
+        $applicant_meta_records = ApplicantMeta::where('applicant_id', '=',$applicant_id )->first();
+        $applicant_acm_records = ApplicantAcademicRecords::where('applicant_id', '=',$applicant_id )->get();
+
+        if($applicant_personal_info == Null) {
+            Session::flash('error', "Your Personal information is missing !
+                          Please Add Your Personal Info Correctly .");
+        }
+
+        elseif($applicant_meta_records == Null) {
+            Session::flash('error', "Your Biographical information is missing !
+                      Please Add Your Biographical Info Correctly .");
+        }
+        elseif(!is_array($applicant_acm_records)) {
+                Session::flash('error', "Your Academic information is missing .
+                          Please Add Your Academic Records Correctly .");
+        }
+        else{
+             return View::make('admission::adm_public.admission.adm_checkouts',
+                 compact('degree_applicant'));
+        }
     }
 
     public function store()
