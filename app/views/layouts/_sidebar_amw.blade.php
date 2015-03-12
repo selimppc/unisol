@@ -40,6 +40,7 @@
             <li><a tabindex="-1" a href="{{URL::to('amw/degree_manage') }}"><i class="fa fa-flask"></i> Degree Management(Amw) </a></li>
             <li><a tabindex="-1" a href="{{URL::to('admission_test/amw/index') }}"><i class="fa fa-thumbs-o-up"></i> Admission Test(Amw)</a></li>
             <li><a tabindex="-1" a href="{{ URL::to('admission_test/amw/mng_adm_test_subject') }}"><i class="fa fa-frown-o"></i>Mng Admssn Tst Sbjct(Amw)</a></li>
+            <li><a tabindex="-1" a href="{{ URL::to('admission_test/amw/adm-test-degree') }}"><i class="fa fa-frown-o"></i>Admission Test (Degree)(Amw)</a></li>
         </ul>
     </li>
     <li class="treeview">

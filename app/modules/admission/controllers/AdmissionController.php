@@ -11,12 +11,15 @@ class AdmissionController extends \BaseController {
         return Redirect::back()->with('error_code', 5);;
     }
 
-// Admission Test : Admission Test starts here....................................................
+// ...............................Admission Test : Admission Test starts here...........................................
+//.................................................Desh-Board...........................................................
+
     public function admAmwDashboard()
     {
         return View::make('admission::amw.admission_test.dashboard');
     }
 
+//.................................................Index................................................................
     public function admissionTestIndex()
     {
         $admission_test = Degree::orderBy('id', 'DESC')->paginate(3);
@@ -43,8 +46,7 @@ class AdmissionController extends \BaseController {
             compact('adm_test_data','year_id','semester_id'));
     }
 
-
-
+//.................................................Examiner.............................................................
 
     public function examiners($year_id, $semester_id, $degree_id)
     {
@@ -103,6 +105,8 @@ class AdmissionController extends \BaseController {
         }
     }
 
+//.................................................Question Paper.......................................................
+
     public function questionPaper($year_id, $semester_id, $degree_id )
     {
 //        $adm_question_paper = AdmQuestion::latest('id')->get();  , $degree_admtest_subject_id
@@ -115,8 +119,6 @@ class AdmissionController extends \BaseController {
             compact('adm_question_paper','year_id','semester_id','degree_id','data'
             ));
     }
-
-
 
     public function storeQuestionPaper()
     {
@@ -150,16 +152,16 @@ class AdmissionController extends \BaseController {
 
             return Redirect::to('admission_test/amw/question_paper');
         }
-        //ok
+
     }
+
     public function viewQuestionPaper($id){
         $view_question_paper = AdmQuestion::find($id);
 
         return View::make('admission::amw.admission_test.view_question_paper',compact('view_question_paper'));
 
-
-
     }
+
     public function editQuestionPaper($id){
         $edit_question_paper = AdmQuestion::find($id);
 
@@ -174,14 +176,19 @@ class AdmissionController extends \BaseController {
 
 
     public function viewQuestionsItem(){
+        Echo "ok";
+
 
 
     }
-    public function assignFaculty()
-    {
+    public function assignFaculty(){
+        Echo "ok";
     }
+
+//..............................................Manage Admission Test Subject...........................................
 
     public function mngAdmTestSubject(){
+
         $degree_test_sbjct = DegreeAdmTestSubject::latest('id')->paginate(5);
 
         $sbjct_dgre_name = DegreeAdmTestSubject::with('relDegree')->where('degree_id' ,'=', 2)->first()->relDegree->title;
@@ -191,12 +198,11 @@ class AdmissionController extends \BaseController {
 //        print_r($sbjct_dgre_name);exit;
 
         return View::make('admission::amw.admission_test.mng_adm_test_subject',
-            compact('degree_test_sbjct','sbjct_dgre_name','sbjct_name','admtest_subject_id'));
-
+            compact('degree_test_sbjct','sbjct_dgre_name','sbjct_name','admtest_subject_id','
+            '));
     }
 
     public function storeAdmTestSubject(){
-
 
         $data = Input::all();
 //        $exam_list_id = Input::get('exam_list_id');
@@ -207,7 +213,7 @@ class AdmissionController extends \BaseController {
 
         if ($degree_adm_test_sbjct->validate($data))
         {
-            // success code
+
             $degree_adm_test_sbjct->degree_id = Input::get('degree_id');
             $degree_adm_test_sbjct->admtest_subject_id = Input::get('admtest_subject_id');
             $degree_adm_test_sbjct->description = Input::get('description');
@@ -231,25 +237,50 @@ class AdmissionController extends \BaseController {
 
             return Redirect::to('admission_test/amw/mng_adm_test_subject');
         }
-        //ok
-
-
-
     }
 
     public function viewAdmTestSubject($id){
         $view_question_paper = DegreeAdmTestSubject::find($id);
 
         return View::make('admission::amw.admission_test.view_question_paper.blade.php',compact('view_question_paper'));
-
     }
 
     public function editAdmTestSubject($id){
         $edit_question_paper = DegreeAdmTestSubject::find($id);
 
         return View::make('admission::amw.admission_test.edit_admtest_subject',compact('edit_question_paper'));
+    }
+
+//.................................................Degree Management....................................................
+
+    public function degreeManagement(){
+        $degree_management = Degree::orderBy('id', 'DESC')->paginate(10);
+        $d_m_year_id = Year::lists('title', 'id');
+        $d_m_semester_id = Semester::lists('title', 'id');
+
+        return View::make('admission::amw.admission_test.adm_test_degree',
+            compact('degree_management','d_m_year_id','d_m_semester_id'));
 
     }
+
+    public function viewDegreeManagement(){
+
+    }
+
+    public function storeDegreeManagement(){
+
+    }
+
+    public function editDegreeManagement(){
+
+    }
+
+    public function updateDegreeManagement(){
+
+    }
+
+
+
 
 
 
