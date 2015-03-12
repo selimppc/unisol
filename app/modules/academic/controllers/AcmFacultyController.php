@@ -900,17 +900,15 @@ class AcmFacultyController extends \BaseController {
 	{
 		$data=Input::all();
 		$chk=Input::get('chk');
-
 		$aca_id=Input::get('acm_academic_id');
 		$exam_id=Input::get('exam_question');
 		if(Input::get('assign')) {
 			foreach($chk as $key => $value) {
-                $model = AcmAcademicAssignStudent::find($value);
+               $model = AcmAcademicAssignStudent::find($value);
 				//$model->acm_academic_id = $aca_id;
 				//$model->exm_question_id = $exam_id;
 				//$model->assigned_by = Auth::user()->get()->id;
 				$model->status = 'A';
-				//$model->user_id = $value;
 				$model->save();
 			}
 			return Redirect::back()->with('message','Successfully added!');
@@ -924,16 +922,14 @@ class AcmFacultyController extends \BaseController {
             }
             return Redirect::back()->with('message','Successfully Revoked!');
 
-
-
 			//}
 		}
 	}
 	public function comments_assign_midterm($assign_std_id)
 	{
-//		$assign_std= AcmAcademicAssignStudent::with('relAcmAcademic','relAcmAcademic.relCourseManagement')
-//			->where('user_id', '=', $assign_std_id)
-//			->first();//Execute the query and get the first result.
+		$assign_std= AcmAcademicAssignStudent::with('relAcmAcademic','relAcmAcademic.relCourseManagement')
+			->where('id', '=', $assign_std_id)
+			->first();//Execute the query and get the first result.
 
 		$comments_info = AcmAcademicAssignStudentComments::with('relAcmAcademicAssignStudent')
 			->where('acm_assign_std_id', '=', $assign_std_id)
@@ -1085,18 +1081,9 @@ class AcmFacultyController extends \BaseController {
 	 */
 	public  function assign_final_term($acm_id, $cm_id, $mark_dist_id)
 	{
-		//$model = AcmAcademicAssignStudent::get();
-		/*if($model){
-			echo "OK";
-		}else {
-			echo "M";
-		}exit;*/
 		$acm= AcmAcademic::with('relAcmClassSchedule')
 			->where('id', '=', $acm_id)
 			->first();
-//		$acm_data = AcmAcademic::with('relAcmClassSchedule','relCourseManagement.relSemester','relCourseManagement.relYear','relCourseManagement.relUser','relCourseManagement.relCourse.relSubject.relDepartment')
-//			->where('id', '=', $acm_id)
-//			->get();
 		$exam_questions= array('' => 'Select Examination Question') + ExmQuestion::lists('title', 'id');
 		$cm_data = CourseManagement::with('relSemester','relYear','relUser','relCourse.relSubject.relDepartment')
 			//->where('course_management_id','=' ,$cm_id)
