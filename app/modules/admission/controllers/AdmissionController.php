@@ -344,9 +344,6 @@ class AdmissionController extends \BaseController {
 
         return View::make('admission::amw.admission_test.edit_degree_management',
             compact('edit_degree_management','department','degree_program','year','semester'));
-
-
-
     }
 
     public function updateDegreeManagement($id)
@@ -381,6 +378,92 @@ class AdmissionController extends \BaseController {
             return Redirect::back();
         }
 
+
+
+    }
+
+//.................................................Subject Management....................................................
+
+
+    public function subjectManagement()
+    {
+        $subject_management = AdmTestSubject::orderBy('id', 'DESC')->paginate(10);
+
+        return View::make('admission::amw.admission_test.adm_test_subject',
+            compact('subject_management'));
+
+
+    }
+
+    public function storeSubjectManagement()
+    {
+
+        $data = Input::all();
+
+        $adm_test_subject = new AdmTestSubject();
+
+        if ($adm_test_subject->validate($data))
+        {
+            $adm_test_subject->title = Input::get('title');
+            $adm_test_subject->description = Input::get('description');
+
+            if ($adm_test_subject->save()) {
+                return Redirect::to('admission_test/amw/adm-test-subject')
+                    ->with('message', 'Successfully added Information!');
+            }
+        } else
+        {
+            $errors = $adm_test_subject->errors();
+            Session::flash('errors', $errors);
+
+            return Redirect::back();
+        }
+
+
+    }
+
+    public function viewSubjectManagement($id)
+    {
+        $view_subject_management = AdmTestSubject::find($id);
+
+        return View::make('admission::amw.admission_test.view_subject_management',compact('view_subject_management'));
+
+
+    }
+
+    public function editSubjectManagement($id)
+    {
+        $edit_subject_management = AdmTestSubject::find($id);
+
+        return View::make('admission::amw.admission_test.edit_subject_management',
+            compact('edit_subject_management'));
+
+
+    }
+
+    public function updateSubjectManagement($id)
+    {
+        $data = Input::all($id);
+
+        $adm_test_subject = new AdmTestSubject();
+
+        if ($adm_test_subject->validate($data))
+        {
+            $adm_test_subject = AdmTestSubject::find($id);
+            $adm_test_subject->title = Input::get('title');
+            $adm_test_subject->description = Input::get('description');
+
+            if ($adm_test_subject->save()) {
+                return Redirect::to('admission_test/amw/adm-test-subject')
+                    ->with('message', 'Successfully added Information!');
+            }
+        } else
+        {
+            $errors = $adm_test_subject->errors();
+            Session::flash('errors', $errors);
+
+            return Redirect::back();
+        }
 
 
     }

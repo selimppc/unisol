@@ -13,7 +13,7 @@
 
 /*
 ==================================================================
-Tanin
+Shafi
 ==================================================================
 */
 
@@ -21,7 +21,7 @@ include("routes_tjt.php");
 
 
 
-// ----------------------------Public : Admission Test starts----------------------------------------------------------
+// ----------------------------------------AMW : Admission Test --------------------------------------------------------
 
 //Deshboard
 Route::any('admission_test/amw/dashboard', [
@@ -35,7 +35,14 @@ Route::any('admission_test/amw/index',[
     'uses' => 'AdmissionController@admissionTestIndex'
 ]);
 
-//Examiner
+Route::any('admission_test/amw/search-index', [
+    'as' => 'admission_test.amw.search_index',
+    'uses' => 'AdmissionController@searchIndex'
+]);
+
+// ----------------------------------------AMW : Examiner --------------------------------------------------------
+
+
 Route::any('admission_test/amw/examiners/{year_id}/{semester_id}/{degree_id}', [
     'as' => 'admission_test.amw.examiners',
     'uses' => 'AdmissionController@examiners'
@@ -51,12 +58,9 @@ Route::any('admission_test/amw/store_examiners', [
     'uses' => 'AdmissionController@storeExaminers'
 ]);
 
-Route::any('admission_test/amw/search-index', [
-    'as' => 'admission_test.amw.search_index',
-    'uses' => 'AdmissionController@searchIndex'
-]);
+// ----------------------------------------AMW : Question Paper --------------------------------------------------------
 
-//Question Paper
+
 Route::any('admission_test/amw/question_paper/{year_id}/{semester_id}/{degree_id}', [
     'as' => 'admission_test.amw.question_paper',
     'uses' => 'AdmissionController@questionPaper'
@@ -82,7 +86,8 @@ Route::any('admission_test/amw/update_question_paper/{id}', [
     'uses' => 'AdmissionController@updateQuestionPaper'
 ]);
 
-// Manage Adm Test Management
+// ----------------------------------------AMW : Manage Adm Test Management --------------------------------------------------------
+
 Route::any('admission_test/amw/mng_adm_test_subject',[
     'as' => 'admission_test.amw.mng_adm_test_subject',
     'uses' => 'AdmissionController@mngAdmTestSubject'
@@ -105,7 +110,7 @@ Route::any('admission_test/amw/edit_admtest_subject/{id}', [
 
 //update route
 
-//Adm Degree Management
+// ----------------------------------------AMW : Adm Degree Management --------------------------------------------------------
 
 Route::any('admission_test/amw/adm-test-degree',[
     'as' => 'admission_test.amw.adm-test-degree',
@@ -139,9 +144,33 @@ Route::any('admission_test/amw/update_degree_management/{id}', [
 ]);
 
 
+// ----------------------------------------AMW : Adm Subject Management --------------------------------------------------------
+
+Route::any('admission_test/amw/adm-test-subject',[
+    'as' => 'admission_test.amw.adm-test-subject',
+    'uses' => 'AdmissionController@subjectManagement'
+]);
+
+Route::any('admission_test/amw/store_subject_management', [
+    'as' => 'admission_test.amw.store_subject_management',
+    'uses' => 'AdmissionController@storeSubjectManagement'
+]);
+
+Route::any('admission_test/amw/view_subject_management/{id}', [
+    'as' => 'admission_test.amw.view_subject_management',
+    'uses' => 'AdmissionController@viewSubjectManagement'
+]);
+
+Route::any('admission_test/amw/edit_subject_management/{id}', [
+    'as' => 'admission_test.amw.edit_subject_management',
+    'uses' => 'AdmissionController@editSubjectManagement'
+]);
 
 
-
+Route::any('admission_test/amw/update_subject_management/{id}', [
+    'as' => 'admission_test.amw.update_subject_management',
+    'uses' => 'AdmissionController@updateSubjectManagement'
+]);
 
 
 
