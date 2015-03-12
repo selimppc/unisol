@@ -26,7 +26,8 @@
                     <a href="{{ URL::route('class_test.show', ['id'=>$value->id])  }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" href=""><i class="fa fa-eye" style="font-size: 18px;color: green"></i></a>
 
                     {{--<button href="{{ URL::route('class/test.assign', ['id'=>$value->id])  }}" class="btn btn-xs">Assign</button>--}}
-                    <a href="{{ URL::route('class/test.assign',['id'=>$value->id, 'cmid'=>$value->course_management_id, 'marksid'=>$value->acm_marks_distribution_id])  }}" class="btn btn-default btn-xs"> Assign </a>
+                    <a href="{{ URL::route('class/test.assign',['id'=>$value->id, 'cmid'=>$value->course_management_id, 'marksid'=>$value->acm_marks_distribution_id,
+                         'course_id'=>$value->relCourseManagement->course_id])  }}" class="btn btn-default btn-xs"> Assign </a>
                     {{--{{ HTML::link('/for-advertiser', 'Details >>', ['class'=>'btn btn-default btn-sm text-md text-blue round-btn'])}}--}}
                 </td>
             </tr>

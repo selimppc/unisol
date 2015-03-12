@@ -6,9 +6,6 @@
 
 @section('content')
 
-   <section class="col-lg-6 connectedSortable">
-
-
        <!-- Profile Information -->
        <div class="box box-info">
            <div class="box-header">

@@ -67,6 +67,9 @@
             $("#ch_credt_card").show();
         });
 
+
+
+
     });
 }(jQuery.noConflict(
 
