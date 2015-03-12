@@ -4,18 +4,16 @@
  @stop
 @section('content')
 {{---------------------------------------------Data Table:admission on degree :Starts-----------------------------------------------------------------}}
- <div class="box box-solid box-info">
+ <div class="box box-solid ">
      <div class="box-header">
-             <h3 class="box-title">Admission On</h3>
-             <div class="box-tools pull-right">
-                 <button class="btn btn-info btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                 <button class="btn btn-info btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
-             </div>
      </div>
-
-
-         <div class="box box-info">
+     <div class="box box-info">
               <div class="box-header">
+              <h3 class="box-title">Admission On</h3>
+              <div class="box-tools pull-right">
+                   <button class="btn btn-info btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                   <button class="btn btn-info btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
               <p>&nbsp;</p>
               </div>
               <div class="box-body">
@@ -47,7 +45,7 @@
               <div class="box-footer clearfix">
                   <button class="pull-right btn btn-default" id="sendEmail">Edit <i class="fa fa-arrow-circle-right"></i></button>
               </div>
-         </div>
+     </div>
      {{--</section>--}}
  </div>
 
@@ -55,7 +53,11 @@
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 {{-----------------------------------Applicant's Profile:Personal Information starts--------------------------------------------------------}}
- <div class="box box-solid box-info">
+
+<div class="box  box-info">
+
+
+
     <div class="box-header">
         <h3 class="box-title">Applicant's Profile</h3>
         <div class="box-tools pull-right">
@@ -64,7 +66,8 @@
         </div>
     </div>
     <p>&nbsp;</p>
-    <a class="pull-right btn btn-sm btn-success" href="{{ URL::route('admission.adm_checkout')}}"><b>Next</b><i class="fa fa-arrow-circle-right"></i></a>
+<a class="pull-right btn btn-sm btn-success"  href="{{ URL::route('admission.adm_checkout')}}"><b>Next</b><i class="fa fa-arrow-circle-right"></i></a>
+
 
           <section class="col-lg-6 connectedSortable">
                 <p>&nbsp;</p><p>&nbsp;</p>
@@ -187,6 +190,7 @@
                              </div>
                </div>
 
+               <p>&nbsp;</p>
                <p>&nbsp;</p>
          </section>
          <section class="col-lg-6 connectedSortable">
