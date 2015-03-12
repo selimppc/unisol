@@ -29,6 +29,10 @@
       </div>
   </div>
 
+   <div style="text-align: center">
+      <a href="{{URL::to('admission_test/amw/index')}}" class="btn btn-success btn-lg" >Back To Full List </a>
+   </div>
+
       {{--{{ Form::open(array('url' => 'examination/amw/batchDelete')) }}--}}
           <table id="example" class="table table-striped  table-bordered"  >
              <thead>

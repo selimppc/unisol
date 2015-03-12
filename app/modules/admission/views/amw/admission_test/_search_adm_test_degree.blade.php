@@ -37,6 +37,10 @@
            </div>
        </div>
 
+       <div style="text-align: center">
+          <a href="{{URL::to('admission_test/amw/adm-test-degree')}}" class="btn btn-success btn-lg" >Back To Full List </a>
+       </div>
+
       {{--{{ Form::open(array('url' => 'examination/amw/batchDelete')) }}--}}
           <table id="example" class="table table-striped  table-bordered"  >
              <thead>
@@ -56,32 +60,35 @@
                     </tr>
              </thead>
                  <tbody>
-                     @foreach($degree_management as $adm_test_mgt)
-                           <tr>
-                               <td><input type="checkbox" name="id[]" class="myCheckbox" value="{{ $adm_test_mgt['id'] }}"></td>
-                               <td>{{ $adm_test_mgt->title }}</td>
-                               <td>{{ Department::getDepartmentName($adm_test_mgt->department_id) }}</td>
-                               <td>{{ Year::getYearsName($adm_test_mgt->year_id) }}</td>
-                               <td>{{ Semester::getSemesterName($adm_test_mgt->semester_id) }}</td>
-                               <td>{{ $adm_test_mgt->total_credit }}</td>
-                               <td style="text-align: center">{{ $adm_test_mgt->duration }}</td>
-                               <td>{{ $adm_test_mgt->status}}</td>
-                               <td>
+                      @if(!empty($adm_test_degree))
+                             @foreach($adm_test_degree as $adm_test_mgt)
+                                   <tr>
+                                       <td><input type="checkbox" name="id[]" class="myCheckbox" value="{{ $adm_test_mgt['id'] }}"></td>
+                                       <td>{{ $adm_test_mgt->title }}</td>
+                                       <td>{{ Department::getDepartmentName($adm_test_mgt->department_id) }}</td>
+                                       <td>{{ Year::getYearsName($adm_test_mgt->year_id) }}</td>
+                                       <td>{{ Semester::getSemesterName($adm_test_mgt->semester_id) }}</td>
+                                       <td>{{ $adm_test_mgt->total_credit }}</td>
+                                       <td style="text-align: center">{{ $adm_test_mgt->duration }}</td>
+                                       <td>{{ $adm_test_mgt->status}}</td>
+                                       <td>
 
-                                  <a href="{{ URL::route('admission_test.amw.view_degree_management', ['id'=>$adm_test_mgt->id])  }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#modal" data-placement="left" title="Show" href="#">View</a>
-                                  <a href="{{ URL::route('admission_test.amw.edit_degree_management', ['id'=>$adm_test_mgt->id])  }}" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modal" data-placement="left" title="Edit" href="#">Edit</a>
+                                          <a href="{{ URL::route('admission_test.amw.view_degree_management', ['id'=>$adm_test_mgt->id])  }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#modal" data-placement="left" title="Show" href="#">View</a>
+                                          <a href="{{ URL::route('admission_test.amw.edit_degree_management', ['id'=>$adm_test_mgt->id])  }}" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modal" data-placement="left" title="Edit" href="#">Edit</a>
 
-                                  <a href="#" class="btn btn-primary btn-xs" >MW</a>
-                                  <a href="#" class="btn btn-success btn-xs" >MA</a>
-                                  <a href="#" class="btn btn-info btn-xs" >MATS</a>
-                               </td>
-                           </tr>
-                     @endforeach
+                                          <a href="#" class="btn btn-primary btn-xs" >MW</a>
+                                          <a href="#" class="btn btn-success btn-xs" >MA</a>
+                                          <a href="#" class="btn btn-info btn-xs" >MATS</a>
+                                       </td>
+                                   </tr>
+                             @endforeach
+                      @endif
                  </tbody>
           </table>
+
+
       {{form::close() }}
 
-      {{ $degree_management->links() }}
 
 
    <p>&nbsp;</p><p>&nbsp;</p>
