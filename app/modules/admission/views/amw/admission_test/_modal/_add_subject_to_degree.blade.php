@@ -1,4 +1,4 @@
-<div class="modal fade" id="AddSubjectToDegree" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+<div class="modal fade" id="AddSubjectToDegree" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true" >
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -8,7 +8,7 @@
 
             <div class="modal-body">
                 {{ Form::open(array('route' => 'admission_test.amw.store_admtest_subject', 'method' =>'post', 'role'=>'form','files'=>'true'))  }}
-{{--                        {{ Form::text('adm_examiners_home', $adm_examiners_home ) }}--}}
+                        {{ Form::text('degree_id', 1 ) }}
                         @include('admission::amw.admission_test._add_adm_test_subject_to_degree_form')
                 {{ Form::close() }}
             </div>
