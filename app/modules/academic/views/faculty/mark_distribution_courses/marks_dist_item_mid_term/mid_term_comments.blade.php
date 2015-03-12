@@ -16,7 +16,7 @@
 
         {{ Form::open(array('url' => array('midterm/comments/save'), 'method' =>'post'))  }}
 
-        {{ Form::text('assign_stu_user_id', $assign_std->id, ['class'=>'form-control assign_stu_user_id'])}}
+        {{ Form::hidden('assign_stu_user_id', $assign_std->id, ['class'=>'form-control assign_stu_user_id'])}}
 
         <div class='form-group'>
             {{ Form::label('comments', 'CT Comments') }}

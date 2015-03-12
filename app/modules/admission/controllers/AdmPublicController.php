@@ -107,19 +107,16 @@ class AdmPublicController extends \BaseController {
             Session::flash('error', "Your Personal information is missing !
                           Please Add Your Personal Info Correctly .");
         }
-
-        elseif($applicant_meta_records == Null) {
-            Session::flash('error', "Your Biographical information is missing !
+        if($applicant_meta_records == Null) {
+            Session::flash('danger', "Your Biographical information is missing !
                       Please Add Your Biographical Info Correctly .");
         }
-        elseif(!is_array($applicant_acm_records)) {
-                Session::flash('error', "Your Academic information is missing .
+        if(!is_array($applicant_acm_records)) {
+                Session::flash('info', "Your Academic information is missing .
                           Please Add Your Academic Records Correctly .");
         }
-        else{
-             return View::make('admission::adm_public.admission.adm_checkouts',
-                 compact('degree_applicant'));
-        }
+        return View::make('admission::adm_public.admission.adm_checkouts',
+                compact('degree_applicant'));
     }
 
     public function store()
