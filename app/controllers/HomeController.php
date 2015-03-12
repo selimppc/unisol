@@ -287,4 +287,8 @@ class HomeController extends BaseController {
 
 
 
+
+    public function datePicker(){
+        return View::make('test.date_picker');
+    }
 }
