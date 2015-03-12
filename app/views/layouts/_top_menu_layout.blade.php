@@ -32,6 +32,7 @@
         <li><a tabindex="-1" a href="{{ URL::to('admission/public/degree_list') }}"> Admission (Public) </a></li>
         <li><a tabindex="-1" a href="{{ URL::to('admission_test/amw/index') }}"> Admission Test(Amw)</a></li>
         <li><a tabindex="-1" a href="{{ URL::to('admission_test/amw/mng_adm_test_subject') }}"></i>Mng Admssn Tst Sbjct(Amw)</a></li>
+        <li><a tabindex="-1" a href="{{ URL::to('admission_test/amw/adm-test-degree') }}"></i>Admission Test (Degree)(Amw)</a></li>
     </ul>
 </li>
 

@@ -12,7 +12,7 @@
                            <div class="pull-right col-sm-6">
                                <div class="btn-group" style="margin-right: 10px">
                                    <button type="button" class="btn btn-info btn-xs" data-toggle="modal"
-                                             data-target="#CreateModal">
+                                             data-target="#CreateQuestionPaperModal">
                                                Create Question Paper
                                    </button>
                                </div>
@@ -78,8 +78,8 @@
 {{--@include('admission::amw.admission_test._modal._create_question_paper')--}}
 @include('admission::amw.admission_test._modal._common_modal')
 
-{{-- CreateModal --}}
-<div class="modal fade" id="CreateModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+{{-- CreateQuestionPaperModal --}}
+<div class="modal fade" id="CreateQuestionPaperModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
