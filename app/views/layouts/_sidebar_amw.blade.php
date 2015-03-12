@@ -18,13 +18,13 @@
 
     <li class="treeview">
         <a href="#">
-            <i class="fa fa-book"></i>
+            <i class="fa fa-book"style="color: #2aabd2"></i>
             <span>Academic</span>
             <i class="fa fa-angle-left pull-right"></i>
         </a>
         <ul class="treeview-menu">
-            <li><a tabindex="-1" a href="{{URL::to('academic/amw/') }}">Mark Distribution Item(Amw)</a></li>
-            <li><a tabindex="-1" a href="{{URL::to('academic/amw/config/') }}">Course Config(Amw)</a></li>
+            <li><a tabindex="-1" a href="{{URL::to('academic/amw/') }}"><i class="fa fa-location-arrow" style="color: #003399"></i>Mark Distribution Item</a></li>
+            <li><a tabindex="-1" a href="{{URL::to('academic/amw/config/') }}"> <i class="fa fa-wrench" style="color: #24AA7A"></i>Course Config</a></li>
 
         </ul>
     </li>
