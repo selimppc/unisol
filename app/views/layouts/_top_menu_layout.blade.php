@@ -28,7 +28,7 @@
         Admission
     </a>
     <ul class="dropdown-menu">
-        <li><a tabindex="-1" a href="{{ URL::to('amw/course_manage') }}"> Course Management(Amw) </a></li>
+        <li><a tabindex="-1" a href="{{ URL::to('admission/amw/course_conduct/index') }}"> Course Management(Amw) </a></li>
         <li><a tabindex="-1" a href="{{ URL::to('amw/degree_manage') }}"> Degree Management(Amw) </a></li>
         <li><a tabindex="-1" a href="{{ URL::to('admission/public/degree_list') }}"> Admission (Public) </a></li>
         <li><a tabindex="-1" a href="{{ URL::to('admission_test/amw/index') }}"> Admission Test(Amw)</a></li>
