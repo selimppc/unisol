@@ -1,7 +1,7 @@
 <li class="dropdown messages-menu">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
         Common
-    </a>
+    </a>z
     <ul class="dropdown-menu">
         <li><a tabindex="-1" href="{{ action('CourseController@index') }}"> Course Management </a></li>
         <li><a tabindex="-1" href="{{ action('CourseTypeController@index') }}"> Course Type </a></li>

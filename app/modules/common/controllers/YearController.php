@@ -9,9 +9,8 @@ class YearController extends \BaseController {
 	 */
 	public function Index()
 	{
-		return View::make('year.index')->with('title','Create Years');
+		return View::make('common::year.index')->with('title','Create Year');
 	}
-
 
 	/**
 	 * Show the form for creating a new resource.
@@ -61,13 +60,6 @@ class YearController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	
-	public function store()
-	{
-		//
-	}
-
-	
 	/**
 	 * Display the specified resource.
 	 *
@@ -93,15 +85,14 @@ class YearController extends \BaseController {
 				
 			});
 		}
-
 		$data = $q->orderBy('id', 'DESC')->paginate(5);
-		return View::make('year.index')->with('datas',$data)->with('title','All Years List');
+		return View::make('common::year.index')->with('datas',$data)->with('title','All Year List');
 	}
 
 	public function show_one($id)
 	{
 		$years = Year::find($id);
-		return View::make('year.show')->with('years',$years);
+		return View::make('common::year.show')->with('years',$years);
 
 	}
 
@@ -114,7 +105,7 @@ class YearController extends \BaseController {
 	public function edit($id)
 	{
 		$years = Year::find($id);
-		return View::make('year.edit')->with('years',$years);
+		return View::make('common::year.edit')->with('years',$years);
 	}
 
 
@@ -127,17 +118,13 @@ class YearController extends \BaseController {
 	public function update($id)
 	{
 		$token = csrf_token();
-		
 		$rules = array(
-			
 			'title' => 'Required|Min: 3|numeric',
 			'description' => 'Required|min:3'
 			);
 		$validator = Validator::make(Input::all(), $rules);
-
-		
 		if($validator->fails())
-		{				
+		{
 			return Redirect::to('year/show')->withErrors($validator)->withInput()->with('title', 'Create Subject');
 		}
 		else
@@ -161,12 +148,18 @@ class YearController extends \BaseController {
 
 	public function delete($id)
 	{
-		$data= Year::find($id);
-		if($data->delete())
-		{
-			
-			Session::flash('danger', "Years Deleted successfully");
-			return Redirect::to('year/show')->with('title','All Years List');
+		try {
+			$data= Year::find($id);
+			if($data->delete())
+			{
+				Session::flash('danger', "Years Deleted successfully");
+				return Redirect::to('year/show')->with('title','All Year List');
+			}
+		}
+		catch
+		(exception $ex){
+			return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+
 		}
 	}
 
