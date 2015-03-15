@@ -171,7 +171,7 @@ Route::group( array('before' => 'auth'), function(){
 
 
     //*******************Year Start**********************************************
-    Route::any('common/year/index','YearController@show');
+    Route::any('common/year/','YearController@index');
     Route::post('year/save','YearController@save');
     Route::any('year/show/{id}',['as' => 'year.show', 'uses'=> 'YearController@show_one']);
     Route::get('year/edit/{id}', ['as' => 'year.edit','uses' => 'YearController@edit']);

@@ -40,12 +40,12 @@ class YearController extends \BaseController {
 				$data->description = Input::get('description');
 				$data->save();
 				Session::flash('message', "Success:Years added successfully");
-				return Redirect::to('year/show')->with('title', 'Years List');
+				return Redirect::to('common/year/')->with('title', 'Years List');
 			}
 			else
 			{
 				Session::flash('message', 'Token Mismatched');
-				return Redirect::to('common/year/index')->with('title', 'Years List');
+				return Redirect::to('common/year/')->with('title', 'Years List');
 			}
 		}
 	}
@@ -62,7 +62,7 @@ class YearController extends \BaseController {
 	 * @return Response
 	 */
 
-	public function show()
+	public function index()
 	{
 		// $data= Years::orderBy('id', 'DESC')->paginate(5);
 		// return View::make('years.index')->with('datas',$data)->with('title','All Years list');
@@ -120,7 +120,7 @@ class YearController extends \BaseController {
 		$validator = Validator::make(Input::all(), $rules);
 		if($validator->fails())
 		{
-			return Redirect::to('common/year/index')->withErrors($validator)->withInput()->with('title', 'Create Subject');
+			return Redirect::to('common/year/')->withErrors($validator)->withInput()->with('title', 'Create Subject');
 		}
 		else
 		{
@@ -131,12 +131,12 @@ class YearController extends \BaseController {
 				$data->description = Input::get('description');
 				$data->save();
 				Session::flash('info', "Year Updated successfully");
-				return Redirect::to('common/year/index')->with('title', 'Year List');
+				return Redirect::to('common/year/')->with('title', 'Year List');
 			}
 			else
 			{
 				Session::flash('message', 'Token Mismatched');
-				return Redirect::to('common/year/index')->with('title', 'Year List');
+				return Redirect::to('common/year/')->with('title', 'Year List');
 			}
 		}
 	}
@@ -148,7 +148,7 @@ class YearController extends \BaseController {
 			if($data->delete())
 			{
 				Session::flash('danger', "Years Deleted successfully");
-				return Redirect::to('common/year/index')->with('title','All Year List');
+				return Redirect::to('common/year/')->with('title','All Year List');
 			}
 		}
 		catch
@@ -163,7 +163,7 @@ class YearController extends \BaseController {
 		try {
 			Session::flash('danger', "Years Deleted successfully");
 			Year::destroy(Request::get('id'));
-			return Redirect::to('common/year/index')->with('title','All Subject List');
+			return Redirect::to('common/year/')->with('title','All Subject List');
 		}
 		catch
 		(exception $ex){
