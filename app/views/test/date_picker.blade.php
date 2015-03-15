@@ -129,6 +129,26 @@
 		</div><!--/.main-container-->
 
 
+    <div class="main-container container-fluid">
+    <div class="main-content">
+    <h3>Factorial - Calculator</h3>
+		<div>
+		    {{ Form::open(array('url'=>'date-picker', 'class'=>'form-signin')) }}
+                <div>
+                    <div class="form-group">
+                        {{Form::text('factorial', null, ['class'=>'form-control'])}}
+                    </div>
+                </div>
+                <div>
+                    <button type="submit" class="btn"> Click (n!)</button>
+                </div>
+            {{ Form::close() }}
+		</div>
+
+		{{isset($factorial) ? $factorial : "please input numbers"}}
+    </div>
+    </div>
+
 		<!--[if !IE]>-->
 
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
