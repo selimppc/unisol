@@ -5,34 +5,33 @@ class AdmAmwController extends \BaseController
 
 
 // Admission : Course Management starts here...........................................................
-    public function index()
+    public function courseConductIndex()
     {
         //$model = CourseManagement::orderby('id', 'DESC')->paginate(5);
-        $model= CourseManagement::with('relCourse','relDegree','relCourse.relSubject.relDepartment','relSemester','relYear')->paginate(5);
+
+        /*$model= CourseManagement::with('relCourse','relDegree','relCourse.relSubject.relDepartment','relSemester','relYear')->paginate(5);
         $semester = array('' => 'Select Semester ') + Semester::lists('title', 'id');
         $year = array('' => 'Select Year ') + Year::lists('title', 'id');
         $degree = array('' => 'Select Degree ') + Degree::lists('title', 'id');
-        $department = array('' => 'Select Department ') + Department::lists('title', 'id');
+        $department = array('' => 'Select Department ') + Department::lists('title', 'id');*/
 
-        return View::make('admission::amw.course_management.index',
-            compact('model', 'semester', 'year', 'degree', 'department'));
+        return View::make('admission::amw.course_conduct.index');
+
     }
 
     public function create()
     {
         //$facultyList = User::FacultyList();
-        $role_id = Role::where('title', '=','faculty' )->first()->id;
-        $facultyList = array('' => 'Please Select One') +  User::where('role_id', '=', $role_id)->lists('username', 'id');
-
-
+        //$role_id = Role::where('title', '=','faculty' )->first()->id;
+        //$facultyList = array('' => 'Please Select One') +  User::where('role_id', '=', $role_id)->lists('username', 'id');
         $courseType = array('' => 'Please Select Course Type') + CourseType::lists('title', 'id');
-        $year = array('' => 'Please Select Year') + Year::lists('title', 'id');
+        $subject = array('' => 'Please Select Year') + Subject::lists('title', 'id');
         $course = array('' => 'Please Select Course') + Course::lists('title', 'id');
-        $semester = array('' => 'Please Select Semester') + Semester::lists('title', 'id');
-        $degree = array('' => 'Please Select Degree') + Degree::lists('title', 'id');
+//        $semester = array('' => 'Please Select Semester') + Semester::lists('title', 'id');
+//        $degree = array('' => 'Please Select Degree') + Degree::lists('title', 'id');
 
-        return View::make('admission::amw.course_management.modals._form',
-            compact('courseType', 'year', 'course', 'semester', 'user', 'facultyList', 'degree'));
+        return View::make('admission::amw.course_conduct.modals._form',
+            compact('subject','courseType', 'user', 'facultyList'));
     }
 
     public function store()

@@ -39,7 +39,9 @@ Route::any('user/get_cookie', 'UserSignupController@getCookie');
 
 //-------------------------------- Amw: Course Management starts-----------------------------------------------
 
-Route::any('amw/course_manage','AdmAmwController@index');
+Route::any('admission/amw/course_conduct/index',
+             [ 'as'=> 'course_conduct.index',
+             'uses' => 'AdmAmwController@courseConductIndex']);
 Route::any('back','AdmAmwController@back');
 Route::any('course_manage/create','AdmAmwController@create');
 Route::any('course_manage/store','AdmAmwController@store');

@@ -9,7 +9,7 @@
     </button>
     {{--search db--}}
         {{ Form::open(array('url' =>'year/show', 'class'=>'form-inline', 'role' => 'form')) }}
-        <div class="form-group">
+        <div class="form-group"style="margin-top: 2px">
             {{ Form::label('search_text', 'Search Text:',array('class'=>'sr-only')) }}
             {{ Form::text('search_text', Input::old('search_text'), array('class' => 'form-control','placeholder' => 'Search All')) }}
         </div>
@@ -110,6 +110,5 @@
             </div>
         </div>
     </div>
-
 
 @stop
