@@ -165,10 +165,15 @@ class YearController extends \BaseController {
 
 	public function batchdelete()
 	{
-		Session::flash('danger', "Years Deleted successfully");
-		Year::destroy(Request::get('id'));
-		return Redirect::to('year/show')->with('title','All Subject List');
-
+		try {
+			Session::flash('danger', "Years Deleted successfully");
+			Year::destroy(Request::get('id'));
+			return Redirect::to('year/show')->with('title','All Subject List');
+		}
+		catch
+		(exception $ex){
+			return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+		}
 	}
 
 	/**
