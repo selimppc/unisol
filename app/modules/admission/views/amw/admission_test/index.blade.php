@@ -41,7 +41,6 @@
                        <th>Dept</th>
                        <th>Year</th>
                        <th>Term</th>
-                       <th>Status</th>
                        <th>Credit</th>
                        <th>Duration(Year)</th>
                        <th>QPE Status</th>
@@ -52,11 +51,11 @@
                      @foreach($admission_test as $adm_test_mgt)
                            <tr>
                                <td><input type="checkbox" name="id[]" class="myCheckbox" value="{{ $adm_test_mgt['id'] }}"></td>
-                               <td>{{ $adm_test_mgt->title }}</td>
-                               <td>{{ Department::getDepartmentName($adm_test_mgt->department_id) }}</td>
+                               <td>{{ Degree::getDegreeName($adm_test_mgt->degree_id) }}</td>
+                               <td>dept</td>
+{{--                               <td>{{ Department::getDepartmentName($adm_test_mgt->department_id) }}</td>--}}
                                <td>{{ Year::getYearsName($adm_test_mgt->year_id) }}</td>
                                <td>{{ Semester::getSemesterName($adm_test_mgt->semester_id) }}</td>
-                               <td>{{ $adm_test_mgt->status}}</td>
                                <td>{{ $adm_test_mgt->total_credit }}</td>
                                <td style="text-align: center">{{ $adm_test_mgt->duration }}</td>
                                <td>QPE Status</td>

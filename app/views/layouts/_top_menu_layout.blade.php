@@ -3,6 +3,7 @@
         Common
     </a>
     <ul class="dropdown-menu">
+        <li><a tabindex="-1" a href="{{ URL::to('common/year/index') }}"> Year Management </a></li>
         <li><a tabindex="-1" href="{{ action('CourseController@index') }}"> Course Management </a></li>
         <li><a tabindex="-1" href="{{ action('CourseTypeController@index') }}"> Course Type </a></li>
         <li><a tabindex="-1" href="{{ action('DegreeLevelController@index') }}"> Degree Level </a></li>
@@ -14,7 +15,7 @@
         <li><a tabindex="-1" href="{{ action('RoleTaskController@index') }}"> Role Task </a></li>
         <li><a tabindex="-1" href="{{ action('RoleTaskUserController@index') }}"> Role Task User </a></li>
         <li><a tabindex="-1" a href="{{ URL::to('subject/list') }}"> Subject Management </a></li>
-        <li><a tabindex="-1" a href="{{ URL::to('year/show') }}"> Year Management </a></li>
+
         <li><a tabindex="-1" a href="{{ URL::to('term/show') }}"> All Course Management </a></li>
     </ul>
 </li>

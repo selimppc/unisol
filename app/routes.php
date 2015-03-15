@@ -170,16 +170,16 @@ Route::group( array('before' => 'auth'), function(){
     // Ends Subject
 
 
-    //year
-    Route::get('create/year','YearController@Index');
+    //*******************Year Start**********************************************
+    Route::any('common/year/index','YearController@show');
     Route::post('year/save','YearController@save');
-    Route::any('year/show','YearController@show');
     Route::any('year/show/{id}',['as' => 'year.show', 'uses'=> 'YearController@show_one']);
     Route::get('year/edit/{id}', ['as' => 'year.edit','uses' => 'YearController@edit']);
-    Route::any('year/update/{id}', ['as' => 'year/update','uses' => 'yearController@update']);
-    Route::get('year/delete/{id}','yearController@delete');
-    Route::any('batch/delete','yearController@batchdelete');
-    // End year
+    Route::any('year/update/{id}', ['as' => 'year/update','uses' => 'YearController@update']);
+    Route::get('year/delete/{id}','YearController@delete');
+    Route::any('batch/delete','YearController@batchdelete');
+
+    //*************************End year*******************************************
 
 
     // Courses under semester/term
