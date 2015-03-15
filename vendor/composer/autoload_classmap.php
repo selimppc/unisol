@@ -56,6 +56,7 @@ return array(
     'ApplicantSupportingDoc' => $baseDir . '/app/modules/applicant/models/ApplicantSupportingDoc.php',
     'ApplicantsSeeder' => $baseDir . '/app/database/seeds/ApplicantTable.php',
     'BaseController' => $baseDir . '/app/controllers/BaseController.php',
+    'Batch' => $baseDir . '/app/modules/admission/models/Batch.php',
     'BillingDetails' => $baseDir . '/app/modules/fees/models/BillingDetails.php',
     'BillingItem' => $baseDir . '/app/modules/fees/models/BillingItem.php',
     'BillingItemTable' => $baseDir . '/app/database/seeds/version-1/BillingItemTable.php',

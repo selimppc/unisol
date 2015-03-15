@@ -22,7 +22,8 @@ class AdmissionController extends \BaseController {
 //.................................................Index................................................................
     public function admissionTestIndex()
     {
-        $admission_test = Degree::orderBy('id', 'DESC')->paginate(3);
+        $admission_test = Batch::orderBy('id', 'DESC')->paginate(3);
+        $degree_id =
         $year_id = array('' => 'Select Year ') + Year::lists('title', 'id');
         $semester_id = array('' => 'Select Semester ') + Semester::lists('title', 'id');
 
