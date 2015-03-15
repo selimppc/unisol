@@ -289,6 +289,21 @@ class HomeController extends BaseController {
 
 
     public function datePicker(){
-        return View::make('test.date_picker');
+        if($_POST){
+            $n = Input::get('factorial');
+            $factorial = $this->bcFact($n);
+            return View::make('test.date_picker', compact('factorial'));
+        }else{
+            return View::make('test.date_picker');
+        }
+
+
     }
+
+    protected function bcFact($n){
+        $factorial=$n;
+        while (--$n>1) $factorial = bcmul($factorial,$n);
+        return $factorial;
+    }
+
 }
