@@ -5,24 +5,18 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateAdmission extends Migration {
 
-	/**
-	 * Run the migrations.
-	 *
-	 * @return void
-	 */
+    //TODO :: In Common Migration
+        //TODO : Year, Semester, Subject, Department, Country, Course Type, Degree Group
+        //TODO : Degree Program, Exam Center, Billing Item, Waiver
 	public function up()
 	{
-		//
+        
 	}
 
-	/**
-	 * Reverse the migrations.
-	 *
-	 * @return void
-	 */
+
 	public function down()
 	{
-		//
+
 	}
 
 }

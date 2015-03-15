@@ -59,11 +59,11 @@ class DatabaseSeeder extends Seeder {
         $this->call('ApplicantsSeeder');
         $this->command->info('Applicant table seeded!');
 
+        $this->call('AcmMarksDistItemTable');
+        $this->command->info('Academic Marks Distribution Item table seeded!');
+
         $this->call('DegreeProgramTable');
         $this->command->info('Degree Program table seeded!');
-
-        /*$this->call('AcmMarksDistItemTable');
-        $this->command->info('Academic Marks Distribution Item table seeded!');
 
         $this->call('BillingItemTable');
         $this->command->info('Billing Item table seeded!');
@@ -75,7 +75,7 @@ class DatabaseSeeder extends Seeder {
         $this->command->info('Class Time table seeded!');
 
         $this->call('ClassRoomTable');
-        $this->command->info('Class Room table seeded!');*/
+        $this->command->info('Class Room table seeded!');
 	}
 
 }
