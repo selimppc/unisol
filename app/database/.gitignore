@@ -1,1 +1,2 @@
 *.sqlite
+app/config/database.php

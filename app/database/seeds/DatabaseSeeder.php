@@ -8,7 +8,7 @@ class DatabaseSeeder extends Seeder {
          * INSERT INTO `user` (`id`, `username`, `password`, `email`, `role_id`, `department_id`, `join_date`, `last_visit`,
          * `ip_address`, `status`,  `verified_code`, `csrf_token`, `applicant_id`, `waiver_id`, `created_by`, `updated_by`,
          * `created_at`, `updated_at`) VALUES (1, 'admin', '$2y$10$mOBK0OXL5WpeXmjOSAqHJOJU.Xe5o8/4aHOBiP39McKhjBU4Zgv6G',
-         * 'admin@admin.com', NULL, NULL, '2000-12-12', '2000-12-12 00:00:00', '192.168.1.1', 1, '9875656457890867869778',
+         * 'admin1@admin.com', NULL, NULL, '2000-12-12', '2000-12-12 00:00:00', '192.168.1.1', 1, '9875656457890867869778',
          * 'fioyugpuiesiorgjhprauehrigpi', NULL, NULL, 1, 1, '2015-03-04 05:38:35', '2015-03-04 05:38:35')
          *          *
          * It needs to maintain the dependency to other table. Non dependent table seed must be before dependant table.

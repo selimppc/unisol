@@ -8,50 +8,13 @@ class CreateUser extends Migration {
 
 	public function up()
 	{
-        Schema::create('role', function(Blueprint $table) {
-            $table->increments('id');
-            $table->string('code', 8);
-            $table->string('title', 128);
-            $table->text('description');
-            $table->tinyInteger('status', false, 1);
-            $table->integer('created_by', false, 11);
-            $table->integer('updated_by', false, 11);
-            $table->timestamps();
-            $table->engine = 'InnoDB';
-        });
-
-
-        Schema::create('department', function(Blueprint $table) {
-            $table->increments('id');
-            $table->string('title', 128);
-            $table->text('description');
-            $table->integer('dept_head_user_id', false, 11);
-            $table->integer('created_by', false, 11);
-            $table->integer('updated_by', false, 11);
-            $table->timestamps();
-            $table->engine = 'InnoDB';
-        });
-
-        Schema::create('waiver', function(Blueprint $table) {
-            $table->increments('id');
-            $table->string('title', 128);
-            $table->text('description');
-            $table->string('waiver_type', 64);
-            $table->tinyInteger('is_percentage', false, 1)->lenght(1);
-            $table->string('amount', 64);
-            $table->unsignedInteger('billing_details_id')->nullable();
-            $table->integer('created_by', false, 11);
-            $table->integer('updated_by', false, 11);
-            $table->timestamps();
-            $table->engine = 'InnoDB';
-        });
-
 
         Schema::create('user', function(Blueprint $table) {
             $table->increments('id');
             $table->string('username');
             $table->string('password', 64);
             $table->string('email')->unique();
+            $table->string('student_id', 10);
             $table->unsignedInteger('role_id')->nullable();
             $table->unsignedInteger('department_id')->nullable();
             $table->date('join_date');
@@ -264,9 +227,6 @@ class CreateUser extends Migration {
 
 	public function down()
 	{
-        Schema::drop('role');
-        Schema::drop('department');
-        Schema::drop('waiver');
         Schema::drop('user');
         Schema::drop('user_profile');
         Schema::drop('user_meta');

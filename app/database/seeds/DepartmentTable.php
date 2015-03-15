@@ -25,7 +25,7 @@ class DepartmentTable extends Seeder {
         Department::create(array(
             'title' => 'EEE ',
             'description' => 'Electrical and Electronics Engineering',
-            'dept_head_user_id' => 2,
+            'dept_head_user_id' => 1,
             'created_by' => 1,
             'updated_by' => 1,
             'created_at' => new DateTime,
@@ -34,7 +34,7 @@ class DepartmentTable extends Seeder {
         Department::create(array(
             'title' => 'MATH',
             'description' => 'Applied Mathematics',
-            'dept_head_user_id' => 3,
+            'dept_head_user_id' => 1,
             'created_by' => 1,
             'updated_by' => 1,
             'created_at' => new DateTime,
@@ -44,7 +44,7 @@ class DepartmentTable extends Seeder {
         Department::create(array(
             'title' => 'BBA',
             'description' => 'Bachelor of Business Administration',
-            'dept_head_user_id' => 3,
+            'dept_head_user_id' => 1,
             'created_by' => 1,
             'updated_by' => 1,
             'created_at' => new DateTime,
