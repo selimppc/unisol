@@ -57,7 +57,7 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'unisol_dev',
+			'database'  => 'unisol_dev2',
 			'username'  => 'root',
 			'password'  => '',
 			'charset'   => 'utf8',
