@@ -368,7 +368,7 @@ class AdmissionController extends \BaseController {
 
             if ($adm_test_degree->save()) {
                 return Redirect::to('admission_test/amw/adm-test-degree')
-                    ->with('message', 'Successfully Updates Information!');
+                    ->with('message', 'Successfully Updated Information!');
             }
         } else
         {
@@ -455,7 +455,7 @@ class AdmissionController extends \BaseController {
 
             if ($adm_test_subject->save()) {
                 return Redirect::to('admission_test/amw/adm-test-subject')
-                    ->with('message', 'Successfully added Information!');
+                    ->with('message', 'Successfully Updated Information!');
             }
         } else
         {
