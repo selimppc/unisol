@@ -20,24 +20,32 @@
                    <div class="row">
 
                        <div class="col-lg-12">
-                          <table class="table  table-bordered">
-                                <tbody>
-                                    <tr>
-                                        <th rowspan="70%" style="vertical-align: middle"><b style="font-size: medium">Degree Name</b></th>
-                                    </tr>
-                                    @foreach($degree_applicant as $value)
 
-                                        <tr>
-                                             <td class="col-lg-10">
-                                                   <a href="{{ URL::route('admission.adm_test_details',
-                                                       ['degree_id' => $value->id]) }}">
-                                                       {{ $value->relDegree->title }}
-                                                   </a>
-                                             </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                          </table>
+                              <table class="table  table-bordered">
+                                  @if ($degree_applicant->count())
+                                        <tbody>
+                                            <tr>
+                                                <th rowspan="70%" style="vertical-align: middle"><b style="font-size: medium">Degree Name</b></th>
+                                            </tr>
+
+                                            @foreach($degree_applicant as $value)
+
+                                                <tr>
+                                                     <td class="col-lg-10">
+                                                           <a href="{{ URL::route('admission.adm_test_details',
+                                                               ['degree_id' => $value->id]) }}">
+                                                               {{ $value->relDegree->title }}
+                                                           </a>
+                                                     </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                  @else
+                                        <div class="col-xs-12" style="text-align: center;">
+                                             <span class="btn btn-xs btn btn-info" style="color:#ffffff;">No data found !</span>
+                                        </div>
+                                        @endif
+                              </table>
                        </div>
                    </div>
               </div>
@@ -50,34 +58,28 @@
  </div>
 
 {{-----------------------------------Data Table : admission on  degree Starts Ends---------------------------------------------------------------------------}}
-<p>&nbsp;</p>
-<p>&nbsp;</p>
+
 {{-----------------------------------Applicant's Profile:Personal Information starts--------------------------------------------------------}}
 
 <div class="box  box-info">
 
-
-
     <div class="box-header">
-        <h3 class="box-title">Applicant's Profile</h3>
+        <h5 class="box-title" style="color: orangered; font-size: 16px;">Before proceeding to checkout please complete your Profile and Academic Record :: To checkout click on the button >> "Next"</h5>
         <div class="box-tools pull-right">
-            <button class="btn btn-info btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
-            <button class="btn btn-info btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
+            <a class="pull-right btn btn-sm btn-success"  href="{{ URL::route('admission.adm_checkout')}}"><b style="color: #ffffff;"> Next </b> <i class="fa fa-arrow-circle-right"></i></a>
         </div>
     </div>
-    <p>&nbsp;</p>
-<a class="pull-right btn btn-sm btn-success"  href="{{ URL::route('admission.adm_checkout')}}"><b>Next</b><i class="fa fa-arrow-circle-right"></i></a>
-
 
           <section class="col-lg-6 connectedSortable">
-                <p>&nbsp;</p><p>&nbsp;</p>
+
+                    <p>&nbsp;</p>
 
                     <div class="box box-info">
                          <div class="box-header">
                              <h3 class="box-title">Personal Information</h3>
                              <!-- tools box -->
                              <div class="pull-right box-tools">
-                                 <button class="btn btn-info btn-sm" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
+                                 <button class="btn btn-info btn-sm" data-widget="remove" data-toggle="tooltip" ><i class="fa fa-times"></i></button>
                              </div><!-- /. tools -->
                          </div>
                              <div class="box-body">
@@ -143,7 +145,7 @@
                              <h3 class="box-title">Academic Information</h3>
                              <!-- tools box -->
                              <div class="pull-right box-tools">
-                                 <button class="btn btn-info btn-sm" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
+                                 <button class="btn btn-info btn-sm" data-widget="remove" data-toggle="tooltip" ><i class="fa fa-times"></i></button>
                              </div><!-- /. tools -->
                          </div>
                              <div class="box-body">
@@ -200,7 +202,7 @@
                      <h3 class="box-title">Biographical Information</h3>
                      <!-- tools box -->
                      <div class="pull-right box-tools">
-                         <button class="btn btn-info btn-sm" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
+                         <button class="btn btn-info btn-sm" data-widget="remove" data-toggle="tooltip" ><i class="fa fa-times"></i></button>
                      </div><!-- /. tools -->
                  </div>
                  <div class="box-body">

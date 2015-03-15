@@ -3535,3 +3535,6 @@ fieldset[disabled] .btn-vk.active {
   color: #587ea3;
   background-color: #ffffff;
 }
+.ui-helper-hidden-accessible{
+    display: none;
+}
