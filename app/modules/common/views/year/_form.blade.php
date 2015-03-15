@@ -9,5 +9,6 @@
 </div>
 <div>
     {{ Form::submit('Submit', array('class'=>'btn btn-primary')) }}
-    <a href="{{URL::to('year/show')}}" class="btn btn-default">Close </a>
+    <a href="{{URL::to('common/year/index')}}" class="btn btn-default">Close </a>
+    {{--<button type="button" class="close btn btn-default" data-dismiss="modal">Close</button>--}}
 </div>

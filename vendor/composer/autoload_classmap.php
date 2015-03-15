@@ -528,7 +528,7 @@ return array(
     'UserAcademicRecord' => $baseDir . '/app/modules/user/models/UserAcademicRecord.php',
     'UserController' => $baseDir . '/app/modules/user/controllers/UserController.php',
     'UserExtraCurricularActivity' => $baseDir . '/app/modules/user/models/UserExtraCurricularActivity.php',
-    'UserMeta' => $baseDir . '/app/modules/user/models/UserMeta.php',
+    'UserMeta' => $baseDir . '/app/modules/user/models/Usermeta.php',
     'UserMiscellaneousInfo' => $baseDir . '/app/modules/user/models/UserMiscellaneousInfo.php',
     'UserProfile' => $baseDir . '/app/modules/user/models/UserProfile.php',
     'UserProfileController' => $baseDir . '/app/modules/user/controllers/UserProfileController.php',
@@ -545,6 +545,6 @@ return array(
     'Whoops\\Provider\\Zend\\ExceptionStrategy' => $vendorDir . '/filp/whoops/src/deprecated/Zend/ExceptionStrategy.php',
     'Whoops\\Provider\\Zend\\RouteNotFoundStrategy' => $vendorDir . '/filp/whoops/src/deprecated/Zend/RouteNotFoundStrategy.php',
     'Year' => $baseDir . '/app/modules/common/models/Year.php',
-    'YearController' => $baseDir . '/app/controllers/YearController.php',
+    'YearController' => $baseDir . '/app/modules/common/controllers/YearController.php',
     'YearTable' => $baseDir . '/app/database/seeds/version-1/YearTable.php',
 );
