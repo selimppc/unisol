@@ -141,15 +141,6 @@ Route::group( array('before' => 'auth'), function(){
     Route::any('role_task_user/destroy/{id}', ['as' => 'role_task_user.destroy', 'uses' => 'RoleTaskUserController@destroy' ]);
     Route::any('role_task_user/batchDelete','RoleTaskUserController@batchDelete');
 
-//Subject
-    Route::get('create/subject','SubjectController@Index');
-    Route::post('subject/save','SubjectController@save');
-    Route::any('subject/list','SubjectController@show');
-    Route::any('subject/batch/delete','SubjectController@batchdelete');
-    Route::get('subject/delete/{id}','SubjectController@delete');
-    Route::get('subject/editvalue', 'SubjectController@edit');
-    Route::post('subject/update/{id}', 'SubjectController@update');
-    // Ends Subject
 
     // Courses under semester/term
     Route::get('create/term','TermUnderSemesterController@Index');
@@ -168,6 +159,41 @@ Route::group( array('before' => 'auth'), function(){
     Tanin
     ==================================================================
     */
+
+    //{---------------------------------Degree Group--------------------------------------------------------}
+
+    Route::any('common/degree_group/index',
+        ['as'=>'common.degree_group.index',
+            'uses'=>'DegreeGroupController@degreeGroupIndex']);
+
+    Route::any('common/degree_group/create',
+        ['as'=>'common.degree_group.create',
+            'uses'=>'DegreeGroupController@degreeGroupCreate']);
+
+    Route::any('common/degree_group/store',
+        ['as'=>'common.degree_group.store',
+            'uses'=>'DegreeGroupController@degreeGroupStore']);
+
+
+    Route::any('common/degree_group/show/{id}',
+        ['as'=>'common.degree_group.show',
+            'uses'=>'DegreeGroupController@degreeGroupShow']);
+
+    Route::any('common/degree_group/edit/{id}',
+        ['as'=>'common.degree_group.edit',
+            'uses'=>'DegreeGroupController@degreeGroupEdit']);
+
+    Route::any('common/degree_group/update/{id}',
+        ['as'=>'common.degree_group.update',
+            'uses'=>'DegreeGroupController@degreeGroupUpdate']);
+
+    Route::any('common/degree_group/delete/{id}',
+        ['as'=>'common.degree_group.delete',
+            'uses'=>'DegreeGroupController@degreeGroupDelete']);
+
+    Route::any('common/degree_group/batch_delete',
+            ['as'=>'common.degree_group.batch_delete',
+            'uses'=>'DegreeGroupController@degreeGroupBatchDelete']);
 
     //{-------------------Department--------------------}
     Route::get('department/index','DepartmentController@index');
