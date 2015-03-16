@@ -228,6 +228,19 @@ Route::group( array('before' => 'auth'), function(){
            ['as'=>'common.exm_center.update',
             'uses'=>'ExamCenterController@exmCenterUpdate']);
 
+//{------------------------------------Waiver------------------------------------------------------------}
+
+    Route::any('common/waiver/index',
+          ['as'=>'common.waiver.index',
+            'uses'=>'WaiverController@waiverIndex']);
+
+    Route::any('common/waiver/create',
+          ['as'=>'common.waiver.create',
+            'uses'=>'WaiverController@waiverCreate']);
+
+    Route::any('common/waiver/store',
+          ['as'=>'common.waiver.store',
+            'uses'=>'WaiverController@waiverStore']);
 
     //{-------------------Department--------------------}
     Route::get('department/index','DepartmentController@index');
