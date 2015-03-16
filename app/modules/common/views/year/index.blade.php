@@ -102,7 +102,7 @@
                 </div>
                 <div class="modal-body">
                     {{ Form::open(array('url' => 'year/save', 'method' =>'post', 'role'=>'form','files'=>'true')) }}
-                    @include('common::year._form')
+                     @include('common::year._form')
                     {{ Form::close() }}
                 </div>
                 <div class="modal-footer">

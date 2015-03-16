@@ -2,71 +2,45 @@
 
 class AdmAmwController extends \BaseController
 {
-
+    function __construct() {
+        $this->beforeFilter('admAmw', array('except' => array('index')));
+    }
 
 // Admission : Course Management starts here...........................................................
     public function courseConductIndex()
     {
         //$model = CourseManagement::orderby('id', 'DESC')->paginate(5);
 
-        /*$model= CourseManagement::with('relCourse','relDegree','relCourse.relSubject.relDepartment','relSemester','relYear')->paginate(5);
+        $model= Course::orderby('id', 'DESC')->paginate(5);
         $semester = array('' => 'Select Semester ') + Semester::lists('title', 'id');
         $year = array('' => 'Select Year ') + Year::lists('title', 'id');
         $degree = array('' => 'Select Degree ') + Degree::lists('title', 'id');
-        $department = array('' => 'Select Department ') + Department::lists('title', 'id');*/
+        $department = array('' => 'Select Department ') + Department::lists('title', 'id');
 
-        return View::make('admission::amw.course_conduct.index');
-
+        return View::make('admission::amw.course_conduct.index',
+                  compact('model'));
     }
 
-    public function create()
+    public function courseConductCreate()
     {
-        //$facultyList = User::FacultyList();
-        //$role_id = Role::where('title', '=','faculty' )->first()->id;
-        //$facultyList = array('' => 'Please Select One') +  User::where('role_id', '=', $role_id)->lists('username', 'id');
         $courseType = array('' => 'Please Select Course Type') + CourseType::lists('title', 'id');
         $subject = array('' => 'Please Select Year') + Subject::lists('title', 'id');
-        $course = array('' => 'Please Select Course') + Course::lists('title', 'id');
-//        $semester = array('' => 'Please Select Semester') + Semester::lists('title', 'id');
-//        $degree = array('' => 'Please Select Degree') + Degree::lists('title', 'id');
 
         return View::make('admission::amw.course_conduct.modals._form',
-            compact('subject','courseType', 'user', 'facultyList'));
+                  compact('subject','courseType'));
     }
 
     public function store()
     {
+        $data = Input::all();
+        if (Course::create($data)) {
 
-        $rules = array(
-        //            'course_id' => 'required',
-        );
-        $validator = Validator::make(Input::all(), $rules);
-        if ($validator->passes()) {
-
-            $course_model = new CourseManagement();
-
-            $course_model->course_id = Input::get('course_id');
-            $course_model->year_id = Input::get('year_id');
-            $course_model->semester_id = Input::get('semester_id');
-            $course_model->course_type_id = Input::get('course_type_id');
-            $course_model->evolution_system = Input::get('evolution_system');
-            $course_model->start_date = Input::get('start_date');
-            $course_model->end_date = Input::get('end_date');
-            $course_model->major_minor = Input::get('major_minor');
-            $course_model->degree_id = Input::get('degree_id');
-            $course_model->user_id = Input::get('user_id');
-
-            if ($course_model->save()) {
-                return Redirect::to('amw/course_manage')
-                    ->with('message', 'Successfully added Information!');
-            }
-        } else {
             return Redirect::back()
-                ->with('message', 'The following errors occurred')
-                ->withErrors($validator)
-                ->withInput();
+                ->with('message', 'Successfully added Information!');
+        } else{
+            return Redirect::back()
+                ->with('message', 'invalid');
         }
-
     }
 
     public function show($id)

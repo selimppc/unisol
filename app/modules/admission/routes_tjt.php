@@ -42,8 +42,13 @@ Route::any('user/get_cookie', 'UserSignupController@getCookie');
 Route::any('admission/amw/course_conduct/index',
              [ 'as'=> 'course_conduct.index',
              'uses' => 'AdmAmwController@courseConductIndex']);
+
 Route::any('back','AdmAmwController@back');
-Route::any('course_manage/create','AdmAmwController@create');
+
+Route::any('admission/amw/course_conduct/create',
+            ['as'=>'course_conduct.create',
+            'uses'=>'AdmAmwController@courseConductCreate']);
+
 Route::any('course_manage/store','AdmAmwController@store');
 Route::any('course_manage/show/{id}','AdmAmwController@show');
 Route::any('course_manage/edit/{id}','AdmAmwController@edit');
