@@ -42,13 +42,32 @@ class Batch extends Eloquent{
 
     //TODO : model relationship
     public function relDegree(){
-        return $this->HasMany('Degree');
+        return $this->belongsTo('Degree', 'degree_id', 'id');
     }
     public function relYear(){
-        return $this->HasMany('Year');
+        return $this->belongsTo('Year', 'year_id', 'id');
     }
     public function relSemester(){
-        return $this->HasMany('Semester');
+        return $this->belongsTo('Semester', 'semester_id', 'id');
+    }
+
+    public function relAdmExaminerComments(){
+        return $this->HasMany('AdmExaminerComments');
+    }
+    public function relAdmExaminer(){
+        return $this->HasMany('AdmExaminer');
+    }
+    public function relBatchAdmSubject(){
+        return $this->HasMany('BatchAdmSubject');
+    }
+    public function relBatchApplicant(){
+        return $this->HasMany('BatchApplicant');
+    }
+    public function relBatchWaiver(){
+        return $this->HasMany('BatchWaiver');
+    }
+    public function relBatchEducationConstraint(){
+        return $this->HasMany('BatchEducationConstraint');
     }
 
     //TODO : on Save created_by or Updated_by
