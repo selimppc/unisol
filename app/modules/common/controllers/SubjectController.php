@@ -70,9 +70,18 @@ class SubjectController extends \BaseController {
 
 	public function batchdelete()
 	{
-		Session::flash('danger', "Subject Deleted successfully");
-		Subject::destroy(Request::get('id'));
-		return Redirect::to('common/subject/list')->with('title','All Subject List');
+		try {
+			$data= Subject::destroy(Request::get('id'));
+			if($data->delete())
+			{
+				Session::flash('danger', "Subject Deleted successfully");
+				return Redirect::to('common/subject/list')->with('title','All Subject List');
+			}
+		}
+		catch
+		(exception $ex){
+			return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+		}
 
 	}
 	/**
@@ -132,12 +141,19 @@ class SubjectController extends \BaseController {
 	 */
 	public function delete($id)
 	{
-		$data= Subject::find($id);
-		if($data->delete())
-		{
-			Session::flash('danger', "Subject Deleted successfully");
-			return Redirect::to('common/subject/list')->with('title','All Subject List');
+		try {
+			$data= Subject::find($id);
+			if($data->delete())
+			{
+				Session::flash('danger', "Subject Deleted successfully");
+				return Redirect::to('common/subject/list')->with('title','All Subject List');
+			}
 		}
+		catch
+		(exception $ex){
+			return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+		}
+
 	}
 
 	/**
