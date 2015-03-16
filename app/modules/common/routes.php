@@ -80,7 +80,7 @@ Route::any('semester/destroy/{id}', [
 Route::any('semester/batchDelete',
     'SemesterController@batchDelete'
 );
-//*****************Semester Start*******************************
+//*****************Subject Start*******************************
 Route::any('common/subject/list',
     'SubjectController@index'
 );

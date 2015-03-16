@@ -16,18 +16,18 @@ class SubjectController extends \BaseController {
 	public function save()
 	{
 		$token = csrf_token();
-		
+
 		$rules = array(
-			
+
 			'department_id' => 'Required',
 			'title' => 'Required|Min: 3',
 			'description' => 'Required|min:3'
-			);
+		);
 		$validator = Validator::make(Input::all(), $rules);
 
-		
+
 		if($validator->fails())
-		{				
+		{
 			return Redirect::to('common/subject/list')->withErrors($validator)->withInput()->with('title', 'Create Subject');
 		}
 		else
@@ -52,16 +52,16 @@ class SubjectController extends \BaseController {
 	public function index()
 	{
 		$search_text =trim(Input::get('search_text'));
-	     //Input::flash();
+		//Input::flash();
 		$q = Subject::query();
-		if (!empty($search_text)) 
+		if (!empty($search_text))
 		{
 			$q->where(function($query) use ($search_text)
 			{
 				$query->where('department_id', 'LIKE', '%'.$search_text.'%');
 				$query->orWhere('title', 'LIKE', '%'.$search_text.'%');
 				$query->orWhere('description', 'LIKE', '%'.$search_text.'%');
-				
+
 			});
 		}
 		$data = $q->orderBy('id', 'DESC')->paginate(5);
@@ -106,10 +106,10 @@ class SubjectController extends \BaseController {
 			'department_id' => 'Required',
 			'title' => 'Required|Min: 3',
 			'description' => 'Required|min:3'
-			);
+		);
 		$validator = Validator::make(Input::all(), $rules);
 		if($validator->fails())
-		{				
+		{
 			return Redirect::to('common/subject/list')->withErrors($validator)->withInput()->with('title', 'Subject List');
 		}
 		else
