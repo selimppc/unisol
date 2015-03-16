@@ -66,6 +66,11 @@ class DegreeGroupController extends \BaseController {
 
         return Redirect::back()->with('message', 'Successfully deleted Information!');
 	}
+    public function degreeGroupBatchDelete()
+    {
+        DegreeGroup::destroy(Request::get('ids'));
+        return Redirect::back()->with('message','Successfully deleted Information!');
+    }
 
 
 }

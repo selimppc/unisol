@@ -19,9 +19,13 @@
               <div class="box-body">
                    <div class="row">
                        <div class="col-lg-12">
+                       {{ Form::open(array('url' => 'common/degree_group/batch_delete')) }}
                           <table class="table table-bordered">
                                  <thead>
                                          <tr>
+                                             <th>
+                                                 <input name="id" type="checkbox" id="checkbox" class="checkbox" value="">
+                                             </th>
                                             <th>Title</th>
                                             <th>Code</th>
                                             <th>Description</th>
@@ -32,6 +36,8 @@
                                               @if(isset($model))
                                                     @foreach($model as $value)
                                                         <tr>
+                                                            <td><input type="checkbox" name="ids[]"  class="myCheckbox" value="{{ $value->id }}">
+                                                            </td>
                                                             <td>{{ $value->title }}</td>
                                                             <td>{{ $value->code}}</td>
                                                             <td>{{ $value->description}}</td>
@@ -47,9 +53,9 @@
                                                     @endforeach
                                               @endif
                                         </tbody>
-
+                       {{ Form::submit('Delete Items', array('class'=>'btn btn-xs btn-danger', 'id'=>'hide-button', 'style'=>'display:none'))}}
                           </table>
-
+                       {{ Form::close() }}
                        </div>
                    </div>
               </div>

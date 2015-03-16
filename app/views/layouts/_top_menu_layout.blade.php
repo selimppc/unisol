@@ -12,7 +12,7 @@
         <li><a tabindex="-1" href="{{ action('DegreeLevelController@index') }}"> Degree Level </a></li>
         <li><a tabindex="-1" href="{{ action('DegreeProgController@index') }}"> Degree / Program Name </a></li>
         <li><a tabindex="-1" href="{{ action('DepartmentController@index') }}"> Department Management </a></li>
-
+        <li><a tabindex="-1" href="{{ action('DegreeGroupController@degreeGroupIndex') }}"> Degree Group </a></li>
         <li><a tabindex="-1" href="{{ action('TargetRoleController@index') }}"> Target Role </a></li>
         <li><a tabindex="-1" href="{{ action('TaskListRoleController@index') }}"> Task List </a></li>
         <li><a tabindex="-1" href="{{ action('RoleTaskController@index') }}"> Role Task </a></li>

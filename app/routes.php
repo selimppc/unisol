@@ -191,6 +191,10 @@ Route::group( array('before' => 'auth'), function(){
            ['as'=>'common.degree_group.delete',
             'uses'=>'DegreeGroupController@degreeGroupDelete']);
 
+    Route::any('common/degree_group/batch_delete',
+            ['as'=>'common.degree_group.batch_delete',
+            'uses'=>'DegreeGroupController@degreeGroupBatchDelete']);
+
     //{-------------------Department--------------------}
     Route::get('department/index','DepartmentController@index');
     Route::get('department/','DepartmentController@index');
