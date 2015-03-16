@@ -5,7 +5,7 @@
     <ul class="dropdown-menu">
         <li><a tabindex="-1" a href="{{ URL::to('common/year/') }}"> Year </a></li>
         <li><a tabindex="-1" a href="{{ URL::to('common/semester/') }}"> Semester </a></li>
-
+        <li><a tabindex="-1" a href="{{ URL::to('common/subject/list') }}"> Subject </a></li>
 
         <li><a tabindex="-1" href="{{ action('CourseController@index') }}"> Course Management </a></li>
         <li><a tabindex="-1" href="{{ action('CourseTypeController@index') }}"> Course Type </a></li>
@@ -17,8 +17,6 @@
         <li><a tabindex="-1" href="{{ action('TaskListRoleController@index') }}"> Task List </a></li>
         <li><a tabindex="-1" href="{{ action('RoleTaskController@index') }}"> Role Task </a></li>
         <li><a tabindex="-1" href="{{ action('RoleTaskUserController@index') }}"> Role Task User </a></li>
-        <li><a tabindex="-1" a href="{{ URL::to('subject/list') }}"> Subject Management </a></li>
-
         <li><a tabindex="-1" a href="{{ URL::to('term/show') }}"> All Course Management </a></li>
     </ul>
 </li>

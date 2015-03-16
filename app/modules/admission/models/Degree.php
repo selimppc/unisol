@@ -6,75 +6,57 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 
 class Degree extends Eloquent{
 
+    //TODO :: model attributes and rules and validation
     protected $table='degree';
-
+    protected $fillable = [
+        'department_id', 'degree_program_id', 'degree_group_id', 'title', 'description',
+        'total_credit', 'duration', 'policy_retake', 'policy_course_taking',
+        'credit_min_per_semester', 'credit_max_per_semester', 'status'
+    ];
     private $errors;
-    private $rules = array(
-
-//        'exm_exam_list_id'  => 'required',
-//        'user_id'  => 'required',
-
-//        'type'  => 'required',
-//        'assigned_by'  => 'required',
-//        'deadline'  => 'required',
-//        'note'  => 'required',
-//        'status'  => 'required',
-
-    );
-
+    private $rules = [
+        'department_id' => 'required|integer',
+        'degree_program_id' => 'required|integer',
+        'degree_group_id' => 'required|integer',
+        'title' => 'required|alpha',
+        'description' => 'alpha',
+        'total_credit' => 'required|numeric',
+        'duration' => 'required|alpha',
+        'policy_retake' => 'required|alpha',
+        'policy_course_taking' => 'required|alpha',
+        'credit_min_per_semester' => 'numeric',
+        'credit_max_per_semester' => 'numeric',
+        'status' => 'alpha',
+    ];
     public function validate($data)
     {
-        // make a new validator object
         $validate = Validator::make($data, $this->rules);
-        // check for failure
         if ($validate->fails())
         {
-            // set errors and return false
             $this->errors = $validate->errors();
             return false;
         }
-        // validation pass
         return true;
     }
-
     public function errors()
     {
         return $this->errors;
     }
 
-    public static function getDegreeName($degId)
-    {
-        $data = Degree::find($degId);
-        return $data->title;
-    }
 
-
-
-    public function relYear(){
-        return $this->belongsTo('Year','year_id','id');
-    }
-
-    public function relSemester(){
-        return $this->belongsTo('Semester','semester_id','id');
-    }
-
-    public function relApplicantDegree(){
-        return $this->belongsTo('ApplicantDegree');
-    }
-
+    //TODO : Model Relationship
     public function relDepartment(){
-        return $this->belongsTo('Department', 'department_id', 'id');
+        return $this->HasMany('Department');
+    }
+    public function relDegreeProgram(){
+        return $this->belongsTo('DegreeProgram');
+    }
+    public function relDegreeGroup(){
+        return $this->belongsTo('DegreeGroup');
     }
 
-    public function relDegreeWaiver(){
-        return $this->hasMany('DegreeWaiver');
-    }
 
-    public function relCourseManagement(){
-        return $this->hasMany('CourseManagement','degree_id','id');
-    }
-
-
+    // TODO : user info while saving data into table
     public static function boot(){
         parent::boot();
         static::creating(function($query){

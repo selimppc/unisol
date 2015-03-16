@@ -48,7 +48,7 @@ $('.myCheckbox').on('change', function (event) {
     }
 });*/
 
-//ends
+//*****************Common Module subject CRUD using js start*****************
 
 //paginations onpage filter
 $('#searchStr').keyup(function () {
@@ -62,7 +62,6 @@ $('#searchStr').keyup(function () {
             }
         });
 });
-
 
 //Modal subEdit for subject start. this only shows the value according their id
 
@@ -87,7 +86,6 @@ $('.subEdit').on('click', function () {
 
 });
 
-
 //subject details show on their id into modal
 
 $('.subDetails').on('click', function () {
@@ -109,6 +107,7 @@ $('#confirm-edit').on('hidden.bs.modal', function (e) {
         .end();
 });
 
+//*********************Common Module subject CRUD using js End*****************************
 
 // To refresh button
 $('.close').on('click', function (event) {

@@ -22,15 +22,12 @@
 //}
 
 Route::get('admin/common', function() { return '<h1>Hello World !</h1>'; });
-
 Route::get('admin/mon','CommonController@index');
-
 Route::get('/helloworld','FowController@index');
 
 /*
- * Ratna
+ ******Ratna
 */
-
 //*******************Year Start*****************************
 Route::any('common/year/',
     'YearController@index'
@@ -83,3 +80,23 @@ Route::any('semester/destroy/{id}', [
 Route::any('semester/batchDelete',
     'SemesterController@batchDelete'
 );
+//*****************Semester Start*******************************
+Route::any('common/subject/list',
+    'SubjectController@index'
+);
+Route::post('subject/save',
+    'SubjectController@save'
+);
+Route::any('subject/batch/delete',
+    'SubjectController@batchdelete'
+);
+Route::get('subject/delete/{id}',
+    'SubjectController@delete'
+);
+Route::get('subject/editvalue',
+    'SubjectController@edit'
+);
+Route::post('subject/update/{id}',
+    'SubjectController@update'
+);
+// Ends Subject
