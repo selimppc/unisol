@@ -160,7 +160,7 @@ Route::group( array('before' => 'auth'), function(){
     ==================================================================
     */
 
-    //{---------------------------------Degree Group--------------------------------------------------------}
+//{---------------------------------Degree Group--------------------------------------------------------}
 
     Route::any('common/degree_group/index',
         ['as'=>'common.degree_group.index',
@@ -194,6 +194,40 @@ Route::group( array('before' => 'auth'), function(){
     Route::any('common/degree_group/batch_delete',
             ['as'=>'common.degree_group.batch_delete',
             'uses'=>'DegreeGroupController@degreeGroupBatchDelete']);
+
+// {--------------------------------------Exm-Center---------------------------------------------------------}
+    Route::any('common/exm_center/index',
+           ['as'=>'common.exm_center.index',
+            'uses'=>'ExamCenterController@exmCenterIndex']);
+
+    Route::any('common/exm_center/create',
+            ['as'=>'common.exm_center.create',
+            'uses'=>'ExamCenterController@exmCenterCreate']);
+
+    Route::any('common/exm_center/store',
+            ['as'=>'common.exm_center.store',
+            'uses'=>'ExamCenterController@exmCenterStore']);
+
+    Route::any('common/exm_center/show/{id}',
+           ['as'=>'common.exm_center.show',
+            'uses'=>'ExamCenterController@exmCenterShow']);
+
+    Route::any('common/exm_center/edit/{id}',
+        ['as'=>'common.exm_center.edit',
+            'uses'=>'ExamCenterController@exmCenterEdit']);
+
+    Route::any('common/exm_center/delete/{id}',
+           ['as'=>'common.exm_center.delete',
+            'uses'=>'ExamCenterController@exmCenterDelete']);
+
+    Route::any('common/exm_center/batch_delete',
+           ['as'=>'common.exm_center.batch_delete',
+            'uses'=>'ExamCenterController@exmCenterBatchDelete']);
+
+    Route::any('common/exm_center/update/{id}',
+           ['as'=>'common.exm_center.update',
+            'uses'=>'ExamCenterController@exmCenterUpdate']);
+
 
     //{-------------------Department--------------------}
     Route::get('department/index','DepartmentController@index');
