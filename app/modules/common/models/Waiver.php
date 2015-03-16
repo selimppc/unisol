@@ -4,17 +4,21 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class Semester extends Eloquent{
+class Waiver extends Eloquent{
 
     //TODO :: model attributes and rules and validation
-    protected $table='semester';
+    protected $table='waiver';
     protected $fillable = [
-        'title', 'description',
+        'title', 'description', 'waiver_type', 'is_percentage', 'amount', 'billing_details_id',
     ];
     private $errors;
     private $rules = [
         'title' => 'required|integer',
         'description' => 'alpha',
+        'waiver_type' => 'alpha',
+        'is_percentage' => 'integer',
+        'amount' => 'numeric',
+        'billing_details_id' => 'required|integer',
     ];
     public function validate($data)
     {
@@ -32,14 +36,11 @@ class Semester extends Eloquent{
     }
 
     //TODO : Model Relationship
-    public function relBatch(){
-        return $this->HasMany('Batch');
+    public function relBatchWaiver(){
+        return $this->HasMany('BatchWaiver');
     }
-    public function relCourseEnrollment(){
-        return $this->HasMany('CourseEnrollment');
-    }
-    public function relCourseConduct(){
-        return $this->HasMany('CourseConduct');
+    public function relBillingDetails(){
+        return $this->belongsTo('BillingDetails', 'billing_details_id', 'id');
     }
 
     // TODO : user info while saving data into table

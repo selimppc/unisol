@@ -1,19 +1,17 @@
 <?php
-use Illuminate\Auth\UserTrait;
-use Illuminate\Auth\UserInterface;
-use Illuminate\Auth\Reminders\RemindableTrait;
-use Illuminate\Auth\Reminders\RemindableInterface;
 
-class Semester extends Eloquent{
-
+class DegreeProgram extends \Eloquent
+{
     //TODO :: model attributes and rules and validation
-    protected $table='semester';
+	protected $table = 'degree_program';
+
     protected $fillable = [
-        'title', 'description',
+        'title', 'code', 'description',
     ];
     private $errors;
     private $rules = [
-        'title' => 'required|integer',
+        'title' => 'required|alpha',
+        'code' => 'required|alpha',
         'description' => 'alpha',
     ];
     public function validate($data)
@@ -31,16 +29,22 @@ class Semester extends Eloquent{
         return $this->errors;
     }
 
+
     //TODO : Model Relationship
-    public function relBatch(){
-        return $this->HasMany('Batch');
+    public function relDegree(){
+        return $this->HasMany('Degree');
     }
-    public function relCourseEnrollment(){
-        return $this->HasMany('CourseEnrollment');
+
+
+
+
+	// ratna code
+    public static function getDegreeProgramName($degreeId)
+    {
+        $data = DegreeProgram::find($degreeId);
+        return $data->title;
     }
-    public function relCourseConduct(){
-        return $this->HasMany('CourseConduct');
-    }
+
 
     // TODO : user info while saving data into table
     public static function boot(){
@@ -64,4 +68,6 @@ class Semester extends Eloquent{
 
     //TODO : Scope Area
 
-} 
+
+
+}

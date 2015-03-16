@@ -1,86 +1,61 @@
 <?php
+use Illuminate\Auth\UserTrait;
+use Illuminate\Auth\UserInterface;
+use Illuminate\Auth\Reminders\RemindableTrait;
+use Illuminate\Auth\Reminders\RemindableInterface;
 
+class CourseType extends Eloquent{
 
-class CourseType extends Eloquent
-{
-
-    protected $table = 'course_type';
-
-//    public function coursemanagement(){
-//        return $this->belongsTo('CourseManagement');
-//    }
-
-    public static function getCourseName($courseId){
-        $data = CourseType::find($courseId);
-        return $data->title;
-    }
-
-
+    //TODO :: model attributes and rules and validation
+    protected $table='course_type';
+    protected $fillable = [
+        'title', 'description',
+    ];
     private $errors;
-    // 1
-    private $rules = array(
-        'title' => 'required|unique:course_type',
-        'description'  => 'required',
-
-    );
-
-
+    private $rules = [
+        'title' => 'required|alpha',
+        'description' => 'alpha',
+    ];
     public function validate($data)
     {
-        // make a new validator object
         $validate = Validator::make($data, $this->rules);
-        // check for failure
         if ($validate->fails())
         {
-            // set errors and return false
             $this->errors = $validate->errors();
             return false;
         }
-        // validation pass
         return true;
     }
-
-    // 2
-
-    private $rules2 = array(
-        'title' => 'required',
-        'description'  => 'required',
-
-    );
-
-    public function validate2($data)
-    {
-        // make a new validator object
-        $validate = Validator::make($data, $this->rules2);
-        // check for failure
-        if ($validate->fails())
-        {
-            // set errors and return false
-            $this->errors = $validate->errors();
-            return false;
-        }
-        // validation pass
-        return true;
-    }
-
-
-
-
-
     public function errors()
     {
         return $this->errors;
     }
 
+    //TODO : Model Relationship
+    public function relCourse(){
+        return $this->HasMany('Course');
+    }
 
+    // TODO : user info while saving data into table
     public static function boot(){
         parent::boot();
         static::creating(function($query){
-            $query->created_by = Auth::user()->get()->id;
-            $query->updated_by = Auth::user()->get()->id;
+            if(Auth::user()->check()){
+                $query->created_by = Auth::user()->get()->id;
+            }elseif(Auth::applicant()->check()){
+                $query->created_by = Auth::applicant()->get()->id;
+            }
         });
         static::updating(function($query){
-            $query->updated_by = Auth::user()->get()->id;
+            if(Auth::user()->check()){
+                $query->updated_by = Auth::user()->get()->id;
+            }elseif(Auth::applicant()->check()){
+                $query->updated_by = Auth::applicant()->get()->id;
+            }
         });
     }
-}
+
+
+    //TODO : Scope Area
+
+} 

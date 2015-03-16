@@ -1,36 +1,65 @@
 <?php
+use Illuminate\Auth\UserTrait;
+use Illuminate\Auth\UserInterface;
+use Illuminate\Auth\Reminders\RemindableTrait;
+use Illuminate\Auth\Reminders\RemindableInterface;
 
-class Subject extends \Eloquent 
-{
-	protected $fillable = [];
-	protected $table = 'subject';
+class Subject extends Eloquent{
 
+    //TODO :: model attributes and rules and validation
+    protected $table='subject';
+    protected $fillable = [
+        'title', 'department_id', 'description',
+    ];
+    private $errors;
+    private $rules = [
+        'title' => 'required|alpha',
+        'department_id' => 'required|integer',
+        'description' => 'alpha',
+    ];
+    public function validate($data)
+    {
+        $validate = Validator::make($data, $this->rules);
+        if ($validate->fails())
+        {
+            $this->errors = $validate->errors();
+            return false;
+        }
+        return true;
+    }
+    public function errors()
+    {
+        return $this->errors;
+    }
 
-//    public function relCourse(){
-//        return $this->belongsTo('Course');
-//    }
-
+    //TODO : Model Relationship
+    public function relCourse(){
+        return $this->HasMany('Course');
+    }
     public function relDepartment(){
         return $this->belongsTo('Department', 'department_id', 'id');
     }
 
-    //Shafi
-    public static function getSubjectName($subId){
-        $data = Subject::find($subId);
-        return $data->title;
-    }
-
-
+    // TODO : user info while saving data into table
     public static function boot(){
         parent::boot();
         static::creating(function($query){
-            $query->created_by = Auth::user()->get()->id;
-            $query->updated_by = Auth::user()->get()->id;
+            if(Auth::user()->check()){
+                $query->created_by = Auth::user()->get()->id;
+            }elseif(Auth::applicant()->check()){
+                $query->created_by = Auth::applicant()->get()->id;
+            }
         });
         static::updating(function($query){
-            $query->updated_by = Auth::user()->get()->id;
+            if(Auth::user()->check()){
+                $query->updated_by = Auth::user()->get()->id;
+            }elseif(Auth::applicant()->check()){
+                $query->updated_by = Auth::applicant()->get()->id;
+            }
         });
     }
 
-}
-?>
+
+    //TODO : Scope Area
+
+} 

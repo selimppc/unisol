@@ -37,10 +37,20 @@ class CourseEnrollment extends Eloquent{
 
     //TODO : Model Relationship
     public function relBatchCourse(){
-        return $this->HasMany('BatchCourse');
+        return $this->belongsTo('BatchCourse', 'batch_course_id', 'id');
     }
     public function relUser(){
         return $this->belongsTo('User', 'student_user_id', 'id');
+    }
+    public function relCourseConduct(){
+        return $this->HasMany('CourseConduct');
+    }
+
+    public function relYear(){
+        return $this->belongsTo('Year', 'taken_year_id', 'id');
+    }
+    public function relSemester(){
+        return $this->belongsTo('Semester', 'taken_semester_id', 'id');
     }
 
     
@@ -62,5 +72,8 @@ class CourseEnrollment extends Eloquent{
             }
         });
     }
+
+
+    //TODO : Scope Area
 
 } 

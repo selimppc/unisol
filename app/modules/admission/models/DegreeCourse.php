@@ -34,10 +34,10 @@ class DegreeCourse extends Eloquent{
 
     //TODO : Model Relationship
     public function relCourse(){
-        return $this->HasMany('Course');
+        return $this->belongsTo('Course', 'course_id', 'id');
     }
     public function relDegree(){
-        return $this->HasMany('Degree');
+        return $this->belongsTo('Degree', 'degree_id', 'id');
     }
 
 

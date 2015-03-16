@@ -4,17 +4,21 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class Semester extends Eloquent{
+class BatchCourse extends Eloquent{
 
     //TODO :: model attributes and rules and validation
-    protected $table='semester';
+    protected $table='course_enrollment';
     protected $fillable = [
-        'title', 'description',
+        'batch_id', 'course_id', 'semester_id', 'year_id', 'is_mandatory', 'major_minor'
     ];
     private $errors;
     private $rules = [
-        'title' => 'required|integer',
-        'description' => 'alpha',
+        'batch_id' => 'required|integer',
+        'course_id' => 'required|integer',
+        'semester_id' => 'required|integer',
+        'year_id' => 'required|integer',
+        'is_mandatory' => 'required|integer',
+        'major_minor' => 'required|alpha'
     ];
     public function validate($data)
     {
@@ -31,17 +35,22 @@ class Semester extends Eloquent{
         return $this->errors;
     }
 
+
     //TODO : Model Relationship
     public function relBatch(){
-        return $this->HasMany('Batch');
+        return $this->belongsTo('Batch', 'batch_course_id', 'id');
     }
-    public function relCourseEnrollment(){
-        return $this->HasMany('CourseEnrollment');
+    public function relCourse(){
+        return $this->belongsTo('Course', 'course_id', 'id');
     }
-    public function relCourseConduct(){
-        return $this->HasMany('CourseConduct');
+    public function relYear(){
+        return $this->belongsTo('Year', 'year_id', 'id');
+    }
+    public function relSemester(){
+        return $this->belongsTo('Semester', 'semester_id', 'id');
     }
 
+    
     // TODO : user info while saving data into table
     public static function boot(){
         parent::boot();
@@ -61,7 +70,6 @@ class Semester extends Eloquent{
         });
     }
 
-
-    //TODO : Scope Area
+    //TODO :: Scope Area
 
 } 

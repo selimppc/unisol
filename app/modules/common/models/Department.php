@@ -1,68 +1,65 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: User
- * Date: 12/15/2014
- * Time: 12:42 PM
- */
+use Illuminate\Auth\UserTrait;
+use Illuminate\Auth\UserInterface;
+use Illuminate\Auth\Reminders\RemindableTrait;
+use Illuminate\Auth\Reminders\RemindableInterface;
 
-class Department extends Eloquent {
+class Department extends Eloquent{
 
-    protected $table = 'department';
-    protected $fillable = array('title','description','dept_head_user_id','created_by','updated_by');
-
+    //TODO :: model attributes and rules and validation
+    protected $table='department';
+    protected $fillable = [
+        'title', 'description', 'dept_head_user_id',
+    ];
     private $errors;
-
-    private $rules = array(
-        'title' => 'required|unique:department',
-        'description'  => 'required',
-
-    );
-
-
-    public function subject(){
-        return $this->belongsTo('Subject');
-    }
-
+    private $rules = [
+        'title' => 'required|alpha',
+        'dept_head_user_id' => 'required|integer',
+        'description' => 'alpha',
+    ];
     public function validate($data)
     {
-        // make a new validator object
         $validate = Validator::make($data, $this->rules);
-        // check for failure
         if ($validate->fails())
         {
-            // set errors and return false
             $this->errors = $validate->errors();
             return false;
         }
-        // validation pass
         return true;
     }
-
     public function errors()
     {
         return $this->errors;
     }
 
-    //(ratna)get the department name according their id in show.blade.php; this function only return the department name using department id from subject table
-
-       public static function getDepartmentName($deptId){
-    	$data = Department::find($deptId);
-		return $data->title;
+    //TODO : Model Relationship
+    public function relDegree(){
+        return $this->HasMany('Degree');
+    }
+    public function relSubject(){
+        return $this->HasMany('Subject');
     }
 
-
+    // TODO : user info while saving data into table
     public static function boot(){
         parent::boot();
         static::creating(function($query){
-            $query->created_by = Auth::user()->get()->id;
-            $query->updated_by = Auth::user()->get()->id;
+            if(Auth::user()->check()){
+                $query->created_by = Auth::user()->get()->id;
+            }elseif(Auth::applicant()->check()){
+                $query->created_by = Auth::applicant()->get()->id;
+            }
         });
         static::updating(function($query){
-            $query->updated_by = Auth::user()->get()->id;
+            if(Auth::user()->check()){
+                $query->updated_by = Auth::user()->get()->id;
+            }elseif(Auth::applicant()->check()){
+                $query->updated_by = Auth::applicant()->get()->id;
+            }
         });
     }
 
 
-} 
+    //TODO : Scope Area
 
+} 

@@ -4,17 +4,20 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class Semester extends Eloquent{
+class CourseConductComments extends Eloquent{
 
     //TODO :: model attributes and rules and validation
-    protected $table='semester';
+    protected $table='course_conduct_comments';
     protected $fillable = [
-        'title', 'description',
+        'course_conduct_id', 'comments', 'commented_to', 'commented_by', 'status',
     ];
     private $errors;
     private $rules = [
-        'title' => 'required|integer',
-        'description' => 'alpha',
+        'course_conduct_id' => 'required|integer',
+        'comments' => 'alpha',
+        'commented_to' => 'required|integer',
+        'commented_by' => 'required|integer',
+        'status' => 'alpha',
     ];
     public function validate($data)
     {
@@ -32,14 +35,8 @@ class Semester extends Eloquent{
     }
 
     //TODO : Model Relationship
-    public function relBatch(){
-        return $this->HasMany('Batch');
-    }
-    public function relCourseEnrollment(){
-        return $this->HasMany('CourseEnrollment');
-    }
     public function relCourseConduct(){
-        return $this->HasMany('CourseConduct');
+        return $this->belongsTo('CourseConduct', 'course_conduct_id', 'id');
     }
 
     // TODO : user info while saving data into table

@@ -1,102 +1,85 @@
 <?php
+use Illuminate\Auth\UserTrait;
+use Illuminate\Auth\UserInterface;
+use Illuminate\Auth\Reminders\RemindableTrait;
+use Illuminate\Auth\Reminders\RemindableInterface;
 
-class Course extends \Eloquent
-{
-    protected $table = 'course';
+class Course extends Eloquent{
 
-    public function relCourseManagement(){
-        return $this->belongsTo('CourseManagement');
-    }
-
-    public function relSubject(){
-        return $this->belongsTo('Subject', 'subject_id', 'id');
-    }
-
-    public static function getCourseName($courseId){
-        $data = Course::find($courseId);
-        return $data->title;
-    }
-
+    //TODO :: model attributes and rules and validation
+    protected $table='course';
+    protected $fillable = [
+        'title', 'course_code', 'subject_id', 'course_type_id', 'description', 'evaluation_total_marks',
+        'credit', 'hours_per_credit', 'cost_per_credit', 'evaluation_system'
+    ];
     private $errors;
-    // 1
-    private $rules = array(
-        'title' => 'required|unique:degree_level',
-        'course_code'  => 'required',
-        'subject_id'  => 'required',
-        'description'  => 'required',
-        'course_type'  => 'required',
-        'evaluation_total_marks'  => 'required',
-        'credit'  => 'required',
-        'hours_per_credit'  => 'required',
-        'cost_per_credit'  => 'required',
-
-    );
-
-
+    private $rules = [
+        'title' => 'required|alpha',
+        'course_code' => 'required|alpha',
+        'subject_id' => 'required|integer',
+        'course_type_id' => 'required|integer',
+        'description' => 'alpha',
+        'evaluation_total_marks' => 'numeric',
+        'credit' => 'numeric',
+        'hours_per_credit' => 'numeric',
+        'cost_per_credit' => 'numeric',
+        'evaluation_system' => 'alpha',
+    ];
     public function validate($data)
     {
-        // make a new validator object
         $validate = Validator::make($data, $this->rules);
-        // check for failure
         if ($validate->fails())
         {
-            // set errors and return false
             $this->errors = $validate->errors();
             return false;
         }
-        // validation pass
         return true;
     }
-
-    // 2
-
-    private $rules2 = array(
-        'title' => 'required',
-        'course_code'  => 'required',
-        'subject_id'  => 'required',
-        'description'  => 'required',
-        'course_type'  => 'required',
-        'evaluation_total_marks'  => 'required',
-        'credit'  => 'required',
-        'hours_per_credit'  => 'required',
-        'cost_per_credit'  => 'required',
-
-    );
-
-    public function validate2($data)
-    {
-        // make a new validator object
-        $validate = Validator::make($data, $this->rules2);
-        // check for failure
-        if ($validate->fails())
-        {
-            // set errors and return false
-            $this->errors = $validate->errors();
-            return false;
-        }
-        // validation pass
-        return true;
-    }
-
-
-
-
-
     public function errors()
     {
         return $this->errors;
     }
 
+
+    //TODO : Model Relationship
+    public function relBatchCourse(){
+        return $this->HasMany('BatchCourse');
+    }
+    public function relDegreeCourse(){
+        return $this->HasMany('DegreeCourse');
+    }
+    public function relCourseConduct(){
+        return $this->HasMany('CourseConduct');
+    }
+
+    public function relSubject(){
+        return $this->belongsTo('Subject', 'subject_id', 'id');
+    }
+    public function relCourseType(){
+        return $this->belongsTo('CourseType', 'course_type_id', 'id');
+    }
+
+
+    // TODO : user info while saving data into table
     public static function boot(){
         parent::boot();
         static::creating(function($query){
-            $query->created_by = Auth::user()->get()->id;
-            $query->updated_by = Auth::user()->get()->id;
+            if(Auth::user()->check()){
+                $query->created_by = Auth::user()->get()->id;
+            }elseif(Auth::applicant()->check()){
+                $query->created_by = Auth::applicant()->get()->id;
+            }
         });
         static::updating(function($query){
-            $query->updated_by = Auth::user()->get()->id;
+            if(Auth::user()->check()){
+                $query->updated_by = Auth::user()->get()->id;
+            }elseif(Auth::applicant()->check()){
+                $query->updated_by = Auth::applicant()->get()->id;
+            }
         });
     }
 
-}
-?>
+
+    //TODO : Scope Area
+
+} 
