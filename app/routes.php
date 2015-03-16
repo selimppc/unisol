@@ -169,6 +169,37 @@ Route::group( array('before' => 'auth'), function(){
     ==================================================================
     */
 
+    //{---------------------------------Degree Group--------------------------------------------------------}
+
+    Route::any('common/degree_group/index',
+              ['as'=>'common.degree_group.index',
+              'uses'=>'DegreeGroupController@degreeGroupIndex']);
+
+    Route::any('common/degree_group/create',
+              ['as'=>'common.degree_group.create',
+              'uses'=>'DegreeGroupController@degreeGroupCreate']);
+
+    Route::any('common/degree_group/store',
+              ['as'=>'common.degree_group.store',
+              'uses'=>'DegreeGroupController@degreeGroupStore']);
+
+
+    Route::any('common/degree_group/show/{id}',
+             ['as'=>'common.degree_group.show',
+            'uses'=>'DegreeGroupController@degreeGroupShow']);
+
+    Route::any('common/degree_group/edit/{id}',
+            ['as'=>'common.degree_group.edit',
+            'uses'=>'DegreeGroupController@degreeGroupEdit']);
+
+    Route::any('common/degree_group/update/{id}',
+           ['as'=>'common.degree_group.update',
+           'uses'=>'DegreeGroupController@degreeGroupUpdate']);
+
+    Route::any('common/degree_group/delete/{id}',
+           ['as'=>'common.degree_group.delete',
+            'uses'=>'DegreeGroupController@degreeGroupDelete']);
+
     //{-------------------Department--------------------}
     Route::get('department/index','DepartmentController@index');
     Route::get('department/','DepartmentController@index');
