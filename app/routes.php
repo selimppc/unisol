@@ -141,15 +141,6 @@ Route::group( array('before' => 'auth'), function(){
     Route::any('role_task_user/destroy/{id}', ['as' => 'role_task_user.destroy', 'uses' => 'RoleTaskUserController@destroy' ]);
     Route::any('role_task_user/batchDelete','RoleTaskUserController@batchDelete');
 
-//Subject
-    Route::get('create/subject','SubjectController@Index');
-    Route::post('subject/save','SubjectController@save');
-    Route::any('subject/list','SubjectController@show');
-    Route::any('subject/batch/delete','SubjectController@batchdelete');
-    Route::get('subject/delete/{id}','SubjectController@delete');
-    Route::get('subject/editvalue', 'SubjectController@edit');
-    Route::post('subject/update/{id}', 'SubjectController@update');
-    // Ends Subject
 
     // Courses under semester/term
     Route::get('create/term','TermUnderSemesterController@Index');
