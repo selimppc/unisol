@@ -141,13 +141,7 @@ Route::group( array('before' => 'auth'), function(){
     Route::any('role_task_user/destroy/{id}', ['as' => 'role_task_user.destroy', 'uses' => 'RoleTaskUserController@destroy' ]);
     Route::any('role_task_user/batchDelete','RoleTaskUserController@batchDelete');
 
-    /*
-    ==================================================================
-    Ratna
-    ==================================================================
-    */
-
-    //Subject
+//Subject
     Route::get('create/subject','SubjectController@Index');
     Route::post('subject/save','SubjectController@save');
     Route::any('subject/list','SubjectController@show');
@@ -156,60 +150,6 @@ Route::group( array('before' => 'auth'), function(){
     Route::get('subject/editvalue', 'SubjectController@edit');
     Route::post('subject/update/{id}', 'SubjectController@update');
     // Ends Subject
-
-
-    //*******************Year Start*****************************
-    Route::any('common/year/',
-        'YearController@index'
-    );
-    Route::post('year/save',
-        'YearController@save'
-    );
-    Route::any('year/show/{id}',[
-        'as' => 'year.show',
-        'uses'=> 'YearController@show_one'
-    ]);
-    Route::get('year/edit/{id}', [
-        'as' => 'year.edit',
-        'uses' => 'YearController@edit'
-    ]);
-    Route::any('year/update/{id}', [
-        'as' => 'year/update',
-        'uses' => 'YearController@update'
-    ]);
-    Route::get('year/delete/{id}',
-        'YearController@delete'
-    );
-    Route::any('batch/delete',
-        'YearController@batchdelete'
-    );
-    //*****************Semester Start************************************
-    Route::get('common/semester/',
-        'SemesterController@index'
-    );
-    Route::any('semester/store', [
-        'as' => 'semester.store',
-        'uses' => 'SemesterController@store'
-    ]);
-    Route::get('semester/show/{id}', [
-        'as' => 'semester.show',
-        'uses' => 'SemesterController@show'
-    ]);
-    Route::any('semester/edit/{id}', [
-        'as' => 'semester.edit',
-        'uses' => 'SemesterController@edit'
-    ]);
-    Route::any('semester/update/{id}', [
-        'as' => 'semester.update',
-        'uses' => 'SemesterController@update'
-    ]);
-    Route::any('semester/destroy/{id}', [
-        'as' => 'semester.destroy',
-        'uses' => 'SemesterController@destroy'
-    ]);
-    Route::any('semester/batchDelete',
-        'SemesterController@batchDelete'
-    );
 
     // Courses under semester/term
     Route::get('create/term','TermUnderSemesterController@Index');
