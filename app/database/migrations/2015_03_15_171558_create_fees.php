@@ -94,7 +94,7 @@ class CreateFees extends Migration {
         });
         Schema::table('billing_tuition_details', function($table) {
             $table->foreign('billing_summary_student_id')->references('id')->on('billing_summary_student');
-            $table->foreign('student_user_id')->references('id')->on('student_user');
+            $table->foreign('student_user_id')->references('id')->on('user');
             $table->foreign('year_id')->references('id')->on('year');
         });
 

@@ -4,14 +4,14 @@
 </div>
 <div class="modal-body">
 	<div style="padding: 10px; width: 90%;">
-
    {{ Form::open(array('url'=>'year/show','method' => '')) }}
 
-   <h2><strong> Years:</strong>  {{ $years->title }}</h2>
-   <p>
-    <strong> Description:</strong> {{ $years->description }}
-  </p>
-
+        <div class="jumbotron text-center">
+            <h2><strong> Years:</strong>  {{ $years->title }}</h2>
+            <p>
+                <strong> Description:</strong> {{ $years->description }}
+            </p>
+        </div>
   {{ Form::close() }}
 </div>
 </div>

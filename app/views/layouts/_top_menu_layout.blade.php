@@ -3,8 +3,10 @@
         Common
     </a>
     <ul class="dropdown-menu">
-        <li><a tabindex="-1" a href="{{ URL::to('common/year/') }}"> Year Management </a></li>
-        <li><a tabindex="-1" href="{{ action('SemesterController@index') }}"> Semester </a></li>
+        <li><a tabindex="-1" a href="{{ URL::to('common/year/') }}"> Year </a></li>
+        <li><a tabindex="-1" a href="{{ URL::to('common/semester/') }}"> Semester </a></li>
+
+
         <li><a tabindex="-1" href="{{ action('CourseController@index') }}"> Course Management </a></li>
         <li><a tabindex="-1" href="{{ action('CourseTypeController@index') }}"> Course Type </a></li>
         <li><a tabindex="-1" href="{{ action('DegreeLevelController@index') }}"> Degree Level </a></li>

@@ -98,11 +98,11 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">Add New Year</h4>
+                    <h4 class="modal-title" style="text-align: center;color: #800080;font-size: x-large">Create Year</h4>
                 </div>
                 <div class="modal-body">
                     {{ Form::open(array('url' => 'year/save', 'method' =>'post', 'role'=>'form','files'=>'true')) }}
-                    @include('common::year._form')
+                     @include('common::year._form')
                     {{ Form::close() }}
                 </div>
                 <div class="modal-footer">
