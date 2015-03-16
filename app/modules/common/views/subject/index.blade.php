@@ -11,9 +11,9 @@
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" style="margin-bottom: 20px">
                     AddSubject
                 </button>
-                 {{--for search box using js --}}
+                {{--for search box using js --}}
                 <section class="panel " style="background: #F9F9F9">
-                     {{--one page filter--}}
+                    {{--one page filter--}}
                     <div class="col-md-4 no-padder" style="margin-right: 350px">
                         <input type="search" name="tblsearch" id="searchStr" class="form-control" placeholder="Onpage Filter"/>
                         <div class="clearfix"></div>
@@ -75,7 +75,7 @@
                 <div class="modal-body edit-modal">
                     {{ Form::open(array('url' => '', 'method' =>'post', 'role'=>'form','files'=>'true', 'class' => 'updateForm')) }}
                     @include('common::subject._form')
-                {{--<a href="{{URL::to('common/subject/list')}}" class="btn btn-default">Close </a>--}}
+                    {{--<a href="{{URL::to('common/subject/list')}}" class="btn btn-default">Close </a>--}}
                     {{ Form::close() }}
                 </div>
                 <div class="modal-footer">
@@ -93,9 +93,9 @@
                 </div>
                 <div class="modal-body details-modal">
                     <div class="jumbotron text-center">
-                    <h4><strong>Department:</strong><span class="department"></span></h4>
-                    <h4><strong>Subject:</strong><span class="title"></span></h4>
-                    <h4><strong>Description:</strong><span class="description"></span></h4>
+                        <h4><strong>Department:</strong><span class="department"></span></h4>
+                        <h4><strong>Subject:</strong><span class="title"></span></h4>
+                        <h4><strong>Description:</strong><span class="description"></span></h4>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -133,7 +133,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 style="text-align: center;color: #800080;font-size: x-large">AddSubject</h4>
                 </div>
-                 <div class="modal-body">
+                <div class="modal-body">
                     {{ Form::open(array('url' => 'subject/save', 'method' =>'post', 'role'=>'form','files'=>'true')) }}
                     @include('common::subject._form')
                     {{ Form::close() }}
@@ -148,6 +148,6 @@
 @stop
 
 {{--@section('script_section')--}}
-    {{--<script>--}}
+{{--<script>--}}
 
-    {{--</script>--}}
+{{--</script>--}}

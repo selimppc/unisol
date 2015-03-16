@@ -4,29 +4,20 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class Degree extends Eloquent{
+class CourseEnrollment extends Eloquent{
 
     //TODO :: model attributes and rules and validation
-    protected $table='degree';
+    protected $table='course_enrollment';
     protected $fillable = [
-        'department_id', 'degree_program_id', 'degree_group_id', 'title', 'description',
-        'total_credit', 'duration', 'policy_retake', 'policy_course_taking',
-        'credit_min_per_semester', 'credit_max_per_semester', 'status'
+        'batch_course_id', 'student_user_id', 'status', 'taken_in_year_id', 'taken_in_semester_id'
     ];
     private $errors;
     private $rules = [
-        'department_id' => 'required|integer',
-        'degree_program_id' => 'required|integer',
-        'degree_group_id' => 'required|integer',
-        'title' => 'required|alpha',
-        'description' => 'alpha',
-        'total_credit' => 'required|numeric',
-        'duration' => 'required|alpha',
-        'policy_retake' => 'required|alpha',
-        'policy_course_taking' => 'required|alpha',
-        'credit_min_per_semester' => 'numeric',
-        'credit_max_per_semester' => 'numeric',
+        'batch_course_id' => 'required|integer',
+        'student_user_id' => 'required|integer',
         'status' => 'alpha',
+        'taken_in_year_id' => 'required|integer',
+        'taken_in_semester_id' => 'required|integer',
     ];
     public function validate($data)
     {
@@ -45,26 +36,14 @@ class Degree extends Eloquent{
 
 
     //TODO : Model Relationship
-    public function relBatch(){
-        return $this->HasMany('Batch');
+    public function relBatchCourse(){
+        return $this->HasMany('BatchCourse');
     }
-    public function relCourseConduct(){
-        return $this->HasMany('CourseConduct');
-    }
-    public function relDegreeCourse(){
-        return $this->HasMany('DegreeCourse');
-    }
-    public function relDepartment(){
-        return $this->belongsTo('Department', 'department_id', 'id');
-    }
-    public function relDegreeProgram(){
-        return $this->belongsTo('DegreeProgram', 'degree_program_id', 'id');
-    }
-    public function relDegreeGroup(){
-        return $this->belongsTo('DegreeGroup', 'degree_group_id', 'id');
+    public function relUser(){
+        return $this->belongsTo('User', 'student_user_id', 'id');
     }
 
-
+    
     // TODO : user info while saving data into table
     public static function boot(){
         parent::boot();
