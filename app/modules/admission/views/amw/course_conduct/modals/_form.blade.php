@@ -8,7 +8,7 @@
 <div class="modal-body">
   <div style="padding: 20px;">
 
-{{Form::open(array('url'=>'course_manage/store', 'class'=>'form-horizontal','files'=>true))}}
+  {{Form::open(array('url'=>'course_manage/store', 'class'=>'form-horizontal','files'=>true))}}
 
   <div class='form-group'>
 
@@ -25,77 +25,60 @@
   <div class='form-group'>
           <div>{{ Form::label('subject_id', 'Subject') }}</div>
           <div>{{ Form::select('subject_id',$subject,Input::old('subject_id'),['class'=>'form-control input-sm','required']) }}</div>
-   </div>
-
-   <div class='form-group'>
-       <div>{{ Form::label('course_type', 'Course Type') }}</div>
-       <div>{{ Form::select('course_type_id', $courseType, Input::old('course_type_id'),['class'=>'form-control input-sm','required'] )}}</div>
-   </div>
-
-  <div class='form-group'>
-
-          <div>{{ Form::label('description', 'Description') }}</div>
-          <div>{{ Form::text('description',Input::old('description') ,['class'=>'form-control input-sm','required'])}}</div>
   </div>
 
   <div class='form-group'>
+       <div>{{ Form::label('course_type', 'Course Type') }}</div>
+       <div>{{ Form::select('course_type_id', $courseType, Input::old('course_type_id'),['class'=>'form-control input-sm','required'] )}}</div>
+  </div>
 
-            <div>{{ Form::label('evaluation_total_marks', 'Evaluation Total Marks') }}</div>
-            <div>{{ Form::text('evaluation_total_marks',Input::old('evaluation_total_marks') ,['class'=>'form-control input-sm','required'])}}</div>
-    </div>
+  <div class='form-group'>
+        <div>{{ Form::label('description', 'Description') }}</div>
+        <div>{{ Form::text('description',Input::old('description') ,['class'=>'form-control input-sm','required'])}}</div>
+  </div>
 
-<div class='form-group'>
+  <div class='form-group'>
+        <div>{{ Form::label('evaluation_total_marks', 'Evaluation Total Marks') }}</div>
+        <div>{{ Form::text('evaluation_total_marks',Input::old('evaluation_total_marks') ,['class'=>'form-control input-sm','required'])}}</div>
+  </div>
 
-            <div>{{ Form::label('credit', 'Credit') }}</div>
-            <div>{{ Form::text('credit',Input::old('credit') ,['class'=>'form-control input-sm','required'])}}</div>
-    </div>
+  <div class='form-group'>
+        <div>{{ Form::label('credit', 'Credit') }}</div>
+        <div>{{ Form::text('credit',Input::old('credit') ,['class'=>'form-control input-sm','required'])}}</div>
+  </div>
 
-    <div class='form-group'>
+  <div class='form-group'>
+       <div>{{ Form::label('hours_per_credit', 'Hours Per Credit') }}</div>
+       <div>{{ Form::text('hours_per_credit',Input::old('hours_per_credit') ,['class'=>'form-control input-sm','required'])}}</div>
+  </div>
 
-                <div>{{ Form::label('hours_per_credit', 'Hours Per Credit') }}</div>
-                <div>{{ Form::text('hours_per_credit',Input::old('hours_per_credit') ,['class'=>'form-control input-sm','required'])}}</div>
-        </div>
-
-<div class='form-group'>
-
-                <div>{{ Form::label('cost_per_credit', 'Cost Per Credit') }}</div>
-                <div>{{ Form::text('cost_per_credit',Input::old('cost_per_credit') ,['class'=>'form-control input-sm','required'])}}</div>
-        </div>
-
+  <div class='form-group'>
+      <div>{{ Form::label('cost_per_credit', 'Cost Per Credit') }}</div>
+      <div>{{ Form::text('cost_per_credit',Input::old('cost_per_credit') ,['class'=>'form-control input-sm','required'])}}</div>
+  </div>
 
 
-{{--<div class='form-group'>--}}
+  <div class='form-group'>
 
-  {{--<div>{{ Form::label('user_id', 'Assigned Faculty') }}</div>--}}
-  {{--<div>{{ Form::select('user_id',$facultyList,Input::old('user_id'),['class'=>'form-control input-sm','required']) }}</div>--}}
-{{--</div>--}}
-
-<div class='form-group'>
-
-  <div>{{ Form::label('evolution_system', 'Evaluation System') }}</div>
-  <div>{{ Form::select ('evolution_system',  array('' => 'Select one',
+      <div>{{ Form::label('evolution_system', 'Evaluation System') }}</div>
+      <div>{{ Form::select ('evolution_system',  array('' => 'Select one',
           'automatic' => 'Automatic', 'manual' => 'Manual'), Input::old('evolution_system'),
            array('class' => 'form-control input-sm')) }}</div>
-</div>
+  </div>
 
 <p>&nbsp;</p>
 
-<div><a  href="{{URL::previous() }}" class="pull-right btn btn-default">Close</a></div>
-{{--<a class="pull-right btn btn-sm btn-info input-large" href="{{ URL::to('amw/degree_manage' )}}">Close</a>--}}
+<a  href="{{URL::previous() }}" class="pull-right btn btn-default">Close</a>
 
 {{ Form::submit('Save ', array('class'=>'pull-right btn btn-primary input-small')) }}
 
-
 <p>&nbsp;</p>
+
 {{Form::close()}}
 
 <p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-</div>
 
 </div>
+</div>
 
-<p>&nbsp;</p>
 {{ HTML::script('assets/js/custom.js')}}
