@@ -9,7 +9,7 @@
             <h2><strong>Name :</strong>{{ $course->title }}</h2>
             <p>
                 <strong> Course Code:</strong> {{ $course->course_code }} <br>
-                <strong> Subject Id:</strong> {{ $course->relSubject->title }}<br>
+                <strong> Subject Name:</strong> {{ $course->relSubject->title }}<br>
                 <strong> Description:</strong> {{ $course->description }}<br>
                 <strong> Evaluation Total Marks:</strong> {{ $course->evaluation_total_marks }}<br>
                 <strong> Credit:</strong> {{ $course->credit }}<br>
