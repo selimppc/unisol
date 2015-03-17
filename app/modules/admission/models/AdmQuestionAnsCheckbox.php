@@ -4,19 +4,17 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class AdmQuestionItems extends Eloquent{
+class AdmQuestionAnsCheckbox extends Eloquent{
 
     //TODO :: model attributes and rules and validation
-    protected $table = 'adm_question_items';
+    protected $table = 'adm_question_ans_checkbox';
     protected $fillable = [
-        'adm_question_id', 'question_type', 'title', 'marks',
+        'adm_question_evaluation_id', 'answer',
     ];
     private $errors;
     private $rules = [
-        'adm_question_id' => 'required|integer',
-        'question_type' => 'required|alpha',
-        'title' => 'required|alpha',
-        'marks' => 'required|numeric',
+        'adm_question_evaluation_id' => 'required|integer',
+        'answer' => 'required|alpha',
     ];
 
     public function validate($data)
@@ -36,11 +34,8 @@ class AdmQuestionItems extends Eloquent{
 
 
     //TODO : Model Relationship
-    public function relAdmQuestion(){
-        return $this->belongsTo('AdmQuestion', 'adm_question_id', 'id');
-    }
-    public function relAdmQuestionOptAns(){
-        return $this->HasMany('AdmQuestionOptAns');
+    public function relAdmQuestionEvaluation(){
+        return $this->belongsTo('AdmQuestionEvaluation', 'adm_question_evaluation_id', 'id');
     }
 
 
