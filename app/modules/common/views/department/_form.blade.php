@@ -12,5 +12,5 @@
         <div>{{ Form::textarea('description', Input::old('description'),['class'=>'form-control ','spellcheck'=> 'true']) }}</div>
     </div>
     {{ Form::submit('Save', array('class'=>'btn btn-primary')) }}
-    <a href="{{URL::to('common/department/index')}}" class="btn btn-default">Close </a>
+    <a href="{{URL::to('common/department/')}}" class="btn btn-default">Close </a>
 </fieldset>
