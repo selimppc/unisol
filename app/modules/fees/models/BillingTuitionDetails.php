@@ -4,18 +4,20 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class BillingSchedule extends Eloquent{
+class BillingTuitionDetails extends Eloquent{
 
     //TODO :: model attributes and rules and validation
-    protected $table = 'billing_schedule';
+    protected $table = 'billing_tuition_details';
+
     protected $fillable = [
-        'code', 'title', 'description',
+        'billing_summary_student_id', 'student_user_id', 'year_id', 'month',
     ];
     private $errors;
     private $rules = [
-        'code' => 'required|alpha',
-        'title' => 'required|alpha',
-        'description' => 'alpha',
+        'billing_summary_student_id' => 'required|integer',
+        'student_user_id' => 'required|integer',
+        'year_id' => 'required|integer',
+        'month' => 'alpha',
     ];
     public function validate($data)
     {
@@ -36,10 +38,13 @@ class BillingSchedule extends Eloquent{
     //TODO : Model Relationship
 
     public function relBillingSummaryStudent(){
-        return $this->HasMany('BillingSummaryStudent');
+        return $this->belongsTo('BillingSummaryStudent', 'billing_summary_student_id', 'id');
     }
-    public function relBillingSummaryApplicant(){
-        return $this->HasMany('AdmQuestionItems');
+    public function relUser(){
+        return $this->belongsTo('User', 'student_user_id', 'id');
+    }
+    public function relYear(){
+        return $this->belongsTo('Year', 'year_id', 'id');
     }
 
 

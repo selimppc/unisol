@@ -4,18 +4,21 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class BillingSchedule extends Eloquent{
+class BillingSetup extends Eloquent{
 
     //TODO :: model attributes and rules and validation
-    protected $table = 'billing_schedule';
+    protected $table = 'billing_setup';
     protected $fillable = [
-        'code', 'title', 'description',
+        'billing_item_id', 'billing_schedule_id', 'batch_id','cost','deadline','fined_cost'
     ];
     private $errors;
     private $rules = [
-        'code' => 'required|alpha',
-        'title' => 'required|alpha',
-        'description' => 'alpha',
+        'billing_item_id' => 'required|integer',
+        'billing_schedule_id' => 'required|integer',
+        'batch_id' => 'required|integer',
+        'cost' => 'numeric',
+        'deadline' => 'date',
+        'fined_cost' => 'numeric',
     ];
     public function validate($data)
     {
@@ -35,11 +38,14 @@ class BillingSchedule extends Eloquent{
 
     //TODO : Model Relationship
 
-    public function relBillingSummaryStudent(){
-        return $this->HasMany('BillingSummaryStudent');
+    public function relBillingItem(){
+        return $this->belongsTo('BillingItem', 'billing_item_id', 'id');
     }
-    public function relBillingSummaryApplicant(){
-        return $this->HasMany('AdmQuestionItems');
+    public function relBillingSchedule(){
+        return $this->belongsTo('BillingSchedule', 'billing_schedule_id', 'id');
+    }
+    public function relBatch(){
+        return $this->belongsTo('Batch', 'batch_id', 'id');
     }
 
 
