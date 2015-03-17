@@ -4,8 +4,8 @@
 @stop
 @section('content')
     <h4 style="text-align: center;color: #800080;font-size: x-large">All Department List</h4>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#CreateModal" style="margin-bottom: 20px">
-        Add New
+    <button type="button" class="pull-right btn btn-primary" data-toggle="modal" data-target="#CreateModal" style="margin-bottom: 20px">
+        Add Department
     </button>
     {{ Form::open(array('url' => 'department/batchDelete')) }}
     <table id="example" class="table table-bordered table-hover table-striped">
@@ -54,7 +54,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" style="text-align: center;color: #800080;font-size: x-large">Confirm Delete</h4>
+                    <h4 class="modal-title" style="text-align: center;color: #800080;font-size: large">Confirm Delete</h4>
                 </div>
                 <div class="modal-body">
                     <strong>Are you sure to delete?</strong>
