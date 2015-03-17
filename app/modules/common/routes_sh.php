@@ -2,8 +2,8 @@
 
 //........................................ADM TEST SUBJECT.......................................................
 
-Route::any('common/adm_test_subject/index',[
-    'as' => 'common.adm_test_subject.index',
+Route::any('common/adm_test_subject',[
+    'as' => 'common.adm_test_subject',
     'uses' => 'AdmTestSubjectController@Index'
 ]);
 
@@ -46,8 +46,8 @@ Route::any('common/adm_test_subject/batchDelete',[
 //............................................Course...............................................................
 
 
-Route::any('common/course/index',[
-    'as' => 'common.course.index',
+Route::any('common/course',[
+    'as' => 'common.course',
     'uses' => 'CourseController@index'
 ]);
 

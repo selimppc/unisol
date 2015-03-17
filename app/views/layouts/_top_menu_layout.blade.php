@@ -11,8 +11,8 @@
         <li><a tabindex="-1" a href="{{ URL::to('common/subject/') }}"> Subject </a></li>
         <li><a tabindex="-1" a href="{{ URL::to('common/department/') }}"> Department </a></li>
 
-        <li><a tabindex="-1" a href="{{ URL::to('common/adm_test_subject/index') }}"> Adm Test Subject </a></li>
-        <li><a tabindex="-1" a href="{{ URL::to('common/course/index') }}"> Course </a></li>
+        <li><a tabindex="-1" a href="{{ URL::to('common/adm_test_subject') }}"> Adm Test Subject </a></li>
+        <li><a tabindex="-1" a href="{{ URL::to('common/course') }}"> Course </a></li>
 
         <li><a tabindex="-1" href="{{ action('DegreeProgramController@degreeProgramIndex') }}"> Degree Program  </a></li>
         <li><a tabindex="-1" href="{{ action('DegreeGroupController@degreeGroupIndex') }}"> Degree Group </a></li>

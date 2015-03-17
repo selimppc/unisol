@@ -18,13 +18,14 @@
                 <strong> Course type:</strong> {{ $course->relCourseType->title }}<br>
                 <strong> Evaluation System:</strong> {{ $course->evaluation_system }}<br>
 
-
-
-
             </p>
         </div>
 
-    <a href="{{URL::to('common/course/index')}}" class="btn btn-default">Close </a>
+    <a href="" class="pull-right btn btn-info" span class="glyphicon-refresh">Close</a>
+
+    &nbsp;
+    </br>
+    &nbsp;
 
     {{ Form::close() }}
 
