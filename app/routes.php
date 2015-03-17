@@ -156,33 +156,33 @@ Route::group( array('before' => 'auth'), function(){
         ['as'=>'common.degree-group.index',
             'uses'=>'DegreeGroupController@degreeGroupIndex']);
 
-    Route::any('common/degree_group/create',
-        ['as'=>'common.degree_group.create',
+    Route::any('common/degree-group/create',
+        ['as'=>'common.degree-group.create',
             'uses'=>'DegreeGroupController@degreeGroupCreate']);
 
     Route::any('common/degree-group/store',
-        ['as'=>'common.degree_group.store',
+        ['as'=>'common.degree-group.store',
             'uses'=>'DegreeGroupController@degreeGroupStore']);
 
 
-    Route::any('common/degree_group/show/{id}',
-        ['as'=>'common.degree_group.show',
+    Route::any('common/degree-group/show/{id}',
+        ['as'=>'common.degree-group.show',
             'uses'=>'DegreeGroupController@degreeGroupShow']);
 
-    Route::any('common/degree_group/edit/{id}',
-        ['as'=>'common.degree_group.edit',
+    Route::any('common/degree-group/edit/{id}',
+        ['as'=>'common.degree-group.edit',
             'uses'=>'DegreeGroupController@degreeGroupEdit']);
 
-    Route::any('common/degree_group/update/{id}',
-        ['as'=>'common.degree_group.update',
+    Route::any('common/degree-group/update/{id}',
+        ['as'=>'common.degree-group.update',
             'uses'=>'DegreeGroupController@degreeGroupUpdate']);
 
-    Route::any('common/degree_group/delete/{id}',
-        ['as'=>'common.degree_group.delete',
+    Route::any('common/degree-group/delete/{id}',
+        ['as'=>'common.degree-group.delete',
             'uses'=>'DegreeGroupController@degreeGroupDelete']);
 
-    Route::any('common/degree_group/batch_delete',
-            ['as'=>'common.degree_group.batch_delete',
+    Route::any('common/degree-group/batch_delete',
+            ['as'=>'common.degree-group.batch_delete',
             'uses'=>'DegreeGroupController@degreeGroupBatchDelete']);
 
 // {--------------------------------------Exm-Center---------------------------------------------------------}

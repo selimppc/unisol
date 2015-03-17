@@ -8,7 +8,7 @@
 <div class="modal-body">
       <div style="padding: 20px;">
 
-          {{Form::open(array('route'=> ['common.degree_group.update',$model->id], 'class'=>'form-horizontal','files'=>true))}}
+          {{Form::open(array('route'=> ['common.degree-group.update',$model->id], 'class'=>'form-horizontal','files'=>true))}}
 
           <div class='form-group'>
 
