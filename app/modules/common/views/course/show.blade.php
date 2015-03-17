@@ -9,13 +9,13 @@
             <h2><strong>Name :</strong>{{ $course->title }}</h2>
             <p>
                 <strong> Course Code:</strong> {{ $course->course_code }} <br>
-                <strong> Subject Id:</strong> {{ $course->subject_id }}<br>
+                <strong> Subject Name:</strong> {{ $course->relSubject->title }}<br>
                 <strong> Description:</strong> {{ $course->description }}<br>
                 <strong> Evaluation Total Marks:</strong> {{ $course->evaluation_total_marks }}<br>
                 <strong> Credit:</strong> {{ $course->credit }}<br>
                 <strong> Hours Per Credit:</strong> {{ $course->hours_per_credit }}<br>
                 <strong> Cost Per Code:</strong> {{ $course->cost_per_credit }}<br>
-                <strong> Course type:</strong> {{ $course->course_type_id }}<br>
+                <strong> Course type:</strong> {{ $course->relCourseType->title }}<br>
                 <strong> Evaluation System:</strong> {{ $course->evaluation_system }}<br>
 
 

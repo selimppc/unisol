@@ -28,7 +28,7 @@ class SubjectController extends \BaseController {
 
 		if($validator->fails())
 		{
-			return Redirect::to('common/subject/list')->withErrors($validator)->withInput()->with('title', 'Create Subject');
+			return Redirect::to('common/subject/')->withErrors($validator)->withInput()->with('title', 'Create Subject');
 		}
 		else
 		{
@@ -40,12 +40,12 @@ class SubjectController extends \BaseController {
 				$data->description = Input::get('description');
 				$data->save();
 				Session::flash('message', "Success:Subject added successfully");
-				return Redirect::to('common/subject/list')->with('title', 'Subject List');
+				return Redirect::to('common/subject/')->with('title', 'Subject List');
 			}
 			else
 			{
 				Session::flash('message', 'Token Mismatched');
-				return Redirect::to('common/subject/list')->with('title', 'Subject List');
+				return Redirect::to('common/subject/')->with('title', 'Subject List');
 			}
 		}
 	}
@@ -78,7 +78,7 @@ class SubjectController extends \BaseController {
 			if($data->delete())
 			{
 				Session::flash('danger', "Subject Deleted successfully");
-				return Redirect::to('common/subject/list')->with('title','All Subject List');
+				return Redirect::to('common/subject/')->with('title','All Subject List');
 			}
 		}
 		catch
@@ -112,7 +112,7 @@ class SubjectController extends \BaseController {
 		$validator = Validator::make(Input::all(), $rules);
 		if($validator->fails())
 		{
-			return Redirect::to('common/subject/list')->withErrors($validator)->withInput()->with('title', 'Subject List');
+			return Redirect::to('common/subject/')->withErrors($validator)->withInput()->with('title', 'Subject List');
 		}
 		else
 		{
@@ -123,13 +123,13 @@ class SubjectController extends \BaseController {
 				$data->title = Input::get('title');
 				$data->description = Input::get('description');
 				$data->save();
-				Session::flash('info', "Subject Updated successfully");
-				return Redirect::to('common/subject/list')->with('title', 'Subject List');
+				Session::flash('success', "Subject Updated successfully");
+				return Redirect::to('common/subject/')->with('title', 'Subject List');
 			}
 			else
 			{
 				Session::flash('message', 'Token Mismatched');
-				return Redirect::to('common/subject/list')->with('title', 'Subject List');
+				return Redirect::to('common/subject/')->with('title', 'Subject List');
 			}
 		}
 	}
@@ -141,6 +141,14 @@ class SubjectController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
+	public function show($id)
+	{
+		$subject = Subject::find($id);
+		return View::make('common::subject.show')->with('subject',$subject);
+		print_r($subject);exit;
+
+	}
+
 	public function delete($id)
 	{
 		try {
@@ -148,7 +156,7 @@ class SubjectController extends \BaseController {
 			if($data->delete())
 			{
 				Session::flash('danger', "Subject Deleted successfully");
-				return Redirect::to('common/subject/list')->with('title','All Subject List');
+				return Redirect::to('common/subject/')->with('title','All Subject List');
 			}
 		}
 		catch

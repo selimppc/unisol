@@ -4,7 +4,6 @@
 @stop
 @section('content')
     <div class="box box-solid ">
-        <div class="box box-info">
             <div class="box-header">
                 <h3 class="box-title" style="color:#800080 ">All Year List</h3>
                 <div class="box-tools pull-right">
@@ -18,7 +17,7 @@
                     <div class="col-lg-12">
     {{--search db--}}
         {{ Form::open(array('url' =>'year/show', 'class'=>'form-inline', 'role' => 'form')) }}
-        <div class="form-group"style="margin-top: 2px">
+        <div class="form-group"style="margin-top: 2px;margin-left: 850px">
             {{ Form::label('search_text', 'Search Text:',array('class'=>'sr-only')) }}
             {{ Form::text('search_text', Input::old('search_text'), array('class' => 'form-control','placeholder' => 'Search All')) }}
         </div>
@@ -47,11 +46,11 @@
                 <td>{{$value->title}}</td>
                 <td>{{$value->description}}</td>
                 <td>
-                    <a data-href="{{ URL::to('year/delete/'.$value->id) }}" class="btn btn-sm btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa  fa-trash-o" style="font-size: 12px;color: red"></i></a>
+                    <a data-href="{{ URL::to('year/delete/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa  fa-trash-o" style="color: red"></i></a>
 
-                    <a href="{{ URL::route('year.edit', ['id'=>$value->id]) }}" class="subEdit btn btn-sm btn-default" data-toggle="modal" data-target="#edit-modal" href="" ><i class="fa fa-pencil-square-o" style="font-size: 12px;color: #0044cc"></i></a>
+                    <a href="{{ URL::route('year.edit', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#edit-modal" href="" ><i class="fa fa-pencil-square-o" style="color: #0044cc"></i></a>
 
-                    <a href="{{ URL::route('year.show', ['id'=>$value->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#showOne" href=""><i class="fa fa-eye" style="font-size: 12px;color: green"></i></a>
+                    <a href="{{ URL::route('year.show', ['id'=>$value->id])  }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showOne" href=""><i class="fa fa-eye" style="color: green"></i></a>
                 </td>
             </tr>
         @endforeach
@@ -64,7 +63,7 @@
 
     <p>&nbsp;</p>
     <p>&nbsp;</p>
-                    </div>
+
                 </div>
             </div>
         </div>

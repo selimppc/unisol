@@ -31,6 +31,11 @@ class CourseType extends Eloquent{
         return $this->errors;
     }
 
+    public static function getCourseTypeName($exmId){
+        $data = CourseType::find($exmId);
+        return $data->title;
+    }
+
     //TODO : Model Relationship
     public function relCourse(){
         return $this->HasMany('Course');

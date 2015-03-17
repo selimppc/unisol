@@ -4,12 +4,6 @@
     <h4 class="modal-title" id="myModalLabel"> Add Course</h4>
 </div>
 
-
-<?php
-        $subject_id_result = Subject::lists('title', 'id');
-        $course_type_id_result = CourseType::lists('title', 'id');
-
-?>
 <div class="modal-body">
      <div style="padding: 20px;">
         {{Form::open(array('url'=>'common/course/store', 'class'=>'form-horizontal','files'=>true))}}

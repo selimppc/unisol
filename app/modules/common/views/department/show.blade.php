@@ -16,5 +16,5 @@
     </div>
 </div>
 <div class="modal-footer">
-    <a href="{{URL::to('common/department/index')}}" class="btn btn-default">Close </a>
+    <a href="{{URL::to('common/department/')}}" class="btn btn-default">Close </a>
 </div>
