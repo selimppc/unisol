@@ -141,6 +141,14 @@ class SubjectController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
+	public function show($id)
+	{
+		$subject = Subject::find($id);
+		return View::make('common::subject.show')->with('subject',$subject);
+		print_r($subject);exit;
+
+	}
+
 	public function delete($id)
 	{
 		try {
