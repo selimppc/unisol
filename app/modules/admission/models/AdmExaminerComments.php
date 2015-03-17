@@ -14,10 +14,10 @@ class AdmExaminerComments extends Eloquent{
     private $errors;
     private $rules = [
         'batch_id' => 'required|integer',
-        'comment' => 'alpha',
+        'comment' => 'alpha_dash',
         'commented_to' => 'required|integer',
         'commented_by' => 'required|integer',
-        'status' => 'alpha',
+        'status' => 'alpha_dash',
     ];
     public function validate($data)
     {

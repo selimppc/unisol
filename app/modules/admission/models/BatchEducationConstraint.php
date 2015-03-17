@@ -14,7 +14,7 @@ class BatchEducationConstraint extends Eloquent{
     private $errors;
     private $rules = [
         'batch_id' => 'required|integer',
-        'level_of_education' => 'required|alpha',
+        'level_of_education' => 'required|alpha_dash',
         'min_gpa' => 'numeric',
     ];
     public function validate($data)

@@ -18,8 +18,8 @@ class AdmExaminer extends Eloquent{
         'type' => 'alpha',
         'assigned_by' => 'required|integer',
         'deadline' => 'date',
-        'note' => 'alpha',
-        'status' => 'alpha',
+        'note' => 'alpha_dash',
+        'status' => 'alpha_dash',
     ];
     public function validate($data)
     {

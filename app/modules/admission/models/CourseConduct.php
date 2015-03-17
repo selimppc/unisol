@@ -19,7 +19,7 @@ class CourseConduct extends Eloquent{
         'semester_id' => 'required|integer',
         'degree_id' => 'required|integer',
         'evaluation_total_marks' => 'numeric',
-        'degree_course_oriented' => 'required|alpha',
+        'degree_course_oriented' => 'required|alpha_dash',
     ];
     public function validate($data)
     {

@@ -18,7 +18,7 @@ class WaiverConstraint extends Eloquent{
         'is_time_dependent' => 'required|integer',
         'start_date' => 'date',
         'end_date' => 'date',
-        'level_of_education' => 'alpha',
+        'level_of_education' => 'alpha_dash',
         'gpa' => 'numeric',
     ];
     public function validate($data)

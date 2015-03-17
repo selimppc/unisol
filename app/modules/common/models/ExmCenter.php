@@ -15,10 +15,10 @@ class ExmCenter extends Eloquent{
     ];
     private $errors;
     private $rules = [
-        'title' => 'required|alpha',
-        'description' => 'alpha',
-        'capacity' => 'alpha',
-        'status' => 'alpha',
+        'title' => 'required|alpha_dash',
+        'description' => 'alpha_dash',
+        'capacity' => 'alpha_dash',
+        'status' => 'alpha_dash',
     ];
     public function validate($data)
     {

@@ -14,16 +14,16 @@ class Course extends Eloquent{
     ];
     private $errors;
     private $rules = [
-        'title' => 'required|alpha',
-        'course_code' => 'required|alpha',
+        'title' => 'required|alpha_dash',
+        'course_code' => 'required|alpha_dash',
         'subject_id' => 'required|integer',
         'course_type_id' => 'required|integer',
-        'description' => 'alpha',
+        'description' => 'alpha_dash',
         'evaluation_total_marks' => 'numeric',
         'credit' => 'numeric',
         'hours_per_credit' => 'numeric',
         'cost_per_credit' => 'numeric',
-        'evaluation_system' => 'alpha',
+        'evaluation_system' => 'alpha_dash',
     ];
 
 

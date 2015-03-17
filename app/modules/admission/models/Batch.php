@@ -17,13 +17,13 @@ class Batch extends Eloquent{
         'degree_id' => 'required|integer',
         'year_id' => 'required|integer',
         'semester_id' => 'required|integer',
-        'batch_number' => 'required|alpha_num',
-        'description' => 'alpha',
+        'batch_number' => 'required|alpha_dash',
+        'description' => 'alpha_dash',
         'start_date' => 'required|date',
         'end_date' => 'required|date',
         'seat_total' => 'required|numeric',
         'admission_deadline' => 'required|date',
-        'status' => 'alpha'
+        'status' => 'alpha_dash'
     ];
     public function validate($data)
     {

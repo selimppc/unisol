@@ -14,7 +14,7 @@ class AdmQuestionComments extends Eloquent{
     private $errors;
     private $rules = [
         'adm_question_id' => 'required|integer',
-        'comment' => 'alpha',
+        'comment' => 'alpha_dash',
         'commented_to' => 'required|integer',
         'commented_by' => 'required|integer',
     ];
