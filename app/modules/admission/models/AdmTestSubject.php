@@ -1,67 +1,65 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: User
- * Date: 3/5/2015
- * Time: 2:47 PM
- */
+use Illuminate\Auth\UserTrait;
+use Illuminate\Auth\UserInterface;
+use Illuminate\Auth\Reminders\RemindableTrait;
+use Illuminate\Auth\Reminders\RemindableInterface;
 
 class AdmTestSubject extends Eloquent{
 
-    protected $table='admtest_subject';
-
+    //TODO :: model attributes and rules and validation
+    protected $table = 'admtest_subject';
+    protected $fillable = [
+        'title', 'description', 'priority',
+    ];
     private $errors;
-
-    private $rules = array(
-
-
-//        'user_id'  => 'required',
-
-//        'type'  => 'required',
-//        'assigned_by'  => 'required',
-//        'deadline'  => 'required',
-//        'note'  => 'required',
-//        'status'  => 'required',
-
-    );
-
+    private $rules = [
+        'title' => 'required|alpha',
+        'description' => 'alpha',
+        'priority' => 'required|alpha',
+    ];
     public function validate($data)
     {
-        // make a new validator object
         $validate = Validator::make($data, $this->rules);
-        // check for failure
         if ($validate->fails())
         {
-            // set errors and return false
             $this->errors = $validate->errors();
             return false;
         }
-        // validation pass
         return true;
     }
-
     public function errors()
     {
         return $this->errors;
     }
 
 
-
-    public static function getTestSubjectName($semId)
-    {
-        $data = AdmTestSubject::find($semId);
-        return $data->title;
+    //TODO : Model Relationship
+    public function relBatchAdmtestSubject(){
+        return $this->HasMany('BatchAdmtestSubject');
     }
 
+
+
+    // TODO : user info while saving data into table
     public static function boot(){
         parent::boot();
         static::creating(function($query){
-            $query->created_by = Auth::user()->get()->id;
-            $query->updated_by = Auth::user()->get()->id;
+            if(Auth::user()->check()){
+                $query->created_by = Auth::user()->get()->id;
+            }elseif(Auth::applicant()->check()){
+                $query->created_by = Auth::applicant()->get()->id;
+            }
         });
         static::updating(function($query){
-            $query->updated_by = Auth::user()->get()->id;
+            if(Auth::user()->check()){
+                $query->updated_by = Auth::user()->get()->id;
+            }elseif(Auth::applicant()->check()){
+                $query->updated_by = Auth::applicant()->get()->id;
+            }
         });
     }
+
+
+    //TODO : Scope Area
 
 } 

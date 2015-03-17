@@ -6,59 +6,76 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 
 class AdmQuestion extends Eloquent{
 
-    protected $table='adm_question';
-
+    //TODO :: model attributes and rules and validation
+    protected $table = 'adm_question';
+    protected $fillable = [
+        'batch_admtest_subject_id', 'examiner_faculty_user_id', 'title', 'deadline', 'total_marks',
+        'status',
+    ];
     private $errors;
-
-    public static function getQuestionName($exmId){
-        $data = AdmQuestion::find($exmId);
-        return $data->title;
-    }
-
-    private $rules = array(
-
-
-//        'user_id'  => 'required',
-
-//        'type'  => 'required',
-//        'assigned_by'  => 'required',
-//        'deadline'  => 'required',
-//        'note'  => 'required',
-//        'status'  => 'required',
-
-    );
-
+    private $rules = [
+        'batch_admtest_subject_id' => 'required|integer',
+        'examiner_faculty_user_id' => 'required|integer',
+        'title' => 'required|alpha',
+        'deadline' => 'required|date',
+        'total_marks' => 'required|numeric',
+        'status' => 'alpha',
+    ];
     public function validate($data)
     {
-        // make a new validator object
         $validate = Validator::make($data, $this->rules);
-        // check for failure
         if ($validate->fails())
         {
-            // set errors and return false
             $this->errors = $validate->errors();
             return false;
         }
-        // validation pass
         return true;
     }
-
     public function errors()
     {
         return $this->errors;
     }
 
 
+    //TODO : Model Relationship
+    public function relBatchAdmtestSubject(){
+        return $this->belongsTo('BatchAdmtestSubject', 'batch_admtest_subject', 'id');
+    }
+    public function relUser(){
+        return $this->belongsTo('User', 'examiner_faculty_user_id', 'id');
+    }
+    public function relAdmQuestionComments(){
+        return $this->HasMany('AdmQuestionComments');
+    }
+    public function relAdmQuestionEvaluation(){
+        return $this->HasMany('AdmQuestionEvaluation');
+    }
+    public function relAdmQuestionItems(){
+        return $this->HasMany('AdmQuestionItems');
+    }
+
+
+
+    // TODO : user info while saving data into table
     public static function boot(){
         parent::boot();
         static::creating(function($query){
-            $query->created_by = Auth::user()->get()->id;
-            $query->updated_by = Auth::user()->get()->id;
+            if(Auth::user()->check()){
+                $query->created_by = Auth::user()->get()->id;
+            }elseif(Auth::applicant()->check()){
+                $query->created_by = Auth::applicant()->get()->id;
+            }
         });
         static::updating(function($query){
-            $query->updated_by = Auth::user()->get()->id;
+            if(Auth::user()->check()){
+                $query->updated_by = Auth::user()->get()->id;
+            }elseif(Auth::applicant()->check()){
+                $query->updated_by = Auth::applicant()->get()->id;
+            }
         });
     }
 
+
+    //TODO : Scope Area
 
 } 

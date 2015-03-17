@@ -272,7 +272,6 @@ class CreateAdmission extends Migration {
             $table->increments('id');
             $table->unsignedInteger('batch_admtest_subject_id')->nullable();
             $table->unsignedInteger('examiner_faculty_user_id')->nullable();
-
             $table->string('title', 128);
             $table->dateTime('deadline');
             $table->string('total_marks', 8);
