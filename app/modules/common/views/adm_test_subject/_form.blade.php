@@ -10,27 +10,27 @@
           {{Form::open(array('url'=>'common/adm_test_subject/store', 'class'=>'form-horizontal','files'=>true))}}
 
 
-          <div class="form-group">
-               {{ Form::label('title', 'Title') }}
-               {{ Form::text('title', Input::old('title'), ['class' => 'form-control']) }}
-          </div>
+                  <div class="form-group">
+                       {{ Form::label('title', 'Title') }}
+                       {{ Form::text('title', Input::old('title'), ['class' => 'form-control']) }}
+                  </div>
 
-          <div class="form-group">
-               {{ Form::label('description', 'Description') }}
-               {{ Form::text('description', Input::old('description'), ['class' => 'form-control']) }}
-          </div>
+                  <div class="form-group">
+                       {{ Form::label('description', 'Description') }}
+                       {{ Form::text('description', Input::old('description'), ['class' => 'form-control']) }}
+                  </div>
 
-           <div class="form-group">
-               {{ Form::label('priority', 'Priority') }}
-               {{ Form::text('priority', Input::old('priority'), ['class' => 'form-control']) }}
-          </div>
+                   <div class="form-group">
+                       {{ Form::label('priority', 'Priority') }}
+                       {{ Form::text('priority', Input::old('priority'), ['class' => 'form-control']) }}
+                  </div>
 
-          <p>&nbsp;</p>
+                  <p>&nbsp;</p>
 
-          <div>
+                  <div>
 
-              {{ Form::submit('Save', array('class'=>'pull-left btn btn-primary')) }}
-              <a  href="{{URL::previous() }}" class="pull-right btn btn-default">Close</a>
+                      {{ Form::submit('Save', array('class'=>'pull-left btn btn-primary')) }}
+                      <a  href="{{URL::previous() }}" class="pull-right btn btn-default">Close</a>
 
           </div>
           <p>&nbsp;</p>
