@@ -12,14 +12,14 @@
               <div class="box-header">
               <h3 class="box-title">Exam Center</h3>
                   <div class="box-tools pull-right">
-                       <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('common/exm_center/create')}}" data-toggle="modal" data-target="#exmcenterModal" >Add New Exm-Center</a>
+                       <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('common/exm-center/create')}}" data-toggle="modal" data-target="#exmcenterModal" >Add Exm-Center</a>
                   </div>
               <p>&nbsp;</p>
               </div>
               <div class="box-body">
                    <div class="row">
                        <div class="col-lg-12">
-                       {{ Form::open(array('url' => 'common/exm_center/batch_delete')) }}
+                       {{ Form::open(array('url' => 'common/exm-center/batch-delete')) }}
                           <table class="table table-bordered">
                                  <thead>
                                          <tr>
@@ -45,9 +45,9 @@
                                                             <td>{{ $value->status}}</td>
 
                                                             <td>
-                                                                 <a href="{{ URL::to('common/exm_center/show/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#exmcenterModal" style="font-size: 12px;color: darkmagenta"><span class="fa fa-eye"></span></a>
-                                                                 <a class="btn btn-xs btn-default" href="{{ URL::to('common/exm_center/edit/'.$value->id) }}" data-toggle="modal" data-target="#exmcenterModal" style="font-size: 12px;color: lightseagreen"><i class="fa fa-edit"></i></a>
-                                                                 <a data-href="{{ URL::to('common/exm_center/delete/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" style="font-size: 12px;color: lightcoral"><span class="fa  fa-trash-o"></span></a>
+                                                                 <a href="{{ URL::to('common/exm-center/show/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#exmcenterModal" style="font-size: 12px;color: darkmagenta"><span class="fa fa-eye"></span></a>
+                                                                 <a class="btn btn-xs btn-default" href="{{ URL::to('common/exm-center/edit/'.$value->id) }}" data-toggle="modal" data-target="#exmcenterModal" style="font-size: 12px;color: lightseagreen"><i class="fa fa-edit"></i></a>
+                                                                 <a data-href="{{ URL::to('common/exm-center/delete/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" style="font-size: 12px;color: lightcoral"><span class="fa  fa-trash-o"></span></a>
 
                                                             </td>
                                                         </tr>

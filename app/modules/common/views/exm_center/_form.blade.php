@@ -8,7 +8,7 @@
 <div class="modal-body">
       <div style="padding: 20px;">
 
-          {{Form::open(array('url'=>'common/exm_center/store', 'class'=>'form-horizontal','files'=>true))}}
+          {{Form::open(array('url'=>'common/exm-center/store', 'class'=>'form-horizontal','files'=>true))}}
 
           <div class='form-group'>
 

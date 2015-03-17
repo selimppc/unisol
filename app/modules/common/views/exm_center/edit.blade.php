@@ -7,7 +7,7 @@
 <div class="modal-body">
       <div style="padding: 20px;">
 
-          {{Form::open(array('route'=> ['common.exm_center.update',$model->id], 'class'=>'form-horizontal','files'=>true))}}
+          {{Form::open(array('route'=> ['common.exm-center.update',$model->id], 'class'=>'form-horizontal','files'=>true))}}
 
           <div class='form-group'>
 

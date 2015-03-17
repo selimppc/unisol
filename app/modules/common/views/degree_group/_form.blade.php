@@ -11,13 +11,13 @@
 
           <div class='form-group'>
 
-              <div>{{ Form::label('title', 'Course Title') }}</div>
+              <div>{{ Form::label('title', 'Title') }}</div>
               <div>{{ Form::text('title',Input::old('title') ,['class'=>'form-control input-sm','required'])}}</div>
           </div>
 
           <div class='form-group'>
 
-                <div>{{ Form::label('code', 'Course Code') }}</div>
+                <div>{{ Form::label('code', ' Code') }}</div>
                 <div>{{ Form::text('code',Input::old('code') ,['class'=>'form-control input-sm','required'])}}</div>
           </div>
 
