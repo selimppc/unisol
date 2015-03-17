@@ -242,16 +242,7 @@ Route::group( array('before' => 'auth'), function(){
           ['as'=>'common.waiver.store',
             'uses'=>'WaiverController@waiverStore']);
 
-    //{-------------------Department--------------------}
-    Route::get('department/index','DepartmentController@index');
-    Route::get('department/','DepartmentController@index');
-    Route::get('department/create','DepartmentController@create');
-    Route::any('department/store', ['as' => 'department.store', 'uses' => 'DepartmentController@store' ]);
-    Route::any('department/delete/{id}','DepartmentController@delete');
-    Route::any('department/batchDelete','DepartmentController@batchDelete');
-    Route::any('department/edit/{id}','DepartmentController@edit');
-    Route::post('department/update/{id}','DepartmentController@update');
-    Route::get('department/show/{id}', 'DepartmentController@show' );
+
 
 
     //{------------------ Degree Program  --------------------}
