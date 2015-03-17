@@ -24,7 +24,7 @@
           <div>
 
           {{ Form::submit('Save', array('class'=>'pull-right btn btn-primary')) }}
-          <a  href="" class="pull-right btn btn-default" style="margin-right: 20px">Close</a>
+          <a  href="" class="pull-right btn btn-default" style="margin-right: 5px">Close</a>
 
 
           </div>
