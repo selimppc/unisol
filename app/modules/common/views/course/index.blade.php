@@ -42,13 +42,9 @@
                    <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $course_list->id }}"></td>
                    <td>{{ $course_list->title }}</td>
                    <td>{{ $course_list->course_code }}</td>
-
-                   <td>{{ $course_list->subject_id }}</td>
-
+                   <td>{{ $course_list->relSubject->title }}</td>
                    <td>{{ $course_list->description }}</td>
-
-                   <td>{{ $course_list->course_type_id }}</td>
-
+                   <td>{{ $course_list->relCourseType->title }}</td>
                    <td>{{ $course_list->evaluation_total_marks }}</td>
                    <td>{{ $course_list->credit }}</td>
                    <td>{{ $course_list->hours_per_credit }}</td>
@@ -57,7 +53,7 @@
                    <td>
                          <a href="{{ URL::to('common/course/show/'.$course_list->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#modal" style="font-size: 12px;color: darkmagenta"><span class="fa fa-eye"></span></a>
                          <a class="btn btn-xs btn-default" href="{{ URL::to('common/course/edit/'.$course_list->id) }}" data-toggle="modal" data-target="#modal" style="font-size: 12px;color: lightseagreen"><i class="fa fa-edit"></i></a>
-                         <a data-href="{{ URL::to('common/course/delete/'.$course_list->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" style="font-size: 12px;color: lightcoral"><span class="fa  fa-trash-o"></span></a>
+                         <a data-href="{{ URL::to('common/course/destroy/'.$course_list->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" style="font-size: 12px;color: lightcoral"><span class="fa fa-trash-o"></span></a>
                    </td>
 
                 </tr>

@@ -17,7 +17,11 @@ class CourseController extends \BaseController {
 
     public function create()
 	{
-        return View::make('common::course._form');
+
+        $subject_id_result = Subject::lists('title', 'id');
+        $course_type_id_result = CourseType::lists('title', 'id');
+
+        return View::make('common::course._form',compact('subject_id_result','course_type_id_result'));
 	}
 
 	public function store()
@@ -36,7 +40,11 @@ class CourseController extends \BaseController {
 	public function edit($id)
 	{
         $course = Course::find($id);
-        return View::make('common::course.edit',compact('course'));
+
+        $subject_name = Subject::lists('title','id');
+        $course_type_name = CourseType::lists('title','id');
+
+        return View::make('common::course.edit',compact('course','subject_name','course_type_name'));
 	}
 
 	public function update($id)
@@ -63,6 +71,7 @@ class CourseController extends \BaseController {
         catch(exception $ex){
             return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
         }
+
     }
 
     public function batchDelete()
