@@ -37,7 +37,7 @@ class CourseController extends \BaseController {
             $errors = $model->errors();
             Session::flash('errors', $errors);
             return Redirect::back()
-                ->with('message', 'invalid');
+                ->with('errors', 'invalid');
         }
 
 	}
@@ -66,7 +66,7 @@ class CourseController extends \BaseController {
             $errors = $model->errors();
             Session::flash('errors', $errors);
             return Redirect::back()
-                ->with('message', 'invalid');
+                ->with('error', 'invalid');
         }
 	}
 

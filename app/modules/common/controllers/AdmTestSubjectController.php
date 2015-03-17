@@ -32,7 +32,7 @@ class AdmTestSubjectController extends \BaseController {
             $errors = $model->errors();
             Session::flash('errors', $errors);
             return Redirect::back()
-                ->with('message', 'invalid');
+                ->with('error', 'invalid');
         }
     }
 
@@ -58,7 +58,7 @@ class AdmTestSubjectController extends \BaseController {
             $errors = $model->errors();
             Session::flash('errors', $errors);
             return Redirect::back()
-                ->with('message', 'invalid');
+                ->with('error', 'invalid');
         }
     }
 

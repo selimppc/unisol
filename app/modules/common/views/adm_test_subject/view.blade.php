@@ -12,7 +12,11 @@
                                  </p>
                              </div>
 
-                              <a href="{{ URL::previous()}}" class="btn btn-default btn-xs">Close </a>
+                             <a href="" class="pull-right btn btn-info" span class="glyphicon-refresh">Close</a>
+
+                             &nbsp;
+                             </br>
+                             &nbsp;
 
                      {{ Form::close() }}
 </div>

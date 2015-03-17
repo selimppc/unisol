@@ -8,7 +8,7 @@
 <div class="row">
            <div class="col-sm-12">
                <div class="pull-right col-sm-4">
-                   <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('common/course/create')}}" data-toggle="modal" data-target="#modal" >Add New Course</a>
+                   <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('common/course/create')}}" data-toggle="modal" data-target="#modal" >Add</a>
                </div>
            </div>
 </div>
@@ -31,6 +31,7 @@
                     <th>Credit</th>
                     <th>Hours Per Credit</th>
                     <th>Cost Per Credit</th>
+                    <th>Evaluation System</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -42,13 +43,14 @@
                    <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $course_list->id }}"></td>
                    <td>{{ $course_list->title }}</td>
                    <td>{{ $course_list->course_code }}</td>
-                   <td>{{ $course_list->relSubject->title }}</td>
+                   <td>{{ isset($course_list->course_type_id)? $course_list->relSubject->title :'' }}</td>
                    <td>{{ $course_list->description }}</td>
-                   <td>{{ $course_list->relCourseType->title }}</td>
+                   <td>{{ isset($course_list->course_type_id)? $course_list->relCourseType->title :'' }}</td>
                    <td>{{ $course_list->evaluation_total_marks }}</td>
                    <td>{{ $course_list->credit }}</td>
                    <td>{{ $course_list->hours_per_credit }}</td>
                    <td>{{ $course_list->cost_per_credit }}</td>
+                    <td>{{ $course_list->evaluation_system }}</td>
 
                    <td>
                          <a href="{{ URL::to('common/course/show/'.$course_list->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#modal" style="font-size: 12px;color: darkmagenta"><span class="fa fa-eye"></span></a>
