@@ -4,18 +4,23 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class BillingSchedule extends Eloquent{
+class BillingDetailsApplicant extends Eloquent{
 
     //TODO :: model attributes and rules and validation
-    protected $table = 'billing_schedule';
+    protected $table = 'billing_details_applicant';
     protected $fillable = [
-        'code', 'title', 'description',
+        'billing_summary_applicant_id', 'billing_item_id', 'waiver_id',
+        'waiver_amount', 'cost_per_unit', 'quantity', 'total_amount',
     ];
     private $errors;
     private $rules = [
-        'code' => 'required|alpha',
-        'title' => 'required|alpha',
-        'description' => 'alpha',
+        'billing_summary_applicant_id' => 'required|integer',
+        'billing_item_id' => 'required|integer',
+        'waiver_id' => 'required|integer',
+        'waiver_amount' => 'numeric',
+        'cost_per_unit' => 'numeric',
+        'quantity' => 'numeric',
+        'total_amount' => 'numeric',
     ];
     public function validate($data)
     {
@@ -35,13 +40,15 @@ class BillingSchedule extends Eloquent{
 
     //TODO : Model Relationship
 
-    public function relBillingSummaryStudent(){
-        return $this->HasMany('BillingSummaryStudent');
-    }
     public function relBillingSummaryApplicant(){
-        return $this->HasMany('AdmQuestionItems');
+        return $this->belongsTo('BillingSummaryApplicant', 'billing_summary_applicant_id', 'id');
     }
-
+    public function relBillingItem(){
+        return $this->belongsTo('BillingItem', 'billing_item_id', 'id');
+    }
+    public function relWaiver(){
+        return $this->belongsTo('Waiver', 'waiver_id', 'id');
+    }
 
 
     // TODO : user info while saving data into table
@@ -65,5 +72,8 @@ class BillingSchedule extends Eloquent{
 
 
     //TODO : Scope Area
+
+
+
 
 } 

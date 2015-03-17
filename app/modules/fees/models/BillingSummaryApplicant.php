@@ -4,18 +4,19 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class BillingSchedule extends Eloquent{
+class BillingSummaryApplicant extends Eloquent{
 
     //TODO :: model attributes and rules and validation
-    protected $table = 'billing_schedule';
+    protected $table = 'billing_summary_applicant';
+
     protected $fillable = [
-        'code', 'title', 'description',
+        'applicant_id', 'billing_schedule_id', 'total_cost'
     ];
     private $errors;
     private $rules = [
-        'code' => 'required|alpha',
-        'title' => 'required|alpha',
-        'description' => 'alpha',
+        'applicant_id' => 'required|integer',
+        'billing_schedule_id' => 'required|integer',
+        'total_cost' => 'numeric',
     ];
     public function validate($data)
     {
@@ -35,11 +36,11 @@ class BillingSchedule extends Eloquent{
 
     //TODO : Model Relationship
 
-    public function relBillingSummaryStudent(){
-        return $this->HasMany('BillingSummaryStudent');
+    public function relApplicant(){
+        return $this->belongsTo('Applicant', 'applicant_id', 'id');
     }
-    public function relBillingSummaryApplicant(){
-        return $this->HasMany('AdmQuestionItems');
+    public function relBillingSchedule(){
+        return $this->belongsTo('BillingSchedule', 'billing_schedule_id', 'id');
     }
 
 
