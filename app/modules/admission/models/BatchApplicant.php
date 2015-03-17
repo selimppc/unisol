@@ -4,21 +4,19 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class AdmExaminer extends Eloquent{
+class BatchApplicant extends Eloquent{
 
     //TODO :: model attributes and rules and validation
-    protected $table = 'adm_examiner';
+    protected $table = 'batch_applicant';
     protected $fillable = [
-        'batch_id', 'user_id', 'type', 'assigned_by', 'deadline', 'note', 'status',
+        'batch_id', 'applicant_id', 'admtest_marks', 'merit_position', 'status',
     ];
     private $errors;
     private $rules = [
         'batch_id' => 'required|integer',
-        'user_id' => 'required|integer',
-        'type' => 'alpha',
-        'assigned_by' => 'required|integer',
-        'deadline' => 'date',
-        'note' => 'alpha',
+        'applicant_id' => 'required|integer',
+        'admtest_marks' => 'required|numeric',
+        'merit_position' => 'required|numeric',
         'status' => 'alpha',
     ];
     public function validate($data)
@@ -41,6 +39,13 @@ class AdmExaminer extends Eloquent{
     public function relBatch(){
         return $this->belongsTo('Batch', 'batch_id', 'id');
     }
+    public function relApplicant(){
+        return $this->belongsTo('Applicant', 'applicant_id', 'id');
+    }
+    public function relExmCenterApplicantChoice(){
+        return $this->HasMany('ExmCenterApplicantChoice');
+    }
+
 
 
     // TODO : user info while saving data into table

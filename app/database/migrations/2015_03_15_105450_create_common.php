@@ -168,6 +168,7 @@ class CreateCommon extends Migration {
             $table->increments('id');
             $table->string('title', 128);
             $table->text('description');
+            $table->string('priority', 128);
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();

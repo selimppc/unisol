@@ -170,7 +170,7 @@ class CreateAdmission extends Migration {
             $table->integer('assigned_by', false, 11);
             $table->dateTime('deadline');
             $table->text('note');
-            $table->tinyInteger('status', false)->length(1);
+            $table->string('status', 128);
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
@@ -253,8 +253,10 @@ class CreateAdmission extends Migration {
         Schema::create('batch_education_constraint', function(Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('batch_id')->nullable();
-            $table->unsignedInteger('applicant_id')->nullable();
-            $table->tinyInteger('status', false)->length(11);
+            $table->enum('level_of_education',array(
+                'psc', 'jsc', 'ssc', 'hsc', 'grad', 'under_grad', 'bachelor', 'diploma', 'post_grad', 'o_level', 'a_level'
+            ));
+            $table->string('min_gpa', 128);
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
@@ -262,7 +264,6 @@ class CreateAdmission extends Migration {
         });
         Schema::table('batch_education_constraint', function($table) {
             $table->foreign('batch_id')->references('id')->on('degree');
-            $table->foreign('applicant_id')->references('id')->on('applicant');
         });
 
 
