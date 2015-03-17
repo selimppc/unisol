@@ -1,29 +1,33 @@
+<div class="modal-header">
 
-<div style="padding: 20px;">
+    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+    <h4 class="modal-title" id="myModalLabel"> Add Degree Program</h4>
+</div>
 
+<div class="modal-body">
+      <div style="padding: 20px;">
 
-                {{Form::open(array('url'=>'degreeprogram/store', 'class'=>'form-horizontal'))}}
+          {{Form::open(array('url'=>'common/degree-program/store', 'class'=>'form-horizontal','files'=>true))}}
 
+          <div class='form-group'>
 
-                {{ Form::label('title','Degree Program Name:') }}
-                {{ Form::text('title',Input::old('title'), array('class' => 'form-control')) }}
+              <div>{{ Form::label('title', 'Title') }}</div>
+              <div>{{ Form::text('title',Input::old('title') ,['class'=>'form-control input-sm','required'])}}</div>
+          </div>
 
+          <div class='form-group'>
+                <div>{{ Form::label('description', 'Description') }}</div>
+                <div>{{ Form::textarea('description',Input::old('description') ,['class'=>'form-control input-sm'])}}</div>
+          </div>
+          <p>&nbsp;</p>
 
-                 {{ Form::label('department_id', 'DeptName') }}
-                 {{ Form::select('department_id',  Department::orderBy('title')->lists('title', 'id')+[''=>'Select Option'] ,'', ['class'=>'form-control']) }}
+          <div>
 
-                 {{ Form::label('degree_level_id','Degree Level:') }}
-                 {{ Form::select('degree_level_id',  DegreeLevel::orderBy('title')->lists('title', 'id')+[''=>'Select Option'] ,'', ['class'=>'form-control']) }}
+          {{ Form::submit('Save', array('class'=>'pull-left btn btn-primary')) }}
+          <a  href="{{URL::previous() }}" class="pull-right btn btn-default">Close</a>
 
-                {{ Form::label('description', 'Description:') }}
-                {{ Form::text('description',Input::old('description'),array('class' => 'form-control')) }}
-
-
-                <p>&nbsp;</p>
-                {{ Form::submit('Save', array('class'=>'btn btn-primary')) }}
-
-                <a href="{{URL::to('degreeprogram/index')}}" class="btn btn-default">Close </a>
-
-                {{Form::close()}}
-
-        </div>
+          </div>
+          <p>&nbsp;</p>
+          {{Form::close()}}
+      </div>
+</div>

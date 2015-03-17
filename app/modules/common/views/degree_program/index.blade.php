@@ -1,200 +1,100 @@
-@extends('layouts.master')
+@extends('layouts.layout')
+
 @section('sidebar')
-    @include('degree_program._sidebar')
+ @include('layouts._sidebar_amw')
 @stop
+
 @section('content')
-<script type="text/javascript" language="javascript" src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
-<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.4/css/jquery.dataTables.css">
-
-  <div class="span well">
-
-  <table class="table table-striped table-bordered" id="myTable">
-    <col width="50">
-      <col width="180">
-      <col width="150">
-      <col width="90">
-      <col width="150">
-      <col width="180">
-     <h4>Degree Program Information</h4>
-                    <thead>
-                    <tr>
-                       <td><input name="checkbox" type="checkbox" id="checkbox" class="checkbox" value="">
-                       </td>
-                       <th>DegreeProgram Name</th>
-                       <th>Dept Name</th>
-                        <th>Degree Level</th>
-                         <th>Description</th>
-                       <th>Action</th>
-
-                    </tr>
-                  </thead>
-
-        <tbody>
-
-                @foreach ($degree_programs as $degree_program)
-                    <tr>
-                       <td><input type="checkbox" name="ids[]"  id="check" class="myCheckbox" value="{{ $degree_program->id }}"></td>
-
-                        <td>{{ $degree_program->title }}</td>
-                        <td align="left" class="deptName">{{ Department::getDepartmentName($degree_program->department_id) }}</td>
-                        <td align="left" class="degreeProgramName">{{ DegreeLevel::getDegreeLevelName($degree_program->degree_level_id) }}</td>
-                        <td>{{ $degree_program->description }}</td>
-                        <td>
-
-                           <a data-href="{{ URL::to('degreeprogram/destroy/'.$degree_program->id) }}" class="btn btn-sm btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><span class="glyphicon glyphicon-trash text-danger"></span></a>
-                           <a href="{{ URL::to('degreeprogram/show/'.$degree_program->id) }}" class="btn btn-sm btn-default" data-toggle="modal" data-target="#confirm-show"><span class="glyphicon glyphicon-eye-open text-danger"></span></a>
-                           <a class="btn btn-sm btn-info" href="{{ URL::to('degreeprogram/edit/' . $degree_program->id ) }}" data-toggle="modal" data-target="#myeditModal" >Edit...</a>
-                           {{--<a class="btn btn-sm btn-info" href="{{ URL::to('roletask/edit/' . $roletask->id ) }}" data-toggle="modal" data-target="#myeditModal" >Edit...</a>--}}
-                        </td>
-
-                    </tr>
-                @endforeach
-
-        </tbody>
-    </table>
 
 
-    <div>
+ <div class="box box-solid ">
+        <div class="box box-info">
+              <div class="box-header">
+              <h3 class="box-title">Degree Program</h3>
+                  <div class="box-tools pull-right">
+                       <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('common/degree-program/create')}}" data-toggle="modal" data-target="#degreeProgModal" >Add Degree-Program</a>
+                  </div>
+              <p>&nbsp;</p>
+              </div>
+              <div class="box-body">
+                   <div class="row">
+                       <div class="col-lg-12">
+                       {{ Form::open(array('url' => 'common/degree-program/batch_delete')) }}
+                          <table class="table table-bordered">
+                                 <thead>
+                                         <tr>
+                                             <th>
+                                                 <input name="id" type="checkbox" id="checkbox" class="checkbox" value="">
+                                             </th>
+                                            <th>Title</th>
 
-       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-              Add New
-       </button>
+                                            <th>Description</th>
+                                            <th>Action</th>
+                                         </tr>
+                                 </thead>
+                                        <tbody>
+                                              @if(isset($model))
+                                                    @foreach($model as $value)
+                                                        <tr>
+                                                            <td><input type="checkbox" name="ids[]"  class="myCheckbox" value="{{ $value->id }}">
+                                                            </td>
+                                                            <td>{{ $value->title }}</td>
+                                                            <td>{{ $value->description}}</td>
 
-    </div>
 
-    <br>
-        <div class="text-right">
-               {{ $degree_programs->links() }}
+                                                            <td>
+                                                                 <a href="{{ URL::to('common/degree-program/show/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#degreeProgModal" style="font-size: 12px;color: darkmagenta"><span class="fa fa-eye"></span></a>
+                                                                 <a class="btn btn-xs btn-default" href="{{ URL::to('common/degree-program/edit/'.$value->id) }}" data-toggle="modal" data-target="#degreeProgModal" style="font-size: 12px;color: lightseagreen"><i class="fa fa-edit"></i></a>
+                                                                 <a data-href="{{ URL::to('common/degree-program/delete/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" style="font-size: 12px;color: lightcoral"><span class="fa  fa-trash-o"></span></a>
+                                                                  {{--<a data-href="{{ URL::to('common/degree_group/delete/'.$value->id) }}" class="btn btn-sm btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><span class="glyphicon glyphicon-trash text-danger"></span></a>--}}
+
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                              @endif
+                                        </tbody>
+                       {{ Form::submit('Delete Items', array('class'=>'btn btn-xs btn-danger', 'id'=>'hide-button', 'style'=>'display:none'))}}
+                          </table>
+                       {{ Form::close() }}
+                       </div>
+                   </div>
+              </div>
         </div>
 
+ </div>
+<div class="text-right">
+    {{ $model->links() }}
+</div>
 
-  </div>
+{{----------------------------------------------Modal : degreeGroupModal--------------------------------------------------------------------------}}
+<div class="modal fade" id="degreeProgModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
 
-
-       <!-- Modal :: Delete Confirmation -->
-
-
-<div class="modal fade " id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-               <div class="modal-dialog">
-                 <div class="modal-content">
-                       <div class="modal-header">
-                         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-                         <h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>
-                       </div>
-                       <div class="modal-body">
-                             <strong>Are you sure to delete?</strong>
-                       </div>
-                       <div class="modal-footer">
-                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                         <a href="#" class="btn btn-danger danger">Delete</a>
-
-                       </div>
-                 </div>
-               </div>
-             </div>
-
-<!-- Modal :Add new Degree-->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="myModalLabel">Add New Degree</h4>
+       </div>
       </div>
-
-      <div class="modal-body">
-        <br><br>
+ </div>
 
 
-        <div style="padding: 20px;">
+ <!-- Modal for delete -->
+    <div class="modal fade " id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>
+              </div>
+              <div class="modal-body">
+                    <strong>Are you sure to delete?</strong>
 
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <a href="#" class="btn btn-danger danger">Delete</a>
 
-                {{Form::open(array('url'=>'degreeprogram/store', 'class'=>'form-horizontal'))}}
-
-
-                {{ Form::label('title','Degree Program Name:') }}
-                {{ Form::text('title',Input::old('title'), array('class' => 'form-control')) }}
-
-
-                 {{ Form::label('department_id', 'DeptName') }}
-                 {{ Form::select('department_id',  Department::orderBy('title')->lists('title', 'id')+[''=>'Select Option'] ,'', ['class'=>'form-control']) }}
-
-                 {{ Form::label('degree_level_id','Degree Level:') }}
-                 {{ Form::select('degree_level_id',  DegreeLevel::orderBy('title')->lists('title', 'id')+[''=>'Select Option'] ,'', ['class'=>'form-control']) }}
-
-                {{ Form::label('description', 'Description:') }}
-                {{ Form::text('description',Input::old('description'),array('class' => 'form-control')) }}
-
-
-                <p>&nbsp;</p>
-                {{ Form::submit('Save', array('class'=>'btn btn-primary')) }}
-                {{ Form::submit('Close', array('class'=>'btn btn-primary')) }}
-
-                {{Form::close()}}
-
-
+              </div>
         </div>
-
-      <div class="modal-footer">
-
       </div>
     </div>
-  </div>
-</div>
-</div>
-
-{{--Model: for showing single row info--}}
-<div class="modal fade " id="confirm-show" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-               <div class="modal-dialog">
-                 <div class="modal-content">
-                       <div class="modal-header">
-                         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-                         <h4 class="modal-title" id="myModalLabel"></h4>
-                       </div>
-                <div class="modal-body">
-
-                </div>
- <div class="modal-footer">
-      <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-      <a href="" class="btn btn-default" >Close</a>
- </div>
- </div>
- </div>
- </div>
-
-
-{{--Modal : edit --}}
-
-<div class="modal fade" id="myeditModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="myModalLabel">Edit</h4>
-      </div>
-      <div class="modal-body">
-
-
-      </div>
-
-
-      <div class="modal-footer">
-
-      </div>
-    </div>
-  </div>
-</div>
-
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('#myTable').dataTable({
-                paging: false
-
-        });
-
-    } );
-</script>
 
 @stop
-

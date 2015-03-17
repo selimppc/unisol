@@ -170,6 +170,40 @@ Route::any('admission/public/admission/checkout/',
         'uses' => 'AdmPublicController@admDegAptCheckout']);
 
 
+//{-----------------------------------Degree Program-------------------------------------------------------------------}
+
+Route::any('common/degree-program/index',
+    ['as'=>'common.degree-program.index',
+        'uses'=>'DegreeProgramController@degreeProgramIndex']);
+
+Route::any('common/degree-program/create',
+    ['as'=>'common.degree-program.create',
+        'uses'=>'DegreeProgramController@degreeProgramCreate']);
+
+Route::any('common/degree-program/store',
+    ['as'=>'common.degree-program.store',
+        'uses'=>'DegreeProgramController@degreeProgramStore']);
+
+
+Route::any('common/degree-program/show/{id}',
+    ['as'=>'common.degree-program.show',
+        'uses'=>'DegreeProgramController@degreeProgramShow']);
+
+Route::any('common/degree-program/edit/{id}',
+    ['as'=>'common.degree-program.edit',
+        'uses'=>'DegreeProgramController@degreeProgramEdit']);
+
+Route::any('common/degree-program/update/{id}',
+    ['as'=>'common.degree-program.update',
+        'uses'=>'DegreeProgramController@degreeProgramUpdate']);
+
+Route::any('common/degree-program/delete/{id}',
+    ['as'=>'common.degree-program.delete',
+        'uses'=>'DegreeProgramController@degreeProgramDelete']);
+
+Route::any('common/degree-program/batch_delete',
+    ['as'=>'common.degree-program.batch_delete',
+        'uses'=>'DegreeProgramController@degreeProgramBatchDelete']);
 
 
 

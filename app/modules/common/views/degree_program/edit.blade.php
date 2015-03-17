@@ -1,25 +1,35 @@
-<div style="padding: 20px;">
-        <h3>Edit {{$degree_program->title}}</h3>
 
-        {{Form::open(array('url'=>'degreeprogram/update/'.$degree_program->id, 'class'=>'form-horizontal'))}}
+<div class="modal-header">
 
-        {{ Form::label('title','Degree Program Name:') }}
-        {{ Form::text('title',$degree_program->title, array('class' => 'form-control')) }}
-         <br>
-        {{ Form::label('department_id', 'DeptName') }}
-        {{ Form::select('department_id',[0=>'Select one'] + Department::lists('title', 'id'),$degree_program->department_id) }}
-         <br>
-        {{ Form::label('degree_level_id','Degree Level:') }}
-        {{ Form::select('degree_level_id',  DegreeLevel::lists('title', 'id')+[''=>'Select Option'] ,$degree_program->degree_level_id) }}
-         <br>
-        {{ Form::label('description', 'Description:') }}
-        {{ Form::textarea('description',$degree_program->description, array('class' => 'form-control')) }}
-         <br>
-        <p>&nbsp;</p>
+    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+    <h4 class="modal-title" id="myModalLabel"> Edit Degree Program</h4>
+</div>
 
-        {{ Form::submit('Save Changes', array('class'=>'btn btn-primary')) }}
-        <a href="" class="btn btn-default" span class="glyphicon-refresh">Close</a>
+<div class="modal-body">
+      <div style="padding: 20px;">
 
-        {{Form::close()}}
+          {{Form::open(array('route'=> ['common.degree-program.update',$model->id], 'class'=>'form-horizontal','files'=>true))}}
 
+          <div class='form-group'>
+
+              <div>{{ Form::label('title', 'Degree Program( Title)') }}</div>
+              <div>{{ Form::text('title' ,$model->title,['class'=>'form-control input-sm','required'])}}</div>
+          </div>
+
+          <div class='form-group'>
+                <div>{{ Form::label('description', 'Description') }}</div>
+                <div>{{ Form::textarea('description' ,$model->description,['class'=>'form-control input-sm'])}}</div>
+          </div>
+          <p>&nbsp;</p>
+
+          <div>
+
+          {{ Form::submit('Update', array('class'=>'pull-left btn btn-primary')) }}
+          <a  href="{{URL::previous() }}" class="pull-right btn btn-default">Close</a>
+
+          </div>
+          <p>&nbsp;</p>
+
+          {{Form::close()}}
+      </div>
 </div>
