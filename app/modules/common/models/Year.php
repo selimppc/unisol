@@ -14,7 +14,7 @@ class Year extends Eloquent{
     private $errors;
     private $rules = [
         'title' => 'required|integer',
-        'description' => 'alpha',
+        'description' => 'alpha_dash',
     ];
     public function validate($data)
     {

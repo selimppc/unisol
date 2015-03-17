@@ -57,7 +57,7 @@
 
                                 <a href="{{ URL::route('subject.edit', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#edit-modal" href="" ><i class="fa fa-pencil-square-o" style="color: #0044cc"></i></a>
 
-                                <a data-id="{{ URL::route('subject.show', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#show" href="" ><i class="fa fa-eye" style="color: green"></i></a>
+                                <a href="{{ URL::route('common/subject/show', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#show" href="" ><i class="fa fa-eye" style="color: green"></i></a>
                             </td>
                         </tr>
                     @endforeach
@@ -99,7 +99,7 @@
                     <strong>Are you sure to delete?</strong>
                 </div>
                 <div class="modal-footer">
-                    <a href="{{URL::to('common/subject/list')}}" class="btn btn-default">Close </a>
+                    <a href="{{URL::to('common/subject/')}}" class="btn btn-default">Close </a>
                     <a href="#" class="btn btn-danger danger">Delete</a>
 
                 </div>

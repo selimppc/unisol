@@ -145,8 +145,6 @@ class SubjectController extends \BaseController {
 	{
 		$subject = Subject::find($id);
 		return View::make('common::subject.show')->with('subject',$subject);
-		print_r($subject);exit;
-
 	}
 
 	public function delete($id)

@@ -15,10 +15,10 @@ class BatchAdmtestSubject extends Eloquent{
     private $rules = [
         'batch_id' => 'required|integer',
         'admtest_subject_id' => 'required|integer',
-        'description' => 'alpha',
+        'description' => 'alpha_dash',
         'marks' => 'required|numeric',
         'qualify_marks' => 'required|numeric',
-        'duration' => 'alpha',
+        'duration' => 'alpha_dash',
     ];
     public function validate($data)
     {

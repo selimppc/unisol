@@ -13,9 +13,9 @@ class Subject extends Eloquent{
     ];
     private $errors;
     private $rules = [
-        'title' => 'required|alpha',
+        'title' => 'required|alpha_dash',
         'department_id' => 'required|integer',
-        'description' => 'alpha',
+        'description' => 'alpha_dash',
     ];
     public function validate($data)
     {
