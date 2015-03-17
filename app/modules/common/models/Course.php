@@ -25,6 +25,12 @@ class Course extends Eloquent{
         'cost_per_credit' => 'numeric',
         'evaluation_system' => 'alpha',
     ];
+
+
+    public static function getSubjectName($exmId){
+        $data = Subject::find($exmId);
+        return $data->title;
+    }
     public function validate($data)
     {
         $validate = Validator::make($data, $this->rules);
