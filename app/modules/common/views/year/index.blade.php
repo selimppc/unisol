@@ -3,10 +3,19 @@
     @include('layouts._sidebar_amw')
 @stop
 @section('content')
-    <h4 style="text-align: center;color: #800080;font-size: x-large">{{$title}}</h4>
-    <button type="button" class="pull-right btn btn-primary" data-toggle="modal" data-target="#myModal" >
-        Add Year
-    </button>
+    <div class="box box-solid ">
+        <div class="box box-info">
+            <div class="box-header">
+                <h3 class="box-title" style="color:#800080 ">All Year List</h3>
+                <div class="box-tools pull-right">
+                    <button type="button" class="pull-right btn btn-primary" data-toggle="modal" data-target="#myModal" >
+                        Add Year
+                    </button>
+                </div>
+            </div>
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-lg-12">
     {{--search db--}}
         {{ Form::open(array('url' =>'year/show', 'class'=>'form-inline', 'role' => 'form')) }}
         <div class="form-group"style="margin-top: 2px">
@@ -47,7 +56,7 @@
             </tr>
         @endforeach
         </tbody>
-        {{ Form::submit('Delete Items', array('class'=>'btn btn-danger', 'id'=>'hide-button', 'style'=>'display:none'))}}
+        {{ Form::submit('Delete Items', array('class'=>'btn btn-xs btn-danger', 'id'=>'hide-button', 'style'=>'display:none'))}}
     </table>
     {{ Form::close() }}
 
@@ -55,6 +64,11 @@
 
     <p>&nbsp;</p>
     <p>&nbsp;</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     {{--<!-- Modal for Edit -->--}}
     <div class="modal fade" id="edit-modal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog">
