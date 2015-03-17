@@ -24,7 +24,7 @@
 
           <div class='form-group'>
                 <div>{{ Form::label('description', 'Description') }}</div>
-                <div>{{ Form::text('description' ,$model->description,['class'=>'form-control input-sm'])}}</div>
+                <div>{{ Form::textarea('description' ,$model->description,['class'=>'form-control input-sm'])}}</div>
           </div>
           <p>&nbsp;</p>
 

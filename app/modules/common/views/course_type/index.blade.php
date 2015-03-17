@@ -12,7 +12,7 @@
               <div class="box-header">
               <h3 class="box-title">Course Type</h3>
                   <div class="box-tools pull-right">
-                       <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('common/course-type/create')}}" data-toggle="modal" data-target="#courseTypeModal" >Add Course Type</a>
+                       <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('common/course-type/create')}}" data-toggle="modal" data-target="#courseTypeModal" style="color: #ffffff"><b>Add Course Type</b></a>
                   </div>
               <p>&nbsp;</p>
               </div>
@@ -20,7 +20,7 @@
                    <div class="row">
                        <div class="col-lg-12">
                        {{ Form::open(array('url' => 'common/course-type/batch-delete')) }}
-                          <table class="table table-bordered">
+                          <table id="example" class="table table-bordered">
                                  <thead>
                                          <tr>
                                              <th>

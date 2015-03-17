@@ -152,7 +152,7 @@ Route::group( array('before' => 'auth'), function(){
 
 //{---------------------------------Degree Group--------------------------------------------------------}
 
-    Route::any('common/degree-group/index',
+    Route::any('common/degree-group',
         ['as'=>'common.degree-group.index',
             'uses'=>'DegreeGroupController@degreeGroupIndex']);
 
@@ -186,7 +186,7 @@ Route::group( array('before' => 'auth'), function(){
             'uses'=>'DegreeGroupController@degreeGroupBatchDelete']);
 
 // {--------------------------------------Exm-Center---------------------------------------------------------}
-    Route::any('common/exm-center/index',
+    Route::any('common/exm-center',
            ['as'=>'common.exm-center.index',
             'uses'=>'ExamCenterController@exmCenterIndex']);
 

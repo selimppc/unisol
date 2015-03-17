@@ -12,7 +12,7 @@
               <div class="box-header">
               <h3 class="box-title">Degree Program</h3>
                   <div class="box-tools pull-right">
-                       <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('common/degree-program/create')}}" data-toggle="modal" data-target="#degreeProgModal" >Add Degree-Program</a>
+                       <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('common/degree-program/create')}}" data-toggle="modal" data-target="#degreeProgModal" style="color: #ffffff"><b>Add Degree-Program</b></a>
                   </div>
               <p>&nbsp;</p>
               </div>
@@ -20,7 +20,7 @@
                    <div class="row">
                        <div class="col-lg-12">
                        {{ Form::open(array('url' => 'common/degree-program/batch_delete')) }}
-                          <table class="table table-bordered">
+                          <table id="example" class="table table-bordered">
                                  <thead>
                                          <tr>
                                              <th>
