@@ -41,7 +41,7 @@ class AdmTestSubjectController extends \BaseController {
 
     public function admTestSubjectEdit($id){
         $edit_adm_test_subject = AdmTestSubject::find($id);
-        return View::make('common::adm_test_subject._form',compact('edit_adm_test_subject'));
+        return View::make('common::adm_test_subject.edit',compact('edit_adm_test_subject'));
     }
 
     public function admTestSubjectUpdate($id)
@@ -72,7 +72,7 @@ class AdmTestSubjectController extends \BaseController {
 
     public function admTestSubjectBatchDelete()
     {
-        AdmTestSubject::destroy(Request::get('ids'));
+        AdmTestSubject::destroy(Request::get('id'));
         return Redirect::back()->with('message','Successfully deleted Information!');
     }
 

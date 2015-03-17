@@ -9,7 +9,7 @@
            <div class="col-sm-12">
 
                <div class="pull-right col-sm-4">
-                              <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('common/adm_test_subject/create')}}" data-toggle="modal" data-target="#modal" >Add New Exm-Center</a>
+                              <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('common/adm_test_subject/create')}}" data-toggle="modal" data-target="#modal" >Add New Adm Test Subject</a>
                </div>
            </div>
 </div>
