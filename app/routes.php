@@ -86,14 +86,14 @@ Route::group( array('before' => 'auth'), function(){
 
 
     //Course
-    Route::get('course/','CourseController@index');
-    Route::any('course/create','CourseController@create');
-    Route::any('course/store', ['as' => 'course.store', 'uses' => 'CourseController@store' ]);
-    Route::get('course/show/{id}', [ 'as' => 'course.show', 'uses' => 'CourseController@show' ]);
-    Route::any('course/edit/{id}', ['as' => 'course.edit', 'uses' => 'CourseController@edit' ]);
-    Route::any('course/update/{id}', ['as' => 'course.update','uses' => 'CourseController@update' ]);
-    Route::any('course/destroy/{id}', ['as' => 'course.destroy', 'uses' => 'CourseController@destroy' ]);
-    Route::any('course/batchDelete','CourseController@batchDelete');
+//    Route::get('course/','CourseController@index');
+//    Route::any('course/create','CourseController@create');
+//    Route::any('course/store', ['as' => 'course.store', 'uses' => 'CourseController@store' ]);
+//    Route::get('course/show/{id}', [ 'as' => 'course.show', 'uses' => 'CourseController@show' ]);
+//    Route::any('course/edit/{id}', ['as' => 'course.edit', 'uses' => 'CourseController@edit' ]);
+//    Route::any('course/update/{id}', ['as' => 'course.update','uses' => 'CourseController@update' ]);
+//    Route::any('course/destroy/{id}', ['as' => 'course.destroy', 'uses' => 'CourseController@destroy' ]);
+//    Route::any('course/batchDelete','CourseController@batchDelete');
 
 
 

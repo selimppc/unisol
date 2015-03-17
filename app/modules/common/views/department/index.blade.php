@@ -3,51 +3,64 @@
     @include('layouts._sidebar_amw')
 @stop
 @section('content')
-    <h4 style="text-align: center;color: #800080;font-size: x-large">All Department List</h4>
-    <button type="button" class="pull-right btn btn-primary" data-toggle="modal" data-target="#CreateModal" style="margin-bottom: 20px">
-        Add Department
-    </button>
-    {{ Form::open(array('url' => 'department/batchDelete')) }}
-    <table id="example" class="table table-bordered table-hover table-striped">
+    <div class="box box-solid ">
+        <div class="box box-info">
+            <div class="box-header">
+                <h3 class="box-title" style="color:#800080 ">All Department List</h3>
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#CreateModal">
+                        Add Department
+                    </button>
+                </div>
+            </div>
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        {{ Form::open(array('url' => 'department/batchDelete')) }}
+                        <table id="example" class="table table-bordered table-hover table-striped">
+                            <thead>
+                            <tr>
+                                <th>
+                                    <input name="id" type="checkbox" id="checkbox" class="checkbox" value="">
+                                </th>
+                                <th>Department Name</th>
+                                <th>Department Head</th>
+                                <th>Description</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach ($departmentList as $department)
+                                <tr>
+                                    <td><input type="checkbox" name="ids[]"  class="myCheckbox" value="{{ $department->id }}"></td>
+                                    <td align="left">{{ $department->title }}</td>
+                                    <td align="left">{{ User::FullName($department->dept_head_user_id)  }}</td>
+                                    <td>{{ $department->description }}</td>
+                                    <td>
+                                        <a data-href="{{ URL::to('department/delete/'.$department->id) }}" class="btn btn-sm btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa  fa-trash-o" style="font-size: 12px;color: red"></i></a>
 
-        <thead>
-        <tr>
-            <th>
-                <input name="id" type="checkbox" id="checkbox" class="checkbox" value="">
-            </th>
-            <th>Department Name</th>
-            <th>Department Head</th>
-            <th>Description</th>
-            <th>Action</th>
-        </tr>
-        </thead>
-        <tbody>
-        @foreach ($departmentList as $department)
-            <tr>
-                <td><input type="checkbox" name="ids[]"  class="myCheckbox" value="{{ $department->id }}"></td>
-                <td align="left">{{ $department->title }}</td>
-                <td align="left">{{ User::FullName($department->dept_head_user_id)  }}</td>
-                <td>{{ $department->description }}</td>
-                <td>
-                    <a data-href="{{ URL::to('department/delete/'.$department->id) }}" class="btn btn-sm btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa  fa-trash-o" style="font-size: 12px;color: red"></i></a>
+                                        <a href="{{ URL::to('department/edit/' . $department->id ) }}" class="subEdit btn btn-sm btn-default" data-toggle="modal" data-target="#myeditModal" href="" ><i class="fa fa-pencil-square-o" style="font-size: 12px;color: #0044cc"></i></a>
 
-                    <a href="{{ URL::to('department/edit/' . $department->id ) }}" class="subEdit btn btn-sm btn-default" data-toggle="modal" data-target="#myeditModal" href="" ><i class="fa fa-pencil-square-o" style="font-size: 12px;color: #0044cc"></i></a>
-
-                    <a href="{{ URL::to('department/show/'.$department->id) }}" class="btn btn-sm btn-default" data-toggle="modal" data-target="#confirm-show"><i class="fa fa-eye" style="font-size: 12px;color: green"></i></a>
-                </td>
-            </tr>
-        @endforeach
-        <div>
+                                        <a href="{{ URL::to('department/show/'.$department->id) }}" class="btn btn-sm btn-default" data-toggle="modal" data-target="#confirm-show"><i class="fa fa-eye" style="font-size: 12px;color: green"></i></a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                            <div>
+                            </div>
+                            </tbody>
+                            {{ Form::submit('Delete Items', array('class'=>'btn btn-xs btn-danger', 'id'=>'hide-button', 'style'=>'display:none'))}}
+                        </table>
+                        {{ Form::close() }}
+                        <div class="text-left">
+                            {{ $departmentList->links() }}
+                        </div>
+                        <p>&nbsp;</p>
+                        <p>&nbsp;</p>
+                    </div>
+                </div>
+            </div>
         </div>
-        </tbody>
-        {{ Form::submit('Delete Items', array('class'=>'btn btn-danger', 'id'=>'hide-button', 'style'=>'display:none'))}}
-    </table>
-    {{ Form::close() }}
-    <div class="text-left">
-        {{ $departmentList->links() }}
     </div>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
     <!-- Modal :: Delete Confirmation -->
     <div class="modal fade " id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">

@@ -27,14 +27,10 @@
 
                   <p>&nbsp;</p>
 
-                  <div>
+                  {{ Form::submit('Save', array('class'=>'pull-left btn btn-primary')) }}
+                  <a  href="{{URL::previous() }}" class="pull-right btn btn-default">Close</a>
 
-                      {{ Form::submit('Save', array('class'=>'pull-left btn btn-primary')) }}
-                      <a  href="{{URL::previous() }}" class="pull-right btn btn-default">Close</a>
-
-          </div>
           <p>&nbsp;</p>
           {{Form::close()}}
       </div>
 </div>
-

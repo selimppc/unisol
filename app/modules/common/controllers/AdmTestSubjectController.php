@@ -2,19 +2,14 @@
 
 class AdmTestSubjectController extends \BaseController {
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-
-    public function admTestSubjectIndex(){
-
+	public function admTestSubjectIndex()
+    {
         $adm_test_sbjct = AdmTestSubject::latest('id')->paginate(10);
         return View::make('common::adm_test_subject.index',compact('adm_test_sbjct'));
     }
 
-    public function admTestSubjectView($id){
+    public function admTestSubjectView($id)
+    {
         $view_adm_test_subject = AdmTestSubject::find($id);
         return View::make('common::adm_test_subject.view',compact('view_adm_test_subject'));
     }
@@ -24,8 +19,8 @@ class AdmTestSubjectController extends \BaseController {
         return View::make('common::adm_test_subject._form');
     }
 
-    public function admTestSubjectStore(){
-
+    public function admTestSubjectStore()
+    {
         $data = Input::all();
         if (AdmTestSubject::create($data)) {
 
@@ -39,7 +34,8 @@ class AdmTestSubjectController extends \BaseController {
 
 
 
-    public function admTestSubjectEdit($id){
+    public function admTestSubjectEdit($id)
+    {
         $edit_adm_test_subject = AdmTestSubject::find($id);
         return View::make('common::adm_test_subject.edit',compact('edit_adm_test_subject'));
     }
@@ -59,22 +55,15 @@ class AdmTestSubjectController extends \BaseController {
         }
     }
 
-
-
-
     public function admTestSubjectDelete($id)
     {
         AdmTestSubject::find($id)->delete();
         return Redirect::back()->with('message', 'Successfully deleted Information!');
     }
 
-
-
     public function admTestSubjectBatchDelete()
     {
         AdmTestSubject::destroy(Request::get('id'));
         return Redirect::back()->with('message','Successfully deleted Information!');
     }
-
-
 }

@@ -3,31 +3,37 @@
     @include('layouts._sidebar_amw')
 @stop
 @section('content')
-    <h4 style="text-align: center;color: #800080;font-size: x-large">{{$title}}</h4>
-    <div class="container" style="margin-top: 20px">
-        <div class="row">
-            {{--<div class="col-sm-10" style="background: #FFFFFF">--}}
-            <div class="panel-body">
-                <button type="button" class="pull-right btn btn-primary" data-toggle="modal" data-target="#myModal" style="margin-bottom: 20px;margin-right: 60px">
-                    Add Subject
-                </button>
-                {{--for search box using js --}}
-                <section class="panel " style="background: #F9F9F9">
-                    {{--one page filter--}}
-                    <div class="col-md-4 no-padder" style="margin-right: 200px">
-                        <input type="search" name="tblsearch" id="searchStr" class="form-control" placeholder="Onpage Filter"/>
-                        <div class="clearfix"></div>
-                    </div>
-                    {{--filter ends--}}
-                    {{ Form::open(array('url' =>'subject/list', 'class'=>'form-inline', 'role' => 'form')) }}
-                    <div class="form-group">
-                        {{ Form::label('search_text', 'Search Text:',array('class'=>'sr-only')) }}
-                        {{ Form::text('search_text', Input::old('search_text'), array('class' => 'form-control','placeholder' => 'Search All')) }}
-                    </div>
-                    {{ Form::submit('Search', array('class' => 'btn btn-info')) }}
-                    {{ Form::close() }}
-                </section>
-                <!-- search ends -->
+    <div class="box box-solid ">
+        <div class="box box-info">
+            <div class="box-header">
+                <h3 class="box-title" style="color:#800080 ">All Subject List</h3>
+
+                <div class="box-tools pull-right">
+                    <button type="button" class="pull-right btn btn-primary" data-toggle="modal" data-target="#myModal" style="margin-bottom: 20px;margin-right: 60px">
+                        Add Subject
+                    </button>
+                </div>
+            </div>
+            {{--for search box using js --}}
+            <section class="panel " style="background: #F9F9F9">
+                {{--one page filter--}}
+                <div class="col-md-4 no-padder" style="margin-right: 200px">
+                    <input type="search" name="tblsearch" id="searchStr" class="form-control" placeholder="Onpage Filter"/>
+                    <div class="clearfix"></div>
+                </div>
+                {{--filter ends--}}
+                {{ Form::open(array('url' =>'subject/list', 'class'=>'form-inline', 'role' => 'form')) }}
+                <div class="form-group">
+                    {{ Form::label('search_text', 'Search Text:',array('class'=>'sr-only')) }}
+                    {{ Form::text('search_text', Input::old('search_text'), array('class' => 'form-control','placeholder' => 'Search All')) }}
+                </div>
+                {{ Form::submit('Search', array('class' => 'btn btn-info')) }}
+                {{ Form::close() }}
+            </section>
+            <!-- search ends -->
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-lg-12">
                 {{ Form::open(array('url' => 'subject/batch/delete')) }}
                 <table class="table table-bordered table table-bordered table-hover table-striped" id="myTable">
                     <thead>
@@ -40,7 +46,7 @@
                     <th>Action</th>
                     </thead>
                     <tbody class="searchBody">
-                    {{ Form::submit('Delete Items', array('class'=>'btn btn-danger', 'id'=>'hide-button', 'style'=>'display:none'))}}
+                    {{ Form::submit('Delete Items', array('class'=>'btn btn-xs btn-danger', 'id'=>'hide-button', 'style'=>'display:none'))}}
                     @foreach ($datas as $value)
                         <tr>
                             <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $value->id }}"></td>
@@ -61,8 +67,9 @@
                 </table>
                 {{ Form::close() }}
                 {{ $datas->links() }}
+                    </div>
+                </div>
             </div>
-            {{--</div>--}}
         </div>
     </div>
     {{--<!-- Modal for Edit -->--}}
