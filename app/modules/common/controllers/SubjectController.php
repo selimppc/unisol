@@ -51,7 +51,9 @@ class SubjectController extends \BaseController {
 	}
 	public function index()
 	{
+		$title = 'All Subject List';
 		$search_text =trim(Input::get('search_text'));
+		$department= array('' => 'Select department') + Department::lists('title', 'id');
 		//Input::flash();
 		$q = Subject::query();
 		if (!empty($search_text))
@@ -64,8 +66,9 @@ class SubjectController extends \BaseController {
 
 			});
 		}
-		$data = $q->orderBy('id', 'DESC')->paginate(5);
-		return View::make('common::subject.index')->with('datas',$data)->with('title','All Subject List');
+		$datas = $q->orderBy('id', 'DESC')->paginate(5);
+//		return View::make('common::subject.index')->with('datas',$data)->with('title','All Subject List');
+		return View::make('common::subject.index', compact('title', 'datas', 'department'));
 	}
 
 	public function batchdelete()
@@ -91,12 +94,11 @@ class SubjectController extends \BaseController {
 	 * @return Response
 	 */
 
-
-	public function edit()
+	public function edit($id)
 	{
-		$subId = Input::get('subjectId');
-		$data = Subject::find($subId);
-		return json_encode($data);
+		$department= array('' => 'Select department') + Department::lists('title', 'id');
+		$dep_data = Subject::find($id);
+		return View::make('common::subject.edit', compact('dep_data', 'department'));
 	}
 
 	public function update($id)
