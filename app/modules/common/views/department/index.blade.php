@@ -38,7 +38,7 @@
                                     <td>
                                         <a data-href="{{ URL::to('department/delete/'.$department->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa  fa-trash-o" style="color: red"></i></a>
 
-                                        <a href="{{ URL::to('department/edit/' . $department->id ) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#myeditModal" href="" ><i class="fa fa-pencil-square-o" style="color: #0044cc"></i></a>
+                                        <a href="{{ URL::to('department/edit/' . $department->id ) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#editModal" href="" ><i class="fa fa-pencil-square-o" style="color: #0044cc"></i></a>
 
                                         <a href="{{ URL::to('department/show/'.$department->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-show"><i class="fa fa-eye" style="color: green"></i></a>
                                     </td>
@@ -77,7 +77,7 @@
                 </div>
             </div>
         </div>
-   
+
     {{--Model: for showing single row info--}}
     <div class="modal fade " id="confirm-show" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -107,7 +107,7 @@
     </div>
     {{--Modal : edit --}}
 
-    <div class="modal fade" id="myeditModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog">
             <div class="modal-content">
 
