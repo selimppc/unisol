@@ -4,7 +4,6 @@
 @stop
 @section('content')
     <div class="box box-solid ">
-        <div class="box box-info">
             <div class="box-header">
                 <h3 class="box-title" style="color:#800080 ">All Department List</h3>
                 <div class="box-tools pull-right">
@@ -37,11 +36,11 @@
                                     <td align="left">{{ User::FullName($department->dept_head_user_id)  }}</td>
                                     <td>{{ $department->description }}</td>
                                     <td>
-                                        <a data-href="{{ URL::to('department/delete/'.$department->id) }}" class="btn btn-sm btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa  fa-trash-o" style="font-size: 12px;color: red"></i></a>
+                                        <a data-href="{{ URL::to('department/delete/'.$department->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa  fa-trash-o" style="color: red"></i></a>
 
-                                        <a href="{{ URL::to('department/edit/' . $department->id ) }}" class="subEdit btn btn-sm btn-default" data-toggle="modal" data-target="#myeditModal" href="" ><i class="fa fa-pencil-square-o" style="font-size: 12px;color: #0044cc"></i></a>
+                                        <a href="{{ URL::to('department/edit/' . $department->id ) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#editModal" href="" ><i class="fa fa-pencil-square-o" style="color: #0044cc"></i></a>
 
-                                        <a href="{{ URL::to('department/show/'.$department->id) }}" class="btn btn-sm btn-default" data-toggle="modal" data-target="#confirm-show"><i class="fa fa-eye" style="font-size: 12px;color: green"></i></a>
+                                        <a href="{{ URL::to('department/show/'.$department->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-show"><i class="fa fa-eye" style="color: green"></i></a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -74,11 +73,11 @@
                 </div>
                 <div class="modal-footer">
                     <a href="#" class="btn btn-danger danger">Delete</a>
-                    <a href="{{URL::to('common/department/index')}}" class="btn btn-default">Close </a>
+                    <a href="{{URL::to('common/department/')}}" class="btn btn-default">Close </a>
                 </div>
             </div>
         </div>
-    </div>
+
     {{--Model: for showing single row info--}}
     <div class="modal fade " id="confirm-show" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -108,7 +107,7 @@
     </div>
     {{--Modal : edit --}}
 
-    <div class="modal fade" id="myeditModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog">
             <div class="modal-content">
 

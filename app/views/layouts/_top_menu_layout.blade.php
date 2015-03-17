@@ -8,8 +8,8 @@
         </li>
         <li><a tabindex="-1" a href="{{ URL::to('common/year/') }}"> Year </a></li>
         <li><a tabindex="-1" a href="{{ URL::to('common/semester/') }}"> Semester </a></li>
-        <li><a tabindex="-1" a href="{{ URL::to('common/subject/list') }}"> Subject </a></li>
-        <li><a tabindex="-1" a href="{{ URL::to('common/department/index') }}"> Department </a></li>
+        <li><a tabindex="-1" a href="{{ URL::to('common/subject/') }}"> Subject </a></li>
+        <li><a tabindex="-1" a href="{{ URL::to('common/department/') }}"> Department </a></li>
 
         <li><a tabindex="-1" a href="{{ URL::to('common/adm_test_subject/index') }}"> Adm Test Subject </a></li>
         <li><a tabindex="-1" a href="{{ URL::to('common/course/index') }}"> Course </a></li>
