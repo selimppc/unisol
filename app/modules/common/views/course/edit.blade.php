@@ -21,7 +21,7 @@
 
                 <div class='form-group'>
                        {{ Form::label('subject_id', 'Subject Name') }}
-                       {{ Form::Select('subject_id' ,$course->subject_id,['class'=>'form-control input-sm','required'])}}
+                       {{ Form::Select('subject_id',$subject_name ,$course->subject_id,['class'=>'form-control input-sm'])}}
                 </div>
 
                 <div class='form-group'>
@@ -51,7 +51,7 @@
 
                 <div class='form-group'>
                     {{ Form::label('course_type_id', 'Course Type') }}
-                    {{ Form::select('course_type_id',$course->course_type_id,['class'=>'form-control input-sm','required'])}}
+                    {{ Form::select('course_type_id',$course_type_name,$course->course_type_id,['class'=>'form-control input-sm'])}}
                 </div>
 
 

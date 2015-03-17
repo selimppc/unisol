@@ -27,10 +27,7 @@ class Course extends Eloquent{
     ];
 
 
-    public static function getSubjectName($exmId){
-        $data = Subject::find($exmId);
-        return $data->title;
-    }
+
     public function validate($data)
     {
         $validate = Validator::make($data, $this->rules);
