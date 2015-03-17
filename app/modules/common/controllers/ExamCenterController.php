@@ -23,16 +23,19 @@ class ExamCenterController extends \BaseController {
 	public function exmCenterStore()
 	{
         $data = Input::all();
-        if (ExmCenter::create($data)) {
+        $model = new ExmCenter();
 
-            return Redirect::back()
-                ->with('message', 'Successfully added Information!');
-        } else{
-            return Redirect::back()
-                ->with('message', 'invalid');
+        if($model->validate($data)){
+            if($model->create($data)){
+                Session::flash('message','Successfully added Information!');
+                return Redirect::back();
+            }
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back();
         }
-
-	}
+    }
 
 	public function exmCenterShow($id)
 	{
@@ -51,26 +54,40 @@ class ExamCenterController extends \BaseController {
         $model = ExmCenter::find($id);
         $data = Input::all();
 
-        $model->fill($data);
-
-        if ($model->save()) {
-            return Redirect::back()
-                ->with('message', 'Successfully Updated Information!');
+        if($model->validate($data)){
+            if($model->save()){
+                Session::flash('message','Successfully Updated Information!');
+                return Redirect::back();
+            }
         }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
             return Redirect::back();
         }
 	}
 
 	public function exmCenterDelete($id)
 	{
-        ExmCenter::find($id)->delete();
-        return Redirect::back()->with('message', 'Successfully deleted Information!');
+        try {
+            ExmCenter::find($id)->delete();
+            return Redirect::back()->with('message', 'Successfully deleted Information!');
+        }
+        catch(exception $ex){
+            return Redirect::back()->with('danger', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+
+        }
     }
 
     public function exmCenterBatchDelete()
     {
-        ExmCenter::destroy(Request::get('ids'));
-        return Redirect::back()->with('message','Successfully deleted Information!');
+        try {
+            ExmCenter::destroy(Request::get('ids'));
+            return Redirect::back()->with('message', 'Successfully deleted Information!');
+
+        } catch (exception $ex) {
+            return Redirect::back()->with('danger', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+
+        }
     }
 
 }
