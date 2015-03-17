@@ -13,7 +13,7 @@ class Semester extends Eloquent{
     ];
     private $errors;
     private $rules = [
-        'title' => 'required|integer',
+        'title' => 'required|alpha',
         'description' => 'alpha',
     ];
     public function validate($data)
