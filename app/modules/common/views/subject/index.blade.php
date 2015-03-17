@@ -8,13 +8,13 @@
         <div class="row">
             {{--<div class="col-sm-10" style="background: #FFFFFF">--}}
             <div class="panel-body">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" style="margin-bottom: 20px">
-                    AddSubject
+                <button type="button" class="pull-right btn btn-primary" data-toggle="modal" data-target="#myModal" style="margin-bottom: 20px;margin-right: 60px">
+                    Add Subject
                 </button>
                 {{--for search box using js --}}
                 <section class="panel " style="background: #F9F9F9">
                     {{--one page filter--}}
-                    <div class="col-md-4 no-padder" style="margin-right: 350px">
+                    <div class="col-md-4 no-padder" style="margin-right: 200px">
                         <input type="search" name="tblsearch" id="searchStr" class="form-control" placeholder="Onpage Filter"/>
                         <div class="clearfix"></div>
                     </div>
@@ -49,11 +49,11 @@
                             <td class="subTitle">{{ $value->title }}</td>
                             <td class="subDesc">{{ $value->description }}</td>
                             <td>
-                                <a data-href="{{ URL::to('subject/delete/'.$value->id) }}" class="btn btn-sm btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa  fa-trash-o" style="font-size: 18px;color: red"></i></a>
+                                <a data-href="{{ URL::to('subject/delete/'.$value->id) }}" class="btn btn-sm btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa  fa-trash-o" style="font-size: 12px;color: red"></i></a>
 
-                                <a href="{{ URL::route('subject.edit', ['id'=>$value->id]) }}" class="subEdit btn btn-sm btn-default" data-toggle="modal" data-target="#edit-modal" href="" ><i class="fa fa-pencil-square-o" style="font-size: 18px;color: #0044cc"></i></a>
+                                <a href="{{ URL::route('subject.edit', ['id'=>$value->id]) }}" class="subEdit btn btn-sm btn-default" data-toggle="modal" data-target="#edit-modal" href="" ><i class="fa fa-pencil-square-o" style="font-size: 12px;color: #0044cc"></i></a>
 
-                                <a data-id="{{ $value->id }}" class="subDetails btn btn-sm btn-default" data-toggle="modal" data-target="#confirm-details" href="" ><i class="fa fa-eye" style="font-size: 18px;color: green"></i></a>
+                                <a data-id="{{ $value->id }}" class="subDetails btn btn-sm btn-default" data-toggle="modal" data-target="#confirm-details" href="" ><i class="fa fa-eye" style="font-size: 12px;color: green"></i></a>
                             </td>
                         </tr>
                     @endforeach
