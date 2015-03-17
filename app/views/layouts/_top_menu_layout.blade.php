@@ -6,12 +6,13 @@
         <li><a tabindex="-1" a href="{{ URL::to('common/year/') }}"> Year </a></li>
         <li><a tabindex="-1" a href="{{ URL::to('common/semester/') }}"> Semester </a></li>
         <li><a tabindex="-1" a href="{{ URL::to('common/subject/list') }}"> Subject </a></li>
+        <li><a tabindex="-1" a href="{{ URL::to('common/department/index') }}"> Department </a></li>
 
         <li><a tabindex="-1" href="{{ action('CourseController@index') }}"> Course Management </a></li>
         <li><a tabindex="-1" href="{{ action('CourseTypeController@index') }}"> Course Type </a></li>
         <li><a tabindex="-1" href="{{ action('DegreeLevelController@index') }}"> Degree Level </a></li>
         <li><a tabindex="-1" href="{{ action('DegreeProgController@index') }}"> Degree / Program Name </a></li>
-        <li><a tabindex="-1" href="{{ action('DepartmentController@index') }}"> Department Management </a></li>
+
         <li><a tabindex="-1" href="{{ action('DegreeGroupController@degreeGroupIndex') }}"> Degree Group </a></li>
         <li><a tabindex="-1" href="{{ action('ExamCenterController@exmCenterIndex') }}"> Exam Center </a></li>
         <li><a tabindex="-1" href="{{ action('TargetRoleController@index') }}"> Target Role </a></li>
