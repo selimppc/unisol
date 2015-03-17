@@ -29,20 +29,17 @@
                 <td align="left">{{ User::FullName($department->dept_head_user_id)  }}</td>
                 <td>{{ $department->description }}</td>
                 <td>
-                    <a data-href="{{ URL::to('department/delete/'.$department->id) }}" class="btn btn-sm btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><span class="glyphicon glyphicon-trash text-danger"></span></a>
+                    <a data-href="{{ URL::to('department/delete/'.$department->id) }}" class="btn btn-sm btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa  fa-trash-o" style="font-size: 18px;color: red"></i></a>
 
-                    <a href="{{ URL::to('department/show/'.$department->id) }}" class="btn btn-sm btn-default" data-toggle="modal" data-target="#confirm-show"><span class="glyphicon glyphicon-eye-open text-danger"></span></a>
+                    <a class="btn btn-sm btn-info" href="{{ URL::to('department/edit/' . $department->id ) }}" data-toggle="modal" data-target="#myeditModal" ><i class="fa fa-pencil-square-o" style="font-size: 18px;color: #0044cc"></i></a>
 
-                    <a class="btn btn-sm btn-info" href="{{ URL::to('department/edit/' . $department->id ) }}" data-toggle="modal" data-target="#myeditModal" >Edit...</a>
+                    <a href="{{ URL::to('department/show/'.$department->id) }}" class="btn btn-sm btn-default" data-toggle="modal" data-target="#confirm-show"><i class="fa fa-eye" style="font-size: 18px;color: green"></i></a>
 
                 </td>
             </tr>
         @endforeach
         <div>
         </div>
-        <br>
-
-
         </tbody>
         {{ Form::submit('Delete Items', array('class'=>'btn btn-danger', 'id'=>'hide-button', 'style'=>'display:none'))}}
     </table>
@@ -50,7 +47,8 @@
     <div class="text-left">
         {{ $departmentList->links() }}
     </div>
-
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
     <!-- Modal :: Delete Confirmation -->
     <div class="modal fade " id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -64,7 +62,7 @@
                 </div>
                 <div class="modal-footer">
                     <a href="#" class="btn btn-danger danger">Delete</a>
-                    <a href="{{URL::to('department/index')}}" class="btn btn-default">Close </a>
+                    <a href="{{URL::to('common/department/index')}}" class="btn btn-default">Close </a>
                 </div>
             </div>
         </div>
