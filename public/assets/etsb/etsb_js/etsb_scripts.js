@@ -67,11 +67,7 @@
             $("#ch_credt_card").show();
         });
 
-
-
+        $(".textarea").wysihtml5();
 
     });
-}(jQuery.noConflict(
-
-
-true)));
+}(jQuery.noConflict(true)));
