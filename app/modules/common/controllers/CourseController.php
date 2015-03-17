@@ -27,14 +27,19 @@ class CourseController extends \BaseController {
 	public function store()
 	{
         $data = Input::all();
-        if (Course::create($data)) {
-
-            return Redirect::back()
-                ->with('message', 'Successfully added Information!');
-        } else{
+        $model = new Course();
+        if($model->validate($data)){
+            if($model->create($data)){
+                Session::flash('message', 'Successfully added Information!');
+                return Redirect::back();
+            }
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
             return Redirect::back()
                 ->with('message', 'invalid');
         }
+
 	}
 
 	public function edit($id)
@@ -52,13 +57,16 @@ class CourseController extends \BaseController {
         $model = Course::find($id);
         $data = Input::all();
 
-        $model->fill($data);
-
-        if ($model->save()) {
-            return Redirect::back()
-                ->with('message', 'Successfully Updated Information!');
+        if($model->validate($data)){
+            if($model->create($data)){
+                Session::flash('message', 'Successfully Updates Information!');
+                return Redirect::back();
+            }
         }else{
-            return Redirect::back();
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()
+                ->with('message', 'invalid');
         }
 	}
 
