@@ -3,6 +3,9 @@
         Common
     </a>
     <ul class="dropdown-menu">
+        <li class="footer">
+               <a href="">Version 2 </a>
+        </li>
         <li><a tabindex="-1" a href="{{ URL::to('common/year/') }}"> Year </a></li>
         <li><a tabindex="-1" a href="{{ URL::to('common/semester/') }}"> Semester </a></li>
         <li><a tabindex="-1" a href="{{ URL::to('common/subject/list') }}"> Subject </a></li>
@@ -11,16 +14,16 @@
         <li><a tabindex="-1" a href="{{ URL::to('common/adm_test_subject/index') }}"> Adm Test Subject </a></li>
         <li><a tabindex="-1" a href="{{ URL::to('common/course/index') }}"> Course </a></li>
 
-
-
-
-        <li><a tabindex="-1" href="{{ action('CourseController@index') }}"> Course Management </a></li>
-        <li><a tabindex="-1" href="{{ action('CourseTypeController@index') }}"> Course Type </a></li>
-        <li><a tabindex="-1" href="{{ action('DegreeLevelController@index') }}"> Degree Level </a></li>
         <li><a tabindex="-1" href="{{ action('DegreeProgramController@degreeProgramIndex') }}"> Degree Program  </a></li>
-
         <li><a tabindex="-1" href="{{ action('DegreeGroupController@degreeGroupIndex') }}"> Degree Group </a></li>
         <li><a tabindex="-1" href="{{ action('ExamCenterController@exmCenterIndex') }}"> Exam Center </a></li>
+        <li><a tabindex="-1" href="{{ action('CourseTypeController@index') }}"> Course Type </a></li>
+
+        <li class="footer">
+           <a href="">Version 1 </a>
+        </li>
+        <li><a tabindex="-1" href="{{ action('CourseController@index') }}"> Course Management </a></li>
+        <li><a tabindex="-1" href="{{ action('DegreeLevelController@index') }}"> Degree Level </a></li>
         <li><a tabindex="-1" href="{{ action('TargetRoleController@index') }}"> Target Role </a></li>
         <li><a tabindex="-1" href="{{ action('TaskListRoleController@index') }}"> Task List </a></li>
         <li><a tabindex="-1" href="{{ action('RoleTaskController@index') }}"> Role Task </a></li>
