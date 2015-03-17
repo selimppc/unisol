@@ -206,6 +206,11 @@ Route::any('common/degree-program/batch_delete',
         'uses'=>'DegreeProgramController@degreeProgramBatchDelete']);
 
 
+//{-------------------------------Course Type--------------------------------------------------------------------------}
+
+Route::any('common/course-type/index',
+    ['as'=>'common.course-type.index',
+        'uses'=>'CourseTypeController@index']);
 
 
 

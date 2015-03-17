@@ -96,16 +96,6 @@ Route::group( array('before' => 'auth'), function(){
     Route::any('course/batchDelete','CourseController@batchDelete');
 
 
-    //Course Type
-    Route::get('course_type/','CourseTypeController@index');
-    Route::any('course_type/create','CourseTypeController@create');
-    Route::any('course_type/store', ['as' => 'course_type.store', 'uses' => 'CourseTypeController@store' ]);
-    Route::get('course_type/show/{id}', [ 'as' => 'course_type.show', 'uses' => 'CourseTypeController@show' ]);
-    Route::any('course_type/edit/{id}', ['as' => 'course_type.edit', 'uses' => 'CourseTypeController@edit' ]);
-    Route::any('course_type/update/{id}', ['as' => 'course_type.update','uses' => 'CourseTypeController@update' ]);
-    Route::any('course_type/destroy/{id}', ['as' => 'course_type.destroy', 'uses' => 'CourseTypeController@destroy' ]);
-    Route::any('course_type/batchDelete','CourseTypeController@batchDelete');
-
 
 
     //Target Role
