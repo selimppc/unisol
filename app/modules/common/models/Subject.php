@@ -32,6 +32,13 @@ class Subject extends Eloquent{
         return $this->errors;
     }
 
+    public static function getSubjectName($exmId){
+        $data = Subject::find($exmId);
+        return $data->title;
+    }
+
+
+
     //TODO : Model Relationship
     public function relCourse(){
         return $this->HasMany('Course');
