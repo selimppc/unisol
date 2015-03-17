@@ -4,12 +4,11 @@
 @stop
 @section('content')
     <div class="box box-solid ">
-        <div class="box box-info">
             <div class="box-header">
                 <h3 class="box-title" style="color:#800080 ">All Subject List</h3>
 
                 <div class="box-tools pull-right">
-                    <button type="button" class="pull-right btn btn-primary" data-toggle="modal" data-target="#myModal" style="margin-bottom: 20px;margin-right: 60px">
+                    <button type="button" class="pull-right btn btn-primary" data-toggle="modal" data-target="#myModal" style="margin-right: 60px">
                         Add Subject
                     </button>
                 </div>
@@ -17,8 +16,8 @@
             {{--for search box using js --}}
             <section class="panel " style="background: #F9F9F9">
                 {{--one page filter--}}
-                <div class="col-md-4 no-padder" style="margin-right: 200px">
-                    <input type="search" name="tblsearch" id="searchStr" class="form-control" placeholder="Onpage Filter"/>
+                <div class="col-md-4 no-padder" style="margin-right: 500px">
+                    <input type="search" name="tblsearch" id="searchStr" class="form-control" style="width: 180px" placeholder="Onpage Filter"/>
                     <div class="clearfix"></div>
                 </div>
                 {{--filter ends--}}
@@ -55,11 +54,11 @@
                             <td class="subTitle">{{ $value->title }}</td>
                             <td class="subDesc">{{ $value->description }}</td>
                             <td>
-                                <a data-href="{{ URL::to('subject/delete/'.$value->id) }}" class="btn btn-sm btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa  fa-trash-o" style="font-size: 12px;color: red"></i></a>
+                                <a data-href="{{ URL::to('subject/delete/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa  fa-trash-o" style="color: red"></i></a>
 
-                                <a href="{{ URL::route('subject.edit', ['id'=>$value->id]) }}" class="subEdit btn btn-sm btn-default" data-toggle="modal" data-target="#edit-modal" href="" ><i class="fa fa-pencil-square-o" style="font-size: 12px;color: #0044cc"></i></a>
+                                <a href="{{ URL::route('subject.edit', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#edit-modal" href="" ><i class="fa fa-pencil-square-o" style="color: #0044cc"></i></a>
 
-                                <a data-id="{{ $value->id }}" class="subDetails btn btn-sm btn-default" data-toggle="modal" data-target="#confirm-details" href="" ><i class="fa fa-eye" style="font-size: 12px;color: green"></i></a>
+                                <a data-id="{{ $value->id }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-details" href="" ><i class="fa fa-eye" style="color: green"></i></a>
                             </td>
                         </tr>
                     @endforeach
@@ -71,7 +70,7 @@
                 </div>
             </div>
         </div>
-    </div>
+
     {{--<!-- Modal for Edit -->--}}
     <div class="modal fade" id="edit-modal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog">
@@ -96,7 +95,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <a href="{{URL::to('common/subject/list')}}" class="btn btn-default">Close </a>
+                    <a href="{{URL::to('common/subject/')}}" class="btn btn-default">Close </a>
                 </div>
             </div>
         </div>

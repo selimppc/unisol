@@ -25,6 +25,7 @@
 
         <div>
             {{ Form::submit('Submit', array('class'=>'btn btn-primary')) }}
+            <a href="" class="btn btn-default" span class="glyphicon-refresh">Close</a>
         </div>
 
         {{ Form::close() }}
