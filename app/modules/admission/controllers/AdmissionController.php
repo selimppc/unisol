@@ -23,12 +23,16 @@ class AdmissionController extends \BaseController {
     public function admissionTestIndex()
     {
         $admission_test = Batch::orderBy('id', 'DESC')->paginate(3);
-        $degree_id =
+
+        $degree_id = Batch::with('relDegree','relDegree.relDepartment','relYear','relSemester')
+            ->first();
+
+
         $year_id = array('' => 'Select Year ') + Year::lists('title', 'id');
         $semester_id = array('' => 'Select Semester ') + Semester::lists('title', 'id');
 
         return View::make('admission::amw.admission_test.index',
-            compact('admission_test','year_id','semester_id'));
+            compact('degree_id','admission_test','year_id','semester_id'));
     }
 
     public function searchIndex(){
@@ -38,7 +42,7 @@ class AdmissionController extends \BaseController {
             'semester_id' =>   Input::get('semester_id'),
         ];
 
-        $model = new Degree();
+        $model = new Batch();
         $adm_test_data = Helpers::search($searchQuery, $model);
         $year_id = array('' => 'Select Year ') + Year::lists('title', 'id');
         $semester_id = array('' => 'Select Semester ') + Semester::lists('title', 'id');
