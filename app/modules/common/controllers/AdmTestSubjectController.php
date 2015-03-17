@@ -11,8 +11,12 @@ class AdmTestSubjectController extends \BaseController {
     public function admTestSubjectIndex(){
 
         $adm_test_sbjct = AdmTestSubject::latest('id')->paginate(10);
-
         return View::make('common::adm_test_subject.index',compact('adm_test_sbjct'));
+    }
+
+    public function admTestSubjectView($id){
+        $view_adm_test_subject = AdmTestSubject::find($id);
+        return View::make('common::adm_test_subject.view',compact('view_adm_test_subject'));
     }
 
     public function  admTestSubjectCreate()
@@ -33,16 +37,11 @@ class AdmTestSubjectController extends \BaseController {
         }
     }
 
-    public function admTestSubjectView($id){
-        $view_question_paper = AdmTestSubject::find($id);
 
-        return View::make('admission::amw.admission_test.view_question_paper.blade.php',compact('view_question_paper'));
-    }
 
     public function admTestSubjectEdit($id){
-        $edit_question_paper = AdmTestSubject::find($id);
-
-        return View::make('admission::amw.admission_test.edit_admtest_subject',compact('edit_question_paper'));
+        $edit_adm_test_subject = AdmTestSubject::find($id);
+        return View::make('common::adm_test_subject.edit',compact('edit_adm_test_subject'));
     }
 
     public function admTestSubjectUpdate($id)
@@ -73,7 +72,7 @@ class AdmTestSubjectController extends \BaseController {
 
     public function admTestSubjectBatchDelete()
     {
-        AdmTestSubject::destroy(Request::get('ids'));
+        AdmTestSubject::destroy(Request::get('id'));
         return Redirect::back()->with('message','Successfully deleted Information!');
     }
 
