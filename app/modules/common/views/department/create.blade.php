@@ -1,7 +1,6 @@
-@extends('layouts.master')
-
+@extends('layouts.layout')
 @section('sidebar')
-    @include('department._sidebar')
+    @include('layouts._sidebar_amw')
 @stop
 
 @section('content')
@@ -11,7 +10,7 @@
 
             {{ Form::open(array('route' => 'department.store', 'method' =>'post', 'role'=>'form','files'=>'true'))  }}
 
-                    @include('department._form')
+                    @include('common::department._form')
 
             {{ Form::close() }}
 

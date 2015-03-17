@@ -13,136 +13,74 @@ class CourseTypeController extends \BaseController {
 
 	public function create()
 	{
-        return View::make('course_type.create');
+        return View::make('common::course_type._form');
 	}
 
 	public function store()
 	{
         $data = Input::all();
+        if (CourseType::create($data)) {
 
-        // create a new model instance
-        $course_type = new CourseType();
-
-        // attempt validation
-        if ($course_type->validate($data))
-        {
-            // success code
-            $course_type->title = Input::get('title');
-            $course_type->description = Input::get('description');
-
-            $course_type->save();
-
-            // redirect
-            Session::flash('message', 'Successfully Added!');
-            return Redirect::to('course_type');
-        }
-        else
-        {
-            // failure, get errors
-            $errors = $course_type->errors();
-            Session::flash('errors', $errors);
-
-            return Redirect::to('course_type/create');
+            return Redirect::back()
+                ->with('message', 'Successfully added Information!');
+        } else{
+            return Redirect::back()
+                ->with('message', 'invalid');
         }
 	}
 
-
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function show($id)
 	{
-        $course_type = CourseType::find($id);
-
-        if($course_type)
-        {
-            return View::make('course_type.show')->with('type_of_course',$course_type);
-        }
-        App::abort(404);
+        $model = CourseType::find($id);
+        return View::make('common::course_type.show',compact('model'));
 	}
 
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function edit($id)
 	{
-        $course_type = CourseType::find($id);
-
-        // Show the edit employee form.
-        return View::make('course_type.edit')->with('type_of_course',$course_type);
+        $model = CourseType::find($id);
+        return View::make('common::course_type.edit',compact('model'));
 	}
 
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function update($id)
 	{
-        // get the POST data
-        $data = Input::all($id);
-        // create a new model instance
-        $course_type = new CourseType();
-        // attempt validation
-        if ($course_type->validate2($data))
-        {
-            // success code
-            $course_type = CourseType::find($id);
+        $model = CourseType::find($id);
+        $data = Input::all();
 
-            $course_type->title = Input::get('title');
-            $course_type->description = Input::get('description');
-            $course_type->save();
+        $model->fill($data);
 
-            // redirect
-            Session::flash('message', 'Successfully Edited!');
-            return Redirect::to('course_type');
-        }
-        else
-        {
-            // failure, get errors
-            $errors = $course_type->errors();
-            Session::flash('errors', $errors);
-
-            //return Redirect::to('employee/create')->withInput()->withErrors($errors);
-            return Redirect::to('course_type');
+        if ($model->save()) {
+            return Redirect::back()
+                ->with('message', 'Successfully Updated Information!');
+        }else{
+            return Redirect::back();
         }
 	}
 
+    public function delete($id)
+    {
+        //CourseType::find($id)->delete();
 
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
+        //return Redirect::back()->with('message', 'Successfully deleted Information!');
 
         try {
             CourseType::find($id)->delete();
             return Redirect::back()->with('message', 'Successfully deleted Information!');
         }
         catch(exception $ex){
-            return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+            return Redirect::back()->with('message', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
 
         }
-	}
-
-    public function batchDelete(){
-
-        CourseType::destroy(Request::get('id'));
-        return Redirect::back();
-        //ok
     }
 
+    public function batchDelete()
+    {
+        try {
+            CourseType::destroy(Request::get('ids'));
+            return Redirect::back()->with('message', 'Successfully deleted Information!');
+        } catch (exception $ex) {
+            return Redirect::back()->with('message', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+
+        }
+    }
 
 }

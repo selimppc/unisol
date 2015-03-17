@@ -160,7 +160,7 @@ Route::group( array('before' => 'auth'), function(){
         ['as'=>'common.degree_group.create',
             'uses'=>'DegreeGroupController@degreeGroupCreate']);
 
-    Route::any('common/degree_group/store',
+    Route::any('common/degree-group/store',
         ['as'=>'common.degree_group.store',
             'uses'=>'DegreeGroupController@degreeGroupStore']);
 
