@@ -22,8 +22,8 @@
 
           <div class='form-group'>
 
-                <div>{{ Form::label('capacity', 'Capacity') }}</div>
-                <div>{{ Form::text('capacity' ,$edit_adm_test_subject->priority,['class'=>'form-control input-sm','required'])}}</div>
+                <div>{{ Form::label('priority', 'Priority') }}</div>
+                <div>{{ Form::text('priority' ,$edit_adm_test_subject->priority,['class'=>'form-control input-sm','required'])}}</div>
           </div>
 
           <p>&nbsp;</p>

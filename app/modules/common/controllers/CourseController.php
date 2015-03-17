@@ -2,199 +2,78 @@
 
 class CourseController extends \BaseController {
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
 	public function index()
 	{
-        $course = Course::orderBy('id', 'DESC')->paginate(10);
+        $course = Course::latest('id')->paginate(10);
 
-        return View::make('course.index')->with('course_management',$course);
-        //ok
+        return View::make('common::course.index',compact('course'));
 	}
 
+    public function show($id)
+    {
+        $course = Course::find($id);
+        return View::make('common::course.show',compact('course'));
+    }
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
+    public function create()
 	{
-        return View::make('course.create');
-        //ok
+        return View::make('common::course._form');
 	}
 
-
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
 	public function store()
 	{
         $data = Input::all();
+        if (Course::create($data)) {
 
-        // create a new model instance
-        $course = new Course();
-
-        // attempt validation
-        if ($course->validate($data))
-        {
-            // success code
-            $course->title = Input::get('title');
-
-            $course->course_code = Input::get('course_code');
-
-            $course->subject_id = Input::get('subject_id');
-
-            $course->description = Input::get('description');
-
-            $course->course_type = Input::get('course_type');
-
-            $course->evaluation_total_marks = Input::get('evaluation_total_marks');
-
-            $course->credit = Input::get('credit');
-
-            $course->hours_per_credit = Input::get('hours_per_credit');
-
-            $course->cost_per_credit = Input::get('cost_per_credit');
-
-            $course->save();
-
-            // redirect
-            Session::flash('message', 'Successfully Added!');
-            return Redirect::to('course');
+            return Redirect::back()
+                ->with('message', 'Successfully added Information!');
+        } else{
+            return Redirect::back()
+                ->with('message', 'invalid');
         }
-        else
-        {
-            // failure, get errors
-            $errors = $course->errors();
-            Session::flash('errors', $errors);
-
-            return Redirect::to('course/create');
-        }
-        //ok
 	}
 
-
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-        $course = Course::find($id);
-
-        if($course)
-        {
-            return View::make('course.show')->with('course_management',$course);
-        }
-        App::abort(404);
-        //ok
-	}
-
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function edit($id)
 	{
         $course = Course::find($id);
-
-        // Show the edit employee form.
-        return View::make('course.edit')->with('course_management',$course);
-        //ok
+        return View::make('common::course.edit',compact('course'));
 	}
 
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function update($id)
 	{
-        // get the POST data
-        $data = Input::all($id);
-        // create a new model instance
-        $course = new Course();
-        // attempt validation
-        if ($course->validate2($data))
-        {
-            // success code
-            $course = Course::find($id);
+        $model = Course::find($id);
+        $data = Input::all();
 
-            $course->title = Input::get('title');
+        $model->fill($data);
 
-            $course->course_code = Input::get('course_code');
-
-            $course->subject_id = Input::get('subject_id');
-
-            $course->description = Input::get('description');
-
-            $course->course_type = Input::get('course_type');
-
-            $course->evaluation_total_marks = Input::get('evaluation_total_marks');
-
-            $course->credit = Input::get('credit');
-
-            $course->hours_per_credit = Input::get('hours_per_credit');
-
-            $course->cost_per_credit = Input::get('cost_per_credit');
-
-
-            $course->save();
-
-            // redirect
-            Session::flash('message', 'Successfully Added!');
-            return Redirect::to('course');
+        if ($model->save()) {
+            return Redirect::back()
+                ->with('message', 'Successfully Updated Information!');
+        }else{
+            return Redirect::back();
         }
-        else
-        {
-            // failure, get errors
-            $errors = $course->errors();
-            Session::flash('errors', $errors);
-
-            return Redirect::to('course');
-        }
-        //ok
 	}
 
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
     public function destroy($id)
     {
-
         try {
             Course::find($id)->delete();
             return Redirect::back()->with('message', 'Successfully deleted Information!');
         }
         catch(exception $ex){
             return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
-
         }
     }
 
-    public function batchDelete(){
-
-        Course::destroy(Request::get('id'));
-        return Redirect::back();
-        //ok
+    public function batchDelete()
+    {
+        try {
+            Course::destroy(Request::get('id'));
+            return Redirect::back()->with('message', 'Successfully deleted Information!');
+        }
+        catch(exception $ex) {
+            return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+        }
     }
-
 
 }

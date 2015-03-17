@@ -6,20 +6,25 @@
 
 
         <div class="jumbotron text-center">
-            <h2><strong>Name :</strong>{{ $course_management->title }}</h2>
+            <h2><strong>Name :</strong>{{ $course->title }}</h2>
             <p>
-                <strong> Course Code:</strong> {{ $course_management->course_code }} <br>
-                <strong> Subject Id:</strong> {{ $course_management->subject_id }}<br>
-                <strong> Description:</strong> {{ $course_management->description }}<br>
-                <strong> Course type:</strong> {{ $course_management->course_type }}<br>
-                <strong> Evaluation:</strong> {{ $course_management->evaluation_total_marks }}<br>
-                <strong> Credit:</strong> {{ $course_management->credit }}<br>
-                <strong> Hours Per Credit:</strong> {{ $course_management->hours_per_credit }}<br>
-                <strong> Cost Per Code:</strong> {{ $course_management->cost_per_credit }}<br>
+                <strong> Course Code:</strong> {{ $course->course_code }} <br>
+                <strong> Subject Id:</strong> {{ $course->subject_id }}<br>
+                <strong> Description:</strong> {{ $course->description }}<br>
+                <strong> Evaluation Total Marks:</strong> {{ $course->evaluation_total_marks }}<br>
+                <strong> Credit:</strong> {{ $course->credit }}<br>
+                <strong> Hours Per Credit:</strong> {{ $course->hours_per_credit }}<br>
+                <strong> Cost Per Code:</strong> {{ $course->cost_per_credit }}<br>
+                <strong> Course type:</strong> {{ $course->course_type_id }}<br>
+                <strong> Evaluation System:</strong> {{ $course->evaluation_system }}<br>
+
+
+
+
             </p>
         </div>
 
-    <a href="{{URL::to('course/')}}" class="btn btn-default">Close </a>
+    <a href="{{URL::to('common/course/index')}}" class="btn btn-default">Close </a>
 
     {{ Form::close() }}
 
