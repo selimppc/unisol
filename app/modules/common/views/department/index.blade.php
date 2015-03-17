@@ -36,11 +36,12 @@
                                     <td align="left">{{ User::FullName($department->dept_head_user_id)  }}</td>
                                     <td>{{ $department->description }}</td>
                                     <td>
-                                        <a data-href="{{ URL::to('department/delete/'.$department->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa  fa-trash-o" style="color: red"></i></a>
+                                        <a href="{{ URL::to('department/show/'.$department->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-show"><i class="fa fa-eye" style="color: green"></i></a>
 
                                         <a href="{{ URL::to('department/edit/' . $department->id ) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#editModal" href="" ><i class="fa fa-pencil-square-o" style="color: #0044cc"></i></a>
+                                        <a data-href="{{ URL::to('department/delete/'.$department->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa  fa-trash-o" style="color: red"></i></a>
 
-                                        <a href="{{ URL::to('department/show/'.$department->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-show"><i class="fa fa-eye" style="color: green"></i></a>
+
                                     </td>
                                 </tr>
                             @endforeach
