@@ -11,12 +11,11 @@ class DepartmentController extends BaseController{
      public function index(){
 
          $departmentList = Department::orderBy('id', 'DESC')->paginate(5);
-         return View::make('department.index', compact('departmentList'));
+         $facultyList = User::FacultyList();
+         //print_r($facultyList);
+         return View::make('common::department.index', compact('departmentList','facultyList'));
       }
 
-      public function create(){
-          return View::make('department.create');
-      }
     public function store(){
 
         // get the POST data
@@ -30,13 +29,14 @@ class DepartmentController extends BaseController{
         {
             // success code
             $department->title = Input::get('title');
+            $department->dept_head_user_id = Input::get('dept_head_user_id');
             $department->description = Input::get('description');
 
             $department->save();
 
             // redirect
             Session::flash('message', 'Successfully Added!');
-            return Redirect::to('department');
+            return Redirect::to('common/department/index');
         }
         else
         {
@@ -44,7 +44,7 @@ class DepartmentController extends BaseController{
             $errors = $department->errors();
             Session::flash('errors', $errors);
 
-            return Redirect::to('department/create');
+            return Redirect::to('common/department/index');
         }
     }
 
@@ -74,43 +74,40 @@ class DepartmentController extends BaseController{
     }
     public function edit($id)
     {
-
+        $facultyList = User::FacultyList();
         $department = Department::find($id);
         // Show the edit employee form.
-        return View::make('department.edit', compact('department'));
+        return View::make('common::department.edit', compact('department','facultyList'));
 
     }
 
     public function update($id)
     {
         $rules = array(
-            'dept_name' => 'required',
-
+            'dept_name' => 'required'
 
         );
-
         $validator = Validator::make(Input::all(), $rules);
 
         if ($validator->passes()) {
 
             $department = Department::find($id);
             $department->title = Input::get('dept_name');
+            $department->dept_head_user_id = Input::get('dept_head_user_id');
             $department->description = Input::get('description');
 
             $department->save();
             return Redirect::back()->with('message', 'Successfully updated Country Information!');
         } else {
-            return Redirect::to('department/index')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
+            return Redirect::to('common/department/index')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
         }
-
-         return Redirect::to('department');
 
     }
 
     public function show($id)
     {
         $department = Department::find($id);
-        return View::make('department.show',compact('department'));
+        return View::make('common::department.show',compact('department'));
 
 
     }
