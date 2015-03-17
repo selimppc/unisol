@@ -172,7 +172,7 @@ Route::any('admission/public/admission/checkout/',
 
 //{-----------------------------------Degree Program-------------------------------------------------------------------}
 
-Route::any('common/degree-program/index',
+Route::any('common/degree-program',
     ['as'=>'common.degree-program.index',
         'uses'=>'DegreeProgramController@degreeProgramIndex']);
 
@@ -208,7 +208,7 @@ Route::any('common/degree-program/batch_delete',
 
 //{-------------------------------Course Type--------------------------------------------------------------------------}
 
-Route::any('common/course-type/index',
+Route::any('common/course-type',
         ['as'=>'common.course-type.index',
         'uses'=>'CourseTypeController@index']);
 

@@ -12,7 +12,7 @@
               <div class="box-header">
               <h3 class="box-title">Exam Center</h3>
                   <div class="box-tools pull-right">
-                       <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('common/exm-center/create')}}" data-toggle="modal" data-target="#exmcenterModal" >Add Exm-Center</a>
+                       <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('common/exm-center/create')}}" data-toggle="modal" data-target="#exmcenterModal" style="color: #ffffff"><b>Add Exm-Center</b></a>
                   </div>
               <p>&nbsp;</p>
               </div>
@@ -20,7 +20,7 @@
                    <div class="row">
                        <div class="col-lg-12">
                        {{ Form::open(array('url' => 'common/exm-center/batch-delete')) }}
-                          <table class="table table-bordered">
+                          <table id="example" class="table table-bordered">
                                  <thead>
                                          <tr>
                                              <th>
@@ -97,5 +97,6 @@
         </div>
       </div>
     </div>
+
 
 @stop

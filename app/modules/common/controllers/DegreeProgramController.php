@@ -5,7 +5,7 @@ class DegreeProgramController extends \BaseController {
     public function degreeProgramIndex()
     {
 
-        $model = DegreeProgram::orderBy('id', 'DESC')->paginate(4);
+        $model = DegreeProgram::orderBy('id', 'DESC')->paginate(5);
         return View::make('common::degree_program.index', compact('model'));
     }
 
