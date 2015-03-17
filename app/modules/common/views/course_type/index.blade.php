@@ -10,16 +10,16 @@
  <div class="box box-solid ">
         <div class="box box-info">
               <div class="box-header">
-              <h3 class="box-title">Course Type...</h3>
+              <h3 class="box-title">Course Type</h3>
                   <div class="box-tools pull-right">
-                       <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('common/degree_group/create')}}" data-toggle="modal" data-target="#degreeGroupModal" >Add New Degree-Group</a>
+                       <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('common/course-type/create')}}" data-toggle="modal" data-target="#courseTypeModal" >Add Course Type</a>
                   </div>
               <p>&nbsp;</p>
               </div>
               <div class="box-body">
                    <div class="row">
                        <div class="col-lg-12">
-                       {{ Form::open(array('url' => 'common/degree_group/batch_delete')) }}
+                       {{ Form::open(array('url' => 'common/course-type/batch-delete')) }}
                           <table class="table table-bordered">
                                  <thead>
                                          <tr>
@@ -27,7 +27,7 @@
                                                  <input name="id" type="checkbox" id="checkbox" class="checkbox" value="">
                                              </th>
                                             <th>Title</th>
-                                            <th>Code</th>
+
                                             <th>Description</th>
                                             <th>Action</th>
                                          </tr>
@@ -39,13 +39,13 @@
                                                             <td><input type="checkbox" name="ids[]"  class="myCheckbox" value="{{ $value->id }}">
                                                             </td>
                                                             <td>{{ $value->title }}</td>
-                                                            <td>{{ $value->code}}</td>
+
                                                             <td>{{ $value->description}}</td>
 
                                                             <td>
-                                                                 <a href="{{ URL::to('common/degree_group/show/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#degreeGroupModal" style="font-size: 12px;color: darkmagenta"><span class="fa fa-eye"></span></a>
-                                                                 <a class="btn btn-xs btn-default" href="{{ URL::to('common/degree_group/edit/'.$value->id) }}" data-toggle="modal" data-target="#degreeGroupModal" style="font-size: 12px;color: lightseagreen"><i class="fa fa-edit"></i></a>
-                                                                 <a data-href="{{ URL::to('common/degree_group/delete/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" style="font-size: 12px;color: lightcoral"><span class="fa  fa-trash-o"></span></a>
+                                                                 <a href="{{ URL::to('common/course-type/show/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#courseTypeModal" style="font-size: 12px;color: darkmagenta"><span class="fa fa-eye"></span></a>
+                                                                 <a class="btn btn-xs btn-default" href="{{ URL::to('common/course-type/edit/'.$value->id) }}" data-toggle="modal" data-target="#courseTypeModal" style="font-size: 12px;color: lightseagreen"><i class="fa fa-edit"></i></a>
+                                                                 <a data-href="{{ URL::to('common/course-type/delete/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" style="font-size: 12px;color: lightcoral"><span class="fa  fa-trash-o"></span></a>
                                                                   {{--<a data-href="{{ URL::to('common/degree_group/delete/'.$value->id) }}" class="btn btn-sm btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><span class="glyphicon glyphicon-trash text-danger"></span></a>--}}
 
                                                             </td>
@@ -67,7 +67,7 @@
 </div>
 
 {{----------------------------------------------Modal : degreeGroupModal--------------------------------------------------------------------------}}
-<div class="modal fade" id="degreeGroupModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="courseTypeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
 
