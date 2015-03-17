@@ -9,17 +9,12 @@
            <div class="col-sm-12">
 
                <div class="pull-right col-sm-4">
-                       <div class="btn-group" style="margin-right: 10px">
-                           <button type="button" class="btn btn-info btn-xs" data-toggle="modal"
-                                      data-target="#addAdmSbjctModal">
-                                        Add Admission Subject
-                           </button>
-                       </div>
+                              <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('common/adm_test_subject/create')}}" data-toggle="modal" data-target="#modal" >Add New Exm-Center</a>
                </div>
            </div>
 </div>
 
-      {{--{{ Form::open(array('url' => 'examination/amw/batchDelete')) }}--}}
+      {{ Form::open(array('url' => 'common/adm_test_subject/batchDelete')) }}
           <table id="example" class="table table-striped  table-bordered"  >
              <thead>
                 {{ Form::submit('Delete Items', array('class'=>'btn btn-danger', 'id'=>'hide-button', 'style'=>'display:none'))}}

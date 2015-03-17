@@ -10,7 +10,7 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
-
+include("routes_sh.php");
 //Route::get('admin/common', function() {
 //    return '<h1>Hello</h1>
 //'; });
