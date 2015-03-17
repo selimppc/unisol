@@ -4,21 +4,21 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class AdmQuestionItems extends Eloquent{
+class AdmQuestionEvaluation extends Eloquent{
 
     //TODO :: model attributes and rules and validation
-    protected $table = 'adm_question_items';
+    protected $table = 'adm_question_evaluation';
     protected $fillable = [
-        'adm_question_id', 'question_type', 'title', 'marks',
+        'batch_applicant_id', 'adm_question_id', 'adm_question_items_id', 'marks',
     ];
     private $errors;
     private $rules = [
+        'batch_applicant_id' => 'required|integer',
         'adm_question_id' => 'required|integer',
-        'question_type' => 'required|alpha',
-        'title' => 'required|alpha',
+        'adm_question_items_id' => 'required|integer',
         'marks' => 'required|numeric',
     ];
-
+    
     public function validate($data)
     {
         $validate = Validator::make($data, $this->rules);
@@ -36,11 +36,23 @@ class AdmQuestionItems extends Eloquent{
 
 
     //TODO : Model Relationship
+    public function relBatchApplicant(){
+        return $this->belongsTo('BatchApplicant', 'batch_applicant_id', 'id');
+    }
     public function relAdmQuestion(){
         return $this->belongsTo('AdmQuestion', 'adm_question_id', 'id');
     }
-    public function relAdmQuestionOptAns(){
-        return $this->HasMany('AdmQuestionOptAns');
+    public function relAdmQuestionItems(){
+        return $this->belongsTo('AdmQuestionItems', 'adm_question_items_id', 'id');
+    }
+    public function relAdmQuestionAnsText(){
+        return $this->HasMany('AdmQuestionAnsText');
+    }
+    public function relAdmQuestionAnsRadio(){
+        return $this->HasMany('AdmQuestionAnsRadio');
+    }
+    public function relAdmQuestionAnsCheckbox(){
+        return $this->HasMany('AdmQuestionAnsCheckbox');
     }
 
 
