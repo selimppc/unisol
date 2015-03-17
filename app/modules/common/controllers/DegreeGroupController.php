@@ -23,14 +23,19 @@ class DegreeGroupController extends \BaseController {
 	public function degreeGroupStore()
 	{
         $data = Input::all();
-        if (DegreeGroup::create($data)) {
-
-            return Redirect::back()
-                ->with('message', 'Successfully added Information!');
-        } else{
+        $model = new DegreeGroup();
+        if($model->validate($data)){
+            if($model->create($data)){
+                return Redirect::back()
+                    ->with('message', 'Successfully added Information!');
+            }
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
             return Redirect::back()
                 ->with('message', 'invalid');
         }
+
 	}
 
 	public function degreeGroupShow($id)

@@ -1,50 +1,24 @@
-@extends('layouts.master')
-
+@extends('layouts.layout')
 @section('sidebar')
-    @include('course._sidebar')
+    @include('layouts._sidebar_amw')
 @stop
-
 @section('content')
    <h1>Welcome to Course Management </h1>
 
-{{--<script type="text/javascript" language="javascript" src="//code.jquery.com/jquery-1.11.1.min.js"></script>--}}
+<div class="row">
+           <div class="col-sm-12">
+               <div class="pull-right col-sm-4">
+                   <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('common/course/create')}}" data-toggle="modal" data-target="#modal" >Add New Course</a>
+               </div>
+           </div>
+</div>
 
-{{--<script>--}}
-{{--$(document).ready(function(){--}}
-    {{--$(".checkbox2").change(function() {--}}
-      {{--if(this.checked) {--}}
-          {{--$('.myCheckbox2').prop('checked', true);--}}
-          {{--$("#hide-button2").show();--}}
-      {{--}--}}
-      {{--if(!this.checked) {--}}
-               {{--$('.myCheckbox2').prop('checked', false);--}}
-                {{--$("#hide-button2").hide();--}}
-           {{--}--}}
-    {{--});--}}
-
-    {{--$('#example').dataTable({--}}
-          {{--paging: false--}}
-
-   {{--});--}}
-{{--});--}}
-
-{{--</script>--}}
-
-
-
-{{ Form::open(array('url' => 'course/batchDelete')) }}
+{{ Form::open(array('url' => 'common/course/batchDelete')) }}
 
         <table id="example" class="table table-striped  table-bordered"  >
             <thead>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#CreateModal" style="margin-bottom: 20px">
-                        Add New Course 9090909
-                </button>
-
-                     <br>
-                          {{ Form::submit('Delete Items', array('class'=>'btn btn-danger', 'id'=>'hide-button', 'style'=>'display:none'))}}
-                     <br>
-
-                     <br>
+                  {{ Form::submit('Delete Items', array('class'=>'btn btn-danger', 'id'=>'hide-button', 'style'=>'display:none'))}}
+                  <br>
 
                 <tr>
                     <th><input name="id" type="checkbox" id="checkbox" class="checkbox" value=""></th>
@@ -61,135 +35,74 @@
                 </tr>
             </thead>
             <tbody>
-
-              @foreach($course_management as $course)
+            @if(isset($course))
+              @foreach($course as $course_list)
                 <tr>
 
-                   <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $course->id }}"></td>
-                   <td>{{ $course->title }}</td>
-                   <td>{{ $course->course_code }}</td>
-                   <td>{{ Subject::getSubjectName($course->subject_id) }}</td>
-                   <td>{{ $course->description }}</td>
-                   <td>{{ $course->course_type }}</td>
-                   <td>{{ $course->evaluation_total_marks }}</td>
-                   <td>{{ $course->credit }}</td>
-                   <td>{{ $course->hours_per_credit }}</td>
-                   <td>{{ $course->cost_per_credit }}</td>
+                   <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $course_list->id }}"></td>
+                   <td>{{ $course_list->title }}</td>
+                   <td>{{ $course_list->course_code }}</td>
+
+                   <td>{{ $course_list->subject_id }}</td>
+
+                   <td>{{ $course_list->description }}</td>
+
+                   <td>{{ $course_list->course_type_id }}</td>
+
+                   <td>{{ $course_list->evaluation_total_marks }}</td>
+                   <td>{{ $course_list->credit }}</td>
+                   <td>{{ $course_list->hours_per_credit }}</td>
+                   <td>{{ $course_list->cost_per_credit }}</td>
 
                    <td>
-                      <a href="{{ URL::route('course.edit', ['id'=>$course->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#edit-modal" data-toggle="tooltip" data-placement="left" title="Edit" href="#"><span class="glyphicon glyphicon-edit text-info"></span></a>
-
-                      <a data-href="{{ URL::route('course.destroy',['id'=>$course->id]) }}" class="btn btn-danger" data-toggle="modal" data-target="#confirm-delete" data-toggle="tooltip" data-placement="left" title="Delete" href="" ><span class="glyphicon glyphicon-trash text-danger"></span></a>
-
-                      <a href="{{ URL::route('course.show', ['id'=>$course->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#showModal" data-toggle="tooltip" data-placement="left" title="Show/View" href=""><span class="glyphicon glyphicon-list-alt text-info"></span></a>
-
+                         <a href="{{ URL::to('common/course/show/'.$course_list->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#modal" style="font-size: 12px;color: darkmagenta"><span class="fa fa-eye"></span></a>
+                         <a class="btn btn-xs btn-default" href="{{ URL::to('common/course/edit/'.$course_list->id) }}" data-toggle="modal" data-target="#modal" style="font-size: 12px;color: lightseagreen"><i class="fa fa-edit"></i></a>
+                         <a data-href="{{ URL::to('common/course/delete/'.$course_list->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" style="font-size: 12px;color: lightcoral"><span class="fa  fa-trash-o"></span></a>
                    </td>
 
                 </tr>
-                    @endforeach
+               @endforeach
+             @endif
 
             </tbody>
         </table>
 
         {{form::close() }}
+<div class="text-right">
+    {{ $course->links() }}
+</div>
+<p>&nbsp;</p><p>&nbsp;</p>
 
-        {{ $course_management->links() }}
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
 
-        <br><br><br>
-
-            <!-- Modal for Create -->
-             <div class="modal fade" id="CreateModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                 <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                    <h4 class="modal-title" id="myModalLabel">Create Course</h4>
-                                 </div>
-                                 <div class="modal-body">
-                                         {{ Form::open(array('route' => 'course.store', 'method' =>'post', 'role'=>'form','files'=>'true'))  }}
-
-                                                 @include('course._form')
-
-                                         {{ Form::close() }}
-
-                                 </div>
-                                 <div class="modal-footer">
-                                 </div>
-                            </div>
-                        </div>
-             </div>
-
-<!-- Modal for Edit -->
-             <div class="modal fade" id="edit-modal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                 <div class="modal-header">
-                                         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                         <h4 class="modal-title" id="myModalLabel">Edit Course</h4>
-                                 </div>
-                                 <div class="modal-body">
-                                 </div>
-                                 <div class="modal-footer">
-                                 </div>
-                            </div>
-                        </div>
-             </div>
+         </div>
+        </div>
+   </div>
 
 
-            <!-- Show Modal -->
-                    <div class="modal fade" id="showModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true">
-                      <div class="modal-dialog">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                            <h4 class="modal-title" id="myModalLabel">Show Course</h4>
-                          </div>
-                          <div class="modal-body">
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal" >Cencel</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
 
-            <!-- Modal for delete -->
-               <div class="modal fade " id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                 <div class="modal-dialog">
-                   <div class="modal-content">
-                         <div class="modal-header">
-                           <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-                           <h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>
-                         </div>
-                         <div class="modal-body">
-                               <strong>Are you sure to delete?</strong>
+<!-- Modal for delete -->
+  <div class="modal fade " id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>
+            </div>
+            <div class="modal-body">
+                  <strong>Are you sure to delete?</strong>
 
-                         </div>
-                         <div class="modal-footer">
-                           <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                           <a href="#" class="btn btn-danger danger">Delete</a>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+              <a href="#" class="btn btn-danger danger">Delete</a>
 
-                         </div>
-                   </div>
-                 </div>
-               </div>
+            </div>
+      </div>
+    </div>
+  </div>
 
-               {{--<script>--}}
-
-
-                                                     {{--$(document).ready(function(){--}}
-                                                           {{--$(".checkBox").change(function() {--}}
-                                                               {{--if(this.checked) {--}}
-                                                                   {{--$('.myCheckBox').prop('checked', true);--}}
-                                                               {{--}--}}
-                                                               {{--if(!this.checked) {--}}
-                                                                   {{--$('.myCheckBox').prop('checked', false);--}}
-                                                               {{--}--}}
-                                                           {{--});--}}
-                                                     {{--} );--}}
-                                                   {{--$(document).ready(function() {--}}
-                                                               {{--$('#example').DataTable();--}}
-                                                           {{--} );--}}
-                              {{--</script>--}}
 
 @stop

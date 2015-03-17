@@ -20,7 +20,7 @@
                    <div class="row">
                        <div class="col-lg-12">
                        {{ Form::open(array('url' => 'common/degree-group/batch_delete')) }}
-                          <table class="table table-bordered">
+                          <table class="table table-bordered ">
                                  <thead>
                                          <tr>
                                              <th>
