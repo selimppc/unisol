@@ -1,19 +1,28 @@
+<div class="modal-header">
 
+    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+    <h4 class="modal-title" id="myModalLabel">Degree Program Information</h4>
+</div>
 
-<div style="padding: 20px;">
-    <table>
-    <h4> Information</h4>
-      <tr>
-            <th>Degree Program :</th>
-            <td>{{ $degree_program->title }}</td>
-      </tr>
-      <br>
-      <tr>
-            <th>Description:</th>
-            <td>{{ $degree_program->description }}</td>
-      </tr>
+<div class="modal-body">
+     <div style="padding: 20px;">
+           <div class="span9 well">
+                 <table style="font-size: large">
 
-    </table>
+                   <tr>
+                     <th class="col-lg-8">Degree Program(Title):</th>
+                     <td>{{ $model->title }}</td>
+                   </tr>
 
-  <a href="" class="btn btn-default" span class="glyphicon-refresh">Close</a>
+                   <tr>
+                     <th class="col-lg-8">Description:</th>
+                     <td>{{ $model->description }}</td>
+                   </tr>
+
+                 </table>
+           </div>
+           <p>&nbsp;</p>
+       <a href="" class="pull-right btn btn-default" span class="glyphicon-refresh">Close</a>
+       <p>&nbsp;</p>
+     </div>
 </div>

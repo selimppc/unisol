@@ -9,7 +9,7 @@ class DegreeGroupController extends \BaseController {
 	 */
 	public function degreeGroupIndex()
 	{
-        $model = DegreeGroup::orderBy('id', 'DESC')->paginate(3);
+        $model = DegreeGroup::orderBy('id', 'DESC')->paginate(10);
         return View::make('common::degree_group.index',
             compact('model'));
 	}
