@@ -58,7 +58,6 @@
                     </div>
                 </div>
             </div>
-        </div>
     </div>
     <!-- Modal :: Delete Confirmation -->
     <div class="modal fade " id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -77,7 +76,7 @@
                 </div>
             </div>
         </div>
-
+    </div>
     {{--Model: for showing single row info--}}
     <div class="modal fade " id="confirm-show" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">

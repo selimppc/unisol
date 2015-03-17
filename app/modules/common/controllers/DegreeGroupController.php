@@ -24,19 +24,18 @@ class DegreeGroupController extends \BaseController {
 	{
         $data = Input::all();
         $model = new DegreeGroup();
+
         if($model->validate($data)){
             if($model->create($data)){
-                return Redirect::back()
-                    ->with('message', 'Successfully added Information!');
+                Session::flash('message','Successfully added Information!');
+                return Redirect::back();
             }
         }else{
             $errors = $model->errors();
             Session::flash('errors', $errors);
-            return Redirect::back()
-                ->with('message', 'invalid');
+            return Redirect::back();
         }
-
-	}
+    }
 
 	public function degreeGroupShow($id)
 	{
@@ -55,12 +54,14 @@ class DegreeGroupController extends \BaseController {
         $model = DegreeGroup::find($id);
         $data = Input::all();
 
-        $model->fill($data);
-
-        if ($model->save()) {
-            return Redirect::back()
-                ->with('message', 'Successfully Updated Information!');
+        if($model->validate($data)){
+            if($model->save()){
+                Session::flash('message','Successfully Updated Information!');
+                return Redirect::back();
+            }
         }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
             return Redirect::back();
         }
 	}
@@ -72,13 +73,18 @@ class DegreeGroupController extends \BaseController {
             return Redirect::back()->with('message', 'Successfully deleted Information!');
         }
         catch(exception $ex){
-            return Redirect::back()->with('message', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+            return Redirect::back()->with('danger', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
         }
     }
     public function degreeGroupBatchDelete()
     {
-        DegreeGroup::destroy(Request::get('ids'));
-        return Redirect::back()->with('message','Successfully deleted Information!');
+        try {
+            DegreeGroup::destroy(Request::get('ids'));
+            return Redirect::back()->with('message', 'Successfully deleted Information!');
+        } catch (exception $ex) {
+            return Redirect::back()->with('danger', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+
+        }
     }
 
 

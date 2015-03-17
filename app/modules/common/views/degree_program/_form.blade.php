@@ -16,6 +16,12 @@
           </div>
 
           <div class='form-group'>
+
+               <div>{{ Form::label('code', ' Code') }}</div>
+               <div>{{ Form::text('code',Input::old('code') ,['class'=>'form-control input-sm','required'])}}</div>
+          </div>
+
+          <div class='form-group'>
                 <div>{{ Form::label('description', 'Description') }}</div>
                 <div>{{ Form::textarea('description',Input::old('description') ,['class'=>'form-control input-sm'])}}</div>
           </div>

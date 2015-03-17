@@ -100,6 +100,10 @@ Route::get('subject/edit/{id}', [
 Route::post('subject/update/{id}',
     'SubjectController@update'
 );
+Route::any('subject/show/{id}',[
+    'as' => 'subject.show',
+    'uses'=> 'SubjectController@show'
+]);
 //*****************Department Start*******************************
 Route::get('common/department/',
     'DepartmentController@index'
