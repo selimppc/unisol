@@ -4,21 +4,20 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class AdmQuestionItems extends Eloquent{
+class BillingSummaryApplicant extends Eloquent{
 
     //TODO :: model attributes and rules and validation
-    protected $table = 'adm_question_items';
+    protected $table = 'billing_summary_applicant';
+
     protected $fillable = [
-        'adm_question_id', 'question_type', 'title', 'marks',
+        'applicant_id', 'billing_schedule_id', 'total_cost'
     ];
     private $errors;
     private $rules = [
-        'adm_question_id' => 'required|integer',
-        'question_type' => 'required|alpha',
-        'title' => 'required|alpha',
-        'marks' => 'required|numeric',
+        'applicant_id' => 'required|integer',
+        'billing_schedule_id' => 'required|integer',
+        'total_cost' => 'numeric',
     ];
-
     public function validate($data)
     {
         $validate = Validator::make($data, $this->rules);
@@ -36,12 +35,14 @@ class AdmQuestionItems extends Eloquent{
 
 
     //TODO : Model Relationship
-    public function relAdmQuestion(){
-        return $this->belongsTo('AdmQuestion', 'adm_question_id', 'id');
+
+    public function relApplicant(){
+        return $this->belongsTo('Applicant', 'applicant_id', 'id');
     }
-    public function relAdmQuestionOptAns(){
-        return $this->HasMany('AdmQuestionOptAns');
+    public function relBillingSchedule(){
+        return $this->belongsTo('BillingSchedule', 'billing_schedule_id', 'id');
     }
+
 
 
     // TODO : user info while saving data into table
@@ -65,6 +66,5 @@ class AdmQuestionItems extends Eloquent{
 
 
     //TODO : Scope Area
-
 
 } 

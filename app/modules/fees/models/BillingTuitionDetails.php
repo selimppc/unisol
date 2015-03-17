@@ -4,21 +4,21 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class AdmQuestionItems extends Eloquent{
+class BillingTuitionDetails extends Eloquent{
 
     //TODO :: model attributes and rules and validation
-    protected $table = 'adm_question_items';
+    protected $table = 'billing_tuition_details';
+
     protected $fillable = [
-        'adm_question_id', 'question_type', 'title', 'marks',
+        'billing_summary_student_id', 'student_user_id', 'year_id', 'month',
     ];
     private $errors;
     private $rules = [
-        'adm_question_id' => 'required|integer',
-        'question_type' => 'required|alpha',
-        'title' => 'required|alpha',
-        'marks' => 'required|numeric',
+        'billing_summary_student_id' => 'required|integer',
+        'student_user_id' => 'required|integer',
+        'year_id' => 'required|integer',
+        'month' => 'alpha',
     ];
-
     public function validate($data)
     {
         $validate = Validator::make($data, $this->rules);
@@ -36,12 +36,17 @@ class AdmQuestionItems extends Eloquent{
 
 
     //TODO : Model Relationship
-    public function relAdmQuestion(){
-        return $this->belongsTo('AdmQuestion', 'adm_question_id', 'id');
+
+    public function relBillingSummaryStudent(){
+        return $this->belongsTo('BillingSummaryStudent', 'billing_summary_student_id', 'id');
     }
-    public function relAdmQuestionOptAns(){
-        return $this->HasMany('AdmQuestionOptAns');
+    public function relUser(){
+        return $this->belongsTo('User', 'student_user_id', 'id');
     }
+    public function relYear(){
+        return $this->belongsTo('Year', 'year_id', 'id');
+    }
+
 
 
     // TODO : user info while saving data into table
@@ -65,6 +70,5 @@ class AdmQuestionItems extends Eloquent{
 
 
     //TODO : Scope Area
-
 
 } 

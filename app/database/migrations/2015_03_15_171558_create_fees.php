@@ -84,7 +84,7 @@ class CreateFees extends Migration {
             $table->unsignedInteger('billing_summary_student_id')->nullable();
             $table->unsignedInteger('student_user_id')->nullable();
             $table->unsignedInteger('year_id')->nullable();
-            $table->enum('question_type',array(
+            $table->enum('month',array(
                 'january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'
             ));
             $table->integer('created_by', false, 11);

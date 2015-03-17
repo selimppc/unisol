@@ -11,13 +11,13 @@
 
           <div class='form-group'>
 
-              <div>{{ Form::label('title', 'Course Title') }}</div>
+              <div>{{ Form::label('title', 'Title') }}</div>
               <div>{{ Form::text('title',Input::old('title') ,['class'=>'form-control input-sm','required'])}}</div>
           </div>
 
           <div class='form-group'>
 
-                <div>{{ Form::label('code', 'Course Code') }}</div>
+                <div>{{ Form::label('code', ' Code') }}</div>
                 <div>{{ Form::text('code',Input::old('code') ,['class'=>'form-control input-sm','required'])}}</div>
           </div>
 
@@ -29,8 +29,8 @@
 
           <div>
 
-          {{ Form::submit('Save', array('class'=>'pull-left btn btn-primary')) }}
-          <a  href="{{URL::previous() }}" class="pull-right btn btn-default">Close</a>
+          {{ Form::submit('Save', array('class'=>'pull-right btn btn-primary')) }}
+          <a  href="" class="pull-right btn btn-default" style="margin-right: 20px">Close</a>
 
           </div>
           <p>&nbsp;</p>

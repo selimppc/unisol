@@ -62,10 +62,14 @@ class DegreeGroupController extends \BaseController {
 
 	public function degreeGroupDelete($id)
 	{
-        DegreeGroup::find($id)->delete();
-
-        return Redirect::back()->with('message', 'Successfully deleted Information!');
-	}
+        try {
+            DegreeGroup::find($id)->delete();
+            return Redirect::back()->with('message', 'Successfully deleted Information!');
+        }
+        catch(exception $ex){
+            return Redirect::back()->with('message', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+        }
+    }
     public function degreeGroupBatchDelete()
     {
         DegreeGroup::destroy(Request::get('ids'));

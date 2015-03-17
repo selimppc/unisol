@@ -4,21 +4,24 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class AdmQuestionItems extends Eloquent{
+class BillingDetailsStudent extends Eloquent{
 
     //TODO :: model attributes and rules and validation
-    protected $table = 'adm_question_items';
+    protected $table = 'billing_details_student';
     protected $fillable = [
-        'adm_question_id', 'question_type', 'title', 'marks',
+        'billing_summary_student_id', 'billing_item_id', 'waiver_id',
+        'waiver_amount', 'cost_per_unit', 'quantity', 'total_amount',
     ];
     private $errors;
     private $rules = [
-        'adm_question_id' => 'required|integer',
-        'question_type' => 'required|alpha',
-        'title' => 'required|alpha',
-        'marks' => 'required|numeric',
+        'billing_summary_student_id' => 'required|integer',
+        'billing_item_id' => 'required|integer',
+        'waiver_id' => 'required|integer',
+        'waiver_amount' => 'numeric',
+        'cost_per_unit' => 'numeric',
+        'quantity' => 'numeric',
+        'total_amount' => 'numeric',
     ];
-
     public function validate($data)
     {
         $validate = Validator::make($data, $this->rules);
@@ -36,11 +39,15 @@ class AdmQuestionItems extends Eloquent{
 
 
     //TODO : Model Relationship
-    public function relAdmQuestion(){
-        return $this->belongsTo('AdmQuestion', 'adm_question_id', 'id');
+
+    public function relBillingSummaryStudent(){
+        return $this->belongsTo('BillingSummaryStudent', 'billing_summary_student_id', 'id');
     }
-    public function relAdmQuestionOptAns(){
-        return $this->HasMany('AdmQuestionOptAns');
+    public function relBillingItem(){
+        return $this->belongsTo('BillingItem', 'billing_item_id', 'id');
+    }
+    public function relWaiver(){
+        return $this->belongsTo('Waiver', 'waiver_id', 'id');
     }
 
 
@@ -65,6 +72,19 @@ class AdmQuestionItems extends Eloquent{
 
 
     //TODO : Scope Area
+
+    public function scopeBillingItem($query){
+
+        $query = $this::join('billing_item', function($query){
+            $query->on('billing_item.id', '=', 'billing_details_student.billing_item_id');
+        })
+            ->select(DB::raw('billing_item.title as title, billing_details_student.id as bill_id'))
+            ->lists('title', 'bill_id');
+        return $query;
+    }
+
+
+
 
 
 } 

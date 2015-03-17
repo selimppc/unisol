@@ -63,7 +63,7 @@ return array(
     'BatchCourse' => $baseDir . '/app/modules/admission/models/BatchCourse.php',
     'BatchEducationConstraint' => $baseDir . '/app/modules/admission/models/BatchEducationConstraint.php',
     'BatchWaiver' => $baseDir . '/app/modules/admission/models/BatchWaiver.php',
-    'BillingDetails' => $baseDir . '/app/modules/fees/models/BillingDetails.php',
+    'BillingDetails' => $baseDir . '/app/modules/fees/models/BillingDetailsStudent.php',
     'BillingItem' => $baseDir . '/app/modules/fees/models/BillingItem.php',
     'BillingItemTable' => $baseDir . '/app/database/seeds/version-1/BillingItemTable.php',
     'BillingSchedule' => $baseDir . '/app/modules/fees/models/BillingSchedule.php',

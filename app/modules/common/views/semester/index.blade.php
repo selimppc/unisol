@@ -3,18 +3,24 @@
     @include('layouts._sidebar_amw')
 @stop
 @section('content')
-    <h4 style="text-align: center;color: #800080;font-size: x-large"> All Semester List</h4>
-    <script type="text/javascript" language="javascript" src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <div class="box box-solid ">
+        <div class="box box-info">
+            <div class="box-header">
+                <h3 class="box-title" style="color:#800080 ">All Semester List</h3>
+                <div class="box-tools pull-right">
+                    <button type="button" class="pull-right btn btn-primary" data-toggle="modal" data-target="#CreateModal" style="margin-bottom: 20px">
+                        Add Semester
+                    </button>
+                </div>
+            </div>
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-lg-12">
+
     {{ Form::open(array('url' => 'semester/batchDelete')) }}
-         <table id="example" class="table table-striped  table-bordered"  >
+    <table id="example" class="table table-bordered table-hover table-striped">
             <thead>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#CreateModal" style="margin-bottom: 20px">
-                AddSemester
-            </button>
-            <br>
-            {{ Form::submit('Delete Items', array('class'=>'btn btn-danger', 'id'=>'hide-button', 'style'=>'display:none'))}}
-            <br>
-            <br>
+            {{ Form::submit('Delete Items', array('class'=>'btn btn-xs btn-danger', 'id'=>'hide-button', 'style'=>'display:none'))}}
             <tr>
                 <th><input name="id" type="checkbox" id="checkbox" class="checkbox" value=""></th>
                 <th>Title</th>
@@ -29,11 +35,11 @@
                     <td>{{ $semester->title }}</td>
                     <td>{{ $semester->description }}</td>
                     <td>
-                        <a data-href="{{ URL::route('semester.destroy',['id'=>$semester->id]) }}" class="btn btn-sm btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa  fa-trash-o" style="font-size: 18px;color: red"></i></a>
+                        <a data-href="{{ URL::route('semester.destroy',['id'=>$semester->id]) }}" class="btn btn-sm btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa  fa-trash-o" style="font-size: 12px;color: red"></i></a>
 
-                        <a href="{{ URL::route('semester.edit', ['id'=>$semester->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#edit-modal" data-toggle="tooltip" data-placement="left" title="Edit" href="#"><i class="fa fa-pencil-square-o" style="font-size: 18px;color: #0044cc"></i></a>
+                        <a href="{{ URL::route('semester.edit', ['id'=>$semester->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#edit-modal" data-toggle="tooltip" data-placement="left" title="Edit" href="#"><i class="fa fa-pencil-square-o" style="font-size: 12px;color: #0044cc"></i></a>
 
-                        <a href="{{ URL::route('semester.show', ['id'=>$semester->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#showModal" data-toggle="tooltip" data-placement="left" title="Show/View" href=""><i class="fa fa-eye" style="font-size: 18px;color: green"></i></a>
+                        <a href="{{ URL::route('semester.show', ['id'=>$semester->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#showModal" data-toggle="tooltip" data-placement="left" title="Show/View" href=""><i class="fa fa-eye" style="font-size: 12px;color: green"></i></a>
                     </td>
                 </tr>
             @endforeach
@@ -42,6 +48,11 @@
     {{form::close() }}
     {{ $term_semester->links() }}
     <br><br><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
      {{--Modal for Create --}}
     <div class="modal fade" id="CreateModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true">
         <div class="modal-dialog">

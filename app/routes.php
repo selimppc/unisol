@@ -152,70 +152,70 @@ Route::group( array('before' => 'auth'), function(){
 
 //{---------------------------------Degree Group--------------------------------------------------------}
 
-    Route::any('common/degree_group/index',
-        ['as'=>'common.degree_group.index',
+    Route::any('common/degree-group/index',
+        ['as'=>'common.degree-group.index',
             'uses'=>'DegreeGroupController@degreeGroupIndex']);
 
-    Route::any('common/degree_group/create',
-        ['as'=>'common.degree_group.create',
+    Route::any('common/degree-group/create',
+        ['as'=>'common.degree-group.create',
             'uses'=>'DegreeGroupController@degreeGroupCreate']);
 
     Route::any('common/degree-group/store',
-        ['as'=>'common.degree_group.store',
+        ['as'=>'common.degree-group.store',
             'uses'=>'DegreeGroupController@degreeGroupStore']);
 
 
-    Route::any('common/degree_group/show/{id}',
-        ['as'=>'common.degree_group.show',
+    Route::any('common/degree-group/show/{id}',
+        ['as'=>'common.degree-group.show',
             'uses'=>'DegreeGroupController@degreeGroupShow']);
 
-    Route::any('common/degree_group/edit/{id}',
-        ['as'=>'common.degree_group.edit',
+    Route::any('common/degree-group/edit/{id}',
+        ['as'=>'common.degree-group.edit',
             'uses'=>'DegreeGroupController@degreeGroupEdit']);
 
-    Route::any('common/degree_group/update/{id}',
-        ['as'=>'common.degree_group.update',
+    Route::any('common/degree-group/update/{id}',
+        ['as'=>'common.degree-group.update',
             'uses'=>'DegreeGroupController@degreeGroupUpdate']);
 
-    Route::any('common/degree_group/delete/{id}',
-        ['as'=>'common.degree_group.delete',
+    Route::any('common/degree-group/delete/{id}',
+        ['as'=>'common.degree-group.delete',
             'uses'=>'DegreeGroupController@degreeGroupDelete']);
 
-    Route::any('common/degree_group/batch_delete',
-            ['as'=>'common.degree_group.batch_delete',
+    Route::any('common/degree-group/batch_delete',
+            ['as'=>'common.degree-group.batch_delete',
             'uses'=>'DegreeGroupController@degreeGroupBatchDelete']);
 
 // {--------------------------------------Exm-Center---------------------------------------------------------}
-    Route::any('common/exm_center/index',
-           ['as'=>'common.exm_center.index',
+    Route::any('common/exm-center/index',
+           ['as'=>'common.exm-center.index',
             'uses'=>'ExamCenterController@exmCenterIndex']);
 
-    Route::any('common/exm_center/create',
-            ['as'=>'common.exm_center.create',
+    Route::any('common/exm-center/create',
+            ['as'=>'common.exm-center.create',
             'uses'=>'ExamCenterController@exmCenterCreate']);
 
-    Route::any('common/exm_center/store',
-            ['as'=>'common.exm_center.store',
+    Route::any('common/exm-center/store',
+            ['as'=>'common.exm-center.store',
             'uses'=>'ExamCenterController@exmCenterStore']);
 
-    Route::any('common/exm_center/show/{id}',
-           ['as'=>'common.exm_center.show',
+    Route::any('common/exm-center/show/{id}',
+           ['as'=>'common.exm-center.show',
             'uses'=>'ExamCenterController@exmCenterShow']);
 
-    Route::any('common/exm_center/edit/{id}',
-        ['as'=>'common.exm_center.edit',
+    Route::any('common/exm-center/edit/{id}',
+        ['as'=>'common.exm-center.edit',
             'uses'=>'ExamCenterController@exmCenterEdit']);
 
-    Route::any('common/exm_center/delete/{id}',
-           ['as'=>'common.exm_center.delete',
+    Route::any('common/exm-center/delete/{id}',
+           ['as'=>'common.exm-center.delete',
             'uses'=>'ExamCenterController@exmCenterDelete']);
 
-    Route::any('common/exm_center/batch_delete',
-           ['as'=>'common.exm_center.batch_delete',
+    Route::any('common/exm-center/batch-delete',
+           ['as'=>'common.exm-center.batch-delete',
             'uses'=>'ExamCenterController@exmCenterBatchDelete']);
 
-    Route::any('common/exm_center/update/{id}',
-           ['as'=>'common.exm_center.update',
+    Route::any('common/exm-center/update/{id}',
+           ['as'=>'common.exm-center.update',
             'uses'=>'ExamCenterController@exmCenterUpdate']);
 
 //{------------------------------------Waiver------------------------------------------------------------}
