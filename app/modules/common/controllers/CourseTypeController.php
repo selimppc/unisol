@@ -2,36 +2,20 @@
 
 class CourseTypeController extends \BaseController {
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
+
 	public function index()
 	{
-        $course_type = CourseType::orderBy('id', 'DESC')->paginate(10);
+        $model = CourseType::orderBy('id', 'DESC')->paginate(10);
+        return View::make('common::course_type.index',
+                  compact('model'));
 
-        return View::make('course_type.index')->with('type_of_course',$course_type);
-        //ok
 	}
 
-
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
 	public function create()
 	{
         return View::make('course_type.create');
 	}
 
-
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
 	public function store()
 	{
         $data = Input::all();

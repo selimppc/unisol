@@ -296,8 +296,6 @@ class HomeController extends BaseController {
         }else{
             return View::make('test.date_picker');
         }
-
-
     }
 
     protected function bcFact($n){

@@ -4,22 +4,19 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class WaiverConstraint extends Eloquent{
+class ExmCenterApplicantChoice extends Eloquent{
 
     //TODO :: model attributes and rules and validation
-    protected $table = 'waiver_constraint';
+    protected $table = 'exm_center_applicant_choice';
     protected $fillable = [
-        'batch_waiver_id', 'is_time_dependent', 'start_date', 'end_date', 'level_of_education',
-        'gpa',
+        'batch_applicant_id', 'exm_center_id', 'note', 'status',
     ];
     private $errors;
     private $rules = [
-        'batch_waiver_id' => 'required|integer',
-        'is_time_dependent' => 'required|integer',
-        'start_date' => 'date',
-        'end_date' => 'date',
-        'level_of_education' => 'alpha',
-        'gpa' => 'numeric',
+        'batch_applicant_id' => 'required|integer',
+        'exm_center_id' => 'required|integer',
+        'note' => 'alpha',
+        'status' => 'alpha',
     ];
     public function validate($data)
     {
@@ -38,10 +35,12 @@ class WaiverConstraint extends Eloquent{
 
 
     //TODO : Model Relationship
-    public function relBatchWaiver(){
-        return $this->belongsTo('BatchWaiver', 'batch_waiver_id', 'id');
+    public function relBatchApplicant(){
+        return $this->belongsTo('BatchApplicant', 'batch_applicant_id', 'id');
     }
-
+    public function relExmCenter(){
+        return $this->belongsTo('ExmCenter', 'exa_center_id', 'id');
+    }
 
 
     // TODO : user info while saving data into table
