@@ -152,8 +152,8 @@ Route::group( array('before' => 'auth'), function(){
 
 //{---------------------------------Degree Group--------------------------------------------------------}
 
-    Route::any('common/degree_group/index',
-        ['as'=>'common.degree_group.index',
+    Route::any('common/degree-group/index',
+        ['as'=>'common.degree-group.index',
             'uses'=>'DegreeGroupController@degreeGroupIndex']);
 
     Route::any('common/degree_group/create',

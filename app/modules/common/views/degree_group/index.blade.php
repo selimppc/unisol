@@ -12,7 +12,7 @@
               <div class="box-header">
               <h3 class="box-title">Degree Group</h3>
                   <div class="box-tools pull-right">
-                       <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('common/degree_group/create')}}" data-toggle="modal" data-target="#degreeGroupModal" >Add New Degree-Group</a>
+                       <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('common/degree_group/create')}}" data-toggle="modal" data-target="#degreeGroupModal" >Add Degree-Group</a>
                   </div>
               <p>&nbsp;</p>
               </div>
