@@ -93,9 +93,13 @@ Route::any('subject/batch/delete',
 Route::get('subject/delete/{id}',
     'SubjectController@delete'
 );
-Route::get('subject/editvalue',
-    'SubjectController@edit'
-);
+//Route::get('subject/editvalue',
+//    'SubjectController@edit'
+//);
+Route::get('subject/edit/{id}', [
+    'as' => 'subject.edit',
+    'uses' => 'SubjectController@edit'
+]);
 Route::post('subject/update/{id}',
     'SubjectController@update'
 );

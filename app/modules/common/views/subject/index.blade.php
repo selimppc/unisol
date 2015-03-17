@@ -44,13 +44,14 @@
                     @foreach ($datas as $value)
                         <tr>
                             <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $value->id }}"></td>
-                            <td align="left" class="deptName">{{ Department::getDepartmentName($value->department_id) }}</td>
+                            {{--<td align="left" class="deptName">{{ Department::getDepartmentName($value->department_id) }}</td>--}}
+                            <td>{{$value->relDepartment->title}}</td>
                             <td class="subTitle">{{ $value->title }}</td>
                             <td class="subDesc">{{ $value->description }}</td>
                             <td>
                                 <a data-href="{{ URL::to('subject/delete/'.$value->id) }}" class="btn btn-sm btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa  fa-trash-o" style="font-size: 18px;color: red"></i></a>
 
-                                <a data-id="{{ $value->id }}" class="subEdit btn btn-sm btn-default" data-toggle="modal" data-target="#confirm-edit" href="" ><i class="fa fa-pencil-square-o" style="font-size: 18px;color: #0044cc"></i></a>
+                                <a href="{{ URL::route('subject.edit', ['id'=>$value->id]) }}" class="subEdit btn btn-sm btn-default" data-toggle="modal" data-target="#edit-modal" href="" ><i class="fa fa-pencil-square-o" style="font-size: 18px;color: #0044cc"></i></a>
 
                                 <a data-id="{{ $value->id }}" class="subDetails btn btn-sm btn-default" data-toggle="modal" data-target="#confirm-details" href="" ><i class="fa fa-eye" style="font-size: 18px;color: green"></i></a>
                             </td>
@@ -64,22 +65,11 @@
             {{--</div>--}}
         </div>
     </div>
-    <!-- Modal for Edit -->
-    <div class="modal fade" id="confirm-edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    {{--<!-- Modal for Edit -->--}}
+    <div class="modal fade" id="edit-modal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h4 style="text-align: center;color: #800080;font-size: x-large">Edit Subject</h4>
-                </div>
-                <div class="modal-body edit-modal">
-                    {{ Form::open(array('url' => '', 'method' =>'post', 'role'=>'form','files'=>'true', 'class' => 'updateForm')) }}
-                    @include('common::subject._form')
-                    {{--<a href="{{URL::to('common/subject/list')}}" class="btn btn-default">Close </a>--}}
-                    {{ Form::close() }}
-                </div>
-                <div class="modal-footer">
-                </div>
+
             </div>
         </div>
     </div>
@@ -146,8 +136,3 @@
     </div>
 
 @stop
-
-{{--@section('script_section')--}}
-{{--<script>--}}
-
-{{--</script>--}}
