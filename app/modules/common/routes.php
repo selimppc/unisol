@@ -81,7 +81,7 @@ Route::any('semester/batchDelete',
     'SemesterController@batchDelete'
 );
 //*****************Subject Start*******************************
-Route::any('common/subject/list',
+Route::any('common/subject/',
     'SubjectController@index'
 );
 Route::post('subject/save',
@@ -101,7 +101,7 @@ Route::post('subject/update/{id}',
     'SubjectController@update'
 );
 //*****************Department Start*******************************
-Route::get('common/department/index',
+Route::get('common/department/',
     'DepartmentController@index'
 );
 Route::any('department/store', [

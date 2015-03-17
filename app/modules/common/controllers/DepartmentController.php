@@ -36,7 +36,7 @@ class DepartmentController extends BaseController{
 
             // redirect
             Session::flash('message', 'Successfully Added!');
-            return Redirect::to('common/department/index');
+            return Redirect::to('common/department/');
         }
         else
         {
@@ -44,7 +44,7 @@ class DepartmentController extends BaseController{
             $errors = $department->errors();
             Session::flash('errors', $errors);
 
-            return Redirect::to('common/department/index');
+            return Redirect::to('common/department/');
         }
     }
 
@@ -99,7 +99,7 @@ class DepartmentController extends BaseController{
             $department->save();
             return Redirect::back()->with('message', 'Successfully updated Country Information!');
         } else {
-            return Redirect::to('common/department/index')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
+            return Redirect::to('common/department/')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
         }
 
     }
