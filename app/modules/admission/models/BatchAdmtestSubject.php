@@ -4,22 +4,21 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class AdmExaminer extends Eloquent{
+class BatchAdmtestSubject extends Eloquent{
 
     //TODO :: model attributes and rules and validation
-    protected $table = 'adm_examiner';
+    protected $table = 'batch_admtest_subject';
     protected $fillable = [
-        'batch_id', 'user_id', 'type', 'assigned_by', 'deadline', 'note', 'status',
+        'batch_id', 'admtest_subject_id', 'description', 'marks', 'qualify_marks', 'duration',
     ];
     private $errors;
     private $rules = [
         'batch_id' => 'required|integer',
-        'user_id' => 'required|integer',
-        'type' => 'alpha',
-        'assigned_by' => 'required|integer',
-        'deadline' => 'date',
-        'note' => 'alpha',
-        'status' => 'alpha',
+        'admtest_subject_id' => 'required|integer',
+        'description' => 'alpha',
+        'marks' => 'required|numeric',
+        'qualify_marks' => 'required|numeric',
+        'duration' => 'alpha',
     ];
     public function validate($data)
     {
@@ -40,6 +39,12 @@ class AdmExaminer extends Eloquent{
     //TODO : Model Relationship
     public function relBatch(){
         return $this->belongsTo('Batch', 'batch_id', 'id');
+    }
+    public function relAdmtestSubject(){
+        return $this->belongsTo('AdmtestSubject', 'admtest_subject_id', 'id');
+    }
+    public function relAdmQuestion(){
+        return $this->HasMany('AdmQuestion');
     }
 
 
