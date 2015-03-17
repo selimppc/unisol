@@ -12,7 +12,7 @@
               <div class="box-header">
               <h3 class="box-title">Exam Center</h3>
                   <div class="box-tools pull-right">
-                       <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('common/exm_center/create')}}" data-toggle="modal" data-target="#exmcenterModal" >Add New Exm-Center</a>
+                       <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('common/exm_center/create')}}" data-toggle="modal" data-target="#exmcenterModal" >Add Exm-Center</a>
                   </div>
               <p>&nbsp;</p>
               </div>

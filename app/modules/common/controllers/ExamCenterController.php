@@ -9,7 +9,7 @@ class ExamCenterController extends \BaseController {
 	 */
 	public function exmCenterIndex()
 	{
-        $model = ExmCenter::orderBy('id', 'DESC')->paginate(3);
+        $model = ExmCenter::orderBy('id', 'DESC')->paginate(10);
         return View::make('common::exm_center.index',
                   compact('model'));
 	}
