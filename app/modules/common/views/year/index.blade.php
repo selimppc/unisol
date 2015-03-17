@@ -4,8 +4,8 @@
 @stop
 @section('content')
     <h4 style="text-align: center;color: #800080;font-size: x-large">{{$title}}</h4>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" >
-        AddYear
+    <button type="button" class="pull-right btn btn-primary" data-toggle="modal" data-target="#myModal" >
+        Add Year
     </button>
     {{--search db--}}
         {{ Form::open(array('url' =>'year/show', 'class'=>'form-inline', 'role' => 'form')) }}
@@ -38,11 +38,11 @@
                 <td>{{$value->title}}</td>
                 <td>{{$value->description}}</td>
                 <td>
-                    <a data-href="{{ URL::to('year/delete/'.$value->id) }}" class="btn btn-sm btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa  fa-trash-o" style="font-size: 18px;color: red"></i></a>
+                    <a data-href="{{ URL::to('year/delete/'.$value->id) }}" class="btn btn-sm btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa  fa-trash-o" style="font-size: 12px;color: red"></i></a>
 
-                    <a href="{{ URL::route('year.edit', ['id'=>$value->id]) }}" class="subEdit btn btn-sm btn-default" data-toggle="modal" data-target="#edit-modal" href="" ><i class="fa fa-pencil-square-o" style="font-size: 18px;color: #0044cc"></i></a>
+                    <a href="{{ URL::route('year.edit', ['id'=>$value->id]) }}" class="subEdit btn btn-sm btn-default" data-toggle="modal" data-target="#edit-modal" href="" ><i class="fa fa-pencil-square-o" style="font-size: 12px;color: #0044cc"></i></a>
 
-                    <a href="{{ URL::route('year.show', ['id'=>$value->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#showOne" href=""><i class="fa fa-eye" style="font-size: 18px;color: green"></i></a>
+                    <a href="{{ URL::route('year.show', ['id'=>$value->id])  }}" class="btn btn-default" data-toggle="modal" data-target="#showOne" href=""><i class="fa fa-eye" style="font-size: 12px;color: green"></i></a>
                 </td>
             </tr>
         @endforeach
