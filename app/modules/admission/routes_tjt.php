@@ -209,8 +209,41 @@ Route::any('common/degree-program/batch_delete',
 //{-------------------------------Course Type--------------------------------------------------------------------------}
 
 Route::any('common/course-type/index',
-    ['as'=>'common.course-type.index',
+        ['as'=>'common.course-type.index',
         'uses'=>'CourseTypeController@index']);
+
+
+Route::any('common/course-type/create',
+        ['as'=>'common.course-type.create',
+        'uses'=>'CourseTypeController@create']);
+
+
+Route::any('common/course-type/store',
+        ['as'=>'common.course-type.store',
+        'uses'=>'CourseTypeController@store']);
+
+
+Route::any('common/course-type/show/{id}',
+    ['as'=>'common.course-type.show',
+        'uses'=>'CourseTypeController@show']);
+
+Route::any('common/course-type/edit/{id}',
+    ['as'=>'common.course-type.edit',
+        'uses'=>'CourseTypeController@edit']);
+
+
+Route::any('common/course-type/update/{id}',
+    ['as'=>'common.course-type.update',
+        'uses'=>'CourseTypeController@update']);
+
+
+Route::any('common/course-type/delete/{id}',
+    ['as'=>'common.course-type.delete',
+        'uses'=>'CourseTypeController@delete']);
+
+Route::any('common/course-type/batch-delete',
+    ['as'=>'common.course-type.batch-delete',
+        'uses'=>'CourseTypeController@batchDelete']);
 
 
 

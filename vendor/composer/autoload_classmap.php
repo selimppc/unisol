@@ -546,7 +546,7 @@ return array(
     'UserAcademicRecord' => $baseDir . '/app/modules/user/models/UserAcademicRecord.php',
     'UserController' => $baseDir . '/app/modules/user/controllers/UserController.php',
     'UserExtraCurricularActivity' => $baseDir . '/app/modules/user/models/UserExtraCurricularActivity.php',
-    'UserMeta' => $baseDir . '/app/modules/user/models/UserMeta.php',
+    'UserMeta' => $baseDir . '/app/modules/user/models/Usermeta.php',
     'UserMiscellaneousInfo' => $baseDir . '/app/modules/user/models/UserMiscellaneousInfo.php',
     'UserProfile' => $baseDir . '/app/modules/user/models/UserProfile.php',
     'UserProfileController' => $baseDir . '/app/modules/user/controllers/UserProfileController.php',

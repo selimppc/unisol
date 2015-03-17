@@ -7,7 +7,7 @@
 <div class="modal-body">
       <div style="padding: 20px;">
 
-          {{Form::open(array('url'=>'common/degree_group/store', 'class'=>'form-horizontal','files'=>true))}}
+          {{Form::open(array('url'=>'common/degree-group/store', 'class'=>'form-horizontal','files'=>true))}}
 
           <div class='form-group'>
 

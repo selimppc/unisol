@@ -1,20 +1,28 @@
-<div style="padding: 10px; width: 90%;">
+<div class="modal-header">
 
- <h1>Show Semester</h1>
+    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+    <h4 class="modal-title" id="myModalLabel">Course Type Information</h4>
+</div>
 
-    {{ Form::open(array('url'=>'course_type/show','method' => '')) }}
+<div class="modal-body">
+     <div style="padding: 20px;">
+           <div class="span9 well">
+                 <table style="font-size: large">
 
+                   <tr>
+                     <th class="col-lg-8">Title:</th>
+                     <td>{{ $model->title }}</td>
+                   </tr>
 
-        <div class="jumbotron text-center">
-            <h2><strong>Name :</strong>{{ $type_of_course->title }}</h2>
-            <p>
-                <strong> Description:</strong> {{ $type_of_course->description }}
-            </p>
-        </div>
+                   <tr>
+                     <th class="col-lg-8">Description:</th>
+                     <td>{{ $model->description }}</td>
+                   </tr>
 
-        <a href="{{URL::to('course_type/')}}" class="btn btn-default">Close </a>
-
-    {{ Form::close() }}
-
-
+                 </table>
+           </div>
+           <p>&nbsp;</p>
+       <a href="" class="pull-right btn btn-default" span class="glyphicon-refresh">Close</a>
+       <p>&nbsp;</p>
+     </div>
 </div>
