@@ -17,13 +17,17 @@ class DegreeProgramController extends \BaseController {
     public function degreeProgramStore()
     {
         $data = Input::all();
-        if (DegreeProgram::create($data)) {
+        $model = new DegreeProgram();
 
-            return Redirect::back()
-                ->with('message', 'Successfully added Information!');
-        } else{
-            return Redirect::back()
-                ->with('message', 'invalid');
+        if($model->validate($data)){
+            if($model->create($data)){
+                Session::flash('message','Successfully added Information!');
+                return Redirect::back();
+            }
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back();
         }
     }
 
@@ -44,12 +48,14 @@ class DegreeProgramController extends \BaseController {
         $model = DegreeProgram::find($id);
         $data = Input::all();
 
-        $model->fill($data);
-
-        if ($model->save()) {
-            return Redirect::back()
-                ->with('message', 'Successfully Updated Information!');
+        if($model->validate($data)){
+            if($model->save()){
+                Session::flash('message','Successfully Updated Information!');
+                return Redirect::back();
+            }
         }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
             return Redirect::back();
         }
 	}
@@ -63,7 +69,12 @@ class DegreeProgramController extends \BaseController {
 
     public function degreeProgramBatchDelete()
     {
-        DegreeProgram::destroy(Request::get('ids'));
-        return Redirect::back()->with('message','Successfully deleted Information!');
+        try {
+            DegreeProgram::destroy(Request::get('ids'));
+            return Redirect::back()->with('message', 'Successfully deleted Information!');
+        } catch (exception $ex) {
+            return Redirect::back()->with('danger', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+
+        }
     }
 }
