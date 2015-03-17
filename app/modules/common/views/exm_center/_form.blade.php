@@ -8,7 +8,7 @@
 <div class="modal-body">
       <div style="padding: 20px;">
 
-          {{Form::open(array('url'=>'common/exm_center/store', 'class'=>'form-horizontal','files'=>true))}}
+          {{Form::open(array('url'=>'common/exm-center/store', 'class'=>'form-horizontal','files'=>true))}}
 
           <div class='form-group'>
 
@@ -38,8 +38,8 @@
 
           <div>
 
-          {{ Form::submit('Save', array('class'=>'pull-left btn btn-primary')) }}
-          <a  href="{{URL::previous() }}" class="pull-right btn btn-default">Close</a>
+          {{ Form::submit('Save', array('class'=>'pull-right btn btn-primary')) }}
+          <a  href="" class="pull-right btn btn-default" style="margin-right: 20px">Close</a>
 
           </div>
           <p>&nbsp;</p>
