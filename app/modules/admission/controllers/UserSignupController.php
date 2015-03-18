@@ -549,4 +549,33 @@ class UserSignupController extends \BaseController {
         }
     }
 
+    public function admBatchEduConstIndex(){
+        $model = BatchEducationConstraint::latest('id')->paginate(5);
+
+        return View::make('admission::amw.batch_edu_const.index',
+                  compact('model'));
+    }
+    public function admBatchEduConstCreate()
+    {
+       $batch = array('' => 'Select Batch ') + Batch::lists('batch_number','id');
+        return View::make('admission::amw.batch_edu_const.edu_const_form',
+            compact('batch'));
+    }
+
+    public function admBatchEduConstStore()
+    {
+        $data = Input::all();
+        $model = new BatchEducationConstraint();
+
+        if($model->validate($data)){
+            if($model->create($data)){
+                Session::flash('message','Successfully added Information!');
+                return Redirect::back();
+            }
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back();
+        }
+    }
 }

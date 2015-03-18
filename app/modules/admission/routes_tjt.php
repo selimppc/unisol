@@ -318,6 +318,21 @@ Route::any('admission/amw/batch-waiver/delete/{id}',
         'uses'=>'UserSignupController@admBatchWaiverDelete']);
 
 
+//{--------------------------------------- batch Education Constraint -------------------------------------------------------------}
+
+Route::any('admission/amw/batch-edu-const',
+    ['as'=>'admission.amw.batch-edu-const.index',
+        'uses'=>'UserSignupController@admBatchEduConstIndex']);
+
+Route::any('admission/amw/batch-edu-const/create',
+    ['as'=>'admission.amw.batch-edu-const.create',
+        'uses'=>'UserSignupController@admBatchEduConstCreate']);
+
+Route::any('admission/amw/batch-edu-const/store',
+    ['as'=>'admission.amw.batch-edu-const.store',
+        'uses'=>'UserSignupController@admBatchEduConstStore']);
+
+
 
 
 
