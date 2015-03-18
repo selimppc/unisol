@@ -20,7 +20,7 @@
 
         <div class="control-group">
             <div class="row-fluid input-append">
-                <input class="date-picker" id="id-date-picker-1" type="text" />
+                {{Form::text('date', Input::old('date'), ['class'=>'form-control date-picker'])}}
                 <span class="add-on">
                     <i class="icon-calendar"></i>
                 </span>
