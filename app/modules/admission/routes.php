@@ -180,17 +180,17 @@ Route::any('batch/amw/batch-management',[
     'as' => 'batch.amw.batch-management',
     'uses' => 'AdmissionController@batchManagementIndex'
 ]);
-//
-//Route::any('common/course/create',[
-//    'as' => 'common.course.create',
-//    'uses' => 'CourseController@create'
-//]);
-//
-//Route::any('common/course/store', [
-//    'as' => 'common.course.store',
-//    'uses' => 'CourseController@store'
-//]);
-//
+
+Route::any('batch/amw/create',[
+    'as' => 'batch.amw.create',
+    'uses' => 'AdmissionController@create'
+]);
+
+Route::any('batch/amw/store', [
+    'as' => 'batch.amw.store',
+    'uses' => 'AdmissionController@store'
+]);
+
 Route::get('batch/amw/show/{id}', [
     'as' => 'batch.amw.show',
     'uses' => 'AdmissionController@show'
@@ -211,7 +211,7 @@ Route::get('batch/amw/show/{id}', [
 //    'uses' => 'CourseController@destroy'
 //]);
 //
-//Route::any('common/course/batchDelete', [
-//    'as' => 'common.course.batchDelete',
-//    'uses' => 'CourseController@batchDelete'
-//]);
+Route::any('batch/amw/batchDelete', [
+    'as' => 'batch.amw.batchDelete',
+    'uses' => 'AdmissionController@batchDelete'
+]);
