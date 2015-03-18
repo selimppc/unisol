@@ -8,8 +8,75 @@
 <div class="row">
            <div class="col-sm-12">
                <div class="pull-right col-sm-4">
-                   <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('batch/amw/create')}}" data-toggle="modal" data-target="#modal" >New Batch</a>
+                   <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('batch/amw/create')}}" data-toggle="modal" data-target="#modal" >Add Batch</a>
                </div>
+
+
+                <div class="col-sm-12">
+                        <div style="width:100%; float:left;">
+                            <div style="width:50%; float:left;" class="">
+                                <div class="col-sm-6 row-">
+                                    <div class='form-group'>
+                                               {{ Form::label('status', 'Selct Status') }}
+                                               {{ Form::select('status',
+                                                   array('' => 'Select Status',
+                                                   'Created (CRTD)' => 'Created',
+                                                   'Ask for Application (AFA)' => 'Ask for Application',
+                                                   'Application Time Over (ATO)' => 'Application Time Over',
+                                                   'Selection and Scrutinizing (SNS)' => 'Selection and Scrutinizing',
+                                                   'Admission Test (ADMT)' => 'Admission Test',
+                                                   'Admission Test Evaluation (ADTE)' => 'Admission Test Evaluation',
+                                                   'Merit List Preparation (MRPR)' => 'Merit List Preparation',
+                                                   'Final Selection (FNLS)' => 'Final Selection',
+                                                   'Admission (ADMN)' => 'Admission',
+                                                   'Activity Start (ACTS)' => 'Activity Start',
+                                                   'Running (Rung)' => 'Running',
+                                                   'Cancelled (CNCL)' => 'Cancelled',
+                                                   'Paused (PSD)' => ' Paused',
+                                                   'Finished (FNSH)' => 'Finished',
+
+                                               ),Input::old('status'),['class'=>'form-control']) }}
+                                    </div>
+                            	</div>
+                            </div>
+
+                            <div style="width:50%; float:left;">
+                                <div class="col-sm-12 ">
+                                    <div class='form-group'>
+                                               {{ Form::label('degree_id', 'Degree with Program') }}
+                                               {{ Form::select('degree_id',$dpg_list,null,['class'=>'form-control']) }}
+                                    </div>
+                                </div>
+                                <div class="clearfix visible-md-block"></div>
+
+                                <div class="col-sm-12 ">
+                                    <div class='form-group'>
+                                               {{ Form::label('department_id', 'Department') }}
+                                               {{ Form::select('department_id',$department_list,null,['class'=>'form-control']) }}
+                                    </div>
+
+                                </div>
+                                <div class="clearfix visible-md-block"></div>
+
+                                <div class="col-sm-12 ">
+                                        <div class='form-group'>
+                                              {{ Form::label('year_id', 'Year') }}
+                                              {{ Form::select('year_id',$year_list,null,['class'=>'form-control']) }}
+                                        </div>
+
+                                </div>
+                                <div class="clearfix visible-sm-block"></div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+
+
+
+
+
            </div>
 </div>
 

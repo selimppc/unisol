@@ -10,7 +10,7 @@
 
                 <div class='form-group'>
                            {{ Form::label('degree_id', 'Degree') }}
-                           {{ Form::select('degree_id',$degree_list,null,['class'=>'form-control']) }}
+                           {{ Form::select('degree_id',$dpg_list,null,['class'=>'form-control']) }}
                 </div>
 
                 <div class='form-group'>
@@ -25,7 +25,7 @@
 
                 <div class='form-group'>
                            {{ Form::label('description', 'Description') }}
-                           {{ Form::textarea('description', Input::old('description'),['class'=>'form-control','required'=>'required']) }}
+                           {{ Form::textarea('description', Input::old('description'),['size' => '30x5','class'=>'form-control','required'=>'required']) }}
                 </div>
 
                 <div class='form-group'>

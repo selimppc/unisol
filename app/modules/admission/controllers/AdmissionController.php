@@ -480,8 +480,14 @@ class AdmissionController extends \BaseController {
     {
         $batch_management = Batch::latest('id')->paginate(10);
 
+        $dpg_list = Degree::DegreeProgramGroup();
+        $year_list = array('' => 'Year ') +Year::lists('title', 'id');
+        $department_list = array('' => 'Department ') +Department::lists('title', 'id');
+
+
+
         return View::make('admission::amw.batch.batch_management_index',
-            compact('batch_management'));
+            compact('batch_management','dpg_list','year_list','department_list'));
     }
 
     public function show($id)
@@ -492,11 +498,12 @@ class AdmissionController extends \BaseController {
 
     public function create()
     {
-        $degree_list = Degree::lists('title', 'id');
-        $year_list = Year::lists('title', 'id');
-        $semester_list = Semester::lists('title', 'id');
 
-        return View::make('admission::amw.batch._form',compact('degree_list','year_list','semester_list'));
+        $dpg_list = array('' => 'Degree with Program ') +Degree::DegreeProgramGroup();
+        $year_list = array('' => 'Year ') +Year::lists('title', 'id');
+        $semester_list = array('' => 'Semester ') +Semester::lists('title', 'id');
+
+        return View::make('admission::amw.batch._form',compact('dpg_list','year_list','semester_list'));
     }
 
     public function store()
