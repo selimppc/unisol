@@ -473,6 +473,105 @@ class AdmissionController extends \BaseController {
 
     }
 
+//.................................................Batch Management....................................................
+
+
+    public function batchManagementIndex()
+    {
+        $batch_management = Batch::latest('id')->paginate(10);
+
+        return View::make('admission::amw.batch.batch_management_index',
+            compact('batch_management'));
+    }
+
+    public function show($id)
+    {
+        $b_m_course = Batch::find($id);
+        return View::make('admission::amw.batch.show',compact('b_m_course'));
+    }
+
+    public function create()
+    {
+        $degree_list = Degree::lists('title', 'id');
+        $year_list = Year::lists('title', 'id');
+        $semester_list = Semester::lists('title', 'id');
+
+        return View::make('admission::amw.batch._form',compact('degree_list','year_list','semester_list'));
+    }
+
+    public function store()
+    {
+
+
+
+        $data = Input::all();
+
+        $model = new Batch();
+        if($model->validate($data)){
+            if($model->create($data)){
+                Session::flash('message', 'Successfully added Information!');
+                return Redirect::back();
+            }
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()
+                ->with('errors', 'invalid');
+        }
+
+    }
+
+//    public function edit($id)
+//    {
+//        $course = Course::find($id);
+//
+//        $subject_name = Subject::lists('title','id');
+//        $course_type_name = CourseType::lists('title','id');
+//
+//        return View::make('common::course.edit',compact('course','subject_name','course_type_name'));
+//    }
+//
+//    public function update($id)
+//    {
+//        $model = Course::find($id);
+//        $data = Input::all();
+//
+//        if($model->validate($data)){
+//            if($model->create($data)){
+//                Session::flash('message', 'Successfully Updates Information!');
+//                return Redirect::back();
+//            }
+//        }else{
+//            $errors = $model->errors();
+//            Session::flash('errors', $errors);
+//            return Redirect::back()
+//                ->with('error', 'invalid');
+//        }
+//    }
+//
+//    public function destroy($id)
+//    {
+//        try {
+//            Course::find($id)->delete();
+//            return Redirect::back()->with('message', 'Successfully deleted Information!');
+//        }
+//        catch(exception $ex){
+//            return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+//        }
+//
+//    }
+//
+    public function batchDelete()
+    {
+        try {
+            Batch::destroy(Request::get('id'));
+            return Redirect::back()->with('message', 'Successfully deleted Information!');
+        }
+        catch(exception $ex) {
+            return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+        }
+    }
+
 
 
 }

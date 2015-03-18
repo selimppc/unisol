@@ -5,22 +5,23 @@
         <meta charset="UTF-8">
         <title>{{ isset($pageTitle) ? $pageTitle : 'Edu Tech Solutions' }}</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" />
 
         {{ HTML::style('assets/etsb/etsb_css/bootstrap/bootstrap.min.css') }}
         <link rel="stylesheet" href="{{ URL::asset('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css') }}">
         {{ HTML::style('assets/etsb/etsb_css/ioicons/ionicons.min.css') }}
         {{ HTML::style('assets/etsb/etsb_css/morris/morris.css') }}
         {{ HTML::style('assets/etsb/etsb_css/jvectormap/jquery-jvectormap-1.2.2.css') }}
-        {{ HTML::style('assets/etsb/etsb_css/datepicker/datepicker3.css') }}
-        {{ HTML::style('assets/etsb/etsb_css/datepicker/bootstrap-datetimepicker.css') }}
-        {{ HTML::style('assets/etsb/etsb_css/daterangepicker/daterangepicker-bs3.css') }}
+        {{ HTML::style('assets/etsb/etsb_css/datepicker/datepicker.css') }}
+        {{--{{ HTML::style('assets/etsb/etsb_css/datepicker/bootstrap-datetimepicker.css') }}--}}
+        {{--{{ HTML::style('assets/etsb/etsb_css/daterangepicker/daterangepicker-bs3.css') }}--}}
         {{ HTML::style('assets/etsb/etsb_css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}
         {{ HTML::style('assets/etsb/etsb_css/style.css') }}
         {{ HTML::script('assets/js/jquery-2.1.1.min.js') }}
         {{ HTML::script('assets/etsb/etsb_js/icheck/icheck.js')}}
         {{ HTML::script('assets/etsb/etsb_js/etsb_scripts.js')}}
 
-        <!--[if lt IE 9]>
+        {{--<!--[if lt IE 9]>--}}
           <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
           <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
         <![endif]-->
@@ -169,44 +170,30 @@
         {{ HTML::script('assets/etsb/etsb_js/jquery/jquery.min.js')}}
         {{ HTML::script('assets/etsb/etsb_js/bootstrap/bootstrap.min.js')}}
         {{ HTML::script('assets/etsb/etsb_js/jquery-ui/jquery-ui.min.js')}}
+
         {{ HTML::script('assets/etsb/etsb_js/raphael/raphael-min.js')}}
         {{ HTML::script('assets/etsb/etsb_js/morris/morris.min.js')}}
         {{ HTML::script('assets/etsb/etsb_js/sparkline/jquery.sparkline.min.js')}}
         {{ HTML::script('assets/etsb/etsb_js/jvectormap/jquery-jvectormap-1.2.2.min.js')}}
         {{ HTML::script('assets/etsb/etsb_js/jvectormap/jquery-jvectormap-world-mill-en.js')}}
-        {{ HTML::script('assets/etsb/etsb_js/jqueryKnob/jquery.knob.js')}}
-        {{ HTML::script('assets/etsb/etsb_js/daterangepicker/daterangepicker.js')}}
-        {{ HTML::script('assets/etsb/etsb_js/datepicker/bootstrap-datepicker.js')}}
-        {{ HTML::script('assets/etsb/etsb_js/datepicker/moment-with-locales.js')}}
+
+        {{-- {{ HTML::script('assets/etsb/etsb_js/jqueryKnob/jquery.knob.js')}}--}}
+        {{--{{ HTML::script('assets/etsb/etsb_js/daterangepicker/daterangepicker.js')}}--}}
+        {{-- {{ HTML::script('assets/etsb/etsb_js/datepicker/bootstrap-datepicker.js')}}--}}
+        {{ HTML::script('assets/etsb/etsb_js/datepicker/bootstrap-datepicker.min.js')}}
+        {{--{{ HTML::script('assets/etsb/etsb_js/datepicker/moment-with-locales.js')}}--}}
         {{ HTML::script('assets/etsb/etsb_js/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js')}}
-        {{--{{ HTML::script('assets/etsb/etsb_js/icheck/icheck.min.js')}}--}}
+        {{ HTML::script('assets/etsb/etsb_js/icheck/icheck.min.js')}}
         {{ HTML::script('assets/etsb/etsb_js/admin/app.js')}}
-        {{ HTML::script('assets/etsb/etsb_js/admin/dashboard.js')}}
+        {{--{{ HTML::script('assets/etsb/etsb_js/admin/dashboard.js')}}--}}
         {{ HTML::script('assets/etsb/etsb_js/admin/demo.js')}}
         {{ HTML::script('assets/etsb/etsb_js/datatables/jquery.dataTables.js')}}
         {{ HTML::script('assets/etsb/etsb_js/datatables/dataTables.bootstrap.js')}}
+        {{ HTML::script('assets/etsb/etsb_js/etsb_custom.js')}}
 
+        // Ratna
         {{ HTML::script('assets/js/ratna_script.js')}}
-
         @yield('script_section')
-
-        {{--<script type="text/javascript">
-            $(function() {
-                $("#example1").dataTable({
-                    "bPaginate": false,
-                    "bSort": true,
-                    "bInfo": true
-                });
-                $('#example2').dataTable({
-                    "bPaginate": true,
-                    "bLengthChange": false,
-                    "bFilter": false,
-                    "bSort": true,
-                    "bInfo": true,
-                    "bAutoWidth": false
-                });
-            });
-        </script>--}}
 
     </body>
 </html>
