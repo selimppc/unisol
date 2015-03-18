@@ -4,7 +4,7 @@
     </a>
     <ul class="dropdown-menu">
         <li class="footer">
-               <a href="">Version 2 </a>
+            <a href="">Version 2 </a>
         </li>
         <li><a tabindex="-1" a href="{{ URL::to('common/year/') }}"> Year </a></li>
         <li><a tabindex="-1" a href="{{ URL::to('common/semester/') }}"> Semester </a></li>
@@ -20,7 +20,7 @@
         <li><a tabindex="-1" href="{{ action('CourseTypeController@index') }}"> Course Type </a></li>
 
         <li class="footer">
-           <a href="">Version 1 </a>
+            <a href="">Version 1 </a>
         </li>
         <li><a tabindex="-1" href="{{ action('CourseController@index') }}"> Course Management </a></li>
         <li><a tabindex="-1" href="{{ action('DegreeLevelController@index') }}"> Degree Level </a></li>
@@ -43,18 +43,20 @@
     <ul class="dropdown-menu">
 
         <li class="footer">
-               <a href="">Version 2 </a>
+            <a href="">Version 2 </a>
         </li>
-         <li><a tabindex="-1" a href="{{ URL::to('admission/amw/degree') }}"></i>Degree (Amw)</a></li>
-        <li><a tabindex="-1" a href="{{ URL::to('admission/amw/batch-management') }}"></i>Batch (Amw)</a></li>
+
+        <li><a tabindex="-1" a href="{{ URL::to('admission/amw/degree') }}"></i>Degree (Amw)</a></li>
+        <li><a tabindex="-1" a href="{{ URL::to('batch/amw/batch-management') }}"></i>Batch (Amw)</a></li>
         <li><a tabindex="-1" a href="{{ URL::to('admission/amw/batch-waiver') }}"></i>Batch Waiver(Amw)</a></li>
-        <li><a tabindex="-1" a href="{{ URL::to('admission/amw/degree_courses') }}"></i>Degree Courses </a></li>
+        <li><a tabindex="-1" a href="{{ URL::to('admission/amw/batch-education-waiver') }}"></i>Batch Education Constraint(Amw)</a></li>
+        <li><a tabindex="-1" a href="{{ action('AdmAmwController@degree_courses_index') }}"></i>Degree Course </a></li>
         <li><a tabindex="-1" a href="{{ URL::to('admission/amw/mng_adm_test_subject') }}"></i>Mng Admssn Tst Sbjct(Amw)</a></li>
 
 
 
         <li class="footer">
-           <a href="">Version 1 </a>
+            <a href="">Version 1 </a>
         </li>
 
         <li><a tabindex="-1" a href="{{ URL::to('admission/amw/course_conduct/index') }}"> Course Management(Amw) </a></li>
@@ -76,8 +78,8 @@
         Academic
     </a>
     <ul class="dropdown-menu">
-       <li><a tabindex="-1" a href="{{ URL::to('academic/faculty/') }}">Mark Distribution (Faculty)</a></li>
-       <li><a tabindex="-1" a href="{{ URL::to('academic/amw/') }}">Mark Distribution (Amw)</a></li>
+        <li><a tabindex="-1" a href="{{ URL::to('academic/faculty/') }}">Mark Distribution (Faculty)</a></li>
+        <li><a tabindex="-1" a href="{{ URL::to('academic/amw/') }}">Mark Distribution (Amw)</a></li>
     </ul>
 </li>
 
@@ -88,8 +90,8 @@
         Examination
     </a>
     <ul class="dropdown-menu">
-       <li><a tabindex="-1" href="{{ action('ExmFacultyController@index') }}"> Prepare Question Paper (Faculty) </a></li>
-       <li><a tabindex="-1" href="{{ URL::to('examination/amw/examination') }}"> Prepare Question Paper (Amw) </a></li>
+        <li><a tabindex="-1" href="{{ action('ExmFacultyController@index') }}"> Prepare Question Paper (Faculty) </a></li>
+        <li><a tabindex="-1" href="{{ URL::to('examination/amw/examination') }}"> Prepare Question Paper (Amw) </a></li>
     </ul>
 </li>
 

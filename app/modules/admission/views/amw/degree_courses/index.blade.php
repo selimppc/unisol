@@ -5,13 +5,11 @@
 @section('content')
     <div class="box box-solid ">
         <div class="box-header">
-            {{--<h4 class="box-title" style="color:#800080;text-align: center ">List Of all Course </h4>--}}
-
-            {{ Form::open(array('url' => 'admission/amw/degree_courses/save')) }}
-            {{ Form::hidden('degree_id', 1 , ['class'=>'form-control degree_id'])}}
+          {{ Form::open(array('url' => 'admission/amw/degree-courses/save')) }}
+            {{ Form::hidden('degree_id', $degree_id , ['class'=>'form-control degree_id'])}}
             <div class="form-group" style="width: 350px">
-            {{ Form::label('course_list[]', 'List Of all Course ') }}
-            {{ Form::select('course_list[]', $course_list, Request::old('course_list') ? Request::old('course_list') : $course_list,['multiple' => true, 'class'=>'form-control']); }}
+                {{ Form::label('course_list[]', 'List Of all Course ') }}
+                {{ Form::select('course_list[]', $course_list, Request::old('course_list') ? Request::old('course_list') : $course_list,['multiple' => true, 'class'=>'form-control']); }}
             </div>
             {{ Form::submit('Add Course', ['class'=>'btn btn-primary']) }}
             {{ Form::close() }}
@@ -31,26 +29,43 @@
                         </tr>
                         </thead>
                         <tbody>
-                        {{--@foreach ($datas as $value)--}}
+                        @foreach ($deg_course_info as $value)
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>{{$value->relCourse->title}}</td>
+                                <td>{{$value->relCourse->course_code}}</td>
+                                <td>{{$value->relCourse->relSubject->relDepartment->title}}</td>
+                                <td>{{$value->relCourse->relCourseType->title}}</td>
+                                <td>{{$value->relCourse->credit}}</td>
                                 <td>
-                                    <a href="" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showOne" href=""><i class="fa fa-eye" style="color: green"></i></a>
+                                <a data-href="{{ URL::to('admission/amw/degree-courses/delete/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa fa-trash-o" style="color: red"></i></a>
                                 </td>
                             </tr>
-                        {{--@endforeach--}}
+                        @endforeach
                         </tbody>
                     </table>
                     {{ Form::close() }}
-
-                    {{--{{ $datas->links() }}--}}
-
+                    {{ $deg_course->links() }}
                     <p>&nbsp;</p>
                     <p>&nbsp;</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- Modal for delete --}}
+    <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>
+                </div>
+                <div class="modal-body">
+                    <strong>Are you sure to delete?</strong>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <a href="#" class="btn btn-danger danger">Delete</a>
 
                 </div>
             </div>

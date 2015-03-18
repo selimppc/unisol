@@ -456,10 +456,13 @@ class AdmAmwController extends \BaseController
 
 
    //******************************Degree Courses start(R)*****************************
-  public function degree_courses_index()
+  public function degree_courses_index($id)
   {
+     $degree_id = $id;
      $course_list = Course::lists('title', 'id');
-     return View::make('admission::amw.degree_courses.index',compact('course_list'));
+     $deg_course_info = DegreeCourse::with('relCourse','relCourse.relSubject.relDepartment','relCourse.relCourseType')->get();
+      $deg_course = DegreeCourse::orderBy('id', 'DESC')->paginate(5);
+     return View::make('admission::amw.degree_courses.index',compact('course_list','deg_course_info','deg_course','degree_id'));
   }
     public function degree_courses_save()
     {
@@ -469,15 +472,35 @@ class AdmAmwController extends \BaseController
         foreach($select as $value)
         {
             $degree_course = new DegreeCourse();
-            $degree_course ->course_id =$value;
             $degree_course ->degree_id =$deg_id;
-            $degree_course->save();
+            $degree_course ->course_id =$value;
+            $degreeCourseCheck = DB::table('degree_course')
+                ->select(DB::raw('1'))
+                ->where('course_id', '=', $degree_course->course_id)
+                ->get();
+            if($degreeCourseCheck){
+                return Redirect::back()->with('info','The selected Course already added !
+                    Please Select One That Is Not Added Yet.');
+            }else{
+                $degree_course->save();
+            }
         }
-
-
-        Session::flash('message', 'Successfully Added!');
-        return Redirect::to('admission/amw/degree_courses');
+        return Redirect::back()->with('message', 'Successfully Added Information!');
     }
+    public function degree_courses_delete($id)
+    {
+        try {
+            $data= DegreeCourse::find($id);
+            if($data->delete())
+            {
+                return Redirect::back()->with('danger', "Deleted successfully");
+            }
+        }
+        catch
+        (exception $ex){
+            return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
 
+        }
+    }
 
 }
