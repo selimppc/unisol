@@ -375,8 +375,99 @@ class UserSignupController extends \BaseController {
     public function admDegreeIndex(){
 
         $model = Degree::orderby('id', 'DESC')->paginate(5);
+        $department = array('' => 'Select Department ') + Department::lists('title', 'id');
         return View::make('admission::amw.degree_management.degree.degree_index',
-            compact('model'));
+            compact('model','department'));
+    }
+
+    public function admDegreeCreate()
+    {
+        $department = array('' => 'Select Department ') + Department::lists('title', 'id');
+        $degree_program = array('' => 'Select Department ') + DegreeProgram::lists('title', 'id');
+        $degree_group = array('' => 'Select Department ') + DegreeGroup::lists('title', 'id');
+        return View::make('admission::amw.degree_management.degree._form',
+                  compact('department','degree_program','degree_group'));
+    }
+
+    public function admDegreeStore()
+    {
+        $data = Input::all();
+        $model = new Degree();
+
+        if($model->validate($data)){
+            if($model->create($data)){
+                Session::flash('message','Successfully added Information!');
+                return Redirect::back();
+            }
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back();
+        }
+    }
+
+    public function admDegreeShow($id)
+    {
+        $model = Degree::find($id);
+        return View::make('admission::amw.degree_management.degree.degree_show',compact('model'));
+    }
+
+    public function admDegreeEdit($id)
+    {
+        $model = Degree::find($id);
+        $department = array('' => 'Select Department ') + Department::lists('title', 'id');
+        $degree_program = array('' => 'Select Department ') + DegreeProgram::lists('title', 'id');
+        $degree_group = array('' => 'Select Department ') + DegreeGroup::lists('title', 'id');
+        return View::make('admission::amw.degree_management.degree.degree_edit',
+                  compact('model','department','degree_program','degree_group'));
+    }
+
+    public function admDegreeUpdate($id)
+    {
+        $model = Degree::find($id);
+        $data = Input::all();
+
+        if($model->validate($data)){
+            if($model->save()){
+                Session::flash('message','Successfully Updated Information!');
+                return Redirect::back();
+            }
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back();
+        }
+    }
+
+    public function admDegreeDelete($id)
+    {
+        try {
+            Degree::find($id)->delete();
+            return Redirect::back()->with('message', 'Successfully deleted Information!');
+        }
+        catch(exception $ex){
+            return Redirect::back()->with('danger', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+        }
+    }
+    //TODO Searching............
+
+    public function admDegreeSearch(){
+
+        $searchQuery = [
+            $department_id = Input::get('search_department')
+        ];
+
+        //echo $dep_id;exit;
+        $model = new Degree();
+        $result = Helpers::search($searchQuery, $model);
+        //print_r($result) ;exit;
+
+        $dep_data = '';
+
+        foreach($result as $value){
+            $model = Degree::with( 'relDepartment' )->where('department_id', '=', $value);
+            $dep_data[] = $model->get();
+        }
     }
 
 }

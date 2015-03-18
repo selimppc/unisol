@@ -480,8 +480,14 @@ class AdmissionController extends \BaseController {
     {
         $batch_management = Batch::latest('id')->paginate(10);
 
+        $dpg_list = Degree::DegreeProgramGroup();
+        $year_list = array('' => 'Year ') +Year::lists('title', 'id');
+        $department_list = array('' => 'Department ') +Department::lists('title', 'id');
+
+
+
         return View::make('admission::amw.batch.batch_management_index',
-            compact('batch_management'));
+            compact('batch_management','dpg_list','year_list','department_list'));
     }
 
     public function show($id)
@@ -489,34 +495,40 @@ class AdmissionController extends \BaseController {
         $b_m_course = Batch::find($id);
         return View::make('admission::amw.batch.show',compact('b_m_course'));
     }
-//
-//    public function create()
-//    {
-//
-//        $subject_id_result = Subject::lists('title', 'id');
-//        $course_type_id_result = CourseType::lists('title', 'id');
-//
-//        return View::make('common::course._form',compact('subject_id_result','course_type_id_result'));
-//    }
-//
-//    public function store()
-//    {
-//        $data = Input::all();
-//        $model = new Course();
-//        if($model->validate($data)){
-//            if($model->create($data)){
-//                Session::flash('message', 'Successfully added Information!');
-//                return Redirect::back();
-//            }
-//        }else{
-//            $errors = $model->errors();
-//            Session::flash('errors', $errors);
-//            return Redirect::back()
-//                ->with('errors', 'invalid');
-//        }
-//
-//    }
-//
+
+    public function create()
+    {
+
+        $dpg_list = array('' => 'Degree with Program ') +Degree::DegreeProgramGroup();
+        print_r($dpg_list);exit;
+        $year_list = array('' => 'Year ') +Year::lists('title', 'id');
+        $semester_list = array('' => 'Semester ') +Semester::lists('title', 'id');
+
+        return View::make('admission::amw.batch._form',compact('dpg_list','year_list','semester_list'));
+    }
+
+    public function store()
+    {
+
+
+
+        $data = Input::all();
+
+        $model = new Batch();
+        if($model->validate($data)){
+            if($model->create($data)){
+                Session::flash('message', 'Successfully added Information!');
+                return Redirect::back();
+            }
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()
+                ->with('errors', 'invalid');
+        }
+
+    }
+
 //    public function edit($id)
 //    {
 //        $course = Course::find($id);
@@ -557,16 +569,16 @@ class AdmissionController extends \BaseController {
 //
 //    }
 //
-//    public function batchDelete()
-//    {
-//        try {
-//            Course::destroy(Request::get('id'));
-//            return Redirect::back()->with('message', 'Successfully deleted Information!');
-//        }
-//        catch(exception $ex) {
-//            return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
-//        }
-//    }
+    public function batchDelete()
+    {
+        try {
+            Batch::destroy(Request::get('id'));
+            return Redirect::back()->with('message', 'Successfully deleted Information!');
+        }
+        catch(exception $ex) {
+            return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+        }
+    }
 
 
 

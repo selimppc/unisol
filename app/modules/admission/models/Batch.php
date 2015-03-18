@@ -10,7 +10,7 @@ class Batch extends Eloquent{
     protected $table = 'batch';
     protected $fillable = [
         'degree_id', 'year_id', 'semester_id', 'batch_number', 'description', 'start_date', 'end_date',
-        'seat_total', 'admission_deadline', 'status'
+        'seat_total', 'admission_deadline', 'status', 'admtest_date','admtest_start_time'
     ];
     private $errors;
     private $rules = [
@@ -24,6 +24,8 @@ class Batch extends Eloquent{
         'seat_total' => 'required|numeric',
         'admission_deadline' => 'required|date',
         //'status' => 'alpha_dash'
+        'admtest_date'=>'date',
+        //'admtest_start_time'=>'time',
     ];
     public function validate($data)
     {

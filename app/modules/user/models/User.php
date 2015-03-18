@@ -174,7 +174,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         if($query){
             return $query;
         }else{
-            return $query = ['Profile data missing !'];
+            return $query = [' ' => 'Profile data missing !'];
         }
     }
 
