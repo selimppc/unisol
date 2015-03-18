@@ -14,8 +14,8 @@ class BillingItem extends Eloquent{
     ];
     private $errors;
     private $rules = [
-        'title' => 'required|alpha',
-        'description' => 'alpha',
+        'title' => 'required',
+        //'description' => 'alpha',
         'is_unit_qty' => 'required|integer',
     ];
     public function validate($data)

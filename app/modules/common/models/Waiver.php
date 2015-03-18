@@ -13,8 +13,8 @@ class Waiver extends Eloquent{
     ];
     private $errors;
     private $rules = [
-        'title' => 'required|integer',
-        'description' => 'alpha_dash',
+        'title' => 'required',
+        //'description' => 'alpha_dash',
         'waiver_type' => 'alpha_dash',
         'is_percentage' => 'integer',
         'amount' => 'numeric',

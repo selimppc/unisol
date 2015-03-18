@@ -15,11 +15,9 @@ class AdmExaminer extends Eloquent{
     private $rules = [
         'batch_id' => 'required|integer',
         'user_id' => 'required|integer',
-        'type' => 'alpha',
+        'type' => 'required',
         'assigned_by' => 'required|integer',
         'deadline' => 'date',
-        'note' => 'alpha_dash',
-        'status' => 'alpha_dash',
     ];
     public function validate($data)
     {

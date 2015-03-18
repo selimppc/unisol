@@ -18,15 +18,15 @@ class Degree extends Eloquent{
         'department_id' => 'required|integer',
         'degree_program_id' => 'required|integer',
         'degree_group_id' => 'required|integer',
-        'title' => 'required|alpha_dash',
-        'description' => 'alpha_dash',
+        'title' => 'required',
+        //'description' => 'alpha_dash',
         'total_credit' => 'required|numeric',
-        'duration' => 'required|alpha',
+        'duration' => 'required',
         'policy_retake' => 'required|alpha_dash',
         'policy_course_taking' => 'required|alpha_dash',
         'credit_min_per_semester' => 'numeric',
         'credit_max_per_semester' => 'numeric',
-        'status' => 'alpha_dash',
+        //'status' => 'alpha_dash',
     ];
     public function validate($data)
     {
