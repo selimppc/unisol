@@ -13,9 +13,9 @@ class AdmTestSubject extends Eloquent{
     ];
     private $errors;
     private $rules = [
-        'title' => 'required|alpha_dash',
-        'description' => 'alpha_dash',
-        'priority' => 'required|alpha_dash',
+        'title' => 'required',
+        //'description' => 'alpha_dash',
+        'priority' => 'required',
     ];
     public function validate($data)
     {

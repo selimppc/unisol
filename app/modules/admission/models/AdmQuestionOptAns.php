@@ -14,8 +14,8 @@ class AdmQuestionOptAns extends Eloquent{
     private $errors;
     private $rules = [
         'adm_question_items_id' => 'required|integer',
-        'title' => 'required|alpha_dash',
-        'answer' => 'required|alpha_dash',
+        'title' => 'required',
+        'answer' => 'required',
     ];
 
     public function validate($data)

@@ -16,10 +16,10 @@ class AdmQuestion extends Eloquent{
     private $rules = [
         'batch_admtest_subject_id' => 'required|integer',
         'examiner_faculty_user_id' => 'required|integer',
-        'title' => 'required|alpha_dash',
+        'title' => 'required',
         'deadline' => 'required|date',
         'total_marks' => 'required|numeric',
-        'status' => 'alpha_dash',
+        //'status' => 'alpha_dash',
     ];
     public function validate($data)
     {

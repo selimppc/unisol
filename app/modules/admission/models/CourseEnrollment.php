@@ -15,7 +15,7 @@ class CourseEnrollment extends Eloquent{
     private $rules = [
         'batch_course_id' => 'required|integer',
         'student_user_id' => 'required|integer',
-        'status' => 'alpha_dash',
+        //'status' => 'alpha_dash',
         'taken_in_year_id' => 'required|integer',
         'taken_in_semester_id' => 'required|integer',
     ];

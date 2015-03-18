@@ -14,7 +14,7 @@ class AdmExaminerComments extends Eloquent{
     private $errors;
     private $rules = [
         'batch_id' => 'required|integer',
-        'comment' => 'alpha_dash',
+        //'comment' => 'alpha_dash',
         'commented_to' => 'required|integer',
         'commented_by' => 'required|integer',
         'status' => 'alpha_dash',

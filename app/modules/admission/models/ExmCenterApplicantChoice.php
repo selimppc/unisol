@@ -15,8 +15,8 @@ class ExmCenterApplicantChoice extends Eloquent{
     private $rules = [
         'batch_applicant_id' => 'required|integer',
         'exm_center_id' => 'required|integer',
-        'note' => 'alpha_dash',
-        'status' => 'alpha_dash',
+        //'note' => 'alpha_dash',
+        //'status' => 'alpha_dash',
     ];
     public function validate($data)
     {

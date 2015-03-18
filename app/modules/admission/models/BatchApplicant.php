@@ -17,7 +17,7 @@ class BatchApplicant extends Eloquent{
         'applicant_id' => 'required|integer',
         'admtest_marks' => 'required|numeric',
         'merit_position' => 'required|numeric',
-        'status' => 'alpha_dash',
+        //'status' => 'alpha_dash',
     ];
     public function validate($data)
     {

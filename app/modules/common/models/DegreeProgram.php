@@ -10,9 +10,9 @@ class DegreeProgram extends \Eloquent
     ];
     private $errors;
     private $rules = [
-        'title' => 'required|alpha_dash',
+        'title' => 'required',
         'code' => 'required|alpha_dash',
-        'description' => 'alpha_dash',
+        //'description' => 'alpha_dash',
     ];
     public function validate($data)
     {
