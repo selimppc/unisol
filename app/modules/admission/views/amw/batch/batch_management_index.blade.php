@@ -5,6 +5,8 @@
 @section('content')
    <h1>Batch Management </h1>
 
+
+
 <div class="row">
            <div class="col-sm-12">
                <div class="pull-right col-sm-4">
@@ -113,7 +115,7 @@
 
                    <td>
                          <a href="{{ URL::to('batch/amw/show/'.$batch_list->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#modal" style="font-size: 12px;color: darkmagenta"><span class="fa fa-eye"></span></a>
-                         {{--<a class="btn btn-xs btn-default" href="{{ URL::to('batch/amw/edit/'.$batch_list->id) }}" data-toggle="modal" data-target="#modal" style="font-size: 12px;color: lightseagreen"><i class="fa fa-edit"></i></a>--}}
+                         <a class="btn btn-xs btn-default" href="{{ URL::to('batch/amw/edit/'.$batch_list->id) }}" data-toggle="modal" data-target="#modal" style="font-size: 12px;color: lightseagreen"><i class="fa fa-edit"></i></a>
 
                    </td>
 
@@ -131,7 +133,7 @@
 <p>&nbsp;</p><p>&nbsp;</p>
 
 <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog" style="z-index:1050">
           <div class="modal-content">
 
          </div>

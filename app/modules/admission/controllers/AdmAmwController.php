@@ -459,7 +459,9 @@ class AdmAmwController extends \BaseController
   public function degree_courses_index()
   {
      $course_list = Course::lists('title', 'id');
-     return View::make('admission::amw.degree_courses.index',compact('course_list'));
+     $deg_course_info = DegreeCourse::with('relCourse','relCourse.relSubject.relDepartment','relCourse.relCourseType')->get();
+      $deg_course = DegreeCourse::orderBy('id', 'DESC')->paginate(5);
+     return View::make('admission::amw.degree_courses.index',compact('course_list','deg_course_info','deg_course'));
   }
     public function degree_courses_save()
     {
@@ -473,8 +475,6 @@ class AdmAmwController extends \BaseController
             $degree_course ->degree_id =$deg_id;
             $degree_course->save();
         }
-
-
         Session::flash('message', 'Successfully Added!');
         return Redirect::to('admission/amw/degree_courses');
     }
