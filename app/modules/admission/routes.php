@@ -195,20 +195,20 @@ Route::get('batch/amw/show/{id}', [
     'as' => 'batch.amw.show',
     'uses' => 'AdmissionController@show'
 ]);
-//
-//Route::any('batch/amw/edit/{id}', [
-//    'as' => 'common.course.edit',
-//    'uses' => 'CourseController@edit'
-//]);
-//
-//Route::any('common/course/update/{id}', [
-//    'as' => 'common.course.update',
-//    'uses' => 'CourseController@update'
-//]);
-//
+
+Route::any('batch/amw/edit/{id}', [
+    'as' => 'common.amw.edit',
+    'uses' => 'AdmissionController@edit'
+]);
+
+Route::any('batch/amw/update/{id}', [
+    'as' => 'batch.amw.update',
+    'uses' => 'AdmissionController@update'
+]);
+
 //Route::any('common/course/destroy/{id}', [
 //    'as' => 'common.course.destroy',
-//    'uses' => 'CourseController@destroy'
+//    'uses' => 'AdmissionController@destroy'
 //]);
 //
 Route::any('batch/amw/batchDelete', [
