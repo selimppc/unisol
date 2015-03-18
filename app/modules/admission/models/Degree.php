@@ -84,4 +84,21 @@ class Degree extends Eloquent{
         });
     }
 
+    //TODO : Scope Area
+    public function scopeDegreeProgramGroup($query){
+        $query = $this::join('degree_program', function($query){
+            $query->on('degree_program.id', '=', 'degree.degree_program_id');
+        })
+            ->join('degree_group', function($query){
+                $query->on('degree_group.id', '=', 'degree.degree_group_id');
+            })
+            ->select(DB::raw('CONCAT(degree_program.title, " ", degree_group.title) as dp_name'), 'degree.id as deg_id')
+            ->lists('dp_name', 'deg_id');
+        if($query){
+            return $query;
+        }else{
+            return $query = [' ' => 'Degree program-group names are missing !'];
+        }
+    }
+
 } 

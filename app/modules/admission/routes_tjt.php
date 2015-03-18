@@ -248,13 +248,42 @@ Route::any('common/course-type/batch-delete',
 
 //{--------------------------------- Version:2 ->Degree -------------------------------------------------}
 
-Route::any('admission/degree',
-    ['as'=>'admission.degree.index',
+Route::any('admission/amw/degree',
+    ['as'=>'admission.amw.degree.index',
         'uses'=>'UserSignupController@admDegreeIndex']);
 
 
+Route::any('admission/amw/degree/create',
+    ['as'=>'common.amw.degree.create',
+        'uses'=>'UserSignupController@admDegreeCreate']);
 
 
+Route::any('admission/amw/degree/store',
+    ['as'=>'admission.amw.degree.store',
+        'uses'=>'UserSignupController@admDegreeStore']);
+
+
+Route::any('admission/amw/degree/show/{id}',
+    ['as'=>'admission.amw.degree.show',
+        'uses'=>'UserSignupController@admDegreeShow']);
+
+Route::any('admission/amw/degree/edit/{id}',
+    ['as'=>'admission.amw.degree.edit',
+        'uses'=>'UserSignupController@admDegreeEdit']);
+
+
+Route::any('admission/amw/degree/update/{id}',
+    ['as'=>'admission.amw.degree.update',
+        'uses'=>'UserSignupController@admDegreeUpdate']);
+
+Route::any('admission/amw/degree/delete/{id}',
+    ['as'=>'admission.amw.degree.delete',
+        'uses'=>'UserSignupController@admDegreeDelete']);
+
+
+Route::any('admission/amw/degree/search',
+    ['as'=>'admission.amw.degree.search',
+        'uses'=>'UserSignupController@admDegreeSearch']);
 
 
 
