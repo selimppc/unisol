@@ -428,7 +428,7 @@ class UserSignupController extends \BaseController {
         $data = Input::all();
 
         if($model->validate($data)){
-            if($model->save()){
+            if($model->update($data)){
                 Session::flash('message','Successfully Updated Information!');
                 return Redirect::back();
             }
@@ -467,6 +467,85 @@ class UserSignupController extends \BaseController {
         foreach($result as $value){
             $model = Degree::with( 'relDepartment' )->where('department_id', '=', $value);
             $dep_data[] = $model->get();
+        }
+    }
+
+//{------------------------------------ Degree Waiver --------------------------------------------------------------------------}
+
+    public function admBatchWaiverIndex(){
+
+        $model = BatchWaiver::latest('id')->paginate(5);
+
+        return View::make('admission::amw.batch_waiver.batch_waiver_index',
+                  compact('model'));
+    }
+
+    public function  admBatchWaiverCreate()
+    {
+        $batch = array('' => 'Select Batch ') + Batch::lists('batch_number','id');
+        $waiver = array('' => 'Select Waiver ') + Waiver::lists('title', 'id');
+
+        return View::make('admission::amw.batch_waiver.batch_waiver_form',
+                  compact('batch','waiver'));
+    }
+
+    public function admBatchWaiverStore()
+    {
+        $data = Input::all();
+        $model = new BatchWaiver();
+
+        if($model->validate($data)){
+            if($model->create($data)){
+                Session::flash('message','Successfully added Information!');
+                return Redirect::back();
+            }
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back();
+        }
+    }
+
+    public function admBatchWaiverShow($id)
+    {
+        $model = BatchWaiver::find($id);
+        return View::make('admission::amw.batch_waiver.batch_waiver_show',compact('model'));
+    }
+
+    public function  admBatchWaiverEdit($id)
+    {
+        $model = BatchWaiver::findOrFail($id);
+        $batch = array('' => 'Select Batch ') + Batch::lists('batch_number','id');
+        $waiver = array('' => 'Select Waiver ') + Waiver::lists('title', 'id');
+        return View::make('admission::amw.batch_waiver.batch_waiver_edit',
+                  compact('model','batch','waiver'));
+    }
+
+    public function admBatchWaiverUpdate($id)
+    {
+        $model = BatchWaiver::find($id);
+        $data = Input::all();
+
+        if($model->validate($data)){
+            if($model->update($data)){
+                Session::flash('message','Successfully Updated Information!');
+                return Redirect::back();
+            }
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back();
+        }
+    }
+
+    public function admBatchWaiverDelete($id)
+    {
+        try {
+            BatchWaiver::find($id)->delete();
+            return Redirect::back()->with('message', 'Successfully deleted Information!');
+        }
+        catch(exception $ex){
+            return Redirect::back()->with('danger', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
         }
     }
 
