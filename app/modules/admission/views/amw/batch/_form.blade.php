@@ -1,61 +1,66 @@
 <div class="modal-header">
 
     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-    <h4 class="modal-title" id="myModalLabel"> Add Course</h4>
+    <h4 class="modal-title" id="myModalLabel"> Add Batch</h4>
 </div>
 
 <div class="modal-body">
      <div style="padding: 20px;">
-        {{Form::open(array('url'=>'common/course/store', 'class'=>'form-horizontal','files'=>true))}}
+        {{Form::open(array('url'=>'batch/amw/store', 'class'=>'form-horizontal','files'=>true))}}
 
                 <div class='form-group'>
-                           {{ Form::label('title', 'Course Name') }}
-                           {{ Form::text('title', Input::old('title'),['class'=>'form-control','required'=>'required']) }}
+                           {{ Form::label('degree_id', 'Degree') }}
+                           {{ Form::select('degree_id',$degree_list,null,['class'=>'form-control']) }}
                 </div>
 
                 <div class='form-group'>
-                           {{ Form::label('course_code', 'Course Code') }}
-                           {{ Form::text('course_code', Input::old('course_code'),['class'=>'form-control','required'=>'required']) }}
+                           {{ Form::label('year_id', 'Year') }}
+                           {{ Form::select('year_id',$year_list,null,['class'=>'form-control']) }}
                 </div>
 
-                <div class='form-group'>
-                           {{ Form::label('subject_id', 'Subject Name') }}
-                           {{ Form::select('subject_id',$subject_id_result,null,['class'=>'form-control']) }}
-                </div>
+                 <div class='form-group'>
+                           {{ Form::label('semester_id', 'Semester') }}
+                           {{ Form::select('semester_id',$semester_list,null,['class'=>'form-control']) }}
+                 </div>
 
                 <div class='form-group'>
                            {{ Form::label('description', 'Description') }}
-                           {{ Form::text('description', Input::old('description'),['class'=>'form-control','required'=>'required']) }}
+                           {{ Form::textarea('description', Input::old('description'),['class'=>'form-control','required'=>'required']) }}
                 </div>
 
                 <div class='form-group'>
-                            {{ Form::label('evaluation_total_marks', 'Evaluation of Total Marks') }}
-                            {{ Form::text('evaluation_total_marks', Input::old('evaluation_total_marks'),['class'=>'form-control','required'=>'required']) }}
+                           {{ Form::label('batch_number', 'Batch Number') }}
+                           {{ Form::text('batch_number', Input::old('batch_number'),['class'=>'form-control','required'=>'required']) }}
                 </div>
 
                 <div class='form-group'>
-                            {{ Form::label('credit', 'Credit') }}
-                            {{ Form::text('credit', Input::old('credit'),['class'=>'form-control','required'=>'required']) }}
+                           {{ Form::label('seat_total', 'Total Seat') }}
+                           {{ Form::text('seat_total', Input::old('seat_total'),['class'=>'form-control','required'=>'required']) }}
                 </div>
 
                 <div class='form-group'>
-                            {{ Form::label('hours_per_credit', 'Hours Per Credit') }}
-                            {{ Form::text('hours_per_credit', Input::old('hours_per_credit'),['class'=>'form-control','required'=>'required']) }}
+                           {{ Form::label('start_date', 'Start Date') }}
+                           {{ Form::text('start_date', Input::old('start_date'),['class'=>'form-control','required'=>'required']) }}
                 </div>
 
                 <div class='form-group'>
-                            {{ Form::label('cost_per_credit', 'Cost Per Credit') }}
-                            {{ Form::text('cost_per_credit', Input::old('cost_per_credit'),['class'=>'form-control','required'=>'required']) }}
+                           {{ Form::label('end_date', 'End Date') }}
+                           {{ Form::text('end_date', Input::old('end_date'),['class'=>'form-control','required'=>'required']) }}
                 </div>
 
                 <div class='form-group'>
-                            {{ Form::label('course_type_id', 'Course Type') }}
-                            {{ Form::select('course_type_id',$course_type_id_result,null,['class'=>'form-control input-sm'])}}
+                           {{ Form::label('admission_deadline', 'Admission Deadline') }}
+                           {{ Form::text('admission_deadline', Input::old('admission_deadline'),['class'=>'form-control','required'=>'required']) }}
                 </div>
 
                 <div class='form-group'>
-                            {{ Form::label('evaluation_system', 'Evaluation System') }}
-                            {{ Form::select('evaluation_system', array('' => 'Select one','automatic' => 'automatic', 'manual' => 'manual'), Input::old('evaluation_system'),['class'=>'form-control input-sm']) }}
+                           {{ Form::label('admtest_date', 'Admission Test Date') }}
+                           {{ Form::text('admtest_date', Input::old('admtest_date'),['class'=>'form-control','required'=>'required']) }}
+                </div>
+
+                <div class='form-group'>
+                           {{ Form::label('admtest_start_time', 'Admission Test Start Time') }}
+                           {{ Form::text('admtest_start_time', Input::old('admtest_start_time'),['class'=>'form-control','required'=>'required']) }}
                 </div>
 
 

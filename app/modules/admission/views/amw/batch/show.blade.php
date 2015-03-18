@@ -9,7 +9,6 @@
             <h2><strong>Batch Number :</strong>{{ $b_m_course->batch_number }}</h2>
             <p>
                 <strong> Degree:</strong> {{ $b_m_course->relDegree->title }} <br>
-
                 <strong> Year:</strong> {{ $b_m_course->relYear->title }}<br>
                 <strong> Semester:</strong> {{ $b_m_course->relSemester->title }}<br>
                 <strong> Description:</strong> {{ $b_m_course->description }}<br>
@@ -18,6 +17,7 @@
                 <strong> End Date:</strong> {{ $b_m_course->end_date }}<br>
                 <strong> Admission Deadline:</strong> {{ $b_m_course->admission_deadline }}<br>
                 <strong> Admission Test Date:</strong> {{ $b_m_course->admtest_date }}<br>
+                <strong> Admission Test Start Time:</strong> {{ $b_m_course->admtest_start_time }}<br>
 
             </p>
         </div>

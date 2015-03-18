@@ -3,17 +3,17 @@
     @include('layouts._sidebar_amw')
 @stop
 @section('content')
-   <h1>Welcome to Batch Management </h1>
+   <h1>Batch Management </h1>
 
 <div class="row">
-           {{--<div class="col-sm-12">--}}
-               {{--<div class="pull-right col-sm-4">--}}
-                   {{--<a class="pull-right btn btn-sm btn-info" href="{{ URL::to('common/course/create')}}" data-toggle="modal" data-target="#modal" >Add</a>--}}
-               {{--</div>--}}
-           {{--</div>--}}
+           <div class="col-sm-12">
+               <div class="pull-right col-sm-4">
+                   <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('batch/amw/create')}}" data-toggle="modal" data-target="#modal" >New Batch</a>
+               </div>
+           </div>
 </div>
 
-{{--{{ Form::open(array('url' => 'common/course/batchDelete')) }}--}}
+{{ Form::open(array('url' => 'batch/amw/batchDelete')) }}
 
         <table id="example" class="table table-striped  table-bordered"  >
             <thead>
@@ -33,20 +33,20 @@
             </thead>
             <tbody>
             @if(isset($batch_management))
-              @foreach($batch_management as $course_list)
+              @foreach($batch_management as $batch_list)
                 <tr>
 
-                   <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $course_list->id }}"></td>
-                   <td>{{ $course_list->relDegree->title }}</td>
-                   <td>{{ $course_list->batch_number }}</td>
-                   <td>{{ $course_list->relDegree->relDepartment->title }}</td>
-                   <td>{{ $course_list->relYear->title }}</td>
-                   <td>{{ $course_list->relSemester->title }}</td>
-                    <td>{{ $course_list->status }}</td>
+                   <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $batch_list->id }}"></td>
+                   <td>{{ $batch_list->relDegree->title }}</td>
+                   <td>{{ $batch_list->batch_number }}</td>
+                   <td>{{ $batch_list->relDegree->relDepartment->title }}</td>
+                   <td>{{ $batch_list->relYear->title }}</td>
+                   <td>{{ $batch_list->relSemester->title }}</td>
+                    <td>{{ $batch_list->status }}</td>
 
                    <td>
-                         <a href="{{ URL::to('batch/amw/show/'.$course_list->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#modal" style="font-size: 12px;color: darkmagenta"><span class="fa fa-eye"></span></a>
-                         {{--<a class="btn btn-xs btn-default" href="{{ URL::to('batch/amw/edit/'.$course_list->id) }}" data-toggle="modal" data-target="#modal" style="font-size: 12px;color: lightseagreen"><i class="fa fa-edit"></i></a>--}}
+                         <a href="{{ URL::to('batch/amw/show/'.$batch_list->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#modal" style="font-size: 12px;color: darkmagenta"><span class="fa fa-eye"></span></a>
+                         {{--<a class="btn btn-xs btn-default" href="{{ URL::to('batch/amw/edit/'.$batch_list->id) }}" data-toggle="modal" data-target="#modal" style="font-size: 12px;color: lightseagreen"><i class="fa fa-edit"></i></a>--}}
 
                    </td>
 
@@ -57,7 +57,7 @@
             </tbody>
         </table>
 
-        {{--{{form::close() }}--}}
+        {{form::close() }}
 <div class="text-right">
     {{ $batch_management->links() }}
 </div>
@@ -70,29 +70,6 @@
          </div>
         </div>
    </div>
-
-
-
-<!-- Modal for delete -->
-  <div class="modal fade " id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>
-            </div>
-            <div class="modal-body">
-                  <strong>Are you sure to delete?</strong>
-
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-              <a href="#" class="btn btn-danger danger">Delete</a>
-
-            </div>
-      </div>
-    </div>
-  </div>
 
 
 @stop
