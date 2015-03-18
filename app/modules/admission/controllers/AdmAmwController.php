@@ -455,4 +455,29 @@ class AdmAmwController extends \BaseController
     }
 
 
+   //******************************Degree Courses start(R)*****************************
+  public function degree_courses_index()
+  {
+     $course_list = Course::lists('title', 'id');
+     return View::make('admission::amw.degree_courses.index',compact('course_list'));
+  }
+    public function degree_courses_save()
+    {
+        $data = Input::all();
+        $select = Input::get('course_list');
+        $deg_id = Input::get('degree_id');
+        foreach($select as $value)
+        {
+            $degree_course = new DegreeCourse();
+            $degree_course ->course_id =$value;
+            $degree_course ->degree_id =$deg_id;
+            $degree_course->save();
+        }
+
+
+        Session::flash('message', 'Successfully Added!');
+        return Redirect::to('admission/amw/degree_courses');
+    }
+
+
 }
