@@ -11,4 +11,32 @@
 
    {{ Form::text('title', null, ['data-toggle'=>'tooltip', 'data-placement'=>'left', 'title'=>'Tooltip on left']) }}
 
+<div>
+    <h3>Date Picker</h3>
+    <div class="widget-main">
+        <div class="row-fluid">
+            <label for="id-date-picker-1">Date Picker</label>
+        </div>
+
+        <div class="control-group">
+            <div class="row-fluid input-append">
+                <input class="date-picker" id="id-date-picker-1" type="text" />
+                <span class="add-on">
+                    <i class="icon-calendar"></i>
+                </span>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    $(function() {
+        $('.date-picker').datepicker().next().on(ace.click_event, function(){
+            $(this).prev().focus();
+        });
+    });
+</script>
 @stop
