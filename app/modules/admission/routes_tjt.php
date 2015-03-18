@@ -245,8 +245,9 @@ Route::any('common/course-type/batch-delete',
     ['as'=>'common.course-type.batch-delete',
         'uses'=>'CourseTypeController@batchDelete']);
 
+//---------------------------------------Version : 2 Starts Here-----------------------------------------------------
 
-//{--------------------------------- Version:2 ->Degree -------------------------------------------------}
+//{--------------------------------------- Degree -------------------------------------------------------------}
 
 Route::any('admission/amw/degree',
     ['as'=>'admission.amw.degree.index',
@@ -284,6 +285,38 @@ Route::any('admission/amw/degree/delete/{id}',
 Route::any('admission/amw/degree/search',
     ['as'=>'admission.amw.degree.search',
         'uses'=>'UserSignupController@admDegreeSearch']);
+
+
+//{--------------------------------------- Degree-Waiver -------------------------------------------------------------}
+
+Route::any('admission/amw/batch-waiver',
+    ['as'=>'admission.amw.batch-waiver.index',
+         'uses'=>'UserSignupController@admBatchWaiverIndex']);
+
+Route::any('admission/amw/batch-waiver/create',
+    ['as'=>'admission.amw.batch-waiver.create',
+        'uses'=>'UserSignupController@admBatchWaiverCreate']);
+
+Route::any('admission/amw/batch-waiver/store',
+    ['as'=>'admission.amw.batch-waiver.store',
+        'uses'=>'UserSignupController@admBatchWaiverStore']);
+
+Route::any('admission/amw/batch-waiver/show/{id}',
+    ['as'=>'admission.amw.batch-waiver.show',
+        'uses'=>'UserSignupController@admBatchWaiverShow']);
+
+Route::any('admission/amw/batch-waiver/edit/{id}',
+    ['as'=>'admission.amw.batch-waiver.edit',
+        'uses'=>'UserSignupController@admBatchWaiverEdit']);
+
+Route::any('admission/amw/batch-waiver/update/{id}',
+    ['as'=>'admission.amw.batch-waiver.update',
+        'uses'=>'UserSignupController@admBatchWaiverUpdate']);
+
+Route::any('admission/amw/batch-waiver/delete/{id}',
+    ['as'=>'admission.amw.batch-waiver.delete',
+        'uses'=>'UserSignupController@admBatchWaiverDelete']);
+
 
 
 
