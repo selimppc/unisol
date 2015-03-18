@@ -53,11 +53,12 @@
                             <td class="subTitle">{{ $value->title }}</td>
                             <td class="subDesc">{{ $value->description }}</td>
                             <td>
-                                <a data-href="{{ URL::to('subject/delete/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa  fa-trash-o" style="color: red"></i></a>
+
+                                <a href="{{ URL::route('common/subject/show', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#show" href="" ><i class="fa fa-eye" style="color: green"></i></a>
 
                                 <a href="{{ URL::route('subject.edit', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#edit-modal" href="" ><i class="fa fa-pencil-square-o" style="color: #0044cc"></i></a>
 
-                                <a href="{{ URL::route('common/subject/show', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#show" href="" ><i class="fa fa-eye" style="color: green"></i></a>
+                                <a data-href="{{ URL::to('subject/delete/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa  fa-trash-o" style="color: red"></i></a>
                             </td>
                         </tr>
                     @endforeach

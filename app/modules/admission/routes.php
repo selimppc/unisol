@@ -18,8 +18,7 @@ Shafi
 */
 
 include("routes_tjt.php");
-
-
+include("routes_ra.php");
 
 // ----------------------------------------AMW : Admission Test --------------------------------------------------------
 

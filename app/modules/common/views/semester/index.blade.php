@@ -34,11 +34,10 @@
                     <td>{{ $semester->title }}</td>
                     <td>{{ $semester->description }}</td>
                     <td>
-                        <a data-href="{{ URL::route('semester.destroy',['id'=>$semester->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa  fa-trash-o" style="color: red"></i></a>
+                        <a href="{{ URL::route('semester.show', ['id'=>$semester->id])  }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" data-toggle="tooltip" data-placement="left" title="Show/View" href=""><i class="fa fa-eye" style="color: green"></i></a>
 
                         <a href="{{ URL::route('semester.edit', ['id'=>$semester->id])  }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#edit-modal" data-toggle="tooltip" data-placement="left" title="Edit" href="#"><i class="fa fa-pencil-square-o" style="color: #0044cc"></i></a>
-
-                        <a href="{{ URL::route('semester.show', ['id'=>$semester->id])  }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" data-toggle="tooltip" data-placement="left" title="Show/View" href=""><i class="fa fa-eye" style="color: green"></i></a>
+                        <a data-href="{{ URL::route('semester.destroy',['id'=>$semester->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa  fa-trash-o" style="color: red"></i></a>
                     </td>
                 </tr>
             @endforeach
