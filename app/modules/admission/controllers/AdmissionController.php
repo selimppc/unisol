@@ -475,7 +475,6 @@ class AdmissionController extends \BaseController {
 
 //.................................................Batch Management....................................................
 
-
     public function batchManagementIndex()
     {
         $batch_management = Batch::latest('id')->paginate(10);
@@ -483,8 +482,6 @@ class AdmissionController extends \BaseController {
         $dpg_list = Degree::DegreeProgramGroup();
         $year_list = array('' => 'Year ') +Year::lists('title', 'id');
         $department_list = array('' => 'Department ') +Department::lists('title', 'id');
-
-
 
         return View::make('admission::amw.batch.batch_management_index',
             compact('batch_management','dpg_list','year_list','department_list'));
@@ -498,9 +495,8 @@ class AdmissionController extends \BaseController {
 
     public function create()
     {
-
         $dpg_list = array('' => 'Degree with Program ') +Degree::DegreeProgramGroup();
-        print_r($dpg_list);exit;
+
         $year_list = array('' => 'Year ') +Year::lists('title', 'id');
         $semester_list = array('' => 'Semester ') +Semester::lists('title', 'id');
 
@@ -509,9 +505,6 @@ class AdmissionController extends \BaseController {
 
     public function store()
     {
-
-
-
         $data = Input::all();
 
         $model = new Batch();
@@ -529,16 +522,16 @@ class AdmissionController extends \BaseController {
 
     }
 
-//    public function edit($id)
-//    {
-//        $course = Course::find($id);
-//
-//        $subject_name = Subject::lists('title','id');
-//        $course_type_name = CourseType::lists('title','id');
-//
-//        return View::make('common::course.edit',compact('course','subject_name','course_type_name'));
-//    }
-//
+    public function edit($id)
+    {
+        $batch_edit = Batch::find($id);
+
+        $subject_name = Subject::lists('title','id');
+        $course_type_name = CourseType::lists('title','id');
+
+        return View::make('admission::amw.batch.edit',compact('batch_edit','subject_name','course_type_name'));
+    }
+
 //    public function update($id)
 //    {
 //        $model = Course::find($id);
