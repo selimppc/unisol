@@ -35,11 +35,25 @@
 
 
 <!-- Admission Module -->
+
 <li class="dropdown messages-menu">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
         Admission
     </a>
     <ul class="dropdown-menu">
+
+        <li class="footer">
+               <a href="">Version 2 </a>
+        </li>
+
+        <li><a tabindex="-1" a href="{{ URL::to('admission_test/amw/batch') }}"></i>Batch (Amw)</a></li>
+
+
+
+        <li class="footer">
+           <a href="">Version 1 </a>
+        </li>
+
         <li><a tabindex="-1" a href="{{ URL::to('admission/amw/course_conduct/index') }}"> Course Management(Amw) </a></li>
         <li><a tabindex="-1" a href="{{ URL::to('amw/degree_manage') }}"> Degree Management(Amw) </a></li>
         <li><a tabindex="-1" a href="{{ URL::to('admission/public/degree_list') }}"> Admission (Public) </a></li>
@@ -47,8 +61,11 @@
         <li><a tabindex="-1" a href="{{ URL::to('admission_test/amw/mng_adm_test_subject') }}"></i>Mng Admssn Tst Sbjct(Amw)</a></li>
         <li><a tabindex="-1" a href="{{ URL::to('admission_test/amw/adm-test-degree') }}"></i>Adm Test:Degree (Amw)</a></li>
         <li><a tabindex="-1" a href="{{ URL::to('admission_test/amw/adm-test-subject') }}"></i>Adm Test:Subject (Amw)</a></li>
+
+
     </ul>
 </li>
+
 
 <!-- Academic Module -->
 <li class="dropdown messages-menu">
