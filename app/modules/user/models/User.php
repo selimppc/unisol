@@ -155,7 +155,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
 
     public function scopeFullName($query , $user_id){
-        $query = UserProfile::select(DB::raw('CONCAT(first_name, " ", last_name) AS full_name'))
+        $query = UserProfile::select(DB::raw('CONCAT(first_name, " ", middle_name, " ", last_name) AS full_name'))
                 ->where('user_id', '=', $user_id)
                 ->first()->full_name;
         return $query;
