@@ -428,7 +428,7 @@ class UserSignupController extends \BaseController {
         $data = Input::all();
 
         if($model->validate($data)){
-            if($model->save()){
+            if($model->update($data)){
                 Session::flash('message','Successfully Updated Information!');
                 return Redirect::back();
             }
@@ -474,7 +474,7 @@ class UserSignupController extends \BaseController {
 
     public function admBatchWaiverIndex(){
 
-        $model = BatchWaiver::orderby('id', 'DESC')->paginate(5);
+        $model = BatchWaiver::latest('id')->paginate(5);
 
         return View::make('admission::amw.batch_waiver.batch_waiver_index',
                   compact('model'));
@@ -514,7 +514,7 @@ class UserSignupController extends \BaseController {
 
     public function  admBatchWaiverEdit($id)
     {
-        $model = BatchWaiver::find($id);
+        $model = BatchWaiver::findOrFail($id);
         $batch = array('' => 'Select Batch ') + Batch::lists('batch_number','id');
         $waiver = array('' => 'Select Waiver ') + Waiver::lists('title', 'id');
         return View::make('admission::amw.batch_waiver.batch_waiver_edit',
@@ -527,7 +527,7 @@ class UserSignupController extends \BaseController {
         $data = Input::all();
 
         if($model->validate($data)){
-            if($model->save()){
+            if($model->update($data)){
                 Session::flash('message','Successfully Updated Information!');
                 return Redirect::back();
             }

@@ -7,15 +7,15 @@
 <div class="modal-body">
       <div style="padding: 20px;">
 
-          {{Form::open(array('route'=> ['admission.amw.batch-waiver.update',$model->id], 'class'=>'form-horizontal','files'=>true))}}
+          {{Form::open( array('route'=> ['admission.amw.batch-waiver.update',$model->id], 'class'=>'form-horizontal','files'=>true))}}
 
          <div class='form-group'>
                <div>{{ Form::label('batch_id', 'Batch') }}</div>
-               <div>{{ Form::select('batch_id',$batch,$model->batch_id,['class'=>'form-control input-sm','required']) }}</div>
+               <div>{{ Form::select('batch_id', $batch, $model->batch_id,['class'=>'form-control input-sm','required']) }}</div>
          </div>
          <div class='form-group'>
              <div>{{ Form::label('waiver_id', 'Waiver') }}</div>
-             <div>{{ Form::select('waiver_id',$waiver,$model->waiver_id,['class'=>'form-control input-sm','required']) }}</div>
+             <div>{{ Form::select('waiver_id', $waiver, $model->waiver_id,['class'=>'form-control input-sm','required']) }}</div>
          </div>
 
           {{ Form::submit('Update', array('class'=>'pull-right btn btn-primary')) }}
