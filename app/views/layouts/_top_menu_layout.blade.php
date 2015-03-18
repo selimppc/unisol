@@ -46,7 +46,7 @@
                <a href="">Version 2 </a>
         </li>
 
-        <li><a tabindex="-1" a href="{{ URL::to('admission_test/amw/batch') }}"></i>Batch (Amw)</a></li>
+        <li><a tabindex="-1" a href="{{ URL::to('batch/amw/batch-management') }}"></i>Batch (Amw)</a></li>
 
 
 

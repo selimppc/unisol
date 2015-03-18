@@ -173,3 +173,45 @@ Route::any('admission_test/amw/update_subject_management/{id}', [
 
 
 
+// ----------------------------------------AMW : Batch Management --------------------------------------------------------
+
+
+Route::any('batch/amw/batch-management',[
+    'as' => 'batch.amw.batch-management',
+    'uses' => 'AdmissionController@batchManagementIndex'
+]);
+//
+//Route::any('common/course/create',[
+//    'as' => 'common.course.create',
+//    'uses' => 'CourseController@create'
+//]);
+//
+//Route::any('common/course/store', [
+//    'as' => 'common.course.store',
+//    'uses' => 'CourseController@store'
+//]);
+//
+Route::get('batch/amw/show/{id}', [
+    'as' => 'batch.amw.show',
+    'uses' => 'AdmissionController@show'
+]);
+//
+//Route::any('batch/amw/edit/{id}', [
+//    'as' => 'common.course.edit',
+//    'uses' => 'CourseController@edit'
+//]);
+//
+//Route::any('common/course/update/{id}', [
+//    'as' => 'common.course.update',
+//    'uses' => 'CourseController@update'
+//]);
+//
+//Route::any('common/course/destroy/{id}', [
+//    'as' => 'common.course.destroy',
+//    'uses' => 'CourseController@destroy'
+//]);
+//
+//Route::any('common/course/batchDelete', [
+//    'as' => 'common.course.batchDelete',
+//    'uses' => 'CourseController@batchDelete'
+//]);
