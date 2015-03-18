@@ -45,8 +45,9 @@
         <li class="footer">
                <a href="">Version 2 </a>
         </li>
-
+         <li><a tabindex="-1" a href="{{ URL::to('admission/amw/degree') }}"></i>Degree (Amw)</a></li>
         <li><a tabindex="-1" a href="{{ URL::to('batch/amw/batch-management') }}"></i>Batch (Amw)</a></li>
+        <li><a tabindex="-1" a href="{{ URL::to('admission/amw/degree_courses') }}"></i>Degree Courses </a></li>
 
 
 

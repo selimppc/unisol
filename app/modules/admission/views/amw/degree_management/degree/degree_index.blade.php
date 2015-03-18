@@ -65,7 +65,7 @@
                                                                  <a href="{{ URL::to('admission/amw/degree/show/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#degreeModal" style="font-size: 12px;color: darkmagenta"><span class="fa fa-eye"></span></a>
                                                                  <a class="btn btn-xs btn-default" href="{{ URL::to('admission/amw/degree/edit/'.$value->id) }}" data-toggle="modal" data-target="#degreeModal" style="font-size: 12px;color: lightseagreen"><i class="fa fa-edit"></i></a>
                                                                  <a data-href="{{ URL::to('admission/amw/degree/delete/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" style="font-size: 12px;color: lightcoral"><span class="fa  fa-trash-o"></span></a>
-                                                                 <a href="{{ URL::route('degree_manage.waiver', $value->id) }}">DC</a>
+                                                                 <a href="{{ URL::route('degree_manage.waiver', $value->id) }}" class="btn btn-xs btn-default" style="font-size: 12px;color: darkmagenta">DC</a>
 
                                                             </td>
                                                         </tr>
