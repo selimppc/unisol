@@ -191,7 +191,7 @@
         {{ HTML::script('assets/etsb/etsb_js/datatables/dataTables.bootstrap.js')}}
         {{ HTML::script('assets/etsb/etsb_js/etsb_custom.js')}}
 
-        // Ratna
+        {{--// Ratna  //--}}
         {{ HTML::script('assets/js/ratna_script.js')}}
         @yield('script_section')
 
