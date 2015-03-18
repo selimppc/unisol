@@ -248,7 +248,9 @@ Route::any('common/course-type/batch-delete',
 
 //{--------------------------------- Version:2 ->Degree -------------------------------------------------}
 
-
+Route::any('admission/degree',
+    ['as'=>'admission.degree.index',
+        'uses'=>'UserSignupController@admDegreeIndex']);
 
 
 
