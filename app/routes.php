@@ -150,7 +150,7 @@ Route::group( array('before' => 'auth'), function(){
     ==================================================================
     */
 
-//{---------------------------------Degree Group--------------------------------------------------------}
+//{---------------------------------Version:2 -> Degree Group------------------------------------}
 
     Route::any('common/degree-group',
         ['as'=>'common.degree-group.index',
@@ -185,7 +185,7 @@ Route::group( array('before' => 'auth'), function(){
             ['as'=>'common.degree-group.batch_delete',
             'uses'=>'DegreeGroupController@degreeGroupBatchDelete']);
 
-// {--------------------------------------Exm-Center---------------------------------------------------------}
+// {------------------------------- Version:2 -> Exm-Center------------------------------------}
     Route::any('common/exm-center',
            ['as'=>'common.exm-center.index',
             'uses'=>'ExamCenterController@exmCenterIndex']);
@@ -218,7 +218,7 @@ Route::group( array('before' => 'auth'), function(){
            ['as'=>'common.exm-center.update',
             'uses'=>'ExamCenterController@exmCenterUpdate']);
 
-//{------------------------------------Waiver------------------------------------------------------------}
+//{------------------------------------ Waiver ---------------------------------------------------------}
 
     Route::any('common/waiver/index',
           ['as'=>'common.waiver.index',

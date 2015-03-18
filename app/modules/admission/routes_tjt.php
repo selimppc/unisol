@@ -170,7 +170,7 @@ Route::any('admission/public/admission/checkout/',
         'uses' => 'AdmPublicController@admDegAptCheckout']);
 
 
-//{-----------------------------------Degree Program-------------------------------------------------------------------}
+//{----------------------------------- Version:2 -> Degree Program -------------------------------------------------------------------}
 
 Route::any('common/degree-program',
     ['as'=>'common.degree-program.index',
@@ -206,7 +206,7 @@ Route::any('common/degree-program/batch_delete',
         'uses'=>'DegreeProgramController@degreeProgramBatchDelete']);
 
 
-//{-------------------------------Course Type--------------------------------------------------------------------------}
+//{-------------------------------Version:2 -> Course Type--------------------------------------------------------------------------}
 
 Route::any('common/course-type',
         ['as'=>'common.course-type.index',
@@ -244,6 +244,9 @@ Route::any('common/course-type/delete/{id}',
 Route::any('common/course-type/batch-delete',
     ['as'=>'common.course-type.batch-delete',
         'uses'=>'CourseTypeController@batchDelete']);
+
+
+//{--------------------------------- Version:2 ->Degree -------------------------------------------------}
 
 
 
