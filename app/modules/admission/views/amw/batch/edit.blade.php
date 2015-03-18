@@ -7,52 +7,65 @@
 <div class="modal-body">
       <div style="padding: 20px;">
 
-          {{Form::open(array('route'=> ['batch.amw.update',$batch_edit->id], 'class'=>'form-horizontal','files'=>true))}}
+          {{Form::open(array('route'=> ['admission.amw.update',$batch_edit->id], 'class'=>'form-horizontal','files'=>true))}}
+
 
                 <div class='form-group'>
-                       {{ Form::label('title', 'Course Name') }}
-                       {{ Form::text('title',$batch_edit->title ,['class'=>'form-control input-sm','required'])}}
+                           {{ Form::label('degree_id', 'Degree') }}
+                           {{ Form::select('degree_id',$dpg_list,$batch_edit->degree_id,['class'=>'input-sm form-control']) }}
                 </div>
 
                 <div class='form-group'>
-                       {{ Form::label('course_code', 'Course Code') }}
-                       {{ Form::text('course_code', $batch_edit->course_code,['class'=>'form-control input-sm'])}}
+                           {{ Form::label('year_id', 'Year') }}
+                           {{ Form::select('year_id',$year_list,$batch_edit->year_id,['class'=>'input-sm form-control']) }}
+                </div>
+
+                 <div class='form-group'>
+                           {{ Form::label('semester_id', 'Semester') }}
+                           {{ Form::select('semester_id',$semester_list,$batch_edit->semester_id,['class'=>'input-sm form-control']) }}
+                 </div>
+
+                <div class='form-group'>
+                           {{ Form::label('description', 'Description') }}
+                           {{ Form::textarea('description', $batch_edit->description,Input::old('description'),['size' => '30x5','class'=>'input-sm form-control','required'=>'required']) }}
                 </div>
 
                 <div class='form-group'>
-                       {{ Form::label('subject_id', 'Subject Name') }}
-                       {{ Form::Select('subject_id',$subject_name ,$batch_edit->subject_id,['class'=>'form-control input-sm'])}}
+                           {{ Form::label('batch_number', 'Batch Number') }}
+                           {{ Form::text('batch_number', $batch_edit->batch_number,['class'=>'form-control input-sm','required'=>'required']) }}
                 </div>
 
                 <div class='form-group'>
-                    {{ Form::label('description', 'Description') }}
-                    {{ Form::text('description' ,$batch_edit->description,['class'=>'form-control input-sm','required'])}}
+                           {{ Form::label('seat_total', 'Total Seat') }}
+                           {{ Form::text('seat_total', $batch_edit->seat_total,['class'=>'form-control input-sm','required'=>'required']) }}
                 </div>
 
                 <div class='form-group'>
-                    {{ Form::label('evaluation_total_marks', 'Evaluation Total Marks') }}
-                    {{ Form::text('evaluation_total_marks' ,$batch_edit->evaluation_total_marks,['class'=>'form-control input-sm','required'])}}
+                           {{ Form::label('start_date', 'Start Date') }}
+                           {{ Form::text('start_date', $batch_edit->start_date,['class'=>'form-control date-picker input-sm']) }}
                 </div>
 
                 <div class='form-group'>
-                    {{ Form::label('credit', 'Credit') }}
-                    {{ Form::text('credit' ,$batch_edit->credit,['class'=>'form-control input-sm','required'])}}
+                           {{ Form::label('end_date', 'End Date') }}
+                           {{ Form::text('end_date', $batch_edit->end_date,['class'=>'form-control date-picker input-sm','required'=>'required']) }}
                 </div>
 
                 <div class='form-group'>
-                    {{ Form::label('hours_per_credit', 'Hours Per Credit') }}
-                    {{ Form::text('hours_per_credit' ,$batch_edit->hours_per_credit,['class'=>'form-control input-sm','required'])}}
+                           {{ Form::label('admission_deadline', 'Admission Deadline') }}
+                           {{ Form::text('admission_deadline',$batch_edit->admission_deadline,['class'=>'form-control input-sm date-picker','required'=>'required']) }}
                 </div>
 
                 <div class='form-group'>
-                    {{ Form::label('cost_per_credit', 'Cost Per Credit') }}
-                    {{ Form::text('cost_per_credit' ,$batch_edit->cost_per_credit,['class'=>'form-control input-sm','required'])}}
+                           {{ Form::label('admtest_date', 'Admission Test Date') }}
+                           {{ Form::text('admtest_date', $batch_edit->admtest_date,['class'=>'form-control date-picker input-sm','required'=>'required']) }}
                 </div>
 
                 <div class='form-group'>
-                    {{ Form::label('course_type_id', 'Course Type') }}
-                    {{ Form::select('course_type_id',$batch_edit,$course->course_type_id,['class'=>'form-control input-sm'])}}
+                           {{ Form::label('admtest_start_time', 'Admission Test Start Time') }}
+                           {{ Form::text('admtest_start_time', $batch_edit->admtest_start_time,['class'=>'form-control input-sm','required'=>'required']) }}
+                           {{--<input type="time" name="admtest_start_time" class="form-control"/>--}}
                 </div>
+
 
 
           <p>&nbsp;</p>

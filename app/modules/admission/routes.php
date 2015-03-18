@@ -107,8 +107,6 @@ Route::any('admission_test/amw/edit_admtest_subject/{id}', [
     'uses' => 'AdmissionController@editAdmTestSubject'
 ]);
 
-//update route
-
 // ----------------------------------------AMW : Adm Degree Management --------------------------------------------------------
 
 Route::any('admission_test/amw/adm-test-degree',[
@@ -176,33 +174,33 @@ Route::any('admission_test/amw/update_subject_management/{id}', [
 // ----------------------------------------AMW : Batch Management --------------------------------------------------------
 
 
-Route::any('batch/amw/batch-management',[
-    'as' => 'batch.amw.batch-management',
+Route::any('admission/amw/batch-management',[
+    'as' => 'admission.amw.batch-management',
     'uses' => 'AdmissionController@batchManagementIndex'
 ]);
 
-Route::any('batch/amw/create',[
-    'as' => 'batch.amw.create',
+Route::any('admission/amw/create',[
+    'as' => 'admission.amw.create',
     'uses' => 'AdmissionController@create'
 ]);
 
-Route::any('batch/amw/store', [
-    'as' => 'batch.amw.store',
+Route::any('admission/amw/store', [
+    'as' => 'admission.amw.store',
     'uses' => 'AdmissionController@store'
 ]);
 
-Route::get('batch/amw/show/{id}', [
-    'as' => 'batch.amw.show',
+Route::get('admission/amw/show/{id}', [
+    'as' => 'admission.amw.show',
     'uses' => 'AdmissionController@show'
 ]);
 
-Route::any('batch/amw/edit/{id}', [
-    'as' => 'common.amw.edit',
+Route::any('admission/amw/edit/{id}', [
+    'as' => 'admission.amw.edit',
     'uses' => 'AdmissionController@edit'
 ]);
 
-Route::any('batch/amw/update/{id}', [
-    'as' => 'batch.amw.update',
+Route::any('admission/amw/update/{id}', [
+    'as' => 'admission.amw.update',
     'uses' => 'AdmissionController@update'
 ]);
 
@@ -211,7 +209,29 @@ Route::any('batch/amw/update/{id}', [
 //    'uses' => 'AdmissionController@destroy'
 //]);
 //
-Route::any('batch/amw/batchDelete', [
-    'as' => 'batch.amw.batchDelete',
+Route::any('admission/amw/batchDelete', [
+    'as' => 'admission.amw.batchDelete',
     'uses' => 'AdmissionController@batchDelete'
 ]);
+
+//...................................Batch Adm Test Subject........................................................
+
+Route::any('admission/amw/mng_adm_test_subject',[
+    'as' => 'admission.amw.mng_adm_test_subject',
+    'uses' => 'AdmissionController@mngAdmTestSubject'
+]);
+//
+//Route::any('admission_test/amw/store_admtest_subject', [
+//    'as' => 'admission_test.amw.store_admtest_subject',
+//    'uses' => 'AdmissionController@storeAdmTestSubject'
+//]);
+//
+//Route::any('admission_test/amw/view_admtest_subject/{id}', [
+//    'as' => 'admission_test.amw.view_admtest_subject',
+//    'uses' => 'AdmissionController@viewAdmTestSubject'
+//]);
+//
+//Route::any('admission_test/amw/edit_admtest_subject/{id}', [
+//    'as' => 'admission_test.amw.edit_admtest_subject',
+//    'uses' => 'AdmissionController@editAdmTestSubject'
+//]);
