@@ -92,7 +92,10 @@ class Degree extends Eloquent{
             ->join('degree_group', function($query){
                 $query->on('degree_group.id', '=', 'degree.degree_group_id');
             })
-            ->select(DB::raw('CONCAT(degree_program.title, " ", degree_group.title) as dp_name'), 'degree.id as deg_id')
+            ->join('department', function($query){
+                $query->on('department.id', '=', 'degree.department_id');
+            })
+            ->select(DB::raw('CONCAT(degree_program.code, "", degree_group.code, " in ", department.title) as dp_name'), 'degree.id as deg_id')
             ->lists('dp_name', 'deg_id');
         if($query){
             return $query;

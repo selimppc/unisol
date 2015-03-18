@@ -15,32 +15,32 @@
                 <div class="col-sm-12">
                         <div style="width:100%; float:left;">
                             <div style="width:50%; float:left;" class="">
-                                <div class="col-sm-6 row-">
+                                <div class="col-sm-6">
                                     <div class='form-group'>
                                                {{ Form::label('status', 'Selct Status') }}
                                                {{ Form::select('status',
                                                    array('' => 'Select Status',
-                                                   'Created (CRTD)' => 'Created',
-                                                   'Ask for Application (AFA)' => 'Ask for Application',
-                                                   'Application Time Over (ATO)' => 'Application Time Over',
-                                                   'Selection and Scrutinizing (SNS)' => 'Selection and Scrutinizing',
-                                                   'Admission Test (ADMT)' => 'Admission Test',
-                                                   'Admission Test Evaluation (ADTE)' => 'Admission Test Evaluation',
-                                                   'Merit List Preparation (MRPR)' => 'Merit List Preparation',
-                                                   'Final Selection (FNLS)' => 'Final Selection',
-                                                   'Admission (ADMN)' => 'Admission',
-                                                   'Activity Start (ACTS)' => 'Activity Start',
-                                                   'Running (Rung)' => 'Running',
-                                                   'Cancelled (CNCL)' => 'Cancelled',
-                                                   'Paused (PSD)' => ' Paused',
-                                                   'Finished (FNSH)' => 'Finished',
+                                                   'Created' => 'Created  (CRTD)',
+                                                   'Ask for Application' => 'Ask for Application (AFA)',
+                                                   'Application Time Over' => 'Application Time Over (ATO)',
+                                                   'Selection and Scrutinizing' => 'Selection and Scrutinizing (SNS)',
+                                                   'Admission Test' => 'Admission Test (ADMT)',
+                                                   'Admission Test Evaluation' => 'Admission Test Evaluation (ADTE)',
+                                                   'Merit List Preparation' => 'Merit List Preparation (MRPR)',
+                                                   'Final Selection ' => 'Final Selection (FNLS)',
+                                                   'Admission' => 'Admission (ADMN)',
+                                                   'Activity Start' => 'Activity Start (ACTS)',
+                                                   'Running' => 'Running (Rung)',
+                                                   'Cancelled' => 'Cancelled (CNCL)',
+                                                   'Paused' => ' Paused (PSD)',
+                                                   'Finished' => 'Finished (FNSH)',
 
                                                ),Input::old('status'),['class'=>'form-control']) }}
                                     </div>
                             	</div>
                             </div>
 
-                            <div style="width:50%; float:left;">
+                            <div style="width:50%; float:left; ">
                                 <div class="col-sm-12 ">
                                     <div class='form-group'>
                                                {{ Form::label('degree_id', 'Degree with Program') }}

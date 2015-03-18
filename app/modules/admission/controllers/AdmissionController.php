@@ -500,6 +500,7 @@ class AdmissionController extends \BaseController {
     {
 
         $dpg_list = array('' => 'Degree with Program ') +Degree::DegreeProgramGroup();
+        print_r($dpg_list);exit;
         $year_list = array('' => 'Year ') +Year::lists('title', 'id');
         $semester_list = array('' => 'Semester ') +Semester::lists('title', 'id');
 
