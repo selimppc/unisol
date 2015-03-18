@@ -17,7 +17,7 @@ class BillingTuitionDetails extends Eloquent{
         'billing_summary_student_id' => 'required|integer',
         'student_user_id' => 'required|integer',
         'year_id' => 'required|integer',
-        'month' => 'alpha',
+        'month' => 'alpha_dash',
     ];
     public function validate($data)
     {

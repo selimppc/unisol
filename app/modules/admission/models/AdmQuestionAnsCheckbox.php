@@ -14,7 +14,7 @@ class AdmQuestionAnsCheckbox extends Eloquent{
     private $errors;
     private $rules = [
         'adm_question_evaluation_id' => 'required|integer',
-        'answer' => 'required|alpha_dash',
+        'answer' => 'required',
     ];
 
     public function validate($data)

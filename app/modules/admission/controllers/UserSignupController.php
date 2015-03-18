@@ -368,5 +368,15 @@ class UserSignupController extends \BaseController {
 		//
 	}
 
+/*
+ {--------------------------------- Version:2 ->Admission -->Degree ------------------------------------}
+ */
+
+    public function admDegreeIndex(){
+
+        $model = Degree::orderby('id', 'DESC')->paginate(5);
+        return View::make('admission::amw.degree_management.degree.degree_index',
+            compact('model'));
+    }
 
 }

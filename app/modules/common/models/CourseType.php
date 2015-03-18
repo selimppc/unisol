@@ -13,8 +13,8 @@ class CourseType extends Eloquent{
     ];
     private $errors;
     private $rules = [
-        'title' => 'required|alpha_dash',
-        'description' => 'alpha_dash',
+        'title' => 'required',
+        //'description' => 'alpha_dash',
     ];
     public function validate($data)
     {
