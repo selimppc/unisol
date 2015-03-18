@@ -449,21 +449,25 @@ class UserSignupController extends \BaseController {
             return Redirect::back()->with('danger', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
         }
     }
+    //TODO Searching............
+
     public function admDegreeSearch(){
 
-        $dep_id = Input::get('search_department');
+        $searchQuery = [
+            $department_id = Input::get('search_department')
+        ];
+
         //echo $dep_id;exit;
         $model = new Degree();
-        $result = Helpers::search($dep_id, $model);
+        $result = Helpers::search($searchQuery, $model);
+        //print_r($result) ;exit;
 
         $dep_data = '';
-        foreach($result as $value){
-            $model = Degree::with( 'relDepartment' );
 
-            $model = $model->where('id', '=', $value->id);
+        foreach($result as $value){
+            $model = Degree::with( 'relDepartment' )->where('department_id', '=', $value);
             $dep_data[] = $model->get();
         }
-
     }
 
 }
