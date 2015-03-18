@@ -46,8 +46,10 @@
                <a href="">Version 2 </a>
         </li>
          <li><a tabindex="-1" a href="{{ URL::to('admission/amw/degree') }}"></i>Degree (Amw)</a></li>
-        <li><a tabindex="-1" a href="{{ URL::to('batch/amw/batch-management') }}"></i>Batch (Amw)</a></li>
+        <li><a tabindex="-1" a href="{{ URL::to('admission/amw/batch-management') }}"></i>Batch (Amw)</a></li>
+        <li><a tabindex="-1" a href="{{ URL::to('admission/amw/batch-waiver') }}"></i>Batch Waiver(Amw)</a></li>
         <li><a tabindex="-1" a href="{{ URL::to('admission/amw/degree_courses') }}"></i>Degree Courses </a></li>
+        <li><a tabindex="-1" a href="{{ URL::to('admission/amw/mng_adm_test_subject') }}"></i>Mng Admssn Tst Sbjct(Amw)</a></li>
 
 
 

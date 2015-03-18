@@ -41,7 +41,7 @@ class BatchAdmtestSubject extends Eloquent{
         return $this->belongsTo('Batch', 'batch_id', 'id');
     }
     public function relAdmtestSubject(){
-        return $this->belongsTo('AdmtestSubject', 'admtest_subject_id', 'id');
+        return $this->belongsTo('AdmTestSubject', 'admtest_subject_id', 'id');
     }
     public function relAdmQuestion(){
         return $this->HasMany('AdmQuestion');
