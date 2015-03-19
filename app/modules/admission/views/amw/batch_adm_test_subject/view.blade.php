@@ -1,24 +1,35 @@
 <div style="padding: 10px; width: 90%;">
-                 <h2>Welcome to View Adm Test Subject <strong></strong> </h2>
-                     {{--{{ Form::open(array('route'=>'admission_test.amw.view_question_paper','method' => '')) }}--}}
-                             {{--<div class="jumbotron text-center">--}}
-                                 {{--<h3><strong>Name of Examination : </strong> &nbsp; {{ AdmQuestion::getQuestionName($view_question_paper->id) }}</h3> </br>--}}
 
-                                 {{--<p>--}}
-                                     {{--<strong> Subject:</strong>{{ $view_question_paper->degree_admtest_subject_id }} </br>--}}
+ <h1>View Batch Adm Test Subject</h1>
 
-                                     {{--<strong> Title:</strong>{{ $view_question_paper->title }} </br>--}}
+    {{ Form::open(array('url'=>'admission/amw/view_admtest_subject','method' => '')) }}
 
-                                     {{--<strong> Deadline:</strong>{{ $view_question_paper->deadline  }} </br>--}}
 
-                                     {{--<strong> Total Marks:</strong>{{ $view_question_paper->total_marks }} </br>--}}
+        <div class="jumbotron text-center">
+            <h2><strong>Batch Number :</strong>
+            {{--{{ $b_m_course->batch_number }}</h2>--}}
+            {{--<p>--}}
+                {{--<strong> Degree:</strong> {{ $b_m_course->relDegree->title }} <br>--}}
+                {{--<strong> Year:</strong> {{ $b_m_course->relYear->title }}<br>--}}
+                {{--<strong> Semester:</strong> {{ $b_m_course->relSemester->title }}<br>--}}
+                {{--<strong> Description:</strong> {{ $b_m_course->description }}<br>--}}
+                {{--<strong> Total Seat:</strong> {{ $b_m_course->seat_total }}<br>--}}
+                {{--<strong> Start Date:</strong> {{ $b_m_course->start_date }}<br>--}}
+                {{--<strong> End Date:</strong> {{ $b_m_course->end_date }}<br>--}}
+                {{--<strong> Admission Deadline:</strong> {{ $b_m_course->admission_deadline }}<br>--}}
+                {{--<strong> Admission Test Date:</strong> {{ $b_m_course->admtest_date }}<br>--}}
+                {{--<strong> Admission Test Start Time:</strong> {{ $b_m_course->admtest_start_time }}<br>--}}
 
-                                     {{--<strong> Assign To:</strong> {{ $view_question_paper->examiner_faculty_id }} </br>--}}
-                                 {{--</p>--}}
-                             {{--</div>--}}
+            {{--</p>--}}
+        </div>
 
-                              {{--<a href="{{ URL::previous()}}" class="btn btn-default btn-xs">Close </a>--}}
-                              {{--<a class="btn btn-info close">Close </a>--}}
+    <a href="" class="pull-right btn btn-info" span class="glyphicon-refresh">Close</a>
 
-                     {{--{{ Form::close() }}--}}
+    &nbsp;
+    </br>
+    &nbsp;
+
+    {{ Form::close() }}
+
+
 </div>
