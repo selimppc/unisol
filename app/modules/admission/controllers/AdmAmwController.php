@@ -460,11 +460,14 @@ class AdmAmwController extends \BaseController
   public function degree_courses_index($id)
   {
      $degree_id = $id;
+      $degree_title = Degree::with('relDegreeCourse')
+          ->where('id' , '=' ,$id)
+          ->first();
      $course_list = Course::lists('title', 'id');
      $deg_course_info = DegreeCourse::with('relCourse','relCourse.relSubject.relDepartment','relCourse.relCourseType')
          ->where('degree_id', '=' ,$id)
          ->paginate(10);
-     return View::make('admission::amw.degree_courses.index',compact('course_list','deg_course_info','deg_course','degree_id'));
+     return View::make('admission::amw.degree_courses.index',compact('course_list','deg_course_info','deg_course','degree_id','degree_title'));
   }
     public function degree_courses_save()
     {
