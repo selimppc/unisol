@@ -53,7 +53,7 @@ class CreateAdmission extends Migration {
             $table->string('seat_total', 16);
             $table->dateTime('admission_deadline');
             $table->dateTime('admtest_date');
-            $table->dateTime('admtest_start_time');
+            $table->time('admtest_start_time');
             $table->tinyInteger('status', false)->lenght(1);
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
