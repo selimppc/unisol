@@ -7,7 +7,7 @@
 <div class="modal-body">
       <div style="padding: 20px;">
 
-          {{Form::open(array('route'=> ['admission.amw.update',$batch_edit->id], 'class'=>'form-horizontal','files'=>true))}}
+          {{Form::open(array('url'=> ['admission/amw/update',$batch_edit->id], 'class'=>'form-horizontal','files'=>true))}}
 
 
                 <div class='form-group'>
