@@ -455,7 +455,8 @@ class AdmAmwController extends \BaseController
     }
 
 
-   //******************************Degree Courses start(R)*****************************
+//******************************Degree Courses start(R)*****************************
+
   public function degree_courses_index($id)
   {
      $degree_id = $id;
@@ -463,7 +464,6 @@ class AdmAmwController extends \BaseController
      $deg_course_info = DegreeCourse::with('relCourse','relCourse.relSubject.relDepartment','relCourse.relCourseType')
          ->where('degree_id', '=' ,$id)
          ->paginate(10);
-//      $deg_course = DegreeCourse::orderBy('id', 'DESC')->paginate(5);
      return View::make('admission::amw.degree_courses.index',compact('course_list','deg_course_info','deg_course','degree_id'));
   }
     public function degree_courses_save()
@@ -504,6 +504,13 @@ class AdmAmwController extends \BaseController
             return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
 
         }
+    }
+
+//******************************Batch Courses start(R)*****************************
+
+    public function batch_course_index()
+    {
+        return View::make('admission::amw.batch_course.index');
     }
 
 }
