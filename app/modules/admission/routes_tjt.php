@@ -332,6 +332,23 @@ Route::any('admission/amw/batch-edu-const/store',
     ['as'=>'admission.amw.batch-edu-const.store',
         'uses'=>'UserSignupController@admBatchEduConstStore']);
 
+Route::any('admission/amw/batch-edu-const/show/{id}',
+    ['as'=>'admission.amw.batch-edu-const.show',
+        'uses'=>'UserSignupController@admBatchEduConstShow']);
+
+Route::any('admission/amw/batch-edu-const/edit/{id}',
+    ['as'=>'admission.amw.batch-edu-const.edit',
+        'uses'=>'UserSignupController@admBatchEduConstEdit']);
+
+Route::any('admission/amw/batch-edu-const/update/{id}',
+    ['as'=>'admission.amw.batch-edu-const.update',
+        'uses'=>'UserSignupController@admBatchEduConstUpdate']);
+
+Route::any('admission/amw/batch-edu-const/delete/{id}',
+    ['as'=>'admission.amw.batch-edu-const.delete',
+        'uses'=>'UserSignupController@admBatchEduConstDelete']);
+
+
 
 
 

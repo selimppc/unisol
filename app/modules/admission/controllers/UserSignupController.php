@@ -581,4 +581,46 @@ class UserSignupController extends \BaseController {
             return Redirect::back();
         }
     }
+
+    public function admBatchEduConstShow($id)
+    {
+        $model = BatchEducationConstraint::find($id);
+        return View::make('admission::amw.batch_edu_const.edu_const_show',compact('model'));
+    }
+
+    public function  admBatchEduConstEdit($id)
+    {
+        $model = BatchEducationConstraint::findOrFail($id);
+        $batch = array('' => 'Select Batch ') + Batch::lists('batch_number','id');
+        return View::make('admission::amw.batch_edu_const.edu_const_edit',
+                  compact('model','batch'));
+    }
+
+    public function admBatchEduConstUpdate($id)
+    {
+        $model = BatchEducationConstraint::find($id);
+        $data = Input::all();
+
+        if($model->validate($data)){
+            if($model->update($data)){
+                Session::flash('message','Successfully Updated Information!');
+                return Redirect::back();
+            }
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back();
+        }
+    }
+
+    public function admBatchEduConstDelete($id)
+    {
+        try {
+            BatchEducationConstraint::find($id)->delete();
+            return Redirect::back()->with('message', 'Successfully deleted Information!');
+        }
+        catch(exception $ex){
+            return Redirect::back()->with('danger', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+        }
+    }
 }

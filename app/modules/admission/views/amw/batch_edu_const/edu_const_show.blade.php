@@ -1,7 +1,7 @@
 <div class="modal-header">
 
     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-    <h4 class="modal-title" id="myModalLabel">Details Information Of Degree Waiver :{{$model->title}} </h4>
+    <h4 class="modal-title" id="myModalLabel">Details Information </h4>
 </div>
 
 <div class="modal-body">
@@ -10,13 +10,18 @@
                  <table style="font-size: large">
 
                    <tr>
-                     <th class="col-lg-8">Batch Number:</th>
-                     <td>{{ $model->relBatch->batch_number }}</td>
+                       <th class="col-lg-10">Batch Number:</th>
+                       <td>{{ $model->relBatch->batch_number }}</td>
                    </tr>
 
                    <tr>
-                     <th class="col-lg-8">Level Of Education:</th>
-                     <td>{{ strtoupper($model->level_of_education) }}</td>
+                       <th class="col-lg-10">Level Of Education:</th>
+                       <td>{{strtoupper($model->level_of_education) }}</td>
+                   </tr>
+
+                   <tr>
+                       <th class="col-lg-10">Min GPA:</th>
+                       <td>{{ $model->min_gpa }}</td>
                    </tr>
 
 
