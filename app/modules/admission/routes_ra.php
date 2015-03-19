@@ -6,6 +6,8 @@
  * Time: 10:30 AM
  */
 
+//******************Degree Course Start********************
+
 Route::any('admission/amw/degree-course/{id}', [
     'as' => 'admission.amw.degree_courses',
     'uses' => 'AdmAmwController@degree_courses_index'
@@ -19,4 +21,9 @@ Route::get('admission/amw/degree-courses/delete/{id}',
     'AdmAmwController@degree_courses_delete'
 );
 
+//******************Batch Course Start*********************
 
+Route::any('admission/amw/batch-course/', [
+    'as' => 'admission.amw.batch_course',
+    'uses' => 'AdmAmwController@batch_course_index'
+]);
