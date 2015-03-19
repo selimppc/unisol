@@ -411,9 +411,11 @@ Route::any('amw/degree_manage/gpa_const/edit/{id}', [
 
 Route::any('amw/degree_manage/waiver_const/delete/{id}','AdmAmwController@degWaiverConstDelete');
 
-//{-------------------------------------------------------------------------------------------------------------------------------------------}
+//{-----------------------------------------------Batch Applicant--------------------------------------------------------------------------------------------}
 
-
+Route::any('admission/amw/batch-apt/{id}',
+    ['as'=>'admission.amw.batch-applicant.index',
+        'uses'=>'UserSignupController@admBatchAptIndex']);
 
 
 
