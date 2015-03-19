@@ -6,6 +6,17 @@
 
 @section('content')
 
+<h3>Admission On </h3>
+    {{--<p>--}}
+     {{--<b style="font-style: italic">--}}
+     {{--@if(isset($model))--}}
+           {{--{{$model->relDegree->relDegreeProgram->title}}--}}
+           {{--{{$model->relDegree->relDegreeGroup->title}} On--}}
+           {{--{{$model->relDegree->relDepartment->title}}</b>--}}
+           {{--{{$model->relSemester->title}},--}}
+           {{--{{$model->relYear->title}}--}}
+       {{--@endif--}}
+    {{--</p>--}}
 
  <div class="box box-solid ">
         <div class="box box-info">
@@ -19,7 +30,7 @@
               <div class="box-body">
                    <div class="row">
                        <div class="col-lg-12">
-                       {{ Form::open(array('url' => 'common/course-type/batch-delete')) }}
+                       {{--{{ Form::open(array('url' => 'common/course-type/batch-delete')) }}--}}
                           <table class="table table-bordered">
                                  <thead>
                                          <tr>
@@ -32,28 +43,28 @@
                                             <th>Action</th>
                                          </tr>
                                  </thead>
-                                        {{--<tbody>--}}
-                                              {{--@if(isset($model))--}}
-                                                    {{--@foreach($model as $value)--}}
-                                                        {{--<tr>--}}
-                                                            {{--<td><input type="checkbox" name="ids[]"  class="myCheckbox" value="{{ $value->id }}">--}}
-                                                            {{--</td>--}}
-                                                            {{--<td>{{$value->relBatch->batch_number}}</td>--}}
+                                        <tbody>
+                                              @if(isset($apt_data))
+                                                    @foreach($apt_data as $value)
+                                                        <tr>
+                                                            <td><input type="checkbox" name="ids[]"  class="myCheckbox" value="{{ $value->id }}">
+                                                            </td>
+                                                            <td>{{$value->relApplicant->first_name.''.$value->relApplicant->last_name}}</td>
 
-                                                            {{--<td>{{strtoupper($value->level_of_education)}}</td>--}}
-                                                            {{--<td>{{$value->min_gpa}}</td>--}}
+                                                            <td>{{$value->status}}</td>
+                                                            <td>{{$value->relBatch->relSemester->title}}</td>
 
-                                                            {{--<td>--}}
-                                                                 {{--<a href="{{ URL::to('admission/amw/batch-edu-const/show/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#eduConstModal" style="font-size: 12px;color: darkmagenta"><span class="fa fa-eye"></span></a>--}}
+                                                            <td>
+                                                                 <a href="{{ URL::to('admission/amw/batch-edu-const/show/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#eduConstModal" style="font-size: 12px;color: darkmagenta"><span class="fa fa-eye"></span></a>
                                                                  {{--<a class="btn btn-xs btn-default" href="{{ URL::to('admission/amw/batch-edu-const/edit/'.$value->id) }}" data-toggle="modal" data-target="#eduConstModal" style="font-size: 12px;color: lightseagreen"><i class="fa fa-edit"></i></a>--}}
                                                                  {{--<a data-href="{{ URL::to('admission/amw/batch-edu-const/delete/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" style="font-size: 12px;color: lightcoral"><span class="fa  fa-trash-o"></span></a>--}}
 
-                                                            {{--</td>--}}
-                                                        {{--</tr>--}}
-                                                    {{--@endforeach--}}
-                                              {{--@endif--}}
-                                        {{--</tbody>--}}
-                       {{ Form::submit('Delete Items', array('class'=>'btn btn-xs btn-danger', 'id'=>'hide-button', 'style'=>'display:none'))}}
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                              @endif
+                                        </tbody>
+                       {{--{{ Form::submit('Delete Items', array('class'=>'btn btn-xs btn-danger', 'id'=>'hide-button', 'style'=>'display:none'))}}--}}
                           </table>
                        {{ Form::close() }}
                        </div>

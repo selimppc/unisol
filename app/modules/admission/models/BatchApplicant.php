@@ -70,4 +70,26 @@ class BatchApplicant extends Eloquent{
 
     //TODO : Scope Area
 
+    public function getStatus(){
+        return $status = [
+            'APLD' => 'Applied',
+            'DOCC' => 'Docs Checking',
+            'AADV'=>'Accepted After Docs Verify',
+            'RADV'=>'Rejected After Docs Verify',
+            'RJAS'=>'Rejected After Scrutiny ',
+            'PDAS'=>'Passed After Scrutiny',
+            'CFAT'=>'Call For Admission Test',
+            'ATAT'=>'Attended Admission Test',
+            'NAAD'=>'Not Attended Admission Test',
+            'PAAT'=>'Passed Admission Test',
+            'NPAT'=>'Not Passed Admission Test',
+            'RATE'=>'Running Admission Test Evaluation',
+            'MRTL'=>'Merit List',
+            'WTGL'=>'Waiting List',
+            'NAML'=>'Not At Merit List',
+            'CFAD'=>'Call For Admission',
+            'DNAD'=>'Deny Admission',
+            'ADMD'=>'Admitted'
+        ];
+    }
 } 

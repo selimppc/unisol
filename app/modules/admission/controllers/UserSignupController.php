@@ -626,10 +626,20 @@ class UserSignupController extends \BaseController {
 
 // {---------------------------------------------Batch Applicant----------------------------------------------------------------------}
 
-    public function admBatchAptIndex(){
-//        $model = BatchEducationConstraint::latest('id')->paginate(5);
+    public function admBatchAptIndex($id){
+        $applicant_id = $id;
+        //view info according to batch(admission on)
+        $model = Batch::with('relDegree.relDegreeGroup',
+                            'relDegree.relDegreeProgram','relDegree.relDepartment',
+                             'relYear','relSemester')
+                           ->where('id', '=', $applicant_id)
+                           ->first();
+        $apt_data = BatchApplicant::with('relApplicant','relBatch.relSemester')
+                                 ->where('id','=',$applicant_id)->get();
+       // print_r($apt_data);exit;
 
-        return View::make('admission::amw.batch_applicant.batch_apt_index' );
+        return View::make('admission::amw.batch_applicant.batch_apt_index',
+                  compact('model','apt_data'));
 
     }
 }
