@@ -114,7 +114,7 @@
 
                          <a href="{{ URL::route('admission.amw.batch-waiver.index',['id'=>$batch_list->id ])  }}" class="btn btn-default btn-xs" >MW</a>
 
-                         <a href="{{ URL::route('admission.amw.batch_apt',['id'=>$batch_list->id ])  }}" class="btn btn-default btn-xs" >MA</a>
+{{--                         <a href="{{ URL::route('admission.amw.batch_apt',['id'=>$batch_list->id ])  }}" class="btn btn-default btn-xs" >MA</a>--}}
 
                          <a href="{{ URL::to('admission/amw/batch-course',['id'=>$batch_list->id ])  }}" class="btn btn-default btn-xs" >BC</a>
 
