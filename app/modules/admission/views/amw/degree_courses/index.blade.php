@@ -30,7 +30,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @if(isset($deg_course_info))
+                        @if(empty($deg_course_info))
                         @foreach ($deg_course_info as $value)
                             <tr>
                                 <td>{{$value->relCourse->title}}</td>
