@@ -53,7 +53,8 @@
         <li><a tabindex="-1" a href="{{ action('AdmAmwController@degree_courses_index') }}"></i>Degree Course </a></li>
         <li><a tabindex="-1" a href="{{ URL::to('admission/amw/batch-course') }}"></i>Batch Course</a></li>
 {{--        <li><a tabindex="-1" a href="{{action('AdmissionController@mngBatchAdmTestSubject') }}"></i>Mng Admssn Tst Sbjct(Amw)</a></li>--}}
-        <li><a tabindex="-1" a href="{{ URL::to('admission/amw/admission-test-subject-index') }}"></i>Only Admssn Tst Sbjct</a></li>
+        <li><a tabindex="-1" a href="{{ URL::to('admission/amw/admission-test-subject-index') }}"></i>Only Admssn Tst Sbjct(Amw)</a></li>
+        <li><a tabindex="-1" a href="{{ URL::to('admission/amw/admission-test-home') }}"></i>Admssn Test Home</a></li>
 
 
 

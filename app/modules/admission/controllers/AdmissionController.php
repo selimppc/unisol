@@ -20,20 +20,20 @@ class AdmissionController extends \BaseController {
     }
 
 //.................................................Index................................................................
-    public function admissionTestIndex()
-    {
-        $admission_test = Batch::orderBy('id', 'DESC')->paginate(3);
-
-        $degree_id = Batch::with('relDegree','relDegree.relDepartment','relYear','relSemester')
-            ->first();
-
-
-        $year_id = array('' => 'Select Year ') + Year::lists('title', 'id');
-        $semester_id = array('' => 'Select Semester ') + Semester::lists('title', 'id');
-
-        return View::make('admission::amw.admission_test.index',
-            compact('degree_id','admission_test','year_id','semester_id'));
-    }
+//    public function admissionTestIndex()
+//    {
+//        $admission_test = Batch::orderBy('id', 'DESC')->paginate(3);
+//
+//        $degree_id = Batch::with('relDegree','relDegree.relDepartment','relYear','relSemester')
+//            ->first();
+//
+//
+//        $year_id = array('' => 'Select Year ') + Year::lists('title', 'id');
+//        $semester_id = array('' => 'Select Semester ') + Semester::lists('title', 'id');
+//
+//        return View::make('admission::amw.admission_test.index',
+//            compact('degree_id','admission_test','year_id','semester_id'));
+//    }
 
     public function searchIndex(){
         $searchQuery = [
@@ -583,6 +583,52 @@ class AdmissionController extends \BaseController {
             return Redirect::back()
                 ->with('error', 'invalid');
         }
+
+    }
+
+//..................................................Admission Test Management.......................................
+
+    public function admissionTestIndex()
+    {
+        $admission_test_batch = Batch::latest('id')->get();
+
+//        $admission_test_degree = Degree::latest('id')->get();
+
+        $degree_id = Batch::with('relDegree','relDegree.relDepartment','relYear','relSemester')
+            ->first();
+
+        $year_id = array('' => 'Select Year ') + Year::lists('title', 'id');
+        $semester_id = array('' => 'Select Semester ') + Semester::lists('title', 'id');
+
+        return View::make('admission::amw.adm_test_home.index',
+            compact('degree_id','admission_test_batch','admission_test_degree','year_id','semester_id'));
+    }
+
+
+//..................................................Admission Test Management.......................................
+
+    public function admExaminerIndex()
+    {
+        "Examiner";
+
+
+    }
+
+
+//..................................................Admission Test Management.......................................
+
+    public function admQuestionIndex()
+    {
+        "Question";
+
+    }
+
+
+//..................................................Admission Test Management.......................................
+
+    public function admQuestionEvaluationIndex()
+    {
+        "QuestionEvaluation";
 
     }
 

@@ -261,3 +261,38 @@ Route::any('admission/amw/update-admission-test-subject/{id}', [
     'as' => 'admission.amw.update-admission-test-subject',
     'uses' => 'AdmissionController@updateAdmissionTestSubject'
 ]);
+
+
+//...................................Admission Test Home........................................................
+
+Route::any('admission/amw/admission-test-home',[
+    'as' => 'admission.amw.admission-test-home',
+    'uses' => 'AdmissionController@admissionTestIndex'
+]);  //ok
+
+
+
+
+//...................................Admission Examiner........................................................
+
+Route::any('admission/amw/admission-examiner-index',[
+    'as' => 'admission.amw.admission-examiner-index',
+    'uses' => 'AdmissionController@admExaminerIndex'
+]);
+
+
+//...................................Admission Question........................................................
+
+Route::any('admission/amw/admission-question-index',[
+    'as' => 'admission.amw.admission-question-index',
+    'uses' => 'AdmissionController@admQuestionIndex'
+]);
+
+
+//...................................Admission Question........................................................
+
+Route::any('admission.amw.admission-question-evaluation-index',[
+    'as' => 'admission.amw.admission-question-evaluation-index',
+    'uses' => 'AdmissionController@admQuestionEvaluationIndex'
+]);
+
