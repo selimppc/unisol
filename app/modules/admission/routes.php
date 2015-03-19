@@ -197,66 +197,67 @@ Route::any('admission/amw/batchDelete', [
 
 Route::any('admission/amw/mng_adm_test_subject/{batch_id}',[
     'as' => 'admission.amw.mng_adm_test_subject',
-    'uses' => 'AdmissionController@mngAdmTestSubject'
+    'uses' => 'AdmissionController@mngBatchAdmTestSubject'
 ]);
 
 
 Route::any('admission/amw/view_admtest_subject/{id}', [
     'as' => 'admission.amw.view_admtest_subject',
-    'uses' => 'AdmissionController@viewAdmTestSubject'
+    'uses' => 'AdmissionController@viewBatchAdmTestSubject'
 ]);
 
 Route::any('admission/amw/create_admtest_subject/{batch_id}',[
     'as' => 'admission.amw.create_admtest_subject',
-    'uses' => 'AdmissionController@createAdmTestSubject'
+    'uses' => 'AdmissionController@createBatchAdmTestSubject'
 ]);
 
 Route::any('admission/amw/store_admtest_subject', [
     'as' => 'admission.amw.store_admtest_subject',
-    'uses' => 'AdmissionController@storeAdmTestSubject'
+    'uses' => 'AdmissionController@storeBatchAdmTestSubject'
 ]);
 
 Route::any('admission/amw/edit_admtest_subject/{id}', [
     'as' => 'admission.amw.edit_admtest_subject',
-    'uses' => 'AdmissionController@editAdmTestSubject'
+    'uses' => 'AdmissionController@editBatchAdmTestSubject'
 ]);
 
 
 Route::any('admission/amw/update_admtest_subject/{id}', [
     'as' => 'admission.amw.update_admtest_subject',
-    'uses' => 'AdmissionController@updateAdmTestSubject'
+    'uses' => 'AdmissionController@updateBatchAdmTestSubject'
 ]);
 
 
 
 //...................................Only Adm Test Subject........................................................
 
-Route::any('admission/amw/admtest-subject-index',[
+Route::any('admission/amw/admission-test-subject-index',[
     'as' => 'admission.amw.admtest-subject-index',
-    'uses' => 'AdmissionController@admTestSubjectIndex'
+    'uses' => 'AdmissionController@AdmissionTestSubjectIndex'
 ]);
-//
-//Route::any('admission/amw/create',[
-//    'as' => 'admission.amw.create',
-//    'uses' => 'AdmissionController@create'
-//]);
-//
-//Route::any('admission/amw/store', [
-//    'as' => 'admission.amw.store',
-//    'uses' => 'AdmissionController@store'
-//]);
-//
-//Route::get('admission/amw/show/{id}', [
-//    'as' => 'admission.amw.show',
-//    'uses' => 'AdmissionController@show'
-//]);
-//
-//Route::any('admission/amw/edit/{id}', [
-//    'as' => 'admission.amw.edit',
-//    'uses' => 'AdmissionController@edit'
-//]);
-//
-//Route::any('admission/amw/update/{id}', [
-//    'as' => 'admission.amw.update',
-//    'uses' => 'AdmissionController@update'
-//]);
+
+Route::any('admission/amw/create-admission-test-subject',[
+    'as' => 'admission.amw.create-admission-test-subject',
+    'uses' => 'AdmissionController@createAdmissionTestSubject'
+]);
+
+
+Route::any('admission/amw/store-admission-test-subject', [
+    'as' => 'admission.amw.store-admission-test-subject',
+    'uses' => 'AdmissionController@storeAdmissionTestSubject'
+]);
+
+Route::get('admission/amw/view-admission-test-subject/{id}', [
+    'as' => 'admission.amw.view-admission-test-subject',
+    'uses' => 'AdmissionController@viewAdmissionTestSubject'
+]);
+
+Route::any('admission/amw/edit-admission-test-subject/{id}', [
+    'as' => 'admission.amw.edit-admission-test-subject',
+    'uses' => 'AdmissionController@editAdmissionTestSubject'
+]);
+
+Route::any('admission/amw/update-admission-test-subject/{id}', [
+    'as' => 'admission.amw.update-admission-test-subject',
+    'uses' => 'AdmissionController@updateAdmissionTestSubject'
+]);
