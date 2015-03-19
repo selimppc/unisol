@@ -230,7 +230,9 @@ class CreateAdmission extends Migration {
             $table->increments('id');
             $table->unsignedInteger('batch_id')->nullable();
             $table->unsignedInteger('applicant_id')->nullable();
-            $table->tinyInteger('status', false)->length(11);
+            $table->enum('status',array(
+                'psc', 'jsc', 'ssc', 'hsc', 'grad', 'under_grad', 'bachelor', 'diploma', 'post_grad', 'o_level', 'a_level'
+            ));
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
