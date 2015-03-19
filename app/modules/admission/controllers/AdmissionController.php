@@ -546,6 +546,7 @@ class AdmissionController extends \BaseController {
         $data = Input::all();
         $model = new BatchAdmtestSubject();
         print_r($data);exit;
+
         if($model->validate($data)){
 
             if($model->create($data)){
