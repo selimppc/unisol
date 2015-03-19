@@ -522,57 +522,45 @@ class AdmissionController extends \BaseController {
             compact('degree_test_sbjct','degree_name'));
     }
 
-    public function view($id)
+    public function viewAdmTestSubject($id)
     {
         $view_adm_test_subject = BatchAdmtestSubject::find($id);
 
         return View::make('admission::amw.batch_adm_test_subject.view',compact('view_adm_test_subject'));
     }
 
-//    public function storeAdmTestSubject(){
-//
-//        $data = Input::all();
-////        $exam_list_id = Input::get('exam_list_id');
-////        $course_man_id = Input::get('course_man_id');
-////        print_r($exam_list_id);exit;
-//
-//        $degree_adm_test_sbjct = new DegreeAdmTestSubject();
-//
-//        if ($degree_adm_test_sbjct->validate($data))
-//        {
-//
-//            $degree_adm_test_sbjct->degree_id = Input::get('degree_id');
-//            $degree_adm_test_sbjct->admtest_subject_id = Input::get('admtest_subject_id');
-//            $degree_adm_test_sbjct->description = Input::get('description');
-//            $degree_adm_test_sbjct->marks = Input::get('marks');
-////            $degree_adm_test_sbjct->qualify_marks = Input::get('qualify_marks');
-//            $degree_adm_test_sbjct->duration = Input::get('duration');
-//
-////            print_r($degree_adm_test_sbjct);exit;
-//
-//            $degree_adm_test_sbjct->save();
-//
-//            // redirect
-//            Session::flash('message', 'Manage Degree Admission Test Subject Successfully Added!');
-//            return Redirect::back();
-//        }
-//        else
-//        {
-//            // failure, get errors
-//            $errors = $degree_adm_test_sbjct->errors();
-//            Session::flash('errors', $errors);
-//
-//            return Redirect::to('admission_test/amw/mng_adm_test_subject');
-//        }
-//    }
-//
-//
-//
-//    public function editAdmTestSubject($id){
-//        $edit_question_paper = DegreeAdmTestSubject::find($id);
-//
-//        return View::make('admission::amw.admission_test.edit_admtest_subject',compact('edit_question_paper'));
-//    }
+    public function createAdmTestSubject()
+    {
+//        $dpg_list = Degree::DegreeProgramGroup();
+
+//        $year_list = Year::lists('title', 'id');
+//        $semester_list = Semester::lists('title', 'id');
+
+        $subject_id_result = AdmTestSubject::lists('title', 'id');
+        $degree_name = BatchAdmtestSubject::with('relBatch','relBatch.relDegree')->get();
+
+        return View::make('admission::amw.batch_adm_test_subject._form',compact('degree_name','subject_id_result'));
+    }
+
+    public function storeAdmTestSubject()
+    {
+        $data = Input::all();
+
+        $model = new BatchAdmtestSubject();
+        if($model->validate($data)){
+            if($model->create($data)){
+                Session::flash('message', 'Successfully added Information!');
+                return Redirect::back();
+            }
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()
+                ->with('errors', 'invalid');
+        }
+
+    }
+
 
 
 }

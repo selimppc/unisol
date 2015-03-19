@@ -1,26 +1,19 @@
 <div style="padding: 10px; width: 90%;">
 
- <h1>View Batch Adm Test Subject</h1>
+ <h1>Manage Admission Test Subject: View</h1>
 
     {{ Form::open(array('url'=>'admission/amw/view_admtest_subject','method' => '')) }}
 
-
         <div class="jumbotron text-center">
-            <h2><strong>Batch Number :</strong>
-            {{--{{ $b_m_course->batch_number }}</h2>--}}
-            {{--<p>--}}
-                {{--<strong> Degree:</strong> {{ $b_m_course->relDegree->title }} <br>--}}
-                {{--<strong> Year:</strong> {{ $b_m_course->relYear->title }}<br>--}}
-                {{--<strong> Semester:</strong> {{ $b_m_course->relSemester->title }}<br>--}}
-                {{--<strong> Description:</strong> {{ $b_m_course->description }}<br>--}}
-                {{--<strong> Total Seat:</strong> {{ $b_m_course->seat_total }}<br>--}}
-                {{--<strong> Start Date:</strong> {{ $b_m_course->start_date }}<br>--}}
-                {{--<strong> End Date:</strong> {{ $b_m_course->end_date }}<br>--}}
-                {{--<strong> Admission Deadline:</strong> {{ $b_m_course->admission_deadline }}<br>--}}
-                {{--<strong> Admission Test Date:</strong> {{ $b_m_course->admtest_date }}<br>--}}
-                {{--<strong> Admission Test Start Time:</strong> {{ $b_m_course->admtest_start_time }}<br>--}}
+            <h2><strong>Degree : </strong>{{ $view_adm_test_subject->relBatch->relDegree->title }}</h2>
+            <p>
+                <strong> Subject: </strong> {{ $view_adm_test_subject->relAdmTestSubject->title }} <br>
+                <strong> Description: </strong> {{ $view_adm_test_subject->description }}<br>
+                <strong> Marks: </strong> {{ $view_adm_test_subject->marks}}<br>
+                <strong> Qualifying Marks: </strong> {{ $view_adm_test_subject->qualify_marks }}<br>
+                <strong> Duration in Minute: </strong> {{ $view_adm_test_subject->duration }} <br>
 
-            {{--</p>--}}
+            </p>
         </div>
 
     <a href="" class="pull-right btn btn-info" span class="glyphicon-refresh">Close</a>
@@ -30,6 +23,5 @@
     &nbsp;
 
     {{ Form::close() }}
-
 
 </div>

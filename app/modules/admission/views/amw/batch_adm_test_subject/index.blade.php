@@ -9,25 +9,30 @@
 
             <div class="row">
                     <div class="col-sm-12">
-                        <div class="pull-right" style="padding-right: 5px">
-                                <button type="button" class="btn btn-info btn-xs" data-toggle="modal"
-                                          data-target="#AddSubjectToDegree">
-                                            Add Subject To Degree
-                                </button>
-                        </div>
+
+                        <div class="col-sm-12">
+                           <div class="pull-right col-sm-4">
+                               <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('admission/amw/create_admtest_subject')}}"
+                                data-toggle="modal" data-target="#modal" >Add Subject To Degree</a>
+                           </div>
+                       </div>
                     </div>
                     <div class="col-sm-12">
                         <div class="col-sm-6">
                             <strong> Degree: </strong>
 
                             @foreach($degree_name as $degree_show)
-                                {{
-                                $degree_show->relBatch->relDegree->relDegreeProgram->code.'
-                                '.$degree_show->relBatch->relDegree->relDegreeGroup->code.' in
-                                '.$degree_show->relBatch->relDegree->relDepartment->title.',
-                                '.$degree_show->relBatch->relSemester->title.',
-                                '.$degree_show->relBatch->relYear->title
-                                }}
+                                    @if (($degree_show->relBatch->relDegree->relDegreeGroup->code) === 'Com')
+                                        {{ $degree_show->relBatch->relDegree->relDepartment->title.',
+                                        '.$degree_show->relBatch->relSemester->title.',
+                                        '.$degree_show->relBatch->relYear->title  }}
+                                    @else
+                                        {{ $degree_show->relBatch->relDegree->relDegreeProgram->code.'
+                                        '.$degree_show->relBatch->relDegree->relDegreeGroup->code.' in
+                                        '.$degree_show->relBatch->relDegree->relDepartment->title.',
+                                        '.$degree_show->relBatch->relSemester->title.',
+                                        '.$degree_show->relBatch->relYear->title  }}
+                                    @endif
                             @endforeach
                         </div>
                     </div>
@@ -57,7 +62,7 @@
 
                                 <td>
                                       <a href="{{ URL::route('admission.amw.view_admtest_subject', ['id'=>$batch_adm_tst_sbjct->id])  }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal" data-placement="left" title="Show" href="#">View</a>
-                                      {{--<a href="{{ URL::route('admission_test.amw.edit_admtest_subject', ['id'=>$batch_adm_tst_sbjct->id])  }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal" data-placement="left" title="Edit" href="#">Edit</a>--}}
+{{--                                      <a href="{{ URL::route('admission.amw.edit_admtest_subject', ['id'=>$batch_adm_tst_sbjct->id])  }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal" data-placement="left" title="Edit" href="#">Edit</a>--}}
                                 </td>
                             </tr>
                       @endforeach
