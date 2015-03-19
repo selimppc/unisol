@@ -44,7 +44,7 @@
                         </tbody>
                     </table>
                     {{ Form::close() }}
-                    {{ $deg_course->links() }}
+                    {{ $deg_course_info->links() }}
                     <p>&nbsp;</p>
                     <p>&nbsp;</p>
                 </div>
