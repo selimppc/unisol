@@ -9,7 +9,7 @@
             {{ Form::hidden('degree_id', $degree_id , ['class'=>'form-control degree_id'])}}
             <div class="form-group" style="width: 350px">
                 {{ Form::label('course_list[]', 'List Of all Course ') }}
-                {{ Form::select('course_list[]', $course_list, Request::old('course_list') ? Request::old('course_list') : $course_list,['multiple' => true, 'class'=>'form-control']); }}
+                {{ Form::select('course_list[]', $course_list, Request::old('course_list') ? Request::old('course_list') : $course_list,['multiple' => true, 'class'=>'form-control', 'required']); }}
             </div>
             {{ Form::submit('Add Course', ['class'=>'btn btn-primary']) }}
             {{ Form::close() }}
