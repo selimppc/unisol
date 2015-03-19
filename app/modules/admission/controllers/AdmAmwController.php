@@ -460,7 +460,7 @@ class AdmAmwController extends \BaseController
   public function degree_courses_index($id)
   {
      $degree_id = $id;
-      $degree_title = Degree::with('relDegreeCourse')
+     $degree_title = Degree::with('relDegreeCourse')
           ->where('id' , '=' ,$id)
           ->first();
      $course_list = Course::lists('title', 'id');
@@ -512,8 +512,20 @@ class AdmAmwController extends \BaseController
 
 //******************************Batch Courses start(R)*****************************
 
-    public function batch_course_index()
+    public function batch_course_index($id)
     {
+        $batch_id = 2;
+        $degree_id = Batch::where('id','=', $batch_id)->first()->degree_id;
+        $degree_course = DegreeCourse::where('degree_id', '=', $degree_id)->get();
+        
+        $degree_id = $id;
+        $degree_title = Degree::with('relDegreeCourse')
+            ->where('id' , '=' ,$id)
+            ->first();
+        $course_list = Course::lists('title', 'id');
+        $deg_course_info = DegreeCourse::with('relCourse','relCourse.relSubject.relDepartment','relCourse.relCourseType')
+            ->where('degree_id', '=' ,$id)
+            ->paginate(10);
         return View::make('admission::amw.batch_course.index');
     }
 

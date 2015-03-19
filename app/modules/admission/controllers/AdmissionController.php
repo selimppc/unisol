@@ -36,7 +36,6 @@ class AdmissionController extends \BaseController {
     }
 
     public function searchIndex(){
-
         $searchQuery = [
             'year_id' =>   Input::get('year_id'),
             'semester_id' =>   Input::get('semester_id'),
@@ -63,7 +62,6 @@ class AdmissionController extends \BaseController {
     }
 
     public function viewExaminers($degree_id){
-
         $adm_view_examiners = AdmExaminer::where('id' ,'=', $degree_id)->first();
         $data = Degree::with('relDepartment')->where('id' ,'=', $degree_id)->first()->relDepartment->title;
 
@@ -71,7 +69,8 @@ class AdmissionController extends \BaseController {
             compact('data','adm_view_examiners','degree_id'));
     }
 
-    public function storeExaminers(){
+    public function storeExaminers()
+    {
         $data = Input::all();
         $adm_examiner_model = new AdmExaminer();
 
@@ -231,8 +230,8 @@ class AdmissionController extends \BaseController {
 
     }
 
-    public function storeDegreeManagement(){
-
+    public function storeDegreeManagement()
+    {
         $data = Input::all();
 
         $adm_test_degree = new Degree();
@@ -321,91 +320,7 @@ class AdmissionController extends \BaseController {
 
     }
 
-//.................................................Subject Management....................................................
 
-
-    public function subjectManagement()
-    {
-        $subject_management = AdmTestSubject::orderBy('id', 'DESC')->paginate(10);
-
-        return View::make('admission::amw.admission_test.adm_test_subject',
-            compact('subject_management'));
-
-
-    }
-
-    public function storeSubjectManagement()
-    {
-
-        $data = Input::all();
-
-        $adm_test_subject = new AdmTestSubject();
-
-        if ($adm_test_subject->validate($data))
-        {
-            $adm_test_subject->title = Input::get('title');
-            $adm_test_subject->description = Input::get('description');
-
-            if ($adm_test_subject->save()) {
-                return Redirect::to('admission_test/amw/adm-test-subject')
-                    ->with('message', 'Successfully added Information!');
-            }
-        } else
-        {
-            $errors = $adm_test_subject->errors();
-            Session::flash('errors', $errors);
-
-            return Redirect::back();
-        }
-
-
-    }
-
-    public function viewSubjectManagement($id)
-    {
-        $view_subject_management = AdmTestSubject::find($id);
-
-        return View::make('admission::amw.admission_test.view_subject_management',compact('view_subject_management'));
-
-
-    }
-
-    public function editSubjectManagement($id)
-    {
-        $edit_subject_management = AdmTestSubject::find($id);
-
-        return View::make('admission::amw.admission_test.edit_subject_management',
-            compact('edit_subject_management'));
-
-
-    }
-
-    public function updateSubjectManagement($id)
-    {
-        $data = Input::all($id);
-
-        $adm_test_subject = new AdmTestSubject();
-
-        if ($adm_test_subject->validate($data))
-        {
-            $adm_test_subject = AdmTestSubject::find($id);
-            $adm_test_subject->title = Input::get('title');
-            $adm_test_subject->description = Input::get('description');
-
-            if ($adm_test_subject->save()) {
-                return Redirect::to('admission_test/amw/adm-test-subject')
-                    ->with('message', 'Successfully Updated Information!');
-            }
-        } else
-        {
-            $errors = $adm_test_subject->errors();
-            Session::flash('errors', $errors);
-
-            return Redirect::back();
-        }
-
-
-    }
 
 //.................................................Batch Management....................................................
 
@@ -511,31 +426,30 @@ class AdmissionController extends \BaseController {
 
 //..............................................Manage Admission Test Subject...........................................
 
-    public function mngAdmTestSubject($batch_id)
+    public function mngBatchAdmTestSubject($batch_id)
     {
         $degree_test_sbjct = BatchAdmtestSubject::where('batch_id' ,'=', $batch_id)->get();
-
-//        $degree_test_sbjct = BatchAdmtestSubject::latest('id')->get();
-
-        $degree_name = BatchAdmtestSubject::with('relBatch','relBatch.relDegree')
-            ->where('batch_id' ,'=', $batch_id)
-            ->first();
-
-
-
-
-        return View::make('admission::amw.batch_adm_test_subject.index',
-            compact('batch_id','degree_test_sbjct','degree_name'));
+//        print_r($degree_test_sbjct);exit;
+        if($degree_test_sbjct->isEmpty()){
+            Session::flash('error', 'There is Nothing to Manage in Admission Test Subject ');
+            return Redirect::back();
+        }else{
+            $degree_name = BatchAdmtestSubject::with('relBatch','relBatch.relDegree')
+                ->where('batch_id' ,'=', $batch_id)
+                ->first();
+            return View::make('admission::amw.batch_adm_test_subject.index',
+                compact('batch_id','degree_test_sbjct','degree_name'));
+        }
     }
 
-    public function viewAdmTestSubject($id)
+    public function viewBatchAdmTestSubject($id)
     {
         $view_adm_test_subject = BatchAdmtestSubject::find($id);
 
         return View::make('admission::amw.batch_adm_test_subject.view',compact('view_adm_test_subject'));
     }
 
-    public function createAdmTestSubject($batch_id)
+    public function createBatchAdmTestSubject($batch_id)
     {
         $subject_id_result = AdmTestSubject::lists('title', 'id');
 
@@ -550,7 +464,7 @@ class AdmissionController extends \BaseController {
         return View::make('admission::amw.batch_adm_test_subject._form',compact('batch_id','degree_name','subject_id_result'));
     }
 
-    public function storeAdmTestSubject()
+    public function storeBatchAdmTestSubject()
     {
         $data = Input::all();
         $model = new BatchAdmtestSubject();
@@ -571,7 +485,7 @@ class AdmissionController extends \BaseController {
 
     }
 
-    public function editAdmTestSubject($batch_id)
+    public function editBatchAdmTestSubject($batch_id)
     {
         $batch_edit = BatchAdmtestSubject::find($batch_id);
 
@@ -584,7 +498,7 @@ class AdmissionController extends \BaseController {
         return View::make('admission::amw.batch_adm_test_subject.edit',compact('batch_id','degree_name','batch_edit','subject_id_result'));
     }
 
-    public function updateAdmTestSubject($id)
+    public function updateBatchAdmTestSubject($id)
     {
         $model = BatchAdmtestSubject::find($id);
         $data = Input::all();
@@ -602,6 +516,75 @@ class AdmissionController extends \BaseController {
         }
     }
 
+
+//.................................................Only Subject Management....................................................
+
+
+    public function AdmissionTestSubjectIndex()
+    {
+        $admission_test_subject = AdmTestSubject::orderBy('id', 'DESC')->paginate(10);
+
+        return View::make('admission::amw.adm_test_subject.admtest_subject_index',
+            compact('admission_test_subject'));
+
+    }
+
+    public function createAdmissionTestSubject()
+    {
+        return View::make('admission::amw.adm_test_subject._form');
+    }
+
+    public function storeAdmissionTestSubject()
+    {
+        $data = Input::all();
+        $model = new AdmTestSubject();
+        if($model->validate($data)){
+            if($model->create($data)){
+                Session::flash('message', 'Successfully added Information!');
+                return Redirect::back();
+            }
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()
+                ->with('errors', 'invalid');
+        }
+
+    }
+
+    public function viewAdmissionTestSubject($id)
+    {
+        $view_admission_test_subject = AdmTestSubject::find($id);
+        return View::make('admission::amw.adm_test_subject.view',compact('view_admission_test_subject'));
+
+    }
+
+    public function editAdmissionTestSubject($id)
+    {
+        $edit_admission_test_subject = AdmTestSubject::find($id);
+
+        return View::make('admission::amw.adm_test_subject.edit',compact('edit_admission_test_subject'));
+
+    }
+
+    public function updateAdmissionTestSubject($id)
+    {
+        $model = AdmTestSubject::find($id);
+        $data = Input::all();
+
+        if($model->validate($data)){
+            if($model->update($data)){
+                Session::flash('message', 'Successfully Updates Information!');
+                return Redirect::back();
+            }
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()
+                ->with('error', 'invalid');
+        }
+
+    }
 
 
 }
