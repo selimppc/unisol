@@ -116,7 +116,8 @@
 
                          <a href="{{ URL::route('admission.amw.batch-applicant.index',['id'=>$batch_list->id ])  }}" class="btn btn-default btn-xs" title="Manage Applicant"  >MA</a>
 
-                         <a href="{{ URL::to('admission/amw/batch-course',['id'=>$batch_list->id ])  }}" class="btn btn-default btn-xs" title="batch Course" >BC</a>
+                         <a href="{{ URL::route('admission.amw.batch_course',['id'=>$batch_list->id ])  }}" class="btn btn-default btn-xs" >BC</a>
+
 
                    </td>
                 </tr>
