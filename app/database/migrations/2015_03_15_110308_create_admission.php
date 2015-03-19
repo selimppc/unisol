@@ -53,7 +53,7 @@ class CreateAdmission extends Migration {
             $table->string('seat_total', 16);
             $table->dateTime('admission_deadline');
             $table->dateTime('admtest_date');
-            $table->dateTime('admtest_start_time');
+            $table->time('admtest_start_time');
             $table->tinyInteger('status', false)->lenght(1);
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
@@ -133,6 +133,9 @@ class CreateAdmission extends Migration {
             $table->unsignedInteger('degree_id')->nullable();
             $table->enum('degree_course_oriented',array(
                 'degree-oriented', 'course-oriented'
+            ));
+            $table->enum('status',array(
+                'requested', 'deny', 'accepted', 'cancel'
             ));
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
@@ -265,7 +268,7 @@ class CreateAdmission extends Migration {
             $table->engine = 'InnoDB';
         });
         Schema::table('batch_education_constraint', function($table) {
-            $table->foreign('batch_id')->references('id')->on('degree');
+            $table->foreign('batch_id')->references('id')->on('batch');
         });
 
 

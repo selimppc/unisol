@@ -12,7 +12,7 @@
               <div class="box-header">
               <h3 class="box-title">Batch Education Constraint</h3>
                   <div class="box-tools pull-right">
-                       <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('admission/amw/batch-edu-const/create')}}" data-toggle="modal" data-target="#bwModal" style="color: #ffffff"><b>Add Education Constraint</b></a>
+                       <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('admission/amw/batch-edu-const/create')}}" data-toggle="modal" data-target="#eduConstModal" style="color: #ffffff"><b>Add Education Constraint</b></a>
                   </div>
               <p>&nbsp;</p>
               </div>
@@ -27,31 +27,32 @@
                                                  <input name="id" type="checkbox" id="checkbox" class="checkbox" value="">
                                              </th>
                                             <th>Batch Number</th>
-
-                                            <th>Waiver</th>
+                                            <th>Level Of Education</th>
+                                            <th>Min Gpa</th>
                                             <th>Action</th>
                                          </tr>
                                  </thead>
-                                        {{--<tbody>--}}
-                                              {{--@if(isset($model))--}}
-                                                    {{--@foreach($model as $value)--}}
-                                                        {{--<tr>--}}
-                                                            {{--<td><input type="checkbox" name="ids[]"  class="myCheckbox" value="{{ $value->id }}">--}}
-                                                            {{--</td>--}}
-                                                            {{--<td></td>--}}
+                                        <tbody>
+                                              @if(isset($model))
+                                                    @foreach($model as $value)
+                                                        <tr>
+                                                            <td><input type="checkbox" name="ids[]"  class="myCheckbox" value="{{ $value->id }}">
+                                                            </td>
+                                                            <td>{{$value->relBatch->batch_number}}</td>
 
-                                                            {{--<td></td>--}}
+                                                            <td>{{strtoupper($value->level_of_education)}}</td>
+                                                            <td>{{$value->min_gpa}}</td>
 
-                                                            {{--<td>--}}
-                                                                 {{--<a href="{{ URL::to('admission/amw/batch-waiver/show/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#bwModal" style="font-size: 12px;color: darkmagenta"><span class="fa fa-eye"></span></a>--}}
-                                                                 {{--<a class="btn btn-xs btn-default" href="{{ URL::to('admission/amw/batch-waiver/edit/'.$value->id) }}" data-toggle="modal" data-target="#bwModal" style="font-size: 12px;color: lightseagreen"><i class="fa fa-edit"></i></a>--}}
-                                                                 {{--<a data-href="{{ URL::to('admission/amw/batch-waiver/delete/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" style="font-size: 12px;color: lightcoral"><span class="fa  fa-trash-o"></span></a>--}}
+                                                            <td>
+                                                                 <a href="{{ URL::to('admission/amw/batch-edu-const/show/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#eduConstModal" style="font-size: 12px;color: darkmagenta"><span class="fa fa-eye"></span></a>
+                                                                 <a class="btn btn-xs btn-default" href="{{ URL::to('admission/amw/batch-edu-const/edit/'.$value->id) }}" data-toggle="modal" data-target="#eduConstModal" style="font-size: 12px;color: lightseagreen"><i class="fa fa-edit"></i></a>
+                                                                 <a data-href="{{ URL::to('admission/amw/batch-edu-const/delete/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" style="font-size: 12px;color: lightcoral"><span class="fa  fa-trash-o"></span></a>
 
-                                                            {{--</td>--}}
-                                                        {{--</tr>--}}
-                                                    {{--@endforeach--}}
-                                              {{--@endif--}}
-                                        {{--</tbody>--}}
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                              @endif
+                                        </tbody>
                        {{ Form::submit('Delete Items', array('class'=>'btn btn-xs btn-danger', 'id'=>'hide-button', 'style'=>'display:none'))}}
                           </table>
                        {{ Form::close() }}
@@ -66,7 +67,7 @@
 </div>
 
 {{----------------------------------------------Modal : degreeGroupModal--------------------------------------------------------------------------}}
-<div class="modal fade" id="bwModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="eduConstModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
 
