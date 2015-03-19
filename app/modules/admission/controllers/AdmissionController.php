@@ -511,7 +511,7 @@ class AdmissionController extends \BaseController {
 
 //..............................................Manage Admission Test Subject...........................................
 
-    public function mngAdmTestSubject()
+    public function mngAdmTestSubject($batch_id)
     {
         $degree_test_sbjct = BatchAdmtestSubject::latest('id')->get();
 
@@ -519,7 +519,7 @@ class AdmissionController extends \BaseController {
 
 
         return View::make('admission::amw.batch_adm_test_subject.index',
-            compact('degree_test_sbjct','degree_name'));
+            compact('batch_id','degree_test_sbjct','degree_name'));
     }
 
     public function viewAdmTestSubject($id)
@@ -531,23 +531,21 @@ class AdmissionController extends \BaseController {
 
     public function createAdmTestSubject()
     {
-//        $dpg_list = Degree::DegreeProgramGroup();
-
-//        $year_list = Year::lists('title', 'id');
-//        $semester_list = Semester::lists('title', 'id');
-
         $subject_id_result = AdmTestSubject::lists('title', 'id');
+
+
         $degree_name = BatchAdmtestSubject::with('relBatch','relBatch.relDegree')->get();
 
-        return View::make('admission::amw.batch_adm_test_subject._form',compact('degree_name','subject_id_result'));
+        return View::make('admission::amw.batch_adm_test_subject._form',compact('batch_id','degree_name','subject_id_result'));
     }
 
     public function storeAdmTestSubject()
     {
         $data = Input::all();
-
         $model = new BatchAdmtestSubject();
+        print_r($data);exit;
         if($model->validate($data)){
+
             if($model->create($data)){
                 Session::flash('message', 'Successfully added Information!');
                 return Redirect::back();

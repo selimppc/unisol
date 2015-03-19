@@ -1,33 +1,34 @@
 <div class="modal-header">
-
     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
     <h4 class="modal-title" id="myModalLabel"> Manage Admission Test Subject : Add</h4>
 </div>
 
 <div class="modal-body">
-     <div style="padding: 20px;">
+   <div style="padding: 20px;">
+      <div class='form-group'>
+            <strong> Degree: </strong>
+            @foreach($degree_name as $degree_show)
+                {{ $degree_show->relBatch->relDegree->title }}
+            @endforeach
+            {{--@foreach($degree_name as $degree_show)--}}
+                    {{--@if (($degree_show->relBatch->relDegree->relDegreeGroup->code) === 'Com')--}}
+                        {{--{{ $degree_show->relBatch->relDegree->relDepartment->title.',--}}
+                        {{--'.$degree_show->relBatch->relSemester->title.',--}}
+                        {{--'.$degree_show->relBatch->relYear->title  }}--}}
+                    {{--@else--}}
+                        {{--{{ $degree_show->relBatch->relDegree->relDegreeProgram->code.'--}}
+                        {{--'.$degree_show->relBatch->relDegree->relDegreeGroup->code.' in--}}
+                        {{--'.$degree_show->relBatch->relDegree->relDepartment->title.',--}}
+                        {{--'.$degree_show->relBatch->relSemester->title.',--}}
+                        {{--'.$degree_show->relBatch->relYear->title  }}--}}
+                    {{--@endif--}}
+            {{--@endforeach--}}
+      </div>
+
+{{--      {{ Form::text('batch_id',$batch_id,['class'=>'form-control']) }}--}}
+
         {{Form::open(array('url'=>'admission/amw/store_admtest_subject', 'class'=>'form-horizontal','files'=>true))}}
 
-
-               <div class='form-group'>
-                    <strong> Degree: </strong>
-                    @foreach($degree_name as $degree_show)
-                        {{ $degree_show->relBatch->relDegree->title }}
-                    @endforeach
-                    {{--@foreach($degree_name as $degree_show)--}}
-                            {{--@if (($degree_show->relBatch->relDegree->relDegreeGroup->code) === 'Com')--}}
-                                {{--{{ $degree_show->relBatch->relDegree->relDepartment->title.',--}}
-                                {{--'.$degree_show->relBatch->relSemester->title.',--}}
-                                {{--'.$degree_show->relBatch->relYear->title  }}--}}
-                            {{--@else--}}
-                                {{--{{ $degree_show->relBatch->relDegree->relDegreeProgram->code.'--}}
-                                {{--'.$degree_show->relBatch->relDegree->relDegreeGroup->code.' in--}}
-                                {{--'.$degree_show->relBatch->relDegree->relDepartment->title.',--}}
-                                {{--'.$degree_show->relBatch->relSemester->title.',--}}
-                                {{--'.$degree_show->relBatch->relYear->title  }}--}}
-                            {{--@endif--}}
-                    {{--@endforeach--}}
-                </div>
 
 
                 <div class='form-group'>
@@ -60,6 +61,7 @@
               <a href="" class="pull-right btn btn-default" style="margin-right: 5px">Close</a>
 
               <p>&nbsp;</p>
+
         {{Form::close()}}
-     </div>
+   </div>
 </div>
