@@ -35,7 +35,7 @@
                                 <th>
                                     <input name="id" type="checkbox" id="checkbox" class="checkbox" value="">
                                 </th>
-                                <th>Degree Program(Title)</th>
+                                <th>Degree(Title)</th>
                                 <th>Department</th>
                                 <th>Total Credit</th>
                                 <th>Duration</th>
@@ -48,7 +48,7 @@
                                     <tr>
                                         <td><input type="checkbox" name="ids[]"  class="myCheckbox" value="{{ $value->id }}">
                                         </td>
-                                        <td>{{ $value->relDegreeProgram->title }}</td>
+                                        <td>{{ $value->title }}</td>
                                         <td>{{ $value->relDepartment->title }}</td>
                                         <td>{{ $value->total_credit}}</td>
                                         <td>{{ $value->duration}}</td>
