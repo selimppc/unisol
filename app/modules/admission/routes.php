@@ -224,18 +224,15 @@ Route::any('admission/amw/mng_adm_test_subject',[
 
 Route::any('admission/amw/view_admtest_subject/{id}', [
     'as' => 'admission.amw.view_admtest_subject',
-    'uses' => 'AdmissionController@view'
+    'uses' => 'AdmissionController@viewAdmTestSubject'
 ]);
 
+Route::any('admission/amw/create_admtest_subject',[
+    'as' => 'admission.amw.create_admtest_subject',
+    'uses' => 'AdmissionController@createAdmTestSubject'
+]);
 
-
-//
-//Route::any('admission_test/amw/store_admtest_subject', [
-//    'as' => 'admission_test.amw.store_admtest_subject',
-//    'uses' => 'AdmissionController@storeAdmTestSubject'
-//]);
-
-//Route::any('admission_test/amw/edit_admtest_subject/{id}', [
-//    'as' => 'admission_test.amw.edit_admtest_subject',
-//    'uses' => 'AdmissionController@editAdmTestSubject'
-//]);
+Route::any('admission/amw/store_admtest_subject', [
+    'as' => 'admission.amw.store_admtest_subject',
+    'uses' => 'AdmissionController@storeAdmTestSubject'
+]);
