@@ -7,6 +7,7 @@
         <div class="box-header">
           {{ Form::open(array('url' => 'admission/amw/degree-courses/save')) }}
             {{ Form::hidden('degree_id', $degree_id , ['class'=>'form-control degree_id'])}}
+            <p style="text-align: center;color: #800080;font-size:large;margin-top: 5px">Courses of Degree of {{$degree_title->title}}</p>
             <div class="form-group" style="width: 350px">
                 {{ Form::label('course_list[]', 'List Of all Course ') }}
                 {{ Form::select('course_list[]', $course_list, Request::old('course_list') ? Request::old('course_list') : $course_list,['multiple' => true, 'class'=>'form-control', 'required']); }}

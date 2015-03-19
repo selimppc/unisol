@@ -87,6 +87,7 @@ class CreateAdmission extends Migration {
             $table->unsignedInteger('course_id')->nullable();
             $table->unsignedInteger('semester_id')->nullable();
             $table->unsignedInteger('year_id')->nullable();
+            $table->unique(['batch_id', 'course_id', 'semester_id', 'year_id']);
             $table->tinyInteger('is_mandatory', false)->lenght(1);
             $table->enum('major_minor',array(
                 'major', 'minor'
@@ -111,6 +112,7 @@ class CreateAdmission extends Migration {
             $table->string('status', 128);
             $table->unsignedInteger('taken_in_year_id')->nullable();
             $table->unsignedInteger('taken_in_semester_id')->nullable();
+            $table->unique(['batch_course_id', 'student_user_id', 'taken_in_year_id', 'taken_in_semester_id']);
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();

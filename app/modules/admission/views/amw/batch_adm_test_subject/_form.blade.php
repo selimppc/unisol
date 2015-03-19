@@ -6,10 +6,8 @@
 <div class="modal-body">
    <div style="padding: 20px;">
       <div class='form-group'>
-            <strong> Degree: </strong>
-            @foreach($degree_name as $degree_show)
-                {{ $degree_show->relBatch->relDegree->title }}
-            @endforeach
+            <strong> Degree: </strong>{{ $degree_name->relBatch->relDegree->title }}
+
             {{--@foreach($degree_name as $degree_show)--}}
                     {{--@if (($degree_show->relBatch->relDegree->relDegreeGroup->code) === 'Com')--}}
                         {{--{{ $degree_show->relBatch->relDegree->relDepartment->title.',--}}
@@ -25,15 +23,18 @@
             {{--@endforeach--}}
       </div>
 
-{{--      {{ Form::text('batch_id',$batch_id,['class'=>'form-control']) }}--}}
-
         {{Form::open(array('url'=>'admission/amw/store_admtest_subject', 'class'=>'form-horizontal','files'=>true))}}
 
+                 <div class='form-group'>
+
+                           {{ Form::label('batch_id', 'Batch ID : will be hidden field') }}
+                           {{ Form::text('batch_id',$batch_id,Input::old('batch_id'),['class'=>'form-control' ]) }} </br>
+                 </div>
 
 
                 <div class='form-group'>
-                           {{ Form::label('subject_id', 'Subjects') }}
-                           {{ Form::select('subject_id',$subject_id_result,null,['class'=>'form-control']) }}
+                           {{ Form::label('admtest_subject_id', 'Subjects') }}
+                           {{ Form::select('admtest_subject_id',$subject_id_result,Input::old('admtest_subject_id'),['class'=>'form-control']) }}
                 </div>
 
                 <div class='form-group'>
