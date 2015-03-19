@@ -55,7 +55,7 @@ class ExamCenterController extends \BaseController {
         $data = Input::all();
 
         if($model->validate($data)){
-            if($model->save()){
+            if($model->update($data)){
                 Session::flash('message','Successfully Updated Information!');
                 return Redirect::back();
             }

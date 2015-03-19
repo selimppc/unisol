@@ -565,11 +565,15 @@ class UserSignupController extends \BaseController {
     public function admBatchEduConstStore()
     {
         $data = Input::all();
+        //print_r($data);exit;
         $model = new BatchEducationConstraint();
 
         if($model->validate($data)){
-            if($model->save()){
+            if($model->create($data)){
                 Session::flash('message','Successfully added Information!');
+                return Redirect::back();
+            }else{
+                Session::flash('message','Invalid Request!');
                 return Redirect::back();
             }
         }else{

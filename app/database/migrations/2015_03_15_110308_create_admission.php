@@ -265,7 +265,7 @@ class CreateAdmission extends Migration {
             $table->engine = 'InnoDB';
         });
         Schema::table('batch_education_constraint', function($table) {
-            $table->foreign('batch_id')->references('id')->on('degree');
+            $table->foreign('batch_id')->references('id')->on('batch');
         });
 
 
