@@ -18,8 +18,14 @@
                     </div>
                     <div class="col-sm-12">
                         <div class="col-sm-6">
-                            {{--<strong> Degree: </strong> {{ $sbjct_dgre_name }}--}}
-                            </br>
+                            <strong> Degree: </strong>
+
+                            @foreach($degree_name as $degree_name)
+                                {{$degree_name->relBatch->relDegree->title}}
+                            @endforeach
+                                                       {{--{{ $degree_test_sbjct->relBatch->relSemester->title }}--}}
+                                                       {{--{{ $degree_test_sbjct->relBatch->relYear->title }}--}}
+                            {{--</br>--}}
                         </div>
                     </div>
             </div>
