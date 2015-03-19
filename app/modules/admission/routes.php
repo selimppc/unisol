@@ -206,7 +206,7 @@ Route::any('admission/amw/view_admtest_subject/{id}', [
     'uses' => 'AdmissionController@viewAdmTestSubject'
 ]);
 
-Route::any('admission/amw/create_admtest_subject',[
+Route::any('admission/amw/create_admtest_subject/{batch_id}',[
     'as' => 'admission.amw.create_admtest_subject',
     'uses' => 'AdmissionController@createAdmTestSubject'
 ]);
@@ -214,4 +214,15 @@ Route::any('admission/amw/create_admtest_subject',[
 Route::any('admission/amw/store_admtest_subject', [
     'as' => 'admission.amw.store_admtest_subject',
     'uses' => 'AdmissionController@storeAdmTestSubject'
+]);
+
+Route::any('admission/amw/edit_admtest_subject/{id}', [
+    'as' => 'admission.amw.edit_admtest_subject',
+    'uses' => 'AdmissionController@editAdmTestSubject'
+]);
+
+
+Route::any('admission/amw/update_admtest_subject/{id}', [
+    'as' => 'admission.amw.update_admtest_subject',
+    'uses' => 'AdmissionController@updateAdmTestSubject'
 ]);

@@ -517,7 +517,11 @@ class AdmissionController extends \BaseController {
 
 //        $degree_test_sbjct = BatchAdmtestSubject::latest('id')->get();
 
-        $degree_name = BatchAdmtestSubject::with('relBatch','relBatch.relDegree')->get();
+        $degree_name = BatchAdmtestSubject::with('relBatch','relBatch.relDegree')
+            ->where('batch_id' ,'=', $batch_id)
+            ->first();
+
+
 
 
         return View::make('admission::amw.batch_adm_test_subject.index',
@@ -531,12 +535,17 @@ class AdmissionController extends \BaseController {
         return View::make('admission::amw.batch_adm_test_subject.view',compact('view_adm_test_subject'));
     }
 
-    public function createAdmTestSubject()
+    public function createAdmTestSubject($batch_id)
     {
         $subject_id_result = AdmTestSubject::lists('title', 'id');
 
+//        $degree_name = BatchAdmtestSubject::with('relBatch','relBatch.relDegree')
+//            ->where('batch_id' ,'=', $batch_id)
+//            ->first();
 
-        $degree_name = BatchAdmtestSubject::with('relBatch','relBatch.relDegree')->get();
+        $degree_name = BatchAdmtestSubject::with('relBatch','relBatch.relDegree')
+            ->where('batch_id' ,'=', $batch_id)
+            ->first();
 
         return View::make('admission::amw.batch_adm_test_subject._form',compact('batch_id','degree_name','subject_id_result'));
     }
@@ -545,7 +554,7 @@ class AdmissionController extends \BaseController {
     {
         $data = Input::all();
         $model = new BatchAdmtestSubject();
-        print_r($data);exit;
+//        print_r($data);exit;
 
         if($model->validate($data)){
 
@@ -560,6 +569,37 @@ class AdmissionController extends \BaseController {
                 ->with('errors', 'invalid');
         }
 
+    }
+
+    public function editAdmTestSubject($batch_id)
+    {
+        $batch_edit = BatchAdmtestSubject::find($batch_id);
+
+        $degree_name = BatchAdmtestSubject::with('relBatch','relBatch.relDegree')
+            ->where('batch_id' ,'=', $batch_id)
+            ->first();
+
+        $subject_id_result = AdmTestSubject::lists('title', 'id');
+
+        return View::make('admission::amw.batch_adm_test_subject.edit',compact('batch_id','degree_name','batch_edit','subject_id_result'));
+    }
+
+    public function updateAdmTestSubject($id)
+    {
+        $model = BatchAdmtestSubject::find($id);
+        $data = Input::all();
+
+        if($model->validate($data)){
+            if($model->update($data)){
+                Session::flash('message', 'Successfully Updates Information!');
+                return Redirect::back();
+            }
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()
+                ->with('error', 'invalid');
+        }
     }
 
 
