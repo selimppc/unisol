@@ -193,74 +193,6 @@ class AdmissionController extends \BaseController {
         Echo "ok";
     }
 
-//..............................................Manage Admission Test Subject...........................................
-
-    public function mngAdmTestSubject(){
-
-        $degree_test_sbjct = BatchAdmtestSubject::latest('id')->paginate(5);
-
-//        $sbjct_dgre_name = BatchAdmTestSubject::with('relDegree')->where('degree_id' ,'=', 2)->first()->relDegree->title;
-//        $admtest_subject_id = array('' => 'Select Admission Test Subject ') + AdmTestSubject::lists('title','id');
-
-
-        return View::make('admission::amw.batch_adm_test_subject.index',
-            compact('degree_test_sbjct','sbjct_dgre_name','sbjct_name','admtest_subject_id','
-            '));
-    }
-//
-//    public function viewAdmTestSubject($id){
-//        $view_question_paper = DegreeAdmTestSubject::find($id);
-//
-//        return View::make('admission::amw.admission_test.view_question_paper.blade.php',compact('view_question_paper'));
-//    }
-//
-//
-//
-//    public function storeAdmTestSubject(){
-//
-//        $data = Input::all();
-////        $exam_list_id = Input::get('exam_list_id');
-////        $course_man_id = Input::get('course_man_id');
-////        print_r($exam_list_id);exit;
-//
-//        $degree_adm_test_sbjct = new DegreeAdmTestSubject();
-//
-//        if ($degree_adm_test_sbjct->validate($data))
-//        {
-//
-//            $degree_adm_test_sbjct->degree_id = Input::get('degree_id');
-//            $degree_adm_test_sbjct->admtest_subject_id = Input::get('admtest_subject_id');
-//            $degree_adm_test_sbjct->description = Input::get('description');
-//            $degree_adm_test_sbjct->marks = Input::get('marks');
-////            $degree_adm_test_sbjct->qualify_marks = Input::get('qualify_marks');
-//            $degree_adm_test_sbjct->duration = Input::get('duration');
-//
-////            print_r($degree_adm_test_sbjct);exit;
-//
-//            $degree_adm_test_sbjct->save();
-//
-//            // redirect
-//            Session::flash('message', 'Manage Degree Admission Test Subject Successfully Added!');
-//            return Redirect::back();
-//        }
-//        else
-//        {
-//            // failure, get errors
-//            $errors = $degree_adm_test_sbjct->errors();
-//            Session::flash('errors', $errors);
-//
-//            return Redirect::to('admission_test/amw/mng_adm_test_subject');
-//        }
-//    }
-//
-//
-//
-//    public function editAdmTestSubject($id){
-//        $edit_question_paper = DegreeAdmTestSubject::find($id);
-//
-//        return View::make('admission::amw.admission_test.edit_admtest_subject',compact('edit_question_paper'));
-//    }
-
 //.................................................Degree Management....................................................
 
     public function degreeManagement(){
@@ -577,7 +509,71 @@ class AdmissionController extends \BaseController {
     }
 
 
-//.................................................Batch Management....................................................
+//..............................................Manage Admission Test Subject...........................................
+
+    public function mngAdmTestSubject(){
+
+        $degree_test_sbjct = BatchAdmtestSubject::latest('id')->get();
+
+        $degree_name = BatchAdmtestSubject::with('relBatch','relBatch.relDegree')->get();
+
+//        print_r($degree_name['relBatch']['relDegree']['title']);exit;
+        return View::make('admission::amw.batch_adm_test_subject.index',
+            compact('degree_test_sbjct','degree_name'));
+    }
+//
+//    public function viewAdmTestSubject($id){
+//        $view_question_paper = DegreeAdmTestSubject::find($id);
+//
+//        return View::make('admission::amw.admission_test.view_question_paper.blade.php',compact('view_question_paper'));
+//    }
+//
+//
+//
+//    public function storeAdmTestSubject(){
+//
+//        $data = Input::all();
+////        $exam_list_id = Input::get('exam_list_id');
+////        $course_man_id = Input::get('course_man_id');
+////        print_r($exam_list_id);exit;
+//
+//        $degree_adm_test_sbjct = new DegreeAdmTestSubject();
+//
+//        if ($degree_adm_test_sbjct->validate($data))
+//        {
+//
+//            $degree_adm_test_sbjct->degree_id = Input::get('degree_id');
+//            $degree_adm_test_sbjct->admtest_subject_id = Input::get('admtest_subject_id');
+//            $degree_adm_test_sbjct->description = Input::get('description');
+//            $degree_adm_test_sbjct->marks = Input::get('marks');
+////            $degree_adm_test_sbjct->qualify_marks = Input::get('qualify_marks');
+//            $degree_adm_test_sbjct->duration = Input::get('duration');
+//
+////            print_r($degree_adm_test_sbjct);exit;
+//
+//            $degree_adm_test_sbjct->save();
+//
+//            // redirect
+//            Session::flash('message', 'Manage Degree Admission Test Subject Successfully Added!');
+//            return Redirect::back();
+//        }
+//        else
+//        {
+//            // failure, get errors
+//            $errors = $degree_adm_test_sbjct->errors();
+//            Session::flash('errors', $errors);
+//
+//            return Redirect::to('admission_test/amw/mng_adm_test_subject');
+//        }
+//    }
+//
+//
+//
+//    public function editAdmTestSubject($id){
+//        $edit_question_paper = DegreeAdmTestSubject::find($id);
+//
+//        return View::make('admission::amw.admission_test.edit_admtest_subject',compact('edit_question_paper'));
+//    }
 
 
 }
