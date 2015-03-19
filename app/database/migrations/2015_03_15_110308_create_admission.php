@@ -70,6 +70,7 @@ class CreateAdmission extends Migration {
             $table->increments('id');
             $table->unsignedInteger('course_id')->nullable();
             $table->unsignedInteger('degree_id')->nullable();
+            $table->unique(['course_id', 'degree_id']);
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
