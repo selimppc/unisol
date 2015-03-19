@@ -460,8 +460,10 @@ class AdmAmwController extends \BaseController
   {
      $degree_id = $id;
      $course_list = Course::lists('title', 'id');
-     $deg_course_info = DegreeCourse::with('relCourse','relCourse.relSubject.relDepartment','relCourse.relCourseType')->get();
-      $deg_course = DegreeCourse::orderBy('id', 'DESC')->paginate(5);
+     $deg_course_info = DegreeCourse::with('relCourse','relCourse.relSubject.relDepartment','relCourse.relCourseType')
+         ->where('degree_id', '=' ,$id)
+         ->paginate(10);
+//      $deg_course = DegreeCourse::orderBy('id', 'DESC')->paginate(5);
      return View::make('admission::amw.degree_courses.index',compact('course_list','deg_course_info','deg_course','degree_id'));
   }
     public function degree_courses_save()
@@ -477,6 +479,7 @@ class AdmAmwController extends \BaseController
             $degreeCourseCheck = DB::table('degree_course')
                 ->select(DB::raw('1'))
                 ->where('course_id', '=', $degree_course->course_id)
+                ->where('degree_id', '=', $degree_course->degree_id)
                 ->get();
             if($degreeCourseCheck){
                 return Redirect::back()->with('info','The selected Course already added !
