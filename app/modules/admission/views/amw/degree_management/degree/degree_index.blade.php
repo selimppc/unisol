@@ -36,7 +36,7 @@
                                     <input name="id" type="checkbox" id="checkbox" class="checkbox" value="">
                                 </th>
                                 <th>Degree(Title)</th>
-                                <th>Department</th>
+                                <th>Department </th>
                                 <th>Total Credit</th>
                                 <th>Duration</th>
                                 <th>Action</th>
