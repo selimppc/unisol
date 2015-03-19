@@ -20,12 +20,15 @@
                         <div class="col-sm-6">
                             <strong> Degree: </strong>
 
-                            @foreach($degree_name as $degree_name)
-                                {{$degree_name->relBatch->relDegree->title}}
+                            @foreach($degree_name as $degree_show)
+                                {{
+                                $degree_show->relBatch->relDegree->relDegreeProgram->code.'
+                                '.$degree_show->relBatch->relDegree->relDegreeGroup->code.' in
+                                '.$degree_show->relBatch->relDegree->relDepartment->title.',
+                                '.$degree_show->relBatch->relSemester->title.',
+                                '.$degree_show->relBatch->relYear->title
+                                }}
                             @endforeach
-                                                       {{--{{ $degree_test_sbjct->relBatch->relSemester->title }}--}}
-                                                       {{--{{ $degree_test_sbjct->relBatch->relYear->title }}--}}
-                            {{--</br>--}}
                         </div>
                     </div>
             </div>
