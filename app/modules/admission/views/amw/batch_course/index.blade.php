@@ -6,20 +6,24 @@
     <div class="box-body">
         <div class="row">
             <div class="col-lg-12">
-                <table id="example" class="table table-bordered table-hover table-striped">
+                <h4 style="color: #800080"><strong>Year:</strong></h4>
+                <h4 style="color: #800080">Spring</h4>
+                <table id="" class="table table-bordered table-hover table-striped">
                     <thead>
                     <tr>
-                        <th>Course Name </th>
-                        <th>Course Code</th>
+                        <th>Title With Code</th>
                         <th>Department</th>
-                        <th>Course Type</th>
+                        <th>Type</th>
                         <th>Credit</th>
+                        <th>Mandatory</th>
+                        <th>Faculty</th>
                         <th>Action</th>
                     </tr>
                     </thead>
                     <tbody>
                     {{--@foreach ($deg_course_info as $value)--}}
                         <tr>
+                            <td></td>
                             <td></td>
                             <td></td>
                             <td></td>
@@ -32,12 +36,71 @@
                     {{--@endforeach--}}
                     </tbody>
                 </table>
-                {{--{{ $deg_course_info->links() }}--}}
-                <p>&nbsp;</p>
-                <p>&nbsp;</p>
+                <h4 style="color: #800080">Summer</h4>
+                <table id="" class="table table-bordered table-hover table-striped">
+                    <thead>
+                    <tr>
+                        <th>Title With Code</th>
+                        <th>Department</th>
+                        <th>Type</th>
+                        <th>Credit</th>
+                        <th>Mandatory</th>
+                        <th>Faculty</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {{--@foreach ($deg_course_info as $value)--}}
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <a data-href="" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa fa-trash-o" style="color: red"></i></a>
+                        </td>
+                    </tr>
+                    {{--@endforeach--}}
+                    </tbody>
+                </table>
+                <h4 style="color: #800080">Fall</h4>
+                <table id="" class="table table-bordered table-hover table-striped">
+                    <thead>
+                    <tr>
+                        <th>Title With Code</th>
+                        <th>Department</th>
+                        <th>Type</th>
+                        <th>Credit</th>
+                        <th>Mandatory</th>
+                        <th>Faculty</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {{--@foreach ($deg_course_info as $value)--}}
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <a data-href="" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa fa-trash-o" style="color: red"></i></a>
+                        </td>
+                    </tr>
+                    {{--@endforeach--}}
+                    </tbody>
+                </table>
+
+                <h4 style="color: #800080"><strong>Courses of__Degree</strong></h4>
+
             </div>
         </div>
     </div>
+
     {{-- Modal for delete --}}
     <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog">
