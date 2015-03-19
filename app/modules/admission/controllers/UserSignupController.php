@@ -565,7 +565,6 @@ class UserSignupController extends \BaseController {
     public function admBatchEduConstStore()
     {
         $data = Input::all();
-        //print_r($data);exit;
         $model = new BatchEducationConstraint();
 
         if($model->validate($data)){
