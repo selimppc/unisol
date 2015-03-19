@@ -134,6 +134,9 @@ class CreateAdmission extends Migration {
             $table->enum('degree_course_oriented',array(
                 'degree-oriented', 'course-oriented'
             ));
+            $table->enum('status',array(
+                'requested', 'deny', 'accepted', 'cancel'
+            ));
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
