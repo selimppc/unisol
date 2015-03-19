@@ -511,22 +511,27 @@ class AdmAmwController extends \BaseController
     }
 
 //******************************Batch Courses start(R)*****************************
+//*************************                              *********************
 
-    public function batch_course_index($id)
+    public function batch_course_index($batch_id, $deg_id)
     {
-        $batch_id = 2;
+        $batch_data = $batch_id;
         $degree_id = Batch::where('id','=', $batch_id)->first()->degree_id;
-        $degree_course = DegreeCourse::where('degree_id', '=', $degree_id)->get();
-        
-        $degree_id = $id;
         $degree_title = Degree::with('relDegreeCourse')
-            ->where('id' , '=' ,$id)
+            ->where('id' , '=' ,$deg_id)
             ->first();
-        $course_list = Course::lists('title', 'id');
-        $deg_course_info = DegreeCourse::with('relCourse','relCourse.relSubject.relDepartment','relCourse.relCourseType')
-            ->where('degree_id', '=' ,$id)
+//        $batch_course_info = BatchCourse::with('relBatch','relBatch.relDegree','relBatch.relDegree.relDegreeCourse','relBatch.relDegree.relDegreeCourse.relCourse')
+//            ->where('id', '=' ,$batch_id)
+//            ->paginate(10);
+       // $degree_course = DegreeCourse::where('degree_id', '=', $deg_id)->get();
+        $deg_course_info = DegreeCourse::with('relCourse')
+            ->where('degree_id', '=' ,$deg_id)
             ->paginate(10);
-        return View::make('admission::amw.batch_course.index');
+
+        return View::make('admission::amw.batch_course.index',compact(
+            'batch_data ','degree_id','degree_title','deg_course_info'
+        ));
+
     }
 
 }

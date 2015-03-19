@@ -417,6 +417,10 @@ Route::any('admission/amw/batch-apt/{id}',
     ['as'=>'admission.amw.batch-applicant.index',
         'uses'=>'UserSignupController@admBatchAptIndex']);
 
+Route::any('admission/amw/batch-apt/status',
+    ['as'=>'admission.amw.batch-apt.status',
+        'uses'=>'UserSignupController@admBatchAptStatus']);
+
 
 
 

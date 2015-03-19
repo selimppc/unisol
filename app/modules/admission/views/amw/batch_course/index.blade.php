@@ -21,7 +21,6 @@
                     </tr>
                     </thead>
                     <tbody>
-                    {{--@foreach ($deg_course_info as $value)--}}
                         <tr>
                             <td></td>
                             <td></td>
@@ -33,7 +32,6 @@
                                 <a data-href="" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa fa-trash-o" style="color: red"></i></a>
                             </td>
                         </tr>
-                    {{--@endforeach--}}
                     </tbody>
                 </table>
                 <h4 style="color: #800080">Summer</h4>
@@ -50,7 +48,6 @@
                     </tr>
                     </thead>
                     <tbody>
-                    {{--@foreach ($deg_course_info as $value)--}}
                     <tr>
                         <td></td>
                         <td></td>
@@ -62,7 +59,6 @@
                             <a data-href="" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa fa-trash-o" style="color: red"></i></a>
                         </td>
                     </tr>
-                    {{--@endforeach--}}
                     </tbody>
                 </table>
                 <h4 style="color: #800080">Fall</h4>
@@ -79,7 +75,6 @@
                     </tr>
                     </thead>
                     <tbody>
-                    {{--@foreach ($deg_course_info as $value)--}}
                     <tr>
                         <td></td>
                         <td></td>
@@ -91,15 +86,42 @@
                             <a data-href="" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa fa-trash-o" style="color: red"></i></a>
                         </td>
                     </tr>
-                    {{--@endforeach--}}
                     </tbody>
                 </table>
-
-                <h4 style="color: #800080"><strong>Courses of__Degree</strong></h4>
-
             </div>
         </div>
     </div>
+
+    {{--Degree Course data--}}
+    {{ Form::hidden('degree_id', $degree_id , ['class'=>'form-control degree_id'])}}
+    <p style="text-align: left;color: #800080;font-size:large;margin-top: 5px">Courses of  {{$degree_title->title}}</p>
+        <table id="example1" class="table table-bordered table-hover table-striped">
+            <thead>
+            <tr>
+                <th>Course Title with title</th>
+                <th>Course Title with code</th>
+                <th>Department</th>
+                <th>Course Type</th>
+                <th>Credit</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+                @foreach ($deg_course_info as $value)
+                <tr>
+                    <td>{{$value->relCourse->title}}</td>
+                    <td>{{$value->relCourse->course_code}}</td>
+                    <td>{{$value->relCourse->relSubject->relDepartment->title}}</td>
+                    <td>{{$value->relCourse->relCourseType->title}}</td>
+                    <td>{{$value->relCourse->credit}}</td>
+                    <td>
+                        <a data-href="" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa fa-trash-o" style="color: red"></i></a>
+                    </td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
+    {{ $deg_course_info->links() }}
 
     {{-- Modal for delete --}}
     <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
@@ -119,5 +141,6 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
 @stop
