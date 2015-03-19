@@ -19,7 +19,7 @@
               <div class="box-body">
                    <div class="row">
                        <div class="col-lg-12">
-                       {{ Form::open(array('url' => 'common/course-type/batch-delete')) }}
+                       {{--{{ Form::open(array('url' => 'common/course-type/batch-delete')) }}--}}
                           <table class="table table-bordered">
                                  <thead>
                                          <tr>
@@ -53,7 +53,7 @@
                                                     @endforeach
                                               @endif
                                         </tbody>
-                       {{ Form::submit('Delete Items', array('class'=>'btn btn-xs btn-danger', 'id'=>'hide-button', 'style'=>'display:none'))}}
+                       {{--{{ Form::submit('Delete Items', array('class'=>'btn btn-xs btn-danger', 'id'=>'hide-button', 'style'=>'display:none'))}}--}}
                           </table>
                        {{ Form::close() }}
                        </div>
