@@ -216,7 +216,7 @@ Route::any('admission/amw/batchDelete', [
 
 //...................................Batch Adm Test Subject........................................................
 
-Route::any('admission/amw/mng_adm_test_subject',[
+Route::any('admission/amw/mng_adm_test_subject/{batch_id}',[
     'as' => 'admission.amw.mng_adm_test_subject',
     'uses' => 'AdmissionController@mngAdmTestSubject'
 ]);

@@ -12,66 +12,66 @@
                </div>
 
 
-                <div class="col-sm-12">
-                        <div style="width:100%; float:left;">
-                            <div style="width:50%; float:left;" class="">
-                                <div class="col-sm-6">
-                                    <div class='form-group'>
-                                               {{ Form::label('status', 'Selct Status') }}
-                                               {{ Form::select('status',
-                                                   array('' => 'Select Status',
-                                                   'Created' => 'Created  (CRTD)',
-                                                   'Ask for Application' => 'Ask for Application (AFA)',
-                                                   'Application Time Over' => 'Application Time Over (ATO)',
-                                                   'Selection and Scrutinizing' => 'Selection and Scrutinizing (SNS)',
-                                                   'Admission Test' => 'Admission Test (ADMT)',
-                                                   'Admission Test Evaluation' => 'Admission Test Evaluation (ADTE)',
-                                                   'Merit List Preparation' => 'Merit List Preparation (MRPR)',
-                                                   'Final Selection ' => 'Final Selection (FNLS)',
-                                                   'Admission' => 'Admission (ADMN)',
-                                                   'Activity Start' => 'Activity Start (ACTS)',
-                                                   'Running' => 'Running (Rung)',
-                                                   'Cancelled' => 'Cancelled (CNCL)',
-                                                   'Paused' => ' Paused (PSD)',
-                                                   'Finished' => 'Finished (FNSH)',
+                {{--<div class="col-sm-12">--}}
+                        {{--<div style="width:100%; float:left;">--}}
+                            {{--<div style="width:50%; float:left;" class="">--}}
+                                {{--<div class="col-sm-6">--}}
+                                    {{--<div class='form-group'>--}}
+                                               {{--{{ Form::label('status', 'Selct Status') }}--}}
+                                               {{--{{ Form::select('status',--}}
+                                                   {{--array('' => 'Select Status',--}}
+                                                   {{--'Created' => 'Created  (CRTD)',--}}
+                                                   {{--'Ask for Application' => 'Ask for Application (AFA)',--}}
+                                                   {{--'Application Time Over' => 'Application Time Over (ATO)',--}}
+                                                   {{--'Selection and Scrutinizing' => 'Selection and Scrutinizing (SNS)',--}}
+                                                   {{--'Admission Test' => 'Admission Test (ADMT)',--}}
+                                                   {{--'Admission Test Evaluation' => 'Admission Test Evaluation (ADTE)',--}}
+                                                   {{--'Merit List Preparation' => 'Merit List Preparation (MRPR)',--}}
+                                                   {{--'Final Selection ' => 'Final Selection (FNLS)',--}}
+                                                   {{--'Admission' => 'Admission (ADMN)',--}}
+                                                   {{--'Activity Start' => 'Activity Start (ACTS)',--}}
+                                                   {{--'Running' => 'Running (Rung)',--}}
+                                                   {{--'Cancelled' => 'Cancelled (CNCL)',--}}
+                                                   {{--'Paused' => ' Paused (PSD)',--}}
+                                                   {{--'Finished' => 'Finished (FNSH)',--}}
 
-                                               ),Input::old('status'),['class'=>'form-control']) }}
-                                    </div>
-                            	</div>
-                            </div>
+                                               {{--),Input::old('status'),['class'=>'form-control']) }}--}}
+                                    {{--</div>--}}
+                            	{{--</div>--}}
+                            {{--</div>--}}
 
-                            <div style="width:50%; float:left; ">
-                                <div class="col-sm-12 ">
-                                    <div class='form-group'>
-                                               {{ Form::label('degree_id', 'Degree with Program') }}
-                                               {{ Form::select('degree_id',$dpg_list,null,['class'=>'form-control']) }}
-                                    </div>
-                                </div>
-                                <div class="clearfix visible-md-block"></div>
+                            {{--<div style="width:50%; float:left; ">--}}
+                                {{--<div class="col-sm-12 ">--}}
+                                    {{--<div class='form-group'>--}}
+                                               {{--{{ Form::label('degree_id', 'Degree with Program') }}--}}
+                                               {{--{{ Form::select('degree_id',$dpg_list,null,['class'=>'form-control']) }}--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                                {{--<div class="clearfix visible-md-block"></div>--}}
 
-                                <div class="col-sm-12 ">
-                                    <div class='form-group'>
-                                               {{ Form::label('department_id', 'Department') }}
-                                               {{ Form::select('department_id',$department_list,null,['class'=>'form-control']) }}
-                                    </div>
+                                {{--<div class="col-sm-12 ">--}}
+                                    {{--<div class='form-group'>--}}
+                                               {{--{{ Form::label('department_id', 'Department') }}--}}
+                                               {{--{{ Form::select('department_id',$department_list,null,['class'=>'form-control']) }}--}}
+                                    {{--</div>--}}
 
-                                </div>
-                                <div class="clearfix visible-md-block"></div>
+                                {{--</div>--}}
+                                {{--<div class="clearfix visible-md-block"></div>--}}
 
-                                <div class="col-sm-12 ">
-                                        <div class='form-group'>
-                                              {{ Form::label('year_id', 'Year') }}
-                                              {{ Form::select('year_id',$year_list,null,['class'=>'form-control']) }}
-                                        </div>
+                                {{--<div class="col-sm-12 ">--}}
+                                        {{--<div class='form-group'>--}}
+                                              {{--{{ Form::label('year_id', 'Year') }}--}}
+                                              {{--{{ Form::select('year_id',$year_list,null,['class'=>'form-control']) }}--}}
+                                        {{--</div>--}}
 
-                                </div>
-                                <div class="clearfix visible-sm-block">
+                                {{--</div>--}}
+                                {{--<div class="clearfix visible-sm-block">--}}
 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-           </div>
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+           {{--</div>--}}
 </div>
 
 {{ Form::open(array('url' => 'admission/amw/batchDelete')) }}
@@ -109,6 +109,14 @@
                    <td>
                          <a href="{{ URL::to('admission/amw/show/'.$batch_list->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#modal" style="font-size: 12px;color: darkmagenta"><span class="fa fa-eye"></span></a>
                          <a class="btn btn-xs btn-default" href="{{ URL::to('admission/amw/edit/'.$batch_list->id) }}" data-toggle="modal" data-target="#modal" style="font-size: 12px;color: lightseagreen"><i class="fa fa-edit"></i></a>
+
+                         <a href="{{ URL::to('admission/amw/mng_adm_test_subject',['id'=>$batch_list->id ])  }}" class="btn btn-default btn-xs" >MATS</a>
+
+                         <a href="{{ URL::route('admission.amw.batch-waiver.index',['id'=>$batch_list->id ])  }}" class="btn btn-default btn-xs" >MW</a>
+
+{{--                         <a href="{{ URL::route('admission.amw.batch_apt',['id'=>$batch_list->id ])  }}" class="btn btn-default btn-xs" >MA</a>--}}
+
+                         <a href="{{ URL::to('admission/amw/batch-course',['id'=>$batch_list->id ])  }}" class="btn btn-default btn-xs" >BC</a>
 
                    </td>
                 </tr>

@@ -12,7 +12,7 @@
 
                         <div class="col-sm-12">
                            <div class="pull-right col-sm-4">
-                               <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('admission/amw/create_admtest_subject')}}"
+                               <a class="pull-right btn btn-sm btn-info" href="{{ URL::route('admission.amw.create_admtest_subject')}}"
                                 data-toggle="modal" data-target="#modal" >Add Subject To Degree</a>
                            </div>
                        </div>
