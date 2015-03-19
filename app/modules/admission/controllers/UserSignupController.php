@@ -623,4 +623,13 @@ class UserSignupController extends \BaseController {
             return Redirect::back()->with('danger', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
         }
     }
+
+// {---------------------------------------------Batch Applicant----------------------------------------------------------------------}
+
+    public function admBatchAptIndex(){
+//        $model = BatchEducationConstraint::latest('id')->paginate(5);
+
+        return View::make('admission::amw.batch_applicant.batch_apt_index' );
+
+    }
 }

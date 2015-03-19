@@ -513,7 +513,9 @@ class AdmissionController extends \BaseController {
 
     public function mngAdmTestSubject($batch_id)
     {
-        $degree_test_sbjct = BatchAdmtestSubject::latest('id')->get();
+        $degree_test_sbjct = BatchAdmtestSubject::where('batch_id' ,'=', $batch_id)->get();
+
+//        $degree_test_sbjct = BatchAdmtestSubject::latest('id')->get();
 
         $degree_name = BatchAdmtestSubject::with('relBatch','relBatch.relDegree')->get();
 
@@ -544,6 +546,7 @@ class AdmissionController extends \BaseController {
         $data = Input::all();
         $model = new BatchAdmtestSubject();
         print_r($data);exit;
+
         if($model->validate($data)){
 
             if($model->create($data)){

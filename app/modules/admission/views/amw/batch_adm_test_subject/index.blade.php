@@ -12,7 +12,8 @@
 
                         <div class="col-sm-12">
                            <div class="pull-right col-sm-4">
-                               <a class="pull-right btn btn-sm btn-info" href="{{ URL::route('admission.amw.create_admtest_subject')}}"
+{{--                        {{ URL::route('admission.amw.batch-applicant.index',['id'=>$batch_list->id ])  }}--}}
+                               <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('admission/amw/create_admtest_subject')}}"
                                 data-toggle="modal" data-target="#modal" >Add Subject To Degree</a>
                            </div>
                        </div>
@@ -20,20 +21,23 @@
                     <div class="col-sm-12">
                         <div class="col-sm-6">
                             <strong> Degree: </strong>
-
                             @foreach($degree_name as $degree_show)
-                                    @if (($degree_show->relBatch->relDegree->relDegreeGroup->code) === 'Com')
-                                        {{ $degree_show->relBatch->relDegree->relDepartment->title.',
-                                        '.$degree_show->relBatch->relSemester->title.',
-                                        '.$degree_show->relBatch->relYear->title  }}
-                                    @else
-                                        {{ $degree_show->relBatch->relDegree->relDegreeProgram->code.'
-                                        '.$degree_show->relBatch->relDegree->relDegreeGroup->code.' in
-                                        '.$degree_show->relBatch->relDegree->relDepartment->title.',
-                                        '.$degree_show->relBatch->relSemester->title.',
-                                        '.$degree_show->relBatch->relYear->title  }}
-                                    @endif
+                                {{ $degree_show->relBatch->relDegree->title }}
                             @endforeach
+
+                            {{--@foreach($degree_name as $degree_show)--}}
+                                    {{--@if (($degree_show->relBatch->relDegree->relDegreeGroup->code) === 'Com')--}}
+                                        {{--{{ $degree_show->relBatch->relDegree->relDepartment->title.',--}}
+                                        {{--'.$degree_show->relBatch->relSemester->title.',--}}
+                                        {{--'.$degree_show->relBatch->relYear->title  }}--}}
+                                    {{--@else--}}
+                                        {{--{{ $degree_show->relBatch->relDegree->relDegreeProgram->code.'--}}
+                                        {{--'.$degree_show->relBatch->relDegree->relDegreeGroup->code.' in--}}
+                                        {{--'.$degree_show->relBatch->relDegree->relDepartment->title.',--}}
+                                        {{--'.$degree_show->relBatch->relSemester->title.',--}}
+                                        {{--'.$degree_show->relBatch->relYear->title  }}--}}
+                                    {{--@endif--}}
+                            {{--@endforeach--}}
                         </div>
                     </div>
             </div>
