@@ -568,7 +568,7 @@ class UserSignupController extends \BaseController {
         $model = new BatchEducationConstraint();
 
         if($model->validate($data)){
-            if($model->create($data)){
+            if($model->save()){
                 Session::flash('message','Successfully added Information!');
                 return Redirect::back();
             }
