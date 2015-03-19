@@ -13,8 +13,10 @@ class DegreeCourse extends Eloquent{
     ];
     private $errors;
     private $rules = [
-        'course_id' => 'required|integer',
-        'degree_id' => 'required|integer',
+        /*'course_id' => 'required',
+        'degree_id' => 'required',*/
+        /*'first_name' => 'required|unique_with:users,last_name',
+        'last_name' => 'required',*/
     ];
     public function validate($data)
     {
