@@ -7,16 +7,16 @@
 @section('content')
 
 <h3>Admission On </h3>
-    {{--<p>--}}
+    <p>
      {{--<b style="font-style: italic">--}}
-     {{--@if(isset($model))--}}
-           {{--{{$model->relDegree->relDegreeProgram->title}}--}}
-           {{--{{$model->relDegree->relDegreeGroup->title}} On--}}
-           {{--{{$model->relDegree->relDepartment->title}}</b>--}}
-           {{--{{$model->relSemester->title}},--}}
-           {{--{{$model->relYear->title}}--}}
-       {{--@endif--}}
-    {{--</p>--}}
+     @if(isset($batchApt))
+           {{$batchApt->relDegree->relDegreeProgram->title}}
+           {{$batchApt->relDegree->relDegreeGroup->title}} On
+           {{$batchApt->relDegree->relDepartment->title}}
+           {{$batchApt->relSemester->title}},
+           {{$batchApt->relYear->title}}
+       @endif
+    </p>
 
  <div class="box box-solid ">
         <div class="box box-info">
@@ -26,6 +26,20 @@
                        {{--<a class="pull-right btn btn-sm btn-info" href="{{ URL::to('admission/amw/batch-edu-const/create')}}" data-toggle="modal" data-target="#eduConstModal" style="color: #ffffff"><b>Add Education Constraint</b></a>--}}
                   {{--</div>--}}
               <p>&nbsp;</p>
+{{-------------------------------------------------------------Filter Starts--------------------------------------------------------------}}
+              <table id="example1">
+
+              {{ Form::open(array('url'=>'admission/amw/batch-apt/status','class'=>'form-horizontal')) }}
+
+              <div  class="col-lg-3">{{ Form::label('status', 'Status') }}
+              {{ Form::select('status', $status , Input::old('status'),['class'=>'form-control input-sm '])}}</div>
+              <p>&nbsp;</p>
+              {{ Form::submit('Filter',['class'=>'pull-left btn btn-xs btn btn-success']) }}
+              </table>
+              {{ Form::close() }}
+
+{{--------------------------------------------------------------Filter Ends--------------------------------------------------------------------}}
+
               </div>
               <div class="box-body">
                    <div class="row">
@@ -44,6 +58,7 @@
                                          </tr>
                                  </thead>
                                         <tbody>
+                                        {{--{{$apt_data->getStatus()}}--}}
                                               @if(isset($apt_data))
                                                     @foreach($apt_data as $value)
                                                         <tr>
@@ -74,7 +89,7 @@
 
  </div>
 <div class="text-right">
-    {{--{{ $model->links() }}--}}
+    {{--{{ $batchApplicant->links() }}--}}
 </div>
 
 {{----------------------------------------------Modal : degreeGroupModal--------------------------------------------------------------------------}}
