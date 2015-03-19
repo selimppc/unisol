@@ -8,7 +8,7 @@
 <div class="row">
            <div class="col-sm-12">
                <div class="pull-right col-sm-4">
-                   <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('batch/amw/create')}}" data-toggle="modal" data-target="#modal" >Add Batch</a>
+                   <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('admission/amw/create')}}" data-toggle="modal" data-target="#modal" >Add Batch</a>
                </div>
 
 

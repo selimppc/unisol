@@ -56,8 +56,8 @@
                                 <td>{{ $batch_adm_tst_sbjct->duration }} &nbsp; Minutes</td>
 
                                 <td>
-                                      <a href="{{ URL::route('admission_test.amw.view_admtest_subject', ['id'=>$batch_adm_tst_sbjct->id])  }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal" data-placement="left" title="Show" href="#">View</a>
-                                      <a href="{{ URL::route('admission_test.amw.edit_admtest_subject', ['id'=>$batch_adm_tst_sbjct->id])  }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal" data-placement="left" title="Edit" href="#">Edit</a>
+                                      <a href="{{ URL::route('admission.amw.view_admtest_subject', ['id'=>$batch_adm_tst_sbjct->id])  }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal" data-placement="left" title="Show" href="#">View</a>
+                                      {{--<a href="{{ URL::route('admission_test.amw.edit_admtest_subject', ['id'=>$batch_adm_tst_sbjct->id])  }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal" data-placement="left" title="Edit" href="#">Edit</a>--}}
                                 </td>
                             </tr>
                       @endforeach

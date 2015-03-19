@@ -511,25 +511,24 @@ class AdmissionController extends \BaseController {
 
 //..............................................Manage Admission Test Subject...........................................
 
-    public function mngAdmTestSubject(){
-
+    public function mngAdmTestSubject()
+    {
         $degree_test_sbjct = BatchAdmtestSubject::latest('id')->get();
 
         $degree_name = BatchAdmtestSubject::with('relBatch','relBatch.relDegree')->get();
 
-//        print_r($degree_name['relBatch']['relDegree']['title']);exit;
+
         return View::make('admission::amw.batch_adm_test_subject.index',
             compact('degree_test_sbjct','degree_name'));
     }
-//
-//    public function viewAdmTestSubject($id){
-//        $view_question_paper = DegreeAdmTestSubject::find($id);
-//
-//        return View::make('admission::amw.admission_test.view_question_paper.blade.php',compact('view_question_paper'));
-//    }
-//
-//
-//
+
+    public function view($id)
+    {
+        $view_adm_test_subject = BatchAdmtestSubject::find($id);
+
+        return View::make('admission::amw.batch_adm_test_subject.view',compact('view_adm_test_subject'));
+    }
+
 //    public function storeAdmTestSubject(){
 //
 //        $data = Input::all();
