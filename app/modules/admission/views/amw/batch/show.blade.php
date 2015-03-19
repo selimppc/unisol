@@ -2,7 +2,7 @@
 
  <h1>View Batch</h1>
 
-    {{ Form::open(array('url'=>'batch/amw/show','method' => '')) }}
+    {{ Form::open(array('url'=>'admission/amw/show','method' => '')) }}
 
 
         <div class="jumbotron text-center">

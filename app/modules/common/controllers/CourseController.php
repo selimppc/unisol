@@ -58,7 +58,7 @@ class CourseController extends \BaseController {
         $data = Input::all();
 
         if($model->validate($data)){
-            if($model->create($data)){
+            if($model->update($data)){
                 Session::flash('message', 'Successfully Updates Information!');
                 return Redirect::back();
             }
