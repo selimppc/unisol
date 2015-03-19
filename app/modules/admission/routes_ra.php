@@ -23,7 +23,7 @@ Route::get('admission/amw/degree-courses/delete/{id}',
 
 //******************Batch Course Start*********************
 
-Route::any('admission/amw/batch-course/', [
+Route::any('admission/amw/batch-course/{batch_id}/{deg_id}', [
     'as' => 'admission.amw.batch_course',
     'uses' => 'AdmAmwController@batch_course_index'
 ]);

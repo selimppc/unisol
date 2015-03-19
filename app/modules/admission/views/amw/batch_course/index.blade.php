@@ -95,8 +95,6 @@
     {{--Degree Course data--}}
     {{ Form::hidden('degree_id', $degree_id , ['class'=>'form-control degree_id'])}}
     <p style="text-align: left;color: #800080;font-size:large;margin-top: 5px">Courses of  {{$degree_title->title}}</p>
-
-
         <table id="example1" class="table table-bordered table-hover table-striped">
             <thead>
             <tr>
@@ -110,7 +108,6 @@
             </thead>
             <tbody>
                 @foreach ($deg_course_info as $value)
-
                 <tr>
                     <td>{{$value->relCourse->title}}</td>
                     <td>{{$value->relCourse->course_code}}</td>
@@ -125,12 +122,6 @@
             </tbody>
         </table>
     {{ $deg_course_info->links() }}
-
-
-
-
-
-
 
     {{-- Modal for delete --}}
     <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
