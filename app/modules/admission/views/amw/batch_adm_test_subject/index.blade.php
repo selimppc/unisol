@@ -59,7 +59,7 @@
                              </tr>
                   </thead>
                   <tbody>
-                     @if(isset($degree_test_sbjct))
+                        @if(isset($degree_test_sbjct))
                           @foreach($degree_test_sbjct as $batch_adm_tst_sbjct)
                                 <tr>
                                     <td><input type="checkbox" name="id[]" class="myCheckbox" value="{{ $batch_adm_tst_sbjct['id'] }}"></td>
@@ -73,7 +73,7 @@
                                     </td>
                                 </tr>
                           @endforeach
-                     @endif
+                        @endif
                   </tbody>
                 </table>
             {{form::close() }}

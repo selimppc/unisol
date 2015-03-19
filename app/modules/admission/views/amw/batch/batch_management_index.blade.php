@@ -110,13 +110,13 @@
                          <a href="{{ URL::to('admission/amw/show/'.$batch_list->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#modal" style="font-size: 12px;color: darkmagenta"><span class="fa fa-eye"></span></a>
                          <a class="btn btn-xs btn-default" href="{{ URL::to('admission/amw/edit/'.$batch_list->id) }}" data-toggle="modal" data-target="#modal" style="font-size: 12px;color: lightseagreen"><i class="fa fa-edit"></i></a>
 
-                         <a href="{{ URL::to('admission/amw/mng_adm_test_subject',['id'=>$batch_list->id ])  }}" class="btn btn-default btn-xs" >MATS</a>
+                         <a href="{{ URL::to('admission/amw/mng_adm_test_subject',['id'=>$batch_list->id ])  }}" class="btn btn-default btn-xs" title="Manage AdmTest Subject" >MATS</a>
 
-                         <a href="{{ URL::route('admission.amw.batch-waiver.index',['id'=>$batch_list->id ])  }}" class="btn btn-default btn-xs" >MW</a>
+                         <a href="{{ URL::route('admission.amw.batch-waiver.index',['id'=>$batch_list->id ])  }}" class="btn btn-default btn-xs" title="Manage Waiver"  >MW</a>
 
-                         <a href="{{ URL::route('admission.amw.batch-applicant.index',['id'=>$batch_list->id ])  }}" class="btn btn-default btn-xs" >MA</a>
+                         <a href="{{ URL::route('admission.amw.batch-applicant.index',['id'=>$batch_list->id ])  }}" class="btn btn-default btn-xs" title="Manage Applicant"  >MA</a>
 
-                         <a href="{{ URL::to('admission/amw/batch-course',['id'=>$batch_list->id ])  }}" class="btn btn-default btn-xs" >BC</a>
+                         <a href="{{ URL::to('admission/amw/batch-course',['id'=>$batch_list->id ])  }}" class="btn btn-default btn-xs" title="batch Course" >BC</a>
 
                    </td>
                 </tr>
