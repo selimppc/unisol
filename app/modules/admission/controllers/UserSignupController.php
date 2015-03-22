@@ -450,32 +450,24 @@ class UserSignupController extends \BaseController {
         try {
             Degree::find($id)->delete();
             return Redirect::back()->with('message', 'Successfully deleted Information!');
-        }
-        catch(exception $ex){
+        } catch (exception $ex) {
             return Redirect::back()->with('danger', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
         }
     }
-    //TODO Searching............
 
-    public function admDegreeSearch(){
+    public function admDegreeSearch()
+    {
+        $searchQuery = $department_id = Input::get('search_department');
 
-        $searchQuery = [
-            $department_id = Input::get('search_department')
-        ];
-
-        //echo $dep_id;exit;
-        $model = new Degree();
-        $result = Helpers::search($searchQuery, $model);
-        //print_r($result) ;exit;
-
-        $dep_data = '';
-
-        foreach($result as $value){
-            $model = Degree::with( 'relDepartment' )->where('department_id', '=', $value);
-            $dep_data[] = $model->get();
+        if($searchQuery){
+          $department = array('' => 'Select Department ') + Department::lists('title', 'id');
+          $model = Degree::with(['relDepartment'])->where('department_id', '=', $searchQuery)->paginate(5);
+          return View::make('admission::amw.degree_management.degree.degree_index',
+                    compact('model','department'));
+        }else{
+            return Redirect::back();
         }
     }
-
  //{----------------------------------------------------- Waiver ----------------------------------------------------------------}
 
     //TODO : Add Billing Details.............
