@@ -7,7 +7,7 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 class BatchCourse extends Eloquent{
 
     //TODO :: model attributes and rules and validation
-    protected $table='course_enrollment';
+    protected $table = 'batch_course';
     protected $fillable = [
         'batch_id', 'course_id', 'semester_id', 'year_id', 'is_mandatory', 'major_minor'
     ];
