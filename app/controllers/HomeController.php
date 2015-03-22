@@ -289,7 +289,8 @@ class HomeController extends BaseController {
 
 
     public function datePicker(){
-
+        $q = Helpers::searchBatchByDepartment();
+        print_r($q);exit;
         if($_POST){
             $n = Input::get('factorial');
             $factorial = $this->bcFact($n);
