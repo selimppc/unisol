@@ -5,7 +5,7 @@
 @section('content')
 <h1><strong>Manage Admission Test Subject </strong> </h1> <br>
 
-            {{--{{ Form::open(array('url' => 'examination/amw/batchDelete')) }}--}}
+            {{--{{ Form::open(array('url' => 'examination/amw/batch-adm-test-subject/batchDelete')) }}--}}
 
             <div class="row">
                     <div class="col-sm-12">
@@ -13,7 +13,7 @@
                         <div class="col-sm-12">
                            <div class="pull-right col-sm-4">
 {{--                        {{ URL::route('admission.amw.batch-applicant.index',['id'=>$batch_list->id ])  }}--}}
-                               <a class="pull-right btn btn-sm btn-info" href="{{ URL::route('admission.amw.create_admtest_subject',['batch_id'=>$degree_name->batch_id])}}"
+                               <a class="pull-right btn btn-sm btn-info" href="{{ URL::route('admission.amw.batch-adm-test-subject.create_admtest_subject',['batch_id'=>$degree_name->batch_id])}}"
                                 data-toggle="modal" data-target="#modal" >Add Subject To Degree</a>
                            </div>
                        </div>
@@ -68,8 +68,8 @@
                                     <td>{{ $batch_adm_tst_sbjct->duration }} &nbsp; Minutes</td>
 
                                     <td>
-                                          <a href="{{ URL::route('admission.amw.view_admtest_subject', ['id'=>$batch_adm_tst_sbjct->id])  }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal" data-placement="left" title="Show" href="#">View</a>
-                                          <a href="{{ URL::route('admission.amw.edit_admtest_subject', ['id'=>$batch_adm_tst_sbjct->id])  }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal" data-placement="left" title="Edit" href="#">Edit</a>
+                                          <a href="{{ URL::route('admission.amw.batch-adm-test-subject.view_admtest_subject', ['id'=>$batch_adm_tst_sbjct->id])  }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal" data-placement="left" title="Show" href="#">View</a>
+                                          <a href="{{ URL::route('admission.amw.batch-adm-test-subject.edit_admtest_subject', ['id'=>$batch_adm_tst_sbjct->id])  }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal" data-placement="left" title="Edit" href="#">Edit</a>
                                     </td>
                                 </tr>
                           @endforeach

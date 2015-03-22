@@ -6,7 +6,7 @@
 
 <div class="modal-body">
       <div style="padding: 20px;">
-          {{Form::open(array('route'=> ['admission.amw.update-admission-test-subject',$edit_admission_test_subject->id], 'class'=>'form-horizontal','files'=>true))}}
+          {{Form::open(array('route'=> ['admission.amw.admission-test-subject.update-admission-test-subject',$edit_admission_test_subject->id], 'class'=>'form-horizontal','files'=>true))}}
 
                 <div class='form-group'>
                     {{ Form::label('title', 'Title') }}

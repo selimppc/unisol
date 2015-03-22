@@ -642,26 +642,14 @@ class AdmissionController extends \BaseController {
     {
         $adm_test_examiner = AdmExaminer::latest('id')->paginate(10);
 
-//        $degree_test_sbjct = BatchAdmtestSubject::where('batch_id' ,'=', $batch_id)->get();
-//        if($degree_test_sbjct->isEmpty()){
-//            Session::flash('error', 'There is Nothing to Manage in Admission Test Subject ');
-//            return Redirect::back();
-//        }else{
-//            $degree_name = BatchAdmtestSubject::with('relBatch','relBatch.relDegree')
-//                ->where('batch_id' ,'=', $batch_id)
-//                ->first();
-//            return View::make('admission::amw.batch_adm_test_subject.index',
-//                compact('batch_id','degree_test_sbjct','degree_name'));
-//        }
-
-        return View::make('admission::amw.adm_examiner.adm_examiner_index',compact('adm_test_examiner'));
+        return View::make('admission::amw.adm_examiner.adm_examiner_index',
+            compact('adm_test_examiner','year_id','semester_id','degree_id'));
 
     }
 
     public function addAdmTestExaminer()
     {
         return View::make('admission::amw.adm_examiner._form');
-
     }
 
     public function storeAdmTestExaminer()
@@ -696,8 +684,19 @@ class AdmissionController extends \BaseController {
 
     public function admQuestionIndex()
     {
-        return View::make('admission::amw.adm_question.adm_question_index');
+
+        $adm_test_question_paper = AdmQuestion::latest('id')->paginate(10);
+
+        return View::make('admission::amw.adm_question.adm_question_index',compact('adm_test_question_paper'));
     }
+
+    public function createAdmTestQuestionPaper()
+    {
+        return View::make('admission::amw.adm_question._form');
+
+    }
+
+
 
 
 //..................................................Admission Test : Question Evaluation .......................................
