@@ -3547,3 +3547,8 @@ fieldset[disabled] .btn-vk.active {
 .margin-top-text{
   margin-top: 5px;
 }
+
+.dataTables_filter label{
+    float: right;
+    padding-right: 1%;
+}
