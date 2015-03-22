@@ -27,3 +27,6 @@ Route::any('admission/amw/batch-course/{batch_id}/{deg_id}', [
     'as' => 'admission.amw.batch_course',
     'uses' => 'AdmAmwController@batch_course_index'
 ]);
+Route::post('admission/amw/batch-course/save',
+    'AdmAmwController@batch_course_save'
+);
