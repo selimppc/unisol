@@ -285,10 +285,6 @@ Route::any('admission/amw/adm_test_home/search-adm-test-index',[
 ]);
 
 
-
-
-
-
 //...................................Admission Examiner........................................................
 
 Route::any('admission/amw/admission-examiner-index',[
@@ -296,14 +292,26 @@ Route::any('admission/amw/admission-examiner-index',[
     'uses' => 'AdmissionController@admExaminerIndex'
 ]);
 
+Route::any('admission/amw/add-admission-test-examiner',[
+    'as' => 'admission.amw.add-admission-test-examiner',
+    'uses' => 'AdmissionController@addAdmTestExaminer'
+]);
 
+Route::any('admission/amw/store-admission-test-examiner',[
+    'as' => 'admission.amw.store-admission-test-examiner',
+    'uses' => 'AdmissionController@storeAdmTestExaminer'
+]);
+
+Route::any('admission/amw/view-admission-test-examiner',[
+    'as' => 'admission.amw.view-admission-test-examiner',
+    'uses' => 'AdmissionController@viewAdmTestExaminers'
+]);
 //...................................Admission Question........................................................
 
 Route::any('admission/amw/admission-question-index',[
     'as' => 'admission.amw.admission-question-index',
     'uses' => 'AdmissionController@admQuestionIndex'
 ]);
-
 
 //...................................Admission Question........................................................
 

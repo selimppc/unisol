@@ -48,25 +48,27 @@
                     </tr>
              </thead>
                  <tbody>
-                     @foreach($admission_test_batch as $adm_test_mgt)
-                           <tr>
-                               <td><input type="checkbox" name="id[]" class="myCheckbox" value="{{ $adm_test_mgt['id'] }}"></td>
-{{--                               <td>{{ $adm_test_mgt->relDegree->title }}</td>--}}
-                               <td>{{ $adm_test_mgt->relDegree->relDegreeProgram->code.''.$adm_test_mgt->relDegree->relDegreeGroup->code }}</td>
-                               <td>{{ $adm_test_mgt->relDegree->relDepartment->title }}</td>
-                               <td>{{ $adm_test_mgt->relYear->title }}</td>
-                               <td>{{ $adm_test_mgt->relSemester->title }}</td>
-                               <td>{{ $adm_test_mgt->relDegree->total_credit }}</td>
-                               <td style="text-align: center">{{ $adm_test_mgt->relDegree->duration }}</td>
-                               <td>QPE Status</td>
-                               <td>
-                                  {{--<a href="{{ URL::route('admission.amw.admission-examiner-index', ['year_id'=>$adm_test_mgt->year_id , 'semester_id'=>$adm_test_mgt->semester_id , 'degree_id'=>$adm_test_mgt->degree_id ])  }}" class="btn btn-default btn-xs" >EX</a>--}}
-                                  <a href="{{ URL::route('admission.amw.admission-examiner-index') }}" class="btn btn-default btn-xs" >EX</a>
-                                  <a href="{{ URL::route('admission.amw.admission-question-index') }}" class="btn btn-default btn-xs" >QP</a>
-                                  <a href="{{ URL::route('admission.amw.admission-question-evaluation-index') }}" class="btn btn-default btn-xs" >QPE</a>
-                               </td>
-                           </tr>
-                     @endforeach
+                    @if(isset($admission_test_batch))
+                         @foreach($admission_test_batch as $adm_test_mgt)
+                               <tr>
+                                   <td><input type="checkbox" name="id[]" class="myCheckbox" value="{{ $adm_test_mgt['id'] }}"></td>
+    {{--                               <td>{{ $adm_test_mgt->relDegree->title }}</td>--}}
+                                   <td>{{ $adm_test_mgt->relDegree->relDegreeProgram->code.''.$adm_test_mgt->relDegree->relDegreeGroup->code }}</td>
+                                   <td>{{ $adm_test_mgt->relDegree->relDepartment->title }}</td>
+                                   <td>{{ $adm_test_mgt->relYear->title }}</td>
+                                   <td>{{ $adm_test_mgt->relSemester->title }}</td>
+                                   <td>{{ $adm_test_mgt->relDegree->total_credit }}</td>
+                                   <td style="text-align: center">{{ $adm_test_mgt->relDegree->duration }}</td>
+                                   <td>QPE Status</td>
+                                   <td>
+                                      {{--<a href="{{ URL::route('admission.amw.admission-examiner-index', ['year_id'=>$adm_test_mgt->year_id , 'semester_id'=>$adm_test_mgt->semester_id , 'degree_id'=>$adm_test_mgt->degree_id ])  }}" class="btn btn-default btn-xs" >EX</a>--}}
+                                      <a href="{{ URL::route('admission.amw.admission-examiner-index') }}" class="btn btn-default btn-xs" >EX</a>
+                                      <a href="{{ URL::route('admission.amw.admission-question-index') }}" class="btn btn-default btn-xs" >QP</a>
+                                      <a href="{{ URL::route('admission.amw.admission-question-evaluation-index') }}" class="btn btn-default btn-xs" >QPE</a>
+                                   </td>
+                               </tr>
+                         @endforeach
+                     @endif
                  </tbody>
           </table>
       {{form::close() }}

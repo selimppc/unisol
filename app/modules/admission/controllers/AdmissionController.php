@@ -622,8 +622,6 @@ class AdmissionController extends \BaseController {
 
     }
 
-
-
     public function admissionTestBatchDelete()
     {
         try {
@@ -638,17 +636,63 @@ class AdmissionController extends \BaseController {
     }
 
 
-//..................................................Admission Test Management.......................................
+//..................................................Admission Test : Examiner.......................................
 
     public function admExaminerIndex()
     {
-        return View::make('admission::amw.adm_examiner.adm_examiner_index');
+        $adm_test_examiner = AdmExaminer::latest('id')->paginate(10);
+
+//        $degree_test_sbjct = BatchAdmtestSubject::where('batch_id' ,'=', $batch_id)->get();
+//        if($degree_test_sbjct->isEmpty()){
+//            Session::flash('error', 'There is Nothing to Manage in Admission Test Subject ');
+//            return Redirect::back();
+//        }else{
+//            $degree_name = BatchAdmtestSubject::with('relBatch','relBatch.relDegree')
+//                ->where('batch_id' ,'=', $batch_id)
+//                ->first();
+//            return View::make('admission::amw.batch_adm_test_subject.index',
+//                compact('batch_id','degree_test_sbjct','degree_name'));
+//        }
+
+        return View::make('admission::amw.adm_examiner.adm_examiner_index',compact('adm_test_examiner'));
+
+    }
+
+    public function addAdmTestExaminer()
+    {
+        return View::make('admission::amw.adm_examiner._form');
+
+    }
+
+    public function storeAdmTestExaminer()
+    {
+        $data = Input::all();
+        $model = new AdmExaminer();
+        if($model->validate($data)){
+            if($model->create($data)){
+                Session::flash('message', 'Successfully added Information!');
+                return Redirect::back();
+            }
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()
+                ->with('errors', 'invalid');
+        }
 
 
     }
 
+    public function viewAdmTestExaminers($degree_id){
+//        $adm_view_examiners = AdmExaminer::where('id' ,'=', $degree_id)->first();
+//        $data = Degree::with('relDepartment')->where('id' ,'=', $degree_id)->first()->relDepartment->title;
+//
+//        return View::make('admission::amw.admission_test.view_examiners',
+//            compact('data','adm_view_examiners','degree_id'));
+    }
 
-//..................................................Admission Test Management.......................................
+
+//..................................................Admission Test : Question paper.......................................
 
     public function admQuestionIndex()
     {
@@ -656,7 +700,7 @@ class AdmissionController extends \BaseController {
     }
 
 
-//..................................................Admission Test Management.......................................
+//..................................................Admission Test : Question Evaluation .......................................
 
     public function admQuestionEvaluationIndex()
     {
