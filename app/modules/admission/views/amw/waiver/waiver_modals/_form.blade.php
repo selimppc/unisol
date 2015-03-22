@@ -7,7 +7,7 @@
 <div class="modal-body">
    <div style="padding: 20px;">
 
-{{ Form::open(['route' => ['waiver_manage.store'], 'class'=>'form-horizontal','files' => true,]) }}
+{{ Form::open(['route' => ['admission.amw.waiver.store'], 'class'=>'form-horizontal','files' => true,]) }}
 
      {{ Form::label('title', 'Title') }}
      {{ Form::text('title', Input::old('title'),array('class' => 'form-control input-sm','placeholder'=>'Enter waiver title','required')) }}
@@ -16,6 +16,10 @@
 
      {{ Form::label('description', 'Description') }}
      {{ Form::textarea('description', Input::old('description'),array('class' => 'form-control input-sm','placeholder'=>'Enter Description','size' => '30x5')) }}
+
+     <br>
+      {{ Form::label('waiver_type', 'Waiver Type') }}
+      {{ Form::textarea('waiver_type', Input::old('waiver_type'),array('class' => 'form-control input-sm','placeholder'=>'Enter Description','size' => '30x5')) }}
 
      <br>
 
@@ -29,9 +33,10 @@
      {{ Form::text('amount', Input::old('amount'),array('class' => 'form-control input-sm' ,'required')) }}
 
      <br>
+     {{Form::hidden('billing_details_id', 1)}}
 
-     {{ Form::label('billing_details_id', 'Billing Item') }}
-     {{ Form::select('billing_details_id',$billing_item,Input::old('billing_details_id'),['class'=>'form-control input-sm','required']) }}
+     {{--{{ Form::label('billing_details_id', 'Billing Item') }}--}}
+     {{--{{ Form::select('billing_details_id',$billing_item,Input::old('billing_details_id'),['class'=>'form-control input-sm','required']) }}--}}
 
      <p>&nbsp;</p>
 

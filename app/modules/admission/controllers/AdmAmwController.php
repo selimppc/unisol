@@ -511,25 +511,22 @@ class AdmAmwController extends \BaseController
     }
 
 //******************************Batch Courses start(R)*****************************
-//*************************                              *********************
 
     public function batch_course_index($batch_id, $deg_id)
     {
-        $batch_data = $batch_id;
+        $batch = $batch_id;
         $degree_id = Batch::where('id','=', $batch_id)->first()->degree_id;
         $degree_title = Degree::with('relDegreeCourse')
             ->where('id' , '=' ,$deg_id)
             ->first();
-//        $batch_course_info = BatchCourse::with('relBatch','relBatch.relDegree','relBatch.relDegree.relDegreeCourse','relBatch.relDegree.relDegreeCourse.relCourse')
-//            ->where('id', '=' ,$batch_id)
-//            ->paginate(10);
-       // $degree_course = DegreeCourse::where('degree_id', '=', $deg_id)->get();
         $deg_course_info = DegreeCourse::with('relCourse')
             ->where('degree_id', '=' ,$deg_id)
             ->paginate(10);
+        $year_data = Year::lists('title', 'id');
+        $semester_data = Semester::lists('title','id');
 
         return View::make('admission::amw.batch_course.index',compact(
-            'batch_data ','degree_id','degree_title','deg_course_info'
+            'batch','degree_id','degree_title','deg_course_info','year_data','semester_data'
         ));
 
     }

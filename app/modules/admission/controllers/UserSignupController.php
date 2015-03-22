@@ -450,34 +450,101 @@ class UserSignupController extends \BaseController {
         try {
             Degree::find($id)->delete();
             return Redirect::back()->with('message', 'Successfully deleted Information!');
+        } catch (exception $ex) {
+            return Redirect::back()->with('danger', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+        }
+    }
+
+    public function admDegreeSearch()
+    {
+        $searchQuery = $department_id = Input::get('search_department');
+
+        if($searchQuery){
+          $department = array('' => 'Select Department ') + Department::lists('title', 'id');
+          $model = Degree::with(['relDepartment'])->where('department_id', '=', $searchQuery)->paginate(5);
+          return View::make('admission::amw.degree_management.degree.degree_index',
+                    compact('model','department'));
+        }else{
+            return Redirect::back();
+        }
+    }
+ //{----------------------------------------------------- Waiver ----------------------------------------------------------------}
+
+    //TODO : Add Billing Details.............
+
+    public function admWaiverIndex()
+    {
+        $waiver_model =Waiver::latest('id')->paginate(15);
+        return View::make('admission::amw.waiver.index',
+                  compact('waiver_model'));
+
+    }
+    public function admWaiverCreate()
+    {
+        //$billing_item = BillingDetails::BillingItem();
+        return View::make('admission::amw.waiver.waiver_modals._form');
+    }
+
+    public function admWaiverStore(){
+        $data = Input::all();
+        $model = new Waiver();
+
+        if($model->validate($data)){
+            if($model->create($data)){
+                Session::flash('message','Successfully added Information!');
+                return Redirect::back();
+            }
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back();
+        }
+    }
+
+    public function admWaiverShow($id)
+    {
+        $waiver_model = Waiver::find($id);
+        return View::make('admission::amw.waiver.waiver_modals.show',compact('waiver_model'));
+    }
+
+    public function  admWaiverEdit($id)
+    {
+        $waiver_model = Waiver::findOrFail($id);
+        return View::make('admission::amw.waiver.waiver_modals.edit',
+                  compact('model','batch','waiver_model'));
+    }
+
+    public function admWaiverUpdate($id)
+    {
+        $model = Waiver::find($id);
+        $data = Input::all();
+
+        if($model->validate($data)){
+            if($model->update($data)){
+                Session::flash('message','Successfully Updated Information!');
+                return Redirect::back();
+            }
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back();
+        }
+    }
+
+    public function admWaiverDelete($id)
+    {
+        try {
+            Waiver::find($id)->delete();
+            return Redirect::back()->with('message', 'Successfully deleted Information!');
         }
         catch(exception $ex){
             return Redirect::back()->with('danger', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
         }
     }
-    //TODO Searching............
 
-    public function admDegreeSearch(){
 
-        $searchQuery = [
-            $department_id = Input::get('search_department')
-        ];
-
-        //echo $dep_id;exit;
-        $model = new Degree();
-        $result = Helpers::search($searchQuery, $model);
-        //print_r($result) ;exit;
-
-        $dep_data = '';
-
-        foreach($result as $value){
-            $model = Degree::with( 'relDepartment' )->where('department_id', '=', $value);
-            $dep_data[] = $model->get();
-        }
-    }
-
-//{------------------------------------ Degree Waiver --------------------------------------------------------------------------}
-
+//{------------------------------------ Batch Waiver --------------------------------------------------------------------------}
+/*
     public function admBatchWaiverIndex(){
 
         $model = BatchWaiver::latest('id')->paginate(5);
@@ -554,6 +621,23 @@ class UserSignupController extends \BaseController {
             return Redirect::back()->with('danger', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
         }
     }
+*/
+
+    public function admBatchWaiverIndex($batch_id){
+
+        $model = Batch::find($batch_id);
+        $batch_info = Batch::with('relDegree.relDegreeGroup','relDegree.relDegreeProgram','relDegree.relDepartment','relYear','relSemester','relDegree')
+            ->where('id', '=', $batch_id)
+            ->first();
+
+        //$degree_info = Degree::where('id','=',)
+
+        return View::make('admission::amw.batch_waiver.index',
+                  compact('model','batch_info'));
+
+    }
+
+//{--------------------------------- Batch Education Constraint -------------------------------------------------------------------------------------}
 
     public function admBatchEduConstIndex(){
         $model = BatchEducationConstraint::latest('id')->paginate(5);

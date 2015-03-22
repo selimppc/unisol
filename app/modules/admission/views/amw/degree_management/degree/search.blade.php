@@ -43,8 +43,8 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @if(isset($model))
-                                @foreach($model as $value)
+                            @if(isset($result))
+                                @foreach($result as $value)
                                     <tr>
                                         <td><input type="checkbox" name="ids[]"  class="myCheckbox" value="{{ $value->id }}">
                                         </td>
@@ -59,7 +59,7 @@
 
                                         <a data-href="{{ URL::to('admission/amw/degree/delete/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" style="font-size: 12px;color: lightcoral"><span class="fa  fa-trash-o"></span></a>
 
-                                        <a href="{{ URL::route('admission.amw.degree_courses', ['id'=>$value->id])  }}" class="btn btn-xs btn-default">DC</a>
+                                        {{--<a href="{{ URL::route('admission.amw.degree_courses', ['id'=>$value->id])  }}" class="btn btn-xs btn-default">DC</a>--}}
                                         </td>
                                     </tr>
                                 @endforeach
@@ -74,7 +74,7 @@
         </div>
     </div>
     <div class="text-right">
-        {{ $model->links() }}
+        {{--{{ $result->links() }}--}}
     </div>
     {{----------------------------------------------Modal : degreeGroupModal--------------------------------------------------------------------------}}
     <div class="modal fade" id="degreeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
