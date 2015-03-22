@@ -96,8 +96,7 @@
 
     <p class= "table.align th text-purple font-size text-bold margin-top-text">Courses of  {{$degree_title->title}}</p>
 
-    {{ Form::open(array('url' => 'admission/amw/batch-course/save')) }}
-        {{ Form::hidden('batch_id', $batch , ['class'=>'form-control batch_id'])}}
+
         <table id="example1" class="table table-bordered table-hover table-striped">
             <thead>
             <tr>
@@ -115,7 +114,10 @@
             <tbody>
             @if(isset($deg_course_info))
             @foreach ($deg_course_info as $value)
+
                 <tr>
+                    {{ Form::open(array('url' => 'admission/amw/batch-course/save')) }}
+                    {{ Form::hidden('batch_id', $batch , ['class'=>'form-control batch_id'])}}
                     <td>{{$value->relCourse->title}}  ({{$value->relCourse->course_code}})
                         {{ Form::hidden('course_id', $value->relCourse->id)}}</td>
                     <td>{{$value->relCourse->relSubject->relDepartment->title}}</td>
@@ -133,11 +135,12 @@
                         {{Form::button('<i class="fa  fa-plus"></i>', array('type' => 'submit', 'class' => 'btn btn-xs btn-default text-purple'))}}
                     </td>
                 </tr>
+                {{Form::close()}}
             @endforeach
                 @endif
             </tbody>
         </table>
-    {{Form::close()}}
+
     {{ $deg_course_info->links() }}
     <p>&nbsp</p>
     <p>&nbsp</p>
