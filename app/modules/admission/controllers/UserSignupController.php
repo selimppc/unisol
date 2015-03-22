@@ -551,8 +551,8 @@ class UserSignupController extends \BaseController {
     }
 
 
-//{------------------------------------ Degree Waiver --------------------------------------------------------------------------}
-
+//{------------------------------------ Batch Waiver --------------------------------------------------------------------------}
+/*
     public function admBatchWaiverIndex(){
 
         $model = BatchWaiver::latest('id')->paginate(5);
@@ -629,6 +629,23 @@ class UserSignupController extends \BaseController {
             return Redirect::back()->with('danger', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
         }
     }
+*/
+
+    public function admBatchWaiverIndex($batch_id){
+
+        $model = Batch::find($batch_id);
+        $batch_info = Batch::with('relDegree.relDegreeGroup','relDegree.relDegreeProgram','relDegree.relDepartment','relYear','relSemester','relDegree')
+            ->where('id', '=', $batch_id)
+            ->first();
+
+        //$degree_info = Degree::where('id','=',)
+
+        return View::make('admission::amw.batch_waiver.index',
+            compact('model','batch_info'));
+
+    }
+
+//{--------------------------------- Batch Education Constraint -------------------------------------------------------------------------------------}
 
     public function admBatchEduConstIndex(){
         $model = BatchEducationConstraint::latest('id')->paginate(5);

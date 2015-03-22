@@ -315,35 +315,41 @@ Route::any('admission/amw/waiver/update/{id}',
 Route::any('admission/amw/waiver/delete/{id}',
     ['as'=>'admission.amw.waiver.delete',
         'uses'=>'UserSignupController@admWaiverDelete']);
-//{------------------------------------------------------------------- Degree-Waiver -------------------------------------------------------------}
+//{---------------------------------- Batch-Waiver -------------------------------------------------------------}
 
-Route::any('admission/amw/batch-waiver',
-    ['as'=>'admission.amw.batch-waiver.index',
-         'uses'=>'UserSignupController@admBatchWaiverIndex']);
 
-Route::any('admission/amw/batch-waiver/create',
-    ['as'=>'admission.amw.batch-waiver.create',
-        'uses'=>'UserSignupController@admBatchWaiverCreate']);
+Route::any('admission/amw/batch-waiver/{batch_id}', [
+    'as' => 'admission.amw.batch-waiver.index',
+    'uses' => 'UserSignupController@admBatchWaiverIndex'
+]);
 
-Route::any('admission/amw/batch-waiver/store',
-    ['as'=>'admission.amw.batch-waiver.store',
-        'uses'=>'UserSignupController@admBatchWaiverStore']);
-
-Route::any('admission/amw/batch-waiver/show/{id}',
-    ['as'=>'admission.amw.batch-waiver.show',
-        'uses'=>'UserSignupController@admBatchWaiverShow']);
-
-Route::any('admission/amw/batch-waiver/edit/{id}',
-    ['as'=>'admission.amw.batch-waiver.edit',
-        'uses'=>'UserSignupController@admBatchWaiverEdit']);
-
-Route::any('admission/amw/batch-waiver/update/{id}',
-    ['as'=>'admission.amw.batch-waiver.update',
-        'uses'=>'UserSignupController@admBatchWaiverUpdate']);
-
-Route::any('admission/amw/batch-waiver/delete/{id}',
-    ['as'=>'admission.amw.batch-waiver.delete',
-        'uses'=>'UserSignupController@admBatchWaiverDelete']);
+//Route::any('admission/amw/batch-waiver',
+//    ['as'=>'admission.amw.batch-waiver.index',
+//         'uses'=>'UserSignupController@admBatchWaiverIndex']);
+//
+//Route::any('admission/amw/batch-waiver/create',
+//    ['as'=>'admission.amw.batch-waiver.create',
+//        'uses'=>'UserSignupController@admBatchWaiverCreate']);
+//
+//Route::any('admission/amw/batch-waiver/store',
+//    ['as'=>'admission.amw.batch-waiver.store',
+//        'uses'=>'UserSignupController@admBatchWaiverStore']);
+//
+//Route::any('admission/amw/batch-waiver/show/{id}',
+//    ['as'=>'admission.amw.batch-waiver.show',
+//        'uses'=>'UserSignupController@admBatchWaiverShow']);
+//
+//Route::any('admission/amw/batch-waiver/edit/{id}',
+//    ['as'=>'admission.amw.batch-waiver.edit',
+//        'uses'=>'UserSignupController@admBatchWaiverEdit']);
+//
+//Route::any('admission/amw/batch-waiver/update/{id}',
+//    ['as'=>'admission.amw.batch-waiver.update',
+//        'uses'=>'UserSignupController@admBatchWaiverUpdate']);
+//
+//Route::any('admission/amw/batch-waiver/delete/{id}',
+//    ['as'=>'admission.amw.batch-waiver.delete',
+//        'uses'=>'UserSignupController@admBatchWaiverDelete']);
 
 
 //{--------------------------------------- batch Education Constraint -------------------------------------------------------------}

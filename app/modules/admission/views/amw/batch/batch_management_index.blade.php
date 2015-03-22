@@ -112,7 +112,7 @@
 
                          <a href="{{ URL::to('admission/amw/mng_adm_test_subject',['id'=>$batch_list->id ])  }}" class="btn btn-default btn-xs" title="Manage AdmTest Subject" >MATS</a>
 
-                         <a href="{{ URL::route('admission.amw.batch-waiver.index',['id'=>$batch_list->id ])  }}" class="btn btn-default btn-xs" title="Manage Waiver"  >MW</a>
+                         <a href="{{ URL::route('admission.amw.batch-waiver.index',['batch_id'=>$batch_list->id ])  }}" class="btn btn-default btn-xs" title="Manage Waiver"  >MW</a>
 
                          <a href="{{ URL::route('admission.amw.batch-applicant.index',['id'=>$batch_list->id ])  }}" class="btn btn-default btn-xs" title="Manage Applicant"  >MA</a>
 
