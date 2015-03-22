@@ -203,6 +203,7 @@ class CreateCommon extends Migration {
         Schema::create('board_university', function(Blueprint $table) {
             $table->increments('id');
             $table->string('code', 8);
+            $table->string('title', 128);
             $table->string('country', 128);
             $table->enum('board_type',array(
                 'board', 'university', 'other'

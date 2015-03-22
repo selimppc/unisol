@@ -8,7 +8,7 @@
 <div class="row">
            <div class="col-sm-12">
                <div class="pull-right col-sm-4">
-                   <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('admission/amw/create')}}" data-toggle="modal" data-target="#modal" >Add Batch</a>
+                   <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('admission/amw/batch/create')}}" data-toggle="modal" data-target="#modal" >Add Batch</a>
                </div>
 
 
@@ -74,7 +74,7 @@
            {{--</div>--}}
 </div>
 
-{{ Form::open(array('url' => 'admission/amw/batchDelete')) }}
+{{ Form::open(array('url' => 'admission/amw/batch/batchDelete')) }}
 
         <table id="example" class="table table-striped  table-bordered"  >
             <thead>
@@ -107,10 +107,10 @@
                     <td>{{ $batch_list->status }}</td>
 
                    <td>
-                         <a href="{{ URL::to('admission/amw/show/'.$batch_list->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#modal" style="font-size: 12px;color: darkmagenta"><span class="fa fa-eye"></span></a>
-                         <a class="btn btn-xs btn-default" href="{{ URL::to('admission/amw/edit/'.$batch_list->id) }}" data-toggle="modal" data-target="#modal" style="font-size: 12px;color: lightseagreen"><i class="fa fa-edit"></i></a>
+                         <a href="{{ URL::to('admission/amw/batch/show/'.$batch_list->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#modal" style="font-size: 12px;color: darkmagenta"><span class="fa fa-eye"></span></a>
+                         <a class="btn btn-xs btn-default" href="{{ URL::to('admission/amw/batch/edit/'.$batch_list->id) }}" data-toggle="modal" data-target="#modal" style="font-size: 12px;color: lightseagreen"><i class="fa fa-edit"></i></a>
 
-                         <a href="{{ URL::to('admission/amw/mng_adm_test_subject',['id'=>$batch_list->id ])  }}" class="btn btn-default btn-xs" title="Manage AdmTest Subject" >MATS</a>
+                         <a href="{{ URL::to('admission/amw/batch-adm-test-subject',['id'=>$batch_list->id ])  }}" class="btn btn-default btn-xs" title="Manage AdmTest Subject" >MATS</a>
 
                          <a href="{{ URL::route('admission.amw.batch-waiver.index',['batch_id'=>$batch_list->id ])  }}" class="btn btn-default btn-xs" title="Manage Waiver"  >MW</a>
 

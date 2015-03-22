@@ -5,7 +5,7 @@
 
 <div class="modal-body">
      <div style="padding: 20px;">
-        {{Form::open(array('url'=>'admission/amw/store-admission-test-subject', 'class'=>'form-horizontal','files'=>true))}}
+        {{Form::open(array('url'=>'admission/amw/admission-test-subject/store-admission-test-subject', 'class'=>'form-horizontal','files'=>true))}}
 
 
                 <div class='form-group'>

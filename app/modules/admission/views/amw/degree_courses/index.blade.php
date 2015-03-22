@@ -8,11 +8,14 @@
           {{ Form::open(array('url' => 'admission/amw/degree-courses/save')) }}
             {{ Form::hidden('degree_id', $degree_id , ['class'=>'form-control degree_id'])}}
             <p style="text-align: center;color: #800080;font-size:large;margin-top: 5px">Courses of Degree of {{$degree_title->title}}</p>
-            <div class="form-group" style="width: 350px">
+            <div class="form-group" style="float: left; width: 35%; padding: 1%; ">
                 {{ Form::label('course_list[]', 'List Of all Course ') }}
                 {{ Form::select('course_list[]', $course_list, Request::old('course_list') ? Request::old('course_list') : $course_list,['multiple' => true, 'class'=>'form-control', 'required']); }}
             </div>
-            {{ Form::submit('Add Course', ['class'=>'btn btn-primary']) }}
+            <div style=" float: left; padding-left: 2%; padding-top: 4%;">
+                {{ Form::submit('Add Course', ['class'=>'btn btn-primary']) }}
+            </div>
+
             {{ Form::close() }}
         </div>
         <div class="box-body">
@@ -30,23 +33,24 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @if(empty($deg_course_info))
-                        @foreach ($deg_course_info as $value)
-                            <tr>
-                                <td>{{$value->relCourse->title}}</td>
-                                <td>{{$value->relCourse->course_code}}</td>
-                                <td>{{$value->relCourse->relSubject->relDepartment->title}}</td>
-                                <td>{{$value->relCourse->relCourseType->title}}</td>
-                                <td>{{$value->relCourse->credit}}</td>
-                                <td>
-                                <a data-href="{{ URL::to('admission/amw/degree-courses/delete/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa fa-trash-o" style="color: red"></i></a>
-                                </td>
-                            </tr>
-                        @endforeach
+                        @if(!empty($deg_course_info))
+                            @foreach ($deg_course_info as $value)
+                                <tr>
+                                    <td>{{$value->relCourse->title}}</td>
+                                    <td>{{$value->relCourse->course_code}}</td>
+                                    <td>{{isset($value->relCourse->relSubject->relDepartment->title) ? $value->relCourse->relSubject->relDepartment->title : ''}}</td>
+                                    <td>{{isset($value->relCourse->relCourseType->title) ? $value->relCourse->relCourseType->title : ''}}</td>
+                                    <td>{{isset($value->relCourse->credit) ? $value->relCourse->credit : ''}}</td>
+                                    <td>
+                                    <a data-href="{{ URL::to('admission/amw/degree-courses/delete/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa fa-trash-o" style="color: red"></i></a>
+                                    </td>
+                                </tr>
+                            @endforeach
                         @endif
                         </tbody>
                     </table>
                     {{ Form::close() }}
+                    <a href="{{URL::to('admission/amw/degree')}}" class=" btn"style="float: right;">Back</a>
                     {{ $deg_course_info->links() }}
                     <p>&nbsp;</p>
                     <p>&nbsp;</p>

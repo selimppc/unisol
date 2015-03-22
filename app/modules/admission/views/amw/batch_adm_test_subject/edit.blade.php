@@ -11,15 +11,13 @@
                 <strong> Degree: </strong>{{ $degree_name->relBatch->relDegree->title }}
            </div>
 
-          {{Form::open(array('url'=> ['admission/amw/update_admtest_subject',$batch_edit->id], 'class'=>'form-horizontal','files'=>true))}}
+          {{Form::open(array('url'=> ['admission/amw/batch-adm-test-subject/update_admtest_subject',$batch_edit->id], 'class'=>'form-horizontal','files'=>true))}}
 
                 <div class='form-group'>
 
                            {{ Form::label('batch_id', 'Batch ID : will be hidden field') }}
                            {{ Form::text('batch_id',$batch_id,Input::old('batch_id'),['class'=>'form-control' ]) }} </br>
                  </div>
-
-
 
                 <div class='form-group'>
                            {{ Form::label('admtest_subject_id', 'Subjects') }}

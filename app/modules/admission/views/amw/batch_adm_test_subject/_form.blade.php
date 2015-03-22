@@ -23,7 +23,7 @@
             {{--@endforeach--}}
       </div>
 
-        {{Form::open(array('url'=>'admission/amw/store_admtest_subject', 'class'=>'form-horizontal','files'=>true))}}
+        {{Form::open(array('url'=>'admission/amw/batch-adm-test-subject/store_admtest_subject', 'class'=>'form-horizontal','files'=>true))}}
 
                  <div class='form-group'>
 

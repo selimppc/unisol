@@ -5,13 +5,15 @@
 
 <div class="modal-body">
      <div style="padding: 20px;">
-        {{Form::open(array('url'=>'admission/amw/admission-test-examiner/store-admission-test-examiner', 'class'=>'form-horizontal','files'=>true))}}
+        {{Form::open(array('url'=>'admission/amw/admission-test-question/store-admission-test-question-paper', 'class'=>'form-horizontal','files'=>true))}}
 
 
                 <div class='form-group'>
                     {{ Form::label('title', 'Title') }}
                     {{ Form::text('title', Input::old('title'),['class'=>'form-control','required'=>'required']) }}
                 </div>
+
+
 
                 <div class='form-group'>
                     {{ Form::label('deadline', 'Deadline') }}
