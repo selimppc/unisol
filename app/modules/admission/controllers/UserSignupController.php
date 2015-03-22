@@ -377,14 +377,13 @@ class UserSignupController extends \BaseController {
 /*
  {--------------------------------- Version:2 ->Admission -->Degree ------------------------------------}
  */
-
     public function admDegreeIndex(){
 
-        $model = Degree::orderby('id', 'DESC')->paginate(5);
+        $model = Degree::latest('id')->paginate(5);
         $department = array('' => 'Select Department ') + Department::lists('title', 'id');
         return View::make('admission::amw.degree_management.degree.degree_index',
-            compact('model','department'));
-    }
+                  compact('model','department'));
+        }
 
     public function admDegreeCreate()
     {
@@ -458,14 +457,14 @@ class UserSignupController extends \BaseController {
     public function admDegreeSearch()
     {
         $searchQuery = $department_id = Input::get('search_department');
-
+        $department = array('' => 'Select Department ') + Department::lists('title', 'id');
         if($searchQuery){
-          $department = array('' => 'Select Department ') + Department::lists('title', 'id');
+
           $model = Degree::with(['relDepartment'])->where('department_id', '=', $searchQuery)->paginate(5);
           return View::make('admission::amw.degree_management.degree.degree_index',
                     compact('model','department'));
         }else{
-            return Redirect::back();
+            return Redirect::to('admission/amw/degree');
         }
     }
  //{----------------------------------------------------- Waiver ----------------------------------------------------------------}
@@ -635,6 +634,28 @@ class UserSignupController extends \BaseController {
         return View::make('admission::amw.batch_waiver.index',
                   compact('model','batch_info'));
 
+    }
+
+    public function admBatchWaiverCreate($batch_id)
+
+    {
+        $waiverList = array('' => 'Select Waiver Item ') + Waiver::lists('title','id');
+        return View::make('admission::amw.batch_waiver.waiver_form',
+            compact('waiverList','batch_id'));
+
+    }
+    public function admBatchWaiverStore(){
+
+        $dw_model = new BatchWaiver();
+
+        $dw_model->batch_id = Input::get('batch_id');
+        //print_r($_POST->batch_id);exit;
+        $dw_model->waiver_id = Input::get('waiver_id');
+
+        if ($dw_model->save()) {
+            return Redirect::back()
+                ->with('message', 'Successfully added Information!');
+        }
     }
 
 //{--------------------------------- Batch Education Constraint -------------------------------------------------------------------------------------}

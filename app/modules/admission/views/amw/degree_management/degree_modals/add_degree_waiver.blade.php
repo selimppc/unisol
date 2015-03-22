@@ -6,9 +6,9 @@
 <div class="modal-body">
   <div style="padding: 20px;">
 
-   {{ Form::open(['route' => ['degree_waiver.store'], 'class'=>'form-horizontal','files' => true,]) }}
+   {{--{{ Form::open(['route' => ['degree_waiver.store'], 'class'=>'form-horizontal','files' => true,]) }}--}}
 
-      {{Form::hidden('degree_id', $degree_id)}}
+      {{--{{Form::hidden('degree_id', $degree_id)}}--}}
       {{ Form::label('waiver_id', 'Waiver Item') }}
       {{ Form::select('waiver_id',$waiverList,Input::old('waiver_id'),['class'=>'form-control input-sm','required'=>'required']) }}
 

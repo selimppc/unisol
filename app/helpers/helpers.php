@@ -151,6 +151,7 @@ class Helpers {
         $breadcrumbs = ["<a href=\"$base_url\"> $home </a>"]; //["$home"];
 
         //$last = end(array_keys($path));
+        //$keys = array_keys($path);
         $last = end($path);
 
         $prev_crumb = "";
@@ -161,9 +162,10 @@ class Helpers {
                 $breadcrumbs[] = '<li><a href=" '. $base_url . $crumb .' ">' .$title. '</a></li>';
                 $prev_crumb = $crumb."/";
             }else{
-                $title = make_title_string(str_replace("-", " ", $title));
+               // $title = make_title_string(str_replace("-", " ", $title));
                 //$breadcrumbs[] = '<li class="active">'.$title.'</li>';
                 $breadcrumbs[] = $title ;
+                $base_url .= $crumb . '/';
             }
         }
         return implode($separator, $breadcrumbs);

@@ -62,6 +62,12 @@ class DatabaseSeeder extends Seeder {
         $this->call('DegreeProgramTable');
         $this->command->info('Degree Program table seeded!');
 
+        $this->call('DegreeGroupTable');
+        $this->command->info('Degree Group table seeded!');
+
+        $this->call('DesignationTable');
+        $this->command->info('Designation table seeded!');
+
         //$this->call('AcmMarksDistItemTable');
         //$this->command->info('Academic Marks Distribution Item table seeded!');
 
@@ -76,6 +82,9 @@ class DatabaseSeeder extends Seeder {
 
         //$this->call('ClassRoomTable');
         //$this->command->info('Class Room table seeded!');
+
+        $this->call('UserProfileTable');
+        $this->command->info('User Profile table seeded!');
 	}
 
 }
