@@ -14,7 +14,7 @@
                 {{-------------------------------------------------------------Searching Starts--------------------------------------------------------------}}
                 <table id="example1">
 
-                {{ Form::open(array('url'=>'','class'=>'form-horizontal')) }}
+                {{ Form::open(array('url'=>'admission/amw/degree/search','class'=>'form-horizontal')) }}
 
                 <div  class="col-lg-3">{{ Form::label('search_department', 'Department') }}
                 {{ Form::select('search_department', $department , Input::old('search_department'),['class'=>'form-control input-sm '])}}</div>
