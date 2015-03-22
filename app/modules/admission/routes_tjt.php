@@ -323,6 +323,15 @@ Route::any('admission/amw/batch-waiver/{batch_id}', [
     'uses' => 'UserSignupController@admBatchWaiverIndex'
 ]);
 
+Route::any('admission/amw/batch-waiver/create/{batch_id}', [
+    'as' => 'admission.amw.batch-waiver.create',
+    'uses' => 'UserSignupController@admBatchWaiverCreate'
+]);
+
+Route::any('admission/amw/batch-waiver/store/{batch_id}', [
+    'as' => 'admission.amw.batch-waiver.store',
+    'uses' => 'UserSignupController@admBatchWaiverStore'
+]);
 //Route::any('admission/amw/batch-waiver',
 //    ['as'=>'admission.amw.batch-waiver.index',
 //         'uses'=>'UserSignupController@admBatchWaiverIndex']);
