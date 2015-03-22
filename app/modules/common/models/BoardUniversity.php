@@ -4,20 +4,17 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class AdmExaminer extends Eloquent{
+class BoardUniversity extends Eloquent{
 
     //TODO :: model attributes and rules and validation
-    protected $table = 'adm_examiner';
+    protected $table='board_university';
     protected $fillable = [
-        'batch_id', 'user_id', 'type', 'assigned_by', 'deadline', 'note', 'status',
+        'code','title', 'country', 'board_type'
     ];
     private $errors;
     private $rules = [
-        'batch_id' => 'required|integer',
-        'user_id' => 'required|integer',
-        'type' => 'required',
-        'assigned_by' => 'required|integer',
-        'deadline' => 'date',
+        'title' => 'required',
+        //'description' => 'alpha_dash',
     ];
     public function validate($data)
     {
@@ -34,15 +31,7 @@ class AdmExaminer extends Eloquent{
         return $this->errors;
     }
 
-
     //TODO : Model Relationship
-    public function relBatch(){
-        return $this->belongsTo('Batch', 'batch_id', 'id');
-    }
-
-    public function relUser(){
-        return $this->belongsTo('User', 'user_id', 'id');
-    }
 
 
     // TODO : user info while saving data into table

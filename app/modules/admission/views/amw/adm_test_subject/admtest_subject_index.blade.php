@@ -12,7 +12,7 @@
                    <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('admission/amw/create-admission-test-subject')}}" data-toggle="modal" data-target="#modal" >Add Admission Subject</a>
                </div>
            </div>
-       </div>
+</div>
 
       {{--{{ Form::open(array('url' => 'examination/amw/batchDelete')) }}--}}
           <table id="example" class="table table-striped  table-bordered"  >
