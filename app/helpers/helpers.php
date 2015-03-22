@@ -162,7 +162,7 @@ class Helpers {
                 $breadcrumbs[] = '<li><a href=" '. $base_url . $crumb .' ">' .$title. '</a></li>';
                 $prev_crumb = $crumb."/";
             }else{
-                $title = make_title_string(str_replace("-", " ", $title));
+               // $title = make_title_string(str_replace("-", " ", $title));
                 //$breadcrumbs[] = '<li class="active">'.$title.'</li>';
                 $breadcrumbs[] = $title ;
                 $base_url .= $crumb . '/';
