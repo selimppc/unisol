@@ -110,7 +110,7 @@
                          <a href="{{ URL::to('admission/amw/batch/show/'.$batch_list->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#modal" style="font-size: 12px;color: darkmagenta"><span class="fa fa-eye"></span></a>
                          <a class="btn btn-xs btn-default" href="{{ URL::to('admission/amw/batch/edit/'.$batch_list->id) }}" data-toggle="modal" data-target="#modal" style="font-size: 12px;color: lightseagreen"><i class="fa fa-edit"></i></a>
 
-                         <a href="{{ URL::to('admission/amw/batch-adm-test-subject',['id'=>$batch_list->id ])  }}" class="btn btn-default btn-xs" title="Manage AdmTest Subject" >MATS</a>
+                         <a href="{{ URL::to('admission/amw/batch-adm-test-subject/'.$batch_list->id)  }}" class="btn btn-default btn-xs" title="Manage AdmTest Subject" >MATS</a>
 
                          <a href="{{ URL::route('admission.amw.batch-waiver.index',['batch_id'=>$batch_list->id ])  }}" class="btn btn-default btn-xs" title="Manage Waiver"  >MW</a>
 

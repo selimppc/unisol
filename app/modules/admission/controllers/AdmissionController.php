@@ -430,17 +430,13 @@ class AdmissionController extends \BaseController {
     public function mngBatchAdmTestSubject($batch_id)
     {
         $degree_test_sbjct = BatchAdmtestSubject::where('batch_id' ,'=', $batch_id)->get();
-//        print_r($degree_test_sbjct);exit;
-        if($degree_test_sbjct->isEmpty()){
-            Session::flash('error', 'There is Nothing to Manage in Admission Test Subject ');
-            return Redirect::back();
-        }else{
-            $degree_name = BatchAdmtestSubject::with('relBatch','relBatch.relDegree')
-                ->where('batch_id' ,'=', $batch_id)
-                ->first();
-            return View::make('admission::amw.batch_adm_test_subject.index',
-                compact('batch_id','degree_test_sbjct','degree_name'));
-        }
+
+        $degree_name = Batch::with('relDegree')
+            ->where('id' ,'=', $batch_id)
+            ->first();
+
+        return View::make('admission::amw.batch_adm_test_subject.index',
+            compact('batch_id','degree_test_sbjct','degree_name'));
     }
 
     public function viewBatchAdmTestSubject($id)
@@ -452,15 +448,16 @@ class AdmissionController extends \BaseController {
 
     public function createBatchAdmTestSubject($batch_id)
     {
+//        print_r($batch_id);exit;
         $subject_id_result = AdmTestSubject::lists('title', 'id');
 
-//        $degree_name = BatchAdmtestSubject::with('relBatch','relBatch.relDegree')
+        $degree_name = Batch::with('relDegree')
+            ->where('id' ,'=', $batch_id)
+            ->first();
+//
+//        $degree_name = BatchAdmtestSubject::with('relDegree')
 //            ->where('batch_id' ,'=', $batch_id)
 //            ->first();
-
-        $degree_name = BatchAdmtestSubject::with('relBatch','relBatch.relDegree')
-            ->where('batch_id' ,'=', $batch_id)
-            ->first();
 
         return View::make('admission::amw.batch_adm_test_subject._form',compact('batch_id','degree_name','subject_id_result'));
     }

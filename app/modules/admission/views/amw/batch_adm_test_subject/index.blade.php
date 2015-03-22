@@ -9,12 +9,11 @@
 
             <div class="row">
                     <div class="col-sm-12">
-
                         <div class="col-sm-12">
                            <div class="pull-right col-sm-4">
 {{--                        {{ URL::route('admission.amw.batch-applicant.index',['id'=>$batch_list->id ])  }}--}}
-                               <a class="pull-right btn btn-sm btn-info" href="{{ URL::route('admission.amw.batch-adm-test-subject.create_admtest_subject',['batch_id'=>$degree_name->batch_id])}}"
-                                data-toggle="modal" data-target="#modal" >Add Subject To Degree</a>
+                                <a href="{{ URL::route('admission.amw.batch-adm-test-subject.create_admtest_subject',['batch_id'=>$batch_id])}}"
+                                   class="pull-right btn btn-sm btn-info" data-toggle="modal" data-target="#modal" >Add Subject To Degree</a>
                            </div>
                        </div>
                     </div>
@@ -22,10 +21,7 @@
                         <div class="col-sm-6">
                             <strong> Degree: </strong>
 
-                            {{ $degree_name->relBatch->relDegree->title }}
-
-
-
+                            {{ isset($degree_name->relDegree->title) ? $degree_name->relDegree->title : 'Degree Not Found!' }}
 
                             {{--@foreach($degree_name as $degree_show)--}}
                                     {{--@if (($degree_show->relBatch->relDegree->relDegreeGroup->code) === 'Com')--}}
@@ -44,7 +40,6 @@
                     </div>
             </div>
 
-
                 <table id="example" class="table table-striped  table-bordered"  >
                       <thead>
                            {{ Form::submit('Delete Items', array('class'=>'btn btn-danger btn-xs', 'id'=>'hide-button', 'style'=>'display:none'))}}
@@ -59,11 +54,11 @@
                              </tr>
                   </thead>
                   <tbody>
-                        @if(isset($degree_test_sbjct))
+						@if(!empty($degree_test_sbjct))
                           @foreach($degree_test_sbjct as $batch_adm_tst_sbjct)
                                 <tr>
                                     <td><input type="checkbox" name="id[]" class="myCheckbox" value="{{ $batch_adm_tst_sbjct['id'] }}"></td>
-                                    <td>{{ $batch_adm_tst_sbjct->relAdmTestSubject->title }} </td>
+                                    <td>{{ isset($batch_adm_tst_sbjct->relAdmTestSubject->title) ? $batch_adm_tst_sbjct->relAdmTestSubject->title : '' }} </td>
                                     <td>{{ $batch_adm_tst_sbjct->marks }} </td>
                                     <td>{{ $batch_adm_tst_sbjct->duration }} &nbsp; Minutes</td>
 

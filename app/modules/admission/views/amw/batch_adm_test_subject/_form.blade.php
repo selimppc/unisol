@@ -6,21 +6,7 @@
 <div class="modal-body">
    <div style="padding: 20px;">
       <div class='form-group'>
-            <strong> Degree: </strong>{{ $degree_name->relBatch->relDegree->title }}
-
-            {{--@foreach($degree_name as $degree_show)--}}
-                    {{--@if (($degree_show->relBatch->relDegree->relDegreeGroup->code) === 'Com')--}}
-                        {{--{{ $degree_show->relBatch->relDegree->relDepartment->title.',--}}
-                        {{--'.$degree_show->relBatch->relSemester->title.',--}}
-                        {{--'.$degree_show->relBatch->relYear->title  }}--}}
-                    {{--@else--}}
-                        {{--{{ $degree_show->relBatch->relDegree->relDegreeProgram->code.'--}}
-                        {{--'.$degree_show->relBatch->relDegree->relDegreeGroup->code.' in--}}
-                        {{--'.$degree_show->relBatch->relDegree->relDepartment->title.',--}}
-                        {{--'.$degree_show->relBatch->relSemester->title.',--}}
-                        {{--'.$degree_show->relBatch->relYear->title  }}--}}
-                    {{--@endif--}}
-            {{--@endforeach--}}
+           <strong> Degree : </strong>{{ isset($degree_name->relDegree->title) ? $degree_name->relDegree->title : 'Degree Not Found!' }}
       </div>
 
         {{Form::open(array('url'=>'admission/amw/batch-adm-test-subject/store_admtest_subject', 'class'=>'form-horizontal','files'=>true))}}
