@@ -51,6 +51,46 @@ class Helpers {
     }
 
 
+    public static function searchBatchByDepartment()
+    {
+        $batch = new Batch();
+        $degree = 'relDegree';
+        $relationModel = 'relDegree.relDepartment';
+        $department_id = 1;
+
+        /*$query = $batch::with(['relDegree', 'relDegree.relDegreeProgram', 'relDegree.relDegreeGroup',
+            'relDegree.relDepartment' => function ($query) use ($department_id){
+                    //foreach($department_id as $value){
+                        $query->where('id', '=', $department_id);
+                    //}
+                }]);
+        $query = $query->get();*/
+
+        $result = Degree::with(['relDepartment'])->where('department_id', '=', $department_id)->get();
+        return $result;
+
+        /*$tags = Batch::whereHas('usage', function($q)
+        {
+            $q->whereModel('Degree');
+
+        })->get();
+        return $tags;*/
+
+        /*$model = $model;
+        foreach ($query as $column => $term)
+        {
+            if (! empty($term))
+            {
+                $model = $model->where($column, 'LIKE', "$term%");
+            }
+        }
+        return $model->get();*/
+    }
+
+
+
+
+
     /**
      * @param $student_id
      * @return mixed
