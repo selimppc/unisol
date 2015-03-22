@@ -641,7 +641,7 @@ class UserSignupController extends \BaseController {
         //$degree_info = Degree::where('id','=',)
 
         return View::make('admission::amw.batch_waiver.index',
-            compact('model','batch_info'));
+                  compact('model','batch_info'));
 
     }
 
