@@ -320,6 +320,7 @@ class AdmissionController extends \BaseController {
 
     }
 
+//new code
 
 
 //.................................................Batch Management....................................................
@@ -586,7 +587,7 @@ class AdmissionController extends \BaseController {
 
     }
 
-//..................................................Admission Test Management.......................................
+//..................................................Admission Test Management : Home.......................................
 
     public function admissionTestIndex()
     {
@@ -604,12 +605,44 @@ class AdmissionController extends \BaseController {
             compact('degree_id','admission_test_batch','admission_test_degree','year_id','semester_id'));
     }
 
+    public function admissionTestSearchIndex()
+    {
+        $searchQuery = [
+            'year_id' =>   Input::get('year_id'),
+            'semester_id' =>   Input::get('semester_id'),
+        ];
+
+        $model = new Batch();
+        $adm_test_home_data = Helpers::search($searchQuery, $model);
+        $year_id = array('' => 'Select Year ') + Year::lists('title', 'id');
+        $semester_id = array('' => 'Select Semester ') + Semester::lists('title', 'id');
+
+        return View::make('admission::amw.adm_test_home._search_adm_test_home_index',
+            compact('adm_test_home_data','year_id','semester_id'));
+
+    }
+
+
+
+    public function admissionTestBatchDelete()
+    {
+        try {
+            Batch::destroy(Request::get('id'));
+            return Redirect::back()->with('message', 'Successfully deleted Information!');
+        }
+        catch(exception $ex) {
+            return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+        }
+
+
+    }
+
 
 //..................................................Admission Test Management.......................................
 
     public function admExaminerIndex()
     {
-        "Examiner";
+        return View::make('admission::amw.adm_examiner.adm_examiner_index');
 
 
     }
@@ -619,8 +652,7 @@ class AdmissionController extends \BaseController {
 
     public function admQuestionIndex()
     {
-        "Question";
-
+        return View::make('admission::amw.adm_question.adm_question_index');
     }
 
 
@@ -628,8 +660,7 @@ class AdmissionController extends \BaseController {
 
     public function admQuestionEvaluationIndex()
     {
-        "QuestionEvaluation";
-
+        return View::make('admission::amw.adm_question_evaluation.adm_question_evaluation_index');
     }
 
 

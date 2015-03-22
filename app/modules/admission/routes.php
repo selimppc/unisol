@@ -264,11 +264,27 @@ Route::any('admission/amw/update-admission-test-subject/{id}', [
 
 
 //...................................Admission Test Home........................................................
+//currently working here
+
 
 Route::any('admission/amw/admission-test-home',[
     'as' => 'admission.amw.admission-test-home',
     'uses' => 'AdmissionController@admissionTestIndex'
 ]);  //ok
+
+
+
+Route::any('admission/amw/adm_test_home/batchDelete',[
+    'as' => 'admission.amw.adm-test-home/batchDelete',
+    'uses' => 'AdmissionController@admissionTestBatchDelete'
+]);
+
+Route::any('admission/amw/adm_test_home/search-adm-test-index',[
+    'as' => 'admission.amw.adm-test-home/search-adm-test-index',
+    'uses' => 'AdmissionController@admissionTestSearchIndex'
+]);
+
+
 
 
 
