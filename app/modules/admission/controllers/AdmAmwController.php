@@ -500,8 +500,7 @@ class AdmAmwController extends \BaseController
             $data= DegreeCourse::find($id);
             if($data->delete())
             {
-                return Redirect::to('admission/amw/degree-course/')
-                    ->with('message', 'Successfully Deleted Information!');
+                return Redirect::back() ->with('message', 'Successfully Deleted Information!');
             }
         }
         catch

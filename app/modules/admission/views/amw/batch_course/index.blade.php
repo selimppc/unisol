@@ -96,7 +96,7 @@
 
     <p class= "table.align th text-purple font-size text-bold margin-top-text">Courses of  {{$degree_title->title}}</p>
 
-
+    {{ Form::open(array('url' => 'admission/amw/batch-course/save')) }}
         {{ Form::hidden('batch_id', $batch , ['class'=>'form-control batch_id'])}}
         <table id="example1" class="table table-bordered table-hover table-striped">
             <thead>
@@ -113,11 +113,9 @@
             </tr>
             </thead>
             <tbody>
-            @if(empty($deg_course_info))
+            @if(isset($deg_course_info))
             @foreach ($deg_course_info as $value)
                 <tr>
-                    {{ Form::open(array('url' => 'admission/amw/batch-course/save')) }}
-
                     <td>{{$value->relCourse->title}}  ({{$value->relCourse->course_code}})
                         {{ Form::hidden('course_id', $value->relCourse->id)}}</td>
                     <td>{{$value->relCourse->relSubject->relDepartment->title}}</td>
@@ -144,5 +142,24 @@
     <p>&nbsp</p>
     <p>&nbsp</p>
 
+    {{-- Modal for delete --}}
+    <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>
+                </div>
+                <div class="modal-body">
+                    <strong>Are you sure to delete?</strong>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <a href="#" class="btn btn-danger danger">Delete</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
 
 @stop
