@@ -3538,3 +3538,12 @@ fieldset[disabled] .btn-vk.active {
 .ui-helper-hidden-accessible{
     display: none;
 }
+
+/**********my css*******/
+.font-size
+{
+  font-size: 18px;
+}
+.margin-top-text{
+  margin-top: 5px;
+}
