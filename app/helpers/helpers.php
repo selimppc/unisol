@@ -140,6 +140,34 @@ class Helpers {
 
 
 
+    /*
+     * $text = You are here
+     * $separator = separator
+     * $home = Home title
+     */
+    public static function breadcrumbs($separator = ' &raquo; ', $home = '<i class="fa fa-dashboard"> </i> Home &nbsp; ') {
+        $path = array_filter(explode('/', parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)));
+        $base_url = ($_SERVER['HTTP_HOST'] ? 'http' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/';
+        $breadcrumbs = ["<a href=\"$base_url\"> $home </a>"]; //["$home"];
+
+        //$last = end(array_keys($path));
+        $last = end($path);
+
+        $prev_crumb = "";
+        foreach ($path AS $x => $crumb) {
+            $title = ucwords(str_replace(array('.php', '_'), Array('', ' '), $crumb));
+            if ($x != $last){
+                $crumb = $prev_crumb.$crumb;
+                $breadcrumbs[] = '<li><a href=" '. $base_url . $crumb .' ">' .$title. '</a></li>';
+                $prev_crumb = $crumb."/";
+            }else{
+                $title = make_title_string(str_replace("-", " ", $title));
+                //$breadcrumbs[] = '<li class="active">'.$title.'</li>';
+                $breadcrumbs[] = $title ;
+            }
+        }
+        return implode($separator, $breadcrumbs);
+    }
 
 
 
