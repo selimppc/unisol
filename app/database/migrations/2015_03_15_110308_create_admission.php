@@ -251,6 +251,7 @@ class CreateAdmission extends Migration {
             $table->increments('id');
             $table->unsignedInteger('batch_id')->nullable();
             $table->unsignedInteger('waiver_id')->nullable();
+            $table->unique(['batch_id', 'waiver_id']);
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();

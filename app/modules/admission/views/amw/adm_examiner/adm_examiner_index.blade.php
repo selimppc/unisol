@@ -11,26 +11,27 @@
             <div class="row">
                        <div class="col-sm-12">
                            <div class="pull-right col-sm-4">
-                               <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('admission/amw/add-admission-test-examiner')}}" data-toggle="modal" data-target="#modal" >Add Examiners</a>
+                               <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('admission/amw/admission-test-examiner/add-admission-test-examiner')}}" data-toggle="modal" data-target="#modal" >Add Examiners</a>
                            </div>
                        </div>
             </div>
 
 
             <div class="row">
-                    <div class="col-sm-12">
-                        <div class="col-sm-6">
-                            <strong> Year: </strong>
+                <div class="col-sm-12">
+                    <div class="col-sm-6">
+                        {{--@foreach($adm_test_examiner as $info)--}}
+                            <strong> Year: </strong> {{--{{ $info->relbatch->relYear->title }}--}}
                             </br>
-                            <strong> Semester: </strong>
+                            <strong> Semester: </strong> {{-- {{ Semester::getSemesterName($semester_id) }}--}}
                             </br>
-                            <strong> Degree: </strong>
+                            <strong> Degree: </strong> {{-- {{ Degree::getDegreeName($degree_id) }}--}}
                             </br>
-                            <strong> Department: </strong>
+                            <strong> Department: </strong> {{-- {{ $data }}--}}
                             </br>
-                        </div>
-
+                        {{--@endforeach--}}
                     </div>
+                </div>
             </div>
 
 
@@ -53,13 +54,8 @@
                                 <td><input type="checkbox" name="id[]" class="myCheckbox" value="{{ $adm_examiners_list['id'] }}"></td>
 
                                  <td>
-                                 {{ User::FullName($adm_examiners_list->user_id) }}
-                                    {{--{{ HTML::linkAction('AdmissionController@viewAdmTestExaminers',--}}
-                                    {{--($adm_examiners_list->relUser->relUserProfile->first_name.'--}}
-                                    {{--'.$adm_examiners_list->relUser->relUserProfile->middle_name.'--}}
-                                    {{--'.$adm_examiners_list->relUser->relUserProfile->last_name),['id'=>$adm_examiners_list->id],--}}
-                                    {{--['data-toggle'=>"modal", 'data-target'=>"#modal"]--}}
-                                    {{--) }}--}}
+                                 {{ HTML::linkAction('AdmissionController@viewAdmTestExaminers',User::FullName($adm_examiners_list->user_id), ['data-toggle'=>"modal", 'data-target'=>"#modal"]) }}
+
                                  </td>
 
                                  <td>{{ $adm_examiners_list->status }} </td>

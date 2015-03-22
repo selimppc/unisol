@@ -9,7 +9,7 @@
            <div class="col-sm-12">
 
                <div class="pull-right col-sm-4">
-                   <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('admission/amw/create-admission-test-subject')}}" data-toggle="modal" data-target="#modal" >Add Admission Subject</a>
+                   <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('admission/amw/admission-test-subject/create-admission-test-subject')}}" data-toggle="modal" data-target="#modal" >Add Admission Subject</a>
                </div>
            </div>
 </div>
@@ -35,8 +35,8 @@
                                <td>{{ $adm_test_mgt->priority }}</td>
 
                                <td>
-                                  <a href="{{ URL::route('admission.amw.view-admission-test-subject', ['id'=>$adm_test_mgt->id])  }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#modal" data-placement="left" title="Show" href="#">View</a>
-                                  <a href="{{ URL::route('admission.amw.edit-admission-test-subject', ['id'=>$adm_test_mgt->id])  }}" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modal" data-placement="left" title="Edit" href="#">Edit</a>
+                                  <a href="{{ URL::route('admission.amw.admission-test-subject.view-admission-test-subject', ['id'=>$adm_test_mgt->id])  }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#modal" data-placement="left" title="Show" href="#">View</a>
+                                  <a href="{{ URL::route('admission.amw.admission-test-subject.edit-admission-test-subject', ['id'=>$adm_test_mgt->id])  }}" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modal" data-placement="left" title="Edit" href="#">Edit</a>
                                </td>
                            </tr>
                      @endforeach

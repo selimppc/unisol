@@ -1,12 +1,14 @@
-<div style="padding: 10px; width: 90%;">
+<div style="padding-left: 10px; width: 90%;">
 
  <h1>View Batch</h1>
 
-    {{ Form::open(array('url'=>'admission/amw/show','method' => '')) }}
+    {{ Form::open(array('url'=>'admission/amw/batch/show','method' => '')) }}
 
 
-        <div class="jumbotron text-center">
+        <div class="span9 well" style="font-size: large; margin-left: 40px">
+
             <h2><strong>Batch Number :</strong>{{ $b_m_course->batch_number }}</h2>
+
             <p>
                 <strong> Degree:</strong> {{ $b_m_course->relDegree->title }} <br>
                 <strong> Year:</strong> {{ $b_m_course->relYear->title }}<br>
@@ -18,7 +20,6 @@
                 <strong> Admission Deadline:</strong> {{ $b_m_course->admission_deadline }}<br>
                 <strong> Admission Test Date:</strong> {{ $b_m_course->admtest_date }}<br>
                 <strong> Admission Test Start Time:</strong> {{ $b_m_course->admtest_start_time }}<br>
-
             </p>
         </div>
 
