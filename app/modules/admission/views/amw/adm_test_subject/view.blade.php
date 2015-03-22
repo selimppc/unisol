@@ -2,8 +2,8 @@
 
  <h1>View Admission Test Subject</h1>
 
-    {{ Form::open(array('url'=>'admission/amw/view-admission-test-subject','method' => '')) }}
-        <div class="jumbotron text-center">
+    {{ Form::open(array('url'=>'admission/amw/admission-test-subject/view-admission-test-subject','method' => '')) }}
+        <div class="span9 well" style="font-size: large; margin-left: 40px">
             <h2><strong>Title :</strong>{{ $view_admission_test_subject->title }}</h2>
             <p>
                 <strong> Priority:</strong> {{ $view_admission_test_subject->priority }} <br>

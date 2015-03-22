@@ -29,7 +29,7 @@
 
 <div class="modal-body">
      <div style="padding: 20px;">
-        {{Form::open(array('url'=>'admission/amw/store', 'class'=>'form-horizontal','files'=>true))}}
+        {{Form::open(array('url'=>'admission/amw/batch/store', 'class'=>'form-horizontal','files'=>true))}}
 
                 <div class='form-group'>
                            {{ Form::label('degree_id', 'Degree') }}
