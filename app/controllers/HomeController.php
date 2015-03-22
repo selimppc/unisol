@@ -289,6 +289,15 @@ class HomeController extends BaseController {
 
 
     public function datePicker(){
+        $batch_id = 1;
+        $degree_id = Batch::findOrFail($batch_id)->degree_id;
+
+        $batchCourse = BatchCourse::where('degree_id', '=', $degree_id)->get();
+        print_r($batchCourse);exit;
+
+        if(User::where('email', '=', Input::get('email'))->exists()){
+            // user found
+        }
 
         if($_POST){
             $n = Input::get('factorial');
