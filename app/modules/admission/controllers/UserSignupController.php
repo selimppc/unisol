@@ -673,9 +673,7 @@ class UserSignupController extends \BaseController {
         $batchWaiver = BatchWaiver::with('relWaiver')
                  ->where('batch_id', '=', $batch_id)
                  ->where('waiver_id', '=', $waiver_id)->first();
-//        $model = WaiverConstraint::findOrFail();
-        $waiverConst = WaiverConstraint::where('id','=','batch_waiver_id')->first();
-        print_r($waiverConst);exit;
+        //$waiverConst = WaiverConstraint::where('id','=','batch_waiver_id')->first();
         return View::make('admission::amw.waiver_constraint.index', compact('batchWaiver'));
     }
 

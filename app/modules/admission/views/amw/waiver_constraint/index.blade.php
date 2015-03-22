@@ -48,7 +48,7 @@
           <div class="box box-info">
               <div class="box-header">
                <div class="box-tools pull-right">
-                   <a class="pull-right btn btn-sm btn-info" href="{{ URL::route('admission.amw.waiver-constraint.create', ['batch_waiver_id'=>$deg_waiver_const->batch_waiver_id ] )}}" data-toggle="modal" data-target="#WaiverModal" style="color: #ffffff"><b>Add Time Constraint</b></a>
+                   <a class="pull-right btn btn-sm btn-info" href="{{ URL::route('admission.amw.waiver-constraint.create' )}}" data-toggle="modal" data-target="#WaiverModal" style="color: #ffffff"><b>Add Time Constraint</b></a>
                </div>
 {{--<a class="pull-right btn btn-sm btn-info" href="{{ URL::route('deg_waiver_time_const.create', ['degree_waiver_id'=>$degree_model->id ] )}}" data-toggle="modal" data-target="#addModal" >Add Time Constraint</a>--}}
 
