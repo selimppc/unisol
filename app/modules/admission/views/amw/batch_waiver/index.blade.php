@@ -49,13 +49,13 @@
 
                             <tr>
                                 <th>Duration:</th>
-                                <td>{{ $batch_info->duration }}</td>
+                                <td>{{ $batch_info->reldegree->duration }}</td>
 
                             </tr>
 
                             <tr>
                                 <th>Total Credit :</th>
-                                <td>{{ $batch_info->total_credit }}</td>
+                                <td>{{ $batch_info->reldegree->total_credit }}</td>
 
                             </tr>
 
