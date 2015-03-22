@@ -539,21 +539,20 @@ class AdmAmwController extends \BaseController
         $semester_list = Input::get('semester_id');
         $year_list = Input::get('year_id');
         $mandatory = Input::get('is_mandatory');
-        print_r($mandatory);exit;
         $major_minor = Input::get('major_minor');
         $model = new BatchCourse();
         if($model->validate($data)){
-                $model->batch_id = $batch_id;
-                $model->course_id = $course_id;
-                $model->semester_id = $semester_list;
-                $model->year_id = $year_list;
-                $model->is_mandatory = 0;
-                if($mandatory){
-                     $model->is_mandatory = 1;
-                }
-                $model->major_minor = $major_minor;
-                Session::flash('message','Successfully added Information!');
-                return Redirect::back();
+            $model->batch_id = $batch_id;
+            $model->course_id = $course_id;
+            $model->semester_id = $semester_list;
+            $model->year_id = $year_list;
+            $model->is_mandatory = 0;
+            if($mandatory){
+                $model->is_mandatory = 1;
+            }
+            $model->major_minor = $major_minor;
+            Session::flash('message','Successfully added Information!');
+            return Redirect::back();
         }else{
             $errors = $model->errors();
             Session::flash('errors', $errors);

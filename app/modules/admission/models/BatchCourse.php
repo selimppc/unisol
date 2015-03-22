@@ -13,12 +13,12 @@ class BatchCourse extends Eloquent{
     ];
     private $errors;
     private $rules = [
-//        'batch_id' => 'required|integer',
-//        'course_id' => 'required|integer',
-//        'semester_id' => 'required|integer',
-//        'year_id' => 'required|integer',
-//        'is_mandatory' => 'required|integer',
-//        'major_minor' => 'required|alpha_dash'
+        'batch_id' => 'required|integer',
+        'course_id' => 'required|integer',
+        'semester_id' => 'required|integer',
+        'year_id' => 'required|integer',
+        'is_mandatory' => 'required|integer',
+        'major_minor' => 'required|alpha_dash'
     ];
     public function validate($data)
     {
