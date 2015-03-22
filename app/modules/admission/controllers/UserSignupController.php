@@ -377,26 +377,13 @@ class UserSignupController extends \BaseController {
 /*
  {--------------------------------- Version:2 ->Admission -->Degree ------------------------------------}
  */
-
     public function admDegreeIndex(){
 
         $model = Degree::latest('id')->paginate(5);
         $department = array('' => 'Select Department ') + Department::lists('title', 'id');
-        if($this->isPostRequest()){
-            $searchQuery = $department_id = Input::get('search_department');
-
-            if($searchQuery){
-                $model = Degree::with(['relDepartment'])->where('department_id', '=', $searchQuery)->get();
-                return View::make('admission::amw.degree_management.degree.degree_index',
-                    compact('model','department'));
-            }else{
-                $model = null;
-            }
-        }else{
-            return View::make('admission::amw.degree_management.degree.degree_index',
-                compact('model','department'));
+        return View::make('admission::amw.degree_management.degree.degree_index',
+                  compact('model','department'));
         }
-    }
 
     public function admDegreeCreate()
     {
@@ -470,15 +457,14 @@ class UserSignupController extends \BaseController {
     public function admDegreeSearch()
     {
         $searchQuery = $department_id = Input::get('search_department');
-
+        $department = array('' => 'Select Department ') + Department::lists('title', 'id');
         if($searchQuery){
-          $department = array('' => 'Select Department ') + Department::lists('title', 'id');
+
           $model = Degree::with(['relDepartment'])->where('department_id', '=', $searchQuery)->paginate(5);
           return View::make('admission::amw.degree_management.degree.degree_index',
                     compact('model','department'));
         }else{
-            //$model = null;
-            return Redirect::back();
+            return Redirect::to('admission/amw/degree');
         }
     }
  //{----------------------------------------------------- Waiver ----------------------------------------------------------------}
