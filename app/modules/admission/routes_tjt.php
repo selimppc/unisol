@@ -286,7 +286,35 @@ Route::any('admission/amw/degree/search',
     ['as'=>'admission.amw.degree.search',
         'uses'=>'UserSignupController@admDegreeSearch']);
 
+//{---------------------------------------- Waiver ----------------------------------------------------------------}
 
+Route::any('admission/amw/waiver',
+    ['as'=>'admission.amw.waiver.index',
+        'uses'=>'UserSignupController@admWaiverIndex']);
+
+Route::any('admission/amw/waiver/create',
+    ['as'=>'admission.amw.waiver.create',
+        'uses'=>'UserSignupController@admWaiverCreate']);
+
+Route::any('admission/amw/waiver/store',
+    ['as'=>'admission.amw.waiver.store',
+        'uses'=>'UserSignupController@admWaiverStore']);
+
+Route::any('admission/amw/waiver/show/{id}',
+    ['as'=>'admission.amw.waiver.show',
+        'uses'=>'UserSignupController@admWaiverShow']);
+
+Route::any('admission/amw/waiver/edit/{id}',
+    ['as'=>'admission.amw.waiver.edit',
+        'uses'=>'UserSignupController@admWaiverEdit']);
+
+Route::any('admission/amw/waiver/update/{id}',
+    ['as'=>'admission.amw.waiver.update',
+        'uses'=>'UserSignupController@admWaiverUpdate']);
+
+Route::any('admission/amw/waiver/delete/{id}',
+    ['as'=>'admission.amw.waiver.delete',
+        'uses'=>'UserSignupController@admWaiverDelete']);
 //{------------------------------------------------------------------- Degree-Waiver -------------------------------------------------------------}
 
 Route::any('admission/amw/batch-waiver',
