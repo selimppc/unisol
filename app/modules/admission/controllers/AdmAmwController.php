@@ -455,7 +455,7 @@ class AdmAmwController extends \BaseController
     }
 
 
-//******************************Degree Courses start(R)*****************************
+//******************************Degree Course start(R)*****************************
 
   public function degree_courses_index($id)
   {
@@ -493,14 +493,14 @@ class AdmAmwController extends \BaseController
         }
         return Redirect::back()->with('message', 'Successfully Added Information!');
     }
+
     public function degree_courses_delete($id)
     {
         try {
             $data= DegreeCourse::find($id);
             if($data->delete())
             {
-                return Redirect::to('admission/amw/degree-course/')
-                    ->with('message', 'Successfully Deleted Information!');
+                return Redirect::back() ->with('message', 'Successfully Deleted Information!');
             }
         }
         catch
@@ -510,7 +510,7 @@ class AdmAmwController extends \BaseController
         }
     }
 
-//******************************Batch Courses start(R)*****************************
+//******************************Batch Course start(R)*****************************
 
     public function batch_course_index($batch_id, $deg_id)
     {
@@ -522,12 +522,42 @@ class AdmAmwController extends \BaseController
         $deg_course_info = DegreeCourse::with('relCourse')
             ->where('degree_id', '=' ,$deg_id)
             ->paginate(10);
-        $year_data = Year::lists('title', 'id');
-        $semester_data = Semester::lists('title','id');
+        $year_data = array('' => 'Select Year ') + Year::lists('title', 'id');
+        $semester_data = array('' => 'Select Semester ') + Semester::lists('title','id');
 
         return View::make('admission::amw.batch_course.index',compact(
             'batch','degree_id','degree_title','deg_course_info','year_data','semester_data'
         ));
+
+    }
+
+    public function batch_course_save()
+    {
+        $data = Input::all();
+        $batch_id = Input::get('batch_id');
+        $course_id = Input::get('course_id');
+        $semester_list = Input::get('semester_id');
+        $year_list = Input::get('year_id');
+        $mandatory = Input::get('is_mandatory');
+        $major_minor = Input::get('major_minor');
+        $model = new BatchCourse();
+        if($model->validate($data)){
+            $model->batch_id = $batch_id;
+            $model->course_id = $course_id;
+            $model->semester_id = $semester_list;
+            $model->year_id = $year_list;
+            $model->is_mandatory = 0;
+            if($mandatory){
+                $model->is_mandatory = 1;
+            }
+            $model->major_minor = $major_minor;
+            Session::flash('message','Successfully added Information!');
+            return Redirect::back();
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back();
+        }
 
     }
 

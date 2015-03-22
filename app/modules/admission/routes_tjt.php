@@ -320,18 +320,25 @@ Route::any('admission/amw/waiver/delete/{id}',
 
 Route::any('admission/amw/batch-waiver/{batch_id}', [
     'as' => 'admission.amw.batch-waiver.index',
-    'uses' => 'UserSignupController@admBatchWaiverIndex'
+    'uses' => 'UserSignupController@batchWaiverIndex'
 ]);
 
 Route::any('admission/amw/batch-waiver/create/{batch_id}', [
     'as' => 'admission.amw.batch-waiver.create',
-    'uses' => 'UserSignupController@admBatchWaiverCreate'
+    'uses' => 'UserSignupController@batchWaiverCreate'
 ]);
 
 Route::any('admission/amw/batch-waiver/store/{batch_id}', [
     'as' => 'admission.amw.batch-waiver.store',
-    'uses' => 'UserSignupController@admBatchWaiverStore'
+    'uses' => 'UserSignupController@batchWaiverStore'
 ]);
+
+Route::any('admission/amw/batch-waiver/delete/{batch_id}', [
+    'as' => 'admission.amw.batch-waiver.delete',
+    'uses' => 'UserSignupController@batchWaiverDelete'
+]);
+
+
 //Route::any('admission/amw/batch-waiver',
 //    ['as'=>'admission.amw.batch-waiver.index',
 //         'uses'=>'UserSignupController@admBatchWaiverIndex']);
@@ -360,7 +367,21 @@ Route::any('admission/amw/batch-waiver/store/{batch_id}', [
 //    ['as'=>'admission.amw.batch-waiver.delete',
 //        'uses'=>'UserSignupController@admBatchWaiverDelete']);
 
+//{----------------------------------Waiver Constraint---------------------------------------------------------------------}
+Route::any('admission/amw/waiver-constraint/{batch_id}/{waiver_id}', [
+    'as' => 'admission.amw.waiver-constraint.index',
+    'uses' => 'UserSignupController@waiverConstraintIndex'
+]);
 
+Route::any('admission/amw/waiver-constraint/create/{batch_waiver_id}', [
+    'as' => 'admission.amw.waiver-constraint.create',
+    'uses' => 'UserSignupController@waiverTimeConstCreate'
+]);
+
+Route::any('admission/amw/waiver-constraint/store', [
+    'as' => 'admission.amw.waiver-constraint.store',
+    'uses' => 'UserSignupController@waiverConstraintStore'
+]);
 //{--------------------------------------- batch Education Constraint -------------------------------------------------------------}
 
 Route::any('admission/amw/batch-edu-const',

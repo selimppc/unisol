@@ -622,21 +622,22 @@ class UserSignupController extends \BaseController {
     }
 */
 
-    public function admBatchWaiverIndex($batch_id){
+    public function batchWaiverIndex($batch_id){
 
         $model = Batch::find($batch_id);
         $batch_info = Batch::with('relDegree.relDegreeGroup','relDegree.relDegreeProgram','relDegree.relDepartment','relYear','relSemester','relDegree')
             ->where('id', '=', $batch_id)
             ->first();
 
-        //$degree_info = Degree::where('id','=',)
+        $waiver_info = BatchWaiver::with('relWaiver')->where('batch_id','=',$batch_id)->get();
+
 
         return View::make('admission::amw.batch_waiver.index',
-                  compact('model','batch_info'));
+                  compact('model','batch_info','waiver_info'));
 
     }
 
-    public function admBatchWaiverCreate($batch_id)
+    public function batchWaiverCreate($batch_id)
 
     {
         $waiverList = array('' => 'Select Waiver Item ') + Waiver::lists('title','id');
@@ -644,17 +645,56 @@ class UserSignupController extends \BaseController {
             compact('waiverList','batch_id'));
 
     }
-    public function admBatchWaiverStore(){
+    public function batchWaiverStore(){
 
-        $dw_model = new BatchWaiver();
+        $model = new BatchWaiver();
+        $model->batch_id = Input::get('batch_id');
+        $model->waiver_id = Input::get('waiver_id');
 
-        $dw_model->batch_id = Input::get('batch_id');
-        //print_r($_POST->batch_id);exit;
-        $dw_model->waiver_id = Input::get('waiver_id');
-
-        if ($dw_model->save()) {
+        if ($model->save()) {
             return Redirect::back()
                 ->with('message', 'Successfully added Information!');
+        }
+    }
+    public function batchWaiverDelete($batch_id)
+    {
+        try {
+            BatchWaiver::find($batch_id)->delete();
+            return Redirect::back()->with('message', 'Successfully deleted Information!');
+        }
+        catch(exception $ex){
+            return Redirect::back()->with('danger', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+        }
+    }
+
+//{----------------------------------Waiver Constraint---------------------------------------------------------------------}
+    public function waiverConstraintIndex($batch_id, $waiver_id){
+
+        $batchWaiver = BatchWaiver::with('relWaiver')
+                 ->where('batch_id', '=', $batch_id)
+                 ->where('waiver_id', '=', $waiver_id)->first();
+        //$waiverConst = WaiverConstraint::where('id','=','batch_waiver_id')->first();
+        return View::make('admission::amw.waiver_constraint.index', compact('batchWaiver'));
+    }
+
+    public function waiverTimeConstCreate($batch_waiver_id){
+
+        return View::make('admission::amw.waiver_constraint.add_time_constraint',
+            compact('batch_waiver_id'));
+    }
+
+
+    public function waiverConstraintStore(){
+
+        $data = Input::all();
+        if (WaiverConstraint::create($data)) {
+
+            return Redirect::back()
+                ->with('message', 'Successfully added Information!');
+        }
+        else{
+            return Redirect::back()
+                ->with('message', 'invalid');
         }
     }
 
