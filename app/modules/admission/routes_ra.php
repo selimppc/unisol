@@ -30,3 +30,6 @@ Route::any('admission/amw/batch-course/{batch_id}/{deg_id}', [
 Route::post('admission/amw/batch-course/save',
     'AdmAmwController@batch_course_save'
 );
+//Route::post('admission/amw/batch-course/save/ajax',
+//    'AdmAmwController@batch_course_ajax_save'
+//);

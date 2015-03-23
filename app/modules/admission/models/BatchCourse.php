@@ -17,7 +17,6 @@ class BatchCourse extends Eloquent{
         'course_id' => 'required|integer',
         'semester_id' => 'required|integer',
         'year_id' => 'required|integer',
-        'is_mandatory' => 'required|integer',
         'major_minor' => 'required|alpha_dash'
     ];
     public function validate($data)
