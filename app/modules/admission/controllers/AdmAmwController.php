@@ -519,11 +519,19 @@ class AdmAmwController extends \BaseController
         $degree_title = Degree::with('relDegreeCourse')
             ->where('id' , '=' ,$deg_id)
             ->first();
-        $deg_course_info = DegreeCourse::with('relCourse')
-            ->where('degree_id', '=' ,$deg_id)
-            ->paginate(10);
+//        $deg_course_info = DegreeCourse::with('relCourse')
+//            ->where('degree_id', '=' ,$deg_id)
+//            ->paginate(10);
         $year_data = array('' => 'Select Year ') + Year::lists('title', 'id');
         $semester_data = array('' => 'Select Semester ') + Semester::lists('title','id');
+
+        $deg_course_info = DB::table('degree_course')
+            ->leftJoin('batch_course', 'degree_course.course_id', '=', 'batch_course.course_id')
+            ->leftjoin('degree', 'degree_course.degree_id', '=', 'degree.id' )
+            ->where('degree_course.degree_id', '=', $deg_id)
+            ->where('batch_course.course_id', NULL)
+            ->select('degree_course.course_id', 'degree_course.degree_id', 'degree.department_id')
+            ->get();
 
         return View::make('admission::amw.batch_course.index',compact(
             'batch','degree_id','degree_title','deg_course_info','year_data','semester_data'
@@ -534,25 +542,15 @@ class AdmAmwController extends \BaseController
     public function batch_course_save()
     {
         $data = Input::all();
-        $batch_id = Input::get('batch_id');
-        $course_id = Input::get('course_id');
-        $semester_list = Input::get('semester_id');
-        $year_list = Input::get('year_id');
-        $mandatory = Input::get('is_mandatory');
-        $major_minor = Input::get('major_minor');
         $model = new BatchCourse();
         if($model->validate($data)){
-            $model->batch_id = $batch_id;
-            $model->course_id = $course_id;
-            $model->semester_id = $semester_list;
-            $model->year_id = $year_list;
-            $model->is_mandatory = 0;
-            if($mandatory){
-                $model->is_mandatory = 1;
+            if($model->create($data)){
+                Session::flash('message','Successfully added Information!');
+                return Redirect::back();
+            }else{
+                Session::flash('danger','Invalid Request!');
+                return Redirect::back();
             }
-            $model->major_minor = $major_minor;
-            Session::flash('message','Successfully added Information!');
-            return Redirect::back();
         }else{
             $errors = $model->errors();
             Session::flash('errors', $errors);
