@@ -373,14 +373,37 @@ Route::any('admission/amw/waiver-constraint/{batch_id}/{waiver_id}', [
     'uses' => 'UserSignupController@waiverConstraintIndex'
 ]);
 
-Route::any('admission/amw/waiver-constraint/create/{batch_waiver_id}', [
-    'as' => 'admission.amw.waiver-constraint.create',
+Route::any('admission/amw/waiver-time-constraint/create/{batch_waiver_id}', [
+    'as' => 'admission.amw.waiver-time-constraint.create',
     'uses' => 'UserSignupController@waiverTimeConstCreate'
+]);
+Route::any('admission/amw/waiver-gpa-constraint/create/{batch_waiver_id}', [
+    'as' => 'admission.amw.waiver-gpa-constraint.create',
+    'uses' => 'UserSignupController@waiverGpaConstCreate'
 ]);
 
 Route::any('admission/amw/waiver-constraint/store', [
     'as' => 'admission.amw.waiver-constraint.store',
     'uses' => 'UserSignupController@waiverConstraintStore'
+]);
+
+Route::any('admission/amw/waiver-time-constraint/edit/{id}', [
+    'as' => 'admission.amw.waiver-time-constraint.edit',
+    'uses' => 'UserSignupController@waiverTimeConstEdit'
+]);
+
+Route::any('admission/amw/waiver-gpa-constraint/edit/{id}', [
+    'as' => 'admission.amw.waiver-gpa-constraint.edit',
+    'uses' => 'UserSignupController@waiverGpaConstEdit'
+]);
+Route::any('admission/amw/constraint-waiver/update/{id}', [
+    'as' => 'admission.amw.waiver-constraint.update',
+    'uses' => 'UserSignupController@waiverConstUpdate'
+]);
+
+Route::any('admission/amw/constraint-waiver/delete/{id}', [
+    'as' => 'admission.amw.waiver-constraint.delete',
+    'uses' => 'UserSignupController@waiverConstDelete'
 ]);
 //{--------------------------------------- batch Education Constraint -------------------------------------------------------------}
 
