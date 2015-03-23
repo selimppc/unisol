@@ -866,9 +866,9 @@ class UserSignupController extends \BaseController {
 
      }
 
-    public function batchApplicantChangeStatus($applicant_id){
+    public function batchApplicantChangeStatus($id){
 
-        $model = BatchApplicant::findOrFail($applicant_id);
+        $model = BatchApplicant::findOrFail($id);
         $status = $model->getStatus();
         return View::make('admission::amw.batch_applicant.status',compact('status','model'));
 

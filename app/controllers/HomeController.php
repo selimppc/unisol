@@ -317,21 +317,21 @@ class HomeController extends BaseController {
         /*$result = static::getBatchCourseRecursive($year_id = 1, $semester_id = 1);
         print_r($result) ;exit;*/
 
-        $result = static::getBatchCourse($batch_id = 1, $year_id = 1, $semester_id = 1);
-        print_r($result) ;exit;
-
+        $result = static::getBatchCourse($batch_id = 1, $year_id = '', $semester_id = '');
+        //print_r($result->toSql()) ;exit;
+        dd(DB::getQueryLog($result));
     }
 
-    public static function getBatchCourse($batch_id = 1, $year_id, $semester_id)
+    public static function getBatchCourse($batch_id, $year_id='', $semester_id='')
     {
-        $batchCourse = BatchCourse::where('batch_id','=',1)->get();
+        $batchCourse = BatchCourse::where('batch_id','=', $batch_id)->get();
         $array = [];
         foreach ( $batchCourse as $values ){
             $array[$values->batch_id] = array(
                 'year_id'=>$values->year_id,
                 'semester'=> [],
             );
-            $array[$values->id]['semester'] = static::getBatchCourse($values->batch_id, $values->year_id, $values->semester_id);
+            $array[$values->year_id]['semester'] = static::getBatchCourse($values->batch_id, $values->year_id, $values->semester_id);
         }
         return $array;
     }

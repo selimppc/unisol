@@ -57,27 +57,26 @@
                                             <th>Action</th>
                                          </tr>
                                  </thead>
-                                        <tbody>
-                                        
-                                              @if(isset($apt_data))
-                                                    @foreach($apt_data as $value)
-                                                        <tr>
-                                                            <td><input type="checkbox" name="ids[]"  class="myCheckbox" value="{{ $value->id }}">
-                                                            </td>
-                                                            <td>{{$value->relApplicant->first_name.''.$value->relApplicant->last_name}}</td>
+                                    <tbody>
 
-                                                            <td>{{$value->status}}</td>
-                                                            <td>{{$value->relBatch->relSemester->title}}</td>
+                                      @if(isset($apt_data))
+                                        @foreach($apt_data as $value)
+                                        <tr>
+                                            <td><input type="checkbox" name="ids[]"  class="myCheckbox" value="{{ $value->id }}">
+                                            </td>
+                                            <td>{{$value->relApplicant->first_name.''.$value->relApplicant->last_name}}</td>
+                                            <td> {{ $status[$value->status] }}</td>
+                                            <td>{{$value->relBatch->relSemester->title}}</td>
 
-                                                            <td>
-                                                                 {{--<a href="{{ URL::to('admission/amw/batch-edu-const/show/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#eduConstModal" style="font-size: 12px;color: darkmagenta"><span class="fa fa-eye"></span></a>--}}
-                                                                 <a class="btn btn-xs btn-default" href="{{ URL::to('admission/amw/batch-applicant/change/'.$value->applicant_id) }}" data-toggle="modal" data-target="#batchAptModal" style="font-size: 12px;color:darkmagenta"><i class="fa fa-edit"></i>Change Status</a>
+                                            <td>
+                                                 {{--<a href="{{ URL::to('admission/amw/batch-edu-const/show/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#eduConstModal" style="font-size: 12px;color: darkmagenta"><span class="fa fa-eye"></span></a>--}}
+                                                 <a class="btn btn-xs btn-default" href="{{ URL::to('admission/amw/batch-applicant/change/'.$value->id) }}" data-toggle="modal" data-target="#batchAptModal" style="font-size: 12px;color:darkmagenta"><i class="fa fa-edit"></i>Change Status</a>
 
-                                                            </td>
-                                                        </tr>
-                                                    @endforeach
-                                              @endif
-                                        </tbody>
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                      @endif
+                                    </tbody>
                        {{--{{ Form::submit('Delete Items', array('class'=>'btn btn-xs btn-danger', 'id'=>'hide-button', 'style'=>'display:none'))}}--}}
                           </table>
                        {{ Form::close() }}

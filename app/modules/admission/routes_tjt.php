@@ -442,11 +442,11 @@ Route::any('admission/amw/batch-applicant/{id}',
     ['as'=>'admission.amw.batch-applicant.index',
         'uses'=>'UserSignupController@batchApplicantIndex']);
 
-Route::any('admission/amw/batch-applicant/change/{applicant_id}',
+Route::any('admission/amw/batch-applicant/change/{id}',
     ['as'=>'admission.amw.batch-applicant.change',
         'uses'=>'UserSignupController@batchApplicantChangeStatus']);
 
-Route::any('admission/amw/batch-applicant/update/{applicant_id}',
+Route::any('admission/amw/batch-applicant/update/{id}',
     ['as'=>'admission.amw.batch-applicant.update',
         'uses'=>'UserSignupController@batchApplicantUpdateStatus']);
 
