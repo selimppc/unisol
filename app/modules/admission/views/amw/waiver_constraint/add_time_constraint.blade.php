@@ -24,9 +24,10 @@
            <p>&nbsp;</p>
            <p>&nbsp;</p>
 
-          {{ Form::submit('Save ', array('class'=>'btn btn-primary')) }}
-          <a href="{{URL::previous()}}" class="pull-right btn btn-default" span class="glyphicon-refresh">Close</a>
-
+          <div>
+               {{ Form::submit('Save', array('class'=>'pull-right btn btn-primary')) }}
+               <a  href="" class="pull-right btn btn-default" style="margin-right: 5px">Close</a>
+          </div>
           <p>&nbsp;</p>
 
          <p>&nbsp;</p>
@@ -35,3 +36,5 @@
     </div>
 
 </div>
+
+{{ HTML::script('assets/js/custom.js')}}
