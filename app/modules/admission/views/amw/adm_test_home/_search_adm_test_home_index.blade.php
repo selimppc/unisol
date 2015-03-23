@@ -26,6 +26,7 @@
           </div>
         {{ Form::close() }}
 
+
         <a href="{{ URL::to('admission/amw/admission-test-home') }}" class="btn btn-success" >Full List VIew</a>
 
       </div>

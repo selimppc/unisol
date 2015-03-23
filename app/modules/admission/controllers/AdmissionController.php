@@ -487,8 +487,8 @@ class AdmissionController extends \BaseController {
     {
         $batch_edit = BatchAdmtestSubject::find($batch_id);
 
-        $degree_name = BatchAdmtestSubject::with('relBatch','relBatch.relDegree')
-            ->where('batch_id' ,'=', $batch_id)
+        $degree_name = Batch::with('relDegree')
+//            ->where('id' ,'=', $batch_id)
             ->first();
 
         $subject_id_result = AdmTestSubject::lists('title', 'id');
@@ -581,7 +581,6 @@ class AdmissionController extends \BaseController {
             return Redirect::back()
                 ->with('error', 'invalid');
         }
-
     }
 
 //..................................................Admission Test Management : Home.......................................
