@@ -4,27 +4,27 @@
 </div>
 
 
-{{ HTML::style('assets/etsb/etsb_css/bootstrap/bootstrap.min.css') }}
-{{ HTML::style('assets/etsb/etsb_css/datepicker/datepicker.css') }}
-{{ HTML::script('assets/js/jquery-2.1.1.min.js') }}
-{{ HTML::script('assets/etsb/etsb_js/bootstrap/bootstrap.min.js')}}
-{{ HTML::script('assets/etsb/etsb_js/datepicker/bootstrap-datepicker.min.js')}}
-<script type="text/javascript">
-            $(function() {
-                $('.date-picker').each(function() {
+{{--{{ HTML::style('assets/etsb/etsb_css/bootstrap/bootstrap.min.css') }}--}}
+{{--{{ HTML::style('assets/etsb/etsb_css/datepicker/datepicker.css') }}--}}
+{{--{{ HTML::script('assets/js/jquery-2.1.1.min.js') }}--}}
+{{--{{ HTML::script('assets/etsb/etsb_js/bootstrap/bootstrap.min.js')}}--}}
+{{--{{ HTML::script('assets/etsb/etsb_js/datepicker/bootstrap-datepicker.min.js')}}--}}
+{{--<script type="text/javascript">--}}
+            {{--$(function() {--}}
+                {{--$('.date-picker').each(function() {--}}
 
-                    var $picker = $(this);
-                    $picker.datepicker({
-                        format:'yyyy-mm-dd'
-                    });
-                    var pickerObject = $picker.data('date-picker');
+                    {{--var $picker = $(this);--}}
+                    {{--$picker.datepicker({--}}
+                        {{--format:'yyyy-mm-dd'--}}
+                    {{--});--}}
+                    {{--var pickerObject = $picker.data('date-picker');--}}
 
-                    $picker.on('changeDate', function(ev){
-                        $picker.datepicker('hide');
-                    });
-                });
-            });
-</script>
+                    {{--$picker.on('changeDate', function(ev){--}}
+                        {{--$picker.datepicker('hide');--}}
+                    {{--});--}}
+                {{--});--}}
+            {{--});--}}
+{{--</script>--}}
 
 
 <div class="modal-body">
@@ -63,22 +63,22 @@
 
                 <div class='form-group'>
                            {{ Form::label('start_date', 'Start Date') }}
-                           {{ Form::text('start_date', Input::old('start_date'),['class'=>'form-control date-picker']) }}
+                           {{ Form::text('start_date', Input::old('start_date'),['class'=>'form-control date_picker']) }}
                 </div>
 
                 <div class='form-group'>
                            {{ Form::label('end_date', 'End Date') }}
-                           {{ Form::text('end_date', Input::old('end_date'),['class'=>'form-control date-picker','required'=>'required']) }}
+                           {{ Form::text('end_date', Input::old('end_date'),['class'=>'form-control date_picker','required'=>'required']) }}
                 </div>
 
                 <div class='form-group'>
                            {{ Form::label('admission_deadline', 'Admission Deadline') }}
-                           {{ Form::text('admission_deadline', Input::old('admission_deadline'),['class'=>'form-control date-picker','required'=>'required']) }}
+                           {{ Form::text('admission_deadline', Input::old('admission_deadline'),['class'=>'form-control date_picker','required'=>'required']) }}
                 </div>
 
                 <div class='form-group'>
                            {{ Form::label('admtest_date', 'Admission Test Date') }}
-                           {{ Form::text('admtest_date', Input::old('admtest_date'),['class'=>'form-control date-picker','required'=>'required']) }}
+                           {{ Form::text('admtest_date', Input::old('admtest_date'),['class'=>'form-control date_picker','required'=>'required']) }}
                 </div>
 
                 <div class='form-group'>
@@ -96,4 +96,5 @@
      </div>
 </div>
 
+{{ HTML::script('assets/js/custom.js')}}
 

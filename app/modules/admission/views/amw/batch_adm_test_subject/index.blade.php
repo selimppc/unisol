@@ -3,7 +3,7 @@
     @include('layouts._sidebar_amw')
 @stop
 @section('content')
-<h1><strong>Manage Admission Test Subject </strong> </h1> <br>
+<h1><strong> Batch Adm-Test Subject </strong> </h1> <br>
 
             {{--{{ Form::open(array('url' => 'examination/amw/batch-adm-test-subject/batchDelete')) }}--}}
 
