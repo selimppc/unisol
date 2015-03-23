@@ -634,12 +634,21 @@ class AdmissionController extends \BaseController {
 
 //..................................................Admission Test : Examiner.......................................
 
-    public function admExaminerIndex()
+    public function admExaminerIndex( $year_id, $semester_id, $batch_id)
     {
         $adm_test_examiner = AdmExaminer::latest('id')->paginate(10);
 
+        $degree_id = Batch::where('id' ,'=', $batch_id )
+            ->where('semester_id' ,'=', $semester_id)
+            ->where('year_id' ,'=', $year_id)
+            ->first()->degree_id;
+
+        $degree_data = Degree::with('relDepartment')
+            ->where('id','=', $degree_id)
+            ->first();
+
         return View::make('admission::amw.adm_examiner.adm_examiner_index',
-            compact('adm_test_examiner','year_id','semester_id','degree_id'));
+            compact('adm_test_examiner','year_id','semester_id','batch_id','degree_id','degree_data'));
 
     }
 
@@ -647,6 +656,7 @@ class AdmissionController extends \BaseController {
     {
         return View::make('admission::amw.adm_examiner._form');
     }
+
 
     public function storeAdmTestExaminer()
     {
@@ -671,25 +681,40 @@ class AdmissionController extends \BaseController {
 //        $adm_view_examiners = AdmExaminer::where('id' ,'=', $degree_id)->first();
 //        $data = Degree::with('relDepartment')->where('id' ,'=', $degree_id)->first()->relDepartment->title;
 //
-//        return View::make('admission::amw.admission_test.view_examiners',
-//            compact('data','adm_view_examiners','degree_id'));
+        return View::make('admission::amw.admission_examiner.view_examiners',
+            compact('data','adm_view_examiners','degree_id'));
     }
 
 
 //..................................................Admission Test : Question paper.......................................
 
-    public function admQuestionIndex()
+    public function admQuestionIndex( $year_id, $semester_id, $batch_id)
     {
 
         $adm_test_question_paper = AdmQuestion::latest('id')->paginate(10);
 
-        return View::make('admission::amw.adm_question.adm_question_index',compact('adm_test_question_paper'));
+        $degree_id = Batch::where('id' ,'=', $batch_id )
+            ->where('semester_id' ,'=', $semester_id)
+            ->where('year_id' ,'=', $year_id)
+            ->first()->degree_id;
+
+        $degree_data = Degree::with('relDepartment')
+            ->where('id','=', $degree_id)
+            ->first();
+
+//        $batch_admtest_subject_id = BatchAdmtestSubject::where('id','=',$batch_id)->first();
+//
+//        $batch_admtst_sbjct_name = AdmQuestion::with('relBatchAdmTestSubject','relBatchAdmTestSubject.AdmTestSubject')->where('batch_admtest_subject_id','=',$batch_admtest_subject_id)->first();
+
+//        print_r($batch_admtst_sbjct_name);exit;
+
+        return View::make('admission::amw.adm_question.adm_question_index',
+            compact('semester_id','year_id','adm_test_question_paper','degree_id','degree_data'));
     }
 
     public function createAdmTestQuestionPaper()
     {
         return View::make('admission::amw.adm_question._form');
-
     }
 
 
