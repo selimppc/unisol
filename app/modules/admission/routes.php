@@ -274,12 +274,12 @@ Route::any('admission/amw/admission-test-home',[
 
 
 
-Route::any('admission/amw/adm_test_home/batchDelete',[
+Route::any('admission/amw/adm-test-home/batchDelete',[
     'as' => 'admission.amw.adm-test-home/batchDelete',
     'uses' => 'AdmissionController@admissionTestBatchDelete'
 ]);
 
-Route::any('admission/amw/adm_test_home/search-adm-test-index',[
+Route::any('admission/amw/adm-test-home/search-adm-test-index',[
     'as' => 'admission.amw.adm-test-home/search-adm-test-index',
     'uses' => 'AdmissionController@admissionTestSearchIndex'
 ]);

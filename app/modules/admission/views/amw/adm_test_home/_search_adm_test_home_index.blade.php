@@ -7,7 +7,7 @@
 
   <div class="row">
       <div class="col-sm-12">
-        {{ Form::open(array('url' => 'admission/amw/adm_test_home/search-adm-test-index')) }}
+        {{ Form::open(array('url' => 'admission/amw/adm-test-home/search-adm-test-index')) }}
           <div class="col-sm-8">
                <div class="col-sm-3">
                         {{ Form::label('year_id', 'Year') }}
@@ -31,7 +31,7 @@
       </div>
   </div>
 
-      {{ Form::open(array('url' => 'admission/amw/adm_test_home/batchDelete')) }}
+      {{ Form::open(array('url' => 'admission/amw/adm-test-home/batchDelete')) }}
           <table id="example" class="table table-striped  table-bordered"  >
              <thead>
                 {{ Form::submit('Delete Items', array('class'=>'btn btn-danger', 'id'=>'hide-button', 'style'=>'display:none'))}}
