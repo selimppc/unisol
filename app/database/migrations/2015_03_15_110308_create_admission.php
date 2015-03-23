@@ -230,6 +230,8 @@ class CreateAdmission extends Migration {
             $table->increments('id');
             $table->unsignedInteger('batch_id')->nullable();
             $table->unsignedInteger('applicant_id')->nullable();
+            $table->float('admtest_marks', 8,2);
+            $table->integer('merit_position', false, 8);
             $table->enum('status',array(
                 'APLD', 'DOCC', 'AADV', 'RADV', 'RJAS', 'PDAS', 'CFAT', 'ATAT', 'NAAD',
                 'PAAT', 'NPAT', 'RATE', 'MRTL', 'WTGL', 'NAML', 'CFAD', 'DNAD', 'ADMD',
