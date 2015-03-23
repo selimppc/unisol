@@ -289,14 +289,14 @@ class HomeController extends BaseController {
 
 
     public function datePicker(){
-        $batch_id = 1;
-        $degree_id = Batch::findOrFail($batch_id)->degree_id;
+        /*$batch_id = 1;
+        $degree_id = Batch::findOrFail($batch_id)->degree_id;*/
 
         /*SELECT * FROM degree_course a
         LEFT JOIN batch_course b ON a.`course_id` = b.`course_id`
         WHERE a.`degree_id` = 1 AND b.course_id IS NULL*/
 
-        $degreeCourse = DB::table('degree_course')
+        /*$degreeCourse = DB::table('degree_course')
             ->leftJoin('batch_course', 'degree_course.course_id', '=', 'batch_course.course_id')
             ->leftjoin('degree', 'degree_course.degree_id', '=', 'degree.id' )
             ->where('degree_course.degree_id', '=', $degree_id)
@@ -304,7 +304,7 @@ class HomeController extends BaseController {
             ->select('degree_course.course_id', 'degree_course.degree_id', 'degree.department_id')
             ->get();
 
-        print_r($degreeCourse);exit;
+        print_r($degreeCourse);exit;*/
 
 
         if($_POST){
