@@ -48,6 +48,7 @@
 
         <li><a tabindex="-1" a href="{{ URL::to('admission/amw/degree') }}"></i>Degree (Amw)</a></li>
         <li><a tabindex="-1" a href="{{ URL::to('admission/amw/batch') }}"></i>Batch (Amw)</a></li>
+         <li><a tabindex="-1" a href="{{ URL::to('admission/amw/waiver') }}"></i>Waiver (Amw)</a></li>
         <li><a tabindex="-1" a href="{{ URL::to('admission/amw/batch-waiver') }}"></i>Batch Waiver(Amw)</a></li>
         <li><a tabindex="-1" a href="{{ URL::to('admission/amw/batch-edu-const') }}"></i>Batch Education Constraint</a></li>
         <li><a tabindex="-1" a href="{{ action('AdmAmwController@degree_courses_index') }}"></i>Degree Course(Go from degree list) </a></li>
