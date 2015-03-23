@@ -835,7 +835,7 @@ class UserSignupController extends \BaseController {
 
 // {---------------------------------------------Batch Applicant----------------------------------------------------------------------}
 
-    public function admBatchAptIndex($id){
+    public function batchApplicantIndex($id){
         $model = new BatchApplicant();
         //view info according to batch(admission on)
         $batchApt = Batch::with('relDegree.relDegreeGroup','relDegree.relDegreeProgram','relDegree.relDepartment','relYear','relSemester')
@@ -861,9 +861,35 @@ class UserSignupController extends \BaseController {
             $apt_data = BatchApplicant::with('relBatch','relApplicant','relBatch.relSemester')
                 ->where('batch_id','=',$id)->get();
         }
-        return View::make('admission::amw.batch_applicant.batch_apt_index',
+        return View::make('admission::amw.batch_applicant.index',
             compact('batchApt','apt_data', 'status'));
 
      }
+
+    public function batchApplicantChangeStatus($applicant_id){
+
+        $model = BatchApplicant::findOrFail($applicant_id);
+        $status = $model->getStatus();
+        return View::make('admission::amw.batch_applicant.status',compact('status','model'));
+
+    }
+
+    public function  batchApplicantUpdateStatus($applicant_id){
+
+        $model = BatchApplicant::find($applicant_id);
+        //print_r($model);exit;
+        $data = Input::all();
+
+        if($model->validate($data)){
+            if($model->update($data)){
+                Session::flash('message','Successfully Updated Information!');
+                return Redirect::back();
+            }
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back();
+        }
+    }
 
 }
