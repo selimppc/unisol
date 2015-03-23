@@ -891,5 +891,8 @@ class UserSignupController extends \BaseController {
             return Redirect::back();
         }
     }
+    public function batchApplicantApply(){
+
+    }
 
 }
