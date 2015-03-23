@@ -58,7 +58,7 @@
                                          </tr>
                                  </thead>
                                         <tbody>
-                                        {{--{{$apt_data->getStatus()}}--}}
+                                        
                                               @if(isset($apt_data))
                                                     @foreach($apt_data as $value)
                                                         <tr>
@@ -70,9 +70,8 @@
                                                             <td>{{$value->relBatch->relSemester->title}}</td>
 
                                                             <td>
-                                                                 <a href="{{ URL::to('admission/amw/batch-edu-const/show/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#eduConstModal" style="font-size: 12px;color: darkmagenta"><span class="fa fa-eye"></span></a>
-                                                                 {{--<a class="btn btn-xs btn-default" href="{{ URL::to('admission/amw/batch-edu-const/edit/'.$value->id) }}" data-toggle="modal" data-target="#eduConstModal" style="font-size: 12px;color: lightseagreen"><i class="fa fa-edit"></i></a>--}}
-                                                                 {{--<a data-href="{{ URL::to('admission/amw/batch-edu-const/delete/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" style="font-size: 12px;color: lightcoral"><span class="fa  fa-trash-o"></span></a>--}}
+                                                                 {{--<a href="{{ URL::to('admission/amw/batch-edu-const/show/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#eduConstModal" style="font-size: 12px;color: darkmagenta"><span class="fa fa-eye"></span></a>--}}
+                                                                 <a class="btn btn-xs btn-default" href="{{ URL::to('admission/amw/batch-applicant/change/'.$value->applicant_id) }}" data-toggle="modal" data-target="#batchAptModal" style="font-size: 12px;color:darkmagenta"><i class="fa fa-edit"></i>Change Status</a>
 
                                                             </td>
                                                         </tr>
@@ -93,7 +92,7 @@
 </div>
 
 {{----------------------------------------------Modal : degreeGroupModal--------------------------------------------------------------------------}}
-<div class="modal fade" id="eduConstModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="batchAptModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
 
