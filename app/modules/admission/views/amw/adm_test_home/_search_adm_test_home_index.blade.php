@@ -7,7 +7,7 @@
 
   <div class="row">
       <div class="col-sm-12">
-        {{ Form::open(array('url' => 'admission/amw/adm_test_home/search-adm-test-index')) }}
+        {{ Form::open(array('url' => 'admission/amw/adm-test-home/search-adm-test-index')) }}
           <div class="col-sm-8">
                <div class="col-sm-3">
                         {{ Form::label('year_id', 'Year') }}
@@ -26,12 +26,13 @@
           </div>
         {{ Form::close() }}
 
+
         <a href="{{ URL::to('admission/amw/admission-test-home') }}" class="btn btn-success" >Full List VIew</a>
 
       </div>
   </div>
 
-      {{ Form::open(array('url' => 'admission/amw/adm_test_home/batchDelete')) }}
+      {{ Form::open(array('url' => 'admission/amw/adm-test-home/batchDelete')) }}
           <table id="example" class="table table-striped  table-bordered"  >
              <thead>
                 {{ Form::submit('Delete Items', array('class'=>'btn btn-danger', 'id'=>'hide-button', 'style'=>'display:none'))}}
@@ -64,9 +65,9 @@
                                    <td>QPE Status</td>
                                    <td>
                                       {{--<a href="{{ URL::route('admission.amw.admission-examiner-index', ['year_id'=>$adm_test_mgt->year_id , 'semester_id'=>$adm_test_mgt->semester_id , 'degree_id'=>$adm_test_mgt->degree_id ])  }}" class="btn btn-default btn-xs" >EX</a>--}}
-                                      <a href="{{ URL::route('admission.amw.admission-examiner-index') }}" class="btn btn-default btn-xs" >EX</a>
-                                      <a href="{{ URL::route('admission.amw.admission-question-index') }}" class="btn btn-default btn-xs" >QP</a>
-                                      <a href="{{ URL::route('admission.amw.admission-question-evaluation-index') }}" class="btn btn-default btn-xs" >QPE</a>
+                                      <a href="{{ URL::to('admission/amw/admission-test-examiner') }}" class="btn btn-default btn-xs" >EX</a>
+                                      <a href="{{ URL::to('admission/amw/admission-test-question') }}" class="btn btn-default btn-xs" >QP</a>
+                                      <a href="{{ URL::to('admission/amw/admission-question-evaluation') }}" class="btn btn-default btn-xs" >QPE</a>
                                    </td>
                                </tr>
                          @endforeach
