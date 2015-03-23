@@ -331,7 +331,7 @@ Route::any('admission/amw/admission-test-question/store-admission-test-question-
 
 //...................................Admission Question Evaluation........................................................
 
-Route::any('admission.amw.admission-question-evaluation',[
+Route::any('admission/amw/admission-question-evaluation',[
     'as' => 'admission.amw.admission-question-evaluation',
     'uses' => 'AdmissionController@admQuestionEvaluationIndex'
 ]);

@@ -1,6 +1,6 @@
 <div style="padding: 10px; width: 90%;">
 
- <h1>Manage Admission Test Subject: View</h1>
+ <h1>Batch Adm-Test Subject : View</h1>
 
     {{ Form::open(array('url'=>'admission/amw/batch-adm-test-subject/view_admtest_subject','method' => '')) }}
 
