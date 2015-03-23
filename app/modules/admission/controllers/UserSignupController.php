@@ -678,13 +678,15 @@ class UserSignupController extends \BaseController {
                  ->where('batch_id', '=', $batch_id)
                  ->where('waiver_id', '=', $waiver_id)->first();
 
-        $waiverConstraint = WaiverConstraint::where('batch_waiver_id','=',$batch_waiver_id)->get();
+        $waiverConstraint = WaiverConstraint::where('batch_waiver_id','=',$batch_waiver_id)->first();
+        //print_r($waiverConstraint);exit;
         return View::make('admission::amw.waiver_constraint.index', compact('batchWaiver','waiverConstraint'));
     }
 
     public function waiverTimeConstCreate($batch_waiver_id){
 
-        return View::make('admission::amw.waiver_constraint.add_time_constraint',compact('batch_waiver_id'));
+        return View::make('admission::amw.waiver_constraint.add_time_constraint',
+            compact('batch_waiver_id'));
     }
 
 

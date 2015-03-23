@@ -6,7 +6,7 @@
 <div class="modal-body">
     <div style="padding: 20px;">
 
-          {{ Form::open(['route' => ['deg_waiver_const.store'], 'class'=>'form-horizontal', 'files' => true,]) }}
+          {{ Form::open(['route' => ['admission.amw.waiver-constraint.store'], 'class'=>'form-horizontal', 'files' => true,]) }}
 
           {{Form::hidden('batch_waiver_id', $batch_waiver_id)}}
           {{Form::hidden('is_time_dependent', 1)}}

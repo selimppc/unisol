@@ -48,7 +48,7 @@
           <div class="box box-info">
               <div class="box-header">
                <div class="box-tools pull-right">
-                   <a class="pull-right btn btn-sm btn-info" href="{{ URL::route('admission.amw.waiver-constraint.create' )}}" data-toggle="modal" data-target="#waiverConstModal" style="color: #ffffff"><b>Add Time Constraint</b></a>
+                   <a class="pull-right btn btn-sm btn-info" href="{{ URL::route('admission.amw.waiver-constraint.create',['batch_waiver_id'=>$value->batch_waiver_id] )}}" data-toggle="modal" data-target="#waiverConstModal" style="color: #ffffff"><b>Add Time Constraint</b></a>
                </div>
 
               </div>
@@ -117,6 +117,7 @@
                                            </tr>
                                       </thead>
                                       <tbody>
+                                              @if(isset($waiverConstraint))
                                               @foreach($waiverConstraint as $value)
                                                      <tr>
 
@@ -124,13 +125,14 @@
                                                              <td>{{ $value->level_of_education }}</td>
                                                              <td>{{ $value->gpa }}</td>
                                                              <td>
-                                                                  <a data-href="{{ URL::to('amw/degree_manage/waiver_const/delete/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><span class="glyphicon glyphicon-trash text-danger"></span></a>
-                                                                  <a class="btn btn-xs btn-default" href="{{ URL::route('deg_waiver_gpa_const.edit', $value->id) }}" data-toggle="modal" data-target="#addModal" ><span class="glyphicon glyphicon-edit"></span></a>
+                                                                  {{--<a data-href="{{ URL::to('amw/degree_manage/waiver_const/delete/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><span class="glyphicon glyphicon-trash text-danger"></span></a>--}}
+                                                                  {{--<a class="btn btn-xs btn-default" href="{{ URL::route('deg_waiver_gpa_const.edit', $value->id) }}" data-toggle="modal" data-target="#addModal" ><span class="glyphicon glyphicon-edit"></span></a>--}}
                                                              </td>
                                                          @endif
 
                                                      </tr>
                                               @endforeach
+                                              @endif
                                       </tbody>
                           </table>
 
