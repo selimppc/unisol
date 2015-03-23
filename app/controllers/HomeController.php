@@ -318,8 +318,7 @@ class HomeController extends BaseController {
         print_r($result) ;exit;*/
 
         $result = static::getBatchCourse($batch_id = 1, $year_id = '', $semester_id = '');
-        //print_r($result->toSql()) ;exit;
-        dd(DB::getQueryLog($result));
+        print_r($result->toSql()) ;exit;
     }
 
     public static function getBatchCourse($batch_id, $year_id='', $semester_id='')
@@ -327,8 +326,8 @@ class HomeController extends BaseController {
         $batchCourse = BatchCourse::where('batch_id','=', $batch_id)->get();
         $array = [];
         foreach ( $batchCourse as $values ){
-            $array[$values->batch_id] = array(
-                'year_id'=>$values->year_id,
+            $array[$values->year_id] = array(
+                'semester_id'=>$values->semester_id,
                 'semester'=> [],
             );
             $array[$values->year_id]['semester'] = static::getBatchCourse($values->batch_id, $values->year_id, $values->semester_id);
