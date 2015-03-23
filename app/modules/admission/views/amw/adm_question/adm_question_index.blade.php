@@ -14,14 +14,13 @@
                                </div>
 
                                <div class="col-sm-6">
-                                    <strong> Department: </strong>
-                                    </br>
-                                    <strong> Year: </strong>
-                                    </br>
-                                    <strong> Degree: </strong>
-                                    {{--{{ Degree::getDegreeName($degree_id) }}--}}
+                                     <strong> Department: </strong> {{ $degree_data->relDepartment->title }}
+                                     </br>
+                                     <strong> Year: </strong> {{ Year::findOrFail($year_id)->title }}
+                                     </br>
+                                     <strong> Degree: </strong> {{ Degree::findOrFail($degree_id)->relDegreeProgram->code.''.Degree::findOrFail($degree_id)->relDegreeGroup->code }}
+                                     </br>
 
-                                    </br>
                                </div>
                         </div>
                 </div>
@@ -50,7 +49,7 @@
 
                                       <td>{{ $adm_question_paper_list->deadline }}</td>
 
-                                      <td>subject</td>
+                                      <td>{{ $adm_question_paper_list->deadline }}</td>
 
                                       <td>not assigned </td>
 

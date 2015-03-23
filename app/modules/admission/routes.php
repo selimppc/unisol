@@ -288,7 +288,7 @@ Route::any('admission/amw/adm-test-home/search-adm-test-index',[
 //...................................Admission Examiner........................................................
 ///{year_id}/{semester_id}/{degree_id}
 
-Route::any('admission/amw/admission-test-examiner',[
+Route::any('admission/amw/admission-test-examiner/{year_id}/{semester_id}/{batch_id}',[
     'as' => 'admission.amw.admission-test-examiner',
     'uses' => 'AdmissionController@admExaminerIndex'
 ]);
@@ -309,7 +309,7 @@ Route::any('admission/amw/admission-test-examiner/view-admission-test-examiner',
 ]);
 //...................................Admission Question........................................................
 
-Route::any('admission/amw/admission-test-question',[
+Route::any('admission/amw/admission-test-question/{year_id}/{semester_id}/{batch_id}',[
     'as' => 'admission.amw.admission-test-question',
     'uses' => 'AdmissionController@admQuestionIndex'
 ]);
