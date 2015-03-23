@@ -21,13 +21,13 @@
                 <div class="col-sm-12">
                     <div class="col-sm-6">
                         {{--@foreach($adm_test_examiner as $info)--}}
-                            <strong> Year: </strong> {{--{{ $info->relbatch->relYear->title }}--}}
+                            <strong> Year: </strong> {{ Year::findOrFail($year_id)->title }}
                             </br>
-                            <strong> Semester: </strong> {{-- {{ Semester::getSemesterName($semester_id) }}--}}
+                            <strong> Semester: </strong> {{ Semester::findOrFail($semester_id)->title }}
                             </br>
-                            <strong> Degree: </strong> {{-- {{ Degree::getDegreeName($degree_id) }}--}}
+                            <strong> Degree: </strong> {{ Degree::findOrFail($degree_id)->title }}
                             </br>
-                            <strong> Department: </strong> {{-- {{ $data }}--}}
+                            <strong> Department: </strong> {{ $degree_data->relDepartment->title }}
                             </br>
                         {{--@endforeach--}}
                     </div>
@@ -70,6 +70,14 @@
             {{form::close() }}
 
 {{--            {{ $adm_test_examiner->links() }}--}}
+
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" style="z-index:1050">
+          <div class="modal-content">
+
+         </div>
+        </div>
+</div>
 
 
 @stop

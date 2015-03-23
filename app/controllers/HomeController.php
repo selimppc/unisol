@@ -289,23 +289,62 @@ class HomeController extends BaseController {
 
 
     public function datePicker(){
-        $batch_id = 1;
-        $degree_id = Batch::findOrFail($batch_id)->degree_id;
+        /*$batch_id = 1;
+        $degree_id = Batch::findOrFail($batch_id)->degree_id;*/
 
-        $batchCourse = BatchCourse::where('degree_id', '=', $degree_id)->get();
-        print_r($batchCourse);exit;
+        /*SELECT * FROM degree_course a
+        LEFT JOIN batch_course b ON a.`course_id` = b.`course_id`
+        WHERE a.`degree_id` = 1 AND b.course_id IS NULL*/
 
-        if(User::where('email', '=', Input::get('email'))->exists()){
-            // user found
-        }
+        /*$degreeCourse = DB::table('degree_course')
+            ->leftJoin('batch_course', 'degree_course.course_id', '=', 'batch_course.course_id')
+            ->leftjoin('degree', 'degree_course.degree_id', '=', 'degree.id' )
+            ->where('degree_course.degree_id', '=', $degree_id)
+            ->where('batch_course.course_id', NULL)
+            ->select('degree_course.course_id', 'degree_course.degree_id', 'degree.department_id')
+            ->get();
 
-        if($_POST){
+        print_r($degreeCourse);exit;*/
+
+        /*if($_POST){
             $n = Input::get('factorial');
             $factorial = $this->bcFact($n);
             return View::make('test.date_picker', compact('factorial'));
         }else{
             return View::make('test.date_picker');
+        }*/
+
+        /*$result = static::getBatchCourseRecursive($year_id = 1, $semester_id = 1);
+        print_r($result) ;exit;*/
+
+        $result = static::getBatchCourse($batch_id = 1, $year_id = '', $semester_id = '');
+        print_r($result->toSql()) ;exit;
+    }
+
+    public static function getBatchCourse($batch_id, $year_id='', $semester_id='')
+    {
+        $batchCourse = BatchCourse::where('batch_id','=', $batch_id)->get();
+        $array = [];
+        foreach ( $batchCourse as $values ){
+            $array[$values->year_id] = array(
+                'semester_id'=>$values->semester_id,
+                'semester'=> [],
+            );
+            $array[$values->year_id]['semester'] = static::getBatchCourse($values->batch_id, $values->year_id, $values->semester_id);
         }
+        return $array;
+    }
+
+    private static function getBatchCourseRecursive($year_id, $semester_id)
+    {
+        $items = BatchCourse::where('batch_id', '=', 1)->get();
+        $result = [];
+        foreach ($items as $item) {
+            $result[] = [
+                //'items' => static::getBatchCourseRecursive($item['year_id'], $item['semester_id']),
+            ];
+        }
+        return $result;
     }
 
     protected function bcFact($n){

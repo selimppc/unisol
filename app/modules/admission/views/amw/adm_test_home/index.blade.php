@@ -62,8 +62,8 @@
                                    <td>QPE Status</td>
                                    <td>
                                       {{--<a href="{{ URL::route('admission.amw.admission-examiner-index', ['year_id'=>$adm_test_mgt->year_id , 'semester_id'=>$adm_test_mgt->semester_id , 'degree_id'=>$adm_test_mgt->degree_id ])  }}" class="btn btn-default btn-xs" >EX</a>--}}
-                                      <a href="{{ URL::route('admission.amw.admission-test-examiner') }}" class="btn btn-default btn-xs" >EX</a>
-                                      <a href="{{ URL::route('admission.amw.admission-test-question') }}" class="btn btn-default btn-xs" >QP</a>
+                                      <a href="{{ URL::to('admission/amw/admission-test-examiner', [ 'year_id'=>$adm_test_mgt->year_id ,'semester_id'=>$adm_test_mgt->semester_id ,'batch_id'=>$adm_test_mgt->id ]) }}" class="btn btn-default btn-xs" >EX</a>
+                                      <a href="{{ URL::to('admission/amw/admission-test-question', [ 'year_id'=>$adm_test_mgt->year_id ,'semester_id'=>$adm_test_mgt->semester_id ,'batch_id'=>$adm_test_mgt->id ]) }}" class="btn btn-default btn-xs" >QP</a>
                                       <a href="{{ URL::route('admission.amw.admission-question-evaluation') }}" class="btn btn-default btn-xs" >QPE</a>
                                    </td>
                                </tr>

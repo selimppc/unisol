@@ -3,7 +3,7 @@
     @include('layouts._sidebar_amw')
 @stop
 @section('content')
-{{--<a class="pull-right btn btn-sm btn-success" href="{{ URL::route('admission.amw.batch-waiver.index' )}}"> <i class="fa fa-arrow-circle-left"></i> Go Back</a>--}}
+<a class="pull-right btn btn-sm btn-success" href="{{ URL::route('admission.amw.batch-waiver.index',['batch_id'=>$batchWaiver->batch_id] )}}"> <i class="fa fa-arrow-circle-left"></i> Go Back</a>
 
 <h3 class="box-title">Waiver Constraint</h3>
     <div class="box box-solid ">
@@ -17,7 +17,7 @@
                     <div class="col-lg-12">
 
                         <table id="example" class="table table-bordered table-striped">
-                         @if (!$batchWaiver == null)
+                         @if ($batchWaiver != null)
                                <tr>
                                    <th> Waiver :</th>
                                    <td>{{ $batchWaiver->relWaiver->title }}</td>
@@ -48,7 +48,7 @@
           <div class="box box-info">
               <div class="box-header">
                <div class="box-tools pull-right">
-                   <a class="pull-right btn btn-sm btn-info" href="{{ URL::route('admission.amw.waiver-constraint.create',['batch_waiver_id'=>$value->batch_waiver_id] )}}" data-toggle="modal" data-target="#waiverConstModal" style="color: #ffffff"><b>Add Time Constraint</b></a>
+                   {{--<a class="pull-right btn btn-sm btn-info" href="{{ URL::route('admission.amw.waiver-constraint.create' )}}" data-toggle="modal" data-target="#waiverConstModal" style="color: #ffffff"><b>Add Time Constraint</b></a>--}}
                </div>
 
               </div>
@@ -67,21 +67,23 @@
                                            </tr>
                                       </thead>
                                       <tbody>
-                                              @foreach($waiverConstraint as $value)
-                                                     <tr>
+                                      @if(isset($timeDependent))
+                                          @foreach($timeDependent as $value)
+                                             <tr>
+                                                  <td>{{ $value->start_date }}</td>
+                                                  <td>{{ $value->end_date }}</td>
+                                                  <td>
+                                                       <a class="btn btn-xs btn-default" href="{{ URL::route('admission.amw.waiver-time-constraint.edit', $value->id) }}" data-toggle="modal" data-target="#waiverConstModal" style="font-size: 12px;color: darkmagenta"><span class="fa fa-eye"></span></a>
+                                                       <a data-href="{{ URL::to('admission/amw/constraint-waiver/delete/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" style="font-size: 12px;color: lightcoral"><span class="fa  fa-trash-o"></span></a>
+                                                  </td>
+                                             </tr>
 
-                                                          @if($value->is_time_dependent == 1)
-
-                                                              <td>{{ $value->start_date }}</td>
-                                                              <td>{{ $value->end_date }}</td>
-                                                              <td>
-                                                                   {{--<a data-href="{{ URL::to('amw/degree_manage/waiver_const/delete/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><span class="glyphicon glyphicon-trash text-danger"></span></a>--}}
-                                                                   {{--<a class="btn btn-xs btn-default" href="{{ URL::route('deg_waiver_time_const.edit', $value->id) }}" data-toggle="modal" data-target="#addModal" ><span class="glyphicon glyphicon-edit"></span></a>--}}
-                                                              </td>
-                                                          @endif
-
-                                                     </tr>
-                                              @endforeach
+                                          @endforeach
+                                      @endif
+                                      <div>
+                                          <a class="pull-right btn btn-sm btn-info" href="{{ URL::route('admission.amw.waiver-time-constraint.create', ['batch_waiver_id'=>$batch_waiver_id] )}}" data-toggle="modal" data-target="#waiverConstModal" style="color: #ffffff"><b>Add Time Constraint</b></a>
+                                      </div>
+                                      <p>&nbsp;</p>
                                       </tbody>
                           </table>
 
@@ -97,9 +99,6 @@
       <div class="box box-solid ">
           <div class="box box-info">
               <div class="box-header">
-               <div class="box-tools pull-right">
-                   {{--<a class="pull-right btn btn-sm btn-info" href="{{ URL::route('admission.amw.waiver-constraint.create' )}}" data-toggle="modal" data-target="#waiverConstModal" style="color: #ffffff"><b>Add Time Constraint</b></a>--}}
-               </div>
 
               </div>
               <div class="box-body">
@@ -117,22 +116,22 @@
                                            </tr>
                                       </thead>
                                       <tbody>
-                                              @if(isset($waiverConstraint))
-                                              @foreach($waiverConstraint as $value)
-                                                     <tr>
+                                        @if(isset($gpaDependent))
+                                          @foreach($gpaDependent as $value)
+                                             <tr>
+                                                 <td>{{ $value->level_of_education }}</td>
+                                                 <td>{{ $value->gpa }}</td>
+                                                 <td>
+                                                      <a class="btn btn-xs btn-default" href="{{ URL::route('admission.amw.waiver-gpa-constraint.edit', $value->id) }}" data-toggle="modal" data-target="#waiverConstModal" style="font-size: 12px;color: darkmagenta"><span class="fa fa-eye"></span></a>
+                                                      <a data-href="{{ URL::to('admission/amw/constraint-waiver/delete/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href=""style="font-size: 12px;color: lightcoral"><span class="fa  fa-trash-o"></span></a>
+                                                 </td>
+                                             </tr>
+                                          @endforeach
+                                        @endif
+                                        <div>
+                                          <a class="pull-right btn btn-sm btn-info" href="{{ URL::route('admission.amw.waiver-gpa-constraint.create', ['batch_waiver_id'=>$batch_waiver_id] )}}" data-toggle="modal" data-target="#waiverConstModal" style="color: #ffffff"><b>Add GPA Constraint</b></a>
+                                      </div>
 
-                                                         @if($value->is_time_dependent == 0)
-                                                             <td>{{ $value->level_of_education }}</td>
-                                                             <td>{{ $value->gpa }}</td>
-                                                             <td>
-                                                                  {{--<a data-href="{{ URL::to('amw/degree_manage/waiver_const/delete/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><span class="glyphicon glyphicon-trash text-danger"></span></a>--}}
-                                                                  {{--<a class="btn btn-xs btn-default" href="{{ URL::route('deg_waiver_gpa_const.edit', $value->id) }}" data-toggle="modal" data-target="#addModal" ><span class="glyphicon glyphicon-edit"></span></a>--}}
-                                                             </td>
-                                                         @endif
-
-                                                     </tr>
-                                              @endforeach
-                                              @endif
                                       </tbody>
                           </table>
 

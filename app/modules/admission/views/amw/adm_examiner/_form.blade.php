@@ -7,21 +7,31 @@
      <div style="padding: 20px;">
         {{Form::open(array('url'=>'admission/amw/admission-test-examiner/store-admission-test-examiner', 'class'=>'form-horizontal','files'=>true))}}
 
+                    <div class='form-group'>
+                        <strong> Degree Name: </strong> </br>
+                    </div>
 
-                <div class='form-group'>
-                    {{ Form::label('title', 'Title') }}
-                    {{ Form::text('title', Input::old('title'),['class'=>'form-control','required'=>'required']) }}
-                </div>
+                    <div class='form-group'>
+                        <strong> Department: </strong>
+                    </div>
 
-                <div class='form-group'>
-                    {{ Form::label('deadline', 'Deadline') }}
-                    {{ Form::text('deadline', Input::old('deadline'),['class'=>'form-control date-picker','required'=>'required']) }}
-                </div>
 
-                <div class='form-group'>
-                    {{ Form::label('note', 'Note') }}
-                    {{ Form::textarea('note', Input::old('note'),['size' => '30x5','class'=>'form-control','required'=>'required']) }}
-                </div>
+                    <div class='form-group'>
+                        {{ Form::label('type', 'Examiner Type') }}
+                        {{ Form::select('type',
+                        array('Question Setter' => 'Question Setter(QS)','Question Evaluator' => 'Question Evaluator(QE)','Both' => 'Both(BOTH)'),
+                        Input::old('type'),['class'=>'form-control','required'=>'required']) }}
+                    </div>
+
+                    <div class="form-group">
+                        {{ Form::label('user_id', 'Name of Faculty:') }}
+                        {{ Form::select('user_id', User::AmwList(),null, array('class' => 'form-control','required'=>'required') ) }}
+                    </div>
+
+                {{--<div class="form-group">--}}
+                         {{--{{ Form::label('comment', 'Comment:') }}--}}
+                         {{--{{ Form::textarea('comment', Null, ['size' => '40x6','placeholder'=>'Your Comments Here']) }}--}}
+                {{--</div>--}}
 
               {{ Form::submit('Save', array('class'=>'pull-right btn btn-info')) }}
               <a href="" class="pull-right btn btn-default" style="margin-right: 5px">Close</a>
