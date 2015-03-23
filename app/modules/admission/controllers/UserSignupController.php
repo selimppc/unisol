@@ -670,11 +670,17 @@ class UserSignupController extends \BaseController {
 //{----------------------------------Waiver Constraint---------------------------------------------------------------------}
     public function waiverConstraintIndex($batch_id, $waiver_id){
 
+        $batch_waiver_id = BatchWaiver::where('batch_id', '=', $batch_id)
+            ->where('waiver_id', '=', $waiver_id)
+            ->first()->id;
+
         $batchWaiver = BatchWaiver::with('relWaiver')
                  ->where('batch_id', '=', $batch_id)
                  ->where('waiver_id', '=', $waiver_id)->first();
-        //$waiverConst = WaiverConstraint::where('id','=','batch_waiver_id')->first();
-        return View::make('admission::amw.waiver_constraint.index', compact('batchWaiver'));
+
+        $waiverConstraint = WaiverConstraint::where('batch_waiver_id','=',$batch_waiver_id)->first();
+        //print_r($waiverConstraint);exit;
+        return View::make('admission::amw.waiver_constraint.index', compact('batchWaiver','waiverConstraint'));
     }
 
     public function waiverTimeConstCreate($batch_waiver_id){
@@ -686,16 +692,40 @@ class UserSignupController extends \BaseController {
 
     public function waiverConstraintStore(){
 
-        $data = Input::all();
-        if (WaiverConstraint::create($data)) {
+//        $data = Input::all();
+//        if (WaiverConstraint::create($data)) {
+//
+//            return Redirect::back()
+//                ->with('message', 'Successfully added Information!');
+//        }
+//        else{
+//            return Redirect::back()
+//                ->with('message', 'invalid');
+//        }
+//        $data = Input::all();
+//        $model = new WaiverConstraint();
+//        $model->batch_waiver_id = Input::get('batch_waiver_id');
+//        if($model->validate($data)){
+//            if($model->create($data)){
+//                Session::flash('message','Successfully added Information!');
+//                return Redirect::back();
+//            }else{
+//                Session::flash('message','Invalid Request!');
+//                return Redirect::back();
+//            }
+//        }else{
+//            $errors = $model->errors();
+//            Session::flash('errors', $errors);
+//            return Redirect::back();
+//        }
+        $model = new WaiverConstraint();
+        $model->batch_waiver_id = Input::get('batch_waiver_id');
 
+        if ($model->save()) {
             return Redirect::back()
                 ->with('message', 'Successfully added Information!');
         }
-        else{
-            return Redirect::back()
-                ->with('message', 'invalid');
-        }
+
     }
 
 //{--------------------------------- Batch Education Constraint -------------------------------------------------------------------------------------}

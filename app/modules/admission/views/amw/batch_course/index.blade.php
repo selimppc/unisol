@@ -96,7 +96,6 @@
 
     <p class= "table.align th text-purple font-size text-bold margin-top-text">Courses of  {{$degree_title->title}}</p>
 
-
         <table id="example1" class="table table-bordered table-hover table-striped">
             <thead>
             <tr>
@@ -112,36 +111,48 @@
             </tr>
             </thead>
             <tbody>
-            @if(isset($deg_course_info))
+
+            {{--@if(isset($deg_course_info))--}}
             @foreach ($deg_course_info as $value)
-
                 <tr>
-                    {{ Form::open(array('url' => 'admission/amw/batch-course/save')) }}
+                    {{Form::open(array('url' => 'admission/amw/batch-course/save'))}}
+
                     {{ Form::hidden('batch_id', $batch , ['class'=>'form-control batch_id'])}}
-                    <td>{{$value->relCourse->title}}  ({{$value->relCourse->course_code}})
-                        {{ Form::hidden('course_id', $value->relCourse->id)}}</td>
-                    <td>{{$value->relCourse->relSubject->relDepartment->title}}</td>
-                    <td>{{$value->relCourse->relCourseType->title}}</td>
-                    <td>{{$value->relCourse->credit}}</td>
+                    {{--<td>{{$value->relCourse->title}}  ({{$value->relCourse->course_code}})--}}
+                        {{--{{ Form::hidden('course_id', $value->relCourse->id)}}</td>--}}
+                    {{--<td>{{$value->relCourse->relSubject->relDepartment->title}}</td>--}}
+                    {{--<td>{{$value->relCourse->relCourseType->title}}</td>--}}
+                    {{--<td>{{$value->relCourse->credit}}</td>--}}
+                    <td> {{Course::findOrFail($value->course_id)->title;}} ({{Course::findOrFail($value->course_id)->course_code;}})
+                        {{ Form::hidden('course_id',($value->course_id))}}
+                    </td>
+                    <td> {{Department::findOrFail($value->department_id)->title; }}</td>
+                    <td> {{CourseType::findOrFail(Course::findOrFail($value->course_id)->course_type_id)->title ;}} </td>
+                    <td> {{Course::findOrFail($value->course_id)->credit ;}} </td>
 
-                    <td>{{ Form::select('year_id[]',$year_data, '', array('class' => 'form-control','required'=>'required'))}}</td>
+                    <td>{{ Form::select('year_id', $year_data, '', array('class' => 'form-control','required'=>'required'))}}</td>
 
-                    <td>{{ Form::select('semester_id[]',$semester_data, '', array('class' => 'form-control','required'=>'required')) }}</td>
+                    <td>{{ Form::select('semester_id', $semester_data, '', array('class' => 'form-control','required'=>'required')) }}</td>
 
-                    <td>{{ Form::checkbox('is_mandatory[]') }}</td>
+                    <td>{{ Form::checkbox('is_mandatory') }}</td>
 
                     <td>{{ Form::select('major_minor', array(''=>'Select Option','major' => 'Major', 'minor' => 'minor'), '', array('class' => 'form-control','required'=>'required'))}}</td>
                     <td>
                         {{Form::button('<i class="fa  fa-plus"></i>', array('type' => 'submit', 'class' => 'btn btn-xs btn-default text-purple'))}}
                     </td>
+                    {{--<td>--}}
+                    {{--<a class="btn btn-xs btn-default text-purple" onClick= "saveNearestTr()"><i class="fa  fa-plus"></i></a>--}}
+                    {{--</td>--}}
+                    {{Form::close()}}
                 </tr>
-                {{Form::close()}}
+
             @endforeach
-                @endif
+                {{--@endif--}}
+
             </tbody>
         </table>
 
-    {{ $deg_course_info->links() }}
+{{--{{ $deg_course_info->links() }}--}}
     <p>&nbsp</p>
     <p>&nbsp</p>
 
@@ -166,3 +177,15 @@
     </div>
 
 @stop
+{{--Save data from degree_course table to batch_course table--}}
+
+{{--@section('script_section')--}}
+    {{--<script>--}}
+        {{--function saveNearestTr()--}}
+        {{--{--}}
+
+        {{--}--}}
+    {{--</script>--}}
+
+
+{{--@stop--}}

@@ -1,20 +1,19 @@
 <div class="modal-header">
 
     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-    <h4 class="modal-title" id="myModalLabel"> Edit Course</h4>
+    <h4 class="modal-title" id="myModalLabel"> Batch Adm-Test Subject : Edit</h4>
 </div>
 
 <div class="modal-body">
       <div style="padding: 20px;">
 
            <div class='form-group'>
-                <strong> Degree: </strong>{{ $degree_name->relBatch->relDegree->title }}
+                <strong> Degree: </strong>{{ $degree_name->relDegree->title }}
            </div>
 
           {{Form::open(array('url'=> ['admission/amw/batch-adm-test-subject/update_admtest_subject',$batch_edit->id], 'class'=>'form-horizontal','files'=>true))}}
 
                 <div class='form-group'>
-
                            {{ Form::label('batch_id', 'Batch ID : will be hidden field') }}
                            {{ Form::text('batch_id',$batch_id,Input::old('batch_id'),['class'=>'form-control' ]) }} </br>
                  </div>
