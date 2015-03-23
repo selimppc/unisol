@@ -39,6 +39,9 @@ class BatchWaiver extends Eloquent{
     public function relWaiver(){
         return $this->belongsTo('Waiver', 'waiver_id', 'id');
     }
+    public function relWaiverConstraint(){
+        return $this->HasMany('WaiverConstraint');
+    }
 
 
     // TODO : user info while saving data into table

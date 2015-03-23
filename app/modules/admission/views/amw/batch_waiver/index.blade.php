@@ -103,7 +103,7 @@
                                          <tr>
                                                <td>{{ $value->relWaiver->title }}</td>
                                                <td>{{ $value->relWaiver->amount }}</td>
-                                               <td></td>
+                                               <td> {{empty( WaiverConstraint::where('batch_waiver_id', $value->id)->first()->id) ? "No Const." : "Const. Added" }}</td>
 
                                                <td>
                                                   <a data-href="{{ URL::route('admission.amw.batch-waiver.delete',['batch_id'=>$value->batch_id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete"  style="font-size: 12px;color: lightcoral"><span class="fa  fa-trash-o"></span></a>

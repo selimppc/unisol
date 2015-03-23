@@ -629,7 +629,17 @@ class UserSignupController extends \BaseController {
             ->where('id', '=', $batch_id)
             ->first();
 
-        $waiver_info = BatchWaiver::with('relWaiver')->where('batch_id','=',$batch_id)->get();
+
+        $waiver_info = BatchWaiver::with('relWaiver', 'relWaiverConstraint')->where('batch_id','=',$batch_id)->get();
+        //print_r($waiver_info);exit;
+
+        /*foreach($waiver_info as $values){
+            $result = DB::table('waiver_constraint')
+                ->select(DB::raw(1))
+                ->from('orders')
+                ->whereRaw('orders.user_id = users.id');
+        }*/
+        //print_r($waiver_info->id);exit;
 
 
         return View::make('admission::amw.batch_waiver.index',
