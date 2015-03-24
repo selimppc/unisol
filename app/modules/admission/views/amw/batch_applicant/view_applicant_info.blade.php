@@ -45,14 +45,14 @@
                               </div>
                           </div>
                      </div>
-                     <p>&nbsp;</p><p>&nbsp;</p><br>
+                     <p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><br>
                      <div class="box-footer clearfix">
                          {{--<button class="pull-right btn btn-default" id="sendEmail">Edit <i class="fa fa-arrow-circle-right"></i></button>--}}
                      </div>
             </div>
 
 
-            <p>&nbsp;</p>
+        {{--------------------------------------------- Academic Information ------------------------------------------------------------------------------}}
             <div class="box box-info">
                  <div class="box-header">
                      <h3 class="box-title">Academic Information</h3>
@@ -124,8 +124,13 @@
          </div>
          <div class="box-body">
               <div class="row">
+                  <div class="col-lg-4">
+                    @if(isset($applicant_personal_info))
+                        {{ HTML::image('applicant_images/'.$applicant_personal_info->profile_image) }}
+                    @endif
+                  </div>
 
-                  <div class="col-lg-10">
+                  <div class="col-lg-8">
                       <table>
                           @if(isset($applicant_profile_info))
                                <tr>
@@ -165,15 +170,95 @@
                           @else
                             {{"No Profile data found !"}}
                           @endif
+
                       </table>
                   </div>
               </div>
+
          </div>
-         <p>&nbsp;</p>
+
          <div class="box-footer clearfix">
              {{--<button class="pull-right btn btn-default" id="sendEmail">Edit <i class="fa fa-arrow-circle-right"></i></button>--}}
          </div>
     </div>
+    <p>&nbsp;</p>
+        <div class="box box-info">
+             <div class="box-header">
+                 <h3 class="box-title">Biographical Information</h3>
+                 <!-- tools box -->
+                 <div class="pull-right box-tools">
+                     <button class="btn btn-info btn-sm" data-widget="remove" data-toggle="tooltip" ><i class="fa fa-times"></i></button>
+                 </div><!-- /. tools -->
+             </div>
+                 <div class="box-body">
+                      <div class="row">
+
+                          <div class="col-lg-10">
+                             <table>
+                                   @if(isset($applicant_meta_records))
+                                         <tr>
+                                               <th class="col-lg-8">Father's Name</th>
+                                               <td>{{$applicant_meta_records->fathers_name}}</td>
+                                         </tr>
+
+                                         <tr>
+                                             <th class="col-lg-8">Father's Occupation</th>
+                                             <td>{{$applicant_meta_records->fathers_occupation}}</td>
+                                         </tr>
+
+                                         <tr>
+                                             <th class="col-lg-8">Father's Phone</th>
+                                             <td>{{$applicant_meta_records->fathers_phone}}</td>
+                                         </tr>
+
+                                         <tr>
+                                             <th class="col-lg-8">Mother's Name</th>
+                                             <td>{{$applicant_meta_records->mothers_name}}</td>
+                                         </tr>
+
+                                         <tr >
+                                             <th class="col-lg-8">Mother's Occupation</th>
+                                             <td>{{$applicant_meta_records->mothers_occupation}}</td>
+                                         </tr>
+
+                                         <tr>
+                                             <th class="col-lg-8">Mother's Phone</th>
+                                             <td>{{$applicant_meta_records->mothers_phone}}</td>
+                                         </tr>
+
+                                         <tr>
+                                             <th class="col-lg-8">Marital Status</th>
+                                             <td>{{$applicant_meta_records->marital_status}}</td>
+                                         </tr>
+
+                                         <tr>
+                                             <th class="col-lg-8">Religion</th>
+                                             <td>{{$applicant_meta_records->religion}}</td>
+                                         </tr>
+
+                                         <tr>
+                                             <th class="col-lg-8">Present Address</th>
+                                             <td>{{$applicant_meta_records->present_address}}</td>
+                                         </tr>
+
+                                         <tr>
+                                             <th class="col-lg-8">Permanent Address</th>
+                                             <td>{{$applicant_meta_records->permanent_address}}</td>
+                                         </tr>
+
+                                     @else
+                                         {{"No Biographical Information found !"}}
+                                     @endif
+                             </table>
+                          </div>
+                      </div>
+                 </div>
+
+                 <div class="box-footer clearfix">
+                     {{--<button class="pull-right btn btn-default" id="sendEmail">Edit <i class="fa fa-arrow-circle-right"></i></button>--}}
+                 </div>
+        </div>
+
  </section>
 
  <p>&nbsp;</p>

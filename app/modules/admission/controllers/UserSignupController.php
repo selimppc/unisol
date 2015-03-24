@@ -911,20 +911,24 @@ class UserSignupController extends \BaseController {
             $applicant_account_info = Applicant::where('id','=',$applicant_id)->first();
             $applicant_profile_info = ApplicantProfile::with('relCountry')->where('applicant_id', '=',$applicant_id )->first();
             $applicant_acm_records =  ApplicantAcademicRecords::where('applicant_id','=',$applicant_id)->get();
+            $applicant_meta_records = ApplicantMeta::where('applicant_id', '=',$applicant_id )->first();
 
-            if($applicant_account_info == NULL){
+            if($applicant_account_info == Null){
                 Session::flash('info', "Applicant's Account information is missing !");
             }
             if($applicant_profile_info == Null) {
-                Session::flash('error', "Applicant's Profile information is missing !");
+                Session::flash('info', "Applicant's Profile information is missing !");
+            }
+            if($applicant_meta_records == Null){
+                Session::flash('danger', "Applicant's Biographical information is missing !");
             }
             if(count($applicant_acm_records)< 2) {
-                Session::flash('info', "Academic Records are incomplete !");
+                Session::flash('error', "Academic Records are incomplete !");
             }
 
             return View::make('admission::amw.batch_applicant.view_applicant_info',
-                      compact('applicant_id','batch_id','applicant_account_info',
-                              'applicant_profile_info','applicant_acm_records'));
+                compact('applicant_id','batch_id','applicant_account_info', 'applicant_profile_info',
+                        'applicant_acm_records','applicant_meta_records'));
 
     }
 
