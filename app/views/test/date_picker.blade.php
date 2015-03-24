@@ -90,6 +90,17 @@
         </div>
     </div>
 
+    @foreach($data as $values)
+        Year: {{$values->year_id}} <br>
+        @foreach($values->semesterByYear as $semester)
+            &nbsp; &nbsp; &nbsp;  Semester--: {{$semester->semester_id}}  <br>
+            @foreach($semester->courseBySemester as $course)
+                &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;  Course--: {{$course->course_id}}  <br>
+            @endforeach
+        @endforeach
+         <br> <br>
+    @endforeach
+
 
 		{{ HTML::script('assets/js/jquery-2.1.1.min.js') }}
         {{ HTML::script('assets/etsb/etsb_js/bootstrap/bootstrap.min.js')}}
