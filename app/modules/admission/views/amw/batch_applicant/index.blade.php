@@ -5,18 +5,19 @@
 @stop
 
 @section('content')
+<a class="pull-right btn btn-sm btn-success" href="{{ URL::route('admission.amw.batch' )}}"> <i class="fa fa-arrow-circle-left"></i> Go Back</a>
 
 <h3>Admission On </h3>
-    <p>
+      <p>
      {{--<b style="font-style: italic">--}}
-     @if(isset($batchApt))
+        @if(isset($batchApt))
            {{$batchApt->relDegree->relDegreeProgram->title}}
            {{$batchApt->relDegree->relDegreeGroup->title}} On
            {{$batchApt->relDegree->relDepartment->title}}
            {{$batchApt->relSemester->title}},
            {{$batchApt->relYear->title}}
        @endif
-    </p>
+     </p>
 
  <div class="box box-solid ">
     <div class="box box-info">
@@ -24,7 +25,7 @@
           <h3 class="box-title">Batch Applicant</h3>
 
           <p>&nbsp;</p>
-{{------------------------------------------------------------- Filter Starts --------------------------------------------------------------}}
+     {{--------------------------------------- Filter Starts --------------------------------------------------------------}}
           <table id="example">
 
           {{ Form::open(array('url'=>'admission/amw/batch-apt/status','class'=>'form-horizontal')) }}
@@ -36,8 +37,7 @@
           </table>
           {{ Form::close() }}
           </div>
-{{--------------------------------------------------------------Filter Ends--------------------------------------------------------------------}}
-          
+      {{---------------------------------- Filter Ends --------------------------------------------------------------------}}
           <div class="box-body">
                <div class="row">
                    <div class="col-lg-12">
@@ -49,15 +49,15 @@
                       <table class="table table-bordered">
 
                          <thead>
-                                 <tr>
-                                     <th>
-                                         <input name="id" type="checkbox" id="checkbox" class="checkbox" value="">
-                                     </th>
-                                    <th>Applicant Name</th>
-                                    <th>Status</th>
-                                    <th>Term</th>
-                                    <th>Action</th>
-                                 </tr>
+                             <tr>
+                                 <th>
+                                     <input name="id" type="checkbox" id="checkbox" class="checkbox" value="">
+                                 </th>
+                                <th>Applicant Name</th>
+                                <th>Status</th>
+                                <th>Term</th>
+                                <th>Action</th>
+                             </tr>
                          </thead>
                          <tbody>
                                @if(isset($apt_data))
@@ -70,7 +70,8 @@
                                             <td>{{$value->relBatch->relSemester->title}}</td>
 
                                             <td>
-                                                 <a class="btn btn-xs btn-default" href="{{ URL::to('admission/amw/batch-applicant/change/'.$value->id) }}" data-toggle="modal" data-target="#batchAptModal" style="font-size: 12px;color:darkmagenta"><i class="fa fa-edit"></i>Change Status</a>
+                                                 <a href="{{ URL::route('admission.amw.batch-applicant.info',['batch_id'=>$value->batch_id, 'applicant_id'=>$value->applicant_id])  }}" class="btn btn-default btn-xs" title="View Applicant's Info" style="color:teal"><b>View</b></a>
+                                                 <a class="btn btn-xs btn-default" href="{{ URL::to('admission/amw/batch-applicant/change/'.$value->id) }}" data-toggle="modal" data-target="#batchAptModal" style="color:steelblue"><b>Change Status</b></a>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -92,7 +93,7 @@
     {{--{{ $apt_data->links() }}--}}
 </div>
 
-{{----------------------------------------------Modal : degreeGroupModal--------------------------------------------------------------------------}}
+{{----------------------------------------------Modal : BatchApplicantModal--------------------------------------------------------------------------}}
 <div class="modal fade" id="batchAptModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">

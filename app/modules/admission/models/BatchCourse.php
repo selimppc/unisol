@@ -72,13 +72,11 @@ class BatchCourse extends Eloquent{
 
     //TODO :: Scope Area
 
-    public function parent()
-    {
-        return $this->hasOne('BatchCourse', 'semester_id', 'year_id');
+    public function semesterByYear() {
+        return $this->hasMany('BatchCourse','year_id', 'year_id');
     }
-    public function children()
-    {
-        return $this->hasMany('BatchCourse', 'year_id', 'semester_id');
+    public function courseBySemester() {
+        return $this->hasMany('BatchCourse','semester_id', 'semester_id') ;
     }
 
 
