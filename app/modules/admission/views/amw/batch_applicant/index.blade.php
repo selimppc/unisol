@@ -24,7 +24,7 @@
               <h3 class="box-title">Batch Applicant</h3>
 
               <p>&nbsp;</p>
-{{-------------------------------------------------------------Filter Starts--------------------------------------------------------------}}
+    {{-------------------------------------------------------------Filter Starts--------------------------------------------------------------}}
               <table id="example1">
 
               {{ Form::open(array('url'=>'admission/amw/batch-apt/status','class'=>'form-horizontal')) }}
@@ -36,13 +36,16 @@
               </table>
               {{ Form::close() }}
 
-{{--------------------------------------------------------------Filter Ends--------------------------------------------------------------------}}
+    {{--------------------------------------------------------------Filter Ends--------------------------------------------------------------------}}
 
               </div>
               <div class="box-body">
                    <div class="row">
                        <div class="col-lg-12">
-                       {{ Form::open(array('url' => 'common/course-type/batch-delete')) }}
+                           {{ Form::open(array('url' => '')) }}
+
+                           {{ Form::select('status', $status , Input::old('status'),['class'=>'pull-right col-lg-2 input-xs'])}}
+                          <p>&nbsp;</p>
                           <table class="table table-bordered">
 
                              <thead>
@@ -77,8 +80,9 @@
                              </tbody>
 
                        {{ Form::submit('Apply', array('class'=>'pull-right btn btn-sm btn-success', 'id'=>'hide-button', 'style'=>'display:none'))}}
+                       <p>&nbsp;</p>
                           </table>
-                          <p>&nbsp;</p>
+                       <p>&nbsp;</p>
 
 
                        {{ Form::close() }}

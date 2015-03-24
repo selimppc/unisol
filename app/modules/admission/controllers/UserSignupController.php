@@ -842,7 +842,7 @@ class UserSignupController extends \BaseController {
             ->where('id', '=', $id)
             ->first();
         //print_r($model);exit;
-        $status = $model->getStatus();
+        $status =  ['' => 'Select Status'] + $model->getStatus();
         if($this->isPostRequest()){
             $arrayData = [
                 'status' => Input::get('status'),
@@ -854,6 +854,7 @@ class UserSignupController extends \BaseController {
                     $apt_data = $apt_data->where('batch_id','=', $value->batch_id);
                 }
                 $apt_data = $apt_data->get();
+                print_r($apt_data);exit;
             }else{
                 $apt_data = null;
             }
