@@ -603,7 +603,6 @@ class AdmAmwController extends \BaseController
             Session::flash('errors', $errors);
             return Redirect::back();
         }
-
     }
 
     public function batch_course_delete($id)
@@ -619,6 +618,29 @@ class AdmAmwController extends \BaseController
             return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
 
         }
+    }
+
+    public function batch_data_save()
+    {
+        $data = Input::all();
+        $course_id = Input::get('id');
+        $batch_id = Input::get('batch_id');
+        $year_id = Input::get('year_id');
+        $semester_id = Input::get('semester_id');
+        $major_minor= Input::get('major_minor');
+        foreach ($course_id as $key => $value)
+        {
+            $data = new BatchCourse();
+            $data->course_id = $value;
+            $data->batch_id = $batch_id;
+            $data->year_id = $year_id;
+            $data->semester_id = $semester_id;
+            $data->major_minor = $major_minor;
+            $data->save();
+
+        }
+        Session::flash('message','Successfully added Information!');
+        return Redirect::back();
     }
 
 }
