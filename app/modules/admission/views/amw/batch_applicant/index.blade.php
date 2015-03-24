@@ -42,9 +42,9 @@
               <div class="box-body">
                    <div class="row">
                        <div class="col-lg-12">
-                           {{ Form::open(array('url' => '')) }}
+                           {{ Form::open(['route' => ['admission.amw.batch-applicant.apply']]) }}
 
-                           {{ Form::select('status', ['' => 'Select Status'] +$status , Input::old('status'),['class'=>'pull-right col-lg-2 input-xs', 'required'])}}
+                           {{ Form::select('status', ['' => 'Select Status'] +$status , Input::old('status'),['class'=>'pull-right col-lg-2 input-xs','required'])}}
                           <p>&nbsp;</p>
                           <table class="table table-bordered">
 

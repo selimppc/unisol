@@ -892,8 +892,18 @@ class UserSignupController extends \BaseController {
             return Redirect::back();
         }
     }
-    public function batchApplicantApply(){
+    public function batchApplicantApply($id){
 
+        $ids = Input::get('ids');
+        $status = Input::get('status');
+
+        foreach($ids as $key => $value){
+            $model = BatchApplicant::findOrFail($value);
+            $model->status = $status;
+            $model->save();
+        }
+        Session::flash('message','Successfully Updated applicant Status!');
+        return Redirect::back();
     }
 
 }

@@ -451,7 +451,9 @@ Route::any('admission/amw/batch-applicant/update/{id}',
         'uses'=>'UserSignupController@batchApplicantUpdateStatus']);
 
 
-
+Route::any('admission/amw/batch-applicant/apply/{id}',
+    ['as'=>'admission.amw.batch-applicant.apply',
+        'uses'=>'UserSignupController@batchApplicantApply']);
 
 
 
