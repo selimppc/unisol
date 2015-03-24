@@ -878,7 +878,6 @@ class UserSignupController extends \BaseController {
     public function  batchApplicantUpdateStatus($applicant_id){
 
         $model = BatchApplicant::find($applicant_id);
-        //print_r($model);exit;
         $data = Input::all();
 
         if($model->validate($data)){
