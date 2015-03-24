@@ -73,8 +73,10 @@
         </tr>
         </thead>
         <tbody>
+
         @if(isset($deg_course_info))
             @foreach ($deg_course_info as $value)
+
                 <tr>
                     <td><input type="checkbox" name="id[]"  class="myCheckbox" value="{{$value->course_id}}"></td>
 
