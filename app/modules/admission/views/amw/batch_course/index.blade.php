@@ -37,7 +37,7 @@
                                                 <td>{{($b['isMandatory'] == 1) ? 'Yes' : 'No';}}</td>
                                                 <td></td>
                                                 <td>
-                                                    <a data-href="{{ URL::route('batch-course-delete', ['id'=>$b['ID']]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa fa-trash-o" style="color:red"></i></a>
+                                                    <a data-href="{{ URL::route('batch-course-delete',['bcid'=>$b['ID']]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa fa-trash-o" style="color:red"></i></a>
                                                 </td>
                                             </tr>
                                             @endif
@@ -56,9 +56,11 @@
     {{--------------Degree Course data-----------}}
 
     <p class= "table.align th text-purple font-size text-bold margin-top-text">Courses of  {{$degree_title->title}}</p>
+    {{ Form::open(array('url' => 'admission/amw/save/batch-data')) }}
     <table id="example1" class="table table-bordered table-hover table-striped">
         <thead>
         <tr>
+            <th><input name="id" type="checkbox" id="checkbox" class="checkbox" value=""></th>
             <th>Course Title with code</th>
             <th>Department</th>
             <th>Course Type</th>
@@ -71,34 +73,42 @@
         </tr>
         </thead>
         <tbody>
-        {{--@if(isset($deg_course_info))--}}
-        @foreach ($deg_course_info as $value)
-            <tr>
-                {{Form::open(array('url' => 'admission/amw/batch-course/save'))}}
-                {{ Form::hidden('batch_id', $batch , ['class'=>'form-control batch_id'])}}
-                <td> {{Course::findOrFail($value->course_id)->title;}} ({{Course::findOrFail($value->course_id)->course_code;}})
-                    {{ Form::hidden('course_id',($value->course_id))}}
-                </td>
-                <td> {{Department::findOrFail($value->department_id)->title; }}</td>
-                <td> {{CourseType::findOrFail(Course::findOrFail($value->course_id)->course_type_id)->title ;}} </td>
-                <td> {{Course::findOrFail($value->course_id)->credit ;}} </td>
 
-                <td>{{ Form::select('year_id', $year_data, '', array('class' => 'form-control','required'=>'required'))}}</td>
+        @if(isset($deg_course_info))
+            @foreach ($deg_course_info as $value)
 
-                <td>{{ Form::select('semester_id', $semester_data, '', array('class' => 'form-control','required'=>'required')) }}</td>
+                <tr>
+                    <td><input type="checkbox" name="id[]"  class="myCheckbox" value="{{$value->course_id}}"></td>
 
-                <td>{{ Form::checkbox('is_mandatory',1) }}</td>
+                    {{Form::open(array('url' => 'admission/amw/batch-course/save'))}}
+                         {{ Form::hidden('batch_id', $batch , ['class'=>'form-control batch_id'])}}
 
-                <td>{{ Form::select('major_minor', array(''=>'Select Option','major' => 'Major', 'minor' => 'minor'), '', array('class' => 'form-control','required'=>'required'))}}</td>
-                <td>
-                    {{Form::button('<i class="fa  fa-plus"></i>', array('type' => 'submit', 'class' => 'btn btn-xs btn-default text-purple'))}}
-                </td>
-                {{Form::close()}}
-            </tr>
-        @endforeach
-        {{--@endif--}}
+                    <td> {{Course::findOrFail($value->course_id)->title;}} ({{Course::findOrFail($value->course_id)->course_code;}})
+                        {{ Form::hidden('course_id',($value->course_id))}}</td>
+
+                    <td> {{Department::findOrFail($value->department_id)->title; }}</td>
+
+                    <td> {{CourseType::findOrFail(Course::findOrFail($value->course_id)->course_type_id)->title ;}} </td>
+
+                    <td> {{Course::findOrFail($value->course_id)->credit ;}} </td>
+
+                    <td>{{ Form::select('year_id', $year_data, '', array('class' => 'form-control','required'=>'required'))}}</td>
+
+                    <td>{{ Form::select('semester_id', $semester_data, '', array('class' => 'form-control','required'=>'required')) }}</td>
+
+                    <td>{{ Form::checkbox('is_mandatory') }}</td>
+
+                    <td>{{ Form::select('major_minor', array(''=>'Select Option','major' => 'Major', 'minor' => 'minor'), '', array('class' => 'form-control','required'=>'required'))}}</td>
+
+                    <td>{{Form::button('<i class="fa  fa-plus"></i>', array('type' => 'submit', 'class' => 'btn btn-xs btn-default text-purple'))}}</td>
+                    {{Form::close()}}
+                </tr>
+            @endforeach
+        @endif
         </tbody>
+        {{ Form::submit('Add Course', array('class'=>'btn btn-xs btn-success', 'id'=>'hide-button', 'style'=>'display:none'))}}
     </table>
+    {{ Form::close() }}
     {{--{{ $deg_course_info->links() }}--}}
     <p>&nbsp</p>
     <p>&nbsp</p>
