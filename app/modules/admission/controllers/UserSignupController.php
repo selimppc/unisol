@@ -904,5 +904,10 @@ class UserSignupController extends \BaseController {
         Session::flash('message','Successfully Updated applicant Status!');
         return Redirect::back();
     }
+    public function batchApplicantInfo($batch_id,$applicant_id){
+        return View::make('admission::amw.batch_applicant.view_applicant_info',
+                  compact('applicant_id','batch_id'));
+
+    }
 
 }

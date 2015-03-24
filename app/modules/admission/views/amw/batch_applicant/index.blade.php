@@ -37,7 +37,7 @@
           {{ Form::close() }}
           </div>
 {{--------------------------------------------------------------Filter Ends--------------------------------------------------------------------}}
-          
+
           <div class="box-body">
                <div class="row">
                    <div class="col-lg-12">
@@ -70,7 +70,8 @@
                                             <td>{{$value->relBatch->relSemester->title}}</td>
 
                                             <td>
-                                                 <a class="btn btn-xs btn-default" href="{{ URL::to('admission/amw/batch-applicant/change/'.$value->id) }}" data-toggle="modal" data-target="#batchAptModal" style="font-size: 12px;color:darkmagenta"><i class="fa fa-edit"></i>Change Status</a>
+                                                 <a href="{{ URL::route('admission.amw.batch-applicant.info',['batch_id'=>$value->batch_id, 'applicant_id'=>$value->applicant_id])  }}" class="btn btn-default btn-xs" title="View Applicant's Info" style="color:teal"><b>View</b></a>
+                                                 <a class="btn btn-xs btn-default" href="{{ URL::to('admission/amw/batch-applicant/change/'.$value->id) }}" data-toggle="modal" data-target="#batchAptModal" style="color:steelblue"><b>Change Status</b></a>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -92,7 +93,7 @@
     {{--{{ $apt_data->links() }}--}}
 </div>
 
-{{----------------------------------------------Modal : degreeGroupModal--------------------------------------------------------------------------}}
+{{----------------------------------------------Modal : BatchApplicantModal--------------------------------------------------------------------------}}
 <div class="modal fade" id="batchAptModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
