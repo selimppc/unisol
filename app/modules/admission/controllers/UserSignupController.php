@@ -905,9 +905,14 @@ class UserSignupController extends \BaseController {
         return Redirect::back();
     }
     public function batchApplicantInfo($batch_id,$applicant_id){
+
+        $applicant_account_info = BatchApplicant::with('relApplicant')->where('applicant_id','=',$applicant_id)->first();
+        $applicant_profile_info = BatchApplicant::with('relApplicantProfile')->where('applicant_id','=',$applicant_id)->first();
         return View::make('admission::amw.batch_applicant.view_applicant_info',
-                  compact('applicant_id','batch_id'));
+                  compact('applicant_id','batch_id','applicant_account_info',
+                          'applicant_profile_info'));
 
     }
+
 
 }

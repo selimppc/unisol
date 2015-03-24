@@ -42,6 +42,9 @@ class BatchApplicant extends Eloquent{
     public function relApplicant(){
         return $this->belongsTo('Applicant', 'applicant_id', 'id');
     }
+    public function relApplicantProfile(){
+        return $this->belongsTo('Applicant', 'applicant_id', 'id');
+    }
     public function relExmCenterApplicantChoice(){
         return $this->HasMany('ExmCenterApplicantChoice');
     }
