@@ -869,48 +869,62 @@ class UserSignupController extends \BaseController {
 
     public function batchApplicantChangeStatus($id){
 
-        $model = BatchApplicant::findOrFail($id);
-        $status = $model->getStatus();
-        return View::make('admission::amw.batch_applicant.status',compact('status','model'));
+            $model = BatchApplicant::findOrFail($id);
+            $status = $model->getStatus();
+            return View::make('admission::amw.batch_applicant.status',compact('status','model'));
 
     }
 
     public function  batchApplicantUpdateStatus($applicant_id){
 
-        $model = BatchApplicant::find($applicant_id);
-        $data = Input::all();
+            $model = BatchApplicant::find($applicant_id);
+            $data = Input::all();
 
-        if($model->validate($data)){
-            if($model->update($data)){
-                Session::flash('message','Successfully Updated Information!');
+            if($model->validate($data)){
+                if($model->update($data)){
+                    Session::flash('message','Successfully Updated Information!');
+                    return Redirect::back();
+                }
+            }else{
+                $errors = $model->errors();
+                Session::flash('errors', $errors);
                 return Redirect::back();
             }
-        }else{
-            $errors = $model->errors();
-            Session::flash('errors', $errors);
-            return Redirect::back();
-        }
     }
     public function batchApplicantApply($id){
 
-        $ids = Input::get('ids');
-        $status = Input::get('status');
+            $ids = Input::get('ids');
+            $status = Input::get('status');
 
-        foreach($ids as $key => $value){
-            $model = BatchApplicant::findOrFail($value);
-            $model->status = $status;
-            $model->save();
-        }
-        Session::flash('message','Successfully Updated applicant Status!');
-        return Redirect::back();
+            foreach($ids as $key => $value){
+                $model = BatchApplicant::findOrFail($value);
+                $model->status = $status;
+                $model->save();
+            }
+            Session::flash('message','Successfully Updated applicant Status!');
+            return Redirect::back();
     }
+
+
     public function batchApplicantInfo($batch_id,$applicant_id){
 
-        $applicant_account_info = BatchApplicant::with('relApplicant')->where('applicant_id','=',$applicant_id)->first();
-        $applicant_profile_info = BatchApplicant::with('relApplicantProfile')->where('applicant_id','=',$applicant_id)->first();
-        return View::make('admission::amw.batch_applicant.view_applicant_info',
-                  compact('applicant_id','batch_id','applicant_account_info',
-                          'applicant_profile_info'));
+            $applicant_account_info = Applicant::where('id','=',$applicant_id)->first();
+            $applicant_profile_info = ApplicantProfile::with('relCountry')->where('applicant_id', '=',$applicant_id )->first();
+            $applicant_acm_records =  ApplicantAcademicRecords::where('applicant_id','=',$applicant_id)->get();
+
+            if($applicant_account_info == NULL){
+                Session::flash('info', "Applicant's Account information is missing !");
+            }
+            if($applicant_profile_info == Null) {
+                Session::flash('error', "Applicant's Profile information is missing !");
+            }
+            if(count($applicant_acm_records)< 2) {
+                Session::flash('info', "Academic Records are incomplete !");
+            }
+
+            return View::make('admission::amw.batch_applicant.view_applicant_info',
+                      compact('applicant_id','batch_id','applicant_account_info',
+                              'applicant_profile_info','applicant_acm_records'));
 
     }
 

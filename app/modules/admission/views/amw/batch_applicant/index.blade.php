@@ -5,18 +5,19 @@
 @stop
 
 @section('content')
+<a class="pull-right btn btn-sm btn-success" href="{{ URL::route('admission.amw.batch' )}}"> <i class="fa fa-arrow-circle-left"></i> Go Back</a>
 
 <h3>Admission On </h3>
-    <p>
+      <p>
      {{--<b style="font-style: italic">--}}
-     @if(isset($batchApt))
+        @if(isset($batchApt))
            {{$batchApt->relDegree->relDegreeProgram->title}}
            {{$batchApt->relDegree->relDegreeGroup->title}} On
            {{$batchApt->relDegree->relDepartment->title}}
            {{$batchApt->relSemester->title}},
            {{$batchApt->relYear->title}}
        @endif
-    </p>
+     </p>
 
  <div class="box box-solid ">
     <div class="box box-info">
@@ -24,7 +25,7 @@
           <h3 class="box-title">Batch Applicant</h3>
 
           <p>&nbsp;</p>
-{{------------------------------------------------------------- Filter Starts --------------------------------------------------------------}}
+     {{--------------------------------------- Filter Starts --------------------------------------------------------------}}
           <table id="example">
 
           {{ Form::open(array('url'=>'admission/amw/batch-apt/status','class'=>'form-horizontal')) }}
@@ -36,8 +37,7 @@
           </table>
           {{ Form::close() }}
           </div>
-{{--------------------------------------------------------------Filter Ends--------------------------------------------------------------------}}
-
+      {{---------------------------------- Filter Ends --------------------------------------------------------------------}}
           <div class="box-body">
                <div class="row">
                    <div class="col-lg-12">
@@ -49,15 +49,15 @@
                       <table class="table table-bordered">
 
                          <thead>
-                                 <tr>
-                                     <th>
-                                         <input name="id" type="checkbox" id="checkbox" class="checkbox" value="">
-                                     </th>
-                                    <th>Applicant Name</th>
-                                    <th>Status</th>
-                                    <th>Term</th>
-                                    <th>Action</th>
-                                 </tr>
+                             <tr>
+                                 <th>
+                                     <input name="id" type="checkbox" id="checkbox" class="checkbox" value="">
+                                 </th>
+                                <th>Applicant Name</th>
+                                <th>Status</th>
+                                <th>Term</th>
+                                <th>Action</th>
+                             </tr>
                          </thead>
                          <tbody>
                                @if(isset($apt_data))

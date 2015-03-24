@@ -3,11 +3,13 @@
     @include('layouts._sidebar_amw')
 @stop
 @section('content')
+<div>
+<a class="pull-right btn btn-sm btn-success" href="{{ URL::route('admission.amw.batch-applicant.index',['batch_id'=>$applicant_account_info->id] )}}"> <i class="fa fa-arrow-circle-left"></i> Go Back</a>
+</div>
 
  <section class="col-lg-6 connectedSortable">
-    {{--<div class="box-header">--}}
        <h3 class="box-title">Applicant's Profile </h3>
-    {{--</div>--}}
+            <p>&nbsp;</p>
             <div class="box box-info">
                  <div class="box-header">
                      <h3 class="box-title">Account Information</h3>
@@ -23,17 +25,17 @@
                                           @if(isset($applicant_account_info))
                                                  <tr>
                                                      <th class="col-lg-6">Name</th>
-                                                     <td>{{$applicant_account_info->relApplicant->first_name.''.$applicant_account_info->relApplicant->last_name}}</td>
+                                                     <td>{{$applicant_account_info->first_name.''.$applicant_account_info->last_name}}</td>
                                                  </tr>
 
                                                  <tr>
                                                      <th class="col-lg-6">Username</th>
-                                                     <td>{{$applicant_account_info->relApplicant->username}}</td>
+                                                     <td>{{$applicant_account_info->username}}</td>
                                                  </tr>
 
                                                  <tr>
                                                      <th class="col-lg-6">Email Address</th>
-                                                     <td>{{$applicant_account_info->relApplicant->email}}</td>
+                                                     <td>{{$applicant_account_info->email}}</td>
                                                  </tr>
 
                                           @else
@@ -45,7 +47,7 @@
                      </div>
                      <p>&nbsp;</p><p>&nbsp;</p><br>
                      <div class="box-footer clearfix">
-                         <button class="pull-right btn btn-default" id="sendEmail">Edit <i class="fa fa-arrow-circle-right"></i></button>
+                         {{--<button class="pull-right btn btn-default" id="sendEmail">Edit <i class="fa fa-arrow-circle-right"></i></button>--}}
                      </div>
             </div>
 
@@ -72,26 +74,26 @@
                                                  <th>Result</th>
                                               </tr>
                                        </thead>
-                                            {{--<tbody >--}}
-                                                 {{--@if(isset($applicant_acm_records))--}}
-                                                    {{--@foreach($applicant_acm_records as $value)--}}
-                                                       {{--<tr>--}}
-                                                            {{--<td>{{($value->level_of_education )}}</td>--}}
-                                                            {{--<td>{{ $value->board_university}}</td>--}}
-                                                            {{--<td>{{ $value->year_of_passing}}</td>--}}
-                                                            {{--<td>--}}
-                                                                 {{--@if($value->result_type =='division')--}}
-                                                                 {{--{{ $value->result }}--}}
-                                                                 {{--@else--}}
-                                                                 {{--{{$value->gpa}}--}}
-                                                                 {{--@endif--}}
-                                                            {{--</td>--}}
-                                                       {{--</tr>--}}
-                                                    {{--@endforeach--}}
-                                                 {{--@else--}}
-                                                      {{--{{"No Academic Records found !"}}--}}
-                                                 {{--@endif--}}
-                                            {{--</tbody>--}}
+                                            <tbody >
+                                                 @if(isset($applicant_acm_records))
+                                                    @foreach($applicant_acm_records as $value)
+                                                       <tr>
+                                                            <td>{{($value->level_of_education )}}</td>
+                                                            <td>{{ $value->board_university}}</td>
+                                                            <td>{{ $value->year_of_passing}}</td>
+                                                            <td>
+                                                                 @if($value->result_type =='division')
+                                                                 {{ $value->result }}
+                                                                 @else
+                                                                 {{$value->gpa}}
+                                                                 @endif
+                                                            </td>
+                                                       </tr>
+                                                    @endforeach
+                                                 @else
+                                                      {{"No Academic Records found !"}}
+                                                 @endif
+                                            </tbody>
 
                                  </table>
                               </div>
@@ -99,7 +101,7 @@
                      </div>
 
                      <div class="box-footer clearfix">
-                         <button class="pull-right btn btn-default" id="sendEmail">Edit <i class="fa fa-arrow-circle-right"></i></button>
+                         {{--<button class="pull-right btn btn-default" id="sendEmail">Edit <i class="fa fa-arrow-circle-right"></i></button>--}}
                      </div>
             </div>
 
@@ -125,7 +127,7 @@
 
                   <div class="col-lg-10">
                       <table>
-                          @if(empty($applicant_profile_info))
+                          @if(isset($applicant_profile_info))
                                <tr>
                                    <th class="col-lg-6">Phone</th>
                                    <td>{{$applicant_profile_info->phone}}</td>
@@ -169,12 +171,10 @@
          </div>
          <p>&nbsp;</p>
          <div class="box-footer clearfix">
-             <button class="pull-right btn btn-default" id="sendEmail">Edit <i class="fa fa-arrow-circle-right"></i></button>
+             {{--<button class="pull-right btn btn-default" id="sendEmail">Edit <i class="fa fa-arrow-circle-right"></i></button>--}}
          </div>
     </div>
  </section>
-
-
 
  <p>&nbsp;</p>
  <p>&nbsp;</p>
