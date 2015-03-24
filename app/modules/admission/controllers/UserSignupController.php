@@ -842,7 +842,7 @@ class UserSignupController extends \BaseController {
             ->where('id', '=', $id)
             ->first();
         //print_r($model);exit;
-        $status =  ['' => 'Select Status'] + $model->getStatus();
+        $status =  $model->getStatus();
         if($this->isPostRequest()){
             $arrayData = [
                 'status' => Input::get('status'),

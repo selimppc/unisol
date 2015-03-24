@@ -2,6 +2,7 @@
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 
+
 class HomeController extends BaseController {
 
 
@@ -317,11 +318,13 @@ class HomeController extends BaseController {
         /*$result = static::getBatchCourseRecursive($year_id = 1, $semester_id = 1);
         print_r($result) ;exit;*/
 
-        $result = static::getBatchCourse($batch_id = 1, $year_id = '', $semester_id = '');
-        print_r($result->toSql()) ;exit;
+        $result = static::getBatchCourse($batch_id = 1, $year_id = false, $semester_id = false);
+        print_r($result) ;exit;
+
+
     }
 
-    public static function getBatchCourse($batch_id, $year_id='', $semester_id='')
+    public static function getBatchCourse($batch_id, $year_id, $semester_id)
     {
         $batchCourse = BatchCourse::where('batch_id','=', $batch_id)->get();
         $array = [];

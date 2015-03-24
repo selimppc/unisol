@@ -30,7 +30,7 @@
               {{ Form::open(array('url'=>'admission/amw/batch-apt/status','class'=>'form-horizontal')) }}
 
               <div  class="col-lg-3">{{ Form::label('status', 'Status') }}
-              {{ Form::select('status', $status , Input::old('status'),['class'=>'form-control input-sm '])}}</div>
+              {{ Form::select('status', ['' => 'Select Status'] +$status , Input::old('status'),['class'=>'form-control input-sm '])}}</div>
               <p>&nbsp;</p>
               {{ Form::submit('Filter',['class'=>'pull-left btn btn-xs btn btn-success']) }}
               </table>
@@ -44,7 +44,7 @@
                        <div class="col-lg-12">
                            {{ Form::open(array('url' => '')) }}
 
-                           {{ Form::select('status', $status , Input::old('status'),['class'=>'pull-right col-lg-2 input-xs'])}}
+                           {{ Form::select('status', ['' => 'Select Status'] +$status , Input::old('status'),['class'=>'pull-right col-lg-2 input-xs', 'required'])}}
                           <p>&nbsp;</p>
                           <table class="table table-bordered">
 
@@ -66,7 +66,7 @@
                                                 <td><input type="checkbox" name="ids[]"  class="myCheckbox" value="{{ $value->id }}">
                                                 </td>
                                                 <td>{{$value->relApplicant->first_name.''.$value->relApplicant->last_name}}</td>
-                                                <td> {{ $status[$value->status] }}</td>
+                                                <td> {{ empty($value->status) ? '' : $status[$value->status] }}</td>
                                                 <td>{{$value->relBatch->relSemester->title}}</td>
 
                                                 <td>

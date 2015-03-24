@@ -65,6 +65,7 @@ return array(
     'BatchAdmtestSubject' => $baseDir . '/app/modules/admission/models/BatchAdmtestSubject.php',
     'BatchApplicant' => $baseDir . '/app/modules/admission/models/BatchApplicant.php',
     'BatchCourse' => $baseDir . '/app/modules/admission/models/BatchCourse.php',
+    'BatchCourseHelper' => $baseDir . '/app/models/BatchCourseHelper.php',
     'BatchEducationConstraint' => $baseDir . '/app/modules/admission/models/BatchEducationConstraint.php',
     'BatchWaiver' => $baseDir . '/app/modules/admission/models/BatchWaiver.php',
     'BillingDetailsApplicant' => $baseDir . '/app/modules/fees/models/BillingDetailsApplicant.php',
