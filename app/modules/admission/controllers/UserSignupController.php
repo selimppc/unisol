@@ -842,7 +842,7 @@ class UserSignupController extends \BaseController {
             ->where('id', '=', $id)
             ->first();
         //print_r($model);exit;
-        $status = $model->getStatus();
+        $status =  $model->getStatus();
         if($this->isPostRequest()){
             $arrayData = [
                 'status' => Input::get('status'),
@@ -854,6 +854,7 @@ class UserSignupController extends \BaseController {
                     $apt_data = $apt_data->where('batch_id','=', $value->batch_id);
                 }
                 $apt_data = $apt_data->get();
+                print_r($apt_data);exit;
             }else{
                 $apt_data = null;
             }
@@ -877,7 +878,6 @@ class UserSignupController extends \BaseController {
     public function  batchApplicantUpdateStatus($applicant_id){
 
         $model = BatchApplicant::find($applicant_id);
-        //print_r($model);exit;
         $data = Input::all();
 
         if($model->validate($data)){
@@ -891,8 +891,18 @@ class UserSignupController extends \BaseController {
             return Redirect::back();
         }
     }
-    public function batchApplicantApply(){
+    public function batchApplicantApply($id){
 
+        $ids = Input::get('ids');
+        $status = Input::get('status');
+
+        foreach($ids as $key => $value){
+            $model = BatchApplicant::findOrFail($value);
+            $model->status = $status;
+            $model->save();
+        }
+        Session::flash('message','Successfully Updated applicant Status!');
+        return Redirect::back();
     }
 
 }

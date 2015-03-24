@@ -38,7 +38,8 @@
 		],
 
         "files":[
-            "app/helpers/helpers.php"
+            "app/helpers/helpers.php",
+            "app/helpers/categoryhierarchy.php"
         ]
 	},
 	"scripts": {
