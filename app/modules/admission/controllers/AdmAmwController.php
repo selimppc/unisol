@@ -532,6 +532,7 @@ class AdmAmwController extends \BaseController
 
         $batch_course_data = DB::table('batch_course')
             ->select(
+                'batch_course.id as ID',
                 'batch_course.is_mandatory as isMandatory',
                 'batch_course.year_id as YearId',
                 'year.title as YearTitle',
@@ -541,10 +542,10 @@ class AdmAmwController extends \BaseController
                 'course.title as CourseTitle',
                 'course.course_code as CourseCode',
                 'course.credit as CourseCredit',
-                'course.course_type_id as CourseTypeId',
+               // 'course.course_type_id as CourseTypeId',
                 'course_type.title as CourseTypeTitle',
-                'course.subject_id as SubjId',
-                'subject.department_id as DepartmentId',
+                //'course.subject_id as SubjId',
+               // 'subject.department_id as DepartmentId',
                 'department.title as DepartmentTitle'
             )
             ->join ('year','batch_course.year_id','=','year.id')
@@ -558,34 +559,25 @@ class AdmAmwController extends \BaseController
             ->orderBy('SemesterId', 'ASC')
             // ->groupBy('year_id','semester_id')
             ->get();
-
         $cd = null;
-
         foreach($batch_course_data as $bcd){
-            $v['YearId']            = $bcd->YearId    ;
-            $v['SemesterId']        = $bcd->SemesterId    ;
+            $v['ID']               = $bcd->ID    ;
             $v['isMandatory']      = $bcd->isMandatory    ;
-            $v['YearTitle']        = $bcd->YearTitle      ;
-            $v['SemesterTitle']    = $bcd->SemesterTitle  ;
             $v['CourseId']         = $bcd->CourseId       ;
             $v['CourseTitle']      = $bcd->CourseTitle    ;
             $v['CourseCode']       = $bcd->CourseCode     ;
             $v['CourseCredit']     = $bcd->CourseCredit   ;
-            $v['CourseTypeId']     = $bcd->CourseTypeId   ;
+          //  $v['CourseTypeId']     = $bcd->CourseTypeId   ;
             $v['CourseTypeTitle']  = $bcd->CourseTypeTitle;
-            $v['SubjId']           = $bcd->SubjId         ;
-            $v['DepartmentId']     = $bcd->DepartmentId   ;
+          //  $v['SubjId']           = $bcd->SubjId         ;
+          //  $v['DepartmentId']     = $bcd->DepartmentId   ;
             $v['DepartmentTitle']  = $bcd->DepartmentTitle;
 
-            #$cd[$bcd->YearId -> $bcd->YearTitle]['year'] = $bcd->YearTitle;
-            #$cd[$bcd->YearId]['data'] = $v;
-            #$cd[$bcd->YearId][$bcd->SemesterId]['semester'] = $bcd->SemesterTitle;
-            #$cd[$bcd->YearId -> $bcd->YearTitle][$bcd->SemesterId -> ]['data'] = $v;
-            #$cd[$bcd->YearId]['year'] = $bcd->YearTitle;
-            #$cd[$bcd->YearId][$bcd->SemesterId]['semester'] = $bcd->SemesterTitle;
-            #$cd[$bcd->YearTitle][$bcd->SemesterId][] = $v;
-            $cd[$bcd->YearTitle][$bcd->SemesterTitle][] = $v;
+            $cd[$bcd->YearId]['year'] = $bcd->YearTitle;
+            $cd[$bcd->YearId][$bcd->SemesterId]['semester'] = $bcd->SemesterTitle;
+            $cd[$bcd->YearId][$bcd->SemesterId][] = $v;
         }
+
         $batch_course_data = $cd;
         #dd(DB::getQueryLog($batch_course_data));exit;
         #print_r($batch_course_data);exit;
@@ -612,6 +604,21 @@ class AdmAmwController extends \BaseController
             return Redirect::back();
         }
 
+    }
+
+    public function batch_course_delete($id)
+    {
+        try {
+            $data = BatchCourse::find($id);
+            if ($data->delete()) {
+                Session::flash('danger', "Items Deleted successfully");
+                return Redirect::back();
+            }
+        } catch
+        (exception $ex) {
+            return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+
+        }
     }
 
 }

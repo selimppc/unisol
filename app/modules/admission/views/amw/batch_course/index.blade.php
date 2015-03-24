@@ -6,21 +6,49 @@
     <div class="box-body">
         <div class="row">
             <div class="col-lg-12">
-
-                <?php
-                foreach($batch_course_data as $yk => $bcd ){
-                    echo($yk.'<br>'); //Year
-                    foreach( $bcd as $sk => $bc){
-                        echo($sk.'<br>'); // Semester
-                        foreach( $bc as $k => $c){
-                            // Courses
-                            echo($c['CourseTitle'].'  '.$c['CourseCode'].'<br>');
-                        }
-                    }
-                }
-                ?>
-
-
+                @if(isset($batch_course_data))
+                    @foreach($batch_course_data as $y => $bcd)
+                        <h4 class="table.align th text-purple  font-size text-bold margin-top-text">Year:{{$bcd['year']}}</h4>
+                        @foreach($bcd as $s => $bc)
+                            <h4 class="text-purple">{{$bc['semester']}}</h4>
+                            @if(is_array($bc))
+                                <table id="" class="table table-bordered table-hover table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>Title With Code</th>
+                                        <th>Department</th>
+                                        <th>Type</th>
+                                        <th>Credit</th>
+                                        <th>Mandatory</th>
+                                        <th>Faculty</th>
+                                        <th>Action</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @if(isset($bc))
+                                        @foreach($bc as $c => $b)
+                                            @if(is_array($b))
+                                            <tr>
+                                                <td>{{$b['CourseTitle']}} ({{$b['CourseCode']}})
+                                                </td>
+                                                <td>{{$b['DepartmentTitle']}}</td>
+                                                <td>{{$b['CourseTypeTitle']}}</td>
+                                                <td>{{$b['CourseCredit']}}</td>
+                                                <td>{{($b['isMandatory'] == 1) ? 'Yes' : 'No';}}</td>
+                                                <td></td>
+                                                <td>
+                                                    <a data-href="{{ URL::route('batch-course-delete', ['id'=>$b['ID']]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa fa-trash-o" style="color:red"></i></a>
+                                                </td>
+                                            </tr>
+                                            @endif
+                                        @endforeach
+                                    @endif
+                                    </tbody>
+                                </table>
+                            @endif
+                        @endforeach
+                    @endforeach
+                @endif
             </div>
         </div>
     </div>
