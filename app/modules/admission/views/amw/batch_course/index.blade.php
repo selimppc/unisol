@@ -6,6 +6,7 @@
     <div class="box-body">
         <div class="row">
             <div class="col-lg-12">
+                {{ Form::hidden('degree_id', $degree_id , ['class'=>'form-control degree_id'])}}
                 @if(isset($batch_course_data))
                     @foreach($batch_course_data as $y => $bcd)
                         <h4 class="table.align th text-purple  font-size text-bold margin-top-text">Year:{{$bcd['year']}}</h4>
@@ -35,7 +36,7 @@
                                                 <td>{{$b['CourseTypeTitle']}}</td>
                                                 <td>{{$b['CourseCredit']}}</td>
                                                 <td>{{($b['isMandatory'] == 1) ? 'Yes' : 'No';}}</td>
-                                                <td></td>
+                                                <td><a href="{{ URL::route('assign-faculty',['course_id'=>$b['CourseId'],'dep_id'=>$b['DepartmentId']])}}" class="btn btn-circle btn-xs text-purple  " >Assign</a></td>
                                                 <td>
                                                     <a data-href="{{ URL::route('batch-course-delete',['bcid'=>$b['ID']]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa fa-trash-o" style="color:red"></i></a>
                                                 </td>
@@ -93,13 +94,13 @@
 
                     <td> {{Course::findOrFail($value->course_id)->credit ;}} </td>
 
-                    <td>{{ Form::select('year_id', $year_data, '', array('class' => 'form-control','required'=>'required'))}}</td>
+                    <td>{{ Form::select('year_id[]', $year_data,  Input::old('year_id'), array('class' => 'form-control','required'=>'required'))}}</td>
 
-                    <td>{{ Form::select('semester_id', $semester_data, '', array('class' => 'form-control','required'=>'required')) }}</td>
+                    <td>{{ Form::select('semester_id[]', $semester_data, Input::old('semester_id'), array('class' => 'form-control','required'=>'required')) }}</td>
 
-                    <td>{{ Form::checkbox('is_mandatory') }}</td>
+                    <td>{{ Form::checkbox('is_mandatory[]') }}</td>
 
-                    <td>{{ Form::select('major_minor', array(''=>'Select Option','major' => 'Major', 'minor' => 'minor'), '', array('class' => 'form-control','required'=>'required'))}}</td>
+                    <td>{{ Form::select('major_minor[]', array(''=>'Select Option','major' => 'Major', 'minor' => 'minor'), '', array('class' => 'form-control','required'=>'required'))}}</td>
 
                     <td>{{Form::button('<i class="fa  fa-plus"></i>', array('type' => 'submit', 'class' => 'btn btn-xs btn-default text-purple'))}}</td>
                     {{Form::close()}}

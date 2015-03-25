@@ -912,6 +912,9 @@ class UserSignupController extends \BaseController {
             $applicant_profile_info = ApplicantProfile::with('relCountry')->where('applicant_id', '=',$applicant_id )->first();
             $applicant_acm_records =  ApplicantAcademicRecords::where('applicant_id','=',$applicant_id)->get();
             $applicant_meta_records = ApplicantMeta::where('applicant_id', '=',$applicant_id )->first();
+            $applicant_extra_curr_activities = ApplicantExtraCurrActivity::where('applicant_id','=',$applicant_id)->get();
+            $supporting_docs = ApplicantSupportingDoc::where('applicant_id','=',$applicant_id)->first();
+            $miscellaneous_info = ApplicantMiscInfo::where('applicant_id','=',$applicant_id)->first();
 
             if($applicant_account_info == Null){
                 Session::flash('info', "Applicant's Account information is missing !");
@@ -925,10 +928,14 @@ class UserSignupController extends \BaseController {
             if(count($applicant_acm_records)< 2) {
                 Session::flash('error', "Academic Records are incomplete !");
             }
+            if(count($applicant_extra_curr_activities)< 1) {
+                Session::flash('info', "Applicant's Extra Curricular Activities Do Not Added !");
+            }
 
             return View::make('admission::amw.batch_applicant.view_applicant_info',
                 compact('applicant_id','batch_id','applicant_account_info', 'applicant_profile_info',
-                        'applicant_acm_records','applicant_meta_records','batch_id'));
+                        'applicant_acm_records','applicant_meta_records','applicant_extra_curr_activities',
+                        'supporting_docs','miscellaneous_info'));
 
     }
 

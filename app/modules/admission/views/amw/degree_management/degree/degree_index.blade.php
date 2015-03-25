@@ -3,10 +3,23 @@
     @include('layouts._sidebar_amw')
 @stop
 @section('content')
+
+{{-----------------------------------------Help Text ----------------------------------------------------------}}
+<div class="row">
+    <div class="col-md-12">
+                <h3>Degree</h3>
+            <div class="help-text-top">
+             You can view all lists of Degree Lists. Also this panel will allow you to perform some actions to <b>Add Degree</b>, <b>Edit</b>, <b>Delete</b>, <b>Degree Course (DC)</b> under the column <b>Action</b>. Button <b>Degree Course (DC)</b> will redirect you to degree course manage screen.
+                    {{--<small>Someone famous in <cite title="Source Title">Source Title</cite></small>--}}
+            </div><!-- /.box-body -->
+    </div><!-- ./col -->
+</div><!-- /.row -->
+{{---------------------------------------------------------------------------------------------------------------}}
+
     <div class="box box-solid ">
         <div class="box box-info">
             <div class="box-header">
-                <h3 class="box-title">Degree </h3>
+                {{--<h3 class="box-title">Degree </h3>--}}
                 <div class="box-tools pull-right">
                     <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('admission/amw/degree/create')}}" data-toggle="modal" data-target="#degreeModal" style="color: #ffffff"><b>Add Degree</b></a>
                 </div>

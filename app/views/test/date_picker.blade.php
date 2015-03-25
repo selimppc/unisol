@@ -101,6 +101,8 @@
          <br> <br>
     @endforeach
 
+    <p class="text-danger"> hello</p>
+
 
 		{{ HTML::script('assets/js/jquery-2.1.1.min.js') }}
         {{ HTML::script('assets/etsb/etsb_js/bootstrap/bootstrap.min.js')}}
