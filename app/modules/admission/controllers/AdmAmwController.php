@@ -545,7 +545,7 @@ class AdmAmwController extends \BaseController
                // 'course.course_type_id as CourseTypeId',
                 'course_type.title as CourseTypeTitle',
                 //'course.subject_id as SubjId',
-               // 'subject.department_id as DepartmentId',
+                'subject.department_id as DepartmentId',
                 'department.title as DepartmentTitle'
             )
             ->join ('year','batch_course.year_id','=','year.id')
@@ -570,7 +570,7 @@ class AdmAmwController extends \BaseController
           //  $v['CourseTypeId']     = $bcd->CourseTypeId   ;
             $v['CourseTypeTitle']  = $bcd->CourseTypeTitle;
           //  $v['SubjId']           = $bcd->SubjId         ;
-          //  $v['DepartmentId']     = $bcd->DepartmentId   ;
+            $v['DepartmentId']     = $bcd->DepartmentId   ;
             $v['DepartmentTitle']  = $bcd->DepartmentTitle;
 
             $cd[$bcd->YearId]['year'] = $bcd->YearTitle;
@@ -669,8 +669,9 @@ class AdmAmwController extends \BaseController
 
 //******************************Assign faculty start(R)*****************************
 
-    public function assign_faculty_index($course_id)
+    public function assign_faculty_index($course_id,$dep_id)
     {
+//        $batch_course = BatchCourse::
         return View::make('admission::amw.batch_course.assign_faculty_index');
     }
 }

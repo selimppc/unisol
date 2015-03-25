@@ -44,7 +44,7 @@ Route::any('admission/amw/save/batch-data',[
 
 //******************Assign Faculty Start(R)*********************
 
-Route::any('admission/amw/assign-faculty/{course_id}', [
+Route::any('admission/amw/assign-faculty/{course_id}/{dep_id}', [
     'as' => 'assign-faculty',
     'uses' => 'AdmAmwController@assign_faculty_index'
 ]);
