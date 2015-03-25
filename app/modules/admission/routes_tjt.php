@@ -460,3 +460,5 @@ Route::any('admission/amw/batch-applicant/view-applicant/{batch_id}/{applicant_i
         'uses'=>'UserSignupController@batchApplicantView']);
 
 
+
+
