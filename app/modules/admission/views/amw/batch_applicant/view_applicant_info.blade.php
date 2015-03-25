@@ -4,7 +4,7 @@
 @stop
 @section('content')
 <div>
-<a class="pull-right btn btn-sm btn-success" href="{{ URL::route('admission.amw.batch-applicant.index',['batch_id'=>$applicant_account_info->id] )}}"> <i class="fa fa-arrow-circle-left"></i> Go Back</a>
+   <a class="pull-right btn btn-sm btn-success" href="{{ action('UserSignupController@batchApplicantIndex', $batch_id)}}"> <i class="fa fa-arrow-circle-left"></i> Go Back</a>
 </div>
 
  <section class="col-lg-6 connectedSortable">
