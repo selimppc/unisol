@@ -93,13 +93,13 @@
 
                     <td> {{Course::findOrFail($value->course_id)->credit ;}} </td>
 
-                    <td>{{ Form::select('year_id', $year_data, '', array('class' => 'form-control','required'=>'required'))}}</td>
+                    <td>{{ Form::select('year_id[]', $year_data,  Input::old('year_id'), array('class' => 'form-control','required'=>'required'))}}</td>
 
-                    <td>{{ Form::select('semester_id', $semester_data, '', array('class' => 'form-control','required'=>'required')) }}</td>
+                    <td>{{ Form::select('semester_id[]', $semester_data, Input::old('semester_id'), array('class' => 'form-control','required'=>'required')) }}</td>
 
-                    <td>{{ Form::checkbox('is_mandatory') }}</td>
+                    <td>{{ Form::checkbox('is_mandatory[]') }}</td>
 
-                    <td>{{ Form::select('major_minor', array(''=>'Select Option','major' => 'Major', 'minor' => 'minor'), '', array('class' => 'form-control','required'=>'required'))}}</td>
+                    <td>{{ Form::select('major_minor[]', array(''=>'Select Option','major' => 'Major', 'minor' => 'minor'), '', array('class' => 'form-control','required'=>'required'))}}</td>
 
                     <td>{{Form::button('<i class="fa  fa-plus"></i>', array('type' => 'submit', 'class' => 'btn btn-xs btn-default text-purple'))}}</td>
                     {{Form::close()}}
