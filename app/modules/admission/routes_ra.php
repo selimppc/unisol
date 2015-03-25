@@ -27,13 +27,24 @@ Route::any('admission/amw/batch-course/{batch_id}/{deg_id}', [
     'as' => 'admission.amw.batch_course',
     'uses' => 'AdmAmwController@batch_course_index'
 ]);
+
 Route::post('admission/amw/batch-course/save',
     'AdmAmwController@batch_course_save'
 );
+
 Route::any('admission/amw/batch-course-delete/{id}', [
     'as' => 'batch-course-delete',
     'uses' => 'AdmAmwController@batch_course_delete'
 ]);
+
 Route::any('admission/amw/save/batch-data',[
     'as' => 'batch.save',
-    'uses' => 'AdmAmwController@batch_data_save']);
+    'uses' => 'AdmAmwController@batch_data_save'
+]);
+
+//******************Assign Faculty Start(R)*********************
+
+Route::any('admission/amw/assign-faculty/{course_id}/{dep_id}', [
+    'as' => 'assign-faculty',
+    'uses' => 'AdmAmwController@assign_faculty_index'
+]);
