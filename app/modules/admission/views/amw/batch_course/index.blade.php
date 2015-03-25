@@ -6,6 +6,7 @@
     <div class="box-body">
         <div class="row">
             <div class="col-lg-12">
+                {{ Form::text('degree_id', $degree_id , ['class'=>'form-control degree_id'])}}
                 @if(isset($batch_course_data))
                     @foreach($batch_course_data as $y => $bcd)
                         <h4 class="table.align th text-purple  font-size text-bold margin-top-text">Year:{{$bcd['year']}}</h4>
@@ -35,7 +36,7 @@
                                                 <td>{{$b['CourseTypeTitle']}}</td>
                                                 <td>{{$b['CourseCredit']}}</td>
                                                 <td>{{($b['isMandatory'] == 1) ? 'Yes' : 'No';}}</td>
-                                                <td></td>
+                                                <td><a href="{{ URL::route('assign-faculty',['course_id'=>$b['CourseId']])}}" class="btn btn-circle btn-xs text-purple  " >Assign</a></td>
                                                 <td>
                                                     <a data-href="{{ URL::route('batch-course-delete',['bcid'=>$b['ID']]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa fa-trash-o" style="color:red"></i></a>
                                                 </td>

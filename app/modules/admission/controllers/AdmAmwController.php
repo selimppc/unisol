@@ -515,7 +515,7 @@ class AdmAmwController extends \BaseController
     public function batch_course_index($batch_id, $deg_id)
     {
         $batch = $batch_id;
-        $degree_id = Batch::where('id','=', $batch_id)->first()->degree_id;
+        $degree_id = $deg_id;;
         $degree_title = Degree::with('relDegreeCourse')
             ->where('id' , '=' ,$deg_id)
             ->first();
@@ -666,4 +666,11 @@ class AdmAmwController extends \BaseController
         return Redirect::back();
 
     }*/
+
+//******************************Assign faculty start(R)*****************************
+
+    public function assign_faculty_index($course_id)
+    {
+        return View::make('admission::amw.batch_course.assign_faculty_index');
+    }
 }
