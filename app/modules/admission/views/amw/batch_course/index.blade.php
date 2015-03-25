@@ -87,8 +87,9 @@
                         {{ Form::hidden('course_id',($value->course_id))}}</td>
 
                     <td> {{Department::findOrFail($value->department_id)->title; }}</td>
+                    <?php $course_type_id = Course::findOrFail($value->course_id)->course_type_id; ?>
 
-                    <td> {{CourseType::findOrFail(Course::findOrFail($value->course_id)->course_type_id)->title ;}} </td>
+                    <td> {{isset($course_type_id) ? CourseType::findOrFail($course_type_id)->title : ''}}  </td>
 
                     <td> {{Course::findOrFail($value->course_id)->credit ;}} </td>
 
