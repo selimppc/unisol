@@ -38,7 +38,7 @@ class BatchCourse extends Eloquent{
 
     //TODO : Model Relationship
     public function relBatch(){
-        return $this->belongsTo('Batch', 'batch_course_id', 'id');
+        return $this->belongsTo('Batch', 'batch_id', 'id');
     }
     public function relCourse(){
         return $this->belongsTo('Course', 'course_id', 'id');
