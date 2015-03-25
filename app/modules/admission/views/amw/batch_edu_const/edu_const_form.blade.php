@@ -8,15 +8,24 @@
 <div class="modal-body">
       <div style="padding: 20px;">
 
-          {{Form::open(array('url'=>'admission/amw/batch-edu-const/store', 'class'=>'form-horizontal','files'=>true))}}
+          {{Form::open(array('url'=>'admission/amw/batch-education-constraint/store', 'class'=>'form-horizontal','files'=>true))}}
+          <div class="row">
+                <div class="help-text-top">
+                  <em>If you want to add a new Batch Education Constraint, You have to fillup this form. </em>
+                </div>
+          </div><!-- /.row -->
+
+          <div class="form-group">
+            <span class="text-muted"><em><span style="color:red;">  * </span><b>Indicates required field. Please do not skip these fields.</b> </em></span>
+          </div>
 
           <div class='form-group'>
-                  <div>{{ Form::label('batch_id', 'Batch') }}</div>
+                  <div>{{ Form::label('batch_id', 'Batch') }}<span style="color:red;">*</span></div>
                   <div>{{ Form::select('batch_id',$batch,Input::old('batch_id'),['class'=>'form-control input-sm','required']) }}</div>
           </div>
           <div class='form-group'>
 
-              <div>{{ Form::label('level_of_education', 'Level Of Education') }}</div>
+              <div>{{ Form::label('level_of_education', 'Level Of Education') }}<span style="color:red;">*</span></div>
               <div>{{ Form::select ('level_of_education',  array('' => 'Select one',
                     'psc' => 'PSC',
                     'jsc' => 'JSC',
