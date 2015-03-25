@@ -50,7 +50,7 @@
                         </tbody>
                     </table>
                     {{ Form::close() }}
-                    <a href="{{URL::to('admission/amw/degree')}}" class=" btn"style="float: right;">Back</a>
+                    <a href="{{URL::to('admission/amw/degree')}}" class="btn btn-xs btn-success" style="float: right;">Back</a>
                     {{ $deg_course_info->links() }}
                     <p>&nbsp;</p>
                     <p>&nbsp;</p>
