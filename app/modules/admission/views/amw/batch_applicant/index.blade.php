@@ -24,7 +24,7 @@
           <h3 class="box-title">Batch Applicant</h3>
      {{--------------------------------------- Filter Starts --------------------------------------------------------------}}
 
-          {{ Form::open(array('url'=>'admission/amw/batch-apt/status','class'=>'form-horizontal')) }}
+          {{ Form::open(array('route'=>['admission.amw.batch-applicant.index',$batch_id],'class'=>'form-horizontal')) }}
 
 
           <div  class="col-lg-3 pull-right" >

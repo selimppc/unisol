@@ -835,35 +835,31 @@ class UserSignupController extends \BaseController {
 
 // {---------------------------------------------Batch Applicant----------------------------------------------------------------------}
 
-    public function batchApplicantIndex($id){
+    public function batchApplicantIndex($batch_id){
         $model = new BatchApplicant();
+
         //view info according to batch(admission on)
         $batchApt = Batch::with('relDegree.relDegreeGroup','relDegree.relDegreeProgram','relDegree.relDepartment','relYear','relSemester')
-            ->where('id', '=', $id)
+            ->where('id', '=', $batch_id)
             ->first();
-        //print_r($model);exit;
         $status =  $model->getStatus();
         if($this->isPostRequest()){
-            $arrayData = [
-                'status' => Input::get('status'),
-            ];
-            $result = Helpers::search($arrayData, $model);
-            if(! $result->isEmpty()){
-                foreach($result as $value){
-                    $apt_data = BatchApplicant::with('relBatch','relApplicant','relBatch.relSemester');
-                    $apt_data = $apt_data->where('batch_id','=', $value->batch_id);
-                }
+                $chk_status = Input::get('status');
+            if($chk_status != null){
+                $apt_data = BatchApplicant::with('relBatch','relApplicant','relBatch.relSemester');
+                $apt_data = $apt_data->where('batch_id','=', $batch_id);
+                $apt_data = $apt_data->where('status','=', $chk_status);
                 $apt_data = $apt_data->get();
-                print_r($apt_data);exit;
             }else{
-                $apt_data = null;
+                $apt_data = BatchApplicant::with('relBatch','relApplicant','relBatch.relSemester')
+                    ->where('batch_id','=',$batch_id)->get();
             }
         }else{
             $apt_data = BatchApplicant::with('relBatch','relApplicant','relBatch.relSemester')
-                ->where('batch_id','=',$id)->get();
+                ->where('batch_id','=',$batch_id)->get();
         }
         return View::make('admission::amw.batch_applicant.index',
-            compact('batchApt','apt_data', 'status'));
+            compact('batch_id', 'batchApt','apt_data', 'status'));
 
      }
 
