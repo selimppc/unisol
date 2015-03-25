@@ -258,8 +258,297 @@
                      {{--<button class="pull-right btn btn-default" id="sendEmail">Edit <i class="fa fa-arrow-circle-right"></i></button>--}}
                  </div>
         </div>
+{{----------------------------------------------Others ------------------------------------------------------------------------}}
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="box box-solid">
+                <div class="box-header">
+                     <h3 class="box-title">Rest Of The Applicant's Information</h3>
+                     <!-- tools box -->
+                     <div class="pull-right box-tools">
+                         <button class="btn btn-info btn-sm" data-widget="remove" data-toggle="tooltip" ><i class="fa fa-times"></i></button>
+                     </div><!-- /. tools -->
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                    <div class="box-group" id="accordion">
+                        <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
+                        <div class="panel box box-primary">
+                            <div class="box-header">
+                                <h5 class="box-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                        Extra Curricular Activities
+                                    </a>
+                                </h5>
+                            </div>
+                            <div id="collapseOne" class="panel-collapse collapse in">
+                                <div class="box-body">
+                                    <div class="row">
+
+                                          <div class="col-lg-12">
+                                          @if(isset($applicant_extra_curr_activities))
+                                             <table class="table  table-bordered">
+
+                                                   <thead>
+                                                          <tr>
+                                                             <th>Title</th>
+                                                             <th>Description</th>
+                                                             <th>Achievement</th>
+                                                          </tr>
+                                                   </thead>
+                                                        <tbody>
+
+                                                                @foreach($applicant_extra_curr_activities as $value)
+                                                                   <tr>
+                                                                        <td>{{($value->title )}}</td>
+                                                                        <td>{{ $value->description}}</td>
+                                                                        <td>{{ $value->Achievement}}</td>
+                                                                   </tr>
+                                                                @endforeach
+
+                                                        </tbody>
+                                             </table>
+                                          @else
+                                               {{"No Data found !"}}
+                                          @endif
+                                          </div>
+                                      </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel box box-danger">
+                            <div class="box-header">
+                                <h5 class="box-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                        Supporting Documents
+                                    </a>
+                                </h5>
+                            </div>
+                            <div id="collapseTwo" class="panel-collapse collapse">
+                                 <div class="box-body">
+                                       <div class="row">
+
+                                             <div class="col-lg-12">
+                                                 <table class="table table-bordered">
+                                                       <thread>
+                                                               <tr>
+                                                                   <th class="col-lg-8">Goal Statement</th>
+                                                                   <td>
+                                                                       @if( isset($supporting_docs->academic_goal_statement))
+                                                                             {{ HTML::image('applicant_images/' .$supporting_docs->academic_goal_statement) }}
+                                                                       @endif
+                                                                   </td>
+                                                               </tr>
+                                                               <tr>
+                                                                   <th>Essay</th>
+                                                                   <td>
+                                                                       @if( isset($supporting_docs->essay))
+                                                                            {{ HTML::image('applicant_images/' .$supporting_docs->essay) }}
+                                                                       @endif
+                                                                   </td>
+                                                               </tr>
+                                                               <tr>
+                                                                   <th>Letter of Intent</th>
+                                                                    <td>
+                                                                       @if( isset($supporting_docs->letter_of_intent))
+                                                                          {{ HTML::image('applicant_images/' .$supporting_docs->letter_of_intent) }}
+                                                                       @endif
+                                                                    </td>
+                                                               </tr>
+                                                               <tr>
+                                                                   <th>Personal Statement</th>
+                                                                   <td>
+                                                                       @if( isset($supporting_docs->personal_statement))
+                                                                           {{ HTML::image('applicant_images/' .$supporting_docs->personal_statement) }}
+
+                                                                       @endif
+                                                                   </td>
+                                                               </tr>
+                                                               <tr>
+                                                                   <th>Research Statement</th>
+                                                                   <td>
+                                                                        @if( isset($supporting_docs->research_statement))
+                                                                            {{ HTML::image('applicant_images/' .$supporting_docs->research_statement) }}
+
+                                                                        @endif
+                                                                   </td>
+                                                               </tr>
+                                                               <tr>
+                                                                   <th>Portfolio</th>
+                                                                   <td>
+                                                                       @if( isset($supporting_docs->portfolio))
+                                                                          {{ HTML::image('applicant_images/' .$supporting_docs->portfolio) }}
+
+                                                                       @endif
+                                                                   </td>
+                                                               </tr>
+                                                               <tr>
+                                                                   <th>Resume</th>
+                                                                   <td>
+                                                                       @if( isset($supporting_docs->resume))
+                                                                          {{ HTML::image('applicant_images/' .$supporting_docs->resume) }}
+
+                                                                       @endif
+                                                                   </td>
+                                                               </tr>
+                                                               <tr>
+                                                                   <th>Readmission personal details</th>
+                                                                   <td>
+                                                                       @if( isset($supporting_docs->readmission_personal_details))
+                                                                           {{ HTML::image('applicant_images/' .$supporting_docs->readmission_personal_details) }}
+
+                                                                       @endif
+                                                                   </td>
+                                                               </tr>
+                                                               <tr>
+                                                                   <th>Others</th>
+                                                                   <td>
+                                                                        @if( isset($supporting_docs->other))
+                                                                           {{$supporting_docs->other }}
+
+                                                                        @endif
+                                                                   </td>
+                                                               </tr>
+                                                       </thread>
+
+                                                 </table>
+                                             </div>
+                                         </div>
+
+                                 </div>
+                            </div>
+                        </div>
+                        <div class="panel box box-success">
+                            <div class="box-header">
+                                <h4 class="box-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                                        Miscellaneous Information
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseThree" class="panel-collapse collapse">
+                                <div class="box-body">
+                                    <table class="table table-bordered">
+                                           <thread>
+                                              <tr>
+                                                  <th class="col-lg-8">Ever Admit this University</th>
+                                                  <td>
+                                                      @if( isset($miscellaneous_info->ever_admit_this_university))
+                                                            {{$miscellaneous_info->ever_admit_this_university ==1 ? 'Yes' : 'No'}}
+                                                      @endif
+                                                  </td>
+                                              </tr>
+                                              <tr>
+                                                  <th>Ever Dismiss</th>
+                                                  <td>
+                                                      @if( isset($miscellaneous_info->ever_dismiss))
+                                                           {{$miscellaneous_info->ever_dismiss ==1 ? 'Yes' : 'No'}}
+                                                      @endif
+                                                  </td>
+                                              </tr>
+                                              <tr>
+                                                  <th>Academic Honors Received</th>
+                                                   <td>
+                                                      @if( isset($miscellaneous_info->academic_honors_received))
+                                                         {{ $miscellaneous_info->academic_honors_received ==1 ? 'Yes' : 'No'}}
+                                                      @endif
+                                                   </td>
+                                              </tr>
+                                              <tr>
+                                                  <th>Ever Admit other University</th>
+                                                  <td>
+                                                      @if( isset($miscellaneous_info->ever_admit_other_university))
+                                                          {{ $miscellaneous_info->ever_admit_other_university ==1 ? 'Yes' : 'No'}}
+
+                                                      @endif
+                                                  </td>
+                                              </tr>
+                                              <tr>
+                                                  <th>Admission test Center</th>
+                                                  <td>
+                                                       @if( isset($miscellaneous_info->admission_test_center))
+                                                           {{$miscellaneous_info->admission_test_center ==1 ? 'Yes' : 'No' }}
+
+                                                       @endif
+                                                  </td>
+                                              </tr>
+
+                                      </thread>
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- /.box-body -->
+            </div><!-- /.box -->
+        </div><!-- /.col -->
+    </div><!-- /.row -->
+    <!-- END ACCORDION & CAROUSEL-->
+{{-----------------------------------------------------------------------------------------------------------------------------}}
 
  </section>
+ {{----------------------------------------  Other Informations ------------------------------------------------------------------------------------------}}
+
+                    {{--<div class="row">--}}
+                        {{--<div class="col-md-6">--}}
+                            {{--<div class="box box-solid">--}}
+                                {{--<div class="box-header">--}}
+                                    {{--<h3 class="box-title">Rest Of The Applicant's Information</h3>--}}
+                                {{--</div><!-- /.box-header -->--}}
+                                {{--<div class="box-body">--}}
+                                    {{--<div class="box-group" id="accordion">--}}
+                                        {{--<!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->--}}
+                                        {{--<div class="panel box box-primary">--}}
+                                            {{--<div class="box-header">--}}
+                                                {{--<h4 class="box-title">--}}
+                                                    {{--<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">--}}
+                                                        {{--Collapsible Group Item #1--}}
+                                                    {{--</a>--}}
+                                                {{--</h4>--}}
+                                            {{--</div>--}}
+                                            {{--<div id="collapseOne" class="panel-collapse collapse in">--}}
+                                                {{--<div class="box-body">--}}
+                                                    {{--Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.--}}
+                                                {{--</div>--}}
+                                            {{--</div>--}}
+                                        {{--</div>--}}
+                                        {{--<div class="panel box box-danger">--}}
+                                            {{--<div class="box-header">--}}
+                                                {{--<h4 class="box-title">--}}
+                                                    {{--<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">--}}
+                                                        {{--Collapsible Group Danger--}}
+                                                    {{--</a>--}}
+                                                {{--</h4>--}}
+                                            {{--</div>--}}
+                                            {{--<div id="collapseTwo" class="panel-collapse collapse">--}}
+                                                {{--<div class="box-body">--}}
+                                                    {{--Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.--}}
+                                                {{--</div>--}}
+                                            {{--</div>--}}
+                                        {{--</div>--}}
+                                        {{--<div class="panel box box-success">--}}
+                                            {{--<div class="box-header">--}}
+                                                {{--<h4 class="box-title">--}}
+                                                    {{--<a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">--}}
+                                                        {{--Collapsible Group Success--}}
+                                                    {{--</a>--}}
+                                                {{--</h4>--}}
+                                            {{--</div>--}}
+                                            {{--<div id="collapseThree" class="panel-collapse collapse">--}}
+                                                {{--<div class="box-body">--}}
+                                                    {{--Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.--}}
+                                                {{--</div>--}}
+                                            {{--</div>--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
+                                {{--</div><!-- /.box-body -->--}}
+                            {{--</div><!-- /.box -->--}}
+                        {{--</div><!-- /.col -->--}}
+                    {{--</div><!-- /.row -->--}}
+                    {{--<!-- END ACCORDION & CAROUSEL-->--}}
+
+
+
 
  <p>&nbsp;</p>
  <p>&nbsp;</p>
