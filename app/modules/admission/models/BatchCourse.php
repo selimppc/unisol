@@ -4,6 +4,7 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
+
 class BatchCourse extends Eloquent{
 
     //TODO :: model attributes and rules and validation
@@ -70,5 +71,13 @@ class BatchCourse extends Eloquent{
     }
 
     //TODO :: Scope Area
+
+    public function semesterByYear() {
+        return $this->hasMany('BatchCourse','year_id', 'year_id');
+    }
+    public function courseBySemester() {
+        return $this->hasMany('BatchCourse','semester_id', 'semester_id') ;
+    }
+
 
 } 

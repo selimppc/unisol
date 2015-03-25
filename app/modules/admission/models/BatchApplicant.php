@@ -13,10 +13,10 @@ class BatchApplicant extends Eloquent{
     ];
     private $errors;
     private $rules = [
-        'batch_id' => 'required|integer',
-        'applicant_id' => 'required|integer',
-        'admtest_marks' => 'required|numeric',
-        'merit_position' => 'required|numeric',
+        'batch_id' => 'integer',
+        'applicant_id' => 'integer',
+        'admtest_marks' => 'numeric',
+        'merit_position' => 'numeric',
         //'status' => 'alpha_dash',
     ];
     public function validate($data)
@@ -42,6 +42,7 @@ class BatchApplicant extends Eloquent{
     public function relApplicant(){
         return $this->belongsTo('Applicant', 'applicant_id', 'id');
     }
+
     public function relExmCenterApplicantChoice(){
         return $this->HasMany('ExmCenterApplicantChoice');
     }
@@ -70,7 +71,7 @@ class BatchApplicant extends Eloquent{
 
     //TODO : Scope Area
 
-    public function getStatus(){
+    public static function getStatus(){
         return $status = [
             'APLD' => 'Applied',
             'DOCC' => 'Docs Checking',

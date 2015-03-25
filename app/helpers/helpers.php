@@ -156,7 +156,7 @@ class Helpers {
 
         $prev_crumb = "";
         foreach ($path AS $x => $crumb) {
-            $title = ucwords(str_replace(array('.php', '_'), Array('', ' '), $crumb));
+            $title = ucwords(str_replace(array('.php', '-'), Array('', ' '), $crumb));
             if ($x != $last){
                 $crumb = $prev_crumb.$crumb;
                 $breadcrumbs[] = '<li><a href=" '. $base_url . $crumb .' ">' .$title. '</a></li>';

@@ -6,7 +6,7 @@
  * Time: 10:30 AM
  */
 
-//******************Degree Course Start********************
+//******************Degree Course Start(R)********************
 
 Route::any('admission/amw/degree-course/{id}', [
     'as' => 'admission.amw.degree_courses',
@@ -21,7 +21,7 @@ Route::get('admission/amw/degree-courses/delete/{id}',
     'AdmAmwController@degree_courses_delete'
 );
 
-//******************Batch Course Start*********************
+//******************Batch Course Start(R)*********************
 
 Route::any('admission/amw/batch-course/{batch_id}/{deg_id}', [
     'as' => 'admission.amw.batch_course',
@@ -30,6 +30,10 @@ Route::any('admission/amw/batch-course/{batch_id}/{deg_id}', [
 Route::post('admission/amw/batch-course/save',
     'AdmAmwController@batch_course_save'
 );
-//Route::post('admission/amw/batch-course/save/ajax',
-//    'AdmAmwController@batch_course_ajax_save'
-//);
+Route::any('admission/amw/batch-course-delete/{id}', [
+    'as' => 'batch-course-delete',
+    'uses' => 'AdmAmwController@batch_course_delete'
+]);
+Route::any('admission/amw/save/batch-data',[
+    'as' => 'batch.save',
+    'uses' => 'AdmAmwController@batch_data_save']);

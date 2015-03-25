@@ -2,6 +2,7 @@
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 
+
 class HomeController extends BaseController {
 
 
@@ -289,23 +290,44 @@ class HomeController extends BaseController {
 
 
     public function datePicker(){
-        $batch_id = 1;
-        $degree_id = Batch::findOrFail($batch_id)->degree_id;
+        /*$batch_id = 1;
+        $degree_id = Batch::findOrFail($batch_id)->degree_id;*/
 
-        $batchCourse = BatchCourse::where('degree_id', '=', $degree_id)->get();
-        print_r($batchCourse);exit;
+        /*SELECT * FROM degree_course a
+        LEFT JOIN batch_course b ON a.`course_id` = b.`course_id`
+        WHERE a.`degree_id` = 1 AND b.course_id IS NULL*/
 
-        if(User::where('email', '=', Input::get('email'))->exists()){
-            // user found
-        }
+        /*$degreeCourse = DB::table('degree_course')
+            ->leftJoin('batch_course', 'degree_course.course_id', '=', 'batch_course.course_id')
+            ->leftjoin('degree', 'degree_course.degree_id', '=', 'degree.id' )
+            ->where('degree_course.degree_id', '=', $degree_id)
+            ->where('batch_course.course_id', NULL)
+            ->select('degree_course.course_id', 'degree_course.degree_id', 'degree.department_id')
+            ->get();
 
-        if($_POST){
+        print_r($degreeCourse);exit;*/
+
+        /*if($_POST){
             $n = Input::get('factorial');
             $factorial = $this->bcFact($n);
             return View::make('test.date_picker', compact('factorial'));
         }else{
             return View::make('test.date_picker');
-        }
+        }*/
+
+
+        $data = BatchCourse::with(['semesterByYear' => function($query) {
+                        //$year_id = $query->semesterByYear()->get()->year_id;
+                        $query->with(['courseBySemester'=> function($queries)  {
+                            //$queries->where('year_id', '=', 2);
+                            $queries->groupBy('year_id')->groupBy('semester_id');
+                        }]);
+
+                }])->groupBy('year_id')
+                ->get();
+        //dd(DB::getQueryLog($data));
+
+        return View::make('test.date_picker', compact('data'));
     }
 
     protected function bcFact($n){

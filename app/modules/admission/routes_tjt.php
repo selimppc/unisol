@@ -170,7 +170,9 @@ Route::any('admission/public/admission/checkout/',
         'uses' => 'AdmPublicController@admDegAptCheckout']);
 
 
-//{----------------------------------- Version:2 -> Degree Program -------------------------------------------------------------------}
+//{---------------------------------------  Version : 2 Starts Here  ---------------------------------------------------------}
+
+//{----------------------------------- Degree Program -------------------------------------------------------------------}
 
 Route::any('common/degree-program',
     ['as'=>'common.degree-program.index',
@@ -206,7 +208,7 @@ Route::any('common/degree-program/batch_delete',
         'uses'=>'DegreeProgramController@degreeProgramBatchDelete']);
 
 
-//{-------------------------------Version:2 -> Course Type--------------------------------------------------------------------------}
+//{-------------------------------Course Type--------------------------------------------------------------------------}
 
 Route::any('common/course-type',
         ['as'=>'common.course-type.index',
@@ -244,8 +246,6 @@ Route::any('common/course-type/delete/{id}',
 Route::any('common/course-type/batch-delete',
     ['as'=>'common.course-type.batch-delete',
         'uses'=>'CourseTypeController@batchDelete']);
-
-//---------------------------------------Version : 2 Starts Here-----------------------------------------------------
 
 //{--------------------------------------- Degree -------------------------------------------------------------}
 
@@ -373,14 +373,37 @@ Route::any('admission/amw/waiver-constraint/{batch_id}/{waiver_id}', [
     'uses' => 'UserSignupController@waiverConstraintIndex'
 ]);
 
-Route::any('admission/amw/waiver-constraint/create/{batch_waiver_id}', [
-    'as' => 'admission.amw.waiver-constraint.create',
+Route::any('admission/amw/waiver-time-constraint/create/{batch_waiver_id}', [
+    'as' => 'admission.amw.waiver-time-constraint.create',
     'uses' => 'UserSignupController@waiverTimeConstCreate'
+]);
+Route::any('admission/amw/waiver-gpa-constraint/create/{batch_waiver_id}', [
+    'as' => 'admission.amw.waiver-gpa-constraint.create',
+    'uses' => 'UserSignupController@waiverGpaConstCreate'
 ]);
 
 Route::any('admission/amw/waiver-constraint/store', [
     'as' => 'admission.amw.waiver-constraint.store',
     'uses' => 'UserSignupController@waiverConstraintStore'
+]);
+
+Route::any('admission/amw/waiver-time-constraint/edit/{id}', [
+    'as' => 'admission.amw.waiver-time-constraint.edit',
+    'uses' => 'UserSignupController@waiverTimeConstEdit'
+]);
+
+Route::any('admission/amw/waiver-gpa-constraint/edit/{id}', [
+    'as' => 'admission.amw.waiver-gpa-constraint.edit',
+    'uses' => 'UserSignupController@waiverGpaConstEdit'
+]);
+Route::any('admission/amw/constraint-waiver/update/{id}', [
+    'as' => 'admission.amw.waiver-constraint.update',
+    'uses' => 'UserSignupController@waiverConstUpdate'
+]);
+
+Route::any('admission/amw/constraint-waiver/delete/{id}', [
+    'as' => 'admission.amw.waiver-constraint.delete',
+    'uses' => 'UserSignupController@waiverConstDelete'
 ]);
 //{--------------------------------------- batch Education Constraint -------------------------------------------------------------}
 
@@ -412,84 +435,28 @@ Route::any('admission/amw/batch-edu-const/delete/{id}',
     ['as'=>'admission.amw.batch-edu-const.delete',
         'uses'=>'UserSignupController@admBatchEduConstDelete']);
 
-//{-----------------------------------------------------Batch Waiver--------------------------------------------------------------------------------------}
-
-Route::any('admission/amw/batch-waiver/{id}', [
-    'as' => 'admission.amw.batch-waiver.index',
-    'uses' => 'AdmAmwController@degreeWaiverIndex'
-]);
-
-Route::any('amw/degree_waiver/create/{degree_id}', [
-    'as' => 'degree_waiver.create',
-    'uses' => 'AdmAmwController@degreeWaiverCreate'
-]);
-
-Route::any('amw/degree_waiver/store', [
-    'as' => 'degree_waiver.store',
-    'uses' => 'AdmAmwController@degreeWaiverStore'
-]);
-
-Route::any('amw/degree_waiver/delete/{id}', [
-    'as' => 'degree_waiver.delete',
-    'uses' => 'AdmAmwController@degreeWaiverDelete'
-]);
-
-Route::any('amw/degree_waiver/delete/{id}','AdmAmwController@degreeWaiverDelete');
-
-Route::any('amw/degree_manage/waiver_const/{id}', [
-    'as' => 'degree_manage.waiver_const',
-    'uses' => 'AdmAmwController@degWaiverConstIndex']);
-
-//Time dependent
-
-Route::any('amw/degree_manage/waiver_const/create/{degree_waiver_id}', [
-    'as' => 'deg_waiver_time_const.create',
-    'uses' => 'AdmAmwController@degWaiverTimeConstCreate'
-]);
-
-Route::any('amw/degree_manage/const/store', [
-    'as' => 'deg_waiver_const.store',
-    'uses' => 'AdmAmwController@degWaiverConstStore'
-]);
-
-Route::any('amw/degree_manage/waiver_const/edit/{id}', [
-    'as' => 'deg_waiver_time_const.edit',
-    'uses' => 'AdmAmwController@degWaiverTimeConstEdit'
-]);
-
-Route::post('amw/degree_manage/waiver_const/update/{id}', [
-    'as' => 'deg_waiver_const.update',
-    'uses' => 'AdmAmwController@degWaiverConstUpdate'
-]);
-
-//GPA dependent
-Route::any('amw/degree_manage/gpa_const/create/{id}', [
-    'as' => 'deg_waiver_gpa_const.create',
-    'uses' => 'AdmAmwController@degWaiverGpaConstCreate'
-]);
-
-Route::any('amw/degree_manage/gpa_const/edit/{id}', [
-    'as' => 'deg_waiver_gpa_const.edit',
-    'uses' => 'AdmAmwController@degWaiverGpaConstEdit'
-]);
-
-Route::any('amw/degree_manage/waiver_const/delete/{id}','AdmAmwController@degWaiverConstDelete');
 
 //{-----------------------------------------------Batch Applicant--------------------------------------------------------------------------------------------}
 
-Route::any('admission/amw/batch-apt/{id}',
+Route::any('admission/amw/batch-applicant/{id}',
     ['as'=>'admission.amw.batch-applicant.index',
-        'uses'=>'UserSignupController@admBatchAptIndex']);
+        'uses'=>'UserSignupController@batchApplicantIndex']);
 
-Route::any('admission/amw/batch-apt/status',
-    ['as'=>'admission.amw.batch-apt.status',
-        'uses'=>'UserSignupController@admBatchAptStatus']);
+Route::any('admission/amw/batch-applicant/change/{id}',
+    ['as'=>'admission.amw.batch-applicant.change',
+        'uses'=>'UserSignupController@batchApplicantChangeStatus']);
+
+Route::any('admission/amw/batch-applicant/update/{id}',
+    ['as'=>'admission.amw.batch-applicant.update',
+        'uses'=>'UserSignupController@batchApplicantUpdateStatus']);
 
 
+Route::any('admission/amw/batch-applicant/apply/{id}',
+    ['as'=>'admission.amw.batch-applicant.apply',
+        'uses'=>'UserSignupController@batchApplicantApply']);
 
-
-
-
-
+Route::any('admission/amw/batch-applicant/info/{batch_id}/{applicant_id}',
+    ['as'=>'admission.amw.batch-applicant.info',
+        'uses'=>'UserSignupController@batchApplicantInfo']);
 
 

@@ -629,12 +629,10 @@ class UserSignupController extends \BaseController {
             ->where('id', '=', $batch_id)
             ->first();
 
-        $waiver_info = BatchWaiver::with('relWaiver')->where('batch_id','=',$batch_id)->get();
-
+        $waiver_info = BatchWaiver::with('relWaiver', 'relWaiverConstraint')->where('batch_id','=',$batch_id)->get();
 
         return View::make('admission::amw.batch_waiver.index',
                   compact('model','batch_info','waiver_info'));
-
     }
 
     public function batchWaiverCreate($batch_id)
@@ -678,9 +676,12 @@ class UserSignupController extends \BaseController {
                  ->where('batch_id', '=', $batch_id)
                  ->where('waiver_id', '=', $waiver_id)->first();
 
-        $waiverConstraint = WaiverConstraint::where('batch_waiver_id','=',$batch_waiver_id)->first();
+        $timeDependent = WaiverConstraint::where('batch_waiver_id','=',$batch_waiver_id)
+            ->where('is_time_dependent','=', 1)->get();
+        $gpaDependent = WaiverConstraint::where('batch_waiver_id','=',$batch_waiver_id)
+            ->where('is_time_dependent','=', 0)->get();
         //print_r($waiverConstraint);exit;
-        return View::make('admission::amw.waiver_constraint.index', compact('batchWaiver','waiverConstraint'));
+        return View::make('admission::amw.waiver_constraint.index', compact('batch_waiver_id', 'batchWaiver','timeDependent', 'gpaDependent'));
     }
 
     public function waiverTimeConstCreate($batch_waiver_id){
@@ -689,43 +690,70 @@ class UserSignupController extends \BaseController {
             compact('batch_waiver_id'));
     }
 
+    public function waiverGpaConstCreate($batch_waiver_id){
+
+        return View::make('admission::amw.waiver_constraint.add_gpa_constraint',
+            compact('batch_waiver_id'));
+    }
+
 
     public function waiverConstraintStore(){
-
-//        $data = Input::all();
-//        if (WaiverConstraint::create($data)) {
-//
-//            return Redirect::back()
-//                ->with('message', 'Successfully added Information!');
-//        }
-//        else{
-//            return Redirect::back()
-//                ->with('message', 'invalid');
-//        }
-//        $data = Input::all();
-//        $model = new WaiverConstraint();
-//        $model->batch_waiver_id = Input::get('batch_waiver_id');
-//        if($model->validate($data)){
-//            if($model->create($data)){
-//                Session::flash('message','Successfully added Information!');
-//                return Redirect::back();
-//            }else{
-//                Session::flash('message','Invalid Request!');
-//                return Redirect::back();
-//            }
-//        }else{
-//            $errors = $model->errors();
-//            Session::flash('errors', $errors);
-//            return Redirect::back();
-//        }
+        $data = Input::all();
         $model = new WaiverConstraint();
-        $model->batch_waiver_id = Input::get('batch_waiver_id');
-
-        if ($model->save()) {
-            return Redirect::back()
-                ->with('message', 'Successfully added Information!');
+        if($model->validate($data)){
+            if($model->create($data)){
+                Session::flash('message','Successfully added Information!');
+                return Redirect::back();
+            }else{
+                Session::flash('message','Invalid Request!');
+                return Redirect::back();
+            }
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back();
         }
 
+    }
+
+    public function waiverTimeConstEdit($id){
+
+        $timeDependent = WaiverConstraint::find($id);
+
+        return View::make('admission::amw.waiver_constraint.edit_time_constraint',
+            compact('timeDependent'));
+
+    }
+
+    public function waiverGpaConstEdit($id){
+
+        $gpaDependent = WaiverConstraint::find($id);
+
+        return View::make('admission::amw.waiver_constraint.edit_gpa_constraint',
+            compact('gpaDependent'));
+
+    }
+
+    public function waiverConstUpdate($id){
+
+        $const_model = WaiverConstraint::find($id);
+        $data = Input::all();
+
+        $const_model->fill($data);
+
+        if ($const_model->update($data)) {
+            return Redirect::back()
+                ->with('message', 'Successfully Updated Information!');
+        }else{
+            return Redirect::back();
+        }
+    }
+
+    public function waiverConstDelete($id){
+
+        WaiverConstraint::find($id)->delete();
+        return Redirect::back()
+            ->with('message', 'Successfully deleted Information!');
     }
 
 //{--------------------------------- Batch Education Constraint -------------------------------------------------------------------------------------}
@@ -807,14 +835,14 @@ class UserSignupController extends \BaseController {
 
 // {---------------------------------------------Batch Applicant----------------------------------------------------------------------}
 
-    public function admBatchAptIndex($id){
+    public function batchApplicantIndex($id){
         $model = new BatchApplicant();
         //view info according to batch(admission on)
         $batchApt = Batch::with('relDegree.relDegreeGroup','relDegree.relDegreeProgram','relDegree.relDepartment','relYear','relSemester')
             ->where('id', '=', $id)
             ->first();
         //print_r($model);exit;
-        $status = $model->getStatus();
+        $status =  $model->getStatus();
         if($this->isPostRequest()){
             $arrayData = [
                 'status' => Input::get('status'),
@@ -826,6 +854,7 @@ class UserSignupController extends \BaseController {
                     $apt_data = $apt_data->where('batch_id','=', $value->batch_id);
                 }
                 $apt_data = $apt_data->get();
+                print_r($apt_data);exit;
             }else{
                 $apt_data = null;
             }
@@ -833,9 +862,75 @@ class UserSignupController extends \BaseController {
             $apt_data = BatchApplicant::with('relBatch','relApplicant','relBatch.relSemester')
                 ->where('batch_id','=',$id)->get();
         }
-        return View::make('admission::amw.batch_applicant.batch_apt_index',
+        return View::make('admission::amw.batch_applicant.index',
             compact('batchApt','apt_data', 'status'));
 
      }
+
+    public function batchApplicantChangeStatus($id){
+
+            $model = BatchApplicant::findOrFail($id);
+            $status = $model->getStatus();
+            return View::make('admission::amw.batch_applicant.status',compact('status','model'));
+
+    }
+
+    public function  batchApplicantUpdateStatus($applicant_id){
+
+            $model = BatchApplicant::find($applicant_id);
+            $data = Input::all();
+
+            if($model->validate($data)){
+                if($model->update($data)){
+                    Session::flash('message','Successfully Updated Information!');
+                    return Redirect::back();
+                }
+            }else{
+                $errors = $model->errors();
+                Session::flash('errors', $errors);
+                return Redirect::back();
+            }
+    }
+    public function batchApplicantApply($id){
+
+            $ids = Input::get('ids');
+            $status = Input::get('status');
+
+            foreach($ids as $key => $value){
+                $model = BatchApplicant::findOrFail($value);
+                $model->status = $status;
+                $model->save();
+            }
+            Session::flash('message','Successfully Updated applicant Status!');
+            return Redirect::back();
+    }
+
+
+    public function batchApplicantInfo($batch_id,$applicant_id){
+
+            $applicant_account_info = Applicant::where('id','=',$applicant_id)->first();
+            $applicant_profile_info = ApplicantProfile::with('relCountry')->where('applicant_id', '=',$applicant_id )->first();
+            $applicant_acm_records =  ApplicantAcademicRecords::where('applicant_id','=',$applicant_id)->get();
+            $applicant_meta_records = ApplicantMeta::where('applicant_id', '=',$applicant_id )->first();
+
+            if($applicant_account_info == Null){
+                Session::flash('info', "Applicant's Account information is missing !");
+            }
+            if($applicant_profile_info == Null) {
+                Session::flash('info', "Applicant's Profile information is missing !");
+            }
+            if($applicant_meta_records == Null){
+                Session::flash('danger', "Applicant's Biographical information is missing !");
+            }
+            if(count($applicant_acm_records)< 2) {
+                Session::flash('error', "Academic Records are incomplete !");
+            }
+
+            return View::make('admission::amw.batch_applicant.view_applicant_info',
+                compact('applicant_id','batch_id','applicant_account_info', 'applicant_profile_info',
+                        'applicant_acm_records','applicant_meta_records'));
+
+    }
+
 
 }

@@ -3,7 +3,7 @@
     @include('layouts._sidebar_amw')
 @stop
 @section('content')
-<a class="pull-right btn btn-sm btn-success" href="{{ URL::to('admission/amw/batch-management' )}}"> <i class="fa fa-arrow-circle-left"></i> Go Back</a>
+<a class="pull-right btn btn-sm btn-success" href="{{ URL::route('admission.amw.batch' )}}"> <i class="fa fa-arrow-circle-left"></i> Go Back</a>
 
 <h3 class="box-title">Batch Waiver </h3>
     <div class="box box-solid ">
@@ -92,7 +92,6 @@
                        <table id="example" class="table table-bordered table-striped">
                               <thead>
                                     <tr>
-                                       {{--<th>Degree Title</th>--}}
                                        <th>Waiver</th>
                                        <th>Amount</th>
                                        <th>Status</th>
@@ -104,7 +103,7 @@
                                          <tr>
                                                <td>{{ $value->relWaiver->title }}</td>
                                                <td>{{ $value->relWaiver->amount }}</td>
-                                               <td></td>
+                                               <td> {{empty( WaiverConstraint::where('batch_waiver_id', $value->id)->first()->id) ? "No Const." : "Const. Added" }}</td>
 
                                                <td>
                                                   <a data-href="{{ URL::route('admission.amw.batch-waiver.delete',['batch_id'=>$value->batch_id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete"  style="font-size: 12px;color: lightcoral"><span class="fa  fa-trash-o"></span></a>
