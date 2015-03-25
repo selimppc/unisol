@@ -902,7 +902,9 @@ class UserSignupController extends \BaseController {
     }
 
 
-    public function batchApplicantView($batch_id,$applicant_id){
+    public function batchApplicantView($id,$batch_id,$applicant_id){
+            $model = BatchApplicant::findOrFail($id);
+            $status = $model->getStatus();
 
             $applicant_account_info = Applicant::where('id','=',$applicant_id)->first();
             $applicant_profile_info = ApplicantProfile::with('relCountry')->where('applicant_id', '=',$applicant_id )->first();
@@ -931,8 +933,7 @@ class UserSignupController extends \BaseController {
             return View::make('admission::amw.batch_applicant.view_applicant_info',
                 compact('applicant_id','batch_id','applicant_account_info', 'applicant_profile_info',
                         'applicant_acm_records','applicant_meta_records','applicant_extra_curr_activities',
-                        'supporting_docs','miscellaneous_info'));
-
+                        'supporting_docs','miscellaneous_info','status','model'));
     }
 
 
