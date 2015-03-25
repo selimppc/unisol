@@ -9,8 +9,11 @@
     <div class="box box-solid ">
         <div class="box box-info">
             <div class="box-header">
-                <p>&nbsp;</p>
-
+            <div class="col-lg-10">
+            <div class="help-text-top">
+               You can view information according to corresponding Batch.
+            </div><!-- /.box-body -->
+            </div>
             </div>
             <div class="box-body">
                 <div class="row">
