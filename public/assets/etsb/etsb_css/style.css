@@ -3552,3 +3552,7 @@ fieldset[disabled] .btn-vk.active {
     float: right;
     padding-right: 1%;
 }
+.help-text-top{
+    color: #aaa;
+    margin-bottom: 5px;
+}

@@ -7,25 +7,11 @@
 {{-----------------------------------------Help Text ----------------------------------------------------------}}
 <div class="row">
     <div class="col-md-12">
-
-        <div class="box box-solid">
-        <i class="fa fa-text-width"></i>
-            <div class="box-header">
-                {{--<i class="fa fa-text-width"></i>--}}
-                <h5 class="box-title">Degree</h5>
-
-            </div><!-- /.box-header -->
-            <div class="box-body">
-                <blockquote>
-                    <p class="lead">
-                         <small>Here we can add edit or update and delete Degree information </small>
-                         <small>User can also find any degree information according to department dropdown list</small>
-                         <small>We can go degree course panel</small>
-                    </p>
+                <h3>Degree</h3>
+            <div class="help-text-top">
+             You can view all lists of Degree Lists. Also this panel will allow you to perform some actions to <b>Add Degree</b>, <b>Edit</b>, <b>Delete</b>, <b>Degree Course (DC)</b> under the column <b>Action</b>. Button <b>Degree Course (DC)</b> will redirect you to degree course manage screen.
                     {{--<small>Someone famous in <cite title="Source Title">Source Title</cite></small>--}}
-                </blockquote>
             </div><!-- /.box-body -->
-        </div><!-- /.box -->
     </div><!-- ./col -->
 </div><!-- /.row -->
 {{---------------------------------------------------------------------------------------------------------------}}
