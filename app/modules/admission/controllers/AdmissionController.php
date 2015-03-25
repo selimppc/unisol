@@ -466,7 +466,7 @@ class AdmissionController extends \BaseController {
     {
         $data = Input::all();
 //         print_r($data);exit;
-        
+
         $model = new BatchAdmtestSubject();
 //        print_r($data);exit;
 
@@ -654,9 +654,19 @@ class AdmissionController extends \BaseController {
 
     }
 
-    public function addAdmTestExaminer()
+    public function addAdmTestExaminer($year_id, $semester_id, $batch_id)
     {
-        return View::make('admission::amw.adm_examiner._form');
+        $degree_id = Batch::where('id' ,'=', $batch_id )
+            ->where('semester_id' ,'=', $semester_id)
+            ->where('year_id' ,'=', $year_id)
+            ->first()->degree_id;
+
+        $degree_data = Degree::with('relDepartment')
+            ->where('id','=', $degree_id)
+            ->first();
+
+
+        return View::make('admission::amw.adm_examiner._form',compact('degree_data','degree_id','batch_id'));
     }
 
 
@@ -664,11 +674,29 @@ class AdmissionController extends \BaseController {
     {
         $data = Input::all();
         $model = new AdmExaminer();
-        if($model->validate($data)){
-            if($model->create($data)){
+        $model->batch_id = Input::get('batch_id');
+        $model->user_id = Input::get('user_id');
+        $model->type = Input::get('type');
+        $model->assigned_by = Auth::user()->get()->id;
+        $model->status = Input::get('status');
+
+        $model->save();
+
+        if ($model->validate($data)) {
+
+                $mod_comments = new AdmExaminerComments();
+                $mod_comments->batch_id = Input::get('batch_id');
+                $mod_comments->comment = Input::get('comment');
+
+                $mod_comments->commented_to = Input::get('user_id');
+                $mod_comments->commented_by = Auth::user()->get()->id;
+                $mod_comments->status = 1;
+
+                $mod_comments->save();
+
                 Session::flash('message', 'Successfully added Information!');
                 return Redirect::back();
-            }
+
         }else{
             $errors = $model->errors();
             Session::flash('errors', $errors);

@@ -8,13 +8,17 @@
         {{Form::open(array('url'=>'admission/amw/admission-test-examiner/store-admission-test-examiner', 'class'=>'form-horizontal','files'=>true))}}
 
                     <div class='form-group'>
-                        <strong> Degree Name: </strong> </br>
+                        <strong> Degree Name: </strong>{{ Degree::findOrFail($degree_id)->relDegreeProgram->code.''.Degree::findOrFail($degree_id)->relDegreeGroup->code }} </br>
                     </div>
 
                     <div class='form-group'>
-                        <strong> Department: </strong>
+                        <strong> Department: </strong>{{ $degree_data->relDepartment->title }}
                     </div>
 
+                     <div class='form-group'>
+                               {{ Form::label('batch_id', 'Batch ID : will be hidden field') }}
+                               {{ Form::text('batch_id',$batch_id,Input::old('batch_id'),['class'=>'form-control' ]) }} </br>
+                     </div>
 
                     <div class='form-group'>
                         {{ Form::label('type', 'Examiner Type') }}
@@ -25,13 +29,23 @@
 
                     <div class="form-group">
                         {{ Form::label('user_id', 'Name of Faculty:') }}
-                        {{ Form::select('user_id', User::AmwList(),null, array('class' => 'form-control','required'=>'required') ) }}
+                        {{ Form::select('user_id', User::AmwList(),Input::old('user_id'), array('class' => 'form-control','required'=>'required') ) }}
                     </div>
 
-                {{--<div class="form-group">--}}
-                         {{--{{ Form::label('comment', 'Comment:') }}--}}
-                         {{--{{ Form::textarea('comment', Null, ['size' => '40x6','placeholder'=>'Your Comments Here']) }}--}}
-                {{--</div>--}}
+                   <div class="form-group">
+                       {{ Form::hidden('assign_by', 'Assign By:') }}
+                       {{ Form::hidden('assign_by', Auth::user()->get()->id ,Input::old('assign_by'), array('class' => 'form-control','required'=>'required') ) }}
+                   </div>
+
+                    <div class="form-group">
+                       {{ Form::label('status', 'Status:') }}
+                       {{ Form::select('status', array('Requested' => 'Requested','Accepted' => 'Accepted','Deny' => 'Deny','Cancel' => 'Cancel'),Input::old('user_id'), array('class' => 'form-control','required'=>'required') ) }}
+                   </div>
+
+                    <div class="form-group">
+                             {{ Form::label('comment', 'Comment:') }}
+                             {{ Form::textarea('comment', Null, ['size' => '40x6','placeholder'=>'Your Comments Here']) }}
+                    </div>
 
               {{ Form::submit('Save', array('class'=>'pull-right btn btn-info')) }}
               <a href="" class="pull-right btn btn-default" style="margin-right: 5px">Close</a>

@@ -1,26 +1,34 @@
-<div style="padding: 5px; width: 90%;">
+<div style="padding-left: 10px; width: 90%;">
 
-             <h2>Welcome to View Examiners <strong></strong> </h2> </br>
-             {{--{{ Form::open(array('route'=>'admission_test.amw.view_examiners','method' => '')) }}--}}
-                     {{--<div class="jumbotron text-center">--}}
-                            {{--<strong> Department: </strong>{{ $data }} </br>--}}
+ <h1>View View Examiners</h1>
 
-                            {{--<strong> Degree: </strong> {{ Degree::getDegreeName($degree_id) }} </br>--}}
+    {{ Form::open(array('route'=>'admission.amw.admission-test-examiner.view-admission-test-examiner','method' => '')) }}
 
-                            {{--<strong> Name of Faculty: </strong> {{ $adm_view_examiners->relUser->relUserProfile->first_name.' '.$adm_view_examiners->relUser->relUserProfile->middle_name.' '.$adm_view_examiners->relUser->relUserProfile->last_name }} </br>--}}
 
-                            {{--<strong> Status: </strong>  {{ $adm_view_examiners->status }} </br>--}}
+        <div class="span9 well" style="font-size: large; margin-left: 40px">
 
-                            {{--<strong> Comments: </strong> </br> --}}{{--{{ $adm_view_examiners->comment }}--}}{{-- </br>--}}
+            <h2><strong>Department :</strong> </h2>
 
-                            {{--<div class="form-group">--}}
-                                  {{--{{ Form::textarea('comment', Null, ['size' => '40x6','placeholder'=>'Your Comments Here']) }}--}}
-                            {{--</div>--}}
+            <p>
+                <strong> Degree :</strong>  <br>
 
-                     {{--</div>--}}
+                <strong> Name of Faculty :</strong>  <br>
 
-                     {{--<a href="{{URL::previous('admission_test/amw/examiners')}}" class="btn btn-default btn-xs">Close </a>--}}
-                     {{--{{ Form::submit('Comments', array('class' => 'btn btn-primary btn-xs')) }}--}}
-             {{--{{ Form::close() }}--}}
+                <strong> Status :</strong>  <br>
 
+                <strong> Comments :</strong>  <br>
+
+                <div class="form-group">
+                      {{ Form::textarea('comment', Null, ['size' => '40x6','placeholder'=>'Your Comments Here']) }}
+                </div>
+            </p>
+        </div>
+
+    <a href="" class="pull-right btn btn-info" span class="glyphicon-refresh">Close</a>
+
+    &nbsp;
+    </br>
+    &nbsp;
+
+    {{ Form::close() }}
 </div>
