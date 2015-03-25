@@ -677,11 +677,11 @@ class AdmissionController extends \BaseController {
 
     }
 
-    public function viewAdmTestExaminers($degree_id){
+    public function viewAdmTestExaminers(){
 //        $adm_view_examiners = AdmExaminer::where('id' ,'=', $degree_id)->first();
 //        $data = Degree::with('relDepartment')->where('id' ,'=', $degree_id)->first()->relDepartment->title;
 //
-        return View::make('admission::amw.admission_examiner.view_examiners',
+        return View::make('admission::amw.adm_examiner.view_examiners',
             compact('data','adm_view_examiners','degree_id'));
     }
 
