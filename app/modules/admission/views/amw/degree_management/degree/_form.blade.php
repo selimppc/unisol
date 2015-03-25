@@ -5,7 +5,7 @@
 </div>
 
 <div class="modal-body">
-      <div style="padding: 20px;">
+      <div style="padding: 0px 20px 20px 20px;">
 
           {{Form::open(array('url'=>'admission/amw/degree/store', 'class'=>'form-horizontal','files'=>true))}}
           <div class="row">
