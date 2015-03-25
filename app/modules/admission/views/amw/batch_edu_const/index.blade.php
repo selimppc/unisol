@@ -6,13 +6,24 @@
 
 @section('content')
 
+{{-----------------------------------------Help Text -------------------------------------------------------------------------------------}}
+<div class="row">
+    <div class="col-md-12">
+                <h3>Batch Education Constraint</h3>
+            <div class="help-text-top">
+             You can view all lists of Batch Education Constraints Lists. Also this panel will allow you to perform some actions to <b>Add Education Constraint</b>, <b>Edit</b>, <b>Delete</b>, under the column <b>Action</b>.
+                    {{--<small>Someone famous in <cite title="Source Title">Source Title</cite></small>--}}
+            </div><!-- /.box-body -->
+    </div><!-- ./col -->
+</div><!-- /.row -->
+{{-----------------------------------------Help Text ends ----------------------------------------------------------------------}}
 
  <div class="box box-solid ">
         <div class="box box-info">
               <div class="box-header">
-              <h3 class="box-title">Batch Education Constraint</h3>
+
                   <div class="box-tools pull-right">
-                       <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('admission/amw/batch-edu-const/create')}}" data-toggle="modal" data-target="#eduConstModal" style="color: #ffffff"><b>Add Education Constraint</b></a>
+                       <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('admission/amw/batch-education-constraint/create')}}" data-toggle="modal" data-target="#eduConstModal" style="color: #ffffff"><b>Add Education Constraint</b></a>
                   </div>
               <p>&nbsp;</p>
               </div>
@@ -44,9 +55,9 @@
                                                             <td>{{$value->min_gpa}}</td>
 
                                                             <td>
-                                                                 <a href="{{ URL::to('admission/amw/batch-edu-const/show/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#eduConstModal" style="font-size: 12px;color: darkmagenta"><span class="fa fa-eye"></span></a>
-                                                                 <a class="btn btn-xs btn-default" href="{{ URL::to('admission/amw/batch-edu-const/edit/'.$value->id) }}" data-toggle="modal" data-target="#eduConstModal" style="font-size: 12px;color: lightseagreen"><i class="fa fa-edit"></i></a>
-                                                                 <a data-href="{{ URL::to('admission/amw/batch-edu-const/delete/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" style="font-size: 12px;color: lightcoral"><span class="fa  fa-trash-o"></span></a>
+                                                                 <a href="{{ URL::to('admission/amw/batch-education-constraint/show/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#eduConstModal" style="font-size: 12px;color: darkmagenta"><span class="fa fa-eye"></span></a>
+                                                                 <a class="btn btn-xs btn-default" href="{{ URL::to('admission/amw/batch-education-constraint/edit/'.$value->id) }}" data-toggle="modal" data-target="#eduConstModal" style="font-size: 12px;color: lightseagreen"><i class="fa fa-edit"></i></a>
+                                                                 <a data-href="{{ URL::to('admission/amw/batch-education-constraint/delete/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" style="font-size: 12px;color: lightcoral"><span class="fa  fa-trash-o"></span></a>
 
                                                             </td>
                                                         </tr>

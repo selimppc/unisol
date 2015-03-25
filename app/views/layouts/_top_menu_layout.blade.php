@@ -49,7 +49,7 @@
         <li><a tabindex="-1" a href="{{ URL::to('admission/amw/degree') }}"></i>Degree (Amw)</a></li>
         <li><a tabindex="-1" a href="{{ URL::to('admission/amw/batch') }}"></i>Batch (Amw)</a></li>
         <li><a tabindex="-1" a href="{{ URL::to('admission/amw/waiver') }}"></i>Waiver (Amw)</a></li>
-        <li><a tabindex="-1" a href="{{ URL::to('admission/amw/batch-edu-const') }}"></i>Batch Education Constraint</a></li>
+        <li><a tabindex="-1" a href="{{ URL::to('admission/amw/batch-education-constraint') }}"></i>Batch Education Constraint</a></li>
         <li><a tabindex="-1" a href="{{ action('AdmAmwController@degree_courses_index') }}"></i>Degree Course(Go from degree list) </a></li>
         <li><a tabindex="-1" a href="{{ URL::to('admission/amw/batch-course') }}"></i>Batch Course(Go from batch list)</a></li>
 {{--        <li><a tabindex="-1" a href="{{action('AdmissionController@mngBatchAdmTestSubject') }}"></i>Mng Admssn Tst Sbjct(Amw)</a></li>--}}
