@@ -9,7 +9,7 @@
            <strong> Degree : </strong>{{ isset($degree_name->relDegree->title) ? $degree_name->relDegree->title : 'Degree Not Found!' }}
       </div>
 
-        {{Form::open(array('url'=>'admission/amw/batch-adm-test-subject/store_admtest_subject', 'class'=>'form-horizontal','files'=>true))}}
+        {{Form::open(array('url'=>'admission/amw/batch-adm-test-subjects/store_admtest_subjects', 'class'=>'form-horizontal','files'=>true))}}
 
                  <div class='form-group'>
 

@@ -446,13 +446,13 @@ class AdmissionController extends \BaseController {
         return View::make('admission::amw.batch_adm_test_subject.view',compact('view_adm_test_subject'));
     }
 
-    public function createBatchAdmTestSubject()
+    public function createBatchAdmTestSubject($batch_id)
     {
 //        print_r($batch_id);exit;
         $subject_id_result = AdmTestSubject::lists('title', 'id');
 
         $degree_name = Batch::with('relDegree')
-//            ->where('id' ,'=', $batch_id)
+            ->where('id' ,'=', $batch_id)
             ->first();
 //
 //        $degree_name = BatchAdmtestSubject::with('relDegree')
@@ -465,6 +465,8 @@ class AdmissionController extends \BaseController {
     public function storeBatchAdmTestSubject()
     {
         $data = Input::all();
+//         print_r($data);exit;
+        
         $model = new BatchAdmtestSubject();
 //        print_r($data);exit;
 
