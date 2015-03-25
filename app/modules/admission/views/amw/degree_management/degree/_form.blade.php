@@ -10,13 +10,9 @@
           {{Form::open(array('url'=>'admission/amw/degree/store', 'class'=>'form-horizontal','files'=>true))}}
           <div class="row">
                   <div class="help-text-top">
-                    <em>If you want to add a new degree, You have to fillup this form. </em>
+                    <em>If you want to add a new degree, You have to fillup this form.  <span style="color:red;">  (*) </span>Indicates required field. Please do not skip these fields.</em>
                   </div>
           </div><!-- /.row -->
-
-          <div class="form-group">
-              <span class="text-muted"><em><span style="color:red;">  * </span><b>Indicates required field. Please do not skip these fields.</b> </em></span>
-          </div>
 
           <div class='form-group'>
 
