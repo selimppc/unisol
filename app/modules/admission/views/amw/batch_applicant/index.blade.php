@@ -5,9 +5,22 @@
 @stop
 
 @section('content')
-<a class="pull-right btn btn-sm btn-success" href="{{ URL::route('admission.amw.batch' )}}"> <i class="fa fa-arrow-circle-left"></i> Go Back</a>
+{{-----------------------------------------Help Text -------------------------------------------------------------------------------------}}
+<div class="row">
+    <div class="col-md-12">
+    <a class="pull-right btn btn-sm btn-success" href="{{ URL::route('admission.amw.batch' )}}"> <i class="fa fa-arrow-circle-left"></i> Go Back</a>
 
-<h3>Admission On </h3>
+                <h3>Batch Applicant</h3>
+
+            <div class="help-text-top">
+             You can view all lists of Applicant Lists. Also this panel will allow you to perform some actions to <b>Change Status</b>, <b>View</b> under the column <b>Action</b>. And you can change more than one applicant's status selecting them.
+            </div><!-- /.box-body -->
+    </div><!-- ./col -->
+</div><!-- /.row -->
+{{-----------------------------------------Help Text ends ----------------------------------------------------------------------}}
+
+
+<h4>Admission On </h4>
       <p>
      {{--<b style="font-style: italic">--}}
         @if(isset($batchApt))
@@ -21,12 +34,10 @@
 
  <div class="box box-solid ">
     <div class="box box-info">
-          <h3 class="box-title">Batch Applicant</h3>
+    <br>
      {{--------------------------------------- Filter Starts --------------------------------------------------------------}}
 
-          {{ Form::open(array('url'=>'admission/amw/batch-apt/status','class'=>'form-horizontal')) }}
-
-
+          {{ Form::open(array('route'=>['admission.amw.batch-applicant.index',$batch_id],'class'=>'form-horizontal')) }}
           <div  class="col-lg-3 pull-right" >
               <div class="input-group input-group-sm">
                   {{ Form::select('status', ['' => 'Select Status']+$status , Input::old('status'),['class'=>'form-control input-sm '])}}
