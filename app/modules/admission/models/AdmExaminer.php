@@ -16,8 +16,8 @@ class AdmExaminer extends Eloquent{
         'batch_id' => 'required|integer',
         'user_id' => 'required|integer',
         'type' => 'required',
-        'assigned_by' => 'required|integer',
-        'deadline' => 'date',
+        'assigned_by' => 'integer',
+         //'deadline' => 'date',
     ];
     public function validate($data)
     {

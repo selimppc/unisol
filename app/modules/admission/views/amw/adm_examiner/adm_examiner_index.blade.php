@@ -11,7 +11,7 @@
             <div class="row">
                        <div class="col-sm-12">
                            <div class="pull-right col-sm-4">
-                               <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('admission/amw/admission-test-examiner/add-admission-test-examiner')}}" data-toggle="modal" data-target="#modal" >Add Examiners</a>
+                               <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('admission/amw/admission-test-examiner/add-admission-test-examiner',['year_id'=>$year_id, 'semester_id'=>$semester_id,'batch_id'=>$batch_id])}}" data-toggle="modal" data-target="#modal" >Add Examiners</a>
                            </div>
                        </div>
             </div>
@@ -54,7 +54,7 @@
                                 <td><input type="checkbox" name="id[]" class="myCheckbox" value="{{ $adm_examiners_list['id'] }}"></td>
 
                                  <td>
-                                 {{ HTML::linkAction('AdmissionController@viewAdmTestExaminers',User::FullName($adm_examiners_list->user_id), ['data-toggle'=>"modal", 'data-target'=>"#modal"]) }}
+                                 {{ HTML::linkAction('AdmissionController@viewAdmTestExaminers',User::FullName($adm_examiners_list->user_id),['id'=>$adm_examiners_list->id], ['data-toggle'=>"modal", 'data-target'=>"#modal"]) }}
 
                                  </td>
 
@@ -75,7 +75,7 @@
         <div class="modal-dialog" style="z-index:1050">
           <div class="modal-content">
 
-         </div>
+          </div>
         </div>
 </div>
 

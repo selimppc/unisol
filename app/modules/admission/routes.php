@@ -293,7 +293,7 @@ Route::any('admission/amw/admission-test-examiner/{year_id}/{semester_id}/{batch
     'uses' => 'AdmissionController@admExaminerIndex'
 ]);
 
-Route::any('admission/amw/admission-test-examiner/add-admission-test-examiner',[
+Route::any('admission/amw/admission-test-examiner/add-admission-test-examiner/{year_id}/{semester_id}/{batch_id}',[
     'as' => 'admission.amw.admission-test-examiner.add-admission-test-examiner',
     'uses' => 'AdmissionController@addAdmTestExaminer'
 ]);
