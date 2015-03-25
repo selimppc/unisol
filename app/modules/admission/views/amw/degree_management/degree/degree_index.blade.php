@@ -34,7 +34,7 @@
                     <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('admission/amw/degree/create')}}" data-toggle="modal" data-target="#degreeModal" style="color: #ffffff"><b>Add Degree</b></a>
 
                 </div>
-                
+
             {{ Form::close() }}
             </p>
 
