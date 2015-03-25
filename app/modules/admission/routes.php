@@ -211,8 +211,8 @@ Route::any('admission/amw/batch-adm-test-subject/create_admtest_subject/{batch_i
     'uses' => 'AdmissionController@createBatchAdmTestSubject'
 ]);
 
-Route::any('admission/amw/batch-adm-test-subject/store_admtest_subject', [
-    'as' => 'admission.amw.batch-adm-test-subject.store_admtest_subject',
+Route::any('admission/amw/batch-adm-test-subjects/store_admtest_subjects', [
+    'as' => 'admission.amw.batch-adm-test-subjects.store_admtest_subjects',
     'uses' => 'AdmissionController@storeBatchAdmTestSubject'
 ]);
 
