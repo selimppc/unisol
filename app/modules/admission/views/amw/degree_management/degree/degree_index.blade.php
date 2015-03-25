@@ -4,7 +4,7 @@
 @stop
 @section('content')
 
-{{-----------------------------------------Help Text ----------------------------------------------------------}}
+{{-----------------------------------------Help Text -------------------------------------------------------------------------------------}}
 <div class="row">
     <div class="col-md-12">
                 <h3>Degree</h3>
@@ -14,12 +14,12 @@
             </div><!-- /.box-body -->
     </div><!-- ./col -->
 </div><!-- /.row -->
-{{---------------------------------------------------------------------------------------------------------------}}
+{{-----------------------------------------Help Text ends ----------------------------------------------------------------------}}
 
     <div class="box box-solid ">
         <div class="box box-info">
 
-                {{-------------------------------------------------------------Searching Starts--------------------------------------------------------------}}
+{{-------------------Searching Starts--------------------------------------------------------------}}
 
             <p>{{ Form::open(array('url'=>'admission/amw/degree/search','class'=>'form-horizontal')) }}
                 <div  class="col-lg-3">
@@ -34,16 +34,15 @@
                     <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('admission/amw/degree/create')}}" data-toggle="modal" data-target="#degreeModal" style="color: #ffffff"><b>Add Degree</b></a>
 
                 </div>
-                
+
             {{ Form::close() }}
             </p>
-
-
-                {{--------------------------------------------------------------Searching Ends--------------------------------------------------------------------}}
+{{------------Searching Ends--------------------------------------------------------------------}}
             </div>
             <div class="box-body">
                 <div class="row">
                     <div class="col-lg-12">
+                    <br>
                         {{ Form::open(array('url' => 'admission/amw/degree/batch_delete')) }}
                         <table id="example1" class="table table-bordered">
                             <thead>
@@ -92,7 +91,7 @@
     <div class="text-right">
         {{ $model->links() }}
     </div>
-    {{----------------------------------------------Modal : degreeGroupModal--------------------------------------------------------------------------}}
+{{----------------------Modal : degreeGroupModal--------------------------------------------------------------------------}}
     <div class="modal fade" id="degreeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
