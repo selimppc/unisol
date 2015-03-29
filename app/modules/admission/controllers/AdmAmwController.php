@@ -677,11 +677,10 @@ class AdmAmwController extends \BaseController
             ->get();
 
         $facultyList =  array('' => 'Select faculty ') +User::FacultyList();
-        $status = CourseConduct::with('relCourse')
-            ->where('course_id' , '=' ,$course_id)
-            ->get();
+        $cc_status = CourseConduct::where('course_id' , '=' ,$course_id)
+            ->first();
 
-        return View::make('admission::amw.batch_course.assign_faculty_index',compact('facultyList','batch_course','status'));
+        return View::make('admission::amw.batch_course.assign_faculty_index',compact('facultyList','batch_course','cc_status'));
     }
 
     public function assign_faculty_save()

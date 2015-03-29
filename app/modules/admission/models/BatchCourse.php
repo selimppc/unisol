@@ -79,5 +79,41 @@ class BatchCourse extends Eloquent{
         return $this->hasMany('BatchCourse','semester_id', 'semester_id') ;
     }
 
+    public function parent1()
+    {
+        return $this->belongsTo('BatchCourse', 'semester_id')->groupBy('semester_id');
+    }
+
+    public function children1()
+    {
+        return $this->hasMany('BatchCourse', 'year_id', 'year_id');
+    }
+
+
+
+    public function children()
+    {
+        return $this->hasMany('BatchCourse', 'year_id');
+    }
+
+// recursive, loads all descendants
+    public function childrenRecursive()
+    {
+        return $this->children()->with('childrenRecursive');
+        // which is equivalent to:
+        // return $this->hasMany('Survey', 'parent')->with('childrenRecursive);
+    }
+
+// parent
+    public function parent()
+    {
+        return $this->belongsTo('BatchCourse','year_id');
+    }
+
+// all ascendants
+    public function parentRecursive()
+    {
+        return $this->parent()->with('parentRecursive');
+    }
 
 } 
