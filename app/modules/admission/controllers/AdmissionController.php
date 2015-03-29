@@ -316,8 +316,10 @@ class AdmissionController extends \BaseController {
             return Redirect::back();
         }
 
-
-
     }
+
+//  --------------------------------------------------    new code    --------------------------------------------------
+
+
 
 }
