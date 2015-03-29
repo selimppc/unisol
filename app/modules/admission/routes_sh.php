@@ -9,7 +9,19 @@
 
 
 
-Route::any('admission/faculty/admission-test',[
-    'as' => 'admission.faculty.admission-test',
-    'uses' => 'AdmFacultyController@indexAdmissionTest'
+Route::any('admission/faculty/batch-admtest-subject',[
+    'as' => 'admission.faculty.batch-admtest-subject',
+    'uses' => 'AdmFacultyController@indexBatchAdmTestSubject'
+]);
+
+
+Route::any('admission/faculty/batch-admtest-subject/search-admtest-subject-index',[
+    'as' => 'admission.faculty.batch-admtest-subject.search-admtest-subject-index',
+    'uses' => 'AdmFacultyController@searchBatchAdmTestSubject'
+]);
+
+
+Route::any('admission/faculty/batch-admtest-subject/batchDelete', [
+    'as' => 'admission.faculty.batch-admtest-subject.batchDelete',
+    'uses' => 'AdmFacultyController@batchDelete'
 ]);

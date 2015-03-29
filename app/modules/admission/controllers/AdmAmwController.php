@@ -724,16 +724,15 @@ class AdmAmwController extends \BaseController
 
 //.................................................batch....................................................
 
-    public function batchIndex()
+    public function batchIndex($degree_id)
     {
-        $batch_management = Batch::latest('id')->paginate(10);
-
-        $dpg_list = Degree::DegreeProgramGroup();
+        $batch_management = Batch::where('degree_id', '=', $degree_id)->latest('id')->paginate(10);
+        $dpg_list = array('' => 'Select Degree Program ') + Degree::DegreeProgramGroup();
         $year_list = array('' => 'Year ') + Year::lists('title', 'id');
         $department_list = array('' => 'Department ') + Department::lists('title', 'id');
 
         return View::make('admission::amw.batch.index',
-            compact('batch_management','dpg_list','year_list','department_list'));
+            compact('degree_id','batch_management','dpg_list','year_list','department_list'));
     }
 
     public function batchShow($id)
@@ -742,24 +741,23 @@ class AdmAmwController extends \BaseController
         return View::make('admission::amw.batch.show',compact('b_m_course'));
     }
 
-    public function batchCreate()
+    public function batchCreate($degree_id)
     {
-        $dpg_list = Degree::DegreeProgramGroup();
+        $dpg_list = array('' => 'Select Degree Program ') + Degree::DegreeProgramGroup();
+        $year_list = array('' => 'Select Year ') + Year::lists('title', 'id');
+        $semester_list = array('' => 'Select Semester ') + Semester::lists('title', 'id');
 
-        $year_list = Year::lists('title', 'id');
-        $semester_list = Semester::lists('title', 'id');
-
-        return View::make('admission::amw.batch._form',compact('dpg_list','year_list','semester_list'));
+        return View::make('admission::amw.batch._form',compact('degree_id','dpg_list','year_list','semester_list'));
     }
 
     public function batchStore()
     {
         $data = Input::all();
-
         $model = new Batch();
         if($model->validate($data)){
             if($model->create($data)){
                 Session::flash('message', 'Successfully added Information!');
+                //return Redirect::to('admission/amw/batch/'.$model->degree_id);
                 return Redirect::back();
             }
         }else{
@@ -775,9 +773,9 @@ class AdmAmwController extends \BaseController
     {
         $batch_edit = Batch::find($id);
 
-        $dpg_list = Degree::DegreeProgramGroup();
-        $year_list = Year::lists('title', 'id');
-        $semester_list = Semester::lists('title', 'id');
+        $dpg_list = array('' => 'Select Degree Program') + Degree::DegreeProgramGroup();
+        $year_list = array('' => 'Select Year ') + Year::lists('title', 'id');
+        $semester_list = array('' => 'Select Semester ') + Semester::lists('title', 'id');
 
         return View::make('admission::amw.batch.edit',compact('batch_edit','dpg_list','year_list','semester_list'));
     }
