@@ -144,7 +144,7 @@ class AdmAmwController extends \BaseController
 
         $degree_model = Degree::orderby('id', 'DESC')->paginate(5);
 
-        return View::make('admission::amw.degree_management.index',
+        return View::make('admission::amw.degree.index',
             compact('degree_model'));
     }
 
@@ -156,7 +156,7 @@ class AdmAmwController extends \BaseController
         $year = array('' => 'Please Select Year') + Year::lists('title', 'id');
         $degree_program = array('' => 'Please Select ') + DegreeProgram::lists('title', 'id');
 
-        return View::make('admission::amw.degree_management.degree_modals._form',
+        return View::make('admission::amw.degree.degree_modals._form',
             compact('year', 'semester', 'department', 'degree_program'));
     }
 
@@ -201,7 +201,7 @@ class AdmAmwController extends \BaseController
     {
 
         $degree_model = Degree::find($id);
-        return View::make('admission::amw.degree_management.degree_modals.show',
+        return View::make('admission::amw.degree.degree_modals.show',
             compact('degree_model'));
     }
 
@@ -213,7 +213,7 @@ class AdmAmwController extends \BaseController
         $department = Department::lists('title', 'id');
         $semester = Semester::lists('title', 'id');
         $degree_program = DegreeProgram::lists('title', 'id');
-        return View::make('admission::amw.degree_management.degree_modals.edit',
+        return View::make('admission::amw.degree.degree_modals.edit',
             compact('degree_model', 'department', 'year', 'semester', 'degree_program', 'semester'));
     }
 
@@ -258,14 +258,14 @@ class AdmAmwController extends \BaseController
         $degree_waiver = DegreeWaiver::with('relWaiver')
             ->where('degree_id', '=', $id)
             ->get();
-        return View::make('admission::amw.degree_management.degree_waiver_index',
+        return View::make('admission::amw.degree.degree_waiver_index',
             compact('degree_model', 'degree_waiver'));
     }
 
     public function degreeWaiverCreate($degree_id)
     {
         $waiverList = array('' => 'Select Waiver Item ') + Waiver::lists('title','id');
-        return View::make('admission::amw.degree_management.degree_modals.add_degree_waiver',
+        return View::make('admission::amw.degree.degree_modals.add_degree_waiver',
             compact('waiverList', 'degree_id'));
     }
 
@@ -301,20 +301,20 @@ class AdmAmwController extends \BaseController
         $deg_waiver_const = WaiverConstraint::with('relDegreeWaiver')
             ->where('degree_waiver_id', '=', $id)
             ->get();
-        return View::make('admission::amw.degree_management.deg_waiver_const',
+        return View::make('admission::amw.degree.deg_waiver_const',
             compact('degree_model','deg_waiver','deg_waiver_const'));
 
     }
 
     public function degWaiverTimeConstCreate($degree_waiver_id){
 
-        return View::make('admission::amw.degree_management.degree_modals.add_time_const',
+        return View::make('admission::amw.degree.degree_modals.add_time_const',
             compact('degree_waiver_id'));
     }
 
     public function degWaiverGpaConstCreate($degree_waiver_id){
 
-        return View::make('admission::amw.degree_management.degree_modals.add_gpa_const',
+        return View::make('admission::amw.degree.degree_modals.add_gpa_const',
             compact('degree_waiver_id'));
     }
 
@@ -343,7 +343,7 @@ class AdmAmwController extends \BaseController
 
         $time_const_model = WaiverConstraint::find($id);
 
-        return View::make('admission::amw.degree_management.degree_modals.edit_time_const',
+        return View::make('admission::amw.degree.degree_modals.edit_time_const',
             compact('time_const_model'));
 
     }
@@ -352,7 +352,7 @@ class AdmAmwController extends \BaseController
 
         $gpa_const_model = WaiverConstraint::find($id);
 
-        return View::make('admission::amw.degree_management.degree_modals.edit_gpa_const',
+        return View::make('admission::amw.degree.degree_modals.edit_gpa_const',
             compact('gpa_const_model'));
 
     }
@@ -729,10 +729,10 @@ class AdmAmwController extends \BaseController
         $batch_management = Batch::latest('id')->paginate(10);
 
         $dpg_list = Degree::DegreeProgramGroup();
-        $year_list = array('' => 'Year ') +Year::lists('title', 'id');
-        $department_list = array('' => 'Department ') +Department::lists('title', 'id');
+        $year_list = array('' => 'Year ') + Year::lists('title', 'id');
+        $department_list = array('' => 'Department ') + Department::lists('title', 'id');
 
-        return View::make('admission::amw.batch.batch_management_index',
+        return View::make('admission::amw.batch.index',
             compact('batch_management','dpg_list','year_list','department_list'));
     }
 
@@ -1252,7 +1252,7 @@ class AdmAmwController extends \BaseController
     public function admDegreeIndex(){
         $model = Degree::latest('id')->paginate(10);
         $department = array('' => 'Select Department ') + Department::lists('title', 'id');
-        return View::make('admission::amw.degree_management.degree.degree_index',
+        return View::make('admission::amw.degree.degree.index',
             compact('model','department'));
     }
 
@@ -1261,7 +1261,7 @@ class AdmAmwController extends \BaseController
         $department = array('' => 'Select Department ') + Department::lists('title', 'id');
         $degree_program = array('' => 'Select Department ') + DegreeProgram::lists('title', 'id');
         $degree_group = array('' => 'Select Department ') + DegreeGroup::lists('title', 'id');
-        return View::make('admission::amw.degree_management.degree._form',
+        return View::make('admission::amw.degree.degree._form',
             compact('department','degree_program','degree_group'));
     }
 
@@ -1269,23 +1269,22 @@ class AdmAmwController extends \BaseController
     {
         $data = Input::all();
         $model = new Degree();
-
         if($model->validate($data)){
             if($model->create($data)){
-                Session::flash('message','Successfully added Information!');
+                Session::flash('message','Successfully added Degree Information!');
                 return Redirect::back();
             }
-        }else{
-            $errors = $model->errors();
-            Session::flash('errors', $errors);
-            return Redirect::back();
-        }
+            }else{
+                $errors = $model->errors();
+                Session::flash('errors', $errors);
+                return Redirect::back();
+            }
     }
 
     public function admDegreeShow($id)
     {
         $model = Degree::find($id);
-        return View::make('admission::amw.degree_management.degree.degree_show',compact('model'));
+        return View::make('admission::amw.degree.degree.degree_show',compact('model'));
     }
 
     public function admDegreeEdit($id)
@@ -1294,7 +1293,7 @@ class AdmAmwController extends \BaseController
         $department = array('' => 'Select Department ') + Department::lists('title', 'id');
         $degree_program = array('' => 'Select Department ') + DegreeProgram::lists('title', 'id');
         $degree_group = array('' => 'Select Department ') + DegreeGroup::lists('title', 'id');
-        return View::make('admission::amw.degree_management.degree.degree_edit',
+        return View::make('admission::amw.degree.degree.degree_edit',
             compact('model','department','degree_program','degree_group'));
     }
 
@@ -1302,17 +1301,16 @@ class AdmAmwController extends \BaseController
     {
         $model = Degree::find($id);
         $data = Input::all();
-
         if($model->validate($data)){
             if($model->update($data)){
                 Session::flash('message','Successfully Updated Information!');
                 return Redirect::back();
             }
-        }else{
-            $errors = $model->errors();
-            Session::flash('errors', $errors);
-            return Redirect::back();
-        }
+            }else{
+                $errors = $model->errors();
+                Session::flash('errors', $errors);
+                return Redirect::back();
+            }
     }
 
     public function admDegreeDelete($id)
@@ -1330,9 +1328,8 @@ class AdmAmwController extends \BaseController
         $searchQuery = $department_id = Input::get('search_department');
         $department = array('' => 'Select Department ') + Department::lists('title', 'id');
         if($searchQuery){
-
             $model = Degree::with(['relDepartment'])->where('department_id', '=', $searchQuery)->paginate(5);
-            return View::make('admission::amw.degree_management.degree.degree_index',
+            return View::make('admission::amw.degree.degree.index',
                 compact('model','department'));
         }else{
             return Redirect::to('admission/amw/degree');

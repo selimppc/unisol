@@ -406,44 +406,47 @@ Route::post('admission/amw/assign-faculty-save',
 /*Tanin
 
 */
-//{------------------ Degree -------------------------------------------------------------}
+//{------------------ Degree Table -------------------------------------------------------------}
 
-Route::any('admission/amw/degree',
-    ['as'=>'admission.amw.degree.index',
-        'uses'=>'AdmAmwController@admDegreeIndex']);
+Route::any('admission/amw/degree', [
+    'as'=>'admission.amw.degree.index',
+    'uses'=>'AdmAmwController@admDegreeIndex'
+]);
 
+Route::any('admission/amw/degree/create', [
+    'as'=>'common.amw.degree.create',
+    'uses'=>'AdmAmwController@admDegreeCreate'
+]);
 
-Route::any('admission/amw/degree/create',
-    ['as'=>'common.amw.degree.create',
-        'uses'=>'AdmAmwController@admDegreeCreate']);
+Route::any('admission/amw/degree/store', [
+    'as'=>'admission.amw.degree.store',
+    'uses'=>'AdmAmwController@admDegreeStore'
+]);
 
+Route::any('admission/amw/degree/show/{id}', [
+    'as'=>'admission.amw.degree.show',
+    'uses'=>'AdmAmwController@admDegreeShow'
+]);
 
-Route::any('admission/amw/degree/store',
-    ['as'=>'admission.amw.degree.store',
-        'uses'=>'AdmAmwController@admDegreeStore']);
+Route::any('admission/amw/degree/edit/{id}', [
+    'as'=>'admission.amw.degree.edit',
+    'uses'=>'AdmAmwController@admDegreeEdit'
+]);
 
+Route::any('admission/amw/degree/update/{id}', [
+    'as'=>'admission.amw.degree.update',
+    'uses'=>'AdmAmwController@admDegreeUpdate'
+]);
 
-Route::any('admission/amw/degree/show/{id}',
-    ['as'=>'admission.amw.degree.show',
-        'uses'=>'AdmAmwController@admDegreeShow']);
+Route::any('admission/amw/degree/delete/{id}', [
+    'as'=>'admission.amw.degree.delete',
+    'uses'=>'AdmAmwController@admDegreeDelete'
+]);
 
-Route::any('admission/amw/degree/edit/{id}',
-    ['as'=>'admission.amw.degree.edit',
-        'uses'=>'AdmAmwController@admDegreeEdit']);
-
-
-Route::any('admission/amw/degree/update/{id}',
-    ['as'=>'admission.amw.degree.update',
-        'uses'=>'AdmAmwController@admDegreeUpdate']);
-
-Route::any('admission/amw/degree/delete/{id}',
-    ['as'=>'admission.amw.degree.delete',
-        'uses'=>'AdmAmwController@admDegreeDelete']);
-
-
-Route::any('admission/amw/degree/search',
-    ['as'=>'admission.amw.degree.search',
-        'uses'=>'AdmAmwController@admDegreeSearch']);
+Route::any('admission/amw/degree/search', [
+    'as'=>'admission.amw.degree.search',
+    'uses'=>'AdmAmwController@admDegreeSearch'
+]);
 
 //{----------------- Waiver ----------------------------------------------------------------}
 

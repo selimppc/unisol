@@ -381,7 +381,7 @@ class UserSignupController extends \BaseController {
 
         $model = Degree::latest('id')->paginate(5);
         $department = array('' => 'Select Department ') + Department::lists('title', 'id');
-        return View::make('admission::amw.degree_management.degree.degree_index',
+        return View::make('admission::amw.degree.degree.degree_index',
                   compact('model','department'));
         }
 
@@ -390,7 +390,7 @@ class UserSignupController extends \BaseController {
         $department = array('' => 'Select Department ') + Department::lists('title', 'id');
         $degree_program = array('' => 'Select Department ') + DegreeProgram::lists('title', 'id');
         $degree_group = array('' => 'Select Department ') + DegreeGroup::lists('title', 'id');
-        return View::make('admission::amw.degree_management.degree._form',
+        return View::make('admission::amw.degree.degree._form',
                   compact('department','degree_program','degree_group'));
     }
 
@@ -414,7 +414,7 @@ class UserSignupController extends \BaseController {
     public function admDegreeShow($id)
     {
         $model = Degree::find($id);
-        return View::make('admission::amw.degree_management.degree.degree_show',compact('model'));
+        return View::make('admission::amw.degree.degree.degree_show',compact('model'));
     }
 
     public function admDegreeEdit($id)
@@ -423,7 +423,7 @@ class UserSignupController extends \BaseController {
         $department = array('' => 'Select Department ') + Department::lists('title', 'id');
         $degree_program = array('' => 'Select Department ') + DegreeProgram::lists('title', 'id');
         $degree_group = array('' => 'Select Department ') + DegreeGroup::lists('title', 'id');
-        return View::make('admission::amw.degree_management.degree.degree_edit',
+        return View::make('admission::amw.degree.degree.degree_edit',
                   compact('model','department','degree_program','degree_group'));
     }
 
@@ -461,7 +461,7 @@ class UserSignupController extends \BaseController {
         if($searchQuery){
 
           $model = Degree::with(['relDepartment'])->where('department_id', '=', $searchQuery)->paginate(5);
-          return View::make('admission::amw.degree_management.degree.degree_index',
+          return View::make('admission::amw.degree.degree.degree_index',
                     compact('model','department'));
         }else{
             return Redirect::to('admission/amw/degree');
