@@ -46,6 +46,20 @@
             <a href="">Version 2 </a>
         </li>
 
+        <li class="footer">
+            <a href="">Faculty </a>
+        </li>
+
+        {{--batch_admtest_subject--table --}}
+
+         <li><a tabindex="-1" a href="{{ URL::to('admission/faculty/admission-test') }}"></i> Admision Test </a></li>
+
+
+
+        <li class="footer">
+            <a href=""> Amw </a>
+        </li>
+
         <li><a tabindex="-1" a href="{{ URL::to('admission/amw/degree') }}"></i>Degree (Amw)</a></li>
         <li><a tabindex="-1" a href="{{ URL::to('admission/amw/batch') }}"></i>Batch (Amw)</a></li>
         <li><a tabindex="-1" a href="{{ URL::to('admission/amw/waiver') }}"></i>Waiver (Amw)</a></li>
