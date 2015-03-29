@@ -34,7 +34,7 @@
 
                 <div class='form-group'>
                    {{ Form::label('description', 'Description') }}
-                   {{ Form::textarea('description', Input::old('description'),['size' => '30x5','class'=>'form-control','required'=>'required']) }}
+                   {{ Form::textarea('description', Input::old('description'),['size' => '30x5','class'=>'form-control']) }}
                 </div>
 
                 <div class='form-group'>
