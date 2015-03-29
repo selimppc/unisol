@@ -205,7 +205,7 @@ class AdmissionController extends \BaseController {
 
 
         return View::make('admission::amw.admission_test.adm_test_degree',
-            compact('degree_management','d_m_year_id','d_m_semester_id',
+            compact('degree','d_m_year_id','d_m_semester_id',
                 'department','semester','year','degree_program'));
 
     }

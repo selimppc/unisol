@@ -68,13 +68,13 @@
                                         <td>{{ $value->total_credit}}</td>
                                         <td>{{ $value->duration}}</td>
                                         <td>
-                                        <a href="{{ URL::to('admission/amw/degree/show/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#degreeModal" style="font-size: 12px;color: darkmagenta"><span class="fa fa-eye"></span></a>
+                                            <a href="{{ URL::route('admission.amw.degree.show', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#degreeModal" style="font-size: 12px;color: darkmagenta"><span class="fa fa-eye"></span></a>
 
-                                        <a class="btn btn-xs btn-default" href="{{ URL::to('admission/amw/degree/edit/'.$value->id) }}" data-toggle="modal" data-target="#degreeModal" style="font-size: 12px;color: lightseagreen"><i class="fa fa-edit"></i></a>
+                                            <a class="btn btn-xs btn-default" href="{{ URL::route('admission.amw.degree.edit', ['id'=>$value->id]) }}" data-toggle="modal" data-target="#degreeModal" style="font-size: 12px;color: lightseagreen"><i class="fa fa-edit"></i></a>
 
-                                        <a data-href="{{ URL::to('admission/amw/degree/delete/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" style="font-size: 12px;color: lightcoral"><span class="fa  fa-trash-o"></span></a>
+                                            <a data-href="{{ URL::to('admission/amw/degree/delete/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" style="font-size: 12px;color: lightcoral"><span class="fa  fa-trash-o"></span></a>
 
-                                        <a href="{{ URL::route('admission.amw.degree_courses', ['id'=>$value->id])  }}" class="btn btn-xs btn-info">DC</a>
+                                            <a href="{{ URL::route('admission.amw.degree_courses', ['id'=>$value->id])  }}" class="btn btn-xs btn-info">DC</a>
                                         </td>
                                     </tr>
                                 @endforeach
