@@ -21,30 +21,32 @@
 
                        <div class="col-lg-12">
 
-                              <table class="table  table-bordered">
-                                  @if ($degree_applicant->count())
+                              <table class="table table-striped table-bordered">
+                                  @if (isset($batch_applicant))
                                         <tbody>
+
                                             <tr>
                                                 <th rowspan="70%" style="vertical-align: middle"><b style="font-size: medium">Degree Name</b></th>
                                             </tr>
 
-                                            @foreach($degree_applicant as $value)
+                                                @foreach($batch_applicant as $value)
 
-                                                <tr>
-                                                     <td class="col-lg-10">
-                                                           <a href="{{ URL::route('admission.adm_test_details',
-                                                               ['degree_id' => $value->id]) }}">
-                                                               {{ $value->relDegree->title }}
-                                                           </a>
-                                                     </td>
-                                                </tr>
-                                            @endforeach
+                                                    <tr>
+                                                         <td class="col-lg-10">
+                                                               <a href="{{ URL::route('admission.adm_test_details',
+                                                                   ['batch_id' => $value->id]) }}">
+                                                                   {{ $value->relBatch->relDegree->title }}
+                                                               </a>
+                                                         </td>
+                                                    </tr>
+                                                @endforeach
+
                                         </tbody>
                                   @else
                                         <div class="col-xs-12" style="text-align: center;">
                                              <span class="btn btn-xs btn btn-info" style="color:#ffffff;">No data found !</span>
                                         </div>
-                                        @endif
+                                  @endif
                               </table>
                        </div>
                    </div>

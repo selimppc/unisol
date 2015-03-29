@@ -19,7 +19,7 @@
                     <div class="row">
 
                         <div class="col-lg-12">
-                           {{ Form::open(['route' => ['admission.degree_apt_save']]) }}
+                           {{ Form::open(['route' => ['admission.public.degree_apply']]) }}
                            <table class="table table-bordered table-striped">
                                <thead>
                                      <tr>
@@ -35,8 +35,8 @@
                                               <tr>
                                                      <td> <input type="checkbox" name="ids[]"  id="check" class="myCheckbox" value="{{ $value->id }}"></td>
                                                      <td>
-                                                             <a href="{{ URL::route('admission.degree_details',
-                                                             ['degree_id' => $value->id]) }}">
+                                                             <a href="{{ URL::route('admission.degree_offer_details',
+                                                             ['batch_id' => $value->id]) }}">
                                                              {{ $value->relDegree->title }}
                                                              </a>
                                                      </td>
