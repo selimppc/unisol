@@ -23,21 +23,21 @@ include("routes_ra.php");
 // ----------------------------------------AMW : Admission Test --------------------------------------------------------
 
 //Deshboard
-Route::any('admission_test/amw/dashboard', [
-    'as' => 'admission_test.amw.dashboard',
-    'uses' => 'AdmissionController@admAmwDashboard'
-]);
-
-//Index
-Route::any('admission_test/amw/index',[
-    'as' => 'admission_test.amw.index',
-    'uses' => 'AdmissionController@admissionTestIndex'
-]);
-
-Route::any('admission_test/amw/search-index', [
-    'as' => 'admission_test.amw.search_index',
-    'uses' => 'AdmissionController@searchIndex'
-]);
+//Route::any('admission_test/amw/dashboard', [
+//    'as' => 'admission_test.amw.dashboard',
+//    'uses' => 'AdmissionController@admAmwDashboard'
+//]);
+//
+////Index
+//Route::any('admission_test/amw/index',[
+//    'as' => 'admission_test.amw.index',
+//    'uses' => 'AdmissionController@admissionTestIndex'
+//]);
+//
+//Route::any('admission_test/amw/search-index', [
+//    'as' => 'admission_test.amw.search_index',
+//    'uses' => 'AdmissionController@searchIndex'
+//]);
 
 // ----------------------------------------AMW : Examiner --------------------------------------------------------
 
@@ -303,7 +303,7 @@ Route::any('admission/amw/admission-test-examiner/store-admission-test-examiner'
     'uses' => 'AdmissionController@storeAdmTestExaminer'
 ]);
 
-Route::any('admission/amw/admission-test-examiner/view-admission-test-examiner',[
+Route::any('admission/amw/admission-test-examiner/view-admission-test-examiner/{id}',[
     'as' => 'admission.amw.admission-test-examiner.view-admission-test-examiner',
     'uses' => 'AdmissionController@viewAdmTestExaminers'
 ]);
@@ -314,17 +314,30 @@ Route::any('admission/amw/admission-test-question/{year_id}/{semester_id}/{batch
     'uses' => 'AdmissionController@admQuestionIndex'
 ]);
 
-Route::any('admission/amw/admission-test-question/create-admtest-question-paper',[
+Route::any('admission/amw/admission-test-question/create-admtest-question-paper/{year_id}/{semester_id}/{batch_id}',[
     'as' => 'admission.amw.admission-test-question.create-admtest-question-paper',
     'uses' => 'AdmissionController@createAdmTestQuestionPaper'
 ]);
 
-Route::any('admission/amw/admission-test-question/store-admission-test-question-paper',[
-    'as' => 'admission.amw.admission-test-question.store-admission-test-question-paper',
+Route::any('admission/amw/admission-test-question/store-admtest-question-paper',[
+    'as' => 'admission.amw.admission-test-question.store-admtest-question-paper',
     'uses' => 'AdmissionController@storeAdmTestQuestionPaper'
 ]);
 
+Route::any('admission/amw/admission-test-question/view-admtest-question-paper/{id}',[
+    'as' => 'admission.amw.admission-test-question.view-admtest-question-paper',
+    'uses' => 'AdmissionController@viewAdmTestQuestionPaper'
+]);
 
+Route::any('admission/amw/admission-test-question/edit-admtest-question-paper/{id}/{year_id}/{semester_id}/{batch_id}',[
+    'as' => 'admission.amw.admission-test-question.edit-admtest-question-paper',
+    'uses' => 'AdmissionController@editAdmTestQuestionPaper'
+]);
+
+Route::any('admission/amw/admission-test-question/update-admtest-question-paper/{id]',[
+    'as' => 'admission.amw.admission-test-question.update-admtest-question-paper',
+    'uses' => 'AdmissionController@updateAdmTestQuestionPaper'
+]);
 
 
 

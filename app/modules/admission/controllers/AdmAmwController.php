@@ -671,14 +671,48 @@ class AdmAmwController extends \BaseController
 
     public function assign_faculty_index($course_id,$dep_id)
     {
-//        $course_id = $course_id;
-//        $dep_id = $dep_id;
+
         $batch_course = BatchCourse::with('relBatch','relBatch.relDegree','relCourse','relYear','relSemester')
             ->where('course_id' , '=' ,$course_id)
             ->get();
 
         $facultyList =  array('' => 'Select faculty ') +User::FacultyList();
+        $status = CourseConduct::with('relCourse')
+            ->where('course_id' , '=' ,$course_id)
+            ->get();
 
-        return View::make('admission::amw.batch_course.assign_faculty_index',compact('facultyList','batch_course','course_id','dep_id'));
+        return View::make('admission::amw.batch_course.assign_faculty_index',compact('facultyList','batch_course','status'));
     }
+
+    public function assign_faculty_save()
+   {
+       $data = Input::all();
+       $model = new CourseConduct();
+       $model->course_id = Input::get('course_id');
+       $model->faculty_user_id = Input::get('faculty_user_id');
+       $model->year_id = Input::get('year_id');
+       $model->semester_id = Input::get('semester_id');
+       $model->degree_id = Input::get('degree_id');
+       $model->status = 'requested';
+       $model->save();
+       $course_conduct_id = $model->id;//to get last inserted id
+
+       if($model->validate($data)){
+               $comments = new CourseConductComments();
+               $comments->course_conduct_id = $course_conduct_id;
+               $comments->comments = Input::get('comments');
+               $comments->commented_to = Input::get('faculty_user_id');
+               $comments->commented_by = Auth::user()->get()->id;
+               $comments->status = 'requested';
+               $comments->save();
+
+               Session::flash('message', 'Successfully added Information!');
+               return Redirect::back();
+       }else{
+           $errors = $model->errors();
+           Session::flash('errors', $errors);
+           return Redirect::back();
+       }
+   }
+
 }

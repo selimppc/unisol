@@ -323,7 +323,7 @@ class AdmissionController extends \BaseController {
 //new code
 
 
-//.................................................Batch Management....................................................
+//.................................................batch....................................................
 
     public function batchManagementIndex()
     {
@@ -425,7 +425,7 @@ class AdmissionController extends \BaseController {
     }
 
 
-//..............................................Manage Admission Test Subject...........................................
+//..............................................batch_admtest_subject...........................................
 
     public function mngBatchAdmTestSubject($batch_id)
     {
@@ -517,7 +517,7 @@ class AdmissionController extends \BaseController {
     }
 
 
-//.................................................Only Subject Management....................................................
+//.................................................admtest_subject....................................................
 
 
     public function AdmissionTestSubjectIndex()
@@ -585,22 +585,21 @@ class AdmissionController extends \BaseController {
         }
     }
 
-//..................................................Admission Test Management : Home.......................................
+//............................................ Admission Test Management : Home ........................................
 
     public function admissionTestIndex()
     {
-        $admission_test_batch = Batch::latest('id')->get();
+//        $admission_test_batch = BatchAdmtestSubject::latest('id')->get();
 
-//        $admission_test_degree = Degree::latest('id')->get();
-
-        $degree_id = Batch::with('relDegree','relDegree.relDepartment','relYear','relSemester')
-            ->first();
+        $admission_test_home = BatchAdmtestSubject::with('relBatch','relBatch.relDegree',
+            'relBatch.relDegree.relDepartment','relBatch.relYear','relBatch.relSemester')
+            ->get();
 
         $year_id = array('' => 'Select Year ') + Year::lists('title', 'id');
         $semester_id = array('' => 'Select Semester ') + Semester::lists('title', 'id');
 
         return View::make('admission::amw.adm_test_home.index',
-            compact('degree_id','admission_test_batch','admission_test_degree','year_id','semester_id'));
+            compact('admission_test_home','admission_test_batch','year_id','semester_id'));
     }
 
     public function admissionTestSearchIndex()
@@ -610,7 +609,7 @@ class AdmissionController extends \BaseController {
             'semester_id' =>   Input::get('semester_id'),
         ];
 
-        $model = new Batch();
+        $model = new BatchAdmtestSubject();
         $adm_test_home_data = Helpers::search($searchQuery, $model);
         $year_id = array('' => 'Select Year ') + Year::lists('title', 'id');
         $semester_id = array('' => 'Select Semester ') + Semester::lists('title', 'id');
@@ -634,7 +633,7 @@ class AdmissionController extends \BaseController {
     }
 
 
-//..................................................Admission Test : Examiner.......................................
+//..................................................admtest_examiner.......................................
 
     public function admExaminerIndex( $year_id, $semester_id, $batch_id)
     {
@@ -665,10 +664,8 @@ class AdmissionController extends \BaseController {
             ->where('id','=', $degree_id)
             ->first();
 
-
         return View::make('admission::amw.adm_examiner._form',compact('degree_data','degree_id','batch_id'));
     }
-
 
     public function storeAdmTestExaminer()
     {
@@ -703,20 +700,18 @@ class AdmissionController extends \BaseController {
             return Redirect::back()
                 ->with('errors', 'invalid');
         }
-
-
     }
 
     public function viewAdmTestExaminers(){
 //        $adm_view_examiners = AdmExaminer::where('id' ,'=', $degree_id)->first();
-//        $data = Degree::with('relDepartment')->where('id' ,'=', $degree_id)->first()->relDepartment->title;
-//
+        $data = AdmExaminer::with('relBatch','relBatch.relDegree')->first()->relBatch->relDegree->relDepartment->title;
+
         return View::make('admission::amw.adm_examiner.view_examiners',
-            compact('data','adm_view_examiners','degree_id'));
+            compact('data','exm_info','exm_comnt_info'));
     }
 
 
-//..................................................Admission Test : Question paper.......................................
+//..................................................admtest_question.......................................
 
     public function admQuestionIndex( $year_id, $semester_id, $batch_id)
     {
@@ -739,14 +734,107 @@ class AdmissionController extends \BaseController {
 //        print_r($batch_admtst_sbjct_name);exit;
 
         return View::make('admission::amw.adm_question.adm_question_index',
-            compact('semester_id','year_id','adm_test_question_paper','degree_id','degree_data'));
+            compact('semester_id','year_id','adm_test_question_paper','degree_id','degree_data','batch_id'));
     }
 
-    public function createAdmTestQuestionPaper()
+
+    public function createAdmTestQuestionPaper($year_id, $semester_id, $batch_id)
     {
-        return View::make('admission::amw.adm_question._form');
+
+        $degree_id = Batch::where('id' ,'=', $batch_id )
+            ->where('semester_id' ,'=', $semester_id)
+            ->where('year_id' ,'=', $year_id)
+            ->first()->degree_id;
+
+        $degree_data = Degree::with('relDepartment')
+            ->where('id','=', $degree_id)
+            ->first();
+
+        // join querrylagbe :: selim vai
+        //adm_question.batch_admtest_subject_id with batch_admtest_subject.admtest_subject_id and admtest_subject.title
+
+        $batch_admtest_subject = AdmTestSubject::lists('title','id');
+
+        return View::make('admission::amw.adm_question._form',
+            compact('batch_id','year_id','semester_id','degree_id','degree_data','batch_admtest_subject'));
     }
 
+
+    public function storeAdmTestQuestionPaper()
+    {
+        $data = Input::all();
+        $model = new AdmQuestion();
+        if($model->validate($data)){
+            if($model->create($data)){
+                Session::flash('message', 'Successfully added Information!');
+                return Redirect::back();
+            }
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()
+                ->with('errors', 'invalid');
+        }
+
+    }
+
+
+    public function viewAdmTestQuestionPaper($id)
+    {
+        $view_questions = AdmQuestion::with('relBatchAdmtestSubject', 'relBatchAdmtestSubject.relBatch', 'relBatchAdmtestSubject.relBatch.relDegree')
+            ->where('id', $id)->first();
+
+        return View::make('admission::amw.adm_question.view_question',compact(
+            'view_questions'));
+    }
+
+
+    public function editAdmTestQuestionPaper($id , $year_id, $semester_id, $batch_id)
+    {
+        $edit_admtest_question = AdmQuestion::find($id);
+
+        $degree_id = Batch::where('id' ,'=', $batch_id )
+            ->where('semester_id' ,'=', $semester_id)
+            ->where('year_id' ,'=', $year_id)
+            ->first()->degree_id;
+
+        $degree_data = Degree::with('relDepartment')
+            ->where('id','=', $degree_id)
+            ->first();
+
+        $batch_admtest_subject = AdmTestSubject::lists('title','id');
+
+
+        return View::make('admission::amw.adm_question.edit_question',
+            compact('batch_admtest_subject','edit_admtest_question','year_id','semester_id','batch_id','degree_id','degree_data'));
+    }
+
+
+    public function updateAdmTestQuestionPaper($id)
+    {
+        $model = AdmQuestion::find($id);
+        $data = Input::all();
+
+        if($model->validate($data)){
+            if($model->update($data)){
+                Session::flash('message', 'Successfully Updates Information!');
+                return Redirect::back();
+            }
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()
+                ->with('error', 'invalid');
+        }
+    }
+
+    public function assignFacutly()
+    {
+
+        echo "ei part tuku baki ace // shafi";
+
+
+    }
 
 
 
