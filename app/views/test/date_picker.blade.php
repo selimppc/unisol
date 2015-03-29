@@ -90,11 +90,11 @@
         </div>
     </div>
 
-    @foreach($data as $values)
+    @foreach($surveys as $values)
         Year: {{$values->year_id}} <br>
-        @foreach($values->semesterByYear as $semester)
+        @foreach($values->children1 as $semester)
             &nbsp; &nbsp; &nbsp;  Semester--: {{$semester->semester_id}}  <br>
-            @foreach($semester->courseBySemester as $course)
+            @foreach($semester->children1 as $course)
                 &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;  Course--: {{$course->course_id}}  <br>
             @endforeach
         @endforeach
