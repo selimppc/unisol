@@ -157,17 +157,17 @@ Route::any('admission_test/amw/update_subject_management/{id}', [
 // ----------------------------------------AMW : Batch Management ------------------------------------------------------
 
 
-Route::any('admission/amw/batch',[
+Route::any('admission/amw/batch/{degree_id}',[
     'as' => 'admission.amw.batch',
     'uses' => 'AdmAmwController@batchIndex'
 ]);
 
-Route::any('admission/amw/batch/create',[
+Route::any('admission/amw/batch-create/{degree_id}',[
     'as' => 'admission.amw.batch.create',
     'uses' => 'AdmAmwController@batchCreate'
 ]);
 
-Route::any('admission/amw/batch/store', [
+Route::any('admission/amw/batch-store', [
     'as' => 'admission.amw.batch.store',
     'uses' => 'AdmAmwController@batchStore'
 ]);

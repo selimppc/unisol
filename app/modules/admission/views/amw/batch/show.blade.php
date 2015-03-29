@@ -1,26 +1,53 @@
-<div style="padding-left: 10px; width: 90%;">
+<div style="padding-left: 8%; width: 90%;">
+<div class="modal-body">
+ <h1> View Batch </h1>
 
- <h1>View Batch</h1>
+        <div class="row">
+            <h2><strong> Batch Number :</strong>{{ $b_m_course->batch_number }}</h2>
+            <table class="table table-striped  table-bordered">
+                <tr>
+                    <td><strong> Degree:</strong></td>
+                    <td>{{ $b_m_course->relDegree->title }}</td>
+                </tr>
+                <tr>
+                    <td><strong> Year:</strong></td>
+                    <td>{{ $b_m_course->relYear->title }}</td>
+                </tr>
+                <tr>
+                    <td><strong> Semester:</strong></td>
+                    <td>{{ $b_m_course->relSemester->title }}</td>
+                </tr>
+                <tr>
+                    <td><strong> Description:</strong></td>
+                    <td>{{ $b_m_course->description }}</td>
+                </tr>
+                <tr>
+                    <td><strong> Total Seat:</strong></td>
+                    <td>{{ $b_m_course->seat_total }}</td>
+                </tr>
+                <tr>
+                    <td><strong> Start Date:</strong></td>
+                    <td>{{ $b_m_course->start_date }}</td>
+                </tr>
+                <tr>
+                    <td><strong> End Date:</strong></td>
+                    <td>{{ $b_m_course->end_date }}</td>
+                </tr>
+                <tr>
+                    <td><strong> Admission Deadline:</strong></td>
+                    <td>{{ $b_m_course->admission_deadline }}</td>
+                </tr>
+                <tr>
+                    <td><strong> Admission Test Date:</strong></td>
+                    <td>{{ $b_m_course->admtest_date }}</td>
+                </tr>
+                <tr>
+                    <td><strong> Admission Test Start Time:</strong></td>
+                    <td>{{ $b_m_course->admtest_start_time }}</td>
+                </tr>
 
-    {{ Form::open(array('url'=>'admission/amw/batch/show','method' => '')) }}
+            </table>
 
-
-        <div class="span9 well" style="font-size: large; margin-left: 40px">
-
-            <h2><strong>Batch Number :</strong>{{ $b_m_course->batch_number }}</h2>
-
-            <p>
-                <strong> Degree:</strong> {{ $b_m_course->relDegree->title }} <br>
-                <strong> Year:</strong> {{ $b_m_course->relYear->title }}<br>
-                <strong> Semester:</strong> {{ $b_m_course->relSemester->title }}<br>
-                <strong> Description:</strong> {{ $b_m_course->description }}<br>
-                <strong> Total Seat:</strong> {{ $b_m_course->seat_total }}<br>
-                <strong> Start Date:</strong> {{ $b_m_course->start_date }}<br>
-                <strong> End Date:</strong> {{ $b_m_course->end_date }}<br>
-                <strong> Admission Deadline:</strong> {{ $b_m_course->admission_deadline }}<br>
-                <strong> Admission Test Date:</strong> {{ $b_m_course->admtest_date }}<br>
-                <strong> Admission Test Start Time:</strong> {{ $b_m_course->admtest_start_time }}<br>
-            </p>
         </div>
 
     <a href="" class="pull-right btn btn-info" span class="glyphicon-refresh">Close</a>
@@ -29,7 +56,6 @@
     </br>
     &nbsp;
 
-    {{ Form::close() }}
-
+</div>
 
 </div>

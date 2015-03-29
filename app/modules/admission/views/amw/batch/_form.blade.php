@@ -4,88 +4,70 @@
 </div>
 
 
-{{--{{ HTML::style('assets/etsb/etsb_css/bootstrap/bootstrap.min.css') }}--}}
-{{--{{ HTML::style('assets/etsb/etsb_css/datepicker/datepicker.css') }}--}}
-{{--{{ HTML::script('assets/js/jquery-2.1.1.min.js') }}--}}
-{{--{{ HTML::script('assets/etsb/etsb_js/bootstrap/bootstrap.min.js')}}--}}
-{{--{{ HTML::script('assets/etsb/etsb_js/datepicker/bootstrap-datepicker.min.js')}}--}}
-{{--<script type="text/javascript">--}}
-            {{--$(function() {--}}
-                {{--$('.date-picker').each(function() {--}}
-
-                    {{--var $picker = $(this);--}}
-                    {{--$picker.datepicker({--}}
-                        {{--format:'yyyy-mm-dd'--}}
-                    {{--});--}}
-                    {{--var pickerObject = $picker.data('date-picker');--}}
-
-                    {{--$picker.on('changeDate', function(ev){--}}
-                        {{--$picker.datepicker('hide');--}}
-                    {{--});--}}
-                {{--});--}}
-            {{--});--}}
-{{--</script>--}}
-
 
 <div class="modal-body">
      <div style="padding: 20px;">
-        {{Form::open(array('url'=>'admission/amw/batch/store', 'class'=>'form-horizontal','files'=>true))}}
+        {{Form::open(array('url'=>'admission/amw/batch-store', 'class'=>'form-horizontal','files'=>true))}}
+{{--                {{Form::hidden('degree_id', $degree_id)}}--}}
 
                 <div class='form-group'>
-                           {{ Form::label('degree_id', 'Degree') }}
-                           {{ Form::select('degree_id',$dpg_list,null,['class'=>'form-control']) }}
+                    <div class="col-sm-4" style="padding-left: 0;">
+                        {{ Form::label('degree_id', 'Degree') }}
+                       {{ Form::select('degree_id', $dpg_list, $degree_id,['class'=>'form-control']) }}
+                    </div>
+
+                    <div class="col-sm-4" style="padding-right: 0;">
+                        {{ Form::label('semester_id', 'Semester') }}
+                       {{ Form::select('semester_id',$semester_list,null,['class'=>'form-control']) }}
+                    </div>
+
+                    <div class="col-sm-4">
+                        {{ Form::label('year_id', 'Year') }}
+                       {{ Form::select('year_id',$year_list,null,['class'=>'form-control']) }}
+                    </div>
                 </div>
 
                 <div class='form-group'>
-                           {{ Form::label('year_id', 'Year') }}
-                           {{ Form::select('year_id',$year_list,null,['class'=>'form-control']) }}
-                </div>
-
-                 <div class='form-group'>
-                           {{ Form::label('semester_id', 'Semester') }}
-                           {{ Form::select('semester_id',$semester_list,null,['class'=>'form-control']) }}
-                 </div>
-
-                <div class='form-group'>
-                           {{ Form::label('description', 'Description') }}
-                           {{ Form::textarea('description', Input::old('description'),['size' => '30x5','class'=>'form-control','required'=>'required']) }}
+                   {{ Form::label('batch_number', 'Batch Number') }}
+                   {{ Form::text('batch_number', Input::old('batch_number'),['class'=>'form-control','required'=>'required']) }}
                 </div>
 
                 <div class='form-group'>
-                           {{ Form::label('batch_number', 'Batch Number') }}
-                           {{ Form::text('batch_number', Input::old('batch_number'),['class'=>'form-control','required'=>'required']) }}
+                   {{ Form::label('description', 'Description') }}
+                   {{ Form::textarea('description', Input::old('description'),['size' => '30x5','class'=>'form-control']) }}
                 </div>
 
                 <div class='form-group'>
-                           {{ Form::label('seat_total', 'Total Seat') }}
-                           {{ Form::text('seat_total', Input::old('seat_total'),['class'=>'form-control','required'=>'required']) }}
+                   {{ Form::label('seat_total', 'Total Seat') }}
+                   {{ Form::text('seat_total', Input::old('seat_total'),['class'=>'form-control','required'=>'required']) }}
                 </div>
 
                 <div class='form-group'>
-                           {{ Form::label('start_date', 'Start Date') }}
-                           {{ Form::text('start_date', Input::old('start_date'),['class'=>'form-control date_picker']) }}
+                   {{ Form::label('start_date', 'Start Date') }}
+                   {{ Form::text('start_date', Input::old('start_date'),['class'=>'form-control date_picker']) }}
                 </div>
 
                 <div class='form-group'>
-                           {{ Form::label('end_date', 'End Date') }}
-                           {{ Form::text('end_date', Input::old('end_date'),['class'=>'form-control date_picker','required'=>'required']) }}
+                   {{ Form::label('end_date', 'End Date') }}
+                   {{ Form::text('end_date', Input::old('end_date'),['class'=>'form-control date_picker','required'=>'required']) }}
                 </div>
 
                 <div class='form-group'>
-                           {{ Form::label('admission_deadline', 'Admission Deadline') }}
-                           {{ Form::text('admission_deadline', Input::old('admission_deadline'),['class'=>'form-control date_picker','required'=>'required']) }}
+                   {{ Form::label('admission_deadline', 'Admission Deadline') }}
+                   {{ Form::text('admission_deadline', Input::old('admission_deadline'),['class'=>'form-control date_picker','required'=>'required']) }}
                 </div>
 
                 <div class='form-group'>
-                           {{ Form::label('admtest_date', 'Admission Test Date') }}
-                           {{ Form::text('admtest_date', Input::old('admtest_date'),['class'=>'form-control date_picker','required'=>'required']) }}
+                   {{ Form::label('admtest_date', 'Admission Test Date') }}
+                   {{ Form::text('admtest_date', Input::old('admtest_date'),['class'=>'form-control date_picker','required'=>'required']) }}
                 </div>
 
                 <div class='form-group'>
-                           {{ Form::label('admtest_start_time', 'Admission Test Start Time') }}
-                           {{ Form::text('admtest_start_time', Input::old('admtest_start_time'),['class'=>'form-control','required'=>'required']) }}
-                           {{--<input type="time" name="admtest_start_time" class="form-control"/>--}}
+                   {{ Form::label('admtest_start_time', 'Admission Test Start Time') }}
+                   {{ Form::text('admtest_start_time', Input::old('admtest_start_time'),['class'=>'form-control','required'=>'required']) }}
                 </div>
+
+                {{Form::hidden('status', 1)}}
 
 
               {{ Form::submit('Save', array('class'=>'pull-right btn btn-info')) }}

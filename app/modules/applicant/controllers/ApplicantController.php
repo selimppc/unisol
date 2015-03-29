@@ -4,12 +4,7 @@ class ApplicantController extends \BaseController
 
     public function index()
     {
-        return View::make('applicant::applicants.index');
-    }
-
-    public function create()
-    {
-        return View::make('applicant::applicants.create');
+        return View::make('applicant::signup.signup');
     }
 
     public function store()

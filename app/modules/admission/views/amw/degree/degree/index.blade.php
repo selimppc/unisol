@@ -26,12 +26,12 @@
                     <div class="input-group input-group-sm">
                         {{ Form::select('search_department', $department , Input::old('search_department'),['class'=>'form-control input-sm '])}}
                         <span class="input-group-btn">
-                            <button class="btn btn-info btn-flat" type="submit">Search</button>
+                            <button class="btn btn-info btn-flat" type="submit" title="Search ..">Search</button>
                         </span>
                     </div>
                 </div>
                 <div class="col-lg-9" class="box-tools pull-right">
-                    <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('admission/amw/degree/create')}}" data-toggle="modal" data-target="#degreeModal" style="color: #ffffff"><b>Add Degree</b></a>
+                    <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('admission/amw/degree/create')}}" data-toggle="modal" data-target="#degreeModal" style="color: #ffffff" title="New Degree"><b>Add Degree</b></a>
 
                 </div>
 
@@ -68,13 +68,11 @@
                                         <td>{{ $value->total_credit}}</td>
                                         <td>{{ $value->duration}}</td>
                                         <td>
-                                            <a href="{{ URL::route('admission.amw.degree.show', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#degreeModal" style="font-size: 12px;color: darkmagenta"><span class="fa fa-eye"></span></a>
-
-                                            <a class="btn btn-xs btn-default" href="{{ URL::route('admission.amw.degree.edit', ['id'=>$value->id]) }}" data-toggle="modal" data-target="#degreeModal" style="font-size: 12px;color: lightseagreen"><i class="fa fa-edit"></i></a>
-
-                                            <a data-href="{{ URL::to('admission/amw/degree/delete/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" style="font-size: 12px;color: lightcoral"><span class="fa  fa-trash-o"></span></a>
-
-                                            <a href="{{ URL::route('admission.amw.degree_courses', ['id'=>$value->id])  }}" class="btn btn-xs btn-info">DC</a>
+                                            <a href="{{ URL::route('admission.amw.degree.show', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#degreeModal" style="font-size: 12px;color: darkmagenta" title="View"><span class="fa fa-eye"></span></a>
+                                            <a class="btn btn-xs btn-default" href="{{ URL::route('admission.amw.degree.edit', ['id'=>$value->id]) }}" data-toggle="modal" data-target="#degreeModal" style="font-size: 12px;color: lightseagreen"><i class="fa fa-edit" title="Update"></i></a>
+                                            <a data-href="{{ URL::to('admission/amw/degree/delete/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" style="font-size: 12px;color: lightcoral" title="Remove"><span class="fa  fa-trash-o"></span></a>
+                                            <a href="{{ URL::route('admission.amw.degree_courses', ['id'=>$value->id])  }}" class="btn btn-xs btn-info" title="Degree Course"> DC </a>
+                                            <a href="{{ URL::route('admission.amw.batch', ['degree_id'=>$value->id])  }}" class="btn btn-xs btn-success" title="Batch Manage"> BM </a>
                                         </td>
                                     </tr>
                                 @endforeach

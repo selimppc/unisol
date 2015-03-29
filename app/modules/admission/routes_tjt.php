@@ -141,19 +141,19 @@ Route::any('amw/waiver_manage/update/{id}', ['as' => 'waiver_manage.update','use
 // ----------------------------Public : Admission starts----------------------------------------------------------
 
 //Degree_list
-Route::any('admission/public/degree_list',[
-        'as' => 'admission.degree_list',
-        'uses' => 'AdmPublicController@admDegreeList'
+Route::any('admission/public/degree-offer-list',[
+        'as' => 'admission.public.degree_offer_list',
+        'uses' => 'AdmPublicController@degreeOfferList'
 ]);
 //Degree Details
-Route::any('admission/public/degree_details/{degree_id}',
-        ['as' => 'admission.degree_details',
-        'uses' => 'AdmPublicController@admDegreeApplicantDetails']);
+Route::any('admission/public/degree-offer-details/{id}',
+        ['as' => 'admission.degree_offer_details',
+        'uses' => 'AdmPublicController@degreeOfferDetails']);
 
 //Degree_applicant Save
-Route::any('admission/public/admission/degree_apt_save',
-    ['as' => 'admission.degree_apt_save',
-        'uses' => 'AdmPublicController@admDegreeApplicantSave']);
+Route::any('admission/public/admission/degree-apply',
+    ['as' => 'admission.public.degree_apply',
+        'uses' => 'AdmPublicController@degreeApply']);
 
 //Adm_applicant_profile
 Route::any('admission/public/admission/apt_profile_details/{id}',
