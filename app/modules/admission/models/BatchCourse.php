@@ -76,18 +76,20 @@ class BatchCourse extends Eloquent{
         return $this->hasMany('BatchCourse','year_id', 'year_id');
     }
     public function courseBySemester() {
-        return $this->hasMany('BatchCourse','semester_id', 'semester_id') ;
+        return $this->hasMany('BatchCourse','semester_id', 'course_id') ;
     }
 
-    public function parent1()
-    {
-        return $this->belongsTo('BatchCourse', 'semester_id')->groupBy('semester_id');
-    }
 
     public function children1()
     {
-        return $this->hasMany('BatchCourse', 'year_id', 'year_id');
+        return $this->hasMany('BatchCourse', 'year_id', 'year_id')->orderBy('year_id');
     }
+
+    public function children2()
+    {
+        return $this->children1()->with('children2')->orderBy('year_id');
+    }
+
 
 
 
