@@ -833,7 +833,7 @@ class UserSignupController extends \BaseController {
         }
     }
 
-// {---------------------------------------------Batch Applicant----------------------------------------------------------------------}
+// {-----------------  Batch Applicant    ----------------------------------------------------------------------}
 
     public function batchApplicantIndex($batch_id){
         $model = new BatchApplicant();
