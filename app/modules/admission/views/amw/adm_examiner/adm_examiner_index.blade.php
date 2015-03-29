@@ -54,7 +54,7 @@
                                 <td><input type="checkbox" name="id[]" class="myCheckbox" value="{{ $adm_examiners_list['id'] }}"></td>
 
                                  <td>
-                                 {{ HTML::linkAction('AdmissionController@viewAdmTestExaminers',User::FullName($adm_examiners_list->user_id),['id'=>$adm_examiners_list->id], ['data-toggle'=>"modal", 'data-target'=>"#modal"]) }}
+                                 {{ HTML::linkAction('AdmAmwController@viewAdmTestExaminers',User::FullName($adm_examiners_list->user_id),['id'=>$adm_examiners_list->id], ['data-toggle'=>"modal", 'data-target'=>"#modal"]) }}
 
                                  </td>
 
