@@ -8,7 +8,7 @@ class AdmPublicController extends \BaseController {
 
 	public function admDegreeList()
 	{
-        $degreeList = Degree::orderby('id', 'DESC')->paginate(5);
+        $degreeList = Batch::with('relDegree')->paginate(5);
         return View::make('admission::adm_public.admission.degree_list',compact('degreeList'));
 
 	}
@@ -42,25 +42,25 @@ class AdmPublicController extends \BaseController {
         }
     }
 
-    public function admDegreeApplicantDetails($degree_id){
+    public function admDegreeApplicantDetails($id){
 
-        $degree_model = Degree::with('relYear','relSemester',
-            'relDegreeWaiver.relWaiver')
-            ->where('id', '=', $degree_id)
+        $degree_model = Batch::with('relYear','relSemester',
+            'relBatchWaiver.relWaiver')
+            ->where('id', '=', $id)
             ->get();
 
-        $major_courses = CourseManagement::with('relCourse')
-            ->where('degree_id','=',$degree_id)
-            ->where('major_minor','=','major')
-            ->get();
-
-        $minor_courses = CourseManagement::with('relCourse')
-            ->where('degree_id','=',$degree_id)
-            ->where('major_minor','=','minor')
-            ->get();
-
-        $edu_gpa_model = DegreeEducationConstraint::with('relDegree')
-            ->where('degree_id','=',$degree_id)->get();
+//        $major_courses = CourseManagement::with('relCourse')
+//            ->where('degree_id','=',$degree_id)
+//            ->where('major_minor','=','major')
+//            ->get();
+//
+//        $minor_courses = CourseManagement::with('relCourse')
+//            ->where('degree_id','=',$degree_id)
+//            ->where('major_minor','=','minor')
+//            ->get();
+//
+//        $edu_gpa_model = DegreeEducationConstraint::with('relDegree')
+//            ->where('degree_id','=',$degree_id)->get();
 
         return View::make('admission::adm_public.admission.degree_detail',
                   compact('degree_model','major_courses', 'minor_courses', 'edu_gpa_model'));

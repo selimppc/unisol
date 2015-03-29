@@ -4,7 +4,7 @@
 @stop
 @section('content')
 <div>
-   <a class="pull-right btn btn-xs btn-success" href="{{ action('UserSignupController@batchApplicantIndex', $batch_id)}}"> <i class="fa fa-arrow-circle-left"></i> Go Back</a>
+   <a class="pull-right btn btn-xs btn-success" href="{{ action('AdmAmwController@batchApplicantIndex', $batch_id)}}"> <i class="fa fa-arrow-circle-left"></i> Go Back</a>
 </div>
 <h3 class="box-title">Applicant's Profile </h3>
 {{---------------Status starts--------------------------------------------}}

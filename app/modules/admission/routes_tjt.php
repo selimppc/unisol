@@ -174,6 +174,7 @@ Route::any('admission/public/admission/checkout/',
 
 //{----------------------------------- Degree Program -------------------------------------------------------------------}
 
+
 Route::any('common/degree-program',
     ['as'=>'common.degree-program.index',
         'uses'=>'DegreeProgramController@degreeProgramIndex']);
@@ -248,7 +249,7 @@ Route::any('common/course-type/batch-delete',
         'uses'=>'CourseTypeController@batchDelete']);
 
 //{--------------------------------------- Degree -------------------------------------------------------------}
-
+/*
 Route::any('admission/amw/degree',
     ['as'=>'admission.amw.degree.index',
         'uses'=>'UserSignupController@admDegreeIndex']);
@@ -459,6 +460,5 @@ Route::any('admission/amw/batch-applicant/view-applicant/{id}/{batch_id}/{applic
     ['as'=>'admission.amw.batch-applicant.view-applicant',
         'uses'=>'UserSignupController@batchApplicantView']);
 
-
-
+*/
 

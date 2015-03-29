@@ -320,14 +320,13 @@ class HomeController extends BaseController {
         $data = BatchCourse::with(['semesterByYear' => function($query) {
                         //$year_id = $query->semesterByYear()->get()->year_id;
                         $query->with(['courseBySemester'=> function($queries)  {
-                            //$queries->where('year_id', '=', 2);
-                            $queries->groupBy('year_id')->groupBy('semester_id');
+                            $queries->where('batch_course.semester_id', '=', 'batch_course.semester_id');
+                            //$queries->groupBy('year_id')->groupBy('semester_id');
                         }]);
 
                 }])->groupBy('year_id')
                 ->get();
 
-        //$surveys = BatchCourse::with('childrenRecursive')->get();
         $surveys = BatchCourse::with('children1.children1')->groupBy('year_id')->get();
         //print_r($surveys);exit;
         //dd(DB::getQueryLog($data));
