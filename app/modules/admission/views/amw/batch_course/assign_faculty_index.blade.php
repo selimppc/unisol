@@ -11,34 +11,33 @@
                         <p style="text-align: center;color: #800080;font-size:large;margin-top: 5px">Assign Faculty</p>
 
                      @foreach($batch_course as $value)
-                    {{Form::open(array('url' => ''))}}
+                    {{Form::open(array('url' => 'admission/amw/assign-faculty-save'))}}
 
                         <div class="form-group">
                             <h4>Course:  {{$value->relCourse->title}} ({{$value->relCourse->course_code}})</h4>
-                            {{ Form::hidden('course_name', Input::old('course_name'),array('disabled','size'=>'30'))}}
+                            {{ Form::hidden('course_id',$value->relCourse->id, Input::old('course_id'),array('disabled','size'=>'30'))}}
                         </div>
                         <div class="form-group">
                             <h4>Year:  {{$value->relYear->title}}</h4>
-                            {{ Form::hidden('course_name', Input::old('course_name'),array('disabled','size'=>'30')) }}
+                            {{ Form::hidden('year_id',$value->relYear->id, Input::old('year_id'),array('disabled','size'=>'30')) }}
                         </div>
                         <div class="form-group">
                             <h4>Semester:  {{$value->relSemester->title}}</h4>
-                            {{ Form::hidden('course_name', Input::old('course_name'),array('disabled','size'=>'30')) }}
+                            {{ Form::hidden('semester_id',$value->relSemester->id, Input::old('semester_id'),array('disabled','size'=>'30')) }}
                         </div>
                         <div class="form-group">
                             <h4>Degree:  {{$value->relBatch->relDegree->title}}  </h4>
-                            {{ Form::hidden('course_name', Input::old('course_name'),array('disabled','size'=>'30')) }}
+                            {{ Form::hidden('degree_id',$value->relBatch->relDegree->id ,Input::old('degree_id'),array('disabled','size'=>'30')) }}
                         </div>
                         <div class="form-group">
                             <h4>Department: {{$value->relcourse->relSubject->relDepartment->title}}</h4>
-                            {{ Form::hidden('course_name', Input::old('course_name'),array('disabled','size'=>'30')) }}
                         </div>
 
                         @endforeach
 
                         <div class="form-group">
                             <h4>Status: NA</h4>
-                            {{ Form::hidden('course_name', Input::old('course_name'),array('disabled','size'=>'30')) }}
+
                         </div>
 
                         <div class="form-group">
@@ -55,18 +54,16 @@
                         </div>
                         <div class='form-group'>
                             <h4>Comments:</h4>
-                        <div>{{ Form::textarea('comments', Input::old('comments'),['spellcheck'=> 'true','required'=>'required','size'=>'70x8'])}}</div>
-
-                            {{ Form::submit('Add Course', array('class'=>'btn btn-xs btn-success', 'id'=>'hide-button', 'style'=>'display:none'))}}
+                        <div>{{ Form::textarea('comments', Input::old('comments'),['spellcheck'=> 'true','size'=>'70x8'])}}</div>
                             <div>
                                 {{ Form::submit('Request', ['class'=>'btn btn-xs btn-primary']) }}
-                                {{ Form::submit('Close', ['class'=>'btn btn-xs btn-default']) }}
+                                <a href="{{URL::previous()}}" class="btn btn-xs btn-default">Close</a>
                             </div>
-                            <div>
-                                {{ Form::submit('Comments', ['class'=>'btn btn-xs btn-info']) }}
-                                {{ Form::submit('Revoke', ['class'=>'btn btn-xs btn-danger']) }}
-                                {{ Form::submit('Close', ['class'=>'btn btn-xs btn-default']) }}
-                            </div>
+                            {{--<div>--}}
+                                {{--{{ Form::submit('Comments', ['class'=>'btn btn-xs btn-info']) }}--}}
+                                {{--{{ Form::submit('Revoke', ['class'=>'btn btn-xs btn-danger']) }}--}}
+                                {{--{{ Form::submit('Close', ['class'=>'btn btn-xs btn-default']) }}--}}
+                            {{--</div>--}}
 
                             {{Form::close()}}
                         </div>
