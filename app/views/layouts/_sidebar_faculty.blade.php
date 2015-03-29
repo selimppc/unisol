@@ -33,7 +33,7 @@
             <i class="fa fa-angle-left pull-right"></i>
         </a>
         <ul class="treeview-menu">
-            <li><a tabindex="-1" a href="{{ URL::to('admission/faculty/admission-test') }}"></i>Admission Test </a></li>
+            <li><a tabindex="-1" a href="{{ URL::to('admission/faculty/batch-admtest-subject') }}"></i>Admission Test </a></li>
         </ul>
     </li>
     <li class="treeview">

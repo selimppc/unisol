@@ -15,12 +15,35 @@ class AdmFacultyController extends \BaseController {
 
 
 
-	public function indexAdmissionTest()
+	public function indexBatchAdmTestSubject()
 	{
-
-        echo "ok";
+        $index_admtest_subject = BatchAdmtestSubject::latest('id')->paginate(10);
+        return View::make('admission::faculty.batch_admtest_subject.index',compact('index_admtest_subject'));
 
 	}
+
+    public function searchBatchAdmTestSubject()
+    {
+
+
+        return View::make('admission::faculty.batch_admtest_subject.index',compact(''));
+
+    }
+
+
+
+    public function batchDelete()
+    {
+        try {
+            BatchAdmtestSubject::destroy(Request::get('id'));
+            return Redirect::back()->with('message', 'Successfully deleted Information!');
+        }
+        catch(exception $ex) {
+            return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+        }
+    }
+
+
 
 
 
