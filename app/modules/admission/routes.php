@@ -401,3 +401,195 @@ Route::any('admission/amw/assign-faculty/{course_id}/{dep_id}', [
 Route::post('admission/amw/assign-faculty-save',
     'AdmAmwController@assign_faculty_save'
 );
+
+/*Tanin
+
+*/
+//{------------------ Degree -------------------------------------------------------------}
+
+Route::any('admission/amw/degree',
+    ['as'=>'admission.amw.degree.index',
+        'uses'=>'AdmAmwController@admDegreeIndex']);
+
+
+Route::any('admission/amw/degree/create',
+    ['as'=>'common.amw.degree.create',
+        'uses'=>'AdmAmwController@admDegreeCreate']);
+
+
+Route::any('admission/amw/degree/store',
+    ['as'=>'admission.amw.degree.store',
+        'uses'=>'AdmAmwController@admDegreeStore']);
+
+
+Route::any('admission/amw/degree/show/{id}',
+    ['as'=>'admission.amw.degree.show',
+        'uses'=>'AdmAmwController@admDegreeShow']);
+
+Route::any('admission/amw/degree/edit/{id}',
+    ['as'=>'admission.amw.degree.edit',
+        'uses'=>'AdmAmwController@admDegreeEdit']);
+
+
+Route::any('admission/amw/degree/update/{id}',
+    ['as'=>'admission.amw.degree.update',
+        'uses'=>'AdmAmwController@admDegreeUpdate']);
+
+Route::any('admission/amw/degree/delete/{id}',
+    ['as'=>'admission.amw.degree.delete',
+        'uses'=>'AdmAmwController@admDegreeDelete']);
+
+
+Route::any('admission/amw/degree/search',
+    ['as'=>'admission.amw.degree.search',
+        'uses'=>'AdmAmwController@admDegreeSearch']);
+
+//{----------------- Waiver ----------------------------------------------------------------}
+
+Route::any('admission/amw/waiver',
+    ['as'=>'admission.amw.waiver.index',
+        'uses'=>'AdmAmwController@admWaiverIndex']);
+
+Route::any('admission/amw/waiver/create',
+    ['as'=>'admission.amw.waiver.create',
+        'uses'=>'AdmAmwController@admWaiverCreate']);
+
+Route::any('admission/amw/waiver/store',
+    ['as'=>'admission.amw.waiver.store',
+        'uses'=>'AdmAmwController@admWaiverStore']);
+
+Route::any('admission/amw/waiver/show/{id}',
+    ['as'=>'admission.amw.waiver.show',
+        'uses'=>'AdmAmwController@admWaiverShow']);
+
+Route::any('admission/amw/waiver/edit/{id}',
+    ['as'=>'admission.amw.waiver.edit',
+        'uses'=>'AdmAmwController@admWaiverEdit']);
+
+Route::any('admission/amw/waiver/update/{id}',
+    ['as'=>'admission.amw.waiver.update',
+        'uses'=>'AdmAmwController@admWaiverUpdate']);
+
+Route::any('admission/amw/waiver/delete/{id}',
+    ['as'=>'admission.amw.waiver.delete',
+        'uses'=>'AdmAmwController@admWaiverDelete']);
+
+//{------------------- Batch-Waiver -------------------------------------------------------------}
+
+Route::any('admission/amw/batch-waiver/{batch_id}', [
+    'as' => 'admission.amw.batch-waiver.index',
+    'uses' => 'AdmAmwController@batchWaiverIndex'
+]);
+
+Route::any('admission/amw/batch-waiver/create/{batch_id}', [
+    'as' => 'admission.amw.batch-waiver.create',
+    'uses' => 'AdmAmwController@batchWaiverCreate'
+]);
+
+Route::any('admission/amw/batch-waiver/store/{batch_id}', [
+    'as' => 'admission.amw.batch-waiver.store',
+    'uses' => 'AdmAmwController@batchWaiverStore'
+]);
+
+Route::any('admission/amw/batch-waiver/delete/{batch_id}', [
+    'as' => 'admission.amw.batch-waiver.delete',
+    'uses' => 'AdmAmwController@batchWaiverDelete'
+]);
+
+
+//{------------------ Waiver Constraint---------------------------------------------------------------------}
+Route::any('admission/amw/waiver-constraint/{batch_id}/{waiver_id}', [
+    'as' => 'admission.amw.waiver-constraint.index',
+    'uses' => 'AdmAmwController@waiverConstraintIndex'
+]);
+
+Route::any('admission/amw/waiver-time-constraint/create/{batch_waiver_id}', [
+    'as' => 'admission.amw.waiver-time-constraint.create',
+    'uses' => 'AdmAmwController@waiverTimeConstCreate'
+]);
+Route::any('admission/amw/waiver-gpa-constraint/create/{batch_waiver_id}', [
+    'as' => 'admission.amw.waiver-gpa-constraint.create',
+    'uses' => 'AdmAmwController@waiverGpaConstCreate'
+]);
+
+Route::any('admission/amw/waiver-constraint/store', [
+    'as' => 'admission.amw.waiver-constraint.store',
+    'uses' => 'AdmAmwController@waiverConstraintStore'
+]);
+
+Route::any('admission/amw/waiver-time-constraint/edit/{id}', [
+    'as' => 'admission.amw.waiver-time-constraint.edit',
+    'uses' => 'AdmAmwController@waiverTimeConstEdit'
+]);
+
+Route::any('admission/amw/waiver-gpa-constraint/edit/{id}', [
+    'as' => 'admission.amw.waiver-gpa-constraint.edit',
+    'uses' => 'AdmAmwController@waiverGpaConstEdit'
+]);
+Route::any('admission/amw/constraint-waiver/update/{id}', [
+    'as' => 'admission.amw.waiver-constraint.update',
+    'uses' => 'AdmAmwController@waiverConstUpdate'
+]);
+
+Route::any('admission/amw/constraint-waiver/delete/{id}', [
+    'as' => 'admission.amw.waiver-constraint.delete',
+    'uses' => 'AdmAmwController@waiverConstDelete'
+]);
+//{------------------- batch Education Constraint -------------------------------------------------------------}
+
+Route::any('admission/amw/batch-education-constraint',
+    ['as'=>'admission.amw.batch-edu-const.index',
+        'uses'=>'AdmAmwController@admBatchEduConstIndex']);
+
+Route::any('admission/amw/batch-education-constraint/create',
+    ['as'=>'admission.amw.batch-edu-const.create',
+        'uses'=>'AdmAmwController@admBatchEduConstCreate']);
+
+Route::any('admission/amw/batch-education-constraint/store',
+    ['as'=>'admission.amw.batch-edu-const.store',
+        'uses'=>'AdmAmwController@admBatchEduConstStore']);
+
+Route::any('admission/amw/batch-education-constraint/show/{id}',
+    ['as'=>'admission.amw.batch-edu-const.show',
+        'uses'=>'AdmAmwController@admBatchEduConstShow']);
+
+Route::any('admission/amw/batch-education-constraint/edit/{id}',
+    ['as'=>'admission.amw.batch-edu-const.edit',
+        'uses'=>'AdmAmwController@admBatchEduConstEdit']);
+
+Route::any('admission/amw/batch-education-constraint/update/{id}',
+    ['as'=>'admission.amw.batch-edu-const.update',
+        'uses'=>'AdmAmwController@admBatchEduConstUpdate']);
+
+Route::any('admission/amw/batch-education-constraint/delete/{id}',
+    ['as'=>'admission.amw.batch-edu-const.delete',
+        'uses'=>'AdmAmwController@admBatchEduConstDelete']);
+
+
+//{------------------ Batch Applicant --------------------------------------------------------------------------------------------}
+
+Route::any('admission/amw/batch-applicant/{id}',
+    ['as'=>'admission.amw.batch-applicant.index',
+        'uses'=>'AdmAmwController@batchApplicantIndex']);
+
+Route::any('admission/amw/batch-applicant/change/{id}',
+    ['as'=>'admission.amw.batch-applicant.change',
+        'uses'=>'AdmAmwController@batchApplicantChangeStatus']);
+
+Route::any('admission/amw/batch-applicant/update/{id}',
+    ['as'=>'admission.amw.batch-applicant.update',
+        'uses'=>'AdmAmwController@batchApplicantUpdateStatus']);
+
+
+Route::any('admission/amw/batch-applicant/apply/{id}',
+    ['as'=>'admission.amw.batch-applicant.apply',
+        'uses'=>'AdmAmwController@batchApplicantApply']);
+
+Route::any('admission/amw/batch-applicant/view-applicant/{id}/{batch_id}/{applicant_id}',
+    ['as'=>'admission.amw.batch-applicant.view-applicant',
+        'uses'=>'AdmAmwController@batchApplicantView']);
+
+
+
+
+
