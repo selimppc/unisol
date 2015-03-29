@@ -436,7 +436,7 @@ Route::any('admission/amw/batch-education-constraint/delete/{id}',
         'uses'=>'UserSignupController@admBatchEduConstDelete']);
 
 
-//{-----------------------------------------------Batch Applicant--------------------------------------------------------------------------------------------}
+//{------------------ Batch Applicant--------------------------------------------------------------------------------------------}
 
 Route::any('admission/amw/batch-applicant/{id}',
     ['as'=>'admission.amw.batch-applicant.index',
