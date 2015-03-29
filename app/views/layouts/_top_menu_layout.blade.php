@@ -73,6 +73,16 @@
     </ul>
 </li>
 
+<!-- Applicant Module -->
+<li class="dropdown messages-menu">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+        Applicant
+    </a>
+    <ul class="dropdown-menu">
+        <li><a tabindex="-1" a href="">Applicant Sign Up</a></li>
+        <li><a tabindex="-1" a href=""></a></li>
+    </ul>
+</li>
 
 <!-- Academic Module -->
 <li class="dropdown messages-menu">
