@@ -48,22 +48,20 @@
                     </tr>
              </thead>
                  <tbody>
-                    @if(isset($admission_test_batch))
-                         @foreach($admission_test_batch as $adm_test_mgt)
+                    @if(isset($admission_test_home))
+                         @foreach($admission_test_home as $adm_test_mgt)
                                <tr>
                                    <td><input type="checkbox" name="id[]" class="myCheckbox" value="{{ $adm_test_mgt['id'] }}"></td>
-    {{--                               <td>{{ $adm_test_mgt->relDegree->title }}</td>--}}
-                                   <td>{{ $adm_test_mgt->relDegree->relDegreeProgram->code.''.$adm_test_mgt->relDegree->relDegreeGroup->code }}</td>
-                                   <td>{{ $adm_test_mgt->relDegree->relDepartment->title }}</td>
-                                   <td>{{ $adm_test_mgt->relYear->title }}</td>
-                                   <td>{{ $adm_test_mgt->relSemester->title }}</td>
-                                   <td>{{ $adm_test_mgt->relDegree->total_credit }}</td>
-                                   <td style="text-align: center">{{ $adm_test_mgt->relDegree->duration }}</td>
+                                   <td>{{ $adm_test_mgt->relBatch->relDegree->relDegreeProgram->code.''.$adm_test_mgt->relBatch->relDegree->relDegreeGroup->code }}</td>
+                                   <td>{{ $adm_test_mgt->relBatch->relDegree->relDepartment->title }}</td>
+                                   <td>{{ $adm_test_mgt->relBatch->relYear->title }}</td>
+                                   <td>{{ $adm_test_mgt->relBatch->relSemester->title }}</td>
+                                   <td>{{ $adm_test_mgt->relBatch->relDegree->total_credit }}</td>
+                                   <td style="text-align: center">{{ $adm_test_mgt->duration }}</td>
                                    <td>QPE Status</td>
                                    <td>
-                                      {{--<a href="{{ URL::route('admission.amw.admission-examiner-index', ['year_id'=>$adm_test_mgt->year_id , 'semester_id'=>$adm_test_mgt->semester_id , 'degree_id'=>$adm_test_mgt->degree_id ])  }}" class="btn btn-default btn-xs" >EX</a>--}}
-                                      <a href="{{ URL::to('admission/amw/admission-test-examiner', [ 'year_id'=>$adm_test_mgt->year_id ,'semester_id'=>$adm_test_mgt->semester_id ,'batch_id'=>$adm_test_mgt->id ]) }}" class="btn btn-default btn-xs" >EX</a>
-                                      <a href="{{ URL::to('admission/amw/admission-test-question', [ 'year_id'=>$adm_test_mgt->year_id ,'semester_id'=>$adm_test_mgt->semester_id ,'batch_id'=>$adm_test_mgt->id ]) }}" class="btn btn-default btn-xs" >QP</a>
+                                      <a href="{{ URL::to('admission/amw/admission-test-examiner', [ 'year_id'=>$adm_test_mgt->relBatch->year_id ,'semester_id'=>$adm_test_mgt->relBatch->semester_id ,'batch_id'=>$adm_test_mgt->batch_id ]) }}" class="btn btn-default btn-xs" >EX</a>
+                                      <a href="{{ URL::to('admission/amw/admission-test-question', [ 'year_id'=>$adm_test_mgt->relBatch->year_id ,'semester_id'=>$adm_test_mgt->relBatch->semester_id ,'batch_id'=>$adm_test_mgt->batch_id ]) }}" class="btn btn-default btn-xs" >QP</a>
                                       <a href="{{ URL::route('admission.amw.admission-question-evaluation') }}" class="btn btn-default btn-xs" >QPE</a>
                                    </td>
                                </tr>
@@ -73,7 +71,7 @@
           </table>
       {{form::close() }}
 
-      {{--{{ $admission_test_batch->links() }}--}}
+      {{--{{ $admission_test_home->links() }}--}}
 
 
    <p>&nbsp;</p><p>&nbsp;</p>

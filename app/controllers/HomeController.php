@@ -290,6 +290,7 @@ class HomeController extends BaseController {
 
 
     public function datePicker(){
+
         /*$batch_id = 1;
         $degree_id = Batch::findOrFail($batch_id)->degree_id;*/
 
@@ -325,9 +326,13 @@ class HomeController extends BaseController {
 
                 }])->groupBy('year_id')
                 ->get();
+
+        //$surveys = BatchCourse::with('childrenRecursive')->get();
+        $surveys = BatchCourse::with('children1.children1')->groupBy('year_id')->get();
+        //print_r($surveys);exit;
         //dd(DB::getQueryLog($data));
 
-        return View::make('test.date_picker', compact('data'));
+        return View::make('test.date_picker', compact('surveys'));
     }
 
     protected function bcFact($n){

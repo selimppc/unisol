@@ -39,7 +39,7 @@ class AdmQuestion extends Eloquent{
 
     //TODO : Model Relationship
     public function relBatchAdmtestSubject(){
-        return $this->belongsTo('BatchAdmtestSubject', 'batch_admtest_subject', 'id');
+        return $this->belongsTo('BatchAdmtestSubject', 'batch_admtest_subject_id', 'id');
     }
     public function relUser(){
         return $this->belongsTo('User', 'examiner_faculty_user_id', 'id');

@@ -9,17 +9,24 @@
 
                <div class="row">
                           <div class="col-sm-12">
-                               <div class="pull-right col-sm-4">
-                                  <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('admission/amw/admission-test-question/create-admtest-question-paper')}}" data-toggle="modal" data-target="#modal" >Create Question Paper</a>
-                               </div>
+                                <div class="pull-right col-sm-4">
+                                  <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('admission/amw/admission-test-question/create-admtest-question-paper',['year_id'=>$year_id, 'semester_id'=>$semester_id,'batch_id'=>$batch_id])}}" data-toggle="modal" data-target="#modal" >Create Question Paper</a>
+                                </div>
 
                                <div class="col-sm-6">
-                                     <strong> Department: </strong> {{ $degree_data->relDepartment->title }}
+
+
+                                    <strong> Batch# </strong> {{ Batch::findOrFail($batch_id)->batch_number }}
                                      </br>
-                                     <strong> Year: </strong> {{ Year::findOrFail($year_id)->title }}
+                                     <strong> Degree Name: </strong> {{ Degree::findOrFail($degree_id)->relDegreeProgram->code.'
+                                                                         '.Degree::findOrFail($degree_id)->relDegreeGroup->code.' in
+                                                                         '.$degree_data->relDepartment->title.',
+                                                                         '.Semester::findOrFail($semester_id)->title.',
+                                                                         '.Year::findOrFail($year_id)->title }}
                                      </br>
-                                     <strong> Degree: </strong> {{ Degree::findOrFail($degree_id)->relDegreeProgram->code.''.Degree::findOrFail($degree_id)->relDegreeGroup->code }}
-                                     </br>
+
+
+
 
                                </div>
                         </div>
@@ -49,19 +56,18 @@
 
                                       <td>{{ $adm_question_paper_list->deadline }}</td>
 
-                                      <td>{{ $adm_question_paper_list->deadline }}</td>
+                                      <td>{{ $adm_question_paper_list->relBatchAdmTestSubject->relAdmTestSubject->title }}</td>
 
                                       <td>not assigned </td>
 
                                       <td> {{ $adm_question_paper_list->status }} </td>
 
-
                                       <td>
-                                         {{--<a href="{{ URL::route('admission_test.amw.admission-test-question.view_question_paper', ['id'=>$adm_question_paper_list->id])  }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal" data-placement="left" title="Show" href="#">View</a>--}}
-                                         {{--<a href="{{ URL::route('admission_test.amw.admission-test-question.edit_question_paper', ['id'=>$adm_question_paper_list->id])  }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal" data-placement="left" title="Edit" href="#">Edit</a>--}}
+                                         <a href="{{ URL::route('admission.amw.admission-test-question.view-admtest-question-paper', ['id'=>$adm_question_paper_list->id]) }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal" data-placement="left" title="Show" href="#">View</a>
+                                         <a href="{{ URL::route('admission.amw.admission-test-question.edit-admtest-question-paper', ['id'=>$adm_question_paper_list->id, 'year_id'=>$year_id, 'semester_id'=>$semester_id,'batch_id'=>$batch_id ])  }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal" data-placement="left" title="Edit" href="#">Edit</a>
 
-                                         {{--<a href="" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal" data-placement="left" title="Assign Faculty" href="#">VQs</a>--}}
-                                         {{--<a href="" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal" data-placement="left" title="Assign Faculty" href="#">AF</a>--}}
+                                         {{--<a href="" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal" data-placement="left" title="AView Questions" href="#">VQs</a>--}}
+                                         <a href="" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal" data-placement="left" title="Assign Faculty" href="#">AF</a>
                                       </td>
                                   </tr>
                             @endforeach
@@ -70,7 +76,14 @@
 
           {{form::close() }}
 
-{{--          {{ $adm_test_question_paper->links() }}--}}
+
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog" style="z-index:1050">
+        <div class="modal-content">
+
+        </div>
+      </div>
+</div>
 
 
 @stop

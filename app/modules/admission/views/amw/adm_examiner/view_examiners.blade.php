@@ -7,16 +7,16 @@
 
         <div class="span9 well" style="font-size: large; margin-left: 40px">
 
-            <h2><strong>Department :</strong> </h2>
+            <h2><strong> Department: </strong> {{ $data }}</h2>
 
             <p>
-                <strong> Degree :</strong>  <br>
+                <strong> Degree: </strong>  <br>
 
-                <strong> Name of Faculty :</strong>  <br>
+                <strong> Name of Faculty :</strong> <br>
 
-                <strong> Status :</strong>  <br>
+                <strong> Status :</strong> <br>  baki ace kichu kichu jinsih ekhane print kroa
 
-                <strong> Comments :</strong>  <br>
+                <strong> Comments :</strong> <br>
 
                 <div class="form-group">
                       {{ Form::textarea('comment', Null, ['size' => '40x6','placeholder'=>'Your Comments Here']) }}
