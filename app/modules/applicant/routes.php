@@ -4,16 +4,49 @@ include("routes_applicant_tj.php");
 
 Route::group( array('before' => 'auth'), function(){
 
-    Route::any('applicant','ApplicantController@index');
-    Route::any('applicant/store','ApplicantController@store');
-    Route::get('register/verify/{verified_code}','ApplicantController@confirm');
-    Route::any('applicant/signin', 'ApplicantController@Login');
-    Route::any('applicant/login', 'ApplicantController@applicantLogin');
-    Route::any('applicant/logout', 'ApplicantController@applicantLogout');
-    Route::any('applicant/dashboard', 'ApplicantController@Dashboard');
-    Route::get('applicant/show/{id}', 'ApplicantController@show' );
-    Route::any('applicant/profile','ApplicantController@applicantProfile');
-    Route::any('applicant/meta_data','ApplicantController@applicantMetaData');//meta-data
+//***********************Applicant Sign up Start(R)******************************
+
+Route::any('applicant',
+    'ApplicantController@index'
+);
+
+Route::any('applicant/store',
+    'ApplicantController@store'
+);
+
+Route::get('register/verify/{verified_code}',
+    'ApplicantController@confirm'
+);
+
+//***********************Applicant Sign in Start(R)******************************
+
+Route::any('applicant/signin',
+    'ApplicantController@Login'
+);
+
+Route::any('applicant/login',
+    'ApplicantController@applicantLogin'
+);
+
+Route::any('applicant/logout',
+    'ApplicantController@applicantLogout'
+);
+
+Route::any('applicant/dashboard',
+    'ApplicantController@Dashboard'
+);
+
+Route::get('applicant/show/{id}',
+    'ApplicantController@show'
+);
+
+Route::any('applicant/profile',
+    'ApplicantController@applicantProfile'
+);
+
+Route::any('applicant/meta_data',
+    'ApplicantController@applicantMetaData'
+);//meta-data
 
 //Extra_Curricular Activities.................................................................
     Route::any('apt/extra_curricular/index','ApplicantController@extraCurricularIndex');
