@@ -36,11 +36,9 @@
                             {{ Form::select('faculty_user_id', $facultyList, Input::old('faculty_user_id'),['required']) }}
                         </div>
 
-                        @foreach($status as $value)
-                            <div class="form-group">
-                                <h4 class="text-purple">Status: {{$value->status}}</h4>
-                            </div>
-                        @endforeach
+                        <div class="form-group">
+                            <h4 class="text-purple">Status:  {{ isset($cc_status->status)? $cc_status->status : ''}}</h4>
+                        </div>
 
                         <div class="jumbotron text-left" style="padding-top: 2px; padding-left: 2px; padding-bottom: 5px; background-color: #FFEBE6;">
                             {{--@foreach($comments_info as $comments_info)--}}
@@ -54,15 +52,14 @@
                             <h4>Comments:</h4>
                             <div>{{ Form::textarea('comments', Input::old('comments'),['spellcheck'=> 'true','size'=>'70x8'])}}</div>
                             <div>
+
+                                    <a href="{{URL::previous()}}" class="btn btn-xs btn-default">Close</a>
+                                @if(isset( $cc_status->status) == 'requested')
+                                    {{ Form::submit('Revoke', ['class'=>'btn btn-xs btn-danger']) }}
+                                @else
                                 {{ Form::submit('Request', ['class'=>'btn btn-xs btn-primary']) }}
-                                <a href="{{URL::previous()}}" class="btn btn-xs btn-default">Close</a>
-                                {{ Form::submit('Revoke', ['class'=>'btn btn-xs btn-danger']) }}
+                                    @endif
                             </div>
-                            {{--<div>--}}
-                            {{--{{ Form::submit('Comments', ['class'=>'btn btn-xs btn-info']) }}--}}
-                            {{--{{ Form::submit('Revoke', ['class'=>'btn btn-xs btn-danger']) }}--}}
-                            {{--{{ Form::submit('Close', ['class'=>'btn btn-xs btn-default']) }}--}}
-                            {{--</div>--}}
                             {{Form::close()}}
                         </div>
                     </div>
