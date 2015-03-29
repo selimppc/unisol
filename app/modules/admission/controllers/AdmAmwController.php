@@ -677,11 +677,10 @@ class AdmAmwController extends \BaseController
             ->get();
 
         $facultyList =  array('' => 'Select faculty ') +User::FacultyList();
-        $status = CourseConduct::with('relCourse')
-            ->where('course_id' , '=' ,$course_id)
-            ->get();
+        $cc_status = CourseConduct::where('course_id' , '=' ,$course_id)
+            ->first();
 
-        return View::make('admission::amw.batch_course.assign_faculty_index',compact('facultyList','batch_course','status'));
+        return View::make('admission::amw.batch_course.assign_faculty_index',compact('facultyList','batch_course','cc_status'));
     }
 
     public function assign_faculty_save()
@@ -714,5 +713,534 @@ class AdmAmwController extends \BaseController
            return Redirect::back();
        }
    }
+
+
+
+//new code of admission module by shafi
+
+//.................................................batch....................................................
+
+    public function batchIndex()
+    {
+        $batch_management = Batch::latest('id')->paginate(10);
+
+        $dpg_list = Degree::DegreeProgramGroup();
+        $year_list = array('' => 'Year ') +Year::lists('title', 'id');
+        $department_list = array('' => 'Department ') +Department::lists('title', 'id');
+
+        return View::make('admission::amw.batch.batch_management_index',
+            compact('batch_management','dpg_list','year_list','department_list'));
+    }
+
+    public function batchShow($id)
+    {
+        $b_m_course = Batch::find($id);
+        return View::make('admission::amw.batch.show',compact('b_m_course'));
+    }
+
+    public function batchCreate()
+    {
+        $dpg_list = Degree::DegreeProgramGroup();
+
+        $year_list = Year::lists('title', 'id');
+        $semester_list = Semester::lists('title', 'id');
+
+        return View::make('admission::amw.batch._form',compact('dpg_list','year_list','semester_list'));
+    }
+
+    public function batchStore()
+    {
+        $data = Input::all();
+
+        $model = new Batch();
+        if($model->validate($data)){
+            if($model->create($data)){
+                Session::flash('message', 'Successfully added Information!');
+                return Redirect::back();
+            }
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()
+                ->with('errors', 'invalid');
+        }
+
+    }
+
+    public function batchEdit($id)
+    {
+        $batch_edit = Batch::find($id);
+
+        $dpg_list = Degree::DegreeProgramGroup();
+        $year_list = Year::lists('title', 'id');
+        $semester_list = Semester::lists('title', 'id');
+
+        return View::make('admission::amw.batch.edit',compact('batch_edit','dpg_list','year_list','semester_list'));
+    }
+
+    public function batchUpdate($id)
+    {
+        $model = Batch::find($id);
+        $data = Input::all();
+
+        if($model->validate($data)){
+            if($model->update($data)){
+                Session::flash('message', 'Successfully Updates Information!');
+                return Redirect::back();
+            }
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()
+                ->with('error', 'invalid');
+        }
+    }
+//
+//    public function destroy($id)
+//    {
+//        try {
+//            Course::find($id)->delete();
+//            return Redirect::back()->with('message', 'Successfully deleted Information!');
+//        }
+//        catch(exception $ex){
+//            return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+//        }
+//
+//    }
+//
+    public function batchDelete()
+    {
+        try {
+            Batch::destroy(Request::get('id'));
+            return Redirect::back()->with('message', 'Successfully deleted Information!');
+        }
+        catch(exception $ex) {
+            return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+        }
+    }
+
+
+//..............................................batch_admtest_subject...........................................
+
+    public function indexBatchAdmTestSubject($batch_id)
+    {
+        $degree_test_sbjct = BatchAdmtestSubject::where('batch_id' ,'=', $batch_id)->get();
+
+        $degree_name = Batch::with('relDegree')
+            ->where('id' ,'=', $batch_id)
+            ->first();
+
+        return View::make('admission::amw.batch_adm_test_subject.index',
+            compact('batch_id','degree_test_sbjct','degree_name'));
+    }
+
+    public function viewBatchAdmTestSubject($id)
+    {
+        $view_adm_test_subject = BatchAdmtestSubject::find($id);
+
+        return View::make('admission::amw.batch_adm_test_subject.view',compact('view_adm_test_subject'));
+    }
+
+    public function createBatchAdmTestSubject($batch_id)
+    {
+//        print_r($batch_id);exit;
+        $subject_id_result = AdmTestSubject::lists('title', 'id');
+
+        $degree_name = Batch::with('relDegree')
+            ->where('id' ,'=', $batch_id)
+            ->first();
+//
+//        $degree_name = BatchAdmtestSubject::with('relDegree')
+//            ->where('batch_id' ,'=', $batch_id)
+//            ->first();
+
+        return View::make('admission::amw.batch_adm_test_subject._form',compact('batch_id','degree_name','subject_id_result'));
+    }
+
+    public function storeBatchAdmTestSubject()
+    {
+        $data = Input::all();
+//         print_r($data);exit;
+
+        $model = new BatchAdmtestSubject();
+//        print_r($data);exit;
+
+        if($model->validate($data)){
+
+            if($model->create($data)){
+                Session::flash('message', 'Successfully added Information!');
+                return Redirect::back();
+            }
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()
+                ->with('errors', 'invalid');
+        }
+
+    }
+
+    public function editBatchAdmTestSubject($batch_id)
+    {
+        $batch_edit = BatchAdmtestSubject::find($batch_id);
+
+        $degree_name = Batch::with('relDegree')
+//            ->where('id' ,'=', $batch_id)
+            ->first();
+
+        $subject_id_result = AdmTestSubject::lists('title', 'id');
+
+        return View::make('admission::amw.batch_adm_test_subject.edit',compact('batch_id','degree_name','batch_edit','subject_id_result'));
+    }
+
+    public function updateBatchAdmTestSubject($id)
+    {
+        $model = BatchAdmtestSubject::find($id);
+        $data = Input::all();
+
+        if($model->validate($data)){
+            if($model->update($data)){
+                Session::flash('message', 'Successfully Updates Information!');
+                return Redirect::back();
+            }
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()
+                ->with('error', 'invalid');
+        }
+    }
+
+
+//.................................................admtest_subject....................................................
+
+
+    public function indexAdmissionTestSubject()
+    {
+        $admission_test_subject = AdmTestSubject::orderBy('id', 'DESC')->paginate(10);
+
+        return View::make('admission::amw.adm_test_subject.admtest_subject_index',
+            compact('admission_test_subject'));
+
+    }
+
+    public function createAdmissionTestSubject()
+    {
+        return View::make('admission::amw.adm_test_subject._form');
+    }
+
+    public function storeAdmissionTestSubject()
+    {
+        $data = Input::all();
+        $model = new AdmTestSubject();
+        if($model->validate($data)){
+            if($model->create($data)){
+                Session::flash('message', 'Successfully added Information!');
+                return Redirect::back();
+            }
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()
+                ->with('errors', 'invalid');
+        }
+
+    }
+
+    public function viewAdmissionTestSubject($id)
+    {
+        $view_admission_test_subject = AdmTestSubject::find($id);
+        return View::make('admission::amw.adm_test_subject.view',compact('view_admission_test_subject'));
+
+    }
+
+    public function editAdmissionTestSubject($id)
+    {
+        $edit_admission_test_subject = AdmTestSubject::find($id);
+
+        return View::make('admission::amw.adm_test_subject.edit',compact('edit_admission_test_subject'));
+
+    }
+
+    public function updateAdmissionTestSubject($id)
+    {
+        $model = AdmTestSubject::find($id);
+        $data = Input::all();
+
+        if($model->validate($data)){
+            if($model->update($data)){
+                Session::flash('message', 'Successfully Updates Information!');
+                return Redirect::back();
+            }
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()
+                ->with('error', 'invalid');
+        }
+    }
+
+//............................................ Admission Test Management : Home ........................................
+
+    public function admissionTestIndex()
+    {
+//        $admission_test_batch = BatchAdmtestSubject::latest('id')->get();
+
+        $admission_test_home = BatchAdmtestSubject::with('relBatch','relBatch.relDegree',
+            'relBatch.relDegree.relDepartment','relBatch.relYear','relBatch.relSemester')
+            ->get();
+
+        $year_id = array('' => 'Select Year ') + Year::lists('title', 'id');
+        $semester_id = array('' => 'Select Semester ') + Semester::lists('title', 'id');
+
+        return View::make('admission::amw.adm_test_home.index',
+            compact('admission_test_home','admission_test_batch','year_id','semester_id'));
+    }
+
+    public function admissionTestSearchIndex()
+    {
+        $searchQuery = [
+            'year_id' =>   Input::get('year_id'),
+            'semester_id' =>   Input::get('semester_id'),
+        ];
+
+        $model = new BatchAdmtestSubject();
+        $adm_test_home_data = Helpers::search($searchQuery, $model);
+        $year_id = array('' => 'Select Year ') + Year::lists('title', 'id');
+        $semester_id = array('' => 'Select Semester ') + Semester::lists('title', 'id');
+
+        return View::make('admission::amw.adm_test_home._search_adm_test_home_index',
+            compact('adm_test_home_data','year_id','semester_id'));
+
+    }
+
+    public function admissionTestBatchDelete()
+    {
+        try {
+            Batch::destroy(Request::get('id'));
+            return Redirect::back()->with('message', 'Successfully deleted Information!');
+        }
+        catch(exception $ex) {
+            return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+        }
+
+
+    }
+
+
+//..................................................admtest_examiner.......................................
+
+    public function admExaminerIndex( $year_id, $semester_id, $batch_id)
+    {
+        $adm_test_examiner = AdmExaminer::latest('id')->paginate(10);
+
+        $degree_id = Batch::where('id' ,'=', $batch_id )
+            ->where('semester_id' ,'=', $semester_id)
+            ->where('year_id' ,'=', $year_id)
+            ->first()->degree_id;
+
+        $degree_data = Degree::with('relDepartment')
+            ->where('id','=', $degree_id)
+            ->first();
+
+        return View::make('admission::amw.adm_examiner.adm_examiner_index',
+            compact('adm_test_examiner','year_id','semester_id','batch_id','degree_id','degree_data'));
+
+    }
+
+    public function addAdmTestExaminer($year_id, $semester_id, $batch_id)
+    {
+        $degree_id = Batch::where('id' ,'=', $batch_id )
+            ->where('semester_id' ,'=', $semester_id)
+            ->where('year_id' ,'=', $year_id)
+            ->first()->degree_id;
+
+        $degree_data = Degree::with('relDepartment')
+            ->where('id','=', $degree_id)
+            ->first();
+
+        return View::make('admission::amw.adm_examiner._form',compact('degree_data','degree_id','batch_id'));
+    }
+
+    public function storeAdmTestExaminer()
+    {
+        $data = Input::all();
+        $model = new AdmExaminer();
+        $model->batch_id = Input::get('batch_id');
+        $model->user_id = Input::get('user_id');
+        $model->type = Input::get('type');
+        $model->assigned_by = Auth::user()->get()->id;
+        $model->status = Input::get('status');
+
+        $model->save();
+
+        if ($model->validate($data)) {
+
+            $mod_comments = new AdmExaminerComments();
+            $mod_comments->batch_id = Input::get('batch_id');
+            $mod_comments->comment = Input::get('comment');
+
+            $mod_comments->commented_to = Input::get('user_id');
+            $mod_comments->commented_by = Auth::user()->get()->id;
+            $mod_comments->status = 1;
+
+            $mod_comments->save();
+
+            Session::flash('message', 'Successfully added Information!');
+            return Redirect::back();
+
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()
+                ->with('errors', 'invalid');
+        }
+    }
+
+    public function viewAdmTestExaminers(){
+//        $adm_view_examiners = AdmExaminer::where('id' ,'=', $degree_id)->first();
+        $data = AdmExaminer::with('relBatch','relBatch.relDegree')->first()->relBatch->relDegree->relDepartment->title;
+
+        return View::make('admission::amw.adm_examiner.view_examiners',
+            compact('data','exm_info','exm_comnt_info'));
+    }
+
+
+//..................................................admtest_question.......................................
+
+    public function admQuestionIndex( $year_id, $semester_id, $batch_id)
+    {
+
+        $adm_test_question_paper = AdmQuestion::latest('id')->paginate(10);
+
+        $degree_id = Batch::where('id' ,'=', $batch_id )
+            ->where('semester_id' ,'=', $semester_id)
+            ->where('year_id' ,'=', $year_id)
+            ->first()->degree_id;
+
+        $degree_data = Degree::with('relDepartment')
+            ->where('id','=', $degree_id)
+            ->first();
+
+//        $batch_admtest_subject_id = BatchAdmtestSubject::where('id','=',$batch_id)->first();
+//
+//        $batch_admtst_sbjct_name = AdmQuestion::with('relBatchAdmTestSubject','relBatchAdmTestSubject.AdmTestSubject')->where('batch_admtest_subject_id','=',$batch_admtest_subject_id)->first();
+
+//        print_r($batch_admtst_sbjct_name);exit;
+
+        return View::make('admission::amw.adm_question.adm_question_index',
+            compact('semester_id','year_id','adm_test_question_paper','degree_id','degree_data','batch_id'));
+    }
+
+
+    public function createAdmTestQuestionPaper($year_id, $semester_id, $batch_id)
+    {
+
+        $degree_id = Batch::where('id' ,'=', $batch_id )
+            ->where('semester_id' ,'=', $semester_id)
+            ->where('year_id' ,'=', $year_id)
+            ->first()->degree_id;
+
+        $degree_data = Degree::with('relDepartment')
+            ->where('id','=', $degree_id)
+            ->first();
+
+        // join querrylagbe :: selim vai
+        //adm_question.batch_admtest_subject_id with batch_admtest_subject.admtest_subject_id and admtest_subject.title
+
+        $batch_admtest_subject = AdmTestSubject::lists('title','id');
+
+        return View::make('admission::amw.adm_question._form',
+            compact('batch_id','year_id','semester_id','degree_id','degree_data','batch_admtest_subject'));
+    }
+
+
+    public function storeAdmTestQuestionPaper()
+    {
+        $data = Input::all();
+        $model = new AdmQuestion();
+        if($model->validate($data)){
+            if($model->create($data)){
+                Session::flash('message', 'Successfully added Information!');
+                return Redirect::back();
+            }
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()
+                ->with('errors', 'invalid');
+        }
+
+    }
+
+
+    public function viewAdmTestQuestionPaper($id)
+    {
+        $view_questions = AdmQuestion::with('relBatchAdmtestSubject', 'relBatchAdmtestSubject.relBatch', 'relBatchAdmtestSubject.relBatch.relDegree')
+            ->where('id', $id)->first();
+
+        return View::make('admission::amw.adm_question.view_question',compact(
+            'view_questions'));
+    }
+
+
+    public function editAdmTestQuestionPaper($id , $year_id, $semester_id, $batch_id)
+    {
+        $edit_admtest_question = AdmQuestion::find($id);
+
+        $degree_id = Batch::where('id' ,'=', $batch_id )
+            ->where('semester_id' ,'=', $semester_id)
+            ->where('year_id' ,'=', $year_id)
+            ->first()->degree_id;
+
+        $degree_data = Degree::with('relDepartment')
+            ->where('id','=', $degree_id)
+            ->first();
+
+        $batch_admtest_subject = AdmTestSubject::lists('title','id');
+
+
+        return View::make('admission::amw.adm_question.edit_question',
+            compact('batch_admtest_subject','edit_admtest_question','year_id','semester_id','batch_id','degree_id','degree_data'));
+    }
+
+
+    public function updateAdmTestQuestionPaper($id)
+    {
+        $model = AdmQuestion::find($id);
+        $data = Input::all();
+
+        if($model->validate($data)){
+            if($model->update($data)){
+                Session::flash('message', 'Successfully Updates Information!');
+                return Redirect::back();
+            }
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()
+                ->with('error', 'invalid');
+        }
+    }
+
+    public function assignFacutly()
+    {
+
+        echo "ei part tuku baki ace // shafi";
+
+
+    }
+
+
+
+//..................................................Admission Test : Question Evaluation .......................................
+
+    public function admQuestionEvaluationIndex()
+    {
+        return View::make('admission::amw.adm_question_evaluation.adm_question_evaluation_index');
+    }
+
+
+
 
 }
