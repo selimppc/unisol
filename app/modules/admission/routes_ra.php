@@ -48,3 +48,7 @@ Route::any('admission/amw/assign-faculty/{course_id}/{dep_id}', [
     'as' => 'assign-faculty',
     'uses' => 'AdmAmwController@assign_faculty_index'
 ]);
+
+Route::post('admission/amw/assign-faculty-save',
+    'AdmAmwController@assign_faculty_save'
+);

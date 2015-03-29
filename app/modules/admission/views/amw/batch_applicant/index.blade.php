@@ -5,9 +5,22 @@
 @stop
 
 @section('content')
-<a class="pull-right btn btn-sm btn-success" href="{{ URL::route('admission.amw.batch' )}}"> <i class="fa fa-arrow-circle-left"></i> Go Back</a>
+{{-----------------------------------------Help Text -------------------------------------------------------------------------------------}}
+<div class="row">
+    <div class="col-md-12">
+    <a class="pull-right btn btn-xs btn-success" href="{{ URL::route('admission.amw.batch' )}}"> <i class="fa fa-arrow-circle-left"></i> Go Back</a>
 
-<h3>Admission On </h3>
+                <h3>Batch Applicant</h3>
+
+            <div class="help-text-top">
+             You can view all lists of Applicant Lists. Also this panel will allow you to perform some actions to <b>Change Status</b>, <b>View</b> under the column <b>Action</b>. And you can change more than one applicant's status selecting them.
+            </div><!-- /.box-body -->
+    </div><!-- ./col -->
+</div><!-- /.row -->
+{{-----------------------------------------Help Text ends ----------------------------------------------------------------------}}
+
+
+<h4>Admission On </h4>
       <p>
      {{--<b style="font-style: italic">--}}
         @if(isset($batchApt))
@@ -21,32 +34,35 @@
 
  <div class="box box-solid ">
     <div class="box box-info">
-          <div class="box-header">
-          <h3 class="box-title">Batch Applicant</h3>
-
-          <p>&nbsp;</p>
+    <br>
      {{--------------------------------------- Filter Starts --------------------------------------------------------------}}
-          <table id="example">
 
-          {{ Form::open(array('url'=>'admission/amw/batch-apt/status','class'=>'form-horizontal')) }}
-
-          <div  class="col-lg-2">{{ Form::label('status', 'Status') }}
-          {{ Form::select('status', ['' => 'Select Status'] +$status , Input::old('status'),['class'=>'form-control input-sm '])}}</div>
-          <p>&nbsp;</p>
-          {{ Form::submit('Filter',['class'=>'pull-left btn btn-xs btn btn-success']) }}
-          </table>
-          {{ Form::close() }}
+          {{ Form::open(array('route'=>['admission.amw.batch-applicant.index',$batch_id],'class'=>'form-horizontal')) }}
+          <div  class="col-lg-3 pull-right" >
+              <div class="input-group input-group-sm">
+                  {{ Form::select('status', ['' => 'Select Status']+$status , Input::old('status'),['class'=>'form-control input-sm '])}}
+                  <span class="input-group-btn">
+                      <button class="btn btn-info btn-flat" type="submit">Filter</button>
+                  </span>
+              </div>
           </div>
+
+          {{ Form::close() }}
+
       {{---------------------------------- Filter Ends --------------------------------------------------------------------}}
           <div class="box-body">
                <div class="row">
                    <div class="col-lg-12">
-                       {{ Form::open(['route' => ['admission.amw.batch-applicant.apply']]) }}
-                       {{ Form::submit('Apply', array('class'=>'pull-right btn btn-xs btn-success', 'id'=>'hide-button', 'style'=>'display:none'))}}
-                       {{ Form::select('status', ['' => 'Select Status'] +$status , Input::old('status'),['class'=>'pull-right col-lg-2 input-xs','required'])}}
-                      <p>&nbsp;</p>
-
-                      <table class="table table-bordered">
+                        {{ Form::open(['route' => ['admission.amw.batch-applicant.apply']]) }}
+                        <div class="col-lg-3" style="margin-left: -1%;">
+                            <div class="input-group input-group-sm">
+                              {{ Form::select('status', ['' => 'Select Status']+$status , Input::old('status'),['class'=>'form-control input-sm','required'])}}
+                              <span class="input-group-btn">
+                                  <button class="btn btn-info btn-flat" type="submit">Apply</button>
+                              </span>
+                            </div>
+                        </div>
+                      <table id="example" class="table table-bordered">
 
                          <thead>
                              <tr>
@@ -63,14 +79,14 @@
                                @if(isset($apt_data))
                                     @foreach($apt_data as $value)
                                         <tr>
-                                            <td><input type="checkbox" name="ids[]"  class="myCheckbox" value="{{ $value->id }}">
+                                            <td><input type="checkbox" name="ids[]"  class="myCheckbox" value="{{ $value->id }}" required="required">
                                             </td>
                                             <td>{{$value->relApplicant->first_name.''.$value->relApplicant->last_name}}</td>
                                             <td> {{ empty($value->status) ? '' : $status[$value->status] }}</td>
                                             <td>{{$value->relBatch->relSemester->title}}</td>
 
                                             <td>
-                                                 <a href="{{ URL::route('admission.amw.batch-applicant.view-applicant',['batch_id'=>$value->batch_id, 'applicant_id'=>$value->applicant_id])  }}" class="btn btn-default btn-xs" title="View Applicant's Info" style="color:teal"><b>View</b></a>
+                                                 <a href="{{ URL::route('admission.amw.batch-applicant.view-applicant',['id'=>$value->id,'batch_id'=>$value->batch_id, 'applicant_id'=>$value->applicant_id])  }}" class="btn btn-default btn-xs" title="View Applicant's Info" style="color:teal"><b>View</b></a>
                                                  <a class="btn btn-xs btn-default" href="{{ URL::to('admission/amw/batch-applicant/change/'.$value->id) }}" data-toggle="modal" data-target="#batchAptModal" style="color:steelblue"><b>Change Status</b></a>
                                             </td>
                                         </tr>

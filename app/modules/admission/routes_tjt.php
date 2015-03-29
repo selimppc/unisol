@@ -407,36 +407,36 @@ Route::any('admission/amw/constraint-waiver/delete/{id}', [
 ]);
 //{--------------------------------------- batch Education Constraint -------------------------------------------------------------}
 
-Route::any('admission/amw/batch-edu-const',
+Route::any('admission/amw/batch-education-constraint',
     ['as'=>'admission.amw.batch-edu-const.index',
         'uses'=>'UserSignupController@admBatchEduConstIndex']);
 
-Route::any('admission/amw/batch-edu-const/create',
+Route::any('admission/amw/batch-education-constraint/create',
     ['as'=>'admission.amw.batch-edu-const.create',
         'uses'=>'UserSignupController@admBatchEduConstCreate']);
 
-Route::any('admission/amw/batch-edu-const/store',
+Route::any('admission/amw/batch-education-constraint/store',
     ['as'=>'admission.amw.batch-edu-const.store',
         'uses'=>'UserSignupController@admBatchEduConstStore']);
 
-Route::any('admission/amw/batch-edu-const/show/{id}',
+Route::any('admission/amw/batch-education-constraint/show/{id}',
     ['as'=>'admission.amw.batch-edu-const.show',
         'uses'=>'UserSignupController@admBatchEduConstShow']);
 
-Route::any('admission/amw/batch-edu-const/edit/{id}',
+Route::any('admission/amw/batch-education-constraint/edit/{id}',
     ['as'=>'admission.amw.batch-edu-const.edit',
         'uses'=>'UserSignupController@admBatchEduConstEdit']);
 
-Route::any('admission/amw/batch-edu-const/update/{id}',
+Route::any('admission/amw/batch-education-constraint/update/{id}',
     ['as'=>'admission.amw.batch-edu-const.update',
         'uses'=>'UserSignupController@admBatchEduConstUpdate']);
 
-Route::any('admission/amw/batch-edu-const/delete/{id}',
+Route::any('admission/amw/batch-education-constraint/delete/{id}',
     ['as'=>'admission.amw.batch-edu-const.delete',
         'uses'=>'UserSignupController@admBatchEduConstDelete']);
 
 
-//{-----------------------------------------------Batch Applicant--------------------------------------------------------------------------------------------}
+//{------------------ Batch Applicant--------------------------------------------------------------------------------------------}
 
 Route::any('admission/amw/batch-applicant/{id}',
     ['as'=>'admission.amw.batch-applicant.index',
@@ -455,7 +455,7 @@ Route::any('admission/amw/batch-applicant/apply/{id}',
     ['as'=>'admission.amw.batch-applicant.apply',
         'uses'=>'UserSignupController@batchApplicantApply']);
 
-Route::any('admission/amw/batch-applicant/view-applicant/{batch_id}/{applicant_id}',
+Route::any('admission/amw/batch-applicant/view-applicant/{id}/{batch_id}/{applicant_id}',
     ['as'=>'admission.amw.batch-applicant.view-applicant',
         'uses'=>'UserSignupController@batchApplicantView']);
 

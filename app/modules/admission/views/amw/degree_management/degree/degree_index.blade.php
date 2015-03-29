@@ -4,7 +4,7 @@
 @stop
 @section('content')
 
-{{-----------------------------------------Help Text ----------------------------------------------------------}}
+{{-----------------------------------------Help Text -------------------------------------------------------------------------------------}}
 <div class="row">
     <div class="col-md-12">
                 <h3>Degree</h3>
@@ -14,35 +14,37 @@
             </div><!-- /.box-body -->
     </div><!-- ./col -->
 </div><!-- /.row -->
-{{---------------------------------------------------------------------------------------------------------------}}
+{{-----------------------------------------Help Text ends ----------------------------------------------------------------------}}
 
     <div class="box box-solid ">
         <div class="box box-info">
-            <div class="box-header">
-                {{--<h3 class="box-title">Degree </h3>--}}
-                <div class="box-tools pull-right">
-                    <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('admission/amw/degree/create')}}" data-toggle="modal" data-target="#degreeModal" style="color: #ffffff"><b>Add Degree</b></a>
+
+{{-------------------Searching Starts--------------------------------------------------------------}}
+
+            <p>{{ Form::open(array('url'=>'admission/amw/degree/search','class'=>'form-horizontal')) }}
+                <div  class="col-lg-3">
+                    <div class="input-group input-group-sm">
+                        {{ Form::select('search_department', $department , Input::old('search_department'),['class'=>'form-control input-sm '])}}
+                        <span class="input-group-btn">
+                            <button class="btn btn-info btn-flat" type="submit">Search</button>
+                        </span>
+                    </div>
                 </div>
-                <p>&nbsp;</p>
-                {{-------------------------------------------------------------Searching Starts--------------------------------------------------------------}}
-                <table id="example1">
+                <div class="col-lg-9" class="box-tools pull-right">
+                    <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('admission/amw/degree/create')}}" data-toggle="modal" data-target="#degreeModal" style="color: #ffffff"><b>Add Degree</b></a>
 
-                {{ Form::open(array('url'=>'admission/amw/degree/search','class'=>'form-horizontal')) }}
+                </div>
 
-                <div  class="col-lg-3">{{ Form::label('search_department', 'Department') }}
-                {{ Form::select('search_department', $department , Input::old('search_department'),['class'=>'form-control input-sm '])}}</div>
-                <p>&nbsp;</p>
-                {{ Form::submit('Search',['class'=>'pull-left btn btn-xs btn btn-success']) }}
-                </table>
-                {{ Form::close() }}
-
-                {{--------------------------------------------------------------Searching Ends--------------------------------------------------------------------}}
+            {{ Form::close() }}
+            </p>
+{{------------Searching Ends--------------------------------------------------------------------}}
             </div>
             <div class="box-body">
                 <div class="row">
                     <div class="col-lg-12">
+                    <br>
                         {{ Form::open(array('url' => 'admission/amw/degree/batch_delete')) }}
-                        <table class="table table-bordered">
+                        <table id="example1" class="table table-bordered">
                             <thead>
                             <tr>
                                 <th>
@@ -72,7 +74,7 @@
 
                                         <a data-href="{{ URL::to('admission/amw/degree/delete/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" style="font-size: 12px;color: lightcoral"><span class="fa  fa-trash-o"></span></a>
 
-                                        <a href="{{ URL::route('admission.amw.degree_courses', ['id'=>$value->id])  }}" class="btn btn-xs btn-default">DC</a>
+                                        <a href="{{ URL::route('admission.amw.degree_courses', ['id'=>$value->id])  }}" class="btn btn-xs btn-info">DC</a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -89,7 +91,7 @@
     <div class="text-right">
         {{ $model->links() }}
     </div>
-    {{----------------------------------------------Modal : degreeGroupModal--------------------------------------------------------------------------}}
+{{----------------------Modal : degreeGroupModal--------------------------------------------------------------------------}}
     <div class="modal fade" id="degreeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">

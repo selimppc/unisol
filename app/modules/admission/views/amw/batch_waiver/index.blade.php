@@ -3,14 +3,17 @@
     @include('layouts._sidebar_amw')
 @stop
 @section('content')
-<a class="pull-right btn btn-sm btn-success" href="{{ URL::route('admission.amw.batch' )}}"> <i class="fa fa-arrow-circle-left"></i> Go Back</a>
+<a class="pull-right btn btn-xs btn-success" href="{{ URL::route('admission.amw.batch' )}}"> <i class="fa fa-arrow-circle-left"></i> Go Back</a>
 
 <h3 class="box-title">Batch Waiver </h3>
     <div class="box box-solid ">
         <div class="box box-info">
             <div class="box-header">
-                <p>&nbsp;</p>
-
+            <div class="col-lg-10">
+            <div class="help-text-top">
+               You can view information according to corresponding Batch.
+            </div><!-- /.box-body -->
+            </div>
             </div>
             <div class="box-body">
                 <div class="row">
@@ -78,9 +81,12 @@
          <div class="box box-info">
              <div class="box-header">
 
-
+                    <div class="col-lg-10">
+                        <b>Waiver List: </b> You can add waiver by clicking on the button <b>Add Waiver</b>. Also you can add constraint by clicking the button <b>Const</b> under the action column.
+                    </div>
                  <div class="box-tools pull-right">
-                     <a class="pull-right btn btn-sm btn-info" href="{{ URL::route('admission.amw.batch-waiver.create',['batch_id'=>$batch_info->id])}}" data-toggle="modal" data-target="#WaiverModal" style="color: #ffffff"><b>Add Waiver..</b></a>
+
+                     <a class="pull-right btn btn-xs btn-info" href="{{ URL::route('admission.amw.batch-waiver.create',['batch_id'=>$batch_info->id])}}" data-toggle="modal" data-target="#WaiverModal" style="color: #ffffff"><b>Add Waiver</b></a>
                  </div>
                  <p>&nbsp;</p>
 
@@ -106,8 +112,9 @@
                                                <td> {{empty( WaiverConstraint::where('batch_waiver_id', $value->id)->first()->id) ? "No Const." : "Const. Added" }}</td>
 
                                                <td>
+                                               <a href="{{ URL::route('admission.amw.waiver-constraint.index', ['batch_id'=>$value->batch_id, 'waiver_id'=>$value->waiver_id]) }}" class="btn btn-xs btn-info">Const</a>
                                                   <a data-href="{{ URL::route('admission.amw.batch-waiver.delete',['batch_id'=>$value->batch_id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete"  style="font-size: 12px;color: lightcoral"><span class="fa  fa-trash-o"></span></a>
-                                                  <a href="{{ URL::route('admission.amw.waiver-constraint.index', ['batch_id'=>$value->batch_id, 'waiver_id'=>$value->waiver_id]) }}">Const</a>
+
                                                </td>
                                          </tr>
                                      @endforeach

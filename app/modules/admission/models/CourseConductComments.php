@@ -14,10 +14,10 @@ class CourseConductComments extends Eloquent{
     private $errors;
     private $rules = [
         'course_conduct_id' => 'required|integer',
-        //'comments' => 'alpha_dash',
+        'comments' => 'alpha_dash',
         'commented_to' => 'required|integer',
         'commented_by' => 'required|integer',
-        //'status' => 'alpha_dash',
+        'status' => 'alpha_dash',
     ];
     public function validate($data)
     {

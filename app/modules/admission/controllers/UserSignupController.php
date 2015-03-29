@@ -375,7 +375,7 @@ class UserSignupController extends \BaseController {
 	}
 
 /*
- {--------------------------------- Version:2 ->Admission -->Degree ------------------------------------}
+ {------------------- Version:2 ->Admission--> Degree ------------------------------------}
  */
     public function admDegreeIndex(){
 
@@ -467,7 +467,7 @@ class UserSignupController extends \BaseController {
             return Redirect::to('admission/amw/degree');
         }
     }
- //{----------------------------------------------------- Waiver ----------------------------------------------------------------}
+ //{----------------- Waiver ----------------------------------------------------------------}
 
     //TODO : Add Billing Details.............
 
@@ -543,84 +543,6 @@ class UserSignupController extends \BaseController {
 
 
 //{------------------------------------ Batch Waiver --------------------------------------------------------------------------}
-/*
-    public function admBatchWaiverIndex(){
-
-        $model = BatchWaiver::latest('id')->paginate(5);
-
-        return View::make('admission::amw.batch_waiver.batch_waiver_index',
-                  compact('model'));
-    }
-
-    public function  admBatchWaiverCreate()
-    {
-        $batch = array('' => 'Select Batch ') + Batch::lists('batch_number','id');
-        $waiver = array('' => 'Select Waiver ') + Waiver::lists('title', 'id');
-
-        return View::make('admission::amw.batch_waiver.batch_waiver_form',
-                  compact('batch','waiver'));
-    }
-
-    public function admBatchWaiverStore()
-    {
-        $data = Input::all();
-        $model = new BatchWaiver();
-
-        if($model->validate($data)){
-            if($model->create($data)){
-                Session::flash('message','Successfully added Information!');
-                return Redirect::back();
-            }
-        }else{
-            $errors = $model->errors();
-            Session::flash('errors', $errors);
-            return Redirect::back();
-        }
-    }
-
-    public function admBatchWaiverShow($id)
-    {
-        $model = BatchWaiver::find($id);
-        return View::make('admission::amw.batch_waiver.batch_waiver_show',compact('model'));
-    }
-
-    public function  admBatchWaiverEdit($id)
-    {
-        $model = BatchWaiver::findOrFail($id);
-        $batch = array('' => 'Select Batch ') + Batch::lists('batch_number','id');
-        $waiver = array('' => 'Select Waiver ') + Waiver::lists('title', 'id');
-        return View::make('admission::amw.batch_waiver.batch_waiver_edit',
-                  compact('model','batch','waiver'));
-    }
-
-    public function admBatchWaiverUpdate($id)
-    {
-        $model = BatchWaiver::find($id);
-        $data = Input::all();
-
-        if($model->validate($data)){
-            if($model->update($data)){
-                Session::flash('message','Successfully Updated Information!');
-                return Redirect::back();
-            }
-        }else{
-            $errors = $model->errors();
-            Session::flash('errors', $errors);
-            return Redirect::back();
-        }
-    }
-
-    public function admBatchWaiverDelete($id)
-    {
-        try {
-            BatchWaiver::find($id)->delete();
-            return Redirect::back()->with('message', 'Successfully deleted Information!');
-        }
-        catch(exception $ex){
-            return Redirect::back()->with('danger', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
-        }
-    }
-*/
 
     public function batchWaiverIndex($batch_id){
 
@@ -833,37 +755,33 @@ class UserSignupController extends \BaseController {
         }
     }
 
-// {---------------------------------------------Batch Applicant----------------------------------------------------------------------}
+// {-----------------  Batch Applicant    ----------------------------------------------------------------------}
 
-    public function batchApplicantIndex($id){
+    public function batchApplicantIndex($batch_id){
         $model = new BatchApplicant();
+
         //view info according to batch(admission on)
         $batchApt = Batch::with('relDegree.relDegreeGroup','relDegree.relDegreeProgram','relDegree.relDepartment','relYear','relSemester')
-            ->where('id', '=', $id)
+            ->where('id', '=', $batch_id)
             ->first();
-        //print_r($model);exit;
         $status =  $model->getStatus();
         if($this->isPostRequest()){
-            $arrayData = [
-                'status' => Input::get('status'),
-            ];
-            $result = Helpers::search($arrayData, $model);
-            if(! $result->isEmpty()){
-                foreach($result as $value){
-                    $apt_data = BatchApplicant::with('relBatch','relApplicant','relBatch.relSemester');
-                    $apt_data = $apt_data->where('batch_id','=', $value->batch_id);
-                }
+                $chk_status = Input::get('status');
+            if($chk_status != null){
+                $apt_data = BatchApplicant::with('relBatch','relApplicant','relBatch.relSemester');
+                $apt_data = $apt_data->where('batch_id','=', $batch_id);
+                $apt_data = $apt_data->where('status','=', $chk_status);
                 $apt_data = $apt_data->get();
-                print_r($apt_data);exit;
             }else{
-                $apt_data = null;
+                $apt_data = BatchApplicant::with('relBatch','relApplicant','relBatch.relSemester')
+                    ->where('batch_id','=',$batch_id)->get();
             }
         }else{
             $apt_data = BatchApplicant::with('relBatch','relApplicant','relBatch.relSemester')
-                ->where('batch_id','=',$id)->get();
+                ->where('batch_id','=',$batch_id)->get();
         }
         return View::make('admission::amw.batch_applicant.index',
-            compact('batchApt','apt_data', 'status'));
+            compact('batch_id', 'batchApt','apt_data', 'status'));
 
      }
 
@@ -906,7 +824,9 @@ class UserSignupController extends \BaseController {
     }
 
 
-    public function batchApplicantView($batch_id,$applicant_id){
+    public function batchApplicantView($id,$batch_id,$applicant_id){
+            $model = BatchApplicant::findOrFail($id);
+            $status = $model->getStatus();
 
             $applicant_account_info = Applicant::where('id','=',$applicant_id)->first();
             $applicant_profile_info = ApplicantProfile::with('relCountry')->where('applicant_id', '=',$applicant_id )->first();
@@ -935,9 +855,7 @@ class UserSignupController extends \BaseController {
             return View::make('admission::amw.batch_applicant.view_applicant_info',
                 compact('applicant_id','batch_id','applicant_account_info', 'applicant_profile_info',
                         'applicant_acm_records','applicant_meta_records','applicant_extra_curr_activities',
-                        'supporting_docs','miscellaneous_info'));
-
+                        'supporting_docs','miscellaneous_info','status','model'));
     }
-
 
 }

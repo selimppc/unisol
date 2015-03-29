@@ -9,7 +9,7 @@ class CourseConduct extends Eloquent{
     //TODO :: model attributes and rules and validation
     protected $table='course_conduct';
     protected $fillable = [
-        'course_id', 'faculty_user_id', 'year_id', 'semester_id', 'degree_id', 'degree_course_oriented',
+        'course_id', 'faculty_user_id', 'year_id', 'semester_id', 'degree_id',
     ];
     private $errors;
     private $rules = [
@@ -19,7 +19,7 @@ class CourseConduct extends Eloquent{
         'semester_id' => 'required|integer',
         'degree_id' => 'required|integer',
         'evaluation_total_marks' => 'numeric',
-        'degree_course_oriented' => 'required|alpha_dash',
+       // 'degree_course_oriented' => 'required|alpha_dash',
     ];
     public function validate($data)
     {
