@@ -671,15 +671,17 @@ class AdmAmwController extends \BaseController
 
     public function assign_faculty_index($course_id,$dep_id)
     {
-//        $course_id = $course_id;
-//        $dep_id = $dep_id;
+
         $batch_course = BatchCourse::with('relBatch','relBatch.relDegree','relCourse','relYear','relSemester')
             ->where('course_id' , '=' ,$course_id)
             ->get();
 
         $facultyList =  array('' => 'Select faculty ') +User::FacultyList();
+        $status = CourseConduct::with('relCourse')
+            ->where('course_id' , '=' ,$course_id)
+            ->get();
 
-        return View::make('admission::amw.batch_course.assign_faculty_index',compact('facultyList','batch_course','course_id','dep_id'));
+        return View::make('admission::amw.batch_course.assign_faculty_index',compact('facultyList','batch_course','status'));
     }
 
     public function assign_faculty_save()
