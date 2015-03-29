@@ -8,7 +8,7 @@
 {{-----------------------------------------Help Text -------------------------------------------------------------------------------------}}
 <div class="row">
     <div class="col-md-12">
-    <a class="pull-right btn btn-sm btn-success" href="{{ URL::route('admission.amw.batch' )}}"> <i class="fa fa-arrow-circle-left"></i> Go Back</a>
+    <a class="pull-right btn btn-xs btn-success" href="{{ URL::route('admission.amw.batch' )}}"> <i class="fa fa-arrow-circle-left"></i> Go Back</a>
 
                 <h3>Batch Applicant</h3>
 
@@ -86,7 +86,7 @@
                                             <td>{{$value->relBatch->relSemester->title}}</td>
 
                                             <td>
-                                                 <a href="{{ URL::route('admission.amw.batch-applicant.view-applicant',['batch_id'=>$value->batch_id, 'applicant_id'=>$value->applicant_id])  }}" class="btn btn-default btn-xs" title="View Applicant's Info" style="color:teal"><b>View</b></a>
+                                                 <a href="{{ URL::route('admission.amw.batch-applicant.view-applicant',['id'=>$value->id,'batch_id'=>$value->batch_id, 'applicant_id'=>$value->applicant_id])  }}" class="btn btn-default btn-xs" title="View Applicant's Info" style="color:teal"><b>View</b></a>
                                                  <a class="btn btn-xs btn-default" href="{{ URL::to('admission/amw/batch-applicant/change/'.$value->id) }}" data-toggle="modal" data-target="#batchAptModal" style="color:steelblue"><b>Change Status</b></a>
                                             </td>
                                         </tr>

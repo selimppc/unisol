@@ -14,10 +14,6 @@
                 {{ Form::select('status', $status ,$model->status ,['class'=>'form-control','required'])}}</div>
                 <p>&nbsp;</p>
 
-          <p>&nbsp;</p>
-          <p>&nbsp;</p>
-          <p>&nbsp;</p>
-
           <div>
 
               {{ Form::submit('Change', array('class'=>'pull-right btn btn-info input-sm')) }}

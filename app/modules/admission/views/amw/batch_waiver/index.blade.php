@@ -3,7 +3,7 @@
     @include('layouts._sidebar_amw')
 @stop
 @section('content')
-<a class="pull-right btn btn-sm btn-success" href="{{ URL::route('admission.amw.batch' )}}"> <i class="fa fa-arrow-circle-left"></i> Go Back</a>
+<a class="pull-right btn btn-xs btn-success" href="{{ URL::route('admission.amw.batch' )}}"> <i class="fa fa-arrow-circle-left"></i> Go Back</a>
 
 <h3 class="box-title">Batch Waiver </h3>
     <div class="box box-solid ">
@@ -86,7 +86,7 @@
                     </div>
                  <div class="box-tools pull-right">
 
-                     <a class="pull-right btn btn-sm btn-info" href="{{ URL::route('admission.amw.batch-waiver.create',['batch_id'=>$batch_info->id])}}" data-toggle="modal" data-target="#WaiverModal" style="color: #ffffff"><b>Add Waiver</b></a>
+                     <a class="pull-right btn btn-xs btn-info" href="{{ URL::route('admission.amw.batch-waiver.create',['batch_id'=>$batch_info->id])}}" data-toggle="modal" data-target="#WaiverModal" style="color: #ffffff"><b>Add Waiver</b></a>
                  </div>
                  <p>&nbsp;</p>
 

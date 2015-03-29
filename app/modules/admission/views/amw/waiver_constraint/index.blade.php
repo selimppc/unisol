@@ -3,7 +3,7 @@
     @include('layouts._sidebar_amw')
 @stop
 @section('content')
-<a class="pull-right btn btn-sm btn-success" href="{{ URL::route('admission.amw.batch-waiver.index',['batch_id'=>$batchWaiver->batch_id] )}}"> <i class="fa fa-arrow-circle-left"></i> Go Back</a>
+<a class="pull-right btn btn-xs btn-success" href="{{ URL::route('admission.amw.batch-waiver.index',['batch_id'=>$batchWaiver->batch_id] )}}"> <i class="fa fa-arrow-circle-left"></i> Go Back</a>
 
 <h3 class="box-title">Waiver Constraint</h3>
     <div class="box box-solid ">
@@ -81,7 +81,7 @@
                                           @endforeach
                                       @endif
                                       <div>
-                                          <a class="pull-right btn btn-sm btn-info" href="{{ URL::route('admission.amw.waiver-time-constraint.create', ['batch_waiver_id'=>$batch_waiver_id] )}}" data-toggle="modal" data-target="#waiverConstModal" style="color: #ffffff"><b>Add Time Constraint</b></a>
+                                          <a class="pull-right btn btn-xs btn-info" href="{{ URL::route('admission.amw.waiver-time-constraint.create', ['batch_waiver_id'=>$batch_waiver_id] )}}" data-toggle="modal" data-target="#waiverConstModal" style="color: #ffffff"><b>Add Time Constraint</b></a>
                                       </div>
                                       <p>&nbsp;</p>
                                       </tbody>
@@ -129,9 +129,9 @@
                                           @endforeach
                                         @endif
                                         <div>
-                                          <a class="pull-right btn btn-sm btn-info" href="{{ URL::route('admission.amw.waiver-gpa-constraint.create', ['batch_waiver_id'=>$batch_waiver_id] )}}" data-toggle="modal" data-target="#waiverConstModal" style="color: #ffffff"><b>Add GPA Constraint</b></a>
+                                          <a class="pull-right btn btn-xs btn-info" href="{{ URL::route('admission.amw.waiver-gpa-constraint.create', ['batch_waiver_id'=>$batch_waiver_id] )}}" data-toggle="modal" data-target="#waiverConstModal" style="color: #ffffff"><b>Add GPA Constraint</b></a>
                                       </div>
-
+                                      <p>&nbsp;</p>
                                       </tbody>
                           </table>
 

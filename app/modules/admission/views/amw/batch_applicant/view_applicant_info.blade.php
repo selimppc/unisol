@@ -4,11 +4,22 @@
 @stop
 @section('content')
 <div>
-   <a class="pull-right btn btn-sm btn-success" href="{{ action('UserSignupController@batchApplicantIndex', $batch_id)}}"> <i class="fa fa-arrow-circle-left"></i> Go Back</a>
+   <a class="pull-right btn btn-xs btn-success" href="{{ action('UserSignupController@batchApplicantIndex', $batch_id)}}"> <i class="fa fa-arrow-circle-left"></i> Go Back</a>
 </div>
+<h3 class="box-title">Applicant's Profile </h3>
 
  <section class="col-lg-6 connectedSortable">
-       <h3 class="box-title">Applicant's Profile </h3>
+  {{---------------Status starts--------------------------------------------}}
+             {{Form::open(array('route'=> ['admission.amw.batch-applicant.update',$model->id], 'class'=>'form-horizontal','files'=>true))}}
+
+                 <div  class="col-lg-4">{{ Form::label('status', 'Status') }}
+                    {{ Form::select('status', $status ,$model->status ,['class'=>'form-control','required'])}}</div>
+                    <p>&nbsp;</p>
+                 <div>
+             {{ Form::submit('Change Status', array('class'=>'pull-right btn btn-info input-sm')) }}
+             {{Form::close()}}
+  {{----------------------Status ends ------------------------------------------}}
+
             <p>&nbsp;</p>
             <div class="box box-info">
                  <div class="box-header">
