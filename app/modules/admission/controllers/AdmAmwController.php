@@ -1250,8 +1250,7 @@ class AdmAmwController extends \BaseController
      {------------------- Version:2 ->Admission--> Degree ------------------------------------}
      */
     public function admDegreeIndex(){
-
-        $model = Degree::latest('id')->paginate(5);
+        $model = Degree::latest('id')->paginate(10);
         $department = array('' => 'Select Department ') + Department::lists('title', 'id');
         return View::make('admission::amw.degree_management.degree.degree_index',
             compact('model','department'));
