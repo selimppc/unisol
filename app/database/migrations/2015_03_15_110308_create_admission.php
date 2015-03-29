@@ -28,7 +28,7 @@ class CreateAdmission extends Migration {
             ));
             $table->string('credit_min_per_semester', 128);
             $table->string('credit_max_per_semester', 128);
-            $table->tinyInteger('status', false)->lenght(1);
+            $table->string('status', 128);
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
