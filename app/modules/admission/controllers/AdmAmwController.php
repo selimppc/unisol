@@ -478,24 +478,33 @@ class AdmAmwController extends \BaseController
         $data = Input::all();
         $select = Input::get('course_list');
         $deg_id = Input::get('degree_id');
-        foreach($select as $value)
-        {
+
+        $i = 0;
+        foreach($select as $value){
             $degree_course = new DegreeCourse();
-            $degree_course ->degree_id =$deg_id;
-            $degree_course ->course_id =$value;
-            $degreeCourseCheck = DB::table('degree_course')
-                ->select(DB::raw('1'))
-                ->where('course_id', '=', $degree_course->course_id)
-                ->where('degree_id', '=', $degree_course->degree_id)
-                ->get();
+            $degree_course->degree_id = $deg_id;
+            $degree_course->course_id = $value;
+
+            $degreeCourseCheck = $this->checkDegreeCourse($degree_course->degree_id, $degree_course->course_id);
+
             if($degreeCourseCheck){
-                return Redirect::back()->with('info','The selected Course already added !
-                    Please Select One That Is Not Added Yet.');
+                $exists [] =  Course::findOrFail($degree_course->course_id)->course_code;
+                Session::flash('info', 'Already Exists : '.$exists[$i]);
             }else{
                 $degree_course->save();
+                $array [] = Course::findOrFail($degree_course->course_id)->course_code;
+                Session::flash('message', 'Successfully Added ! '. $array[$i]);
             }
         }
-        return Redirect::back()->with('message', 'Successfully Added Information!');
+        return Redirect::back();
+    }
+
+    protected function checkDegreeCourse($degree_id, $course_id){
+        $result = DB::table('degree_course')->select(DB::raw('1'))
+            ->where('course_id', '=', $course_id)
+            ->where('degree_id', '=', $degree_id)
+            ->first();
+        return $result;
     }
 
     public function degree_courses_delete($id)
@@ -504,7 +513,7 @@ class AdmAmwController extends \BaseController
             $data= DegreeCourse::find($id);
             if($data->delete())
             {
-                return Redirect::back() ->with('message', 'Successfully Deleted Information!');
+                return Redirect::back() ->with('info', 'Successfully Deleted Information!');
             }
         }
         catch
