@@ -1,6 +1,11 @@
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+     <h1> View Batch </h1>
+</div>
+
 <div style="padding-left: 8%; width: 90%;">
 <div class="modal-body">
- <h1> View Batch </h1>
+
 
         <div class="row">
             <h2><strong> Batch Number :</strong>{{ $b_m_course->batch_number }}</h2>
