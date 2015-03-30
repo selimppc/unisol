@@ -7,12 +7,12 @@
         <div class="box-header">
           {{ Form::open(array('url' => 'admission/amw/degree-courses/save')) }}
             {{ Form::hidden('degree_id', $degree_id , ['class'=>'form-control degree_id'])}}
-            <p style="text-align: center;color: #800080;font-size:large;margin-top: 5px">Courses of Degree of {{$degree_title->title}}</p>
-            <div class="form-group" style="float: left; width: 35%; padding: 1%; ">
+            <p style="text-align: center;color: #800080;font-size:large;">Degree Course:  {{$degree_title->title}}</p>
+            <div class="form-group" style="float: left; width: 35%; padding-left: 1%; ">
                 {{ Form::label('course_list[]', 'List Of all Course ') }}
                 {{ Form::select('course_list[]', $course_list, Request::old('course_list') ? Request::old('course_list') : $course_list,['multiple' => true, 'class'=>'form-control', 'required']); }}
             </div>
-            <div style=" float: left; padding-left: 2%; padding-top: 4%;">
+            <div style=" float: left; padding-left: 1%; padding-top: 4%;">
                 {{ Form::submit('Add Course', ['class'=>'btn btn-primary']) }}
             </div>
 
