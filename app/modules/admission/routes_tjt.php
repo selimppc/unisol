@@ -159,6 +159,14 @@ Route::any('admission/public/admission/degree-apply',
 Route::any('admission/public/admission/applicant-details/{id}',
     ['as' => 'admission.public.applicant_details',
         'uses' => 'AdmPublicController@degreeOfferApplicantDetails']);
+//Add acm records_modal
+Route::any('admission/public/admission/add-applicant-acm-docs',
+    ['as' => 'admission.public.add-applicant-acm-docs',
+        'uses' => 'AdmPublicController@addApplicantAcmDocsPublic']);
+
+Route::any('admission/public/admission/store-applicant-acm-docs',
+    ['as' => 'admission.public.store-applicant-acm-docs',
+        'uses' => 'AdmPublicController@storeApplicantAcmDocsPublic']);
 
 Route::any('admission/public/admission/applicant-docs/{id}',
     ['as' => 'admission.public.applicant_docs',

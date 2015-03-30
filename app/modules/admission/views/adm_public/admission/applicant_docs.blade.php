@@ -11,7 +11,7 @@
                  <table class="table table-bordered table-striped">
                        <div class="col-lg-4">
                            @if(isset($applicant_acm_records))
-                           {{ HTML::image('applicant_images/'.$applicant_acm_records->profile_image) }}
+                           {{ HTML::image('/applicant_images'.$applicant_acm_records->certificate) }}
                            @endif
                        </div>
                  </table>
