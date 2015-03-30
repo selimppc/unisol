@@ -12,15 +12,15 @@ class ApplicantController extends \BaseController
         $token = csrf_token();
         $rules = array(
             'first_name' => 'required|min:2',
-            'last_name' => 'required|3',
-            'email_address' => 'Required|email|unique:user',
-            'username' => 'required',
+            'last_name' => 'required|min:3',
+            'email' => 'required|email|unique:applicant',
+            'username' => 'required|unique:applicant',
             'password' => 'regex:((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})|required',
             'confirm_password' => 'Required|same:password',
         );
         $validator = Validator::make(Input::all(), $rules);
         if ($validator->Fails()) {
-            Session::flash('message', 'Data Not saved');
+            //Session::flash('message', 'Data Not saved');
             return Redirect::to('/applicant')->withErrors($validator)->withInput();
         } else {
             $verified_code = str_random(30);
@@ -36,10 +36,10 @@ class ApplicantController extends \BaseController
 
                 if ($data->save()) {
                     $email=$data->email;
-                    Mail::send('applicant::signup.verification', array('link' => $verified_code),  function($message) use ($email)
+                    Mail::send('applicant::signup.authentication', array('link' => $verified_code,'username' => Input::get('first_name')), function($message) use ($email)
                     {
-                        $message->from('test@edutechsolutionsbd.com', 'Mail Notification');
-                        $message->to($email);
+                        $message->from('test@edutechsolutionsbd.com', 'Email Verification');
+                        $message->to($email, Input::get('username'));
                         $message->cc('ratnaakter17@gmail.com');
                         $message->subject('Notification');
                     });
@@ -47,8 +47,8 @@ class ApplicantController extends \BaseController
                     Session::flash('message', 'Thanks for signing up! Please check your email.');
                     return Redirect::to('/applicant');
                 } else {
-                    Session::flash('message', 'not sending email. try again');
-                    return Redirect::to('/applicant')->with('message', 'Signup Here ');
+                    Session::flash('danger', 'Please try again');
+                    return Redirect::to('/applicant');
                 }
             }
         }

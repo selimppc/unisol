@@ -4,9 +4,9 @@
     <meta charset="utf-8">
 </head>
 <body>
-<h2>Verify Your Email Address</h2>
 <div>
     <br>
+    Hi,{{ $username }}
     Thanks for creating an account in our university.
     Please follow the link below to verify your email address.<br>
     {{ URL::to('register/verify/'.$link) }}.
