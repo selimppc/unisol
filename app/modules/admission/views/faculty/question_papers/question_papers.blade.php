@@ -56,8 +56,8 @@
                                      <td>{{ $admtest_question_paper_list->status }} </td>
 
                                     <td>
-                                        <a href="{{ URL::route('admission.faculty.admission-test.view-question-paper',['id'=>$admtest_question_paper_list->id]) }}" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modal" >VQP</a>
-                                        <a href="{{ URL::route('admission.faculty.admission-test.view-questions-items') }}" class="btn btn-primary btn-xs disabled" >VQs</a>
+                                        <a href="{{ URL::route('admission.faculty.admission-test.view-question-paper',['id'=>$admtest_question_paper_list->id]) }}" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modal">VQP</a>
+                                        <a href="{{ URL::route('admission.faculty.admission-test.view-questions-items',['id'=>$admtest_question_paper_list->id]) }}" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modal" >VQs</a>
                                         <a href="{{ URL::route('admission.faculty.admission-test.add-question-paper') }}" class="btn btn-info btn-xs disabled" >AQ</a>
                                         <a href="{{ URL::route('admission.faculty.admission-test.assign-to-question-paper') }}" class="btn btn-default btn-xs disabled" >Comments</a>
                                         <a href="{{ URL::route('admission.faculty.admission-test.evaluate-questions') }}" class="btn btn-info btn-xs disabled" >Evaluate</a>

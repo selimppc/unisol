@@ -1,6 +1,11 @@
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+     <h1>View View Examiners</h1>
+</div>
+
 <div style="padding-left: 10px; width: 90%;">
 
- <h1>View View Examiners</h1>
+
 
     {{ Form::open(array('route'=>'admission.amw.admission-test-examiner.view-admission-test-examiner','method' => '')) }}
 

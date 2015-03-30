@@ -1,6 +1,11 @@
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+   <h1>Batch Adm-Test Subject : View</h1>
+</div>
+
 <div style="padding: 10px; width: 90%;">
 
- <h1>Batch Adm-Test Subject : View</h1>
+
 
     {{ Form::open(array('url'=>'admission/amw/batch-adm-test-subject/view_admtest_subject','method' => '')) }}
 
