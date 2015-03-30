@@ -37,7 +37,6 @@
                                                                    ['id' => $value->id]) }}">
                                                                    {{ $value->relBatch->relDegree->title }}
                                                                </a>
-
                                                          </td>
                                                     </tr>
                                                 @endforeach

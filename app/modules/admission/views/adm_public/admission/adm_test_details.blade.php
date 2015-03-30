@@ -5,7 +5,7 @@
 @section('content')
 {{--<a class="pull-right btn btn-xs btn-success" href="{{ URL::route('admission.public.degree_offer_list')}}"><b><i class="fa fa-arrow-circle-left"></i>Go Back</b></a>--}}
 
- <b><h4>Admission Test Details On </h4></b>
+ <h4>Admission Test Details On</h4>
  <div class="box box-solid">
 
      <div class="box box-info">
@@ -40,10 +40,10 @@
  </div>
 
  {{--------------- Admission Test Subjects  ----------------------------------------------------------}}
-
+<h5><b>Admission Test will be taken On </b></h5>
   <div class="box box-solid">
      <div class="box-header">
-               <h4>Admission Test will be taken On </h4>
+
      </div>
      <div class="box box-info">
          <div class="box-body">
@@ -59,13 +59,15 @@
                                    </tr>
                               </thead>
                               <tbody>
-                                     {{--@foreach($adm_test_subject as $value)--}}
-                                          {{--<tr>--}}
-                                                 {{--<td>{{$value->relAdmtestSubject->title}}</td>--}}
-                                                 {{--<td>{{$value->marks}}</td>--}}
-                                                 {{--<td>{{$value->duration}}</td>--}}
-                                          {{--</tr>--}}
-                                     {{--@endforeach--}}
+                                  @if(isset($adm_test_subject))
+                                     @foreach($adm_test_subject as $value)
+                                          <tr>
+                                                 <td>{{$value->relAdmtestSubject->title}}</td>
+                                                 <td>{{$value->marks}}</td>
+                                                 <td>{{$value->duration}}</td>
+                                          </tr>
+                                     @endforeach
+                                     @endif
                               </tbody>
                         </table>
                   </div>

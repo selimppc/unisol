@@ -99,11 +99,10 @@ class AdmPublicController extends \BaseController {
         $adm_test_details = BatchApplicant::with('relBatch','relBatch.relSemester','relBatch.relYear')
                           ->where('batch_id', '=', $batch_id)
                           ->first();
-
         //get adm_test_subject according to degree_id
-       /* $adm_test_subject = BatchAdmtestSubject::with('relBatch','relAdmtestSubject')
-            ->where('id','=',$id)->get();
-       */
+        $adm_test_subject = BatchAdmtestSubject::with('relBatch','relAdmtestSubject')
+            ->where('batch_id','=',$batch_id)->get();
+        //print_r($adm_test_subject);exit;
 
         return View::make('admission::adm_public.admission.adm_test_details',
                   compact('adm_test_details','adm_test_subject'));
