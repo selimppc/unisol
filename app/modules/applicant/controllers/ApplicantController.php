@@ -11,17 +11,24 @@ class ApplicantController extends \BaseController
     {
         $token = csrf_token();
         $rules = array(
-            'email' => 'required',
+            'first_name' => 'required|min:2',
+            'last_name' => 'required|3',
+            'email_address' => 'Required|email|unique:user',
             'username' => 'required',
+            'password' => 'regex:((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})|required',
+            'confirm_password' => 'Required|same:password',
         );
         $validator = Validator::make(Input::all(), $rules);
         if ($validator->Fails()) {
-            Session::flash('message', 'Data not saved');
-            return Redirect::to('applicant')->withErrors($validator)->withInput();
+            Session::flash('message', 'Data Not saved');
+            return Redirect::to('/applicant')->withErrors($validator)->withInput();
         } else {
             $verified_code = str_random(30);
             if ($token == Input::get('_token')) {
                 $data = new Applicant();
+                $data->first_name = Input::get('first_name');
+                $data->middle_name = Input::get('middle_name');
+                $data->last_name = Input::get('last_name');
                 $data->email = Input::get('email');
                 $data->username = Input::get('username');
                 $data->password = Hash::make(Input::get('password'));//dd($data->password);
@@ -29,17 +36,19 @@ class ApplicantController extends \BaseController
 
                 if ($data->save()) {
                     $email=$data->email;
-                    Mail::send('admission::signup.verify', array('link' => $verified_code),  function($message) use ($email)
+                    Mail::send('applicant::signup.verification', array('link' => $verified_code),  function($message) use ($email)
                     {
                         $message->from('test@edutechsolutionsbd.com', 'Mail Notification');
                         $message->to($email);
-                        $message->cc('tanintjt@gmail.com');
+                        $message->cc('ratnaakter17@gmail.com');
                         $message->subject('Notification');
                     });
-                    return View::make('admission::signup.notification');
+                    //return View::make('applicant::signup.mail_notification');
+                    Session::flash('message', 'Thanks for signing up! Please check your email.');
+                    return Redirect::to('/applicant');
                 } else {
                     Session::flash('message', 'not sending email. try again');
-                    return Redirect::to('applicant/index')->with('message', 'Signup Here ');
+                    return Redirect::to('/applicant')->with('message', 'Signup Here ');
                 }
             }
         }
@@ -53,10 +62,8 @@ class ApplicantController extends \BaseController
             $user = $user->first();
             $user->verified_code = '';
         }
-        Session::flash('message','Your account activated successfully. You can signin now.');
+        Session::flash('message','Your account activated successfully. You can sign in now.');
         return View::make('applicant::applicants.login');
-
-
 
     }
     public function Login()
@@ -77,12 +84,14 @@ class ApplicantController extends \BaseController
             }
     }
 
-    public function applicantLogout() {
+    public function applicantLogout()
+    {
         Auth::logout();
         return Redirect::to('usersign/login')->with('message', 'Your are now logged out!');
     }
 
-    public function Dashboard(){
+    public function Dashboard()
+    {
         return View::make('applicant::applicants.dashboard');
     }
 
@@ -96,7 +105,6 @@ class ApplicantController extends \BaseController
         $applicant = Applicant::find($id);
         return View::make('applicant::applicants.edit', compact('applicant'));
     }
-
 
     public function update($id)
     {
