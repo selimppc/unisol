@@ -157,11 +157,17 @@ class AdmPublicController extends \BaseController {
         }
     }
 
-    public function degreeOfferApplicantDocs($id){
+    public function degreeOfferApplicantCertificate($id){
         $applicant_id = $id;
-        $model = ApplicantAcademicRecords::where('applicant_id', '=',$applicant_id )->first();
-        //print_r($applicant_acm_records);
-        return View::make('admission::adm_public.admission.applicant_docs',compact('model'));
+        $model = ApplicantAcademicRecords::where('id', '=',$applicant_id )->first();
+        return View::make('admission::adm_public.admission.applicant_certificate',compact('model'));
+
+    }
+
+    public function degreeOfferApplicantTranscript($id){
+        $applicant_id = $id;
+        $model = ApplicantAcademicRecords::where('id', '=',$applicant_id )->first();
+        return View::make('admission::adm_public.admission.applicant_transcript',compact('model'));
 
     }
 

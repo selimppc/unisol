@@ -182,7 +182,7 @@
                                                                          {{$value->gpa}}
                                                                          @endif
                                                                     </td>
-                                                                    <td><a href="{{URL::route('admission.public.applicant_docs',['id'=>$value->id])}}" data-toggle="modal" data-target="#addDegreeModal">Certificate</a><a class="pull-right" href="" data-toggle="modal" data-target="#addDegreeModal">Transcript</a></td>
+                                                                    <td><a href="{{URL::route('admission.public.applicant_certificate',['id'=>$value->id])}}" data-toggle="modal" data-target="#addDegreeModal">Certificate</a><a class="pull-right" href="{{URL::route('admission.public.applicant_transcript',['id'=>$value->id])}}" data-toggle="modal" data-target="#addDegreeModal">Transcript</a></td>
                                                                </tr>
                                                             @endforeach
                                                          @else
