@@ -7,21 +7,37 @@
  */
 
 
+// adm_examiner
 
-
-Route::any('admission/faculty/batch-admtest-subject',[
-    'as' => 'admission.faculty.batch-admtest-subject',
-    'uses' => 'AdmFacultyController@indexBatchAdmTestSubject'
+Route::any('admission/faculty/admission-test',[
+    'as' => 'admission.faculty.admission-test',
+    'uses' => 'AdmFacultyController@indexAdmExaminer'
 ]);
 
-
-Route::any('admission/faculty/batch-admtest-subject/search-admtest-subject-index',[
-    'as' => 'admission.faculty.batch-admtest-subject.search-admtest-subject-index',
-    'uses' => 'AdmFacultyController@searchBatchAdmTestSubject'
+Route::any('admission/faculty/admission-test/search-adm-examiner-index',[
+    'as' => 'admission.faculty.admission-test.search-adm-examiner-index',
+    'uses' => 'AdmFacultyController@searchAdmExaminer'
 ]);
 
-
-Route::any('admission/faculty/batch-admtest-subject/batchDelete', [
-    'as' => 'admission.faculty.batch-admtest-subject.batchDelete',
+Route::any('admission/faculty/admission-test/batchDelete', [
+    'as' => 'admission.faculty.admission-test.batchDelete',
     'uses' => 'AdmFacultyController@batchDelete'
 ]);
+
+
+Route::any('admission/faculty/admission-test/accept-admtest',[
+    'as' => 'admission.faculty.admission-test.accept-admtest',
+    'uses' => 'AdmFacultyController@acceptAdmTest'
+]);
+
+Route::any('admission/faculty/admission-test/deny-admtest',[
+    'as' => 'admission.faculty.admission-test.deny-admtest',
+    'uses' => 'AdmFacultyController@denyAdmTest'
+]);
+
+Route::any('admission/faculty/admission-test/admtest-question-paper',[
+    'as' => 'admission.faculty.admission-test.admtest-question-paper',
+    'uses' => 'AdmFacultyController@admTestQuestionPaper'
+]);
+
+
