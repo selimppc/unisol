@@ -11,8 +11,8 @@
               <div class="box-header">
               <h3 class="box-title">Admission On</h3>
               <div class="box-tools pull-right">
-                   <button class="btn btn-info btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                   <button class="btn btn-info btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
+                   <button class="btn btn-info btn-xs" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                   <button class="btn btn-info btn-xs" data-widget="remove"><i class="fa fa-times"></i></button>
               </div>
               <p>&nbsp;</p>
               </div>
@@ -26,21 +26,20 @@
                                         <tbody>
 
                                             <tr>
-                                                <th rowspan="70%" style="vertical-align: middle"><b style="font-size: medium">Degree Name</b></th>
+                                                <th rowspan="100%" style="vertical-align: middle"><b style="font-size: medium">Degree Name</b></th>
                                             </tr>
 
                                                 @foreach($batch_applicant as $value)
 
                                                     <tr>
                                                          <td class="col-lg-10">
-                                                               <a href="{{ URL::route('admission.adm_test_details',
-                                                                   ['batch_id' => $value->id]) }}">
+                                                               <a href="{{ URL::route('admission.admission.test_details',
+                                                                   ['id' => $value->id]) }}">
                                                                    {{ $value->relBatch->relDegree->title }}
                                                                </a>
                                                          </td>
                                                     </tr>
                                                 @endforeach
-
                                         </tbody>
                                   @else
                                         <div class="col-xs-12" style="text-align: center;">
@@ -53,7 +52,9 @@
               </div>
 
               <div class="box-footer clearfix">
-                  <button class="pull-right btn btn-default" id="sendEmail">Edit <i class="fa fa-arrow-circle-right"></i></button>
+              <a class="pull-right btn btn-xs btn-info" href="{{ URL::route('admission.public.add-degree' )}}" data-toggle="modal" data-target="#addDegreeModal"> Add more degree</a>
+
+                  {{--<button class="pull-right btn btn-xs btn-info" data-toggle="modal" data-target="#addDegreeModal">Add more degree</button>--}}
               </div>
      </div>
      {{--</section>--}}
@@ -66,9 +67,9 @@
 <div class="box  box-info">
 
     <div class="box-header">
-        <h5 class="box-title" style="color: orangered; font-size: 16px;">Before proceeding to checkout please complete your Profile and Academic Record :: To checkout click on the button >> "Next"</h5>
+        <h5 class="box-title" style="color: orangered; font-size: 14px;">Before proceeding to checkout please complete your Profile and Academic Record :: To checkout click on the button >> "Next"</h5>
         <div class="box-tools pull-right">
-            <a class="pull-right btn btn-sm btn-success"  href="{{ URL::route('admission.adm_checkout')}}"><b style="color: #ffffff;"> Next </b> <i class="fa fa-arrow-circle-right"></i></a>
+            <a class="pull-right btn btn-xs btn-success"  href="{{ URL::route('admission.adm_checkout')}}"><b style="color: #ffffff;"> Next </b> <i class="fa fa-arrow-circle-right"></i></a>
         </div>
     </div>
 
@@ -81,7 +82,7 @@
                              <h3 class="box-title">Personal Information</h3>
                              <!-- tools box -->
                              <div class="pull-right box-tools">
-                                 <button class="btn btn-info btn-sm" data-widget="remove" data-toggle="tooltip" ><i class="fa fa-times"></i></button>
+                                 <button class="btn btn-info btn-xs" data-widget="remove" data-toggle="tooltip" ><i class="fa fa-times"></i></button>
                              </div><!-- /. tools -->
                          </div>
                              <div class="box-body">
@@ -147,7 +148,7 @@
                              <h3 class="box-title">Academic Information</h3>
                              <!-- tools box -->
                              <div class="pull-right box-tools">
-                                 <button class="btn btn-info btn-sm" data-widget="remove" data-toggle="tooltip" ><i class="fa fa-times"></i></button>
+                                 <button class="btn btn-info btn-xs" data-widget="remove" data-toggle="tooltip" ><i class="fa fa-times"></i></button>
                              </div><!-- /. tools -->
                          </div>
                              <div class="box-body">
@@ -204,7 +205,7 @@
                      <h3 class="box-title">Biographical Information</h3>
                      <!-- tools box -->
                      <div class="pull-right box-tools">
-                         <button class="btn btn-info btn-sm" data-widget="remove" data-toggle="tooltip" ><i class="fa fa-times"></i></button>
+                         <button class="btn btn-info btn-xs" data-widget="remove" data-toggle="tooltip" ><i class="fa fa-times"></i></button>
                      </div><!-- /. tools -->
                  </div>
                  <div class="box-body">
@@ -280,7 +281,14 @@
 
  </div>
 
- <p>&nbsp;</p>
+ {{----------------------------------------------Modal : BatchApplicantModal--------------------------------------------------------------------------}}
+ <div class="modal fade" id="addDegreeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+       <div class="modal-dialog">
+         <div class="modal-content">
+
+        </div>
+       </div>
+  </div>
  <p>&nbsp;</p>
  <p>&nbsp;</p>
 

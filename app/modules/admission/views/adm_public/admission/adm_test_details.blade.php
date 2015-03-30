@@ -5,7 +5,7 @@
 @section('content')
 {{--<a class="pull-right btn btn-xs btn-success" href="{{ URL::route('admission.public.degree_offer_list')}}"><b><i class="fa fa-arrow-circle-left"></i>Go Back</b></a>--}}
 
-<h3>Admission Test Details On </h3>
+ <h4>Admission Test Details On</h4>
  <div class="box box-solid">
 
      <div class="box box-info">
@@ -16,19 +16,19 @@
                        <table>
                               <tr>
                                  <th>Degree Name :</th>
-                                 <td>{{$adm_test_model->relBatch->relDegree->title}}</td>
+                                 <td>{{$adm_test_details->relBatch->relDegree->title}}</td>
                               </tr>
                               <tr>
                                   <th>Year :</th>
-                                  <td>{{$adm_test_model->relBatch->relSemester->title}}</td>
+                                  <td>{{$adm_test_details->relBatch->relSemester->title}}</td>
                               </tr>
                               <tr>
                                  <th>Semester :</th>
-                                 <td>{{$adm_test_model->relBatch->relYear->title}}</td>
+                                 <td>{{$adm_test_details->relBatch->relYear->title}}</td>
                               </tr>
                               <tr>
                                  <th>Batch Number: </th>
-                                 <td>{{$adm_test_model->relBatch->batch_number}}</td>
+                                 <td>{{$adm_test_details->relBatch->batch_number}}</td>
                               </tr>
                        </table>
 
@@ -40,10 +40,10 @@
  </div>
 
  {{--------------- Admission Test Subjects  ----------------------------------------------------------}}
-
+<h5><b>Admission Test will be taken On </b></h5>
   <div class="box box-solid">
      <div class="box-header">
-               <h4>Admission Test will be taken On </h4>
+
      </div>
      <div class="box box-info">
          <div class="box-body">
@@ -59,6 +59,7 @@
                                    </tr>
                               </thead>
                               <tbody>
+                                  @if(isset($adm_test_subject))
                                      @foreach($adm_test_subject as $value)
                                           <tr>
                                                  <td>{{$value->relAdmtestSubject->title}}</td>
@@ -66,6 +67,7 @@
                                                  <td>{{$value->duration}}</td>
                                           </tr>
                                      @endforeach
+                                     @endif
                               </tbody>
                         </table>
                   </div>

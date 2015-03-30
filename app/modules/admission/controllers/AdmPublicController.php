@@ -35,7 +35,7 @@ class AdmPublicController extends \BaseController {
                     $data->save();
                 }
             }
-            return Redirect::route('admission.apt_profile_details', ['id' => Auth::applicant()->get()->id]);
+            return Redirect::route('admission.public.applicant_details', ['id' => Auth::applicant()->get()->id]);
         } else {
             Session::flash('danger', "To Apply Please Login As Applicant!");
             return Redirect::back();
@@ -73,7 +73,7 @@ class AdmPublicController extends \BaseController {
     }
 
 
-    public function admDegAptProfileDetails($id){
+    public function degreeOfferApplicantDetails($id){
 
         $applicant_id = $id;
         $batch_applicant = BatchApplicant::with('relBatch','relBatch.relDegree')
@@ -87,27 +87,30 @@ class AdmPublicController extends \BaseController {
 
         $applicant_meta_records = ApplicantMeta::where('applicant_id', '=',$applicant_id )->first();
 
-        return View::make('admission::adm_public.admission.apt_profile_details',
+        return View::make('admission::adm_public.admission.applicant_details',
                   compact('batch_applicant','applicant_personal_info','applicant_acm_records','applicant_meta_records'));
     }
 
     public function admTestDetails($id){
-        //get degree_id
-        $batch_id = BatchApplicant::where('id','=',$id)->first()->batch_id;
-        //print_r($batch_id);exit;
 
-        $adm_test_model = BatchApplicant::with('relBatch','relBatch.relSemester','relBatch.relYear')
-                          ->where('id', '=', $id)
+        //get batch_id
+        $batch_id = BatchApplicant::where('id','=',$id)->first()->batch_id;
+
+        $adm_test_details = BatchApplicant::with('relBatch','relBatch.relSemester','relBatch.relYear')
+                          ->where('batch_id', '=', $batch_id)
                           ->first();
         //get adm_test_subject according to degree_id
-//        $adm_test_subject = BatchAdmtestSubject::with('relAdmTestSubject')
-//                            ->where('batch_id','=',$batch_id)->get();
         $adm_test_subject = BatchAdmtestSubject::with('relBatch','relAdmtestSubject')
-            ->where('id','=',$id)->get();
-        print_r($adm_test_subject);exit;
+            ->where('batch_id','=',$batch_id)->get();
+        //print_r($adm_test_subject);exit;
 
         return View::make('admission::adm_public.admission.adm_test_details',
-                  compact('adm_test_model','adm_test_subject'));
+                  compact('adm_test_details','adm_test_subject'));
+    }
+    public function addMoreDegree(){
+
+        $degreeList = Batch::with('relDegree')->get();
+        return View::make('admission::adm_public.admission.add_more_degree',compact('degreeList'));
     }
 
     public function admDegAptCheckout(){
