@@ -123,17 +123,35 @@ class AdmFacultyController extends \BaseController {
 
     }
 
-    public function viewQuestionItemsList($id){echo " view Question Items List"; }
+    public function viewQuestionItemsList($id)
+    {
+        echo " View Question Items List";
+    }
 
-    public function editQuestionItemsList($id){echo " edit Question Items List"; }
+    public function editQuestionItemsList($id)
+    {
+        echo " edit Question Items List";
+    }
 
-    public function updateQuestionItemsList($id){echo " update Question Items List"; }
+    public function updateQuestionItemsList($id)
+    {
+        echo " update Question Items List";
+    }
 
-    public function addQuestionPaper(){ echo " add Question Paper";}
+    public function addQuestionPaper()
+    {
+        echo " add Question Paper";
+    }
 
-    public function assignQuestionPaper(){ echo " assign Question Paper";}
+    public function assignQuestionPaper()
+    {
+        echo " assign Question Paper";
+    }
 
-    public function evaluateQuestions(){ echo " evaluate Questions";}
+    public function evaluateQuestions()
+    {
+        echo " evaluate Questions";
+    }
 
 
     public function qpBatchDelete()
