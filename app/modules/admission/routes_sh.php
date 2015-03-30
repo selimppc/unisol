@@ -74,7 +74,7 @@ Route::any('admission/faculty/question-papers/question-items-list-view/{id}',[
 ]);
 //.
 
-Route::any('admission/faculty/question-papers/question-items-list-edit/{id]',[
+Route::any('admission/faculty/question-papers/question-items-list-edit/{id}',[
     'as' => 'admission.faculty.question-papers.question-items-list-edit',
     'uses' => 'AdmFacultyController@editQuestionItemsList'
 ]);
