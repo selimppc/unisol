@@ -90,12 +90,12 @@
         </div>
     </div>
 
-    @foreach($surveys as $values)
-        Year: {{$values->year_id}} <br>
-        @foreach($values->children1 as $semester)
-            &nbsp; &nbsp; &nbsp;  Semester--: {{$semester->semester_id}}  <br>
-            @foreach($semester->children1 as $course)
-                &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;  Course--: {{$course->course_id}}  <br>
+    @foreach($result as $values)
+        Year: {{$values['year']['relYear']['title']}} <br>
+        @foreach($values['course_semester'] as $semester)
+            &nbsp; &nbsp; &nbsp;  Semester--: {{$semester['relSemester']['title']}}  <br>
+            @foreach($semester['courseByCourse'] as $course)
+                &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;  Course--: {{$course->relCourse->title}}  <br>
             @endforeach
         @endforeach
          <br> <br>
