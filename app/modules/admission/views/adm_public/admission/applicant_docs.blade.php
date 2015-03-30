@@ -8,13 +8,12 @@
      <div style="padding: 20px;">
            <div class="span9 well">
 
-                 <table class="table table-bordered table-striped">
-                       <div class="col-lg-4">
-                           @if(isset($applicant_acm_records))
-                           {{ HTML::image('/applicant_images'.$applicant_acm_records->certificate) }}
-                           @endif
-                       </div>
-                 </table>
+                <table>
+                    <tr>
+                        <th>Certificate:</th>
+                        <td>{{ HTML::image('applicant_images/' . $model->certificate) }}</td>
+                    </tr>
+                </table>
            </div>
            <a href="" class="pull-right btn btn-xs btn-default" span class="glyphicon-refresh">Close</a>
      </div>
