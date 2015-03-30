@@ -158,10 +158,11 @@
                                          <table class="table  table-bordered">
                                                <thead>
                                                       <tr>
-                                                         <th>Level Of Education</th>
-                                                         <th>Board / University</th>
+                                                         <th width="10%">Level Of Education</th>
+                                                         <th width="10%">Board / University</th>
                                                          <th>Passing Year</th>
                                                          <th>Result</th>
+                                                         <th>Docs</th>
                                                       </tr>
                                                </thead>
                                                     <tbody >
@@ -178,6 +179,7 @@
                                                                          {{$value->gpa}}
                                                                          @endif
                                                                     </td>
+                                                                    <td><a href="{{URL::route('admission.public.applicant_docs',['id'=>$value->id])}}">Certificate</a><a class="pull-right" href="" data-toggle="modal" data-target="#addDegreeModal">Transcript</a></td>
                                                                </tr>
                                                             @endforeach
                                                          @else
@@ -281,17 +283,17 @@
 
  </div>
 
- {{----------------------------------------------Modal : BatchApplicantModal--------------------------------------------------------------------------}}
+ {{----------------------------------------------Modal --------------------------------------------------------------------------}}
  <div class="modal fade" id="addDegreeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
        <div class="modal-dialog">
          <div class="modal-content">
 
         </div>
        </div>
-  </div>
- <p>&nbsp;</p>
- <p>&nbsp;</p>
+ </div>
 
+ <p>&nbsp;</p>
+ <p>&nbsp;</p>
 
 @stop
 
