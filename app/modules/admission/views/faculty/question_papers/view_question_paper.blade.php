@@ -1,6 +1,12 @@
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+      <h4>View Question Paper</h4>
+</div>
+
+
 <div style="padding-left: 8%; width: 90%;">
     <div class="modal-body">
-    <h1 >View Question Paper</h1>
+
 
             <div class="row">
                 <table class="table table-striped  table-bordered">
@@ -27,10 +33,10 @@
                         <td>{{ $view_adm_qp->total_marks }}</td>
                      </tr>
 
-
                     <tr>
                         <td><strong> Assigned Examiner:</strong></td>
-                        <td>{{ $view_adm_qp->examiner_faculty_user_id }}</td>
+                        <td>{{ $view_adm_qp->relUser->relUserProfile->first_name.' '.$view_adm_qp->relUser->relUserProfile->middle_name.' '.$view_adm_qp->relUser->relUserProfile->last_name }}</td>
+                        {{--relUser->relUserProfile->first_name.' '.$view_adm_test->relUser->relUserProfile->middle_name.' '.$view_adm_test->relUser->relUserProfile->last_name--}}
                     </tr>
                 </table>
             </div>

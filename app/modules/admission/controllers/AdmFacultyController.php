@@ -112,7 +112,16 @@ class AdmFacultyController extends \BaseController {
 
     }
 
-    public function viewQuestionsItems(){ echo " View Questions Item";}
+    public function viewQuestionsItems($id)
+    {
+        $view_adm_qp_items = AdmQuestionItems::where('adm_question_id', '=', $id)->get();
+
+//        print_r($view_adm_qp_items);exit;
+
+        return View::make('admission::faculty.question_papers.view_qp_items',
+            compact('view_adm_qp_items'));
+
+    }
 
     public function addQuestionPaper(){ echo " Add Question Paper";}
 
