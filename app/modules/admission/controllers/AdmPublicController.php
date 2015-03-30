@@ -157,9 +157,9 @@ class AdmPublicController extends \BaseController {
     }
     public function degreeOfferApplicantDocs($id){
         $applicant_id = $id;
-        $applicant_acm_records = ApplicantAcademicRecords::where('applicant_id', '=',$applicant_id )->first();
+        $model = ApplicantAcademicRecords::where('applicant_id', '=',$applicant_id )->first();
         //print_r($applicant_acm_records);
-        return View::make('admission::adm_public.admission.applicant_docs',compact('applicant_acm_records'));
+        return View::make('admission::adm_public.admission.applicant_docs',compact('model'));
 
     }
 
