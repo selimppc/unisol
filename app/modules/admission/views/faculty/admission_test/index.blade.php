@@ -53,7 +53,7 @@
                                 <tr>
                                     <td><input type="checkbox" name="id[]" class="myCheckbox" value="{{ $index_adm_examiner_list['id'] }}"></td>
 
-                                     <td>{{ $index_adm_examiner_list->relBatch->relDegree->relDegreeProgram->code.''.$index_adm_examiner_list->relBatch->relDegree->relDegreeGroup->code }}</td>
+                                     <td>{{ HTML::linkAction('AdmFacultyController@viewAdmTest',$index_adm_examiner_list->relBatch->relDegree->relDegreeProgram->code.''.$index_adm_examiner_list->relBatch->relDegree->relDegreeGroup->code ,['id'=>$index_adm_examiner_list->id], ['data-toggle'=>"modal", 'data-target'=>"#modal"]) }}</td>
 
                                      <td>{{ $index_adm_examiner_list->relBatch->relDegree->relDepartment->title }}</td>
 
@@ -63,12 +63,12 @@
 
                                      <td>{{ $index_adm_examiner_list->relBatch->relDegree->total_credit }}</td>
 
-                                     <td>{{ $index_adm_examiner_list->status }} </td>
+                                     <td>{{ $index_adm_examiner_list->status }}</td>
 
                                     <td>
-                                        <a href="{{ URL::route('admission.faculty.admission-test.accept-admtest') }}" class="btn btn-default btn-xs" >Accept</a>
-                                        <a href="{{ URL::route('admission.faculty.admission-test.deny-admtest') }}" class="btn btn-default btn-xs" >Deny</a>
-                                        <a href="{{ URL::route('admission.faculty.admission-test.admtest-question-paper') }}" class="btn btn-default btn-xs" >Questions</a>
+                                        <a href="{{ URL::route('admission.faculty.admission-test.accept-admtest') }}" class="btn btn-success btn-xs disabled" >Accept</a>
+                                        <a href="{{ URL::route('admission.faculty.admission-test.deny-admtest') }}" class="btn btn-warning btn-xs disabled" >Deny</a>
+                                        <a href="{{ URL::route('admission.faculty.admission-test.admtest-question-paper', [ 'year_id'=>$index_adm_examiner_list->relBatch->year_id ,'semester_id'=>$index_adm_examiner_list->relBatch->semester_id ,'batch_id'=>$index_adm_examiner_list->batch_id ]) }}" class="btn btn-info btn-xs" >Questions</a>
 
                                           {{--<a href="{{ URL::route('admission.faculty.admission-test.', [ 'year_id'=>$adm_test_mgt->relBatch->year_id ,'semester_id'=>$adm_test_mgt->relBatch->semester_id ,'batch_id'=>$adm_test_mgt->batch_id ]) }}" class="btn btn-default btn-xs" >EX</a>--}}
                                     </td>
