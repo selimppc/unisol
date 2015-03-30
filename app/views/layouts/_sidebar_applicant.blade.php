@@ -7,12 +7,34 @@
 
     <li class="treeview">
         <a href="#">
-            <i class="fa fa-edit"></i>
-            <span> Settings </span>
+            <i class="fa fa-edit" style="color: #2ecee7"></i>
+            <span> Sign Up </span>
             <i class="fa fa-angle-left pull-right"></i>
         </a>
         <ul class="treeview-menu">
-            <a href="{{URL::to('applicant/profile/index') }}"  class="list-group-item" >Profile</a>
+            <a href="{{URL::to('/applicant') }}"  class="list-group-item" >Sign Up</a>
+        </ul>
+    </li>
+
+    <li class="treeview">
+        <a href="#">
+            <i class="fa  fa-arrow-circle-o-right" style="color: #24AA7A"></i>
+            <span> Sign In </span>
+            <i class="fa fa-angle-left pull-right"></i>
+        </a>
+        <ul class="treeview-menu">
+            <a href="{{URL::to('user/login') }}"  class="list-group-item" >Sign In</a>
+        </ul>
+    </li>
+
+    <li class="treeview">
+        <a href="#">
+            <i class="fa  fa-male" style="color: #0044cc"></i>
+            <span> User Account </span>
+            <i class="fa fa-angle-left pull-right"></i>
+        </a>
+        <ul class="treeview-menu">
+            <a href="{{URL::to('applicant/profile/') }}"  class="list-group-item" >Profile</a>
             <a href="{{URL::to('apt/acm_records/index') }}" class="list-group-item ">Academic Records</a>
             <a href="{{URL::to('apt/personal_info/index') }}" class="list-group-item ">Personal Information</a>
             <a href="{{URL::to('apt/supporting_docs/index') }}" class="list-group-item ">Supporting Documents</a>
@@ -21,16 +43,4 @@
         </ul>
     </li>
 
-
-
-    <li class="treeview">
-        <a href="#">
-            <i class="fa fa-table"></i>
-            <span>Admission</span>
-            <i class="fa fa-angle-left pull-right"></i>
-        </a>
-        <ul class="treeview-menu">
-            <li><a tabindex="-1" a href=""> No Menu </a></li>
-        </ul>
-    </li>
 </ul>

@@ -49,38 +49,59 @@ Route::any('admission/faculty/admission-test/deny-admtest',[
 ]);
 //.
 
-Route::any('admission/faculty/admission-test/admtest-question-paper/{year_id}/{semester_id}/{batch_id}',[
-    'as' => 'admission.faculty.admission-test.admtest-question-paper',
+Route::any('admission/faculty/question-papers/admtest-question-paper/{year_id}/{semester_id}/{batch_id}',[
+    'as' => 'admission.faculty.question-papers.admtest-question-paper',
     'uses' => 'AdmFacultyController@admTestQuestionPaper'
 ]);
 //->->
 
-Route::any('admission/faculty/admission-test/view-question-paper/{id}',[
-    'as' => 'admission.faculty.admission-test.view-question-paper',
+Route::any('admission/faculty/question-papers/view-question-paper/{id}',[
+    'as' => 'admission.faculty.question-papers.view-question-paper',
     'uses' => 'AdmFacultyController@viewQuestionPaper'
 ]);
-//.
+//ok
 
-Route::any('admission/faculty/admission-test/view-questions-items/{id}',[
-    'as' => 'admission.faculty.admission-test.view-questions-items',
+Route::any('admission/faculty/question-papers/view-questions-items/{id}',[
+    'as' => 'admission.faculty.question-papers.view-questions-items',
     'uses' => 'AdmFacultyController@viewQuestionsItems'
+]);
+//->
+
+
+Route::any('admission/faculty/question-papers/question-items-list-view/{id}',[
+    'as' => 'admission.faculty.question-papers.question-items-list-view',
+    'uses' => 'AdmFacultyController@viewQuestionItemsList'
 ]);
 //.
 
-Route::any('admission/faculty/admission-test/add-question-paper',[
-    'as' => 'admission.faculty.admission-test.add-question-paper',
+Route::any('admission/faculty/question-papers/question-items-list-edit/{id]',[
+    'as' => 'admission.faculty.question-papers.question-items-list-edit',
+    'uses' => 'AdmFacultyController@editQuestionItemsList'
+]);
+//.
+
+Route::any('admission/faculty/question-papers/question-items-list-update/{id]',[
+    'as' => 'admission.faculty.question-papers.question-items-list-update',
+    'uses' => 'AdmFacultyController@updateQuestionItemsList'
+]);
+//.
+
+
+
+Route::any('admission/faculty/question-papers/add-question-paper',[
+    'as' => 'admission.faculty.question-papers.add-question-paper',
     'uses' => 'AdmFacultyController@addQuestionPaper'
 ]);
 //.
 
-Route::any('admission/faculty/admission-test/assign-to-question-paper',[
-    'as' => 'admission.faculty.admission-test.assign-to-question-paper',
+Route::any('admission/faculty/question-papers/assign-to-question-paper',[
+    'as' => 'admission.faculty.question-papers.assign-to-question-paper',
     'uses' => 'AdmFacultyController@assignQuestionPaper'
 ]);
 //.
 
-Route::any('admission/faculty/admission-test/evaluate-questions',[
-    'as' => 'admission.faculty.admission-test.evaluate-questions',
+Route::any('admission/faculty/question-papers/evaluate-questions',[
+    'as' => 'admission.faculty.question-papers.evaluate-questions',
     'uses' => 'AdmFacultyController@evaluateQuestions'
 ]);
 //.
