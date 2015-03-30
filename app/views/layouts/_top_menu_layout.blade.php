@@ -59,7 +59,7 @@
 
         {{--batch_admtest_subject--table --}}
 
-         <li><a tabindex="-1" a href="{{ URL::to('admission/faculty/batch-admtest-subject') }}"></i> Admision Test </a></li>
+         <li><a tabindex="-1" a href="{{ URL::to('admission/faculty/admission-test') }}"></i> Admision Test </a></li>
 
 
 

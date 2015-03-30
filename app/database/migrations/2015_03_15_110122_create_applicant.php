@@ -11,6 +11,7 @@ class CreateApplicant extends Migration {
         Schema::create('applicant', function(Blueprint $table) {
             $table->increments('id');
             $table->string('first_name', 128);
+            $table->string('middle_name', 128);
             $table->string('last_name', 128);
             $table->string('username')->unique();
             $table->string('email')->unique();

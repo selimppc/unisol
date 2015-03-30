@@ -11,22 +11,41 @@ class AdmFacultyController extends \BaseController {
         return Input::server("REQUEST_METHOD") == "POST";
     }
 
-// Admission : Course starts here...........................................................
+// Admission : Admission Test starts here...........................................................
 
 
 
-	public function indexBatchAdmTestSubject()
+	public function indexAdmExaminer()
 	{
-        $index_admtest_subject = BatchAdmtestSubject::latest('id')->paginate(10);
-        return View::make('admission::faculty.batch_admtest_subject.index',compact('index_admtest_subject'));
+        $index_adm_examiner = AdmExaminer::with('relBatch','relBatch.relDegree',
+            'relBatch.relDegree.relDepartment','relBatch.relYear','relBatch.relSemester')
+            ->where('user_id', '=', Auth::user()->get()->id)
+            ->get();
+
+        $year_id = array('' => 'Select Year ') + Year::lists('title', 'id');
+        $semester_id = array('' => 'Select Semester ') + Semester::lists('title', 'id');
+        return View::make('admission::faculty.admission_test.index',
+            compact('index_adm_examiner','year_id','semester_id'));
 
 	}
 
-    public function searchBatchAdmTestSubject()
+    public function searchAdmExaminer()
     {
+        $year_id = Input::get('year_id');
+        $semester_id = Input::get('semester_id');
 
+        $search_index_adm_examiner = AdmExaminer::with(['relBatch' => function($query) use($year_id, $semester_id) {
+                    $query->where('year_id', '=', $year_id);
+                    $query->where('semester_id', '=', $semester_id);
+                }],'relBatch.relDegree','relBatch.relDegree.relDepartment',
+                   'relBatch.relYear','relBatch.relSemester')
+                ->get();
 
-        return View::make('admission::faculty.batch_admtest_subject.index',compact(''));
+        $year_id = array('' => 'Select Year ') + Year::lists('title', 'id');
+        $semester_id = array('' => 'Select Semester ') + Semester::lists('title', 'id');
+
+        return View::make('admission::faculty.admission_test._search_adm_examiner_index',
+            compact('search_index_adm_examiner','year_id','semester_id'));
 
     }
 
@@ -35,12 +54,30 @@ class AdmFacultyController extends \BaseController {
     public function batchDelete()
     {
         try {
-            BatchAdmtestSubject::destroy(Request::get('id'));
+            AdmExaminer::destroy(Request::get('id'));
             return Redirect::back()->with('message', 'Successfully deleted Information!');
         }
         catch(exception $ex) {
             return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
         }
+    }
+
+    public function acceptAdmTest()
+    {
+
+
+    }
+
+    public function denyAdmTest()
+    {
+
+
+    }
+
+    public function admTestQuestionPaper()
+    {
+
+
     }
 
 
