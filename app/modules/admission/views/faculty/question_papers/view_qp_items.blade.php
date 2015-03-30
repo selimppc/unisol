@@ -34,14 +34,15 @@
                         <td>{{ $view_adm_qp_items_list->marks }}</td>
 
                         <td>
-                            {{--<a href="{{ URL::route('admission.faculty.admission-test.view',['id'=>$view_adm_qp_items_list->id]) }}" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modal">VQP</a>--}}
-                            {{--<a href="{{ URL::route('admission.faculty.admission-test.edit',['id'=>$view_adm_qp_items_list$view_adm_qp_items_list$view_adm_qp_items_list->id]) }}" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modal" >VQs</a>--}}
-
+                            <a href="{{ URL::route('admission.faculty.question-papers.question-items-list-view',['id'=>$view_adm_qp_items_list->id]) }}" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modal">View</a>
+                            <a href="{{ URL::route('admission.faculty.question-papers.question-items-list-edit',['id'=>$view_adm_qp_items_list->id]) }}" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modal" >Edit</a>
                         </td>
                     </tr>
               @endforeach
           </tbody>
         </table>
+
+        <a href="" class="pull-right btn btn-info" span class="glyphicon-refresh">Close</a>
     {{ Form::close() }}
 
 
