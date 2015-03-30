@@ -30,7 +30,7 @@
            </div>
     </div>
 
-    <a style="text-align: center" href="{{URL::previous()}}" class="pull-right btn btn-success btn-xs">back</a>
+    <a href="{{ URL::previous() }}" class="pull-left btn btn-success btn-xs">Back</a>
 
 
 
@@ -70,7 +70,9 @@
                                   <td>{{ isset($index_adm_examiner_list->status) ? $index_adm_examiner_list->status : '' }} </td>
 
                                  <td>
-                                       <a href="{{URL::previous()}}" class="btn btn-default btn-xs">cancel</a>
+                                        <a href="{{ URL::route('admission.faculty.admission-test.accept-admtest') }}" class="btn btn-success btn-xs" >Accept</a>
+                                        <a href="{{ URL::route('admission.faculty.admission-test.deny-admtest') }}" class="btn btn-warning btn-xs" >Deny</a>
+                                        <a href="{{ URL::route('admission.faculty.admission-test.admtest-question-paper') }}" class="btn btn-info btn-xs" >Questions</a>
                                  </td>
                              </tr>
                         @endforeach
