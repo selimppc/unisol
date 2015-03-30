@@ -45,6 +45,13 @@
         <li class="footer">
             <a href="">Version 2 </a>
         </li>
+        <br>
+        <li class="footer">
+            <a href="">Public </a>
+        </li>
+
+
+        <li><a tabindex="-1" a href="{{ URL::route('admission.public.degree_offer_list') }}"></i>Admission</a></li>
 
         <li class="footer">
             <a href="">Faculty </a>
