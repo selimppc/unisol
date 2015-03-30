@@ -145,11 +145,14 @@
                     <p>&nbsp;</p>
                     <div class="box box-info">
                          <div class="box-header">
-                             <h3 class="box-title">Academic Information</h3>
-                             <!-- tools box -->
-                             <div class="pull-right box-tools">
-                                 <button class="btn btn-info btn-xs" data-widget="remove" data-toggle="tooltip" ><i class="fa fa-times"></i></button>
-                             </div><!-- /. tools -->
+                                <h3 class="box-title">Academic Information</h3>
+
+                                <div class="pull-right box-tools">
+                                    <button class="btn btn-info btn-xs" data-widget="remove" data-toggle="tooltip" ><i class="fa fa-times"></i></button>
+                                </div><!-- /. tools -->
+                         </div>
+                         <div class="box-footer clearfix">
+                              <a class="pull-right btn btn-xs btn-info"  href="{{url::to('admission/public/admission/add-applicant-acm-docs')}}" data-toggle="modal" data-target="#addDegreeModal"><b></b>Add</a>
                          </div>
                              <div class="box-body">
                                   <div class="row">
@@ -179,7 +182,7 @@
                                                                          {{$value->gpa}}
                                                                          @endif
                                                                     </td>
-                                                                    <td><a href="{{URL::route('admission.public.applicant_docs',['id'=>$value->id])}}">Certificate</a><a class="pull-right" href="" data-toggle="modal" data-target="#addDegreeModal">Transcript</a></td>
+                                                                    <td><a href="{{URL::route('admission.public.applicant_docs',['id'=>$value->id])}}" data-toggle="modal" data-target="#addDegreeModal">Certificate</a><a class="pull-right" href="" data-toggle="modal" data-target="#addDegreeModal">Transcript</a></td>
                                                                </tr>
                                                             @endforeach
                                                          @else
@@ -191,11 +194,7 @@
                                       </div>
                                   </div>
                              </div>
-
-                             <div class="box-footer clearfix">
-                                 <button class="pull-right btn btn-default" id="sendEmail">Edit <i class="fa fa-arrow-circle-right"></i></button>
-                             </div>
-               </div>
+                    </div>
 
                <p>&nbsp;</p>
                <p>&nbsp;</p>

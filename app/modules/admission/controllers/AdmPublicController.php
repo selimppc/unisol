@@ -91,9 +91,75 @@ class AdmPublicController extends \BaseController {
         return View::make('admission::adm_public.admission.applicant_details',
                   compact('batch_applicant','applicant_personal_info','applicant_acm_records','applicant_meta_records'));
     }
+    public function addApplicantAcmDocsPublic(){
+        return View::make('admission::adm_public.admission.add_acm_docs');
+    }
+
+    public function storeApplicantAcmDocsPublic()
+    {
+
+        $rules = array(
+//            'level_of_education' => 'required',
+//            'degree_name' => 'required',
+//            'institute_name' => 'required',
+//            'academic_group' => 'required',
+//            'board_university' => 'required',
+//            'major_subject' => 'required',
+        );
+        $validator = Validator::make(Input::all(), $rules);
+        if ($validator->passes()) {
+            $model = new ApplicantAcademicRecords();
+            $model->applicant_id = Input::get('applicant_id');
+            $model->level_of_education = Input::get('level_of_education');
+            $model->degree_name = Input::get('degree_name');
+            $model->institute_name = Input::get('institute_name');
+            $model->academic_group = Input::get('academic_group');
+
+            //save board or university according to board_type
+            $model->board_type = Input::get('board_type');
+
+            if ($model->board_type == 'board')
+                $board_university = Input::get('board_university_board');
+            if ($model->board_type == 'university')
+                $board_university = Input::get('board_university_university');
+            if ($model->board_type == 'other')
+                $board_university = Input::get('board_university_other');
+
+            $model->board_university = $board_university;
+
+            $model->major_subject = Input::get('major_subject');
+            $model->result_type = Input::get('result_type');
+
+            $model->result = Input::get('result');
+            $model->gpa = Input::get('gpa');
+            $model->gpa_scale = Input::get('gpa_scale');
+            $model->roll_number = Input::get('roll_number');
+            $model->registration_number = Input::get('registration_number');
+            $model->year_of_passing = Input::get('year_of_passing');
+            $model->duration = Input::get('duration');
+            $model->study_at = Input::get('study_at');
+
+            $file = Input::file('certificate');
+
+            $destinationPath = public_path().'/applicant_images';
+            $extension = $file->getClientOriginalExtension();
+            $filename = str_random(12) . '.' . $extension;
+            $lower_name = strtolower($filename);
+            Input::file('certificate')->move($destinationPath, $lower_name);
+            $model->certificate = $filename;
+
+            $model->save();
+
+            return Redirect::route('admission.public.applicant_details', ['id' => Auth::applicant()->get()->id]);
+        } else {
+            return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
+        }
+    }
     public function degreeOfferApplicantDocs($id){
         $applicant_id = $id;
-        $applicant_acm_records = ApplicantAcademicRecords::where('applicant_id', '=',$applicant_id )->get();
+        $applicant_acm_records = ApplicantAcademicRecords::where('applicant_id', '=',$applicant_id )->first();
+        //print_r($applicant_acm_records);
+        return View::make('admission::adm_public.admission.applicant_docs',compact('applicant_acm_records'));
 
     }
 
