@@ -31,7 +31,7 @@
     </div>
 
 
-     {{ Form::open(array('url' => 'admission/faculty/admission_test/batchDelete')) }}
+     {{ Form::open(array('url' => 'admission/faculty/admission-test/batchDelete')) }}
                     <table id="example" class="table table-striped  table-bordered"  >
                           <thead>
                                {{ Form::submit('Delete Items', array('class'=>'btn btn-danger btn-xs', 'id'=>'hide-button', 'style'=>'display:none'))}}
@@ -49,10 +49,6 @@
                                  </tr>
                       </thead>
                       <tbody>
-                      {{--@foreach($index_adm_examiner as $key => $value)--}}
-{{----}}{{----}}{{--                        {{$value->id}}--}}{{----}}{{----}}
-                      {{--@endforeach--}}
-
                           @foreach($index_adm_examiner as $index_adm_examiner_list)
                                 <tr>
                                     <td><input type="checkbox" name="id[]" class="myCheckbox" value="{{ $index_adm_examiner_list['id'] }}"></td>
@@ -70,7 +66,11 @@
                                      <td>{{ $index_adm_examiner_list->status }} </td>
 
                                     <td>
-                                          <a href="{{URL::previous()}}" class="btn btn-default btn-xs">cancel</a>
+                                        <a href="{{ URL::route('admission.faculty.admission-test.accept-admtest') }}" class="btn btn-default btn-xs" >Accept</a>
+                                        <a href="{{ URL::route('admission.faculty.admission-test.deny-admtest') }}" class="btn btn-default btn-xs" >Deny</a>
+                                        <a href="{{ URL::route('admission.faculty.admission-test.admtest-question-paper') }}" class="btn btn-default btn-xs" >Questions</a>
+
+                                          {{--<a href="{{ URL::route('admission.faculty.admission-test.', [ 'year_id'=>$adm_test_mgt->relBatch->year_id ,'semester_id'=>$adm_test_mgt->relBatch->semester_id ,'batch_id'=>$adm_test_mgt->batch_id ]) }}" class="btn btn-default btn-xs" >EX</a>--}}
                                     </td>
                                 </tr>
                           @endforeach
@@ -80,10 +80,10 @@
 
 
 <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog" style="z-index:1050">
+    <div class="modal-dialog" style="z-index:1050">
           <div class="modal-content">
 
           </div>
-        </div>
+    </div>
 </div>
 @stop

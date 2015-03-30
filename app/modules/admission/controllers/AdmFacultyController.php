@@ -62,6 +62,24 @@ class AdmFacultyController extends \BaseController {
         }
     }
 
+    public function acceptAdmTest()
+    {
+
+
+    }
+
+    public function denyAdmTest()
+    {
+
+
+    }
+
+    public function admTestQuestionPaper()
+    {
+
+
+    }
+
 
 
 
