@@ -16,10 +16,11 @@
           <div class="box-body">
              <div class="row">
                  <div class="col-lg-12">
-                  {{--{{ Form::open(['route' => ['admission.degree_apt_save']]) }}--}}
+                  {{ Form::open(['route' => ['admission.public.degree_apply']]) }}
                        <table class= "table table-striped table-bordered">
                               @foreach($degree_model as $values)
                                      <tbody>
+
                                             <tr>
                                                 <th width="20%">Degree Name</th>
                                                 <td>{{$values->relDegree->title}}</td>
@@ -115,10 +116,10 @@
                                       </tbody>
                               @endif
                        </table>
-                       {{--<p>&nbsp;</p>--}}
-                      {{--{{ Form::submit('Apply', array('class'=>'pull-right btn btn-xs btn-info'))}}--}}
+                       <p>&nbsp;</p>
+                      {{ Form::submit('Apply', array('class'=>'pull-right btn btn-xs btn-info'))}}
 
-                      {{--{{ Form::close() }}--}}
+                      {{ Form::close() }}
 
                  </div>
              </div>

@@ -37,8 +37,9 @@ class AdmPublicController extends \BaseController {
             }
             return Redirect::route('admission.public.applicant_details', ['id' => Auth::applicant()->get()->id]);
         } else {
-            Session::flash('danger', "To Apply Please Login As Applicant!");
-            return Redirect::back();
+            Session::flash('danger', "You have logged in as ".Auth::user()->get()->username. ".To Apply Please Login As Applicant!");
+            //return Redirect::back();
+            return Redirect::route('user/login');
         }
     }
 
@@ -90,6 +91,12 @@ class AdmPublicController extends \BaseController {
         return View::make('admission::adm_public.admission.applicant_details',
                   compact('batch_applicant','applicant_personal_info','applicant_acm_records','applicant_meta_records'));
     }
+    public function degreeOfferApplicantDocs($id){
+        $applicant_id = $id;
+        $applicant_acm_records = ApplicantAcademicRecords::where('applicant_id', '=',$applicant_id )->get();
+
+    }
+
 
     public function admTestDetails($id){
 
