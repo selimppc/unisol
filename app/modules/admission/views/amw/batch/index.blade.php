@@ -3,20 +3,23 @@
     @include('layouts._sidebar_amw')
 @stop
 @section('content')
-    <div class="col-sm-12">
-       <div class="pull-left col-sm-4"> <h3>Batch Manage</h3>  </div>
-       <div class="pull-right col-sm-4">
-           <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('admission/amw/batch-create/'.$degree_id )}}" data-toggle="modal" data-target="#modal" >Add Batch</a>
-       </div>
-    </div>
-    <div class="row">
-        {{ Form::open(array('url' => 'admission/amw/batch/batchDelete')) }}
 
+
+
+    <div class="row">
+    <div class="box box-solid ">
+        <div class="col-sm-12">
+           <div class="pull-left col-sm-4"> <h3> Batch Manage </h3>  </div>
+           <div class="pull-right col-sm-4" style="padding-top: 1%;">
+               <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('admission/amw/batch-create/'.$degree_id )}}" data-toggle="modal" data-target="#modal" >Add Batch</a>
+           </div>
+        </div>
+
+        {{ Form::open(array('url' => 'admission/amw/batch/batchDelete')) }}
+       <div class="box-body">
         <table id="example" class="table table-striped  table-bordered" >
             <thead>
-                  {{ Form::submit('Delete Items', array('class'=>'btn btn-danger', 'id'=>'hide-button', 'style'=>'display:none'))}}
-                  <br>
-
+                  {{ Form::submit('Delete Items', array('class'=>'btn btn-danger btn-xs', 'id'=>'hide-button', 'style'=>'display:none'))}}
                 <tr>
                     <th><input name="id" type="checkbox" id="checkbox" class="checkbox" value=""></th>
                     <th>Title</th>
@@ -52,8 +55,10 @@
              @endif
             </tbody>
         </table>
+        </div>
 
         {{form::close() }}
+    </div>
     </div>
 
     <div class="text-right">
@@ -70,5 +75,6 @@
          </div>
         </div>
     </div>
+</div>
 
 @stop

@@ -529,9 +529,14 @@ class AdmAmwController extends \BaseController
     {
         $batch = $batch_id;
         $degree_id = $deg_id;;
-        $degree_title = Degree::with('relDegreeCourse')
-            ->where('id' , '=' ,$deg_id)
-            ->first();
+        $degree_title = Batch::with('relDegree', 'relDegree.relDegreeCourse', 'relDegree.relDegreeProgram', 'relDegree.relDegreeGroup', 'relDegree.relDepartment' )
+            ->where('id' , '=' ,$batch_id)->first();
+
+        $addCourseCredit = DB::table('batch_course')
+            ->join('course', 'course.id', '=', 'batch_course.course_id')
+            ->select(DB::raw('sum(course.credit) AS credit'))
+            ->where('batch_course.batch_id', $batch_id)->get();
+
         $year_data = array('' => 'Select Year ') + Year::lists('title', 'id');
         $semester_data = array('' => 'Select Semester ') + Semester::lists('title','id');
 
@@ -543,59 +548,18 @@ class AdmAmwController extends \BaseController
             ->select('degree_course.course_id', 'degree_course.degree_id', 'degree.department_id')
             ->get();
 
-        $batch_course_data = DB::table('batch_course')
-            ->select(
-                'batch_course.id as ID',
-                'batch_course.is_mandatory as isMandatory',
-                'batch_course.year_id as YearId',
-                'year.title as YearTitle',
-                'batch_course.semester_id as SemesterId',
-                'semester.title as SemesterTitle',
-                'batch_course.course_id as CourseId',
-                'course.title as CourseTitle',
-                'course.course_code as CourseCode',
-                'course.credit as CourseCredit',
-               // 'course.course_type_id as CourseTypeId',
-                'course_type.title as CourseTypeTitle',
-                //'course.subject_id as SubjId',
-                'subject.department_id as DepartmentId',
-                'department.title as DepartmentTitle'
-            )
-            ->join ('year','batch_course.year_id','=','year.id')
-            ->join ('semester','batch_course.semester_id','=','semester.id')
-            ->join ('course','batch_course.course_id','=','course.id')
-            ->join ('course_type','course.course_type_id','=','course_type.id')
-            ->join ('subject','course.subject_id','=','subject.id')
-            ->join ('department','subject.department_id','=','department.id')
-            ->where('batch_id' , '=' ,$batch_id)
-            ->orderBy('YearId', 'ASC')
-            ->orderBy('SemesterId', 'ASC')
-            // ->groupBy('year_id','semester_id')
-            ->get();
-        $cd = null;
-        foreach($batch_course_data as $bcd){
-            $v['ID']               = $bcd->ID    ;
-            $v['isMandatory']      = $bcd->isMandatory    ;
-            $v['CourseId']         = $bcd->CourseId       ;
-            $v['CourseTitle']      = $bcd->CourseTitle    ;
-            $v['CourseCode']       = $bcd->CourseCode     ;
-            $v['CourseCredit']     = $bcd->CourseCredit   ;
-          //  $v['CourseTypeId']     = $bcd->CourseTypeId   ;
-            $v['CourseTypeTitle']  = $bcd->CourseTypeTitle;
-          //  $v['SubjId']           = $bcd->SubjId         ;
-            $v['DepartmentId']     = $bcd->DepartmentId   ;
-            $v['DepartmentTitle']  = $bcd->DepartmentTitle;
-
-            $cd[$bcd->YearId]['year'] = $bcd->YearTitle;
-            $cd[$bcd->YearId][$bcd->SemesterId]['semester'] = $bcd->SemesterTitle;
-            $cd[$bcd->YearId][$bcd->SemesterId][] = $v;
+        $years = BatchCourse::with('relYear')->where('batch_id', $batch_id)->groupBy('year_id')->get();
+        foreach ($years as $year) {
+            $batch_course_data[] = [
+                'year'=> $year,
+                'course_semester' => BatchCourse::with('relSemester','courseByCourse')
+                    ->where('year_id', $year->year_id)->where('batch_id', $batch_id)
+                    ->groupBy('semester_id')->get(),
+            ];
         }
 
-        $batch_course_data = $cd;
-        #dd(DB::getQueryLog($batch_course_data));exit;
-        #print_r($batch_course_data);exit;
         return View::make('admission::amw.batch_course.index',compact(
-            'batch','degree_id','degree_title','deg_course_info','year_data','semester_data','batch_course_data'
+            'batch','degree_id','degree_title','deg_course_info','year_data','semester_data','batch_course_data', 'addCourseCredit'
         ));
 
     }

@@ -317,21 +317,22 @@ class HomeController extends BaseController {
         }*/
 
 
-        $data = BatchCourse::with(['semesterByYear' => function($query) {
-                        //$year_id = $query->semesterByYear()->get()->year_id;
-                        $query->with(['courseBySemester'=> function($queries)  {
-                            $queries->where('batch_course.semester_id', '=', 'batch_course.semester_id');
-                            //$queries->groupBy('year_id')->groupBy('semester_id');
-                        }]);
+        $batch_id = 1;
+        $years = BatchCourse::with('relYear')->where('batch_id', $batch_id)->groupBy('year_id')->get();
 
-                }])->groupBy('year_id')
-                ->get();
+        foreach ($years as $year) {
+            $result[] = [
+                'year'=> $year,
+                'course_semester' => BatchCourse::with('relSemester','courseByCourse')
+                    ->where('year_id', $year->year_id)
+                    ->where('batch_id', $batch_id)
+                    ->groupBy('semester_id')
+                    ->get(),
+            ];
+        }
 
-        $surveys = BatchCourse::with('children1.children1')->groupBy('year_id')->get();
-        //print_r($surveys);exit;
-        //dd(DB::getQueryLog($data));
 
-        return View::make('test.date_picker', compact('surveys'));
+        return View::make('test.date_picker', compact('result'));
     }
 
     protected function bcFact($n){

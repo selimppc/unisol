@@ -71,51 +71,10 @@ class BatchCourse extends Eloquent{
     }
 
     //TODO :: Scope Area
-
-    public function semesterByYear() {
-        return $this->hasMany('BatchCourse','year_id', 'year_id');
-    }
-    public function courseBySemester() {
-        return $this->hasMany('BatchCourse','semester_id', 'course_id') ;
+    public function courseByCourse() {
+        return $this->hasMany('BatchCourse','id', 'id') ;
     }
 
 
-    public function children1()
-    {
-        return $this->hasMany('BatchCourse', 'year_id', 'year_id')->orderBy('year_id');
-    }
-
-    public function children2()
-    {
-        return $this->children1()->with('children2')->orderBy('year_id');
-    }
-
-
-
-
-    public function children()
-    {
-        return $this->hasMany('BatchCourse', 'year_id');
-    }
-
-// recursive, loads all descendants
-    public function childrenRecursive()
-    {
-        return $this->children()->with('childrenRecursive');
-        // which is equivalent to:
-        // return $this->hasMany('Survey', 'parent')->with('childrenRecursive);
-    }
-
-// parent
-    public function parent()
-    {
-        return $this->belongsTo('BatchCourse','year_id');
-    }
-
-// all ascendants
-    public function parentRecursive()
-    {
-        return $this->parent()->with('parentRecursive');
-    }
 
 } 
