@@ -160,6 +160,10 @@ Route::any('admission/public/admission/applicant-details/{id}',
     ['as' => 'admission.public.applicant_details',
         'uses' => 'AdmPublicController@degreeOfferApplicantDetails']);
 
+Route::any('admission/public/admission/add-degree',
+    ['as' => 'admission.public.add-degree',
+        'uses' => 'AdmPublicController@addMoreDegree']);
+
 Route::any('admission/public/admission-test-details/{id}',
     ['as' => 'admission.admission.test_details',
         'uses' => 'AdmPublicController@admTestDetails']);

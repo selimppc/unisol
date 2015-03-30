@@ -109,7 +109,9 @@ class AdmPublicController extends \BaseController {
                   compact('adm_test_details','adm_test_subject'));
     }
     public function addMoreDegree(){
-        return View::make('admission::amw.degree.degree.');
+
+        $degreeList = Batch::with('relDegree')->get();
+        return View::make('admission::adm_public.admission.add_more_degree',compact('degreeList'));
     }
 
     public function admDegAptCheckout(){

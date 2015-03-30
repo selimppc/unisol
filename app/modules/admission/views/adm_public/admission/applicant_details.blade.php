@@ -53,7 +53,9 @@
               </div>
 
               <div class="box-footer clearfix">
-                  <button class="pull-right btn btn-xs btn-info" data-toggle="modal" data-target="#addDegreeModal">Add more degree</button>
+              <a class="pull-right btn btn-xs btn-info" href="{{ URL::route('admission.public.add-degree' )}}" data-toggle="modal" data-target="#addDegreeModal"> Add more degree</a>
+
+                  {{--<button class="pull-right btn btn-xs btn-info" data-toggle="modal" data-target="#addDegreeModal">Add more degree</button>--}}
               </div>
      </div>
      {{--</section>--}}
