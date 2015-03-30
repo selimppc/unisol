@@ -9,7 +9,7 @@
         <!-- general form elements -->
         <div class="box box-solid">
             <div class="box-header">
-                <h3 class="text-center text-green">Signup Here</h3>
+                <h3 class="text-center text-green">Create Account</h3>
             </div><!-- /.box-header -->
             <div class="box-body">
                 {{ Form::open(array('class'=>'form-horizontal','url' => 'applicant/store', 'method' =>'post', 'files'=>'true','id'=>'signup-form')) }}
@@ -36,21 +36,21 @@
                     {{ Form::text('username',Input::old('username'), array('class' => 'form-control','placeholder'=>'Enter User Name')) }}
                 </div>
                 <div class="control-group ">
-                    {{ Form::label('email', 'Email') }}<span style="color:red;">*</span>
+                    {{ Form::label('email', 'Email:') }}<span style="color:red;">*</span>
                     {{ Form::text('email', Input::old('email_address'), array('class'=>'form-control','placeholder'=>'Enter a valid email address','required')) }}
                 </div>
                 <div class="control-group ">
-                    {{ Form::label('password', 'Password') }} <span style="color:red;">*</span>
-                    {{ Form::password('password', array('placeholder'=>'........','class'=>'form-control')) }}
+                    {{ Form::label('password', 'Password:') }} <span style="color:red;">*</span>
+                    {{ Form::password('password', array('placeholder'=>'','class'=>'form-control')) }}
                 </div>
                 <div class="control-group ">
-                    {{ Form::label('confirmpassword', 'ConfirmPassword') }} <span style="color:red;">*</span>
-                    {{ Form::password('confirmpassword', array('placeholder'=>'........','class'=>'form-control')) }}
+                    {{ Form::label('confirm_password', 'Confirm Password:') }} <span style="color:red;">*</span>
+                    {{ Form::password('confirm_password', array('placeholder'=>'','class'=>'form-control')) }}
                 </div>
                 <br>
 
                 <br>
-                {{ Form::submit('Register', array('class' => 'btn btn-primary')) }}
+                {{ Form::submit('Register', array('class' => 'btn btn-success')) }}
                 <a href="{{URL::previous()}}" class="btn btn-default">Close</a>
                 <br>
                 <br>
