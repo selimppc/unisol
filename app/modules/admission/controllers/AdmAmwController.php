@@ -554,7 +554,8 @@ class AdmAmwController extends \BaseController
                 'year'=> $year,
                 'course_semester' => BatchCourse::with('relSemester','courseByCourse')
                     ->where('year_id', $year->year_id)->where('batch_id', $batch_id)
-                    ->groupBy('semester_id')->get(),
+                   // ->groupBy('semester_id')
+                    ->get(),
             ];
         }
 
@@ -590,8 +591,7 @@ class AdmAmwController extends \BaseController
                 Session::flash('danger', "Items Deleted successfully");
                 return Redirect::back();
             }
-        } catch
-        (exception $ex) {
+        } catch(exception $ex) {
             return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
 
         }

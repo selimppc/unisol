@@ -104,17 +104,14 @@ class ApplicantController extends \BaseController
             $profile->gender = Input::get('gender');
 
             $file = Input::file('profile_image');
-
             $destinationPath = public_path().'/applicant_images';
             $extension = $file->getClientOriginalExtension();
             $filename = str_random(12) . '.' . $extension;
             $lower_name = strtolower($filename);
             $path = public_path("applicant_images/" . $lower_name);
-            Image::make($file->getRealPath())->resize(60, 60)->save($path);
-            // Input::file('profile_image')->move($destinationPath, $lower_name);
+            Image::make($file->getRealPath())->resize(100, 100)->save($path);
 
             $profile->profile_image = $filename;
-
             $profile->city = Input::get('city');
             $profile->state = Input::get('state');
             $profile->country_id = Input::get('country_id');
@@ -130,7 +127,6 @@ class ApplicantController extends \BaseController
     public function editApplicantProfile($id){
 
         $profile = ApplicantProfile::find($id);
-
         return View::make('applicant::applicant_profile.edit', compact('profile'));
 
     }
@@ -456,7 +452,7 @@ class ApplicantController extends \BaseController
 
     public function acmRecordsIndex(){
 
-        $model = ApplicantAcademicRecords::where('applicant_id', '=', '1')->get();
+        $model = ApplicantAcademicRecords::where('applicant_id', '=', '27')->get();
         return View::make('applicant::apt_academic_records.index', compact('model'));
     }
     public function acmRecordsCreate(){
@@ -475,7 +471,7 @@ class ApplicantController extends \BaseController
         $validator = Validator::make(Input::all(), $rules);
         if ($validator->passes()) {
             $model =new ApplicantAcademicRecords();
-            $model->applicant_id = Input::get('applicant_id');
+            //$model->applicant_id = Input::get('applicant_id');
             $model->level_of_education = Input::get('level_of_education');
             $model->degree_name = Input::get('degree_name');
             $model->institute_name = Input::get('institute_name');
