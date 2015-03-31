@@ -40,8 +40,8 @@
                                     <td>{{ $view_adm_qp_items_list->marks }}</td>
 
                                     <td>
-                                        <a href="{{ URL::route('admission.faculty.question-papers.question-items-list-view',['id'=>$view_adm_qp_items_list->id]) }}" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modal">View</a>
-                                        <a href="{{ URL::route('admission.faculty.question-papers.question-items-list-edit',['id'=>$view_adm_qp_items_list->id]) }}" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modal" >Edit</a>
+                                        <a href="{{ URL::route('admission.faculty.question-papers.specific-question-view',['id'=>$view_adm_qp_items_list->id]) }}" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modal">View</a>
+                                        <a href="{{ URL::route('admission.faculty.question-papers.specific-question-edit',['id'=>$view_adm_qp_items_list->id]) }}" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modal" >Edit</a>
                                     </td>
                                 </tr>
                           @endforeach

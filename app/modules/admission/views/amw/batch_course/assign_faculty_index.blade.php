@@ -67,7 +67,7 @@
                                 <p>
                                     <strong>Comments:</strong> <br>
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    {{$comments->relCourseConductComments->comments }}
+                                        {{$comments->relCourseConductComments->comments }}
 
                                 </p>
                             @endforeach

@@ -495,14 +495,14 @@ Route::any('admission/amw/batch-waiver/store/{batch_id}', [
     'uses' => 'AdmAmwController@batchWaiverStore'
 ]);
 
-Route::any('admission/amw/batch-waiver/delete/{batch_id}', [
+Route::any('admission/amw/batch-waiver/delete/{bw_id}', [
     'as' => 'admission.amw.batch-waiver.delete',
     'uses' => 'AdmAmwController@batchWaiverDelete'
 ]);
 
 
 //{------------------ Waiver Constraint---------------------------------------------------------------------}
-Route::any('admission/amw/waiver-constraint/{batch_id}/{waiver_id}', [
+Route::any('admission/amw/waiver-constraint/{batch_id}/{bw_id}', [
     'as' => 'admission.amw.waiver-constraint.index',
     'uses' => 'AdmAmwController@waiverConstraintIndex'
 ]);

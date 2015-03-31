@@ -114,63 +114,53 @@ class ApplicantController extends \BaseController
         return View::make('applicant::applicants.edit', compact('applicant'));
     }*/
 
-//TODO : Change password code is in UserSignUpController and need to add it here.
+//TODO : Change password code is in admission UserSignUpController and need to add it here.
 
 //**********************Applicant's Profile Start(R)*********************************
 
-//    public function applicant_profile_index($id)
-//    {
-//       $profile = ApplicantProfile::where('applicant_id', '=', '1')->first();
-//       // $profile = $id;
-//       // print_r($profile);exit;
-//        $country = ApplicantProfile::with('relCountry');
-//
-//        return View::make('applicant::applicant_profile.index',compact('profile',
-//            compact('country')));
-//    }
-
-    public function applicantProfileCreate()
+    public function applicant_profile_index()
     {
+        $applicant = Auth::applicant()->get()->id;
         $countryList = array('' => 'Please Select') + Country::lists('title', 'id');
-        return View::make('applicant::applicant_profile.create',
-            compact('countryList') );
+        $profile = ApplicantProfile::where('applicant_id', '=', $applicant )->get();
+        return View::make('applicant::applicant_profile.index',compact('profile','countryList'));
     }
-
     public function applicantProfileStore()
     {
-        
-        $data = Input::all();
-        $applicant_model = new ApplicantProfile();
-        if ($applicant_model->validate($data)) {
-            $applicant_model->applicant_id = Input::get('applicant_id');
-            $applicant_model->date_of_birth = Input::get('date_of_birth');
-            $applicant_model->place_of_birth = Input::get('place_of_birth');
-            $applicant_model->gender = Input::get('gender');
+        if(Auth::applicant()->check()) {
+            $data = Input::all();
+            $applicant_model = new ApplicantProfile();
+            if ($applicant_model->validate($data)) {
+                $applicant_model->applicant_id = Auth::applicant()->get()->id;
+                $applicant_model->date_of_birth = Input::get('date_of_birth');
+                $applicant_model->place_of_birth = Input::get('place_of_birth');
+                $applicant_model->gender = Input::get('gender');
 
-            $file = Input::file('profile_image');
-            $destinationPath = public_path().'/applicant_images';
-            $extension = $file->getClientOriginalExtension();
-            $filename = str_random(12) . '.' . $extension;
-            $lower_name = strtolower($filename);
-            $path = public_path("applicant_images/" . $lower_name);
-            Image::make($file->getRealPath())->resize(100, 100)->save($path);
+                $file = Input::file('profile_image');
+                $destinationPath = public_path() . '/applicant_images';
+                $extension = $file->getClientOriginalExtension();
+                $filename = str_random(12) . '.' . $extension;
+                $lower_name = strtolower($filename);
+                $path = public_path("applicant_images/" . $lower_name);
+                Image::make($file->getRealPath())->resize(100, 100)->save($path);
 
-            $applicant_model->profile_image = $filename;
-            $applicant_model->city = Input::get('city');
-            $applicant_model->state = Input::get('state');
-            $applicant_model->country_id = Input::get('country_id');
-            $applicant_model->zip_code = Input::get('zip_code');
-            $applicant_model->save();
+                $applicant_model->profile_image = $filename;
+                $applicant_model->city = Input::get('city');
+                $applicant_model->state = Input::get('state');
+                $applicant_model->country_id = Input::get('country_id');
+                $applicant_model->zip_code = Input::get('zip_code');
+                $applicant_model->phone = Input::get('phone');
+                $applicant_model->save();
 
-            return Redirect::back()->with('message', 'Successfully added Information!');
+                return Redirect::back();
+            } else {
+                Session::flash('danger', "Please Login As Applicant!");
+                return Redirect::route('user/login');
+            }
         }
-        else {
-            $errors = $applicant_model->errors();
-            Session::flash('errors', $errors);
-            return Redirect::to('applicant/profile/create');
-        }
-
     }
+
+
     public function editApplicantProfile($id){
 
         $profile = ApplicantProfile::find($id);

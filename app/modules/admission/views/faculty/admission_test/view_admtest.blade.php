@@ -6,7 +6,6 @@
 <div style="padding-left: 8%; width: 90%;">
     <div class="modal-body">
 
-
             <div class="row">
                 <h2><strong> Department :</strong>{{ $dept_name }}</h2>
                 <table class="table table-striped  table-bordered">
@@ -20,20 +19,15 @@
                     </tr>
                     <tr>
                         <td><strong> Status:</strong></td>
-                        <td>
-                            {{ $view_adm_test->status }}
-
-                        </td>
+                        <td>{{ $view_adm_test->status }}</td>
                     </tr>
                     <tr>
                         <td><strong> Comments:</strong></td>
                         <td>
                             {{ $view_adm_test_comments->comment }}
-
                             <div class="form-group">
                                   {{ Form::textarea('comment', Null, ['size' => '40x6','placeholder'=>'Your Comments Here']) }}
                             </div>
-
                         </td>
                     </tr>
                 </table>
