@@ -3562,3 +3562,13 @@ fieldset[disabled] .btn-vk.active {
     border: 1px solid #efefef;
     padding: 1%;
 }
+.modal-size-lg{
+  width: 700px;
+}
+.m-modal-dialog{
+  overflow-y: initial !important
+}
+.m-modal-body{
+  height: 580px;
+  overflow-y: scroll;
+}
