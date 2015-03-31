@@ -191,6 +191,7 @@
         {{ HTML::script('assets/etsb/etsb_js/datatables/jquery.dataTables.js')}}
         {{ HTML::script('assets/etsb/etsb_js/datatables/dataTables.bootstrap.js')}}
         {{ HTML::script('assets/etsb/etsb_js/etsb_custom.js')}}
+        {{ HTML::script('assets/etsb/etsb_js/shafi_scripts.js')}}
 
         {{--// Ratna  //--}}
         {{ HTML::script('assets/js/ratna_script.js')}}

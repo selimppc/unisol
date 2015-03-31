@@ -66,11 +66,13 @@
                                      <td>{{ $index_adm_examiner_list->status }}</td>
 
                                     <td>
-                                        <a href="{{ URL::route('admission.faculty.admission-test.accept-admtest') }}" class="btn btn-success btn-xs disabled" >Accept</a>
-                                        <a href="{{ URL::route('admission.faculty.admission-test.deny-admtest') }}" class="btn btn-warning btn-xs disabled" >Deny</a>
-                                        <a href="{{ URL::route('admission.faculty.question-papers.admtest-question-paper', [ 'year_id'=>$index_adm_examiner_list->relBatch->year_id ,'semester_id'=>$index_adm_examiner_list->relBatch->semester_id ,'batch_id'=>$index_adm_examiner_list->batch_id ]) }}" class="btn btn-info btn-xs" >Questions</a>
+                                        <a href="{{ URL::route('admission.faculty.admission-test.accept-admtest') }}" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modal">Accept</a>
+                                        <a href="{{ URL::route('admission.faculty.admission-test.deny-admtest') }}" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modal">Deny</a>
+                                        <a href="{{ URL::route('admission.faculty.question-papers.admtest-question-paper', [ 'year_id'=>$index_adm_examiner_list->relBatch->year_id ,'semester_id'=>$index_adm_examiner_list->relBatch->semester_id ,'batch_id'=>$index_adm_examiner_list->batch_id  ]) }}" class="btn btn-info btn-xs" >Questions</a>
 
-                                          {{--<a href="{{ URL::route('admission.faculty.admission-test.', [ 'year_id'=>$adm_test_mgt->relBatch->year_id ,'semester_id'=>$adm_test_mgt->relBatch->semester_id ,'batch_id'=>$adm_test_mgt->batch_id ]) }}" class="btn btn-default btn-xs" >EX</a>--}}
+
+{{--,'batch_admtest_subject_id'=>$index_adm_examiner_list->id--}}
+                                 {{--<a href="{{ URL::route('admission.faculty.admission-test.', [ 'year_id'=>$adm_test_mgt->relBatch->year_id ,'semester_id'=>$adm_test_mgt->relBatch->semester_id ,'batch_id'=>$adm_test_mgt->batch_id ]) }}" class="btn btn-default btn-xs" >EX</a>--}}
                                     </td>
                                 </tr>
                           @endforeach
@@ -78,7 +80,7 @@
                     </table>
      {{ Form::close() }}
 
-
+{{--modal--}}
 <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog" style="z-index:1050">
           <div class="modal-content">
@@ -86,4 +88,26 @@
           </div>
     </div>
 </div>
+
+{{--confirmation--}}
+{{--<div class="modal fade" id="confirmation" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">--}}
+        {{--<div class="modal-dialog">--}}
+            {{--<div class="modal-content">--}}
+                {{--<div class="modal-header">--}}
+                    {{--<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>--}}
+                    {{--<h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>--}}
+                {{--</div>--}}
+                {{--<div class="modal-body">--}}
+                    {{--<strong>Are you sure you want to accept this examiner role ?</strong>--}}
+                {{--</div>--}}
+                {{--<div class="modal-footer">--}}
+                    {{--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>--}}
+                    {{--<a href="#" class="btn btn-danger">OK</a>--}}
+
+                {{--</div>--}}
+            {{--</div>--}}
+        {{--</div>--}}
+{{--</div>--}}
+
+
 @stop
