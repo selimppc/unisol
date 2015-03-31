@@ -8,10 +8,10 @@
 
         {{Form::open(array('url'=>'admission/faculty/question-papers/store-question-paper-item', 'class'=>'form-horizontal','files'=>true))}}
            {{Form::hidden('adm_question_id', $question_item->id, ['class'=>'form-control'])}}
-             <fieldset style="padding: 10px; width: 90%; padding: 20px">
+             <fieldset style="width: 90%; padding: 20px">
 
                  <div class='form-group'>
-                    <Strong> Question Paper : </Strong>
+                    <Strong> Question Paper : </Strong> {{ $question_item->title }}
                  </div>
 
                 <div class='form-group'>

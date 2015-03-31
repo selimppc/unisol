@@ -241,7 +241,14 @@ class AdmFacultyController extends \BaseController {
 
     public function editSpecificQuestionItems($id)
     {
-        echo " update Question Items List";
+        $faculty_editQuestionItems = AdmQuestionItems::where('id', $id)->first();
+
+        $faculty_editQuestionOptions = AdmQuestionOptAns::where('adm_question_items_id', $faculty_editQuestionItems->id)->get();
+
+        return View::make('admission::faculty.question_papers.editSpecificQuestionItems',
+            compact('faculty_editQuestionItems', 'faculty_editQuestionOptions'));
+
+
 
     }
 

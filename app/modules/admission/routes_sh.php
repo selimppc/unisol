@@ -68,6 +68,7 @@ Route::any('admission/faculty/question-papers/view-questions-items/{id}',[
 //ok
 
 
+
 Route::any('admission/faculty/question-papers/specific-question-view/{id}',[
     'as' => 'admission.faculty.question-papers.specific-question-view',
     'uses' => 'AdmFacultyController@viewSpecificQuestionItems'
