@@ -87,7 +87,9 @@ class AdmFacultyController extends \BaseController {
 
     public function admTestQuestionPaper($year_id, $semester_id, $batch_id )
     {
-        $admtest_question_paper = AdmQuestion::latest('id')->get();
+        $admtest_question_paper = AdmQuestion::latest('id')
+           ->where('examiner_faculty_user_id' ,'=', Auth::user()->get()->id)
+            ->get();
 
         $degree_id = Batch::where('id' ,'=', $batch_id )
             ->where('semester_id' ,'=', $semester_id)
@@ -123,6 +125,128 @@ class AdmFacultyController extends \BaseController {
 
     }
 
+
+
+    //fct: Total Marks Calculation
+//    protected function totalMarks($id){
+//        $result = DB::table('exm_question_items')
+//            ->select(DB::raw('SUM(marks) as question_total_marks'))
+//            ->where('exm_question_id', '=', $id)
+//            ->first();
+//        return $result;
+//    }
+    //fct: add question items
+    public function addQuestionItems($qid){
+        $question_item = AdmQuestion::find($qid);
+
+//        $total_marks = $this->totalMarks($qid);
+
+        return View::make('admission::faculty.question_papers._add_question_item_form', compact('total_marks', 'question_item'));
+    }
+
+    public function storeQuestionItems()
+    {
+        $data = Input::all();
+
+        $faculty_admisison_store_question_items = new AdmQuestionItems();
+
+        if ($faculty_admisison_store_question_items->validate($data))
+        {
+            $faculty_admisison_store_question_items->title = Input::get('title');
+            $faculty_admisison_store_question_items->adm_question_id = Input::get('adm_question_id');
+            $faculty_admisison_store_question_items->marks = Input::get('marks');
+
+            if( strtolower(Input::get('mcq')) == 'mcq'){
+                if( strtolower(Input::get('question_type')) == 'mcq_single'){
+                    $faculty_admisison_store_question_items->question_type = 'radio';
+                    if($faculty_admisison_store_question_items->save()) {
+                        $adm_question_items_id = $faculty_admisison_store_question_items->id;
+                        $opt_title = Input::get('option_title');
+                        $opt_answer = Input::get('answer');
+                        //    print_r($opt_answer);exit;
+
+                        $i = 0;
+                        foreach ($opt_title as $key => $value) {
+                            //Re-declare model each time you want to save data as loop.
+                            $adm_question_opt = new AdmQuestionOptAns();
+                            $adm_question_opt->adm_question_items_id = $adm_question_items_id;
+                            $adm_question_opt->title = $value;
+                            $adm_question_opt->answer = 0;
+
+//                            if (isset($opt_answer))
+                            foreach ($opt_answer as $oa) {
+                                if ($oa == $key)
+                                    $adm_question_opt->answer = 1;
+                            }
+                            $adm_question_opt->save();
+                            $i++;
+                        }
+                        echo "Option Data : Single Answer Saved!";
+                    }else {
+                        echo "NO";
+                    }
+                }else{
+                    $faculty_admisison_store_question_items->question_type = 'checkbox';
+                    if($faculty_admisison_store_question_items->save()){
+                        $adm_question_items_id = $faculty_admisison_store_question_items->id;
+                        $opt_title = Input::get('option_title');
+                        $opt_answer = Input::get('answer');
+
+//                      print_r($opt_answer);exit;
+                        $i = 0;
+
+                        foreach($opt_title as $key => $value){
+                            //Re-declare model each time you want to save data as loop.
+                            $adm_question_opt = new AdmQuestionOptAns();
+                            $adm_question_opt->adm_question_items_id = $adm_question_items_id;
+                            $adm_question_opt->title = $value;
+                            $adm_question_opt->answer = 0;
+
+
+                            foreach($opt_answer as $oa){
+                                if($oa == $key)
+                                    $adm_question_opt->answer = 1;
+                            }
+                            $adm_question_opt->save();
+                            $i++;
+
+
+
+
+                        } /// saving last single data
+                        echo "Option Data : Multiple Answer Saved!";
+                    }else{
+                        echo "NO";
+                    }
+                }
+            }else{
+                $faculty_admisison_store_question_items->question_type = 'text';
+                if($faculty_admisison_store_question_items->save()){
+                    echo "Save";
+                }else{
+                    echo "No";
+                }
+            }
+
+            // redirect
+            Session::flash('message', 'Successfully Added!');
+            return Redirect::back();
+        }
+        else
+        {
+            // failure, get errors
+            $errors = $faculty_admisison_store_question_items->errors();
+            Session::flash('errors', $errors);
+
+            return Redirect::back();
+        }
+
+    }
+
+
+
+
+
     public function viewQuestionItemsList($id)
     {
         echo " View Question Items List";
@@ -136,11 +260,6 @@ class AdmFacultyController extends \BaseController {
     public function updateQuestionItemsList($id)
     {
         echo " update Question Items List";
-    }
-
-    public function addQuestionPaper()
-    {
-        echo " add Question Paper";
     }
 
     public function assignQuestionPaper()

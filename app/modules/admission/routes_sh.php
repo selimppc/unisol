@@ -88,11 +88,19 @@ Route::any('admission/faculty/question-papers/question-items-list-update/{id]',[
 
 
 
-Route::any('admission/faculty/question-papers/add-question-paper',[
-    'as' => 'admission.faculty.question-papers.add-question-paper',
-    'uses' => 'AdmFacultyController@addQuestionPaper'
+Route::any('admission/faculty/question-papers/add-question-paper-item/{id}',[
+    'as' => 'admission.faculty.question-papers.add-question-paper-item',
+    'uses' => 'AdmFacultyController@addQuestionItems'
 ]);
 //.
+
+Route::any('admission/faculty/question-papers/store-question-paper-item',[
+    'as' => 'admission.faculty.question-papers.store-question-paper-item',
+    'uses' => 'AdmFacultyController@storeQuestionItems'
+]);
+//.
+
+
 
 Route::any('admission/faculty/question-papers/assign-to-question-paper',[
     'as' => 'admission.faculty.question-papers.assign-to-question-paper',
