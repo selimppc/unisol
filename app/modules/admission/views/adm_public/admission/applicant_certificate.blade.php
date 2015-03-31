@@ -11,7 +11,7 @@
                 <table>
                     <tr>
                         <th></th>
-                        <td>{{ isset($model->certificate)? HTML::image('applicant_images/'.$model->certificate) : 'No Certificate found!' }}</td>
+                        <td class="etsb-image-doc">{{ $model->certificate != null ? HTML::image('/applicant_images/'.$model->certificate) :  HTML::image('/img/avatar3.png') }}</td>
                     </tr>
                 </table>
            </div>

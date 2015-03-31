@@ -98,7 +98,7 @@ class AdmPublicController extends \BaseController {
     {
         if(Auth::applicant()->check()) {
             $rules = array(
-//            'level_of_education' => 'required',
+          //  'certificate' => 'required',
 //            'degree_name' => 'required',
 //            'institute_name' => 'required',
 //            'academic_group' => 'required',
@@ -107,6 +107,7 @@ class AdmPublicController extends \BaseController {
             );
             $validator = Validator::make(Input::all(), $rules);
             if ($validator->passes()) {
+                $data = Input::all();
                 $model = new ApplicantAcademicRecords();
                 $model->applicant_id = Input::get('applicant_id');
                 $model->level_of_education = Input::get('level_of_education');
@@ -138,14 +139,12 @@ class AdmPublicController extends \BaseController {
                 $model->study_at = Input::get('study_at');
 
                 $file = Input::file('certificate');
-
                 $destinationPath = public_path() . '/applicant_images';
-                $extension = $file->getClientOriginalExtension();
+                $extension =  $file->getClientOriginalExtension();
                 $filename = str_random(12) . '.' . $extension;
                 $lower_name = strtolower($filename);
                 Input::file('certificate')->move($destinationPath, $lower_name);
                 $model->certificate = $filename;
-
                 $model->save();
 
                 return Redirect::route('admission.public.applicant_details', ['id' => Auth::applicant()->get()->id]);

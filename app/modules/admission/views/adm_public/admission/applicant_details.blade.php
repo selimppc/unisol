@@ -139,7 +139,7 @@
                              </div>
                              <p>&nbsp;</p><p>&nbsp;</p><br>
                              <div class="box-footer clearfix">
-                                 <button class="pull-right btn btn-default" id="sendEmail">Edit <i class="fa fa-arrow-circle-right"></i></button>
+                                  <a class="pull-right btn btn-default"  href="{{url::to('admission/public/admission/add-applicant-acm-docs')}}" data-toggle="modal" data-target="#addDegreeModal"><b></b> Add Profile </a>
                              </div>
                     </div>
                     <p>&nbsp;</p>
@@ -180,7 +180,7 @@
                                                                          {{$value->gpa}}
                                                                          @endif
                                                                     </td>
-                                                                    <td><a href="{{URL::route('admission.public.applicant_certificate',['id'=>$value->id])}}" data-toggle="modal" data-target="#addDegreeModal">Certificate</a><a class="pull-right" href="{{URL::route('admission.public.applicant_transcript',['id'=>$value->id])}}" data-toggle="modal" data-target="#addDegreeModal">Transcript</a></td>
+                                                                    <td><a style="color:navy" class="btn btn-xs btn-default" href="{{URL::route('admission.public.applicant_certificate',['id'=>$value->id])}}" data-toggle="modal" data-target="#addDegreeModal">Certificate</a><a style="color:navy" class="pull-right btn btn-xs btn-default" href="{{URL::route('admission.public.applicant_transcript',['id'=>$value->id])}}" data-toggle="modal" data-target="#addDegreeModal">Transcript</a></td>
                                                                </tr>
                                                             @endforeach
                                                          @else
@@ -193,7 +193,7 @@
                                   </div>
                              </div>
                              <div class="box-footer clearfix">
-                                 <a class="pull-right btn btn-default"  href="{{url::to('admission/public/admission/add-applicant-acm-docs')}}" data-toggle="modal" data-target="#addDegreeModal"><b style="font"></b> Add Academic Records </a>
+                                 <a class="pull-right btn btn-default"  href="{{url::to('admission/public/admission/add-applicant-acm-docs')}}" data-toggle="modal" data-target="#addDegreeModal"><b></b> Add Academic Records </a>
                              </div>
                     </div>
 
@@ -215,7 +215,8 @@
 
                           <div class="col-lg-10">
                               <table>
-                                  @if(isset($applicant_meta_records))
+
+                                 @if(isset($applicant_meta_records))
                                       <tr>
                                             <th class="col-lg-8">Father's Name</th>
                                             <td>{{$applicant_meta_records->fathers_name}}</td>
@@ -266,17 +267,24 @@
                                           <td>{{$applicant_meta_records->permanent_address}}</td>
                                       </tr>
 
-                                  @else
+                                 @else
                                       {{"No Biographical Information found !"}}
-                                  @endif
+
+                                 @endif
+
+                                 @if($applicant_meta_records != null)
+                                         <a style="margin-right:-21%" class="pull-right btn btn-default" href="{{ URL::to('applicant/profile/edit/' . $applicant_meta_records->id  ) }}" data-toggle="modal" data-target="#myeditModal" >Edit Profile</a>
+                                 @else
+                                         <a style="margin-right:-21%" class="pull-right btn btn-default" href="{{ URL::to('applicant/profile/create')}}" data-toggle="modal" data-target="#addModal" >Add Profile Data</a>
+                                 @endif
                               </table>
                           </div>
                       </div>
                  </div>
                  <p>&nbsp;</p>
-                 <div class="box-footer clearfix">
-                     <button class="pull-right btn btn-default" id="sendEmail">Edit <i class="fa fa-arrow-circle-right"></i></button>
-                 </div>
+                 {{--<div class="box-footer clearfix">--}}
+                    {{--<a class="pull-right btn btn-default"  href="{{url::to('admission/public/admission/add-applicant-acm-docs')}}" data-toggle="modal" data-target="#addDegreeModal"><b></b> Add Biographical Info </a>--}}
+                 {{--</div>--}}
             </div>
 
          </section>

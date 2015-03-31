@@ -22,7 +22,6 @@
                     <h4 class="table.align th text-purple  font-size text-bold"> Year: {{$values['year']['relYear']['title']}} </h4>
                     @foreach($values['course_semester'] as $semester)
                         <h4 class="text-purple">{{$semester['relSemester']['title']}}</h4>
-                        @foreach($semester['courseByCourse'] as $course)
                             <table id="" class="table table-bordered table-hover table-striped">
                                 <thead>
                                 <tr>
@@ -36,6 +35,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+                                @foreach($semester['courseByCourse'] as $course)
                                     <tr>
                                         <td> {{$course->relCourse->title}} ( {{$course->relCourse->course_code}} ) </td>
                                         <td> {{$semester['relBatch']['relDegree']['relDepartment']['title']}}</td>
@@ -48,9 +48,10 @@
                                             <a data-href="{{ URL::route('batch-course-delete',['bcid'=>$semester['id']]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa fa-trash-o" style="color:red"></i></a>
                                         </td>
                                     </tr>
+                                @endforeach
                                 </tbody>
                             </table>
-                        @endforeach
+
                     @endforeach
                      <br> <br>
                 @endforeach
