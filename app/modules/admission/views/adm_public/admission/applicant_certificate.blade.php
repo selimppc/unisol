@@ -11,7 +11,7 @@
                 <table>
                     <tr>
                         <th></th>
-                        <td>{{ isset($model->certificate)? HTML::image('applicant_images/'.$model->certificate) : 'No Certificate found!' }}</td>
+                        <td>{{ $model->certificate = null ? HTML::image('/applicant_images/no_file.jpg'): HTML::image('applicant_images/'.$model->certificate)  }}</td>
                     </tr>
                 </table>
            </div>
