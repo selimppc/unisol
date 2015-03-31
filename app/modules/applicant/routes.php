@@ -7,27 +7,24 @@ Route::group( array('after' => 'auth'), function(){
 //***********************Applicant Sign up Start(R)******************************
 
 Route::any('/applicant',
-    'ApplicantController@index'
+    'ApplicantController@applicant_signup'
 );
 
 Route::any('applicant/store',
-    'ApplicantController@store'
+    'ApplicantController@applicant_signup_data_save'
 );
 
 Route::get('register/verify/{verified_code}',
-    'ApplicantController@confirm'
+    'ApplicantController@applicant_signup_confirm'
 );
-    Route::any('applicant/signin', 'ApplicantController@Login');
-    Route::any('applicant/login', 'ApplicantController@applicantLogin');
-    Route::any('applicant/logout', 'ApplicantController@applicantLogout');
-    Route::any('applicant/dashboard', 'ApplicantController@Dashboard');
+
 //********************Applicant Profile(R)*******************************
 
 Route::any('applicant/profile/create',
     'ApplicantController@applicantProfileCreate'
 );
 
-Route::any('applicant/profile/',
+Route::any('applicant/profile/{id}',
         'ApplicantController@applicant_profile_index'
 );
 

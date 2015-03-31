@@ -3,57 +3,56 @@
     @include('layouts._sidebar_applicant')
 @stop
 @section('content')
-    <div class="well well-lg">
-        <table class="table table-striped table-bordered" id="myTable">
-            <h4>Applicant Proifle </h4>
-            @if($profile != null)
-                <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('applicant/profile/edit/' . $profile->id  ) }}" data-toggle="modal" data-target="#myeditModal" >Edit Profile</a>
-            @else
-                <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('applicant/profile/create')}}" data-toggle="modal" data-target="#addModal" >Add Profile Data</a>
-            @endif
-            <thead>
-            <tr>
-                <th>Date of Birth</th>
-                <td>{{ $profile != null ? $profile->date_of_birth : null }}
-                </td>
-            </tr>
-            <tr>
-                <th>Gender</th>
-                <td>{{ $profile != null ? $profile->gender : null }}
-                </td>
-            </tr>
-            <tr>
-                <th>Profile picture</th>
-                @if($profile != null)
-                    <td>{{ HTML::image('applicant_images/' .$profile->profile_image) }}
-                        <a class=" btn btn-sm btn-info" href="{{ URL::to('applicant/profile_image/edit/' . $profile->id ) }}" data-toggle="modal" data-target="#changeImageModal" >changeImage...</a></td>
-                @endif
-            </tr>
-            <tr>
-                <th>City</th>
-                <td>{{$profile != null ? $profile->city: null}}
-                </td>
-            </tr>
-            <tr>
-                <th>State</th>
-                <td>{{$profile !=null ? $profile->state: null}}
-                </td>
-            </tr>
-            <tr>
-                <th>Country</th>
-                <td>{{$profile !=null ? $profile->city: null}}
-                </td>
-            </tr>
-            <tr>
-                <th>Zip Code</th>
-                <td>{{$profile !=null ? $profile->zip_code : null}}
-                </td>
-            </tr>
-            </thead>
-            <tbody>
-            <br><br>
-            </tbody>
-        </table>
+    <div class="box box-primary">
+        <div class="box-header">
+            <h3 class="box-title text-purple">Applicant Proifle</h3>
+        </div><!-- /.box-header -->
+        <div class="box-body table-responsive no-padding">
+            <table class="table table-hover">
+                {{--@if($profile != null)--}}
+                    {{--<a class="pull-right btn btn-sm btn-info" href="{{ URL::to('applicant/profile/edit/' . $profile->id  ) }}" data-toggle="modal" data-target="#myeditModal" >Edit Profile</a>--}}
+                {{--@else--}}
+                    <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('applicant/profile/create')}}" data-toggle="modal" data-target="#addModal" >Add Profile</a>
+                {{--@endif--}}
+                <tr>
+                    <th>Date of Birth</th>
+                    <td >{{ $profile != null ? $profile->date_of_birth : null }}
+                    </td>
+                </tr>
+                <tr>
+                    <th>Gender</th>
+                    <td>{{ $profile != null ? $profile->gender : null }}
+                    </td>
+                </tr>
+                <tr>
+                    <th>Profile picture</th>
+                    @if($profile != null)
+                        <td>{{ HTML::image('applicant_images/' .$profile->profile_image) }}
+                            <a class=" btn btn-sm btn-info" href="{{ URL::to('applicant/profile_image/edit/' . $profile->id ) }}" data-toggle="modal" data-target="#changeImageModal" >changeImage...</a></td>
+                    @endif
+                </tr>
+                <tr>
+                    <th>City</th>
+                    <td>{{$profile != null ? $profile->city: null}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>State</th>
+                    <td>{{$profile !=null ? $profile->state: null}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>Country</th>
+                    <td>{{$profile !=null ? $profile->city: null}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>Zip Code</th>
+                    <td>{{$profile !=null ? $profile->zip_code : null}}
+                    </td>
+                </tr>
+            </table>
+        </div>
     </div>
 
     <!-- Modal : add -->
