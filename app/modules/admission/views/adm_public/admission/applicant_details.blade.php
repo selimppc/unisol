@@ -151,9 +151,7 @@
                                     <button class="btn btn-info btn-xs" data-widget="remove" data-toggle="tooltip" ><i class="fa fa-times"></i></button>
                                 </div><!-- /. tools -->
                          </div>
-                         <div class="box-footer clearfix">
-                              <a class="pull-right btn btn-xs btn-info"  href="{{url::to('admission/public/admission/add-applicant-acm-docs')}}" data-toggle="modal" data-target="#addDegreeModal"><b></b>Add</a>
-                         </div>
+
                              <div class="box-body">
                                   <div class="row">
 
@@ -193,6 +191,9 @@
                                          </table>
                                       </div>
                                   </div>
+                             </div>
+                             <div class="box-footer clearfix">
+                                 <a class="pull-right btn btn-default"  href="{{url::to('admission/public/admission/add-applicant-acm-docs')}}" data-toggle="modal" data-target="#addDegreeModal"><b style="font"></b> Add Academic Records </a>
                              </div>
                     </div>
 

@@ -6,7 +6,7 @@
  * Time: 10:16 AM
  */
 
-/*
+
 Route::get('user','UserSignupController@Userindex');
 Route::any('user/store','UserSignupController@Userstore');
 Route::post('send/email', 'UserSignupController@send_users_email');
@@ -36,7 +36,7 @@ Route::any('user/reset_password_update', 'UserSignupController@userResetPassword
 Route::any('user/set_cookie', 'UserSignupController@setCookie');
 Route::any('user/get_cookie', 'UserSignupController@getCookie');
 
-*/
+
 //-------------------------------- Amw: Course Management starts-----------------------------------------------
 
 Route::any('admission/amw/course_conduct/index',
