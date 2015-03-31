@@ -820,11 +820,9 @@ class AdmAmwController extends \BaseController
     public function indexBatchAdmTestSubject($batch_id)
     {
         $degree_test_sbjct = BatchAdmtestSubject::where('batch_id' ,'=', $batch_id)->get();
-
         $degree_name = Batch::with('relDegree')
             ->where('id' ,'=', $batch_id)
             ->first();
-
         return View::make('admission::amw.batch_adm_test_subject.index',
             compact('batch_id','degree_test_sbjct','degree_name'));
     }
@@ -832,36 +830,24 @@ class AdmAmwController extends \BaseController
     public function viewBatchAdmTestSubject($id)
     {
         $view_adm_test_subject = BatchAdmtestSubject::find($id);
-
         return View::make('admission::amw.batch_adm_test_subject.view',compact('view_adm_test_subject'));
     }
 
     public function createBatchAdmTestSubject($batch_id)
     {
-//        print_r($batch_id);exit;
         $subject_id_result = AdmTestSubject::lists('title', 'id');
 
         $degree_name = Batch::with('relDegree')
             ->where('id' ,'=', $batch_id)
             ->first();
-//
-//        $degree_name = BatchAdmtestSubject::with('relDegree')
-//            ->where('batch_id' ,'=', $batch_id)
-//            ->first();
-
         return View::make('admission::amw.batch_adm_test_subject._form',compact('batch_id','degree_name','subject_id_result'));
     }
 
     public function storeBatchAdmTestSubject()
     {
         $data = Input::all();
-//         print_r($data);exit;
-
         $model = new BatchAdmtestSubject();
-//        print_r($data);exit;
-
         if($model->validate($data)){
-
             if($model->create($data)){
                 Session::flash('message', 'Successfully added Information!');
                 return Redirect::back();
@@ -872,17 +858,12 @@ class AdmAmwController extends \BaseController
             return Redirect::back()
                 ->with('errors', 'invalid');
         }
-
     }
 
-    public function editBatchAdmTestSubject($batch_id)
+    public function editBatchAdmTestSubject($id, $batch_id)
     {
-        $batch_edit = BatchAdmtestSubject::find($batch_id);
-
-        $degree_name = Batch::with('relDegree')
-//            ->where('id' ,'=', $batch_id)
-            ->first();
-
+        $batch_edit = BatchAdmtestSubject::findOrFail($id);
+        $degree_name = Batch::with('relDegree')->first();
         $subject_id_result = AdmTestSubject::lists('title', 'id');
 
         return View::make('admission::amw.batch_adm_test_subject.edit',compact('batch_id','degree_name','batch_edit','subject_id_result'));
@@ -892,7 +873,6 @@ class AdmAmwController extends \BaseController
     {
         $model = BatchAdmtestSubject::find($id);
         $data = Input::all();
-
         if($model->validate($data)){
             if($model->update($data)){
                 Session::flash('message', 'Successfully Updates Information!');
@@ -913,10 +893,7 @@ class AdmAmwController extends \BaseController
     public function indexAdmissionTestSubject()
     {
         $admission_test_subject = AdmTestSubject::orderBy('id', 'DESC')->paginate(10);
-
-        return View::make('admission::amw.adm_test_subject.admtest_subject_index',
-            compact('admission_test_subject'));
-
+        return View::make('admission::amw.adm_test_subject.admtest_subject_index', compact('admission_test_subject'));
     }
 
     public function createAdmissionTestSubject()
@@ -939,29 +916,24 @@ class AdmAmwController extends \BaseController
             return Redirect::back()
                 ->with('errors', 'invalid');
         }
-
     }
 
     public function viewAdmissionTestSubject($id)
     {
         $view_admission_test_subject = AdmTestSubject::find($id);
         return View::make('admission::amw.adm_test_subject.view',compact('view_admission_test_subject'));
-
     }
 
     public function editAdmissionTestSubject($id)
     {
         $edit_admission_test_subject = AdmTestSubject::find($id);
-
         return View::make('admission::amw.adm_test_subject.edit',compact('edit_admission_test_subject'));
-
     }
 
     public function updateAdmissionTestSubject($id)
     {
         $model = AdmTestSubject::find($id);
         $data = Input::all();
-
         if($model->validate($data)){
             if($model->update($data)){
                 Session::flash('message', 'Successfully Updates Information!');
@@ -970,8 +942,7 @@ class AdmAmwController extends \BaseController
         }else{
             $errors = $model->errors();
             Session::flash('errors', $errors);
-            return Redirect::back()
-                ->with('error', 'invalid');
+            return Redirect::back()->with('error', 'invalid');
         }
     }
 
