@@ -58,7 +58,7 @@
                                     <td>
                                         <a href="{{ URL::route('admission.faculty.question-papers.view-question-paper',['id'=>$admtest_question_paper_list->id]) }}" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modal">VQP</a>
                                         <a href="{{ URL::route('admission.faculty.question-papers.view-questions-items',['id'=>$admtest_question_paper_list->id]) }}" class="btn btn-primary btn-xs" >VQs</a>
-                                        <a href="{{ URL::route('admission.faculty.question-papers.add-question-paper') }}" class="btn btn-info btn-xs disabled" >AQ</a>
+                                        <a href="{{ URL::route('admission.faculty.question-papers.add-question-paper-item',['qid'=>$admtest_question_paper_list->id]) }}" class="btn btn-info btn-xs " data-toggle="modal" data-target="#modal">AQ</a>
                                         <a href="{{ URL::route('admission.faculty.question-papers.assign-to-question-paper') }}" class="btn btn-default btn-xs disabled" >Comments</a>
                                         <a href="{{ URL::route('admission.faculty.question-papers.evaluate-questions') }}" class="btn btn-info btn-xs disabled" >Evaluate</a>
                                     </td>
