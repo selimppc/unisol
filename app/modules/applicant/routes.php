@@ -2,7 +2,7 @@
 
 include("routes_applicant_tj.php");
 
-Route::group( array('before' => 'auth'), function(){
+Route::group( array('after' => 'auth'), function(){
 
 //***********************Applicant Sign up Start(R)******************************
 
@@ -17,7 +17,10 @@ Route::any('applicant/store',
 Route::get('register/verify/{verified_code}',
     'ApplicantController@confirm'
 );
-
+    Route::any('applicant/signin', 'ApplicantController@Login');
+    Route::any('applicant/login', 'ApplicantController@applicantLogin');
+    Route::any('applicant/logout', 'ApplicantController@applicantLogout');
+    Route::any('applicant/dashboard', 'ApplicantController@Dashboard');
 //********************Applicant Profile(R)*******************************
 
 Route::any('applicant/profile/create',

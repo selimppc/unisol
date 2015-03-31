@@ -2,12 +2,13 @@
 class ApplicantController extends \BaseController
 {
 
+
+    //**************************Applicant Sign Up Start(R)********************
     public function index()
     {
         return View::make('applicant::signup.signup');
     }
 
-    //**************************Applicant Sign Up Start(R)********************
     public function store()
     {
         // TODO : Need to add captcha.Need to save reg_date,last_visit,ip_address
@@ -71,8 +72,51 @@ class ApplicantController extends \BaseController
         return View::make('user::user.login');
 
     }
+    public function Login()
+    {
+        return View::make('applicant::applicants.login');
+    }
+//    public function Login()
+//    {
+//        return View::make('applicant::applicants.login');
+//    }
+//    public function applicantLogin() {
+//        $credentials = array(
+//            'email'=> Input::get('email'),
+//            'password'=>Input::get('password'),
+//
+//        );
+//        if ( Auth::attempt($credentials) ) {
+//            return Redirect::to('applicant/dashboard')->with('message', 'Logged in!');
+//        } else {
+//            return Redirect::to('usersign/login') ->with('message', 'Your username/password combination was incorrect! Please try again....')
+//                ->withInput();
+//        }
+//    }
+//
+//    public function applicantLogout() {
+//        Auth::logout();
+//        return Redirect::to('usersign/login')->with('message', 'Your are now logged out!');
+//    }
+//
+//    public function Dashboard(){
+//        return View::make('applicant::applicants.dashboard');
+//    }
+//
+//    public function show($id)
+//    {
+//        $applicant = Applicant::find($id);
+//        return View::make('applicant::applicants.show', compact('applicant'));
+//    }
+//    public function edit($id)
+//    {
+//        $applicant = Applicant::find($id);
+//        return View::make('applicant::applicants.edit', compact('applicant'));
+//    }
 
-    //*****************Applicant's Profile Start(R)*********************************
+//TODO : Change password code is in UserSignUpController and have to add it here.
+
+//*****************Applicant's Profile Start(R)*********************************
 
     public function applicant_profile_index()
     {
