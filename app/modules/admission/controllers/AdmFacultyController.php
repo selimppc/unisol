@@ -62,8 +62,6 @@ class AdmFacultyController extends \BaseController {
 
     }
 
-
-
     public function batchDelete()
     {
         try {
@@ -104,7 +102,6 @@ class AdmFacultyController extends \BaseController {
             compact('admtest_question_paper','degree_id','degree_data','semester_id','year_id'));
     }
 
-
     public function viewQuestionPaper($id)
     {
         $view_adm_qp = AdmQuestion::find($id);
@@ -118,16 +115,12 @@ class AdmFacultyController extends \BaseController {
     {
         $view_adm_qp_items = AdmQuestionItems::where('adm_question_id', '=', $id)->get();
 
-//        print_r($view_adm_qp_items);exit;
-
         return View::make('admission::faculty.question_papers.view_qp_items',
             compact('view_adm_qp_items'));
 
     }
 
-
-
-    //fct: Total Marks Calculation
+//fct: Total Marks Calculation
 //    protected function totalMarks($id){
 //        $result = DB::table('exm_question_items')
 //            ->select(DB::raw('SUM(marks) as question_total_marks'))
@@ -135,7 +128,8 @@ class AdmFacultyController extends \BaseController {
 //            ->first();
 //        return $result;
 //    }
-    //fct: add question items
+
+//fct: add question items
     public function addQuestionItems($qid){
         $question_item = AdmQuestion::find($qid);
 
@@ -149,7 +143,6 @@ class AdmFacultyController extends \BaseController {
         $data = Input::all();
 
         $faculty_admisison_store_question_items = new AdmQuestionItems();
-
         if ($faculty_admisison_store_question_items->validate($data))
         {
             $faculty_admisison_store_question_items->title = Input::get('title');
@@ -163,7 +156,6 @@ class AdmFacultyController extends \BaseController {
                         $adm_question_items_id = $faculty_admisison_store_question_items->id;
                         $opt_title = Input::get('option_title');
                         $opt_answer = Input::get('answer');
-                        //    print_r($opt_answer);exit;
 
                         $i = 0;
                         foreach ($opt_title as $key => $value) {
@@ -192,9 +184,7 @@ class AdmFacultyController extends \BaseController {
                         $opt_title = Input::get('option_title');
                         $opt_answer = Input::get('answer');
 
-//                      print_r($opt_answer);exit;
                         $i = 0;
-
                         foreach($opt_title as $key => $value){
                             //Re-declare model each time you want to save data as loop.
                             $adm_question_opt = new AdmQuestionOptAns();
@@ -202,16 +192,12 @@ class AdmFacultyController extends \BaseController {
                             $adm_question_opt->title = $value;
                             $adm_question_opt->answer = 0;
 
-
                             foreach($opt_answer as $oa){
                                 if($oa == $key)
                                     $adm_question_opt->answer = 1;
                             }
                             $adm_question_opt->save();
                             $i++;
-
-
-
 
                         } /// saving last single data
                         echo "Option Data : Multiple Answer Saved!";
@@ -240,24 +226,26 @@ class AdmFacultyController extends \BaseController {
 
             return Redirect::back();
         }
-
     }
 
 
-
-
-
-    public function viewQuestionItemsList($id)
+    public function viewSpecificQuestionItems($id)
     {
-        echo " View Question Items List";
+        $faculty_ViewQuestionItems = AdmQuestionItems::where('id', $id)->first();
+
+        $options = AdmQuestionOptAns::where('adm_question_items_id', $faculty_ViewQuestionItems->id)->get();
+
+        return View::make('admission::faculty.question_papers.viewSpecificQuestionItems', compact('faculty_ViewQuestionItems', 'options'));
+
     }
 
-    public function editQuestionItemsList($id)
+    public function editSpecificQuestionItems($id)
     {
-        echo " edit Question Items List";
+        echo " update Question Items List";
+
     }
 
-    public function updateQuestionItemsList($id)
+    public function updateSpecificQuestionItems($id)
     {
         echo " update Question Items List";
     }
