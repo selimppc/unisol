@@ -49,26 +49,25 @@
          <div class="box-body">
               <div class="row">
                   <div class="col-lg-12">
-
-                        <table class="table table-bordered table-striped">
-                              <thead>
-                                   <tr>
-                                          <th>Subject Name</th>
-                                          <th>Marks</th>
-                                          <th>Test Time Duration(in Minutes)</th>
-                                   </tr>
-                              </thead>
-                              <tbody>
-                                  @if(isset($adm_test_subject))
-                                     @foreach($adm_test_subject as $value)
-                                          <tr>
-                                                 <td>{{$value->relAdmtestSubject->title}}</td>
-                                                 <td>{{$value->marks}}</td>
-                                                 <td>{{$value->duration}}</td>
-                                          </tr>
-                                     @endforeach
-                                     @endif
-                              </tbody>
+                      <table class="table table-bordered table-striped">
+                          <thead>
+                               <tr>
+                                      <th>Subject Name</th>
+                                      <th>Marks</th>
+                                      <th>Test Time Duration(in Minutes)</th>
+                               </tr>
+                          </thead>
+                          <tbody>
+                              @if(isset($adm_test_subject))
+                                 @foreach($adm_test_subject as $value)
+                                      <tr>
+                                             <td>{{$value->relAdmtestSubject->title}}</td>
+                                             <td>{{$value->marks}}</td>
+                                             <td>{{$value->duration}}</td>
+                                      </tr>
+                                 @endforeach
+                                 @endif
+                          </tbody>
                         </table>
                   </div>
               </div>
@@ -76,6 +75,16 @@
      </div>
   </div>
 
+<a class="pull-right btn btn-xs btn-info"  href="{{URL::route('admission.public.exm-center',['id'=>$adm_test_subject->id])}}" data-toggle="modal" data-target="#exmCenterModal"><b></b> Exam Center Choice </a>
+
+{{----------------------------------------------Modal --------------------------------------------------------------------------}}
+ <div class="modal fade" id="exmCenterModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+       <div class="modal-dialog">
+         <div class="modal-content">
+
+        </div>
+       </div>
+ </div>
 
 @stop
 
