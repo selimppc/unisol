@@ -667,17 +667,26 @@ class AdmAmwController extends \BaseController
    {
        $data = Input::all();
        if(Input::get('revoke')){
-            echo "OK"; exit;
+           $course_id = Input::get('course_id');
+           $course_conduct_id = CourseConduct::where('course_id', $course_id)->first()->id;
+           $course_conduct_comments_id = CourseConductComments::where('course_conduct_id', $course_conduct_id)->first()->id;
+           $course_conduct_comments = CourseConductComments::findOrFail($course_conduct_comments_id);
+           if($course_conduct_comments->destroy($course_conduct_comments_id)){
+               $course_conduct = CourseConduct::findOrFail($course_conduct_id);
+               if($course_conduct->destroy($course_conduct_id)){
+                   Session::flash('info', 'Successfully Revoked!');
+                   return Redirect::back();
+               }
+           }
+
        }elseif(Input::get('request')){
            $model = new CourseConduct();
-
            $model->course_id = Input::get('course_id');
            $model->faculty_user_id = Input::get('faculty_user_id');
            $model->year_id = Input::get('year_id');
            $model->semester_id = Input::get('semester_id');
            $model->degree_id = Input::get('degree_id');
            $model->status = 'requested';
-
            if($model->save()){
                $comments = new CourseConductComments();
                $comments->course_conduct_id = $model->id;
