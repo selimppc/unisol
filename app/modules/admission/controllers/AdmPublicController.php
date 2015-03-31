@@ -29,8 +29,8 @@ class AdmPublicController extends \BaseController {
                     ->get();
 
                 if($degreeApplicantCheck){
-                    return Redirect::back()->with('info','The selected Degree(s)already added !
-                    Please Select One That Is Not Added Yet.');
+//                    return Redirect::route('admission.public.applicant_details', ['id' => Auth::applicant()->get()->id]);
+                    Session::flash('info','The selected Degree(s)already added ! If You Want To Add More Please Select One That Is Not Added Yet Using "Add More Degree" Button.');
                 }else{
                     $data->save();
                 }

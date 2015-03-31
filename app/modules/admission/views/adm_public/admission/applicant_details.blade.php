@@ -94,6 +94,13 @@
                                       </div>
                                       <div class="col-lg-8">
                                           <table>
+                                          @if($applicant_personal_info != null)
+
+                                                <a style="margin-left:-21%" class="pull-right btn btn-default" href="{{ URL::to('applicant/profile/edit/' . $applicant_personal_info->id  ) }}" data-toggle="modal" data-target="#addDegreeModal" >Edit</a>
+                                            @else
+                                                <a style="margin-left:-21%" class="pull-right btn btn-default" href="{{ URL::to('applicant/profile/create')}}" data-toggle="modal" data-target="#addDegreeModal" >Add Profile Information</a>
+
+                                          @endif
                                                   @if(isset($applicant_personal_info))
                                                          <tr>
                                                              <th class="col-lg-6">Phone</th>
@@ -133,14 +140,17 @@
                                                   @else
                                                       {{"No Profile data found !"}}
                                                   @endif
+
+
+
                                           </table>
                                       </div>
                                   </div>
                              </div>
                              <p>&nbsp;</p><p>&nbsp;</p><br>
-                             <div class="box-footer clearfix">
-                                  <a class="pull-right btn btn-default"  href="{{url::to('admission/public/admission/add-applicant-acm-docs')}}" data-toggle="modal" data-target="#addDegreeModal"><b></b> Add Profile </a>
-                             </div>
+                             {{--<div class="box-footer clearfix">--}}
+                                  {{--<a class="pull-right btn btn-default"  href="{{url::to('admission/public/admission/add-applicant-acm-docs')}}" data-toggle="modal" data-target="#addDegreeModal"><b></b> Add Profile </a>--}}
+                             {{--</div>--}}
                     </div>
                     <p>&nbsp;</p>
                     <div class="box box-info">
