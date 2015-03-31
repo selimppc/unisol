@@ -554,10 +554,11 @@ class AdmAmwController extends \BaseController
                 'year'=> $year,
                 'course_semester' => BatchCourse::with('relSemester','courseByCourse')
                     ->where('year_id', $year->year_id)->where('batch_id', $batch_id)
-                   // ->groupBy('semester_id')
+                    //->groupBy('semester_id')
                     ->get(),
             ];
         }
+        //print_r($batch_course_data);exit;
 
         return View::make('admission::amw.batch_course.index',compact(
             'batch','degree_id','degree_title','deg_course_info','year_data','semester_data','batch_course_data', 'addCourseCredit'
@@ -646,49 +647,59 @@ class AdmAmwController extends \BaseController
 
 //******************************Assign faculty start(R)*****************************
 
-    public function assign_faculty_index($course_id,$dep_id)
+    public function assign_faculty_index($course_id, $dep_id)
     {
-
         $batch_course = BatchCourse::with('relBatch','relBatch.relDegree','relCourse','relYear','relSemester')
             ->where('course_id' , '=' ,$course_id)
-            ->get();
+            ->first();
 
         $facultyList =  array('' => 'Select faculty ') +User::FacultyList();
         $cc_status = CourseConduct::where('course_id' , '=' ,$course_id)
             ->first();
+        $comments_info = CourseConduct::with('relCourseConductComments')
+                        ->where('course_id','=',$course_id)->get();
+        //print_r($comments_info);exit;
 
-        return View::make('admission::amw.batch_course.assign_faculty_index',compact('facultyList','batch_course','cc_status'));
+        return View::make('admission::amw.batch_course.assign_faculty_index',compact('facultyList','batch_course','cc_status', 'comments_info'));
     }
 
     public function assign_faculty_save()
    {
        $data = Input::all();
-       $model = new CourseConduct();
-       $model->course_id = Input::get('course_id');
-       $model->faculty_user_id = Input::get('faculty_user_id');
-       $model->year_id = Input::get('year_id');
-       $model->semester_id = Input::get('semester_id');
-       $model->degree_id = Input::get('degree_id');
-       $model->status = 'requested';
-       $model->save();
-       $course_conduct_id = $model->id;//to get last inserted id
+       if(Input::get('revoke')){
+            echo "OK"; exit;
+       }elseif(Input::get('request')){
+           $model = new CourseConduct();
 
-       if($model->validate($data)){
+           $model->course_id = Input::get('course_id');
+           $model->faculty_user_id = Input::get('faculty_user_id');
+           $model->year_id = Input::get('year_id');
+           $model->semester_id = Input::get('semester_id');
+           $model->degree_id = Input::get('degree_id');
+           $model->status = 'requested';
+
+           if($model->save()){
                $comments = new CourseConductComments();
-               $comments->course_conduct_id = $course_conduct_id;
+               $comments->course_conduct_id = $model->id;
                $comments->comments = Input::get('comments');
                $comments->commented_to = Input::get('faculty_user_id');
                $comments->commented_by = Auth::user()->get()->id;
-               $comments->status = 'requested';
-               $comments->save();
-
-               Session::flash('message', 'Successfully added Information!');
+               $comments->status = '';
+               if($comments->save()){
+                   Session::flash('message', 'Successfully added Information!');
+                   return Redirect::back();
+               }else{
+                   $errors = $model->errors();
+                   Session::flash('errors', $errors);
+                   return Redirect::back();
+               }
+           }else{
+               $errors = $model->errors();
+               Session::flash('errors', $errors);
                return Redirect::back();
-       }else{
-           $errors = $model->errors();
-           Session::flash('errors', $errors);
-           return Redirect::back();
+           }
        }
+
    }
 
 

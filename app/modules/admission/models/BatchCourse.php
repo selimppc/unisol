@@ -72,7 +72,7 @@ class BatchCourse extends Eloquent{
 
     //TODO :: Scope Area
     public function courseByCourse() {
-        return $this->hasMany('BatchCourse','id', 'id') ;
+        return $this->hasMany('BatchCourse', 'id', 'id') ;
     }
 
 
