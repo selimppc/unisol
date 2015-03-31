@@ -45,7 +45,7 @@ class CourseConduct extends Eloquent{
         return $this->belongsTo('Degree', 'degree_id', 'id');
     }
     public function relCourseConductComments(){
-        return $this->HasMany('CourseConductComments');
+        return $this->belongsTo('CourseConductComments', 'id', 'course_conduct_id');
     }
     public function relYear(){
         return $this->belongsTo('Year', 'year_id', 'id');

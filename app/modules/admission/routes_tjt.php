@@ -6,7 +6,7 @@
  * Time: 10:16 AM
  */
 
-/*
+
 Route::get('user','UserSignupController@Userindex');
 Route::any('user/store','UserSignupController@Userstore');
 Route::post('send/email', 'UserSignupController@send_users_email');
@@ -36,7 +36,7 @@ Route::any('user/reset_password_update', 'UserSignupController@userResetPassword
 Route::any('user/set_cookie', 'UserSignupController@setCookie');
 Route::any('user/get_cookie', 'UserSignupController@getCookie');
 
-*/
+
 //-------------------------------- Amw: Course Management starts-----------------------------------------------
 
 Route::any('admission/amw/course_conduct/index',
@@ -168,9 +168,13 @@ Route::any('admission/public/admission/store-applicant-acm-docs',
     ['as' => 'admission.public.store-applicant-acm-docs',
         'uses' => 'AdmPublicController@storeApplicantAcmDocsPublic']);
 
-Route::any('admission/public/admission/applicant-docs/{id}',
-    ['as' => 'admission.public.applicant_docs',
-        'uses' => 'AdmPublicController@degreeOfferApplicantDocs']);
+Route::any('admission/public/admission/applicant-certificate/{id}',
+    ['as' => 'admission.public.applicant_certificate',
+        'uses' => 'AdmPublicController@degreeOfferApplicantCertificate']);
+
+Route::any('admission/public/admission/applicant-transcript/{id}',
+    ['as' => 'admission.public.applicant_transcript',
+        'uses' => 'AdmPublicController@degreeOfferApplicantTranscript']);
 
 Route::any('admission/public/admission/add-degree',
     ['as' => 'admission.public.add-degree',

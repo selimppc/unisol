@@ -99,10 +99,11 @@
                      array('class' => 'form-control')) }}</div>
 
                  {{ Form::label('certificate', 'Certificate') }}
-                 {{ Form::file('certificate', Input::old('certificate'),array('class' => 'form-control','placeholder'=>'')) }}
+                 {{ Form::file('certificate', Input::old('certificate'),['class' => 'form-control','required']) }}
 
                  {{ Form::label('transcript', 'Transcript') }}
-                 {{ Form::file('transcript', Input::old('transcript'),array('class' => 'form-control','placeholder'=>'')) }}
+                 {{ Form::file('transcript', Input::old('transcript'),['class' => 'form-control','required']) }}
+
 
 
                  <br>

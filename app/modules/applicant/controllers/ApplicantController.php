@@ -2,16 +2,17 @@
 class ApplicantController extends \BaseController
 {
 
-    public function index()
+
+//**************************Applicant Sign Up Start(R)***********************
+
+    public  function applicant_signup()
     {
         return View::make('applicant::signup.signup');
     }
 
-    //**************************Applicant Sign Up Start(R)********************
-    public function store()
+    public function applicant_signup_data_save()
     {
         // TODO : Need to add captcha.Need to save reg_date,last_visit,ip_address
-
         $token = csrf_token();
         $rules = array(
             'first_name' => 'required|min:2',
@@ -59,7 +60,7 @@ class ApplicantController extends \BaseController
         }
     }
 
-    public function confirm($verified_code)
+    public function applicant_signup_confirm($verified_code)
     {
         $user = Applicant::where('verified_code','=',$verified_code);
         if($user->count())
@@ -71,17 +72,62 @@ class ApplicantController extends \BaseController
         return View::make('user::user.login');
 
     }
-
-    //*****************Applicant's Profile Start(R)*********************************
-
-    public function applicant_profile_index()
+    public function Login()
     {
-        $profile = ApplicantProfile::where('applicant_id', '=', '27')->first();
-        //  print_r($profile);exit;
-        $country = ApplicantProfile::with('relCountry');
-        return View::make('applicant::applicant_profile.index',compact('profile',
-            compact('country')));
+        return View::make('applicant::applicants.login');
     }
+   /* public function Login()
+    {
+        return View::make('applicant::applicants.login');
+    }
+    public function applicantLogin() {
+        $credentials = array(
+            'email'=> Input::get('email'),
+            'password'=>Input::get('password'),
+
+        );
+        if ( Auth::attempt($credentials) ) {
+            return Redirect::to('applicant/dashboard')->with('message', 'Logged in!');
+        } else {
+            return Redirect::to('usersign/login') ->with('message', 'Your username/password combination was incorrect! Please try again....')
+                ->withInput();
+        }
+    }
+
+    public function applicantLogout() {
+        Auth::logout();
+        return Redirect::to('usersign/login')->with('message', 'Your are now logged out!');
+    }
+
+    public function Dashboard(){
+        return View::make('applicant::applicants.dashboard');
+    }
+
+    public function show($id)
+    {
+        $applicant = Applicant::find($id);
+        return View::make('applicant::applicants.show', compact('applicant'));
+    }
+    public function edit($id)
+    {
+        $applicant = Applicant::find($id);
+        return View::make('applicant::applicants.edit', compact('applicant'));
+    }*/
+
+//TODO : Change password code is in UserSignUpController and need to add it here.
+
+//**********************Applicant's Profile Start(R)*********************************
+
+//    public function applicant_profile_index($id)
+//    {
+//       $profile = ApplicantProfile::where('applicant_id', '=', '1')->first();
+//       // $profile = $id;
+//       // print_r($profile);exit;
+//        $country = ApplicantProfile::with('relCountry');
+//
+//        return View::make('applicant::applicant_profile.index',compact('profile',
+//            compact('country')));
+//    }
 
     public function applicantProfileCreate()
     {
@@ -92,45 +138,42 @@ class ApplicantController extends \BaseController
 
     public function applicantProfileStore()
     {
-        $rules = array(
-            'profile_image' => 'required',
-        );
-        $validator = Validator::make(Input::all(), $rules);
-        if ($validator->passes()) {
-            $profile =new ApplicantProfile();
-            // $profile->applicant_id = Input::get('applicant_id');
-            $profile->date_of_birth = Input::get('date_of_birth');
-            $profile->place_of_birth = Input::get('place_of_birth');
-            $profile->gender = Input::get('gender');
+        
+        $data = Input::all();
+        $applicant_model = new ApplicantProfile();
+        if ($applicant_model->validate($data)) {
+            $applicant_model->applicant_id = Input::get('applicant_id');
+            $applicant_model->date_of_birth = Input::get('date_of_birth');
+            $applicant_model->place_of_birth = Input::get('place_of_birth');
+            $applicant_model->gender = Input::get('gender');
 
             $file = Input::file('profile_image');
-
             $destinationPath = public_path().'/applicant_images';
             $extension = $file->getClientOriginalExtension();
             $filename = str_random(12) . '.' . $extension;
             $lower_name = strtolower($filename);
             $path = public_path("applicant_images/" . $lower_name);
-            Image::make($file->getRealPath())->resize(60, 60)->save($path);
-            // Input::file('profile_image')->move($destinationPath, $lower_name);
+            Image::make($file->getRealPath())->resize(100, 100)->save($path);
 
-            $profile->profile_image = $filename;
-
-            $profile->city = Input::get('city');
-            $profile->state = Input::get('state');
-            $profile->country_id = Input::get('country_id');
-            $profile->zip_code = Input::get('zip_code');
-            $profile->save();
+            $applicant_model->profile_image = $filename;
+            $applicant_model->city = Input::get('city');
+            $applicant_model->state = Input::get('state');
+            $applicant_model->country_id = Input::get('country_id');
+            $applicant_model->zip_code = Input::get('zip_code');
+            $applicant_model->save();
 
             return Redirect::back()->with('message', 'Successfully added Information!');
-        } else {
-            return Redirect::to('applicant/profile/create')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
+        }
+        else {
+            $errors = $applicant_model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::to('applicant/profile/create');
         }
 
     }
     public function editApplicantProfile($id){
 
         $profile = ApplicantProfile::find($id);
-
         return View::make('applicant::applicant_profile.edit', compact('profile'));
 
     }
@@ -141,7 +184,6 @@ class ApplicantController extends \BaseController
         );
         $validator = Validator::make(Input::all(), $rules);
         if ($validator->passes()) {
-
             $profile = ApplicantProfile::find($id);
             $profile->date_of_birth = Input::get('date_of_birth');
 //            $profile->birth_place = Input::get('birth_place');
@@ -456,7 +498,7 @@ class ApplicantController extends \BaseController
 
     public function acmRecordsIndex(){
 
-        $model = ApplicantAcademicRecords::where('applicant_id', '=', '1')->get();
+        $model = ApplicantAcademicRecords::where('applicant_id', '=', '27')->get();
         return View::make('applicant::apt_academic_records.index', compact('model'));
     }
     public function acmRecordsCreate(){
@@ -475,7 +517,7 @@ class ApplicantController extends \BaseController
         $validator = Validator::make(Input::all(), $rules);
         if ($validator->passes()) {
             $model =new ApplicantAcademicRecords();
-            $model->applicant_id = Input::get('applicant_id');
+            //$model->applicant_id = Input::get('applicant_id');
             $model->level_of_education = Input::get('level_of_education');
             $model->degree_name = Input::get('degree_name');
             $model->institute_name = Input::get('institute_name');

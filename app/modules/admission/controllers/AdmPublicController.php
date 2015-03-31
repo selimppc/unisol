@@ -29,8 +29,8 @@ class AdmPublicController extends \BaseController {
                     ->get();
 
                 if($degreeApplicantCheck){
-                    return Redirect::back()->with('info','The selected Degree(s)already added !
-                    Please Select One That Is Not Added Yet.');
+//                    return Redirect::route('admission.public.applicant_details', ['id' => Auth::applicant()->get()->id]);
+                    Session::flash('info','The selected Degree(s)already added ! If You Want To Add More Please Select One That Is Not Added Yet Using "Add More Degree" Button.');
                 }else{
                     $data->save();
                 }
@@ -98,7 +98,7 @@ class AdmPublicController extends \BaseController {
     {
         if(Auth::applicant()->check()) {
             $rules = array(
-//            'level_of_education' => 'required',
+          //  'certificate' => 'required',
 //            'degree_name' => 'required',
 //            'institute_name' => 'required',
 //            'academic_group' => 'required',
@@ -107,6 +107,7 @@ class AdmPublicController extends \BaseController {
             );
             $validator = Validator::make(Input::all(), $rules);
             if ($validator->passes()) {
+                $data = Input::all();
                 $model = new ApplicantAcademicRecords();
                 $model->applicant_id = Input::get('applicant_id');
                 $model->level_of_education = Input::get('level_of_education');
@@ -138,14 +139,12 @@ class AdmPublicController extends \BaseController {
                 $model->study_at = Input::get('study_at');
 
                 $file = Input::file('certificate');
-
                 $destinationPath = public_path() . '/applicant_images';
-                $extension = $file->getClientOriginalExtension();
+                $extension =  $file->getClientOriginalExtension();
                 $filename = str_random(12) . '.' . $extension;
                 $lower_name = strtolower($filename);
                 Input::file('certificate')->move($destinationPath, $lower_name);
                 $model->certificate = $filename;
-
                 $model->save();
 
                 return Redirect::route('admission.public.applicant_details', ['id' => Auth::applicant()->get()->id]);
@@ -157,11 +156,17 @@ class AdmPublicController extends \BaseController {
         }
     }
 
-    public function degreeOfferApplicantDocs($id){
+    public function degreeOfferApplicantCertificate($id){
         $applicant_id = $id;
-        $model = ApplicantAcademicRecords::where('applicant_id', '=',$applicant_id )->first();
-        //print_r($applicant_acm_records);
-        return View::make('admission::adm_public.admission.applicant_docs',compact('model'));
+        $model = ApplicantAcademicRecords::where('id', '=',$applicant_id )->first();
+        return View::make('admission::adm_public.admission.applicant_certificate',compact('model'));
+
+    }
+
+    public function degreeOfferApplicantTranscript($id){
+        $applicant_id = $id;
+        $model = ApplicantAcademicRecords::where('id', '=',$applicant_id )->first();
+        return View::make('admission::adm_public.admission.applicant_transcript',compact('model'));
 
     }
 

@@ -1,7 +1,8 @@
+
 <div class="modal-header">
 
     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-    <h4 class="modal-title" id="myModalLabel"></h4>
+    <h4 class="modal-title" id="myModalLabel">Transcript</h4>
 </div>
 
 <div class="modal-body">
@@ -10,8 +11,8 @@
 
                 <table>
                     <tr>
-                        <th>Certificate:</th>
-                        <td>{{ HTML::image('applicant_images/' . $model->certificate) }}</td>
+                        <th></th>
+                        <td>{{ isset($model->transcript)? HTML::image('applicant_images/'.$model->transcript) : 'No Transcript found!' }}</td>
                     </tr>
                 </table>
            </div>

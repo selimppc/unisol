@@ -1,9 +1,8 @@
-@extends('layouts.master')
+@extends('layouts.layout')
 @section('sidebar')
-    @include('applicant::_sidebar')
+    @include('layouts._sidebar_applicant')
 @stop
 @section('content')
-
 
 <section class="content">
 <div class="box-body">
