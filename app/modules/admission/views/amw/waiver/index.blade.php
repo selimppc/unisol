@@ -21,43 +21,43 @@
                        <div class="col-lg-12">
                        {{ Form::open(array('url' => 'admission/amw/waiver/batch_delete')) }}
                           <table id="example" class="table table-bordered ">
-                                 <thead>
-                                         <tr>
-                                             <th>
-                                                 <input name="id" type="checkbox" id="checkbox" class="checkbox" value="">
-                                             </th>
-                                            <th>Title</th>
-                                            <th>Description</th>
-                                            <th>Waiver Type</th>
-                                            <th>Is Percentage ?</th>
-                                            <th>Amount</th>
-                                            {{--<th>Billing Item</th>--}}
-                                            <th>Action</th>
-                                         </tr>
-                                 </thead>
-                                        <tbody>
-                                              @if(isset($waiver_model))
-                                                    @foreach($waiver_model as $value)
-                                                        <tr>
-                                                            <td><input type="checkbox" name="ids[]"  class="myCheckbox" value="{{ $value->id }}">
-                                                            </td>
-                                                            <td>{{ $value['title'] }}</td>
-                                                            <td>{{ $value['description'] }}</td>
-                                                            <td>{{ $value['waiver_type'] }}</td>
-                                                            <td>{{ $value['is_percentage'] == 1 ? 'Yes' : 'No' }}</td>
-                                                            <td>{{ $value['amount'] }}</td>
-                                                            {{--<td> {{$value['relBillingDetails']['relBillingItem']['title'] }} </td>--}}
+                             <thead>
+                                 <tr>
+                                     <th>
+                                         <input name="id" type="checkbox" id="checkbox" class="checkbox" value="">
+                                     </th>
+                                    <th>Title</th>
+                                    <th>Description</th>
+                                    <th>Waiver Type</th>
+                                    <th>Is Percentage ?</th>
+                                    <th>Amount</th>
+                                    {{--<th>Billing Item</th>--}}
+                                    <th>Action</th>
+                                 </tr>
+                             </thead>
+                            <tbody>
+                              @if(isset($waiver_model))
+                                @foreach($waiver_model as $value)
+                                <tr>
+                                    <td><input type="checkbox" name="ids[]"  class="myCheckbox" value="{{ $value->id }}">
+                                    </td>
+                                    <td>{{ $value['title'] }}</td>
+                                    <td>{{ $value['description'] }}</td>
+                                    <td>{{ $value['waiver_type'] }}</td>
+                                    <td>{{ $value['is_percentage'] == 1 ? 'Yes' : 'No' }}</td>
+                                    <td>{{ $value['amount'] }}</td>
+                                    {{--<td> {{$value['relBillingDetails']['relBillingItem']['title'] }} </td>--}}
 
-                                                            <td>
-                                                                 <a href="{{ URL::to('admission/amw/waiver/show/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#waiverModal" style="font-size: 12px;color: darkmagenta"><span class="fa fa-eye"></span></a>
-                                                                 <a class="btn btn-xs btn-default" href="{{ URL::to('admission/amw/waiver/edit/'.$value->id) }}" data-toggle="modal" data-target="#waiverModal" style="font-size: 12px;color: lightseagreen"><i class="fa fa-edit"></i></a>
-                                                                 <a data-href="{{ URL::to('admission/amw/waiver/delete/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" style="font-size: 12px;color: lightcoral"><span class="fa  fa-trash-o"></span></a>
+                                    <td>
+                                         <a href="{{ URL::to('admission/amw/waiver/show/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#waiverModal" style="font-size: 12px;color: darkmagenta"><span class="fa fa-eye"></span></a>
+                                         <a class="btn btn-xs btn-default" href="{{ URL::to('admission/amw/waiver/edit/'.$value->id) }}" data-toggle="modal" data-target="#waiverModal" style="font-size: 12px;color: lightseagreen"><i class="fa fa-edit"></i></a>
+                                         <a data-href="{{ URL::to('admission/amw/waiver/delete/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" style="font-size: 12px;color: lightcoral"><span class="fa  fa-trash-o"></span></a>
 
-                                                            </td>
-                                                        </tr>
-                                                    @endforeach
-                                              @endif
-                                        </tbody>
+                                    </td>
+                                </tr>
+                                @endforeach
+                              @endif
+                            </tbody>
                        {{ Form::submit('Delete Items', array('class'=>'btn btn-xs btn-danger', 'id'=>'hide-button', 'style'=>'display:none'))}}
                           </table>
                        {{ Form::close() }}

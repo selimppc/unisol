@@ -81,7 +81,7 @@
                                           @endforeach
                                       @endif
                                       <div>
-                                          <a class="pull-right btn btn-xs btn-info" href="{{ URL::route('admission.amw.waiver-time-constraint.create', ['batch_waiver_id'=>$batch_waiver_id] )}}" data-toggle="modal" data-target="#waiverConstModal" style="color: #ffffff"><b>Add Time Constraint</b></a>
+                                          <a class="pull-right btn btn-xs btn-info" href="{{ URL::route('admission.amw.waiver-time-constraint.create', ['batch_waiver_id'=>$bw_id] )}}" data-toggle="modal" data-target="#waiverConstModal" style="color: #ffffff"><b>Add Time Constraint</b></a>
                                       </div>
                                       <p>&nbsp;</p>
                                       </tbody>
@@ -129,7 +129,7 @@
                                           @endforeach
                                         @endif
                                         <div>
-                                          <a class="pull-right btn btn-xs btn-info" href="{{ URL::route('admission.amw.waiver-gpa-constraint.create', ['batch_waiver_id'=>$batch_waiver_id] )}}" data-toggle="modal" data-target="#waiverConstModal" style="color: #ffffff"><b>Add GPA Constraint</b></a>
+                                          <a class="pull-right btn btn-xs btn-info" href="{{ URL::route('admission.amw.waiver-gpa-constraint.create', ['batch_waiver_id'=>$bw_id] )}}" data-toggle="modal" data-target="#waiverConstModal" style="color: #ffffff"><b>Add GPA Constraint</b></a>
                                       </div>
                                       <p>&nbsp;</p>
                                       </tbody>

@@ -1417,7 +1417,6 @@ class AdmAmwController extends \BaseController
     }
 
     public function batchWaiverCreate($batch_id)
-
     {
         $waiverList = array('' => 'Select Waiver Item ') + Waiver::lists('title','id');
         return View::make('admission::amw.batch_waiver.waiver_form',
@@ -1435,34 +1434,25 @@ class AdmAmwController extends \BaseController
                 ->with('message', 'Successfully added Information!');
         }
     }
-    public function batchWaiverDelete($batch_id)
+    public function batchWaiverDelete($bw_id)
     {
         try {
-            BatchWaiver::find($batch_id)->delete();
+            BatchWaiver::find($bw_id)->delete();
             return Redirect::back()->with('message', 'Successfully deleted Information!');
         }
         catch(exception $ex){
-            return Redirect::back()->with('danger', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+            return Redirect::back()->with('danger', 'Invalid Request. Delete Constraint Data First. !!!');
         }
     }
 
 //{----------------------------------Waiver Constraint---------------------------------------------------------------------}
-    public function waiverConstraintIndex($batch_id, $waiver_id){
+    public function waiverConstraintIndex($batch_id, $bw_id){
 
-        $batch_waiver_id = BatchWaiver::where('batch_id', '=', $batch_id)
-            ->where('waiver_id', '=', $waiver_id)
-            ->first()->id;
-
-        $batchWaiver = BatchWaiver::with('relWaiver')
-            ->where('batch_id', '=', $batch_id)
-            ->where('waiver_id', '=', $waiver_id)->first();
-
-        $timeDependent = WaiverConstraint::where('batch_waiver_id','=',$batch_waiver_id)
-            ->where('is_time_dependent','=', 1)->get();
-        $gpaDependent = WaiverConstraint::where('batch_waiver_id','=',$batch_waiver_id)
-            ->where('is_time_dependent','=', 0)->get();
+        $batchWaiver = BatchWaiver::with('relWaiver')->where('id', '=', $bw_id)->first();
+        $timeDependent = WaiverConstraint::where('batch_waiver_id','=',$bw_id)->where('is_time_dependent','=', 1)->get();
+        $gpaDependent = WaiverConstraint::where('batch_waiver_id','=',$bw_id)->where('is_time_dependent','=', 0)->get();
         //print_r($waiverConstraint);exit;
-        return View::make('admission::amw.waiver_constraint.index', compact('batch_waiver_id', 'batchWaiver','timeDependent', 'gpaDependent'));
+        return View::make('admission::amw.waiver_constraint.index', compact('bw_id', 'batchWaiver','timeDependent', 'gpaDependent'));
     }
 
     public function waiverTimeConstCreate($batch_waiver_id){
