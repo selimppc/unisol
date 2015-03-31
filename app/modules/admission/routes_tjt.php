@@ -168,6 +168,18 @@ Route::any('admission/public/admission/store-applicant-acm-docs',
     ['as' => 'admission.public.store-applicant-acm-docs',
         'uses' => 'AdmPublicController@storeApplicantAcmDocsPublic']);
 
+Route::any('admission/public/admission/edit-applicant-acm-docs/{id}',
+    ['as' => 'admission.public.edit-applicant-acm-docs',
+        'uses' => 'AdmPublicController@editApplicantAcmDocsPublic']);
+
+Route::any('admission/public/admission/update-applicant-acm-docs/{id}',
+    ['as' => 'admission.public.update-applicant-acm-docs',
+        'uses' => 'AdmPublicController@updateApplicantAcmDocsPublic']);
+
+Route::any('admission/public/admission/delete-applicant-acm-docs/{id}',
+    ['as' => 'admission.public.delete-applicant-acm-docs',
+        'uses' => 'AdmPublicController@deleteApplicantAcmDocsPublic']);
+
 Route::any('admission/public/admission/applicant-certificate/{id}',
     ['as' => 'admission.public.applicant_certificate',
         'uses' => 'AdmPublicController@degreeOfferApplicantCertificate']);
@@ -183,6 +195,10 @@ Route::any('admission/public/admission/add-degree',
 Route::any('admission/public/admission-test-details/{id}',
     ['as' => 'admission.admission.test_details',
         'uses' => 'AdmPublicController@admTestDetails']);
+
+Route::any('admission/public/admission/exm-center',
+    ['as' => 'admission.public.exm-center',
+        'uses' => 'AdmPublicController@admExmCenter']);
 
 //Adm_applicant checkout view
 Route::any('admission/public/admission/checkout/',
