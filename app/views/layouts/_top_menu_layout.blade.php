@@ -103,7 +103,7 @@
         Applicant
     </a>
     <ul class="dropdown-menu">
-        <li><a tabindex="-1" a href="{{URL::to('applicant')}}">Applicant Sign Up</a></li>
+        <li><a tabindex="-1" a href="{{URL::to('applicant')}}">User Account</a></li>
         <li><a tabindex="-1" a href=""></a></li>
     </ul>
 </li>
