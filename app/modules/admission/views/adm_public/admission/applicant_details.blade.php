@@ -169,11 +169,12 @@
                                          <table class="table  table-bordered">
                                                <thead>
                                                       <tr>
-                                                         <th width="10%">Level Of Education</th>
-                                                         <th width="10%">Board / University</th>
-                                                         <th>Passing Year</th>
-                                                         <th>Result</th>
-                                                         <th>Docs</th>
+                                                         <th width="3%"> Education Level</th>
+                                                         <th width="5%">Board / University</th>
+                                                         <th width="2%">Passing Year</th>
+                                                         <th width="5%">Result</th>
+                                                         <th >Docs</th>
+                                                         <th width="3%">AC</th>
                                                       </tr>
                                                </thead>
                                                     <tbody >
@@ -190,8 +191,17 @@
                                                                          {{$value->gpa}}
                                                                          @endif
                                                                     </td>
-                                                                    <td><a style="color:navy" class="btn btn-xs btn-default" href="{{URL::route('admission.public.applicant_certificate',['id'=>$value->id])}}" data-toggle="modal" data-target="#addDegreeModal">Certificate</a><a style="color:navy" class="pull-right btn btn-xs btn-default" href="{{URL::route('admission.public.applicant_transcript',['id'=>$value->id])}}" data-toggle="modal" data-target="#addDegreeModal">Transcript</a></td>
+                                                                    <td>
+                                                                       <a style="color:navy" class="btn btn-xs btn-default" href="{{URL::route('admission.public.applicant_certificate',['id'=>$value->id])}}" data-toggle="modal" data-target="#addDegreeModal">Certificate</a>
+                                                                       <a style="color:navy" class="pull-right btn btn-xs btn-default" href="{{URL::route('admission.public.applicant_transcript',['id'=>$value->id])}}" data-toggle="modal" data-target="#addDegreeModal">Transcript</a>
+                                                                     </td>
+                                                                     <td>
+                                                                    <a href="{{ URL::route('admission.public.edit-applicant-acm-docs',['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#addDegreeModal" style="font-size: 12px;color: darkmagenta"><span class="fa fa-edit"></span></a>
+                                                                    <a data-href="{{ URL::route('admission.public.delete-applicant-acm-docs',['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" style="font-size: 12px;color: lightcoral"><span class="fa  fa-trash-o"></span></a>
+
+                                                                    </td>
                                                                </tr>
+
                                                             @endforeach
                                                          @else
                                                               {{"No Academic Records found !"}}
@@ -309,6 +319,27 @@
         </div>
        </div>
  </div>
+
+ <!-- Modal for delete -->
+     <div class="modal fade " id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+       <div class="modal-dialog">
+         <div class="modal-content">
+               <div class="modal-header">
+                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                 <h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>
+               </div>
+               <div class="modal-body">
+                     <strong>Are you sure to delete?</strong>
+
+               </div>
+               <div class="modal-footer">
+                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                 <a href="#" class="btn btn-danger danger">Delete</a>
+
+               </div>
+         </div>
+       </div>
+     </div>
 
  <p>&nbsp;</p>
  <p>&nbsp;</p>

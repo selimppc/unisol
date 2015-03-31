@@ -90,6 +90,11 @@ class AdmPublicController extends \BaseController {
         return View::make('admission::adm_public.admission.applicant_details',
                   compact('batch_applicant','applicant_personal_info','applicant_acm_records','applicant_meta_records'));
     }
+    public function addMoreDegree(){
+
+        $degreeList = Batch::with('relDegree')->get();
+        return View::make('admission::adm_public.admission.add_more_degree',compact('degreeList'));
+    }
     public function addApplicantAcmDocsPublic(){
         return View::make('admission::adm_public.admission.add_acm_docs');
     }
@@ -107,7 +112,8 @@ class AdmPublicController extends \BaseController {
             );
             $validator = Validator::make(Input::all(), $rules);
             if ($validator->passes()) {
-                $data = Input::all();
+                //$data = Input::all();
+                //$model = $data['id'] ? ApplicantAcademicRecords::find($data['id']) : new ApplicantAcademicRecords;
                 $model = new ApplicantAcademicRecords();
                 $model->applicant_id = Input::get('applicant_id');
                 $model->level_of_education = Input::get('level_of_education');
@@ -138,6 +144,14 @@ class AdmPublicController extends \BaseController {
                 $model->duration = Input::get('duration');
                 $model->study_at = Input::get('study_at');
 
+                $file_transcript = Input::file('transcript');
+                $destinationPath = public_path() . '/applicant_images';
+                $extension1 =  $file_transcript->getClientOriginalExtension();
+                $filename = str_random(12) . '.' . $extension1;
+                $lower_name = strtolower($filename);
+                Input::file('transcript')->move($destinationPath, $lower_name);
+                $model->transcript = $filename;
+
                 $file = Input::file('certificate');
                 $destinationPath = public_path() . '/applicant_images';
                 $extension =  $file->getClientOriginalExtension();
@@ -154,6 +168,79 @@ class AdmPublicController extends \BaseController {
         }else{
             return Redirect::route('user/login')->with('message', 'Please Login !');
         }
+    }
+    public function editApplicantAcmDocsPublic($id){
+        $model= ApplicantAcademicRecords::find($id);
+        //print_r($model);exit;
+        return View::make('admission::adm_public.admission.edit_acm_docs', compact('model'));
+    }
+
+    public function updateApplicantAcmDocsPublic($id){
+        $rules = array(
+//            'level_of_education' => 'required',
+        );
+        $validator = Validator::make(Input::all(), $rules);
+        if ($validator->passes()) {
+
+            $data = Input::all();
+            $file = $data['certificate'];
+
+            $model = ApplicantAcademicRecords::find($id);
+
+            if($data){
+                $model->applicant_id = Input::get('applicant_id');
+                $model->level_of_education = Input::get('level_of_education');
+                $model->degree_name = Input::get('degree_name');
+                $model->institute_name = Input::get('institute_name');
+                $model->academic_group = Input::get('academic_group');
+
+                //save board or university according to board_type
+                $model->board_type = Input::get('board_type');
+
+                if ($model->board_type == 'board')
+                    $model->board_university = Input::get('board_university_board');
+                if ($model->board_type == 'university')
+                    $model->board_university = Input::get('board_university_university');
+                if ($model->board_type == 'other')
+                    $model->board_university = Input::get('board_university_other');
+
+                //$model->board_university = $board_university;
+                $model->major_subject = Input::get('major_subject');
+                $model->result_type = Input::get('result_type');
+
+                $model->result = Input::get('result');
+                $model->gpa = Input::get('gpa');
+                $model->gpa_scale = Input::get('gpa_scale');
+                $model->roll_number = Input::get('roll_number');
+                $model->registration_number = Input::get('registration_number');
+                $model->year_of_passing = Input::get('year_of_passing');
+                $model->duration = Input::get('duration');
+                $model->study_at = Input::get('study_at');
+
+                if($file){
+
+                    $file = Input::file('certificate');
+                    $destinationPath = public_path() . '/applicant_images';
+                    $extension =  $file->getClientOriginalName();
+                    $filename = str_random(12) . '.' . $extension;
+                    $lower_name = strtolower($filename);
+                    Input::file('certificate')->move($destinationPath, $lower_name);
+                    $model->certificate = $filename;
+                }
+            }
+
+             $model->save();
+
+            return Redirect::back()->with('message', 'Successfully updated Information!');
+        } else {
+            return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
+        }
+
+    }
+    public function deleteApplicantAcmDocsPublic($id){
+
+        ApplicantAcademicRecords::find($id)->delete();
+        return Redirect::back()->with('message', 'Successfully deleted Information!');
     }
 
     public function degreeOfferApplicantCertificate($id){
@@ -183,14 +270,16 @@ class AdmPublicController extends \BaseController {
         $adm_test_subject = BatchAdmtestSubject::with('relBatch','relAdmtestSubject')
             ->where('batch_id','=',$batch_id)->get();
         //print_r($adm_test_subject);exit;
+//        $exm_centers = ExmCenter::get();
 
         return View::make('admission::adm_public.admission.adm_test_details',
                   compact('adm_test_details','adm_test_subject'));
     }
-    public function addMoreDegree(){
 
-        $degreeList = Batch::with('relDegree')->get();
-        return View::make('admission::adm_public.admission.add_more_degree',compact('degreeList'));
+    public function admExmCenter($id){
+        $exm_centers = array('' => 'Select One ') + ExmCenter::lists('title', 'id');
+        return View::make('admission::adm_public.admission.adm_test_details',
+            compact('exm_centers','batch_id'));
     }
 
     public function admDegAptCheckout(){

@@ -220,7 +220,7 @@ Route::any('admission/amw/batch-adm-test-subjects/store_admtest_subjects', [
     'uses' => 'AdmAmwController@storeBatchAdmTestSubject'
 ]);
 
-Route::any('admission/amw/batch-adm-test-subject/edit_admtest_subject/{id}', [
+Route::any('admission/amw/batch-adm-test-subject/edit_admtest_subject/{id}/{batch_id}', [
     'as' => 'admission.amw.batch-adm-test-subject.edit_admtest_subject',
     'uses' => 'AdmAmwController@editBatchAdmTestSubject'
 ]);

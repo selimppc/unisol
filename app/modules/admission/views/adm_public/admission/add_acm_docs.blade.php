@@ -2,7 +2,7 @@
 <div class="modal-header">
 
     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-    <h4 class="modal-title" id="myModalLabel">Add</h4>
+    <h4 class="modal-title" id="myModalLabel">Add Or Edit</h4>
 </div>
 
 <div class="modal-body">
@@ -95,14 +95,14 @@
 
                  <div>{{ Form::label('study_at', 'Study At ') }}
                  {{ Form::select('study_at', array('' => 'Select one',
-                    'National' => 'National', 'Abroad' => 'Abroad'), Input::old('study_at'),
-                     array('class' => 'form-control')) }}</div>
+                    'national' => 'National', 'abroad' => 'Abroad'), null,
+                     ['class'=>'form-control ']) }}</div>
 
                  {{ Form::label('certificate', 'Certificate') }}
-                 {{ Form::file('certificate', Input::old('certificate'),['class' => 'form-control','required']) }}
+                 {{ Form::file('certificate', null,['class' => 'form-control','required']) }}
 
                  {{ Form::label('transcript', 'Transcript') }}
-                 {{ Form::file('transcript', Input::old('transcript'),['class' => 'form-control','required']) }}
+                 {{ Form::file('transcript', null,['class' => 'form-control','required']) }}
 
 
 

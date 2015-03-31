@@ -20,12 +20,8 @@ Route::get('register/verify/{verified_code}',
 
 //********************Applicant Profile(R)*******************************
 
-Route::any('applicant/profile/create',
-    'ApplicantController@applicantProfileCreate'
-);
-
-Route::any('applicant/profile/{id}',
-        'ApplicantController@applicant_profile_index'
+Route::any('applicant/profile/',
+    'ApplicantController@applicant_profile_index'
 );
 
 Route::any('applicant/profile/store',
@@ -33,7 +29,7 @@ Route::any('applicant/profile/store',
 );
 
 Route::any('applicant/profile/edit/{id}',
-    'ApplicantController@editApplicantProfile'
+'ApplicantController@editApplicantProfile'
 );
 
 Route::post('applicant/profile/update/{id}',
