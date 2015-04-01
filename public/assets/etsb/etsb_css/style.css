@@ -3563,12 +3563,8 @@ fieldset[disabled] .btn-vk.active {
     padding: 1%;
 }
 .modal-size-lg{
-  width: 700px;
+  width: 600px;
 }
-.m-modal-dialog{
-  overflow-y: initial !important
-}
-.m-modal-body{
-  height: 580px;
-  overflow-y: scroll;
+.tab-text-margin{
+  margin-left: 5px;
 }
