@@ -259,7 +259,7 @@ class AdmPublicController extends \BaseController {
 
 
     public function admTestDetails($id){
-
+        $batch_applicant_id = $id;
         //get batch_id
         $batch_id = BatchApplicant::where('id','=',$id)->first()->batch_id;
 
@@ -273,13 +273,34 @@ class AdmPublicController extends \BaseController {
 //        $exm_centers = ExmCenter::get();
 
         return View::make('admission::adm_public.admission.adm_test_details',
-                  compact('adm_test_details','adm_test_subject'));
+                  compact('batch_applicant_id', 'adm_test_details','adm_test_subject'));
     }
 
-    public function admExmCenter(){
-        $exm_centers = array('' => 'Select One ') + ExmCenter::lists('title', 'id');
-        return View::make('admission::adm_public.admission.adm_test_details',
-            compact('exm_centers','batch_id'));
+    public function admExmCenter($batch_applicant_id){
+
+        $batch_applicant_id = ['batch_applicant_id' => $batch_applicant_id];
+        $rules = ['batch_applicant_id' => 'exists:exm_center_applicant_choice' ];
+        $validator = Validator::make($batch_applicant_id, $rules);
+
+        if ($validator->Fails()) {
+            $exm_centers = ['' => 'Please Pick Out or Select Exam Center Sequence'] + ExmCenter::lists('title', 'id');
+        }else{
+            $exm_centers = ExmCenterApplicantChoice::with('relExmCenter')->where('batch_applicant_id','=',$batch_applicant_id)->get();
+        }
+       // print_r($exm_centers);exit;
+
+        return View::make('admission::adm_public.admission.exm_center',
+            compact('exm_centers','batch_id','id','batch_applicant_id'));
+    }
+    public function admExmCenterSave(){
+        $model = new ExmCenterApplicantChoice();
+        $model->batch_applicant_id = Input::get('batch_applicant_id');;
+        $model->exm_center_id = Input::get('exm_center_id');
+
+        if ($model->save()) {
+            return Redirect::back()
+                ->with('message', 'Successfully added Information!');
+        }
     }
 
     public function admDegAptCheckout(){
