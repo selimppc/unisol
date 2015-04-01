@@ -13,4 +13,4 @@ app/config/database.php
 test//
 public/error_log
 public/file
-public/applicant_images
+public/applicant_images/profile
