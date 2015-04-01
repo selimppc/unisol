@@ -33,7 +33,7 @@
                                   <tbody>
                                         @foreach($degreeList as $value)
                                               <tr>
-                                                     <td> <input type="checkbox" name="ids[]"  id="check" class="myCheckbox" value="{{ $value->id }}"></td>
+                                                     <td> <input type="checkbox" name="ids[]"  id="check" class="myCheckbox" value="{{ $value->id }}" ></td>
                                                      <td>
                                                              <a href="{{ URL::route('admission.degree_offer_details',
                                                              ['id' => $value->id]) }}">
@@ -47,7 +47,7 @@
                                   </tbody>
                            </table>
                            <p>&nbsp;</p>
-                           {{ Form::submit('Apply All', array('class'=>'pull-right btn btn-xs btn-info'))}}
+                           {{ Form::submit('Apply All', ['class'=>'pull-right btn btn-xs btn-info'])}}
 
                            {{ Form::close() }}
                         </div>
