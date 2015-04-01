@@ -1103,7 +1103,7 @@ class AdmAmwController extends \BaseController
     }
 
 
-//..................................................admtest_question.......................................
+//..................................................adm test_question.......................................
 
     public function admQuestionIndex( $year_id, $semester_id, $batch_id)
     {
