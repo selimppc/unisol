@@ -1003,16 +1003,6 @@ class AdmAmwController extends \BaseController
         $degree_batch = Batch::with('relDegree', 'relDegree.relDepartment', 'relSemester', 'relYear')
             ->where('id', $batch_id )->first();
 
-        $degree_id = Batch::where('id' ,'=', $batch_id )
-            ->where('semester_id' ,'=', $semester_id)
-            ->where('year_id' ,'=', $year_id)
-            ->first()->degree_id;
-
-        $degree_data = Degree::with('relDepartment')
-            ->where('id','=', $degree_id)
-            ->first();
-
-
         return View::make('admission::amw.adm_examiner.adm_examiner_index',
             compact('adm_test_examiner','degree_batch'));
 
@@ -1024,10 +1014,8 @@ class AdmAmwController extends \BaseController
             ->where('semester_id' ,'=', $semester_id)
             ->where('year_id' ,'=', $year_id)
             ->first()->degree_id;
-
         $degree_data = Degree::with('relDepartment')
-            ->where('id','=', $degree_id)
-            ->first();
+            ->where('id','=', $degree_id)->first();
 
         return View::make('admission::amw.adm_examiner._form',compact('degree_data','degree_id','batch_id'));
     }
@@ -1041,24 +1029,17 @@ class AdmAmwController extends \BaseController
         $model->type = Input::get('type');
         $model->assigned_by = Auth::user()->get()->id;
         $model->status = Input::get('status');
-
         $model->save();
-
         if ($model->validate($data)) {
-
             $mod_comments = new AdmExaminerComments();
             $mod_comments->batch_id = Input::get('batch_id');
             $mod_comments->comment = Input::get('comment');
-
             $mod_comments->commented_to = Input::get('user_id');
             $mod_comments->commented_by = Auth::user()->get()->id;
             $mod_comments->status = 1;
-
             $mod_comments->save();
-
             Session::flash('message', 'Successfully added Information!');
             return Redirect::back();
-
         }else{
             $errors = $model->errors();
             Session::flash('errors', $errors);
@@ -1067,37 +1048,74 @@ class AdmAmwController extends \BaseController
         }
     }
 
-    public function viewAdmTestExaminers($id){
-//        $adm_view_examiners = AdmExaminer::where('id' ,'=', $degree_id)->first();
+    public function viewAdmTestExaminers($batch_id){
         $data = AdmExaminer::with('relBatch','relBatch.relDegree', 'relBatch.relAdmExaminerComments')
-            ->where('id', $id)->first();
-
+            ->where('batch_id', $batch_id)->first();
+        $exm_comment_info = AdmExaminerComments::where('batch_id', $batch_id)->get();
         return View::make('admission::amw.adm_examiner.view_examiners',
-            compact('data','exm_info','exm_comnt_info'));
+            compact('data','exm_comment_info'));
+    }
+
+    public function admTestExaminersComments(){
+        $data = Input::all();
+        $model = new AdmExaminerComments();
+        $model->batch_id = $data['batch_id'];
+        $model->comment = $data['comment'];
+        $model->commented_to = $data['commented_to'];
+        $model->commented_by = Auth::user()->get()->id;
+
+        $user_name = User::FullName($model->commented_to);
+        if($model->save()){
+            Session::flash('message', 'Comments added To: '.$user_name);
+            return Redirect::back();
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()->with('errors', 'invalid');
+        }
+    }
+
+    public function changeStatusByAdmTestExaminer($id){
+        $model = AdmExaminer::findOrFail($id);
+        $model->status = 'Cancel';
+        if($model->save()){
+            Session::flash('danger', 'Cancel or Revoked! ');
+            return Redirect::back();
+        }
+
     }
 
 
-//..................................................admtest_question.......................................
+    public function deleteAdmTestExaminer(){
+        $id = Input::get('id');
+        $batch_id = Input::get('batch_id');
+
+        try {
+            AdmExaminer::destroy(Request::get('id'));
+            AdmExaminerComments::where('batch_id', Request::get('batch_id'));
+            Session::flash('danger', 'Deleted Successfully! ');
+            return Redirect::back();
+        }
+        catch(exception $ex){
+            Session::flash('info', 'Invalid Request! ');
+            return Redirect::back();
+        }
+    }
+
+
+//..................................................adm test_question.......................................
 
     public function admQuestionIndex( $year_id, $semester_id, $batch_id)
     {
-
         $adm_test_question_paper = AdmQuestion::latest('id')->paginate(10);
-
         $degree_id = Batch::where('id' ,'=', $batch_id )
             ->where('semester_id' ,'=', $semester_id)
             ->where('year_id' ,'=', $year_id)
             ->first()->degree_id;
-
         $degree_data = Degree::with('relDepartment')
             ->where('id','=', $degree_id)
             ->first();
 
-//        $batch_admtest_subject_id = BatchAdmtestSubject::where('id','=',$batch_id)->first();
-//
-//        $batch_admtst_sbjct_name = AdmQuestion::with('relBatchAdmTestSubject','relBatchAdmTestSubject.AdmTestSubject')->where('batch_admtest_subject_id','=',$batch_admtest_subject_id)->first();
-
-//        print_r($batch_admtst_sbjct_name);exit;
 
         return View::make('admission::amw.adm_question.adm_question_index',
             compact('semester_id','year_id','adm_test_question_paper','degree_id','degree_data','batch_id'));
@@ -1106,18 +1124,13 @@ class AdmAmwController extends \BaseController
 
     public function createAdmTestQuestionPaper($year_id, $semester_id, $batch_id)
     {
-
         $degree_id = Batch::where('id' ,'=', $batch_id )
             ->where('semester_id' ,'=', $semester_id)
             ->where('year_id' ,'=', $year_id)
             ->first()->degree_id;
-
         $degree_data = Degree::with('relDepartment')
             ->where('id','=', $degree_id)
             ->first();
-
-        // join querrylagbe :: selim vai
-        //adm_question.batch_admtest_subject_id with batch_admtest_subject.admtest_subject_id and admtest_subject.title
 
         $batch_admtest_subject = AdmTestSubject::lists('title','id');
 

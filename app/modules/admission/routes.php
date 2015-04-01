@@ -307,9 +307,21 @@ Route::any('admission/amw/admission-test-examiner/store-admission-test-examiner'
     'uses' => 'AdmAmwController@storeAdmTestExaminer'
 ]);
 
-Route::any('admission/amw/admission-test-examiner/view-admission-test-examiner/{id}',[
+Route::any('admission/amw/admission-test-examiner/view-admission-test-examiner/{batch_id}',[
     'as' => 'admission.amw.admission-test-examiner.view-admission-test-examiner',
     'uses' => 'AdmAmwController@viewAdmTestExaminers'
+]);
+Route::any('admission/amw/admission-test-examiner/adm-test-examiners-comments',[
+    'as' => 'admission.amw.admission-test-examiner.adm-test-examiners-comments',
+    'uses' => 'AdmAmwController@admTestExaminersComments'
+]);
+Route::any('admission/amw/admission-test-examiner/change-status-by-test-examiner/{id}',[
+    'as' => 'admission.amw.admission-test-examiner.change-status-by-test-examiner',
+    'uses' => 'AdmAmwController@changeStatusByAdmTestExaminer'
+]);
+Route::any('admission/amw/admission-test-examiner/delete-adm-test-examiner',[
+    'as' => 'admission.amw.admission-test-examiner.delete-adm-test-examiner',
+    'uses' => 'AdmAmwController@deleteAdmTestExaminer'
 ]);
 //...................................Admission Question........................................................
 
@@ -338,7 +350,7 @@ Route::any('admission/amw/admission-test-question/edit-admtest-question-paper/{i
     'uses' => 'AdmAmwController@editAdmTestQuestionPaper'
 ]);
 
-Route::any('admission/amw/admission-test-question/update-admtest-question-paper/{id]',[
+Route::any('admission/amw/admission-test-question/update-admtest-question-paper/{id}',[
     'as' => 'admission.amw.admission-test-question.update-admtest-question-paper',
     'uses' => 'AdmAmwController@updateAdmTestQuestionPaper'
 ]);

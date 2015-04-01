@@ -5,7 +5,7 @@
 
 @section('content')
  <h3>Manage Examiner for Admission Test  </h3>
- {{--{{ Form::open(array('url' => 'examination/amw/batchDelete')) }}--}}
+ {{ Form::open(array('route' => 'admission.amw.admission-test-examiner.delete-adm-test-examiner')) }}
 
 <div class="row">
 <div class="box box-solid ">
@@ -45,19 +45,22 @@
           </thead>
           <tbody>
 
-              @foreach($adm_test_examiner as $adm_examiners_list)
+              @foreach($adm_test_examiner as $values)
                     <tr>
-                        <td><input type="checkbox" name="id[]" class="myCheckbox" value="{{ $adm_examiners_list['id'] }}"></td>
+                        <td><input type="checkbox" name="id[]" class="myCheckbox" value="{{ $values->id }}"></td>
+                        {{Form::hidden('batch_id', $values->batch_id)}}
 
                          <td>
-                         {{ HTML::linkAction('AdmAmwController@viewAdmTestExaminers',User::FullName($adm_examiners_list->user_id),['id'=>$adm_examiners_list->id], ['data-toggle'=>"modal", 'data-target'=>"#modal"]) }}
+                         <b>{{ HTML::linkAction('AdmAmwController@viewAdmTestExaminers',User::FullName($values->user_id),['id'=>$values->batch_id], ['data-toggle'=>"modal", 'data-target'=>"#modal"]) }}</b>
 
                          </td>
 
-                         <td>{{ $adm_examiners_list->status }} </td>
+                         <td>{{ $values->status }} </td>
 
                         <td>
-                              <a href="{{URL::previous()}}" class="btn btn-default btn-xs">cancel</a>
+                            @if($values->status != 'Cancel')
+                              <a href="{{URL::route('admission.amw.admission-test-examiner.change-status-by-test-examiner', ['id'=>$values->id])}}" class="btn btn-info btn-xs">Cancel</a>
+                            @endif
                         </td>
                     </tr>
               @endforeach

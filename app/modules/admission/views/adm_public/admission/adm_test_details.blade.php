@@ -78,7 +78,49 @@
      </div>
   </div>
 
-<a class="pull-right btn btn-xs btn-info"  href="{{URL::route('admission.public.exm-center',['batch_applicant_id'=>$batch_applicant_id])}}" data-toggle="modal" data-target="#exmCenterModal"><b></b> Exam Center Choice </a>
+  {{-------- Exam Center Choice -----------------------------------------------------------------------}}
+  <h5><b>Exam Center Choice </b></h5>
+    <div class="box box-solid">
+       <div class="box-header">
+
+       </div>
+       <div class="box box-info">
+           <div class="box-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <table class="table table-striped table-bordered">
+                          @if($exm_center_choice_lists != null)
+                             <a class="pull-right btn btn-sm btn-info" href="{{ URL::route('admission.public.exm-center' , ['batch_applicant_id'=>$batch_applicant_id]) }}" data-toggle="modal" data-target="#exmCenterModal" >Change Exam Center Sequence</a>
+                          @else
+                             <a class="pull-right btn btn-sm btn-info"  href="{{URL::route('admission.public.exm-center',['batch_applicant_id'=>$batch_applicant_id])}}" data-toggle="modal" data-target="#exmCenterModal"><b></b> Exam Center Choice </a>
+                          @endif
+
+                          @if (isset($exm_center_choice_lists))
+                          <tbody>
+                                 <tr>
+                                    <th rowspan="100%" style="vertical-align: middle"><b style="font-size: medium">Sequence Name Of Exam Center </b></th>
+                                 </tr>
+                                 @foreach(($exm_center_choice_lists) as $value)
+                                      <tr>
+                                         <td class="col-lg-10">
+                                            {{ $value->relExmCenter->title }}
+                                         </td>
+                                      </tr>
+                                 @endforeach
+                          </tbody>
+                          @else
+                            <div class="col-xs-12" style="text-align: center;">
+                                 <span class="btn btn-xs btn btn-info" style="color:#ffffff;">Exam Center List Not Added !</span>
+                            </div>
+                          @endif
+                        </table>
+                    </div>
+                </div>
+           </div>
+       </div>
+    </div>
+
+{{--<a class="pull-right btn btn-sm btn-info"  href="{{URL::route('admission.public.exm-center',['batch_applicant_id'=>$batch_applicant_id])}}" data-toggle="modal" data-target="#exmCenterModal"><b></b> Exam Center Choice </a>--}}
 
 {{----------------------------------------------Modal --------------------------------------------------------------------------}}
  <div class="modal fade" id="exmCenterModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

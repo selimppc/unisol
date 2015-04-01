@@ -39,7 +39,7 @@ class ExmCenterApplicantChoice extends Eloquent{
         return $this->belongsTo('BatchApplicant', 'batch_applicant_id', 'id');
     }
     public function relExmCenter(){
-        return $this->belongsTo('ExmCenter', 'exa_center_id', 'id');
+        return $this->belongsTo('ExmCenter', 'exm_center_id', 'id');
     }
 
 

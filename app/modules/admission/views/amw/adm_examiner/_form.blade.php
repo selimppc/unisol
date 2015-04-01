@@ -9,10 +9,9 @@
 
             <div class='form-group'>
                 <strong> Degree Name: </strong>{{ Degree::findOrFail($degree_id)->relDegreeProgram->code.''.Degree::findOrFail($degree_id)->relDegreeGroup->code }} </br>
-            </div>
-            <div class='form-group'>
                 <strong> Department: </strong>{{ $degree_data->relDepartment->title }}
             </div>
+
            {{ Form::hidden('batch_id',$batch_id,Input::old('batch_id')) }} </br>
 
             <div class='form-group'>
