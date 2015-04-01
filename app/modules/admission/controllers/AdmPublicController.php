@@ -16,25 +16,32 @@ class AdmPublicController extends \BaseController {
 
         if(Auth::applicant()->check()){
             $batch_ids = Input::get('ids');
-            foreach($batch_ids as $key => $value){
+            if($batch_ids){
+                foreach($batch_ids as $key => $value){
 
-                $data = new BatchApplicant();
-                $data->batch_id = $value;
-                $data->applicant_id = Auth::applicant()->get()->id;
+                    $data = new BatchApplicant();
+                    $data->batch_id = $value;
+                    $data->applicant_id = Auth::applicant()->get()->id;
 
-                $degreeApplicantCheck = DB::table('batch_applicant')
-                    ->select(DB::raw('1'))
-                    ->where('batch_id', '=', $data->batch_id)
-                    ->where('applicant_id', '=', $data->applicant_id)
-                    ->get();
+                    $degreeApplicantCheck = DB::table('batch_applicant')
+                        ->select(DB::raw('1'))
+                        ->where('batch_id', '=', $data->batch_id)
+                        ->where('applicant_id', '=', $data->applicant_id)
+                        ->get();
 
-                if($degreeApplicantCheck){
+                    if($degreeApplicantCheck){
 //                    return Redirect::route('admission.public.applicant_details', ['id' => Auth::applicant()->get()->id]);
-                    Session::flash('info','The selected Degree(s)already added ! If You Want To Add More Please Select One That Is Not Added Yet Using "Add More Degree" Button.');
-                }else{
-                    $data->save();
+                        Session::flash('info','The selected Degree(s)already added ! If You Want To Add More Please Select One That Is Not Added Yet Using "Add More Degree" Button.');
+                    }else{
+                        $data->save();
+                    }
                 }
+
+            }else{
+                Session::flash('info', "Please Select Degree From Degree List!");
+                return Redirect::back();
             }
+
             return Redirect::route('admission.public.applicant_details', ['id' => Auth::applicant()->get()->id]);
         } else {
             Session::flash('danger', "Please Login As Applicant!");
