@@ -267,7 +267,7 @@ class AdmFacultyController extends \BaseController {
             //print_r($faculty_store_question_items);exit;
             if( strtolower(Input::get('mcq')) == 'mcq'){
 
-                if( strtolower(Input::get('r_question_type')) == 'mcq_single'){
+                if( strtolower(Input::get('r_c')) == 'mcq_single'){
 
                     $faculty_adm_update_question_items->question_type = 'radio';
 
