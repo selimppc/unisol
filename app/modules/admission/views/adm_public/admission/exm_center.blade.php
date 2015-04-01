@@ -8,8 +8,8 @@
      <div style="padding: 20px;">
        {{ Form::open(['route' => ['admission.public.save-exm-center'], 'class'=>'form-horizontal','files' => true,]) }}
 
-            {{--{{ Form::hidden('batch_applicant_id', $batch_applicant_id)}}--}}
-            {{ Form::select('exm_center_id',$exm_centers,Input::old('exm_center_id'),['class'=>'form-control input-sm','required'=>'required']) }}
+            {{--{{ Form::hidden('batch_applicant_id',['batch_applicant_id'=>$batch_applicant_id] )}}--}}
+            {{ Form::select('exm_center_id',$exm_centers,null,['class'=>'form-control input-sm','required']) }}
 
             <p>&nbsp;</p>
             <p>&nbsp;</p>

@@ -278,6 +278,9 @@ class AdmPublicController extends \BaseController {
 
     public function admExmCenter($batch_applicant_id){
 
+        $batch_applicant_id = $batch_applicant_id;
+       // print_r($batch_applicant_id);exit;
+
         $batch_applicant_id = ['batch_applicant_id' => $batch_applicant_id];
         $rules = ['batch_applicant_id' => 'exists:exm_center_applicant_choice' ];
         $validator = Validator::make($batch_applicant_id, $rules);
@@ -293,13 +296,21 @@ class AdmPublicController extends \BaseController {
             compact('exm_centers','batch_id','id','batch_applicant_id'));
     }
     public function admExmCenterSave(){
-        $model = new ExmCenterApplicantChoice();
-        $model->batch_applicant_id = Input::get('batch_applicant_id');;
-        $model->exm_center_id = Input::get('exm_center_id');
 
-        if ($model->save()) {
-            return Redirect::back()
-                ->with('message', 'Successfully added Information!');
+        $data = Input::all();
+        $model = new ExmCenterApplicantChoice();
+        if($model->validate($data)){
+            if($model->create($data)){
+                Session::flash('message','Successfully added Information!');
+                return Redirect::back();
+            }else{
+                Session::flash('message','Invalid Request!');
+                return Redirect::back();
+            }
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back();
         }
     }
 
