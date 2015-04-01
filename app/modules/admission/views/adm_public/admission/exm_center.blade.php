@@ -10,7 +10,7 @@
             {{ Form::hidden('batch_applicant_id', $ba_id )}}
             @if(isset($exm_centers_all))
                 @foreach($exm_centers_all as $values)
-                    Choice Sequence : {{ Form::select('exm_center_id[]', $exm_center_lists, $values->id,['class'=>'form-control input-sm','required']) }}
+                    Choice Sequence : {{ Form::select('exm_center_id[]', $exm_center_lists,$values->id,['class'=>'form-control input-sm','required']) }}
                 @endforeach
             @else
                  @foreach($exm_center_choice as $values)
