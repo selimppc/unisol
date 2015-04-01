@@ -4,7 +4,8 @@
 </div>
 <div class='form-group'>
         {{ Form::label('date_of_birth', 'Date of Birth:') }}
-        {{ Form::text('date_of_birth', null, array('type' => 'text', 'class' => 'form-control datepicker','placeholder' => 'Pick the date this task should be completed', 'id' => 'date')) }}
+        {{--{{ Form::text('date_of_birth', null, array('type' => 'text', 'class' => 'form-control date_picker','id' => 'date')) }}--}}
+        {{ Form::text('date_of_birth', Input::old('date_of_birth'),['class'=>'form-control date_picker','required'=>'required']) }}
 </div>
 <div class='form-group'>
         {{ Form::label('place_of_birth', 'Birth Place') }}
@@ -12,8 +13,16 @@
 </div>
 <div class='form-group'>
         {{ Form::label('gender', 'Gender') }}
-        {{ Form::radio('gender', 'male', (Input::old('gender') == 'male'), array('id'=>'male', 'class'=>'radio')) }}Male
-        {{ Form::radio('gender', 'female', (Input::old('gender') == 'female'), array('id'=>'female', 'class'=>'radio')) }}Female
+        <div class="form-inline">
+                <div class="radio">
+                        {{ Form::radio('gender', 'male', (Input::old('gender') == 'male'), array('id'=>'male', 'class'=>'radio')) }}
+                        {{ Form::label('male', 'male') }}
+                </div>
+                <div class="radio">
+                        {{ Form::radio('gender', 'female', (Input::old('gender') == 'female'), array('id'=>'female', 'class'=>'radio')) }}
+                        {{ Form::label('female', 'Female') }}
+                </div>
+        </div>
 </div>
 <div class='form-group'>
         {{ Form::label('profile_image', 'Profile Image') }}
@@ -46,8 +55,7 @@
 </div>
 
 
-
-
+{{ HTML::script('assets/js/custom.js')}}
 
 
 
