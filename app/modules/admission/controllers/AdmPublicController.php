@@ -278,26 +278,31 @@ class AdmPublicController extends \BaseController {
 
     public function admExmCenter($batch_applicant_id){
 
-        $batch_applicant_id = $batch_applicant_id;
-       // print_r($batch_applicant_id);exit;
+        $ba_id = $batch_applicant_id;
 
         $batch_applicant_id = ['batch_applicant_id' => $batch_applicant_id];
         $rules = ['batch_applicant_id' => 'exists:exm_center_applicant_choice' ];
         $validator = Validator::make($batch_applicant_id, $rules);
-
+        $exm_center_lists = ['' => 'Select Exam Center'] + ExmCenter::lists('title', 'id');
         if ($validator->Fails()) {
-            $exm_centers = ['' => 'Please Pick Out or Select Exam Center Sequence'] + ExmCenter::lists('title', 'id');
+            $exm_centers_all = ExmCenter::all();
         }else{
-            $exm_centers = ExmCenterApplicantChoice::with('relExmCenter')->where('batch_applicant_id','=',$batch_applicant_id)->get();
+            $exm_center_choice = ExmCenterApplicantChoice::with('relExmCenter')->where('batch_applicant_id','=',$ba_id)->get();
         }
-       // print_r($exm_centers);exit;
 
         return View::make('admission::adm_public.admission.exm_center',
-            compact('exm_centers','batch_id','id','batch_applicant_id'));
+            compact('exm_centers_all','exm_center_choice','ba_id', 'exm_center_lists'));
     }
     public function admExmCenterSave(){
-
         $data = Input::all();
+        $i=0;
+        foreach($data as $value){
+            $model = isset($value['center_choice_id']) ? ExmCenterApplicantChoice::findOrFail($value['center_choice_id']) : new ExmCenterApplicantChoice();
+            $model->batch_applicant_id = Input::get('batch_applicant_id');
+            $model->exm_center_id = $value['exm_center_id'];
+            $model->save();
+        }
+        print_r("OK");exit;
         $model = new ExmCenterApplicantChoice();
         if($model->validate($data)){
             if($model->create($data)){
