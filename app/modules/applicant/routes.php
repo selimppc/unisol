@@ -49,16 +49,19 @@ Route::any('apt/extra_curricular/index',
     'ApplicantController@extraCurricularIndex'
 );
 
-Route::any('applicant/extra_curricular/create','ApplicantController@extraCurricularCreate'
+Route::any('applicant/extra_curricular/create',
+    'ApplicantController@extraCurricularCreate'
 );
 
 Route::any('applicant/extra_curricular_store','ApplicantController@applicantExtraCurricularStore'
 );
 
-Route::any('applicant/extra_curricular/edit/{id}','ApplicantController@editExtraCurricular'
+Route::any('applicant/extra_curricular/edit/{id}',
+    'ApplicantController@editExtraCurricular'
 );
 
-Route::post('applicant/extra_curricular/update/{id}','ApplicantController@updateExtraCurricular'
+Route::post('applicant/extra_curricular/update/{id}',
+    'ApplicantController@updateExtraCurricular'
 );
 
 //******************Applicant Supporting Docs(R)*************************
