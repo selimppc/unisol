@@ -30,7 +30,6 @@ class AdmPublicController extends \BaseController {
                         ->get();
 
                     if($degreeApplicantCheck){
-//                    return Redirect::route('admission.public.applicant_details', ['id' => Auth::applicant()->get()->id]);
                         Session::flash('info','The selected Degree(s)already added ! If You Want To Add More Please Select One That Is Not Added Yet Using "Add More Degree" Button.');
                     }else{
                         $data->save();
@@ -95,15 +94,53 @@ class AdmPublicController extends \BaseController {
         $applicant_meta_records = ApplicantMeta::where('applicant_id', '=',$applicant_id )->first();
 
         return View::make('admission::adm_public.admission.applicant_details',
-                  compact('batch_applicant','applicant_personal_info','applicant_acm_records','applicant_meta_records'));
+                  compact('batch_applicant','applicant_personal_info','applicant_acm_records',
+                      'applicant_meta_records'));
     }
     public function addMoreDegree(){
 
         $degreeList = Batch::with('relDegree')->get();
         return View::make('admission::adm_public.admission.add_more_degree',compact('degreeList'));
     }
-    public function addApplicantAcmDocsPublic(){
-        return View::make('admission::adm_public.admission.add_acm_docs');
+
+    public function addApplicantProfileByApplicant(){
+        return View::make('admission::adm_public.admission.add_applicant_profile');
+    }
+    public function storeApplicantProfileByApplicant(){
+
+        $data = Input::all();
+        $applicant_model = new ApplicantProfile();
+        if ($applicant_model->validate($data)) {
+            $applicant_model->applicant_id = Input::get('applicant_id');
+            $applicant_model->date_of_birth = Input::get('date_of_birth');
+            $applicant_model->place_of_birth = Input::get('place_of_birth');
+            $applicant_model->gender = Input::get('gender');
+
+            $imagefile= Input::file('profile_image');
+            $extension = $imagefile->getClientOriginalExtension();
+            $filename = str_random(12) . '.' . $extension;
+            $sdoc_file=strtolower($filename);
+            $path = public_path("applicant_images/profile/" . $sdoc_file);
+            Image::make($imagefile->getRealPath())->resize(100, 100)->save($path);
+            $applicant_model->profile_image =$sdoc_file;
+
+            $applicant_model->city = Input::get('city');
+            $applicant_model->state = Input::get('state');
+            $applicant_model->country_id = Input::get('country_id');
+            $applicant_model->zip_code = Input::get('zip_code');
+            $applicant_model->phone = Input::get('phone');
+            $applicant_model->save();
+            return Redirect::back();
+        } else {
+            Session::flash('danger', "Please Login As Applicant!");
+            return Redirect::back();
+        }
+    }
+
+
+    public function addApplicantAcmDocsPublic($applicant_id){
+        $countryList = [''=>'Select Country'] + Country::lists('title','id');
+        return View::make('admission::adm_public.admission.add_acm_docs',compact('applicant_id','countryList'));
     }
 
     public function storeApplicantAcmDocsPublic()
@@ -318,7 +355,7 @@ class AdmPublicController extends \BaseController {
 
     public function admDegAptCheckout(){
         $applicant_id = Auth::applicant()->get()->id;
-        $degree_applicant = DegreeApplicant::with('relDegree')
+        $batch_applicant = BatchApplicant::with('relBatch')
             ->where('applicant_id', '=',$applicant_id )
             ->get();
         $applicant_personal_info = ApplicantProfile::with('relCountry')
@@ -331,7 +368,7 @@ class AdmPublicController extends \BaseController {
             return Redirect::back()->with('danger', 'Profile or Academic information is Missing! Complete Your profile to checkout!');
         }else{
             return View::make('admission::adm_public.admission.adm_checkouts',
-                      compact('degree_applicant'));
+                      compact('batch_applicant'));
         }
     }
 
