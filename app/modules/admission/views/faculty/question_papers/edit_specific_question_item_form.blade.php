@@ -36,11 +36,11 @@
                              {{ Form::label('Answer Type:') }}
                              <div class="radio">
                                   <label>
-                                       {{ Form::radio('question_type', 'mcq_single',($faculty_editQuestionItems->question_type == 'radio'), ['id'=>'single', 'class'=>'radio']) }}
+                                       {{ Form::radio('r_question_type', 'mcq_single',($faculty_editQuestionItems->question_type == 'radio'), ['id'=>'single', 'class'=>'radio']) }}
                                        Single Answer &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                   </label>
                                   <label>
-                                       {{ Form::radio('question_type', 'mcq_multiple',($faculty_editQuestionItems->question_type == 'checkbox'), ['id'=>'multiple', 'class'=>'radio']) }}
+                                       {{ Form::radio('r_question_type', 'mcq_multiple',($faculty_editQuestionItems->question_type == 'checkbox'), ['id'=>'multiple', 'class'=>'radio']) }}
                                        Multiple Answer
                                   </label>
                              </div>
@@ -49,8 +49,8 @@
 
                      <div id="myRadioGroup" class="row">
                           <div class="col-sm-8">
-                              <div class="col-sm-4"><strong>Option </strong></div>
-                              <div class="col-sm-4"><strong>Answer </strong></div>
+                              <div class="col-sm-4"><strong>Options </strong></div>
+                              <div class="col-sm-4"><strong>Right Answer(s) </strong></div>
                           </div>
 
                           <?php $counter = 0;?>
@@ -95,9 +95,9 @@
                           <div class="form-group">
                                {{ Form::label('','Answer Type:') }}
                                {{ Form::label('','Single Answer', array('class'=>'radio-inline')) }}
-                               {{ Form::radio('question_type', 'mcq_single',Input::old('question_type'), ['id'=>'single', 'checked']) }}
+                               {{ Form::radio('r_question_type', 'mcq_single',Input::old('r_question_type'), ['id'=>'single', 'checked']) }}
                                {{ Form::label('','Multiple Answer', array('class'=>'radio-inline')) }}
-                               {{ Form::radio('question_type', 'mcq_multiple', Input::old('question_type'), ['id'=>'multiple']) }}
+                               {{ Form::radio('r_question_type', 'mcq_multiple', Input::old('r_question_type'), ['id'=>'multiple']) }}
                           </div>
 
                           <div id="myRadioGroup">
