@@ -7,9 +7,17 @@
 <div class="modal-body">
      <div style="padding: 20px;">
        {{ Form::open(['route' => ['admission.public.save-exm-center'], 'class'=>'form-horizontal','files' => true,]) }}
-
-            {{--{{ Form::hidden('batch_applicant_id',['batch_applicant_id'=>$batch_applicant_id] )}}--}}
-            {{ Form::select('exm_center_id',$exm_centers,null,['class'=>'form-control input-sm','required']) }}
+            {{ Form::hidden('batch_applicant_id', $ba_id )}}
+            @if(isset($exm_centers_all))
+                @foreach($exm_centers_all as $values)
+                    Choice Sequence : {{ Form::select('exm_center_id[]', $exm_center_lists, $values->id,['class'=>'form-control input-sm','required']) }}
+                @endforeach
+            @else
+                 @foreach($exm_center_choice as $values)
+                    {{ Form::hidden('id[]', $values->id )}}
+                    Choice Sequence: {{ Form::select('exm_center_id[]', $exm_center_lists, $values->exm_center_id,['class'=>'form-control input-sm','required']) }}
+                @endforeach
+            @endif
 
             <p>&nbsp;</p>
             <p>&nbsp;</p>
