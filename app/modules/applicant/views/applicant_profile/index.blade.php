@@ -34,9 +34,8 @@
                         <button type="button" class="pull-right btn btn-sm btn-success" data-toggle="modal" data-target="#addProfile" style="margin-bottom: 5px">Add Profile</button>
                         @endif
 
-                        <div class="box-body table-responsive no-padding">
+                        <div class="box-body table-responsive ">
                             <table class="table table-hover">
-                                {{--@endif--}}
                                 <tr>
                                     <th>Date of Birth</th>
                                     <td>{{isset($profile->date_of_birth) ? $profile->date_of_birth : ''}}</td>
@@ -51,10 +50,10 @@
                                 </tr>
                                 <tr>
                                     <th>Picture</th>
-                                    {{--@if($profile != null)--}}
-                                    {{--<td>{{ HTML::image('applicant_images/' .$profile->profile_image) }}--}}
-                                    {{--<a class=" btn btn-sm btn-info" href="{{ URL::to('applicant/profile_image/edit/' . $profile->id ) }}" data-toggle="modal" data-target="#changeImageModal" >changeImage...</a></td>--}}
-                                    {{--@endif--}}
+                                    @if($profile != null)
+                                        <td>{{ HTML::image('applicant_images/profile/' .$profile->profile_image) }}
+                                    <a class=" btn btn-sm btn-info" href="{{ URL::to('applicant/profile_image/edit/' . $profile->id ) }}" data-toggle="modal" data-target="#changeImageModal" >changeImage...</a></td>
+                                    @endif
                                 </tr>
                                 <tr>
                                     <th>City</th>

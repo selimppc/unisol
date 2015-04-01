@@ -59,8 +59,12 @@
                                         <a href="{{ URL::route('admission.faculty.question-papers.view-question-paper',['id'=>$admtest_question_paper_list->id]) }}" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modal">VQP</a>
                                         <a href="{{ URL::route('admission.faculty.question-papers.view-questions-items',['id'=>$admtest_question_paper_list->id]) }}" class="btn btn-primary btn-xs" >VQs</a>
                                         <a href="{{ URL::route('admission.faculty.question-papers.add-question-paper-item',['qid'=>$admtest_question_paper_list->id]) }}" class="btn btn-info btn-xs " data-toggle="modal" data-target="#modal">AQ</a>
-                                        <a href="{{ URL::route('admission.faculty.question-papers.assign-to-question-paper') }}" class="btn btn-default btn-xs disabled" >Comments</a>
-                                        <a href="{{ URL::route('admission.faculty.question-papers.evaluate-questions') }}" class="btn btn-info btn-xs disabled" >Evaluate</a>
+                                        <a href="{{ URL::route('admission.faculty.question-papers.assign-to-question-paper',['qid'=>$admtest_question_paper_list->id]) }}" class="btn bg-purple btn-xs" data-toggle="modal" data-target="#modal" >Comments</a>
+
+                                        <a href="" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal_assign" data-placement="left" title="Comments" href="#">Assign</a>
+
+
+                                        <a href="{{ URL::route('admission.faculty.question-papers.evaluate-questions') }}" class="btn bg-navy btn-xs disabled" >Evaluate</a>
                                     </td>
                                 </tr>
                           @endforeach
@@ -76,4 +80,28 @@
           </div>
     </div>
 </div>
+
+
+{{--<div class="modal fade" id="modal_assign" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true" data-backdrop="static" data-keyboard="false">--}}
+    {{--<div class="modal-dialog">--}}
+        {{--<div class="modal-content">--}}
+            {{--<div class="modal-header">--}}
+                {{--<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>--}}
+                {{--<h4 class="modal-title" id="myModalLabel">Be Assigned to QP </h4>--}}
+            {{--</div>--}}
+
+            {{--<div class="modal-body">--}}
+                     {{--{{ Form::open(array('url' => 'admission/faculty/question-papers/be_assign', 'method' =>'post', 'role'=>'form','files'=>'true'))  }}--}}
+                            {{--&nbsp;&nbsp;&nbsp;--}}
+                            {{--{{Form::hidden('adm_question_id', $admtest_question_paper->id, ['class'=>'form-control'])}}--}}
+                            {{--@include('admission::faculty.question_papers.assign_qp')--}}
+                    {{--{{ Form::close() }}--}}
+            {{--</div>--}}
+            {{--<div class="modal-footer">--}}
+            {{--</div>--}}
+        {{--</div>--}}
+    {{--</div>--}}
+{{--</div>--}}
+
+
 @stop

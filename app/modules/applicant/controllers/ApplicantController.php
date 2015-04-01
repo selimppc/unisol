@@ -99,11 +99,12 @@ class ApplicantController extends \BaseController
                 $applicant_model->gender = Input::get('gender');
 
                 $imagefile= Input::file('profile_image');
-                $directory=public_path().'/applicant_images/profile_img';
-                $imageName=$imagefile->getClientOriginalName();
-                $fileimagename = date('d.m.y')."_".$imageName;
-                $imagefile->move($directory,$fileimagename);
-                $applicant_model->profile_image =$fileimagename;
+                $extension = $imagefile->getClientOriginalExtension();
+                $filename = str_random(12) . '.' . $extension;
+                $sdoc_file=strtolower($filename);        
+                $path = public_path("applicant_images/profile/" . $sdoc_file);
+                Image::make($imagefile->getRealPath())->resize(100, 100)->save($path);
+                $applicant_model->profile_image =$sdoc_file;
 
                 $applicant_model->city = Input::get('city');
                 $applicant_model->state = Input::get('state');

@@ -15,6 +15,7 @@ class AdmFacultyController extends \BaseController {
 
 
 // Admission Test
+//ok
 	public function indexAdmExaminer()
 	{
         $index_adm_examiner = AdmExaminer::with('relBatch','relBatch.relDegree',
@@ -29,6 +30,7 @@ class AdmFacultyController extends \BaseController {
 
 	}
 
+//ok
     public function viewAdmTest($id)
     {
         $view_adm_test = AdmExaminer::find($id);
@@ -42,6 +44,7 @@ class AdmFacultyController extends \BaseController {
 
     }
 
+//ok
     public function searchAdmExaminer()
     {
         $year_id = Input::get('year_id');
@@ -61,7 +64,7 @@ class AdmFacultyController extends \BaseController {
             compact('search_index_adm_examiner','year_id','semester_id'));
 
     }
-
+//ok
     public function batchDelete()
     {
         try {
@@ -73,16 +76,19 @@ class AdmFacultyController extends \BaseController {
         }
     }
 
+//->
     public function acceptAdmTest()
     {
         echo "ACCEPT the request";
     }
 
+//->
     public function denyAdmTest()
     {
         echo "DENY the request";
     }
 
+//ok
     public function admTestQuestionPaper($year_id, $semester_id, $batch_id )
     {
         $admtest_question_paper = AdmQuestion::latest('id')
@@ -102,6 +108,7 @@ class AdmFacultyController extends \BaseController {
             compact('admtest_question_paper','degree_id','degree_data','semester_id','year_id'));
     }
 
+//ok
     public function viewQuestionPaper($id)
     {
         $view_adm_qp = AdmQuestion::find($id);
@@ -111,6 +118,7 @@ class AdmFacultyController extends \BaseController {
 
     }
 
+//ok
     public function viewQuestionsItems($id)
     {
         $view_adm_qp_items = AdmQuestionItems::where('adm_question_id', '=', $id)->get();
@@ -130,6 +138,7 @@ class AdmFacultyController extends \BaseController {
 //    }
 
 //fct: add question items
+//ok
     public function addQuestionItems($qid){
         $question_item = AdmQuestion::find($qid);
 
@@ -138,6 +147,7 @@ class AdmFacultyController extends \BaseController {
         return View::make('admission::faculty.question_papers._add_question_item_form', compact('total_marks', 'question_item'));
     }
 
+//ok
     public function storeQuestionItems()
     {
         $data = Input::all();
@@ -228,7 +238,7 @@ class AdmFacultyController extends \BaseController {
         }
     }
 
-
+//ok
     public function viewSpecificQuestionItems($id)
     {
         $faculty_ViewQuestionItems = AdmQuestionItems::where('id', $id)->first();
@@ -238,7 +248,7 @@ class AdmFacultyController extends \BaseController {
         return View::make('admission::faculty.question_papers.viewSpecificQuestionItems', compact('faculty_ViewQuestionItems', 'options'));
 
     }
-
+//ok
     public function editSpecificQuestionItems($id)
     {
         $faculty_editQuestionItems = AdmQuestionItems::where('id', $id)->first();
@@ -250,7 +260,7 @@ class AdmFacultyController extends \BaseController {
 
     }
 
-
+//ok
     public function updateSpecificQuestionItems($id)
     {
 //        echo "ok";exit;
@@ -368,17 +378,65 @@ class AdmFacultyController extends \BaseController {
         }
     }
 
-    public function assignQuestionPaper()
+
+
+    public function assignQuestionPaper($qid)
     {
-        echo " assign Question Paper";
+        $assign_qp = AdmQuestionComments::find($qid);
+
+       // $adm_question_comments = AdmQuestionComments::where('adm_question_id','=', $qid)->get();
+
+        return View::make('admission::faculty.question_papers.assign_qp',
+            compact('assign_qp','adm_question_comments'));
+
+
+
+
+        $data = Input::all();
+        $examiner_mdeol = new AdmQuestion();
+
+        if ($examiner_mdeol->validate($data))
+        {
+            // success code
+            $examiner_mdeol->batch_admtest_subject_id = Input::get('batch_admtest_subject_id');
+            $examiner_mdeol->examiner_faculty_user_id = Input::get('examiner_faculty_user_id');
+            $examiner_mdeol->status = 'status type as faculty';
+
+            if($examiner_mdeol->save()){
+
+                $examiner_comments = new AdmQuestionComments();
+                $examiner_comments->adm_question_id = Input::get('adm_question_id');
+                $examiner_comments->comment = Input::get('comment');
+                $examiner_comments->commented_to = Input::get('user_id');
+                $examiner_comments->commented_by = Auth::user()->get()->id;
+
+                if($examiner_comments->save()){
+                    Session::flash('message', 'Faculty Successfully Assigned!');
+                    return Redirect::back();
+                }
+            }else{
+                // redirect
+                Session::flash('error', 'Failed!');
+                return Redirect::back();
+            }
+//        // redirect
+//        Session::flash('message', 'Examiner Successfully Added!');
+//        return Redirect::to('examination/amw/examiners');
+        }
+
+
+
     }
 
+
+
+//->
     public function evaluateQuestions()
     {
         echo " evaluate Questions";
     }
 
-
+//ok
     public function qpBatchDelete()
     {
         try {
