@@ -1090,15 +1090,16 @@ class AdmAmwController extends \BaseController
         $id = Input::get('id');
         $batch_id = Input::get('batch_id');
 
-        for($i=0; $i <count($id); $i++){
-            $model = AdmExaminer::findOrFail($id[$i]);
-            $model->destroy($id[$i]);
-            //comments data
-            $model2 = AdmExaminerComments::where('batch_id', $batch_id[$i]);
-            $model2->destroy($batch_id[$i]);
+        try {
+            AdmExaminer::destroy(Request::get('id'));
+            AdmExaminerComments::where('batch_id', Request::get('batch_id'));
+            Session::flash('danger', 'Deleted Successfully! ');
+            return Redirect::back();
         }
-        Session::flash('danger', 'Deleted Successfully! ');
-        return Redirect::back();
+        catch(exception $ex){
+            Session::flash('info', 'Invalid Request! ');
+            return Redirect::back();
+        }
     }
 
 
