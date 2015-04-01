@@ -7,9 +7,6 @@
  */
 
 
-// adm_examiner
-
-
 Route::any('admission/faculty/admission-test',[
     'as' => 'admission.faculty.admission-test',
     'uses' => 'AdmFacultyController@indexAdmExaminer'
@@ -28,8 +25,6 @@ Route::any('admission/faculty/admission-test/view-admtest/{id}',[
     'uses' => 'AdmFacultyController@viewAdmTest'
 ]);
 //ok
-
-
 
 Route::any('admission/faculty/admission-test/qpBatchDelete', [
     'as' => 'admission.faculty.admission-test.qpBatchDelete',
@@ -67,8 +62,6 @@ Route::any('admission/faculty/question-papers/view-questions-items/{id}',[
 ]);
 //ok
 
-
-
 Route::any('admission/faculty/question-papers/specific-question-view/{id}',[
     'as' => 'admission.faculty.question-papers.specific-question-view',
     'uses' => 'AdmFacultyController@viewSpecificQuestionItems'
@@ -87,8 +80,6 @@ Route::any('admission/faculty/question-papers/specific-question-update/{id}',[
 ]);
 //ok
 
-
-
 Route::any('admission/faculty/question-papers/add-question-paper-item/{id}',[
     'as' => 'admission.faculty.question-papers.add-question-paper-item',
     'uses' => 'AdmFacultyController@addQuestionItems'
@@ -100,8 +91,6 @@ Route::any('admission/faculty/question-papers/store-question-paper-item',[
     'uses' => 'AdmFacultyController@storeQuestionItems'
 ]);
 //ok
-
-
 
 Route::any('admission/faculty/question-papers/assign-to-question-paper',[
     'as' => 'admission.faculty.question-papers.assign-to-question-paper',

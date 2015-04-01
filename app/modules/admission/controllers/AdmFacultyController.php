@@ -392,7 +392,6 @@ class AdmFacultyController extends \BaseController {
 
 
 
-
         $data = Input::all();
         $examiner_mdeol = new AdmQuestion();
 

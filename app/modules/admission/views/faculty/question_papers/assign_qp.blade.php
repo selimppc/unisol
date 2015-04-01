@@ -1,5 +1,4 @@
-
-     <div style="padding: 20px;">
+<div style="padding: 20px;">
 
 
       {{Form::open(array('url'=>'admission/faculty/question-papers/assign-to-question-paper', 'class'=>'form-horizontal','files'=>true))}}
@@ -51,5 +50,5 @@
              <a href="{{URL::previous()}}" class="btn btn-default btn-xs">Close </a>
 
       {{ Form::close() }}
-     </div>
+</div>
 

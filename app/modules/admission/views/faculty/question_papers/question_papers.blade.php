@@ -82,7 +82,6 @@
 </div>
 
 
-
 {{--<div class="modal fade" id="modal_assign" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true" data-backdrop="static" data-keyboard="false">--}}
     {{--<div class="modal-dialog">--}}
         {{--<div class="modal-content">--}}
