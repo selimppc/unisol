@@ -78,7 +78,7 @@
         <li><a tabindex="-1" a href="{{ URL::to('admission/amw/batch-course') }}"></i>Batch Course(Go from batch list)</a></li>
 {{--        <li><a tabindex="-1" a href="{{action('AdmissionController@mngBatchAdmTestSubject') }}"></i>Mng Admssn Tst Sbjct(Amw)</a></li>--}}
         <li><a tabindex="-1" a href="{{ URL::to('admission/amw/admission-test-subject') }}"></i>Only Admssn Tst Sbjct(Amw)</a></li>
-        <li><a tabindex="-1" a href="{{ URL::to('admission/amw/admission-test-home') }}"></i>Admssn Test Home</a></li>
+        <li><a tabindex="-1" a href="{{ URL::to('admission/amw/admission-test-home') }}"></i>Admission Test (Examiner and Question)</a></li>
 
 
         <li class="footer">
