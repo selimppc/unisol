@@ -31,11 +31,11 @@ Route::any('admission/faculty/admission-test/view-admtest/{id}',[
 
 
 
-Route::any('admission/faculty/admission-test/batchDelete', [
-    'as' => 'admission.faculty.admission-test.batchDelete',
-    'uses' => 'AdmFacultyController@batchDelete'
+Route::any('admission/faculty/admission-test/qpBatchDelete', [
+    'as' => 'admission.faculty.admission-test.qpBatchDelete',
+    'uses' => 'AdmFacultyController@qpBatchDelete'
 ]);
-//.
+//ok
 
 Route::any('admission/faculty/admission-test/accept-admtest',[
     'as' => 'admission.faculty.admission-test.accept-admtest',
@@ -73,19 +73,19 @@ Route::any('admission/faculty/question-papers/specific-question-view/{id}',[
     'as' => 'admission.faculty.question-papers.specific-question-view',
     'uses' => 'AdmFacultyController@viewSpecificQuestionItems'
 ]);
-//->
+//ok
 
 Route::any('admission/faculty/question-papers/specific-question-edit/{id}',[
     'as' => 'admission.faculty.question-papers.specific-question-edit',
     'uses' => 'AdmFacultyController@editSpecificQuestionItems'
 ]);
-//->
+//ok
 
 Route::any('admission/faculty/question-papers/specific-question-update/{id}',[
     'as' => 'admission.faculty.question-papers.specific-question-update',
     'uses' => 'AdmFacultyController@updateSpecificQuestionItems'
 ]);
-//.
+//ok
 
 
 
@@ -93,13 +93,13 @@ Route::any('admission/faculty/question-papers/add-question-paper-item/{id}',[
     'as' => 'admission.faculty.question-papers.add-question-paper-item',
     'uses' => 'AdmFacultyController@addQuestionItems'
 ]);
-//.
+//ok
 
 Route::any('admission/faculty/question-papers/store-question-paper-item',[
     'as' => 'admission.faculty.question-papers.store-question-paper-item',
     'uses' => 'AdmFacultyController@storeQuestionItems'
 ]);
-//.
+//ok
 
 
 
@@ -108,6 +108,7 @@ Route::any('admission/faculty/question-papers/assign-to-question-paper',[
     'uses' => 'AdmFacultyController@assignQuestionPaper'
 ]);
 //.
+
 
 Route::any('admission/faculty/question-papers/evaluate-questions',[
     'as' => 'admission.faculty.question-papers.evaluate-questions',
