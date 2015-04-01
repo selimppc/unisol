@@ -76,44 +76,6 @@ class ApplicantController extends \BaseController
     {
         return View::make('applicant::applicants.login');
     }
-   /* public function Login()
-    {
-        return View::make('applicant::applicants.login');
-    }
-    public function applicantLogin() {
-        $credentials = array(
-            'email'=> Input::get('email'),
-            'password'=>Input::get('password'),
-
-        );
-        if ( Auth::attempt($credentials) ) {
-            return Redirect::to('applicant/dashboard')->with('message', 'Logged in!');
-        } else {
-            return Redirect::to('usersign/login') ->with('message', 'Your username/password combination was incorrect! Please try again....')
-                ->withInput();
-        }
-    }
-
-    public function applicantLogout() {
-        Auth::logout();
-        return Redirect::to('usersign/login')->with('message', 'Your are now logged out!');
-    }
-
-    public function Dashboard(){
-        return View::make('applicant::applicants.dashboard');
-    }
-
-    public function show($id)
-    {
-        $applicant = Applicant::find($id);
-        return View::make('applicant::applicants.show', compact('applicant'));
-    }
-    public function edit($id)
-    {
-        $applicant = Applicant::find($id);
-        return View::make('applicant::applicants.edit', compact('applicant'));
-    }*/
-
 //TODO : Change password code is in admission UserSignUpController and need to add it here.
 
 //**********************Applicant's Profile Start(R)*********************************
@@ -122,7 +84,7 @@ class ApplicantController extends \BaseController
     {
         $applicant = Auth::applicant()->get()->id;
         $countryList = array('' => 'Please Select') + Country::lists('title', 'id');
-        $profile = ApplicantProfile::where('applicant_id', '=', $applicant )->get();
+        $profile = ApplicantProfile::where('applicant_id', '=', $applicant )->first();
         return View::make('applicant::applicant_profile.index',compact('profile','countryList'));
     }
     public function applicantProfileStore()
@@ -136,22 +98,20 @@ class ApplicantController extends \BaseController
                 $applicant_model->place_of_birth = Input::get('place_of_birth');
                 $applicant_model->gender = Input::get('gender');
 
-                $file = Input::file('profile_image');
-                $destinationPath = public_path() . '/applicant_images';
-                $extension = $file->getClientOriginalExtension();
+                $imagefile= Input::file('profile_image');
+                $extension = $imagefile->getClientOriginalExtension();
                 $filename = str_random(12) . '.' . $extension;
-                $lower_name = strtolower($filename);
-                $path = public_path("applicant_images/" . $lower_name);
-                Image::make($file->getRealPath())->resize(100, 100)->save($path);
+                $sdoc_file=strtolower($filename);        
+                $path = public_path("applicant_images/profile/" . $sdoc_file);
+                Image::make($imagefile->getRealPath())->resize(100, 100)->save($path);
+                $applicant_model->profile_image =$sdoc_file;
 
-                $applicant_model->profile_image = $filename;
                 $applicant_model->city = Input::get('city');
                 $applicant_model->state = Input::get('state');
                 $applicant_model->country_id = Input::get('country_id');
                 $applicant_model->zip_code = Input::get('zip_code');
                 $applicant_model->phone = Input::get('phone');
                 $applicant_model->save();
-
                 return Redirect::back();
             } else {
                 Session::flash('danger', "Please Login As Applicant!");
@@ -159,7 +119,6 @@ class ApplicantController extends \BaseController
             }
         }
     }
-
 
     public function editApplicantProfile($id){
 

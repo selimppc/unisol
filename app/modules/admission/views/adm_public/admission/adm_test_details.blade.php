@@ -78,7 +78,7 @@
      </div>
   </div>
 
-<a class="pull-right btn btn-xs btn-info"  href="{{URL::route('admission.public.exm-center')}}" data-toggle="modal" data-target="#exmCenterModal"><b></b> Exam Center Choice </a>
+<a class="pull-right btn btn-xs btn-info"  href="{{URL::route('admission.public.exm-center',['batch_applicant_id'=>$batch_applicant_id])}}" data-toggle="modal" data-target="#exmCenterModal"><b></b> Exam Center Choice </a>
 
 {{----------------------------------------------Modal --------------------------------------------------------------------------}}
  <div class="modal fade" id="exmCenterModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

@@ -998,7 +998,10 @@ class AdmAmwController extends \BaseController
 
     public function admExaminerIndex( $year_id, $semester_id, $batch_id)
     {
-        $adm_test_examiner = AdmExaminer::latest('id')->paginate(10);
+        $adm_test_examiner = AdmExaminer::latest('id')->where('batch_id', $batch_id)->paginate(10);
+
+        $degree_batch = Batch::with('relDegree', 'relDegree.relDepartment', 'relSemester', 'relYear')
+            ->where('id', $batch_id )->first();
 
         $degree_id = Batch::where('id' ,'=', $batch_id )
             ->where('semester_id' ,'=', $semester_id)
@@ -1009,8 +1012,9 @@ class AdmAmwController extends \BaseController
             ->where('id','=', $degree_id)
             ->first();
 
+
         return View::make('admission::amw.adm_examiner.adm_examiner_index',
-            compact('adm_test_examiner','year_id','semester_id','batch_id','degree_id','degree_data'));
+            compact('adm_test_examiner','degree_batch'));
 
     }
 
@@ -1063,9 +1067,10 @@ class AdmAmwController extends \BaseController
         }
     }
 
-    public function viewAdmTestExaminers(){
+    public function viewAdmTestExaminers($id){
 //        $adm_view_examiners = AdmExaminer::where('id' ,'=', $degree_id)->first();
-        $data = AdmExaminer::with('relBatch','relBatch.relDegree')->first()->relBatch->relDegree->relDepartment->title;
+        $data = AdmExaminer::with('relBatch','relBatch.relDegree', 'relBatch.relAdmExaminerComments')
+            ->where('id', $id)->first();
 
         return View::make('admission::amw.adm_examiner.view_examiners',
             compact('data','exm_info','exm_comnt_info'));

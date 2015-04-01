@@ -259,7 +259,7 @@ class AdmPublicController extends \BaseController {
 
 
     public function admTestDetails($id){
-
+        $batch_applicant_id = $id;
         //get batch_id
         $batch_id = BatchApplicant::where('id','=',$id)->first()->batch_id;
 
@@ -273,13 +273,50 @@ class AdmPublicController extends \BaseController {
 //        $exm_centers = ExmCenter::get();
 
         return View::make('admission::adm_public.admission.adm_test_details',
-                  compact('adm_test_details','adm_test_subject'));
+                  compact('batch_applicant_id', 'adm_test_details','adm_test_subject'));
     }
 
-    public function admExmCenter(){
-        $exm_centers = array('' => 'Select One ') + ExmCenter::lists('title', 'id');
-        return View::make('admission::adm_public.admission.adm_test_details',
-            compact('exm_centers','batch_id'));
+    public function admExmCenter($batch_applicant_id){
+
+        $ba_id = $batch_applicant_id;
+
+        $batch_applicant_id = ['batch_applicant_id' => $batch_applicant_id];
+        $rules = ['batch_applicant_id' => 'exists:exm_center_applicant_choice' ];
+        $validator = Validator::make($batch_applicant_id, $rules);
+        $exm_center_lists = ['' => 'Select Exam Center'] + ExmCenter::lists('title', 'id');
+        if ($validator->Fails()) {
+            $exm_centers_all = ExmCenter::all();
+        }else{
+            $exm_center_choice = ExmCenterApplicantChoice::with('relExmCenter')->where('batch_applicant_id','=',$ba_id)->get();
+        }
+
+        return View::make('admission::adm_public.admission.exm_center',
+            compact('exm_centers_all','exm_center_choice','ba_id', 'exm_center_lists'));
+    }
+    public function admExmCenterSave(){
+        $data = Input::all();
+        $i=0;
+        foreach($data as $value){
+            $model = isset($value['center_choice_id']) ? ExmCenterApplicantChoice::findOrFail($value['center_choice_id']) : new ExmCenterApplicantChoice();
+            $model->batch_applicant_id = Input::get('batch_applicant_id');
+            $model->exm_center_id = $value['exm_center_id'];
+            $model->save();
+        }
+        print_r("OK");exit;
+        $model = new ExmCenterApplicantChoice();
+        if($model->validate($data)){
+            if($model->create($data)){
+                Session::flash('message','Successfully added Information!');
+                return Redirect::back();
+            }else{
+                Session::flash('message','Invalid Request!');
+                return Redirect::back();
+            }
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back();
+        }
     }
 
     public function admDegAptCheckout(){
