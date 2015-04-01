@@ -259,7 +259,7 @@ class AdmPublicController extends \BaseController {
 
 
     public function admTestDetails($id){
-
+        $batch_applicant_id = $id;
         //get batch_id
         $batch_id = BatchApplicant::where('id','=',$id)->first()->batch_id;
 
@@ -273,13 +273,45 @@ class AdmPublicController extends \BaseController {
 //        $exm_centers = ExmCenter::get();
 
         return View::make('admission::adm_public.admission.adm_test_details',
-                  compact('adm_test_details','adm_test_subject'));
+                  compact('batch_applicant_id', 'adm_test_details','adm_test_subject'));
     }
 
-    public function admExmCenter($id){
-        $exm_centers = array('' => 'Select One ') + ExmCenter::lists('title', 'id');
-        return View::make('admission::adm_public.admission.adm_test_details',
-            compact('exm_centers','batch_id'));
+    public function admExmCenter($batch_applicant_id){
+
+        $batch_applicant_id = $batch_applicant_id;
+       // print_r($batch_applicant_id);exit;
+
+        $batch_applicant_id = ['batch_applicant_id' => $batch_applicant_id];
+        $rules = ['batch_applicant_id' => 'exists:exm_center_applicant_choice' ];
+        $validator = Validator::make($batch_applicant_id, $rules);
+
+        if ($validator->Fails()) {
+            $exm_centers = ['' => 'Please Pick Out or Select Exam Center Sequence'] + ExmCenter::lists('title', 'id');
+        }else{
+            $exm_centers = ExmCenterApplicantChoice::with('relExmCenter')->where('batch_applicant_id','=',$batch_applicant_id)->get();
+        }
+       // print_r($exm_centers);exit;
+
+        return View::make('admission::adm_public.admission.exm_center',
+            compact('exm_centers','batch_id','id','batch_applicant_id'));
+    }
+    public function admExmCenterSave(){
+
+        $data = Input::all();
+        $model = new ExmCenterApplicantChoice();
+        if($model->validate($data)){
+            if($model->create($data)){
+                Session::flash('message','Successfully added Information!');
+                return Redirect::back();
+            }else{
+                Session::flash('message','Invalid Request!');
+                return Redirect::back();
+            }
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back();
+        }
     }
 
     public function admDegAptCheckout(){

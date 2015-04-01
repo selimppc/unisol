@@ -196,9 +196,13 @@ Route::any('admission/public/admission-test-details/{id}',
     ['as' => 'admission.admission.test_details',
         'uses' => 'AdmPublicController@admTestDetails']);
 
-Route::any('admission/public/admission/exm-center',
+Route::any('admission/public/admission/exm-center/{batch_applicant_id}',
     ['as' => 'admission.public.exm-center',
         'uses' => 'AdmPublicController@admExmCenter']);
+
+Route::any('admission/public/admission/save-exm-center',
+    ['as' => 'admission.public.save-exm-center',
+        'uses' => 'AdmPublicController@admExmCenterSave']);
 
 //Adm_applicant checkout view
 Route::any('admission/public/admission/checkout/',

@@ -72,7 +72,7 @@
                                  <td>
                                         <a href="{{ URL::route('admission.faculty.admission-test.accept-admtest') }}" class="btn btn-success btn-xs" >Accept</a>
                                         <a href="{{ URL::route('admission.faculty.admission-test.deny-admtest') }}" class="btn btn-warning btn-xs" >Deny</a>
-                                        <a href="{{ URL::route('admission.faculty.admission-test.admtest-question-paper') }}" class="btn btn-info btn-xs" >Questions</a>
+                                        <a href="{{ URL::route('admission.faculty.question-papers.admtest-question-paper') }}" class="btn btn-info btn-xs" >Questions</a>
                                  </td>
                              </tr>
                         @endforeach
