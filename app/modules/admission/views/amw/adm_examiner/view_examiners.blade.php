@@ -4,20 +4,43 @@
 </div>
 
 <div style="padding-left: 10px; width: 90%;">
-    {{ Form::open(array('route'=>'admission.amw.admission-test-examiner.view-admission-test-examiner','method' => '')) }}
-        <div class="span9 well" style="font-size: large; margin-left: 40px">
+    {{ Form::open(array('route'=>'admission.amw.admission-test-examiner.adm-test-examiners-comments','method' => 'POST')) }}
+    {{Form::hidden('batch_id', $data->batch_id)}}
+    {{Form::hidden('commented_to', $data->user_id)}}
+        <div  style="padding-left: 8%">
             <strong> Department: </strong> {{ $data->relBatch->relDegree->relDepartment->title }}
             <p>
-                <strong> Degree: </strong>  {{ $data->relBatch->relDegree->title }} <br>
-                <strong> Name of Faculty : </strong> {{User::FullName($data->user_id)}} <br>
-                <strong> Status :</strong> <br>
-                <strong> Comments :</strong> {{ $data->relBatch->relAdmExaminerComments->id }}<br>
+                <table class="table table-striped  table-bordered">
+                    <tr>
+                        <td>Degree:</td>
+                        <td>{{ $data->relBatch->relDegree->title }}</td>
+                    </tr>
+                    <tr>
+                        <td>Name of Faculty :</td>
+                        <td>{{User::FullName($data->user_id)}}</td>
+                    </tr>
+                    <tr>
+                        <td>Status :</td>
+                        <td>{{$data->status}}</td>
+                    </tr>
+
+                </table>
+                <small>Comments as below: </small>
+
+                @foreach($exm_comment_info as $comment)
+                    <p style="padding: 1%; background: #efefef;">
+                        <b><small>{{ User::FullName($comment->commented_to); }}</small></b><br>
+                      &nbsp; &nbsp; &nbsp; {{ $comment->comment }}
+                    </p>
+                @endforeach
+
                 <div class="form-group">
-                      {{ Form::textarea('comment', Null, ['size' => '40x6','placeholder'=>'Your Comments Here']) }}
+                      {{ Form::textarea('comment', Null, ['class' => 'form-control', 'placeholder'=>'Your Comments Here', 'style'=>'height: 100px;']) }}
                 </div>
             </p>
         </div>
-    <a href="" class="pull-right btn btn-info" span class="glyphicon-refresh">Close</a>
+    {{ Form::submit('Submit Comment', array('class'=>'pull-right btn-sm btn-info')) }}
+    <a href="" class="pull-right btn-sm btn-default" style="margin-right: 5px">Close</a>
     &nbsp;
     </br>
     &nbsp;
