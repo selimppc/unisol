@@ -276,7 +276,7 @@ class AdmPublicController extends \BaseController {
                   compact('adm_test_details','adm_test_subject'));
     }
 
-    public function admExmCenter($id){
+    public function admExmCenter(){
         $exm_centers = array('' => 'Select One ') + ExmCenter::lists('title', 'id');
         return View::make('admission::adm_public.admission.adm_test_details',
             compact('exm_centers','batch_id'));

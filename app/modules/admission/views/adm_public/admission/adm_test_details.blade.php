@@ -4,7 +4,10 @@
 @stop
 @section('content')
 {{--<a class="pull-right btn btn-xs btn-success" href="{{ URL::route('admission.public.degree_offer_list')}}"><b><i class="fa fa-arrow-circle-left"></i>Go Back</b></a>--}}
-
+    <div class="help-text-top">
+              You can view details information of degree and subject on admission test. Also this panel will allow you to choice exam center sequence to <b>Exam Center Choice</b> button.
+                     {{--<small>Someone famous in <cite title="Source Title">Source Title</cite></small>--}}
+    </div>
  <h4>Admission Test Details On</h4>
  <div class="box box-solid">
 
@@ -75,7 +78,7 @@
      </div>
   </div>
 
-<a class="pull-right btn btn-xs btn-info"  href="{{URL::route('admission.public.exm-center',['id'=>$adm_test_subject->id])}}" data-toggle="modal" data-target="#exmCenterModal"><b></b> Exam Center Choice </a>
+<a class="pull-right btn btn-xs btn-info"  href="{{URL::route('admission.public.exm-center')}}" data-toggle="modal" data-target="#exmCenterModal"><b></b> Exam Center Choice </a>
 
 {{----------------------------------------------Modal --------------------------------------------------------------------------}}
  <div class="modal fade" id="exmCenterModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
