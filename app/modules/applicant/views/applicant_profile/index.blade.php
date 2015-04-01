@@ -29,13 +29,19 @@
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab_1">
                         @if($profile != null)
-                        <a class="pull-right btn btn-sm btn-success" href="" data-toggle="modal" data-target="#myeditModal" >Edit Profile</a>
+                            <a class="pull-right btn btn-sm btn-success" href="{{ URL::to('applicant/profile/edit/' . $profile->id ) }}" data-toggle="modal" data-target="#myeditModal" >Edit Profile</a>
                         @else
-                        <button type="button" class="pull-right btn btn-sm btn-success" data-toggle="modal" data-target="#addProfile" style="margin-bottom: 5px">Add Profile</button>
+                            <button type="button" class="pull-right btn btn-sm btn-success" data-toggle="modal" data-target="#addProfile" style="margin-bottom: 5px">Add Profile</button>
                         @endif
-
                         <div class="box-body table-responsive ">
-                            <table class="table table-hover">
+                            <table class="table table-striped  table-bordered">
+                                <tr>
+                                    <th>Picture</th>
+                                    @if($profile != null)
+                                        <td>{{ HTML::image('/applicant_images/profile/'.$profile->profile_image, $profile->profile_image,['class'=>'col-md-3'])}}
+                                            <a class=" btn-link" href="{{ URL::to('applicant/profile_image/edit/' . $profile->id ) }}" data-toggle="modal" data-target="#changeImageModal" >Change Picture.</a><br></td>
+                                    @endif
+                                </tr>
                                 <tr>
                                     <th>Date of Birth</th>
                                     <td>{{isset($profile->date_of_birth) ? $profile->date_of_birth : ''}}</td>
@@ -47,13 +53,6 @@
                                 <tr>
                                     <th>Gender</th>
                                     <td>{{isset($profile->gender) ? $profile->gender : ''}}</td>
-                                </tr>
-                                <tr>
-                                    <th>Picture</th>
-                                    @if($profile != null)
-                                        <td>{{ HTML::image('applicant_images/profile/' .$profile->profile_image) }}
-                                    <a class=" btn btn-sm btn-info" href="{{ URL::to('applicant/profile_image/edit/' . $profile->id ) }}" data-toggle="modal" data-target="#changeImageModal" >changeImage...</a></td>
-                                    @endif
                                 </tr>
                                 <tr>
                                     <th>City</th>
@@ -74,65 +73,48 @@
                                     <th>Phone#</th>
                                     <td>{{isset($profile->phone) ? $profile->phone : ''}}</td>
                                 </tr>
-
                             </table>
                         </div>
                     </div>
                 </div>
             </div>
-            </div>
-            {{--<!-- Modal Create Profile -->--}}
-            <div id="addProfile" class="modal fade"data-keyboard="false" data-backdrop="static">
-                <div class="modal-dialog" >
-                    <div class="modal-content" >
-                        <div class="modal-body" >
-                            {{ Form::open(array('url' => 'applicant/profile/store', 'method' =>'post', 'role'=>'form','files'=>'true')) }}
-                            @include('applicant::applicant_profile._form')
-                            {{ Form::close() }}
-                        </div>
+        </div>
+    </div>
 
 
-                        <!-- Modal : edit -->
-                        <div class="modal fade" id="myeditModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                        <h3 class="modal-title" id="myModalLabel"></h3>
-                                    </div>
-                                    <div class="modal-body">
-                                    </div>
-                                    <div class="modal-footer">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        {{--modal: change image--}}
-
-                        <div class="modal fade" id="changeImageModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                        {{--<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>--}}
-                                        <h4 class="modal-title" id="myModalLabel"></h4>
-                                    </div>
-                                    <div class="modal-body">
-                                    </div>
-                                    <div class="modal-footer">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+    {{--<!-- Modal Create Profile -->--}}
+    <div id="addProfile" class="modal fade" data-keyboard="false" data-backdrop="static">
+        <div class="modal-dialog" >
+            <div class="modal-content" >
+                <div class="modal-body" >
+                    {{ Form::open(array('url' => 'applicant/profile/store', 'method' =>'post', 'role'=>'form','files'=>'true')) }}
+                    @include('applicant::applicant_profile._form')
+                    {{ Form::close() }}
                 </div>
             </div>
-         </div>
+        </div>
+    </div>
+
+    <!-- Modal : edit -->
+    <div class="modal fade" id="myeditModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+            </div>
+        </div>
+    </div>
+
+    {{--modal: change image--}}
+    <div class="modal fade" id="changeImageModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+            </div>
+        </div>
     </div>
 
 
 @stop
 
-{{ HTML::script('assets/js/custom.js')}}
+
 
