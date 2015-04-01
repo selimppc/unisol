@@ -81,7 +81,7 @@ Route::any('admission/faculty/question-papers/specific-question-edit/{id}',[
 ]);
 //->
 
-Route::any('admission/faculty/question-papers/specific-question-update/{id]',[
+Route::any('admission/faculty/question-papers/specific-question-update/{id}',[
     'as' => 'admission.faculty.question-papers.specific-question-update',
     'uses' => 'AdmFacultyController@updateSpecificQuestionItems'
 ]);

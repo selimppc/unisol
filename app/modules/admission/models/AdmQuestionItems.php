@@ -14,7 +14,7 @@ class AdmQuestionItems extends Eloquent{
     private $errors;
     private $rules = [
         'adm_question_id' => 'required|integer',
-        'question_type' => 'required',
+        //'question_type' => 'required',
         'title' => 'required',
         'marks' => 'required|numeric',
     ];
