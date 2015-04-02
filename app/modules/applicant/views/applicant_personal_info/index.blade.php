@@ -57,7 +57,7 @@
                                 <tr>
                                     <td>Is Freedom Fighter?</td>
                                     <td>
-                                        {{ $applicant_personal_info['freedom_fighter']==1 ? 'Yes' : 'No'}}
+                                        {{ $applicant_personal_info['freedom_fighter']==1 ? 'Yes' : ''}}
                                     </td>
                                 </tr>
                                 <tr>
@@ -166,14 +166,7 @@
     <div class="modal fade" id="myeditModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"data-keyboard="false" data-backdrop="static">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Edit</h4>
-                </div>
-                <div class="modal-body">
-                </div>
-                <div class="modal-footer">
-                </div>
+
             </div>
         </div>
     </div>
