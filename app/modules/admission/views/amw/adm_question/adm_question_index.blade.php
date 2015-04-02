@@ -58,7 +58,6 @@
 
       {{form::close() }}
 
-
 </div>
 </div>
 </div>

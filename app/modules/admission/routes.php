@@ -370,6 +370,11 @@ Route::any('admission/amw/admission-test-question/assign-faculty-by-question/{q_
     'uses' => 'AdmAmwController@assignFacultyByQuestion'
 ]);
 
+Route::any('admission/amw/admission-test/comments-by-question',[
+    'as' => 'admission.amw.admission-test.comments-by-question',
+    'uses' => 'AdmAmwController@assignFacultyCommentsByQuestion'
+]);
+
 
 
 //...................................Admission Question Evaluation........................................................

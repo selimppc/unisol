@@ -1207,14 +1207,35 @@ class AdmAmwController extends \BaseController
     }
 
     /**
-     * @param $q_id :: question id
+     * @param $q_id :: question ID
+     * @return mixed
      */
     public function assignFacultyByQuestion($q_id)
     {
-        $question_subject = AdmQuestion::with('relBatchAdmtestSubject')->where('id', $q_id)->first();
-        $question_items = AdmQuestionItems::where('adm_question_id', $q_id)->get();
-        return View::make('admission::amw.adm_question.view_question_items',
-            compact('question_items', 'question_subject'));
+        $question_data = AdmQuestion::with('relBatchAdmtestSubject')->where('id', $q_id)->first();
+        $examiner_faculty_lists = AdmQuestion::AdmissionExaminerList($question_data->relBatchAdmtestSubject->batch_id);
+        $comments = AdmQuestionComments::where('adm_question_id', $q_id)->get();
+        return View::make('admission::amw.adm_question.assign_faculty_by_question_comnnets',
+            compact('question_data', 'examiner_faculty_lists', 'comments'));
+    }
+
+
+    public function assignFacultyCommentsByQuestion()
+    {
+        $model = new AdmQuestionComments();
+        $data = Input::all();
+
+        if($model->validate($data)){
+            if($model->create($data)){
+                Session::flash('message', 'Assigned / Commented Successfully!');
+                return Redirect::back();
+            }
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()
+                ->with('error', 'invalid');
+        }
     }
 
 
