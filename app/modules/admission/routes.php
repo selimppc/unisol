@@ -359,10 +359,12 @@ Route::any('admission/amw/admission-test-question/view-questions-by-paper/{q_id}
     'as' => 'admission.amw.admission-test-question.view-questions-by-paper',
     'uses' => 'AdmAmwController@viewQuestionsByPaper'
 ]);
+
 Route::any('admission/amw/admission-test-question/view-question_item-details/{q_items_id}',[
     'as' => 'admission.amw.admission-test-question.view-question_item-details',
     'uses' => 'AdmAmwController@viewQuestionItemDetails'
 ]);
+
 Route::any('admission/amw/admission-test-question/assign-faculty-by-question/{q_id}',[
     'as' => 'admission.amw.admission-test-question.assign-faculty-by-question',
     'uses' => 'AdmAmwController@assignFacultyByQuestion'

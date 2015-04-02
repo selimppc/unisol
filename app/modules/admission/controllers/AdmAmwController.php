@@ -1182,6 +1182,10 @@ class AdmAmwController extends \BaseController
         }
     }
 
+    /**
+     * @param $q_id :: question id
+     * @return mixed
+     */
     public function viewQuestionsByPaper($q_id)
     {
         $question_subject = AdmQuestion::with('relBatchAdmtestSubject')->where('id', $q_id)->first();
@@ -1189,6 +1193,11 @@ class AdmAmwController extends \BaseController
         return View::make('admission::amw.adm_question.view_question_items',
             compact('question_items', 'question_subject'));
     }
+
+    /**
+     * @param $q_items_id :: question item id
+     * @return mixed
+     */
     public function viewQuestionItemDetails($q_items_id)
     {
         $question_item = AdmQuestionItems::where('id', $q_items_id)->first();
@@ -1196,9 +1205,16 @@ class AdmAmwController extends \BaseController
         return View::make('admission::amw.adm_question.view_question_item_details',
             compact('question_item', 'question_item_details'));
     }
+
+    /**
+     * @param $q_id :: question id
+     */
     public function assignFacultyByQuestion($q_id)
     {
-
+        $question_subject = AdmQuestion::with('relBatchAdmtestSubject')->where('id', $q_id)->first();
+        $question_items = AdmQuestionItems::where('adm_question_id', $q_id)->get();
+        return View::make('admission::amw.adm_question.view_question_items',
+            compact('question_items', 'question_subject'));
     }
 
 
