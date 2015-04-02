@@ -80,12 +80,19 @@ class ApplicantController extends \BaseController
 
 //**********************Applicant's Profile Start(R)*********************************
 
-    public function applicant_profile_index()
+    public function applicantProfileIndex()
     {
-        $applicant = Auth::applicant()->get()->id;
-        $countryList = array('' => 'Please Select') + Country::lists('title', 'id');
-        $profile = ApplicantProfile::where('applicant_id', '=', $applicant )->first();
-        return View::make('applicant::applicant_profile.index',compact('profile','countryList'));
+        if(Auth::applicant()->check()) {
+            $applicant = Auth::applicant()->get()->id;
+            $countryList = array('' => 'Please Select') + Country::lists('title', 'id');
+            $profile = ApplicantProfile::where('applicant_id', '=', $applicant)->first();
+            return View::make('applicant::applicant_profile.index', compact('profile', 'countryList'));
+        }
+        else {
+            Session::flash('danger', "Please Login As Applicant!");
+            return Redirect::route('user/login');
+        }
+
     }
     public function applicantProfileStore()
     {
@@ -121,9 +128,7 @@ class ApplicantController extends \BaseController
             Session::flash('danger', "Please Login As Applicant!");
             return Redirect::route('user/login');
             }
-        }
-
-
+    }
 
     public function editApplicantProfile($id)
     {
@@ -174,8 +179,8 @@ class ApplicantController extends \BaseController
             return Redirect::route('user/login');
         }
     }
-    public function editProfileImage($id){
-
+    public function editProfileImage($id)
+    {
         $profile = ApplicantProfile::find($id);
         return View::make('applicant::applicant_profile.edit_image', compact('profile'));
     }
