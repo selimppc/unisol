@@ -210,16 +210,18 @@ class ApplicantController extends \BaseController
 
     }
 
-    //**************************Applicant Meta Start(R)********************
+ //**************************Applicant Meta Information/Personal Info Start(R)*********
 
     public function personalInfoIndex()
     {
         $applicant_personal_info = ApplicantMeta::where('applicant_id', '=','1' )->first();
         return View::make('applicant::applicant_personal_info.index',compact('applicant_personal_info'));
     }
+
     public function personalInfoCreate(){
         return View::make('applicant::applicant_personal_info._form');
     }
+
     public function personalInfoStore(){
 
         $rules = array(
@@ -254,10 +256,12 @@ class ApplicantController extends \BaseController
         }
 
     }
+
     public function personalInfoEdit($id){
         $applicant_personal_info = ApplicantMeta::find($id);
         return View::make('applicant::applicant_personal_info.edit', compact('applicant_personal_info'));
     }
+
     public function personalInfoUpdate($id){
         $rules = array(
             'national_id' => 'required',
@@ -283,9 +287,20 @@ class ApplicantController extends \BaseController
 
     public function extraCurricularIndex()
     {
-        $data = ApplicantExtraCurrActivity::where('applicant_id', '=', '1')->first();
-        return View::make('applicant::extra_curricular.index', compact('data'));
+        if(Auth::applicant()->check()) {
+            $applicant = Auth::applicant()->get()->id;
+            $data = ApplicantExtraCurrActivity::where('applicant_id', '=', $applicant)->first();
+            return View::make('applicant::extra_curricular.index', compact('data'));
+
+        }
+        else {
+            Session::flash('danger', "Please Login As Applicant!");
+            return Redirect::route('user/login');
+        }
+
+
     }
+
     public function extraCurricularCreate(){
         return View::make('applicant::extra_curricular._form');
     }
@@ -299,8 +314,7 @@ class ApplicantController extends \BaseController
         $validator = Validator::make(Input::all(), $rules);
         if ($validator->passes()) {
             $extra_curricular =new ApplicantExtraCurrActivity();
-            //print_r($extra_curricular);exit;
-            $extra_curricular->applicant_id = Input::get('applicant_id');
+            $extra_curricular->applicant_id = Auth::applicant()->get()->id;
             $extra_curricular->title = Input::get('title');
             $extra_curricular->description = Input::get('description');
             $extra_curricular->achievement = Input::get('achivement');
@@ -324,6 +338,11 @@ class ApplicantController extends \BaseController
 
         return View::make('applicant::extra_curricular.edit', compact('extra_curricular'));
     }
+
+    /**
+     * @param $id
+     * @return mixed ->
+     */
     public function updateExtraCurricular($id){
 
         $rules = array(
@@ -350,21 +369,21 @@ class ApplicantController extends \BaseController
     }
 
 
-
 //***********************Applicant's Supporting Docs Start(R)*************************
 
-    public function sDocsIndex(){
-        $supporting_docs = ApplicantSupportingDoc::where('applicant_id', '=', 27)->first();
-
+    public function sDocsIndex()
+    {
+        $applicant= Auth::applicant()->get()->id;
+        $supporting_docs = ApplicantSupportingDoc::where('applicant_id', '=', $applicant)->first();
         if(!$supporting_docs){
             $supporting_docs = new ApplicantSupportingDoc();
-            $supporting_docs->applicant_id = 27;
+            $supporting_docs->applicant_id = Auth::applicant()->get()->id;
             $supporting_docs->save();
         }
         return View::make('applicant::applicant_supporting_docs.index', compact('supporting_docs', 'doc_type'));
     }
-    public function sDocsView($doc_type, $sdoc_id){
-
+    public function sDocsView($doc_type, $sdoc_id)
+    {
         $supporting_docs = ApplicantSupportingDoc::where('id', '=', $sdoc_id)->first();
         if(!$supporting_docs)
             $supporting_docs = null;
@@ -375,16 +394,15 @@ class ApplicantController extends \BaseController
     {
         $data = Input::all();
         $sdoc = $data['id'] ? ApplicantSupportingDoc::find($data['id']) : new ApplicantSupportingDoc;
-
         if ($data['doc_type']=='other') {
             $sdoc->other = Input::get('other');
         } else {
             $file = Input::file('doc_file');
             $extension = $file->getClientOriginalExtension();
             $filename = str_random(12) . '.' . $extension;
-            $sdoc_file=strtolower($filename);              // rename file name to lower
-            $path = public_path("applicant_images/" . $sdoc_file);
-            Image::make($file->getRealPath())->resize(60, 60)->save($path);
+            $sdoc_file=strtolower($filename);
+            $path = public_path("/applicant_images/supporting_doc/" . $sdoc_file);
+            Image::make($file->getRealPath())->resize(100, 100)->save($path);
             $sdoc->$data['doc_type'] =$sdoc_file;
         }
         if ($sdoc->save())

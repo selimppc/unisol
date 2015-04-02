@@ -59,7 +59,7 @@
                                         <a href="{{ URL::route('admission.faculty.question-papers.add-question-paper-item',['qid'=>$admtest_question_paper_list->id]) }}" class="btn btn-info btn-xs " data-toggle="modal" data-target="#modal">AQ</a>
                                         <a href="{{ URL::route('admission.faculty.question-papers.view-assign-to-question-paper',['id'=>$admtest_question_paper_list->id]) }}" class="btn bg-purple btn-xs" data-toggle="modal" data-target="#modal" >Comments</a>
 
-                                        <a href="{{ URL::route('admission.faculty.question-papers.evaluate-questions',['id'=>$admtest_question_paper_list->id]) }}" class="btn bg-navy btn-xs " >Evaluate</a>
+                                        <a href="{{ URL::route('admission.faculty.question-papers.evaluate-questions',['adm_question_id'=>$admtest_question_paper_list->id]) }}" class="btn bg-navy btn-xs " >Evaluate</a>
                                                             {{--'batch_admtest_subject_id'=>$admtest_question_paper_list->batch_admtest_subject_id--}}
                                     </td>
                                 </tr>

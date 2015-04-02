@@ -32,16 +32,20 @@
             <div class="tab-content">
                 <div class="tab-pane active" id="tab_1">
                     {{--<button class="pull-right btn btn-success btn-sm"  data-toggle="modal" data-target="#addExtraCurricular" >--}}
-                        {{--Add Extra-curricular--}}
+                        {{--Blank--}}
                     {{--</button><br>--}}
 
-                    <h4> Evaluation </h4><br><br>
+                    <br>
 
-                   <strong> Degree: </strong>{{-- {{ $evaluation_qp->relAdmQuestion->relBatchAdmTestSubjct->relBatch->relDegree->title }} --}} <br>
+                   <strong> Degree: </strong>{{ $data->relBatchAdmtestSubject->relBatch->relDegree->relDegreeProgram->code.''
+                                                .$data->relBatchAdmtestSubject->relBatch->relDegree->relDegreeGroup->code.' in '
+                                                 .$data->relBatchAdmtestSubject->relBatch->relDegree->relDepartment->title.' , '
+                                                 .$data->relBatchAdmtestSubject->relBatch->relSemester->title.' , '
+                                                  .$data->relBatchAdmtestSubject->relBatch->relYear->title }}  <br>
 
-                   <strong> Subject: </strong>{{-- {{ $evaluation_qp->relAdmQuestion->relBatchAdmTestSubjct->relAdmTestSubjct->title  }}--}} <br>
-                    <strong> Total Marks: </strong>{{--{{ $evaluation_qp->marks  }} --}} <br>
-                    <strong> Overall Status: </strong>{{--{{ $evaluation_qp->marks  }} --}} <br>
+                   <strong> Subject: </strong>{{ $data->relBatchAdmtestSubject->relAdmtestSubject->title }}  <br>
+                   <strong> Total Marks: </strong>{{ $data->total_marks }}  <br>
+                   <strong> Overall Status: </strong>{{ $data->status }}  <br>
 
                     <div class="box-body table-responsive">
                           {{ Form::open(array('url' => 'admission/faculty/admission-test/evaluationBatchDelete')) }}
@@ -64,11 +68,9 @@
 
 
                                             <td width="140">
-                                                <a href="{{ URL::route('admission.faculty.question-papers.re-evaluate-questions-items',['id'=>$evaluation->id]) }}" class="btn bg-purple btn-xs " >Evaluate</a>
+                                                <a href="{{ URL::route('admission.faculty.question-papers.evaluate-questions-items',['id'=>$evaluation->id]) }}" class="btn bg-orange btn-xs " >Evaluate</a>
 
-                                                <a href="{{ URL::route('admission.faculty.question-papers.evaluate-questions-items',['id'=>$evaluation->id]) }}" class="btn bg-orange btn-xs " >Re-Evaluate</a>
-
-
+{{--                                                <a href="{{ URL::route('admission.faculty.question-papers.re-evaluate-questions-items',['id'=>$evaluation->id]) }}" class="btn bg-purple btn-xs " >Re-Evaluate</a>--}}
                                             </td>
                                         </tr>
                                     @endforeach

@@ -69,6 +69,43 @@ Route::any('apt/acm_records/update/{id}',
 Route::any('apt/acm_records/delete/{id}',
     'ApplicantController@academicDelete'
 );
+
+//*********************Applicant Meta Information/Personal Info(R)*********************
+
+Route::any('apt/personal_info/index',
+    'ApplicantController@personalInfoIndex'
+);
+
+Route::any('apt/personal_info/create',
+    'ApplicantController@personalInfoCreate'
+);
+
+Route::any('apt/personal_info/store',
+    'ApplicantController@personalInfoStore'
+);
+
+Route::any('apt/personal_info/edit/{id}',
+    'ApplicantController@personalInfoEdit'
+);
+
+Route::any('apt/personal_info/update/{id}',
+    'ApplicantController@personalInfoUpdate'
+);
+
+//******************Applicant Supporting Docs(R)*************************
+
+Route::any('apt/supporting_docs/index',
+    'ApplicantController@sDocsIndex'
+);
+Route::any("apt/supporting_docs/view/{doc_type}/{sdoc_id}", [
+    "as"   => "applicant.supporting_docs.view",
+    "uses" => "ApplicantController@sDocsView"
+]);
+
+Route::any('apt/supporting_docs/store',
+    'ApplicantController@sDocsStore'
+);
+
 //*********************Extra Curricular Activities(R)*************************
 
 Route::any('apt/extra_curricular/index',
@@ -90,19 +127,7 @@ Route::post('applicant/extra_curricular/update/{id}',
     'ApplicantController@updateExtraCurricular'
 );
 
-//******************Applicant Supporting Docs(R)*************************
 
-Route::any('apt/supporting_docs/index',
-    'ApplicantController@sDocsIndex'
-);
-Route::any("apt/supporting_docs/view/{doc_type}/{sdoc_id}", [
-    "as"   => "applicant.supporting_docs.view",
-    "uses" => "ApplicantController@sDocsView"
-]);
-
-Route::any('apt/supporting_docs/store',
-    'ApplicantController@sDocsStore'
-);
 
 //****************Applicant Miscellaneous Info(R)************************
 
@@ -125,26 +150,5 @@ Route::any('apt/misc_info/update/{id}',
     'ApplicantController@miscInfoUpdate'
 );
 
-//*********************Applicant Meta Information(R)*********************
-
-Route::any('apt/personal_info/index',
-    'ApplicantController@personalInfoIndex'
-);
-
-Route::any('apt/personal_info/create',
-    'ApplicantController@personalInfoCreate'
-);
-
-Route::any('apt/personal_info/store',
-    'ApplicantController@personalInfoStore'
-);
-
-Route::any('apt/personal_info/edit/{id}',
-    'ApplicantController@personalInfoEdit'
-);
-
-Route::any('apt/personal_info/update/{id}',
-    'ApplicantController@personalInfoUpdate'
-);
 
 });

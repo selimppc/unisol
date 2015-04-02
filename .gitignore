@@ -14,4 +14,7 @@ test//
 public/error_log
 public/file
 public/applicant_images/profile
-public/files_public
+
+public/applicant_images/supporting_doc
+public/applicant_images_public
+

@@ -13,10 +13,10 @@ class AdmQuestionComments extends Eloquent{
     ];
     private $errors;
     private $rules = [
-        'adm_question_id' => 'required|integer',
+        'adm_question_id' => 'integer',
         //'comment' => 'alpha_dash',
-        'commented_to' => 'required|integer',
-        'commented_by' => 'required|integer',
+        'commented_to' => 'integer',
+        'commented_by' => 'integer',
     ];
     public function validate($data)
     {
