@@ -20,9 +20,7 @@
 <div class="modal-body">
   <div style="padding: 20px;">
         <h4> </h4>
-
         {{Form::open(array('url'=>'apt/supporting_docs/store', 'class'=>'form-horizontal','files'=>true))}}
-
         <div class='form-group'>
             @if($doc_type_arr[$doc_type] == 'Other')
                      <div>{{ Form::label('other', $doc_type_arr[$doc_type]) }}</div>
@@ -31,14 +29,13 @@
                 <div>{{ Form::label('Doc Type', $doc_type_arr[$doc_type]) }}</div>
                 <div>{{ Form::file('doc_file', Input::old($doc_type),['class'=>'form-control ']) }}</div>
             @endif
-
+            <div>&nbsp;</div>
             @if($supporting_docs->$doc_type != null)
                 <div>
-                    {{ HTML::image('applicant_images/' .$supporting_docs->$doc_type) }}
+                    {{ HTML::image('/applicant_images/supporting_doc/'.$supporting_docs->academic_goal_statement, $supporting_docs->academic_goal_statement,['class'=>'col-md-3'])}}
                 </div>
             @endif
         </div>
-
         <p>&nbsp;</p>
         {{ Form::hidden('id', $supporting_docs->id, ['class'=>'form-control sdoc_id'])}}
         {{ Form::hidden('doc_type', $doc_type, ['class'=>'form-control sdoc_id'])}}
