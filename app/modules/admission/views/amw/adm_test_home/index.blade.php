@@ -61,7 +61,7 @@
                        <td>QPE Status</td>
                        <td>
                           <a href="{{ URL::to('admission/amw/admission-test-examiner', [ 'year_id'=>$adm_test_mgt->relBatch->year_id ,'semester_id'=>$adm_test_mgt->relBatch->semester_id ,'batch_id'=>$adm_test_mgt->batch_id ]) }}" class="btn btn-success btn-xs" >EX</a>
-                          <a href="{{ URL::to('admission/amw/admission-test-question', [ 'year_id'=>$adm_test_mgt->relBatch->year_id ,'semester_id'=>$adm_test_mgt->relBatch->semester_id ,'batch_id'=>$adm_test_mgt->batch_id ]) }}" class="btn btn-info btn-xs" >QP</a>
+                          <a href="{{ URL::to('admission/amw/admission-test-question', [ 'bats_id'=>$adm_test_mgt->id ]) }}" class="btn btn-info btn-xs" >QP</a>
                           <a href="{{ URL::route('admission.amw.admission-question-evaluation') }}" class="btn btn-success btn-xs" >QPE</a>
                        </td>
                    </tr>

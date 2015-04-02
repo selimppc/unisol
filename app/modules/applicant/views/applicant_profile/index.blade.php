@@ -38,8 +38,9 @@
                                 <tr>
                                     <th>Picture</th>
                                     @if($profile != null)
-                                        <td>{{ HTML::image('/applicant_images/profile/'.$profile->profile_image, $profile->profile_image,['class'=>'col-md-3'])}}
-                                            <a class=" btn-link" href="{{ URL::to('applicant/profile_image/edit/' . $profile->id ) }}" data-toggle="modal" data-target="#changeImageModal" >Change Picture.</a><br></td>
+                                        <td><a class=" btn-link" href="{{ URL::to('applicant/profile_image/edit/' . $profile->id ) }}" data-toggle="modal" data-target="#changeImageModal" >
+                                                {{ HTML::image('/applicant_images/profile/'.$profile->profile_image, $profile->profile_image,['class'=>'col-md-3'])}}
+                                                Change Picture.</a><br></td>
                                     @endif
                                 </tr>
                                 <tr>
