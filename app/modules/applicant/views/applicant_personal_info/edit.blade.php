@@ -1,7 +1,5 @@
 
 <div style="padding: 20px;">
-
-
 {{Form::open(array('url'=>'apt/personal_info/update/'.$applicant_personal_info->id, 'class'=>'form-horizontal'))}}
 
 {{ Form::label('fathers_name','Fathers Name:') }}

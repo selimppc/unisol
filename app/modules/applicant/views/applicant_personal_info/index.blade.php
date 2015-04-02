@@ -43,15 +43,21 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Fathers Occupation</td>
+                                    <td>Occupation</td>
                                     <td>
                                         {{ $applicant_personal_info != null ? $applicant_personal_info->fathers_occupation : null }}
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Fathers Phone</td>
+                                    <td>Phone</td>
                                     <td>
                                         {{ $applicant_personal_info != null ? $applicant_personal_info->fathers_phone : null }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Is Freedom Fighter?</td>
+                                    <td>
+                                        {{ $applicant_personal_info['freedom_fighter']==1 ? 'Yes' : 'No'}}
                                     </td>
                                 </tr>
                                 <tr>
@@ -61,27 +67,67 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Mothers Occupation</td>
+                                    <td>Occupation</td>
                                     <td>
                                         {{ $applicant_personal_info != null ? $applicant_personal_info->mothers_occupation : null }}
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Mothers phone</td>
+                                    <td>Phone</td>
                                     <td>
                                         {{ $applicant_personal_info != null ? $applicant_personal_info->mothers_phone : null }}
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Passport</td>
+                                    <td>National id#</td>
+                                    <td>
+                                        {{ $applicant_personal_info != null ? $applicant_personal_info->national_id : null }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Driving License#</td>
+                                    <td>
+                                        {{ $applicant_personal_info != null ? $applicant_personal_info->driving_licence : null }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Passport#</td>
                                     <td>
                                         {{ $applicant_personal_info != null ? $applicant_personal_info->passport : null }}
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>National id</td>
+                                    <td>Marital Status</td>
                                     <td>
-                                        {{ $applicant_personal_info != null ? $applicant_personal_info->national_id : null }}
+                                        {{ $applicant_personal_info != null ? $applicant_personal_info->marital_status : null }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Religion</td>
+                                    <td>
+                                        {{ $applicant_personal_info != null ? $applicant_personal_info->religion : null }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Present Address</td>
+                                    <td>
+                                        {{ $applicant_personal_info != null ? $applicant_personal_info->present_address : null }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Permanent Address</td>
+                                    <td>
+                                        {{ $applicant_personal_info != null ? $applicant_personal_info->permanent_address : null }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Signature</td>
+                                    <td>
+                                        @if($applicant_personal_info != null ? $applicant_personal_info->signature : null)
+                                         <a class=" btn-link" href="{{ URL::to('applicant/personal_info_signature/edit/' . $applicant_personal_info->id ) }}" data-toggle="modal" data-target="#changeSignature" >
+                                            {{ HTML::image('/applicant_images/app_meta/'.$applicant_personal_info->signature, $applicant_personal_info->signature,['class'=>'col-md-3'])}}
+                                            Change Signature</a><br>
+                                         @endif
                                     </td>
                                 </tr>
                                 </thead>
@@ -132,6 +178,13 @@
         </div>
     </div>
 
+    {{--modal: change image--}}
+    <div class="modal fade" id="changeSignature" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
 
+            </div>
+        </div>
+    </div>
 
 @stop

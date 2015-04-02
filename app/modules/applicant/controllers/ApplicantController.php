@@ -231,15 +231,15 @@ class ApplicantController extends \BaseController
         return View::make('applicant::applicant_personal_info._form');
     }
 
-    public function personalInfoStore(){
-
+    public function personalInfoStore()
+    {
         $rules = array(
-            'national_id' => 'required',
+           // 'national_id' => 'required',
         );
         $validator = Validator::make(Input::all(), $rules);
         if ($validator->passes()) {
             $applicant_personal_info =new ApplicantMeta();
-            $applicant_personal_info->applicant_id = Input::get('applicant_id');
+            $applicant_personal_info->applicant_id = Auth::applicant()->get()->id;
             $applicant_personal_info->fathers_name = Input::get('fathers_name');
             $applicant_personal_info->mothers_name = Input::get('mothers_name');
             $applicant_personal_info->fathers_occupation = Input::get('fathers_occupation');
@@ -250,12 +250,19 @@ class ApplicantController extends \BaseController
             $applicant_personal_info->national_id = Input::get('national_id');
             $applicant_personal_info->driving_licence = Input::get('driving_licence');
             $applicant_personal_info->passport = Input::get('passport');
-            $applicant_personal_info->place_of_birth = Input::get('place_of_birth');
             $applicant_personal_info->national_id = Input::get('national_id');
             $applicant_personal_info->marital_status = Input::get('marital_status');
-            $applicant_personal_info->nationality = Input::get('nationality');
             $applicant_personal_info->religion = Input::get('religion');
-            $applicant_personal_info->signature = Input::file('signature');
+
+            $imagefile = Input::file('signature');
+            $extension = $imagefile->getClientOriginalExtension();
+            $filename = str_random(12) . '.' . $extension;
+            $file = strtolower($filename);
+            $path = public_path("/applicant_images/app_meta/" . $file);
+            Image::make($imagefile->getRealPath())->resize(100, 100)->save($path);
+            $applicant_personal_info->signature  = $file;
+
+
             $applicant_personal_info->present_address = Input::get('present_address');
             $applicant_personal_info->permanent_address = Input::get('permanent_address');
             $applicant_personal_info->save();
@@ -270,7 +277,6 @@ class ApplicantController extends \BaseController
         $applicant_personal_info = ApplicantMeta::find($id);
         return View::make('applicant::applicant_personal_info.edit', compact('applicant_personal_info'));
     }
-
     public function personalInfoUpdate($id){
         $rules = array(
             'national_id' => 'required',
@@ -291,6 +297,37 @@ class ApplicantController extends \BaseController
             return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
         }
     }
+
+    public function edit_signature($id)
+    {
+        $signature = ApplicantMeta::find($id);
+        return View::make('applicant::applicant_personal_info.edit_signature', compact('signature'));
+    }
+
+    public function update_signature($id)
+    {
+        $rules = array(
+            'signature' => 'required',
+        );
+        $validator = Validator::make(Input::all(), $rules);
+        if ($validator->passes()) {
+
+            $signature = ApplicantMeta::find($id);
+            $imagefile = Input::file('signature');
+            $extension = $imagefile->getClientOriginalExtension();
+            $filename = str_random(12) . '.' . $extension;
+            $file = strtolower($filename);
+            $path = public_path("/applicant_images/app_meta/" . $file);
+            Image::make($imagefile->getRealPath())->resize(100, 100)->save($path);
+            $signature->signature  = $file;
+            $signature->save();
+            return Redirect::back()->with('message', 'Successfully updated Information!');
+        } else {
+            return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
+        }
+
+    }
+
 
     // *******************Applicant Extra-Curricular Activities Start(R)***************
 
