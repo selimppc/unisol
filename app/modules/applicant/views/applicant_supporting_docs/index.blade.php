@@ -121,9 +121,9 @@
                         <td><a class=" btn-link" href="{{ URL::route('applicant.supporting_docs.view', array('doc_type' => 'readmission_personal_details', 'sdoc_id'=>$sdoc_id))}}" data-toggle="modal" data-target="#addgoalModal" >
                                 {{ HTML::image('/applicant_images/supporting_doc/'.$supporting_docs->readmission_personal_details, $supporting_docs->readmission_personal_details,['class'=>'col-md-3'])}}
                                 Edit</a><br></td>
-                    @else
-                        <td><a class=" btn-link" href="{{URL::route('applicant.supporting_docs.view',  ['doc_type' => 'readmission_personal_details','sdoc_id'=>$sdoc_id])}}" data-toggle="modal" data-target="#addgoalModal" >add</a></td>
-                    @endif
+                        @else
+                           <td><a class=" btn-link" href="{{URL::route('applicant.supporting_docs.view',  ['doc_type' => 'readmission_personal_details','sdoc_id'=>$sdoc_id])}}" data-toggle="modal" data-target="#addgoalModal" >add</a></td>
+                        @endif
                 </tr>
                 <tr>
                     <th>Other</th>

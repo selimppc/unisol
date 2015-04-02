@@ -210,16 +210,18 @@ class ApplicantController extends \BaseController
 
     }
 
-    //**************************Applicant Meta Start(R)********************
+ //**************************Applicant Meta Information/Personal Info Start(R)*********
 
     public function personalInfoIndex()
     {
         $applicant_personal_info = ApplicantMeta::where('applicant_id', '=','1' )->first();
         return View::make('applicant::applicant_personal_info.index',compact('applicant_personal_info'));
     }
+
     public function personalInfoCreate(){
         return View::make('applicant::applicant_personal_info._form');
     }
+
     public function personalInfoStore(){
 
         $rules = array(
@@ -254,10 +256,12 @@ class ApplicantController extends \BaseController
         }
 
     }
+
     public function personalInfoEdit($id){
         $applicant_personal_info = ApplicantMeta::find($id);
         return View::make('applicant::applicant_personal_info.edit', compact('applicant_personal_info'));
     }
+
     public function personalInfoUpdate($id){
         $rules = array(
             'national_id' => 'required',
