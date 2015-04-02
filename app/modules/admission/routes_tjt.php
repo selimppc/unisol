@@ -188,9 +188,30 @@ Route::any('admission/public/admission/applicant-transcript/{id}',
     ['as' => 'admission.public.applicant_transcript',
         'uses' => 'AdmPublicController@degreeOfferApplicantTranscript']);
 
+//Applicant Meta..................................................
+Route::any('admission/public/admission/add-applicant-meta',
+    ['as' => 'admission.public.add-applicant-meta',
+        'uses' => 'AdmPublicController@addApplicantMetaInPublic']);
+
+Route::any('admission/public/admission/store-applicant-meta',
+    ['as' => 'admission.public.store-applicant-meta',
+        'uses' => 'AdmPublicController@storeApplicantMetaInPublic']);
+
+Route::any('admission/public/admission/edit-applicant-meta/{id}',
+    ['as' => 'admission.public.edit-applicant-meta',
+        'uses' => 'AdmPublicController@editApplicantMetaInPublic']);
+
+Route::any('admission/public/admission/update-applicant-meta/{id}',
+    ['as' => 'admission.public.update-applicant-meta',
+        'uses' => 'AdmPublicController@updateApplicantMetaInPublic']);
+
 Route::any('admission/public/admission/add-degree',
     ['as' => 'admission.public.add-degree',
         'uses' => 'AdmPublicController@addMoreDegree']);
+
+Route::any('admission/public/admission/add-applicant-profile',
+    ['as' => 'admission.public.add-applicant-profile',
+        'uses' => 'AdmPublicController@addApplicantProfileByApplicant']);
 
 Route::any('admission/public/admission-test-details/{id}',
     ['as' => 'admission.admission.test_details',

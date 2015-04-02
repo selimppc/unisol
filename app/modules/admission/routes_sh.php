@@ -92,15 +92,39 @@ Route::any('admission/faculty/question-papers/store-question-paper-item',[
 ]);
 //ok
 
-Route::any('admission/faculty/question-papers/assign-to-question-paper',[
-    'as' => 'admission.faculty.question-papers.assign-to-question-paper',
-    'uses' => 'AdmFacultyController@assignQuestionPaper'
+Route::any('admission/faculty/question-papers/view-assign-to-question-paper/{id}',[
+    'as' => 'admission.faculty.question-papers.view-assign-to-question-paper',
+    'uses' => 'AdmFacultyController@viewAssignQuestionPaper'
 ]);
-//.
+//ok
 
 
-Route::any('admission/faculty/question-papers/evaluate-questions',[
+Route::any('admission/faculty/question-papers/adm-test-qp-assign/{id}',[
+    'as' => 'admission.faculty.question-papers.adm-test-qp-assign',
+    'uses' => 'AdmFacultyController@commentAssignQuestionPaper'
+]);
+//-> 5% remaining
+
+
+
+
+Route::any('admission/faculty/question-papers/evaluate-questions/{id}',[
     'as' => 'admission.faculty.question-papers.evaluate-questions',
     'uses' => 'AdmFacultyController@evaluateQuestions'
 ]);
+//->
+
+Route::any('admission/faculty/question-papers/evaluate-questions-items/{id}',[
+    'as' => 'admission.faculty.question-papers.evaluate-questions-items',
+    'uses' => 'AdmFacultyController@evaluateQuestionsitems'
+]);
 //.
+
+Route::any('admission/faculty/question-papers/re-evaluate-questions-items/{id}',[
+    'as' => 'admission.faculty.question-papers.re-evaluate-questions-items',
+    'uses' => 'AdmFacultyController@reEvaluateQuestionsitems'
+]);
+//.
+
+
+

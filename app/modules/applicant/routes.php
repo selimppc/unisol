@@ -21,7 +21,7 @@ Route::get('register/verify/{verified_code}',
 //********************Applicant Profile(R)*******************************
 
 Route::any('applicant/profile/',
-    'ApplicantController@applicant_profile_index'
+    'ApplicantController@applicantProfileIndex'
 );
 
 Route::any('applicant/profile/store',
@@ -42,7 +42,33 @@ Route::any('applicant/profile_image/edit/{id}',
 Route::any('applicant/profile_image/update/{id}',
     'ApplicantController@updateProfileImage'
 );
+//********************Applicant Academic Records(R)**********************
 
+Route::any('apt/acm_records/index',
+    'ApplicantController@acmRecordsIndex'
+);
+
+Route::any('apt/acm_records/create',
+    'ApplicantController@acmRecordsCreate'
+);
+
+Route::any('apt/acm_records/store',
+    'ApplicantController@acmRecordsStore'
+);
+
+Route::any('apt/acm_records/show/{id}',
+    'ApplicantController@acmRecordsShow'
+);
+
+Route::any('apt/acm_records/edit/{id}',
+    'ApplicantController@acmRecordsEdit'
+);
+Route::any('apt/acm_records/update/{id}',
+    'ApplicantController@acmRecordsUpdate'
+);
+Route::any('apt/acm_records/delete/{id}',
+    'ApplicantController@academicDelete'
+);
 //*********************Extra Curricular Activities(R)*************************
 
 Route::any('apt/extra_curricular/index',
@@ -78,7 +104,7 @@ Route::any('apt/supporting_docs/store',
     'ApplicantController@sDocsStore'
 );
 
-//****************applicant miscellaneous_info(R)************************
+//****************Applicant Miscellaneous Info(R)************************
 
 Route::any('apt/misc_info/index',
     'ApplicantController@miscInfoIndex'
@@ -99,35 +125,7 @@ Route::any('apt/misc_info/update/{id}',
     'ApplicantController@miscInfoUpdate'
 );
 
-//********************Applicant academic records(R)**********************
-
-Route::any('apt/acm_records/index',
-    'ApplicantController@acmRecordsIndex'
-);
-
-Route::any('apt/acm_records/create',
-    'ApplicantController@acmRecordsCreate'
-);
-
-Route::any('apt/acm_records/store',
-    'ApplicantController@acmRecordsStore'
-);
-
-Route::any('apt/acm_records/show/{id}',
-    'ApplicantController@acmRecordsShow'
-);
-
-Route::any('apt/acm_records/edit/{id}',
-    'ApplicantController@acmRecordsEdit'
-);
-Route::any('apt/acm_records/update/{id}',
-    'ApplicantController@acmRecordsUpdate'
-);
-Route::any('apt/acm_records/delete/{id}',
-    'ApplicantController@academicDelete'
-);
-
-// *********************Applicant Meta Information(R)*********************
+//*********************Applicant Meta Information(R)*********************
 
 Route::any('apt/personal_info/index',
     'ApplicantController@personalInfoIndex'

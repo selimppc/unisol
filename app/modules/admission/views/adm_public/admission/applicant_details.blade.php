@@ -52,9 +52,7 @@
               </div>
 
               <div class="box-footer clearfix">
-              <a class="pull-right btn btn-xs btn-info" href="{{ URL::route('admission.public.add-degree' )}}" data-toggle="modal" data-target="#addDegreeModal"> Add more degree</a>
-
-                  {{--<button class="pull-right btn btn-xs btn-info" data-toggle="modal" data-target="#addDegreeModal">Add more degree</button>--}}
+                  <a class="pull-right btn btn-xs btn-info" href="{{ URL::route('admission.public.add-degree' )}}" data-toggle="modal" data-target="#addDegreeModal"> Add more degree</a>
               </div>
      </div>
      {{--</section>--}}
@@ -98,7 +96,7 @@
 
                                                 <a style="margin-left:-21%" class="pull-right btn btn-default" href="{{ URL::to('applicant/profile/edit/' . $applicant_personal_info->id  ) }}" data-toggle="modal" data-target="#addDegreeModal" >Edit</a>
                                             @else
-                                                <a style="margin-left:-21%" class="pull-right btn btn-default" href="{{ URL::to('applicant/profile/create')}}" data-toggle="modal" data-target="#addDegreeModal" >Add Profile Information</a>
+                                                <a style="margin-left:-21%" class="pull-right btn btn-default" href="{{ URL::route('admission.public.add-applicant-profile')}}" data-toggle="modal" data-target="#addDegreeModal" >Add Profile Information</a>
 
                                           @endif
                                                   @if(isset($applicant_personal_info))
@@ -286,6 +284,12 @@
                                           <th class="col-lg-8">Permanent Address</th>
                                           <td>{{$applicant_meta_records->permanent_address}}</td>
                                       </tr>
+                                      <tr>
+                                          <th class="col-lg-8">Signature</th>
+
+                                          <td class="etsb-image-doc">{{ HTML::image('/files_public/'.$applicant_meta_records->signature) }}</td>
+
+                                      </tr>
 
                                  @else
                                       {{"No Biographical Information found !"}}
@@ -293,18 +297,16 @@
                                  @endif
 
                                  @if($applicant_meta_records != null)
-                                         <a style="margin-right:-21%" class="pull-right btn btn-default" href="{{ URL::to('applicant/profile/edit/' . $applicant_meta_records->id  ) }}" data-toggle="modal" data-target="#myeditModal" >Edit Profile</a>
+                                         <a style="margin-right:-21%" class="pull-right btn btn-default" href="{{ URL::route('admission.public.edit-applicant-meta' , $applicant_meta_records->id  ) }}" data-toggle="modal" data-target="#addDegreeModal" >Edit Profile</a>
                                  @else
-                                         <a style="margin-right:-21%" class="pull-right btn btn-default" href="{{ URL::to('applicant/profile/create')}}" data-toggle="modal" data-target="#addModal" >Add Profile Data</a>
+                                         <a style="margin-right:-21%" class="pull-right btn btn-default" href="{{ URL::route('admission.public.add-applicant-meta')}}" data-toggle="modal" data-target="#addDegreeModal" >Add Profile Data</a>
                                  @endif
                               </table>
                           </div>
                       </div>
                  </div>
                  <p>&nbsp;</p>
-                 {{--<div class="box-footer clearfix">--}}
-                    {{--<a class="pull-right btn btn-default"  href="{{url::to('admission/public/admission/add-applicant-acm-docs')}}" data-toggle="modal" data-target="#addDegreeModal"><b></b> Add Biographical Info </a>--}}
-                 {{--</div>--}}
+
             </div>
 
          </section>
@@ -313,7 +315,7 @@
 
  {{----------------------------------------------Modal --------------------------------------------------------------------------}}
  <div class="modal fade" id="addDegreeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-       <div class="modal-dialog">
+       <div class="modal-dialog" style="z-index:1050">
          <div class="modal-content">
 
         </div>
@@ -343,6 +345,5 @@
 
  <p>&nbsp;</p>
  <p>&nbsp;</p>
-
 @stop
 

@@ -30,7 +30,6 @@ class AdmPublicController extends \BaseController {
                         ->get();
 
                     if($degreeApplicantCheck){
-//                    return Redirect::route('admission.public.applicant_details', ['id' => Auth::applicant()->get()->id]);
                         Session::flash('info','The selected Degree(s)already added ! If You Want To Add More Please Select One That Is Not Added Yet Using "Add More Degree" Button.');
                     }else{
                         $data->save();
@@ -95,15 +94,53 @@ class AdmPublicController extends \BaseController {
         $applicant_meta_records = ApplicantMeta::where('applicant_id', '=',$applicant_id )->first();
 
         return View::make('admission::adm_public.admission.applicant_details',
-                  compact('batch_applicant','applicant_personal_info','applicant_acm_records','applicant_meta_records'));
+                  compact('batch_applicant','applicant_personal_info','applicant_acm_records',
+                      'applicant_meta_records'));
     }
     public function addMoreDegree(){
 
         $degreeList = Batch::with('relDegree')->get();
         return View::make('admission::adm_public.admission.add_more_degree',compact('degreeList'));
     }
+
+    public function addApplicantProfileByApplicant(){
+        return View::make('admission::adm_public.admission.add_applicant_profile');
+    }
+    public function storeApplicantProfileByApplicant(){
+
+        $data = Input::all();
+        $applicant_model = new ApplicantProfile();
+        if ($applicant_model->validate($data)) {
+            $applicant_model->applicant_id = Input::get('applicant_id');
+            $applicant_model->date_of_birth = Input::get('date_of_birth');
+            $applicant_model->place_of_birth = Input::get('place_of_birth');
+            $applicant_model->gender = Input::get('gender');
+
+            $imagefile= Input::file('profile_image');
+            $extension = $imagefile->getClientOriginalExtension();
+            $filename = str_random(12) . '.' . $extension;
+            $sdoc_file=strtolower($filename);
+            $path = public_path("applicant_images_public/" . $sdoc_file);
+            Image::make($imagefile->getRealPath())->resize(100, 100)->save($path);
+            $applicant_model->profile_image =$sdoc_file;
+
+            $applicant_model->city = Input::get('city');
+            $applicant_model->state = Input::get('state');
+            $applicant_model->country_id = Input::get('country_id');
+            $applicant_model->zip_code = Input::get('zip_code');
+            $applicant_model->phone = Input::get('phone');
+            $applicant_model->save();
+            return Redirect::back();
+        } else {
+            Session::flash('danger', "Please Login As Applicant!");
+            return Redirect::back();
+        }
+    }
+
+
     public function addApplicantAcmDocsPublic(){
-        return View::make('admission::adm_public.admission.add_acm_docs');
+        $countryList = [''=>'Select Country'] + Country::lists('title','id');
+        return View::make('admission::adm_public.admission.add_acm_docs',compact('applicant_id','countryList'));
     }
 
     public function storeApplicantAcmDocsPublic()
@@ -152,7 +189,7 @@ class AdmPublicController extends \BaseController {
                 $model->study_at = Input::get('study_at');
 
                 $file_transcript = Input::file('transcript');
-                $destinationPath = public_path() . '/applicant_images';
+                $destinationPath = public_path() . '/applicant_images_public';
                 $extension1 =  $file_transcript->getClientOriginalExtension();
                 $filename = str_random(12) . '.' . $extension1;
                 $lower_name = strtolower($filename);
@@ -160,7 +197,7 @@ class AdmPublicController extends \BaseController {
                 $model->transcript = $filename;
 
                 $file = Input::file('certificate');
-                $destinationPath = public_path() . '/applicant_images';
+                $destinationPath = public_path() . '/applicant_images_public';
                 $extension =  $file->getClientOriginalExtension();
                 $filename = str_random(12) . '.' . $extension;
                 $lower_name = strtolower($filename);
@@ -178,7 +215,6 @@ class AdmPublicController extends \BaseController {
     }
     public function editApplicantAcmDocsPublic($id){
         $model= ApplicantAcademicRecords::find($id);
-        //print_r($model);exit;
         return View::make('admission::adm_public.admission.edit_acm_docs', compact('model'));
     }
 
@@ -263,6 +299,105 @@ class AdmPublicController extends \BaseController {
         return View::make('admission::adm_public.admission.applicant_transcript',compact('model'));
 
     }
+//  {--------------- Applicant Mete Data :In Public  ------------------------------------------------------------------------------------}
+    public function addApplicantMetaInPublic(){
+
+        return View::make('admission::adm_public.admission.modal_files.add_meta_info');
+    }
+    public function storeApplicantMetaInPublic(){
+        $rules = array(
+            'national_id' => 'required',
+            'signature' => 'required',
+        );
+        $validator = Validator::make(Input::all(), $rules);
+        if ($validator->passes()) {
+
+            $applicant_meta_records =new ApplicantMeta();
+            $applicant_meta_records->applicant_id = Input::get('applicant_id');
+            $applicant_meta_records->fathers_name = Input::get('fathers_name');
+            $applicant_meta_records->mothers_name = Input::get('mothers_name');
+            $applicant_meta_records->fathers_occupation = Input::get('fathers_occupation');
+            $applicant_meta_records->fathers_phone = Input::get('fathers_phone');
+            $applicant_meta_records->freedom_fighter = Input::get('freedom_fighter');
+            $applicant_meta_records->mothers_occupation = Input::get('mothers_occupation');
+            $applicant_meta_records->mothers_phone = Input::get('mothers_phone');
+            $applicant_meta_records->national_id = Input::get('national_id');
+            $applicant_meta_records->driving_licence = Input::get('driving_licence');
+            $applicant_meta_records->passport = Input::get('passport');
+            $applicant_meta_records->place_of_birth = Input::get('place_of_birth');
+            $applicant_meta_records->national_id = Input::get('national_id');
+            $applicant_meta_records->marital_status = Input::get('marital_status');
+            $applicant_meta_records->nationality = Input::get('nationality');
+            $applicant_meta_records->religion = Input::get('religion');
+
+            $file = Input::file('signature');
+            $extension = $file->getClientOriginalExtension();
+            $filename = str_random(12) . '.' . $extension;
+            $sdoc_file=strtolower($filename);              // rename file name to lower
+            $path = public_path("files_public/" . $sdoc_file);
+            Image::make($file->getRealPath())->resize(150, 150)->save($path);
+            $applicant_meta_records->signature = $filename;
+
+            $applicant_meta_records->present_address = Input::get('present_address');
+            $applicant_meta_records->permanent_address = Input::get('permanent_address');
+            $applicant_meta_records->save();
+            return Redirect::back()->with('message', 'Successfully added Information!');
+        } else {
+            return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
+        }
+    }
+    public function editApplicantMetaInPublic($id){
+        $applicant_meta_records= ApplicantMeta::find($id);
+        return View::make('admission::adm_public.admission.modal_files.edit_meta_info', compact('applicant_meta_records'));
+    }
+    public function updateApplicantMetaInPublic($id){
+
+        $rules = array(
+            'national_id' => 'required',
+            'signature' => 'required',
+        );
+        $validator = Validator::make(Input::all(), $rules);
+        if ($validator->passes()) {
+            $data = Input::all();
+            $file = $data['signature'];
+            $applicant_meta_records = ApplicantMeta::find($id);
+            if($data){
+                $applicant_meta_records->applicant_id = Input::get('applicant_id');
+                $applicant_meta_records->fathers_name = Input::get('fathers_name');
+                $applicant_meta_records->mothers_name = Input::get('mothers_name');
+                $applicant_meta_records->fathers_occupation = Input::get('fathers_occupation');
+                $applicant_meta_records->fathers_phone = Input::get('fathers_phone');
+                $applicant_meta_records->freedom_fighter = Input::get('freedom_fighter');
+                $applicant_meta_records->mothers_occupation = Input::get('mothers_occupation');
+                $applicant_meta_records->mothers_phone = Input::get('mothers_phone');
+                $applicant_meta_records->national_id = Input::get('national_id');
+                $applicant_meta_records->driving_licence = Input::get('driving_licence');
+                $applicant_meta_records->passport = Input::get('passport');
+                $applicant_meta_records->place_of_birth = Input::get('place_of_birth');
+                $applicant_meta_records->national_id = Input::get('national_id');
+                $applicant_meta_records->marital_status = Input::get('marital_status');
+                $applicant_meta_records->nationality = Input::get('nationality');
+                $applicant_meta_records->religion = Input::get('religion');
+                $applicant_meta_records->present_address = Input::get('present_address');
+                $applicant_meta_records->permanent_address = Input::get('permanent_address');
+
+                if($file){
+                    $file = Input::file('signature');
+                    $extension = $file->getClientOriginalExtension();
+                    $filename = str_random(12) . '.' . $extension;
+                    $sdoc_file=strtolower($filename);              // rename file name to lower
+                    $path = public_path("files_public/" . $sdoc_file);
+                    Image::make($file->getRealPath())->resize(150, 150)->save($path);
+                    $applicant_meta_records->signature = $filename;
+                }
+            }
+            $applicant_meta_records->save();
+
+            return Redirect::back()->with('message', 'Successfully added Information!');
+        } else {
+            return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
+        }
+    }
 
 
     public function admTestDetails($id){
@@ -318,7 +453,7 @@ class AdmPublicController extends \BaseController {
 
     public function admDegAptCheckout(){
         $applicant_id = Auth::applicant()->get()->id;
-        $degree_applicant = DegreeApplicant::with('relDegree')
+        $batch_applicant = BatchApplicant::with('relBatch')
             ->where('applicant_id', '=',$applicant_id )
             ->get();
         $applicant_personal_info = ApplicantProfile::with('relCountry')
@@ -331,7 +466,7 @@ class AdmPublicController extends \BaseController {
             return Redirect::back()->with('danger', 'Profile or Academic information is Missing! Complete Your profile to checkout!');
         }else{
             return View::make('admission::adm_public.admission.adm_checkouts',
-                      compact('degree_applicant'));
+                      compact('batch_applicant'));
         }
     }
 
