@@ -214,8 +214,17 @@ class ApplicantController extends \BaseController
 
     public function personalInfoIndex()
     {
-        $applicant_personal_info = ApplicantMeta::where('applicant_id', '=','1' )->first();
-        return View::make('applicant::applicant_personal_info.index',compact('applicant_personal_info'));
+        if(Auth::applicant()->check()) {
+            $applicant = Auth::applicant()->get()->id;
+            $applicant_personal_info = ApplicantMeta::where('applicant_id', '=',$applicant )
+                ->first();
+            return View::make('applicant::applicant_personal_info.index',compact('applicant_personal_info','applicant'));
+        }
+        else {
+            Session::flash('danger', "Please Login As Applicant!");
+            return Redirect::route('user/login');
+        }
+
     }
 
     public function personalInfoCreate(){

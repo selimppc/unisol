@@ -1,24 +1,3 @@
-
-<div class="modal-header">
-
-    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-    <h4 class="modal-title" id="myModalLabel">Add</h4>
-</div>
-
-<div class="modal-body">
-  <div style="padding: 20px;">
-        <h4> </h4>
-
-  {{ Form::open(array('class'=>'form-horizontal','url' => 'apt/personal_info/store', 'method' =>'post', 'files'=>'true','id'=>'signup-form')) }}
-
-   {{--<div class="form-group">--}}
-      {{--<span class="text-muted"><em><span style="color:red;">  * </span><b>Indicates required field</b> </em></span>--}}
-   {{--</div>--}}
-
-    {{ Form::hidden('applicant_id', $applicant_id = 1, array('class'=>'form-control')) }}
-
-
-
    <div class='form-group'>
    <div>{{ Form::label('fathers_name', 'Fathers name') }}</div>
    <div>{{ Form::text('fathers_name', Input::old('fathers_name'),['class'=>'form-control']) }}</div>
@@ -39,11 +18,23 @@
    <div>{{ Form::text('fathers_phone', Input::old('fathers_phone'),['class'=>'form-control ']) }}</div>
    </div>
 
+   {{--<div class='form-group'>--}}
+   {{--<div>{{ Form::label('freedom_fighter', ' Freedom fighter') }}</div>--}}
+   {{--<div>{{ Form::text('freedom_fighter', Input::old('freedom_fighter'),['class'=>'form-control ']) }}</div>--}}
+   {{--</div>--}}
    <div class='form-group'>
-   <div>{{ Form::label('freedom_fighter', ' Freedom fighter') }}</div>
-   <div>{{ Form::text('freedom_fighter', Input::old('freedom_fighter'),['class'=>'form-control ']) }}</div>
+       {{ Form::label('freedom_fighter', ' Freedom fighter?') }}
+       <div class="form-inline">
+           <div class="radio">
+               {{ Form::radio('freedom_fighter', 'yes', (Input::old('freedom_fighter') == 'yes'), array('id'=>'yes', 'class'=>'radio')) }}
+               {{ Form::label('yes', 'yes') }}
+           </div>
+           <div class="radio">
+               {{ Form::radio('freedom_fighter', 'No', (Input::old('freedom_fighter') == 'No'), array('id'=>'No', 'class'=>'radio')) }}
+               {{ Form::label('No', 'No') }}
+           </div>
+       </div>
    </div>
-
    <div class='form-group'>
    <div>{{ Form::label('mothers_occupation', ' Mothers Occupation') }}</div>
    <div>{{ Form::text('mothers_occupation', Input::old('mothers_occupation'),['class'=>'form-control ']) }}</div>
@@ -62,15 +53,11 @@
    <div>{{ Form::label('driving_licence', ' Driving license') }}</div>
    <div>{{ Form::text('driving_licence', Input::old('driving_licence'),['class'=>'form-control ']) }}</div>
    </div>
+
    <div class='form-group'>
    <div>{{ Form::label('passport', ' Passport') }}</div>
    <div>{{ Form::text('passport', Input::old('passport'),['class'=>'form-control ']) }}</div>
    </div>
-
-  <div class='form-group'>
-  <div>{{ Form::label('place_of_birth', ' Place of birth') }}</div>
-  <div>{{ Form::text('place_of_birth', Input::old('place_of_birth'),['class'=>'form-control ']) }}</div>
-  </div>
 
   <div class='form-group'>
   <div>{{ Form::label('marital_status', ' Marital status') }}</div>
@@ -80,14 +67,11 @@
   </div>
 
    <div class='form-group'>
-  <div>{{ Form::label('nationality', ' Nationality') }}</div>
-  <div>{{ Form::text('nationality', Input::old('nationality'),['class'=>'form-control ']) }}</div>
-  </div>
-
-  <div class='form-group'>
-  <div>{{ Form::label('religion', ' Religion') }}</div>
-  <div>{{ Form::text('religion', Input::old('religion'),['class'=>'form-control ']) }}</div>
-  </div>
+       <div>{{ Form::label('religion', 'Religion') }}</div>
+       {{ Form::select('religion', array('0' => 'Select one',
+                  '1' => 'Islam', '2' => 'Hindu','3'=>'khristian'), Input::old('religion'),
+                  array('class' => 'form-control')) }}
+   </div>
 
   <div class='form-group'>
   <div>{{ Form::label('signature', ' Signature') }}</div>
@@ -103,19 +87,10 @@
   <div>{{ Form::label('permanent_address', ' Parmanent Address') }}</div>
   <div>{{ Form::textarea ('permanent_address', Input::old('permanent_address'),['class'=>'form-control','size' => '30x5']) }}</div>
   </div>
-  <br>
-  <br>
-  {{ Form::submit('Submit', array('class' => 'btn btn-primary')) }}
 
-  <br>
-  <br>
-
-  {{ Form::close() }}
-
-</div>
-</div>
-<div class="modal-footer">
-
-</div>
+  <div class="modal-footer">
+       {{ Form::submit('Submit', array('class' => 'btn btn-primary')) }}
+       <a href="{{URL::to('apt/personal_info/index')}}" class="btn btn-default pull-right">Close </a>
+  </div>
 
 
