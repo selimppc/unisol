@@ -52,9 +52,7 @@
               </div>
 
               <div class="box-footer clearfix">
-              <a class="pull-right btn btn-xs btn-info" href="{{ URL::route('admission.public.add-degree' )}}" data-toggle="modal" data-target="#addDegreeModal"> Add more degree</a>
-
-                  {{--<button class="pull-right btn btn-xs btn-info" data-toggle="modal" data-target="#addDegreeModal">Add more degree</button>--}}
+                  <a class="pull-right btn btn-xs btn-info" href="{{ URL::route('admission.public.add-degree' )}}" data-toggle="modal" data-target="#addDegreeModal"> Add more degree</a>
               </div>
      </div>
      {{--</section>--}}
@@ -98,7 +96,7 @@
 
                                                 <a style="margin-left:-21%" class="pull-right btn btn-default" href="{{ URL::to('applicant/profile/edit/' . $applicant_personal_info->id  ) }}" data-toggle="modal" data-target="#addDegreeModal" >Edit</a>
                                             @else
-                                                <a style="margin-left:-21%" class="pull-right btn btn-default" href="{{ URL::to('applicant/profile/create')}}" data-toggle="modal" data-target="#addDegreeModal" >Add Profile Information</a>
+                                                <a style="margin-left:-21%" class="pull-right btn btn-default" href="{{ URL::route('admission.public.add-applicant-profile')}}" data-toggle="modal" data-target="#addDegreeModal" >Add Profile Information</a>
 
                                           @endif
                                                   @if(isset($applicant_personal_info))
@@ -302,9 +300,7 @@
                       </div>
                  </div>
                  <p>&nbsp;</p>
-                 {{--<div class="box-footer clearfix">--}}
-                    {{--<a class="pull-right btn btn-default"  href="{{url::to('admission/public/admission/add-applicant-acm-docs')}}" data-toggle="modal" data-target="#addDegreeModal"><b></b> Add Biographical Info </a>--}}
-                 {{--</div>--}}
+
             </div>
 
          </section>
@@ -313,7 +309,7 @@
 
  {{----------------------------------------------Modal --------------------------------------------------------------------------}}
  <div class="modal fade" id="addDegreeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-       <div class="modal-dialog">
+       <div class="modal-dialog" style="z-index:1050">
          <div class="modal-content">
 
         </div>
@@ -343,6 +339,5 @@
 
  <p>&nbsp;</p>
  <p>&nbsp;</p>
-
 @stop
 

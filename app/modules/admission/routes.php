@@ -325,7 +325,7 @@ Route::any('admission/amw/admission-test-examiner/delete-adm-test-examiner',[
 ]);
 //...................................Admission Question........................................................
 
-Route::any('admission/amw/admission-test-question/{year_id}/{semester_id}/{batch_id}',[
+Route::any('admission/amw/admission-test-question/{bats_id}',[
     'as' => 'admission.amw.admission-test-question',
     'uses' => 'AdmAmwController@admQuestionIndex'
 ]);
@@ -350,7 +350,7 @@ Route::any('admission/amw/admission-test-question/edit-admtest-question-paper/{i
     'uses' => 'AdmAmwController@editAdmTestQuestionPaper'
 ]);
 
-Route::any('admission/amw/admission-test-question/update-admtest-question-paper/{id]',[
+Route::any('admission/amw/admission-test-question/update-admtest-question-paper/{id}',[
     'as' => 'admission.amw.admission-test-question.update-admtest-question-paper',
     'uses' => 'AdmAmwController@updateAdmTestQuestionPaper'
 ]);

@@ -1103,22 +1103,15 @@ class AdmAmwController extends \BaseController
     }
 
 
-//..................................................admtest_question.......................................
+//..................................................adm test_question.......................................
 
-    public function admQuestionIndex( $year_id, $semester_id, $batch_id)
+    public function admQuestionIndex($bats_id)
     {
-        $adm_test_question_paper = AdmQuestion::latest('id')->paginate(10);
-        $degree_id = Batch::where('id' ,'=', $batch_id )
-            ->where('semester_id' ,'=', $semester_id)
-            ->where('year_id' ,'=', $year_id)
-            ->first()->degree_id;
-        $degree_data = Degree::with('relDepartment')
-            ->where('id','=', $degree_id)
-            ->first();
-
+        $batch = BatchAdmtestSubject::with('relBatch')->where('id', $bats_id)->first();
+        $adm_question = AdmQuestion::where('batch_admtest_subject_id', $bats_id)->paginate(10);
 
         return View::make('admission::amw.adm_question.adm_question_index',
-            compact('semester_id','year_id','adm_test_question_paper','degree_id','degree_data','batch_id'));
+            compact('adm_question', 'batch', 'bats_id'));
     }
 
 

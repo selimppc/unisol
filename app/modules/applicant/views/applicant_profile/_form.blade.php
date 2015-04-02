@@ -4,7 +4,6 @@
 </div>
 <div class='form-group'>
         {{ Form::label('date_of_birth', 'Date of Birth:') }}
-        {{--{{ Form::text('date_of_birth', null, array('type' => 'text', 'class' => 'form-control date_picker','id' => 'date')) }}--}}
         {{ Form::text('date_of_birth', Input::old('date_of_birth'),['class'=>'form-control date_picker','required'=>'required']) }}
 </div>
 <div class='form-group'>
@@ -25,12 +24,12 @@
         </div>
 </div>
 <div class='form-group'>
-        {{ Form::label('profile_image', 'Profile Image') }}
+        {{ Form::label('profile_image', 'Picture') }}
         {{ Form::file('profile_image', Input::old('profile_image'),array('class' => 'form-control','placeholder'=>'')) }}
 </div>
 <div class='form-group'>
         {{ Form::label('city', 'City') }}
-        {{ Form::text('city', Input::old('profile_image'),array('class' => 'form-control','placeholder'=>'')) }}
+        {{ Form::text('city', Input::old('city'),array('class' => 'form-control','placeholder'=>'')) }}
 </div>
 <div class='form-group'>
         {{ Form::label('state', 'State') }}

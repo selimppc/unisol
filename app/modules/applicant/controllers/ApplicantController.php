@@ -80,12 +80,19 @@ class ApplicantController extends \BaseController
 
 //**********************Applicant's Profile Start(R)*********************************
 
-    public function applicant_profile_index()
+    public function applicantProfileIndex()
     {
-        $applicant = Auth::applicant()->get()->id;
-        $countryList = array('' => 'Please Select') + Country::lists('title', 'id');
-        $profile = ApplicantProfile::where('applicant_id', '=', $applicant )->first();
-        return View::make('applicant::applicant_profile.index',compact('profile','countryList'));
+        if(Auth::applicant()->check()) {
+            $applicant = Auth::applicant()->get()->id;
+            $countryList = array('' => 'Please Select') + Country::lists('title', 'id');
+            $profile = ApplicantProfile::where('applicant_id', '=', $applicant)->first();
+            return View::make('applicant::applicant_profile.index', compact('profile', 'countryList'));
+        }
+        else {
+            Session::flash('danger', "Please Login As Applicant!");
+            return Redirect::route('user/login');
+        }
+
     }
     public function applicantProfileStore()
     {
@@ -98,13 +105,13 @@ class ApplicantController extends \BaseController
                 $applicant_model->place_of_birth = Input::get('place_of_birth');
                 $applicant_model->gender = Input::get('gender');
 
-                $imagefile= Input::file('profile_image');
+                $imagefile = Input::file('profile_image');
                 $extension = $imagefile->getClientOriginalExtension();
                 $filename = str_random(12) . '.' . $extension;
-                $sdoc_file=strtolower($filename);        
-                $path = public_path("applicant_images/profile/" . $sdoc_file);
+                $file = strtolower($filename);
+                $path = public_path("/applicant_images/profile/" . $file);
                 Image::make($imagefile->getRealPath())->resize(100, 100)->save($path);
-                $applicant_model->profile_image =$sdoc_file;
+                $applicant_model->profile_image = $file;
 
                 $applicant_model->city = Input::get('city');
                 $applicant_model->state = Input::get('state');
@@ -112,62 +119,74 @@ class ApplicantController extends \BaseController
                 $applicant_model->zip_code = Input::get('zip_code');
                 $applicant_model->phone = Input::get('phone');
                 $applicant_model->save();
-                return Redirect::back();
+                return Redirect::back()->with('message', 'Successfully Added!');
             } else {
-                Session::flash('danger', "Please Login As Applicant!");
-                return Redirect::route('user/login');
+                return Redirect::back()->with('error', "Data Not Saved !");
             }
         }
+        else {
+            Session::flash('danger', "Please Login As Applicant!");
+            return Redirect::route('user/login');
+            }
     }
 
-    public function editApplicantProfile($id){
-
+    public function editApplicantProfile($id)
+    {
         $profile = ApplicantProfile::find($id);
-        return View::make('applicant::applicant_profile.edit', compact('profile'));
+        $countryList = array('' => 'Please Select') + Country::lists('title', 'id');
+        return View::make('applicant::applicant_profile.edit', compact('profile','countryList'));
 
     }
-    public function updateApplicantProfile($id){
+    public function updateApplicantProfile($id)
+    {
+        if(Auth::applicant()->check()) {
+            $rules = array(
+                'date_of_birth' => 'required',
+            );
+            $validator = Validator::make(Input::all(), $rules);
+            if ($validator->passes()) {
+                $applicant_model = ApplicantProfile::find($id);
+                $applicant_model->applicant_id = Auth::applicant()->get()->id;
+                $applicant_model->date_of_birth = Input::get('date_of_birth');
+                $applicant_model->place_of_birth = Input::get('place_of_birth');
+                $applicant_model->gender = Input::get('gender');
 
-        $rules = array(
-            'date_of_birth' => 'required',
-        );
-        $validator = Validator::make(Input::all(), $rules);
-        if ($validator->passes()) {
-            $profile = ApplicantProfile::find($id);
-            $profile->date_of_birth = Input::get('date_of_birth');
-//            $profile->birth_place = Input::get('birth_place');
-            $profile->gender = Input::get('gender');
-            $profile->city = Input::get('city');
-            $profile->state = Input::get('state');
-            $profile->country = Input::get('country');
-            $profile->zip_code = Input::get('zip_code');
+                $file = Input::file('profile_image');
+                if ($file) {
+                    $extension = $file->getClientOriginalExtension();
+                    $filename = str_random(12) . '.' . $extension;
+                    $path = public_path("/applicant_images/profile/" . $filename);
+                    Image::make($file->getRealPath())->resize(100, 100)->save($path);
 
-            $file = Input::file('profile_image');
+                    $applicant_model->profile_image = $filename;
+                }
+                $applicant_model->city = Input::get('city');
+                $applicant_model->state = Input::get('state');
+                $applicant_model->country_id = Input::get('country_id');
+                $applicant_model->zip_code = Input::get('zip_code');
+                $applicant_model->phone = Input::get('phone');
+                $applicant_model->save();
 
-            $extension = $file->getClientOriginalExtension();
-            $filename = str_random(12) . '.' . $extension;
-            $path = public_path("images/applicant_profile/" . $filename);
-            Image::make($file->getRealPath())->resize(60, 60)->save($path);
+                $applicant_model->save();
 
-            $profile->profile_image = $filename;
-
-            $profile->save();
-
-            return Redirect::back()->with('message', 'Successfully updated Information!');
-        } else {
-            return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
+                return Redirect::back()->with('message', 'Successfully updated Information!');
+            } else {
+                return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
+            }
         }
-
+        else {
+            Session::flash('danger', "Please Login As Applicant!");
+            return Redirect::route('user/login');
+        }
     }
-    public function editProfileImage($id){
-
+    public function editProfileImage($id)
+    {
         $profile = ApplicantProfile::find($id);
-
         return View::make('applicant::applicant_profile.edit_image', compact('profile'));
     }
 
-    public function updateProfileImage($id){
-
+    public function updateProfileImage($id)
+    {
         $rules = array(
             'profile_image' => 'required',
         );
@@ -175,18 +194,15 @@ class ApplicantController extends \BaseController
         if ($validator->passes()) {
 
             $profile = ApplicantProfile::find($id);
-
-            $file = Input::file('profile_image');
-
-            $extension = $file->getClientOriginalExtension();
+            $imagefile = Input::file('profile_image');
+            $extension = $imagefile->getClientOriginalExtension();
             $filename = str_random(12) . '.' . $extension;
-            $path = public_path("images/applicant_profile/" . $filename);
-            Image::make($file->getRealPath())->resize(60, 60)->save($path);
-
+            $file = strtolower($filename);
+            $path = public_path("/applicant_images/profile/" . $file);
+            Image::make($imagefile->getRealPath())->resize(100, 100)->save($path);
+            $profile->profile_image = $file;
             $profile->profile_image = $filename;
-
             $profile->save();
-
             return Redirect::back()->with('message', 'Successfully updated Information!');
         } else {
             return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
