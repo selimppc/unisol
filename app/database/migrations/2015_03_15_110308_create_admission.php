@@ -289,7 +289,7 @@ class CreateAdmission extends Migration {
             $table->string('title', 128);
             $table->dateTime('deadline');
             $table->string('total_marks', 8);
-            $table->tinyInteger('status', false)->length(1);
+            $table->string('status', 128);
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
@@ -400,7 +400,7 @@ class CreateAdmission extends Migration {
             $table->increments('id');
             $table->unsignedInteger('adm_question_items_id')->nullable();
             $table->string('title', 128);
-            $table->tinyInteger('answer', false)->length(1);
+            $table->string('answer', 228);
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
