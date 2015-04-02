@@ -13,7 +13,7 @@
                     <tr>
                         <th></th>
                         <td class="etsb-image-doc">
-                            {{ $model->transcript != null ? HTML::image('/applicant_images_public/'.$model->transcript) :  HTML::image('/img/no_file.jpg') }}
+                            {{ $model->transcript != null ? HTML::image('/files_public/'.$model->transcript) :  HTML::image('/img/no_file.jpg') }}
                         </td>
                     </tr>
                 </table>
