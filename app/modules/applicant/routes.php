@@ -76,10 +76,6 @@ Route::any('apt/personal_info/index',
     'ApplicantController@personalInfoIndex'
 );
 
-Route::any('apt/personal_info/create',
-    'ApplicantController@personalInfoCreate'
-);
-
 Route::any('apt/personal_info/store',
     'ApplicantController@personalInfoStore'
 );
@@ -90,6 +86,13 @@ Route::any('apt/personal_info/edit/{id}',
 
 Route::any('apt/personal_info/update/{id}',
     'ApplicantController@personalInfoUpdate'
+);
+
+Route::any('applicant/personal_info_signature/edit/{id}',
+    'ApplicantController@edit_signature'
+);
+Route::any('applicant/personal_info_signature/update/{id}',
+    'ApplicantController@update_signature'
 );
 
 //******************Applicant Supporting Docs(R)*************************
