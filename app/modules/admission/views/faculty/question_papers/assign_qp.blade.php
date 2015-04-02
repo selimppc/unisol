@@ -1,54 +1,50 @@
-<div style="padding: 20px;">
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+    <h4>Be Assigned To QP </h4>
+</div>
 
+<div style="padding-left: 10px; width: 90%;">
+    {{Form::open(array('route'=>'admission.faculty.question-papers.adm-test-qp-assign','method' => 'POST')) }}
+    {{Form::hidden('adm_question_id',$assign_qp->id )}}
+    {{Form::hidden('commented_to', $assign_qp->examiner_faculty_user_id)}}
+        <div  style="padding-left: 8%">
+           <strong>Question Title : </strong>{{ isset($assign_qp) ? $assign_qp->title : 'no question found!' }}
+            <p>
+                <table class="table table-striped  table-bordered">
+                    <tr>
+                        <td>Subject:</td>
+                       <td>{{ $assign_qp->relBatchAdmTestSubject->relAdmTestSubject->title }}</td>
+                    </tr>
+                    <tr>
+                        <td>Examiner :</td>
+                        <td>{{User::FullName($assign_qp->examiner_faculty_user_id)}}</td>
+                    </tr>
+                    <tr>
+                        <td>Status :</td>
+                        <td>{{$assign_qp->status}}</td>
+                    </tr>
 
-      {{Form::open(array('url'=>'admission/faculty/question-papers/assign-to-question-paper', 'class'=>'form-horizontal','files'=>true))}}
-                {{--{{Form::hidden('adm_question_id', $assign_qp->id, ['class'=>'form-control'])}}--}}
+                </table>
+                <small>Comments as below: </small>
 
+                @foreach($assign_qp_assign as $comment)
+                    <p style="padding: 1%; background: #efefef;">
+                        <b><small>{{ User::FullName($comment->commented_to); }}</small></b>
+                        As &nbsp; <b><small>{{  strtoupper(Role::RoleName($comment->commented_by)) }} </small></b><br>
+                      &nbsp; &nbsp; &nbsp; {{ $comment->comment }}
+                    </p>
+                @endforeach
 
                 <div class="form-group">
-                      <strong>Question Title : </strong>
-                      {{ isset($assign_qp) ? $assign_qp->relAdmQuestion->title : 'no question found!' }}
+                      {{ Form::textarea('comment', Null, ['class' => 'form-control', 'placeholder'=>'Your Comments Here', 'style'=>'height: 100px;']) }}
                 </div>
-
-                <div class="form-group">
-                     <strong> Subject:</strong>
-                    {{ $assign_qp->relAdmQuestion->relBatchAdmTestSubject->relAdmTestSubject->title }}
-                </div>
-
-
-                <div class="form-group">
-                     <strong> Examiner:</strong>
-                    {{ $assign_qp->relAdmQuestion->relUser->relUserProfile->first_name.' '.$assign_qp->relAdmQuestion->relUser->relUserProfile->middle_name.' '.$assign_qp->relAdmQuestion->relUser->relUserProfile->last_name }}
-                </div>
-
-                 <div class="form-group">
-                            <strong> Status:</strong>
-                            {{--  {{ $assign_qp->relAdmQuestion->status }}--}}
-                 </div>
-
-                <div class="form-group">
-                         {{ Form::label('comment', 'Comments') }} </br>
-
-                                 <div class="jumbotron text-left" style="padding-top: 2px; padding-left: 2px; padding-bottom: 5px; background-color: #FF8C95;">
-                                         @foreach($adm_question_comments as $question_comments)
-
-                                               &nbsp; <strong>{{ User::FullName($question_comments->commented_by) }} </strong>
-
-                                            As &nbsp; <strong>{{  strtoupper(Role::RoleName($question_comments->commented_by)) }} </strong>
-
-                                               </br></br>
-                                               &nbsp; {{ $assign_qp->relAdmQuestion->relUser->relUserProfile->first_name.' '.$assign_qp->relAdmQuestion->relUser->relUserProfile->middle_name.' '.$assign_qp->relAdmQuestion->relUser->relUserProfile->last_name }}
-                                               , &nbsp; {{ $question_comments->comment }}
-
-                                               </br> </br>
-                                         @endforeach
-                                 </div>
-
-                         {{ Form::textarea('comment', Input::old('comment'), array('size' => '40x4','class' => 'form-control','required'=>'required')) }}
-                </div>
-            {{ Form::submit('Comments', array('class' => 'btn btn-primary btn-xs')) }}
-             <a href="{{URL::previous()}}" class="btn btn-default btn-xs">Close </a>
-
-      {{ Form::close() }}
+            </p>
+        </div>
+    {{ Form::submit('Submit Comment', array('class'=>'pull-right btn-sm btn-info')) }}
+    <a href="" class="pull-right btn-sm btn-default" style="margin-right: 5px">Close</a>
+    &nbsp;
+    </br>
+    &nbsp;
+    {{ Form::close() }}
 </div>
 
