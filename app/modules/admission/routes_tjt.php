@@ -160,7 +160,7 @@ Route::any('admission/public/admission/applicant-details/{id}',
     ['as' => 'admission.public.applicant_details',
         'uses' => 'AdmPublicController@degreeOfferApplicantDetails']);
 //Add acm records_modal
-Route::any('admission/public/admission/add-applicant-acm-docs/{applicant_id}',
+Route::any('admission/public/admission/add-applicant-acm-docs',
     ['as' => 'admission.public.add-applicant-acm-docs',
         'uses' => 'AdmPublicController@addApplicantAcmDocsPublic']);
 
@@ -187,6 +187,23 @@ Route::any('admission/public/admission/applicant-certificate/{id}',
 Route::any('admission/public/admission/applicant-transcript/{id}',
     ['as' => 'admission.public.applicant_transcript',
         'uses' => 'AdmPublicController@degreeOfferApplicantTranscript']);
+
+//Applicant Meta..................................................
+Route::any('admission/public/admission/add-applicant-meta',
+    ['as' => 'admission.public.add-applicant-meta',
+        'uses' => 'AdmPublicController@addApplicantMetaInPublic']);
+
+Route::any('admission/public/admission/store-applicant-meta',
+    ['as' => 'admission.public.store-applicant-meta',
+        'uses' => 'AdmPublicController@storeApplicantMetaInPublic']);
+
+Route::any('admission/public/admission/edit-applicant-meta/{id}',
+    ['as' => 'admission.public.edit-applicant-meta',
+        'uses' => 'AdmPublicController@editApplicantMetaInPublic']);
+
+Route::any('admission/public/admission/update-applicant-meta/{id}',
+    ['as' => 'admission.public.update-applicant-meta',
+        'uses' => 'AdmPublicController@updateApplicantMetaInPublic']);
 
 Route::any('admission/public/admission/add-degree',
     ['as' => 'admission.public.add-degree',

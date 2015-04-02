@@ -14,11 +14,11 @@ class AdmQuestion extends Eloquent{
     ];
     private $errors;
     private $rules = [
-        'batch_admtest_subject_id' => 'required|integer',
-        'examiner_faculty_user_id' => 'required|integer',
+        'batch_admtest_subject_id' => 'integer',
+        'examiner_faculty_user_id' => 'integer',
         'title' => 'required',
-        'deadline' => 'required|date',
-        'total_marks' => 'required|numeric',
+        'deadline' => 'date',
+        'total_marks' => 'numeric',
         //'status' => 'alpha_dash',
     ];
     public function validate($data)
@@ -77,5 +77,16 @@ class AdmQuestion extends Eloquent{
 
 
     //TODO : Scope Area
+
+    public function scopeAdmissionExaminerList($query , $batch_id){
+        $query = AdmExaminer::join('user_profile', function($join)
+        {
+            $join->on('adm_examiner.user_id', '=', 'user_profile.user_id');
+        })
+            ->where('adm_examiner.batch_id', '=', $batch_id)
+            ->select(DB::raw('CONCAT(user_profile.first_name, " ", user_profile.middle_name, " ", user_profile.last_name) AS full_name, adm_examiner.user_id as id'))
+            ->lists('full_name', 'id');
+        return $query;
+    }
 
 } 

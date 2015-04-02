@@ -12,7 +12,9 @@
                 <table>
                     <tr>
                         <th></th>
-                        <td>{{ isset($model->transcript)? HTML::image('applicant_images/'.$model->transcript) : 'No Transcript found!' }}</td>
+                        <td class="etsb-image-doc">
+                            {{ $model->transcript != null ? HTML::image('/applicant_images_public/'.$model->transcript) :  HTML::image('/img/no_file.jpg') }}
+                        </td>
                     </tr>
                 </table>
            </div>

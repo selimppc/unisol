@@ -1115,20 +1115,14 @@ class AdmAmwController extends \BaseController
     }
 
 
-    public function createAdmTestQuestionPaper($year_id, $semester_id, $batch_id)
+    public function createAdmTestQuestionPaper($bats_id)
     {
-        $degree_id = Batch::where('id' ,'=', $batch_id )
-            ->where('semester_id' ,'=', $semester_id)
-            ->where('year_id' ,'=', $year_id)
-            ->first()->degree_id;
-        $degree_data = Degree::with('relDepartment')
-            ->where('id','=', $degree_id)
-            ->first();
+        $batch = BatchAdmtestSubject::with('relBatch')->where('id', $bats_id)->first();
 
-        $batch_admtest_subject = AdmTestSubject::lists('title','id');
-
+        $admtest_subject = BatchAdmtestSubject::AdmissionTestSubjectByBatchId($batch->batch_id);
+        $examiner_faculty_lists = AdmQuestion::AdmissionExaminerList($batch->batch_id);
         return View::make('admission::amw.adm_question._form',
-            compact('batch_id','year_id','semester_id','degree_id','degree_data','batch_admtest_subject'));
+            compact('batch','admtest_subject', 'examiner_faculty_lists'));
     }
 
 
@@ -1150,35 +1144,23 @@ class AdmAmwController extends \BaseController
 
     }
 
-
     public function viewAdmTestQuestionPaper($id)
     {
         $view_questions = AdmQuestion::with('relBatchAdmtestSubject', 'relBatchAdmtestSubject.relBatch', 'relBatchAdmtestSubject.relBatch.relDegree')
             ->where('id', $id)->first();
-
         return View::make('admission::amw.adm_question.view_question',compact(
             'view_questions'));
     }
 
 
-    public function editAdmTestQuestionPaper($id , $year_id, $semester_id, $batch_id)
+    public function editAdmTestQuestionPaper($id)
     {
-        $edit_admtest_question = AdmQuestion::find($id);
-
-        $degree_id = Batch::where('id' ,'=', $batch_id )
-            ->where('semester_id' ,'=', $semester_id)
-            ->where('year_id' ,'=', $year_id)
-            ->first()->degree_id;
-
-        $degree_data = Degree::with('relDepartment')
-            ->where('id','=', $degree_id)
-            ->first();
-
-        $batch_admtest_subject = AdmTestSubject::lists('title','id');
-
+        $question = AdmQuestion::with('relBatchAdmtestSubject')->where('id', $id)->first();
+        $batch_admtest_subject = BatchAdmtestSubject::BatchAdmissionTestSubjectLists($question->batch_admtest_subject_id);
+        $examiner_faculty_lists = AdmQuestion::AdmissionExaminerList($question->relBatchAdmtestSubject->batch_id);
 
         return View::make('admission::amw.adm_question.edit_question',
-            compact('batch_admtest_subject','edit_admtest_question','year_id','semester_id','batch_id','degree_id','degree_data'));
+            compact('question','batch_admtest_subject','examiner_faculty_lists'));
     }
 
 
@@ -1200,11 +1182,22 @@ class AdmAmwController extends \BaseController
         }
     }
 
-    public function assignFacutly()
+    public function viewQuestionsByPaper($q_id)
     {
-
-        echo "ei part tuku baki ace // shafi";
-
+        $question_subject = AdmQuestion::with('relBatchAdmtestSubject')->where('id', $q_id)->first();
+        $question_items = AdmQuestionItems::where('adm_question_id', $q_id)->get();
+        return View::make('admission::amw.adm_question.view_question_items',
+            compact('question_items', 'question_subject'));
+    }
+    public function viewQuestionItemDetails($q_items_id)
+    {
+        $question_item = AdmQuestionItems::where('id', $q_items_id)->first();
+        $question_item_details = AdmQuestionOptAns::where('adm_question_items_id', $q_items_id)->get();
+        return View::make('admission::amw.adm_question.view_question_item_details',
+            compact('question_item', 'question_item_details'));
+    }
+    public function assignFacultyByQuestion($q_id)
+    {
 
     }
 
