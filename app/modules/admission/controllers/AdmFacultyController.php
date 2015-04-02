@@ -420,35 +420,33 @@ class AdmFacultyController extends \BaseController {
 
 
 //->
-    public function evaluateQuestions()
+    public function evaluateQuestions($adm_question_id)
     {
+        $data = AdmQuestion::with('relBatchAdmtestSubject',
+            'relBatchAdmtestSubject.relBatch','relBatchAdmtestSubject.relAdmtestSubject')
+            ->where('id','=',$adm_question_id)->first();
+
+//        print_r($data);exit;
+
         $evaluation_qp = AdmQuestionEvaluation::latest('id')->get();
 
         return View::make('admission::faculty.question_papers.evaluate_question_paper',
-            compact('evaluation_qp','batch_admtest_subject_id'));
+            compact('evaluation_qp','data'));
 
     }
 
+
     public function evaluateQuestionsitems()
     {
-
-
         return View::make('admission::faculty.question_papers.evaluate-questions-items',
             compact(''));
-
     }
 
     public function reEvaluateQuestionsitems()
     {
-
-
         return View::make('admission::faculty.question_papers.re-evaluate-questions-items',
             compact(''));
-
     }
-
-
-
 
 
 //ok
@@ -473,11 +471,6 @@ class AdmFacultyController extends \BaseController {
             return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
         }
     }
-
-
-
-
-
 
 
 }
