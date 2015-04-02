@@ -69,5 +69,26 @@ class BatchAdmtestSubject extends Eloquent{
 
 
     //TODO : Scope Area
+    public function scopeAdmissionTestSubjectByBatchId($query , $batch_id){
+        $query = BatchAdmtestSubject::join('admtest_subject', function($join)
+        {
+            $join->on('batch_admtest_subject.admtest_subject_id', '=', 'admtest_subject.id');
+        })
+            ->where('batch_admtest_subject.batch_id', '=', $batch_id)
+            ->select(DB::raw('CONCAT(admtest_subject.title) AS title, batch_admtest_subject.admtest_subject_id as id'))
+            ->lists('title', 'id');
+        return $query;
+    }
+
+    public function scopeBatchAdmissionTestSubjectLists($query , $batch_admtest_subject_id){
+        $query = BatchAdmtestSubject::join('admtest_subject', function($join)
+        {
+            $join->on('batch_admtest_subject.admtest_subject_id', '=', 'admtest_subject.id');
+        })
+            ->where('batch_admtest_subject.id', '=', $batch_admtest_subject_id)
+            ->select(DB::raw('CONCAT(admtest_subject.title) AS title, batch_admtest_subject.id as id'))
+            ->lists('title', 'id');
+        return $query;
+    }
 
 } 

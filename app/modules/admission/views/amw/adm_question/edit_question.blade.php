@@ -5,46 +5,36 @@
 
 <div class="modal-body">
       <div style="padding: 20px;">
-          {{Form::open(array('route'=> ['admission.amw.admission-test-question.update-admtest-question-paper',$edit_admtest_question->id], 'class'=>'form-horizontal','files'=>true))}}
+          {{Form::open(array('route'=> ['admission.amw.admission-test-question.update-admtest-question-paper',$question->id], 'class'=>'form-horizontal','files'=>true))}}
 
                <div class='form-group'>
-                     <strong> Batch# </strong> {{ Batch::findOrFail($batch_id)->batch_number }}
-               </div>
-
-               <div class='form-group'>
-                     <strong> Degree Name: </strong>
-                            {{
-                                Degree::findOrFail($degree_id)->relDegreeProgram->code.'
-                                '.Degree::findOrFail($degree_id)->relDegreeGroup->code.' in
-                                '.$degree_data->relDepartment->title.',
-                                '.Semester::findOrFail($semester_id)->title.',
-                                '.Year::findOrFail($year_id)->title
-                            }}
-               </div>
+                    <strong> Batch# </strong> {{ $question->relBatchAdmtestSubject->relBatch->batch_number }} </br>
+                    <strong> Degree Name: </strong> {{ $question->relBatchAdmtestSubject->relBatch->relDegree->relDegreeProgram->code }}{{ $question->relBatchAdmtestSubject->relBatch->relDegree->relDegreeGroup->code }} - {{ $question->relBatchAdmtestSubject->relBatch->relDegree->relDepartment->title }} - {{ $question->relBatchAdmtestSubject->relBatch->relSemester->title }} - {{ $question->relBatchAdmtestSubject->relBatch->relYear->title }}
+              </div>
 
                 <div class='form-group'>
-                    {{ Form::label('batch_admtest_subject_id', 'Subject') }}
-                    {{ Form::Select('batch_admtest_subject_id',$batch_admtest_subject , $edit_admtest_question->batch_admtest_subject_id,['class'=>'form-control input-sm','required'])}}
+                    {{ Form::label('batch_admtest_subject_id', 'Admission Test Subject') }}
+                    {{ Form::Select('batch_admtest_subject_id', $batch_admtest_subject , $question->batch_admtest_subject_id,['class'=>'form-control input-sm','required'])}}
                 </div>
 
                 <div class='form-group'>
                     {{ Form::label('title', 'Title') }}
-                    {{ Form::text('title',$edit_admtest_question->title,['class'=>'form-control input-sm','required'])}}
+                    {{ Form::text('title', $question->title,['class'=>'form-control input-sm','required'])}}
                 </div>
 
                 <div class='form-group'>
                     {{ Form::label('deadline', 'Deadline') }}
-                    {{ Form::text('deadline', $edit_admtest_question->deadline, ['class'=>'form-control date_picker','required'=>'required']) }}
+                    {{ Form::text('deadline', $question->deadline, ['class'=>'form-control date_picker','required'=>'required']) }}
                 </div>
 
                 <div class='form-group'>
                     {{ Form::label('total_marks', 'Total Marks') }}
-                    {{ Form::text('total_marks' ,$edit_admtest_question->total_marks,['class'=>'form-control input-sm','required'])}}
+                    {{ Form::text('total_marks' ,$question->total_marks,['class'=>'form-control input-sm','required'])}}
                 </div>
 
                 <div class='form-group'>
                     {{ Form::label('examiner_facutly_user_id', 'Assign To') }}
-                    {{ Form::Select('examiner_facutly_user_id',User::AmwList() , $edit_admtest_question->examiner_facutly_user_id,['class'=>'form-control input-sm','required'])}}
+                    {{ Form::Select('examiner_facutly_user_id', $examiner_faculty_lists , $question->examiner_facutly_user_id,['class'=>'form-control input-sm','required'])}}
                 </div>
 
           <p>&nbsp;</p>
