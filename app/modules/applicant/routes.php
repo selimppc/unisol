@@ -122,6 +122,11 @@ Route::any('applicant/extra_curricular/create',
 Route::any('applicant/extra_curricular_store','ApplicantController@applicantExtraCurricularStore'
 );
 
+Route::any('applicant/extra_curricular/show/{id}',[
+    'as' => 'extra_curricular.show',
+    'uses'=> 'ApplicantController@applicantExtraCurricularShow'
+]);
+
 Route::any('applicant/extra_curricular/edit/{id}',
     'ApplicantController@editExtraCurricular'
 );
@@ -130,7 +135,9 @@ Route::post('applicant/extra_curricular/update/{id}',
     'ApplicantController@updateExtraCurricular'
 );
 
-
+Route::get('applicant/extra-curricular/delete/{id}',
+    'ApplicantController@applicantExtraCurricularDelete'
+);
 
 //****************Applicant Miscellaneous Info(R)************************
 

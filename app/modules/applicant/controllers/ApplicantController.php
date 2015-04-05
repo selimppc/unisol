@@ -397,10 +397,10 @@ class ApplicantController extends \BaseController
     public function extraCurricularIndex()
     {
         if(Auth::applicant()->check()) {
+            $datas = ApplicantExtraCurrActivity::orderBy('id', 'DESC')->paginate(5);
             $applicant = Auth::applicant()->get()->id;
             $data = ApplicantExtraCurrActivity::where('applicant_id', '=', $applicant)->first();
-            return View::make('applicant::extra_curricular.index', compact('data'));
-
+            return View::make('applicant::extra_curricular.index', compact('data','datas'));
         }
         else {
             Session::flash('danger', "Please Login As Applicant!");
@@ -416,7 +416,7 @@ class ApplicantController extends \BaseController
     public function applicantExtraCurricularStore(){
 
         $rules = array(
-//            'title' => 'required',
+            'title' => 'required',
         );
         $validator = Validator::make(Input::all(), $rules);
         if ($validator->passes()) {
@@ -424,25 +424,25 @@ class ApplicantController extends \BaseController
             $extra_curricular->applicant_id = Auth::applicant()->get()->id;
             $extra_curricular->title = Input::get('title');
             $extra_curricular->description = Input::get('description');
-            $extra_curricular->achievement = Input::get('achivement');
-//            $extra_curricular->certificate_medal = Input::file('certificate_medal');
+            $extra_curricular->achievement = Input::get('achievement');
+            $imagefile = Input::file('certificate_medal');
+            $extension = $imagefile->getClientOriginalExtension();
+            $filename = str_random(12) . '.' . $extension;
+            $file = strtolower($filename);
+            $path = public_path("/applicant_images/extra_curri_act/" . $file);
+            Image::make($imagefile->getRealPath())->resize(100, 100)->save($path);
+            $extra_curricular->certificate_medal  = $file;
             $extra_curricular->save();
-
             return Redirect::back()->with('message', 'Successfully added Information!');
         } else {
-            return Redirect::to('applicant/extra_curricular/create')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
+            return Redirect::to('apt/extra_curricular/')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
         }
 
     }
-    public function excActivities()
-    {
-        $profile = ApplicantExtraCurrActivity::where('applicant_id', '=', '1')->first();
-        return View::make('applicant::extra_curricular.index', compact('profile'));
-    }
+
     public function editExtraCurricular($id)
     {
         $extra_curricular = ApplicantExtraCurrActivity::find($id);
-
         return View::make('applicant::extra_curricular.edit', compact('extra_curricular'));
     }
 
@@ -450,8 +450,8 @@ class ApplicantController extends \BaseController
      * @param $id
      * @return mixed ->
      */
-    public function updateExtraCurricular($id){
-
+    public function updateExtraCurricular($id)
+    {
         $rules = array(
             'title' => 'required',
         );
@@ -460,21 +460,44 @@ class ApplicantController extends \BaseController
             $extra_curricular = ApplicantExtraCurrActivity::find($id);
             $extra_curricular->title = Input::get('title');
             $extra_curricular->description = Input::get('description');
-            $extra_curricular->achievement = Input::get('achivement');
-            $extra_curricular->certificate_medal = Input::file('certificate_medal');
-
-
+            $extra_curricular->achievement = Input::get('achievement');
+            $imagefile = Input::file('certificate_medal');
+            $extension = $imagefile->getClientOriginalExtension();
+            $filename = str_random(12) . '.' . $extension;
+            $file = strtolower($filename);
+            $path = public_path("/applicant_images/extra_curri_act/" . $file);
+            Image::make($imagefile->getRealPath())->resize(100, 100)->save($path);
+            $extra_curricular->certificate_medal  = $file;
             $extra_curricular->save();
             return Redirect::back()->with('message', 'Successfully updated Information!');
         } else {
             return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
         }
     }
-    public function applicantIndex(){
+    public function applicantExtraCurricularShow($id)
+    {
+        $datas = ApplicantExtraCurrActivity::find($id);
+        return View::make('applicant::extra_curricular.show', compact('datas'));
 
-        return View::make('applicant::applicants.index');
     }
 
+    public function applicantExtraCurricularDelete($id)
+    {
+        try {
+            $data= ApplicantExtraCurrActivity::find($id);
+            if($data->delete())
+            {
+                Session::flash('danger', "Activities Deleted successfully");
+                //return Redirect::back();
+                return Redirect::to('apt/extra_curricular/');
+            }
+        }
+        catch
+        (exception $ex){
+            return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+
+        }
+    }
 
 
 //***********************Applicant Miscellaneous Information(R)*************************
