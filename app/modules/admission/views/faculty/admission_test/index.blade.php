@@ -65,15 +65,25 @@
 
                                      <td>{{ $index_adm_examiner_list->status }}</td>
 
-                                    <td>
-                                        <a href="{{ URL::route('admission.faculty.admission-test.accept-admtest') }}" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modal">Accept</a>
-                                        <a href="{{ URL::route('admission.faculty.admission-test.deny-admtest') }}" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modal">Deny</a>
-                                        <a href="{{ URL::route('admission.faculty.question-papers.admtest-question-paper', [ 'year_id'=>$index_adm_examiner_list->relBatch->year_id ,'semester_id'=>$index_adm_examiner_list->relBatch->semester_id ,'batch_id'=>$index_adm_examiner_list->batch_id  ]) }}" class="btn btn-info btn-xs" >Questions</a>
+                                     <td>
+                                         @if($index_adm_examiner_list->status != 'Deny' )
+                                           <a href="{{ URL::route('admission.faculty.admission-test.change-status-to-deny', ['id'=>$index_adm_examiner_list->id])}}" class="btn btn-warning btn-xs">Deny</a>
+                                           <a href="{{ URL::route('admission.faculty.admission-test.accept-admtest') }}" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modal">Accept</a>
+                                           {{--    <a href="{{ URL::route('admission.faculty.admission-test.deny-admtest') }}" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modal">Deny</a>--}}
+
+
+                                         {{--@elseif( $index_adm_examiner_list->status = 'Accepted' )--}}
+                                            <a href="{{ URL::route('admission.faculty.question-papers.admtest-question-paper', [ 'year_id'=>$index_adm_examiner_list->relBatch->year_id ,'semester_id'=>$index_adm_examiner_list->relBatch->semester_id ,'batch_id'=>$index_adm_examiner_list->batch_id  ]) }}" class="btn btn-info btn-xs" >Questions</a>
+
+                                         @endif
+
+
+                                     </td>
 
 
 {{--,'batch_admtest_subject_id'=>$index_adm_examiner_list->id--}}
                                  {{--<a href="{{ URL::route('admission.faculty.admission-test.', [ 'year_id'=>$adm_test_mgt->relBatch->year_id ,'semester_id'=>$adm_test_mgt->relBatch->semester_id ,'batch_id'=>$adm_test_mgt->batch_id ]) }}" class="btn btn-default btn-xs" >EX</a>--}}
-                                    </td>
+
                                 </tr>
                           @endforeach
                       </tbody>
