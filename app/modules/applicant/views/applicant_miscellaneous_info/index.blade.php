@@ -31,7 +31,7 @@
                         @if($data != null)
                             <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('apt/misc_info/edit/' . $data->id  ) }}" data-toggle="modal" data-target="#myeditModal" >Edit </a>
                         @else
-                            <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('apt/misc_info/create')}}" data-toggle="modal" data-target="#addModal" >Add  Data</a>
+                            <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('apt/misc_info/create')}}" data-toggle="modal" data-target="#addModal" >Add</a>
                         @endif
                         <div class="box-body table-responsive ">
                             <table class="table table-striped  table-bordered">
