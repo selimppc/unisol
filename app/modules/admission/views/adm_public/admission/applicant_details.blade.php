@@ -3,6 +3,12 @@
    @include('layouts._sidebar_applicant')
  @stop
 @section('content')
+
+<div class="row">
+    <div class="col-md-12">
+       <a class="pull-right btn btn-xs btn-success" href="{{ URL::route('admission.public.degree_offer_list' )}}"> <i class="fa fa-arrow-circle-left"></i> Go Back</a>
+    </div><!-- ./col -->
+</div><!-- /.row -->
 {{---------------------------------------------Data Table:admission on degree :Starts-----------------------------------------------------------------}}
  <div class="box box-solid ">
      <div class="box-header">
@@ -146,9 +152,7 @@
                                   </div>
                              </div>
                              <p>&nbsp;</p><p>&nbsp;</p><br>
-                             {{--<div class="box-footer clearfix">--}}
-                                  {{--<a class="pull-right btn btn-default"  href="{{url::to('admission/public/admission/add-applicant-acm-docs')}}" data-toggle="modal" data-target="#addDegreeModal"><b></b> Add Profile </a>--}}
-                             {{--</div>--}}
+
                     </div>
                     <p>&nbsp;</p>
                     <div class="box box-info">
