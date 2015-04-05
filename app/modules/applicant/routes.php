@@ -96,9 +96,10 @@ Route::any('applicant/personal_info_signature/update/{id}',
 Route::any('apt/supporting_docs/',
     'ApplicantController@sDocsIndex'
 );
-Route::any("apt/supporting_docs/view/{doc_type}/{sdoc_id}", [
-    "as"   => "applicant.supporting_docs.view",
-    "uses" => "ApplicantController@sDocsView"
+
+Route::any('apt/supporting_docs/view/{doc_type}/{sdoc_id}', [
+    'as'   => 'applicant.supporting_docs.view',
+    'uses' => 'ApplicantController@sDocsView'
 ]);
 
 Route::any('apt/supporting_docs/store',

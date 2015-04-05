@@ -28,6 +28,7 @@
         {{ Form::close() }}
     </div>
 </div>
+
 <div class="modal-footer">
     <a href="{{URL::to('apt/extra_curricular/')}}" class="btn btn-default">Close </a>
 </div>

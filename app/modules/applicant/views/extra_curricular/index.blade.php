@@ -3,7 +3,6 @@
     @include('layouts._sidebar_applicant')
 @stop
 @section('content')
-    <!-- START CUSTOM TABS -->
     <h2 class="page-header text-purple tab-text-margin">Extra-Curricular Activities</h2>
     <div class="row">
         <div class="col-md-12">

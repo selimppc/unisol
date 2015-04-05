@@ -5,7 +5,6 @@
 <div class="modal-body">
 
     <div style="padding: 10px; width: 90%;">
-
         {{ Form::model($extra_curricular,array('url'=> array('applicant/extra_curricular/update/'.$extra_curricular->id), 'method' => 'POST','class'=>'form-horizontal','files'=>true)) }}
 
         {{ Form::label('title', 'Title') }}

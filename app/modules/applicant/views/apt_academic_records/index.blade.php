@@ -80,8 +80,7 @@
             <div class="modal-content" >
                 <div class="modal-body" >
                     {{ Form::open(array('url' => 'apt/acm_records/store', 'method' =>'post', 'role'=>'form','files'=>'true')) }}
-                    @include('applicant::apt_academic_records._form')
-                    {{--@include('admission::adm_public.admission.add_acm_docs')--}}
+                      @include('applicant::apt_academic_records._form')
                     {{ Form::close() }}
                 </div>
             </div>

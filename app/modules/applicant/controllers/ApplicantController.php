@@ -210,7 +210,131 @@ class ApplicantController extends \BaseController
 
     }
 
- //**************************Applicant Meta Information/Personal Info Start(R)*********
+//********************Applicant Academic Records Start(R)******************************
+
+    public function acmRecordsIndex()
+    {
+        if(Auth::applicant()->check()) {
+            $applicant= Auth::applicant()->get()->id;
+            $model = ApplicantAcademicRecords::where('applicant_id', '=', $applicant)->get();
+            return View::make('applicant::apt_academic_records.index', compact('model','applicant'));
+        }
+        else {
+            Session::flash('danger', "Please Login As Applicant!");
+            return Redirect::route('user/login');
+        }
+    }
+
+    //TODO:create _form js need to check to store
+    public function acmRecordsStore(){
+
+        $rules = array(
+            'level_of_education' => 'required',
+            'degree_name' => 'required',
+            'institute_name' => 'required',
+            'academic_group' => 'required',
+            'board_type' => 'required',
+            'major_subject' => 'required',
+        );
+        $validator = Validator::make(Input::all(), $rules);
+        if ($validator->passes()) {
+            $model =new ApplicantAcademicRecords();
+            $model->applicant_id = Auth::applicant()->get()->id;
+            $model->level_of_education = Input::get('level_of_education');
+            $model->degree_name = Input::get('degree_name');
+            $model->institute_name = Input::get('institute_name');
+            $model->academic_group = Input::get('academic_group');
+
+            //save board or university according to board_type
+            $model->board_type = Input::get('board_type');
+
+            if($model->board_type == 'board')
+                $board_university = Input::get('board_university_board');
+            if($model->board_type == 'university')
+                $board_university = Input::get('board_university_university');
+            if($model->board_type == 'other')
+                $board_university = Input::get('board_university_other');
+
+            $model->board_university = $board_university;
+
+            $model->major_subject = Input::get('major_subject');
+            $model->result_type = Input::get('result_type');
+
+            $model->result = Input::get('result');
+            $model->gpa = Input::get('gpa');
+            $model->gpa_scale = Input::get('gpa_scale');
+            $model->roll_number = Input::get('roll_number');
+            $model->registration_number = Input::get('registration_number');
+            $model->year_of_passing = Input::get('year_of_passing');
+            $model->duration = Input::get('duration');
+            $model->study_at = Input::get('study_at');
+
+            $model->save();
+            //echo $model;
+            //return Redirect::back()->with('message', 'Successfully added Information!');
+            return Redirect::to('apt/acm_records/')->with('message', 'successfully added');
+        } else {
+            return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
+        }
+
+    }
+    public function acmRecordsEdit($id){
+        $model= ApplicantAcademicRecords::find($id);
+        return View::make('applicant::apt_academic_records.modals.edit', compact('model'));
+    }
+    public function acmRecordsUpdate($id){
+        $rules = array(
+            'level_of_education' => 'required',
+        );
+        $validator = Validator::make(Input::all(), $rules);
+        if ($validator->passes()) {
+
+            $model = ApplicantAcademicRecords::find($id);
+            $model->level_of_education = Input::get('level_of_education');
+            $model->degree_name = Input::get('degree_name');
+            $model->institute_name = Input::get('institute_name');
+            $model->academic_group = Input::get('academic_group');
+            //update board or university according to board_type
+            $model->board_type = Input::get('board_type');
+            if($model->board_type == 'board')
+                $board_university = Input::get('board_university_board');
+            if($model->board_type == 'university')
+                $board_university = Input::get('board_university_university');
+            if($model->board_type == 'other')
+                $board_university = Input::get('board_university_other');
+
+            $model->board_university = $board_university;
+
+            $model->major_subject = Input::get('major_subject');
+            $model->result_type = Input::get('result_type');
+            $model->result = Input::get('result');
+            $model->gpa = Input::get('gpa');
+            $model->gpa_scale = Input::get('gpa_scale');
+            $model->roll_number = Input::get('roll_number');
+            $model->registration_number = Input::get('registration_number');
+            $model->year_of_passing = Input::get('year_of_passing');
+            $model->duration = Input::get('duration');
+            $model->study_at = Input::get('study_at');
+            $model->save();
+            return Redirect::back()->with('message', 'Successfully updated Information!');
+        } else {
+            return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
+        }
+
+    }
+    public function acmRecordsShow($id)
+    {
+        $model = ApplicantAcademicRecords::find($id);
+        return View::make('applicant::apt_academic_records.modals.show',compact('model'));
+    }
+    public function academicDelete($id){
+
+        ApplicantAcademicRecords::find($id)->delete();
+        return Redirect::back()->with('message', 'Successfully deleted Information!');
+    }
+
+
+    //**************************Applicant Meta Information/Personal Info Start(R)*********
 
     public function personalInfoIndex()
     {
@@ -352,14 +476,22 @@ class ApplicantController extends \BaseController
 
     public function sDocsIndex()
     {
-        $applicant= Auth::applicant()->get()->id;
-        $supporting_docs = ApplicantSupportingDoc::where('applicant_id', '=', $applicant)->first();
-        if(!$supporting_docs){
-            $supporting_docs = new ApplicantSupportingDoc();
-            $supporting_docs->applicant_id = Auth::applicant()->get()->id;
-            $supporting_docs->save();
+        if(Auth::applicant()->check()) {
+            $applicant= Auth::applicant()->get()->id;
+            $supporting_docs = ApplicantSupportingDoc::where('applicant_id', '=', $applicant)->first();
+            if(!$supporting_docs){
+                $supporting_docs = new ApplicantSupportingDoc();
+                $supporting_docs->applicant_id = Auth::applicant()->get()->id;
+                $supporting_docs->save();
+            }
+            return View::make('applicant::applicant_supporting_docs.index', compact('supporting_docs', 'doc_type'));
         }
-        return View::make('applicant::applicant_supporting_docs.index', compact('supporting_docs', 'doc_type'));
+        else {
+            Session::flash('danger', "Please Login As Applicant!");
+            return Redirect::route('user/login');
+        }
+
+
     }
     public function sDocsView($doc_type, $sdoc_id)
     {
@@ -504,9 +636,16 @@ class ApplicantController extends \BaseController
 
     public function miscInfoIndex()
     {
-        $applicant= Auth::applicant()->get()->id;
-        $data = ApplicantMiscInfo::where('applicant_id', '=', $applicant)->first();
-        return View::make('applicant::applicant_miscellaneous_info.index',compact('data','applicant'));
+        if(Auth::applicant()->check()) {
+            $applicant= Auth::applicant()->get()->id;
+            $data = ApplicantMiscInfo::where('applicant_id', '=', $applicant)->first();
+            return View::make('applicant::applicant_miscellaneous_info.index',compact('data','applicant'));
+        }
+        else {
+            Session::flash('danger', "Please Login As Applicant!");
+            return Redirect::route('user/login');
+        }
+
     }
 
     public function miscInfoCreate(){
@@ -564,125 +703,6 @@ class ApplicantController extends \BaseController
         }
 
     }
-
-//********************Applicant Academic Records Start(R)******************************
-
-    public function acmRecordsIndex()
-    {
-        $applicant= Auth::applicant()->get()->id;
-        $model = ApplicantAcademicRecords::where('applicant_id', '=', $applicant)->get();
-        return View::make('applicant::apt_academic_records.index', compact('model','applicant'));
-    }
-    public function acmRecordsCreate(){
-        return View::make('applicant::apt_academic_records.create');
-    }
-    public function acmRecordsStore(){
-
-        $rules = array(
-            'level_of_education' => 'required',
-            'degree_name' => 'required',
-            'institute_name' => 'required',
-            'academic_group' => 'required',
-            'board_type' => 'required',
-            'major_subject' => 'required',
-        );
-        $validator = Validator::make(Input::all(), $rules);
-        if ($validator->passes()) {
-            $model =new ApplicantAcademicRecords();
-            $model->applicant_id = Auth::applicant()->get()->id;
-            $model->level_of_education = Input::get('level_of_education');
-            $model->degree_name = Input::get('degree_name');
-            $model->institute_name = Input::get('institute_name');
-            $model->academic_group = Input::get('academic_group');
-
-            //save board or university according to board_type
-            $model->board_type = Input::get('board_type');
-
-            if($model->board_type == 'board')
-                    $board_university = Input::get('board_university_board');
-                if($model->board_type == 'university')
-                        $board_university = Input::get('board_university_university');
-                    if($model->board_type == 'other')
-                            $board_university = Input::get('board_university_other');
-
-            $model->board_university = $board_university;
-
-            $model->major_subject = Input::get('major_subject');
-            $model->result_type = Input::get('result_type');
-
-            $model->result = Input::get('result');
-            $model->gpa = Input::get('gpa');
-            $model->gpa_scale = Input::get('gpa_scale');
-            $model->roll_number = Input::get('roll_number');
-            $model->registration_number = Input::get('registration_number');
-            $model->year_of_passing = Input::get('year_of_passing');
-            $model->duration = Input::get('duration');
-            $model->study_at = Input::get('study_at');
-
-            $model->save();
-            //echo $model;
-            //return Redirect::back()->with('message', 'Successfully added Information!');
-            return Redirect::to('apt/acm_records/')->with('message', 'successfully added');
-        } else {
-            return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
-        }
-
-    }
-    public function acmRecordsEdit($id){
-        $model= ApplicantAcademicRecords::find($id);
-        return View::make('applicant::apt_academic_records.modals.edit', compact('model'));
-    }
-    public function acmRecordsUpdate($id){
-        $rules = array(
-           'level_of_education' => 'required',
-        );
-        $validator = Validator::make(Input::all(), $rules);
-        if ($validator->passes()) {
-
-            $model = ApplicantAcademicRecords::find($id);
-            $model->level_of_education = Input::get('level_of_education');
-            $model->degree_name = Input::get('degree_name');
-            $model->institute_name = Input::get('institute_name');
-            $model->academic_group = Input::get('academic_group');
-            //update board or university according to board_type
-            $model->board_type = Input::get('board_type');
-            if($model->board_type == 'board')
-                $board_university = Input::get('board_university_board');
-            if($model->board_type == 'university')
-                $board_university = Input::get('board_university_university');
-            if($model->board_type == 'other')
-                $board_university = Input::get('board_university_other');
-
-            $model->board_university = $board_university;
-
-            $model->major_subject = Input::get('major_subject');
-            $model->result_type = Input::get('result_type');
-            $model->result = Input::get('result');
-            $model->gpa = Input::get('gpa');
-            $model->gpa_scale = Input::get('gpa_scale');
-            $model->roll_number = Input::get('roll_number');
-            $model->registration_number = Input::get('registration_number');
-            $model->year_of_passing = Input::get('year_of_passing');
-            $model->duration = Input::get('duration');
-            $model->study_at = Input::get('study_at');
-            $model->save();
-            return Redirect::back()->with('message', 'Successfully updated Information!');
-        } else {
-            return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
-        }
-
-    }
-    public function acmRecordsShow($id)
-    {
-        $model = ApplicantAcademicRecords::find($id);
-        return View::make('applicant::apt_academic_records.modals.show',compact('model'));
-    }
-    public function academicDelete($id){
-
-        ApplicantAcademicRecords::find($id)->delete();
-        return Redirect::back()->with('message', 'Successfully deleted Information!');
-    }
-
 
 }
 
