@@ -36,22 +36,41 @@
                     {{--</button><br>--}}
 
                     <br>
+                     <div class="col-sm-12">
+                        <div class="col-sm-6">
+                              <div class="col-sm-6">
+                                <strong> Degree: </strong><br>
+                                <strong> Subject: </strong><br>
+                                <strong> Total Marks: </strong><br>
+                                <strong> Overall Status: </strong><br>
 
-                   <strong> Degree: </strong>{{ $data->relBatchAdmtestSubject->relBatch->relDegree->relDegreeProgram->code.''
-                                                .$data->relBatchAdmtestSubject->relBatch->relDegree->relDegreeGroup->code.' in '
-                                                 .$data->relBatchAdmtestSubject->relBatch->relDegree->relDepartment->title.' , '
-                                                 .$data->relBatchAdmtestSubject->relBatch->relSemester->title.' , '
-                                                  .$data->relBatchAdmtestSubject->relBatch->relYear->title }}  <br>
+                              </div>
+                              <div class="col-sm-6 pull-left">
+                                  {{ $data->relBatchAdmtestSubject->relBatch->relDegree->relDegreeProgram->code.''
+                                     .$data->relBatchAdmtestSubject->relBatch->relDegree->relDegreeGroup->code.' in '
+                                     .$data->relBatchAdmtestSubject->relBatch->relDegree->relDepartment->title.' , '
+                                     .$data->relBatchAdmtestSubject->relBatch->relSemester->title.' , '
+                                     .$data->relBatchAdmtestSubject->relBatch->relYear->title }}
+                                     <br>
+                                     {{ $data->relBatchAdmtestSubject->relAdmtestSubject->title }}
+                                     <br>
+                                     {{ $data->total_marks }}
+                                     <br>
+                                     {{ $data->status }}  <br>
+                                      OR <a href="#" class="btn bg-info btn-ls">Let AMW know that Evaluation Done</a>
 
-                   <strong> Subject: </strong>{{ $data->relBatchAdmtestSubject->relAdmtestSubject->title }}  <br>
-                   <strong> Total Marks: </strong>{{ $data->total_marks }}  <br>
-                   <strong> Overall Status: </strong>{{ $data->status }}  <br>
+                              </div>
+                        </div>
+                     </div>
+
+                    <br>
 
                     <div class="box-body table-responsive">
                           {{ Form::open(array('url' => 'admission/faculty/admission-test/evaluationBatchDelete')) }}
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
+                                            <th><input name="id" type="checkbox" id="checkbox" class="checkbox" value=""></th>
                                             <th>Name</th>
                                             <th>Status</th>
                                             <th>Marks</th>
@@ -62,25 +81,23 @@
                                     @foreach($evaluation_qp as $evaluation)
 
                                         <tr>
-                                            <td> {{ $evaluation->marks  }} </td>
-                                            <td> {{ $evaluation->marks }} </td>
-                                            <td> {{ $evaluation->marks  }}  </td>
-
+                                        <td><input type="checkbox" name="id[]" class="myCheckbox" value="{{ $evaluation['id'] }}"></td>
+                                            <td> {{ $evaluation->relBatchApplicant->relApplicant->first_name.' '.$evaluation->relBatchApplicant->relApplicant->last_name }} </td>
+                                            <td> {{ $evaluation->relAdmQuestion->status }} </td>
+                                            <td> {{ $evaluation->marks }}</td>
 
                                             <td width="140">
-                                                <a href="{{ URL::route('admission.faculty.question-papers.evaluate-questions-items',['id'=>$evaluation->id]) }}" class="btn bg-orange btn-xs " >Evaluate</a>
+                                                <a href="{{ URL::route('admission.faculty.question-papers.evaluate-questions-items',['a_q_id'=>$evaluation->adm_question_id]) }}" class="btn bg-orange btn-xs " >Evaluate</a>
 
 {{--                                                <a href="{{ URL::route('admission.faculty.question-papers.re-evaluate-questions-items',['id'=>$evaluation->id]) }}" class="btn bg-purple btn-xs " >Re-Evaluate</a>--}}
                                             </td>
                                         </tr>
                                     @endforeach
                                     </tbody>
-
                                 </table>
-                          {{ Form::close()  }}
+                          {{ Form::close() }}
                     </div><!-- /.box -->
                 </div><!-- /.tab-pane -->
-
             </div><!-- /.tab-content -->
             </div><!-- nav-tabs-custom -->
             </div><!-- /.col -->
