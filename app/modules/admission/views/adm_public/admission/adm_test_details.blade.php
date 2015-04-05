@@ -90,10 +90,7 @@
                     <div class="col-lg-12">
                         <table class="table table-striped table-bordered">
                           @if($exm_center_choice_lists != null)
-                          <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#exmCenterModal">
-                                Launch demo modal
-                          </button>
-                             <a class="pull-right btn btn-sm btn-info" data-toggle="modal" data-target="#exmCenterModal"  >Change Exam Center Sequence</a>
+                             <a class="pull-right btn btn-sm btn-info" data-toggle="modal" data-target="#exmCenterModal"   href="{{URL::route('admission.public.exm-center',['batch_applicant_id'=>$batch_applicant_id])}}">Change Exam Center Sequence</a>
                           @else
                              <a class="pull-right btn btn-sm btn-info"  href="{{URL::route('admission.public.exm-center',['batch_applicant_id'=>$batch_applicant_id])}}" data-toggle="modal" data-target="#exmCenterModal"><b></b> Exam Center Choice </a>
                           @endif
@@ -140,27 +137,22 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+            <h4 class="modal-title" id="myModalLabel">Exam Center Choice Sequence</h4>
           </div>
           <div class="modal-body">
             <div class="row">
-                    <!-- Left col -->
-                    <section class="col-lg-12 connectedSortable">
-                        @foreach(($exm_center_choice_lists) as $value)
-                            <div class="nav-tabs-custom" style="background: powderblue">
-                                <ul class="nav nav-tabs pull-right">
-                                    <li class="pull-left header"><i class="fa fa-inbox"></i> {{ $value->relExmCenter->title }}</li>
-                                </ul>
-                            </div><!-- /.nav-tabs-custom -->
-                         @endforeach
-                    </section><!-- /.Left col -->
+                {{ Form::open(['route' => ['admission.public.save-exm-center'], 'class'=>'form-horizontal','files' => true,]) }}
+                      @include('admission::adm_public.admission.exm_center')
 
-                </div><!-- /.row (main row) -->
+                {{ Form::submit('Save', array('class'=>'pull-right btn btn-sm btn-primary')) }}
+                <a  href="" class="pull-right btn btn-sm btn-default" style="margin-right: 3px">Close</a>
+
+                <p>&nbsp;</p>
+                <p>&nbsp;</p>
+                {{Form::close()}}
+            </div><!-- /.row (main row) -->
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-          </div>
+
         </div>
       </div>
     </div>
