@@ -40,7 +40,8 @@
                                                  .$data_evaluate->relBatchAdmtestSubject->relBatch->relDegree->relDegreeGroup->code.' in '
                                                  .$data_evaluate->relBatchAdmtestSubject->relBatch->relDegree->relDepartment->title.' , '
                                                  .$data_evaluate->relBatchAdmtestSubject->relBatch->relSemester->title.' , '
-                                                 .$data_evaluate->relBatchAdmtestSubject->relBatch->relYear->title }}
+                                                 .$data_evaluate->relBatchAdmtestSubject->relBatch->relYear->title
+                                             }}
 
                                        <br> <br>
 
