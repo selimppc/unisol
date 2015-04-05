@@ -234,7 +234,7 @@ class ApplicantController extends \BaseController
     public function personalInfoStore()
     {
         $rules = array(
-           // 'national_id' => 'required',
+            'national_id' => 'required',
         );
         $validator = Validator::make(Input::all(), $rules);
         if ($validator->passes()) {
@@ -567,10 +567,11 @@ class ApplicantController extends \BaseController
 
 //********************Applicant Academic Records Start(R)******************************
 
-    public function acmRecordsIndex(){
-
-        $model = ApplicantAcademicRecords::where('applicant_id', '=', '27')->get();
-        return View::make('applicant::apt_academic_records.index', compact('model'));
+    public function acmRecordsIndex()
+    {
+        $applicant= Auth::applicant()->get()->id;
+        $model = ApplicantAcademicRecords::where('applicant_id', '=', $applicant)->get();
+        return View::make('applicant::apt_academic_records.index', compact('model','applicant'));
     }
     public function acmRecordsCreate(){
         return View::make('applicant::apt_academic_records.create');
@@ -578,17 +579,17 @@ class ApplicantController extends \BaseController
     public function acmRecordsStore(){
 
         $rules = array(
-//            'level_of_education' => 'required',
-//            'degree_name' => 'required',
-//            'institute_name' => 'required',
-//            'academic_group' => 'required',
-//            'board_type' => 'required',
-//            'major_subject' => 'required',
+            'level_of_education' => 'required',
+            'degree_name' => 'required',
+            'institute_name' => 'required',
+            'academic_group' => 'required',
+            'board_type' => 'required',
+            'major_subject' => 'required',
         );
         $validator = Validator::make(Input::all(), $rules);
         if ($validator->passes()) {
             $model =new ApplicantAcademicRecords();
-            //$model->applicant_id = Input::get('applicant_id');
+            $model->applicant_id = Auth::applicant()->get()->id;
             $model->level_of_education = Input::get('level_of_education');
             $model->degree_name = Input::get('degree_name');
             $model->institute_name = Input::get('institute_name');
@@ -621,7 +622,7 @@ class ApplicantController extends \BaseController
             $model->save();
             //echo $model;
             //return Redirect::back()->with('message', 'Successfully added Information!');
-            return Redirect::to('apt/acm_records/index')->with('message', 'successfully added');
+            return Redirect::to('apt/acm_records/')->with('message', 'successfully added');
         } else {
             return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
         }
@@ -633,7 +634,7 @@ class ApplicantController extends \BaseController
     }
     public function acmRecordsUpdate($id){
         $rules = array(
-//            'level_of_education' => 'required',
+           'level_of_education' => 'required',
         );
         $validator = Validator::make(Input::all(), $rules);
         if ($validator->passes()) {
