@@ -9,15 +9,15 @@
 <div class="box box-solid ">
 <div class="box-body">
   <div class="col-sm-12">
-    {{ Form::open(array('url' => 'admission/amw/adm-test-home/search-adm-test-index')) }}
+    {{ Form::open(array('url' => 'admission/amw/admission-test-home')) }}
       <div class="col-sm-8">
        <div class="col-sm-3">
         {{ Form::label('year_id', 'Year') }}
-        {{ Form::select('year_id',$year_id, Input::old('year_id'), array('class' => 'form-control','required'=>'required') ) }}
+        {{ Form::select('year_id', $year_id, Input::old('year_id'), array('class' => 'form-control','required'=>'required') ) }}
        </div>
        <div class="col-sm-3">
         {{ Form::label('semester_id', 'Semester') }}
-        {{ Form::select('semester_id',$semester_id, Input::old('semester_id'), array('class' => 'form-control','required'=>'required')) }}
+        {{ Form::select('semester_id', $semester_id, Input::old('semester_id'), array('class' => 'form-control','required'=>'required')) }}
        </div>
        <div class="col-sm-2" style="padding-top: 1%">
        </br>
@@ -49,19 +49,19 @@
          </thead>
              <tbody>
                 @if(isset($admission_test_home))
-                 @foreach($admission_test_home as $adm_test_mgt)
+                 @foreach($admission_test_home as $values)
                    <tr>
-                       <td><input type="checkbox" name="id[]" class="myCheckbox" value="{{ $adm_test_mgt['id'] }}"></td>
-                       <td>{{ $adm_test_mgt->relBatch->relDegree->relDegreeProgram->code.''.$adm_test_mgt->relBatch->relDegree->relDegreeGroup->code }}</td>
-                       <td>{{ $adm_test_mgt->relBatch->relDegree->relDepartment->title }}</td>
-                       <td>{{ $adm_test_mgt->relBatch->relYear->title }}</td>
-                       <td>{{ $adm_test_mgt->relBatch->relSemester->title }}</td>
-                       <td>{{ $adm_test_mgt->relBatch->relDegree->total_credit }}</td>
-                       <td style="text-align: center">{{ $adm_test_mgt->duration }}</td>
+                       <td><input type="checkbox" name="id[]" class="myCheckbox" value="{{ $values->id }}"></td>
+                       <td>{{ $values->relBatch->relDegree->relDegreeProgram->code.''.$values->relBatch->relDegree->relDegreeGroup->code }}</td>
+                       <td>{{ $values->relBatch->relDegree->relDepartment->title }}</td>
+                       <td>{{ $values->relBatch->relYear->title }}</td>
+                       <td>{{ $values->relBatch->relSemester->title }}</td>
+                       <td>{{ $values->relBatch->relDegree->total_credit }}</td>
+                       <td >{{ $values->duration }}</td>
                        <td>QPE Status</td>
                        <td>
-                          <a href="{{ URL::to('admission/amw/admission-test-examiner', [ 'year_id'=>$adm_test_mgt->relBatch->year_id ,'semester_id'=>$adm_test_mgt->relBatch->semester_id ,'batch_id'=>$adm_test_mgt->batch_id ]) }}" class="btn btn-success btn-xs" >EX</a>
-                          <a href="{{ URL::to('admission/amw/admission-test-question', [ 'bats_id'=>$adm_test_mgt->id ]) }}" class="btn btn-info btn-xs" >QP</a>
+                          <a href="{{ URL::to('admission/amw/admission-test-examiner', [ 'year_id'=>$values->relBatch->year_id ,'semester_id'=>$values->relBatch->semester_id ,'batch_id'=>$values->batch_id ]) }}" class="btn btn-success btn-xs" >EX</a>
+                          <a href="{{ URL::to('admission/amw/admission-test-question', [ 'bats_id'=>$values->id ]) }}" class="btn btn-info btn-xs" >QP</a>
                           <a href="{{ URL::route('admission.amw.admission-question-evaluation') }}" class="btn btn-success btn-xs" >QPE</a>
                        </td>
                    </tr>
