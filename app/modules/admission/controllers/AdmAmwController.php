@@ -965,13 +965,15 @@ class AdmAmwController extends \BaseController
 
     public function admissionTestSearchIndex()
     {
-        $searchQuery = [
-            'year_id' =>   Input::get('year_id'),
-            'semester_id' =>   Input::get('semester_id'),
-        ];
+        $year_id  = Input::get('year_id');
+        $semester_id = Input::get('semester_id');
 
-        $model = new BatchAdmtestSubject();
-        $adm_test_home_data = Helpers::search($searchQuery, $model);
+        //$model = new BatchAdmtestSubject();
+        $adm_test_home_data = BatchAdmtestSubject::with(['relBatch'=> function($query) use($year_id, $semester_id) {
+                $query->where('year_id', $year_id);
+                $query->where('semester_id', $semester_id);
+            }])->get();
+        print_r($adm_test_home_data);exit;
         $year_id = array('' => 'Select Year ') + Year::lists('title', 'id');
         $semester_id = array('' => 'Select Semester ') + Semester::lists('title', 'id');
 
