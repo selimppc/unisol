@@ -48,10 +48,6 @@ Route::any('apt/acm_records/',
     'ApplicantController@acmRecordsIndex'
 );
 
-Route::any('apt/acm_records/create',
-    'ApplicantController@acmRecordsCreate'
-);
-
 Route::any('apt/acm_records/store',
     'ApplicantController@acmRecordsStore'
 );
@@ -119,7 +115,8 @@ Route::any('applicant/extra_curricular/create',
     'ApplicantController@extraCurricularCreate'
 );
 
-Route::any('applicant/extra_curricular_store','ApplicantController@applicantExtraCurricularStore'
+Route::any('applicant/extra_curricular_store',
+    'ApplicantController@applicantExtraCurricularStore'
 );
 
 Route::any('applicant/extra_curricular/show/{id}',[

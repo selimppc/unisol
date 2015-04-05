@@ -3,19 +3,22 @@
     @include('layouts._sidebar_amw')
 @stop
 @section('content')
+
+<h4> Admission Test Question Paper Evaluation</h4>
+
 <div class="box">
     <div class="box-header">
-        <h3 class="box-title">Question Paper Evaluation System</h3>
+        <h3 class="box-title">Evaluation System</h3>
     </div><!-- /.box-header -->
     <div class="box-body table-responsive">
         <table id="example1" class="table table-bordered table-striped">
             <thead>
             <tr>
-                <th>Rendering engine</th>
-                <th>Browser</th>
-                <th>Platform(s)</th>
-                <th>Engine version</th>
-                <th>CSS grade</th>
+                <th>Subject </th>
+                <th>Question Setter</th>
+                <th>Question Evaluator</th>
+                <th>Status</th>
+                <th>Action</th>
             </tr>
             </thead>
             <tbody>

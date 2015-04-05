@@ -5,64 +5,67 @@
     <h4 class="modal-title" id="myModalLabel">Add Or Update</h4>
 </div>
 
- <style>
-	ul { list-style-type: none; margin: 0; padding: 0; margin-bottom: 15px; }
-	li { margin: 10px; padding: 5px; width: 270px; }
- </style>
+ <div class="modal-body">
+   <div style="padding: 20px;">
+      <div class="row">
+                          <!-- Left col -->
+          <section class="col-lg-12 connectedSortable">
+              <!-- Custom tabs (Charts with tabs)-->
+              <div class="nav-tabs-custom">
+                  <!-- Tabs within a box -->
+                  <ul class="nav nav-tabs pull-right">
+                      <li class="active"><a href="#revenue-chart" data-toggle="tab">Area</a></li>
+                      <li><a href="#sales-chart" data-toggle="tab">Donut</a></li>
+                      <li class="pull-left header"><i class="fa fa-inbox"></i> Sales</li>
+                  </ul>
+              </div><!-- /.nav-tabs-custom -->
 
+              <!-- Chat box -->
+              <div class="box box-success">
+                  <div class="box-header">
+                      <i class="fa fa-comments-o"></i>
+                      <h3 class="box-title">Chat</h3>
+                      <div class="box-tools pull-right" data-toggle="tooltip" title="Status">
+                          <div class="btn-group" data-toggle="btn-toggle" >
+                              <button type="button" class="btn btn-default btn-sm active"><i class="fa fa-square text-green"></i></button>
+                              <button type="button" class="btn btn-default btn-sm"><i class="fa fa-square text-red"></i></button>
+                          </div>
+                      </div>
+                  </div>
 
-<div class="modal-body">
-     <div style="padding: 20px;">
+              </div><!-- /.box (chat box) -->
 
-     <ul id="sortable">
-     	<li class="ui-state-default">1. Dhaka</li>
-     	<li class="ui-state-default">2. Chittagong</li>
-     	<li class="ui-state-default">3. Comilla</li>
-     	<li class="ui-state-default">4. Barisal</li>
-     	<li class="ui-state-default">5. Syllhet</li>
-     </ul>
+              <!-- TO DO List -->
+              <div class="box box-primary">
+                  <div class="box-header">
+                      <i class="ion ion-clipboard"></i>
+                      <h3 class="box-title">To Do List</h3>
+                      <div class="box-tools pull-right">
+                          <ul class="pagination pagination-sm inline">
+                              <li><a href="#">&laquo;</a></li>
+                              <li><a href="#">1</a></li>
+                              <li><a href="#">2</a></li>
+                              <li><a href="#">3</a></li>
+                              <li><a href="#">&raquo;</a></li>
+                          </ul>
+                      </div>
+                  </div><!-- /.box-header -->
+              </div><!-- /.box -->
 
-       {{ Form::open(['route' => ['admission.public.save-exm-center'], 'class'=>'form-horizontal','files' => true,]) }}
-            {{ Form::hidden('batch_applicant_id', $ba_id )}}
-            @if(isset($exm_centers_all))
-                @foreach($exm_centers_all as $values)
-                    Choice Sequence : {{ Form::select('exm_center_id[]', $exm_center_lists,$values->id,['class'=>'form-control input-sm','required']) }}
-                @endforeach
-            @else
-                 @foreach($exm_center_choice as $values)
-                    {{ Form::hidden('id[]', $values->id )}}
-                    Choice Sequence: {{ Form::select('exm_center_id[]', $exm_center_lists, $values->exm_center_id,['class'=>'form-control input-sm','required']) }}
-                 @endforeach
-            @endif
+              <!-- quick email widget -->
+              <div class="box box-info">
+                  <div class="box-header">
+                      <i class="fa fa-envelope"></i>
+                      <h3 class="box-title">Quick Email</h3>
+                      <!-- tools box -->
+                      <div class="pull-right box-tools">
+                          <button class="btn btn-info btn-sm" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
+                      </div><!-- /. tools -->
+                  </div>
 
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
+              </div>
 
-            {{ Form::submit('Save', array('class'=>'pull-right btn btn-xs btn-primary')) }}
-            <a  href="" class="pull-right btn btn-xs btn-default" style="margin-right: 5px">Close</a>
-
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-       {{Form::close()}}
-     </div>
-</div>
-
-
-<script>
-	$(function() {
-		$( "#sortable" ).sortable({
-			revert: true
-		});
-		$( "#draggable" ).draggable({
-			connectToSortable: "#sortable",
-			helper: "clone",
-			revert: "invalid"
-		});
-		$( "ul, li" ).disableSelection();
-	});
-</script>
-
-{{ HTML::style('assets/css/jquery-ui.css') }}
-{{ HTML::script('assets/js/jquery-1.10.2.js')}}
-
-
+          </section><!-- /.Left col -->
+      </div>
+   </div>
+ </div>

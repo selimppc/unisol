@@ -1,13 +1,9 @@
-
 <div class="modal-header">
-
-    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-    <h4 class="modal-title" id="myModalLabel">Edit Academic Records....</h4>
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h4 class="modal-title" style="text-align: center;color: #800080;font-size: x-large">Edit Academic Records </h4>
 </div>
-
 <div class="modal-body">
   <div style="padding: 20px;">
-
 {{Form::open(array('url'=>'apt/acm_records/update/'.$model->id, 'class'=>'form-horizontal','files'=>true))}}
 
 <div>{{ Form::label('level_of_education', 'Level of Education ') }}
@@ -22,9 +18,8 @@
 <div >{{ Form::text('institute_name',$model->institute_name ,['class'=>'form-control ']) }}</div>
 
 <div >{{ Form::label('academic_group', 'Academic Group') }}
-  <div >{{ Form::text('academic_group',$model->academic_group ,['class'=>'form-control ']) }}</div>
+<div >{{ Form::text('academic_group',$model->academic_group ,['class'=>'form-control ']) }}</div>
 </div >
-
 
 {{ Form::label('board_type', 'Board Type') }}
 
@@ -52,23 +47,21 @@
     </div>
 </div>
 
+<div >{{ Form::label('result_type', 'Result Type') }}   (Select one : Division/Class OR CGPA )</div>
 
-     <div >{{ Form::label('result_type', 'Result Type') }}   (Select one : Division/Class OR CGPA )</div>
-
-     <div id="division"><label class="small">{{ Form::radio('result_type','division',$model->result_type == 'division') }} Division/Class </label>
-
+<div id="division"><label class="small">{{ Form::radio('result_type','division',$model->result_type == 'division') }} Division/Class </label>
      <div style="display:none" class="division">
      {{ Form::text('result',$model->result ,['class'=>'form-control ','placeholder'=>"3rd Class First"]) }}
      </div>
-     </div>
+</div>
 
-     <div id="gpa"><label class="small">{{ Form::radio('result_type','gpa',$model->result_type == 'gpa') }} CGPA</label>
-       <div style="display:none" class="gpa">
-           <div class="col-lg-3">{{ Form::text('gpa', $model->gpa,['class'=>'form-control input-sm','placeholder'=>"3.20"]) }}</div>
-             <div class="col-lg-3">{{ Form::text('gpa_scale', $model->gpa_scale,['class'=>'form-control input-sm','placeholder'=>"5"]) }}
-             </div>
-       </div>
+<div id="gpa"><label class="small">{{ Form::radio('result_type','gpa',$model->result_type == 'gpa') }} CGPA</label>
+<div style="display:none" class="gpa">
+   <div class="col-lg-3">{{ Form::text('gpa', $model->gpa,['class'=>'form-control input-sm','placeholder'=>"3.20"]) }}</div>
+     <div class="col-lg-3">{{ Form::text('gpa_scale', $model->gpa_scale,['class'=>'form-control input-sm','placeholder'=>"5"]) }}
      </div>
+</div>
+</div>
 <br><br>
 <div >{{ Form::label('major_subject', 'Major Subject') }}</div >
 <div >{{ Form::text('major_subject',$model->major_subject,['class'=>'form-control ']) }}</div>
@@ -85,10 +78,9 @@
 <div >{{ Form::label('duration', 'Duration') }}</div >
 <div >{{ Form::text('duration', $model->duration,['class'=>'form-control ']) }}</div>
 
-
-   <p>&nbsp;</p>
+<p>&nbsp;</p>
 {{ Form::submit('Save ', array('class'=>'btn btn-primary')) }}
-<a href="{{URL::to('apt/acm_records/index') }} " class="btn btn-default" span class="glyphicon-refresh">Close</a>
+<a href="{{URL::to('apt/acm_records/') }} " class="btn btn-default" span class="glyphicon-refresh">Close</a>
 
         {{Form::close()}}
   </div>
