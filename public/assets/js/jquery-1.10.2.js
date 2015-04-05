@@ -4003,7 +4003,7 @@
             });
         },
         // Based off of the plugin by Clint Helfers, with permission.
-        // http://blindsignals.com/index.php/2009/07/jquery-delay/
+        // http://blindsignals.com/index.blade.php/2009/07/jquery-delay/
         delay: function( time, type ) {
             time = jQuery.fx ? jQuery.fx.speeds[ time ] || time : time;
             type = type || "fx";
@@ -8716,7 +8716,7 @@
 
                             // Firefox throws exceptions when accessing properties
                             // of an xhr when a network error occurred
-                            // http://helpful.knobs-dials.com/index.php/Component_returned_failure_code:_0x80040111_(NS_ERROR_NOT_AVAILABLE)
+                            // http://helpful.knobs-dials.com/index.blade.php/Component_returned_failure_code:_0x80040111_(NS_ERROR_NOT_AVAILABLE)
                             try {
 
                                 // Was never called and is aborted or complete

@@ -49,6 +49,12 @@ Route::any("date-picker", [
 ]);
 
 
+Route::any("sortable", [
+    "as"   => "sortable",
+    "uses" => "HomeController@sortable"
+]);
+
+
 Route::group( array('before' => 'auth'), function(){
 
     /*
