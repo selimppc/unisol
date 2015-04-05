@@ -4,11 +4,6 @@
    </div>
 
    <div class='form-group'>
-   <div>{{ Form::label('mothers_name', ' Mothers name') }}</div>
-   <div>{{ Form::text('mothers_name', Input::old('mothers_name'),['class'=>'form-control ']) }}</div>
-   </div>
-
-   <div class='form-group'>
    <div>{{ Form::label('fathers_occupation', ' Fathers occupation') }}</div>
    <div>{{ Form::text('fathers_occupation', Input::old('fathers_occupation'),['class'=>'form-control ']) }}</div>
    </div>
@@ -18,22 +13,22 @@
    <div>{{ Form::text('fathers_phone', Input::old('fathers_phone'),['class'=>'form-control ']) }}</div>
    </div>
 
-   {{--<div class='form-group'>--}}
-   {{--<div>{{ Form::label('freedom_fighter', ' Freedom fighter') }}</div>--}}
-   {{--<div>{{ Form::text('freedom_fighter', Input::old('freedom_fighter'),['class'=>'form-control ']) }}</div>--}}
-   {{--</div>--}}
    <div class='form-group'>
-       {{ Form::label('freedom_fighter', ' Freedom fighter?') }}
+       {{ Form::label('freedom_fighter', 'Is Freedom Fighter?') }}
        <div class="form-inline">
            <div class="radio">
-               {{ Form::radio('freedom_fighter', 'yes', (Input::old('freedom_fighter') == 'yes'), array('id'=>'yes', 'class'=>'radio')) }}
-               {{ Form::label('yes', 'yes') }}
+               {{ Form::radio('freedom_fighter', '1', (Input::old('freedom_fighter') == '1'), array('id'=>'1', 'class'=>'radio')) }}
+               {{ Form::label('freedom_fighter', 'Yes') }}
            </div>
            <div class="radio">
-               {{ Form::radio('freedom_fighter', 'No', (Input::old('freedom_fighter') == 'No'), array('id'=>'No', 'class'=>'radio')) }}
-               {{ Form::label('No', 'No') }}
+               {{ Form::radio('freedom_fighter', '0', (Input::old('freedom_fighter') == '0'), array('id'=>'0', 'class'=>'radio')) }}
+               {{ Form::label('freedom_fighter', 'No') }}
            </div>
        </div>
+   </div>
+   <div class='form-group'>
+       <div>{{ Form::label('mothers_name', ' Mothers name') }}</div>
+       <div>{{ Form::text('mothers_name', Input::old('mothers_name'),['class'=>'form-control ']) }}</div>
    </div>
    <div class='form-group'>
    <div>{{ Form::label('mothers_occupation', ' Mothers Occupation') }}</div>
@@ -46,11 +41,11 @@
     </div>
 
    <div class='form-group'>
-   <div>{{ Form::label('national_id', ' National id') }}</div>
+   <div>{{ Form::label('national_id', ' National Id') }}</div>
    <div>{{ Form::text('national_id', Input::old('national_id'),['class'=>'form-control ']) }}</div>
    </div>
    <div class='form-group'>
-   <div>{{ Form::label('driving_licence', ' Driving license') }}</div>
+   <div>{{ Form::label('driving_licence', ' Driving License') }}</div>
    <div>{{ Form::text('driving_licence', Input::old('driving_licence'),['class'=>'form-control ']) }}</div>
    </div>
 
@@ -60,16 +55,16 @@
    </div>
 
   <div class='form-group'>
-  <div>{{ Form::label('marital_status', ' Marital status') }}</div>
-  {{ Form::select('marital_status', array('0' => 'Select one',
-             '1' => 'Single', '2' => 'Married','3'=>'Divorsed'), Input::old('marital_status'),
+  <div>{{ Form::label('marital_status', ' Marital Status') }}</div>
+  {{ Form::select('marital_status', array('' => 'Select one',
+             'Single' => 'Single', 'Married' => 'Married','Divorsed'=>'Divorsed'), Input::old('marital_status'),
              array('class' => 'form-control')) }}
   </div>
 
    <div class='form-group'>
        <div>{{ Form::label('religion', 'Religion') }}</div>
-       {{ Form::select('religion', array('0' => 'Select one',
-                  '1' => 'Islam', '2' => 'Hindu','3'=>'khristian'), Input::old('religion'),
+       {{ Form::select('religion', array('' => 'Select one',
+                  'Islam' => 'Islam', 'Hindu' => 'Hindu','khristian'=>'khristian'), Input::old('religion'),
                   array('class' => 'form-control')) }}
    </div>
 
@@ -84,7 +79,7 @@
   </div>
 
   <div class='form-group'>
-  <div>{{ Form::label('permanent_address', ' Parmanent Address') }}</div>
+  <div>{{ Form::label('permanent_address', ' Permanent Address') }}</div>
   <div>{{ Form::textarea ('permanent_address', Input::old('permanent_address'),['class'=>'form-control','size' => '30x5']) }}</div>
   </div>
 

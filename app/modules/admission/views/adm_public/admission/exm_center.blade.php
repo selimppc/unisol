@@ -16,7 +16,7 @@
                  @foreach($exm_center_choice as $values)
                     {{ Form::hidden('id[]', $values->id )}}
                     Choice Sequence: {{ Form::select('exm_center_id[]', $exm_center_lists, $values->exm_center_id,['class'=>'form-control input-sm','required']) }}
-                @endforeach
+                 @endforeach
             @endif
 
             <p>&nbsp;</p>
@@ -30,4 +30,3 @@
        {{Form::close()}}
      </div>
 </div>
-{{--{{ Form::select('title',$exm_centers,Input::old('title'),['class'=>'form-control input-sm','required'=>'required']) }}--}}
