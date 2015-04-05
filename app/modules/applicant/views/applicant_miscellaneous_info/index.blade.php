@@ -35,46 +35,46 @@
                         @endif
                         <div class="box-body table-responsive ">
                             <table class="table table-striped  table-bordered">
-                                    <tr >
-                                        <th style="font-size: small">Ever Admit this University?</th>
-                                        <td>@if($data != null)
-                                                {{ $data->ever_admit_this_university ==1 ? 'Yes' : 'No' }}
-                                            @else
-                                            @endif
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th style="font-size: small">Ever Dismiss?</th>
-                                        <td>@if($data != null)
-                                                {{ $data->ever_dismiss ==1 ? 'Yes' : 'No' }}
-                                            @else
-                                            @endif
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th style="font-size: small">Academic Honors Received?</th>
-                                        <td>@if($data != null)
-                                                {{ $data->academic_honors_received ==1 ? 'Yes' : 'No' }}
-                                            @else
-                                            @endif
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th style="font-size: small">Ever Admit other University?</th>
-                                        <td>@if($data != null)
-                                                {{ $data->ever_admit_other_university ==1 ? 'Yes' : 'No' }}
-                                            @else
-                                            @endif
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th style="font-size: small">Admission test Center?</th>
-                                        <td>@if($data != null)
-                                                {{ $data->admission_test_center  }}
-                                            @else
-                                            @endif
-                                        </td>
-                                    </tr>
+                                <tr >
+                                    <th style="font-size: small">Ever Admit this University?</th>
+                                    <td>@if($data != null)
+                                            {{ $data->ever_admit_this_university ==1 ? 'Yes' : 'No' }}
+                                        @else
+                                        @endif
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th style="font-size: small">Ever Dismiss?</th>
+                                    <td>@if($data != null)
+                                            {{ $data->ever_dismiss ==1 ? 'Yes' : 'No' }}
+                                        @else
+                                        @endif
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th style="font-size: small">Academic Honors Received?</th>
+                                    <td>@if($data != null)
+                                            {{ $data->academic_honors_received ==1 ? 'Yes' : 'No' }}
+                                        @else
+                                        @endif
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th style="font-size: small">Ever Admit other University?</th>
+                                    <td>@if($data != null)
+                                            {{ $data->ever_admit_other_university ==1 ? 'Yes' : 'No' }}
+                                        @else
+                                        @endif
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th style="font-size: small">Admission test Center?</th>
+                                    <td>@if($data != null)
+                                            {{ $data->admission_test_center  }}
+                                        @else
+                                        @endif
+                                    </td>
+                                </tr>
                             </table>
                         </div>
                     </div>

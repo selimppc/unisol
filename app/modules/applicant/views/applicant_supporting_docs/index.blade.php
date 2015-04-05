@@ -108,7 +108,7 @@
                 <tr>
                     <th>Resume</th>
                         @if($supporting_docs->resume != null)
-                            <td><a class=" btn-link" href="{{ URL::route('applicant.supporting_docs.view', array('doc_type' => 'portfolio', 'sdoc_id'=>$sdoc_id))}}" data-toggle="modal" data-target="#addgoalModal" >
+                            <td><a class=" btn-link" href="{{ URL::route('applicant.supporting_docs.view', array('doc_type' => 'resume', 'sdoc_id'=>$sdoc_id))}}" data-toggle="modal" data-target="#addgoalModal" >
                                     {{ HTML::image('/applicant_images/supporting_doc/'.$supporting_docs->resume, $supporting_docs->resume,['class'=>'col-md-3'])}}
                                     Edit</a><br></td>
                         @else
