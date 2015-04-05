@@ -285,7 +285,8 @@ class CreateAdmission extends Migration {
         Schema::create('adm_question', function(Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('batch_admtest_subject_id')->nullable();
-            $table->unsignedInteger('examiner_faculty_user_id')->nullable();
+            $table->unsignedInteger('s_faculty_user_id')->nullable();
+            $table->unsignedInteger('e_faculty_user_id')->nullable();
             $table->string('title', 128);
             $table->dateTime('deadline');
             $table->string('total_marks', 8);
@@ -297,7 +298,8 @@ class CreateAdmission extends Migration {
         });
         Schema::table('adm_question', function($table) {
             $table->foreign('batch_admtest_subject_id')->references('id')->on('batch_admtest_subject');
-            $table->foreign('examiner_faculty_user_id')->references('id')->on('user');
+            $table->foreign('s_faculty_user_id')->references('id')->on('user');
+            $table->foreign('e_faculty_user_id')->references('id')->on('user');
         });
 
 
@@ -383,6 +385,7 @@ class CreateAdmission extends Migration {
             $table->unsignedInteger('adm_question_id')->nullable();
             $table->unsignedInteger('adm_question_items_id')->nullable();
             $table->string('marks', 8);
+            $table->string('progress_status', 8);
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();

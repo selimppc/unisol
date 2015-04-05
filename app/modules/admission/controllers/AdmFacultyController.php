@@ -30,6 +30,19 @@ class AdmFacultyController extends \BaseController {
 
 	}
 
+//-->
+    public function changeStatusByFacultyAdmTest($id){
+        $model = AdmExaminer::findOrFail($id);
+        $model->status = 'Deny';
+        if($model->save()){
+            Session::flash('danger', 'Deny or Revoked! ');
+            return Redirect::back();
+        }
+
+    }
+
+
+
 //ok
     public function viewAdmTest($id)
     {
@@ -94,7 +107,6 @@ class AdmFacultyController extends \BaseController {
         $admtest_question_paper = AdmQuestion::latest('id')
            ->where('examiner_faculty_user_id' ,'=', Auth::user()->get()->id)
             ->get();
-
 
 
         $degree_id = Batch::where('id' ,'=', $batch_id )
@@ -382,23 +394,28 @@ class AdmFacultyController extends \BaseController {
 
 
 
-    public function viewAssignQuestionPaper($id)
+    public function viewAssignQuestionPaper($q_id)
     {
         $assign_qp = AdmQuestion::latest('id')->first();
 
-        $assign_qp_assign = AdmQuestionComments::where('adm_question_id', $id)->get();
+        $assign_qp_assign = AdmQuestionComments::where('adm_question_id', $q_id)->get();
 
 
         return View::make('admission::faculty.question_papers.assign_qp',
-            compact('assign_qp','assign_qp_assign'));
+            compact('assign_qp','assign_qp_assign','q_id'));
 
     }
 
+    /**
+     * @return mixed
+     */
     public function commentAssignQuestionPaper()
     {
         $info = Input::all();
-//        print_r($info);exit;
+//        print_r(Input::get('adm_question_id'));exit;
         $model = new AdmQuestionComments();
+
+
         $model->adm_question_id = $info['adm_question_id'];
         $model->comment = $info['comment'];
         $model->commented_to = $info['commented_to'];
@@ -413,13 +430,13 @@ class AdmFacultyController extends \BaseController {
             Session::flash('errors', $errors);
             return Redirect::back()->with('errors', 'invalid');
         }
-
-
     }
 
-
-
 //->
+    /**
+     * @param $adm_question_id
+     * @return mixed
+     */
     public function evaluateQuestions($adm_question_id)
     {
         $data = AdmQuestion::with('relBatchAdmtestSubject',
@@ -428,7 +445,12 @@ class AdmFacultyController extends \BaseController {
 
 //        print_r($data);exit;
 
-        $evaluation_qp = AdmQuestionEvaluation::latest('id')->get();
+        $evaluation_qp = AdmQuestionEvaluation::with('relBatchApplicant','relBatchApplicant.relApplicant')
+            ->where('adm_question_id','=', $adm_question_id)
+              ->latest('id')
+              ->get();
+
+//        print_r($evaluation_qp);exit;
 
         return View::make('admission::faculty.question_papers.evaluate_question_paper',
             compact('evaluation_qp','data'));
@@ -436,10 +458,24 @@ class AdmFacultyController extends \BaseController {
     }
 
 
-    public function evaluateQuestionsitems()
+    public function evaluateQuestionsitems($a_q_id)
     {
+        $data_evaluate = AdmQuestion::with('relBatchAdmtestSubject',
+            'relBatchAdmtestSubject.relBatch','relBatchAdmtestSubject.relAdmtestSubject')
+            ->where('id','=',$a_q_id)->first();
+
+        $evaluate_qp = AdmQuestionEvaluation::with('relBatchApplicant','relBatchApplicant.relApplicant',
+            'relAdmQuestionItems','relAdmQuestionItems.relAdmQuestion')
+            ->where('adm_question_id','=', $a_q_id)
+            ->latest('id')
+            ->first();
+
+//        $eva_q_ans = AdmQuestionOptAns::with('relAdmQuestionItems')->where('id','=',$evaluate_qp->id)->first();
+
+
+
         return View::make('admission::faculty.question_papers.evaluate-questions-items',
-            compact(''));
+            compact('data_evaluate','evaluate_qp','eva_q_ans'));
     }
 
     public function reEvaluateQuestionsitems()

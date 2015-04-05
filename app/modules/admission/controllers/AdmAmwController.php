@@ -1248,9 +1248,11 @@ class AdmAmwController extends \BaseController
 
 //..................................................Admission Test : Question Evaluation .......................................
 
-    public function admQuestionEvaluationIndex()
+    public function questionPaperEvaluation($bats_id)
     {
-        return View::make('admission::amw.adm_question_evaluation.adm_question_evaluation_index');
+        $adm_question = AdmQuestion::where('batch_admtest_subject_id', $bats_id)->get();
+
+        return View::make('admission::amw.qpe.index');
     }
 
 //{-----------Version: 2 (Tanin) -----------------------------------------------------------------}

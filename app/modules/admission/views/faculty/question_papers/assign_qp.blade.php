@@ -5,7 +5,7 @@
 
 <div style="padding-left: 10px; width: 90%;">
     {{Form::open(array('route'=>'admission.faculty.question-papers.adm-test-qp-assign','method' => 'POST')) }}
-    {{Form::hidden('adm_question_id',$assign_qp->id )}}
+    {{Form::hidden('adm_question_id',$q_id )}}
     {{Form::hidden('commented_to', $assign_qp->examiner_faculty_user_id)}}
         <div  style="padding-left: 8%">
            <strong>Question Title : </strong>{{ isset($assign_qp) ? $assign_qp->title : 'no question found!' }}

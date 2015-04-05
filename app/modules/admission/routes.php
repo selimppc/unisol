@@ -379,9 +379,9 @@ Route::any('admission/amw/admission-test/comments-by-question',[
 
 //...................................Admission Question Evaluation........................................................
 
-Route::any('admission/amw/admission-question-evaluation',[
-    'as' => 'admission.amw.admission-question-evaluation',
-    'uses' => 'AdmAmwController@admQuestionEvaluationIndex'
+Route::any('admission/amw/question-paper-evaluation/{bats_id}',[
+    'as' => 'admission.amw.question-paper-evaluation',
+    'uses' => 'AdmAmwController@questionPaperEvaluation'
 ]);
 
 

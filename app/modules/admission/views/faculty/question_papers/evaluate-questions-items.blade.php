@@ -7,65 +7,79 @@
     <!-- START CUSTOM TABS -->
             <h2 class="page-header">Evaluate Question Items </h2>
             <div class="row">
-            <div class="col-md-12">
-            <!-- Custom Tabs -->
-            <div class="nav-tabs-custom">
-            <ul class="nav nav-tabs">
-                <li class="active"><a href="#tab_1" data-toggle="tab">Evaluation Question Items  </a></li>
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        Settings  <span class="caret"></span>
-                    </a>
-                        <ul class="dropdown-menu">
-                            <li role="presentation" data-toggle="modal" data-target="#addCategory"><a role="menuitem" tabindex="-1" href="#"> Blank </a></li>
+                <div class="col-md-12">
+                    <!-- Custom Tabs -->
+                    <div class="nav-tabs-custom">
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a href="#tab_1" data-toggle="tab">Evaluation Question Items  </a></li>
+                                <li class="dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                        Settings  <span class="caret"></span>
+                                    </a>
+                                        <ul class="dropdown-menu">
+                                            <li role="presentation" data-toggle="modal" data-target="#addCategory"><a role="menuitem" tabindex="-1" href="#"> Blank </a></li>
 
-                        </ul>
-                </li>
-                <li class="pull-right" class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-gear"></i>&nbsp;</a>
-                    <ul class="dropdown-menu">
-                        <li role="presentation" data-toggle="modal" data-target="#addCategory"><a role="menuitem" tabindex="-1" href="#"> Blank </a></li>
+                                        </ul>
+                                </li>
+                                <li class="pull-right" class="dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-gear"></i>&nbsp;</a>
+                                    <ul class="dropdown-menu">
+                                        <li role="presentation" data-toggle="modal" data-target="#addCategory"><a role="menuitem" tabindex="-1" href="#"> Blank </a></li>
 
-                    </ul>
-                </li>
-            </ul>
-            <div class="tab-content">
-                <div class="tab-pane active" id="tab_1">
-                    {{--<button class="pull-right btn btn-success btn-sm"  data-toggle="modal" data-target="#addExtraCurricular" >--}}
-                        {{--Add Extra-curricular--}}
-                    {{--</button><br>--}}
+                                    </ul>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="tab_1">
+                                    {{--<button class="pull-right btn btn-success btn-sm"  data-toggle="modal" data-target="#addExtraCurricular" >--}}
+                                        {{--Add Extra-curricular--}}
+                                    {{--</button><br>--}}
 
+                                      <strong> Degree: </strong>
+                                             {{ $data_evaluate->relBatchAdmtestSubject->relBatch->relDegree->relDegreeProgram->code.''
+                                                 .$data_evaluate->relBatchAdmtestSubject->relBatch->relDegree->relDegreeGroup->code.' in '
+                                                 .$data_evaluate->relBatchAdmtestSubject->relBatch->relDegree->relDepartment->title.' , '
+                                                 .$data_evaluate->relBatchAdmtestSubject->relBatch->relSemester->title.' , '
+                                                 .$data_evaluate->relBatchAdmtestSubject->relBatch->relYear->title }}
 
-                   <strong> Degree: </strong>{{-- {{ $evaluation_qp->relAdmQuestion->relBatchAdmTestSubjct->relBatch->relDegree->title }} --}} <br>
-
-                   <strong> Subject: </strong>{{-- {{ $evaluation_qp->relAdmQuestion->relBatchAdmTestSubjct->relAdmTestSubjct->title  }}--}} <br>
-                    <strong> Total Marks: </strong>{{--{{ $evaluation_qp->marks  }} --}} <br>
-                    <strong> Marks Obtained So Far: </strong>{{--{{ $evaluation_qp->marks  }} --}} <br>
-
-                    <div class="box-body table-responsive">
-                          {{ Form::open() }}
-                                Question # out oif #
-
-                                Question Title here
-
-                                Answer : textbox
-
-                                Marks : text
+                                       <br> <br>
 
 
-                                <a href="#" class="btn bg-orange btn-xs " >Evaluate and Next</a>
-                                <a href="{{ URL::previous() }}" class="btn bg-orange btn-xs " >Back</a>
+                                      <strong> Subject: </strong>{{ $data_evaluate->relBatchAdmtestSubject->relAdmtestSubject->title }}
+                                       <br> <br>
 
 
-                          {{ Form::close()  }}
-                    </div><!-- /.box -->
-                </div><!-- /.tab-pane -->
+                                      <strong> Total Marks: </strong> {{ $data_evaluate->total_marks }} <br><br>
 
-            </div><!-- /.tab-content -->
-            </div><!-- nav-tabs-custom -->
-            </div><!-- /.col -->
+                                      <strong> Marks Obtained So Far: </strong> {{ $evaluate_qp->relAdmQuestion->marks  }} <br><br>
 
+                                    <div class="box-body table-responsive">
+                                          {{ Form::open() }}
+                                                <strong> Question No: # out of: # </strong>
+                                                 <br><br>
+                                                <strong> Question Title Here: </strong> {{ $evaluate_qp->relAdmQuestionItems->title }}
+                                                    <br><br>
 
+                                                <div class='form-group'>
+                                                  {{ Form::label('answer', 'Answer') }}
+                                                  {{ Form::text('answer', Input::old('answer'),['class'=>'form-control','required'=>'required']) }}
+                                                </div>
+                                                {{--$eva_q_ans->answer--}}
+
+                                               <div class='form-group'>
+                                                  {{ Form::label('marks', 'Marks') }}
+                                                  {{ Form::text('marks', Input::old('marks'),['class'=>'form-control','required'=>'required']) }}
+                                               </div>
+
+                                               <a href="#" class="btn bg-purple btn-xs " >Evaluate and Next</a>
+                                               <a href="{{ URL::previous() }}" class="btn bg-orange btn-xs " >Back</a>
+
+                                          {{ Form::close()  }}
+                                    </div><!-- /.box -->
+                                </div><!-- /.tab-pane -->
+                            </div><!-- /.tab-content -->
+                    </div><!-- nav-tabs-custom -->
+                </div><!-- /.col -->
             </div> <!-- /.row -->
             <!-- END CUSTOM TABS -->
 

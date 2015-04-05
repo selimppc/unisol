@@ -341,4 +341,9 @@ class HomeController extends BaseController {
         return $factorial;
     }
 
+
+    public function sortable(){
+        return View::make('test.sortable');
+    }
+
 }
