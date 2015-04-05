@@ -359,22 +359,29 @@ Route::any('admission/amw/admission-test-question/view-questions-by-paper/{q_id}
     'as' => 'admission.amw.admission-test-question.view-questions-by-paper',
     'uses' => 'AdmAmwController@viewQuestionsByPaper'
 ]);
+
 Route::any('admission/amw/admission-test-question/view-question_item-details/{q_items_id}',[
     'as' => 'admission.amw.admission-test-question.view-question_item-details',
     'uses' => 'AdmAmwController@viewQuestionItemDetails'
 ]);
+
 Route::any('admission/amw/admission-test-question/assign-faculty-by-question/{q_id}',[
     'as' => 'admission.amw.admission-test-question.assign-faculty-by-question',
     'uses' => 'AdmAmwController@assignFacultyByQuestion'
+]);
+
+Route::any('admission/amw/admission-test/comments-by-question',[
+    'as' => 'admission.amw.admission-test.comments-by-question',
+    'uses' => 'AdmAmwController@assignFacultyCommentsByQuestion'
 ]);
 
 
 
 //...................................Admission Question Evaluation........................................................
 
-Route::any('admission/amw/admission-question-evaluation',[
-    'as' => 'admission.amw.admission-question-evaluation',
-    'uses' => 'AdmAmwController@admQuestionEvaluationIndex'
+Route::any('admission/amw/question-paper-evaluation/{bats_id}',[
+    'as' => 'admission.amw.question-paper-evaluation',
+    'uses' => 'AdmAmwController@questionPaperEvaluation'
 ]);
 
 

@@ -3,6 +3,12 @@
    @include('layouts._sidebar_applicant')
  @stop
 @section('content')
+
+<div class="row">
+    <div class="col-md-12">
+       <a class="pull-right btn btn-xs btn-success" href="{{ URL::route('admission.public.degree_offer_list' )}}"> <i class="fa fa-arrow-circle-left"></i> Go Back</a>
+    </div><!-- ./col -->
+</div><!-- /.row -->
 {{---------------------------------------------Data Table:admission on degree :Starts-----------------------------------------------------------------}}
  <div class="box box-solid ">
      <div class="box-header">
@@ -87,14 +93,14 @@
                                   <div class="row">
                                       <div class="col-lg-4">
                                               @if(isset($applicant_personal_info))
-                                                  {{ HTML::image('applicant_images/'.$applicant_personal_info->profile_image) }}
+                                                  {{ HTML::image('files_public/'.$applicant_personal_info->profile_image) }}
                                               @endif
                                       </div>
                                       <div class="col-lg-8">
                                           <table>
                                           @if($applicant_personal_info != null)
 
-                                                <a style="margin-left:-21%" class="pull-right btn btn-default" href="{{ URL::to('applicant/profile/edit/' . $applicant_personal_info->id  ) }}" data-toggle="modal" data-target="#addDegreeModal" >Edit</a>
+                                                <a style="margin-left:-21%" class="pull-right btn btn-default" href="{{ URL::route('admission.public.applicant-profile-edit', ['id'=>$applicant_personal_info->id]  ) }}" data-toggle="modal" data-target="#addDegreeModal" >Edit</a>
                                             @else
                                                 <a style="margin-left:-21%" class="pull-right btn btn-default" href="{{ URL::route('admission.public.add-applicant-profile')}}" data-toggle="modal" data-target="#addDegreeModal" >Add Profile Information</a>
 
@@ -146,9 +152,7 @@
                                   </div>
                              </div>
                              <p>&nbsp;</p><p>&nbsp;</p><br>
-                             {{--<div class="box-footer clearfix">--}}
-                                  {{--<a class="pull-right btn btn-default"  href="{{url::to('admission/public/admission/add-applicant-acm-docs')}}" data-toggle="modal" data-target="#addDegreeModal"><b></b> Add Profile </a>--}}
-                             {{--</div>--}}
+
                     </div>
                     <p>&nbsp;</p>
                     <div class="box box-info">
@@ -192,8 +196,8 @@
                                                                     <td>
                                                                        <a style="color:navy" class="btn btn-xs btn-default" href="{{URL::route('admission.public.applicant_certificate',['id'=>$value->id])}}" data-toggle="modal" data-target="#addDegreeModal">Certificate</a>
                                                                        <a style="color:navy" class="pull-right btn btn-xs btn-default" href="{{URL::route('admission.public.applicant_transcript',['id'=>$value->id])}}" data-toggle="modal" data-target="#addDegreeModal">Transcript</a>
-                                                                     </td>
-                                                                     <td>
+                                                                    </td>
+                                                                    <td>
                                                                     <a href="{{ URL::route('admission.public.edit-applicant-acm-docs',['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#addDegreeModal" style="font-size: 12px;color: darkmagenta"><span class="fa fa-edit"></span></a>
                                                                     <a data-href="{{ URL::route('admission.public.delete-applicant-acm-docs',['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" style="font-size: 12px;color: lightcoral"><span class="fa  fa-trash-o"></span></a>
 
@@ -297,7 +301,7 @@
                                  @endif
 
                                  @if($applicant_meta_records != null)
-                                         <a style="margin-right:-21%" class="pull-right btn btn-default" href="{{ URL::route('admission.public.edit-applicant-meta' , $applicant_meta_records->id  ) }}" data-toggle="modal" data-target="#addDegreeModal" >Edit Profile</a>
+                                         <a style="margin-right:-21%" class="pull-right btn btn-default" href="{{ URL::route('admission.public.edit-applicant-meta' , ['applicant_id'=>$applicant_meta_records->id]  ) }}" data-toggle="modal" data-target="#addDegreeModal" >Edit</a>
                                  @else
                                          <a style="margin-right:-21%" class="pull-right btn btn-default" href="{{ URL::route('admission.public.add-applicant-meta')}}" data-toggle="modal" data-target="#addDegreeModal" >Add Profile Data</a>
                                  @endif

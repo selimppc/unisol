@@ -52,17 +52,17 @@
              </thead>
                  <tbody>
                     @if(!empty($adm_test_home_data))
-                         @foreach($adm_test_home_data as $adm_test_mgt)
+                         @foreach($adm_test_home_data as $values)
                                <tr>
-                                   <td><input type="checkbox" name="id[]" class="myCheckbox" value="{{ $adm_test_mgt['id'] }}"></td>
+                                   <td><input type="checkbox" name="id[]" class="myCheckbox" value="{{ $values->id }}"></td>
     {{--                               <td>{{ $adm_test_mgt->relDegree->title }}</td>--}}
-                                   <td>{{ $adm_test_mgt->relDegree->relDegreeProgram->code.''.$adm_test_mgt->relDegree->relDegreeGroup->code }}</td>
-                                   <td>{{ $adm_test_mgt->relDegree->relDepartment->title }}</td>
-                                   <td>{{ $adm_test_mgt->relYear->title }}</td>
-                                   <td>{{ $adm_test_mgt->relSemester->title }}</td>
-                                   <td>{{ $adm_test_mgt->relDegree->total_credit }}</td>
-                                   <td style="text-align: center">{{ $adm_test_mgt->relDegree->duration }}</td>
-                                   <td>QPE Status</td>
+                                   <td>{{ $values->relDegree->relDegreeProgram->code.''.$adm_test_mgt->relDegree->relDegreeGroup->code }}</td>
+                                   <td>{{ $values->relDegree->relDepartment->title }}</td>
+                                   <td>{{ $values->relYear->title }}</td>
+                                   <td>{{ $values->relSemester->title }}</td>
+                                   <td>{{ $values->relDegree->total_credit }}</td>
+                                   <td>{{ $values->relDegree->duration }}</td>
+                                   <td> QPE Status </td>
                                    <td>
                                       {{--<a href="{{ URL::route('admission.amw.admission-examiner-index', ['year_id'=>$adm_test_mgt->year_id , 'semester_id'=>$adm_test_mgt->semester_id , 'degree_id'=>$adm_test_mgt->degree_id ])  }}" class="btn btn-default btn-xs" >EX</a>--}}
                                       <a href="{{ URL::to('admission/amw/admission-test-examiner') }}" class="btn btn-default btn-xs" >EX</a>

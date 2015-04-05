@@ -950,12 +950,16 @@ class AdmAmwController extends \BaseController
 
     public function admissionTestIndex()
     {
-//        $admission_test_batch = BatchAdmtestSubject::latest('id')->get();
-
-        $admission_test_home = BatchAdmtestSubject::with('relBatch','relBatch.relDegree',
-            'relBatch.relDegree.relDepartment','relBatch.relYear','relBatch.relSemester')
-            ->get();
-
+        if($this->isPostRequest()){
+            $year_id  = Input::get('year_id');
+            $semester_id = Input::get('semester_id');
+            $admission_test_home = BatchAdmtestSubject::with(['relBatch'=> function($query) use($year_id, $semester_id) {
+                //$query->where('year_id', '=', $year_id)->where('semester_id', '=', $semester_id);
+            }])->get();
+        }else{
+            $admission_test_home = BatchAdmtestSubject::with('relBatch','relBatch.relDegree',
+                'relBatch.relDegree.relDepartment','relBatch.relYear','relBatch.relSemester')->get();
+        }
         $year_id = array('' => 'Select Year ') + Year::lists('title', 'id');
         $semester_id = array('' => 'Select Semester ') + Semester::lists('title', 'id');
 
@@ -965,13 +969,15 @@ class AdmAmwController extends \BaseController
 
     public function admissionTestSearchIndex()
     {
-        $searchQuery = [
-            'year_id' =>   Input::get('year_id'),
-            'semester_id' =>   Input::get('semester_id'),
-        ];
+        $year_id  = Input::get('year_id');
+        $semester_id = Input::get('semester_id');
 
-        $model = new BatchAdmtestSubject();
-        $adm_test_home_data = Helpers::search($searchQuery, $model);
+        //$model = new BatchAdmtestSubject();
+        $adm_test_home_data = BatchAdmtestSubject::with(['relBatch'=> function($query) use($year_id, $semester_id) {
+                $query->where('year_id', $year_id);
+                $query->where('semester_id', $semester_id);
+            }])->get();
+        print_r($adm_test_home_data);exit;
         $year_id = array('' => 'Select Year ') + Year::lists('title', 'id');
         $semester_id = array('' => 'Select Semester ') + Semester::lists('title', 'id');
 
@@ -1182,6 +1188,10 @@ class AdmAmwController extends \BaseController
         }
     }
 
+    /**
+     * @param $q_id :: question id
+     * @return mixed
+     */
     public function viewQuestionsByPaper($q_id)
     {
         $question_subject = AdmQuestion::with('relBatchAdmtestSubject')->where('id', $q_id)->first();
@@ -1189,6 +1199,11 @@ class AdmAmwController extends \BaseController
         return View::make('admission::amw.adm_question.view_question_items',
             compact('question_items', 'question_subject'));
     }
+
+    /**
+     * @param $q_items_id :: question item id
+     * @return mixed
+     */
     public function viewQuestionItemDetails($q_items_id)
     {
         $question_item = AdmQuestionItems::where('id', $q_items_id)->first();
@@ -1196,17 +1211,47 @@ class AdmAmwController extends \BaseController
         return View::make('admission::amw.adm_question.view_question_item_details',
             compact('question_item', 'question_item_details'));
     }
+
+    /**
+     * @param $q_id :: question ID
+     * @return mixed
+     */
     public function assignFacultyByQuestion($q_id)
     {
+        $question_data = AdmQuestion::with('relBatchAdmtestSubject')->where('id', $q_id)->first();
+        $examiner_faculty_lists = AdmQuestion::AdmissionExaminerList($question_data->relBatchAdmtestSubject->batch_id);
+        $comments = AdmQuestionComments::where('adm_question_id', $q_id)->get();
+        return View::make('admission::amw.adm_question.assign_faculty_by_question_comnnets',
+            compact('question_data', 'examiner_faculty_lists', 'comments'));
+    }
 
+
+    public function assignFacultyCommentsByQuestion()
+    {
+        $model = new AdmQuestionComments();
+        $data = Input::all();
+
+        if($model->validate($data)){
+            if($model->create($data)){
+                Session::flash('message', 'Assigned / Commented Successfully!');
+                return Redirect::back();
+            }
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()
+                ->with('error', 'invalid');
+        }
     }
 
 
 
 //..................................................Admission Test : Question Evaluation .......................................
 
-    public function admQuestionEvaluationIndex()
+    public function questionPaperEvaluation($bats_id)
     {
+        $adm_question = AdmQuestion::where('batch_admtest_subject_id', $bats_id)->get();
+        print_r($adm_question); exit;
         return View::make('admission::amw.adm_question_evaluation.adm_question_evaluation_index');
     }
 

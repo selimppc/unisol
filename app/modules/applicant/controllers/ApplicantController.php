@@ -210,25 +210,36 @@ class ApplicantController extends \BaseController
 
     }
 
-    //**************************Applicant Meta Start(R)********************
+ //**************************Applicant Meta Information/Personal Info Start(R)*********
 
     public function personalInfoIndex()
     {
-        $applicant_personal_info = ApplicantMeta::where('applicant_id', '=','1' )->first();
-        return View::make('applicant::applicant_personal_info.index',compact('applicant_personal_info'));
+        if(Auth::applicant()->check()) {
+            $applicant = Auth::applicant()->get()->id;
+            $applicant_personal_info = ApplicantMeta::where('applicant_id', '=',$applicant )
+                ->first();
+            return View::make('applicant::applicant_personal_info.index',compact('applicant_personal_info','applicant'));
+        }
+        else {
+            Session::flash('danger', "Please Login As Applicant!");
+            return Redirect::route('user/login');
+        }
+
     }
+
     public function personalInfoCreate(){
         return View::make('applicant::applicant_personal_info._form');
     }
-    public function personalInfoStore(){
 
+    public function personalInfoStore()
+    {
         $rules = array(
-            'national_id' => 'required',
+           // 'national_id' => 'required',
         );
         $validator = Validator::make(Input::all(), $rules);
         if ($validator->passes()) {
             $applicant_personal_info =new ApplicantMeta();
-            $applicant_personal_info->applicant_id = Input::get('applicant_id');
+            $applicant_personal_info->applicant_id = Auth::applicant()->get()->id;
             $applicant_personal_info->fathers_name = Input::get('fathers_name');
             $applicant_personal_info->mothers_name = Input::get('mothers_name');
             $applicant_personal_info->fathers_occupation = Input::get('fathers_occupation');
@@ -239,12 +250,19 @@ class ApplicantController extends \BaseController
             $applicant_personal_info->national_id = Input::get('national_id');
             $applicant_personal_info->driving_licence = Input::get('driving_licence');
             $applicant_personal_info->passport = Input::get('passport');
-            $applicant_personal_info->place_of_birth = Input::get('place_of_birth');
             $applicant_personal_info->national_id = Input::get('national_id');
             $applicant_personal_info->marital_status = Input::get('marital_status');
-            $applicant_personal_info->nationality = Input::get('nationality');
             $applicant_personal_info->religion = Input::get('religion');
-            $applicant_personal_info->signature = Input::file('signature');
+
+            $imagefile = Input::file('signature');
+            $extension = $imagefile->getClientOriginalExtension();
+            $filename = str_random(12) . '.' . $extension;
+            $file = strtolower($filename);
+            $path = public_path("/applicant_images/app_meta/" . $file);
+            Image::make($imagefile->getRealPath())->resize(100, 100)->save($path);
+            $applicant_personal_info->signature  = $file;
+
+
             $applicant_personal_info->present_address = Input::get('present_address');
             $applicant_personal_info->permanent_address = Input::get('permanent_address');
             $applicant_personal_info->save();
@@ -254,6 +272,7 @@ class ApplicantController extends \BaseController
         }
 
     }
+
     public function personalInfoEdit($id){
         $applicant_personal_info = ApplicantMeta::find($id);
         return View::make('applicant::applicant_personal_info.edit', compact('applicant_personal_info'));
@@ -265,13 +284,32 @@ class ApplicantController extends \BaseController
         $validator = Validator::make(Input::all(), $rules);
         if ($validator->passes()) {
             $applicant_personal_info = ApplicantMeta::find($id);
-            $applicant_personal_info->national_id = Input::get('national_id');
+            $applicant_personal_info->applicant_id = Auth::applicant()->get()->id;
             $applicant_personal_info->fathers_name = Input::get('fathers_name');
             $applicant_personal_info->mothers_name = Input::get('mothers_name');
             $applicant_personal_info->fathers_occupation = Input::get('fathers_occupation');
-            $applicant_personal_info->passport = Input::get('passport');
+            $applicant_personal_info->fathers_phone = Input::get('fathers_phone');
+            $applicant_personal_info->freedom_fighter = Input::get('freedom_fighter');
             $applicant_personal_info->mothers_occupation = Input::get('mothers_occupation');
+            $applicant_personal_info->mothers_phone = Input::get('mothers_phone');
+            $applicant_personal_info->national_id = Input::get('national_id');
+            $applicant_personal_info->driving_licence = Input::get('driving_licence');
+            $applicant_personal_info->passport = Input::get('passport');
+            $applicant_personal_info->national_id = Input::get('national_id');
+            $applicant_personal_info->marital_status = Input::get('marital_status');
+            $applicant_personal_info->religion = Input::get('religion');
 
+            $imagefile = Input::file('signature');
+            $extension = $imagefile->getClientOriginalExtension();
+            $filename = str_random(12) . '.' . $extension;
+            $file = strtolower($filename);
+            $path = public_path("/applicant_images/app_meta/" . $file);
+            Image::make($imagefile->getRealPath())->resize(100, 100)->save($path);
+            $applicant_personal_info->signature  = $file;
+
+
+            $applicant_personal_info->present_address = Input::get('present_address');
+            $applicant_personal_info->permanent_address = Input::get('permanent_address');
             $applicant_personal_info->save();
             return Redirect::back()->with('message', 'Successfully updated Information!');
         } else {
@@ -279,53 +317,141 @@ class ApplicantController extends \BaseController
         }
     }
 
-    // *******************Applicant Extra-Curricular Activities Start(R)***************
+    public function edit_signature($id)
+    {
+        $signature = ApplicantMeta::find($id);
+        return View::make('applicant::applicant_personal_info.edit_signature', compact('signature'));
+    }
+
+    public function update_signature($id)
+    {
+        $rules = array(
+            'signature' => 'required',
+        );
+        $validator = Validator::make(Input::all(), $rules);
+        if ($validator->passes()) {
+
+            $signature = ApplicantMeta::find($id);
+            $imagefile = Input::file('signature');
+            $extension = $imagefile->getClientOriginalExtension();
+            $filename = str_random(12) . '.' . $extension;
+            $file = strtolower($filename);
+            $path = public_path("/applicant_images/app_meta/" . $file);
+            Image::make($imagefile->getRealPath())->resize(100, 100)->save($path);
+            $signature->signature  = $file;
+            $signature->save();
+            return Redirect::back()->with('message', 'Successfully updated Information!');
+        } else {
+            return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
+        }
+
+    }
+
+
+//***********************Applicant's Supporting Docs Start(R)*************************
+
+    public function sDocsIndex()
+    {
+        $applicant= Auth::applicant()->get()->id;
+        $supporting_docs = ApplicantSupportingDoc::where('applicant_id', '=', $applicant)->first();
+        if(!$supporting_docs){
+            $supporting_docs = new ApplicantSupportingDoc();
+            $supporting_docs->applicant_id = Auth::applicant()->get()->id;
+            $supporting_docs->save();
+        }
+        return View::make('applicant::applicant_supporting_docs.index', compact('supporting_docs', 'doc_type'));
+    }
+    public function sDocsView($doc_type, $sdoc_id)
+    {
+        $supporting_docs = ApplicantSupportingDoc::where('id', '=', $sdoc_id)->first();
+        if(!$supporting_docs)
+            $supporting_docs = null;
+
+        return View::make('applicant::applicant_supporting_docs.modals.supporting_docs', compact('supporting_docs', 'doc_type'));
+    }
+
+    public function sDocsStore()
+    {
+        $data = Input::all();
+        $sdoc = $data['id'] ? ApplicantSupportingDoc::find($data['id']) : new ApplicantSupportingDoc;
+        if ($data['doc_type']=='other') {
+            $sdoc->other = Input::get('other');
+        } else {
+            $file = Input::file('doc_file');
+            $extension = $file->getClientOriginalExtension();
+            $filename = str_random(12) . '.' . $extension;
+            $sdoc_file=strtolower($filename);
+            $path = public_path("/applicant_images/supporting_doc/" . $sdoc_file);
+            Image::make($file->getRealPath())->resize(100, 100)->save($path);
+            $sdoc->$data['doc_type'] =$sdoc_file;
+        }
+        if ($sdoc->save())
+            return Redirect::to('apt/supporting_docs/')->with('message', 'successfully added');
+        else
+            return Redirect::to('apt/supporting_docs/')->with('message', 'Not Added');
+    }
+
+
+ //********************Applicant Extra-Curricular Activities Start(R)***************
 
     public function extraCurricularIndex()
     {
-        $data = ApplicantExtraCurrActivity::where('applicant_id', '=', '1')->first();
-        return View::make('applicant::extra_curricular.index', compact('data'));
+        if(Auth::applicant()->check()) {
+            $datas = ApplicantExtraCurrActivity::orderBy('id', 'DESC')->paginate(5);
+            $applicant = Auth::applicant()->get()->id;
+            $data = ApplicantExtraCurrActivity::where('applicant_id', '=', $applicant)->first();
+            return View::make('applicant::extra_curricular.index', compact('data','datas'));
+        }
+        else {
+            Session::flash('danger', "Please Login As Applicant!");
+            return Redirect::route('user/login');
+        }
+
     }
+
     public function extraCurricularCreate(){
         return View::make('applicant::extra_curricular._form');
     }
 
-
     public function applicantExtraCurricularStore(){
 
         $rules = array(
-//            'title' => 'required',
+            'title' => 'required',
         );
         $validator = Validator::make(Input::all(), $rules);
         if ($validator->passes()) {
             $extra_curricular =new ApplicantExtraCurrActivity();
-            //print_r($extra_curricular);exit;
-            $extra_curricular->applicant_id = Input::get('applicant_id');
+            $extra_curricular->applicant_id = Auth::applicant()->get()->id;
             $extra_curricular->title = Input::get('title');
             $extra_curricular->description = Input::get('description');
-            $extra_curricular->achievement = Input::get('achivement');
-//            $extra_curricular->certificate_medal = Input::file('certificate_medal');
+            $extra_curricular->achievement = Input::get('achievement');
+            $imagefile = Input::file('certificate_medal');
+            $extension = $imagefile->getClientOriginalExtension();
+            $filename = str_random(12) . '.' . $extension;
+            $file = strtolower($filename);
+            $path = public_path("/applicant_images/extra_curri_act/" . $file);
+            Image::make($imagefile->getRealPath())->resize(100, 100)->save($path);
+            $extra_curricular->certificate_medal  = $file;
             $extra_curricular->save();
-
             return Redirect::back()->with('message', 'Successfully added Information!');
         } else {
-            return Redirect::to('applicant/extra_curricular/create')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
+            return Redirect::to('apt/extra_curricular/')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
         }
 
     }
-    public function excActivities()
-    {
-        $profile = ApplicantExtraCurrActivity::where('applicant_id', '=', '1')->first();
-        return View::make('applicant::extra_curricular.index', compact('profile'));
-    }
+
     public function editExtraCurricular($id)
     {
         $extra_curricular = ApplicantExtraCurrActivity::find($id);
-
         return View::make('applicant::extra_curricular.edit', compact('extra_curricular'));
     }
-    public function updateExtraCurricular($id){
 
+    /**
+     * @param $id
+     * @return mixed ->
+     */
+    public function updateExtraCurricular($id)
+    {
         $rules = array(
             'title' => 'required',
         );
@@ -334,75 +460,59 @@ class ApplicantController extends \BaseController
             $extra_curricular = ApplicantExtraCurrActivity::find($id);
             $extra_curricular->title = Input::get('title');
             $extra_curricular->description = Input::get('description');
-            $extra_curricular->achievement = Input::get('achivement');
-            $extra_curricular->certificate_medal = Input::file('certificate_medal');
-
-
+            $extra_curricular->achievement = Input::get('achievement');
+            $imagefile = Input::file('certificate_medal');
+            $extension = $imagefile->getClientOriginalExtension();
+            $filename = str_random(12) . '.' . $extension;
+            $file = strtolower($filename);
+            $path = public_path("/applicant_images/extra_curri_act/" . $file);
+            Image::make($imagefile->getRealPath())->resize(100, 100)->save($path);
+            $extra_curricular->certificate_medal  = $file;
             $extra_curricular->save();
             return Redirect::back()->with('message', 'Successfully updated Information!');
         } else {
             return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
         }
     }
-    public function applicantIndex(){
-
-        return View::make('applicant::applicants.index');
-    }
-
-
-
-//***********************Applicant's Supporting Docs Start(R)*************************
-
-    public function sDocsIndex(){
-        $supporting_docs = ApplicantSupportingDoc::where('applicant_id', '=', 27)->first();
-
-        if(!$supporting_docs){
-            $supporting_docs = new ApplicantSupportingDoc();
-            $supporting_docs->applicant_id = 27;
-            $supporting_docs->save();
-        }
-        return View::make('applicant::applicant_supporting_docs.index', compact('supporting_docs', 'doc_type'));
-    }
-    public function sDocsView($doc_type, $sdoc_id){
-
-        $supporting_docs = ApplicantSupportingDoc::where('id', '=', $sdoc_id)->first();
-        if(!$supporting_docs)
-            $supporting_docs = null;
-
-        return View::make('applicant::applicant_supporting_docs.modals.supporting_docs', compact('supporting_docs', 'doc_type'));
-    }
-    public function sDocsStore()
+    public function applicantExtraCurricularShow($id)
     {
-        $data = Input::all();
-        $sdoc = $data['id'] ? ApplicantSupportingDoc::find($data['id']) : new ApplicantSupportingDoc;
+        $datas = ApplicantExtraCurrActivity::find($id);
+        return View::make('applicant::extra_curricular.show', compact('datas'));
 
-        if ($data['doc_type']=='other') {
-            $sdoc->other = Input::get('other');
-        } else {
-            $file = Input::file('doc_file');
-            $extension = $file->getClientOriginalExtension();
-            $filename = str_random(12) . '.' . $extension;
-            $sdoc_file=strtolower($filename);              // rename file name to lower
-            $path = public_path("applicant_images/" . $sdoc_file);
-            Image::make($file->getRealPath())->resize(60, 60)->save($path);
-            $sdoc->$data['doc_type'] =$sdoc_file;
+    }
+
+    public function applicantExtraCurricularDelete($id)
+    {
+        try {
+            $data= ApplicantExtraCurrActivity::find($id);
+            if($data->delete())
+            {
+                Session::flash('danger', "Activities Deleted successfully");
+                //return Redirect::back();
+                return Redirect::to('apt/extra_curricular/');
+            }
         }
-        if ($sdoc->save())
-            return Redirect::to('apt/supporting_docs/index')->with('message', 'successfully added');
-        else
-            return Redirect::to('apt/supporting_docs/index')->with('message', 'Not Added');
+        catch
+        (exception $ex){
+            return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+
+        }
     }
 
 
 //***********************Applicant Miscellaneous Information(R)*************************
 
-    public function miscInfoIndex(){
-        $data = ApplicantMiscInfo::where('applicant_id', '=', '1')->first();
-        return View::make('applicant::applicant_miscellaneous_info.index',compact('data'));
+    public function miscInfoIndex()
+    {
+        $applicant= Auth::applicant()->get()->id;
+        $data = ApplicantMiscInfo::where('applicant_id', '=', $applicant)->first();
+        return View::make('applicant::applicant_miscellaneous_info.index',compact('data','applicant'));
     }
+
     public function miscInfoCreate(){
         return View::make('applicant::applicant_miscellaneous_info.modal.miscellaneous');
     }
+
     public function miscInfoStore(){
         $rules = array(
             'ever_admit_this_university' => 'required',
@@ -414,43 +524,39 @@ class ApplicantController extends \BaseController
         $validator = Validator::make(Input::all(), $rules);
         if ($validator->passes()) {
             $data =new ApplicantMiscInfo();
-            $data->applicant_id = Input::get('applicant_id');
+            $data->applicant_id = Auth::applicant()->get()->id;
             $data->ever_admit_this_university = Input::get('ever_admit_this_university');
             $data->ever_dismiss = Input::get('ever_dismiss');
             $data->academic_honors_received = Input::get('academic_honors_received');
             $data->ever_admit_other_university = Input::get('ever_admit_other_university');
             $data->admission_test_center = Input::get('admission_test_center');
-
             $data->save();
 
             return Redirect::back()->with('message', 'Successfully added Information!');
         } else {
-           return Redirect::to('apt/misc_info/index')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
+           return Redirect::to('apt/misc_info/')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
         }
-
     }
+
     public function miscInfoEdit($id){
         $model= ApplicantMiscInfo::find($id);
         return View::make('applicant::applicant_miscellaneous_info.modal.edit', compact('model'));
     }
+
     public function miscInfoUpdate($id){
         $data= Input::all();
-
         $rules = array(
             'ever_admit_this_university' => 'required',
         );
         $validator = Validator::make(Input::all(), $rules);
-        if ($validator->passes()) {
-
+        if ($validator->passes())
+        {
             $model = ApplicantMiscInfo::find($id);
-
             $model->ever_admit_this_university = Input::get('ever_admit_this_university');
             $model->ever_dismiss = Input::get('ever_dismiss');
-
             $model->academic_honors_received = Input::get('academic_honors_received');
             $model->ever_admit_other_university = Input::get('ever_admit_other_university');
             $model->admission_test_center = Input::get('admission_test_center');
-
             $model->save();
             return Redirect::back()->with('message', 'Successfully updated Information!');
         } else {

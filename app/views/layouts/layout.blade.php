@@ -170,7 +170,7 @@
         <!-- add new calendar event modal -->
         {{ HTML::script('assets/etsb/etsb_js/jquery/jquery.min.js')}}
         {{ HTML::script('assets/etsb/etsb_js/bootstrap/bootstrap.min.js')}}
-        {{ HTML::script('assets/etsb/etsb_js/jquery-ui/jquery-ui.min.js')}}
+        {{--{{ HTML::script('assets/etsb/etsb_js/jquery-ui/jquery-ui.min.js')}}--}}
 
         {{ HTML::script('assets/etsb/etsb_js/raphael/raphael-min.js')}}
         {{ HTML::script('assets/etsb/etsb_js/morris/morris.min.js')}}
