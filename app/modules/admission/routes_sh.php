@@ -126,7 +126,13 @@ Route::any('admission/faculty/question-papers/evaluate-questions-items/{id}',[
     'as' => 'admission.faculty.question-papers.evaluate-questions-items',
     'uses' => 'AdmFacultyController@evaluateQuestionsitems'
 ]);
-//.
+//on process
+
+Route::any('admission/faculty/question-papers/store-evaluated-questions',[
+    'as' => 'admission.faculty.question-papers.store-evaluated-questions',
+    'uses' => 'AdmFacultyController@storeEvaluatedQuestionItems'
+]);
+//..
 
 Route::any('admission/faculty/question-papers/re-evaluate-questions-items/{id}',[
     'as' => 'admission.faculty.question-papers.re-evaluate-questions-items',

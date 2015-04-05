@@ -470,12 +470,37 @@ class AdmFacultyController extends \BaseController {
             ->latest('id')
             ->first();
 
-//        $eva_q_ans = AdmQuestionOptAns::with('relAdmQuestionItems')->where('id','=',$evaluate_qp->id)->first();
-
+        $eva_q_ans = AdmQuestionOptAns::with('relAdmQuestionItems')->where('adm_question_items_id','=',$evaluate_qp->adm_question_items_id)->first();
 
 
         return View::make('admission::faculty.question_papers.evaluate-questions-items',
             compact('data_evaluate','evaluate_qp','eva_q_ans'));
+    }
+
+    public function storeEvaluatedQuestionItems()
+    {
+
+        $info = Input::all();
+
+        print_r($info);exit;
+//        print_r(Input::get('adm_question_id'));exit;
+        $model = new AdmQuestionEvaluation();
+
+        $model->batch_applicant_id = $info['batch_applicant_id'];
+        $model->adm_question_id = $info['adm_question_id'];
+        $model->adm_question_items_id = $info['adm_question_items_id'];
+        $model->marks = $info['marks'];
+
+        if($model->save()){
+            Session::flash('message', 'Comments added');
+            return Redirect::back();
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()->with('errors', 'invalid');
+        }
+
+
     }
 
     public function reEvaluateQuestionsitems()

@@ -55,7 +55,7 @@
                                       <strong> Marks Obtained So Far: </strong> {{ $evaluate_qp->relAdmQuestion->marks  }} <br><br>
 
                                     <div class="box-body table-responsive">
-                                          {{ Form::open() }}
+                                          {{Form::open(array('url'=>'admission/faculty/question-papers/store-evaluated-questions', 'class'=>'form-horizontal','files'=>true))}}
                                                 <strong> Question No: # out of: # </strong>
                                                  <br><br>
                                                 <strong> Question Title Here: </strong> {{ $evaluate_qp->relAdmQuestionItems->title }}
@@ -63,16 +63,11 @@
 
                                                 <div class='form-group'>
                                                   {{ Form::label('answer', 'Answer') }}
-                                                  {{ Form::text('answer', Input::old('answer'),['class'=>'form-control','required'=>'required']) }}
+                                                  {{ Form::text('answer',$eva_q_ans->answer, Input::old('answer'),['class'=>'form-control','required'=>'required']) }}
                                                 </div>
                                                 {{--$eva_q_ans->answer--}}
 
-                                               <div class='form-group'>
-                                                  {{ Form::label('marks', 'Marks') }}
-                                                  {{ Form::text('marks', Input::old('marks'),['class'=>'form-control','required'=>'required']) }}
-                                               </div>
-
-                                               <a href="#" class="btn bg-purple btn-xs " >Evaluate and Next</a>
+                                               {{ Form::submit('Evaluate and Next', array('id'=>'submit_if', 'class'=>'btn btn-primary btn-xs')) }}
                                                <a href="{{ URL::previous() }}" class="btn bg-orange btn-xs " >Back</a>
 
                                           {{ Form::close()  }}
