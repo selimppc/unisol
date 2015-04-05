@@ -953,11 +953,9 @@ class AdmAmwController extends \BaseController
         if($this->isPostRequest()){
             $year_id  = Input::get('year_id');
             $semester_id = Input::get('semester_id');
-
             $admission_test_home = BatchAdmtestSubject::with(['relBatch'=> function($query) use($year_id, $semester_id) {
-                $query->where('year_id', '=', $year_id)->where('semester_id', '=', $semester_id);
+                //$query->where('year_id', '=', $year_id)->where('semester_id', '=', $semester_id);
             }])->get();
-            print_r($admission_test_home);exit;
         }else{
             $admission_test_home = BatchAdmtestSubject::with('relBatch','relBatch.relDegree',
                 'relBatch.relDegree.relDepartment','relBatch.relYear','relBatch.relSemester')->get();
