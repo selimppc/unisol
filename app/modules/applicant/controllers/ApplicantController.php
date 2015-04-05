@@ -348,7 +348,51 @@ class ApplicantController extends \BaseController
     }
 
 
-    // *******************Applicant Extra-Curricular Activities Start(R)***************
+//***********************Applicant's Supporting Docs Start(R)*************************
+
+    public function sDocsIndex()
+    {
+        $applicant= Auth::applicant()->get()->id;
+        $supporting_docs = ApplicantSupportingDoc::where('applicant_id', '=', $applicant)->first();
+        if(!$supporting_docs){
+            $supporting_docs = new ApplicantSupportingDoc();
+            $supporting_docs->applicant_id = Auth::applicant()->get()->id;
+            $supporting_docs->save();
+        }
+        return View::make('applicant::applicant_supporting_docs.index', compact('supporting_docs', 'doc_type'));
+    }
+    public function sDocsView($doc_type, $sdoc_id)
+    {
+        $supporting_docs = ApplicantSupportingDoc::where('id', '=', $sdoc_id)->first();
+        if(!$supporting_docs)
+            $supporting_docs = null;
+
+        return View::make('applicant::applicant_supporting_docs.modals.supporting_docs', compact('supporting_docs', 'doc_type'));
+    }
+
+    public function sDocsStore()
+    {
+        $data = Input::all();
+        $sdoc = $data['id'] ? ApplicantSupportingDoc::find($data['id']) : new ApplicantSupportingDoc;
+        if ($data['doc_type']=='other') {
+            $sdoc->other = Input::get('other');
+        } else {
+            $file = Input::file('doc_file');
+            $extension = $file->getClientOriginalExtension();
+            $filename = str_random(12) . '.' . $extension;
+            $sdoc_file=strtolower($filename);
+            $path = public_path("/applicant_images/supporting_doc/" . $sdoc_file);
+            Image::make($file->getRealPath())->resize(100, 100)->save($path);
+            $sdoc->$data['doc_type'] =$sdoc_file;
+        }
+        if ($sdoc->save())
+            return Redirect::to('apt/supporting_docs/')->with('message', 'successfully added');
+        else
+            return Redirect::to('apt/supporting_docs/')->with('message', 'Not Added');
+    }
+
+
+ //********************Applicant Extra-Curricular Activities Start(R)***************
 
     public function extraCurricularIndex()
     {
@@ -363,13 +407,11 @@ class ApplicantController extends \BaseController
             return Redirect::route('user/login');
         }
 
-
     }
 
     public function extraCurricularCreate(){
         return View::make('applicant::extra_curricular._form');
     }
-
 
     public function applicantExtraCurricularStore(){
 
@@ -434,58 +476,20 @@ class ApplicantController extends \BaseController
     }
 
 
-//***********************Applicant's Supporting Docs Start(R)*************************
-
-    public function sDocsIndex()
-    {
-        $applicant= Auth::applicant()->get()->id;
-        $supporting_docs = ApplicantSupportingDoc::where('applicant_id', '=', $applicant)->first();
-        if(!$supporting_docs){
-            $supporting_docs = new ApplicantSupportingDoc();
-            $supporting_docs->applicant_id = Auth::applicant()->get()->id;
-            $supporting_docs->save();
-        }
-        return View::make('applicant::applicant_supporting_docs.index', compact('supporting_docs', 'doc_type'));
-    }
-    public function sDocsView($doc_type, $sdoc_id)
-    {
-        $supporting_docs = ApplicantSupportingDoc::where('id', '=', $sdoc_id)->first();
-        if(!$supporting_docs)
-            $supporting_docs = null;
-
-        return View::make('applicant::applicant_supporting_docs.modals.supporting_docs', compact('supporting_docs', 'doc_type'));
-    }
-    public function sDocsStore()
-    {
-        $data = Input::all();
-        $sdoc = $data['id'] ? ApplicantSupportingDoc::find($data['id']) : new ApplicantSupportingDoc;
-        if ($data['doc_type']=='other') {
-            $sdoc->other = Input::get('other');
-        } else {
-            $file = Input::file('doc_file');
-            $extension = $file->getClientOriginalExtension();
-            $filename = str_random(12) . '.' . $extension;
-            $sdoc_file=strtolower($filename);
-            $path = public_path("/applicant_images/supporting_doc/" . $sdoc_file);
-            Image::make($file->getRealPath())->resize(100, 100)->save($path);
-            $sdoc->$data['doc_type'] =$sdoc_file;
-        }
-        if ($sdoc->save())
-            return Redirect::to('apt/supporting_docs/index')->with('message', 'successfully added');
-        else
-            return Redirect::to('apt/supporting_docs/index')->with('message', 'Not Added');
-    }
-
 
 //***********************Applicant Miscellaneous Information(R)*************************
 
-    public function miscInfoIndex(){
-        $data = ApplicantMiscInfo::where('applicant_id', '=', '1')->first();
-        return View::make('applicant::applicant_miscellaneous_info.index',compact('data'));
+    public function miscInfoIndex()
+    {
+        $applicant= Auth::applicant()->get()->id;
+        $data = ApplicantMiscInfo::where('applicant_id', '=', $applicant)->first();
+        return View::make('applicant::applicant_miscellaneous_info.index',compact('data','applicant'));
     }
+
     public function miscInfoCreate(){
         return View::make('applicant::applicant_miscellaneous_info.modal.miscellaneous');
     }
+
     public function miscInfoStore(){
         $rules = array(
             'ever_admit_this_university' => 'required',
@@ -497,43 +501,39 @@ class ApplicantController extends \BaseController
         $validator = Validator::make(Input::all(), $rules);
         if ($validator->passes()) {
             $data =new ApplicantMiscInfo();
-            $data->applicant_id = Input::get('applicant_id');
+            $data->applicant_id = Auth::applicant()->get()->id;
             $data->ever_admit_this_university = Input::get('ever_admit_this_university');
             $data->ever_dismiss = Input::get('ever_dismiss');
             $data->academic_honors_received = Input::get('academic_honors_received');
             $data->ever_admit_other_university = Input::get('ever_admit_other_university');
             $data->admission_test_center = Input::get('admission_test_center');
-
             $data->save();
 
             return Redirect::back()->with('message', 'Successfully added Information!');
         } else {
-           return Redirect::to('apt/misc_info/index')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
+           return Redirect::to('apt/misc_info/')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
         }
-
     }
+
     public function miscInfoEdit($id){
         $model= ApplicantMiscInfo::find($id);
         return View::make('applicant::applicant_miscellaneous_info.modal.edit', compact('model'));
     }
+
     public function miscInfoUpdate($id){
         $data= Input::all();
-
         $rules = array(
             'ever_admit_this_university' => 'required',
         );
         $validator = Validator::make(Input::all(), $rules);
-        if ($validator->passes()) {
-
+        if ($validator->passes())
+        {
             $model = ApplicantMiscInfo::find($id);
-
             $model->ever_admit_this_university = Input::get('ever_admit_this_university');
             $model->ever_dismiss = Input::get('ever_dismiss');
-
             $model->academic_honors_received = Input::get('academic_honors_received');
             $model->ever_admit_other_university = Input::get('ever_admit_other_university');
             $model->admission_test_center = Input::get('admission_test_center');
-
             $model->save();
             return Redirect::back()->with('message', 'Successfully updated Information!');
         } else {
