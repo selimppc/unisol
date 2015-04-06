@@ -458,15 +458,16 @@ class AdmFacultyController extends \BaseController {
     }
 
 
-    public function evaluateQuestionsitems($a_q_id)
+    public function evaluateQuestionsitems($a_q_id , $a_q_itm_id)
     {
-        $data_evaluate = AdmQuestion::with('relBatchAdmtestSubject',
+        $data_question = AdmQuestion::with('relBatchAdmtestSubject',
             'relBatchAdmtestSubject.relBatch','relBatchAdmtestSubject.relAdmtestSubject')
             ->where('id','=',$a_q_id)->first();
 
         $evaluate_qp = AdmQuestionEvaluation::with('relBatchApplicant','relBatchApplicant.relApplicant',
             'relAdmQuestionItems','relAdmQuestionItems.relAdmQuestion')
             ->where('adm_question_id','=', $a_q_id)
+//            ->where('adm_question_items_id','=', $a_q_itm_id)
             ->latest('id')
             ->first();
 
@@ -474,15 +475,14 @@ class AdmFacultyController extends \BaseController {
 
 
         return View::make('admission::faculty.question_papers.evaluate-questions-items',
-            compact('data_evaluate','evaluate_qp','eva_q_ans'));
+            compact('data_question','evaluate_qp','eva_q_ans','a_q_id','a_q_itm_id'));
     }
 
     public function storeEvaluatedQuestionItems()
     {
-
         $info = Input::all();
 
-        print_r($info);exit;
+//        print_r($info);exit;
 //        print_r(Input::get('adm_question_id'));exit;
         $model = new AdmQuestionEvaluation();
 
@@ -492,7 +492,7 @@ class AdmFacultyController extends \BaseController {
         $model->marks = $info['marks'];
 
         if($model->save()){
-            Session::flash('message', 'Comments added');
+            Session::flash('message', 'Marks added');
             return Redirect::back();
         }else{
             $errors = $model->errors();
