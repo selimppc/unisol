@@ -29,9 +29,9 @@
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab_1">
                         @if($data != null)
-                            <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('apt/misc_info/edit/' . $data->id  ) }}" data-toggle="modal" data-target="#myeditModal" >Edit <i class="fa fa-arrow-circle-right"></i></a>
+                            <a class="pull-right btn btn-sm btn-success" href="{{ URL::to('apt/misc_info/edit/' . $data->id  ) }}" data-toggle="modal" data-target="#myeditModal" >Edit <i class="fa fa-arrow-circle-right"></i></a>
                         @else
-                            <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('apt/misc_info/create')}}" data-toggle="modal" data-target="#addModal" >Add  Data</a>
+                            <a class="pull-right btn btn-sm btn-success" href="{{ URL::to('apt/misc_info/create')}}" data-toggle="modal" data-target="#addModal" >Add <i class="fa fa-arrow-circle-right"></i></a>
                         @endif
                         <div class="box-body table-responsive ">
                             <table class="table table-striped  table-bordered">

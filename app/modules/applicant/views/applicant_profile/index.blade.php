@@ -29,9 +29,9 @@
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab_1">
                         @if($profile != null)
-                            <a class="pull-right btn btn-sm btn-success" href="{{ URL::to('applicant/profile/edit/' . $profile->id ) }}" data-toggle="modal" data-target="#myeditModal" >Edit Profile</a>
+                            <a class="pull-right btn btn-sm btn-success" href="{{ URL::to('applicant/profile/edit/' . $profile->id ) }}" data-toggle="modal" data-target="#myeditModal" >Edit Profile <i class="fa fa-arrow-circle-right"></i></a>
                         @else
-                            <button type="button" class="pull-right btn btn-sm btn-success" data-toggle="modal" data-target="#addProfile" style="margin-bottom: 5px">Add Profile</button>
+                            <button type="button" class="pull-right btn btn-sm btn-success" data-toggle="modal" data-target="#addProfile" style="margin-bottom: 5px">Add Profile <i class="fa fa-arrow-circle-right"></i></button>
                         @endif
                         <div class="box-body table-responsive ">
                             <table class="table table-striped  table-bordered">

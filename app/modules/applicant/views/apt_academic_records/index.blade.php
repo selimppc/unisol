@@ -28,7 +28,7 @@
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab_1">
-                        <a class="pull-right btn btn-sm btn-success" href="" data-toggle="modal" data-target="#addModal">Add Academic Records</a>
+                        <a class="pull-right btn btn-sm btn-success" href="" data-toggle="modal" data-target="#addModal">Add Academic Records <i class="fa fa-arrow-circle-right"></i></a>
 
                         <table id="example1" class="table table-bordered table-striped">
                             <col width="25">
