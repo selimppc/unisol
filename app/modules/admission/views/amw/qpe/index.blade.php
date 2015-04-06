@@ -59,7 +59,7 @@
         </table>
     </div><!-- /.box-body -->
     <p style="padding: 1%">
-        <a href="{{ URL::route('admission.amw.admission-test-home') }}" class="btn btn-xs bg-black"></span> Back to Admission Test</a>
+        <a href="{{ URL::route('admission.amw.admission-test-home') }}" class="btn btn-xs bg-black"></span> Back to Admission Test </a>
     </p>
 
 </div><!-- /.box -->
