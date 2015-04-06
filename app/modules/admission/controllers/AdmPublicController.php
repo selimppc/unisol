@@ -493,8 +493,10 @@ class AdmPublicController extends \BaseController {
     public function admExmCenterSave(){
 
         $id = Input::get('id');
+        //print_r($id);
         $batch_applicant_id = Input::get('batch_applicant_id');
         $exm_center_id = Input::get('exm_center_id');
+        //print_r($exm_center_id);exit;
 
         for($i=0; $i < count($exm_center_id); $i++) {
             $model = $id[$i] ? ExmCenterApplicantChoice::findOrFail($id[$i]) : new ExmCenterApplicantChoice();

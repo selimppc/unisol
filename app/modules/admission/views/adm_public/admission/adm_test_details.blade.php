@@ -123,14 +123,6 @@
 {{--<a class="pull-right btn btn-sm btn-info"  href="{{URL::route('admission.public.exm-center',['batch_applicant_id'=>$batch_applicant_id])}}" data-toggle="modal" data-target="#exmCenterModal"><b></b> Exam Center Choice </a>--}}
 
 {{----------------------------------------------Modal --------------------------------------------------------------------------}}
- {{--<div class="modal fade" id="exmCenterModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">--}}
-       {{--<div class="modal-dialog">--}}
-         {{--<div class="modal-content">--}}
-
-        {{--</div>--}}
-       {{--</div>--}}
- {{--</div>--}}
-
 
 <div class="modal fade" id="exmCenterModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog">
@@ -144,8 +136,6 @@
                 {{ Form::open(['route' => ['admission.public.save-exm-center'], 'class'=>'form-horizontal','files' => true,]) }}
                       @include('admission::adm_public.admission.exm_center')
 
-                {{ Form::submit('Save', array('class'=>'pull-right btn btn-sm btn-primary')) }}
-                <a  href="" class="pull-right btn btn-sm btn-default" style="margin-right: 3px">Close</a>
 
                 <p>&nbsp;</p>
                 <p>&nbsp;</p>
