@@ -36,36 +36,43 @@
                                     {{--</button><br>--}}
 
                                       <strong> Degree: </strong>
-                                             {{ $data_evaluate->relBatchAdmtestSubject->relBatch->relDegree->relDegreeProgram->code.''
-                                                 .$data_evaluate->relBatchAdmtestSubject->relBatch->relDegree->relDegreeGroup->code.' in '
-                                                 .$data_evaluate->relBatchAdmtestSubject->relBatch->relDegree->relDepartment->title.' , '
-                                                 .$data_evaluate->relBatchAdmtestSubject->relBatch->relSemester->title.' , '
-                                                 .$data_evaluate->relBatchAdmtestSubject->relBatch->relYear->title
+                                             {{ $data_question->relBatchAdmtestSubject->relBatch->relDegree->relDegreeProgram->code.''
+                                                 .$data_question->relBatchAdmtestSubject->relBatch->relDegree->relDegreeGroup->code.' in '
+                                                 .$data_question->relBatchAdmtestSubject->relBatch->relDegree->relDepartment->title.' , '
+                                                 .$data_question->relBatchAdmtestSubject->relBatch->relSemester->title.' , '
+                                                 .$data_question->relBatchAdmtestSubject->relBatch->relYear->title
                                              }}
-
+                                       <br> <br>
+                                      <strong> Subject: </strong>{{ $data_question->relBatchAdmtestSubject->relAdmtestSubject->title }}
                                        <br> <br>
 
-
-                                      <strong> Subject: </strong>{{ $data_evaluate->relBatchAdmtestSubject->relAdmtestSubject->title }}
-                                       <br> <br>
-
-
-                                      <strong> Total Marks: </strong> {{ $data_evaluate->total_marks }} <br><br>
+                                      <strong> Total Marks: </strong> {{ $data_question->total_marks }} <br><br>
 
                                       <strong> Marks Obtained So Far: </strong> {{ $evaluate_qp->relAdmQuestion->marks  }} <br><br>
 
                                     <div class="box-body table-responsive">
                                           {{Form::open(array('url'=>'admission/faculty/question-papers/store-evaluated-questions', 'class'=>'form-horizontal','files'=>true))}}
-                                                <strong> Question No: # out of: # </strong>
+                                                 {{ Form::hidden('batch_applicant_id',$evaluate_qp->batch_applicant_id ) }} </br>
+                                                 {{ Form::hidden('adm_question_id',$a_q_id ) }} </br>
+                                                 {{ Form::hidden('adm_question_items_id', $a_q_itm_id ) }} </br>
+
+                                                 <strong> Question No: # out of: # </strong>
                                                  <br><br>
                                                 <strong> Question Title Here: </strong> {{ $evaluate_qp->relAdmQuestionItems->title }}
                                                     <br><br>
 
                                                 <div class='form-group'>
                                                   {{ Form::label('answer', 'Answer') }}
-                                                  {{ Form::text('answer',$eva_q_ans->answer, Input::old('answer'),['class'=>'form-control','required'=>'required']) }}
+                                                  {{ Form::text('answer',Input::old('answer'),['class'=>'form-control','placeholder'=>'Students Answer will be Shown here']) }}
                                                 </div>
                                                 {{--$eva_q_ans->answer--}}
+
+                                                <div class='form-group'>
+                                                  {{ Form::label('marks', 'Marks') }}
+                                                  {{ Form::text('marks' ,Input::old('marks'),['required'=>'required']) }}
+                                                </div>
+
+
 
                                                {{ Form::submit('Evaluate and Next', array('id'=>'submit_if', 'class'=>'btn btn-primary btn-xs')) }}
                                                <a href="{{ URL::previous() }}" class="btn bg-orange btn-xs " >Back</a>
@@ -77,7 +84,7 @@
                     </div><!-- nav-tabs-custom -->
                 </div><!-- /.col -->
             </div> <!-- /.row -->
-            <!-- END CUSTOM TABS -->
+    <!-- END CUSTOM TABS -->
 
 <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog" style="z-index:1050">
