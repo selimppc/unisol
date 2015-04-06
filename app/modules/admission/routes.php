@@ -389,6 +389,11 @@ Route::any('admission/amw/student-list-of-qpe/{adm_question_id}',[
     'uses' => 'AdmAmwController@studentListOfQpe'
 ]);
 
+Route::any('admission/amw/view-details-of-qpe/{ba_id}/{question_id}/{q_items_id}',[
+    'as' => 'admission.amw.view-details-of-qpe',
+    'uses' => 'AdmAmwController@viewDetailsOfQpe'
+]);
+
 
 
 

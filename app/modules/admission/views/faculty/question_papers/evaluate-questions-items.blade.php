@@ -30,12 +30,12 @@
                                 </li>
                             </ul>
                             <div class="tab-content">
-                                <div class="tab-pane active" id="tab_1">
+                                <div class="tab-pane active" style="font-size: " id="tab_1">
                                     {{--<button class="pull-right btn btn-success btn-sm"  data-toggle="modal" data-target="#addExtraCurricular" >--}}
                                         {{--Add Extra-curricular--}}
                                     {{--</button><br>--}}
 
-                                      <strong> Degree: </strong>
+                                      <strong> Degree: &nbsp;&nbsp; </strong>
                                              {{ $data_question->relBatchAdmtestSubject->relBatch->relDegree->relDegreeProgram->code.''
                                                  .$data_question->relBatchAdmtestSubject->relBatch->relDegree->relDegreeGroup->code.' in '
                                                  .$data_question->relBatchAdmtestSubject->relBatch->relDegree->relDepartment->title.' , '
@@ -43,12 +43,12 @@
                                                  .$data_question->relBatchAdmtestSubject->relBatch->relYear->title
                                              }}
                                        <br> <br>
-                                      <strong> Subject: </strong>{{ $data_question->relBatchAdmtestSubject->relAdmtestSubject->title }}
+                                      <strong> Subject: &nbsp;&nbsp; </strong>{{ $data_question->relBatchAdmtestSubject->relAdmtestSubject->title }}
                                        <br> <br>
 
-                                      <strong> Total Marks: </strong> {{ $data_question->total_marks }} <br><br>
+                                      <strong> Total Marks: &nbsp;&nbsp; </strong> {{ $data_question->total_marks }} <br><br>
 
-                                      <strong> Marks Obtained So Far: </strong> {{ $total_marks->question_total_marks  }} <br><br>
+                                      <strong> Marks Obtained So Far: &nbsp;&nbsp; </strong> {{ $total_marks->evaluated_total_marks }} <br><br>
 
                                     <div class="box-body table-responsive">
                                           {{Form::open(array('url'=>'admission/faculty/question-papers/store-evaluated-questions', 'class'=>'form-horizontal','files'=>true))}}
@@ -56,9 +56,11 @@
                                                  {{ Form::hidden('adm_question_id',$a_q_id ) }} </br>
                                                  {{ Form::hidden('adm_question_items_id', $a_q_itm_id ) }} </br>
 
-                                                 <strong> Question No: # out of: {{ $count }} </strong>
+                                                 <strong>Question No: </strong>&nbsp;&nbsp;{{$a_q_itm_id}}
+                                                  &nbsp;&nbsp;
+                                                 <strong>out of: &nbsp;&nbsp;</strong> {{ $count }}
                                                  <br><br>
-                                                <strong> Question Title Here: </strong> {{ $evaluate_qp->relAdmQuestionItems->title }}
+                                                <strong> Question Title Here: &nbsp;&nbsp; </strong> {{ $evaluate_qp->relAdmQuestionItems->title }}
                                                     <br><br>
 
                                                 <div class='form-group'>
@@ -70,7 +72,9 @@
                                                 <div class='form-group'>
                                                   {{ Form::label('marks', 'Marks') }}
                                                   {{ Form::text('marks' ,Input::old('marks'),['required'=>'required']) }}
+                                                   <strong>out of : </strong> {{  $eva_q_ans->relAdmQuestionItems->marks}}
                                                 </div>
+
 
 
 

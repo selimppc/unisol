@@ -459,12 +459,13 @@ class AdmFacultyController extends \BaseController {
 
 
     protected function totalMarks($adm_question_id){
-        $result = DB::table('adm_question_items')
-            ->select(DB::raw('SUM(marks) as question_total_marks'))
+        $result = DB::table('adm_question_evaluation')
+            ->select(DB::raw('SUM(marks) as evaluated_total_marks'))
             ->where('adm_question_id', '=', $adm_question_id)
             ->first();
         return $result;
     }
+
 
 
     public function evaluateQuestionsitems($a_q_id , $a_q_itm_id)
