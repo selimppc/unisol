@@ -17,6 +17,21 @@ Route::any('applicant/store',
 Route::get('register/verify/{verified_code}',
     'ApplicantController@applicant_signup_confirm'
 );
+//********************User Account(R)************************************
+
+Route::any('applicant/user-account/info',
+    'ApplicantController@userAccountInfoIndex'
+);
+
+    Route::any('applicant/user-account/edit/{id}',
+        'ApplicantController@userAccountEdit'
+    );
+
+    Route::post('applicant/user-account/update/{id}',
+        'ApplicantController@userAccountUpdate'
+    );
+
+
 
 //********************Applicant Profile(R)*******************************
 
