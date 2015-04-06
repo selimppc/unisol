@@ -6,7 +6,7 @@ Route::group( array('after' => 'auth'), function(){
 
 //***********************Applicant Sign up Start(R)**********************
 
-Route::any('/applicant',
+Route::any('/applicant/registration',
     'ApplicantController@applicant_signup'
 );
 

@@ -12,7 +12,7 @@
             <i class="fa fa-angle-left pull-right"></i>
         </a>
         <ul class="treeview-menu">
-            <a href="{{URL::to('/applicant') }}"  class="list-group-item" >Sign Up</a>
+            <a href="{{URL::to('/applicant/registration') }}"  class="list-group-item" >Sign Up</a>
         </ul>
     </li>
 
