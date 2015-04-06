@@ -90,7 +90,7 @@
                     <div class="col-lg-12">
                         <table class="table table-striped table-bordered">
                           @if($exm_center_choice_lists != null)
-                             <a class="pull-right btn btn-sm btn-info" data-toggle="modal" data-target="#exmCenterModal"   href="{{URL::route('admission.public.exm-center',['batch_applicant_id'=>$batch_applicant_id])}}">Change Exam Center Sequence</a>
+                             <a class="pull-right btn btn-sm btn-info" data-toggle="modal" data-target="#exmCenterModal"   href="{{URL::route('admission.public.exm-center',['batch_applicant_id'=>$batch_applicant_id])}}"> Exam Center Sequence</a>
                           @else
                              <a class="pull-right btn btn-sm btn-info"  href="{{URL::route('admission.public.exm-center',['batch_applicant_id'=>$batch_applicant_id])}}" data-toggle="modal" data-target="#exmCenterModal"><b></b> Exam Center Choice </a>
                           @endif
@@ -124,24 +124,9 @@
 
 {{----------------------------------------------Modal --------------------------------------------------------------------------}}
 
-<div class="modal fade" id="exmCenterModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal fade" id="exmCenterModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel">Exam Center Choice Sequence</h4>
-          </div>
-          <div class="modal-body">
-            <div class="row">
-                {{ Form::open(['route' => ['admission.public.save-exm-center'], 'class'=>'form-horizontal','files' => true,]) }}
-                      @include('admission::adm_public.admission.exm_center')
-
-
-                <p>&nbsp;</p>
-                <p>&nbsp;</p>
-                {{Form::close()}}
-            </div><!-- /.row (main row) -->
-          </div>
 
         </div>
       </div>
