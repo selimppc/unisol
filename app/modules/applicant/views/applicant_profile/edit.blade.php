@@ -4,7 +4,7 @@
 </div>
 <div class="modal-body">
 
-    <div style="padding: 10px; width: 90%;">
+    <div class="row" style="padding: 4%">
 
         {{ Form::model($profile,array('url'=> array('applicant/profile/update/'.$profile->id), 'method' => 'POST','class'=>'form-horizontal','files'=>true)) }}
 

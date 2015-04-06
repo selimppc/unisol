@@ -4,9 +4,9 @@ include("routes_applicant_tj.php");
 
 Route::group( array('after' => 'auth'), function(){
 
-//***********************Applicant Sign up Start(R)******************************
+//***********************Applicant Sign up Start(R)**********************
 
-Route::any('/applicant',
+Route::any('/applicant/registration',
     'ApplicantController@applicant_signup'
 );
 
@@ -18,7 +18,7 @@ Route::get('register/verify/{verified_code}',
     'ApplicantController@applicant_signup_confirm'
 );
 
-//********************Change Password Start(R)******************************************
+//********************Change Password Start(R)****************************
 
 Route::any('applicant/change/password',
     'ApplicantController@applicant_change_password'
@@ -28,7 +28,7 @@ Route::any('applicant/change_password/update',
     'ApplicantController@applicant_change_password_update'
 );
 
-//********************User Account(R)************************************
+//********************User Account(R)*************************************
 
 Route::any('applicant/user-account/info',
     'ApplicantController@userAccountInfoIndex'
@@ -90,7 +90,7 @@ Route::any('apt/acm_records/delete/{id}',
     'ApplicantController@academicDelete'
 );
 
-//*********************Applicant Meta Information/Personal Info(R)*********************
+//*********************Applicant Meta Information/Personal Info(R)**********
 
 Route::any('apt/personal_info/',
     'ApplicantController@personalInfoIndex'
@@ -130,9 +130,9 @@ Route::any('apt/supporting_docs/store',
     'ApplicantController@sDocsStore'
 );
 
-//*********************Extra Curricular Activities(R)*************************
+//*********************Extra Curricular Activities(R)*********************
 
-Route::any('apt/extra_curricular/',
+Route::any('applicant/extra_curricular/',
     'ApplicantController@extraCurricularIndex'
 );
 

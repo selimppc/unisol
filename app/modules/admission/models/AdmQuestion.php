@@ -9,13 +9,14 @@ class AdmQuestion extends Eloquent{
     //TODO :: model attributes and rules and validation
     protected $table = 'adm_question';
     protected $fillable = [
-        'batch_admtest_subject_id', 'examiner_faculty_user_id', 'title', 'deadline', 'total_marks',
+        'batch_admtest_subject_id', 's_faculty_user_id', 'e_faculty_user_id', 'title', 'deadline', 'total_marks',
         'status',
     ];
     private $errors;
     private $rules = [
         'batch_admtest_subject_id' => 'integer',
-        'examiner_faculty_user_id' => 'integer',
+        's_faculty_user_id' => 'integer',
+        'e_faculty_user_id' => 'integer',
         'title' => 'required',
         'deadline' => 'date',
         'total_marks' => 'numeric',

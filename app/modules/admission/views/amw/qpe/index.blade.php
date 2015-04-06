@@ -46,8 +46,8 @@
             @foreach($adm_question as $values)
             <tr>
                 <td> {{$values->relBatchAdmtestSubject->relAdmtestSubject->title}}</td>
-                <td> {{User::Fullname($values->s_faculty_user_id)}}</td>
-                <td> {{User::Fullname($values->e_faculty_user_id)}}</td>
+                <td> {{isset($values->s_faculty_user_id) ? User::Fullname($values->s_faculty_user_id):''}}</td>
+                <td> {{isset($values->e_faculty_user_id) ? User::Fullname($values->e_faculty_user_id):'' }}</td>
                 <td> {{$values->status}}</td>
                 <td>
                     <a href="{{ URL::route('admission.amw.student-list-of-qpe', ['adm_question_id'=> $values->id ]) }}" class="btn btn-xs btn-info"><span class="fa fa-eye"></span> view</a>
@@ -59,7 +59,7 @@
         </table>
     </div><!-- /.box-body -->
     <p style="padding: 1%">
-        <a href="{{ URL::route('admission.amw.admission-test-home') }}" class="btn btn-xs bg-black"></span> Back to Admission Test</a>
+        <a href="{{ URL::route('admission.amw.admission-test-home') }}" class="btn btn-xs bg-black"></span> Back to Admission Test </a>
     </p>
 
 </div><!-- /.box -->

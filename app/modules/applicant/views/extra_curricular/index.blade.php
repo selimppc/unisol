@@ -27,7 +27,7 @@
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab_1">
-                        <a class="pull-right btn btn-sm btn-success" href="" data-toggle="modal" data-target="#addModal" >Add Activities </a>
+                        <a class="pull-right btn btn-sm btn-success" href="" data-toggle="modal" data-target="#addModal" >Add Activities <i class="fa fa-arrow-circle-right"></i> </a>
                         <div class="box-body table-responsive ">
                             <table class="table table-striped  table-bordered">
                                 <thead>

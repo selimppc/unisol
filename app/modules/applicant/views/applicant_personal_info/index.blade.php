@@ -31,9 +31,9 @@
                         <div class="box-body table-responsive ">
                             <table class="table table-striped  table-bordered">
                                 @if($applicant_personal_info != null)
-                                    <a class="pull-right btn btn-sm btn-success" href="{{ URL::to('apt/personal_info/edit/' . $applicant_personal_info->id ) }}" data-toggle="modal" data-target="#myeditModal" >Edit</a>
+                                    <a class="pull-right btn btn-sm btn-success" href="{{ URL::to('apt/personal_info/edit/' . $applicant_personal_info->id ) }}" data-toggle="modal" data-target="#myeditModal" >Edit <i class="fa fa-arrow-circle-right"></i></a>
                                 @else
-                                    <button type="button" class="pull-right btn btn-sm btn-success" data-toggle="modal" data-target="#addModal" style="margin-bottom: 5px">Add</button>
+                                    <button type="button" class="pull-right btn btn-sm btn-success" data-toggle="modal" data-target="#addModal" style="margin-bottom: 5px">Add <i class="fa fa-arrow-circle-right"></i></button>
                                 @endif
                                 <thead>
                                 <tr>
