@@ -10,8 +10,6 @@
            {{--<div class="span9 well">--}}
                  {{ Form::open(array('class'=>'form-horizontal','route' => 'admission.public.store-applicant-acm-docs', 'method' =>'post', 'files'=>'true')) }}
 
-                 {{ Form::hidden('applicant_id', $applicant_id=1, array('class'=>'form-control')) }}
-
                  <div >{{ Form::label('level_of_education', 'Level of Education ') }}
                  {{ Form::select ('level_of_education',  array('' => 'Select one',
                     'psc' => 'PSC', 'jsc' => 'JSC', 'ssc'=>'SSC','hsc'=>'HSC','grad'=>'Grad','under_grad'=>'Under Grad'), Input::old('level_of_education'),

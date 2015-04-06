@@ -6,9 +6,6 @@
 
 <div class="modal-body">
     <div style="padding: 20px;">
-
-       {{ Form::hidden('applicant_id', $applicant_id=1, array('class'=>'form-control')) }}
-
        <div>
          {{ Form::label('date_of_birth', 'Date of Birth:') }}
          {{ Form::text('date_of_birth', Input::old('date_of_birth'),['class'=>'form-control date_picker','required'=>'required']) }}
