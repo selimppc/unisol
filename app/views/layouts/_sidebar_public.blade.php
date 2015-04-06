@@ -23,6 +23,10 @@
             <span>Admission</span>
             <i class="fa fa-angle-left pull-right"></i>
         </a>
+        <ul class="treeview-menu">
+            <li class="active"><a tabindex="-1" a href="{{ URL::route('admission.public.degree_offer_list') }}"></i><i class="fa-th-list" style="color:lightseagreen"></i> Degree-List</a></li>
+
+        </ul>
 
     </li>
 
