@@ -1,5 +1,11 @@
 {{ HTML::style('assets/etsb/etsb_css/bootstrap/bootstrap.min.css') }}
 
+<div class="modal-header">
+
+    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+    <h4 class="modal-title" id="myModalLabel">Exam Center Choice Sequence</h4>
+</div>
+
  <div class="modal-body">
    <div style="padding: 20px;">
       <div class="row">
@@ -43,7 +49,7 @@
  </div>
 
 
-<!-- add new calendar event modal -->
+<!-- add js script -->
 {{ HTML::script('assets/etsb/etsb_js/jquery/jquery.min.js')}}
 {{ HTML::script('assets/etsb/etsb_js/jquery-ui/jquery-ui.min.js')}}
 {{ HTML::script('assets/etsb/etsb_js/admin/dashboard.js')}}
