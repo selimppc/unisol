@@ -480,7 +480,7 @@ class AdmPublicController extends \BaseController {
         $batch_applicant_id = ['batch_applicant_id' => $batch_applicant_id];
         $rules = ['batch_applicant_id' => 'exists:exm_center_applicant_choice' ];
         $validator = Validator::make($batch_applicant_id, $rules);
-        $exm_center_lists = ['' => 'Select Exam Center'] + ExmCenter::lists('title', 'id');
+
         if ($validator->Fails()) {
             $exm_centers_all = ExmCenter::all();
 
@@ -490,12 +490,12 @@ class AdmPublicController extends \BaseController {
         }
 
         return View::make('admission::adm_public.admission.exm_center',
-            compact('exm_centers_all','exm_center_choice','ba_id', 'exm_center_lists'));
+            compact('exm_centers_all','exm_center_choice','ba_id'));
     }
     public function admExmCenterSave(){
 
         $id = Input::get('id');
-        //print_r($id);
+        //print_r($id);exit;
         $batch_applicant_id = Input::get('batch_applicant_id');
         $exm_center_id = Input::get('exm_center_id');
         //print_r($exm_center_id);exit;
