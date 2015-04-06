@@ -75,7 +75,7 @@ class BatchAdmtestSubject extends Eloquent{
             $join->on('batch_admtest_subject.admtest_subject_id', '=', 'admtest_subject.id');
         })
             ->where('batch_admtest_subject.batch_id', '=', $batch_id)
-            ->select(DB::raw('CONCAT(admtest_subject.title) AS title, batch_admtest_subject.admtest_subject_id as id'))
+            ->select(DB::raw('CONCAT(admtest_subject.title) AS title, batch_admtest_subject.id as id'))
             ->lists('title', 'id');
         return $query;
     }

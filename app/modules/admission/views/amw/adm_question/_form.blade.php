@@ -35,12 +35,10 @@
                 </div>
 
                 <div class='form-group'>
-                    {{ Form::label('examiner_faculty_user_id', 'Assign To') }}
-                    {{ Form::select('examiner_faculty_user_id', $examiner_faculty_lists, Input::old('examiner_faculty_user_id'),['class'=>'form-control','required'=>'required']) }}
+                    {{ Form::label('s_faculty_user_id', 'Assign To') }}
+                    {{ Form::select('s_faculty_user_id', $examiner_faculty_lists, Input::old('s_faculty_user_id'),['class'=>'form-control','required'=>'required']) }}
                 </div>
                 {{ Form::hidden('status', 'Assigned') }}
-
-
 
 
               {{ Form::submit('Save', array('class'=>'pull-right btn btn-info')) }}
