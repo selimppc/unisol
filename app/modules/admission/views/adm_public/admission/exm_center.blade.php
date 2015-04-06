@@ -5,7 +5,7 @@
       <div class="row">
       {{ Form::open(['route' => ['admission.public.save-exm-center'], 'class'=>'form-horizontal','files' => true,]) }}
 
-         {{ Form::hidden('batch_applicant_id',54 )}}
+         {{ Form::hidden('batch_applicant_id', 1 )}}
              <!-- Left col -->
              <section class="col-lg-12 connectedSortable">
                 @if(isset($exm_center_choice))
@@ -21,7 +21,6 @@
                   @endforeach
                 @else
                   @foreach(($exm_centers_all) as $values)
-                     <input type="hidden" name="id[]" value="{{$values->id}}">
                       <div class="nav-tabs-custom" style="background:lavender">
                          <ul class="nav nav-tabs pull-right">
                            <li class="pull-left header" style="font-size: small"><i class="fa fa-arrows"></i><b>

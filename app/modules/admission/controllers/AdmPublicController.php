@@ -501,7 +501,7 @@ class AdmPublicController extends \BaseController {
         //print_r($exm_center_id);exit;
 
         for($i=0; $i < count($exm_center_id); $i++) {
-            $model = $id[$i] ? ExmCenterApplicantChoice::findOrFail($id[$i]) : new ExmCenterApplicantChoice();
+            $model = isset($id[$i]) ? ExmCenterApplicantChoice::findOrFail($id[$i]) : new ExmCenterApplicantChoice();
             $model->batch_applicant_id = $batch_applicant_id;
             $model->exm_center_id = $exm_center_id[$i];
             $model->save();

@@ -1260,11 +1260,10 @@ class AdmAmwController extends \BaseController
 
     public function studentListOfQpe($adm_question_id)
     {
-        echo $adm_question_id;exit;
-        $data = BatchAdmtestSubject::where('id', $bats_id)->first();
-        $adm_question = AdmQuestion::where('batch_admtest_subject_id', $bats_id)->get();
+        $data = AdmQuestion::where('id', $adm_question_id)->first();
+        $adm_question_evaluation = AdmQuestionEvaluation::where('adm_question_id', $adm_question_id)->get();
 
-        return View::make('admission::amw.qpe.index', compact('data', 'adm_question'));
+        return View::make('admission::amw.qpe.student_list_eqp', compact('data', 'adm_question_evaluation'));
     }
 
 //{-----------Version: 2 (Tanin) -----------------------------------------------------------------}
