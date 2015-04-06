@@ -4,7 +4,7 @@
 @stop
 @section('content')
 
-<h4> Admission Test Question Paper Evaluation</h4>
+<h4> Question Paper Evaluation for Subject and Applicant(s)</h4>
 
 <div class="box">
     <div class="box-header">
@@ -50,11 +50,11 @@
             <tbody>
             @foreach($adm_question_evaluation as $values)
               <tr>
-                <td> {{$values->batch_applicant_id}} </td>
+                <td> {{Applicant::ApplicantName($values->batch_applicant_id)}} </td>
                 <td> {{$values->progress_status}} </td>
                 <td> {{$values->marks}}</td>
                 <td>
-                    <a href="{{ URL::route('admission.amw.student-list-of-qpe', ['adm_question_evaluation_id'=> $values->id ]) }}" class="btn btn-xs btn-info"><span class="fa fa-eye"></span> view</a>
+                    <a href="{{ URL::route('admission.amw.view-details-of-qpe', ['ba_id'=> $values->batch_applicant_id, 'question_id'=> $values->adm_question_id, 'q_items_id'=> $values->adm_question_items_id ]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#modal"><span class="fa fa-eye"></span> view </a>
                 </td>
               </tr>
             @endforeach
@@ -68,4 +68,12 @@
 
 </div><!-- /.box -->
 
+
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="z-index:1050">
+      <div class="modal-content">
+
+     </div>
+    </div>
+</div>
 @stop

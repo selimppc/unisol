@@ -66,6 +66,16 @@ class Applicant extends Eloquent implements UserInterface, RemindableInterface{
 
 
 
+    //TODO :: Scope area
+    public function scopeApplicantName($query , $id){
+        $query = $this::select(DB::raw('CONCAT(first_name, " ", middle_name, " ", last_name) AS full_name'))
+            ->where('id', '=', $id)
+            ->first()->full_name;
+        return $query;
+    }
+
+
+
 
 
 } 
