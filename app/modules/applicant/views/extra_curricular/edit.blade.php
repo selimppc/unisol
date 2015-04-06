@@ -21,7 +21,7 @@
 
         <div class="modal-footer">
             {{ Form::submit('Submit', array('class' => 'btn btn-primary')) }}
-            <a href="{{URL::to('apt/extra_curricular/')}}" class="btn btn-default pull-right">Close </a>
+            <a href="{{URL::to('applicant/extra_curricular/')}}" class="btn btn-default pull-right">Close </a>
         </div>
         {{ Form::close() }}
 

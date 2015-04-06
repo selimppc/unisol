@@ -25,7 +25,7 @@ class ApplicantController extends \BaseController
         $validator = Validator::make(Input::all(), $rules);
         if ($validator->Fails()) {
             //Session::flash('message', 'Data Not saved');
-            return Redirect::to('/applicant')->withErrors($validator)->withInput();
+            return Redirect::to('/applicant/registration')->withErrors($validator)->withInput();
         } else {
             $verified_code = str_random(30);
             if ($token == Input::get('_token')) {
@@ -50,10 +50,10 @@ class ApplicantController extends \BaseController
                     });
                     //return View::make('applicant::signup.mail_notification');
                     Session::flash('message', 'Thanks for signing up! Please check your email.');
-                    return Redirect::to('/applicant');
+                    return Redirect::to('/applicant/registration');
                 } else {
                     Session::flash('danger', 'Please try again');
-                    return Redirect::to('/applicant');
+                    return Redirect::to('/applicant/registration');
 
                 }
             }
@@ -651,7 +651,7 @@ class ApplicantController extends \BaseController
             $extra_curricular->save();
             return Redirect::back()->with('message', 'Successfully added Information!');
         } else {
-            return Redirect::to('apt/extra_curricular/')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
+            return Redirect::to('applicant/extra_curricular/')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
         }
 
     }
@@ -705,7 +705,7 @@ class ApplicantController extends \BaseController
             {
                 Session::flash('danger', "Activities Deleted successfully");
                 //return Redirect::back();
-                return Redirect::to('apt/extra_curricular/');
+                return Redirect::to('applicant/extra_curricular/');
             }
         }
         catch

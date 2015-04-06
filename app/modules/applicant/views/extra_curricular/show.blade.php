@@ -30,5 +30,5 @@
 </div>
 
 <div class="modal-footer">
-    <a href="{{URL::to('apt/extra_curricular/')}}" class="btn btn-default">Close </a>
+    <a href="{{URL::to('applicant/extra_curricular/')}}" class="btn btn-default">Close </a>
 </div>

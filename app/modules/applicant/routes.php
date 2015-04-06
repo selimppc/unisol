@@ -6,7 +6,7 @@ Route::group( array('after' => 'auth'), function(){
 
 //***********************Applicant Sign up Start(R)**********************
 
-Route::any('/applicant',
+Route::any('/applicant/registration',
     'ApplicantController@applicant_signup'
 );
 
@@ -132,7 +132,7 @@ Route::any('apt/supporting_docs/store',
 
 //*********************Extra Curricular Activities(R)*********************
 
-Route::any('apt/extra_curricular/',
+Route::any('applicant/extra_curricular/',
     'ApplicantController@extraCurricularIndex'
 );
 
