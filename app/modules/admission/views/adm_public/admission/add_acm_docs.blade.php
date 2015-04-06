@@ -13,7 +13,7 @@
                  <div >{{ Form::label('level_of_education', 'Level of Education ') }}
                  {{ Form::select ('level_of_education',  array('' => 'Select one',
                     'psc' => 'PSC', 'jsc' => 'JSC', 'ssc'=>'SSC','hsc'=>'HSC','grad'=>'Grad','under_grad'=>'Under Grad'), Input::old('level_of_education'),
-                     array('class' => 'level')) }}
+                     array('class' => 'level', 'style'=>'width: 100%; padding: 1%;')) }}
                  </div>
 
 
@@ -123,6 +123,7 @@
 
 {{-------------------js: show board_type for selected level of education value---------------------------}}
 <script>
+
 $('select[class=level]').change(function () {
     if ($(this).val()=="grad" || $(this).val()=="under_grad") {
         $('#board_type').show();
@@ -136,10 +137,10 @@ $('select[class=level]').change(function () {
         $('#other').hide();
     }
 });
-</script>
+
 
 {{-------------------------js:show major subject / academic group-----------------------------------------}}
-<script>
+
 $('select[class=level]').change(function () {
     if ($(this).val()=="grad" || $(this).val()=="under_grad") {
         $('#subject').show();
@@ -150,10 +151,10 @@ $('select[class=level]').change(function () {
     }
 
 });
-</script>
+
 
 {{--------------------------------js: selection for division or cgpa------------------------------------}}
-<script>
+
 
     $("#division").click(function(){
         $(".division").show();
@@ -164,10 +165,10 @@ $('select[class=level]').change(function () {
         $(".gpa").show();
     });
 
-</script>
+
 
 {{-------------------------------js: selection for board/university/other------------------------------------}}
-<script>
+
 $(document).ready(function(){
     $("#board").click(function(){
         $(".board").show();
@@ -185,10 +186,10 @@ $(document).ready(function(){
             $(".other").show();
         });
 });
-</script>
+
 
 {{---------------------------------js: selection for retult_type--------------------------------------------}}
-<script>
+
 
     $("#division").click(function(){
         $(".division").show();
