@@ -88,7 +88,7 @@ class ApplicantController extends \BaseController
     {
         if(Auth::applicant()->check())
         {
-            $model= Applicant::find(Auth::applicant()->get()->id);
+            $model= Applicant::findOrFail(Auth::applicant()->get()->id);
             $old_password = Input::get('password');
             $user_password = Auth::applicant()->get()->password;
 
