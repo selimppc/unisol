@@ -51,8 +51,6 @@
     </div>
 </div>
 
-
-
 <br>
 <div >{{ Form::label('result_type', 'Result Type') }}   (Select one : Division/Class OR CGPA )</div>
 

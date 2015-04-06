@@ -17,6 +17,21 @@ Route::any('applicant/store',
 Route::get('register/verify/{verified_code}',
     'ApplicantController@applicant_signup_confirm'
 );
+//********************User Account(R)************************************
+
+Route::any('applicant/user-account/info',
+    'ApplicantController@userAccountInfoIndex'
+);
+
+    Route::any('applicant/user-account/edit/{id}',
+        'ApplicantController@userAccountEdit'
+    );
+
+    Route::post('applicant/user-account/update/{id}',
+        'ApplicantController@userAccountUpdate'
+    );
+
+
 
 //********************Applicant Profile(R)*******************************
 
@@ -96,9 +111,10 @@ Route::any('applicant/personal_info_signature/update/{id}',
 Route::any('apt/supporting_docs/',
     'ApplicantController@sDocsIndex'
 );
-Route::any("apt/supporting_docs/view/{doc_type}/{sdoc_id}", [
-    "as"   => "applicant.supporting_docs.view",
-    "uses" => "ApplicantController@sDocsView"
+
+Route::any('apt/supporting_docs/view/{doc_type}/{sdoc_id}', [
+    'as'   => 'applicant.supporting_docs.view',
+    'uses' => 'ApplicantController@sDocsView'
 ]);
 
 Route::any('apt/supporting_docs/store',
