@@ -93,12 +93,12 @@ class ApplicantController extends \BaseController
             if (Hash::check($old_password, $user_password))
             {
                 $rules = array(
-                    'password' => 'regex:((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})|required',
-                    'confirm_password' => 'Required|same:password',
+                    //'password' => 'regex:((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})|required',
+                   // 'confirm_password' => 'Required|same:password',
                 );
                 $validator = Validator::make(Input::all(), $rules);
                 if ($validator->passes()) {
-                    $model->password = Hash::make(Input::get('password'));
+                    $model->password = Hash::make(Input::get('new_password'));
                     $model->save();
                     return Redirect::to('applicant/change/password')->with('message', 'Password Successfully Updated.');
                 } else {

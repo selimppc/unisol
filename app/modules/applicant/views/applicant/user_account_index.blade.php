@@ -29,7 +29,7 @@
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab_1">
                         @if($account != null)
-                            <a class="pull-right btn btn-sm btn-success" href="{{ URL::to('applicant/user-account/edit/' . $account->id ) }}" data-toggle="modal" data-target="#editModal" >Edit account</a>
+                            <a class="pull-right btn btn-sm btn-success" href="{{ URL::to('applicant/user-account/edit/' . $account->id ) }}" data-toggle="modal" data-target="#editModal" >Edit account<i class="fa fa-arrow-circle-right"></i></a>
                         @endif
                         <div class="box-body table-responsive ">
                             <table class="table table-striped  table-bordered">

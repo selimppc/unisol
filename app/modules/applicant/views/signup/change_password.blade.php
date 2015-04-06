@@ -15,7 +15,7 @@
                         {{ Form::password('password',  array('class'=>'form-control','required')) }}
 
                         {{ Form::label('password','New Password') }}
-                        {{ Form::password('password',  array('class'=>'form-control','required')) }}
+                        {{ Form::password('new_password',  array('class'=>'form-control','required')) }}
                         <div class="form-group">
                             <span class="text-muted"><em><span style="color:green;"></span><b>Must contain one lowercase letter,one uppercase letter, one number,one special character and be at least 8 characters long</b> </em></span>
                         </div>
