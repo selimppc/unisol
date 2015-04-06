@@ -5,7 +5,7 @@
       <div class="row">
       {{ Form::open(['route' => ['admission.public.save-exm-center'], 'class'=>'form-horizontal','files' => true,]) }}
 
-         {{ Form::hidden('batch_applicant_id', 1 )}}
+         {{ Form::hidden('batch_applicant_id', $ba_id )}}
              <!-- Left col -->
              <section class="col-lg-12 connectedSortable">
                 @if(isset($exm_center_choice))
