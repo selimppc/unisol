@@ -8,8 +8,6 @@
 <div class="modal-body">
     <div style="padding: 20px;">
 
-       {{ Form::hidden('applicant_id', $applicant_id=1, array('class'=>'form-control')) }}
-
        <div>{{ Form::label('fathers_name', 'Fathers name') }}</div>
        <div>{{ Form::text('fathers_name', Input::old('fathers_name'),['class'=>'form-control']) }}</div>
 

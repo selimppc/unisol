@@ -11,14 +11,7 @@
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="#tab_1" data-toggle="tab">Academic Records</a></li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            Settings  <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li role="presentation" data-toggle="modal" data-target="#addCategory"><a role="menuitem" tabindex="-1" href="#"> </a></li>
-                        </ul>
-                    </li>
+
                     <li class="pull-right" class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-gear"></i>&nbsp;</a>
                         <ul class="dropdown-menu">
@@ -28,7 +21,8 @@
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab_1">
-                        <a class="pull-right btn btn-sm btn-success" href="" data-toggle="modal" data-target="#addModal">Add Academic Records <i class="fa fa-arrow-circle-right"></i></a>
+                        {{--<a class="pull-right btn btn-sm btn-success" href="" data-toggle="modal" data-target="#addModal">Add Academic Records <i class="fa fa-arrow-circle-right"></i></a>--}}
+                        <a class="pull-right btn btn-success"  href="{{url::to('admission/public/admission/add-applicant-acm-docs')}}" data-toggle="modal" data-target="#addModal"><b></b> Add Academic Records </a>
 
                         <table id="example1" class="table table-bordered table-striped">
                             <col width="25">
@@ -78,11 +72,7 @@
     <div id="addModal" class="modal fade" data-keyboard="false" data-backdrop="static">
         <div class="modal-dialog" >
             <div class="modal-content" >
-                <div class="modal-body" >
-                    {{ Form::open(array('url' => 'apt/acm_records/store', 'method' =>'post', 'role'=>'form','files'=>'true')) }}
-                      @include('applicant::apt_academic_records._form')
-                    {{ Form::close() }}
-                </div>
+
             </div>
         </div>
     </div>

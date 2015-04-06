@@ -114,7 +114,7 @@ class AdmPublicController extends \BaseController {
         $data = Input::all();
         $applicant_personal_info = new ApplicantProfile();
         if ($applicant_personal_info->validate($data)) {
-            $applicant_personal_info->applicant_id = Input::get('applicant_id');
+            $applicant_personal_info->applicant_id = Auth::applicant()->get()->id;
             $applicant_personal_info->date_of_birth = Input::get('date_of_birth');
             $applicant_personal_info->place_of_birth = Input::get('place_of_birth');
             $applicant_personal_info->gender = Input::get('gender');
@@ -152,7 +152,7 @@ class AdmPublicController extends \BaseController {
         //echo 'ok';exit;
         $applicant_personal_info = ApplicantProfile::find($id);
 //        if ($model->validate($data)) {
-        $applicant_personal_info->applicant_id = Input::get('applicant_id');
+        $applicant_personal_info->applicant_id = Auth::applicant()->get()->id;
         $applicant_personal_info->date_of_birth = Input::get('date_of_birth');
         $applicant_personal_info->place_of_birth = Input::get('place_of_birth');
         $applicant_personal_info->gender = Input::get('gender');
@@ -198,7 +198,7 @@ class AdmPublicController extends \BaseController {
                 //$data = Input::all();
                 //$model = $data['id'] ? ApplicantAcademicRecords::find($data['id']) : new ApplicantAcademicRecords;
                 $model = new ApplicantAcademicRecords();
-                $model->applicant_id = Input::get('applicant_id');
+                $model->applicant_id = Auth::applicant()->get()->id;
                 $model->level_of_education = Input::get('level_of_education');
                 $model->degree_name = Input::get('degree_name');
                 $model->institute_name = Input::get('institute_name');
@@ -270,7 +270,7 @@ class AdmPublicController extends \BaseController {
             $model = ApplicantAcademicRecords::find($id);
 
             if($data){
-                $model->applicant_id = Input::get('applicant_id');
+                $model->applicant_id = Auth::applicant()->get()->id;
                 $model->level_of_education = Input::get('level_of_education');
                 $model->degree_name = Input::get('degree_name');
                 $model->institute_name = Input::get('institute_name');
@@ -363,7 +363,7 @@ class AdmPublicController extends \BaseController {
         if ($validator->passes()) {
 
             $applicant_meta_records = new ApplicantMeta();
-            $applicant_meta_records->applicant_id = Input::get('applicant_id');
+            $applicant_meta_records->applicant_id = Auth::applicant()->get()->id;
             $applicant_meta_records->fathers_name = Input::get('fathers_name');
             $applicant_meta_records->mothers_name = Input::get('mothers_name');
             $applicant_meta_records->fathers_occupation = Input::get('fathers_occupation');
@@ -418,7 +418,7 @@ class AdmPublicController extends \BaseController {
             $file = $data['signature'];
             $applicant_meta_records = ApplicantMeta::find($id);
             if ($data) {
-                $applicant_meta_records->applicant_id = Input::get('applicant_id');
+                $applicant_meta_records->applicant_id = Auth::applicant()->get()->id;
                 $applicant_meta_records->fathers_name = Input::get('fathers_name');
                 $applicant_meta_records->mothers_name = Input::get('mothers_name');
                 $applicant_meta_records->fathers_occupation = Input::get('fathers_occupation');
