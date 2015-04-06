@@ -384,6 +384,11 @@ Route::any('admission/amw/question-paper-evaluation/{bats_id}',[
     'uses' => 'AdmAmwController@questionPaperEvaluation'
 ]);
 
+Route::any('admission/amw/student-list-of-qpe/{adm_question_id}',[
+    'as' => 'admission.amw.student-list-of-qpe',
+    'uses' => 'AdmAmwController@studentListOfQpe'
+]);
+
 
 
 

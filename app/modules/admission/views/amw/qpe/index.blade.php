@@ -8,7 +8,28 @@
 
 <div class="box">
     <div class="box-header">
-        <h3 class="box-title">Evaluation System</h3>
+    <p>
+        <div class="col-xs-4">
+            <b>Degree</b> :: {{$data->relBatch->relDegree->relDegreeProgram->code}}
+                    {{$data->relBatch->relDegree->relDegreeGroup->code}} in {{$data->relBatch->relDegree->relDepartment->title}} -
+                    {{ $data->relBatch->relSemester->title }} - {{ $data->relBatch->relYear->title }}
+        </div>
+        <div class="col-xs-4">
+            <b>Credit</b> : {{$data->relBatch->relDegree->total_credit}}
+        </div>
+        <div class="col-xs-4">
+            <b>Department</b> : {{$data->relBatch->relDegree->relDepartment->title}}
+        </div>
+        <div class="col-xs-4">
+            <b>Duration</b> : {{$data->relBatch->relDegree->duration}} Years
+        </div>
+        <div class="col-xs-4">
+            <b>Year</b> : {{$data->relBatch->relYear->title}}
+        </div>
+        <div class="col-xs-4">
+            <b>Semester</b> : {{$data->relBatch->relSemester->title}}
+        </div>
+    </p>
     </div><!-- /.box-header -->
     <div class="box-body table-responsive">
         <table id="example1" class="table table-bordered table-striped">
@@ -22,27 +43,25 @@
             </tr>
             </thead>
             <tbody>
+            @foreach($adm_question as $values)
             <tr>
-                <td>Trident</td>
-                <td>Internet
-                    Explorer 4.0</td>
-                <td>Win 95+</td>
-                <td> 4</td>
-                <td>X</td>
+                <td> {{$values->relBatchAdmtestSubject->relAdmtestSubject->title}}</td>
+                <td> {{User::Fullname($values->s_faculty_user_id)}}</td>
+                <td> {{User::Fullname($values->e_faculty_user_id)}}</td>
+                <td> {{$values->status}}</td>
+                <td>
+                    <a href="{{ URL::route('admission.amw.student-list-of-qpe', ['adm_question_id'=> $values->id ]) }}" class="btn btn-xs btn-info"><span class="fa fa-eye"></span> view</a>
+                </td>
             </tr>
-
+            @endforeach
             </tbody>
-            <tfoot>
-            <tr>
-                <th>Rendering engine</th>
-                <th>Browser</th>
-                <th>Platform(s)</th>
-                <th>Engine version</th>
-                <th>CSS grade</th>
-            </tr>
-            </tfoot>
+
         </table>
     </div><!-- /.box-body -->
+    <p style="padding: 1%">
+        <a href="{{ URL::route('admission.amw.admission-test-home') }}" class="btn btn-xs bg-black"></span> Back to Admission Test</a>
+    </p>
+
 </div><!-- /.box -->
 
 @stop
