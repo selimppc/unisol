@@ -3,7 +3,7 @@
 
 @stop
 @section('content')
-{{--<a class="pull-right btn btn-xs btn-success" href="{{ URL::route('admission.degree_offer_details',['batch-applicant-id'=>$adm_test_details->$batch_applicant_id])}}"><b><i class="fa fa-arrow-circle-left"></i>Go Back</b></a>--}}
+<a class="pull-right btn btn-xs btn-success" href="{{ URL::route('admission.public.applicant_details',['batch-applicant-id'=>Auth::applicant()->get()->id])}}"><b><i class="fa fa-arrow-circle-left"></i>Go Back</b></a>
     <div class="help-text-top">
               You can view details information of degree and subject on admission test. Also this panel will allow you to choice exam center sequence to <b>Exam Center Choice</b> button.
                      {{--<small>Someone famous in <cite title="Source Title">Source Title</cite></small>--}}

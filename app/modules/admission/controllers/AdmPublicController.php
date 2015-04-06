@@ -35,12 +35,10 @@ class AdmPublicController extends \BaseController {
                         $data->save();
                     }
                 }
-
             }else{
                 Session::flash('info', "Please Select Degree From Degree List!");
                 return Redirect::back();
             }
-
             return Redirect::route('admission.public.applicant_details', ['id' => Auth::applicant()->get()->id]);
         } else {
             Session::flash('danger', "Please Login As Applicant!");
