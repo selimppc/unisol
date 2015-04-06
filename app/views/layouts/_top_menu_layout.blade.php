@@ -97,7 +97,7 @@
     </ul>
 </li>
 
-<!-- Applicant Module -->
+<!-- ****************************Applicant Module*********************-->
 <li class="dropdown messages-menu">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
         Applicant
