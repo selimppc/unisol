@@ -74,9 +74,62 @@ class ApplicantController extends \BaseController
     }
     public function Login()
     {
-        return View::make('applicant::applicants.login');
+        return View::make('applicant::applicant.login');
     }
 //TODO : Change password code is in admission UserSignUpController and need to add it here.
+
+
+//**********************Applicant's User Account Info Start(R)****************************
+
+    public  function userAccountInfoIndex()
+    {
+        if(Auth::applicant()->check()) {
+            $applicant = Auth::applicant()->get()->id;
+            $account = Applicant::where('id', '=', $applicant)->first();
+            return View::make('applicant::applicant.user_account_index', compact('account','applicant'));
+        }
+        else {
+            Session::flash('danger', "Please Login As Applicant!");
+            return Redirect::route('user/login');
+        }
+    }
+
+    public function userAccountEdit($id)
+    {
+        $account = Applicant::find($id);
+        return View::make('applicant::applicant.edit', compact('account'));
+    }
+
+    public  function userAccountUpdate($id)
+    {
+        if(Auth::applicant()->check()) {
+            $rules = array(
+               // 'email' => 'required|email|unique:applicant',
+               // 'username' => 'required|unique:applicant',
+            );
+            $validator = Validator::make(Input::all(), $rules);
+            if ($validator->passes()) {
+                $account = Applicant::find($id);
+                $account->id = Auth::applicant()->get()->id;
+                $account->first_name = Input::get('first_name');
+                $account->middle_name = Input::get('middle_name');
+                $account->last_name = Input::get('last_name');
+                $account->username = Input::get('username');
+                $account->email = Input::get('email');
+                $account->save();
+
+                return Redirect::back()->with('message', 'Successfully Updated Information!');
+            } else {
+                return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
+            }
+        }
+        else {
+            Session::flash('danger', "Please Login As Applicant!");
+            return Redirect::route('user/login');
+        }
+    }
+
+
 
 //**********************Applicant's Profile Start(R)*********************************
 
@@ -167,9 +220,7 @@ class ApplicantController extends \BaseController
                 $applicant_model->phone = Input::get('phone');
                 $applicant_model->save();
 
-                $applicant_model->save();
-
-                return Redirect::back()->with('message', 'Successfully updated Information!');
+                return Redirect::back()->with('message', 'Successfully Updated Information!');
             } else {
                 return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
             }

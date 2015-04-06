@@ -483,6 +483,8 @@ class AdmPublicController extends \BaseController {
         $exm_center_lists = ['' => 'Select Exam Center'] + ExmCenter::lists('title', 'id');
         if ($validator->Fails()) {
             $exm_centers_all = ExmCenter::all();
+
+            //print_r($exm_centers_all);exit;
         }else{
             $exm_center_choice = ExmCenterApplicantChoice::with('relExmCenter')->where('batch_applicant_id','=',$ba_id)->get();
         }
