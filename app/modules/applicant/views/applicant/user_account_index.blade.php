@@ -4,13 +4,13 @@
 @stop
 @section('content')
     <!-- START CUSTOM TABS -->
-    <h2 class="page-header text-purple tab-text-margin">Applicant Proifle</h2>
+    <h2 class="page-header text-purple tab-text-margin">Applicant Account</h2>
     <div class="row">
         <div class="col-md-12">
             <!-- Custom Tabs -->
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#tab_1" data-toggle="tab">Applicant Proifle</a></li>
+                    <li class="active"><a href="#tab_1" data-toggle="tab">Applicant Account</a></li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                             Settings  <span class="caret"></span>
