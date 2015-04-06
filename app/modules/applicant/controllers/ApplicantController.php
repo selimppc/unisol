@@ -76,7 +76,51 @@ class ApplicantController extends \BaseController
     {
         return View::make('applicant::applicant.login');
     }
-//TODO : Change password code is in admission UserSignUpController and need to add it here.
+
+//**************************Applicant Change password Start(R)***********************
+
+    public function applicant_change_password()
+    {
+        return View::make('applicant::signup.change_password');
+    }
+
+    public function applicant_change_password_update()
+    {
+        if(Auth::applicant()->check())
+        {
+            $model= Applicant::find(Auth::applicant()->get()->id);
+            $old_password = Input::get('password');
+            $user_password = Auth::applicant()->get()->password;
+
+            if(Hash::check($old_password, $user_password)){
+                $rules = array(
+                    'password' => 'regex:((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})|required',
+                    'confirm_password' => 'Required|same:password',
+                );
+                $validator = Validator::make(Input::all(), $rules);
+                if ($validator->Fails()) {
+                    Session::flash('message', 'Invalid!!');
+                    return Redirect::back()->withErrors($validator)->withInput();
+                } else{
+                    $model->password = Hash::make(Input::get('password'));
+                    if($model->save()){
+                        return Redirect::back()->with('message', 'Successfully Updated Password.You can sign In now!');
+                    }
+                    else{
+                        echo "data do not saved!!!";
+                    }
+                }
+            }else{
+                Session::flash('message','Password does not match. Please try again!');
+                return Redirect::back();
+            }
+        }
+        else {
+            Session::flash('danger', "Please Login As Applicant!");
+            return Redirect::route('user/login');
+        }
+
+    }
 
 
 //**********************Applicant's User Account Info Start(R)****************************
@@ -128,7 +172,6 @@ class ApplicantController extends \BaseController
             return Redirect::route('user/login');
         }
     }
-
 
 
 //**********************Applicant's Profile Start(R)*********************************
