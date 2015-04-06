@@ -65,6 +65,7 @@
 
                     <br>
 
+
                     <div class="box-body table-responsive">
                           {{ Form::open(array('url' => 'admission/faculty/admission-test/evaluationBatchDelete')) }}
                                 <table id="example1" class="table table-bordered table-striped">
