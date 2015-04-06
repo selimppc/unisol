@@ -132,7 +132,7 @@ Route::any('apt/supporting_docs/store',
 
 //*********************Extra Curricular Activities(R)*********************
 
-Route::any('apt/extra_curricular/',
+Route::any('applicant/extra_curricular/',
     'ApplicantController@extraCurricularIndex'
 );
 

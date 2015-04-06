@@ -651,7 +651,7 @@ class ApplicantController extends \BaseController
             $extra_curricular->save();
             return Redirect::back()->with('message', 'Successfully added Information!');
         } else {
-            return Redirect::to('apt/extra_curricular/')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
+            return Redirect::to('applicant/extra_curricular/')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
         }
 
     }
@@ -705,7 +705,7 @@ class ApplicantController extends \BaseController
             {
                 Session::flash('danger', "Activities Deleted successfully");
                 //return Redirect::back();
-                return Redirect::to('apt/extra_curricular/');
+                return Redirect::to('applicant/extra_curricular/');
             }
         }
         catch
