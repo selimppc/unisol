@@ -100,7 +100,7 @@ class ApplicantController extends \BaseController
                 if ($validator->passes()) {
                     $model->password = Hash::make(Input::get('password'));
                     $model->save();
-                    return Redirect::back()->with('message', 'Password Successfully Updated.');
+                    return Redirect::to('applicant/change/password')->with('message', 'Password Successfully Updated.');
                 } else {
                     return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
                 }

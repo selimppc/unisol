@@ -18,6 +18,8 @@ Route::get('register/verify/{verified_code}',
     'ApplicantController@applicant_signup_confirm'
 );
 
+//********************Change Password Start(R)******************************************
+
 Route::any('applicant/change/password',
     'ApplicantController@applicant_change_password'
 );
@@ -32,13 +34,13 @@ Route::any('applicant/user-account/info',
     'ApplicantController@userAccountInfoIndex'
 );
 
-    Route::any('applicant/user-account/edit/{id}',
-        'ApplicantController@userAccountEdit'
-    );
+Route::any('applicant/user-account/edit/{id}',
+    'ApplicantController@userAccountEdit'
+);
 
-    Route::post('applicant/user-account/update/{id}',
-        'ApplicantController@userAccountUpdate'
-    );
+Route::post('applicant/user-account/update/{id}',
+    'ApplicantController@userAccountUpdate'
+);
 
 //********************Applicant Profile(R)*******************************
 

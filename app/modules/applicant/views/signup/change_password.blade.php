@@ -12,16 +12,16 @@
                         {{ Form::open(array('url'=>'applicant/change_password/update', 'class'=>'form-signin')) }}
 
                         {{ Form::label('old_password','Old Password') }}
-                        {{ Form::password('password',  array('class'=>'form-control')) }}
+                        {{ Form::password('password',  array('class'=>'form-control','required')) }}
 
                         {{ Form::label('password','New Password') }}
-                        {{ Form::password('new_password',  array('class'=>'form-control')) }}
+                        {{ Form::password('password',  array('class'=>'form-control','required')) }}
                         <div class="form-group">
                             <span class="text-muted"><em><span style="color:green;"></span><b>Must contain one lowercase letter,one uppercase letter, one number,one special character and be at least 8 characters long</b> </em></span>
                         </div>
                         <br>
                         {{ Form::label('confirm_password', 'Confirm New Password') }}
-                        {{ Form::password('confirm_password', array('class'=>'form-control')) }}
+                        {{ Form::password('confirm_password', array('class'=>'form-control','required')) }}
                         <br>
                         {{ Form::submit('Update', array('class'=>'btn btn-large btn-primary '))}}
                         <br>
