@@ -42,7 +42,7 @@
               <td>{{ $values->title }}</td>
               <td>{{ $values->deadline }}</td>
               <td>{{ $values->relBatchAdmtestSubject->relAdmtestSubject->title }}</td>
-              <td> {{User::FullName($values->examiner_faculty_user_id)}} </td>
+              <td> {{isset($values->s_faculty_user_id)? User::FullName($values->s_faculty_user_id) :''}} </td>
               <td> {{ $values->status }} </td>
               <td>
                  <a href="{{ URL::route('admission.amw.admission-test-question.view-admtest-question-paper', [ 'id'=>$values->id ]) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#modal" data-placement="left" title="Show" href="#"> View </a>

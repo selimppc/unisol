@@ -75,9 +75,6 @@
                                                    <strong>out of : </strong> {{  $eva_q_ans->relAdmQuestionItems->marks}}
                                                 </div>
 
-
-
-
                                                {{ Form::submit('Evaluate and Next', array('id'=>'submit_if', 'class'=>'btn btn-primary btn-xs')) }}
                                                <a href="{{ URL::previous() }}" class="btn bg-orange btn-xs " >Back</a>
 
