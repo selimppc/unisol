@@ -1266,6 +1266,21 @@ class AdmAmwController extends \BaseController
         return View::make('admission::amw.qpe.student_list_eqp', compact('data', 'adm_question_evaluation'));
     }
 
+    /**
+     * @param $ba_id :: Batch Applicant ID
+     * @param $question_id  :: Adm_Question_Id
+     * @param $q_items_id :: Adm_question_items_id
+     * @return mixed
+     */
+    public function viewDetailsOfQpe($ba_id, $question_id, $q_items_id)
+    {
+        $data = AdmQuestion::where('id', $question_id)->first();
+        $question_item_details = AdmQuestionEvaluation::with('relAdmQuestionItems')
+            ->where('adm_question_items_id', $q_items_id)->get();
+
+        return View::make('admission::amw.qpe.view_eqp_details', compact('data', 'question_item_details'));
+    }
+
 //{-----------Version: 2 (Tanin) -----------------------------------------------------------------}
 
     /*
