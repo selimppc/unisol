@@ -48,7 +48,7 @@
 
                                       <strong> Total Marks: </strong> {{ $data_question->total_marks }} <br><br>
 
-                                      <strong> Marks Obtained So Far: </strong> {{ $evaluate_qp->relAdmQuestion->marks  }} <br><br>
+                                      <strong> Marks Obtained So Far: </strong> {{ $total_marks->question_total_marks  }} <br><br>
 
                                     <div class="box-body table-responsive">
                                           {{Form::open(array('url'=>'admission/faculty/question-papers/store-evaluated-questions', 'class'=>'form-horizontal','files'=>true))}}
@@ -56,7 +56,7 @@
                                                  {{ Form::hidden('adm_question_id',$a_q_id ) }} </br>
                                                  {{ Form::hidden('adm_question_items_id', $a_q_itm_id ) }} </br>
 
-                                                 <strong> Question No: # out of: # </strong>
+                                                 <strong> Question No: # out of: {{ $count }} </strong>
                                                  <br><br>
                                                 <strong> Question Title Here: </strong> {{ $evaluate_qp->relAdmQuestionItems->title }}
                                                     <br><br>

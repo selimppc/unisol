@@ -86,40 +86,30 @@ class ApplicantController extends \BaseController
 
     public function applicant_change_password_update()
     {
-        if(Auth::applicant()->check())
-        {
-            $model= Applicant::find(Auth::applicant()->get()->id);
+        if(Auth::applicant()->check()) {
+            $model = Applicant::findOrFail(Auth::applicant()->get()->id);
             $old_password = Input::get('password');
             $user_password = Auth::applicant()->get()->password;
-
-            if(Hash::check($old_password, $user_password)){
+            if (Hash::check($old_password, $user_password))
+            {
                 $rules = array(
                     'password' => 'regex:((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})|required',
                     'confirm_password' => 'Required|same:password',
                 );
                 $validator = Validator::make(Input::all(), $rules);
-                if ($validator->Fails()) {
-                    Session::flash('message', 'Invalid!!');
-                    return Redirect::back()->withErrors($validator)->withInput();
-                } else{
+                if ($validator->passes()) {
                     $model->password = Hash::make(Input::get('password'));
-                    if($model->save()){
-                        return Redirect::back()->with('message', 'Successfully Updated Password.You can sign In now!');
-                    }
-                    else{
-                        echo "data do not saved!!!";
-                    }
+                    $model->save();
+                    return Redirect::to('applicant/change/password')->with('message', 'Password Successfully Updated.');
+                } else {
+                    return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
                 }
-            }else{
-                Session::flash('message','Password does not match. Please try again!');
-                return Redirect::back();
             }
         }
         else {
             Session::flash('danger', "Please Login As Applicant!");
             return Redirect::route('user/login');
         }
-
     }
 
 
