@@ -512,8 +512,6 @@ class AdmFacultyController extends \BaseController {
             Session::flash('errors', $errors);
             return Redirect::back()->with('errors', 'invalid');
         }
-
-
     }
 
     public function reEvaluateQuestionsitems()

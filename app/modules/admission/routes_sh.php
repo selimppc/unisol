@@ -113,9 +113,6 @@ Route::any('admission/faculty/question-papers/adm-test-qp-assign/{id}',[
 ]);
 //-> 5% remaining
 
-
-
-
 Route::any('admission/faculty/question-papers/evaluate-questions/{id}',[
     'as' => 'admission.faculty.question-papers.evaluate-questions',
     'uses' => 'AdmFacultyController@evaluateQuestions'
