@@ -105,9 +105,10 @@ class AdmFacultyController extends \BaseController {
     public function admTestQuestionPaper($year_id, $semester_id, $batch_id )
     {
         $admtest_question_paper = AdmQuestion::latest('id')
-           ->where('examiner_faculty_user_id' ,'=', Auth::user()->get()->id)
-            ->get();
+           ->where('s_faculty_user_id' ,'=', Auth::user()->get()->id)
+           ->get();
 
+        // user id nie ektu jhamela ace.
 
         $degree_id = Batch::where('id' ,'=', $batch_id )
             ->where('semester_id' ,'=', $semester_id)
