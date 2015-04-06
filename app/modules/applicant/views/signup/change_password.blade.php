@@ -9,7 +9,7 @@
                 <div class="box box-warning">
                     <div class="box-body">
                         <p style="text-align: center;color: #800080;font-size:large;margin-top: 5px">Change Password</p>
-                        {{ Form::open(array('url'=>'user/change_password/update', 'class'=>'form-signin')) }}
+                        {{ Form::open(array('url'=>'applicant/change_password/update', 'class'=>'form-signin')) }}
 
                         {{ Form::label('old_password','Old Password') }}
                         {{ Form::password('password',  array('class'=>'form-control')) }}
@@ -24,7 +24,6 @@
                         {{ Form::password('confirm_password', array('class'=>'form-control')) }}
                         <br>
                         {{ Form::submit('Update', array('class'=>'btn btn-large btn-primary '))}}
-                        <a href="{{URL::to('applicant/user-account/info')}}" class="btn btn-default pull-right">Close </a>
                         <br>
                         {{ Form::close() }}
                     </div>
