@@ -465,7 +465,6 @@ class AdmFacultyController extends \BaseController {
         return $result;
     }
 
-
     /**
      * @param $a_q_id : adm_question_id
      * @param $a_q_itm_id : adm_question_items_id
