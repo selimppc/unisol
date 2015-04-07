@@ -58,6 +58,10 @@ class Batch extends Eloquent{
         return $this->belongsTo('Semester', 'semester_id', 'id');
     }
 
+    public function relBatchAdmtestSubject(){
+        return $this->HasMany('BatchAdmtestSubject');
+    }
+    
     public function relAdmExaminerComments(){
         return $this->HasMany('AdmExaminerComments');
     }
