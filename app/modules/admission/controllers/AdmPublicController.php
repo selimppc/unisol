@@ -10,8 +10,38 @@ class AdmPublicController extends \BaseController {
 	{
         $degreeList = Batch::with('relDegree')->paginate(10);
         return View::make('admission::adm_public.admission.degree_list',compact('degreeList'));
+    }
 
-	}
+    public function degreeOfferDetails($id){
+        //$id refers to degree_id in DB table:Batch
+        $degree_model = Batch::with('relDegree','relYear','relSemester',
+            'relDegree.relDepartment','relDegree.relDegreeGroup','relBatchWaiver.relWaiver')
+            ->where('id', '=', $id)
+            ->get();
+
+        $major_courses = BatchCourse::with('relBatch','relCourse')
+            ->where('batch_id','=',$id)
+            ->where('major_minor','=','major')
+            ->get();
+
+        $minor_courses = BatchCourse::with('relBatch','relCourse')
+            ->where('batch_id','=',$id)
+            ->where('major_minor','=','minor')
+            ->get();
+
+        $edu_gpa_model = BatchEducationConstraint::with('relBatch')
+            ->where('batch_id','=',$id)->get();
+
+        $batch_adm_subject = BatchAdmtestSubject::with('relBatch','relAdmtestSubject')
+            ->where('batch_id','=',$id)->get();
+
+        $exm_centers = ExmCenter::get();
+
+        return View::make('admission::adm_public.admission.degree_detail',
+            compact('degree_model','major_courses', 'minor_courses',
+                'edu_gpa_model','batch_adm_subject','exm_centers'));
+    }
+
     public function degreeApply(){
 
         if(Auth::applicant()->check()){
@@ -46,44 +76,14 @@ class AdmPublicController extends \BaseController {
         }
     }
 
-    public function degreeOfferDetails($id){
-
-        $degree_model = Batch::with('relDegree','relYear','relSemester',
-            'relDegree.relDepartment','relDegree.relDegreeGroup','relBatchWaiver.relWaiver')
-            ->where('id', '=', $id)
-            ->get();
-
-        $major_courses = BatchCourse::with('relBatch','relCourse')
-            ->where('batch_id','=',$id)
-            ->where('major_minor','=','major')
-            ->get();
-
-        $minor_courses = BatchCourse::with('relBatch','relCourse')
-            ->where('batch_id','=',$id)
-            ->where('major_minor','=','minor')
-            ->get();
-
-        $edu_gpa_model = BatchEducationConstraint::with('relBatch')
-            ->where('batch_id','=',$id)->get();
-
-        $batch_adm_subject = BatchAdmtestSubject::with('relBatch','relAdmtestSubject')
-            ->where('batch_id','=',$id)->get();
-
-        $exm_centers = ExmCenter::get();
-        //print_r($exm_centers);exit;
-        return View::make('admission::adm_public.admission.degree_detail',
-                  compact('degree_model','major_courses', 'minor_courses',
-                         'edu_gpa_model','batch_adm_subject','exm_centers'));
-    }
-
-
+//    $id refers to applicant_id in DB table : BatchApplicant
     public function degreeOfferApplicantDetails($id){
 
         $applicant_id = $id;
         $batch_applicant = BatchApplicant::with('relBatch','relBatch.relDegree','relBatch.relDegree.relDegreeGroup','relBatch.relDegree.relDepartment')
                            ->where('applicant_id', '=',$applicant_id )
                            ->get();
-        //print_r($batch_applicant);exit;
+
         $applicant_personal_info = ApplicantProfile::with('relCountry')
                           ->where('applicant_id', '=',$applicant_id )
                           ->first();
@@ -95,6 +95,7 @@ class AdmPublicController extends \BaseController {
                   compact('batch_applicant','applicant_personal_info','applicant_acm_records',
                       'applicant_meta_records'));
     }
+
     public function addMoreDegree(){
 
         $degreeList = Batch::with('relDegree')->get();
@@ -131,47 +132,59 @@ class AdmPublicController extends \BaseController {
             $applicant_personal_info->zip_code = Input::get('zip_code');
             $applicant_personal_info->phone = Input::get('phone');
             $applicant_personal_info->save();
+
+            Session::flash('success', "Successfully Added Information!");
             return Redirect::back();
         } else {
-            Session::flash('danger', "Please Login As Applicant!");
+            $errors = $applicant_personal_info->errors();
+            Session::flash('errors', $errors);
             return Redirect::back();
         }
     }
     public function editApplicantProfileByApplicant($id){
 
         $applicant_personal_info= ApplicantProfile::find($id);
-        //print_r($applicant_personal_info);exit;
         $countryList = [''=>'Select One'] + Country::lists('title','id');
         return View::make('admission::adm_public.admission.modal_files.edit_profile', compact('applicant_personal_info','countryList'));
     }
     public function updateApplicantProfileByApplicant($id){
 
-        //$data = Input::all();
-        //echo 'ok';exit;
-        $applicant_personal_info = ApplicantProfile::find($id);
-//        if ($model->validate($data)) {
-        $applicant_personal_info->applicant_id = Auth::applicant()->get()->id;
-        $applicant_personal_info->date_of_birth = Input::get('date_of_birth');
-        $applicant_personal_info->place_of_birth = Input::get('place_of_birth');
-        $applicant_personal_info->gender = Input::get('gender');
+        $rules = array(
+            'gender' => 'required',
+            'zip_code' => 'required',
+        );
+        $validator = Validator::make(Input::all(), $rules);
+        if ($validator->passes()) {
+            $data = Input::all();
+            $imagefile = $data['profile_image'];
+            $applicant_personal_info = ApplicantProfile::find($id);
+            if ($data) {
+                $applicant_personal_info->applicant_id = Auth::applicant()->get()->id;
+                $applicant_personal_info->date_of_birth = Input::get('date_of_birth');
+                $applicant_personal_info->place_of_birth = Input::get('place_of_birth');
+                $applicant_personal_info->gender = Input::get('gender');
+                $applicant_personal_info->city = Input::get('city');
+                $applicant_personal_info->state = Input::get('state');
+                $applicant_personal_info->country_id = Input::get('country_id');
+                $applicant_personal_info->zip_code = Input::get('zip_code');
+                $applicant_personal_info->phone = Input::get('phone');
 
-        $file = Input::file('profile_image');
+                if ($imagefile) {
+                    $imagefile= Input::file('profile_image');
+                    $extension = $imagefile->getClientOriginalExtension();
+                    $filename = str_random(12) . '.' . $extension;
+                    $sdoc_file=strtolower($filename);
+                    $path = public_path("files_public/" . $sdoc_file);
+                    Image::make($imagefile->getRealPath())->resize(100, 100)->save($path);
+                    $applicant_personal_info->profile_image =$sdoc_file;
+                }
+                $applicant_personal_info->save();
 
-        $extension = $file->getClientOriginalExtension();
-        $filename = str_random(12) . '.' . $extension;
-        $path = public_path("files_public/" . $filename);
-        Image::make($file->getRealPath())->resize(100, 100)->save($path);
-
-        $applicant_personal_info->profile_image = $filename;
-
-        $applicant_personal_info->city = Input::get('city');
-        $applicant_personal_info->state = Input::get('state');
-        $applicant_personal_info->country_id = Input::get('country_id');
-        $applicant_personal_info->zip_code = Input::get('zip_code');
-        $applicant_personal_info->phone = Input::get('phone');
-        $applicant_personal_info->save();
-        Session::flash('message', "Successfully Performed This Action!");
-        return Redirect::back();
+                return Redirect::back()->with('message', 'Successfully Updated Information!');
+            } else {
+                return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
+            }
+        }
     }
 
 // {------ Applicant Academic Records ------------------------------------------------------------}
@@ -184,12 +197,11 @@ class AdmPublicController extends \BaseController {
     {
         if(Auth::applicant()->check()) {
             $rules = array(
-          //  'certificate' => 'required',
-//            'degree_name' => 'required',
-//            'institute_name' => 'required',
-//            'academic_group' => 'required',
-//            'board_university' => 'required',
-//            'major_subject' => 'required',
+                'level_of_education' => 'required',
+                'certificate' => 'required',
+                'transcript' => 'required',
+                'board_type' => 'required',
+                'result_type' => 'required',
             );
             $validator = Validator::make(Input::all(), $rules);
             if ($validator->passes()) {
@@ -318,8 +330,6 @@ class AdmPublicController extends \BaseController {
                         $model->transcript = $filename2;
                     }
                 }
-
-
             $model->save();
 
             return Redirect::back()->with('message', 'Successfully updated Information!');

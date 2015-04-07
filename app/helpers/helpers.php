@@ -173,5 +173,14 @@ class Helpers {
 
 
 
+    public static function convertToSlug($string)
+    {
+        //$slug = strtolower(preg_replace('/[^A-Za-z0-9]+/', '-', trim($string) ));
+        $slug = Str::slug($string);
+        return $slug;
+    }
+
+
+
 
 } 
