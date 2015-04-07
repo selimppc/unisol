@@ -42,10 +42,10 @@ class Batch extends Eloquent{
         return $this->errors;
     }
 
-    public function getDates()
+    /*public function getDates()
     {
         return ['start_date', 'end_date', 'admission_deadline', 'admtest_date'];
-    }
+    }*/
 
     //TODO : model relationship
     public function relDegree(){
