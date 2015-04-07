@@ -444,14 +444,12 @@ class AdmFacultyController extends \BaseController {
             'relBatchAdmtestSubject.relBatch','relBatchAdmtestSubject.relAdmtestSubject')
             ->where('id','=',$adm_question_id)->first();
 
-//        print_r($data);exit;
-
         $evaluation_qp = AdmQuestionEvaluation::with('relBatchApplicant','relBatchApplicant.relApplicant')
             ->where('adm_question_id','=', $adm_question_id)
-              ->latest('id')
-              ->get();
-
-//        print_r($evaluation_qp);exit;
+            ->latest('id')->groupBy('batch_applicant_id')
+            ->select(DB::raw('SUM(marks) as ev_marks, id as id, batch_applicant_id, adm_question_id, adm_question_items_id'))
+            ->get();
+        //print_r($evaluation_qp);exit;
 
         return View::make('admission::faculty.question_papers.evaluate_question_paper',
             compact('evaluation_qp','data'));
@@ -476,6 +474,7 @@ class AdmFacultyController extends \BaseController {
      */
     public function evaluateQuestionsItems($a_q_id , $a_q_itm_id, $no_q = false )
     {
+        if($_POST['finish'])
            $all = AdmQuestionItems::where('adm_question_id', $a_q_id)->get();
                 foreach($all as $q_itm){
                     $id [] = $q_itm->id;
@@ -494,8 +493,6 @@ class AdmFacultyController extends \BaseController {
             ->where('adm_question_items_id','=', $a_q_itm_id)
             ->latest('id')
             ->first();
-
-
           $total_marks = $this->totalMarks($a_q_id);
 
           return View::make('admission::faculty.question_papers.evaluate-questions-items',
