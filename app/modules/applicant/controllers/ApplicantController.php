@@ -310,7 +310,6 @@ class ApplicantController extends \BaseController
         }
     }
 
-    //TODO:create _form js need to check to store
     public function acmRecordsStore(){
 
         $rules = array(
@@ -717,7 +716,7 @@ class ApplicantController extends \BaseController
     }
 
 
-//***********************Applicant Miscellaneous Information(R)*************************
+//***********************Applicant Miscellaneous Information Start(R)*************************
 
     public function miscInfoIndex()
     {
@@ -789,10 +788,38 @@ class ApplicantController extends \BaseController
 
     }
 
-    public function test()
+//***********************Admission Test Start(R)*************************
+
+    public function admission_test_index()
     {
-        return View::make('applicant::test.onekeyup_event');
+        if(Auth::applicant()->check()) {
+            $applicant = Auth::applicant()->get()->id;
+            $data = BatchApplicant::with('relBatch','relBatch.relDegree','relBatch.relSemester','relBatch.relYear')
+                ->where('applicant_id', '=', $applicant)
+                ->get();
+            return View::make('applicant::admission_test.index',compact('data','applicant'));
+        }
+        else {
+            Session::flash('danger', "Please Login As Applicant!");
+            return Redirect::route('user/login');
+        }
+
     }
+
+    public function admission_test_subject($batch_id)
+    {
+        $test_subject = BatchApplicant::with('relBatch','relBatch.relDegree')
+            ->where('batch_id', '=', $batch_id)
+            ->get();
+
+        return View::make('applicant::admission_test.subject_details',compact('test_subject'));
+    }
+
+
+
+
+
+
 
 }
 
