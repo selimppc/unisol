@@ -16,6 +16,7 @@ class ApplicantProfile extends Eloquent{
     private $errors;
     private $rules = array(
         'profile_image' => 'required',
+        'gender' => 'required',
     );
     public function validate($data)
     {
