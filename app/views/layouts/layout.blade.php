@@ -186,7 +186,7 @@
         {{ HTML::script('assets/etsb/etsb_js/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js')}}
         {{ HTML::script('assets/etsb/etsb_js/icheck/icheck.min.js')}}
         {{ HTML::script('assets/etsb/etsb_js/admin/app.js')}}
-        {{ HTML::script('assets/etsb/etsb_js/admin/dashboard.js')}}
+{{--        {{ HTML::script('assets/etsb/etsb_js/admin/dashboard.js')}}--}}
         {{ HTML::script('assets/etsb/etsb_js/admin/demo.js')}}
         {{ HTML::script('assets/etsb/etsb_js/datatables/jquery.dataTables.js')}}
         {{ HTML::script('assets/etsb/etsb_js/datatables/dataTables.bootstrap.js')}}

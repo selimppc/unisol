@@ -2,7 +2,7 @@
 {{--{{Form::hidden('qitemid', $qid->id, ['class'=>'form-control'])}}--}}
 
       <div class='form-group'>
-         <Strong> Question Paper : </Strong> {{ $faculty_editQuestionItems->title }}
+         <Strong> Question Paper : </Strong> {{ $faculty_editQuestionItems->relAdmQuestion->title }}
       </div>
 
      <div class='form-group'>

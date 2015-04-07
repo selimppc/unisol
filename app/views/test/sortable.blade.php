@@ -151,7 +151,6 @@
         </div>
       </div>
     </div>
-    <?php $created_at = '2015-10-10 10:10:10'; ?>
-    {{ $created_at->format('M j, Y'); }}
+
 @stop
 

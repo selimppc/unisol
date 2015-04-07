@@ -66,7 +66,9 @@ class CreateApplicant extends Migration {
             $table->string('driving_licence',16);
             $table->string('passport',16);
             $table->string('place_of_birth',64);
-            $table->string('marital_status',64);
+            $table->enum('marital_status', array(
+                'single', 'married', 'unmarried', 'divorce'
+            ));
             $table->string('nationality',64);
             $table->string('religion',64);
             $table->string('signature',128);
