@@ -474,32 +474,38 @@ class AdmFacultyController extends \BaseController {
      */
     public function evaluateQuestionsItems($a_q_id , $a_q_itm_id, $no_q = false )
     {
-        if($_POST['finish'])
-           $all = AdmQuestionItems::where('adm_question_id', $a_q_id)->get();
-                foreach($all as $q_itm){
-                    $id [] = $q_itm->id;
-                }
-           $no_q = !empty($no_q) ? $no_q : 0;
-           $total_question = count($all);
-           $q_item_info = AdmQuestionItems::findOrFail($id[$no_q]);
+            $all = AdmQuestionItems::where('adm_question_id', $a_q_id)->get();
+            foreach ($all as $q_itm) {
+                $id [] = $q_itm->id;
+            }
+            $no_q = !empty($no_q) ? $no_q : 0;
+            $total_question = count($all);
+            $q_item_info = AdmQuestionItems::findOrFail($id[$no_q]);
 
-           $data_question = AdmQuestion::with('relBatchAdmtestSubject',
-               'relBatchAdmtestSubject.relBatch','relBatchAdmtestSubject.relAdmtestSubject')
-               ->where('id','=',$a_q_id)->first();
+            $data_question = AdmQuestion::with('relBatchAdmtestSubject',
+                'relBatchAdmtestSubject.relBatch', 'relBatchAdmtestSubject.relAdmtestSubject')
+                ->where('id', '=', $a_q_id)->first();
 
-        $evaluate_qp = AdmQuestionEvaluation::with('relBatchApplicant','relBatchApplicant.relApplicant',
-            'relAdmQuestionItems','relAdmQuestionItems.relAdmQuestion')
-            ->where('adm_question_id','=', $a_q_id)
-            ->where('adm_question_items_id','=', $a_q_itm_id)
-            ->latest('id')
-            ->first();
-          $total_marks = $this->totalMarks($a_q_id);
+            $evaluate_qp = AdmQuestionEvaluation::with('relBatchApplicant', 'relBatchApplicant.relApplicant',
+                'relAdmQuestionItems', 'relAdmQuestionItems.relAdmQuestion')
+                ->where('adm_question_id', '=', $a_q_id)
+                ->where('adm_question_items_id', '=', $a_q_itm_id)
+                ->latest('id')
+                ->first();
 
-          return View::make('admission::faculty.question_papers.evaluate-questions-items',
-            compact('data_question','evaluate_qp','a_q_id','a_q_itm_id','eva_q_ans','b','total_question','no_q','q_item_info','total_marks'));
+            //$total_marks = $this->totalMarks($a_q_id);
+            $total_marks = AdmQuestionEvaluation::where('adm_question_id','=', $a_q_id)
+                //->latest('id')->groupBy('batch_applicant_id')
+                ->select(DB::raw('SUM(marks) as ev_marks'))
+                ->first();
+
+            $a_q_itm_id = $id[$no_q];
+
+            return View::make('admission::faculty.question_papers.evaluate-questions-items',
+                compact('data_question', 'evaluate_qp', 'a_q_id', 'a_q_itm_id', 'eva_q_ans', 'b', 'total_question', 'no_q', 'q_item_info', 'total_marks'));
     }
 
-    public function storeEvaluatedQuestionItems($id)
+    public function storeEvaluatedQuestionItems()
     {
 //        $info = Input::all();
 //
@@ -522,8 +528,9 @@ class AdmFacultyController extends \BaseController {
 //        }
 
 
-        $model = AdmQuestionEvaluation::find($id);
+        //$model = AdmQuestionEvaluation::find($id);
         $data = Input::all();
+        print_r($data);exit;
 
         if($model->validate($data)){
             if($model->update($data)){

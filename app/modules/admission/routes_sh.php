@@ -125,7 +125,7 @@ Route::any('admission/faculty/question-papers/evaluate-questions-items/{adm_ques
 ]);
 //on process
 
-Route::any('admission/faculty/question-papers/store-evaluated-questions/{id}',[
+Route::any('admission/faculty/question-papers/store-evaluated-questions',[
     'as' => 'admission.faculty.question-papers.store-evaluated-questions',
     'uses' => 'AdmFacultyController@storeEvaluatedQuestionItems'
 ]);
