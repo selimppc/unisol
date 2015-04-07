@@ -132,9 +132,12 @@ class AdmPublicController extends \BaseController {
             $applicant_personal_info->zip_code = Input::get('zip_code');
             $applicant_personal_info->phone = Input::get('phone');
             $applicant_personal_info->save();
+
+            Session::flash('success', "Successfully Added Information!");
             return Redirect::back();
         } else {
-            Session::flash('danger', "Please Login As Applicant!");
+            $errors = $applicant_personal_info->errors();
+            Session::flash('errors', $errors);
             return Redirect::back();
         }
     }
@@ -184,6 +187,7 @@ class AdmPublicController extends \BaseController {
                 'certificate' => 'required',
                 'transcript' => 'required',
                 'board_type' => 'required',
+                'result_type' => 'required',
             );
             $validator = Validator::make(Input::all(), $rules);
             if ($validator->passes()) {
