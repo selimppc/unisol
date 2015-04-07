@@ -808,7 +808,7 @@ class ApplicantController extends \BaseController
 
     public function admission_test_subject($batch_id)
     {
-        $test_subject = BatchApplicant::with('relBatch','relBatch.relDegree')
+        $test_subject = BatchAdmtestSubject::with('relBatch','relAdmtestSubject')
             ->where('batch_id', '=', $batch_id)
             ->get();
 
