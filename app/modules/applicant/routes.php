@@ -182,5 +182,7 @@ Route::any('apt/misc_info/update/{id}',
     'ApplicantController@miscInfoUpdate'
 );
 
-
+    Route::any('/onekeyup/event/test',
+        'ApplicantController@test'
+    );
 });
