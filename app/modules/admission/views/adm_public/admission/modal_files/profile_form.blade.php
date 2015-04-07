@@ -17,6 +17,11 @@
        </div>
 
        <div>
+          {{ Form::label('phone', 'Phone') }}
+          {{ Form::text('phone', Input::old('phone'),array('class' => 'form-control','placeholder'=>'')) }}
+       </div>
+       <br>
+       <div>
          {{ Form::label('gender', 'Gender') }}
          <div class="form-inline">
              <div class="radio">
@@ -29,10 +34,17 @@
              </div>
          </div>
        </div>
+       <br>
 
        <div>
-         {{ Form::label('profile_image', 'Profile Image') }}
-         {{ Form::file('profile_image', Input::old('profile_image'),array('class' => 'form-control','placeholder'=>'')) }}
+          {{ Form::label('profile_image', 'Profile Image') }} <br>
+          @if(isset($applicant_personal_info->profile_image))
+             {{ HTML::image('files_public/' . $applicant_personal_info->profile_image) }}
+             <p>&nbsp;</p>
+             {{ Form::file('profile_image',array('multiple'=>true)) }}
+          @else
+             {{ Form::file('profile_image',array('multiple'=>true)) }}
+          @endif
        </div>
 
        <div>
@@ -53,11 +65,6 @@
        <div>
           {{ Form::label('zip_code', 'Zip Code') }}
           {{ Form::text('zip_code', Input::old('zip_code'),array('class' => 'form-control','placeholder'=>'')) }}
-       </div>
-
-       <div>
-          {{ Form::label('phone', 'Phone') }}
-          {{ Form::text('phone', Input::old('phone'),array('class' => 'form-control','placeholder'=>'')) }}
        </div>
        <p>&nbsp;</p>
 
