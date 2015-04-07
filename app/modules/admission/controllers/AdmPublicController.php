@@ -49,7 +49,7 @@ class AdmPublicController extends \BaseController {
     public function degreeOfferDetails($id){
 
         $degree_model = Batch::with('relDegree','relYear','relSemester',
-            'relBatchWaiver.relWaiver')
+            'relDegree.relDepartment','relDegree.relDegreeGroup','relBatchWaiver.relWaiver')
             ->where('id', '=', $id)
             ->get();
 
@@ -80,7 +80,7 @@ class AdmPublicController extends \BaseController {
     public function degreeOfferApplicantDetails($id){
 
         $applicant_id = $id;
-        $batch_applicant = BatchApplicant::with('relBatch','relBatch.relDegree')
+        $batch_applicant = BatchApplicant::with('relBatch','relBatch.relDegree','relBatch.relDegree.relDegreeGroup','relBatch.relDegree.relDepartment')
                            ->where('applicant_id', '=',$applicant_id )
                            ->get();
         //print_r($batch_applicant);exit;
@@ -458,9 +458,11 @@ class AdmPublicController extends \BaseController {
         //get batch_id
         $batch_id = BatchApplicant::where('id','=',$id)->first()->batch_id;
 
-        $adm_test_details = BatchApplicant::with('relBatch','relBatch.relSemester','relBatch.relYear')
-                          ->where('batch_id', '=', $batch_id)
-                          ->first();
+        $adm_test_details = BatchApplicant::with('relBatch','relBatch.relDegree','relBatch.relDegree.relDegreeGroup',
+                                                'relBatch.relDegree.relDepartment',
+                                                'relBatch.relSemester','relBatch.relYear')
+                                                ->where('batch_id', '=', $batch_id)
+                                                ->first();
         //get adm_test_subject according to degree_id
         $adm_test_subject = BatchAdmtestSubject::with('relBatch','relAdmtestSubject')
             ->where('batch_id','=',$batch_id)->get();
