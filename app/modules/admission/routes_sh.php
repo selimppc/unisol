@@ -119,7 +119,7 @@ Route::any('admission/faculty/question-papers/evaluate-questions/{id}',[
 ]);
 //on process
 
-Route::any('admission/faculty/question-papers/evaluate-questions-items/{adm_question_id}/{adm_question_items_id}/{no_q}',[
+Route::any('admission/faculty/question-papers/evaluate-questions-items/{adm_question_id}/{no_q}',[
     'as' => 'admission.faculty.question-papers.evaluate-questions-items',
     'uses' => 'AdmFacultyController@evaluateQuestionsitems'
 ]);
