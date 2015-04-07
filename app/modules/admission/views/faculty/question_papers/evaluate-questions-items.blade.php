@@ -38,10 +38,9 @@
                         <div class="box-body">
 
                               {{Form::open(array('url'=>['admission/faculty/question-papers/store-evaluated-questions'], 'class'=>'form-horizontal','files'=>true))}}
-                                     {{Form::hidden('id', $a_q_itm_id ) }}
+                                     {{Form::hidden('id', $evaluation_id ) }}
                                      {{ Form::hidden('batch_applicant_id', $evaluate_qp->batch_applicant_id ) }}
                                      {{ Form::hidden('adm_question_id', $a_q_id ) }}
-                                     {{--{{ Form::hidden('adm_question_items_id', $a_q_itm_id ) }}--}}
 
                                      <strong>Question No: </strong>&nbsp;&nbsp;{{ $no_q+1 }}
                                       &nbsp;&nbsp;
@@ -49,14 +48,13 @@
                                      <br><br>
                                     <strong> Question Title Here: &nbsp;&nbsp; </strong> {{ $q_item_info->title }}
                                         <br>
-                                    <div class='form-group'>
-                                      {{ Form::label('answer', 'Answer') }}
-                                      {{ Form::text('answer',Input::old('answer'),['class'=>'form-control','placeholder'=>'Students Answer will be Shown here']) }}
+                                    <div class='form-group' style="margin-left: 4%;">
+                                      Answer : answer goes here
                                     </div>
 
-                                    <div class='form-group'>
+                                    <div class='form-group' style="margin-left: 4%;">
                                       {{ Form::label('marks', 'Marks') }}
-                                      {{ Form::text('marks' ,Input::old('marks'),['required'=>'required']) }}
+                                      {{ Form::text('marks', $evaluation_marks ,Input::old('marks'),['required'=>'required']) }}
                                        <strong>out of : </strong> {{  $q_item_info->marks}}
                                     </div>
 
@@ -64,7 +62,7 @@
                                    {{ Form::submit('Evaluate',  array( 'id'=>'submit_if', 'class'=>'btn btn-primary btn-xs')) }}
 
                                     @if(  ($no_q + 1) < $total_question )
-                                        <a href="{{ URL::route('admission.faculty.question-papers.evaluate-questions-items',['adm_question_id'=>$a_q_id, 'adm_question_item_id'=>$a_q_itm_id, 'no_q'=>$no_q+1 ]) }}" class="btn bg-orange btn-xs " >Next</a>
+                                        <a href="{{ URL::route('admission.faculty.question-papers.evaluate-questions-items',['adm_question_id'=>$a_q_id, 'no_q'=>$no_q+1 ]) }}" class="btn bg-orange btn-xs " >Next</a>
                                     @else
                                         <a href="{{ URL::route('admission.faculty.question-papers.evaluate-questions',['ev_id'=>$evaluate_qp->id]) }}" class="btn bg-default btn-xs " >Finish</a>
                                     @endif

@@ -20,8 +20,19 @@
        <div>{{ Form::label('fathers_phone', 'Fathers phone') }}</div>
        <div>{{ Form::text('fathers_phone', Input::old('fathers_phone'),['class'=>'form-control ']) }}</div>
 
-       <div>{{ Form::label('freedom_fighter', ' Freedom fighter') }}</div>
-       <div>{{ Form::text('freedom_fighter', Input::old('freedom_fighter'),['class'=>'form-control ']) }}</div>
+       {{--<div class='form-group'>--}}
+              {{ Form::label('freedom_fighter', 'Is Freedom Fighter?') }}
+              <div class="form-inline">
+                  <div class="radio">
+                      {{ Form::radio('freedom_fighter', '1', (Input::old('freedom_fighter') == '1'), array('id'=>'1', 'class'=>'radio')) }}
+                      {{ Form::label('freedom_fighter', 'Yes') }}
+                  </div>
+                  <div class="radio">
+                      {{ Form::radio('freedom_fighter', '0', (Input::old('freedom_fighter') == '0'), array('id'=>'0', 'class'=>'radio')) }}
+                      {{ Form::label('freedom_fighter', 'No') }}
+                  </div>
+              </div>
+       {{--</div>--}}
 
        <div>{{ Form::label('mothers_occupation', ' Mothers Occupation') }}</div>
        <div>{{ Form::text('mothers_occupation', Input::old('mothers_occupation'),['class'=>'form-control ']) }}</div>
@@ -44,7 +55,7 @@
        <div>{{ Form::label('marital_status', ' Marital status') }}</div>
        <div>
            {{ Form::select('marital_status', array('0' => 'Select one',
-           '1' => 'Single', '2' => 'Married','3'=>'Divorsed'), Input::old('marital_status'),
+           'single' => 'Single', 'married' => 'Married','unmarried'=>'Unmarried','divorce'=>'Divorced'), Input::old('marital_status'),
            array('class' => 'form-control')) }}
        </div>
 

@@ -13,7 +13,7 @@
                           <thead>
                                 <tr>
                                      <td></td>
-                                     <th class="col-lg-4" style="font-size: medium">Degree Name</th>
+                                     <th class="col-lg-7" style="font-size: medium">Degree Name</th>
                                      <th style="font-size: medium">Batch Number</th>
                                      <th style="font-size: medium">Description</th>
                                 </tr>
@@ -26,7 +26,8 @@
                                                 <td>
                                                         <a href="{{ URL::route('admission.degree_offer_details',
                                                         ['id' => $value->id]) }}">
-                                                        {{ $value->relDegree->title }}
+                                                        {{ $value->relDegree->title }} Of {{$value->relDegree->relDegreeGroup->title}} On {{$value->relDegree->relDepartment->title}} ,
+                                                        {{ $value->relSemester->title }} ,{{ $value->relYear->title }}
                                                         </a>
                                                 </td>
                                                 <td>{{ $value->batch_number}}</td>
