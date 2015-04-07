@@ -35,8 +35,8 @@
 
                     <tr>
                         <td><strong> Assigned Examiner:</strong></td>
-                        <td>{{ $view_adm_qp->relUser->relUserProfile->first_name.' '.$view_adm_qp->relUser->relUserProfile->middle_name.' '.$view_adm_qp->relUser->relUserProfile->last_name }}</td>
-                        {{--relUser->relUserProfile->first_name.' '.$view_adm_test->relUser->relUserProfile->middle_name.' '.$view_adm_test->relUser->relUserProfile->last_name--}}
+{{--                        <td>{{ $view_adm_qp->relUser->relUserProfile->first_name.' '.$view_adm_qp->relUser->relUserProfile->middle_name.' '.$view_adm_qp->relUser->relUserProfile->last_name }}</td>--}}
+                        <td>{{ isset($view_adm_qp->s_faculty_user_id) ? User::FullName($view_adm_qp->s_faculty_user_id) : '' }}</td>
                     </tr>
                 </table>
             </div>
