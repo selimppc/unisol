@@ -8,40 +8,23 @@
               You can view details information of degree and subject on admission test. Also this panel will allow you to choice exam center sequence to <b>Exam Center Choice</b> button.
                      {{--<small>Someone famous in <cite title="Source Title">Source Title</cite></small>--}}
     </div>
- <h4>Admission Test Details On</h4>
- <div class="box box-solid">
+ <h3>Admission Test Details On</h3>
+     <div class="col-lg-12">
+        <table>
+              <tr>
+                 <th>Degree Name :</th>
+                 <td>
+                    {{$adm_test_details->relBatch->relDegree->title}} Of {{$adm_test_details->relBatch->relDegree->relDegreeGroup->title}} On {{$adm_test_details->relBatch->relDegree->relDepartment->title}} ,{{$adm_test_details->relBatch->relSemester->title}} ,{{$adm_test_details->relBatch->relYear->title}} .
+                 </td>
+              </tr>
 
-     <div class="box box-info">
-          <div class="box-body">
-             <div class="row">
-                 <div class="col-lg-12">
-
-                       <table>
-                              <tr>
-                                 <th>Degree Name :</th>
-                                 <td>{{$adm_test_details->relBatch->relDegree->title}}</td>
-                              </tr>
-                              <tr>
-                                  <th>Year :</th>
-                                  <td>{{$adm_test_details->relBatch->relSemester->title}}</td>
-                              </tr>
-                              <tr>
-                                 <th>Semester :</th>
-                                 <td>{{$adm_test_details->relBatch->relYear->title}}</td>
-                              </tr>
-                              <tr>
-                                 <th>Batch Number: </th>
-                                 <td>{{$adm_test_details->relBatch->batch_number}}</td>
-                              </tr>
-                       </table>
-
-
-                 </div>
-             </div>
-        </div>
+              <tr>
+                 <th>Batch Number: </th>
+                 <td>{{$adm_test_details->relBatch->batch_number}}</td>
+              </tr>
+        </table>
      </div>
- </div>
-
+<p>&nbsp;</p>
  {{--------------- Admission Test Subjects  ----------------------------------------------------------}}
 <h5><b>Admission Test will be taken On </b></h5>
   <div class="box box-solid">
@@ -90,7 +73,7 @@
                     <div class="col-lg-12">
                         <table class="table table-striped table-bordered">
                           @if($exm_center_choice_lists != null)
-                             <a class="pull-right btn btn-sm btn-info" data-toggle="modal" data-target="#exmCenterModal"   href="{{URL::route('admission.public.exm-center',['batch_applicant_id'=>$batch_applicant_id])}}"> Exam Center Sequence</a>
+                             <a class="pull-right btn btn-sm btn-info" data-toggle="modal" data-target="#exmCenterModal"   href="{{URL::route('admission.public.exm-center',['batch_applicant_id'=>$batch_applicant_id])}}">Choose Exam Center Sequence</a>
                           @else
                              <a class="pull-right btn btn-sm btn-info"  href="{{URL::route('admission.public.exm-center',['batch_applicant_id'=>$batch_applicant_id])}}" data-toggle="modal" data-target="#exmCenterModal"><b></b> Exam Center Choice </a>
                           @endif

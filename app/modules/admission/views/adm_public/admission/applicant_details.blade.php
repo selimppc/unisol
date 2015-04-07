@@ -41,7 +41,7 @@
                                                          <td class="col-lg-10">
                                                                <a href="{{ URL::route('admission.admission.test_details',
                                                                    ['id' => $value->id]) }}">
-                                                                   {{ $value->relBatch->relDegree->title }}
+                                                                   {{ $value->relBatch->relDegree->title }} Of {{$value->relBatch->relDegree->relDegreeGroup->title}} On {{$value->relBatch->relDegree->relDepartment->title}}
                                                                </a>
                                                          </td>
                                                     </tr>

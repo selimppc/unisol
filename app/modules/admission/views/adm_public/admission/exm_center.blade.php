@@ -5,6 +5,14 @@
     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
     <h4 class="modal-title" id="myModalLabel">Exam Center Choice Sequence</h4>
 </div>
+{{-----------------------------------------Help Text -------------------------------------------------------------------------------------}}
+    <div class="col-md-12">
+        <div class="help-text-top">
+             <p><em>You can change exam center sequence using drag & drop.</em></p>
+        </div>
+    </div>
+{{-----------------------------------------Help Text ends ----------------------------------------------------------------------}}
+
 
  <div class="modal-body">
    <div style="padding: 20px;">
