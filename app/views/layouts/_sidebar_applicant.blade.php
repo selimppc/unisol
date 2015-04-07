@@ -44,4 +44,15 @@
         </ul>
     </li>
 
+    <li class="treeview">
+        <a href="#">
+            <i class="fa fa-edit" style="color: #2ecee7"></i>
+            <span> Admission Test </span>
+            <i class="fa fa-angle-left pull-right"></i>
+        </a>
+        <ul class="treeview-menu">
+            <a href="{{URL::to('admission/test')}}"  class="list-group-item" >Admission Test </a>
+        </ul>
+    </li>
+
 </ul>

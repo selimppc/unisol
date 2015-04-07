@@ -343,6 +343,11 @@ class HomeController extends BaseController {
 
 
     public function sortable(){
+        $title = ' My Name is Selim - _ thank you ';
+
+        $a = Helpers::convertToSlug($title);
+        print_r($a);
+
         return View::make('test.sortable');
     }
 

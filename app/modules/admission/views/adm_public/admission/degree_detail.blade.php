@@ -20,10 +20,11 @@
                        <table class= "table table-striped table-bordered">
                               @foreach($degree_model as $values)
                                      <tbody>
-
                                             <tr>
                                                 <th width="20%">Degree Name</th>
-                                                <td>{{$values->relDegree->title}}</td>
+                                                <td>
+                                                   {{$values->relDegree->title}} Of {{$values->relDegree->relDegreeGroup->title}} On {{$values->relDegree->relDepartment->title}}
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <th>Batch Number #</th>
