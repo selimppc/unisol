@@ -38,7 +38,7 @@
         </tr>
         <tr>
             <td> Assigned To: </td>
-            <td> {{ isset($view_questions->examiner_faculty_user_id) ? User::FullName($view_questions->examiner_faculty_user_id) : '' }} </td>
+            <td> {{ isset($view_questions->s_faculty_user_id) ? User::FullName($view_questions->s_faculty_user_id) : '' }} </td>
         </tr>
 
     </table>
