@@ -196,7 +196,6 @@
         <p>&nbsp;</p>
     </section>
      {{-----------------------Applicant's Biographical Information ----------------------------------------------------------------}}
-
     <section class="col-lg-6 connectedSortable">
        <p>&nbsp;</p>
           <div class="box box-info">
@@ -209,73 +208,78 @@
               </div>
               <div class="box-body">
                   <div class="row">
-                      <div class="col-lg-10">
-                          <table>
-                              @if(isset($applicant_meta_records))
+                      <div class="col-lg-12">
+                          <table class="table table-bordered">
+                          @if($applicant_meta_records != null)
+                               <a class="pull-right btn btn-default" href="{{ URL::route('admission.public.edit-applicant-meta' , ['applicant_id'=>$applicant_meta_records->id]  ) }}" data-toggle="modal" data-target="#addDegreeModal" >Edit</a>
+                          @else
+                               <a class="pull-right btn btn-default" href="{{ URL::route('admission.public.add-applicant-meta')}}" data-toggle="modal" data-target="#addDegreeModal" >Add Biographical Information</a>
+                          @endif
+
+                          @if(isset($applicant_meta_records))
                                   <tr>
-                                        <th class="col-lg-8">Father's Name</th>
-                                        <td>{{$applicant_meta_records->fathers_name}}</td>
+                                      <th class="col-lg-6">Father's Name</th>
+                                      <td>{{$applicant_meta_records->fathers_name}}</td>
                                   </tr>
 
                                   <tr>
-                                      <th class="col-lg-8">Father's Occupation</th>
+                                      <th class="col-lg-6">Father's Occupation</th>
                                       <td>{{$applicant_meta_records->fathers_occupation}}</td>
                                   </tr>
 
                                   <tr>
-                                      <th class="col-lg-8">Father's Phone</th>
+                                      <th class="col-lg-6">Is Freedom Fighter?</th>
+                                      <td>{{$applicant_meta_records['freedom_fighter']==1 ? 'Yes' : 'No'}}</td>
+                                  </tr>
+
+                                  <tr>
+                                      <th class="col-lg-6">Father's Phone</th>
                                       <td>{{$applicant_meta_records->fathers_phone}}</td>
                                   </tr>
 
                                   <tr>
-                                      <th class="col-lg-8">Mother's Name</th>
+                                      <th class="col-lg-6">Mother's Name</th>
                                       <td>{{$applicant_meta_records->mothers_name}}</td>
                                   </tr>
 
                                   <tr >
-                                      <th class="col-lg-8">Mother's Occupation</th>
+                                      <th class="col-lg-6">Mother's Occupation</th>
                                       <td>{{$applicant_meta_records->mothers_occupation}}</td>
                                   </tr>
 
                                   <tr>
-                                      <th class="col-lg-8">Mother's Phone</th>
+                                      <th class="col-lg-6">Mother's Phone</th>
                                       <td>{{$applicant_meta_records->mothers_phone}}</td>
                                   </tr>
 
                                   <tr>
-                                      <th class="col-lg-8">Marital Status</th>
-                                      <td>{{$applicant_meta_records->marital_status}}</td>
+                                      <th class="col-lg-6">Marital Status</th>
+                                      <td>
+                                         {{strtoupper($applicant_meta_records->marital_status)}}
+                                      </td>
                                   </tr>
 
                                   <tr>
-                                      <th class="col-lg-8">Religion</th>
+                                      <th class="col-lg-6">Religion</th>
                                       <td>{{$applicant_meta_records->religion}}</td>
                                   </tr>
 
                                   <tr>
-                                      <th class="col-lg-8">Present Address</th>
+                                      <th class="col-lg-6">Present Address</th>
                                       <td>{{$applicant_meta_records->present_address}}</td>
                                   </tr>
 
                                   <tr>
-                                      <th class="col-lg-8">Permanent Address</th>
+                                      <th class="col-lg-6">Permanent Address</th>
                                       <td>{{$applicant_meta_records->permanent_address}}</td>
                                   </tr>
                                   <tr>
-                                      <th class="col-lg-8">Signature</th>
-
+                                      <th class="col-lg-6">Signature</th>
                                       <td class="etsb-image-doc">{{ HTML::image('/files_public/'.$applicant_meta_records->signature) }}</td>
-
                                   </tr>
-                              @else
-                                   {{"No Biographical Information found !"}}
-                              @endif
-
-                              @if($applicant_meta_records != null)
-                                     <a style="margin-right:-21%" class="pull-right btn btn-default" href="{{ URL::route('admission.public.edit-applicant-meta' , ['applicant_id'=>$applicant_meta_records->id]  ) }}" data-toggle="modal" data-target="#addDegreeModal" >Edit</a>
-                              @else
-                                    <a style="margin-right:-21%" class="pull-right btn btn-default" href="{{ URL::route('admission.public.add-applicant-meta')}}" data-toggle="modal" data-target="#addDegreeModal" >Add Biographical Information</a>
-                              @endif
+                          @else
+                              {{"No Biographical Information found !"}}
+                          @endif
                           </table>
                       </div>
                   </div>

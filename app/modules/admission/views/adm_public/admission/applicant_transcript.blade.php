@@ -5,19 +5,18 @@
     <h4 class="modal-title" id="myModalLabel">Transcript</h4>
 </div>
 
-<div class="modal-body">
-     <div style="padding: 20px;">
-           <div class="span9 well">
-
-                <table>
-                    <tr>
-                        <th></th>
-                        <td class="etsb-image-doc">
-                            {{ $model->transcript != null ? HTML::image('/files_public/'.$model->transcript) :  HTML::image('/img/no_file.jpg') }}
-                        </td>
-                    </tr>
-                </table>
-           </div>
-           <a href="" class="pull-right btn btn-xs btn-default" span class="glyphicon-refresh">Close</a>
-     </div>
-</div>
+ <div class="modal-body">
+   <div style="padding: 20px;">
+      <div class="span9 well">
+         <table>
+            <tr>
+                <th></th>
+                <td class="etsb-image-doc">
+                    {{ $model->transcript != null ? HTML::image('/files_public/'.$model->transcript) :  HTML::image('/img/no_file.jpg') }}
+                </td>
+            </tr>
+         </table>
+      </div>
+      <a href="" class="pull-right btn btn-xs btn-default" span class="glyphicon-refresh">Close</a>
+   </div>
+ </div>

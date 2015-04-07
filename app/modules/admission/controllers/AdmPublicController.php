@@ -8,7 +8,7 @@ class AdmPublicController extends \BaseController {
 
 	public function degreeOfferList()
 	{
-        $degreeList = Batch::with('relDegree')->paginate(10);
+        $degreeList = Batch::with('relDegree','relYear','relSemester','relDegree.relDegreeGroup','relDegree.relDepartment')->paginate(10);
         return View::make('admission::adm_public.admission.degree_list',compact('degreeList'));
     }
 
@@ -71,6 +71,8 @@ class AdmPublicController extends \BaseController {
             }
             return Redirect::route('admission.public.applicant_details', ['id' => Auth::applicant()->get()->id]);
         } else {
+            Auth::logout();
+            Session::flush(); //delete the session
             Session::flash('danger', "Please Login As Applicant!");
             return Redirect::route('user/login');
         }
@@ -98,7 +100,7 @@ class AdmPublicController extends \BaseController {
 
     public function addMoreDegree(){
 
-        $degreeList = Batch::with('relDegree')->get();
+        $degreeList = Batch::with('relDegree','relYear','relSemester','relDegree.relDegreeGroup','relDegree.relDepartment')->get();
         return View::make('admission::adm_public.admission.add_more_degree',compact('degreeList'));
     }
 
@@ -182,7 +184,7 @@ class AdmPublicController extends \BaseController {
 
                 return Redirect::back()->with('message', 'Successfully Updated Information!');
             } else {
-                return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
+                return Redirect::back()->with('error', 'The following errors occurred')->withErrors($validator)->withInput();
             }
         }
     }
@@ -190,7 +192,7 @@ class AdmPublicController extends \BaseController {
 // {------ Applicant Academic Records ------------------------------------------------------------}
     public function addApplicantAcmDocsPublic(){
         $countryList = [''=>'Select Country'] + Country::lists('title','id');
-        return View::make('admission::adm_public.admission.add_acm_docs',compact('applicant_id','countryList'));
+        return View::make('admission::adm_public.admission.modal_files.add_acm_docs',compact('applicant_id','countryList'));
     }
 
     public function storeApplicantAcmDocsPublic()
@@ -264,7 +266,7 @@ class AdmPublicController extends \BaseController {
 
     public function editApplicantAcmDocsPublic($id){
         $model= ApplicantAcademicRecords::find($id);
-        return View::make('admission::adm_public.admission.edit_acm_docs', compact('model'));
+        return View::make('admission::adm_public.admission.modal_files.edit_acm_docs', compact('model'));
     }
 
     public function updateApplicantAcmDocsPublic($id){
@@ -334,9 +336,8 @@ class AdmPublicController extends \BaseController {
 
             return Redirect::back()->with('message', 'Successfully updated Information!');
         } else {
-            return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
+            return Redirect::back()->with('error', 'The following errors occurred')->withErrors($validator)->withInput();
         }
-
     }
     public function deleteApplicantAcmDocsPublic($id){
 
@@ -366,6 +367,7 @@ class AdmPublicController extends \BaseController {
         $rules = array(
             'national_id' => 'required',
             'signature' => 'required',
+            'freedom_fighter' => 'required',
         );
         $validator = Validator::make(Input::all(), $rules);
         if ($validator->passes()) {
@@ -402,7 +404,7 @@ class AdmPublicController extends \BaseController {
             $applicant_meta_records->save();
             return Redirect::back()->with('message', 'Successfully added Information!');
         } else {
-            return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
+            return Redirect::back()->with('error', 'The following errors occurred')->withErrors($validator)->withInput();
         }
     }
     public function editApplicantMetaInPublic($id){
@@ -418,7 +420,6 @@ class AdmPublicController extends \BaseController {
     {
         $rules = array(
             'national_id' => 'required',
-            'signature' => 'required',
         );
         $validator = Validator::make(Input::all(), $rules);
         if ($validator->passes()) {
@@ -456,10 +457,10 @@ class AdmPublicController extends \BaseController {
 
                 $applicant_meta_records->save();
 
-                return Redirect::back()->with('message', 'Successfully added Information!');
-            } else {
-                return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
+                return Redirect::back()->with('message', 'Successfully updated Information!');
             }
+        }else {
+            return Redirect::back()->with('error', 'The following errors occurred')->withErrors($validator)->withInput();
         }
     }
 
@@ -493,8 +494,6 @@ class AdmPublicController extends \BaseController {
 
         if ($validator->Fails()) {
             $exm_centers_all = ExmCenter::all();
-
-            //print_r($exm_centers_all);exit;
         }else{
             $exm_center_choice = ExmCenterApplicantChoice::with('relExmCenter')->where('batch_applicant_id','=',$ba_id)->get();
         }
@@ -505,10 +504,9 @@ class AdmPublicController extends \BaseController {
     public function admExmCenterSave(){
 
         $id = Input::get('id');
-        //print_r($id);exit;
+
         $batch_applicant_id = Input::get('batch_applicant_id');
         $exm_center_id = Input::get('exm_center_id');
-        //print_r($exm_center_id);exit;
 
         for($i=0; $i < count($exm_center_id); $i++) {
             $model = isset($id[$i]) ? ExmCenterApplicantChoice::findOrFail($id[$i]) : new ExmCenterApplicantChoice();
@@ -522,7 +520,7 @@ class AdmPublicController extends \BaseController {
 
     public function admDegAptCheckout(){
         $applicant_id = Auth::applicant()->get()->id;
-        $batch_applicant = BatchApplicant::with('relBatch')
+        $batch_applicant = BatchApplicant::with('relBatch','relBatch.relDegree','relBatch.relDegree.relDegreeGroup','relBatch.relDegree.relDepartment')
             ->where('applicant_id', '=',$applicant_id )
             ->get();
         $applicant_personal_info = ApplicantProfile::with('relCountry')

@@ -3,7 +3,8 @@
    @include('layouts._sidebar_applicant')
  @stop
 @section('content')
-
+<a class="pull-right btn btn-xs btn-success" href="{{ URL::route('admission.public.applicant_details',['batch-applicant-id'=>Auth::applicant()->get()->id])}}"><b><i class="fa fa-arrow-circle-left"></i>Go Back</b></a>
+<h3 class="box-title">Degree List</h3>
 <div class="box box-solid ">
      <div class="box-tools pull-right">
          <button class="btn btn-info btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
@@ -12,7 +13,7 @@
 
      <div class="box box-info">
            <div class="box-header">
-              <h4 class="box-title">Degree List</h4>
+
            </div>
            <div class="box-body">
                 <div class="row">
@@ -29,8 +30,8 @@
                                           <td class="col-lg-10">
                                                 <a href="{{ URL::route('admission.admission.test_details',
                                                     ['id' => $value->id]) }}">
-                                                    {{ $value->relBatch->relDegree->title }}
-                                                </a>
+                                                    {{ $value->relBatch->relDegree->title }} Of {{$value->relBatch->relDegree->relDegreeGroup->title}} On {{$value->relBatch->relDegree->relDepartment->title}}
+                                                </a>, Batch :{{ $value->relBatch->batch_number }}
                                           </td>
                                      </tr>
                                  @endforeach
@@ -105,12 +106,15 @@
                   <a class="pull-right btn btn-sm btn-default" id="ch_bank" style="display: none;"  href=""><b>Checkout With Bank</b></a>
                   <a class="pull-right btn btn-sm btn-default"  id="ch_bkash" style="display:none" href=""><b>Checkout With Bkash</b></a>
                   <a class="pull-right btn btn-sm btn-default" id="ch_credt_card" style="display:none" href=""><b>Checkout With CC</b></a>
+                  <p>&nbsp;</p>
+                  <p>&nbsp;</p>
              </div>
              <br>
           </div>
        </form>
     </div>
  </div>
+
 {{------------------------------------ Modal --------------------------------------------------------------------------}}
  <div class="modal fade" id="addDegreeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
        <div class="modal-dialog">
