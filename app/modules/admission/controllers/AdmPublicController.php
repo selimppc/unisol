@@ -149,28 +149,42 @@ class AdmPublicController extends \BaseController {
     }
     public function updateApplicantProfileByApplicant($id){
 
-        $applicant_personal_info = ApplicantProfile::find($id);
-        $applicant_personal_info->applicant_id = Auth::applicant()->get()->id;
-        $applicant_personal_info->date_of_birth = Input::get('date_of_birth');
-        $applicant_personal_info->place_of_birth = Input::get('place_of_birth');
-        $applicant_personal_info->gender = Input::get('gender');
+        $rules = array(
+            'gender' => 'required',
+            'zip_code' => 'required',
+        );
+        $validator = Validator::make(Input::all(), $rules);
+        if ($validator->passes()) {
+            $data = Input::all();
+            $imagefile = $data['profile_image'];
+            $applicant_personal_info = ApplicantProfile::find($id);
+            if ($data) {
+                $applicant_personal_info->applicant_id = Auth::applicant()->get()->id;
+                $applicant_personal_info->date_of_birth = Input::get('date_of_birth');
+                $applicant_personal_info->place_of_birth = Input::get('place_of_birth');
+                $applicant_personal_info->gender = Input::get('gender');
+                $applicant_personal_info->city = Input::get('city');
+                $applicant_personal_info->state = Input::get('state');
+                $applicant_personal_info->country_id = Input::get('country_id');
+                $applicant_personal_info->zip_code = Input::get('zip_code');
+                $applicant_personal_info->phone = Input::get('phone');
 
-        $file = Input::file('profile_image');
-        $extension = $file->getClientOriginalExtension();
-        $filename = str_random(12) . '.' . $extension;
-        $path = public_path("files_public/" . $filename);
-        Image::make($file->getRealPath())->resize(100, 100)->save($path);
-        $applicant_personal_info->profile_image = $filename;
+                if ($imagefile) {
+                    $imagefile= Input::file('profile_image');
+                    $extension = $imagefile->getClientOriginalExtension();
+                    $filename = str_random(12) . '.' . $extension;
+                    $sdoc_file=strtolower($filename);
+                    $path = public_path("files_public/" . $sdoc_file);
+                    Image::make($imagefile->getRealPath())->resize(100, 100)->save($path);
+                    $applicant_personal_info->profile_image =$sdoc_file;
+                }
+                $applicant_personal_info->save();
 
-        $applicant_personal_info->city = Input::get('city');
-        $applicant_personal_info->state = Input::get('state');
-        $applicant_personal_info->country_id = Input::get('country_id');
-        $applicant_personal_info->zip_code = Input::get('zip_code');
-        $applicant_personal_info->phone = Input::get('phone');
-
-        $applicant_personal_info->save();
-        Session::flash('message', "Successfully Performed This Action!");
-        return Redirect::back();
+                return Redirect::back()->with('message', 'Successfully Updated Information!');
+            } else {
+                return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
+            }
+        }
     }
 
 // {------ Applicant Academic Records ------------------------------------------------------------}
