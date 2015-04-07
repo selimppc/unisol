@@ -36,7 +36,7 @@
                     <tr>
                         <td><strong> Assigned Examiner:</strong></td>
                         <td>{{ $view_adm_qp->relUser->relUserProfile->first_name.' '.$view_adm_qp->relUser->relUserProfile->middle_name.' '.$view_adm_qp->relUser->relUserProfile->last_name }}</td>
-                        relUser->relUserProfile->first_name.' '.$view_adm_test->relUser->relUserProfile->middle_name.' '.$view_adm_test->relUser->relUserProfile->last_name
+                        {{--relUser->relUserProfile->first_name.' '.$view_adm_test->relUser->relUserProfile->middle_name.' '.$view_adm_test->relUser->relUserProfile->last_name--}}
                     </tr>
                 </table>
             </div>
