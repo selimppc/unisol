@@ -12,28 +12,28 @@ class AdmPublicController extends \BaseController {
         return View::make('admission::adm_public.admission.degree_list',compact('degreeList'));
     }
 
-    public function degreeOfferDetails($id){
+    public function degreeOfferDetails($degree_id){
         //$id refers to degree_id in DB table:Batch
         $degree_model = Batch::with('relDegree','relYear','relSemester',
             'relDegree.relDepartment','relDegree.relDegreeGroup','relBatchWaiver.relWaiver')
-            ->where('id', '=', $id)
+            ->where('id', '=', $degree_id)
             ->get();
 
         $major_courses = BatchCourse::with('relBatch','relCourse')
-            ->where('batch_id','=',$id)
+            ->where('batch_id','=',$degree_id)
             ->where('major_minor','=','major')
             ->get();
 
         $minor_courses = BatchCourse::with('relBatch','relCourse')
-            ->where('batch_id','=',$id)
+            ->where('batch_id','=',$degree_id)
             ->where('major_minor','=','minor')
             ->get();
 
         $edu_gpa_model = BatchEducationConstraint::with('relBatch')
-            ->where('batch_id','=',$id)->get();
+            ->where('batch_id','=',$degree_id)->get();
 
         $batch_adm_subject = BatchAdmtestSubject::with('relBatch','relAdmtestSubject')
-            ->where('batch_id','=',$id)->get();
+            ->where('batch_id','=',$degree_id)->get();
 
         $exm_centers = ExmCenter::get();
 
@@ -79,19 +79,19 @@ class AdmPublicController extends \BaseController {
     }
 
 //    $id refers to applicant_id in DB table : BatchApplicant
-    public function degreeOfferApplicantDetails($id){
+    public function degreeOfferApplicantDetails($applicant_id){
 
-        $applicant_id = $id;
+        $apt_id = $applicant_id;
         $batch_applicant = BatchApplicant::with('relBatch','relBatch.relDegree','relBatch.relDegree.relDegreeGroup','relBatch.relDegree.relDepartment')
-                           ->where('applicant_id', '=',$applicant_id )
+                           ->where('applicant_id', '=',$apt_id )
                            ->get();
 
         $applicant_personal_info = ApplicantProfile::with('relCountry')
-                          ->where('applicant_id', '=',$applicant_id )
+                          ->where('applicant_id', '=',$apt_id )
                           ->first();
-        $applicant_acm_records = ApplicantAcademicRecords::where('applicant_id', '=',$applicant_id )->get();
+        $applicant_acm_records = ApplicantAcademicRecords::where('applicant_id', '=',$apt_id )->get();
 
-        $applicant_meta_records = ApplicantMeta::where('applicant_id', '=',$applicant_id )->first();
+        $applicant_meta_records = ApplicantMeta::where('applicant_id', '=',$apt_id )->first();
 
         return View::make('admission::adm_public.admission.applicant_details',
                   compact('batch_applicant','applicant_personal_info','applicant_acm_records',
@@ -463,7 +463,7 @@ class AdmPublicController extends \BaseController {
             return Redirect::back()->with('error', 'The following errors occurred')->withErrors($validator)->withInput();
         }
     }
-
+   // $id refers to batch_applicant_id
     public function admTestDetails($id){
         $batch_applicant_id = $id;
         //get batch_id
