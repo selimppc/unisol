@@ -13,9 +13,9 @@ class AdmQuestionEvaluation extends Eloquent{
     ];
     private $errors;
     private $rules = [
-        'batch_applicant_id' => 'required|integer',
-        'adm_question_id' => 'required|integer',
-        'adm_question_items_id' => 'required|integer',
+        'batch_applicant_id' => 'integer',
+        'adm_question_id' => 'integer',
+        'adm_question_items_id' => 'integer',
         'marks' => 'required|numeric',
     ];
     

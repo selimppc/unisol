@@ -6,18 +6,28 @@
 
 <div class="modal-body">
     <div style="padding: 20px;">
+       <div class="row">
+          <div class="help-text-top">
+             <em><span class="text-danger">  (*) </span>Indicates required field. Please do not skip these fields.</em>
+          </div>
+       </div>
        <div>
-         {{ Form::label('date_of_birth', 'Date of Birth:') }}
+         {{ Form::label('date_of_birth', 'Date of Birth:') }}<span class="text-danger">*</span>
          {{ Form::text('date_of_birth', Input::old('date_of_birth'),['class'=>'form-control date_picker','required'=>'required']) }}
        </div>
 
        <div>
-          {{ Form::label('place_of_birth', 'Birth Place') }}
+          {{ Form::label('place_of_birth', 'Birth Place') }}<span class="text-danger">*</span>
           {{ Form::text('place_of_birth', Input::old('place_of_birth'),array('class' => 'form-control','placeholder'=>'')) }}
        </div>
 
        <div>
-         {{ Form::label('gender', 'Gender') }}
+          {{ Form::label('phone', 'Phone') }}<span class="text-danger">*</span>
+          {{ Form::text('phone', Input::old('phone'),array('class' => 'form-control','placeholder'=>'')) }}
+       </div>
+       <br>
+       <div>
+         {{ Form::label('gender', 'Gender') }}<span class="text-danger">*</span>
          <div class="form-inline">
              <div class="radio">
                  {{ Form::radio('gender', 'male', (Input::old('gender') == 'male'), array('id'=>'male', 'class'=>'radio')) }}
@@ -29,10 +39,17 @@
              </div>
          </div>
        </div>
+       <br>
 
        <div>
-         {{ Form::label('profile_image', 'Profile Image') }}
-         {{ Form::file('profile_image', Input::old('profile_image'),array('class' => 'form-control','placeholder'=>'')) }}
+          {{ Form::label('profile_image', 'Profile Image') }}<span class="text-danger">*</span> <br>
+          @if(isset($applicant_personal_info->profile_image))
+             {{ HTML::image('files_public/' . $applicant_personal_info->profile_image) }}
+             <p>&nbsp;</p>
+             {{ Form::file('profile_image',array('multiple'=>true)) }}
+          @else
+             {{ Form::file('profile_image',array('multiple'=>true)) }}
+          @endif
        </div>
 
        <div>
@@ -46,18 +63,13 @@
        </div>
 
        <div>
-          {{ Form::label('country_id', 'Country') }}
+          {{ Form::label('country_id', 'Country') }}<span class="text-danger">*</span>
           {{ Form::select('country_id',$countryList,Input::old('country_id'),['class'=>'form-control','required']) }}
        </div>
 
        <div>
-          {{ Form::label('zip_code', 'Zip Code') }}
+          {{ Form::label('zip_code', 'Zip Code') }}<span class="text-danger">*</span>
           {{ Form::text('zip_code', Input::old('zip_code'),array('class' => 'form-control','placeholder'=>'')) }}
-       </div>
-
-       <div>
-          {{ Form::label('phone', 'Phone') }}
-          {{ Form::text('phone', Input::old('phone'),array('class' => 'form-control','placeholder'=>'')) }}
        </div>
        <p>&nbsp;</p>
 

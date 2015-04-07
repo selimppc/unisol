@@ -85,10 +85,10 @@
                                         <td><input type="checkbox" name="id[]" class="myCheckbox" value="{{ $evaluation['id'] }}"></td>
                                             <td> {{ $evaluation->relBatchApplicant->relApplicant->first_name.' '.$evaluation->relBatchApplicant->relApplicant->last_name }} </td>
                                             <td> {{ $evaluation->relAdmQuestion->status }} </td>
-                                            <td> {{ $evaluation->marks }}</td>
+                                            <td> {{ $evaluation->ev_marks }}</td>
 
                                             <td width="140">
-                                                <a href="{{ URL::route('admission.faculty.question-papers.evaluate-questions-items',['a_q_id'=>$evaluation->adm_question_id , 'a_q_itm_id'=>$evaluation->adm_question_items_id, 'no_q'=>0 ]) }}" class="btn bg-orange btn-xs " >Evaluate</a>
+                                                <a href="{{ URL::route('admission.faculty.question-papers.evaluate-questions-items',['a_q_id'=>$evaluation->adm_question_id , 'no_q'=>0 ]) }}" class="btn bg-orange btn-xs " >Evaluate</a>
 
 {{--                                                <a href="{{ URL::route('admission.faculty.question-papers.re-evaluate-questions-items',['id'=>$evaluation->id]) }}" class="btn bg-purple btn-xs " >Re-Evaluate</a>--}}
                                             </td>
