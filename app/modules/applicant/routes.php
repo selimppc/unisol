@@ -182,7 +182,24 @@ Route::any('apt/misc_info/update/{id}',
     'ApplicantController@miscInfoUpdate'
 );
 
-    Route::any('/onekeyup/event/test',
-        'ApplicantController@test'
-    );
+//**********************Admission Test(R)************************************
+
+Route::any('admission/test',
+     'ApplicantController@admission_test_index'
+);
+
+Route::any('admission/test/subject/details/{batch_id}',[
+    'as' => 'subject-details.show',
+    'uses'=> 'ApplicantController@admission_test_subject'
+]);
+
+//Route::any('admission/test/subject/details',
+//    'ApplicantController@admission_test_Subject_details'
+//);
+
+
+
+
+
+
 });
