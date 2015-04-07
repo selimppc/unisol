@@ -205,8 +205,6 @@ class AdmPublicController extends \BaseController {
             );
             $validator = Validator::make(Input::all(), $rules);
             if ($validator->passes()) {
-                //$data = Input::all();
-                //$model = $data['id'] ? ApplicantAcademicRecords::find($data['id']) : new ApplicantAcademicRecords;
                 $model = new ApplicantAcademicRecords();
                 $model->applicant_id = Auth::applicant()->get()->id;
                 $model->level_of_education = Input::get('level_of_education');
@@ -254,14 +252,16 @@ class AdmPublicController extends \BaseController {
                 $model->certificate = $filename;
                 $model->save();
 
-                return Redirect::route('admission.public.applicant_details', ['id' => Auth::applicant()->get()->id]);
+                Session::flash('success', "Successfully Added Information!");
+                return Redirect::back();
             } else {
-                return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
+                return Redirect::back()->with('error', 'The following errors occurred')->withErrors($validator)->withInput();
             }
         }else{
             return Redirect::route('user/login')->with('message', 'Please Login !');
         }
     }
+
     public function editApplicantAcmDocsPublic($id){
         $model= ApplicantAcademicRecords::find($id);
         return View::make('admission::adm_public.admission.edit_acm_docs', compact('model'));
