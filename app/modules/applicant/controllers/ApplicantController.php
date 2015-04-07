@@ -112,6 +112,7 @@ class ApplicantController extends \BaseController
         }
     }
 
+//Todo: need to check change password code
 
 //**********************Applicant's User Account Info Start(R)****************************
 
@@ -786,6 +787,11 @@ class ApplicantController extends \BaseController
             return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
         }
 
+    }
+
+    public function test()
+    {
+        return View::make('applicant::test.onekeyup_event');
     }
 
 }
