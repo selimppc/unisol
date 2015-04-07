@@ -51,7 +51,8 @@
                                       <strong> Marks Obtained So Far: &nbsp;&nbsp; </strong> {{ $total_marks->evaluated_total_marks }} <br><br>
 
                                     <div class="box-body table-responsive">
-                                          {{Form::open(array('url'=>'admission/faculty/question-papers/store-evaluated-questions', 'class'=>'form-horizontal','files'=>true))}}
+
+                                          {{Form::open(array('url'=>['admission/faculty/question-papers/store-evaluated-questions',$evaluate_qp->id], 'class'=>'form-horizontal','files'=>true))}}
                                                  {{ Form::hidden('batch_applicant_id',$evaluate_qp->batch_applicant_id ) }} </br>
                                                  {{ Form::text('adm_question_id',$a_q_id ) }} </br>
                                                  {{ Form::text('adm_question_items_id', $a_q_itm_id ) }} </br></br>

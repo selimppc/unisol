@@ -476,12 +476,6 @@ class AdmFacultyController extends \BaseController {
      */
     public function evaluateQuestionsItems($a_q_id , $a_q_itm_id, $no_q = false )
     {
-//        $items = AdmQuestionItems::where('adm_question_id', $a_q_id)->get();
-//        $total_question = count($items);
-//        $no_q = !empty($no_q) ? $no_q : 0;
-//        $q_item_info = AdmQuestionItems::findOrFail($a_q_itm_id);
-
-
            $all = AdmQuestionItems::where('adm_question_id', $a_q_id)->get();
                 foreach($all as $q_itm){
                     $id [] = $q_itm->id;
@@ -500,41 +494,55 @@ class AdmFacultyController extends \BaseController {
             ->where('adm_question_items_id','=', $a_q_itm_id)
             ->latest('id')
             ->first();
-//
-//       $eva_q_ans = AdmQuestionOptAns::with('relAdmQuestionItems')->where('adm_question_items_id','=',$a_q_itm_id)->first();
-//
-//
-//
-//        $count = AdmQuestionItems::where('adm_question_id', '=', $a_q_id)->count();
+
 
           $total_marks = $this->totalMarks($a_q_id);
 
           return View::make('admission::faculty.question_papers.evaluate-questions-items',
             compact('data_question','evaluate_qp','a_q_id','a_q_itm_id','eva_q_ans','b','total_question','no_q','q_item_info','total_marks'));
-//            compact('data_question','evaluate_qp','eva_q_ans','a_q_id','a_q_itm_id','count','total_marks'));
     }
 
-    public function storeEvaluatedQuestionItems()
+    public function storeEvaluatedQuestionItems($id)
     {
-        $info = Input::all();
+//        $info = Input::all();
+//
+////        print_r($info);exit;
+////        print_r(Input::get('adm_question_id'));exit;
+//        $model = AdmQuestionEvaluation::find($id);
+//
+//        $model->batch_applicant_id = $info['batch_applicant_id'];
+//        $model->adm_question_id = $info['adm_question_id'];
+//        $model->adm_question_items_id = $info['adm_question_items_id'];
+//        $model->marks = $info['marks'];
+//
+//        if($model->save()){
+//            Session::flash('message', 'Marks added');
+//            return Redirect::back();
+//        }else{
+//            $errors = $model->errors();
+//            Session::flash('errors', $errors);
+//            return Redirect::back()->with('errors', 'invalid');
+//        }
 
-//        print_r($info);exit;
-//        print_r(Input::get('adm_question_id'));exit;
-        $model = new AdmQuestionEvaluation();
 
-        $model->batch_applicant_id = $info['batch_applicant_id'];
-        $model->adm_question_id = $info['adm_question_id'];
-        $model->adm_question_items_id = $info['adm_question_items_id'];
-        $model->marks = $info['marks'];
+        $model = AdmQuestionEvaluation::find($id);
+        $data = Input::all();
 
-        if($model->save()){
-            Session::flash('message', 'Marks added');
-            return Redirect::back();
+        if($model->validate($data)){
+            if($model->update($data)){
+                Session::flash('message', 'Successfully Updates Information!');
+                return Redirect::back();
+            }
         }else{
             $errors = $model->errors();
             Session::flash('errors', $errors);
-            return Redirect::back()->with('errors', 'invalid');
+            return Redirect::back()
+                ->with('error', 'invalid');
         }
+
+
+
+
     }
 
     public function reEvaluateQuestionsitems()
