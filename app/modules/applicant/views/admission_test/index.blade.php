@@ -32,9 +32,10 @@
                                                 {{isset($value->relBatch->relDegree->title)? $value->relBatch->relDegree->title : ''}},
                                                 {{isset($value->relBatch->relSemester->title) ? $value->relBatch->relSemester->title : '' }},
                                                 {{isset($value->relBatch->relYear->title)?$value->relBatch->relYear->title : ''}}</a></td>
-                                        <td>{{isset($value->relBatch->admtest_date) ? $value->relBatch->admtest_date : ''}}</td>
-                                        <td>{{isset($value->relBatch->admtest_start_time) ? $value->relBatch->admtest_start_time : ''}}</td>
-                                        {{--<td>{{isset($value->relBatch->admtest_start_time) ? date($value->relBatch->admtest_start_time)->format('d-m-Y') : ''}}</td>--}}
+
+                                        <td>{{date("d-m-Y", strtotime((isset($value->relBatch->admtest_date)) ? $value->relBatch->admtest_date : '') ) }}</td>
+
+                                        <td>{{ date("d-m-Y", strtotime((isset($value->relBatch->admtest_start_time) ? $value->relBatch->admtest_start_time : ''))) }}</td>
                                     </tr>
                                     @endforeach
                                 @endif
