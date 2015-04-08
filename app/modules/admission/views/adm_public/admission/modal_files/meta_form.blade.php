@@ -44,16 +44,16 @@
        <div>{{ Form::label('mothers_phone', ' Mothers Phone') }}</div>
        <div>{{ Form::text('mothers_phone', Input::old('mothers_phone'),['class'=>'form-control ']) }}</div>
 
-       <div>{{ Form::label('national_id', ' National id') }}<span class="text-danger">*</span></div>
+       <div>{{ Form::label('national_id', ' National ID#') }}</div>
        <div>{{ Form::text('national_id', Input::old('national_id'),['class'=>'form-control ']) }}</div>
 
-       <div>{{ Form::label('driving_licence', ' Driving license') }}</div>
+       <div>{{ Form::label('driving_licence', ' Driving license#') }}</div>
        <div>{{ Form::text('driving_licence', Input::old('driving_licence'),['class'=>'form-control ']) }}</div>
 
        <div>{{ Form::label('passport', ' Passport') }}</div>
        <div>{{ Form::text('passport', Input::old('passport'),['class'=>'form-control ']) }}</div>
 
-       <div>{{ Form::label('place_of_birth', ' Place of birth') }}</div>
+       <div>{{ Form::label('place_of_birth', ' Place of birth') }}<span class="text-danger">*</span></div>
        <div>{{ Form::text('place_of_birth', Input::old('place_of_birth'),['class'=>'form-control ']) }}</div>
 
        <div>{{ Form::label('marital_status', ' Marital status') }}</div>
@@ -66,7 +66,7 @@
        <div>{{ Form::label('nationality', ' Nationality') }}<span class="text-danger">*</span></div>
        <div>{{ Form::text('nationality', Input::old('nationality'),['class'=>'form-control ']) }}</div>
 
-       <div>{{ Form::label('religion', ' Religion') }}</div>
+       <div>{{ Form::label('religion', ' Religion') }}<span class="text-danger">*</span></div>
        <div>{{ Form::text('religion', Input::old('religion'),['class'=>'form-control ']) }}</div>
 
        <div>{{ Form::label('signature', ' Signature') }}<span class="text-danger">*</span></div>

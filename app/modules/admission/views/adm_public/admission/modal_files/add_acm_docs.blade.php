@@ -7,22 +7,25 @@
 
 <div class="modal-body">
      <div style="padding: 20px;">
+         <div class="help-text-top">
+             <em><span class="text-danger">  (*) </span>Indicates required field. Please do not skip these fields.</em>
+         </div>
          {{ Form::open(array('class'=>'form-horizontal','route' => 'admission.public.store-applicant-acm-docs', 'method' =>'post', 'files'=>'true')) }}
 
-         <div >{{ Form::label('level_of_education', 'Level of Education ') }}
+         <div >{{ Form::label('level_of_education', 'Level of Education ') }}<span class="text-danger">*</span>
          {{ Form::select ('level_of_education',  array('' => 'Select one',
             'psc' => 'PSC', 'jsc' => 'JSC', 'ssc'=>'SSC','hsc'=>'HSC','grad'=>'Grad','under_grad'=>'Under Grad'), Input::old('level_of_education'),
              array('class' => 'level', 'style'=>'width: 100%; padding: 1%;')) }}
          </div>
 
 
-         <div >{{ Form::label('degree_name', 'Name of Examination') }}</div >
+         <div >{{ Form::label('degree_name', 'Name of Examination') }}<span class="text-danger">*</span></div>
          <div >{{ Form::text('degree_name', Input::old('degree_name'),['class'=>'form-control ']) }}</div>
 
-         <div >{{ Form::label('institute_name', 'Institute Name') }}</div >
+         <div >{{ Form::label('institute_name', 'Institute Name') }}<span class="text-danger">*</span></div>
          <div >{{ Form::text('institute_name', Input::old('institute_name'),['class'=>'form-control ']) }}</div>
 
-         <div id="acm_group" style="display:none">{{ Form::label('academic_group', 'Academic Group') }}
+         <div id="acm_group" style="display:none">{{ Form::label('academic_group', 'Academic Group') }}<span class="text-danger">*</span>
          {{ Form::text('academic_group', Input::old('academic_group'),['class'=>'form-control ']) }}
          </div>
 
@@ -32,7 +35,7 @@
          {{ Form::text('major_subject', Input::old('major_subject'),['class'=>'form-control ']) }}
          </div>
 
-         <div  id='board_type' style="display:none">{{ Form::label('board_type', 'Board Type') }}   (Select one : Board/ University/Other )</div>
+         <div  id='board_type' style="display:none">{{ Form::label('board_type', 'Board Type') }}<span class="text-danger">*</span>   (Select one : Board/ University/Other )</div>
 
          <div id="board" style="display:none"><label class="small">{{ Form::radio('board_type','board',null) }} Board</label>
              <div style="display:none" class="board">
@@ -60,7 +63,7 @@
 
          <br>
 
-         <div>{{ Form::label('result_type', 'Result Type') }}   (Select one : Division/Class OR CGPA )</div>
+         <div>{{ Form::label('result_type', 'Result Type') }}<span class="text-danger">*</span>   (Select one : Division/Class OR CGPA )</div>
 
          <div id="division"><label class="small">{{ Form::radio('result_type','division',null) }} Division/Class </label>
 
@@ -86,7 +89,7 @@
          <div >{{ Form::label('year_of_passing', 'Passing Year') }}</div >
          <div >{{ Form::text('year_of_passing', Input::old('year_of_passing'),['class'=>'form-control ']) }}</div>
 
-         <div >{{ Form::label('duration', 'Duration (In Year)') }}</div >
+         <div >{{ Form::label('duration', 'Duration (In Year)') }}<span class="text-danger">*</span></div >
          <div >{{ Form::text('duration', Input::old('duration'),['class'=>'form-control ']) }}</div>
 
          <div>{{ Form::label('study_at', 'Study At ') }}
@@ -94,10 +97,10 @@
             'national' => 'National', 'abroad' => 'Abroad'), null,
              ['class'=>'form-control ']) }}</div>
 
-         {{ Form::label('certificate', 'Certificate') }}
+         {{ Form::label('certificate', 'Certificate') }}<span class="text-danger">*</span>
          {{ Form::file('certificate', null,['class' => 'form-control','required']) }}
 
-         {{ Form::label('transcript', 'Transcript') }}
+         {{ Form::label('transcript', 'Transcript') }}<span class="text-danger">*</span>
          {{ Form::file('transcript', null,['class' => 'form-control','required']) }}
 
          <br>
