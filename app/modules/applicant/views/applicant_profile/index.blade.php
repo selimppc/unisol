@@ -4,7 +4,7 @@
 @stop
 @section('content')
     <!-- START CUSTOM TABS -->
-    <h2 class="page-header text-purple tab-text-margin">Applicant Proifle</h2>
+    <h2 class="page-header text-purple tab-text-margin">Applicant Profile</h2>
     <div class="row">
         <div class="col-md-12">
             <!-- Custom Tabs -->

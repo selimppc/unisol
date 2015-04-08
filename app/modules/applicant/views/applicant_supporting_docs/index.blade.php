@@ -131,7 +131,7 @@
                         <td>  {{ $supporting_docs->other }}
                             <a class=" btn-link" href="{{URL::route('applicant.supporting_docs.view', array('doc_type' => 'other', 'sdoc_id'=>$sdoc_id))}}"  data-toggle="modal" data-target="#addgoalModal" >Edit</a>
                     @else
-                        <td>
+
                         <td><a class=" btn-link" href="{{URL::route('applicant.supporting_docs.view',  ['doc_type' => 'other','sdoc_id'=>$sdoc_id])}}" data-toggle="modal" data-target="#addgoalModal" >add</a></td>
                         </td>
                     @endif
