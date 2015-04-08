@@ -164,29 +164,35 @@ class AdmFacultyController extends \BaseController {
             $faculty_admisison_store_question_items->marks = Input::get('marks');
 
             if( strtolower(Input::get('mcq')) == 'mcq'){
-                if( strtolower(Input::get('r_question_type')) == 'mcq_single'){
+                if( strtolower(Input::get('question_type')) == 'mcq_single'){
                     $faculty_admisison_store_question_items->question_type = 'radio';
                     if($faculty_admisison_store_question_items->save()) {
                         $adm_question_items_id = $faculty_admisison_store_question_items->id;
                         $opt_title = Input::get('option_title');
                         $opt_answer = Input::get('answer');
 
-                        $i = 0;
-                        foreach ($opt_title as $key => $value) {
-                            //Re-declare model each time you want to save data as loop.
-                            $adm_question_opt = new AdmQuestionOptAns();
-                            $adm_question_opt->adm_question_items_id = $adm_question_items_id;
-                            $adm_question_opt->title = $value;
-                            $adm_question_opt->answer = 0;
+                        if( $opt_answer == Null){
+                            Session::flash('error', 'Can not Save !! Choose Answer First !');
+                            return Redirect::back();
+                        }else {
 
-//                            if (isset($opt_answer))
-                            foreach ($opt_answer as $oa) {
-                                if ($oa == $key)
-                                    $adm_question_opt->answer = 1;
+                            $i = 0;
+                            foreach ($opt_title as $key => $value) {
+                                //Re-declare model each time you want to save data as loop.
+                                $adm_question_opt = new AdmQuestionOptAns();
+                                $adm_question_opt->adm_question_items_id = $adm_question_items_id;
+                                $adm_question_opt->title = $value;
+                                $adm_question_opt->answer = 0;
+
+                                //                            if (isset($opt_answer))
+                                foreach ($opt_answer as $oa) {
+                                    if ($oa == $key)
+                                        $adm_question_opt->answer = 1;
+                                }
+                                $adm_question_opt->save();
+                                $i++;
                             }
-                            $adm_question_opt->save();
-                            $i++;
-                        }
+                        } // saving last single data
                         echo "Option Data : Single Answer Saved!";
                     }else {
                         echo "NO";
@@ -198,24 +204,31 @@ class AdmFacultyController extends \BaseController {
                         $opt_title = Input::get('option_title');
                         $opt_answer = Input::get('answer');
 
-                        $i = 0;
-                        foreach($opt_title as $key => $value){
-                            //Re-declare model each time you want to save data as loop.
-                            $adm_question_opt = new AdmQuestionOptAns();
-                            $adm_question_opt->adm_question_items_id = $adm_question_items_id;
-                            $adm_question_opt->title = $value;
-                            $adm_question_opt->answer = 0;
-
-                            foreach($opt_answer as $oa){
-                                if($oa == $key)
-                                    $adm_question_opt->answer = 1;
-                            }
-
-                            $adm_question_opt->save();
-                            $i++;
+                        if( $opt_answer == Null){
+                            Session::flash('error', 'Can not Save !! Choose Answer First !');
+                            return Redirect::back();
+                        }else{
 
 
-                        } /// saving last single data
+                            $i = 0;
+                            foreach($opt_title as $key => $value){
+                                //Re-declare model each time you want to save data as loop.
+                                $adm_question_opt = new AdmQuestionOptAns();
+                                $adm_question_opt->adm_question_items_id = $adm_question_items_id;
+                                $adm_question_opt->title = $value;
+                                $adm_question_opt->answer = 0;
+
+                                foreach($opt_answer as $oa){
+                                    if($oa == $key)
+                                        $adm_question_opt->answer = 1;
+                                }
+
+
+                                $adm_question_opt->save();
+                                $i++;
+
+                            } // saving last single data
+                        }
                         echo "Option Data : Multiple Answer Saved!";
                     }else{
                         echo "NO";
