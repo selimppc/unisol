@@ -170,13 +170,8 @@ class AdmFacultyController extends \BaseController {
                     if(!empty($opt_answer)) {
                         if($faculty_admisison_store_question_items->save())
                             $adm_question_items_id = $faculty_admisison_store_question_items->id;
-                        $opt_title = Input::get('option_title');
-                        $opt_answer = Input::get('answer');
-
-                        if( $opt_answer == Null){
-                            Session::flash('error', 'Can not Save !! Choose Answer First !');
-                            return Redirect::back();
-                        }else {
+                            $opt_title = Input::get('option_title');
+                            $opt_answer = Input::get('answer');
 
                             $i = 0;
                             foreach ($opt_title as $key => $value) {
@@ -186,33 +181,27 @@ class AdmFacultyController extends \BaseController {
                                 $adm_question_opt->title = $value;
                                 $adm_question_opt->answer = 0;
 
-                                //                            if (isset($opt_answer))
                                 foreach ($opt_answer as $oa) {
                                     if ($oa == $key)
                                         $adm_question_opt->answer = 1;
                                 }
                                 $adm_question_opt->save();
                                 $i++;
-                            }
+
                         } // saving last single data
                         Session::flash('message', 'Option Data : Single Answer Saved!');
                         return Redirect::back();
                     }else {
-                        Session::flash('error', 'Answer is missing!');
+                        Session::flash('error', 'Single Options Answer is missing!');
                         return Redirect::back();
                     }
                 }else{
                     $faculty_admisison_store_question_items->question_type = 'checkbox';
-                    if($faculty_admisison_store_question_items->save()){
-                        $adm_question_items_id = $faculty_admisison_store_question_items->id;
-                        $opt_title = Input::get('option_title');
-                        $opt_answer = Input::get('answer');
-
-                        if( $opt_answer == Null){
-                            Session::flash('error', 'Can not Save !! Choose Answer First !');
-                            return Redirect::back();
-                        }else{
-
+                    if(!empty($opt_answer)) {
+                        if($faculty_admisison_store_question_items->save())
+                            $adm_question_items_id = $faculty_admisison_store_question_items->id;
+                            $opt_title = Input::get('option_title');
+                            $opt_answer = Input::get('answer');
 
                             $i = 0;
                             foreach($opt_title as $key => $value){
@@ -226,27 +215,27 @@ class AdmFacultyController extends \BaseController {
                                     if($oa == $key)
                                         $adm_question_opt->answer = 1;
                                 }
-
-
                                 $adm_question_opt->save();
                                 $i++;
 
                             } // saving last single data
+                            Session::flash('message', 'Option Data : Multiple Answer Saved!');
+                            return Redirect::back();
+                        }else{
+                            Session::flash('error', 'Multiple Options Answer is missing!');
+                            return Redirect::back();
                         }
-                        echo "Option Data : Multiple Answer Saved!";
-                    }else{
-                        echo "NO";
                     }
-                }
             }else{
                 $faculty_admisison_store_question_items->question_type = 'text';
                 if($faculty_admisison_store_question_items->save()){
-                    echo "Save";
+                    Session::flash('message', 'Option Data : Descriptive Answer Saved!');
+                    return Redirect::back();
                 }else{
-                    echo "No";
+                    Session::flash('error', 'Descriptive Answer is missing!');
+                    return Redirect::back();
                 }
             }
-
             // redirect
             Session::flash('message', 'Successfully Added!');
             return Redirect::back();
