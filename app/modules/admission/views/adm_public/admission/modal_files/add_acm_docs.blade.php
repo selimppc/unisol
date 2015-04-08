@@ -86,7 +86,7 @@
          <div >{{ Form::label('year_of_passing', 'Passing Year') }}</div >
          <div >{{ Form::text('year_of_passing', Input::old('year_of_passing'),['class'=>'form-control ']) }}</div>
 
-         <div >{{ Form::label('duration', 'Duration') }}</div >
+         <div >{{ Form::label('duration', 'Duration (In Year)') }}</div >
          <div >{{ Form::text('duration', Input::old('duration'),['class'=>'form-control ']) }}</div>
 
          <div>{{ Form::label('study_at', 'Study At ') }}
