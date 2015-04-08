@@ -15,7 +15,7 @@
           <div class="box-body">
              <div class="row">
                 <div class="col-lg-12">
-                   {{ Form::open(['route' => ['admission.public.degree_apply']]) }}
+                   {{ Form::open(['route' => ['admission.applicant.degree_apply']]) }}
                        <table class= "table table-striped table-bordered">
                            @foreach($degree_model as $values)
                                 <tbody>

@@ -15,7 +15,7 @@
  <div class="modal-body">
    <div style="padding: 20px;">
       <div class="row">
-      {{ Form::open(['route' => ['admission.public.save-exm-center'], 'class'=>'form-horizontal','files' => true,]) }}
+      {{ Form::open(['route' => ['admission.applicant.save-exm-center'], 'class'=>'form-horizontal','files' => true,]) }}
          {{-- $id refers to batch_applicant_id--}}
          {{ Form::hidden('batch_applicant_id', $id )}}
              <!-- Left col -->

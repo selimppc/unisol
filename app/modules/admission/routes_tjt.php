@@ -147,17 +147,17 @@ Route::any('admission/public/degree-offer-list',[
 ]);
 //Degree Details
 Route::any('admission/public/degree-offer-details/{degree_id}',
-        ['as' => 'admission.degree_offer_details',
+        ['as' => 'admission.public.degree_offer_details',
         'uses' => 'AdmPublicController@degreeOfferDetails']);
 
 //Degree_applicant Save
-Route::any('admission/public/admission/degree-apply',
-    ['as' => 'admission.public.degree_apply',
-        'uses' => 'AdmPublicController@degreeApply']);
+Route::any('admission/applicant/degree-apply',
+    ['as' => 'admission.applicant.degree_apply',
+        'uses' => 'ApplicantController@degreeApply']);
 
-Route::any('admission/applicant-details/{applicant_id}',
+Route::any('admission/applicant/applicant-details/{applicant_id}',
     ['as' => 'admission.applicant_details',
-        'uses' => 'AdmPublicController@degreeOfferApplicantDetails']);
+        'uses' => 'ApplicantController@degreeOfferApplicantDetails']);
 //Add acm records_modal
 Route::any('admission/public/admission/add-applicant-acm-docs',
     ['as' => 'admission.public.add-applicant-acm-docs',
@@ -222,30 +222,28 @@ Route::any('admission/public/admission/update-applicant-profile/{id}',
     ['as' => 'admission.public.update-applicant-profile',
         'uses' => 'AdmPublicController@updateApplicantProfileByApplicant']);
 
-Route::any('admission/public/admission/add-degree',
-    ['as' => 'admission.public.add-degree',
-        'uses' => 'AdmPublicController@addMoreDegree']);
+//Add more Degree
+Route::any('admission/applicant/add-more-degree',
+    ['as' => 'admission.applicant.add-degree',
+        'uses' => 'ApplicantController@addMoreDegree']);
 
-Route::any('admission/public/admission/add-applicant-profile',
-    ['as' => 'admission.public.add-applicant-profile',
-        'uses' => 'AdmPublicController@addApplicantProfileByApplicant']);
+//Admission test details
+Route::any('admission/applicant/admission-test-details/{id}',
+    ['as' => 'admission.applicant.admission.test_details',
+        'uses' => 'ApplicantController@admTestDetails']);
 
-Route::any('admission/public/admission-test-details/{id}',
-    ['as' => 'admission.admission.test_details',
-        'uses' => 'AdmPublicController@admTestDetails']);
+Route::any('admission/applicant/admission/exm-center/{batch_applicant_id}',
+    ['as' => 'admission.applicant.exm-center',
+        'uses' => 'ApplicantController@admExmCenter']);
 
-Route::any('admission/public/admission/exm-center/{batch_applicant_id}',
-    ['as' => 'admission.public.exm-center',
-        'uses' => 'AdmPublicController@admExmCenter']);
-
-Route::any('admission/public/admission/save-exm-center',
-    ['as' => 'admission.public.save-exm-center',
-        'uses' => 'AdmPublicController@admExmCenterSave']);
+Route::any('admission/applicant/admission/save-exm-center',
+    ['as' => 'admission.applicant.save-exm-center',
+        'uses' => 'ApplicantController@admExmCenterSave']);
 
 //Adm_applicant checkout view
-Route::any('admission/public/admission/checkout/',
-    ['as' => 'admission.adm_checkout',
-        'uses' => 'AdmPublicController@admDegAptCheckout']);
+Route::any('admission/applicant/payment-checkout',
+    ['as' => 'admission.applicant.adm_checkout',
+        'uses' => 'ApplicantController@admPaymentCheckoutByApplicant']);
 
 
 //{---------------------------------------  Version : 2 Starts Here  ---------------------------------------------------------}

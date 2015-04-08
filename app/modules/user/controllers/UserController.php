@@ -28,7 +28,7 @@ class UserController extends \BaseController {
                     Session::put('username', Auth::applicant()->get()->username);
                     $this->applicantLastVisit(Auth::applicant()->get()->id);
                     //return Redirect::to("user/profile");
-                    return Redirect::route('admission.public.applicant_details', [Auth::applicant()->get()->id]);
+                    return Redirect::route('admission.applicant_details', [Auth::applicant()->get()->id]);
                 }
                 return Redirect::back()->withErrors([
                     "password" => ["Username / Password invalid."]

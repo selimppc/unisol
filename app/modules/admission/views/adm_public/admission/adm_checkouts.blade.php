@@ -3,7 +3,7 @@
    @include('layouts._sidebar_applicant')
  @stop
 @section('content')
-<a class="pull-right btn btn-xs btn-success" href="{{ URL::route('admission.public.applicant_details',['batch-applicant-id'=>Auth::applicant()->get()->id])}}"><b><i class="fa fa-arrow-circle-left"></i>Go Back</b></a>
+<a class="pull-right btn btn-xs btn-success" href="{{ URL::route('admission.applicant_details',['batch-applicant-id'=>Auth::applicant()->get()->id])}}"><b><i class="fa fa-arrow-circle-left"></i>Go Back</b></a>
 <h3 class="box-title">Degree List</h3>
 <div class="box box-solid ">
      <div class="box-tools pull-right">
@@ -28,7 +28,7 @@
 
                                      <tr>
                                           <td class="col-lg-10">
-                                                <a href="{{ URL::route('admission.admission.test_details',
+                                                <a href="{{ URL::route('admission.applicant.admission.test_details',
                                                     ['id' => $value->id]) }}">
                                                     {{ $value->relBatch->relDegree->title }} Of {{$value->relBatch->relDegree->relDegreeGroup->title}} On {{$value->relBatch->relDegree->relDepartment->title}}
                                                 </a>, Batch :{{ $value->relBatch->batch_number }}
@@ -42,7 +42,7 @@
            </div>
 
            <div class="box-footer clearfix">
-               <a class="pull-right btn btn-xs btn-info" href="{{ URL::route('admission.public.add-degree' )}}" data-toggle="modal" data-target="#addDegreeModal"> Add more degree</a>
+               <a class="pull-right btn btn-xs btn-info" href="{{ URL::route('admission.applicant.add-degree' )}}" data-toggle="modal" data-target="#addDegreeModal"> Add more degree</a>
            </div>
      </div>
 </div>

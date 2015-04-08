@@ -3,7 +3,7 @@
 
 @stop
 @section('content')
-<a class="pull-right btn btn-xs btn-success" href="{{ URL::route('admission.public.applicant_details',['batch-applicant-id'=>Auth::applicant()->get()->id])}}"><b><i class="fa fa-arrow-circle-left"></i>Go Back</b></a>
+<a class="pull-right btn btn-xs btn-success" href="{{ URL::route('admission.applicant_details',['batch-applicant-id'=>Auth::applicant()->get()->id])}}"><b><i class="fa fa-arrow-circle-left"></i>Go Back</b></a>
  <h3>Admission Test Details On</h3>
      <div class="col-lg-12">
         <table class="table table-bordered">
@@ -70,9 +70,9 @@
                     You can view your exam center choice sequence from this list. This panel will allow you to choice exam center sequence to <b>Exam Center Choice</b> button.
                         <table class="table table-striped table-bordered">
                           @if($exm_center_choice_lists != null)
-                             <a class="pull-right btn btn-sm btn-info" data-toggle="modal" data-target="#exmCenterModal"   href="{{URL::route('admission.public.exm-center',['batch_applicant_id'=>$batch_applicant_id])}}">Choose Exam Center Sequence</a>
+                             <a class="pull-right btn btn-sm btn-info" data-toggle="modal" data-target="#exmCenterModal"   href="{{URL::route('admission.applicant.exm-center',['batch_applicant_id'=>$batch_applicant_id])}}">Choose Exam Center Sequence</a>
                           @else
-                             <a class="pull-right btn btn-sm btn-info"  href="{{URL::route('admission.public.exm-center',['batch_applicant_id'=>$batch_applicant_id])}}" data-toggle="modal" data-target="#exmCenterModal"><b></b> Exam Center Choice </a>
+                             <a class="pull-right btn btn-sm btn-info"  href="{{URL::route('admission.applicant.exm-center',['batch_applicant_id'=>$batch_applicant_id])}}" data-toggle="modal" data-target="#exmCenterModal"><b></b> Exam Center Choice </a>
                           @endif
 
                           @if (isset($exm_center_choice_lists))
