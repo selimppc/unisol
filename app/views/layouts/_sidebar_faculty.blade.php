@@ -34,6 +34,7 @@
         </a>
         <ul class="treeview-menu">
             <li><a tabindex="-1" a href="{{ URL::to('admission/faculty/admission-test') }}"><i class="fa fa-anchor" style="color: #db4509"></i>Admission Test </a></li>
+            <li><a tabindex="-1" a href="{{ URL::to('admission/faculty/course') }}"><i class="fa fa-gift" style="color: #aa28db"></i> Course </a></li>
             <li><a tabindex="-1" a href="#"></i>Question paper (Come from Adm Test) </a></li>
         </ul>
     </li>
