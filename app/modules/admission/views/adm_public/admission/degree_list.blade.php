@@ -16,7 +16,7 @@
          <div class="box-body">
              <div class="row">
                  <div class="col-lg-12">
-                      {{ Form::open(['route' => ['admission.degree_apply']]) }}
+                      {{ Form::open(['route' => ['admission.applicant.degree_apply']]) }}
                            <table class="table table-bordered table-striped">
                                <thead>
                                      <tr>

@@ -70,9 +70,9 @@
                     You can view your exam center choice sequence from this list. This panel will allow you to choice exam center sequence to <b>Exam Center Choice</b> button.
                         <table class="table table-striped table-bordered">
                           @if($exm_center_choice_lists != null)
-                             <a class="pull-right btn btn-sm btn-info" data-toggle="modal" data-target="#exmCenterModal"   href="{{URL::route('admission.public.exm-center',['batch_applicant_id'=>$batch_applicant_id])}}">Choose Exam Center Sequence</a>
+                             <a class="pull-right btn btn-sm btn-info" data-toggle="modal" data-target="#exmCenterModal"   href="{{URL::route('admission.applicant.exm-center',['batch_applicant_id'=>$batch_applicant_id])}}">Choose Exam Center Sequence</a>
                           @else
-                             <a class="pull-right btn btn-sm btn-info"  href="{{URL::route('admission.public.exm-center',['batch_applicant_id'=>$batch_applicant_id])}}" data-toggle="modal" data-target="#exmCenterModal"><b></b> Exam Center Choice </a>
+                             <a class="pull-right btn btn-sm btn-info"  href="{{URL::route('admission.applicant.exm-center',['batch_applicant_id'=>$batch_applicant_id])}}" data-toggle="modal" data-target="#exmCenterModal"><b></b> Exam Center Choice </a>
                           @endif
 
                           @if (isset($exm_center_choice_lists))

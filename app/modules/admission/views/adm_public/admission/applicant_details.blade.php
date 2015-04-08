@@ -6,7 +6,7 @@
 
 <div class="row">
     <div class="col-md-12">
-       <a class="pull-right btn btn-xs btn-success" href="{{ URL::route('admission.public.degree_offer_list' )}}"> <i class="fa fa-arrow-circle-left"></i> Go Back</a>
+       <a class="pull-right btn btn-xs btn-success" href="{{ URL::route('admission.public.degree_offer_list' )}}"> <i class="fa fa-arrow-circle-left"></i> Back To Admission Degree List</a>
     </div><!-- ./col -->
 </div><!-- /.row -->
 {{---------------------------------------------Data Table:admission on degree :Starts-----------------------------------------------------------------}}
@@ -34,7 +34,7 @@
                                 @foreach($batch_applicant as $value)
                                      <tr>
                                          <td class="col-lg-10">
-                                               <a href="{{ URL::route('admission.admission.test_details',
+                                               <a href="{{ URL::route('admission.applicant.admission.test_details',
                                                    ['id' => $value->id]) }}">
                                                    {{ $value->relBatch->relDegree->title }} Of {{$value->relBatch->relDegree->relDegreeGroup->title}} On {{$value->relBatch->relDegree->relDepartment->title}}
                                                </a>
@@ -52,7 +52,7 @@
               </div>
           </div>
           <div class="box-footer clearfix">
-              <a class="pull-right btn btn-xs btn-info" href="{{ URL::route('admission.public.add-degree' )}}" data-toggle="modal" data-target="#addDegreeModal"> Add more degree</a>
+              <a class="pull-right btn btn-xs btn-info" href="{{ URL::route('admission.applicant.add-degree' )}}" data-toggle="modal" data-target="#addDegreeModal"> Add more degree</a>
           </div>
      </div>
  </div>
@@ -64,7 +64,7 @@
     <div class="box-header">
         <h5 class="box-title" style="color: orangered; font-size: 14px;">Before proceeding to checkout please complete your Profile and Academic Record :: To checkout click on the button >> "Next"</h5>
         <div class="box-tools pull-right">
-            <a class="pull-right btn btn-xs btn-success"  href="{{ URL::route('admission.adm_checkout')}}"><b style="color: #ffffff;"> Next </b> <i class="fa fa-arrow-circle-right"></i></a>
+            <a class="pull-right btn btn-xs btn-success"  href="{{ URL::route('admission.applicant.adm_checkout')}}"><b style="color: #ffffff;"> Next </b> <i class="fa fa-arrow-circle-right"></i></a>
         </div>
     </div>
     <section class="col-lg-6 connectedSortable">

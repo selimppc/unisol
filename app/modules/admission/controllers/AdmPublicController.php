@@ -43,14 +43,6 @@ class AdmPublicController extends \BaseController {
     }
 
 
-
-
-    public function addMoreDegree(){
-
-        $degreeList = Batch::with('relDegree','relYear','relSemester','relDegree.relDegreeGroup','relDegree.relDepartment')->get();
-        return View::make('admission::adm_public.admission.add_more_degree',compact('degreeList'));
-    }
-
 //{------------- Applicant Profile --------------------------------------------------}
 
     public function addApplicantProfileByApplicant(){
@@ -359,10 +351,6 @@ class AdmPublicController extends \BaseController {
         return View::make('admission::adm_public.admission.modal_files.edit_meta_info', compact('applicant_meta_records'));
     }
 
-    /**
-     * @param $id
-     * @return mixed
-     */
     public function updateApplicantMetaInPublic($id)
     {
         $rules = array(
@@ -410,61 +398,10 @@ class AdmPublicController extends \BaseController {
             return Redirect::back()->with('error', 'The following errors occurred')->withErrors($validator)->withInput();
         }
     }
-
-
-    public function admExmCenter($batch_applicant_id){
-
-        $id = $batch_applicant_id;
-
-        $batch_applicant_id = ['batch_applicant_id' => $batch_applicant_id];
-        $rules = ['batch_applicant_id' => 'exists:exm_center_applicant_choice' ];
-        $validator = Validator::make($batch_applicant_id, $rules);
-
-        if ($validator->Fails()) {
-            $exm_centers_all = ExmCenter::all();
-        }else{
-            $exm_center_choice = ExmCenterApplicantChoice::with('relExmCenter')->where('batch_applicant_id','=',$id)->get();
-        }
-
-        return View::make('admission::adm_public.admission.exm_center',
-            compact('exm_centers_all','exm_center_choice','id'));
-    }
-    public function admExmCenterSave(){
-
-        $id = Input::get('id');
-
-        $batch_applicant_id = Input::get('batch_applicant_id');
-        $exm_center_id = Input::get('exm_center_id');
-
-        for($i=0; $i < count($exm_center_id); $i++) {
-            $model = isset($id[$i]) ? ExmCenterApplicantChoice::findOrFail($id[$i]) : new ExmCenterApplicantChoice();
-            $model->batch_applicant_id = $batch_applicant_id;
-            $model->exm_center_id = $exm_center_id[$i];
-            $model->save();
-        }
-        Session::flash('message',  ' Successfully performed This Request!');
-        return Redirect::back();
-    }
-
-    public function admDegAptCheckout(){
-        $applicant_id = Auth::applicant()->get()->id;
-        $batch_applicant = BatchApplicant::with('relBatch','relBatch.relDegree','relBatch.relDegree.relDegreeGroup','relBatch.relDegree.relDepartment')
-            ->where('applicant_id', '=',$applicant_id )
-            ->get();
-        $applicant_personal_info = ApplicantProfile::with('relCountry')
-            ->where('applicant_id', '=',$applicant_id )
-            ->first();
-        $applicant_meta_records = ApplicantMeta::where('applicant_id', '=',$applicant_id )->first();
-        $applicant_acm_records = ApplicantAcademicRecords::where('applicant_id', '=',1 )->get();
-
-        if(empty($applicant_personal_info) || empty($applicant_meta_records) ||  count($applicant_acm_records)< 2 ){
-            return Redirect::back()->with('danger', 'Profile or Academic information is Missing! Complete Your profile to checkout!');
-        }else{
-            return View::make('admission::adm_public.admission.adm_checkouts',
-                      compact('batch_applicant'));
-        }
-    }
-
+    /**
+     * @param $id
+     * @return mixed
+     */
     public function store()
 	{
 		//

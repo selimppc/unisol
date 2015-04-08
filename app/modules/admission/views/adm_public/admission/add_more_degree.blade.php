@@ -8,7 +8,7 @@
 <div class="modal-body">
      <div style="padding: 20px;">
            <div class="span9 well">
-                 {{ Form::open(['route' => ['admission.public.degree_apply']]) }}
+                 {{ Form::open(['route' => ['admission.applicant.degree_apply']]) }}
                       <table class="table table-bordered table-striped">
                           <thead>
                                 <tr>
@@ -24,7 +24,7 @@
                                          <tr>
                                                 <td> <input type="checkbox" name="ids[]"  id="check" class="myCheckbox" value="{{ $value->id }}"></td>
                                                 <td>
-                                                        <a href="{{ URL::route('admission.degree_offer_details',
+                                                        <a href="{{ URL::route('admission.public.degree_offer_details',
                                                         ['id' => $value->id]) }}">
                                                         {{ $value->relDegree->title }} Of {{$value->relDegree->relDegreeGroup->title}} On {{$value->relDegree->relDepartment->title}} ,
                                                         {{ $value->relSemester->title }} ,{{ $value->relYear->title }}
