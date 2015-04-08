@@ -20,7 +20,7 @@ class AdmFacultyController extends \BaseController {
 	{
         $index_adm_examiner = AdmExaminer::with('relBatch','relBatch.relDegree',
             'relBatch.relDegree.relDepartment','relBatch.relYear','relBatch.relSemester')
-            ->where('user_id', '=', Auth::user()->get()->id)
+//            ->where('user_id', '=', Auth::user()->get()->id)
             ->get();
 
         $year_id = array('' => 'Select Year ') + Year::lists('title', 'id');
@@ -31,11 +31,21 @@ class AdmFacultyController extends \BaseController {
 	}
 
 //-->
-    public function changeStatusByFacultyAdmTest($id){
+    public function changeStatustoDenyByFacultyAdmTest($id){
         $model = AdmExaminer::findOrFail($id);
         $model->status = 'Deny';
         if($model->save()){
             Session::flash('danger', 'Deny or Revoked! ');
+            return Redirect::back();
+        }
+
+    }
+
+    public function changeStatusToAcceptedByFacultyAdmTest($id){
+        $model = AdmExaminer::findOrFail($id);
+        $model->status = 'Accepted';
+        if($model->save()){
+            Session::flash('message', 'Requested Accepted! ');
             return Redirect::back();
         }
 

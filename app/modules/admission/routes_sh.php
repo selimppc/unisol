@@ -16,9 +16,16 @@ Route::any('admission/faculty/admission-test',[
 
 Route::any('admission/faculty/admission-test/change-status-to-deny/{id}',[
     'as' => 'admission.faculty.admission-test.change-status-to-deny',
-    'uses' => 'AdmFacultyController@changeStatusByFacultyAdmTest'
+    'uses' => 'AdmFacultyController@changeStatustoDenyByFacultyAdmTest'
 ]);
-//-->
+//ok
+
+
+Route::any('admission.faculty/admission-test/change-status-to-accept/{id}',[
+    'as' => 'admission.faculty.admission-test.change-status-to-accept',
+    'uses' => 'AdmFacultyController@changeStatusToAcceptedByFacultyAdmTest'
+]);
+//x
 
 
 
@@ -40,11 +47,7 @@ Route::any('admission/faculty/admission-test/qpBatchDelete', [
 ]);
 //D
 
-Route::any('admission/faculty/admission-test/accept-admtest',[
-    'as' => 'admission.faculty.admission-test.accept-admtest',
-    'uses' => 'AdmFacultyController@acceptAdmTest'
-]);
-//x
+
 
 Route::any('admission/faculty/admission-test/deny-admtest',[
     'as' => 'admission.faculty.admission-test.deny-admtest',

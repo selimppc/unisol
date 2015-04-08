@@ -59,13 +59,28 @@
                                     </div>
 
 
+
                                    {{ Form::submit('Evaluate',  array( 'id'=>'submit_if', 'class'=>'btn btn-primary btn-xs')) }}
+
+                                   {{--<a href="{{ URL::previous() }}" style="margin-right: .65%;" class="pull-left btn btn-success btn-xs">Back</a>--}}
+
+                                    @if( $no_q > 0 )
+                                        <a href="{{ URL::route('admission.faculty.question-papers.evaluate-questions-items',['adm_question_id'=>$a_q_id, 'no_q'=>$no_q-1 ]) }}" class="btn bg-red btn-xs " >Previous</a>
+                                    @endif
+
+                                   &nbsp;
 
                                     @if(  ($no_q + 1) < $total_question )
                                         <a href="{{ URL::route('admission.faculty.question-papers.evaluate-questions-items',['adm_question_id'=>$a_q_id, 'no_q'=>$no_q+1 ]) }}" class="btn bg-orange btn-xs " >Next</a>
+
                                     @else
-                                        <a href="{{ URL::route('admission.faculty.question-papers.evaluate-questions',['ev_id'=>$evaluate_qp->id]) }}" class="btn bg-default btn-xs " >Finish</a>
+
+                                            <a href="{{ URL::route('admission.faculty.admission-test') }}" class="btn bg-purple btn-xs">Finish</a>
+{{--                                        <a href="{{ URL::route('admission.faculty.question-papers.evaluate-questions',['ev_id'=>$evaluate_qp->id]) }}" class="btn bg-default btn-xs " >Finish</a>--}}
                                     @endif
+
+
+
                               {{ Form::close()  }}
                         </div><!-- /.box -->
                     </div><!-- /.tab-pane -->
