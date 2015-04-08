@@ -146,7 +146,7 @@ Route::any('admission/public/degree-offer-list',[
         'uses' => 'AdmPublicController@degreeOfferList'
 ]);
 //Degree Details
-Route::any('admission/public/degree-offer-details/{id}',
+Route::any('admission/public/degree-offer-details/{degree_id}',
         ['as' => 'admission.degree_offer_details',
         'uses' => 'AdmPublicController@degreeOfferDetails']);
 
@@ -155,9 +155,8 @@ Route::any('admission/public/admission/degree-apply',
     ['as' => 'admission.public.degree_apply',
         'uses' => 'AdmPublicController@degreeApply']);
 
-//Adm_applicant_profile
-Route::any('admission/public/admission/applicant-details/{id}',
-    ['as' => 'admission.public.applicant_details',
+Route::any('admission/applicant-details/{applicant_id}',
+    ['as' => 'admission.applicant_details',
         'uses' => 'AdmPublicController@degreeOfferApplicantDetails']);
 //Add acm records_modal
 Route::any('admission/public/admission/add-applicant-acm-docs',
@@ -204,6 +203,7 @@ Route::any('admission/public/admission/edit-applicant-meta/{id}',
 Route::any('admission/public/admission/update-meta-info-applicant/{id}',
     ['as' => 'admission.public.update-meta-info-applicant',
         'uses' => 'AdmPublicController@updateApplicantMetaInPublic']);
+
 //Applicant profile................................................
 
 Route::any('admission/public/admission/add-applicant-profile',

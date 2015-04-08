@@ -12,28 +12,28 @@ class AdmPublicController extends \BaseController {
         return View::make('admission::adm_public.admission.degree_list',compact('degreeList'));
     }
 
-    public function degreeOfferDetails($id){
+    public function degreeOfferDetails($degree_id){
         //$id refers to degree_id in DB table:Batch
         $degree_model = Batch::with('relDegree','relYear','relSemester',
             'relDegree.relDepartment','relDegree.relDegreeGroup','relBatchWaiver.relWaiver')
-            ->where('id', '=', $id)
+            ->where('id', '=', $degree_id)
             ->get();
 
         $major_courses = BatchCourse::with('relBatch','relCourse')
-            ->where('batch_id','=',$id)
+            ->where('batch_id','=',$degree_id)
             ->where('major_minor','=','major')
             ->get();
 
         $minor_courses = BatchCourse::with('relBatch','relCourse')
-            ->where('batch_id','=',$id)
+            ->where('batch_id','=',$degree_id)
             ->where('major_minor','=','minor')
             ->get();
 
         $edu_gpa_model = BatchEducationConstraint::with('relBatch')
-            ->where('batch_id','=',$id)->get();
+            ->where('batch_id','=',$degree_id)->get();
 
         $batch_adm_subject = BatchAdmtestSubject::with('relBatch','relAdmtestSubject')
-            ->where('batch_id','=',$id)->get();
+            ->where('batch_id','=',$degree_id)->get();
 
         $exm_centers = ExmCenter::get();
 
@@ -79,19 +79,19 @@ class AdmPublicController extends \BaseController {
     }
 
 //    $id refers to applicant_id in DB table : BatchApplicant
-    public function degreeOfferApplicantDetails($id){
+    public function degreeOfferApplicantDetails($applicant_id){
 
-        $applicant_id = $id;
+        $apt_id = $applicant_id;
         $batch_applicant = BatchApplicant::with('relBatch','relBatch.relDegree','relBatch.relDegree.relDegreeGroup','relBatch.relDegree.relDepartment')
-                           ->where('applicant_id', '=',$applicant_id )
+                           ->where('applicant_id', '=',$apt_id )
                            ->get();
 
         $applicant_personal_info = ApplicantProfile::with('relCountry')
-                          ->where('applicant_id', '=',$applicant_id )
+                          ->where('applicant_id', '=',$apt_id )
                           ->first();
-        $applicant_acm_records = ApplicantAcademicRecords::where('applicant_id', '=',$applicant_id )->get();
+        $applicant_acm_records = ApplicantAcademicRecords::where('applicant_id', '=',$apt_id )->get();
 
-        $applicant_meta_records = ApplicantMeta::where('applicant_id', '=',$applicant_id )->first();
+        $applicant_meta_records = ApplicantMeta::where('applicant_id', '=',$apt_id )->first();
 
         return View::make('admission::adm_public.admission.applicant_details',
                   compact('batch_applicant','applicant_personal_info','applicant_acm_records',
@@ -463,7 +463,7 @@ class AdmPublicController extends \BaseController {
             return Redirect::back()->with('error', 'The following errors occurred')->withErrors($validator)->withInput();
         }
     }
-
+   // $id refers to batch_applicant_id
     public function admTestDetails($id){
         $batch_applicant_id = $id;
         //get batch_id
@@ -477,7 +477,7 @@ class AdmPublicController extends \BaseController {
         //get adm_test_subject according to degree_id
         $adm_test_subject = BatchAdmtestSubject::with('relBatch','relAdmtestSubject')
             ->where('batch_id','=',$batch_id)->get();
-        //$exam_center_id = ExmCenterApplicantChoice::where('exm_center_id','=',)
+        //exam center choice list
         $exm_center_choice_lists = ExmCenterApplicantChoice::with('relExmCenter')->where('batch_applicant_id','=',$batch_applicant_id)->get();
 
         return View::make('admission::adm_public.admission.adm_test_details',
@@ -486,7 +486,7 @@ class AdmPublicController extends \BaseController {
 
     public function admExmCenter($batch_applicant_id){
 
-        $ba_id = $batch_applicant_id;
+        $id = $batch_applicant_id;
 
         $batch_applicant_id = ['batch_applicant_id' => $batch_applicant_id];
         $rules = ['batch_applicant_id' => 'exists:exm_center_applicant_choice' ];
@@ -495,11 +495,11 @@ class AdmPublicController extends \BaseController {
         if ($validator->Fails()) {
             $exm_centers_all = ExmCenter::all();
         }else{
-            $exm_center_choice = ExmCenterApplicantChoice::with('relExmCenter')->where('batch_applicant_id','=',$ba_id)->get();
+            $exm_center_choice = ExmCenterApplicantChoice::with('relExmCenter')->where('batch_applicant_id','=',$id)->get();
         }
 
         return View::make('admission::adm_public.admission.exm_center',
-            compact('exm_centers_all','exm_center_choice','ba_id'));
+            compact('exm_centers_all','exm_center_choice','id'));
     }
     public function admExmCenterSave(){
 
