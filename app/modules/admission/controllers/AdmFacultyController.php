@@ -16,8 +16,8 @@ class AdmFacultyController extends \BaseController {
 
 // Admission Test
     //ok
-	public function indexAdmExaminer()
-	{
+    public function indexAdmExaminer()
+    {
         $index_adm_examiner = AdmExaminer::with('relBatch','relBatch.relDegree',
             'relBatch.relDegree.relDepartment','relBatch.relYear','relBatch.relSemester')
 //            ->where('user_id', '=', Auth::user()->get()->id)
@@ -28,7 +28,7 @@ class AdmFacultyController extends \BaseController {
         return View::make('admission::faculty.admission_test.index',
             compact('index_adm_examiner','year_id','semester_id'));
 
-	}
+    }
 
     //ok
     public function changeStatustoDenyByFacultyAdmTest($id){
@@ -73,11 +73,11 @@ class AdmFacultyController extends \BaseController {
         $semester_id = Input::get('semester_id');
 
         $search_index_adm_examiner = AdmExaminer::with(['relBatch' => function($query) use($year_id, $semester_id) {
-                    $query->where('year_id', '=', $year_id);
-                    $query->where('semester_id', '=', $semester_id);
-                }],'relBatch.relDegree','relBatch.relDegree.relDepartment',
-                   'relBatch.relYear','relBatch.relSemester')
-                ->get();
+                $query->where('year_id', '=', $year_id);
+                $query->where('semester_id', '=', $semester_id);
+            }],'relBatch.relDegree','relBatch.relDegree.relDepartment',
+            'relBatch.relYear','relBatch.relSemester')
+            ->get();
 
         $year_id = array('' => 'Select Year ') + Year::lists('title', 'id');
         $semester_id = array('' => 'Select Semester ') + Semester::lists('title', 'id');
@@ -103,8 +103,8 @@ class AdmFacultyController extends \BaseController {
     public function admTestQuestionPaper($year_id, $semester_id, $batch_id )
     {
         $admtest_question_paper = AdmQuestion::latest('id')
-           ->where('s_faculty_user_id' ,'=', Auth::user()->get()->id)
-           ->get();
+            ->where('s_faculty_user_id' ,'=', Auth::user()->get()->id)
+            ->get();
 
         // user id nie ektu jhamela ace.
 
@@ -162,34 +162,44 @@ class AdmFacultyController extends \BaseController {
             $faculty_admisison_store_question_items->title = Input::get('title');
             $faculty_admisison_store_question_items->adm_question_id = Input::get('adm_question_id');
             $faculty_admisison_store_question_items->marks = Input::get('marks');
+            $opt_answer = Input::get('answer');
 
             if( strtolower(Input::get('mcq')) == 'mcq'){
-                if( strtolower(Input::get('r_question_type')) == 'mcq_single'){
+                if( strtolower(Input::get('question_type')) == 'mcq_single'){
                     $faculty_admisison_store_question_items->question_type = 'radio';
-                    if($faculty_admisison_store_question_items->save()) {
-                        $adm_question_items_id = $faculty_admisison_store_question_items->id;
+                    if(!empty($opt_answer)) {
+                        if($faculty_admisison_store_question_items->save())
+                            $adm_question_items_id = $faculty_admisison_store_question_items->id;
                         $opt_title = Input::get('option_title');
                         $opt_answer = Input::get('answer');
 
-                        $i = 0;
-                        foreach ($opt_title as $key => $value) {
-                            //Re-declare model each time you want to save data as loop.
-                            $adm_question_opt = new AdmQuestionOptAns();
-                            $adm_question_opt->adm_question_items_id = $adm_question_items_id;
-                            $adm_question_opt->title = $value;
-                            $adm_question_opt->answer = 0;
+                        if( $opt_answer == Null){
+                            Session::flash('error', 'Can not Save !! Choose Answer First !');
+                            return Redirect::back();
+                        }else {
 
-//                            if (isset($opt_answer))
-                            foreach ($opt_answer as $oa) {
-                                if ($oa == $key)
-                                    $adm_question_opt->answer = 1;
+                            $i = 0;
+                            foreach ($opt_title as $key => $value) {
+                                //Re-declare model each time you want to save data as loop.
+                                $adm_question_opt = new AdmQuestionOptAns();
+                                $adm_question_opt->adm_question_items_id = $adm_question_items_id;
+                                $adm_question_opt->title = $value;
+                                $adm_question_opt->answer = 0;
+
+                                //                            if (isset($opt_answer))
+                                foreach ($opt_answer as $oa) {
+                                    if ($oa == $key)
+                                        $adm_question_opt->answer = 1;
+                                }
+                                $adm_question_opt->save();
+                                $i++;
                             }
-                            $adm_question_opt->save();
-                            $i++;
-                        }
-                        echo "Option Data : Single Answer Saved!";
+                        } // saving last single data
+                        Session::flash('message', 'Option Data : Single Answer Saved!');
+                        return Redirect::back();
                     }else {
-                        echo "NO";
+                        Session::flash('error', 'Answer is missing!');
+                        return Redirect::back();
                     }
                 }else{
                     $faculty_admisison_store_question_items->question_type = 'checkbox';
@@ -198,22 +208,31 @@ class AdmFacultyController extends \BaseController {
                         $opt_title = Input::get('option_title');
                         $opt_answer = Input::get('answer');
 
-                        $i = 0;
-                        foreach($opt_title as $key => $value){
-                            //Re-declare model each time you want to save data as loop.
-                            $adm_question_opt = new AdmQuestionOptAns();
-                            $adm_question_opt->adm_question_items_id = $adm_question_items_id;
-                            $adm_question_opt->title = $value;
-                            $adm_question_opt->answer = 0;
+                        if( $opt_answer == Null){
+                            Session::flash('error', 'Can not Save !! Choose Answer First !');
+                            return Redirect::back();
+                        }else{
 
-                            foreach($opt_answer as $oa){
-                                if($oa == $key)
-                                    $adm_question_opt->answer = 1;
-                            }
-                            $adm_question_opt->save();
-                            $i++;
 
-                        } /// saving last single data
+                            $i = 0;
+                            foreach($opt_title as $key => $value){
+                                //Re-declare model each time you want to save data as loop.
+                                $adm_question_opt = new AdmQuestionOptAns();
+                                $adm_question_opt->adm_question_items_id = $adm_question_items_id;
+                                $adm_question_opt->title = $value;
+                                $adm_question_opt->answer = 0;
+
+                                foreach($opt_answer as $oa){
+                                    if($oa == $key)
+                                        $adm_question_opt->answer = 1;
+                                }
+
+
+                                $adm_question_opt->save();
+                                $i++;
+
+                            } // saving last single data
+                        }
                         echo "Option Data : Multiple Answer Saved!";
                     }else{
                         echo "NO";
@@ -460,35 +479,35 @@ class AdmFacultyController extends \BaseController {
     //ok
     public function evaluateQuestionsItems($a_q_id , $no_q = false )
     {
-            $all = AdmQuestionEvaluation::where('adm_question_id', $a_q_id)->get();
-            foreach ($all as $ev_itm) {
-                $ev_id [] = $ev_itm->id;
-                $ev_q_item_id [] = $ev_itm->adm_question_items_id;
-                $ev_marks [] = $ev_itm->marks;
-            }
-            $no_q = !empty($no_q) ? $no_q : 0;
-            $total_question = count($all);
-            $q_item_info = AdmQuestionItems::findOrFail($ev_q_item_id[$no_q]);
-            $evaluation_id = $ev_id[$no_q];
-            $evaluation_marks = $ev_marks[$no_q];
+        $all = AdmQuestionEvaluation::where('adm_question_id', $a_q_id)->get();
+        foreach ($all as $ev_itm) {
+            $ev_id [] = $ev_itm->id;
+            $ev_q_item_id [] = $ev_itm->adm_question_items_id;
+            $ev_marks [] = $ev_itm->marks;
+        }
+        $no_q = !empty($no_q) ? $no_q : 0;
+        $total_question = count($all);
+        $q_item_info = AdmQuestionItems::findOrFail($ev_q_item_id[$no_q]);
+        $evaluation_id = $ev_id[$no_q];
+        $evaluation_marks = $ev_marks[$no_q];
 
-            $data_question = AdmQuestion::with('relBatchAdmtestSubject',
-                'relBatchAdmtestSubject.relBatch', 'relBatchAdmtestSubject.relAdmtestSubject')
-                ->where('id', '=', $a_q_id)->first();
+        $data_question = AdmQuestion::with('relBatchAdmtestSubject',
+            'relBatchAdmtestSubject.relBatch', 'relBatchAdmtestSubject.relAdmtestSubject')
+            ->where('id', '=', $a_q_id)->first();
 
-            $evaluate_qp = AdmQuestionEvaluation::with('relBatchApplicant', 'relBatchApplicant.relApplicant',
-                'relAdmQuestionItems', 'relAdmQuestionItems.relAdmQuestion')
-                ->where('adm_question_id', '=', $a_q_id)
-                ->latest('id')
-                ->first();
+        $evaluate_qp = AdmQuestionEvaluation::with('relBatchApplicant', 'relBatchApplicant.relApplicant',
+            'relAdmQuestionItems', 'relAdmQuestionItems.relAdmQuestion')
+            ->where('adm_question_id', '=', $a_q_id)
+            ->latest('id')
+            ->first();
 
-            $total_marks = AdmQuestionEvaluation::where('adm_question_id','=', $a_q_id)
-                ->latest('id')->groupBy('adm_question_id')
-                ->select(DB::raw('SUM(marks) as ev_marks'))
-                ->first();
+        $total_marks = AdmQuestionEvaluation::where('adm_question_id','=', $a_q_id)
+            ->latest('id')->groupBy('adm_question_id')
+            ->select(DB::raw('SUM(marks) as ev_marks'))
+            ->first();
 
-            return View::make('admission::faculty.question_papers.evaluate-questions-items',
-                compact('data_question', 'evaluate_qp', 'a_q_id', 'evaluation_id','evaluation_marks', 'eva_q_ans', 'b', 'total_question', 'no_q', 'q_item_info', 'total_marks'));
+        return View::make('admission::faculty.question_papers.evaluate-questions-items',
+            compact('data_question', 'evaluate_qp', 'a_q_id', 'evaluation_id','evaluation_marks', 'eva_q_ans', 'b', 'total_question', 'no_q', 'q_item_info', 'total_marks'));
     }
 
     //ok
