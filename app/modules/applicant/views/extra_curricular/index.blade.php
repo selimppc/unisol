@@ -43,7 +43,7 @@
                                         <td>
                                             <a href="{{ URL::route('extra_curricular.show', ['id'=>$value->id])  }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showOne" href=""><i class="fa fa-eye" style="color: green"></i></a>
                                             <a href="{{ URL::to('applicant/extra_curricular/edit/' . $value->id  ) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#myeditModal" href="" ><i class="fa fa-pencil-square-o" style="color: #0044cc"></i></a>
-                                            <a href="{{ URL::to('applicant/extra-curricular/delete/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" ><i class="fa  fa-trash-o" style="color: red"></i></a>
+                                            <a data-href="{{ URL::to('applicant/extra-curricular/delete/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" ><i class="fa  fa-trash-o" style="color: red"></i></a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -99,7 +99,7 @@
                 </div>
                 <div class="modal-footer">
                     <a href="#" class="btn btn-danger danger">Delete</a>
-                    <a href="{{URL::to('common/department/')}}" class="btn btn-default">Close </a>
+                    <a href="" class="btn btn-default">Close </a>
                 </div>
             </div>
         </div>
