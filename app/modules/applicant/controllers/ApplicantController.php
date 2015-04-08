@@ -791,6 +791,82 @@ class ApplicantController extends \BaseController
 
 //{********* Degree Apply By Applicant (Tanin)  ****************}
 
+    public function degreeApply(){
 
+        if(Auth::applicant()->check()){
+            $batch_ids = Input::get('ids');
+            if($batch_ids){
+                foreach($batch_ids as $key => $value){
+
+                    $data = new BatchApplicant();
+                    $data->batch_id = $value;
+                    $data->applicant_id = Auth::applicant()->get()->id;
+
+                    $degreeApplicantCheck = DB::table('batch_applicant')
+                        ->select(DB::raw('1'))
+                        ->where('batch_id', '=', $data->batch_id)
+                        ->where('applicant_id', '=', $data->applicant_id)
+                        ->get();
+
+                    if($degreeApplicantCheck){
+                        Session::flash('info','The selected Degree(s)already added ! If You Want To Add More Please Select One That Is Not Added Yet Using "Add More Degree" Button.');
+                    }else{
+                        $data->save();
+                    }
+                }
+            }else{
+                Session::flash('info', "Please Select Degree From Degree List!");
+                return Redirect::back();
+            }
+            return Redirect::route('admission.applicant_details', ['id' => Auth::applicant()->get()->id]);
+        } else {
+            Auth::logout();
+            Session::flush(); //delete the session
+            Session::flash('danger', "Please Login As Applicant!");
+            return Redirect::route('user/login');
+        }
+    }
+
+
+//    $id refers to applicant_id in DB table : BatchApplicant
+    public function degreeOfferApplicantDetails($applicant_id){
+
+        $apt_id = $applicant_id;
+        $batch_applicant = BatchApplicant::with('relBatch','relBatch.relDegree','relBatch.relDegree.relDegreeGroup','relBatch.relDegree.relDepartment')
+            ->where('applicant_id', '=',$apt_id )
+            ->get();
+
+        $applicant_personal_info = ApplicantProfile::with('relCountry')
+            ->where('applicant_id', '=',$apt_id )
+            ->first();
+        $applicant_acm_records = ApplicantAcademicRecords::where('applicant_id', '=',$apt_id )->get();
+
+        $applicant_meta_records = ApplicantMeta::where('applicant_id', '=',$apt_id )->first();
+
+        return View::make('admission::adm_public.admission.applicant_details',
+            compact('batch_applicant','applicant_personal_info','applicant_acm_records',
+                'applicant_meta_records'));
+    }
+
+    // $id refers to batch_applicant_id
+    public function admTestDetails($id){
+        $batch_applicant_id = $id;
+        //get batch_id
+        $batch_id = BatchApplicant::where('id','=',$id)->first()->batch_id;
+
+        $adm_test_details = BatchApplicant::with('relBatch','relBatch.relDegree','relBatch.relDegree.relDegreeGroup',
+            'relBatch.relDegree.relDepartment',
+            'relBatch.relSemester','relBatch.relYear')
+            ->where('batch_id', '=', $batch_id)
+            ->first();
+        //get adm_test_subject according to degree_id
+        $adm_test_subject = BatchAdmtestSubject::with('relBatch','relAdmtestSubject')
+            ->where('batch_id','=',$batch_id)->get();
+        //exam center choice list
+        $exm_center_choice_lists = ExmCenterApplicantChoice::with('relExmCenter')->where('batch_applicant_id','=',$batch_applicant_id)->get();
+
+        return View::make('admission::adm_public.admission.adm_test_details',
+            compact('batch_applicant_id', 'adm_test_details','adm_test_subject','exm_center_choice_lists'));
+    }
 }
 

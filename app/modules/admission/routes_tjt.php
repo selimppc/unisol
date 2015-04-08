@@ -147,17 +147,17 @@ Route::any('admission/public/degree-offer-list',[
 ]);
 //Degree Details
 Route::any('admission/public/degree-offer-details/{degree_id}',
-        ['as' => 'admission.degree_offer_details',
+        ['as' => 'admission.public.degree_offer_details',
         'uses' => 'AdmPublicController@degreeOfferDetails']);
 
 //Degree_applicant Save
-Route::any('admission/public/admission/degree-apply',
-    ['as' => 'admission.public.degree_apply',
-        'uses' => 'AdmPublicController@degreeApply']);
+Route::any('admission/degree-apply',
+    ['as' => 'admission.degree_apply',
+        'uses' => 'ApplicantController@degreeApply']);
 
 Route::any('admission/applicant-details/{applicant_id}',
     ['as' => 'admission.applicant_details',
-        'uses' => 'AdmPublicController@degreeOfferApplicantDetails']);
+        'uses' => 'ApplicantController@degreeOfferApplicantDetails']);
 //Add acm records_modal
 Route::any('admission/public/admission/add-applicant-acm-docs',
     ['as' => 'admission.public.add-applicant-acm-docs',
@@ -230,9 +230,9 @@ Route::any('admission/public/admission/add-applicant-profile',
     ['as' => 'admission.public.add-applicant-profile',
         'uses' => 'AdmPublicController@addApplicantProfileByApplicant']);
 
-Route::any('admission/public/admission-test-details/{id}',
+Route::any('admission/admission-test-details/{id}',
     ['as' => 'admission.admission.test_details',
-        'uses' => 'AdmPublicController@admTestDetails']);
+        'uses' => 'ApplicantController@admTestDetails']);
 
 Route::any('admission/public/admission/exm-center/{batch_applicant_id}',
     ['as' => 'admission.public.exm-center',
