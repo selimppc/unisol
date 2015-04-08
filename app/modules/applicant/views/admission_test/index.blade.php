@@ -5,13 +5,13 @@
 @section('content')
     <!-- START CUSTOM TABS -->
     <h2 class="page-header text-purple tab-text-margin">Admission Test</h2>
+    <small>you can view all Degree list you applied. Click on the degree name for admission details</small>
     <div class="row">
         <div class="col-md-12">
             <!-- Custom Tabs -->
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#tab_1" data-toggle="tab">Admission Test</a></li>
-                    </li>
+                    &nbsp;
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab_1">

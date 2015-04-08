@@ -69,14 +69,13 @@
                                          @if($index_adm_examiner_list->status != 'Deny' )
 
                                            <a href="{{ URL::route('admission.faculty.admission-test.change-status-to-deny', ['id'=>$index_adm_examiner_list->id])}}" class="btn btn-warning btn-xs">Deny</a>
-                                           <a href="{{ URL::route('admission.faculty.admission-test.accept-admtest') }}" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modal">Accept</a>
+                                           <a href="{{ URL::route('admission.faculty.admission-test.change-status-to-accept',['id'=>$index_adm_examiner_list->id]) }}" class="btn btn-success btn-xs">Accept</a>
                                            {{--    <a href="{{ URL::route('admission.faculty.admission-test.deny-admtest') }}" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modal">Deny</a>--}}
 
-                                         {{--@elseif( $index_adm_examiner_list->status = 'Accepted' )--}}
+                                         @elseif( $index_adm_examiner_list->status == 'Accepted' )
                                             <a href="{{ URL::route('admission.faculty.question-papers.admtest-question-paper', [ 'year_id'=>$index_adm_examiner_list->relBatch->year_id ,'semester_id'=>$index_adm_examiner_list->relBatch->semester_id ,'batch_id'=>$index_adm_examiner_list->batch_id  ]) }}" class="btn btn-info btn-xs" >Questions</a>
 
                                          @endif
-
 
                                      </td>
 
