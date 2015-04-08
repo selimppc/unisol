@@ -210,8 +210,10 @@ class AdmFacultyController extends \BaseController {
                                 if($oa == $key)
                                     $adm_question_opt->answer = 1;
                             }
+
                             $adm_question_opt->save();
                             $i++;
+
 
                         } /// saving last single data
                         echo "Option Data : Multiple Answer Saved!";

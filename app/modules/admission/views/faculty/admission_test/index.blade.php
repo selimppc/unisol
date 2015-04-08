@@ -68,9 +68,8 @@
                                      <td>
                                          @if($index_adm_examiner_list->status == 'Requested' )
 
-                                           <a href="{{ URL::route('admission.faculty.admission-test.change-status-to-deny', ['id'=>$index_adm_examiner_list->id])}}" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#confirm_deny">Deny</a>
-                                           <a href="{{ URL::route('admission.faculty.admission-test.change-status-to-accept',['id'=>$index_adm_examiner_list->id]) }}" class="btn btn-success btn-xs" data-toggle="modal" data-target="#confirm_accept">Accept</a>
-                                           {{--    <a href="{{ URL::route('admission.faculty.admission-test.deny-admtest') }}" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modal">Deny</a>--}}
+                                           <a href="#" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#confirm_deny">Deny</a>
+                                            <a href="#" class="btn btn-success btn-xs" data-toggle="modal" data-target="#confirm_accept">Accept</a>
 
                                          @elseif( $index_adm_examiner_list->status == 'Accepted' )
                                             <a href="{{ URL::route('admission.faculty.question-papers.admtest-question-paper', [ 'year_id'=>$index_adm_examiner_list->relBatch->year_id ,'semester_id'=>$index_adm_examiner_list->relBatch->semester_id ,'batch_id'=>$index_adm_examiner_list->batch_id  ]) }}" class="btn btn-info btn-xs" >Questions</a>
@@ -107,12 +106,13 @@
                     <h4 class="modal-title" id="myModalLabel">Confirm Accept</h4>
                 </div>
                 <div class="modal-body">
-                    <strong>Are you sure to Accept?</strong>
+                    <strong>Are you sure to Accept This Request?</strong>
 
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    <a href="#" class="btn btn-info">Accept</a>
+                    <a href="{{ URL::route('admission.faculty.admission-test.change-status-to-accept',['id'=>$index_adm_examiner_list->id]) }}" class="btn btn-success">Accept</a>
+
 
                 </div>
             </div>
@@ -128,12 +128,12 @@
                     <h4 class="modal-title" id="myModalLabel">Confirm Deny</h4>
                 </div>
                 <div class="modal-body">
-                    <strong>Are you sure to Deny?</strong>
+                    <strong>Are you sure to Deny This Request?</strong>
 
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    <a href="#" class="btn btn-danger">Deny</a>
+                    <a href="{{ URL::route('admission.faculty.admission-test.change-status-to-deny', ['id'=>$index_adm_examiner_list->id])}}" class="btn btn-warning">Deny</a>
 
                 </div>
             </div>

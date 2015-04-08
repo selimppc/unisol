@@ -41,7 +41,7 @@
             </p>
         </div>
     {{ Form::submit('Submit Comment', array('class'=>'pull-right btn-sm btn-info')) }}
-    <a href="" class="pull-right btn-sm btn-default" style="margin-right: 5px">Close</a>
+    <a href="" class="pull-right btn-sm bg-navy" style="margin-right: 5px">Close</a>
     &nbsp;
     </br>
     &nbsp;
