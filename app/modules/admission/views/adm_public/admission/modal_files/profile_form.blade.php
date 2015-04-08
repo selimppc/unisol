@@ -39,18 +39,18 @@
              </div>
          </div>
        </div>
-       <br>
 
        <div>
-          {{ Form::label('profile_image', 'Profile Image') }}<span class="text-danger">*</span> <br>
+
           @if(isset($applicant_personal_info->profile_image))
-             {{ HTML::image('files_public/' . $applicant_personal_info->profile_image) }}
-             <p>&nbsp;</p>
-             {{ Form::file('profile_image',array('multiple'=>true)) }}
-          @else
-             {{ Form::file('profile_image',array('multiple'=>true)) }}
+          {{ Form::label('profile_image', 'Profile Image') }}
+          {{ HTML::image('applicant_images/profile/' . $applicant_personal_info->profile_image) }}
           @endif
+          <p>&nbsp;</p>
+          {{ Form::label('profile_image', 'Select Profile Picture :') }}<span class="text-danger">*</span>
+          {{ Form::file('profile_image',array('multiple'=>true)) }}
        </div>
+       <br>
 
        <div>
          {{ Form::label('city', 'City') }}

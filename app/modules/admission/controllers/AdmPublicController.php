@@ -63,7 +63,7 @@ class AdmPublicController extends \BaseController {
             $extension = $imagefile->getClientOriginalExtension();
             $filename = str_random(12) . '.' . $extension;
             $sdoc_file=strtolower($filename);
-            $path = public_path("files_public/" . $sdoc_file);
+            $path = public_path("/applicant_images/profile/" . $sdoc_file);
             Image::make($imagefile->getRealPath())->resize(100, 100)->save($path);
             $applicant_personal_info->profile_image =$sdoc_file;
 
@@ -115,7 +115,7 @@ class AdmPublicController extends \BaseController {
                     $extension = $imagefile->getClientOriginalExtension();
                     $filename = str_random(12) . '.' . $extension;
                     $sdoc_file=strtolower($filename);
-                    $path = public_path("files_public/" . $sdoc_file);
+                    $path = public_path("/applicant_images/profile/" . $sdoc_file);
                     Image::make($imagefile->getRealPath())->resize(100, 100)->save($path);
                     $applicant_personal_info->profile_image =$sdoc_file;
                 }
@@ -334,7 +334,7 @@ class AdmPublicController extends \BaseController {
                 $extension = $file->getClientOriginalExtension();
                 $filename = str_random(12) . '.' . $extension;
                 $sdoc_file=strtolower($filename);              // rename file name to lower
-                $path = public_path("files_public/" . $sdoc_file);
+                $path = public_path("/applicant_images/app_meta/" . $sdoc_file);
                 Image::make($file->getRealPath())->resize(150, 150)->save($path);
                 $applicant_meta_records->signature = $filename;
             }
@@ -385,7 +385,7 @@ class AdmPublicController extends \BaseController {
                     $extension = $file->getClientOriginalExtension();
                     $filename = str_random(12) . '.' . $extension;
                     $sdoc_file = strtolower($filename);              // rename file name to lower
-                    $path = public_path("files_public/" . $sdoc_file);
+                    $path = public_path("/applicant_images/app_meta/" . $sdoc_file);
                     Image::make($file->getRealPath())->resize(150, 150)->save($path);
                     $applicant_meta_records->signature = $filename;
                 }
