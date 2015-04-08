@@ -162,7 +162,9 @@ class UserSignupController extends \BaseController {
 
     }
 
-    // method for password_reset view that contains email_address
+   //******* Starts forgot password  *******************************************************
+
+    // method for forgot_password view that contains email_address
     public function userPassword(){
 
        return View::make('admission::signup.password_reset');
@@ -219,7 +221,7 @@ class UserSignupController extends \BaseController {
             return View::make('admission::signup.password_mail_notification');
         }
     }
-
+//forgot password : confirm
     public function userPasswordResetConfirm($reset_password_token){
 
         $userReset = UserResetPassword::where('reset_password_token', $reset_password_token)
@@ -251,7 +253,7 @@ class UserSignupController extends \BaseController {
         }
     }
 
-    // get new password action
+    // forgot password: get new password action
     public function userPasswordUpdate()
     {
         $users = Input::get('user_id');
@@ -267,6 +269,7 @@ class UserSignupController extends \BaseController {
         return View::make('admission::signup.login');
 
     }
+//******* Ends Forgot password ***********************************************//
 
     // Methods for forgot username
     public function usernameReset(){
