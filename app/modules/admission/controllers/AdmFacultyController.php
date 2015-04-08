@@ -382,7 +382,7 @@ class AdmFacultyController extends \BaseController {
     //ok
     public function viewAssignQuestionPaper($q_id)
     {
-        $assign_qp = AdmQuestion::latest('id')->first();
+        $assign_qp = AdmQuestion::findOrFail($q_id);
 
         $assign_qp_assign = AdmQuestionComments::where('adm_question_id', $q_id)->get();
 
@@ -552,7 +552,7 @@ class AdmFacultyController extends \BaseController {
 
     public function assignCourse($id)
     {
-        $assign_course = CourseConduct::latest('id')->first();
+        $assign_course = CourseConduct::findOrFail($id);
 
         $assign_course_commnt = CourseConductComments::where('course_conduct_id', $id)->get();
 
