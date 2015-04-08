@@ -51,7 +51,7 @@
             <i class="fa fa-angle-left pull-right"></i>
         </a>
         <ul class="treeview-menu">
-            <a href="{{URL::to('admission/test')}}"  class="list-group-item" >Admission Test </a>
+            <a href="{{URL::to('applicant/admission-test')}}"  class="list-group-item" >Admission Test </a>
         </ul>
     </li>
 

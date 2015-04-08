@@ -53,6 +53,7 @@ return array(
     'App\\Modules\\User\\ServiceProvider' => $baseDir . '/app/modules/user/ServiceProvider.php',
     'Applicant' => $baseDir . '/app/modules/applicant/models/Applicant.php',
     'ApplicantAcademicRecords' => $baseDir . '/app/modules/applicant/models/ApplicantAcademicRecords.php',
+    'ApplicantAdmissionController' => $baseDir . '/app/modules/applicant/controllers/ApplicantAdmissionController.php',
     'ApplicantController' => $baseDir . '/app/modules/applicant/controllers/ApplicantController.php',
     'ApplicantExtraCurrActivity' => $baseDir . '/app/modules/applicant/models/ApplicantExtraCurrActivity.php',
     'ApplicantMeta' => $baseDir . '/app/modules/applicant/models/ApplicantMeta.php',
