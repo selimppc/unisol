@@ -3,35 +3,35 @@
     @include('layouts._sidebar_applicant')
 @stop
 @section('content')
-    <h2 class="page-header text-purple tab-text-margin">Admission Test </h2>
+    <p>
+        <span class="page-header text-purple">Exam Subjects for Admission Test</span><br>
+        <small>you can seat for exam with the following subjects </small>
+    </p>
     <div class="row">
         <div class="col-md-12">
             <!-- Custom Tabs -->
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#tab_1" data-toggle="tab">Admission Test </a></li>
-                    </li>
+                    &nbsp;
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab_1">
                         <div class="box-body table-responsive ">
                             <table class="table table-striped  table-bordered">
-                                @foreach($batch_applicant as $value)
                                 <tr>
                                     <th>Degree:</th>
-                                    <td>  {{isset($value->relBatch->relDegree->title)? $value->relBatch->relDegree->title : ''}},
-                                        {{isset($value->relBatch->relSemester->title) ? $value->relBatch->relSemester->title : '' }},
-                                        {{isset($value->relBatch->relYear->title)?$value->relBatch->relYear->title : ''}}</td>
+                                    <td>  {{isset($batch_applicant->relBatch->relDegree->title)? $batch_applicant->relBatch->relDegree->title : ''}},
+                                        {{isset($batch_applicant->relBatch->relSemester->title) ? $batch_applicant->relBatch->relSemester->title : '' }},
+                                        {{isset($batch_applicant->relBatch->relYear->title)? $batch_applicant->relBatch->relYear->title : ''}}</td>
                                 </tr>
                                 <tr>
                                     <th>Test Date:</th>
-                                    <td>{{date("d-m-Y", strtotime((isset($value->relBatch->admtest_date)) ? $value->relBatch->admtest_date : '') ) }}</td>
+                                    <td>{{date("d-m-Y", strtotime((isset($batch_applicant->relBatch->admtest_date)) ? $batch_applicant->relBatch->admtest_date : '') ) }}</td>
                                 </tr>
                                 <tr>
                                     <th>Test Time:</th>
-                                    <td>{{ date("d-m-Y", strtotime((isset($value->relBatch->admtest_start_time) ? $value->relBatch->admtest_start_time : ''))) }}</td>
+                                    <td>{{ date("d-m-Y", strtotime((isset($batch_applicant->relBatch->admtest_start_time) ? $batch_applicant->relBatch->admtest_start_time : ''))) }}</td>
                                 </tr>
-                                    @endforeach
                             </table>
                             <h4 class=" text-purple">Admission Test Subject</h4>
                             <div>&nbsp;</div>
@@ -51,11 +51,7 @@
                                         <td>{{$value->marks}}</td>
                                         <td>{{$value->duration}}</td>
                                         <td>
-
-                                            <a href="{{ URL::route('subject-exam.show', ['id'=>$value->id])  }}" class="btn btn-xs btn-default"><i class="fa fa-pencil-square-o" style="color: #0044cc"></i></a>
-
-                                            <a href="" class="btn btn-xs btn-default"><i class="fa fa-pencil-square-o" style="color: #0044cc"></i></a>
-
+                                            <a href="{{ URL::route('applicant.admission-exam-subject', ['batch_id'=>$value->batch_id, 'admtest_subject_id'=>$value->admtest_subject_id])  }}" class="btn btn-xs btn-tumblr"><i class="fa fa-pencil-square-o"></i> Start Exam</a>
                                         </td>
                                     </tr>
                                 @endforeach

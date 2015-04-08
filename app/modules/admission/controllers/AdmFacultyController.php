@@ -162,11 +162,13 @@ class AdmFacultyController extends \BaseController {
             $faculty_admisison_store_question_items->title = Input::get('title');
             $faculty_admisison_store_question_items->adm_question_id = Input::get('adm_question_id');
             $faculty_admisison_store_question_items->marks = Input::get('marks');
+            $opt_answer = Input::get('answer');
 
             if( strtolower(Input::get('mcq')) == 'mcq'){
                 if( strtolower(Input::get('question_type')) == 'mcq_single'){
                     $faculty_admisison_store_question_items->question_type = 'radio';
-                    if($faculty_admisison_store_question_items->save()) {
+                    if(!empty($opt_answer)) {
+                        if($faculty_admisison_store_question_items->save())
                         $adm_question_items_id = $faculty_admisison_store_question_items->id;
                         $opt_title = Input::get('option_title');
                         $opt_answer = Input::get('answer');
@@ -193,9 +195,11 @@ class AdmFacultyController extends \BaseController {
                                 $i++;
                             }
                         } // saving last single data
-                        echo "Option Data : Single Answer Saved!";
+                        Session::flash('message', 'Option Data : Single Answer Saved!');
+                        return Redirect::back();
                     }else {
-                        echo "NO";
+                        Session::flash('error', 'Answer is missing!');
+                        return Redirect::back();
                     }
                 }else{
                     $faculty_admisison_store_question_items->question_type = 'checkbox';

@@ -184,23 +184,24 @@ Route::any('apt/misc_info/update/{id}',
 
 //**********************Admission Test for Applicant ************************************
 
-Route::any('admission/test',
-     'ApplicantController@admission_test_index'
-);
-
 Route::any('applicant/admission-test',[
     'as' => 'applicant.admission-test',
     'uses'=> 'ApplicantAdmissionController@admission_test'
 ]);
 
-Route::any('admission/test/subject/details/{batch_id}}',[
-    'as' => 'subject-details.show',
-    'uses'=> 'ApplicantController@admission_test_subject'
+Route::any('applicant/admission-test-subject/{batch_id}',[
+    'as' => 'applicant.admission-test-subject',
+    'uses'=> 'ApplicantAdmissionController@admission_test_subject'
 ]);
 
-Route::any('admission/test/subject/exam/{batch_admtest_sub_id}',[
-    'as' => 'subject-exam.show',
-    'uses'=> 'ApplicantController@admission_test_subject_exam'
+Route::any('applicant/admission-exam-subject/{batch_id}/{admtest_subject_id}',[
+    'as' => 'applicant.admission-exam-subject',
+    'uses'=> 'ApplicantAdmissionController@admission_test_subject_exam'
+]);
+
+Route::any('applicant/admission/start-admission-test',[
+    'as' => 'applicant.admission.start-admission-test',
+    'uses'=> 'ApplicantAdmissionController@start_admission_test'
 ]);
 
 

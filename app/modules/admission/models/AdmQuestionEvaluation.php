@@ -16,7 +16,7 @@ class AdmQuestionEvaluation extends Eloquent{
         'batch_applicant_id' => 'integer',
         'adm_question_id' => 'integer',
         'adm_question_items_id' => 'integer',
-        'marks' => 'required|numeric',
+        'marks' => 'numeric',
     ];
     
     public function validate($data)

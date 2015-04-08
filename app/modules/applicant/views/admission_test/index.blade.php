@@ -4,8 +4,11 @@
 @stop
 @section('content')
     <!-- START CUSTOM TABS -->
-    <h2 class="page-header text-purple tab-text-margin">Admission Test</h2>
-    <small>you can view all Degree list you applied. Click on the degree name for admission details</small>
+    <p>
+        <span class="page-header text-purple">Admission Test</span><br>
+        <small>you can view all Degree list you applied. Click on the degree name for admission details</small>
+    </p>
+
     <div class="row">
         <div class="col-md-12">
             <!-- Custom Tabs -->
@@ -28,10 +31,13 @@
                                 @if(isset($data))
                                     @foreach ($data as $value)
                                     <tr>
-                                        <td><a href="{{URL::route('subject-details.show',['batch_id'=>$value->batch_id])}}" class="btn-link">
+                                        <td>
+                                            <a href="{{URL::route('applicant.admission-test-subject',['batch_id'=>$value->batch_id])}}" class="btn-link">
                                                 {{isset($value->relBatch->relDegree->title)? $value->relBatch->relDegree->title : ''}},
                                                 {{isset($value->relBatch->relSemester->title) ? $value->relBatch->relSemester->title : '' }},
-                                                {{isset($value->relBatch->relYear->title)?$value->relBatch->relYear->title : ''}}</a></td>
+                                                {{isset($value->relBatch->relYear->title)?$value->relBatch->relYear->title : ''}}
+                                            </a>
+                                        </td>
 
                                         <td>{{date("d-m-Y", strtotime((isset($value->relBatch->admtest_date)) ? $value->relBatch->admtest_date : '') ) }}</td>
 
