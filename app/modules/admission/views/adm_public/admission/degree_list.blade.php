@@ -9,13 +9,15 @@
 
  <div class="box box-solid ">
      <div class="box-tools pull-right">
-          <button class="btn btn-info btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
-          <button class="btn btn-info btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
+
      </div>
      <div class="box box-info">
          <div class="box-body">
              <div class="row">
                  <div class="col-lg-12">
+                      <div class="help-text-top">
+                              <p>You can view all degree from this list and can select degree(s) to apply.Also you can see corresponding degree details information by individual link above degree name.</p>
+                      </div>
                       {{ Form::open(['route' => ['admission.applicant.degree_apply']]) }}
                            <table class="table table-bordered table-striped">
                                <thead>
@@ -32,7 +34,7 @@
                                              <td> <input type="checkbox" name="ids[]"  id="check" class="myCheckbox" value="{{ $value->id }}" ></td>
                                              <td>
                                                      <a href="{{ URL::route('admission.public.degree_offer_details',
-                                                     ['id' => $value->id]) }}" class="btn-link">
+                                                     ['id' => $value->id]) }}" class="btn-link" title="Degree Details For Admission Test">
                                                      {{ $value->relDegree->title }} Of {{$value->relDegree->relDegreeGroup->title}} On {{$value->relDegree->relDepartment->title}} ,
                                                      {{ $value->relSemester->title }} ,{{ $value->relYear->title }}
                                                      </a>

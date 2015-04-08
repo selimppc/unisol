@@ -11,8 +11,7 @@
 </div><!-- /.row -->
 {{---------------------------------------------Data Table:admission on degree :Starts-----------------------------------------------------------------}}
  <div class="box box-solid ">
-     <div class="box-header">
-     </div>
+
      <div class="box box-info">
           <div class="box-header">
           <h3 class="box-title">Admission On</h3>
@@ -20,11 +19,14 @@
                <button class="btn btn-info btn-xs" data-widget="collapse"><i class="fa fa-minus"></i></button>
                <button class="btn btn-info btn-xs" data-widget="remove"><i class="fa fa-times"></i></button>
           </div>
-          <p>&nbsp;</p>
+
           </div>
           <div class="box-body">
               <div class="row">
                   <div class="col-lg-12">
+                     <div class="help-text-top">
+                         <p>This panel allow to view degree list that you have been applied and can apply for more degree to <b>Add More Degree</b> button. This panel will redirect you to admission test details where you can choose exam center sequence for admission test.</p>
+                     </div>
                      <table class="table table-striped table-bordered">
                           @if (isset($batch_applicant))
                             <tbody>
@@ -35,7 +37,7 @@
                                      <tr>
                                          <td class="col-lg-10">
                                                <a href="{{ URL::route('admission.applicant.admission.test_details',
-                                                   ['id' => $value->id]) }}">
+                                                   ['id' => $value->id]) }}" class="btn-link" title="Degree,Subject & Exam Center Info For Admission">
                                                    {{ $value->relBatch->relDegree->title }} Of {{$value->relBatch->relDegree->relDegreeGroup->title}} On {{$value->relBatch->relDegree->relDepartment->title}}
                                                </a>
                                          </td>
