@@ -15,7 +15,7 @@ class AdmFacultyController extends \BaseController {
 
 
 // Admission Test
-//ok
+    //ok
 	public function indexAdmExaminer()
 	{
         $index_adm_examiner = AdmExaminer::with('relBatch','relBatch.relDegree',
@@ -30,7 +30,7 @@ class AdmFacultyController extends \BaseController {
 
 	}
 
-//-->
+    //ok
     public function changeStatustoDenyByFacultyAdmTest($id){
         $model = AdmExaminer::findOrFail($id);
         $model->status = 'Deny';
@@ -41,6 +41,7 @@ class AdmFacultyController extends \BaseController {
 
     }
 
+    //ok
     public function changeStatusToAcceptedByFacultyAdmTest($id){
         $model = AdmExaminer::findOrFail($id);
         $model->status = 'Accepted';
@@ -51,9 +52,7 @@ class AdmFacultyController extends \BaseController {
 
     }
 
-
-
-//ok
+    //ok
     public function viewAdmTest($id)
     {
         $view_adm_test = AdmExaminer::find($id);
@@ -67,7 +66,7 @@ class AdmFacultyController extends \BaseController {
 
     }
 
-//ok
+    //ok
     public function searchAdmExaminer()
     {
         $year_id = Input::get('year_id');
@@ -87,7 +86,7 @@ class AdmFacultyController extends \BaseController {
             compact('search_index_adm_examiner','year_id','semester_id'));
 
     }
-//ok
+    //ok
     public function batchDelete()
     {
         try {
@@ -99,19 +98,8 @@ class AdmFacultyController extends \BaseController {
         }
     }
 
-//->
-    public function acceptAdmTest()
-    {
-        echo "ACCEPT the request";
-    }
 
-//->
-    public function denyAdmTest()
-    {
-        echo "DENY the request";
-    }
-
-//ok
+    //ok
     public function admTestQuestionPaper($year_id, $semester_id, $batch_id )
     {
         $admtest_question_paper = AdmQuestion::latest('id')
@@ -133,7 +121,7 @@ class AdmFacultyController extends \BaseController {
             compact('admtest_question_paper','degree_id','degree_data','semester_id','year_id'));
     }
 
-//ok
+    //ok
     public function viewQuestionPaper($id)
     {
         $view_adm_qp = AdmQuestion::find($id);
@@ -143,7 +131,7 @@ class AdmFacultyController extends \BaseController {
 
     }
 
-//ok
+    //ok
     public function viewQuestionsItems($id)
     {
         $view_adm_qp_items = AdmQuestionItems::where('adm_question_id', '=', $id)->get();
@@ -153,17 +141,8 @@ class AdmFacultyController extends \BaseController {
 
     }
 
-//fct: Total Marks Calculation
-//    protected function totalMarks($id){
-//        $result = DB::table('adm_question_items')
-//            ->select(DB::raw('SUM(marks) as question_total_marks'))
-//            ->where('adm_question_id', '=', $id)
-//            ->first();
-//        return $result;
-//    }
-
 //fct: add question items
-//ok
+    //ok
     public function addQuestionItems($qid){
         $question_item = AdmQuestion::find($qid);
 
@@ -172,7 +151,7 @@ class AdmFacultyController extends \BaseController {
         return View::make('admission::faculty.question_papers._add_question_item_form', compact('total_marks', 'question_item'));
     }
 
-//ok
+    //ok
     public function storeQuestionItems()
     {
         $data = Input::all();
@@ -263,7 +242,7 @@ class AdmFacultyController extends \BaseController {
         }
     }
 
-//ok
+    //ok
     public function viewSpecificQuestionItems($id)
     {
         $faculty_ViewQuestionItems = AdmQuestionItems::where('id', $id)->first();
@@ -273,7 +252,8 @@ class AdmFacultyController extends \BaseController {
         return View::make('admission::faculty.question_papers.viewSpecificQuestionItems', compact('faculty_ViewQuestionItems', 'options'));
 
     }
-//ok
+
+    //ok
     public function editSpecificQuestionItems($id)
     {
         $faculty_editQuestionItems = AdmQuestionItems::where('id', $id)->first();
@@ -285,7 +265,7 @@ class AdmFacultyController extends \BaseController {
 
     }
 
-//ok
+    //ok
     public function updateSpecificQuestionItems($id)
     {
 //        echo "ok";exit;
@@ -382,12 +362,8 @@ class AdmFacultyController extends \BaseController {
                 $faculty_adm_update_question_items->question_type = 'text';
                 $faculty_adm_update_question_items->save();
 
-
                 $adm_question_opt = new AdmQuestionOptAns();
-
                 $adm_question_opt->destroy(Request::get('id'));
-
-
 
             }
             // redirect
@@ -403,8 +379,7 @@ class AdmFacultyController extends \BaseController {
         }
     }
 
-
-
+    //ok
     public function viewAssignQuestionPaper($q_id)
     {
         $assign_qp = AdmQuestion::latest('id')->first();
@@ -417,6 +392,7 @@ class AdmFacultyController extends \BaseController {
 
     }
 
+    //ok
     /**
      * @return mixed
      */
@@ -443,7 +419,7 @@ class AdmFacultyController extends \BaseController {
         }
     }
 
-//->
+//ok
     /**
      * @param $adm_question_id
      * @return mixed
@@ -466,7 +442,7 @@ class AdmFacultyController extends \BaseController {
 
     }
 
-
+    //ok
     protected function totalMarks($adm_question_id){
         $result = DB::table('adm_question_evaluation')
             ->select(DB::raw('SUM(marks) as evaluated_total_marks'))
@@ -481,6 +457,7 @@ class AdmFacultyController extends \BaseController {
      * @param bool $no_q : number of question
      * @return mixed
      */
+    //ok
     public function evaluateQuestionsItems($a_q_id , $no_q = false )
     {
             $all = AdmQuestionEvaluation::where('adm_question_id', $a_q_id)->get();
@@ -514,6 +491,7 @@ class AdmFacultyController extends \BaseController {
                 compact('data_question', 'evaluate_qp', 'a_q_id', 'evaluation_id','evaluation_marks', 'eva_q_ans', 'b', 'total_question', 'no_q', 'q_item_info', 'total_marks'));
     }
 
+    //ok
     public function storeEvaluatedQuestionItems()
     {
         $data = Input::all();
@@ -530,20 +508,16 @@ class AdmFacultyController extends \BaseController {
             return Redirect::back()
                 ->with('error', 'invalid');
         }
-
-
-
-
     }
 
+    //ok
     public function reEvaluateQuestionsitems()
     {
         return View::make('admission::faculty.question_papers.re-evaluate-questions-items',
             compact(''));
     }
 
-
-//ok
+    //ok
     public function qpBatchDelete()
     {
         try {
@@ -555,6 +529,7 @@ class AdmFacultyController extends \BaseController {
         }
     }
 
+    //ok
     public function evaluationBatchDelete()
     {
         try {
@@ -565,6 +540,55 @@ class AdmFacultyController extends \BaseController {
             return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
         }
     }
+
+    public function indexCourse()
+    {
+        $index_course = CourseConduct::latest('id')->with('relCourse','relCourse.relCourseType','relYear','relSemester','relDegree','relDegree.relDepartment')->get();
+
+        return View::make('admission::faculty.course.index',compact('index_course'));
+
+    }
+
+
+    public function assignCourse($id)
+    {
+        $assign_course = CourseConduct::latest('id')->first();
+
+        $assign_course_commnt = CourseConductComments::where('course_conduct_id', $id)->get();
+
+
+        return View::make('admission::faculty.course.assign_course',
+            compact('assign_course','assign_course_commnt','id'));
+
+    }
+
+    //ok
+    /**
+     * @return mixed
+     */
+    public function commentAssignCourse()
+    {
+        $info = Input::all();
+//        print_r(Input::get('adm_question_id'));exit;
+        $model = new CourseConductComments();
+
+        $model->course_conduct_id = $info['course_conduct_id'];
+        $model->comments = $info['comments'];
+        $model->commented_to = $info['commented_to'];
+        $model->commented_by = Auth::user()->get()->id;
+
+//        $user_name = User::FullName($model->commented_to);
+        if($model->save()){
+            Session::flash('message', 'Comments added');
+            return Redirect::back();
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()->with('errors', 'invalid');
+        }
+    }
+
+
 
 
 }
