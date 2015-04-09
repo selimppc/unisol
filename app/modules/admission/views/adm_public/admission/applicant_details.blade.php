@@ -82,7 +82,6 @@
                   <div class="row">
                       <div class="col-lg-4">
                               @if(isset($applicant_personal_info))
-                                  {{--{{ HTML::image('applicant_images/profile/'.$applicant_personal_info->profile_image) }}--}}
                                   <td class="etsb-image-doc">{{ $applicant_personal_info->profile_image != null ? HTML::image('applicant_images/profile/'.$applicant_personal_info->profile_image) :  HTML::image('/img/profile.jpg') }}</td>
                               @endif
                       </div>
@@ -278,7 +277,7 @@
                                   </tr>
                                   <tr>
                                       <th class="col-lg-6">Signature</th>
-                                      <td class="etsb-image-doc">{{ HTML::image('/applicant_images/app_meta/'.$applicant_meta_records->signature) }}</td>
+                                      <td class="etsb-image-doc">{{ $applicant_meta_records->signature != null ? HTML::image('/applicant_images/app_meta/'.$applicant_meta_records->signature) :'Signature do not added yet.' }}</td>
                                   </tr>
                           @else
                               {{"No Biographical Information found !"}}
