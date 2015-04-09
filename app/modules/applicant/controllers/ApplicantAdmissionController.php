@@ -75,6 +75,7 @@ class ApplicantAdmissionController extends \BaseController {
 
         //Save Procedure
         $adm_question_items_id = Input::get('adm_question_items_id');
+        $question_type = Input::get('question_type');
         if( !empty($adm_question_id) || !empty( $adm_question_items_id ) ){
             DB::beginTransaction();
             try{
@@ -83,44 +84,46 @@ class ApplicantAdmissionController extends \BaseController {
                 $model->adm_question_id = $adm_question_id;
                 $model->adm_question_items_id = Input::get('adm_question_items_id');
                 if($model->save()){
-                    if(Input::get('question_type')=='text'){
+                    if($question_type == 'text'){
                         /*$ans_text = new AdmQuestionAnsText();
                         $ans_text->amd_question_evaluation_id = $model->id;
-                        $ans_text->answer = Input::get('answer');
+                        $ans_text->answer = Input::get('text_answer');
                         $ans_text->save();*/
-                    }elseif(Input::get('question_type')=='radio'){
+                    }elseif($question_type == 'radio'){
                         /*$ans_radio = new AdmQuestionAnsRadio();
                         $ans_radio->amd_question_evaluation_id = $model->id;
-                        $ans_radio->answer = Input::get('answer');
+                        $ans_radio->answer = Input::get('radio_answer');
                         $ans_radio->save();*/
-                    }elseif(Input::get('question_type')=='checkbox'){
-
-                        /*$ids = Input::get('answer');
+                    }elseif($question_type == 'checkbox'){
+                        /*$ids = Input::get('checkbox_answer');
                         for($i=0; $i<count($ids); $i++){
                             $ans_checkbox = new AdmQuestionAnsCheckbox();
                             $ans_checkbox->amd_question_evaluation_id = $model->id;
                             $ans_checkbox->answer = $ids[$i];
                             $ans_checkbox->save();
-
                         }*/
                     }
                 }
+                DB::commit();
+                Session::flash('success', "Saved Successfully !");
             }
             catch ( Exception $e ){
                 //If there are any exceptions, rollback the transaction
                 DB::rollback();
+                Session::flash('danger', "Invalid Request !");
             }
-            DB::commit();
         }
-
         // redirect or render to method / view
         if($finish != 9){
+            Session::flash('success', "Saved Successfully !");
             return View::make('applicant::admission_test.exam_question_item', compact(
                 'data', 'total_question_item' , 'q_no' , 'question_ans_opt',
                 'adm_question_id', 'batch_admtest_subject_id'
             ));
         }else{
-            return Redirect::to('applicant/admission-test-subject/'.$batch_admtest_subject_id);
+            Session::flash('success', "Saved Successfully !");
+            return Redirect::to('applicant/admission-test');
+            //return Redirect::to('applicant/admission-test-subject/'.$batch_id);
         }
 
     }
