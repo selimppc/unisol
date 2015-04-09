@@ -108,9 +108,7 @@ class UserSignupController extends \BaseController {
             $user->verified_code = '';
         }
         Session::flash('message','Your account activated successfully. You can signin now.');
-
         return Redirect::to('usersign/login');
-
     }
 
     public function Login()
@@ -119,8 +117,8 @@ class UserSignupController extends \BaseController {
     }
 
 
-    public function UserLogin() {
-
+    public function UserLogin()
+    {
         $credentials = array(
             'email'=> Input::get('email'),
             'password'=>Input::get('password'),
@@ -140,15 +138,16 @@ class UserSignupController extends \BaseController {
                     ->withInput();
             }
         }
+
     }
 
-    public function Dashboard(){
-
+    public function Dashboard()
+    {
         return View::make('admission::signup.dashboard');
     }
 
-    public function usersLogout() {
-
+    public function usersLogout()
+    {
         $model= User::find(Auth::user()->id);
         date_default_timezone_set("Asia/Dacca");
         $time=date('Y-m-d h:i:s', time());;
@@ -159,8 +158,8 @@ class UserSignupController extends \BaseController {
 
     }
 
-   //***************** Forgot password Start(R) *****************************
 
+   //********************** Forgot password Start(R) *****************************
 
     public function userPassword()
     {
@@ -176,8 +175,7 @@ class UserSignupController extends \BaseController {
         if($validator->Fails()){
             Session::flash('message', 'This Email address does not exit');
             return Redirect::back();
-        }
-        else{
+        }else{
             $email_address = Input::get('email');
             $users = DB::table('user')->where('email', $email_address)->first();
             $user_id = $users->id;
@@ -185,9 +183,9 @@ class UserSignupController extends \BaseController {
             $reset_password_token = str_random(30);
             //convert date format
             date_default_timezone_set("Asia/Dacca");
-            $reset_password_expire=date('Y-m-d h:i:s',strtotime("+30 min"));;
-            //echo $reset_password_expire;
-            //exit;
+            $date = date('Y-m-d H:i:s', time());
+            $shortFormat = strtotime($date);
+            $reset_password_expire = date("Y-m-d H:i:s", ($shortFormat+(60*5)));
             $reset_password_time=date('Y-m-d h:i:s', time());;
             $data = new UserResetPassword();
             $data->user_id = $user_id;
@@ -213,9 +211,10 @@ class UserSignupController extends \BaseController {
 
         }
     }
-//forgot password : confirm
-    public function userPasswordResetConfirm($reset_password_token){
 
+  //forgot password : confirm
+    public function userPasswordResetConfirm($reset_password_token)
+    {
         $userReset = UserResetPassword::where('reset_password_token', $reset_password_token)
                 ->exists();
         if($userReset) {
@@ -224,8 +223,6 @@ class UserSignupController extends \BaseController {
                 ->first();
             $reset_expire = $user_reset_info->reset_password_expire;
             $reset_time=$user_reset_info->reset_password_time;
-            //echo $reset_expire;
-            //exit;
             $reset_status = $user_reset_info->status;
            // $now = date('Y-m-d h:i:s', time());
 
@@ -248,17 +245,16 @@ class UserSignupController extends \BaseController {
     // forgot password: get new password action
     public function userPasswordUpdate()
     {
-        $users = Input::get('user_id');
-
+        $users = Input::get('id');
         if ($users) {
-            $data = User::find($users);
-            $data->password = Hash::make(Input::get('password'));
 
-            $data->save();
+            $model = User::findOrFail($users);
+            $model->password = Input::get('password');
+            $model->save();
         }
 
         Session::flash('message','Your have got your password successfully. You may signin now.');
-        return View::make('admission::signup.login');
+        return Redirect::route('user/login');
 
     }
 
@@ -288,7 +284,7 @@ class UserSignupController extends \BaseController {
                 {
                     $message->from('test@edutechsolutionsbd.com', 'Mail Notification');
                     $message->to($email_address);
-                    $message->cc('tanintjt@gmail.com');
+                   // $message->cc('tanintjt@gmail.com');
                     $message->subject('Notification');
 
                 });
