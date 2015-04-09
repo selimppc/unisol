@@ -38,7 +38,6 @@ class AdmFacultyController extends \BaseController {
             Session::flash('danger', 'Deny or Revoked! ');
             return Redirect::back();
         }
-
     }
 
     //ok
@@ -49,21 +48,41 @@ class AdmFacultyController extends \BaseController {
             Session::flash('message', 'Requested Accepted! ');
             return Redirect::back();
         }
-
     }
 
     //ok
-    public function viewAdmTest($id)
+    public function viewAdmTest($batch_id)
     {
-        $view_adm_test = AdmExaminer::find($id);
+        $test1 = AdmExaminer::with('relBatch','relBatch.relDegree','relBatch.relDegree.relDepartment',
+                                   'relBatch.relAdmExaminerComments','relBatch.relYear','relBatch.relSemester',
+                                   'relUser','relUser.relUserProfile')
+                                    ->where('batch_id', $batch_id)->first();
 
-        $dept_name = AdmExaminer::with('relBatch','relBatch.relDegree')->first()->relBatch->relDegree->relDepartment->title;
-
-        $view_adm_test_comments = AdmExaminerComments::find($id);
+        $test2 = AdmExaminerComments::where('batch_id', $batch_id)->get();
 
         return View::make('admission::faculty.admission_test.view_admtest',
-            compact('view_adm_test','dept_name','view_adm_test_comments'));
+            compact('test1','test2'));
+    }
 
+    //ok
+    public function viewAdmTestComment()
+    {
+        $data = Input::all();
+        $model = new AdmExaminerComments();
+        $model->batch_id = $data['batch_id'];
+        $model->comment = $data['comment'];
+        $model->commented_to = $data['commented_to'];
+        $model->commented_by = Auth::user()->get()->id;
+
+        $user_name = User::FullName($model->commented_to);
+        if($model->save()){
+            Session::flash('message', 'Comments added To: '.$user_name);
+            return Redirect::back();
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()->with('errors', 'invalid');
+        }
     }
 
     //ok
@@ -84,8 +103,8 @@ class AdmFacultyController extends \BaseController {
 
         return View::make('admission::faculty.admission_test._search_adm_examiner_index',
             compact('search_index_adm_examiner','year_id','semester_id'));
-
     }
+
     //ok
     public function batchDelete()
     {
@@ -98,15 +117,12 @@ class AdmFacultyController extends \BaseController {
         }
     }
 
-
     //ok
     public function admTestQuestionPaper($year_id, $semester_id, $batch_id )
     {
         $admtest_question_paper = AdmQuestion::latest('id')
             ->where('s_faculty_user_id' ,'=', Auth::user()->get()->id)
             ->get();
-
-        // user id nie ektu jhamela ace.
 
         $degree_id = Batch::where('id' ,'=', $batch_id )
             ->where('semester_id' ,'=', $semester_id)
@@ -128,7 +144,6 @@ class AdmFacultyController extends \BaseController {
 
         return View::make('admission::faculty.question_papers.view_question_paper',
             compact('view_adm_qp'));
-
     }
 
     //ok
@@ -145,9 +160,6 @@ class AdmFacultyController extends \BaseController {
     //ok
     public function addQuestionItems($qid){
         $question_item = AdmQuestion::find($qid);
-
-//        $total_marks = $this->totalMarks($qid);
-
         return View::make('admission::faculty.question_papers._add_question_item_form', compact('total_marks', 'question_item'));
     }
 
@@ -287,11 +299,10 @@ class AdmFacultyController extends \BaseController {
             $faculty_adm_update_question_items->title = Input::get('title');
             $faculty_adm_update_question_items->adm_question_id = Input::get('adm_question_id');
             $faculty_adm_update_question_items->marks = Input::get('marks');
+
             //print_r($faculty_store_question_items);exit;
             if( strtolower(Input::get('mcq')) == 'mcq'){
-
                 if( strtolower(Input::get('r_c')) == 'mcq_single'){
-
                     $faculty_adm_update_question_items->question_type = 'radio';
 
                     if($faculty_adm_update_question_items->save()) {
