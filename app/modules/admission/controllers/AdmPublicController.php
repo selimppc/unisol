@@ -63,7 +63,7 @@ class AdmPublicController extends \BaseController {
             $extension = $imagefile->getClientOriginalExtension();
             $filename = str_random(12) . '.' . $extension;
             $sdoc_file=strtolower($filename);
-            $path = public_path("/applicant_images/profile/" . $sdoc_file);
+            $path = public_path("/applicant_images/app_meta/" . $sdoc_file);
             Image::make($imagefile->getRealPath())->resize(100, 100)->save($path);
             $applicant_personal_info->profile_image =$sdoc_file;
 
@@ -115,7 +115,7 @@ class AdmPublicController extends \BaseController {
                     $extension = $imagefile->getClientOriginalExtension();
                     $filename = str_random(12) . '.' . $extension;
                     $sdoc_file=strtolower($filename);
-                    $path = public_path("/applicant_images/profile/" . $sdoc_file);
+                    $path = public_path("/applicant_images/app_meta/" . $sdoc_file);
                     Image::make($imagefile->getRealPath())->resize(100, 100)->save($path);
                     $applicant_personal_info->profile_image =$sdoc_file;
                 }
