@@ -1,5 +1,4 @@
 {{Form::hidden('adm_question_id', $faculty_editQuestionItems->adm_question_id, ['class'=>'form-control'])}}
-{{--{{Form::hidden('qitemid', $qid->id, ['class'=>'form-control'])}}--}}
 
       <div class='form-group'>
          <Strong> Question Paper : </Strong> {{ $faculty_editQuestionItems->relAdmQuestion->title }}
@@ -65,27 +64,14 @@
                                          @if($faculty_editQuestionItems->question_type == 'radio')
                                               {{ Form::radio('answer[]',$counter, ($op->answer == 1), ['id'=>'single','class'=>'radiocheck']) }}
 
-                                              {{--<a onclick="removalLink" class="remove">Remove (-)</a>--}}
-
                                          @elseif($faculty_editQuestionItems->question_type == 'checkbox')
                                               {{ Form::checkbox('answer[]',$counter, ($op->answer == 1), ['id'=>'multiple','class'=>'radiocheck']) }}
 
-                                              {{--<a onclick="removalLink" class="remove">Remove (-)</a>--}}
                                          @endif
                                   </div>
                               </div>
                               <?php $counter++; ?>
                           @endforeach
-
-                           {{--<div class="col-sm-12">--}}
-                               {{--<div class="col-sm-6">--}}
-
-                                    {{--<div id="fields">--}}
-                                    {{--</div>--}}
-
-                                    {{--<a onclick="createInput()" class="add_button">Add (+)</a>--}}
-                               {{--</div>--}}
-                           {{--</div>--}}
 
                      </div>
                </div>

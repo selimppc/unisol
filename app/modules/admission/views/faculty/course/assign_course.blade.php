@@ -5,8 +5,8 @@
 
 <div style="padding-left: 10px; width: 90%;">
     {{Form::open(array('route'=>'admission.faculty.course.course-assign','method' => 'POST')) }}
-    {{Form::hidden('course_conduct_id',$id )}}
-    {{Form::hidden('commented_to', $assign_course->faculty_user_id)}}
+        {{Form::hidden('course_conduct_id',$id )}}
+        {{Form::hidden('commented_to', $assign_course->faculty_user_id)}}
         <div  style="padding-left: 8%">
            <strong>Course : </strong>{{ isset($assign_course) ? $assign_course->relCourse->title : 'No Course Available!' }}
             <p>
@@ -31,7 +31,6 @@
                         <td>Status :</td>
                         <td>{{ $assign_course->status }}</td>
                     </tr>
-
                 </table>
                 <small>Comments as below: </small>
 
@@ -42,17 +41,16 @@
                       &nbsp; &nbsp; &nbsp; {{ $do_comments->comments }}
                     </p>
                 @endforeach
-
                 <div class="form-group">
                       {{ Form::textarea('comments', Null, ['class' => 'form-control', 'placeholder'=>'Your Comments Here', 'style'=>'height: 100px;']) }}
                 </div>
             </p>
         </div>
-    {{ Form::submit('Submit Comment', array('class'=>'pull-right btn-sm btn-info')) }}
-    <a href="" class="pull-right btn-sm bg-navy" style="margin-right: 5px">Close</a>
-    &nbsp;
-    </br>
-    &nbsp;
+        {{ Form::submit('Submit Comment', array('class'=>'pull-right btn-sm btn-info')) }}
+        <a href="" class="pull-right btn-sm bg-navy" style="margin-right: 5px">Close</a>
+        &nbsp;
+        </br>
+        &nbsp;
     {{ Form::close() }}
 </div>
 

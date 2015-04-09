@@ -12,7 +12,6 @@
 
             <p>
                 <table class="table table-striped  table-bordered">
-
                     <tr>
                         <td>Degree :</td>
                         <td>{{ $test1->relBatch->relDegree->title }}</td>

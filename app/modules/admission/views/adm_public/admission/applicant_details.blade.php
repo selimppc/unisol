@@ -74,15 +74,16 @@
         <div class="box box-info">
              <div class="box-header">
                 <h3 class="box-title">Personal Information</h3>
+
                 <div class="pull-right box-tools">
                      <button class="btn btn-info btn-xs" data-widget="remove" data-toggle="tooltip" ><i class="fa fa-times"></i></button>
                 </div><!-- /. tools -->
+
              </div>
              <div class="box-body">
                   <div class="row">
                       <div class="col-lg-4">
                               @if(isset($applicant_personal_info))
-                                  {{--{{ HTML::image('applicant_images/profile/'.$applicant_personal_info->profile_image) }}--}}
                                   <td class="etsb-image-doc">{{ $applicant_personal_info->profile_image != null ? HTML::image('applicant_images/profile/'.$applicant_personal_info->profile_image) :  HTML::image('/img/profile.jpg') }}</td>
                               @endif
                       </div>
@@ -141,13 +142,19 @@
         <div class="box box-info">
             <div class="box-header">
                 <h3 class="box-title">Academic Information</h3>
+
                 <div class="pull-right box-tools">
                         <button class="btn btn-info btn-xs" data-widget="remove" data-toggle="tooltip" ><i class="fa fa-times"></i></button>
                 </div><!-- /. tools -->
+
             </div>
+
             <div class="box-body">
                <div class="row">
                   <div class="col-lg-12">
+                  <p>
+                     <em><span class="text-danger">*</span><strong style="color:darkmagenta"> Please add at least two academic records.</strong></em>
+                  </p>
                       <table class="table  table-bordered">
                            <thead>
                               <tr>
@@ -278,7 +285,7 @@
                                   </tr>
                                   <tr>
                                       <th class="col-lg-6">Signature</th>
-                                      <td class="etsb-image-doc">{{ HTML::image('/applicant_images/app_meta/'.$applicant_meta_records->signature) }}</td>
+                                      <td class="etsb-image-doc">{{ $applicant_meta_records->signature != null ? HTML::image('/applicant_images/app_meta/'.$applicant_meta_records->signature) :'Signature do not added yet.' }}</td>
                                   </tr>
                           @else
                               {{"No Biographical Information found !"}}
