@@ -6,8 +6,6 @@
 
 <div style="padding-left: 8%; width: 90%;">
     <div class="modal-body">
-
-
             <div class="row">
                 <table class="table table-striped  table-bordered">
                     <tr>
@@ -42,7 +40,6 @@
             </div>
 
         <a href="" class="pull-right btn btn-info" span class="glyphicon-refresh">Close</a>
-
         &nbsp;
         </br>
         &nbsp;

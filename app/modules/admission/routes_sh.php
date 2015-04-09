@@ -24,8 +24,6 @@ Route::any('admission/faculty/course/course-assign/{id}',[
 ]);
 //ok
 
-
-
 Route::any('admission/faculty/admission-test',[
     'as' => 'admission.faculty.admission-test',
     'uses' => 'AdmFacultyController@indexAdmExaminer'
@@ -60,9 +58,7 @@ Route::any('admission/faculty/admission-test/view-admtest-comment',[
     'as' => 'admission.faculty.admission-test.view-admtest-comment',
     'uses' => 'AdmFacultyController@viewAdmTestComment'
 ]);
-
-
-
+//ok
 
 Route::any('admission/faculty/admission-test/qpBatchDelete', [
     'as' => 'admission.faculty.admission-test.qpBatchDelete',
@@ -130,7 +126,6 @@ Route::any('admission/faculty/question-papers/view-assign-to-question-paper/{q_i
 ]);
 //ok
 
-
 Route::any('admission/faculty/question-papers/adm-test-qp-assign/{id}',[
     'as' => 'admission.faculty.question-papers.adm-test-qp-assign',
     'uses' => 'AdmFacultyController@commentAssignQuestionPaper'
@@ -141,13 +136,13 @@ Route::any('admission/faculty/question-papers/evaluate-questions/{id}',[
     'as' => 'admission.faculty.question-papers.evaluate-questions',
     'uses' => 'AdmFacultyController@evaluateQuestions'
 ]);
-//on process
+//ok
 
 Route::any('admission/faculty/question-papers/evaluate-questions-items/{adm_question_id}/{no_q}',[
     'as' => 'admission.faculty.question-papers.evaluate-questions-items',
     'uses' => 'AdmFacultyController@evaluateQuestionsitems'
 ]);
-//on process
+//ok
 
 Route::any('admission/faculty/question-papers/store-evaluated-questions',[
     'as' => 'admission.faculty.question-papers.store-evaluated-questions',
@@ -160,6 +155,3 @@ Route::any('admission/faculty/question-papers/re-evaluate-questions-items/{id}',
     'uses' => 'AdmFacultyController@reEvaluateQuestionsitems'
 ]);
 //ok
-
-
-

@@ -6,7 +6,6 @@
 <div style="margin-left: 5%; padding: 10px; width: 90%;">
      {{ Form::open(array('route'=>'examination.faculty.viewQuestionItems','method' => '')) }}
          <div class="span9 well" style="font-size: large; margin-left: 10px">
-
                  <strong> Question Paper:</strong> &nbsp &nbsp {{ $faculty_ViewQuestionItems->relAdmQuestion->title }}
                  </br>
                  <strong> Title:</strong> &nbsp &nbsp {{ $faculty_ViewQuestionItems->title }}
