@@ -31,9 +31,6 @@
             </ul>
             <div class="tab-content">
                 <div class="tab-pane active" id="tab_1">
-                    {{--<button class="pull-right btn btn-success btn-sm"  data-toggle="modal" data-target="#addExtraCurricular" >--}}
-                        {{--Blank--}}
-                    {{--</button><br>--}}
 
                     <br>
                      <div class="col-sm-12">
@@ -62,9 +59,7 @@
                               </div>
                         </div>
                      </div>
-
                     <br>
-
 
                     <div class="box-body table-responsive">
                           {{ Form::open(array('url' => 'admission/faculty/admission-test/evaluationBatchDelete')) }}

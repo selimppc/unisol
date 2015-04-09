@@ -63,13 +63,7 @@
                                     @if($q_title->question_type =='text')
                                         <tr>
                                             <td>
-                                                <ol>
-                                                @foreach($q_title->relAdmQuestionOptAns as $opt_ans)
-                                                    <li><span>
-                                                        {{Form::textarea('answer', array('class'=>'form-control')  )}}
-                                                    </span></li>
-                                                @endforeach
-                                                </ol>
+                                            {{ Form::textarea('text_answer', null, array('class'=>'form-control', 'style'=>'height: 100px;', 'placeholder'=>'write down your answer here..') ) }}
                                             </td>
                                         </tr>
                                     @elseif($q_title->question_type =='radio')
@@ -79,7 +73,7 @@
                                                 @foreach($q_title->relAdmQuestionOptAns as $opt_ans)
                                                     <li><span>
                                                         {{$opt_ans->title}} &nbsp;
-                                                        {{Form::radio('answer', $opt_ans->id,  null, array('class'=>'radio-inline')  )}}
+                                                        {{Form::radio('radio_answer', $opt_ans->id,  null, array('class'=>'radio-inline')  )}}
                                                     </span></li>
                                                 @endforeach
                                                 </ol>
@@ -92,7 +86,7 @@
                                                 @foreach($q_title->relAdmQuestionOptAns as $opt_ans)
                                                     <li><span>
                                                         {{$opt_ans->title}} &nbsp;
-                                                        {{Form::checkbox('answer', $opt_ans->id, null, array('class'=>'checkbox-inline')  )}}
+                                                        {{Form::checkbox('checkbox_answer[]', $opt_ans->id, null, array('class'=>'checkbox-inline')  )}}
                                                     </span></li>
                                                 @endforeach
                                                 </ol>

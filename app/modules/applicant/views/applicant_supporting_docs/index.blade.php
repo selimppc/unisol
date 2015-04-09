@@ -11,7 +11,6 @@
         }else{
             $sdoc_id = 'null';
         }
-
         ?>
 
         <!-- START CUSTOM TABS -->

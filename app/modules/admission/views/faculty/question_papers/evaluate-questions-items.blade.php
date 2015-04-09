@@ -76,10 +76,8 @@
                                     @else
 
                                             <a href="{{ URL::route('admission.faculty.admission-test') }}" class="btn bg-purple btn-xs">Finish</a>
-{{--                                        <a href="{{ URL::route('admission.faculty.question-papers.evaluate-questions',['ev_id'=>$evaluate_qp->id]) }}" class="btn bg-default btn-xs " >Finish</a>--}}
+
                                     @endif
-
-
 
                               {{ Form::close()  }}
                         </div><!-- /.box -->

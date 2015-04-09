@@ -12,9 +12,7 @@ class CourseTable extends Seeder{
             'EEE-201'=> 3,
             'EEE-202'=> 4,
             'MATH-303'=> 5,
-            'MATH-304'=> 6,
-            'BBA-409'=> 7,
-            'BBA-410'=> 8
+            'BBA-410'=> 6
         );
 
         foreach($course as $key => $value){
@@ -23,6 +21,7 @@ class CourseTable extends Seeder{
                 'description' => $key,
                 'course_code' => $key,
                 'subject_id' => $value,
+                'course_type_id' => $value,
                 'evaluation_total_marks' => 100,
                 'credit' => 3,
                 'hours_per_credit' => 20,

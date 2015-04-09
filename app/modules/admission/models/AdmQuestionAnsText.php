@@ -13,8 +13,8 @@ class AdmQuestionAnsText extends Eloquent{
     ];
     private $errors;
     private $rules = [
-        'adm_question_evaluation_id' => 'required|integer',
-        'answer' => 'required',
+        'adm_question_evaluation_id' => 'integer',
+        //'answer' => 'required',
     ];
 
     public function validate($data)
