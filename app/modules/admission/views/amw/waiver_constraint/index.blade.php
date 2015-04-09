@@ -73,7 +73,7 @@
                                                   <td>{{ $value->start_date }}</td>
                                                   <td>{{ $value->end_date }}</td>
                                                   <td>
-                                                       <a class="btn btn-xs btn-default" href="{{ URL::route('admission.amw.waiver-time-constraint.edit', $value->id) }}" data-toggle="modal" data-target="#waiverConstModal" style="font-size: 12px;color: darkmagenta"><span class="fa fa-eye"></span></a>
+                                                       <a class="btn btn-xs btn-default" href="{{ URL::route('admission.amw.waiver-time-constraint.edit', $value->id) }}" data-toggle="modal" data-target="#waiverConstModal" style="font-size: 12px;color: darkmagenta"><span class="fa fa-edit"></span></a>
                                                        <a data-href="{{ URL::to('admission/amw/constraint-waiver/delete/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" style="font-size: 12px;color: lightcoral"><span class="fa  fa-trash-o"></span></a>
                                                   </td>
                                              </tr>
@@ -122,7 +122,7 @@
                                                  <td>{{ $value->level_of_education }}</td>
                                                  <td>{{ $value->gpa }}</td>
                                                  <td>
-                                                      <a class="btn btn-xs btn-default" href="{{ URL::route('admission.amw.waiver-gpa-constraint.edit', $value->id) }}" data-toggle="modal" data-target="#waiverConstModal" style="font-size: 12px;color: darkmagenta"><span class="fa fa-eye"></span></a>
+                                                      <a class="btn btn-xs btn-default" href="{{ URL::route('admission.amw.waiver-gpa-constraint.edit', $value->id) }}" data-toggle="modal" data-target="#waiverConstModal" style="font-size: 12px;color: darkmagenta"><span class="fa fa-edit"></span></a>
                                                       <a data-href="{{ URL::to('admission/amw/constraint-waiver/delete/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href=""style="font-size: 12px;color: lightcoral"><span class="fa  fa-trash-o"></span></a>
                                                  </td>
                                              </tr>

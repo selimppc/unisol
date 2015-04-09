@@ -8,7 +8,8 @@
 {{-----------------------------------------Help Text -------------------------------------------------------------------------------------}}
 <div class="row">
     <div class="col-md-12">
-    <a class="pull-right btn btn-xs btn-success" href="{{ URL::route('admission.amw.batch' )}}"> <i class="fa fa-arrow-circle-left"></i> Go Back</a>
+    <a class="pull-right btn btn-xs btn-success" href="{{ URL::route('admission.amw.batch',['degree_id'=> $batchApt->degree_id])}}"> <i class="fa fa-arrow-circle-left"></i>Back To Batch Management</a>
+
 
                 <h3>Batch Applicant</h3>
 

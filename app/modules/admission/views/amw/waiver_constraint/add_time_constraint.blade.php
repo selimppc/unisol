@@ -12,12 +12,12 @@
           {{Form::hidden('is_time_dependent', 1)}}
 
           {{ Form::label('start_date', 'Start Time') }}
-          {{ Form::text('start_date', Input::old('start_date'),['class'=>'form-control date_picker']) }}
+          {{ Form::text('start_date', Input::old('start_date'),['class'=>'form-control date_picker','required']) }}
 
           <p>&nbsp;</p>
 
           {{ Form::label('end_date', 'End Time') }}
-          {{ Form::text('end_date', Input::old('end_date'),['class'=>'form-control date_picker'])  }}
+          {{ Form::text('end_date', Input::old('end_date'),['class'=>'form-control date_picker','required'])  }}
 
            <p>&nbsp;</p>
 
