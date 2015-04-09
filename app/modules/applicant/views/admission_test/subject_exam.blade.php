@@ -14,17 +14,17 @@
                 <ul class="nav nav-tabs">
                     &nbsp;
                 </ul>
-                <div class="tab-content">
+                {{--<div class="tab-content">
                     <div class="tab-pane active" id="tab_1">
                         <div class="box-body table-responsive ">
                             <table class="table table-striped  table-bordered">
                                 <tr>
                                     <th width="50%">Subject:</th>
-                                    <td width="50%">{{$data->relAdmtestSubject->title}}</td>
+                                    <td width="50%">--}}{{--{{$data->relAdmtestSubject->title}}--}}{{--</td>
                                 </tr>
                                 <tr>
                                     <th>Time (Left) :</th>
-                                    <td>{{$data->duration}} </td>
+                                    <td>--}}{{--{{$data->duration}}--}}{{-- </td>
                                 </tr>
                                 <tr>
                                     <th>Question Sequence:</th>
@@ -34,7 +34,7 @@
                             </table>
                         </div>
                     </div>
-                </div>
+                </div>--}}
             </div>
 
             <div class="nav-tabs-custom">
