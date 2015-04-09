@@ -23,7 +23,7 @@
             </div>
             <div>
                 <button type="submit" class="btn">Sign me in</button>
-                <a href="#">Forgot Password ?</a>
+                <a href="{{URL::to('password_reset')}}">Forgot Password ?</a>
 
             </div>
         {{ Form::close() }}
