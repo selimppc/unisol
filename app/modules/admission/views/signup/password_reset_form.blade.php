@@ -1,9 +1,7 @@
-@extends('layouts.master')
-
+@extends('layouts.layout')
 @section('sidebar')
-    @include('admission::_sidebar')
+    {{--@include('layouts._sidebar_applicant')--}}
 @stop
-
 @section('content')
 
 @if(Session::has('message'))
@@ -15,7 +13,7 @@
 {{ Form::open(array('url'=>'users/user_password_update', 'class'=>'form-signin')) }}
 <h3 class="form-signin-heading">Change Your Password</h3>
         <br>
-        {{ Form::hidden('user_id', $user_id, array('class'=>'form-control')) }}
+        {{ Form::hidden('id', $user_id, array('class'=>'form-control')) }}
 
         {{ Form::label('password','Password') }}
         {{ Form::password('password',  array('class'=>'form-control')) }}

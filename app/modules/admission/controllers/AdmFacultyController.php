@@ -32,6 +32,23 @@ class AdmFacultyController extends \BaseController {
     }
 
     /**
+     * @param $batch_id
+     * @return mixed
+     */
+    public function viewAdmTest($id,$batch_id)
+    {
+        $view_examiner = AdmExaminer::with('relBatch','relBatch.relDegree','relBatch.relDegree.relDepartment','relBatch.relYear',
+                                   'relBatch.relAdmExaminerComments','relBatch.relSemester','relUser','relUser.relUserProfile')
+                                   ->where('id', $id)->first();
+
+        $view_examiner_comment = AdmExaminerComments::where('batch_id', $batch_id)->get();
+
+        return View::make('admission::faculty.admission_test.view_admtest',
+            compact('view_examiner','view_examiner_comment','id'));
+    }
+
+
+    /**
      * @param $id = AdmExaminer's id
      * @return mixed
      */
@@ -57,22 +74,7 @@ class AdmFacultyController extends \BaseController {
         }
     }
 
-    /**
-     * @param $batch_id
-     * @return mixed
-     */
-    public function viewAdmTest($batch_id)
-    {
-        $test1 = AdmExaminer::with('relBatch','relBatch.relDegree','relBatch.relDegree.relDepartment',
-                                   'relBatch.relAdmExaminerComments','relBatch.relYear','relBatch.relSemester',
-                                   'relUser','relUser.relUserProfile')
-                                    ->where('batch_id', $batch_id)->first();
 
-        $test2 = AdmExaminerComments::where('batch_id', $batch_id)->get();
-
-        return View::make('admission::faculty.admission_test.view_admtest',
-            compact('test1','test2'));
-    }
 
     /**
      * @return mixed

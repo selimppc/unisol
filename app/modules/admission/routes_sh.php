@@ -48,7 +48,7 @@ Route::any('admission/faculty/admission-test/search-adm-examiner-index',[
 ]);
 //ok
 
-Route::any('admission/faculty/admission-test/view-admtest/{batch_id}',[
+Route::any('admission/faculty/admission-test/view-admtest/{id}/{batch_id}',[
     'as' => 'admission.faculty.admission-test.view-admtest',
     'uses' => 'AdmFacultyController@viewAdmTest'
 ]);
@@ -155,3 +155,4 @@ Route::any('admission/faculty/question-papers/re-evaluate-questions-items/{id}',
     'uses' => 'AdmFacultyController@reEvaluateQuestionsitems'
 ]);
 //ok
+

@@ -69,16 +69,15 @@
        <div>{{ Form::label('religion', ' Religion') }}<span class="text-danger">*</span></div>
        <div>{{ Form::text('religion', Input::old('religion'),['class'=>'form-control ']) }}</div>
 
+       <br>
        <div>
-
-           @if(isset($applicant_meta_records->signature))
+            @if(isset($applicant_meta_records->signature))
               {{ Form::label('signature', 'Signature') }}
               {{ HTML::image('/applicant_images/app_meta/' . $applicant_meta_records->signature) }}
            @endif
               <p>&nbsp;</p>
               {{ Form::label('profile_image', 'Select Signature (As Image Format) :') }}<span class="text-danger">*</span>
               {{ Form::file('signature',array('multiple'=>true)) }}
-
        </div>
        <br>
 

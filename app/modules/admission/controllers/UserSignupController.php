@@ -61,7 +61,7 @@ class UserSignupController extends \BaseController {
                     {
                         $message->from('test@edutechsolutionsbd.com', 'Mail Notification');
                         $message->to($email);
-                        $message->cc('tanintjt@gmail.com');
+                       // $message->cc('tanintjt@gmail.com');
                         $message->subject('Notification');
                     });
 
@@ -94,7 +94,6 @@ class UserSignupController extends \BaseController {
         {
             $message->from('test@edutechsolutionsbd.com', 'Mail Notification');
             $message->to($emailList);
-            $message->cc('tanintjt@gmail.com');
             $message->subject('Notification');
         });
     }
@@ -109,9 +108,7 @@ class UserSignupController extends \BaseController {
             $user->verified_code = '';
         }
         Session::flash('message','Your account activated successfully. You can signin now.');
-
         return Redirect::to('usersign/login');
-
     }
 
     public function Login()
@@ -120,8 +117,8 @@ class UserSignupController extends \BaseController {
     }
 
 
-    public function UserLogin() {
-
+    public function UserLogin()
+    {
         $credentials = array(
             'email'=> Input::get('email'),
             'password'=>Input::get('password'),
@@ -141,70 +138,61 @@ class UserSignupController extends \BaseController {
                     ->withInput();
             }
         }
+
     }
 
-    public function Dashboard(){
-
+    public function Dashboard()
+    {
         return View::make('admission::signup.dashboard');
     }
 
-    public function usersLogout() {
-
+    public function usersLogout()
+    {
         $model= User::find(Auth::user()->id);
-
         date_default_timezone_set("Asia/Dacca");
         $time=date('Y-m-d h:i:s', time());;
         $model->last_visit = $time;
         $model->save();
         Auth::logout();
-
         return Redirect::to('usersign/login')->with('message', 'Your are now logged out!');
 
     }
 
-   //******* Starts forgot password  *******************************************************
 
-    // method for forgot_password view that contains email_address
-    public function userPassword(){
+   //********************** Forgot password Start(R) *****************************
 
+    public function userPassword()
+    {
        return View::make('admission::signup.password_reset');
     }
 
-    //forgot password: method for sending mail to user
-    public function userPasswordResetMail(){
-
+    public function userPasswordResetMail()
+    {
         $rules = array(
             'email' => 'Required|email|exists:user',
         );
         $validator = Validator::make(Input::all(), $rules);
         if($validator->Fails()){
             Session::flash('message', 'This Email address does not exit');
-
             return Redirect::back();
-        }
-        else{
-            $email_address = Input::get('email_address');
+        }else{
+            $email_address = Input::get('email');
             $users = DB::table('user')->where('email', $email_address)->first();
             $user_id = $users->id;
-
             //random number with 30 character
             $reset_password_token = str_random(30);
-
             //convert date format
             date_default_timezone_set("Asia/Dacca");
-            $reset_password_expire=date('Y-m-d h:i:s',strtotime("+30 min"));;
-            //echo $reset_password_expire;
-            //exit;
+            $date = date('Y-m-d H:i:s', time());
+            $shortFormat = strtotime($date);
+            $reset_password_expire = date("Y-m-d H:i:s", ($shortFormat+(60*5)));
             $reset_password_time=date('Y-m-d h:i:s', time());;
-
             $data = new UserResetPassword();
-
             $data->user_id = $user_id;
             $data->reset_password_token = $reset_password_token;
             $data->reset_password_expire = $reset_password_expire;
             $data->reset_password_time = $reset_password_time;
             $data->status = "2"; // 2 == reset requested
-
             if($data->save())
             {
 
@@ -212,18 +200,21 @@ class UserSignupController extends \BaseController {
            {
               $message->from('test@edutechsolutionsbd.com', 'Mail Notification');
               $message->to($email_address);
-              $message->cc('tanintjt@gmail.com');
+             // $message->cc('tanintjt@gmail.com');
               $message->subject('Notification');
 
            });
 
             }
-            return View::make('admission::signup.password_mail_notification');
+            Session::flash('message', 'Please Check Your Email For Further Process.');
+            return View::make('admission::signup.password_reset');
+
         }
     }
-//forgot password : confirm
-    public function userPasswordResetConfirm($reset_password_token){
 
+  //forgot password : confirm
+    public function userPasswordResetConfirm($reset_password_token)
+    {
         $userReset = UserResetPassword::where('reset_password_token', $reset_password_token)
                 ->exists();
         if($userReset) {
@@ -232,8 +223,6 @@ class UserSignupController extends \BaseController {
                 ->first();
             $reset_expire = $user_reset_info->reset_password_expire;
             $reset_time=$user_reset_info->reset_password_time;
-            //echo $reset_expire;
-            //exit;
             $reset_status = $user_reset_info->status;
            // $now = date('Y-m-d h:i:s', time());
 
@@ -256,24 +245,23 @@ class UserSignupController extends \BaseController {
     // forgot password: get new password action
     public function userPasswordUpdate()
     {
-        $users = Input::get('user_id');
-
+        $users = Input::get('id');
         if ($users) {
-            $data = User::find($users);
-            $data->password = Hash::make(Input::get('password'));
 
-            $data->save();
+            $model = User::findOrFail($users);
+            $model->password = Input::get('password');
+            $model->save();
         }
 
         Session::flash('message','Your have got your password successfully. You may signin now.');
-        return View::make('admission::signup.login');
+        return Redirect::route('user/login');
 
     }
-//******* Ends Forgot password ***********************************************//
 
-    // Methods for forgot username
-    public function usernameReset(){
+//*********************Forgot UserName Start(R)***********************************
 
+    public function usernameReset()
+    {
         return View::make('admission::signup.username_reset');
     }
 
@@ -289,27 +277,26 @@ class UserSignupController extends \BaseController {
             return Redirect::back();
 
         }else{
-                $userData = User::where('email', Input::get('email_address'))->first();
+                $userData = User::where('email', Input::get('email'))->first();
                 $username = $userData->username;
-
-                $email_address = Input::get('email_address');
-
+                $email_address = Input::get('email');
                 Mail::send('admission::signup.username_reset_mail', array('link' =>$username),  function($message) use ($email_address)
                 {
                     $message->from('test@edutechsolutionsbd.com', 'Mail Notification');
                     $message->to($email_address);
-                    $message->cc('tanintjt@gmail.com');
+                   // $message->cc('tanintjt@gmail.com');
                     $message->subject('Notification');
 
                 });
         }
-        return View::make('admission::signup.username_mail_notification');
+        Session::flash('message', 'We Have Send Your UserName to Your Email Address.Please Check Your Email.');
+        return View::make('admission::signup.username_reset');
     }
 
    // user password_change view method
     public function userResetPassword(){
 
-        return View::make('admission::reset_password.reset_password_form');
+        return View::make('admission::signup.username_reset');
     }
 
     // user password_change method
