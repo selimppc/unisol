@@ -16,15 +16,13 @@ Route::any('admission/faculty/course/assign/{id}',[
     'as' => 'admission.faculty.course.assign',
     'uses' => 'AdmFacultyController@assignCourse'
 ]);
-//-->
+//ok
 
 Route::any('admission/faculty/course/course-assign/{id}',[
     'as' => 'admission.faculty.course.course-assign',
     'uses' => 'AdmFacultyController@commentAssignCourse'
 ]);
-//-->
-
-
+//ok
 
 
 
@@ -52,11 +50,19 @@ Route::any('admission/faculty/admission-test/search-adm-examiner-index',[
 ]);
 //ok
 
-Route::any('admission/faculty/admission-test/view-admtest/{id}',[
+Route::any('admission/faculty/admission-test/view-admtest/{batch_id}',[
     'as' => 'admission.faculty.admission-test.view-admtest',
     'uses' => 'AdmFacultyController@viewAdmTest'
 ]);
 //ok
+
+Route::any('admission/faculty/admission-test/view-admtest-comment',[
+    'as' => 'admission.faculty.admission-test.view-admtest-comment',
+    'uses' => 'AdmFacultyController@viewAdmTestComment'
+]);
+
+
+
 
 Route::any('admission/faculty/admission-test/qpBatchDelete', [
     'as' => 'admission.faculty.admission-test.qpBatchDelete',
