@@ -1,10 +1,8 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: User
- * Date: 3/9/2015
- * Time: 11:42 AM
- */
+use Illuminate\Auth\UserTrait;
+use Illuminate\Auth\UserInterface;
+use Illuminate\Auth\Reminders\RemindableTrait;
+use Illuminate\Auth\Reminders\RemindableInterface;
 
 class Country  extends Eloquent{
     protected $table = 'country';
