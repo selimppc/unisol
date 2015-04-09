@@ -74,9 +74,11 @@
         <div class="box box-info">
              <div class="box-header">
                 <h3 class="box-title">Personal Information</h3>
+
                 <div class="pull-right box-tools">
                      <button class="btn btn-info btn-xs" data-widget="remove" data-toggle="tooltip" ><i class="fa fa-times"></i></button>
                 </div><!-- /. tools -->
+
              </div>
              <div class="box-body">
                   <div class="row">
@@ -140,13 +142,19 @@
         <div class="box box-info">
             <div class="box-header">
                 <h3 class="box-title">Academic Information</h3>
+
                 <div class="pull-right box-tools">
                         <button class="btn btn-info btn-xs" data-widget="remove" data-toggle="tooltip" ><i class="fa fa-times"></i></button>
                 </div><!-- /. tools -->
+
             </div>
+
             <div class="box-body">
                <div class="row">
                   <div class="col-lg-12">
+                  <p>
+                     <em><span class="text-danger">*</span><strong style="color:darkmagenta"> Please add at least two academic records.</strong></em>
+                  </p>
                       <table class="table  table-bordered">
                            <thead>
                               <tr>
