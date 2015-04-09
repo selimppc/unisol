@@ -1,9 +1,7 @@
 @extends('layouts.master')
-
 @section('sidebar')
-    @include('admission::_sidebar')
+    {{--@include('admission::_sidebar')--}}
 @stop
-
 @section('content')
 
 

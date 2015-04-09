@@ -12,7 +12,6 @@ class ApplicantController extends \BaseController
 
     public function applicant_signup_data_save()
     {
-        // TODO : Need to add captcha.Need to save reg_date,last_visit,ip_address
         $token = csrf_token();
         $rules = array(
             'first_name' => 'required|min:2',
@@ -93,8 +92,8 @@ class ApplicantController extends \BaseController
             if (Hash::check($old_password, $user_password))
             {
                 $rules = array(
-                    //'password' => 'regex:((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})|required',
-                   // 'confirm_password' => 'Required|same:password',
+                    'password' => 'regex:((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})|required',
+                    'confirm_password' => 'Required|same:password',
                 );
                 $validator = Validator::make(Input::all(), $rules);
                 if ($validator->passes()) {
@@ -112,7 +111,14 @@ class ApplicantController extends \BaseController
         }
     }
 
-//Todo: need to check change password code
+
+//*************Applicant Forgot Password and forgot Username Start(R)*********************
+
+
+
+
+
+
 
 //**********************Applicant's User Account Info Start(R)****************************
 
