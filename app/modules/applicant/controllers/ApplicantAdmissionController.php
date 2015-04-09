@@ -84,11 +84,25 @@ class ApplicantAdmissionController extends \BaseController {
                 $model->adm_question_items_id = Input::get('adm_question_items_id');
                 if($model->save()){
                     if(Input::get('question_type')=='text'){
-                        $ans_text = new AdmQuestionAnsText();
+                        /*$ans_text = new AdmQuestionAnsText();
+                        $ans_text->amd_question_evaluation_id = $model->id;
+                        $ans_text->answer = Input::get('answer');
+                        $ans_text->save();*/
                     }elseif(Input::get('question_type')=='radio'){
-                        $ans_radio = new AdmQuestionAnsRadio();
+                        /*$ans_radio = new AdmQuestionAnsRadio();
+                        $ans_radio->amd_question_evaluation_id = $model->id;
+                        $ans_radio->answer = Input::get('answer');
+                        $ans_radio->save();*/
                     }elseif(Input::get('question_type')=='checkbox'){
-                        $ans_checkbox = new AdmQuestionAnsCheckbox();
+
+                        /*$ids = Input::get('answer');
+                        for($i=0; $i<count($ids); $i++){
+                            $ans_checkbox = new AdmQuestionAnsCheckbox();
+                            $ans_checkbox->amd_question_evaluation_id = $model->id;
+                            $ans_checkbox->answer = $ids[$i];
+                            $ans_checkbox->save();
+
+                        }*/
                     }
                 }
             }
