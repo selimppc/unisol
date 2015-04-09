@@ -47,4 +47,3 @@
     &nbsp;
     {{ Form::close() }}
 </div>
-

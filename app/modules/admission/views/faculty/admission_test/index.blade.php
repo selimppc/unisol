@@ -54,34 +54,19 @@
                                     <td><input type="checkbox" name="id[]" class="myCheckbox" value="{{ $index_adm_examiner_list['id'] }}"></td>
 
                                      <td>{{ HTML::linkAction('AdmFacultyController@viewAdmTest',$index_adm_examiner_list->relBatch->relDegree->relDegreeProgram->code.''.$index_adm_examiner_list->relBatch->relDegree->relDegreeGroup->code ,['batch_id'=>$index_adm_examiner_list->batch_id], ['data-toggle'=>"modal", 'data-target'=>"#modal"]) }}</td>
-
                                      <td>{{ $index_adm_examiner_list->relBatch->relDegree->relDepartment->title }}</td>
-
                                      <td>{{ $index_adm_examiner_list->relBatch->relYear->title }}</td>
-
                                      <td>{{ $index_adm_examiner_list->relBatch->relSemester->title }}</td>
-
                                      <td>{{ $index_adm_examiner_list->relBatch->relDegree->total_credit }}</td>
-
                                      <td>{{ $index_adm_examiner_list->status }}</td>
-
                                      <td>
                                          @if($index_adm_examiner_list->status == 'Requested' )
-
                                            <a href="#" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#confirm_deny">Deny</a>
-                                            <a href="#" class="btn btn-success btn-xs" data-toggle="modal" data-target="#confirm_accept">Accept</a>
-
+                                           <a href="#" class="btn btn-success btn-xs" data-toggle="modal" data-target="#confirm_accept">Accept</a>
                                          @elseif( $index_adm_examiner_list->status == 'Accepted' )
                                             <a href="{{ URL::route('admission.faculty.question-papers.admtest-question-paper', [ 'year_id'=>$index_adm_examiner_list->relBatch->year_id ,'semester_id'=>$index_adm_examiner_list->relBatch->semester_id ,'batch_id'=>$index_adm_examiner_list->batch_id  ]) }}" class="btn btn-info btn-xs" >Questions</a>
-
                                          @endif
-
                                      </td>
-
-
-{{--,'batch_admtest_subject_id'=>$index_adm_examiner_list->id--}}
-                                 {{--<a href="{{ URL::route('admission.faculty.admission-test.', [ 'year_id'=>$adm_test_mgt->relBatch->year_id ,'semester_id'=>$adm_test_mgt->relBatch->semester_id ,'batch_id'=>$adm_test_mgt->batch_id ]) }}" class="btn btn-default btn-xs" >EX</a>--}}
-
                                 </tr>
                           @endforeach
                       </tbody>
