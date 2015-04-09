@@ -1,34 +1,45 @@
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-     <h1> View Admission Test "{{User::FullName($test1->user_id)}}"</h1>
+     <h1> View Admission Test "{{User::FullName($view_examiner->user_id)}}"</h1>
 </div>
 
 <div style="padding-left: 10px; width: 90%;">
     {{Form::open(array('route'=>'admission.faculty.admission-test.view-admtest-comment','method' => 'POST')) }}
-        {{Form::hidden('batch_id', $test1->batch_id)}}
-        {{Form::hidden('commented_to', $test1->user_id)}}
+        {{Form::hidden('batch_id', $view_examiner->batch_id)}}
+        {{Form::hidden('commented_to', $view_examiner->user_id)}}
         <div  style="padding-left: 8%">
-           <h2><strong> Department :</strong>{{ isset($test1) ? ($test1->relBatch->relDegree->relDepartment->title) : 'No Department Available!' }}</h2>
+           <h2><strong> Department :</strong>{{ isset($view_examiner) ? ($view_examiner->relBatch->relDegree->relDepartment->title) : 'No Department Available!' }}</h2>
 
             <p>
                 <table class="table table-striped  table-bordered">
                     <tr>
                         <td>Degree :</td>
-                        <td>{{ $test1->relBatch->relDegree->title }}</td>
+                        <td>{{ $view_examiner->relBatch->relDegree->title }}</td>
                     </tr>
                     <tr>
                         <td>Name Of Faculty :</td>
-                        <td>{{ $test1->relUser->relUserProfile->first_name.' '.$test1->relUser->relUserProfile->middle_name.' '.$test1->relUser->relUserProfile->last_name }}</td>
+                        <td>{{ $view_examiner->relUser->relUserProfile->first_name.' '.$view_examiner->relUser->relUserProfile->middle_name.' '.$view_examiner->relUser->relUserProfile->last_name }}</td>
                     </tr>
                     <tr>
                         <td>Status :</td>
-                        <td>{{ $test1->status }}</td>
+                        <td>{{ $view_examiner->status }}
+
+                            @if($view_examiner->status == 'Requested' )
+                               <a href="#" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#confirm_deny">Deny</a>
+                               <a href="#" class="btn btn-success btn-xs" data-toggle="modal" data-target="#confirm_accept">Accept</a>
+                            @elseif( $view_examiner->status == 'Accepted' )
+                               <a href="{{ URL::route('admission.faculty.question-papers.admtest-question-paper', [ 'year_id'=>$view_examiner->relBatch->year_id ,'semester_id'=>$view_examiner->relBatch->semester_id ,'batch_id'=>$view_examiner->batch_id  ]) }}" class="btn btn-info btn-xs" >Questions</a>
+                            @endif
+
+                        </td>
+
                     </tr>
 
                 </table>
+
                 <small>Comments as below: </small>
 
-                @foreach($test2 as $do_comments)
+                @foreach($view_examiner_comment as $do_comments)
                     <p style="padding: 1%; background: #efefef;">
                         <b><small>{{ User::FullName($do_comments->commented_to); }}</small></b>
                         As &nbsp; <b><small>{{  strtoupper(Role::RoleName($do_comments->commented_by)) }} </small></b><br>
@@ -47,4 +58,50 @@
     </br>
     &nbsp;
     {{ Form::close() }}
+
+
+
+     <div class="modal fade " id="confirm_accept" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Confirm Accept</h4>
+                    </div>
+                    <div class="modal-body">
+                        <strong>Are you sure to Accept This Request?</strong>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        <a href="{{ URL::route('admission.faculty.admission-test.change-status-to-accept',['id'=>$view_examiner->id]) }}" class="btn btn-success">Accept</a>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+     <div class="modal fade " id="confirm_deny" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Confirm Deny</h4>
+                    </div>
+                    <div class="modal-body">
+                        <strong>Are you sure to Deny This Request?</strong>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        <a href="{{ URL::route('admission.faculty.admission-test.change-status-to-deny', ['id'=>$view_examiner->id])}}" class="btn btn-warning">Deny</a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
 </div>

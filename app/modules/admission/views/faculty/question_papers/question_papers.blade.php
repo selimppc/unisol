@@ -54,14 +54,31 @@
                                      <td>{{ $admtest_question_paper_list->status }} </td>
 
                                     <td>
-                                        <a href="{{ URL::route('admission.faculty.question-papers.view-question-paper',['id'=>$admtest_question_paper_list->id]) }}" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modal">VQP</a>
-                                        <a href="{{ URL::route('admission.faculty.question-papers.view-questions-items',['id'=>$admtest_question_paper_list->id]) }}" class="btn btn-primary btn-xs" >VQs</a>
-                                        <a href="{{ URL::route('admission.faculty.question-papers.add-question-paper-item',['qid'=>$admtest_question_paper_list->id]) }}" class="btn btn-info btn-xs " data-toggle="modal" data-target="#modal">AQ</a>
-                                        <a href="{{ URL::route('admission.faculty.question-papers.view-assign-to-question-paper',['q_id'=>$admtest_question_paper_list->id]) }}" class="btn bg-purple btn-xs" data-toggle="modal" data-target="#modal" >Comments</a>
+                                        {{--<a href="{{ URL::route('admission.faculty.question-papers.view-question-paper',['id'=>$admtest_question_paper_list->id]) }}" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modal">VQP</a>--}}
+                                        {{--<a href="{{ URL::route('admission.faculty.question-papers.view-questions-items',['id'=>$admtest_question_paper_list->id]) }}" class="btn btn-primary btn-xs" >VQs</a>--}}
+                                        {{--<a href="{{ URL::route('admission.faculty.question-papers.add-question-paper-item',['qid'=>$admtest_question_paper_list->id]) }}" class="btn btn-info btn-xs " data-toggle="modal" data-target="#modal">AQ</a>--}}
+                                        {{--<a href="{{ URL::route('admission.faculty.question-papers.view-assign-to-question-paper',['q_id'=>$admtest_question_paper_list->id]) }}" class="btn bg-purple btn-xs" data-toggle="modal" data-target="#modal" >Comments</a>--}}
+                                        {{--<a href="{{ URL::route('admission.faculty.question-papers.evaluate-questions',['adm_question_id'=>$admtest_question_paper_list->id]) }}" class="btn bg-navy btn-xs " >Evaluate</a>--}}
 
-                                        <a href="{{ URL::route('admission.faculty.question-papers.evaluate-questions',['adm_question_id'=>$admtest_question_paper_list->id]) }}" class="btn bg-navy btn-xs " >Evaluate</a>
-                                                            {{--'batch_admtest_subject_id'=>$admtest_question_paper_list->batch_admtest_subject_id--}}
+                                         @if($admtest_question_paper_list->status == 'Both' )
+                                               <a href="{{ URL::route('admission.faculty.question-papers.view-question-paper',['id'=>$admtest_question_paper_list->id]) }}" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modal">VQP</a>
+                                               <a href="{{ URL::route('admission.faculty.question-papers.view-questions-items',['id'=>$admtest_question_paper_list->id]) }}" class="btn btn-primary btn-xs" >VQs</a>
+                                               <a href="{{ URL::route('admission.faculty.question-papers.view-assign-to-question-paper',['q_id'=>$admtest_question_paper_list->id]) }}" class="btn bg-purple btn-xs" data-toggle="modal" data-target="#modal" >Comments</a>
+                                         @elseif( $admtest_question_paper_list->status == 'QS' )
+                                               <a href="{{ URL::route('admission.faculty.question-papers.view-question-paper',['id'=>$admtest_question_paper_list->id]) }}" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modal">VQP</a>
+                                               <a href="{{ URL::route('admission.faculty.question-papers.add-question-paper-item',['qid'=>$admtest_question_paper_list->id]) }}" class="btn btn-info btn-xs " data-toggle="modal" data-target="#modal">AQ</a>
+                                               <a href="{{ URL::route('admission.faculty.question-papers.view-questions-items',['id'=>$admtest_question_paper_list->id]) }}" class="btn btn-primary btn-xs" >VQs</a>
+                                               <a href="{{ URL::route('admission.faculty.question-papers.view-assign-to-question-paper',['q_id'=>$admtest_question_paper_list->id]) }}" class="btn bg-purple btn-xs" data-toggle="modal" data-target="#modal" >Comments</a>
+
+                                         @else
+                                               <a href="{{ URL::route('admission.faculty.question-papers.evaluate-questions',['adm_question_id'=>$admtest_question_paper_list->id]) }}" class="btn bg-navy btn-xs " >Evaluate</a>
+                                               <a href="{{ URL::route('admission.faculty.question-papers.view-assign-to-question-paper',['q_id'=>$admtest_question_paper_list->id]) }}" class="btn bg-purple btn-xs" data-toggle="modal" data-target="#modal" >Comments</a>
+                                         @endif
+
                                     </td>
+
+
+
                                 </tr>
                           @endforeach
                       </tbody>
