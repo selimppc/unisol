@@ -1,9 +1,7 @@
-@extends('layouts.master')
-
+@extends('layouts.layout')
 @section('sidebar')
-    @include('admission::_sidebar')
+    {{--@include('layouts._sidebar_applicant')--}}
 @stop
-
 @section('content')
 
 @if(Session::has('message'))
