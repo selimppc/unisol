@@ -155,3 +155,4 @@ Route::any('admission/faculty/question-papers/re-evaluate-questions-items/{id}',
     'uses' => 'AdmFacultyController@reEvaluateQuestionsitems'
 ]);
 //ok
+
