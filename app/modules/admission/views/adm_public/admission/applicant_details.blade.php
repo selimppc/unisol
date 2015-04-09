@@ -82,7 +82,8 @@
                   <div class="row">
                       <div class="col-lg-4">
                               @if(isset($applicant_personal_info))
-                                  {{ HTML::image('applicant_images/profile/'.$applicant_personal_info->profile_image) }}
+                                  {{--{{ HTML::image('applicant_images/profile/'.$applicant_personal_info->profile_image) }}--}}
+                                  <td class="etsb-image-doc">{{ $applicant_personal_info->profile_image != null ? HTML::image('applicant_images/profile/'.$applicant_personal_info->profile_image) :  HTML::image('/img/profile.jpg') }}</td>
                               @endif
                       </div>
                       <div class="col-lg-8">
