@@ -17,7 +17,7 @@ class Batch extends Eloquent{
         'degree_id' => 'required|integer',
         'year_id' => 'required|integer',
         'semester_id' => 'required|integer',
-        'batch_number' => 'required|alpha_num',
+        //'batch_number' => 'required|alpha_num',
         //'description' => 'alpha_dash',
         'start_date' => 'required|date',
         'end_date' => 'required|date',

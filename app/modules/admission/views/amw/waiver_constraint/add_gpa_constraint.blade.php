@@ -15,12 +15,12 @@
           {{ Form::label('level_of_education', 'Level of Education ') }}
           {{ Form::select ('level_of_education',  array('' => 'Select one',
             'PSC' => 'PSC', 'JSC' => 'JSC', 'SSC'=>'SSC','HSC'=>'HSC','GRAD'=>'GRAD','UNDER_GRAD'=>'UNDER GRAD'), Input::old('level_of_education'),
-             array('class' => 'form-control')) }}
+             array('class' => 'form-control','required')) }}
 
            <p>&nbsp;</p>
 
            {{ Form::label('gpa', 'GPA') }}
-           {{ Form::text('gpa', Input::old('gpa'),['class'=>'form-control'])  }}
+           {{ Form::text('gpa', Input::old('gpa'),['class'=>'form-control','required'])  }}
 
 
           <p>&nbsp;</p>
