@@ -134,7 +134,7 @@
               <div class="row">
                   <div class="col-lg-4">
                     @if(isset($applicant_profile_info))
-                         <td class="etsb-image-doc">{{ $applicant_profile_info->profile_image != null ? HTML::image('applicant_images/profile/'.$applicant_profile_info->profile_image) :  HTML::image('/img/profile.jpg') }}</td>
+                         <td class="etsb-image-doc">{{ $applicant_profile_info->profile_image != null ? HTML::image('/applicant_images/profile/'.$applicant_profile_info->profile_image) :  HTML::image('/img/profile.jpg') }}</td>
                     @endif
                   </div>
 
@@ -350,7 +350,7 @@
                                                                    <th>Essay</th>
                                                                    <td>
                                                                        @if( isset($supporting_docs->essay))
-                                                                            {{ HTML::image('applicant_images/supporting_doc/' .$supporting_docs->essay) }}
+                                                                            {{ HTML::image('/applicant_images/supporting_doc/' .$supporting_docs->essay) }}
                                                                        @endif
                                                                    </td>
                                                                </tr>
