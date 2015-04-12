@@ -763,7 +763,7 @@ class ApplicantController extends \BaseController
 
             return Redirect::back()->with('message', 'Successfully added Information!');
         } else {
-           return Redirect::to('apt/misc_info/')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
+           return Redirect::to('applicant/misc_info/')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
         }
     }
 

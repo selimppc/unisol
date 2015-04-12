@@ -163,7 +163,7 @@ Route::get('applicant/extra-curricular/delete/{id}',
 
 //****************Applicant Miscellaneous Info(R)************************
 
-Route::any('apt/misc_info/',
+Route::any('applicant/misc_info/',
     'ApplicantController@miscInfoIndex'
 );
 Route::any('apt/misc_info/create',

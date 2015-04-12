@@ -40,7 +40,7 @@
         <p>&nbsp;</p>
     <div class="modal-footer">
     {{ Form::submit('Save ', array('class'=>'btn btn-primary')) }}
-    <a href="{{URL::to('apt/misc_info/') }}" class="btn btn-default" span class="glyphicon-refresh">Close</a>
+    <a href="{{URL::to('applicant/misc_info/') }}" class="btn btn-default" span class="glyphicon-refresh">Close</a>
     </div>
     {{Form::close()}}
     </div>
