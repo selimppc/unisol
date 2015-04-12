@@ -6,7 +6,7 @@
     {{ Form::model($signature,array('url'=> array('applicant/personal_info_signature/update/'.$signature->id), 'method' => 'POST','class'=>'form-horizontal','files'=>true)) }}
 
     {{ Form::label('profile_image', 'Picture:') }}<br>
-    {{ HTML::image('/applicant_images/app_meta/'.$signature->signature, $signature->signature,['class'=>'col-md-3'])}}
+    {{ HTML::image('/applicant_images/app_meta/'.$signature->signature)}}
     <br><br>
     {{ Form::label('signature', 'Select Signature ') }}
     {{ Form::file('signature',array('multiple'=>true)) }}
