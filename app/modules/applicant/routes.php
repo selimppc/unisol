@@ -68,7 +68,7 @@ Route::any('applicant/profile_image/update/{id}',
 );
 //********************Applicant Academic Records(R)**********************
 
-Route::any('apt/acm_records/',
+Route::any('applicant/acm_records/',
     'ApplicantController@acmRecordsIndex'
 );
 
