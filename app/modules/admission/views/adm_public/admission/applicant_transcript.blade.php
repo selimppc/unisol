@@ -12,7 +12,7 @@
             <tr>
                 <th></th>
                 <td class="etsb-image-doc">
-                    {{ $model->transcript != null ? HTML::image('/files_public/'.$model->transcript) :  HTML::image('/img/no_file.jpg') }}
+                    <td class="etsb-image-doc">{{ $model->transcript != null ? HTML::image('/files_public/'.$model->transcript) :  HTML::image('/img/no_file.jpg') }}</td>
                 </td>
             </tr>
          </table>

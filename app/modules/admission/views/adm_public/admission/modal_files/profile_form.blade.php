@@ -44,7 +44,7 @@
 
           @if(isset($applicant_personal_info->profile_image))
           {{ Form::label('profile_image', 'Profile Image') }}
-          {{ HTML::image('/applicant_images/app_meta/' . $applicant_personal_info->profile_image) }}
+          {{ HTML::image('/applicant_images/profile/' . $applicant_personal_info->profile_image) }}
           @endif
           <p>&nbsp;</p>
           {{ Form::label('profile_image', 'Select Profile Picture :') }}<span class="text-danger">*</span>
