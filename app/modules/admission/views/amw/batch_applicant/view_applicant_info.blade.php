@@ -350,7 +350,7 @@
                                                                    <th>Essay</th>
                                                                    <td>
                                                                        @if( isset($supporting_docs->essay))
-                                                                            {{ HTML::image('/applicant_images/supporting_doc/' .$supporting_docs->essay) }}
+                                                                            {{ HTML::image('applicant_images/supporting_doc/' .$supporting_docs->essay) }}
                                                                        @endif
                                                                    </td>
                                                                </tr>
