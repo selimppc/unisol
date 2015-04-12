@@ -58,7 +58,7 @@
                        <td>{{ $values->relBatch->relSemester->title }}</td>
                        <td>{{ $values->relBatch->relDegree->total_credit }}</td>
                        <td >{{ $values->duration }}</td>
-                       <td>QPE Status</td>
+                       <td> QPE Status </td>
                        <td>
                           <a href="{{ URL::to('admission/amw/admission-test-examiner', [ 'year_id'=>$values->relBatch->year_id ,'semester_id'=>$values->relBatch->semester_id ,'batch_id'=>$values->batch_id ]) }}" class="btn btn-success btn-xs" data-toggle="tooltip" data-placement="bottom" title="Examiner">EX</a>
                           <a href="{{ URL::to('admission/amw/admission-test-question', [ 'bats_id'=>$values->id ]) }}" class="btn btn-info btn-xs" data-toggle="tooltip" data-placement="bottom" title="Question Paper">QP</a>
