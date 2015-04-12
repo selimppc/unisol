@@ -244,15 +244,14 @@ class ApplicantController extends \BaseController
                 $applicant_model->place_of_birth = Input::get('place_of_birth');
                 $applicant_model->gender = Input::get('gender');
 
-                $file = Input::file('profile_image');
-                if ($file) {
-                    $extension = $file->getClientOriginalExtension();
-                    $filename = str_random(12) . '.' . $extension;
-                    $path = public_path("/applicant_images/profile/" . $filename);
-                    Image::make($file->getRealPath())->resize(100, 100)->save($path);
+                $imagefile = Input::file('profile_image');
+                $extension = $imagefile->getClientOriginalExtension();
+                $filename = str_random(12) . '.' . $extension;
+                $file = strtolower($filename);
+                $path = public_path("/applicant_images/profile/" . $file);
+                Image::make($imagefile->getRealPath())->resize(100, 100)->save($path);
 
-                    $applicant_model->profile_image = $filename;
-                }
+                $applicant_model->profile_image = $file;
                 $applicant_model->city = Input::get('city');
                 $applicant_model->state = Input::get('state');
                 $applicant_model->country_id = Input::get('country_id');
@@ -292,7 +291,6 @@ class ApplicantController extends \BaseController
             $path = public_path("/applicant_images/profile/" . $file);
             Image::make($imagefile->getRealPath())->resize(100, 100)->save($path);
             $profile->profile_image = $file;
-            $profile->profile_image = $filename;
             $profile->save();
             return Redirect::back()->with('message', 'Successfully updated Information!');
         } else {
