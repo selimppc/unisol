@@ -343,6 +343,9 @@ class HomeController extends BaseController {
 
 
     public function sortable(){
+
+        print_r($_SERVER);
+        exit;
         $title = ' My Name is Selim - _ thank you ';
 
         $a = Helpers::convertToSlug($title);

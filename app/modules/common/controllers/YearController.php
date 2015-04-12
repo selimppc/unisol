@@ -39,7 +39,7 @@ class YearController extends \BaseController {
 				$data->title = Input::get('title');
 				$data->description = Input::get('description');
 				$data->save();
-				Session::flash('message', "Success:Years added successfully");
+				Session::flash('message', "Success:Year added successfully");
 				return Redirect::to('common/year/')->with('title', 'Years List');
 			}
 			else
@@ -130,7 +130,7 @@ class YearController extends \BaseController {
 				$data->title = Input::get('title');
 				$data->description = Input::get('description');
 				$data->save();
-				Session::flash('info', "Year Updated successfully");
+				Session::flash('message', "Success:Year Updated successfully");
 				return Redirect::to('common/year/')->with('title', 'Year List');
 			}
 			else
@@ -147,7 +147,7 @@ class YearController extends \BaseController {
 			$data= Year::find($id);
 			if($data->delete())
 			{
-				Session::flash('danger', "Years Deleted successfully");
+				Session::flash('message', "Success:Year Deleted successfully");
 				return Redirect::to('common/year/')->with('title','All Year List');
 			}
 		}
@@ -161,7 +161,7 @@ class YearController extends \BaseController {
 	public function batchdelete()
 	{
 		try {
-			Session::flash('danger', "Years Deleted successfully");
+			Session::flash('message', "Success:Year Deleted successfully");
 			Year::destroy(Request::get('id'));
 			return Redirect::to('common/year/')->with('title','All Subject List');
 		}

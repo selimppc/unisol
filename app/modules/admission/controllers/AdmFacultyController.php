@@ -143,9 +143,13 @@ class AdmFacultyController extends \BaseController {
      */
     public function admTestQuestionPaper($year_id, $semester_id, $batch_id )
     {
-        $admtest_question_paper = AdmQuestion::latest('id')
-            ->where('s_faculty_user_id' ,'=', Auth::user()->get()->id)
-            ->get();
+        $ba_subject = BatchAdmtestSubject::where('batch_id', $batch_id)->get();
+        foreach($ba_subject as $ba){
+            $admtest_question_paper = AdmQuestion::latest('id')
+                ->where('s_faculty_user_id' ,'=', Auth::user()->get()->id)
+                ->where('batch_admtest_subject_id' ,'=', $ba->id)
+                ->get();
+        }
 
         $degree_id = Batch::where('id' ,'=', $batch_id )
             ->where('semester_id' ,'=', $semester_id)
@@ -581,6 +585,25 @@ class AdmFacultyController extends \BaseController {
     /**
      * @return mixed
      */
+    public function admTestBatchDelete()
+    {
+        try {
+            AdmExaminer::destroy(Request::get('id'));
+            return Redirect::back()->with('message', 'Successfully deleted Information!');
+        }
+        catch(exception $ex) {
+            return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+        }
+    }
+
+
+
+
+
+
+    /**
+     * @return mixed
+     */
     public function qpBatchDelete()
     {
         try {
@@ -656,6 +679,20 @@ class AdmFacultyController extends \BaseController {
             $errors = $model->errors();
             Session::flash('errors', $errors);
             return Redirect::back()->with('errors', 'invalid');
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function courseBatchDelete()
+    {
+        try {
+            CourseConduct::destroy(Request::get('id'));
+            return Redirect::back()->with('message', 'Successfully deleted Information!');
+        }
+        catch(exception $ex) {
+            return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
         }
     }
 
