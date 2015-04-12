@@ -8,13 +8,10 @@
 <div class="modal-body">
      <div style="padding: 20px;">
         {{Form::open(array('url'=>'admission/amw/batch-store', 'class'=>'form-horizontal','files'=>true))}}
-{{--                {{Form::hidden('degree_id', $degree_id)}}--}}
+                {{Form::hidden('degree_id', $degree_id)}}
 
                 <div class='form-group'>
-                    <div class="col-sm-4" style="padding-left: 0;">
-                        {{ Form::label('degree_id', 'Degree') }}
-                       {{ Form::select('degree_id', $dpg_list, $degree_id,['class'=>'form-control']) }}
-                    </div>
+
 
                     <div class="col-sm-4" style="padding-right: 0;">
                         {{ Form::label('semester_id', 'Semester') }}
@@ -26,7 +23,8 @@
                        {{ Form::select('year_id',$year_list,null,['class'=>'form-control']) }}
                     </div>
                 </div>
-
+                <br>
+                
                 <div class='form-group'>
                    {{ Form::label('batch_number', 'Batch Number') }}
                    {{ Form::text('batch_number', Input::old('batch_number'),['class'=>'form-control','required'=>'required']) }}

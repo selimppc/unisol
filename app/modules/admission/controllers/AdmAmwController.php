@@ -747,6 +747,7 @@ class AdmAmwController extends \BaseController
     {
         $data = Input::all();
         $model = new Batch();
+
         if($model->validate($data)){
             if($model->create($data)){
                 Session::flash('message', 'Successfully added Information!');
