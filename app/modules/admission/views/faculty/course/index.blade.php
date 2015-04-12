@@ -5,7 +5,7 @@
 
 @section('content')
     <h2> Course</h2>
-     {{ Form::open(array('url' => 'admission/faculty/course/batchDelete')) }}
+     {{ Form::open(array('url' => 'admission/faculty/course/course-BatchDelete')) }}
                     <table id="example" class="table table-striped  table-bordered"  >
                           <thead>
                                {{ Form::submit('Delete Items', array('class'=>'btn btn-danger btn-xs', 'id'=>'hide-button', 'style'=>'display:none'))}}

@@ -30,7 +30,7 @@
            </div>
     </div>
 
-    {{ Form::open(array('url' => 'admission/faculty/admission-test/batchDelete')) }}
+    {{ Form::open(array('url' => 'admission/faculty/admission-test/adm-test-BatchDelete')) }}
                     <table id="example" class="table table-striped  table-bordered"  >
                           <thead>
                                {{ Form::submit('Delete Items', array('class'=>'btn btn-danger btn-xs', 'id'=>'hide-button', 'style'=>'display:none'))}}

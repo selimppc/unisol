@@ -27,7 +27,7 @@
            </div>
     </div>
 
-    <a href="{{ URL::previous() }}" class="pull-left btn btn-success btn-xs">Back</a>
+    <a href="{{ URL::previous() }}" class="btn btn-success btn-xs">Back</a>
 
      {{ Form::open(array('url' => 'admission/faculty/admission_test/batchDelete')) }}
                     <table id="example" class="table table-striped  table-bordered"  >
@@ -59,10 +59,10 @@
                                   <td>{{ isset($index_adm_examiner_list->status) ? $index_adm_examiner_list->status : '' }} </td>
                                  <td>
                                          @if($index_adm_examiner_list->status == 'Requested' )
-                                           <a href="#" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#confirm_deny">Deny</a>
-                                            <a href="#" class="btn btn-success btn-xs" data-toggle="modal" data-target="#confirm_accept">Accept</a>
+                                           <a class="btn btn-primary btn-xs" data-href="{{ URL::route('admission.faculty.admission-test.change-status-to-accept',['id'=>$index_adm_examiner_list->id]) }}" data-toggle="modal" data-target="#confirm-delete" href="">Accept</a>
+                                           <a class="btn btn-success btn-xs" data-href="{{ URL::route('admission.faculty.admission-test.change-status-to-deny',['id'=>$index_adm_examiner_list->id]) }}" data-toggle="modal" data-target="#confirm-delete" href="">Deny</a>
                                          @elseif( $index_adm_examiner_list->status == 'Accepted' )
-                                            <a href="{{ URL::route('admission.faculty.question-papers.admtest-question-paper', [ 'year_id'=>$index_adm_examiner_list->relBatch->year_id ,'semester_id'=>$index_adm_examiner_list->relBatch->semester_id ,'batch_id'=>$index_adm_examiner_list->batch_id  ]) }}" class="btn btn-info btn-xs" >Questions</a>
+                                           <a href="{{ URL::route('admission.faculty.question-papers.admtest-question-paper', [ 'year_id'=>$index_adm_examiner_list->relBatch->year_id ,'semester_id'=>$index_adm_examiner_list->relBatch->semester_id ,'batch_id'=>$index_adm_examiner_list->batch_id  ]) }}" class="btn btn-info btn-xs" >Questions</a>
                                          @endif
                                  </td>
                              </tr>
@@ -80,41 +80,32 @@
 </div>
 
 
- <div class="modal fade " id="confirm_accept" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Confirm Accept</h4>
-                </div>
-                <div class="modal-body">
-                    <strong>Are you sure to Accept This Request?</strong>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    <a href="{{ URL::route('admission.faculty.admission-test.change-status-to-accept',['id'=>$index_adm_examiner_list->id]) }}" class="btn btn-success">Accept</a>
-                </div>
-            </div>
-        </div>
-    </div>
 
-
- <div class="modal fade " id="confirm_deny" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Confirm Deny</h4>
+<!-- Modal :: Delete Confirmation -->
+            <div class="modal fade " id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="confirm-delete" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Confirmation</h4>
+                      </div>
+                      <div class="modal-body">
+                            <strong>Are you sure ?</strong>
+                      </div>
+                      <div class="modal-footer">
+                            <a href="" class="btn-sm btn-default">Close</a>
+                            <a href="#" class="btn btn-Success danger">OK</a>
+                      </div>
                 </div>
-                <div class="modal-body">
-                    <strong>Are you sure to Deny This Request?</strong>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    <a href="{{ URL::route('admission.faculty.admission-test.change-status-to-deny', ['id'=>$index_adm_examiner_list->id])}}" class="btn btn-warning">Deny</a>
-                </div>
+              </div>
             </div>
-        </div>
-    </div>
+
+            <script>
+                      $('#confirm-delete').on('show.bs.modal', function(e) {
+                         $(this).find('.danger').attr('href', $(e.relatedTarget).data('href'));
+                         $('.debug-url').html('Delete URL: <strong>' + $(this).find('.danger').attr('href') + '</strong>');
+                     })
+            </script>
+
 
 @stop
