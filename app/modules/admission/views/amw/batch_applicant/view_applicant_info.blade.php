@@ -133,8 +133,8 @@
          <div class="box-body">
               <div class="row">
                   <div class="col-lg-4">
-                    @if(isset($applicant_personal_info))
-                        {{ HTML::image('applicant_images/'.$applicant_personal_info->profile_image) }}
+                    @if(isset($applicant_profile_info))
+                         <td class="etsb-image-doc">{{ $applicant_profile_info->profile_image != null ? HTML::image('/applicant_images/profile/'.$applicant_profile_info->profile_image) :  HTML::image('/img/profile.jpg') }}</td>
                     @endif
                   </div>
 
@@ -342,7 +342,7 @@
                                                                    <th class="col-lg-8">Goal Statement</th>
                                                                    <td>
                                                                        @if( isset($supporting_docs->academic_goal_statement))
-                                                                             {{ HTML::image('applicant_images/' .$supporting_docs->academic_goal_statement) }}
+                                                                             {{ HTML::image('/applicant_images/supporting_doc/' .$supporting_docs->academic_goal_statement) }}
                                                                        @endif
                                                                    </td>
                                                                </tr>
@@ -350,7 +350,7 @@
                                                                    <th>Essay</th>
                                                                    <td>
                                                                        @if( isset($supporting_docs->essay))
-                                                                            {{ HTML::image('applicant_images/' .$supporting_docs->essay) }}
+                                                                            {{ HTML::image('/applicant_images/supporting_doc/' .$supporting_docs->essay) }}
                                                                        @endif
                                                                    </td>
                                                                </tr>
@@ -358,7 +358,7 @@
                                                                    <th>Letter of Intent</th>
                                                                     <td>
                                                                        @if( isset($supporting_docs->letter_of_intent))
-                                                                          {{ HTML::image('applicant_images/' .$supporting_docs->letter_of_intent) }}
+                                                                          {{ HTML::image('/applicant_images/supporting_doc/' .$supporting_docs->letter_of_intent) }}
                                                                        @endif
                                                                     </td>
                                                                </tr>
@@ -366,7 +366,7 @@
                                                                    <th>Personal Statement</th>
                                                                    <td>
                                                                        @if( isset($supporting_docs->personal_statement))
-                                                                           {{ HTML::image('applicant_images/' .$supporting_docs->personal_statement) }}
+                                                                           {{ HTML::image('/applicant_images/supporting_doc/' .$supporting_docs->personal_statement) }}
 
                                                                        @endif
                                                                    </td>
@@ -375,7 +375,7 @@
                                                                    <th>Research Statement</th>
                                                                    <td>
                                                                         @if( isset($supporting_docs->research_statement))
-                                                                            {{ HTML::image('applicant_images/' .$supporting_docs->research_statement) }}
+                                                                            {{ HTML::image('/applicant_images/supporting_doc/' .$supporting_docs->research_statement) }}
 
                                                                         @endif
                                                                    </td>
@@ -384,7 +384,7 @@
                                                                    <th>Portfolio</th>
                                                                    <td>
                                                                        @if( isset($supporting_docs->portfolio))
-                                                                          {{ HTML::image('applicant_images/' .$supporting_docs->portfolio) }}
+                                                                          {{ HTML::image('/applicant_images/supporting_doc/' .$supporting_docs->portfolio) }}
 
                                                                        @endif
                                                                    </td>
@@ -393,7 +393,7 @@
                                                                    <th>Resume</th>
                                                                    <td>
                                                                        @if( isset($supporting_docs->resume))
-                                                                          {{ HTML::image('applicant_images/' .$supporting_docs->resume) }}
+                                                                          {{ HTML::image('/applicant_images/supporting_doc/' .$supporting_docs->resume) }}
 
                                                                        @endif
                                                                    </td>
@@ -402,7 +402,7 @@
                                                                    <th>Readmission personal details</th>
                                                                    <td>
                                                                        @if( isset($supporting_docs->readmission_personal_details))
-                                                                           {{ HTML::image('applicant_images/' .$supporting_docs->readmission_personal_details) }}
+                                                                           {{ HTML::image('/applicant_images/supporting_doc/' .$supporting_docs->readmission_personal_details) }}
 
                                                                        @endif
                                                                    </td>

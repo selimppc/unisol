@@ -22,7 +22,7 @@ class UserController extends \BaseController {
                     Session::put('user_id', Auth::user()->get()->id);
                     Session::put('username', Auth::user()->get()->username);
                     $this->userLastVisit(Auth::user()->get()->id);
-                    return Redirect::to("user/profile");
+                    return Redirect::to("user/user-access-to");
                 }elseif(Auth::applicant()->attempt($credentials)){
                     Session::put('user_id', Auth::applicant()->get()->id);
                     Session::put('username', Auth::applicant()->get()->username);
@@ -40,6 +40,21 @@ class UserController extends \BaseController {
             }
         }
         return View::make('user::user.login');
+    }
+
+    public static function userAccessTo(){
+        if(Auth::user()->check()){
+            $user_role = User::hasRole(Auth::user()->get()->role_id);
+            if($user_role=="amw"){
+                return Redirect::to("user/amw-dashboard");
+            }
+            if($user_role=="faculty"){
+                return Redirect::to("user/faculty-dashboard");
+            }
+        }else{
+            return View::make('user::user.login');
+        }
+
     }
 
     protected function userLastVisit($user_id){

@@ -68,7 +68,7 @@ Route::any('applicant/profile_image/update/{id}',
 );
 //********************Applicant Academic Records(R)**********************
 
-Route::any('apt/acm_records/',
+Route::any('applicant/acm_records/',
     'ApplicantController@acmRecordsIndex'
 );
 
@@ -92,7 +92,7 @@ Route::any('apt/acm_records/delete/{id}',
 
 //*********************Applicant Meta Information/Personal Info(R)**********
 
-Route::any('apt/personal_info/',
+Route::any('applicant/personal_info/',
     'ApplicantController@personalInfoIndex'
 );
 
@@ -117,7 +117,7 @@ Route::any('applicant/personal_info_signature/update/{id}',
 
 //******************Applicant Supporting Docs(R)*************************
 
-Route::any('apt/supporting_docs/',
+Route::any('applicant/supporting_docs/',
     'ApplicantController@sDocsIndex'
 );
 
@@ -163,7 +163,7 @@ Route::get('applicant/extra-curricular/delete/{id}',
 
 //****************Applicant Miscellaneous Info(R)************************
 
-Route::any('apt/misc_info/',
+Route::any('applicant/misc_info/',
     'ApplicantController@miscInfoIndex'
 );
 Route::any('apt/misc_info/create',

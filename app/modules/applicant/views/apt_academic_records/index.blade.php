@@ -54,7 +54,8 @@
                                     </td>
                                     <td>
                                         <a href="{{ URL::to('apt/acm_records/show/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal"><i class="fa fa-eye" style="color: green"></i></a>
-                                        <a class="btn btn-xs btn-default" href="{{ URL::to('apt/acm_records/edit/'.$value->id) }}" data-toggle="modal" data-target="#myeditModal" ><i class="fa fa-pencil-square-o" style="color: #0044cc"></i></a>
+
+                                        <a class="btn btn-xs btn-default" href="{{ URL::to('admission/public/admission/edit-applicant-acm-docs/'.$value->id) }}" data-toggle="modal" data-target="#myeditModal" ><i class="fa fa-pencil-square-o" style="color: #0044cc"></i></a>
                                         <a data-href="{{ URL::to('apt/acm_records/delete/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa  fa-trash-o" style="color: red"></i></a>
                                     </td>
                                 </tr>

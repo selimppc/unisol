@@ -85,7 +85,7 @@
 
   <div class="modal-footer">
        {{ Form::submit('Submit', array('class' => 'btn btn-primary')) }}
-       <a href="{{URL::to('apt/personal_info/')}}" class="btn btn-default pull-right">Close </a>
+       <a href="{{URL::to('applicant/personal_info/')}}" class="btn btn-default pull-right">Close </a>
   </div>
 
 

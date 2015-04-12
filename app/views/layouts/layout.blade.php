@@ -127,7 +127,7 @@
                 <!-- Main content -->
                 <section class="content">
                     {{--Error handling--}}
-                    @if ( $errors->count() > 0 )
+                    @if ( isset($errors) and $errors->count() > 0 )
                         <div class="alert alert-danger alert-dismissable">
                             <ul>
                                 @foreach($errors->all() as $message )
@@ -169,8 +169,8 @@
 
         <!-- add new calendar event modal -->
         {{ HTML::script('assets/etsb/etsb_js/jquery/jquery.min.js')}}
-        {{ HTML::script('assets/etsb/etsb_js/bootstrap/bootstrap.min.js')}}
         {{ HTML::script('assets/etsb/etsb_js/jquery-ui/jquery-ui.min.js')}}
+        {{ HTML::script('assets/etsb/etsb_js/bootstrap/bootstrap.min.js')}}
 
         {{ HTML::script('assets/etsb/etsb_js/raphael/raphael-min.js')}}
         {{ HTML::script('assets/etsb/etsb_js/morris/morris.min.js')}}
@@ -192,6 +192,7 @@
         {{ HTML::script('assets/etsb/etsb_js/datatables/dataTables.bootstrap.js')}}
         {{ HTML::script('assets/etsb/etsb_js/etsb_custom.js')}}
         {{ HTML::script('assets/etsb/etsb_js/shafi_scripts.js')}}
+
 
         {{--// Ratna  //--}}
         {{ HTML::script('assets/js/ratna_script.js')}}

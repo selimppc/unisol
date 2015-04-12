@@ -608,9 +608,9 @@ class ApplicantController extends \BaseController
             $sdoc->$data['doc_type'] =$sdoc_file;
         }
         if ($sdoc->save())
-            return Redirect::to('apt/supporting_docs/')->with('message', 'successfully added');
+            return Redirect::to('applicant/supporting_docs/')->with('message', 'successfully added');
         else
-            return Redirect::to('apt/supporting_docs/')->with('message', 'Not Added');
+            return Redirect::to('applicant/supporting_docs/')->with('message', 'Not Added');
     }
 
 
@@ -763,7 +763,7 @@ class ApplicantController extends \BaseController
 
             return Redirect::back()->with('message', 'Successfully added Information!');
         } else {
-           return Redirect::to('apt/misc_info/')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
+           return Redirect::to('applicant/misc_info/')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
         }
     }
 

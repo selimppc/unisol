@@ -8,7 +8,8 @@
 {{-----------------------------------------Help Text -------------------------------------------------------------------------------------}}
 <div class="row">
     <div class="col-md-12">
-    <a class="pull-right btn btn-xs btn-success" href="{{ URL::route('admission.amw.batch' )}}"> <i class="fa fa-arrow-circle-left"></i> Go Back</a>
+    <a class="pull-right btn btn-xs btn-success" href="{{ URL::route('admission.amw.batch',['degree_id'=> $batchApt->degree_id])}}"> <i class="fa fa-arrow-circle-left"></i>Back To Batch Management</a>
+
 
                 <h3>Batch Applicant</h3>
 
@@ -82,7 +83,7 @@
                                             <td><input type="checkbox" name="ids[]"  class="myCheckbox" value="{{ $value->id }}" required="required">
                                             </td>
                                             <td>{{$value->relApplicant->first_name.''.$value->relApplicant->last_name}}</td>
-                                            <td> {{ empty($value->status) ? '' : $status[$value->status] }}</td>
+                                            <td> {{ empty($value->status) ? 'Status Do not added' : $status[$value->status] }}</td>
                                             <td>{{$value->relBatch->relSemester->title}}</td>
 
                                             <td>

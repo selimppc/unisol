@@ -329,15 +329,14 @@ class AdmPublicController extends \BaseController {
             $applicant_meta_records->nationality = Input::get('nationality');
             $applicant_meta_records->religion = Input::get('religion');
 
-            if(Input::file('signature')){
-                $file = Input::file('signature');
-                $extension = $file->getClientOriginalExtension();
-                $filename = str_random(12) . '.' . $extension;
-                $sdoc_file=strtolower($filename);              // rename file name to lower
-                $path = public_path("/applicant_images/app_meta/" . $sdoc_file);
-                Image::make($file->getRealPath())->resize(150, 150)->save($path);
-                $applicant_meta_records->signature = $filename;
-            }
+            $imagefile = Input::file('signature');
+            $extension = $imagefile->getClientOriginalExtension();
+            $filename = str_random(12) . '.' . $extension;
+            $file = strtolower($filename);
+            $path = public_path("/applicant_images/app_meta/" . $file);
+            Image::make($imagefile->getRealPath())->resize(100, 100)->save($path);
+            $applicant_meta_records->signature  = $file;
+
             $applicant_meta_records->present_address = Input::get('present_address');
             $applicant_meta_records->permanent_address = Input::get('permanent_address');
             $applicant_meta_records->save();
@@ -380,15 +379,13 @@ class AdmPublicController extends \BaseController {
                 $applicant_meta_records->present_address = Input::get('present_address');
                 $applicant_meta_records->permanent_address = Input::get('permanent_address');
 
-                if ($file) {
-                    $file = Input::file('signature');
-                    $extension = $file->getClientOriginalExtension();
-                    $filename = str_random(12) . '.' . $extension;
-                    $sdoc_file = strtolower($filename);              // rename file name to lower
-                    $path = public_path("/applicant_images/app_meta/" . $sdoc_file);
-                    Image::make($file->getRealPath())->resize(150, 150)->save($path);
-                    $applicant_meta_records->signature = $filename;
-                }
+                $imagefile = Input::file('signature');
+                $extension = $imagefile->getClientOriginalExtension();
+                $filename = str_random(12) . '.' . $extension;
+                $file = strtolower($filename);
+                $path = public_path("/applicant_images/app_meta/" . $file);
+                Image::make($imagefile->getRealPath())->resize(100, 100)->save($path);
+                $applicant_meta_records->signature  = $file;
 
                 $applicant_meta_records->save();
 

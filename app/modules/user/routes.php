@@ -24,6 +24,21 @@ Route::group(["after" => "auth"], function() {
         "uses" => "UserProfileController@profile"
     ]);
 
+    Route::any("user/user-access-to", [
+        "as"   => "user/user-access-to",
+        "uses" => "UserController@userAccessTo"
+    ]);
+
+    Route::any("user/amw-dashboard", [
+        "as"   => "user/amw-dashboard",
+        "uses" => "UserDashboardController@amwDashboard"
+    ]);
+
+    Route::any("user/faculty-dashboard", [
+        "as"   => "user/faculty-dashboard",
+        "uses" => "UserDashboardController@facultyDashboard"
+    ]);
+
 });
 
 Route::any("/request", [
