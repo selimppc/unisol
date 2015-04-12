@@ -47,7 +47,7 @@
                                  </tr>
                       </thead>
                       <tbody>
-
+                      @if(isset($search_index_adm_examiner))
                          @foreach($search_index_adm_examiner as $index_adm_examiner_list)
                              <tr>
                                  <td><input type="checkbox" name="id[]" class="myCheckbox" value="{{ $index_adm_examiner_list['id'] }}"></td>
@@ -67,6 +67,7 @@
                                  </td>
                              </tr>
                         @endforeach
+                       @endif
                       </tbody>
                     </table>
      {{ Form::close() }}
