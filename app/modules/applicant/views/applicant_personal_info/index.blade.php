@@ -125,7 +125,7 @@
                                     <td>
                                         @if($applicant_personal_info != null ? $applicant_personal_info->signature : null)
                                          <a class=" btn-link" href="{{ URL::to('applicant/personal_info_signature/edit/' . $applicant_personal_info->id ) }}" data-toggle="modal" data-target="#changeSignature" >
-                                            {{ HTML::image('/applicant_images/app_meta/'.$applicant_personal_info->signature, $applicant_personal_info->signature,['class'=>'col-md-3'])}}
+                                            {{ HTML::image('/applicant_images/app_meta/'.$applicant_personal_info->signature)}}
                                             Change Signature</a><br>
                                          @endif
                                     </td>
