@@ -29,9 +29,10 @@
           <div class='form-group'>
 
               <div>{{ Form::label('status', 'Status') }}</div>
-              <div>{{ Form::text('status',$model->capacity,['class'=>'form-control input-sm','required'])}}</div>
+              <div>{{ Form::select('status', array('' => 'Select one',
+                   'Free' => 'Free', 'Engaged' => 'Engaged',' Under-Construction'=>' Under-Construction','not-ready'=>'Not-ready','un-attendent'=>'Un-Attendent'), $model->status,
+                    ['class'=>'form-control','required']) }}</div>
           </div>
-
 
           <p>&nbsp;</p>
 
