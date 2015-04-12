@@ -282,7 +282,6 @@ class ApplicantController extends \BaseController
         );
         $validator = Validator::make(Input::all(), $rules);
         if ($validator->passes()) {
-
             $profile = ApplicantProfile::find($id);
             $imagefile = Input::file('profile_image');
             $extension = $imagefile->getClientOriginalExtension();

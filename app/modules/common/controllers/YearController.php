@@ -147,7 +147,7 @@ class YearController extends \BaseController {
 			$data= Year::find($id);
 			if($data->delete())
 			{
-				Session::flash('danger', "Years Deleted successfully");
+				Session::flash('success', "Years Deleted successfully");
 				return Redirect::to('common/year/')->with('title','All Year List');
 			}
 		}
@@ -161,7 +161,7 @@ class YearController extends \BaseController {
 	public function batchdelete()
 	{
 		try {
-			Session::flash('danger', "Years Deleted successfully");
+			Session::flash('success', "Years Deleted successfully");
 			Year::destroy(Request::get('id'));
 			return Redirect::to('common/year/')->with('title','All Subject List');
 		}
