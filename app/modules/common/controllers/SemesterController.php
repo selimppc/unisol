@@ -74,31 +74,22 @@ class SemesterController extends \BaseController {
 	 */
 	public function update($id)
 	{
-        // get the POST data
-        $data = Input::all($id);
-        // create a new model instance
-        $semester = new Semester();
-        // attempt validation
-        if ($semester->validate2($data))
-        {
-            // success code
+        $rules = array(
+            //'title' => 'required',
+        );
+        $validator = Validator::make(Input::all(), $rules);
+        if ($validator->passes()) {
             $semester = Semester::find($id);
             $semester->title = Input::get('title');
             $semester->description = Input::get('description');
             $semester->save();
             // redirect
-            Session::flash('message', 'Successfully Edited!');
+            Session::flash('message', 'Successfully Updated!');
             return Redirect::to('common/semester/');
+        } else {
+            return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
         }
-        else
-        {
-            // failure, get errors
-            $errors = $semester->errors();
-            Session::flash('errors', $errors);
-            //return Redirect::to('employee/create')->withInput()->withErrors($errors);
-            return Redirect::to('common/semester/');
-        }
-        //ok
+
 	}
 	/**
 	 * Remove the specified resource from storage.
@@ -110,7 +101,7 @@ class SemesterController extends \BaseController {
 	{
         try {
             Semester::find($id)->delete();
-            return Redirect::back()->with('danger', 'Semester Deleted successfully!');
+            return Redirect::back()->with('message', 'Semester Deleted successfully!');
         }
         catch(exception $ex){
             return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
@@ -120,7 +111,7 @@ class SemesterController extends \BaseController {
     {
         try{
         Semester::destroy(Request::get('id'));
-        return Redirect::back()->with('danger', 'Semester Deleted successfully!');
+        return Redirect::back()->with('message', 'Semester Deleted successfully!');
         }
         catch (exception $ex)
         {

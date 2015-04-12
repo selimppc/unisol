@@ -27,11 +27,11 @@
                 <div>{{ Form::text('capacity',Input::old('capacity') ,['class'=>'form-control input-sm','required'])}}</div>
           </div>
 
-          <div class='form-group'>
+          {{--<div class='form-group'>--}}
 
-              <div>{{ Form::label('status', 'Status') }}</div>
-              <div>{{ Form::text('status',Input::old('status') ,['class'=>'form-control input-sm','required'])}}</div>
-          </div>
+              {{--<div>{{ Form::label('status', 'Status') }}</div>--}}
+              {{--<div>{{ Form::text('status',Input::old('status') ,['class'=>'form-control input-sm','required'])}}</div>--}}
+          {{--</div>--}}
 
 
           <p>&nbsp;</p>
