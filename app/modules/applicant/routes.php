@@ -92,7 +92,7 @@ Route::any('apt/acm_records/delete/{id}',
 
 //*********************Applicant Meta Information/Personal Info(R)**********
 
-Route::any('apt/personal_info/',
+Route::any('applicant/personal_info/',
     'ApplicantController@personalInfoIndex'
 );
 

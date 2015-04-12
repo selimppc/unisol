@@ -13,7 +13,7 @@
 
     <p>&nbsp;</p>
     {{ Form::submit('Change Signature', array('class'=>'btn btn-primary')) }}
-    <a href="{{URL::to('apt/personal_info/')}}" class="btn btn-default">Close </a>
+    <a href="{{URL::to('applicant/personal_info/')}}" class="btn btn-default">Close </a>
     {{Form::close()}}
 </div>
 <div class="modal-footer">
