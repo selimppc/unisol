@@ -117,7 +117,7 @@ Route::any('applicant/personal_info_signature/update/{id}',
 
 //******************Applicant Supporting Docs(R)*************************
 
-Route::any('apt/supporting_docs/',
+Route::any('applicant/supporting_docs/',
     'ApplicantController@sDocsIndex'
 );
 

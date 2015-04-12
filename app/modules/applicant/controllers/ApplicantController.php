@@ -608,9 +608,9 @@ class ApplicantController extends \BaseController
             $sdoc->$data['doc_type'] =$sdoc_file;
         }
         if ($sdoc->save())
-            return Redirect::to('apt/supporting_docs/')->with('message', 'successfully added');
+            return Redirect::to('applicant/supporting_docs/')->with('message', 'successfully added');
         else
-            return Redirect::to('apt/supporting_docs/')->with('message', 'Not Added');
+            return Redirect::to('applicant/supporting_docs/')->with('message', 'Not Added');
     }
 
 

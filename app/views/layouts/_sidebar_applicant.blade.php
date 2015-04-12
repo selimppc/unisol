@@ -38,7 +38,7 @@
             <a href="{{URL::to('applicant/profile/') }}"  class="list-group-item" >Profile</a>
             <a href="{{URL::to('apt/acm_records/') }}" class="list-group-item ">Academic Records</a>
             <a href="{{URL::to('applicant/personal_info/') }}" class="list-group-item ">Personal Information</a>
-            <a href="{{URL::to('apt/supporting_docs/') }}" class="list-group-item ">Supporting Documents</a>
+            <a href="{{URL::to('applicant/supporting_docs/') }}" class="list-group-item ">Supporting Documents</a>
             <a href="{{URL::to('applicant/extra_curricular/') }}" class="list-group-item ">Extra-curricular Activities</a>
             <a href="{{URL::to('apt/misc_info/') }}" class="list-group-item ">Miscellaneous Information</a>
         </ul>
