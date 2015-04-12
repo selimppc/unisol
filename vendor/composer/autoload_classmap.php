@@ -561,6 +561,7 @@ return array(
     'User' => $baseDir . '/app/modules/user/models/User.php',
     'UserAcademicRecord' => $baseDir . '/app/modules/user/models/UserAcademicRecord.php',
     'UserController' => $baseDir . '/app/modules/user/controllers/UserController.php',
+    'UserDashboardController' => $baseDir . '/app/modules/user/controllers/UserDashboardController.php',
     'UserExtraCurricularActivity' => $baseDir . '/app/modules/user/models/UserExtraCurricularActivity.php',
     'UserMeta' => $baseDir . '/app/modules/user/models/UserMeta.php',
     'UserMiscellaneousInfo' => $baseDir . '/app/modules/user/models/UserMiscellaneousInfo.php',

@@ -102,7 +102,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         //return false; */
         if($key){
             $role = Role::find($key);
-            return $role->title;
+            return $role->code;
         }
             return false;
     }
