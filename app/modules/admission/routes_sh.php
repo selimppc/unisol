@@ -24,6 +24,12 @@ Route::any('admission/faculty/course/course-assign/{id}',[
 ]);
 //ok
 
+Route::any('admission/faculty/course/course-BatchDelete', [
+    'as' => 'admission.faculty.course.course-BatchDelete',
+    'uses' => 'AdmFacultyController@courseBatchDelete'
+]);
+
+
 Route::any('admission/faculty/admission-test',[
     'as' => 'admission.faculty.admission-test',
     'uses' => 'AdmFacultyController@indexAdmExaminer'
@@ -36,7 +42,7 @@ Route::any('admission/faculty/admission-test/change-status-to-deny/{id}',[
 ]);
 //ok
 
-Route::any('admission.faculty/admission-test/change-status-to-accept/{id}',[
+Route::any('admission/faculty/admission-test/change-status-to-accept/{id}',[
     'as' => 'admission.faculty.admission-test.change-status-to-accept',
     'uses' => 'AdmFacultyController@changeStatusToAcceptedByFacultyAdmTest'
 ]);
@@ -60,17 +66,23 @@ Route::any('admission/faculty/admission-test/view-admtest-comment',[
 ]);
 //ok
 
+Route::any('admission/faculty/admission-test/adm-test-BatchDelete', [
+    'as' => 'admission.faculty.admission-test.adm-test-BatchDelete',
+    'uses' => 'AdmFacultyController@admTestBatchDelete'
+]);
+//-->
+
 Route::any('admission/faculty/admission-test/qpBatchDelete', [
     'as' => 'admission.faculty.admission-test.qpBatchDelete',
     'uses' => 'AdmFacultyController@qpBatchDelete'
 ]);
 //ok
 
-Route::any('admission/faculty/admission-test/deny-admtest',[
-    'as' => 'admission.faculty.admission-test.deny-admtest',
-    'uses' => 'AdmFacultyController@denyAdmTest'
-]);
-//ok
+//Route::any('admission/faculty/admission-test/deny-admtest',[
+//    'as' => 'admission.faculty.admission-test.deny-admtest',
+//    'uses' => 'AdmFacultyController@denyAdmTest'
+//]);
+////ok
 
 Route::any('admission/faculty/question-papers/admtest-question-paper/{year_id}/{semester_id}/{batch_id}',[
     'as' => 'admission.faculty.question-papers.admtest-question-paper',
