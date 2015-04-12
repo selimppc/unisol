@@ -47,6 +47,47 @@ class AdmFacultyController extends \BaseController {
             compact('view_examiner','view_examiner_comment','id'));
     }
 
+    /**
+     * @return mixed
+     */
+    public function searchAdmExaminer()
+    {
+        $year_id = Input::get('year_id');
+        $semester_id = Input::get('semester_id');
+
+
+
+//        $search_index_adm_examiner = AdmExaminer::with(['relBatch' => function($query) use($year_id, $semester_id) {
+//                $query->where('year_id', '=', $year_id);
+//                $query->where('semester_id', '=', $semester_id);
+//            }],'relBatch.relDegree','relBatch.relDegree.relDepartment',
+//            'relBatch.relYear','relBatch.relSemester')
+//            ->get();
+
+
+
+        $search_index_adm_examiner = AdmExaminer::join('Batch', function ($query) use ($year_id, $semester_id) {
+            $query->on('batch.id', '=', 'adm_examiner.batch_id');
+
+            if (isset($year_id) && !empty($year_id)) $query->where('adm_examiner.batch_id', '=', $year_id);
+            if (isset($semester_id) && !empty($semester_id)) $query->where('adm_examiner.batch_id', '=', $semester_id);
+        });
+
+        $search_index_adm_examiner = $search_index_adm_examiner->select(['batch.semester_id as sem_id', 'batch.year_id as yr_id']);
+        if (isset($semester_id) && !empty($semester_id)) $search_index_adm_examiner = $search_index_adm_examiner->where('batch.semester_id', '=', $semester_id);
+        if (isset($year_id) && !empty($year_id)) $search_index_adm_examiner = $search_index_adm_examiner->where('batch.year_id', '=', $year_id);
+
+        $search_index_adm_examiner = $search_index_adm_examiner->paginate();
+
+
+
+        $year_id = array('' => 'Select Year ') + Year::lists('title', 'id');
+        $semester_id = array('' => 'Select Semester ') + Semester::lists('title', 'id');
+
+        return View::make('admission::faculty.admission_test._search_adm_examiner_index',
+            compact('search_index_adm_examiner','year_id','semester_id'));
+    }
+
 
     /**
      * @param $id = AdmExaminer's id
@@ -99,27 +140,7 @@ class AdmFacultyController extends \BaseController {
         }
     }
 
-    /**
-     * @return mixed
-     */
-    public function searchAdmExaminer()
-    {
-        $year_id = Input::get('year_id');
-        $semester_id = Input::get('semester_id');
 
-        $search_index_adm_examiner = AdmExaminer::with(['relBatch' => function($query) use($year_id, $semester_id) {
-                $query->where('year_id', '=', $year_id);
-                $query->where('semester_id', '=', $semester_id);
-            }],'relBatch.relDegree','relBatch.relDegree.relDepartment',
-            'relBatch.relYear','relBatch.relSemester')
-            ->get();
-
-        $year_id = array('' => 'Select Year ') + Year::lists('title', 'id');
-        $semester_id = array('' => 'Select Semester ') + Semester::lists('title', 'id');
-
-        return View::make('admission::faculty.admission_test._search_adm_examiner_index',
-            compact('search_index_adm_examiner','year_id','semester_id'));
-    }
 
     /**
      * @return mixed
@@ -150,6 +171,10 @@ class AdmFacultyController extends \BaseController {
                 ->where('batch_admtest_subject_id' ,'=', $ba->id)
                 ->get();
         }
+
+//        print_r($admtest_question_paper);exit;
+
+
 
         $degree_id = Batch::where('id' ,'=', $batch_id )
             ->where('semester_id' ,'=', $semester_id)

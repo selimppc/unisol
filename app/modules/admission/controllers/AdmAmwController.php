@@ -978,7 +978,7 @@ class AdmAmwController extends \BaseController
                 $query->where('year_id', $year_id);
                 $query->where('semester_id', $semester_id);
             }])->get();
-        print_r($adm_test_home_data);exit;
+//        print_r($adm_test_home_data);exit;
         $year_id = array('' => 'Select Year ') + Year::lists('title', 'id');
         $semester_id = array('' => 'Select Semester ') + Semester::lists('title', 'id');
 
