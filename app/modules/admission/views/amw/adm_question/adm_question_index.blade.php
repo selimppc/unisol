@@ -40,7 +40,7 @@
               <tr>
               <td><input type="checkbox" name="id[]" class="myCheckbox" value="{{ $values->id }}"></td>
               <td>{{ $values->title }}</td>
-              <td>{{ $values->deadline }}</td>
+              <td>{{date("d-m-Y", strtotime( $values->deadline ) )}}</td>
               <td>{{ $values->relBatchAdmtestSubject->relAdmtestSubject->title }}</td>
               <td> {{isset($values->s_faculty_user_id)? User::FullName($values->s_faculty_user_id) :''}} </td>
               <td> {{ $values->status }} </td>
