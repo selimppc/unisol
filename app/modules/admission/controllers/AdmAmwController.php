@@ -756,7 +756,7 @@ class AdmAmwController extends \BaseController
 
         $batch_number = Batch::where('degree_id','=',$degree_id)->count();
 
-        $degree_title = Batch::with('relSemester','relYear','relDegree.relDepartment','relDegree.relDegreeProgram','relDegree.relDegreeGroup')->where('degree_id','=',$degree_id)->first();
+        $degree_title = Batch::with('relSemester','relYear','relDegree.relDepartment','relDegree.relDegreeProgram','relDegree.relDegreeGroup')->where('id','=',$degree_id)->first();
         $dpg_list = array('' => 'Select Degree Program ') + Degree::DegreeProgramGroup();
         $year_list = array('' => 'Select Year ') + Year::lists('title', 'id');
         $semester_list = array('' => 'Select Semester ') + Semester::lists('title', 'id');
