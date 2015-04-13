@@ -548,6 +548,7 @@ class AdmAmwController extends \BaseController
             ->select('degree_course.course_id', 'degree_course.degree_id', 'degree.department_id')
             ->get();
 
+   //print_r($deg_course_info);exit;
         $years = BatchCourse::with('relYear')->where('batch_id', $batch_id)->groupBy('year_id')->get();
         foreach ($years as $year) {
             $batch_course_data[] = [
@@ -747,6 +748,7 @@ class AdmAmwController extends \BaseController
     {
         $data = Input::all();
         $model = new Batch();
+
         if($model->validate($data)){
             if($model->create($data)){
                 Session::flash('message', 'Successfully added Information!');
