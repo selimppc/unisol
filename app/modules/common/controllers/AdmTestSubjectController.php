@@ -23,9 +23,11 @@ class AdmTestSubjectController extends \BaseController {
     {
         $data = Input::all();
         $model = new AdmTestSubject();
+        $model->title = Input::get('title');
+        $name = $model->title;
         if($model->validate($data)){
             if($model->create($data)){
-                Session::flash('message', 'Successfully added Information!');
+                Session::flash('message', "$name Adm Test Subject Added");
                 return Redirect::back();
             }
         }else{
@@ -35,8 +37,6 @@ class AdmTestSubjectController extends \BaseController {
                 ->with('error', 'invalid');
         }
     }
-
-
 
     public function Edit($id)
     {
@@ -48,10 +48,11 @@ class AdmTestSubjectController extends \BaseController {
     {
         $model = AdmTestSubject::find($id);
         $data = Input::all();
-
+        $model->title = Input::get('title');
+        $name = $model->title;
         if($model->validate($data)){
             if($model->update($data)){
-                Session::flash('message', 'Successfully Updates Information!');
+                Session::flash('message', "$name Adm Test Subject Updated");
                 return Redirect::back();
             }
         }else{
@@ -64,8 +65,20 @@ class AdmTestSubjectController extends \BaseController {
 
     public function Delete($id)
     {
-        AdmTestSubject::find($id)->delete();
-        return Redirect::back()->with('message', 'Successfully deleted Information!');
+        try {
+            $data= AdmTestSubject::find($id);
+            $name = $data->title;
+            if($data->delete())
+            {
+                Session::flash('message', "$name Adm Test Subject Deleted");
+                return Redirect::back();
+            }
+        }
+        catch
+        (exception $ex){
+            return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+
+        }
     }
 
     public function BatchDelete()
