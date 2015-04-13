@@ -3570,4 +3570,5 @@ fieldset[disabled] .btn-vk.active {
 }
 .icheckbox_minimal, .iradio_minimal{
     border: 1px solid #aaa;
+    opacity: 1;
 }
