@@ -42,7 +42,7 @@
                                         <td> {{isset($course->relCourse->relCourseType->title) ? $course->relCourse->relCourseType->title : 'course type missing'}} </td>
                                         <td> {{isset($course->relCourse->credit) ? $course->relCourse->credit : 'credit missing'}} </td>
                                         <td> {{ $semester['is_mandatory_course']==1 ? 'Yes' : 'No'}}</td>
-                                        <td> <a href="{{ URL::route('assign-faculty',['course_id'=>$semester['course_id'],'dep_id'=>$semester['relBatch']['relDegree']['department_id'] ])}}" class="btn btn-facebook btn-xs" > Assign</a>
+                                        <td> <a href="{{ URL::route('assign-faculty',['course_id'=>$semester['course_id'],'dep_id'=>$semester['relBatch']['relDegree']['department_id'] ]) }}" class="btn btn-facebook btn-xs" > Assign</a>
                                         </td>
                                         <td>
                                             <a data-href="{{ URL::route('batch-course-delete',['bcid'=>$semester['id']]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa fa-trash-o" style="color:red"></i></a>
