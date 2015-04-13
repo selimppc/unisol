@@ -6,21 +6,21 @@
  * Time: 2:55 PM
  */
 
-class DegreeProgramTable extends Seeder {
+class DegreeLevelTable extends Seeder {
 
     public function run(){
 
-        DB::table('degree_program')->delete();
+        DB::table('degree_level')->delete();
 
         $items = array(
-            'CSE' => 'Computer Science and Engineering',
-            'EEE' => 'Electric and Electronic Engineering',
-            'APEE' => 'Applied Physics and Electronic Engineering',
+            'B.' => 'Bachelor',
+            'M.' => 'Masters',
+            'Ph.D' => 'Doctor Of Philosophy',
         );
 
         //DegreeLevel: 'under_graduate','graduate','post_graduate','post_doctorate'
         foreach($items as $key => $val){
-            DegreeProgram::insert(array(
+            DegreeLevel::insert(array(
                 'code' =>$key,
                 'title' => $val,
                 'description' => $val,
