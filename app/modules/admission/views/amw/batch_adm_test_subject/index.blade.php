@@ -10,7 +10,7 @@
         <div class="row">
             <div class="pull-left col-sm-6 ">
                 <strong> Degree: </strong>
-                {{ $degree_name->relDegree->relDegreeProgram->code.''.$degree_name->relDegree->relDegreeGroup->code }}
+                {{ $degree_name->relDegree->relDegreeLevel->code.''.$degree_name->relDegree->relDegreeGroup->code }}
                 {{$degree_name->relSemester->title}} - {{$degree_name->relYear->title}}
             </div>
             <div class="pull-right col-sm-6">

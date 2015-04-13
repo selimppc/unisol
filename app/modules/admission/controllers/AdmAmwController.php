@@ -848,7 +848,7 @@ class AdmAmwController extends \BaseController
     public function indexBatchAdmTestSubject($batch_id)
     {
         $degree_test_sbjct = BatchAdmtestSubject::where('batch_id' ,'=', $batch_id)->get();
-        $degree_name = Batch::with('relDegree')
+        $degree_name = Batch::with('relDegree','relDegree.relDegreeLevel','relDegree.relDegreeGroup')
             ->where('id' ,'=', $batch_id)
             ->first();
         return View::make('admission::amw.batch_adm_test_subject.index',
