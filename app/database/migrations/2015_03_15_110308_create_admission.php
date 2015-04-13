@@ -13,10 +13,10 @@ class CreateAdmission extends Migration {
 	{
         Schema::create('degree', function(Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('department_id')->nullable();
-            $table->unsignedInteger('degree_program_id')->nullable();
+            $table->unsignedInteger('degree_level_id')->nullable();
             $table->unsignedInteger('degree_group_id')->nullable();
-            $table->string('title', 128);
+            $table->unsignedInteger('degree_program_id')->nullable();
+            $table->unsignedInteger('department_id')->nullable();
             $table->text('description');
             $table->string('total_credit', 128);
             $table->string('duration', 128);
@@ -35,9 +35,10 @@ class CreateAdmission extends Migration {
             $table->engine = 'InnoDB';
         });
         Schema::table('degree', function($table) {
-            $table->foreign('department_id')->references('id')->on('department');
-            $table->foreign('degree_program_id')->references('id')->on('degree_program');
+            $table->foreign('degree_level_id')->references('id')->on('degree_level');
             $table->foreign('degree_group_id')->references('id')->on('degree_group');
+            $table->foreign('degree_program_id')->references('id')->on('degree_program');
+            $table->foreign('department_id')->references('id')->on('department');
         });
 
 
