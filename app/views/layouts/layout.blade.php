@@ -20,6 +20,12 @@
         {{ HTML::script('assets/js/jquery-2.1.1.min.js') }}
         {{ HTML::script('assets/etsb/etsb_js/icheck/icheck.js')}}
         {{ HTML::script('assets/etsb/etsb_js/etsb_scripts.js')}}
+        <script>
+        $("input[type='checkbox']:not(.simple), input[type='radio']:not(.simple)").iCheck({
+        checkboxClass: 'icheckbox_minimal',
+        radioClass: 'iradio_minimal'
+        });
+        </script>
 
         {{--<!--[if lt IE 9]>--}}
           <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
