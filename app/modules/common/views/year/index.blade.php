@@ -5,7 +5,7 @@
 @section('content')
     <div class="box box-solid ">
             <div class="box-header">
-                <h3 class="box-title" style="color:#800080 ">All Year List</h3>
+                <h3 class="box-title text-purple">All Year List</h3>
                 <div class="box-tools pull-right">
                     <button type="button" class="pull-right btn btn-primary" data-toggle="modal" data-target="#myModal" >
                         Add Year

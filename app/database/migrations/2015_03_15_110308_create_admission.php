@@ -211,6 +211,7 @@ class CreateAdmission extends Migration {
             $table->increments('id');
             $table->unsignedInteger('batch_id')->nullable();
             $table->unsignedInteger('admtest_subject_id')->nullable();
+            $table->unique(['batch_id', 'admtest_subject_id']);
             $table->text('description');
             $table->string('marks', 128);
             $table->string('qualify_marks', 128);

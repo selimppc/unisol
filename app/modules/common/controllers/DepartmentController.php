@@ -29,13 +29,12 @@ class DepartmentController extends BaseController{
         {
             // success code
             $department->title = Input::get('title');
+            $name = $department->title;
             $department->dept_head_user_id = Input::get('dept_head_user_id');
             $department->description = Input::get('description');
-
             $department->save();
-
             // redirect
-            Session::flash('message', 'Successfully Added!');
+            Session::flash('message', "$name Department Added");
             return Redirect::to('common/department/');
         }
         else
@@ -43,20 +42,25 @@ class DepartmentController extends BaseController{
             // failure, get errors
             $errors = $department->errors();
             Session::flash('errors', $errors);
-
             return Redirect::to('common/department/');
         }
     }
 
 
-    public function delete($id){
-        try {
-            Department::find($id)->delete();
-            return Redirect::back()->with('message', 'Successfully deleted Country Information!');
+    public function delete($id)
+    {
+     try {
+            $data= Department::find($id);
+            $name = $data->title;
+            if($data->delete())
+            {
+                Session::flash('message', "$name Department Deleted");
+                return Redirect::to('common/department/');
+            }
         }
-        catch(exception $ex){
-            return Redirect::back()->with('message', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
-
+        catch
+        (exception $ex){
+            return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
         }
     }
 
@@ -84,8 +88,7 @@ class DepartmentController extends BaseController{
     public function update($id)
     {
         $rules = array(
-            'dept_name' => 'required'
-
+           // 'title' => 'required',
         );
         $validator = Validator::make(Input::all(), $rules);
 
@@ -93,11 +96,12 @@ class DepartmentController extends BaseController{
 
             $department = Department::find($id);
             $department->title = Input::get('dept_name');
+            $name = $department->title;
             $department->dept_head_user_id = Input::get('dept_head_user_id');
             $department->description = Input::get('description');
-
             $department->save();
-            return Redirect::back()->with('message', 'Successfully updated Country Information!');
+            Session::flash('message', "$name Department Updated");
+            return Redirect::to('common/department/');
         } else {
             return Redirect::to('common/department/')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
         }

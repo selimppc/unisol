@@ -548,15 +548,21 @@ class AdmAmwController extends \BaseController
         ->select('degree_course.course_id', 'degree_course.degree_id', 'degree.department_id')
         ->get();*/
 
+        //retrieve degree id from Batch
+        $degree_id = Batch::findOrFail($batch_id)->degree_id;
+
         $deg_course_info = DB::table('degree_course')
             ->leftJoin('batch_course', 'degree_course.course_id', '=', 'batch_course.course_id')
-            /*->leftjoin('degree', 'degree_course.degree_id', '=', 'degree.id' )
-            ->where('degree_course.degree_id', '=', $deg_id)*/
+            ->where('batch_course.course_id', NULL)
+            ->where('degree_id', $degree_id)->get();
+
+        /*$deg_course_info = DB::table('degree_course')
+            ->leftJoin('batch_course', 'degree_course.course_id', '=', 'batch_course.course_id')
             ->where('batch_course.course_id', NULL)
             ->where('degree_course.degree_id', '=', $deg_id)
             ->where('batch_course.batch_id', '=', $batch_id)
             ->select('degree_course.course_id', 'degree_course.degree_id')
-            ->get();
+            ->get();*/
 
    //print_r($deg_course_info);exit;
         $years = BatchCourse::with('relYear')->where('batch_id', $batch_id)->groupBy('year_id')->get();
@@ -747,11 +753,15 @@ class AdmAmwController extends \BaseController
 
     public function batchCreate($degree_id)
     {
+
+        $batch_number = Batch::where('degree_id','=',$degree_id)->count();
+
+        $degree_title = Batch::with('relSemester','relYear','relDegree.relDepartment','relDegree.relDegreeProgram','relDegree.relDegreeGroup')->where('degree_id','=',$degree_id)->first();
         $dpg_list = array('' => 'Select Degree Program ') + Degree::DegreeProgramGroup();
         $year_list = array('' => 'Select Year ') + Year::lists('title', 'id');
         $semester_list = array('' => 'Select Semester ') + Semester::lists('title', 'id');
 
-        return View::make('admission::amw.batch._form',compact('degree_id','dpg_list','year_list','semester_list'));
+        return View::make('admission::amw.batch._form',compact('degree_id','dpg_list','year_list','semester_list','batch_number','degree_title'));
     }
 
     public function batchStore()

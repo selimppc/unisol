@@ -2,9 +2,9 @@
 
 class DegreeProgramController extends \BaseController {
 
+
     public function degreeProgramIndex()
     {
-
         $model = DegreeProgram::orderBy('id', 'DESC')->paginate(5);
         return View::make('common::degree_program.index', compact('model'));
     }
@@ -18,10 +18,11 @@ class DegreeProgramController extends \BaseController {
     {
         $data = Input::all();
         $model = new DegreeProgram();
-
+        $model->title = Input::get('title');
+        $name = $model->title;
         if($model->validate($data)){
             if($model->create($data)){
-                Session::flash('message','Successfully added Information!');
+                Session::flash('message', "$name Degree Program Added");
                 return Redirect::back();
             }
         }else{
@@ -47,10 +48,11 @@ class DegreeProgramController extends \BaseController {
 	{
         $model = DegreeProgram::find($id);
         $data = Input::all();
-
+        $model->title = Input::get('title');
+        $name = $model->title;
         if($model->validate($data)){
             if($model->update($data)){
-                Session::flash('message','Successfully Updated Information!');
+                Session::flash('message', "$name Degree Program Updated");
                 return Redirect::back();
             }
         }else{
@@ -62,9 +64,19 @@ class DegreeProgramController extends \BaseController {
 
     public function degreeProgramDelete($id)
     {
-        DegreeProgram::find($id)->delete();
-
-        return Redirect::back()->with('message', 'Successfully deleted Information!');
+        try {
+            $data= DegreeProgram::find($id);
+            $name = $data->title;
+            if($data->delete())
+            {
+                Session::flash('message', "$name Degree Program Deleted");
+                return Redirect::back();
+            }
+        }
+        catch
+        (exception $ex){
+            return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+        }
     }
 
     public function degreeProgramBatchDelete()
