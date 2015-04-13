@@ -14,7 +14,6 @@ class DegreeGroupController extends \BaseController {
             compact('model'));
 	}
 
-
 	public function degreeGroupCreate()
 	{
         return View::make('common::degree_group._form');
@@ -24,10 +23,11 @@ class DegreeGroupController extends \BaseController {
 	{
         $data = Input::all();
         $model = new DegreeGroup();
-
+        $model->title = Input::get('title');
+        $name = $model->title;
         if($model->validate($data)){
             if($model->create($data)){
-                Session::flash('message','Successfully added Information!');
+                Session::flash('message', "$name Degree Group Added");
                 return Redirect::back();
             }
         }else{
@@ -53,10 +53,11 @@ class DegreeGroupController extends \BaseController {
 	{
         $model = DegreeGroup::find($id);
         $data = Input::all();
-
+        $model->title = Input::get('title');
+        $name = $model->title;
         if($model->validate($data)){
             if($model->update($data)){
-                Session::flash('message','Successfully Updated Information!');
+                Session::flash('message', "$name Degree Group Updated");
                 return Redirect::back();
             }
         }else{
@@ -67,13 +68,18 @@ class DegreeGroupController extends \BaseController {
 	}
 
 	public function degreeGroupDelete($id)
-	{
+    {
         try {
-            DegreeGroup::find($id)->delete();
-            return Redirect::back()->with('message', 'Successfully deleted Information!');
-        }
-        catch(exception $ex){
-            return Redirect::back()->with('danger', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+            $data = DegreeGroup::find($id);
+            $name = $data->title;
+            if ($data->delete()) {
+                Session::flash('message', "$name Degree Group Deleted");
+                return Redirect::back();
+            }
+        } catch
+        (exception $ex) {
+            return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+
         }
     }
     public function degreeGroupBatchDelete()
