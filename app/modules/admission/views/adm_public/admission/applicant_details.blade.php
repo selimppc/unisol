@@ -170,7 +170,7 @@
                                @if(isset($applicant_acm_records))
                                    @foreach($applicant_acm_records as $value)
                                        <tr>
-                                            <td>{{strtoupper($value->level_of_education )}}</td>
+                                            <td>{{strtoupper($value->level_of_education)}}</td>
                                             <td>{{ $value->board_university}}</td>
                                             <td>{{ $value->year_of_passing}}</td>
                                             <td>
