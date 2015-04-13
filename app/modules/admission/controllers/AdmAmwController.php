@@ -553,8 +553,11 @@ class AdmAmwController extends \BaseController
 
         $deg_course_info = DB::table('degree_course')
             ->leftJoin('batch_course', 'degree_course.course_id', '=', 'batch_course.course_id')
-            ->where('batch_course.course_id', NULL)
-            ->where('degree_id', $degree_id)->get();
+            ->leftjoin('degree', 'degree_course.degree_id', '=', 'degree.id' )
+            //->where('batch_course.course_id', NULL)
+            ->where('degree_id', $degree_id)
+            ->select('degree_course.course_id', 'degree_course.degree_id', 'degree.department_id')
+            ->get();
 
         /*$deg_course_info = DB::table('degree_course')
             ->leftJoin('batch_course', 'degree_course.course_id', '=', 'batch_course.course_id')
