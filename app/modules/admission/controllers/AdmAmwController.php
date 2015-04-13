@@ -761,7 +761,8 @@ class AdmAmwController extends \BaseController
 
         $batch_number = Batch::where('degree_id','=',$degree_id)->count();
 
-        $degree_title = Batch::with('relSemester','relYear','relDegree.relDepartment','relDegree.relDegreeProgram','relDegree.relDegreeGroup')->where('id','=',$degree_id)->first();
+        $degree_title = Batch::with('relDegree.relDegreeLevel','relDegree.relDegreeProgram','relDegree.relDegreeGroup')->where('id','=',$degree_id)->first();
+        //print_r($degree_title);exit;
         $dpg_list = array('' => 'Select Degree Program ') + Degree::DegreeProgramGroup();
         $year_list = array('' => 'Select Year ') + Year::lists('title', 'id');
         $semester_list = array('' => 'Select Semester ') + Semester::lists('title', 'id');
@@ -1492,7 +1493,7 @@ class AdmAmwController extends \BaseController
     public function batchWaiverIndex($batch_id){
 
         $model = Batch::find($batch_id);
-        $batch_info = Batch::with('relDegree.relDegreeGroup','relDegree.relDegreeProgram','relDegree.relDepartment','relYear','relSemester','relDegree')
+        $batch_info = Batch::with('relDegree.relDegreeGroup','relDegree.relDegreeProgram','relDegree.relDegreeLevel','relYear','relSemester','relDegree')
             ->where('id', '=', $batch_id)
             ->first();
 

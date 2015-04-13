@@ -18,7 +18,7 @@ class Degree extends Eloquent{
         'department_id' => 'required|integer',
         'degree_program_id' => 'required|integer',
         'degree_group_id' => 'required|integer',
-        'title' => 'required',
+        //'title' => 'required',
         //'description' => 'alpha_dash',
         'total_credit' => 'required|numeric',
         'duration' => 'required',
@@ -56,6 +56,9 @@ class Degree extends Eloquent{
     }
     public function relDepartment(){
         return $this->belongsTo('Department', 'department_id', 'id');
+    }
+    public function relDegreeLevel(){
+        return $this->belongsTo('DegreeLevel', 'degree_level_id', 'id');
     }
     public function relDegreeProgram(){
         return $this->belongsTo('DegreeProgram', 'degree_program_id', 'id');

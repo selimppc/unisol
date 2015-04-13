@@ -23,8 +23,8 @@
                             @if (!$batch_info == null)
 
                             <tr>
-                                <th>  Title :</th>
-                                <td>{{ $batch_info->relDegree->relDegreeProgram->title.' '.$batch_info->relDegree->relDegreeGroup->title }}</td>
+                                <th>Degree Title :</th>
+                                <td>{{ $batch_info->relDegree->relDegreeLevel->code.' '.$batch_info->relDegree->relDegreeGroup->code }}</td>
                             </tr>
 
                             <tr>

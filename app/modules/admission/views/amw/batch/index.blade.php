@@ -36,7 +36,7 @@
               @foreach($batch_management as $batch_list)
                 <tr>
                    <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $batch_list->id }}"></td>
-                   <td>{{ $batch_list->relDegree->title }}</td>
+                   <td>{{ $batch_list->relDegree->relDegreeLevel->code.' '.$batch_list->relDegree->relDegreeGroup->code.' In '.$batch_list->relDegree->relDegreeProgram->code }}</td>
                    <td>{{ $batch_list->batch_number }}</td>
                    <td>{{ $batch_list->relDegree->relDepartment->title }}</td>
                    <td>{{ $batch_list->relYear->title }}</td>
