@@ -19,17 +19,14 @@ class YearController extends \BaseController {
 	public function save()
 	{
 		$token = csrf_token();
-		
 		$rules = array(
-			'title' => 'Required|Min: 3|numeric',
-			'description' => 'Required|min:3'
+			'title' => 'Required|Min: 3|integer',
+			'description' => 'Required|min:3|integer'
 			);
 		$validator = Validator::make(Input::all(), $rules);
-
-		
 		if($validator->fails())
 		{				
-			return Redirect::to('common/year/index')->withErrors($validator)->withInput()->with('title', 'Create Subject');
+			return Redirect::to('common/year/')->withErrors($validator)->withInput()->with('title', 'Create Subject');
 		}
 		else
 		{
@@ -37,15 +34,16 @@ class YearController extends \BaseController {
 			{
 				$data = new Year;
 				$data->title = Input::get('title');
+				$name = $data->title;
 				$data->description = Input::get('description');
 				$data->save();
-				Session::flash('message', "Success:Year added successfully");
-				return Redirect::to('common/year/')->with('title', 'Years List');
+				Session::flash('message', "Year $name Added");
+				return Redirect::to('common/year/');
 			}
 			else
 			{
 				Session::flash('message', 'Token Mismatched');
-				return Redirect::to('common/year/')->with('title', 'Years List');
+				return Redirect::to('common/year/');
 			}
 		}
 	}
@@ -114,8 +112,8 @@ class YearController extends \BaseController {
 	{
 		$token = csrf_token();
 		$rules = array(
-			'title' => 'Required|Min: 3|numeric',
-			'description' => 'Required|min:3'
+			'title' => 'Required|Min: 3|integer',
+			'description' => 'Required|min:3|integer'
 			);
 		$validator = Validator::make(Input::all(), $rules);
 		if($validator->fails())
@@ -128,15 +126,16 @@ class YearController extends \BaseController {
 			{
 				$data = new Year;
 				$data->title = Input::get('title');
+				$name = $data->title;
 				$data->description = Input::get('description');
 				$data->save();
-				Session::flash('message', "Success:Year Updated successfully");
-				return Redirect::to('common/year/')->with('title', 'Year List');
+				Session::flash('message', "Year $name Updated");
+				return Redirect::to('common/year/');
 			}
 			else
 			{
 				Session::flash('message', 'Token Mismatched');
-				return Redirect::to('common/year/')->with('title', 'Year List');
+				return Redirect::to('common/year/');
 			}
 		}
 	}
@@ -145,10 +144,11 @@ class YearController extends \BaseController {
 	{
 		try {
 			$data= Year::find($id);
+			$name = $data->title;
 			if($data->delete())
 			{
-				Session::flash('message', "Year Deleted successfully");
-				return Redirect::to('common/year/')->with('title','All Year List');
+				Session::flash('message', "Year $name Deleted");
+				return Redirect::to('common/year/');
 			}
 		}
 		catch
@@ -161,9 +161,9 @@ class YearController extends \BaseController {
 	public function batchdelete()
 	{
 		try {
-			Session::flash('message', "Success:Year Deleted successfully");
 			Year::destroy(Request::get('id'));
-			return Redirect::to('common/year/')->with('title','All Subject List');
+			Session::flash('message', "Success: Selected Year Deleted ");
+			return Redirect::to('common/year/');
 		}
 		catch
 		(exception $ex){
