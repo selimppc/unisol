@@ -64,7 +64,7 @@
 
             <div class='form-group'>
                {{ Form::label('admtest_start_time', 'Admission Test Start Time') }}
-               {{ Form::text('admtest_start_time', Input::old('admtest_start_time'),['class'=>'form-control','required'=>'required']) }}
+               {{ Form::text('admtest_start_time', Input::old('admtest_start_time'),['class'=>'form-control ','required'=>'required']) }}
             </div>
 
             {{Form::hidden('status', 1)}}
@@ -77,6 +77,3 @@
         {{Form::close()}}
      </div>
 </div>
-
-{{ HTML::script('assets/js/custom.js')}}
-
