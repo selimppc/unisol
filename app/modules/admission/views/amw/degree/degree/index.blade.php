@@ -63,7 +63,7 @@
                                     <tr>
                                         <td><input type="checkbox" name="id[]"  class="myCheckbox" value="{{ $value->id }}">
                                         </td>
-                                        <td>{{ $value->title }}</td>
+                                        <td>{{ $value->relDegreeLevel->code.''.$value->relDegreeGroup->code.' In '.$value->relDegreeProgram->code }}</td>
                                         <td>{{ $value->relDepartment->title }}</td>
                                         <td>{{ $value->total_credit}}</td>
                                         <td>{{ $value->duration}}</td>

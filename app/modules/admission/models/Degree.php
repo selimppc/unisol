@@ -9,7 +9,7 @@ class Degree extends Eloquent{
     //TODO :: model attributes and rules and validation
     protected $table='degree';
     protected $fillable = [
-        'department_id', 'degree_program_id', 'degree_group_id', 'title', 'description',
+        'department_id', 'degree_program_id', 'degree_group_id', 'degree_level_id', 'description',
         'total_credit', 'duration', 'policy_retake', 'policy_course_taking',
         'credit_min_per_semester', 'credit_max_per_semester', 'status'
     ];
@@ -18,7 +18,7 @@ class Degree extends Eloquent{
         'department_id' => 'required|integer',
         'degree_program_id' => 'required|integer',
         'degree_group_id' => 'required|integer',
-        //'title' => 'required',
+        'degree_level_id' => 'required|integer',
         //'description' => 'alpha_dash',
         'total_credit' => 'required|numeric',
         'duration' => 'required',

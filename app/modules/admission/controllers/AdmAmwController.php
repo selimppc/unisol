@@ -1347,7 +1347,7 @@ class AdmAmwController extends \BaseController
      {------------------- Version:2 ->Admission--> Degree ------------------------------------}
      */
     public function admDegreeIndex(){
-        $model = Degree::latest('id')->paginate(10);
+        $model = Degree::latest('id')->with('relDegreeLevel','relDegreeProgram')->paginate(10);
         $department = array('' => 'Select Department ') + Department::lists('title', 'id');
         return View::make('admission::amw.degree.degree.index',
             compact('model','department'));
@@ -1358,8 +1358,9 @@ class AdmAmwController extends \BaseController
         $department = array('' => 'Select Department ') + Department::lists('title', 'id');
         $degree_program = array('' => 'Select Department ') + DegreeProgram::lists('title', 'id');
         $degree_group = array('' => 'Select Department ') + DegreeGroup::lists('title', 'id');
+        $degree_level = array('' => 'Select Degree Level ') + DegreeLevel::lists('title', 'id');
         return View::make('admission::amw.degree.degree._form',
-            compact('department','degree_program','degree_group'));
+            compact('department','degree_program','degree_group','degree_level'));
     }
 
     public function admDegreeStore()

@@ -13,28 +13,30 @@
                   </div>
           </div>
 
-          {{--<div class='form-group'>--}}
-              {{--<div>{{ Form::label('title', 'Title') }}<span class="text-danger">*</span></div>--}}
-              {{--<div>{{ Form::text('title',Input::old('title') ,['class'=>'form-control input-sm','required'])}}</div>--}}
-          {{--</div>--}}
-
           <div class='form-group'>
                 <div>{{ Form::label('description', 'Description') }}</div>
                 <div>{{ Form::textarea('description',Input::old('description') ,['class'=>'form-control input-sm', 'style'=>'height: 100px;'])}}</div>
           </div>
 
             <div class='form-group'>
-                <div class="col-lg-4" style="padding-left: 0;">
+                <div class="col-lg-6" style="padding-left: 0;">
                       <div>{{ Form::label('department_id', 'Department') }}<span class="text-danger">*</span></div>
                       <div>{{ Form::select('department_id',$department,Input::old('department_id'),['class'=>'form-control input-sm','required']) }}</div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-6">
                         <div>{{ Form::label('degree_program_id', 'Degree Program') }}<span class="text-danger">*</span></div>
                         <div>{{ Form::select('degree_program_id',$degree_program,Input::old('degree_program_id'),['class'=>'form-control input-sm','required']) }}</div>
                 </div>
-                <div class="col-lg-4" style="padding-right: 0;">
+            </div>
+
+            <div class='form-group'>
+                <div class="col-lg-6" style="padding-left: 0;">
                       <div>{{ Form::label('degree_group_id', 'Degree Group') }}<span class="text-danger">*</span></div>
                       <div>{{ Form::select('degree_group_id',$degree_group,Input::old('degree_group_id'),['class'=>'form-control input-sm','required']) }}</div>
+                </div>
+                <div class="col-lg-6" style="padding-right: 1;">
+                      <div>{{ Form::label('degree_level_id', 'Degree Level') }}<span class="text-danger">*</span></div>
+                      <div>{{ Form::select('degree_level_id',$degree_level,Input::old('degree_level_id'),['class'=>'form-control input-sm','required']) }}</div>
                 </div>
             </div>
 
