@@ -553,7 +553,7 @@ class AdmAmwController extends \BaseController
 
         $deg_course_info = DB::table('degree_course')
             ->leftJoin('batch_course', 'degree_course.course_id', '=', 'batch_course.course_id')
-            ->leftjoin('degree', 'degree_course.degree_id', '=', 'degree.id' )
+            ->leftJoin('degree', 'degree_course.degree_id', '=', 'degree.id' )
             ->where('batch_course.course_id', NULL)
             ->where('degree_id', $degree_id)
             ->select('degree_course.course_id', 'degree_course.degree_id', 'degree.department_id')
@@ -571,6 +571,8 @@ class AdmAmwController extends \BaseController
         $years = BatchCourse::with('relYear')->where('batch_id', $batch_id)->groupBy('year_id')->get();
         foreach ($years as $year) {
             $batch_course_data[] = [
+                'semester' => BatchCourse::with('relSemester')->where('year_id', $year->year_id)
+                    ->where('batch_id', $batch_id)->groupBy('semester_id')->first(),
                 'year'=> $year,
                 'course_semester' => BatchCourse::with('relSemester','courseByCourse')
                     ->where('year_id', $year->year_id)->where('batch_id', $batch_id)
