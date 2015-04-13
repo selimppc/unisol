@@ -3568,3 +3568,6 @@ fieldset[disabled] .btn-vk.active {
 .tab-text-margin{
   margin-left: 5px;
 }
+.icheckbox_minimal, .iradio_minimal{
+    border: 1px solid #aaa;
+}

@@ -4,16 +4,16 @@
 
 (function($){
     $(document).ready(function(){
-        $("input[type='checkbox']:not(.simple), input[type='radio']:not(.simple)").iCheck({
+        /*$("input[type='checkbox']:not(.simple), input[type='radio']:not(.simple)").iCheck({
             checkboxClass: 'icheckbox_minimal',
             radioClass: 'iradio_minimal'
-        });
+        });*/
 
         var triggeredByChild = false;
-        /*$('input').iCheck({
+        $('input').iCheck({
             checkboxClass: 'checkbox-default',
             radioClass: 'radio-default'
-        });*/
+        });
         $('#checkbox').on('ifChecked', function (event) {
             $('.myCheckbox').iCheck('check');
             triggeredByChild = false;
