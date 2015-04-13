@@ -15,7 +15,7 @@ class Department extends Eloquent{
     private $rules = [
         'title' => 'required',
         'dept_head_user_id' => 'required|integer',
-        //'description' => 'alpha_dash',
+        'description' => 'alpha_dash',
     ];
     public function validate($data)
     {
