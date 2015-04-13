@@ -548,7 +548,7 @@ class AdmAmwController extends \BaseController
             ->select('degree_course.course_id', 'degree_course.degree_id', 'degree.department_id')
             ->get();
 
-   print_r($deg_course_info);exit;
+   //print_r($deg_course_info);exit;
         $years = BatchCourse::with('relYear')->where('batch_id', $batch_id)->groupBy('year_id')->get();
         foreach ($years as $year) {
             $batch_course_data[] = [
