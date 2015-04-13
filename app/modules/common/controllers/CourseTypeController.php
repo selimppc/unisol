@@ -20,10 +20,11 @@ class CourseTypeController extends \BaseController {
 	{
         $data = Input::all();
         $model = new CourseType();
-
+        $model->title = Input::get('title');
+        $name = $model->title;
         if($model->validate($data)){
             if($model->create($data)){
-                Session::flash('message','Successfully added Information!');
+                Session::flash('message', "$name Course Type Added");
                 return Redirect::back();
             }
         }else{
@@ -49,10 +50,11 @@ class CourseTypeController extends \BaseController {
 	{
         $model = CourseType::find($id);
         $data = Input::all();
-
+        $model->title = Input::get('title');
+        $name = $model->title;
         if($model->validate($data)){
             if($model->update($data)){
-                Session::flash('message','Successfully Updated Information!');
+                Session::flash('message', "$name Course Type Updated");
                 return Redirect::back();
             }
         }else{
@@ -65,11 +67,17 @@ class CourseTypeController extends \BaseController {
     public function delete($id)
     {
         try {
-            CourseType::find($id)->delete();
-            return Redirect::back()->with('message', 'Successfully deleted Information!');
+            $data= CourseType::find($id);
+            $name = $data->title;
+            if($data->delete())
+            {
+                Session::flash('message', "$name Course Type Deleted");
+                return Redirect::back();
+            }
         }
-        catch(exception $ex){
-            return Redirect::back()->with('danger', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+        catch
+        (exception $ex){
+            return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
 
         }
     }

@@ -9,8 +9,9 @@ class DegreeLevel extends Eloquent
     private $errors;
     // 1
     private $rules = array(
-        'title' => 'required|unique:degree_level',
-        'description'  => 'required',
+        'code' => 'required|unique:degree_level',
+        //'title' => 'required|unique:degree_level',
+        //'description'  => 'required',
 
     );
 
@@ -71,7 +72,6 @@ class DegreeLevel extends Eloquent
         parent::boot();
         static::creating(function($query){
             $query->created_by = Auth::user()->get()->id;
-            $query->updated_by = Auth::user()->get()->id;
         });
         static::updating(function($query){
             $query->updated_by = Auth::user()->get()->id;

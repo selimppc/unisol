@@ -77,6 +77,17 @@ class CreateCommon extends Migration {
             $table->foreign('department_id')->references('id')->on('department');
         });
 
+        Schema::create('degree_level', function($table) {
+            $table->increments('id');
+            $table->string('code', 128);
+            $table->string('title', 128);
+            $table->string('description');
+            $table->integer('created_by', false, 11);
+            $table->integer('updated_by', false, 11);
+            $table->timestamps();
+            $table->engine = 'InnoDB';
+        });
+
         Schema::create('degree_program', function($table) {
             $table->increments('id');
             $table->string('code', 128);

@@ -20,8 +20,9 @@
                 @if(isset($batch_course_data))
                 @foreach($batch_course_data as $values)
                     <h4 class="table.align th text-purple  font-size text-bold"> Year: {{$values['year']['relYear']['title']}} </h4>
+                    <h4 class="text-purple"> Semester: {{$values['semester']['relSemester']['title']}} </h4>
                     @foreach($values['course_semester'] as $semester)
-                        <h4 class="text-purple">{{$semester['relSemester']['title']}}</h4>
+                        {{--<h4 class="text-purple">{{$semester['relSemester']['title']}}</h4>--}}
                             <table id="" class="table table-bordered table-hover table-striped">
                                 <thead>
                                 <tr>
@@ -42,7 +43,7 @@
                                         <td> {{isset($course->relCourse->relCourseType->title) ? $course->relCourse->relCourseType->title : 'course type missing'}} </td>
                                         <td> {{isset($course->relCourse->credit) ? $course->relCourse->credit : 'credit missing'}} </td>
                                         <td> {{ $semester['is_mandatory_course']==1 ? 'Yes' : 'No'}}</td>
-                                        <td> <a href="{{ URL::route('assign-faculty',['course_id'=>$semester['course_id'],'dep_id'=>$semester['relBatch']['relDegree']['department_id'] ])}}" class="btn btn-facebook btn-xs" > Assign</a>
+                                        <td> <a href="{{ URL::route('assign-faculty',['course_id'=>$semester['course_id'],'dep_id'=>$semester['relBatch']['relDegree']['department_id'] ]) }}" class="btn btn-facebook btn-xs" > Assign</a>
                                         </td>
                                         <td>
                                             <a data-href="{{ URL::route('batch-course-delete',['bcid'=>$semester['id']]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa fa-trash-o" style="color:red"></i></a>
