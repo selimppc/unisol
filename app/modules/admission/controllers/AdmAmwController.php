@@ -540,12 +540,22 @@ class AdmAmwController extends \BaseController
         $year_data = array('' => 'Select Year ') + Year::lists('title', 'id');
         $semester_data = array('' => 'Select Semester ') + Semester::lists('title','id');
 
+        /*$deg_course_info = DB::table('degree_course')
+        ->leftJoin('batch_course', 'degree_course.course_id', '=', 'batch_course.course_id')
+        ->leftjoin('degree', 'degree_course.degree_id', '=', 'degree.id' )
+        ->where('degree_course.degree_id', '=', $deg_id)
+        ->where('batch_course.course_id', NULL)
+        ->select('degree_course.course_id', 'degree_course.degree_id', 'degree.department_id')
+        ->get();*/
+
         $deg_course_info = DB::table('degree_course')
             ->leftJoin('batch_course', 'degree_course.course_id', '=', 'batch_course.course_id')
-            ->leftjoin('degree', 'degree_course.degree_id', '=', 'degree.id' )
-            ->where('degree_course.degree_id', '=', $deg_id)
+            /*->leftjoin('degree', 'degree_course.degree_id', '=', 'degree.id' )
+            ->where('degree_course.degree_id', '=', $deg_id)*/
             ->where('batch_course.course_id', NULL)
-            ->select('degree_course.course_id', 'degree_course.degree_id', 'degree.department_id')
+            ->where('degree_course.degree_id', '=', $deg_id)
+            ->where('batch_course.batch_id', '=', $batch_id)
+            ->select('degree_course.course_id', 'degree_course.degree_id')
             ->get();
 
    //print_r($deg_course_info);exit;
