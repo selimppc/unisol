@@ -747,11 +747,15 @@ class AdmAmwController extends \BaseController
 
     public function batchCreate($degree_id)
     {
+
+        $batch_number = Batch::where('degree_id','=',$degree_id)->count();
+
+        $degree = Degree::where('id','=',$degree_id)->first();
         $dpg_list = array('' => 'Select Degree Program ') + Degree::DegreeProgramGroup();
         $year_list = array('' => 'Select Year ') + Year::lists('title', 'id');
         $semester_list = array('' => 'Select Semester ') + Semester::lists('title', 'id');
 
-        return View::make('admission::amw.batch._form',compact('degree_id','dpg_list','year_list','semester_list'));
+        return View::make('admission::amw.batch._form',compact('degree_id','dpg_list','year_list','semester_list','batch_number','degree'));
     }
 
     public function batchStore()
