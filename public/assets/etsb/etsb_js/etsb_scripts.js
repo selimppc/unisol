@@ -4,12 +4,11 @@
 
 (function($){
     $(document).ready(function(){
-        $('input').iCheck({
+        /*$("input[type='checkbox']:not(.simple), input[type='radio']:not(.simple)").iCheck({
             checkboxClass: 'icheckbox_minimal',
-            radioClass: 'iradio_minimal',
-            increaseArea: '20%' // optional
-        });
-        
+            radioClass: 'iradio_minimal'
+        });*/
+
         var triggeredByChild = false;
         $('input').iCheck({
             checkboxClass: 'checkbox-default',

@@ -874,19 +874,51 @@ class AdmAmwController extends \BaseController
     public function storeBatchAdmTestSubject()
     {
         $data = Input::all();
-        $model = new BatchAdmtestSubject();
-        if($model->validate($data)){
-            if($model->create($data)){
-                Session::flash('message', 'Successfully added Information!');
-                return Redirect::back();
+
+//        print_r($data);exit;
+        $select = Input::get('admtest_subject');
+        $batch_id = Input::get('batch_id');
+
+        $i = 0;
+        foreach($select as $value){
+            $degree_course = new BatchAdmtestSubject();
+            $degree_course->description = Input::get('description');
+            $degree_course->marks = Input::get('marks');
+            $degree_course->qualify_marks = Input::get('qualify_marks');
+            $degree_course->duration = Input::get('duration');
+            $degree_course->batch_id = $batch_id;
+            $degree_course->admtest_subject_id = $value;
+
+
+
+
+            $degreeCourseCheck = $this->checkBatchAdmTestSubject($degree_course->batch_id, $degree_course->admtest_subject_id);
+
+            if($degreeCourseCheck){
+                $exists [] =  AdmTestSubject::findOrFail($degree_course->admtest_subject_id)->title;
+                Session::flash('info', 'Already Exists : '.$exists[$i]);
+            }else{
+                $degree_course->save();
+                $array [] = AdmTestSubject::findOrFail($degree_course->admtest_subject_id)->title;
+                Session::flash('message', 'Successfully Added ! '. $array[$i]);
             }
-        }else{
-            $errors = $model->errors();
-            Session::flash('errors', $errors);
-            return Redirect::back()
-                ->with('errors', 'invalid');
+
+
+
+
+
         }
+        return Redirect::back();
     }
+
+    protected function checkBatchAdmTestSubject($batch_id, $admtest_subject_id){
+        $result = DB::table('batch_admtest_subject')->select(DB::raw('1'))
+            ->where('admtest_subject_id', '=', $admtest_subject_id)
+            ->where('batch_id', '=', $batch_id)
+            ->first();
+        return $result;
+    }
+
 
     public function editBatchAdmTestSubject($id, $batch_id)
     {
@@ -974,7 +1006,7 @@ class AdmAmwController extends \BaseController
         }
     }
 
-//............................................ Admission Test Management : Home ........................................
+//............................................ Manage Admission Tests  : Home ........................................
 
     public function admissionTestIndex()
     {

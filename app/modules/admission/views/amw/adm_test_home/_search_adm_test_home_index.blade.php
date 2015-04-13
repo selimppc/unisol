@@ -42,6 +42,7 @@
                        <th><input name="id" id="checkbox" type="checkbox" class="checkbox" value=""></th>
                        <th>Degree</th>
                        <th>Dept</th>
+                       <th>BN</th>
                        <th>Year</th>
                        <th>Term</th>
                        <th>Credit</th>
@@ -58,6 +59,7 @@
     {{--                               <td>{{ $adm_test_mgt->relDegree->title }}</td>--}}
                                    <td>{{ $values->relDegree->relDegreeProgram->code.''.$adm_test_mgt->relDegree->relDegreeGroup->code }}</td>
                                    <td>{{ $values->relDegree->relDepartment->title }}</td>
+                                   <td>{{ $values->relBatch->batch_number }}</td>
                                    <td>{{ $values->relYear->title }}</td>
                                    <td>{{ $values->relSemester->title }}</td>
                                    <td>{{ $values->relDegree->total_credit }}</td>
