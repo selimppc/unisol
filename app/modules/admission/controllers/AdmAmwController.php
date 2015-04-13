@@ -553,7 +553,7 @@ class AdmAmwController extends \BaseController
 
         $deg_course_info = DB::table('degree_course')
             ->leftJoin('batch_course', 'degree_course.course_id', '=', 'batch_course.course_id')
-            ->leftjoin('degree', 'degree_course.degree_id', '=', 'degree.id' )
+            ->leftJoin('degree', 'degree_course.degree_id', '=', 'degree.id' )
             ->where('batch_course.course_id', NULL)
             ->where('degree_id', $degree_id)
             ->select('degree_course.course_id', 'degree_course.degree_id', 'degree.department_id')
@@ -571,6 +571,8 @@ class AdmAmwController extends \BaseController
         $years = BatchCourse::with('relYear')->where('batch_id', $batch_id)->groupBy('year_id')->get();
         foreach ($years as $year) {
             $batch_course_data[] = [
+                'semester' => BatchCourse::with('relSemester')->where('year_id', $year->year_id)
+                    ->where('batch_id', $batch_id)->groupBy('semester_id')->first(),
                 'year'=> $year,
                 'course_semester' => BatchCourse::with('relSemester','courseByCourse')
                     ->where('year_id', $year->year_id)->where('batch_id', $batch_id)
@@ -759,7 +761,8 @@ class AdmAmwController extends \BaseController
 
         $batch_number = Batch::where('degree_id','=',$degree_id)->count();
 
-        $degree_title = Batch::with('relSemester','relYear','relDegree.relDepartment','relDegree.relDegreeProgram','relDegree.relDegreeGroup')->where('id','=',$degree_id)->first();
+        $degree_title = Batch::with('relDegree.relDegreeLevel','relDegree.relDegreeProgram','relDegree.relDegreeGroup')->where('id','=',$degree_id)->first();
+        //print_r($degree_title);exit;
         $dpg_list = array('' => 'Select Degree Program ') + Degree::DegreeProgramGroup();
         $year_list = array('' => 'Select Year ') + Year::lists('title', 'id');
         $semester_list = array('' => 'Select Semester ') + Semester::lists('title', 'id');
@@ -871,19 +874,51 @@ class AdmAmwController extends \BaseController
     public function storeBatchAdmTestSubject()
     {
         $data = Input::all();
-        $model = new BatchAdmtestSubject();
-        if($model->validate($data)){
-            if($model->create($data)){
-                Session::flash('message', 'Successfully added Information!');
-                return Redirect::back();
+
+//        print_r($data);exit;
+        $select = Input::get('admtest_subject');
+        $batch_id = Input::get('batch_id');
+
+        $i = 0;
+        foreach($select as $value){
+            $degree_course = new BatchAdmtestSubject();
+            $degree_course->description = Input::get('description');
+            $degree_course->marks = Input::get('marks');
+            $degree_course->qualify_marks = Input::get('qualify_marks');
+            $degree_course->duration = Input::get('duration');
+            $degree_course->batch_id = $batch_id;
+            $degree_course->admtest_subject_id = $value;
+
+
+
+
+            $degreeCourseCheck = $this->checkBatchAdmTestSubject($degree_course->batch_id, $degree_course->admtest_subject_id);
+
+            if($degreeCourseCheck){
+                $exists [] =  AdmTestSubject::findOrFail($degree_course->admtest_subject_id)->title;
+                Session::flash('info', 'Already Exists : '.$exists[$i]);
+            }else{
+                $degree_course->save();
+                $array [] = AdmTestSubject::findOrFail($degree_course->admtest_subject_id)->title;
+                Session::flash('message', 'Successfully Added ! '. $array[$i]);
             }
-        }else{
-            $errors = $model->errors();
-            Session::flash('errors', $errors);
-            return Redirect::back()
-                ->with('errors', 'invalid');
+
+
+
+
+
         }
+        return Redirect::back();
     }
+
+    protected function checkBatchAdmTestSubject($batch_id, $admtest_subject_id){
+        $result = DB::table('batch_admtest_subject')->select(DB::raw('1'))
+            ->where('admtest_subject_id', '=', $admtest_subject_id)
+            ->where('batch_id', '=', $batch_id)
+            ->first();
+        return $result;
+    }
+
 
     public function editBatchAdmTestSubject($id, $batch_id)
     {
@@ -971,7 +1006,7 @@ class AdmAmwController extends \BaseController
         }
     }
 
-//............................................ Admission Test Management : Home ........................................
+//............................................ Manage Admission Tests  : Home ........................................
 
     public function admissionTestIndex()
     {
@@ -1490,7 +1525,7 @@ class AdmAmwController extends \BaseController
     public function batchWaiverIndex($batch_id){
 
         $model = Batch::find($batch_id);
-        $batch_info = Batch::with('relDegree.relDegreeGroup','relDegree.relDegreeProgram','relDegree.relDepartment','relYear','relSemester','relDegree')
+        $batch_info = Batch::with('relDegree.relDegreeGroup','relDegree.relDegreeProgram','relDegree.relDegreeLevel','relYear','relSemester','relDegree')
             ->where('id', '=', $batch_id)
             ->first();
 

@@ -20,8 +20,9 @@
                 @if(isset($batch_course_data))
                 @foreach($batch_course_data as $values)
                     <h4 class="table.align th text-purple  font-size text-bold"> Year: {{$values['year']['relYear']['title']}} </h4>
+                    <h4 class="text-purple"> Semester: {{$values['semester']['relSemester']['title']}} </h4>
                     @foreach($values['course_semester'] as $semester)
-                        <h4 class="text-purple">{{$semester['relSemester']['title']}}</h4>
+                        {{--<h4 class="text-purple">{{$semester['relSemester']['title']}}</h4>--}}
                             <table id="" class="table table-bordered table-hover table-striped">
                                 <thead>
                                 <tr>
