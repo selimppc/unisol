@@ -16,19 +16,15 @@ class SemesterController extends \BaseController {
 
 	public function store()
 	{
-        // get the POST data
         $data = Input::all();
-        // create a new model instance
         $semester = new Semester();
-        // attempt validation
         if ($semester->validate($data))
         {
-            // success code
             $semester->title = Input::get('title');
+            $name = $semester->title;
             $semester->description = Input::get('description');
             $semester->save();
-            // redirect
-            Session::flash('message', 'Successfully Added!');
+            Session::flash('message', "$name Semester Added");
             return Redirect::to('common/semester/');
         }
         else
@@ -38,7 +34,7 @@ class SemesterController extends \BaseController {
             Session::flash('errors', $errors);
             return Redirect::to('common/semester/');
         }
-        //ok
+
 	}
 
 	public function show($id)
@@ -75,16 +71,17 @@ class SemesterController extends \BaseController {
 	public function update($id)
 	{
         $rules = array(
-            //'title' => 'required',
+            'title' => 'required|Min: 3',
+            'description' => 'required|Min: 3',
         );
         $validator = Validator::make(Input::all(), $rules);
         if ($validator->passes()) {
             $semester = Semester::find($id);
             $semester->title = Input::get('title');
+            $name = $semester->title;
             $semester->description = Input::get('description');
             $semester->save();
-            // redirect
-            Session::flash('message', 'Successfully Updated!');
+            Session::flash('message', "$name Semester Updated");
             return Redirect::to('common/semester/');
         } else {
             return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
@@ -100,11 +97,18 @@ class SemesterController extends \BaseController {
 	public function destroy($id)
 	{
         try {
-            Semester::find($id)->delete();
-            return Redirect::back()->with('message', 'Semester Deleted successfully!');
+            $data= Semester::find($id);
+            $name = $data->title;
+            if($data->delete())
+            {
+                Session::flash('message', "$name Semester Deleted");
+                return Redirect::to('common/semester/');
+            }
         }
-        catch(exception $ex){
+        catch
+        (exception $ex){
             return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+
         }
  }
     public function batchDelete()
