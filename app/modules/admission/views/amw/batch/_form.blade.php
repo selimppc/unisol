@@ -24,7 +24,7 @@
                     </div>
                 </div>
                 <br>
-                
+
                 <div class='form-group'>
                    {{ Form::label('batch_number', 'Batch Number') }}
                    {{ Form::text('batch_number', Input::old('batch_number'),['class'=>'form-control','required'=>'required']) }}
