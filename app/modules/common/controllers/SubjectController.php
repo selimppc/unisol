@@ -16,19 +16,15 @@ class SubjectController extends \BaseController {
 	public function save()
 	{
 		$token = csrf_token();
-
 		$rules = array(
-
 			'department_id' => 'Required',
 			'title' => 'Required|Min: 3',
 			'description' => 'Required|min:3'
 		);
 		$validator = Validator::make(Input::all(), $rules);
-
-
 		if($validator->fails())
 		{
-			return Redirect::to('common/subject/')->withErrors($validator)->withInput()->with('title', 'Create Subject');
+			return Redirect::to('common/subject/')->withErrors($validator)->withInput();
 		}
 		else
 		{
@@ -37,15 +33,16 @@ class SubjectController extends \BaseController {
 				$data = new Subject;
 				$data->department_id = Input::get('department_id');
 				$data->title = Input::get('title');
+				$name = $data->title;
 				$data->description = Input::get('description');
 				$data->save();
-				Session::flash('message', "Success:Subject added successfully");
-				return Redirect::to('common/subject/')->with('title', 'Subject List');
+				Session::flash('message', "$name Subject Added");
+				return Redirect::to('common/subject/');
 			}
 			else
 			{
 				Session::flash('message', 'Token Mismatched');
-				return Redirect::to('common/subject/')->with('title', 'Subject List');
+				return Redirect::to('common/subject/');
 			}
 		}
 	}
@@ -67,7 +64,6 @@ class SubjectController extends \BaseController {
 			});
 		}
 		$datas = $q->orderBy('id', 'DESC')->paginate(5);
-//		return View::make('common::subject.index')->with('datas',$data)->with('title','All Subject List');
 		return View::make('common::subject.index', compact('title', 'datas', 'department'));
 	}
 
@@ -78,7 +74,7 @@ class SubjectController extends \BaseController {
 			if($data->delete())
 			{
 				Session::flash('danger', "Subject Deleted successfully");
-				return Redirect::to('common/subject/')->with('title','All Subject List');
+				return Redirect::to('common/subject/');
 			}
 		}
 		catch
@@ -112,7 +108,7 @@ class SubjectController extends \BaseController {
 		$validator = Validator::make(Input::all(), $rules);
 		if($validator->fails())
 		{
-			return Redirect::to('common/subject/')->withErrors($validator)->withInput()->with('title', 'Subject List');
+			return Redirect::to('common/subject/')->withErrors($validator)->withInput();
 		}
 		else
 		{
@@ -121,15 +117,16 @@ class SubjectController extends \BaseController {
 				$data = Subject::find($id);
 				$data->department_id = Input::get('department_id');
 				$data->title = Input::get('title');
+				$name = $data->title;
 				$data->description = Input::get('description');
 				$data->save();
-				Session::flash('success', "Subject Updated successfully");
-				return Redirect::to('common/subject/')->with('title', 'Subject List');
+				Session::flash('message', "$name Subject Updated");
+				return Redirect::to('common/subject/');
 			}
 			else
 			{
 				Session::flash('message', 'Token Mismatched');
-				return Redirect::to('common/subject/')->with('title', 'Subject List');
+				return Redirect::to('common/subject/');
 			}
 		}
 	}
@@ -151,10 +148,11 @@ class SubjectController extends \BaseController {
 	{
 		try {
 			$data= Subject::find($id);
+			$name = $data->title;
 			if($data->delete())
 			{
-				Session::flash('danger', "Subject Deleted successfully");
-				return Redirect::to('common/subject/')->with('title','All Subject List');
+				Session::flash('message', "$name Subject Deleted");
+				return Redirect::to('common/subject/');
 			}
 		}
 		catch
