@@ -67,7 +67,7 @@ class AdmFacultyController extends \BaseController {
 
 
         $search_index_adm_examiner = AdmExaminer::join('Batch', function ($query) use ($year_id, $semester_id) {
-            $query->on('batch.id', '=', 'adm_examiner.batch_id');
+            $query->on('batch.semester_id', '=', 'adm_examiner.batch_id');
 
             if (isset($year_id) && !empty($year_id)) $query->where('adm_examiner.batch_id', '=', $year_id);
             if (isset($semester_id) && !empty($semester_id)) $query->where('adm_examiner.batch_id', '=', $semester_id);
@@ -78,6 +78,7 @@ class AdmFacultyController extends \BaseController {
         if (isset($year_id) && !empty($year_id)) $search_index_adm_examiner = $search_index_adm_examiner->where('batch.year_id', '=', $year_id);
 
         $search_index_adm_examiner = $search_index_adm_examiner->paginate();
+        
 
 
 
