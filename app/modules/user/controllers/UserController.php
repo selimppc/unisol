@@ -38,8 +38,15 @@ class UserController extends \BaseController {
                     ->withInput()
                     ->withErrors($validator);
             }
+        }else{
+            if(Auth::user()->check()){
+                return Redirect::to("user/user-access-to");
+            }elseif(Auth::applicant()->check()){
+                return Redirect::route('admission.applicant_details', [Auth::applicant()->get()->id]);
+            }
+            return View::make('user::user.login');
         }
-        return View::make('user::user.login');
+
     }
 
     public static function userAccessTo(){

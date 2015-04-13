@@ -43,7 +43,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                     <br>
-                        {{ Form::open(array('url' => 'admission/amw/degree/batch_delete')) }}
+                        {{ Form::open(array('route' => 'admission.amw.degree.dg_batch_delete')) }}
                         <table id="example1" class="table table-bordered">
                             <thead>
                             <tr>
@@ -61,7 +61,7 @@
                             @if(isset($model))
                                 @foreach($model as $value)
                                     <tr>
-                                        <td><input type="checkbox" name="ids[]"  class="myCheckbox" value="{{ $value->id }}">
+                                        <td><input type="checkbox" name="id[]"  class="myCheckbox" value="{{ $value->id }}">
                                         </td>
                                         <td>{{ $value->title }}</td>
                                         <td>{{ $value->relDepartment->title }}</td>

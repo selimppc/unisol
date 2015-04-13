@@ -485,6 +485,12 @@ Route::any('admission/amw/degree/delete/{id}', [
     'uses'=>'AdmAmwController@admDegreeDelete'
 ]);
 
+Route::any('admission/amw/degree/dg_batch_delete', [
+    'as'=>'admission.amw.degree.dg_batch_delete',
+    'uses'=>'AdmAmwController@admDegreeBatchDelete'
+]);
+
+
 Route::any('admission/amw/degree/search', [
     'as'=>'admission.amw.degree.search',
     'uses'=>'AdmAmwController@admDegreeSearch'
