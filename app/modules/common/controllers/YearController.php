@@ -37,7 +37,7 @@ class YearController extends \BaseController {
 				$name = $data->title;
 				$data->description = Input::get('description');
 				$data->save();
-				Session::flash('message', "Year $name Added");
+				Session::flash('message', "$name Year Added");
 				return Redirect::to('common/year/');
 			}
 			else
@@ -129,7 +129,7 @@ class YearController extends \BaseController {
 				$name = $data->title;
 				$data->description = Input::get('description');
 				$data->save();
-				Session::flash('message', "Year $name Updated");
+				Session::flash('message', "$name Year Updated");
 				return Redirect::to('common/year/');
 			}
 			else
@@ -147,7 +147,7 @@ class YearController extends \BaseController {
 			$name = $data->title;
 			if($data->delete())
 			{
-				Session::flash('message', "Year $name Deleted");
+				Session::flash('message', "$name Year Deleted");
 				return Redirect::to('common/year/');
 			}
 		}

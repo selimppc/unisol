@@ -13,8 +13,8 @@ class Semester extends Eloquent{
     ];
     private $errors;
     private $rules = [
-        'title' => 'required',
-        //'description' => 'alpha_dash',
+        'title' => 'required|Min: 3',
+        'description' => 'required|Min: 3',
     ];
     public function validate($data)
     {

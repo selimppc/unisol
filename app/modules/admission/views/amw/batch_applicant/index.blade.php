@@ -80,7 +80,7 @@
                                @if(isset($apt_data))
                                     @foreach($apt_data as $value)
                                         <tr>
-                                            <td><input type="checkbox" name="ids[]"  class="myCheckbox" value="{{ $value->id }}" required="required">
+                                            <td><input type="checkbox" name="ids[]"  class="myCheckbox" value="{{ $value->id }}">
                                             </td>
                                             <td>{{$value->relApplicant->first_name.''.$value->relApplicant->last_name}}</td>
                                             <td> {{ empty($value->status) ? 'Status Do not added' : $status[$value->status] }}</td>
