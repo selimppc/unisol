@@ -9,7 +9,7 @@
 <div class="box box-solid ">
 <div class="box-body">
   <div class="col-sm-12">
-    {{ Form::open(array('url' => 'admission/amw/admission-test-home')) }}
+    {{ Form::open(array('url' => 'admission/amw/adm-test-home/search-adm-test-index')) }}
       <div class="col-sm-8">
        <div class="col-sm-3">
         {{ Form::label('year_id', 'Year') }}
@@ -39,6 +39,7 @@
                    <th><input name="id" id="checkbox" type="checkbox" class="checkbox" value=""></th>
                    <th>Degree</th>
                    <th>Dept</th>
+                   <th>BN</th>
                    <th>Year</th>
                    <th>Term</th>
                    <th>Credit</th>
@@ -54,6 +55,7 @@
                        <td><input type="checkbox" name="id[]" class="myCheckbox" value="{{ $values->id }}"></td>
                        <td>{{ $values->relBatch->relDegree->relDegreeProgram->code.''.$values->relBatch->relDegree->relDegreeGroup->code }}</td>
                        <td>{{ $values->relBatch->relDegree->relDepartment->title }}</td>
+                       <td>{{ $values->relBatch->batch_number }}</td>
                        <td>{{ $values->relBatch->relYear->title }}</td>
                        <td>{{ $values->relBatch->relSemester->title }}</td>
                        <td>{{ $values->relBatch->relDegree->total_credit }}</td>
