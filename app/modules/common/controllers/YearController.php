@@ -147,7 +147,7 @@ class YearController extends \BaseController {
 			$data= Year::find($id);
 			if($data->delete())
 			{
-				Session::flash('message', "Success:Year Deleted successfully");
+				Session::flash('message', "Year Deleted successfully");
 				return Redirect::to('common/year/')->with('title','All Year List');
 			}
 		}
