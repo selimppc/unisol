@@ -13,10 +13,10 @@
                   </div>
           </div>
 
-          <div class='form-group'>
-              <div>{{ Form::label('title', 'Title') }}<span class="text-danger">*</span></div>
-              <div>{{ Form::text('title',Input::old('title') ,['class'=>'form-control input-sm','required'])}}</div>
-          </div>
+          {{--<div class='form-group'>--}}
+              {{--<div>{{ Form::label('title', 'Title') }}<span class="text-danger">*</span></div>--}}
+              {{--<div>{{ Form::text('title',Input::old('title') ,['class'=>'form-control input-sm','required'])}}</div>--}}
+          {{--</div>--}}
 
           <div class='form-group'>
                 <div>{{ Form::label('description', 'Description') }}</div>

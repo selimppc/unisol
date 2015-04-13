@@ -1,6 +1,6 @@
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-    <h4 class="modal-title" id="myModalLabel"> Add Batch: {{ $batch_number + 1 }} of Degree Title :{{$degree->title}}</h4>
+    <h4 class="modal-title" id="myModalLabel"> Add Batch: {{ $batch_number + 1 }} Of {{$degree_title->relDegree->relDegreeProgram->code.'.'.$degree_title->relDegree->relDegreeGroup->code.' On '.$degree_title->relDegree->relDepartment->title.' , '.$degree_title->relSemester->title.' , '.$degree_title->relYear->title }}</h4>
 
 </div>
 
