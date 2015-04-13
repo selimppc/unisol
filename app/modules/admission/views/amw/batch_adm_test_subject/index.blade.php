@@ -48,6 +48,8 @@
           </tbody>
         </table>
     {{form::close() }}
+
+    <a href="{{ URL::previous() }}" class="btn btn-success" style="margin-left: 40%">Back</a>
 </div>
 </div>
 </div>
