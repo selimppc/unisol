@@ -89,6 +89,7 @@
     <div class="text-right">
         {{ $model->links() }}
     </div>
+    <a href="{{ URL::previous() }}" class="btn btn-success" style="margin-left: 40%">Back</a>
 {{----------------------Modal : degreeGroupModal--------------------------------------------------------------------------}}
     <div class="modal fade" id="degreeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
