@@ -85,6 +85,7 @@ class AdmQuestion extends Eloquent{
             $join->on('adm_examiner.user_id', '=', 'user_profile.user_id');
         })
             ->where('adm_examiner.batch_id', '=', $batch_id)
+            ->where('adm_examiner.status', '=', 'requested')
             ->select(DB::raw('CONCAT(user_profile.first_name, " ", user_profile.middle_name, " ", user_profile.last_name) AS full_name, adm_examiner.user_id as id'))
             ->lists('full_name', 'id');
         return $query;

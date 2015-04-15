@@ -10,7 +10,7 @@ class DepartmentController extends BaseController{
 
      public function index(){
 
-         $departmentList = Department::orderBy('id', 'DESC')->paginate(5);
+         $departmentList = Department::orderBy('id', 'DESC')->paginate(10);
          $facultyList = User::FacultyList();
          //print_r($facultyList);
          return View::make('common::department.index', compact('departmentList','facultyList'));
@@ -23,14 +23,18 @@ class DepartmentController extends BaseController{
 
         // create a new model instance
         $department = new Department();
-
         // attempt validation
         if ($department->validate($data))
         {
             // success code
             $department->title = Input::get('title');
             $name = $department->title;
-            $department->dept_head_user_id = Input::get('dept_head_user_id');
+            $checkDeptHead = $this->checkIfFaculty($data['dept_head_user_id']);
+            if($checkDeptHead){
+                $department->dept_head_user_id = Input::get('dept_head_user_id');
+            }else{
+                $department->dept_head_user_id = null;
+            }
             $department->description = Input::get('description');
             $department->save();
             // redirect
@@ -44,6 +48,12 @@ class DepartmentController extends BaseController{
             Session::flash('errors', $errors);
             return Redirect::to('common/department/');
         }
+    }
+
+    protected function checkIfFaculty($dept_head_user_id){
+        $result = DB::table('department')->select(DB::raw('1'))
+            ->where('dept_head_user_id', $dept_head_user_id)->first();
+        return $result;
     }
 
 
@@ -97,7 +107,12 @@ class DepartmentController extends BaseController{
             $department = Department::find($id);
             $department->title = Input::get('dept_name');
             $name = $department->title;
-            $department->dept_head_user_id = Input::get('dept_head_user_id');
+            $checkDeptHead = $this->checkIfFaculty( Input::get('dept_head_user_id') );
+            if($checkDeptHead){
+                $department->dept_head_user_id = Input::get('dept_head_user_id');
+            }else{
+                $department->dept_head_user_id = null;
+            }
             $department->description = Input::get('description');
             $department->save();
             Session::flash('message', "$name Department Updated");
@@ -112,7 +127,5 @@ class DepartmentController extends BaseController{
     {
         $department = Department::find($id);
         return View::make('common::department.show',compact('department'));
-
-
     }
 }
