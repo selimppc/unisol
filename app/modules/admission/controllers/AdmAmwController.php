@@ -612,8 +612,10 @@ class AdmAmwController extends \BaseController
     {
         try {
             $data = BatchCourse::find($id);
-            if ($data->delete()) {
-                Session::flash('danger', "Items Deleted successfully");
+            $name = $data->relCourse->title;
+            if($data->delete())
+            {
+                Session::flash('message', "Successfully Deleted $name Course ");
                 return Redirect::back();
             }
         } catch(exception $ex) {
@@ -1848,10 +1850,12 @@ class AdmAmwController extends \BaseController
 
         $model = BatchApplicant::find($applicant_id);
         $data = Input::all();
+        $model->status = Input::get('status');
+        $name = $model->status;
 
         if($model->validate($data)){
             if($model->update($data)){
-                Session::flash('message','Successfully Updated Information!');
+                Session::flash('message',"Successfully Updated Status: $name!");
                 return Redirect::back();
             }
         }else{
