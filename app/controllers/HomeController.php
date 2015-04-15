@@ -343,8 +343,9 @@ class HomeController extends BaseController {
 
 
     public function sortable(){
+        $a = Helpers::extractBatchNumber(1232323);
 
-        print_r($_SERVER);
+        print_r($a);
         exit;
         $title = ' My Name is Selim - _ thank you ';
 
