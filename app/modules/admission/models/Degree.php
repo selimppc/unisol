@@ -89,8 +89,8 @@ class Degree extends Eloquent{
 
     //TODO : Scope Area
     public function scopeDegreeProgramGroup($query){
-        $query = $this::join('degree_program', function($query){
-            $query->on('degree_program.id', '=', 'degree.degree_program_id');
+        $query = $this::join('degree_level', function($query){
+            $query->on('degree_level.id', '=', 'degree.degree_level_id');
         })
             ->join('degree_group', function($query){
                 $query->on('degree_group.id', '=', 'degree.degree_group_id');
@@ -98,7 +98,7 @@ class Degree extends Eloquent{
             ->join('department', function($query){
                 $query->on('department.id', '=', 'degree.department_id');
             })
-            ->select(DB::raw('CONCAT(degree_program.code, "", degree_group.code, " in ", department.title) as dp_name'), 'degree.id as deg_id')
+            ->select(DB::raw('CONCAT(degree_level.code, "", degree_group.code, " in ", department.title) as dp_name'), 'degree.id as deg_id')
             ->lists('dp_name', 'deg_id');
         if($query){
             return $query;

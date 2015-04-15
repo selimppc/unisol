@@ -12,7 +12,7 @@
             <table class="table table-striped  table-bordered">
                 <tr>
                     <td><strong> Degree:</strong></td>
-                    <td>{{ $b_m_course->relDegree->title }}</td>
+                    <td>{{ $b_m_course->relDegree->relDegreeLevel->code.'  '.$b_m_course->relDegree->relDegreeGroup->code.' In '.$b_m_course->relDegree->relDegreeProgram->code}}</td>
                 </tr>
                 <tr>
                     <td><strong> Year:</strong></td>
