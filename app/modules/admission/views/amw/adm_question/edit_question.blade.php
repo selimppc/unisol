@@ -9,7 +9,7 @@
 
                <div class='form-group'>
                     <strong> Batch# </strong> {{ $question->relBatchAdmtestSubject->relBatch->batch_number }} </br>
-                    <strong> Degree Name: </strong> {{ $question->relBatchAdmtestSubject->relBatch->relDegree->relDegreeProgram->code }}{{ $question->relBatchAdmtestSubject->relBatch->relDegree->relDegreeGroup->code }} - {{ $question->relBatchAdmtestSubject->relBatch->relDegree->relDepartment->title }} - {{ $question->relBatchAdmtestSubject->relBatch->relSemester->title }} - {{ $question->relBatchAdmtestSubject->relBatch->relYear->title }}
+                    <strong> Degree Name: </strong> {{ $question->relBatchAdmtestSubject->relBatch->relDegree->relDegreeLevel->code }}{{ $question->relBatchAdmtestSubject->relBatch->relDegree->relDegreeGroup->code }} In {{ $question->relBatchAdmtestSubject->relBatch->relDegree->relDegreeProgram->code }} , {{ $question->relBatchAdmtestSubject->relBatch->relSemester->title }} - {{ $question->relBatchAdmtestSubject->relBatch->relYear->title }}
               </div>
 
                 <div class='form-group'>

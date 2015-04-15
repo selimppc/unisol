@@ -10,8 +10,9 @@
 
     <h5> <strong>Batch # </strong>{{$question_data->relBatchAdmtestSubject->relBatch->batch_number}} </h5>
     <h5>  <strong>Degree Name : </strong>
-        {{$question_data->relBatchAdmtestSubject->relBatch->relDegree->relDegreeProgram->title}}
-        {{$question_data->relBatchAdmtestSubject->relBatch->relDegree->relDegreeGroup->title}} -
+        {{$question_data->relBatchAdmtestSubject->relBatch->relDegree->relDegreeLevel->code}}
+        {{$question_data->relBatchAdmtestSubject->relBatch->relDegree->relDegreeGroup->code}} In
+         {{$question_data->relBatchAdmtestSubject->relBatch->relDegree->relDegreeProgram->code}},
         {{$question_data->relBatchAdmtestSubject->relBatch->relSemester->title}} -
         {{$question_data->relBatchAdmtestSubject->relBatch->relYear->title}}
     </h5>
