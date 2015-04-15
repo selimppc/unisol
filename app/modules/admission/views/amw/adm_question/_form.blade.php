@@ -11,7 +11,7 @@
 
                <div class='form-group'>
                      <strong> Batch# </strong> {{ $batch->relBatch->batch_number }} </br>
-                     <strong> Degree Name: </strong> {{ $batch->relBatch->relDegree->relDegreeProgram->code }}{{ $batch->relBatch->relDegree->relDegreeGroup->code }} - {{ $batch->relBatch->relDegree->relDepartment->title }} - {{ $batch->relBatch->relSemester->title }} - {{ $batch->relBatch->relYear->title }}
+                     <strong> Degree Name: </strong> {{ $batch->relBatch->relDegree->relDegreeLevel->code }}{{ $batch->relBatch->relDegree->relDegreeGroup->code }} In {{ $batch->relBatch->relDegree->relDegreeProgram->code }} , {{ $batch->relBatch->relSemester->title }} - {{ $batch->relBatch->relYear->title }}
                </div>
 
                 <div class='form-group'>

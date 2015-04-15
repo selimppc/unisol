@@ -10,7 +10,7 @@
     {{ Form::open(array('url'=>'admission/amw/batch-adm-test-subject/view_admtest_subject','method' => '')) }}
 
         <div class="span9 well" style="font-size: large; margin-left: 40px">
-            <h2><strong>Degree : </strong>{{ $view_adm_test_subject->relBatch->relDegree->title }}</h2>
+            <h2><strong>Degree : </strong>{{ $view_adm_test_subject->relBatch->relDegree->relDegreeLevel->code.'  '.$view_adm_test_subject->relBatch->relDegree->relDegreeGroup->code.' In '.$view_adm_test_subject->relBatch->relDegree->relDegreeProgram->code }}</h2>
             <p>
                 <strong> Subject: </strong> {{ $view_adm_test_subject->relAdmTestSubject->title }} <br>
                 <strong> Description: </strong> {{ $view_adm_test_subject->description }}<br>

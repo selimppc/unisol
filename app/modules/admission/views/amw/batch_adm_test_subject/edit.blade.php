@@ -8,7 +8,7 @@
 
      <div class="pull-left">
          <strong> Degree: </strong>
-         {{ $degree_name->relDegree->relDegreeProgram->code.''.$degree_name->relDegree->relDegreeGroup->code }}
+         {{ $degree_name->relDegree->relDegreeLevel->code.'  '.$degree_name->relDegree->relDegreeGroup->code.' In '.$degree_name->relDegree->relDegreeProgram->code }},
          {{$degree_name->relSemester->title}} - {{$degree_name->relYear->title}}
      </div>
 
