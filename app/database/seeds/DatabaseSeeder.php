@@ -77,7 +77,8 @@ class DatabaseSeeder extends Seeder {
         $this->call('DesignationTable');
         $this->command->info('Designation table seeded!');
 
-       
+       /* //$this->call('AcmMarksDistItemTable');
+        //$this->command->info('Academic Marks Distribution Item table seeded!');*/
 
         $this->call('BillingItemTable');
         $this->command->info('Billing Item table seeded!');
