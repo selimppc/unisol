@@ -25,9 +25,9 @@
       <p>
      {{--<b style="font-style: italic">--}}
         @if(isset($batchApt))
-           {{$batchApt->relDegree->relDegreeProgram->title}}
-           {{$batchApt->relDegree->relDegreeGroup->title}} On
-           {{$batchApt->relDegree->relDepartment->title}}
+           {{$batchApt->relDegree->relDegreeLevel->code}}
+           {{$batchApt->relDegree->relDegreeGroup->code}} On
+           {{$batchApt->relDegree->relDegreeProgram->code}}
            {{$batchApt->relSemester->title}},
            {{$batchApt->relYear->title}}
        @endif

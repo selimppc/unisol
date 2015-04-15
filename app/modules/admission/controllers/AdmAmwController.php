@@ -761,7 +761,8 @@ class AdmAmwController extends \BaseController
 
         $batch_number = Batch::where('degree_id','=',$degree_id)->count();
 
-        $degree_title = Batch::with('relSemester','relYear','relDegree.relDepartment','relDegree.relDegreeProgram','relDegree.relDegreeGroup')->where('id','=',$degree_id)->first();
+        $degree_title = Batch::with('relDegree.relDegreeLevel','relDegree.relDegreeProgram','relDegree.relDegreeGroup')->where('id','=',$degree_id)->first();
+        //print_r($degree_title);exit;
         $dpg_list = array('' => 'Select Degree Program ') + Degree::DegreeProgramGroup();
         $year_list = array('' => 'Select Year ') + Year::lists('title', 'id');
         $semester_list = array('' => 'Select Semester ') + Semester::lists('title', 'id');
@@ -847,7 +848,7 @@ class AdmAmwController extends \BaseController
     public function indexBatchAdmTestSubject($batch_id)
     {
         $degree_test_sbjct = BatchAdmtestSubject::where('batch_id' ,'=', $batch_id)->get();
-        $degree_name = Batch::with('relDegree')
+        $degree_name = Batch::with('relDegree','relDegree.relDegreeLevel','relDegree.relDegreeGroup')
             ->where('id' ,'=', $batch_id)
             ->first();
         return View::make('admission::amw.batch_adm_test_subject.index',
@@ -864,7 +865,7 @@ class AdmAmwController extends \BaseController
     {
         $subject_id_result = AdmTestSubject::lists('title', 'id');
 
-        $degree_name = Batch::with('relDegree')
+        $degree_name = Batch::with('relDegree','relDegree.relDegreeLevel','relDegree.relDegreeGroup','relYear','relSemester','relDegree.relDegreeProgram')
             ->where('id' ,'=', $batch_id)
             ->first();
         return View::make('admission::amw.batch_adm_test_subject._form',compact('batch_id','degree_name','subject_id_result'));
@@ -1365,7 +1366,7 @@ class AdmAmwController extends \BaseController
      {------------------- Version:2 ->Admission--> Degree ------------------------------------}
      */
     public function admDegreeIndex(){
-        $model = Degree::latest('id')->paginate(10);
+        $model = Degree::latest('id')->with('relDegreeLevel','relDegreeProgram')->paginate(10);
         $department = array('' => 'Select Department ') + Department::lists('title', 'id');
         return View::make('admission::amw.degree.degree.index',
             compact('model','department'));
@@ -1376,8 +1377,9 @@ class AdmAmwController extends \BaseController
         $department = array('' => 'Select Department ') + Department::lists('title', 'id');
         $degree_program = array('' => 'Select Department ') + DegreeProgram::lists('title', 'id');
         $degree_group = array('' => 'Select Department ') + DegreeGroup::lists('title', 'id');
+        $degree_level = array('' => 'Select Degree Level ') + DegreeLevel::lists('title', 'id');
         return View::make('admission::amw.degree.degree._form',
-            compact('department','degree_program','degree_group'));
+            compact('department','degree_program','degree_group','degree_level'));
     }
 
     public function admDegreeStore()
@@ -1408,8 +1410,9 @@ class AdmAmwController extends \BaseController
         $department = array('' => 'Select Department ') + Department::lists('title', 'id');
         $degree_program = array('' => 'Select Department ') + DegreeProgram::lists('title', 'id');
         $degree_group = array('' => 'Select Department ') + DegreeGroup::lists('title', 'id');
+        $degree_level = array('' => 'Select Degree Level ') + DegreeLevel::lists('title', 'id');
         return View::make('admission::amw.degree.degree.degree_edit',
-            compact('model','department','degree_program','degree_group'));
+            compact('model','department','degree_program','degree_group','degree_level'));
     }
 
     public function admDegreeUpdate($id)
@@ -1543,7 +1546,7 @@ class AdmAmwController extends \BaseController
     public function batchWaiverIndex($batch_id){
 
         $model = Batch::find($batch_id);
-        $batch_info = Batch::with('relDegree.relDegreeGroup','relDegree.relDegreeProgram','relDegree.relDepartment','relYear','relSemester','relDegree')
+        $batch_info = Batch::with('relDegree.relDegreeGroup','relDegree.relDegreeProgram','relDegree.relDegreeLevel','relYear','relSemester','relDegree')
             ->where('id', '=', $batch_id)
             ->first();
 

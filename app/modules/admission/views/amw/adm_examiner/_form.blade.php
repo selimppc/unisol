@@ -8,8 +8,8 @@
         {{Form::open(array('url'=>'admission/amw/admission-test-examiner/store-admission-test-examiner', 'class'=>'form-horizontal','files'=>true))}}
 
             <div class='form-group'>
-                <strong> Degree Name: </strong>{{ Degree::findOrFail($degree_id)->relDegreeProgram->code.''.Degree::findOrFail($degree_id)->relDegreeGroup->code }} </br>
-                <strong> Department: </strong>{{ $degree_data->relDepartment->title }}
+                <strong> Degree Name: </strong>{{ Degree::findOrFail($degree_id)->relDegreeLevel->code.''.Degree::findOrFail($degree_id)->relDegreeGroup->code.' In '.Degree::findOrFail($degree_id)->relDegreeProgram->code }} </br>
+                {{--<strong> Department: </strong>{{ $degree_data->relDepartment->title }}--}}
             </div>
 
            {{ Form::hidden('batch_id',$batch_id,Input::old('batch_id')) }} </br>

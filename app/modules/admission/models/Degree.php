@@ -9,7 +9,7 @@ class Degree extends Eloquent{
     //TODO :: model attributes and rules and validation
     protected $table='degree';
     protected $fillable = [
-        'department_id', 'degree_program_id', 'degree_group_id', 'title', 'description',
+        'department_id', 'degree_program_id', 'degree_group_id', 'degree_level_id', 'description',
         'total_credit', 'duration', 'policy_retake', 'policy_course_taking',
         'credit_min_per_semester', 'credit_max_per_semester', 'status'
     ];
@@ -18,7 +18,7 @@ class Degree extends Eloquent{
         'department_id' => 'required|integer',
         'degree_program_id' => 'required|integer',
         'degree_group_id' => 'required|integer',
-        'title' => 'required',
+        'degree_level_id' => 'required|integer',
         //'description' => 'alpha_dash',
         'total_credit' => 'required|numeric',
         'duration' => 'required',
@@ -57,6 +57,9 @@ class Degree extends Eloquent{
     public function relDepartment(){
         return $this->belongsTo('Department', 'department_id', 'id');
     }
+    public function relDegreeLevel(){
+        return $this->belongsTo('DegreeLevel', 'degree_level_id', 'id');
+    }
     public function relDegreeProgram(){
         return $this->belongsTo('DegreeProgram', 'degree_program_id', 'id');
     }
@@ -86,8 +89,8 @@ class Degree extends Eloquent{
 
     //TODO : Scope Area
     public function scopeDegreeProgramGroup($query){
-        $query = $this::join('degree_program', function($query){
-            $query->on('degree_program.id', '=', 'degree.degree_program_id');
+        $query = $this::join('degree_level', function($query){
+            $query->on('degree_level.id', '=', 'degree.degree_level_id');
         })
             ->join('degree_group', function($query){
                 $query->on('degree_group.id', '=', 'degree.degree_group_id');
@@ -95,7 +98,7 @@ class Degree extends Eloquent{
             ->join('department', function($query){
                 $query->on('department.id', '=', 'degree.department_id');
             })
-            ->select(DB::raw('CONCAT(degree_program.code, "", degree_group.code, " in ", department.title) as dp_name'), 'degree.id as deg_id')
+            ->select(DB::raw('CONCAT(degree_level.code, "", degree_group.code, " in ", department.title) as dp_name'), 'degree.id as deg_id')
             ->lists('dp_name', 'deg_id');
         if($query){
             return $query;

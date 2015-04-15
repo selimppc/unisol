@@ -10,7 +10,7 @@ class UserProfileTable extends Seeder {
 
     public function run(){
 
-        DB::table('board_university')->delete();
+        DB::table('user_profile')->delete();
 
         $items = array(
             array(2, 'MA', 'H', 'Hamid', '1982-02-04', 'male', 'Gazipur', 'Dahaka', 'Bangladesh', 1234),

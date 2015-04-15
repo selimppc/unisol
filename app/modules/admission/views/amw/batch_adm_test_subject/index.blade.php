@@ -10,8 +10,7 @@
         <div class="row">
             <div class="pull-left col-sm-6 ">
                 <strong> Degree: </strong>
-                {{ $degree_name->relDegree->relDegreeProgram->code.''.$degree_name->relDegree->relDegreeGroup->code }}
-                {{$degree_name->relSemester->title}} - {{$degree_name->relYear->title}}
+                {{ $degree_name->relDegree->relDegreeLevel->code.''.$degree_name->relDegree->relDegreeGroup->code.' In '.$degree_name->relDegree->relDegreeProgram->code.','.$degree_name->relSemester->title.'-'.$degree_name->relYear->title }}
             </div>
             <div class="pull-right col-sm-6">
             <a href="{{ URL::route('admission.amw.batch-adm-test-subject.create_admtest_subject',['batch_id'=>$batch_id])}}" class="pull-right btn btn-sm btn-info" data-toggle="modal" data-target="#modal" >Add Subject To Degree</a>

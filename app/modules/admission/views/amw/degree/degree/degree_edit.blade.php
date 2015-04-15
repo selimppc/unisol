@@ -1,18 +1,13 @@
 <div class="modal-header">
 
     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-    <h4 class="modal-title" id="myModalLabel">Edit Degree :{{$model->title}}</h4>
+    <h4 class="modal-title" id="myModalLabel">Edit Degree </h4>
 </div>
 
 <div class="modal-body">
-      <div style="padding: 20px;">
+      <div style="padding: 0px 20px 20px 20px;">
 
           {{Form::open(array('route'=> ['admission.amw.degree.update',$model->id], 'class'=>'form-horizontal','files'=>true))}}
-
-          <div class='form-group'>
-              <div>{{ Form::label('title', 'Title') }}</div>
-              <div>{{ Form::text('title',$model->title ,['class'=>'form-control input-sm','required'])}}</div>
-          </div>
 
           <div class='form-group'>
                 <div>{{ Form::label('description', 'Description') }}</div>
@@ -20,21 +15,27 @@
           </div>
 
           <div class='form-group'>
-              <div class="col-lg-4" style="padding-left: 0;">
+              <div class="col-lg-6" style="padding-left: 0;">
                     <div>{{ Form::label('department_id', 'Department') }}<span class="text-danger">*</span></div>
                     <div>{{ Form::select('department_id',$department, $model->department_id,['class'=>'form-control input-sm','required']) }}</div>
               </div>
-              <div class="col-lg-4">
+              <div class="col-lg-6">
                       <div>{{ Form::label('degree_program_id', 'Degree Program') }}<span class="text-danger">*</span></div>
                       <div>{{ Form::select('degree_program_id',$degree_program,$model->degree_program_id,['class'=>'form-control input-sm','required']) }}</div>
               </div>
-              <div class="col-lg-4" style="padding-right: 0;">
+          </div>
+          <div class='form-group'>
+              <div class="col-lg-6" style="padding-left: 0;">
+                    <div>{{ Form::label('degree_level_id', 'Degree Level') }}<span class="text-danger">*</span></div>
+                    <div>{{ Form::select('degree_level_id',$degree_level,$model->degree_level_id,['class'=>'form-control input-sm','required']) }}</div>
+              </div>
+
+
+              <div class="col-lg-6" style="padding-right: 0;">
                     <div>{{ Form::label('degree_group_id', 'Degree Group') }}<span class="text-danger">*</span></div>
                     <div>{{ Form::select('degree_group_id',$degree_group, $model->degree_group_id,['class'=>'form-control input-sm','required']) }}</div>
               </div>
           </div>
-
-
 
           <div class='form-group'>
                 <div>{{ Form::label('total_credit', 'Total Credit') }}</div>
