@@ -1645,9 +1645,6 @@ class AdmAmwController extends \BaseController
                     Session::flash('message',"Successfully Added Level of Education:$lavelOfEdu and GPA:$gpa !");
                 }
                 return Redirect::back();
-            }else{
-                Session::flash('message','Invalid Request!');
-                return Redirect::back();
             }
         }else{
             $errors = $model->errors();
@@ -1678,23 +1675,58 @@ class AdmAmwController extends \BaseController
     public function waiverConstUpdate($id){
 
         $const_model = WaiverConstraint::find($id);
+        $const_model->start_date = Input::get('start_date');
+        $const_model->end_date = Input::get('end_date');
+        $namestart = $const_model->start_date;
+        $nameend = $const_model->end_date;
+        $const_model->level_of_education = Input::get('level_of_education');
+        $const_model->gpa = Input::get('gpa');
+        $lavelOfEdu = $const_model->level_of_education;
+        $gpa = $const_model->gpa;
         $data = Input::all();
-
         $const_model->fill($data);
-
         if ($const_model->update($data)) {
-            return Redirect::back()
-                ->with('message', 'Successfully Updated Information!');
-        }else{
+            if($namestart != null)
+            {
+                Session::flash('message',"Successfully Updated StartDate:$namestart and EndDate:$nameend !");
+            }
+            else{
+                Session::flash('message',"Successfully Updated Level of Education:$lavelOfEdu and GPA:$gpa !");
+            }
+            return Redirect::back();
+        }
+
+        else{
+            $errors = $const_model->errors();
+            Session::flash('errors', $errors);
             return Redirect::back();
         }
     }
 
-    public function waiverConstDelete($id){
+    public function waiverConstDelete($id)
+    {
+        try {
+            $data= WaiverConstraint::find($id);
+            $nameL = $data->level_of_education;
+            $nameS = $data->start_date;
+            if($data->delete())
+            {
+                if($nameL != null){
+                    Session::flash('message', "Successfully Deleted $nameL !");
+                }
+                else{
+                    Session::flash('message', "Successfully Deleted $nameS !");
+                }
 
-        WaiverConstraint::find($id)->delete();
-        return Redirect::back()
-            ->with('message', 'Successfully deleted Information!');
+                return Redirect::back();
+            }
+        }
+        catch
+        (exception $ex){
+            return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+
+        }
+
     }
 
 //{--------------------------------- Batch Education Constraint -------------------------------------------------------------------------------------}
