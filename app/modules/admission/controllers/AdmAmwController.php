@@ -511,10 +511,10 @@ class AdmAmwController extends \BaseController
     {
         try {
             $data= DegreeCourse::find($id);
-            $name = $data->id;
+            $name = $data->relCourse->title;
             if($data->delete())
             {
-                Session::flash('message', "Successfully Deleted DegreeCourse Id $name  ");
+                Session::flash('message', "Successfully Deleted $name!");
                 return Redirect::back() ;
             }
         }
@@ -1579,17 +1579,22 @@ class AdmAmwController extends \BaseController
         $model = new BatchWaiver();
         $model->batch_id = Input::get('batch_id');
         $model->waiver_id = Input::get('waiver_id');
-
+        $name = $model->relWaiver->title;
         if ($model->save()) {
             return Redirect::back()
-                ->with('message', 'Successfully added Information!');
+                ->with('message', "Successfully added $name!");
         }
     }
     public function batchWaiverDelete($bw_id)
     {
         try {
-            BatchWaiver::find($bw_id)->delete();
-            return Redirect::back()->with('message', 'Successfully deleted Information!');
+            $data= BatchWaiver::find($bw_id);
+            $name = $data->relWaiver->title;
+            if($data->delete())
+            {
+                Session::flash('message', "Successfully deleted $name!");
+                return Redirect::back();
+            }
         }
         catch(exception $ex){
             return Redirect::back()->with('danger', 'Invalid Request. Delete Constraint Data First. !!!');
@@ -1622,9 +1627,23 @@ class AdmAmwController extends \BaseController
     public function waiverConstraintStore(){
         $data = Input::all();
         $model = new WaiverConstraint();
+        $model->start_date = Input::get('start_date');
+        $model->end_date = Input::get('end_date');
+        $namestart = $model->start_date;
+        $nameend = $model->end_date;
+        $model->level_of_education = Input::get('level_of_education');
+        $model->gpa = Input::get('gpa');
+        $lavelOfEdu = $model->level_of_education;
+        $gpa = $model->gpa;
         if($model->validate($data)){
             if($model->create($data)){
-                Session::flash('message','Successfully added Information!');
+                if($namestart != null)
+                {
+                    Session::flash('message',"Successfully Added StartDate:$namestart and EndDate:$nameend !");
+                }
+                else{
+                    Session::flash('message',"Successfully Added Level of Education:$lavelOfEdu and GPA:$gpa !");
+                }
                 return Redirect::back();
             }else{
                 Session::flash('message','Invalid Request!');
