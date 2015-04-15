@@ -478,7 +478,6 @@ class AdmAmwController extends \BaseController
         $data = Input::all();
         $select = Input::get('course_list');
         $deg_id = Input::get('degree_id');
-
         $i = 0;
         foreach($select as $value){
             $degree_course = new DegreeCourse();
@@ -1396,9 +1395,15 @@ class AdmAmwController extends \BaseController
     {
         $data = Input::all();
         $model = new Degree();
+        $model->degree_level_id = Input::get('degree_level_id');
+        $model->degree_group_id = Input::get('degree_group_id');
+        $model->degree_program_id = Input::get('degree_program_id');
+        $nameL = $model->relDegreeLevel->code;
+        $nameG = $model->relDegreeGroup->code;
+        $nameP = $model->relDegreeProgram->code;
         if($model->validate($data)){
             if($model->create($data)){
-                Session::flash('message','Successfully added Degree Information!');
+                Session::flash('message',"Successfully Added $nameL$nameG In $nameP  Degree!");
                 return Redirect::back();
             }
             }else{
@@ -1428,10 +1433,16 @@ class AdmAmwController extends \BaseController
     public function admDegreeUpdate($id)
     {
         $model = Degree::find($id);
+        $model->degree_level_id = Input::get('degree_level_id');
+        $model->degree_group_id = Input::get('degree_group_id');
+        $model->degree_program_id = Input::get('degree_program_id');
+        $nameL = $model->relDegreeLevel->code;
+        $nameG = $model->relDegreeGroup->code;
+        $nameP = $model->relDegreeProgram->code;
         $data = Input::all();
         if($model->validate($data)){
             if($model->update($data)){
-                Session::flash('message','Successfully Updated Information!');
+                Session::flash('message',"Successfully Updated $nameL$nameG In $nameP  Degree!");
                 return Redirect::back();
             }
             }else{
@@ -1445,10 +1456,15 @@ class AdmAmwController extends \BaseController
     {
         try {
             $data= Degree::find($id);
-            $name = $data->id;
+            $data->degree_level_id = Input::get('degree_level_id');
+            $data->degree_group_id = Input::get('degree_group_id');
+            $data->degree_program_id = Input::get('degree_program_id');
+            $nameL = $data->relDegreeLevel->code;
+            $nameG = $data->relDegreeGroup->code;
+            $nameP = $data->relDegreeProgram->code;
             if($data->delete())
             {
-                Session::flash('message', "Successfully Deleted Degree Id $name");
+                Session::flash('message',"Successfully DEleted $nameL$nameG In $nameP  Degree!");
                 return Redirect::back();
             }
         } catch (exception $ex) {
