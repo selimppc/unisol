@@ -13,9 +13,9 @@
         <tr>
             <td> Degree Name: </td>
             <td>
-            {{ $view_questions->relBatchAdmtestSubject->relBatch->relDegree->relDegreeProgram->code }}
+            {{ $view_questions->relBatchAdmtestSubject->relBatch->relDegree->relDegreeLevel->code }}
             {{ $view_questions->relBatchAdmtestSubject->relBatch->relDegree->relDegreeGroup->code }} in
-            {{ $view_questions->relBatchAdmtestSubject->relBatch->relDegree->relDepartment->title }} -
+            {{ $view_questions->relBatchAdmtestSubject->relBatch->relDegree->relDegreeProgram->code }},
             {{ $view_questions->relBatchAdmtestSubject->relBatch->relSemester->title }} -
             {{ $view_questions->relBatchAdmtestSubject->relBatch->relYear->title }}
             </td>

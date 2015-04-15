@@ -473,28 +473,34 @@ class AdmAmwController extends \BaseController
             ->paginate(10);
         return View::make('admission::amw.degree_courses.index',compact('course_list','deg_course_info','deg_course','degree_id','degree_title'));
     }
+
     public function degree_courses_save()
     {
         $data = Input::all();
         $select = Input::get('course_list');
         $deg_id = Input::get('degree_id');
         $i = 0;
+        $flash_msg_course = "";
+
         foreach($select as $value){
             $degree_course = new DegreeCourse();
             $degree_course->degree_id = $deg_id;
             $degree_course->course_id = $value;
 
+            $flash_name = $degree_course->relCourse->title;
+            $flash_msg_course = $flash_msg_course .", ". $flash_name;
+
             $degreeCourseCheck = $this->checkDegreeCourse($degree_course->degree_id, $degree_course->course_id);
 
             if($degreeCourseCheck){
-                $exists [] =  Course::findOrFail($degree_course->course_id)->course_code;
+                $exists [] = Course::findOrFail($degree_course->course_id)->course_code;
                 Session::flash('info', 'Already Exists : '.$exists[$i]);
             }else{
                 $degree_course->save();
                 $array [] = Course::findOrFail($degree_course->course_id)->course_code;
-                Session::flash('message', 'Successfully Added ! '. $array[$i]);
             }
         }
+        Session::flash('message',"Successfully added $flash_msg_course!");
         return Redirect::back();
     }
 

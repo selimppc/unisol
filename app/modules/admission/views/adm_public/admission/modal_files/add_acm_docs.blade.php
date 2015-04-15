@@ -26,40 +26,78 @@
          <div >{{ Form::text('institute_name', Input::old('institute_name'),['class'=>'form-control ']) }}</div>
 
          <div id="acm_group" style="display:none">{{ Form::label('academic_group', 'Academic Group') }}<span class="text-danger">*</span>
-         {{ Form::text('academic_group', Input::old('academic_group'),['class'=>'form-control ']) }}
+              {{ Form::text('academic_group', Input::old('academic_group'),['class'=>'form-control ']) }}
          </div>
 
          <br>
 
          <div id="subject" style="display:none">{{ Form::label('major_subject', 'Major Subject') }}
-         {{ Form::text('major_subject', Input::old('major_subject'),['class'=>'form-control ']) }}
+             {{ Form::text('major_subject', Input::old('major_subject'),['class'=>'form-control ']) }}
          </div>
 
-         <div  id='board_type' style="display:none">{{ Form::label('board_type', 'Board Type') }}<span class="text-danger">*</span>   (Select one : Board/ University/Other )</div>
+         @if(isset($model->board_type))
+            <div  id='board_type'>{{ Form::label('board_type', 'Board Type') }}<span class="text-danger">*</span>   (Select one : Board/ University/Other )</div>
 
-         <div id="board" style="display:none"><label class="small">{{ Form::radio('board_type','board',null) }} Board</label>
-             <div style="display:none" class="board">
-               {{ Form::select('board_university_board', array('' => 'Select one',
-                     'Dhaka' => 'Dhaka', 'Chittagong' => 'Chittagong', 'Comilla'=>'Comilla','Khulna'=>'Khulna','Syllhet'=>'Syllhet'),
-                     Input::old('board_university'),
-                     array('class' => 'form-control')) }}
+            <div id="board"><label class="small">{{ Form::radio('board_type','board',null) }} Board</label>
+
+                 <div class="board">
+                   {{ Form::select('board_university_board', array('' => 'Select one',
+                         'Dhaka' => 'Dhaka', 'Chittagong' => 'Chittagong', 'Comilla'=>'Comilla','Khulna'=>'Khulna','Syllhet'=>'Syllhet'),
+                        $model->board_university,
+                         array('class' => 'form-control')) }}
+                 </div>
+            </div>
+
+
+            <div id="university" ><label class="small">{{ Form::radio('board_type','university',null) }} University</label>
+                 <div class="university">
+                   {{ Form::select('board_university_university', array('' => 'Select one',
+                         'Dhaka University' => 'Dhaka University', 'Chittagong University' => 'Chittagong University', 'Khulna University'=>'Khulna University'),
+                         $model->board_university,
+                         array('class' => 'form-control')) }}
+                 </div>
+            </div>
+
+            @if($model->board_type == 'other')
+                <div id="other" ><label class="small">{{ Form::radio('board_type','other',null) }} Other</label>
+                     <div class="other">
+                        {{ Form::text('board_university_other',$model->board_university,['class'=>'form-control ']) }}
+                     </div>
+                </div>
+            @else
+               <div id="other" ><label class="small">{{ Form::radio('board_type','other',null) }} Other</label>
+                    <div style="display:none" class="other">
+                       {{ Form::text('board_university_other',Input::old('board_university'),['class'=>'form-control ']) }}
+                    </div>
+               </div>
+            @endif
+         @else
+            <div  id='board_type' style="display:none">{{ Form::label('board_type', 'Board Type') }}<span class="text-danger">*</span>   (Select one : Board/ University/Other )</div>
+
+            <div id="board" style="display:none"><label class="small">{{ Form::radio('board_type','board',null) }} Board</label>
+                 <div style="display:none" class="board">
+                   {{ Form::select('board_university_board', array('' => 'Select one',
+                         'Dhaka' => 'Dhaka', 'Chittagong' => 'Chittagong', 'Comilla'=>'Comilla','Khulna'=>'Khulna','Syllhet'=>'Syllhet'),
+                         Input::old('board_university'),
+                         array('class' => 'form-control')) }}
+                 </div>
+            </div>
+
+             <div id="university" style="display:none"><label class="small">{{ Form::radio('board_type','university',null) }} University</label>
+                 <div style="display:none" class="university">
+                   {{ Form::select('board_university_university', array('' => 'Select one',
+                         'Dhaka University' => 'Dhaka University', 'Chittagong University' => 'Chittagong University', 'Khulna University'=>'Khulna University'),
+                         Input::old('board_university'),
+                         array('class' => 'form-control')) }}
+                 </div>
              </div>
-         </div>
 
-         <div id="university" style="display:none"><label class="small">{{ Form::radio('board_type','university',null) }} University</label>
-             <div style="display:none" class="university">
-               {{ Form::select('board_university_university', array('' => 'Select one',
-                     'Dhaka University' => 'Dhaka University', 'Chittagong University' => 'Chittagong University', 'Khulna University'=>'Khulna University'),
-                     Input::old('board_university'),
-                     array('class' => 'form-control')) }}
+             <div id="other" style="display:none"><label class="small">{{ Form::radio('board_type','other',null) }} Other</label>
+                 <div style="display:none" class="other">
+                    {{ Form::text('board_university_other', Input::old('board_university'),['class'=>'form-control ']) }}
+                 </div>
              </div>
-         </div>
-
-         <div id="other" style="display:none"><label class="small">{{ Form::radio('board_type','other',null) }} Other</label>
-             <div style="display:none" class="other">
-                {{ Form::text('board_university_other', Input::old('board_university'),['class'=>'form-control ']) }}
-             </div>
-         </div>
+         @endif
 
          <br>
 
