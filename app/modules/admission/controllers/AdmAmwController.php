@@ -763,8 +763,6 @@ class AdmAmwController extends \BaseController
     {
         $batch_number = Batch::where('degree_id','=',$degree_id)->count();
 
-        print_r($batch_number);
-
         $degree_title = Degree::with('relDegreeLevel','relDegreeProgram','relDegreeGroup')
             ->where('id','=',$degree_id)->first();
         //print_r($degree_title);exit;
@@ -782,12 +780,21 @@ class AdmAmwController extends \BaseController
         $data = Input::all();
         $model = new Batch();
 
-        if($model->validate($data)){
-            if($model->create($data)){
-                Session::flash('message', 'Successfully added Information!');
-                //return Redirect::to('admission/amw/batch/'.$model->degree_id);
-                return Redirect::back();
+        if($model->validate($data))
+        {
+            DB::beginTransaction();
+            try {
+
+                if ($model->create($data))
+                DB::commit();
+                Session::flash('message', "Batch Added");
             }
+            catch ( Exception $e ){
+                    //If there are any exceptions, rollback the transaction
+                    DB::rollback();
+                    Session::flash('danger', " Batch not added.Invalid Request !");
+                }
+            return Redirect::back();
         }else{
             $errors = $model->errors();
             Session::flash('errors', $errors);
@@ -810,19 +817,28 @@ class AdmAmwController extends \BaseController
 
     public function batchUpdate($id)
     {
-        $model = Batch::find($id);
         $data = Input::all();
+        $model = Batch::find($id);
+        if($model->validate($data))
+        {
 
-        if($model->validate($data)){
-            if($model->update($data)){
-                Session::flash('message', 'Successfully Updates Information!');
-                return Redirect::back();
+            DB::beginTransaction();
+            try {
+                $model->update($data);
+                DB::commit();
+                Session::flash('message', "Batch Updates");
             }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', " Batch not updates. Invalid Request !");
+            }
+            return Redirect::back();
         }else{
             $errors = $model->errors();
             Session::flash('errors', $errors);
             return Redirect::back()
-                ->with('error', 'invalid');
+                ->with('errors', 'invalid');
         }
     }
 //
@@ -877,7 +893,7 @@ class AdmAmwController extends \BaseController
             ->first();
         return View::make('admission::amw.batch_adm_test_subject._form',compact('batch_id','degree_name','subject_id_result'));
     }
-
+//transaction korte hobe
     public function storeBatchAdmTestSubject()
     {
         $data = Input::all();
@@ -886,27 +902,37 @@ class AdmAmwController extends \BaseController
         $select = Input::get('admtest_subject');
         $batch_id = Input::get('batch_id');
 
-        $i = 0;
-        foreach($select as $value){
-            $degree_course = new BatchAdmtestSubject();
-            $degree_course->description = Input::get('description');
-            $degree_course->marks = Input::get('marks');
-            $degree_course->qualify_marks = Input::get('qualify_marks');
-            $degree_course->duration = Input::get('duration');
-            $degree_course->batch_id = $batch_id;
-            $degree_course->admtest_subject_id = $value;
+        DB::beginTransaction();
+        try {
 
-            $degreeCourseCheck = $this->checkBatchAdmTestSubject($degree_course->batch_id, $degree_course->admtest_subject_id);
+            $i = 0;
+            foreach ($select as $value) {
+                $degree_course = new BatchAdmtestSubject();
+                $degree_course->description = Input::get('description');
+                $degree_course->marks = Input::get('marks');
+                $degree_course->qualify_marks = Input::get('qualify_marks');
+                $degree_course->duration = Input::get('duration');
+                $degree_course->batch_id = $batch_id;
+                $degree_course->admtest_subject_id = $value;
 
-            if($degreeCourseCheck){
-                $exists [] =  AdmTestSubject::findOrFail($degree_course->admtest_subject_id)->title;
-                Session::flash('info', 'Already Exists : '.$exists[$i]);
-            }else{
-                $degree_course->save();
-                $array [] = AdmTestSubject::findOrFail($degree_course->admtest_subject_id)->title;
-                Session::flash('message', 'Successfully Added ! '. $array[$i]);
+                $degreeCourseCheck = $this->checkBatchAdmTestSubject($degree_course->batch_id, $degree_course->admtest_subject_id);
+
+                if ($degreeCourseCheck) {
+                    $exists [] = AdmTestSubject::findOrFail($degree_course->admtest_subject_id)->title;
+                    Session::flash('info', 'Already Exists : ' . $exists[$i]);
+                } else {
+                    $degree_course->save();
+                    $array [] = AdmTestSubject::findOrFail($degree_course->admtest_subject_id)->title;
+                    Session::flash('message', 'Successfully Added ! ' . $array[$i]);
+                }
+
             }
-
+            DB::commit();
+        }
+        catch ( Exception $e ){
+            //If there are any exceptions, rollback the transaction
+            DB::rollback();
+            Session::flash('danger', " is not added.Invalid Request !");
         }
         return Redirect::back();
     }
@@ -931,18 +957,28 @@ class AdmAmwController extends \BaseController
 
     public function updateBatchAdmTestSubject($id)
     {
-        $model = BatchAdmtestSubject::find($id);
         $data = Input::all();
-        if($model->validate($data)){
-            if($model->update($data)){
-                Session::flash('message', 'Successfully Updates Information!');
-                return Redirect::back();
+        $model = BatchAdmtestSubject::find($id);
+        if($model->validate($data))
+        {
+
+            DB::beginTransaction();
+            try {
+                $model->update($data);
+                DB::commit();
+                Session::flash('message', "Batch Updates");
             }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', " Batch not updates. Invalid Request !");
+            }
+            return Redirect::back();
         }else{
             $errors = $model->errors();
             Session::flash('errors', $errors);
             return Redirect::back()
-                ->with('error', 'invalid');
+                ->with('errors', 'invalid');
         }
     }
 
@@ -967,11 +1003,21 @@ class AdmAmwController extends \BaseController
         $model = new AdmTestSubject();
         $model->title = Input::get('title');
         $name = $model->title;
-        if($model->validate($data)){
-            if($model->create($data)){
-                Session::flash('message', " Successfully Added Admission Test Subject $name!");
-                return Redirect::back();
+        if($model->validate($data))
+        {
+            DB::beginTransaction();
+            try {
+
+                $model->create($data);
+                DB::commit();
+                Session::flash('message', "Successfully Added Admission Test Subject $name!");
             }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', " Added Admission Test Subject $name not added.Invalid Request !");
+            }
+            return Redirect::back();
         }else{
             $errors = $model->errors();
             Session::flash('errors', $errors);
@@ -998,15 +1044,25 @@ class AdmAmwController extends \BaseController
         $model->title = Input::get('title');
         $name = $model->title;
         $data = Input::all();
-        if($model->validate($data)){
-            if($model->update($data)){
-                Session::flash('message', " Successfully Updated Admission Test Subject $name !");
-                return Redirect::back();
+        if($model->validate($data))
+        {
+            DB::beginTransaction();
+            try {
+                $model->update($data);
+                DB::commit();
+                Session::flash('message', "$name Updates");
             }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', " $name not updates. Invalid Request !");
+            }
+            return Redirect::back();
         }else{
             $errors = $model->errors();
             Session::flash('errors', $errors);
-            return Redirect::back()->with('error', 'invalid');
+            return Redirect::back()
+                ->with('errors', 'invalid');
         }
     }
 
@@ -1093,29 +1149,39 @@ class AdmAmwController extends \BaseController
     public function storeAdmTestExaminer()
     {
         $data = Input::all();
-        $model = new AdmExaminer();
-        $model->batch_id = Input::get('batch_id');
-        $model->user_id = Input::get('user_id');
-        $model->type = Input::get('type');
-        $model->assigned_by = Auth::user()->get()->id;
-        $model->status = Input::get('status');
-        $model->save();
-        if ($model->validate($data)) {
-            $mod_comments = new AdmExaminerComments();
-            $mod_comments->batch_id = Input::get('batch_id');
-            $mod_comments->comment = Input::get('comment');
-            $mod_comments->commented_to = Input::get('user_id');
-            $name = $mod_comments->commented_to;
-            $mod_comments->commented_by = Auth::user()->get()->id;
-            $mod_comments->status = 1;
-            $mod_comments->save();
-            Session::flash('message', "Successfully Assigned to Examiner Id $name !");
-            return Redirect::back();
-        }else{
-            $errors = $model->errors();
-            Session::flash('errors', $errors);
-            return Redirect::back()
-                ->with('errors', 'invalid');
+        DB::beginTransaction();
+        try {
+
+            $model = new AdmExaminer();
+            $model->batch_id = Input::get('batch_id');
+            $model->user_id = Input::get('user_id');
+            $model->type = Input::get('type');
+            $model->assigned_by = Auth::user()->get()->id;
+            $model->status = Input::get('status');
+            $model->save();
+            if ($model->validate($data)) {
+                $mod_comments = new AdmExaminerComments();
+                $mod_comments->batch_id = Input::get('batch_id');
+                $mod_comments->comment = Input::get('comment');
+                $mod_comments->commented_to = Input::get('user_id');
+                $name = $mod_comments->commented_to;
+                $mod_comments->commented_by = Auth::user()->get()->id;
+                $mod_comments->status = 1;
+                $mod_comments->save();
+                Session::flash('message', "Successfully Assigned to Examiner Id $name !");
+                return Redirect::back();
+            } else {
+                $errors = $model->errors();
+                Session::flash('errors', $errors);
+                return Redirect::back()
+                    ->with('errors', 'invalid');
+            }
+            DB::commit();
+
+        } catch (Exception $e) {
+            //If there are any exceptions, rollback the transaction
+            DB::rollback();
+            Session::flash('danger', "Invalid Request !");
         }
     }
 
@@ -1207,11 +1273,21 @@ class AdmAmwController extends \BaseController
         $model = new AdmQuestion();
         $model->title = Input::get('title');
         $name = $model->title;
-        if($model->validate($data)){
-            if($model->create($data)){
-                Session::flash('message', "Successfully added $name!");
-                return Redirect::back();
+        if($model->validate($data))
+        {
+            DB::beginTransaction();
+            try {
+
+                $model->create($data);
+                DB::commit();
+                Session::flash('message', "Successfully Added Admission Test Question $name!");
             }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', " Added Admission Test Question $name not added.Invalid Request !");
+            }
+            return Redirect::back();
         }else{
             $errors = $model->errors();
             Session::flash('errors', $errors);
@@ -1244,18 +1320,28 @@ class AdmAmwController extends \BaseController
     public function updateAdmTestQuestionPaper($id)
     {
         $model = AdmQuestion::find($id);
+        $model->title = Input::get('title');
+        $name = $model->title;
         $data = Input::all();
-
-        if($model->validate($data)){
-            if($model->update($data)){
-                Session::flash('message', 'Successfully Updates Information!');
-                return Redirect::back();
+        if($model->validate($data))
+        {
+            DB::beginTransaction();
+            try {
+                $model->update($data);
+                DB::commit();
+                Session::flash('message', "$name Updates");
             }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', " $name not updates. Invalid Request !");
+            }
+            return Redirect::back();
         }else{
             $errors = $model->errors();
             Session::flash('errors', $errors);
             return Redirect::back()
-                ->with('error', 'invalid');
+                ->with('errors', 'invalid');
         }
     }
 

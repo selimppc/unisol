@@ -58,7 +58,7 @@
         </div>
 
         {{form::close() }}
-        <a href="{{ URL::previous() }}" style="margin-left: 40%" class="btn btn-primary btn-xs" >Back</a> </br>
+        <a href="{{ URL::to('admission/amw/degree') }}" style="margin-left: 40%" class="btn btn-primary btn-xs" >Back</a>
     </div>
 </div>
     <div class="text-right">
