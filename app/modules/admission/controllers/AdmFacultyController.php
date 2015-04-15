@@ -65,23 +65,12 @@ class AdmFacultyController extends \BaseController {
 //            ->get();
 
 
-
-        $search_index_adm_examiner = AdmExaminer::join('Batch', function ($query) use ($year_id, $semester_id) {
+        $search_index_adm_examiner = AdmExaminer::join('batch', function ($query) use ($year_id, $semester_id) {
             $query->on('batch.id', '=', 'adm_examiner.batch_id');
-
-            if (isset($year_id) && !empty($year_id)) $query->where('batch.year_id', '=', $year_id);
-            if (isset($semester_id) && !empty($semester_id)) $query->where('batch.semester_id', '=', $semester_id);
-        });
-
-        $search_index_adm_examiner = $search_index_adm_examiner->select(['batch.semester_id as sem_id', 'batch.year_id as yr_id']);
-        if (isset($semester_id) && !empty($semester_id)) $search_index_adm_examiner = $search_index_adm_examiner->where('batch.semester_id', '=', $semester_id);
-        if (isset($year_id) && !empty($year_id)) $search_index_adm_examiner = $search_index_adm_examiner->where('batch.year_id', '=', $year_id);
-
-        $search_index_adm_examiner = $search_index_adm_examiner->paginate();
+            $query->where('batch.year_id', '=', $year_id);
+            $query->where('batch.semester_id', '=', $semester_id);
+        })->paginate(10);
         
-
-
-
         $year_id = array('' => 'Select Year ') + Year::lists('title', 'id');
         $semester_id = array('' => 'Select Semester ') + Semester::lists('title', 'id');
 
