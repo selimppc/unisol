@@ -58,9 +58,9 @@
         </div>
 
         {{form::close() }}
+        <a href="{{ URL::previous() }}" style="margin-left: 40%" class="btn btn-primary btn-xs" >Back</a> </br>
     </div>
-    </div>
-
+</div>
     <div class="text-right">
         {{ $batch_management->links() }}
     </div>

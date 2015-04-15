@@ -59,7 +59,7 @@
                                      <td>{{ $index_adm_examiner_list->relBatch->relDegree->total_credit }}</td>
                                      <td>{{ $index_adm_examiner_list->status }}</td>
                                      <td>
-                                         @if($index_adm_examiner_list->status == 'equested' )
+                                         @if($index_adm_examiner_list->status == 'requested' )
 
                                          {{--<a href="{{ URL::route('admission.faculty.admission-test.change-status-to-accept',['id'=>$index_adm_examiner_list->id]) }}" class="btn btn-success">Accept</a>--}}
                                          {{--<a href="{{ URL::route('admission.faculty.admission-test.change-status-to-deny', ['id'=>$index_adm_examiner_list->id])}}" class="btn btn-warning">Deny</a>--}}
