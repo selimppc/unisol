@@ -1284,25 +1284,44 @@ class AdmAmwController extends \BaseController
         $examiner_faculty_lists = AdmQuestion::AdmissionExaminerList($question_data->relBatchAdmtestSubject->batch_id);
         $comments = AdmQuestionComments::where('adm_question_id', $q_id)->get();
         return View::make('admission::amw.adm_question.assign_faculty_by_question_comnnets',
-            compact('question_data', 'examiner_faculty_lists', 'comments'));
+            compact('question_data', 'examiner_faculty_lists', 'comments','q_id'));
     }
 
 
     public function assignFacultyCommentsByQuestion()
     {
-        $model = new AdmQuestionComments();
-        $data = Input::all();
+//        $data = Input::all();
+//        $model = new AdmQuestionComments();
+//        if($model->validate($data)){
+//            if($model->create($data)){
+//                Session::flash('message', 'Assigned / Commented Successfully!');
+//                return Redirect::back();
+//            }
+//        }else{
+//            $errors = $model->errors();
+//            Session::flash('errors', $errors);
+//            return Redirect::back()
+//                ->with('error', 'invalid');
+//        }
 
-        if($model->validate($data)){
-            if($model->create($data)){
-                Session::flash('message', 'Assigned / Commented Successfully!');
-                return Redirect::back();
-            }
+
+        $info = Input::all();
+        $model = new AdmQuestionComments();
+
+
+        $model->adm_question_id = $info['adm_question_id'];
+        $model->comment = $info['comment'];
+        $model->commented_to = $info['commented_to'];
+        $model->commented_by = Auth::user()->get()->id;
+
+//        $user_name = User::FullName($model->commented_to);
+        if($model->save()){
+            Session::flash('message', 'Comments added');
+            return Redirect::back();
         }else{
             $errors = $model->errors();
             Session::flash('errors', $errors);
-            return Redirect::back()
-                ->with('error', 'invalid');
+            return Redirect::back()->with('errors', 'invalid');
         }
     }
 

@@ -18,9 +18,10 @@
                     </br>
                     <strong> Semester: </strong> {{ $degree_batch->relSemester->title }}
                     </br>
-                    <strong> Degree: </strong> {{ $degree_batch->relDegree->title }}
+                    <strong> Degree: </strong> {{ $degree_batch->relDegree->relDegreeLevel->code.'  '.$degree_batch->relDegree->relDegreeGroup->code.' In '.$degree_batch->relDegree->relDegreeProgram->code
+ }}
                     </br>
-                    <strong> Department: </strong> {{ $degree_batch->relDegree->relDepartment->title }}
+                    {{--<strong> Department: </strong> {{ $degree_batch->relDegree->relDepartment->title }}--}}
                     </br>
 
             </div>
