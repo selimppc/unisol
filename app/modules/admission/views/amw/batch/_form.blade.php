@@ -1,6 +1,7 @@
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-    <h4 class="modal-title" id="myModalLabel"> Add Batch: {{ $batch_number + 1 }} Of {{$degree_title->relDegree->relDegreeLevel->code.'  '.$degree_title->relDegree->relDegreeGroup->code.' On '.$degree_title->relDegree->relDegreeProgram->code}}</h4>
+    <h4 class="modal-title" id="myModalLabel"> Add Batch: {{ $batch_number + 1 }} Of
+    {{$degree_title->relDegreeLevel->code.''.$degree_title->relDegreeGroup->code.'On'.$degree_title->relDegreeProgram->code}}</h4>
 
 </div>
 
@@ -15,12 +16,12 @@
             <div class='form-group'>
 
 
-                <div class="col-sm-4" style="padding-right: 0;">
+                <div class="col-sm-6" style="padding-right: 0;">
                     {{ Form::label('semester_id', 'Semester') }}
                    {{ Form::select('semester_id',$semester_list,null,['class'=>'form-control']) }}
                 </div>
 
-                <div class="col-sm-4">
+                <div class="col-sm-6">
                     {{ Form::label('year_id', 'Year') }}
                    {{ Form::select('year_id',$year_list,null,['class'=>'form-control']) }}
                 </div>
