@@ -44,8 +44,8 @@ class DatabaseSeeder extends Seeder {
         $this->call('UserTable');
         $this->command->info('User table seeded!');
 
-        /*$this->call('WaiverTable');
-        $this->command->info('Waiver table seeded!');*/
+        $this->call('WaiverTable');
+        $this->command->info('Waiver table seeded!');
 
         $this->call('YearTable');
         $this->command->info('Year table seeded!');
@@ -80,11 +80,11 @@ class DatabaseSeeder extends Seeder {
        /* //$this->call('AcmMarksDistItemTable');
         //$this->command->info('Academic Marks Distribution Item table seeded!');*/
 
-        /*$this->call('BillingItemTable');
-        $this->command->info('Billing Item table seeded!');*/
+        $this->call('BillingItemTable');
+        $this->command->info('Billing Item table seeded!');
 
-        /*$this->call('BillingScheduleTable');
-        $this->command->info('Billing Schedule table seeded!');*/
+        $this->call('BillingScheduleTable');
+        $this->command->info('Billing Schedule table seeded!');
 
         /*//$this->call('ClassTimeTable');
         //$this->command->info('Class Time table seeded!');
