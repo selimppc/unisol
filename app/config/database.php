@@ -59,7 +59,7 @@ return array(
 			'host'      => 'localhost',
 			'database'  => 'unisol_dev2',
 			'username'  => 'root',
-			'password'  => '',
+			'password'  => 'root',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
