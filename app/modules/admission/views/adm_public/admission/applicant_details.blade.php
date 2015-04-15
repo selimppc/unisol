@@ -38,7 +38,7 @@
                                          <td class="col-lg-10">
                                                <a href="{{ URL::route('admission.applicant.admission.test_details',
                                                    ['id' => $value->id]) }}" class="btn-link" title="Degree,Subject & Exam Center Info For Admission">
-                                                   {{ $value->relBatch->relDegree->title }} Of {{$value->relBatch->relDegree->relDegreeGroup->title}} On {{$value->relBatch->relDegree->relDepartment->title}}
+                                                    {{$value->relBatch->relDegree->relDegreeLevel->code.''.$value->relBatch->relDegree->relDegreeGroup->code.' In '.$value->relBatch->relDegree->relDegreeProgram->code}}
                                                </a>
                                          </td>
                                      </tr>

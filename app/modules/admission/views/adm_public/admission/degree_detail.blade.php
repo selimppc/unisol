@@ -22,7 +22,7 @@
                                     <tr>
                                         <th width="20%">Degree Name</th>
                                         <td>
-                                           {{$values->relDegree->title}} Of {{$values->relDegree->relDegreeGroup->title}} On {{$values->relDegree->relDepartment->title}}
+                                            {{$values->relDegree->relDegreeLevel->code.'  '.$values->relDegree->relDegreeGroup->code.' In '.$values->relDegree->relDegreeProgram->code}}
                                         </td>
                                     </tr>
                                     <tr>
