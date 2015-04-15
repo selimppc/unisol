@@ -60,7 +60,7 @@
 
             <div class='form-group'>
                {{ Form::label('admtest_date', 'Admission Test Date') }}
-               {{ Form::text('admtest_date', Input::old('admtest_date'),['class'=>'form-control date_picker','required'=>'required']) }}
+               {{ Form::text('admtest_date', Input::old('admtest_date'),['class'=>'form-control','required'=>'required']) }}
             </div>
 
             <div class='form-group'>
@@ -78,3 +78,4 @@
         {{Form::close()}}
      </div>
 </div>
+
