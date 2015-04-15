@@ -1104,10 +1104,11 @@ class AdmAmwController extends \BaseController
             $mod_comments->batch_id = Input::get('batch_id');
             $mod_comments->comment = Input::get('comment');
             $mod_comments->commented_to = Input::get('user_id');
+            $name = $mod_comments->commented_to;
             $mod_comments->commented_by = Auth::user()->get()->id;
             $mod_comments->status = 1;
             $mod_comments->save();
-            Session::flash('message', 'Successfully added Information!');
+            Session::flash('message', "Successfully Assigned to Examiner Id $name !");
             return Redirect::back();
         }else{
             $errors = $model->errors();
@@ -1203,10 +1204,11 @@ class AdmAmwController extends \BaseController
     {
         $data = Input::all();
         $model = new AdmQuestion();
-        //print_r($data);exit;
+        $model->title = Input::get('title');
+        $name = $model->title;
         if($model->validate($data)){
             if($model->create($data)){
-                Session::flash('message', 'Successfully added Information!');
+                Session::flash('message', "Successfully added id $name!");
                 return Redirect::back();
             }
         }else{
