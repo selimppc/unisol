@@ -26,19 +26,28 @@ class DepartmentController extends BaseController{
         // attempt validation
         if ($department->validate($data))
         {
-            // success code
-            $department->title = Input::get('title');
-            $name = $department->title;
-            $checkDeptHead = $this->checkIfFaculty($data['dept_head_user_id']);
-            if($checkDeptHead){
-                $department->dept_head_user_id = Input::get('dept_head_user_id');
-            }else{
-                $department->dept_head_user_id = null;
+            DB::beginTransaction();
+            try{
+                // success code
+                $department->title = Input::get('title');
+                $name = $department->title;
+                $checkDeptHead = $this->checkIfFaculty($data['dept_head_user_id']);
+                if($checkDeptHead){
+                    $department->dept_head_user_id = null;
+                }else{
+                    $department->dept_head_user_id = Input::get('dept_head_user_id');
+                }
+                $department->description = Input::get('description');
+                $department->save();
+
+                DB::commit();
+                Session::flash('message', "$name :: Department Added");
             }
-            $department->description = Input::get('description');
-            $department->save();
-            // redirect
-            Session::flash('message', "$name Department Added");
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', " $name is not added.Invalid Request !");
+            }
             return Redirect::to('common/department/');
         }
         else
@@ -103,19 +112,27 @@ class DepartmentController extends BaseController{
         $validator = Validator::make(Input::all(), $rules);
 
         if ($validator->passes()) {
-
-            $department = Department::find($id);
-            $department->title = Input::get('dept_name');
-            $name = $department->title;
-            $checkDeptHead = $this->checkIfFaculty( Input::get('dept_head_user_id') );
-            if($checkDeptHead){
-                $department->dept_head_user_id = Input::get('dept_head_user_id');
-            }else{
-                $department->dept_head_user_id = null;
+            DB::beginTransaction();
+            try{
+                $department = Department::find($id);
+                $department->title = Input::get('dept_name');
+                $name = $department->title;
+                $checkDeptHead = $this->checkIfFaculty( Input::get('dept_head_user_id') );
+                if($checkDeptHead){
+                    $department->dept_head_user_id = null;
+                }else{
+                    $department->dept_head_user_id = Input::get('dept_head_user_id');
+                }
+                $department->description = Input::get('description');
+                $department->save();
+                DB::commit();
+                Session::flash('message', "$name Department Updated");
             }
-            $department->description = Input::get('description');
-            $department->save();
-            Session::flash('message', "$name Department Updated");
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', " $name is not added.Invalid Request !");
+            }
             return Redirect::to('common/department/');
         } else {
             return Redirect::to('common/department/')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
