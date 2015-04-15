@@ -8,14 +8,14 @@ class AdmPublicController extends \BaseController {
 
 	public function degreeOfferList()
 	{
-        $degreeList = Batch::with('relDegree','relYear','relSemester','relDegree.relDegreeGroup','relDegree.relDepartment')->paginate(10);
+        $degreeList = Batch::with('relDegree','relYear','relSemester','relDegree.relDegreeGroup','relDegree.relDepartment','relDegree.relDegreeLevel')->paginate(10);
         return View::make('admission::adm_public.admission.degree_list',compact('degreeList'));
     }
 
     public function degreeOfferDetails($degree_id){
         //$id refers to degree_id in DB table:Batch
         $degree_model = Batch::with('relDegree','relYear','relSemester',
-            'relDegree.relDepartment','relDegree.relDegreeGroup','relBatchWaiver.relWaiver')
+            'relDegree.relDepartment','relDegree.relDegreeGroup','relBatchWaiver.relWaiver','relDegree.relDegreeLevel')
             ->where('id', '=', $degree_id)
             ->get();
 
