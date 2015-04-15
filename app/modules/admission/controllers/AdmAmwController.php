@@ -893,9 +893,6 @@ class AdmAmwController extends \BaseController
             $degree_course->batch_id = $batch_id;
             $degree_course->admtest_subject_id = $value;
 
-
-
-
             $degreeCourseCheck = $this->checkBatchAdmTestSubject($degree_course->batch_id, $degree_course->admtest_subject_id);
 
             if($degreeCourseCheck){
@@ -906,10 +903,6 @@ class AdmAmwController extends \BaseController
                 $array [] = AdmTestSubject::findOrFail($degree_course->admtest_subject_id)->title;
                 Session::flash('message', 'Successfully Added ! '. $array[$i]);
             }
-
-
-
-
 
         }
         return Redirect::back();
@@ -969,9 +962,11 @@ class AdmAmwController extends \BaseController
     {
         $data = Input::all();
         $model = new AdmTestSubject();
+        $model->title = Input::get('title');
+        $name = $model->title;
         if($model->validate($data)){
             if($model->create($data)){
-                Session::flash('message', 'Successfully added Information!');
+                Session::flash('message', " Successfully Added Admission Test Subject $name!");
                 return Redirect::back();
             }
         }else{
@@ -997,10 +992,12 @@ class AdmAmwController extends \BaseController
     public function updateAdmissionTestSubject($id)
     {
         $model = AdmTestSubject::find($id);
+        $model->title = Input::get('title');
+        $name = $model->title;
         $data = Input::all();
         if($model->validate($data)){
             if($model->update($data)){
-                Session::flash('message', 'Successfully Updates Information!');
+                Session::flash('message', " Successfully Updated Admission Test Subject $name !");
                 return Redirect::back();
             }
         }else{
@@ -1438,8 +1435,13 @@ class AdmAmwController extends \BaseController
     public function admDegreeDelete($id)
     {
         try {
-            Degree::find($id)->delete();
-            return Redirect::back()->with('message', 'Successfully deleted Information!');
+            $data= Degree::find($id);
+            $name = $data->id;
+            if($data->delete())
+            {
+                Session::flash('message', "Successfully Deleted Degree Id $name");
+                return Redirect::back();
+            }
         } catch (exception $ex) {
             return Redirect::back()->with('danger', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
         }
