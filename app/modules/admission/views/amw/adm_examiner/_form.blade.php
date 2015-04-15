@@ -31,10 +31,10 @@
                {{ Form::hidden('assign_by', Auth::user()->get()->id ,Input::old('assign_by'), array('class' => 'form-control','required'=>'required') ) }}
            </div>
 
-            <div class="form-group">
+            {{--<div class="form-group">
                {{ Form::label('status', 'Status:') }}
                {{ Form::select('status', array('Requested' => 'Requested','Accepted' => 'Accepted','Deny' => 'Deny','Cancel' => 'Cancel'),Input::old('user_id'), array('class' => 'form-control','required'=>'required') ) }}
-           </div>
+           </div>--}} {{ Form::hidden('status','Requested', Input::old('status')) }}
 
             <div class="form-group">
                      {{ Form::label('comment', 'Comment:') }}

@@ -110,7 +110,7 @@
 
                                       <thead>
                                            <tr>
-                                              <th>Start Date</th>
+                                              <th>Level of Education</th>
                                               <th>End Date</th>
                                               <th>Action</th>
                                            </tr>

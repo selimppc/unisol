@@ -97,7 +97,7 @@
                 </div>
                 <div class="modal-body">
                     {{ Form::open(array('url' => 'department/store', 'method' =>'post', 'role'=>'form','files'=>'true')) }}
-                    @include('common::department._form')
+                        @include('common::department._form')
                     {{ Form::close() }}
                 </div>
                 <div class="modal-footer">

@@ -360,8 +360,8 @@ Route::any('admission/amw/view-questions-by-paper/{q_id}',[
     'uses' => 'AdmAmwController@viewQuestionsByPaper'
 ]);
 
-Route::any('admission/amw/admission-test-question/view-question_item-details/{q_items_id}',[
-    'as' => 'admission.amw.admission-test-question.view-question_item-details',
+Route::any('admission/amw/question/view-question-item-details/{q_items_id}',[
+    'as' => 'admission.amw.question.view-question-item-details',
     'uses' => 'AdmAmwController@viewQuestionItemDetails'
 ]);
 

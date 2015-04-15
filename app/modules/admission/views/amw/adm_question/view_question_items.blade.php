@@ -30,7 +30,7 @@
                     {{$values->marks}}
                 </td>
                 <td>
-                    <a href="{{ URL::route('admission.amw.admission-test-question.view-question_item-details', [ 'q_items_id'=>$values->id ])  }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#modal" data-placement="left" title="Assign Faculty" href="#"> View </a>
+                    <a href="{{ URL::route('admission.amw.question.view-question-item-details', [ 'q_items_id'=>$values->id ])  }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#modal" data-placement="left" title="Assign Faculty" href="#"> View </a>
                 </td>
             </tr>
         @endforeach
