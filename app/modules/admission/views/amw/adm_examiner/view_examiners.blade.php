@@ -13,7 +13,7 @@
                 <table class="table table-striped  table-bordered">
                     <tr>
                         <td>Degree:</td>
-                        <td>{{ $data->relBatch->relDegree->title }}</td>
+                        <td>{{ $data->relBatch->relDegree->relDegreeLevel->code.'  '.$data->relBatch->relDegree->relDegreeGroup->code.' In '.$data->relBatch->relDegree->relDegreeProgram->code}}</td>
                     </tr>
                     <tr>
                         <td>Name of Faculty :</td>
