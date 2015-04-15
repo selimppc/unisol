@@ -34,6 +34,7 @@
             <i class="fa fa-angle-left pull-right"></i>
         </a>
         <ul class="treeview-menu">
+            <a href="{{URL::to('applicant/user-account/info') }}"  class="list-group-item" >Applicant Account</a>
             <a href="{{URL::to('applicant/change/password') }}"  class="list-group-item" >Change Password</a>
             <a href="{{URL::to('applicant/profile/') }}"  class="list-group-item" >Profile</a>
             <a href="{{URL::to('applicant/acm_records/') }}" class="list-group-item ">Academic Records</a>
