@@ -511,9 +511,11 @@ class AdmAmwController extends \BaseController
     {
         try {
             $data= DegreeCourse::find($id);
+            $name = $data->id;
             if($data->delete())
             {
-                return Redirect::back() ->with('info', 'Successfully Deleted Information!');
+                Session::flash('message', "Successfully Deleted DegreeCourse Id $name  ");
+                return Redirect::back() ;
             }
         }
         catch
