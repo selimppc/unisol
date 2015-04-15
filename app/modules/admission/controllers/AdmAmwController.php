@@ -865,7 +865,7 @@ class AdmAmwController extends \BaseController
     {
         $subject_id_result = AdmTestSubject::lists('title', 'id');
 
-        $degree_name = Batch::with('relDegree')
+        $degree_name = Batch::with('relDegree','relDegree.relDegreeLevel','relDegree.relDegreeGroup','relYear','relSemester','relDegree.relDegreeProgram')
             ->where('id' ,'=', $batch_id)
             ->first();
         return View::make('admission::amw.batch_adm_test_subject._form',compact('batch_id','degree_name','subject_id_result'));
@@ -1391,8 +1391,9 @@ class AdmAmwController extends \BaseController
         $department = array('' => 'Select Department ') + Department::lists('title', 'id');
         $degree_program = array('' => 'Select Department ') + DegreeProgram::lists('title', 'id');
         $degree_group = array('' => 'Select Department ') + DegreeGroup::lists('title', 'id');
+        $degree_level = array('' => 'Select Degree Level ') + DegreeLevel::lists('title', 'id');
         return View::make('admission::amw.degree.degree.degree_edit',
-            compact('model','department','degree_program','degree_group'));
+            compact('model','department','degree_program','degree_group','degree_level'));
     }
 
     public function admDegreeUpdate($id)
