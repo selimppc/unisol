@@ -51,7 +51,7 @@
                      @foreach($admission_test as $adm_test_mgt)
                            <tr>
                                <td><input type="checkbox" name="id[]" class="myCheckbox" value="{{ $adm_test_mgt['id'] }}"></td>
-                               <td>{{ $adm_test_mgt->relDegree->title }}</td>
+                               <td>{{ $adm_test_mgt->relDegree->relDegreeLevel->code.'  '.$adm_test_mgt->relDegree->relDegreeGroup->code.' In '.$adm_test_mgt->relDegree->relDegreeProgram->code }}</td>
                                <td>{{ $adm_test_mgt->relDegree->relDepartment->title }}</td>
                                <td>{{ $adm_test_mgt->relYear->title }}</td>
                                <td>{{ $adm_test_mgt->relSemester->title }}</td>
