@@ -25,9 +25,9 @@
                     <div class="tab-pane active" style="font-size: " id="tab_1">
 
                          <p><strong> Degree: &nbsp;&nbsp; </strong>
-                                 {{ $data_question->relBatchAdmtestSubject->relBatch->relDegree->relDegreeProgram->code.''
-                                     .$data_question->relBatchAdmtestSubject->relBatch->relDegree->relDegreeGroup->code.' in '
-                                     .$data_question->relBatchAdmtestSubject->relBatch->relDegree->relDepartment->title.' , '
+                                 {{ $data_question->relBatchAdmtestSubject->relBatch->relDegree->relDegreeLevel->code.''
+                                     .$data_question->relBatchAdmtestSubject->relBatch->relDegree->relDegreeGroup->code.' In '
+                                     .$data_question->relBatchAdmtestSubject->relBatch->relDegree->relDegreeProgram->title.' , '
                                      .$data_question->relBatchAdmtestSubject->relBatch->relSemester->title.' , '
                                      .$data_question->relBatchAdmtestSubject->relBatch->relYear->title
                                  }}</p>

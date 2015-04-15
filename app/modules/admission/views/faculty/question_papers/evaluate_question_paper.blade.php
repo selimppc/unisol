@@ -43,9 +43,9 @@
 
                               </div>
                               <div class="col-sm-6 pull-left">
-                                  {{ $data->relBatchAdmtestSubject->relBatch->relDegree->relDegreeProgram->code.''
-                                     .$data->relBatchAdmtestSubject->relBatch->relDegree->relDegreeGroup->code.' in '
-                                     .$data->relBatchAdmtestSubject->relBatch->relDegree->relDepartment->title.' , '
+                                  {{ $data->relBatchAdmtestSubject->relBatch->relDegree->relDegreeLevel->code.''
+                                     .$data->relBatchAdmtestSubject->relBatch->relDegree->relDegreeGroup->code.' In '
+                                     .$data->relBatchAdmtestSubject->relBatch->relDegree->relDegreeProgram->title.' , '
                                      .$data->relBatchAdmtestSubject->relBatch->relSemester->title.' , '
                                      .$data->relBatchAdmtestSubject->relBatch->relYear->title }}
                                      <br>

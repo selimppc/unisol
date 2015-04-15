@@ -26,7 +26,7 @@
                                                 <td>
                                                         <a href="{{ URL::route('admission.public.degree_offer_details',
                                                         ['id' => $value->id]) }}">
-                                                        {{ $value->relDegree->title }} Of {{$value->relDegree->relDegreeGroup->title}} On {{$value->relDegree->relDepartment->title}} ,
+                                                        {{ $value->relDegree->relDegreeLevel->code.''.$value->relDegree->relDegreeGroup->code.' In '.$value->relDegree->relDegreeProgram->code}} ,
                                                         {{ $value->relSemester->title }} ,{{ $value->relYear->title }}
                                                         </a>
                                                 </td>

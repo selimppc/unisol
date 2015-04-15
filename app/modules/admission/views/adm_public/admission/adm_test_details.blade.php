@@ -10,7 +10,7 @@
               <tr>
                  <th>Degree Name :</th>
                  <td>
-                    {{$adm_test_details->relBatch->relDegree->title}} Of {{$adm_test_details->relBatch->relDegree->relDegreeGroup->title}} On {{$adm_test_details->relBatch->relDegree->relDepartment->title}} ,{{$adm_test_details->relBatch->relSemester->title}} ,{{$adm_test_details->relBatch->relYear->title}} .
+                    {{$adm_test_details->relBatch->relDegree->relDegreeLevel->code.'  '.$adm_test_details->relBatch->relDegree->relDegreeGroup->code.' In '.$adm_test_details->relBatch->relDegree->relDegreeProgram->code}} ,{{$adm_test_details->relBatch->relSemester->title}} ,{{$adm_test_details->relBatch->relYear->title}} .
                  </td>
               </tr>
 
