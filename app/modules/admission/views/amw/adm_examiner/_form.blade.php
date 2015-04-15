@@ -17,7 +17,7 @@
             <div class='form-group'>
                 {{ Form::label('type', 'Examiner Type') }}
                 {{ Form::select('type',
-                array('Question Setter' => 'Question Setter(QS)','Question Evaluator' => 'Question Evaluator(QE)','Both' => 'Both(BOTH)'),
+                array('question-setter' => 'question-setter','question-evaluator' => 'question-evaluator','both' => 'both'),
                 Input::old('type'),['class'=>'form-control','required'=>'required']) }}
             </div>
 

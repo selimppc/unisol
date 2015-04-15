@@ -3,7 +3,7 @@
     @include('layouts._sidebar_amw')
 @stop
 @section('content')
-    <h3 class="box-title" style="color:#800080 ">All AdmT est Subject List</h3>
+    <h3 class="box-title" style="color:#800080 ">All Adm Test Subject List</h3>
     <div class="row">
         <div class="col-sm-12">
             <div class="pull-right col-sm-4">
@@ -43,6 +43,9 @@
         </tbody>
     </table>
     {{form::close() }}
+
+    <a href="{{ URL::previous() }}" style="margin-left: 40%" class="btn btn-primary btn-xs" >Back</a>
+
     <div class="text-right">
         {{ $adm_test_sbjct->links() }}
     </div>
