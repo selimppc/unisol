@@ -291,7 +291,7 @@ class ApplicantController extends \BaseController
             Image::make($imagefile->getRealPath())->resize(100, 100)->save($path);
             $profile->profile_image = $file;
             $profile->save();
-            return Redirect::back()->with('message', 'Successfully updated Information!');
+            return Redirect::back()->with('message', 'Successfully updated Profile Picture !');
         } else {
             return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
         }

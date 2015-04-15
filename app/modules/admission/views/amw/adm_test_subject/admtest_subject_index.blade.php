@@ -43,6 +43,7 @@
   {{form::close() }}
 
    <p>&nbsp;</p><p>&nbsp;</p>
+   <a href="{{ URL::previous() }}" style="margin-left: 40%" class="btn btn-primary btn-xs" >Back</a>
 
 </div>
 </div>

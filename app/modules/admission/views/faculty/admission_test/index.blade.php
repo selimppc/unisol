@@ -59,7 +59,7 @@
                                      <td>{{ $index_adm_examiner_list->relBatch->relDegree->total_credit }}</td>
                                      <td>{{ $index_adm_examiner_list->status }}</td>
                                      <td>
-                                         @if($index_adm_examiner_list->status == 'Requested' )
+                                         @if($index_adm_examiner_list->status == 'requested' )
 
                                          {{--<a href="{{ URL::route('admission.faculty.admission-test.change-status-to-accept',['id'=>$index_adm_examiner_list->id]) }}" class="btn btn-success">Accept</a>--}}
                                          {{--<a href="{{ URL::route('admission.faculty.admission-test.change-status-to-deny', ['id'=>$index_adm_examiner_list->id])}}" class="btn btn-warning">Deny</a>--}}
@@ -68,7 +68,7 @@
                                             <a class="btn btn-primary btn-xs" data-href="{{ URL::route('admission.faculty.admission-test.change-status-to-accept',['id'=>$index_adm_examiner_list->id]) }}" data-toggle="modal" data-target="#confirm-delete" href="">Accept</a>
                                             <a class="btn btn-success btn-xs" data-href="{{ URL::route('admission.faculty.admission-test.change-status-to-deny',['id'=>$index_adm_examiner_list->id]) }}" data-toggle="modal" data-target="#confirm-delete" href="">Deny</a>
 
-                                         @elseif( $index_adm_examiner_list->status == 'Accepted' )
+                                         @elseif( $index_adm_examiner_list->status == 'accepted' )
                                             <a href="{{ URL::route('admission.faculty.question-papers.admtest-question-paper', [ 'year_id'=>$index_adm_examiner_list->relBatch->year_id ,'semester_id'=>$index_adm_examiner_list->relBatch->semester_id ,'batch_id'=>$index_adm_examiner_list->batch_id  ]) }}" class="btn btn-info btn-xs" >Questions</a>
                                          @endif
                                      </td>

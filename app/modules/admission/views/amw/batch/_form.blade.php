@@ -78,4 +78,5 @@
         {{Form::close()}}
      </div>
 </div>
+{{ HTML::script('assets/js/custom.js')}}
 

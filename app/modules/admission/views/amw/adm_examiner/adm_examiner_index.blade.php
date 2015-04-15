@@ -59,7 +59,7 @@
                          <td>{{ $values->status }} </td>
 
                         <td>
-                            @if($values->status != 'Cancel')
+                            @if($values->status != 'cancel')
                               <a href="{{URL::route('admission.amw.admission-test-examiner.change-status-by-test-examiner', ['id'=>$values->id])}}" class="btn btn-info btn-xs">Cancel</a>
                             @endif
                         </td>
@@ -68,6 +68,7 @@
           </tbody>
         </table>
     {{form::close() }}
+        <a href="{{ URL::previous() }}" style="margin-left: 40%" class="btn btn-primary btn-xs" >Back</a>
 
             {{ $adm_test_examiner->links() }}
 

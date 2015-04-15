@@ -37,7 +37,7 @@
                     {{ Form::label('s_faculty_user_id', 'Assign To') }}
                     {{ Form::select('s_faculty_user_id', $examiner_faculty_lists, Input::old('s_faculty_user_id'),['class'=>'form-control']) }}
                 </div>
-                {{ Form::hidden('status', 'Assigned') }}
+                {{ Form::hidden('status', '') }}
 
 
               {{ Form::submit('Save', array('class'=>'pull-right btn btn-info')) }}
