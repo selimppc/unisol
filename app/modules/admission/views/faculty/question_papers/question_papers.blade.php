@@ -8,9 +8,9 @@
 
     <div class="row">
           <div class="col-sm-12">
-                <h4> <strong> Degree : </strong>{{ Degree::findOrFail($degree_id)->relDegreeProgram->code.'
+                <h4> <strong> Degree : </strong>{{ Degree::findOrFail($degree_id)->relDegreeLevel->code.'
                                                    '.Degree::findOrFail($degree_id)->relDegreeGroup->code.' in
-                                                   '.$degree_data->relDepartment->title.',
+                                                   '.$degree_data->relDegreeProgram->code.',
                                                    '.Semester::findOrFail($semester_id)->title.',
                                                    '.Year::findOrFail($year_id)->title }} </h4>
           </div>

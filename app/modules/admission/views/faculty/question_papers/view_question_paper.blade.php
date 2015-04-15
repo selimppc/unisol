@@ -10,7 +10,7 @@
                 <table class="table table-striped  table-bordered">
                     <tr>
                         <td><strong> Degree:</strong></td>
-                        <td>{{ $view_adm_qp->relBatchAdmTestSubject->relBatch->relDegree->title }}</td>
+                        <td>{{ $view_adm_qp->relBatchAdmTestSubject->relBatch->relDegree->relDegreeLevel->code.''.$view_adm_qp->relBatchAdmTestSubject->relBatch->relDegree->relDegreeGroup->code }}</td>
                     </tr>
                     <tr>
                         <td><strong> Subject:</strong></td>

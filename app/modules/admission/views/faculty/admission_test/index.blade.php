@@ -52,7 +52,7 @@
                                 <tr>
                                     <td><input type="checkbox" name="id[]" class="myCheckbox" value="{{ $index_adm_examiner_list['id'] }}"></td>
 
-                                     <td>{{ HTML::linkAction('AdmFacultyController@viewAdmTest',$index_adm_examiner_list->relBatch->relDegree->relDegreeProgram->code.''.$index_adm_examiner_list->relBatch->relDegree->relDegreeGroup->code ,['id'=>$index_adm_examiner_list->id,'batch_id'=>$index_adm_examiner_list->batch_id], ['data-toggle'=>"modal", 'data-target'=>"#modal"]) }}</td>
+                                     <td>{{ HTML::linkAction('AdmFacultyController@viewAdmTest',$index_adm_examiner_list->relBatch->relDegree->relDegreeLevel->code.''.$index_adm_examiner_list->relBatch->relDegree->relDegreeGroup->code ,['id'=>$index_adm_examiner_list->id,'batch_id'=>$index_adm_examiner_list->batch_id], ['data-toggle'=>"modal", 'data-target'=>"#modal"]) }}</td>
                                      <td>{{ $index_adm_examiner_list->relBatch->relDegree->relDepartment->title }}</td>
                                      <td>{{ $index_adm_examiner_list->relBatch->relYear->title }}</td>
                                      <td>{{ $index_adm_examiner_list->relBatch->relSemester->title }}</td>

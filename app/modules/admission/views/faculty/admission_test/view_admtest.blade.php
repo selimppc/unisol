@@ -14,7 +14,7 @@
                 <table class="table table-striped  table-bordered">
                     <tr>
                         <td>Degree :</td>
-                        <td>{{ $view_examiner->relBatch->relDegree->title }}</td>
+                        <td>{{ $view_examiner->relBatch->relDegree->relDegreeLevel->code.''. $view_examiner->relBatch->relDegree->relDegreeGroup->code.' In '. $view_examiner->relBatch->relDegree->relDegreeProgram->code}}</td>
                     </tr>
                     <tr>
                         <td>Name Of Faculty :</td>
