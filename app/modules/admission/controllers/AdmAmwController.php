@@ -1173,10 +1173,14 @@ class AdmAmwController extends \BaseController
 
 //..................................................adm test_question.......................................
 
-    public function admQuestionIndex($bats_id)
+    public function admQuestionIndex($bats_id, $batch_id)
     {
         $batch = BatchAdmtestSubject::with('relBatch')->where('id', $bats_id)->first();
-        $adm_question = AdmQuestion::where('batch_admtest_subject_id', $bats_id)->paginate(10);
+        $adm_question = AdmQuestion::with(['relBatchAdmtestSubject'=>
+            function($query) use($batch_id) {
+                $query->where('batch_id', '=', $batch_id);
+            }])->paginate(10);
+            //->where('batch_admtest_subject_id', $bats_id)->paginate(10);
 
         return View::make('admission::amw.adm_question.adm_question_index',
             compact('adm_question', 'batch', 'bats_id'));
@@ -1190,7 +1194,7 @@ class AdmAmwController extends \BaseController
         $admtest_subject = BatchAdmtestSubject::AdmissionTestSubjectByBatchId($batch->batch_id);
         $examiner_faculty_lists = AdmQuestion::AdmissionExaminerList($batch->batch_id);
         return View::make('admission::amw.adm_question._form',
-            compact('batch','admtest_subject', 'examiner_faculty_lists'));
+            compact('bats_id', 'batch','admtest_subject', 'examiner_faculty_lists'));
     }
 
 
@@ -1198,6 +1202,7 @@ class AdmAmwController extends \BaseController
     {
         $data = Input::all();
         $model = new AdmQuestion();
+        //print_r($data);exit;
         if($model->validate($data)){
             if($model->create($data)){
                 Session::flash('message', 'Successfully added Information!');

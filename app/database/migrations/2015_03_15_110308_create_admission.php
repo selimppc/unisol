@@ -28,7 +28,9 @@ class CreateAdmission extends Migration {
             ));
             $table->string('credit_min_per_semester', 128);
             $table->string('credit_max_per_semester', 128);
-            $table->string('status', 128);
+            $table->enum('status',array(
+                'open', 'close', 'approved', 'pending', 'cancel'
+            ));
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
@@ -47,7 +49,7 @@ class CreateAdmission extends Migration {
             $table->unsignedInteger('degree_id')->nullable();
             $table->unsignedInteger('year_id')->nullable();
             $table->unsignedInteger('semester_id')->nullable();
-            $table->string('batch_number', 128);
+            $table->string('batch_number', 128)->unique();
             $table->text('description');
             $table->dateTime('start_date');
             $table->dateTime('end_date');
@@ -55,7 +57,9 @@ class CreateAdmission extends Migration {
             $table->dateTime('admission_deadline');
             $table->dateTime('admtest_date');
             $table->time('admtest_start_time');
-            $table->tinyInteger('status', false)->lenght(1);
+            $table->enum('status',array(
+                'open', 'close', 'approved', 'pending', 'cancel'
+            ));
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
@@ -110,7 +114,9 @@ class CreateAdmission extends Migration {
             $table->increments('id');
             $table->unsignedInteger('batch_course_id')->nullable();
             $table->unsignedInteger('student_user_id')->nullable();
-            $table->string('status', 128);
+            $table->enum('status',array(
+                'requested', 'deny', 'accepted', 'cancel'
+            ));
             $table->unsignedInteger('taken_in_year_id')->nullable();
             $table->unsignedInteger('taken_in_semester_id')->nullable();
             //$table->unique(['batch_course_id as bc_id', 'student_user_id as su_id', 'taken_in_year_id as tiy_id', 'taken_in_semester_id as tis_id']);
@@ -161,7 +167,9 @@ class CreateAdmission extends Migration {
             $table->text('comments');
             $table->string('commented_to', 128);
             $table->string('commented_by', 128);
-            $table->string('status', 128);
+            $table->enum('status',array(
+                'open', 'close'
+            ));
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
@@ -179,7 +187,9 @@ class CreateAdmission extends Migration {
             $table->integer('assigned_by', false, 11);
             $table->dateTime('deadline');
             $table->text('note');
-            $table->string('status', 128);
+            $table->enum('status',array(
+                'requested', 'deny', 'accepted', 'cancel'
+            ));
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
@@ -197,7 +207,9 @@ class CreateAdmission extends Migration {
             $table->text('comment');
             $table->integer('commented_to', false, 11);
             $table->integer('commented_by', false, 11);
-            $table->tinyInteger('status', false)->length(1);
+            $table->enum('status',array(
+                'open', 'close'
+            ));
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
@@ -232,6 +244,7 @@ class CreateAdmission extends Migration {
             $table->increments('id');
             $table->unsignedInteger('batch_id')->nullable();
             $table->unsignedInteger('applicant_id')->nullable();
+            $table->unique(['batch_id', 'applicant_id']);
             $table->float('admtest_marks', 8,2);
             $table->integer('merit_position', false, 8);
             $table->enum('status',array(
@@ -292,7 +305,9 @@ class CreateAdmission extends Migration {
             $table->string('title', 128);
             $table->dateTime('deadline');
             $table->string('total_marks', 8);
-            $table->string('status', 128);
+            $table->enum('status',array(
+                'requested', 'deny', 'accepted', 'cancel'
+            ));
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
@@ -311,7 +326,9 @@ class CreateAdmission extends Migration {
             $table->unsignedInteger('batch_applicant_id')->nullable();
             $table->unsignedInteger('exm_center_id')->nullable();
             $table->text('note');
-            $table->tinyInteger('status', false)->length(1);
+            $table->enum('status',array(
+                'ready', 'free', 'engaged', 'not-ready', 'un-attendant', 'under-construction'
+            ));
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
@@ -387,7 +404,9 @@ class CreateAdmission extends Migration {
             $table->unsignedInteger('adm_question_id')->nullable();
             $table->unsignedInteger('adm_question_items_id')->nullable();
             $table->string('marks', 8);
-            $table->string('progress_status', 8);
+            $table->enum('progress_status',array(
+                'evaluated', 'partial-evaluate', 'not-evaluated', 'pending'
+            ));
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();

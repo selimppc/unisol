@@ -10,7 +10,7 @@
             <div class="box-body">
                 <div class="row">
                     <div class="pull-right col-sm-4">
-                        <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('admission/amw/admission-test-question/create-admtest-question-paper',['bats_id'=>$bats_id])}}" data-toggle="modal" data-target="#modal" >Create Question Paper</a>
+                        <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('admission/amw/admission/create-admtest-question-paper',['bats_id'=>$bats_id])}}" data-toggle="modal" data-target="#modal" >Create Question Paper</a>
                     </div>
                     <div class="col-sm-6">
                         <strong> Batch# </strong> {{ $batch->relBatch->batch_number }} </br>

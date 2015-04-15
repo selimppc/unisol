@@ -180,6 +180,18 @@ class Helpers {
         return $slug;
     }
 
+    /**
+     * @param $degree_id
+     * @return mixed
+     */
+    public static function extractBatchNumber($degree_id){
+        if(!empty($degree_id)){
+            $batch_number = Batch::where('degree_id','=',$degree_id)->count();
+            $result = $batch_number +1;
+            return $result;
+        }
+    }
+
 
 
 
