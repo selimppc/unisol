@@ -340,13 +340,13 @@ Route::any('admission/amw/save-admission-question',[
     'uses' => 'AdmAmwController@storeAdmTestQuestionPaper'
 ]);
 
-Route::any('admission/amw/admission-test-question/view-admtest-question-paper/{id}',[
-    'as' => 'admission.amw.admission-test-question.view-admtest-question-paper',
+Route::any('admission/amw/view-admtest-question-paper/{id}',[
+    'as' => 'admission.amw.view-admtest-question-paper',
     'uses' => 'AdmAmwController@viewAdmTestQuestionPaper'
 ]);
 
-Route::any('admission/amw/admission-test-question/edit-admtest-question-paper/{id}',[
-    'as' => 'admission.amw.admission-test-question.edit-admtest-question-paper',
+Route::any('admission/amw/edit-admtest-question-paper/{id}',[
+    'as' => 'admission.amw.edit-admtest-question-paper',
     'uses' => 'AdmAmwController@editAdmTestQuestionPaper'
 ]);
 
@@ -355,8 +355,8 @@ Route::any('admission/amw/admission-test-question/update-admtest-question-paper/
     'uses' => 'AdmAmwController@updateAdmTestQuestionPaper'
 ]);
 
-Route::any('admission/amw/admission-test-question/view-questions-by-paper/{q_id}',[
-    'as' => 'admission.amw.admission-test-question.view-questions-by-paper',
+Route::any('admission/amw/view-questions-by-paper/{q_id}',[
+    'as' => 'admission.amw.view-questions-by-paper',
     'uses' => 'AdmAmwController@viewQuestionsByPaper'
 ]);
 
@@ -365,8 +365,8 @@ Route::any('admission/amw/admission-test-question/view-question_item-details/{q_
     'uses' => 'AdmAmwController@viewQuestionItemDetails'
 ]);
 
-Route::any('admission/amw/admission-test-question/assign-faculty-by-question/{q_id}',[
-    'as' => 'admission.amw.admission-test-question.assign-faculty-by-question',
+Route::any('admission/amw/assign-faculty-by-question/{q_id}',[
+    'as' => 'admission.amw.assign-faculty-by-question',
     'uses' => 'AdmAmwController@assignFacultyByQuestion'
 ]);
 

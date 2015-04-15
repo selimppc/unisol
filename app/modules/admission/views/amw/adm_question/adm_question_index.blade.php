@@ -41,12 +41,12 @@
                             <td> {{isset($values->s_faculty_user_id)? User::FullName($values->s_faculty_user_id) :''}} </td>
                             <td> {{ $values->status }} </td>
                             <td>
-                                <a href="{{ URL::route('admission.amw.admission-test-question.view-admtest-question-paper', [ 'id'=>$values->id ]) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#modal" data-placement="left" title="Show" href="#"> View </a>
+                                <a href="{{ URL::route('admission.amw.view-admtest-question-paper', [ 'id'=>$values->id ]) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#modal" data-placement="left" title="Show" href="#"> View </a>
 
-                                <a href="{{ URL::route('admission.amw.admission-test-question.edit-admtest-question-paper', [ 'id'=>$values->id ])  }}" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modal" data-placement="left" title="Edit" href="#"> Edit </a>
+                                <a href="{{ URL::route('admission.amw.edit-admtest-question-paper', [ 'id'=>$values->id ])  }}" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modal" data-placement="left" title="Edit" href="#"> Edit </a>
 
-                                <a href="{{ URL::route('admission.amw.admission-test-question.view-questions-by-paper', [ 'q_id'=>$values->id ])  }}" class="btn btn-default btn-xs" title="View Questions" > VQ(s)</a>
-                                <a href="{{ URL::route('admission.amw.admission-test-question.assign-faculty-by-question', [ 'q_id'=>$values->id ])  }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#modal" data-placement="left" title="Assign Faculty" href="#"> AF </a>
+                                <a href="{{ URL::route('admission.amw.view-questions-by-paper', [ 'q_id'=>$values->id ])  }}" class="btn btn-default btn-xs" title="View Questions" > VQ(s)</a>
+                                <a href="{{ URL::route('admission.amw.assign-faculty-by-question', [ 'q_id'=>$values->id ])  }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#modal" data-placement="left" title="Assign Faculty" href="#"> AF </a>
                             </td>
                         </tr>
                     @endforeach
