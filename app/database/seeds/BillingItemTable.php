@@ -28,6 +28,7 @@ class BillingItemTable extends Seeder {
             BillingItem::insert(array(
                 'title' => $val,
                 'description' => $key,
+				'is_unit_qty' => '1',
                 'created_by' => '1',
                 'updated_by' => '1',
                 'created_at' => new DateTime,
