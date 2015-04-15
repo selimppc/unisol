@@ -764,6 +764,8 @@ class AdmAmwController extends \BaseController
     {
         $batch_number = Batch::where('degree_id','=',$degree_id)->count();
 
+        print_r($batch_number);
+
         $degree_title = Degree::with('relDegreeLevel','relDegreeProgram','relDegreeGroup')
             ->where('id','=',$degree_id)->first();
         //print_r($degree_title);exit;
