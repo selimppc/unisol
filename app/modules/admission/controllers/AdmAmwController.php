@@ -1208,7 +1208,7 @@ class AdmAmwController extends \BaseController
         $name = $model->title;
         if($model->validate($data)){
             if($model->create($data)){
-                Session::flash('message', "Successfully added id $name!");
+                Session::flash('message', "Successfully added $name!");
                 return Redirect::back();
             }
         }else{
