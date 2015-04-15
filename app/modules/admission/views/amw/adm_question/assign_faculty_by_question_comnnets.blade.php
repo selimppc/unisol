@@ -5,15 +5,21 @@
 
 <div style="padding: 4%; ">
     {{ Form::open(array('route'=>'admission.amw.admission-test.comments-by-question','method' => 'POST')) }}
-    {{Form::hidden('adm_question_id', $question_data->id)}}
+    {{Form::hidden('adm_question_id', $q_id )}}
+    {{Form::hidden('commented_to', $question_data->s_faculty_user_id)}}
 
-    <h5> Batch # {{$question_data->relBatchAdmtestSubject->relBatch->batch_number}} </h5>
-    <h5> Degree Name :
+    <h5> <strong>Batch # </strong>{{$question_data->relBatchAdmtestSubject->relBatch->batch_number}} </h5>
+    <h5>  <strong>Degree Name : </strong>
         {{$question_data->relBatchAdmtestSubject->relBatch->relDegree->relDegreeProgram->title}}
         {{$question_data->relBatchAdmtestSubject->relBatch->relDegree->relDegreeGroup->title}} -
         {{$question_data->relBatchAdmtestSubject->relBatch->relSemester->title}} -
         {{$question_data->relBatchAdmtestSubject->relBatch->relYear->title}}
     </h5>
+
+    <strong>Subject : </strong>{{ $question_data->relBatchAdmtestSubject->relAdmtestSubject->title }}
+    <strong>Question Title : </strong>{{ $question_data->title }}
+
+
 
     <div class="form-group">
       {{Form::label('commented_to', 'Examiner (Select Examiner)')}}
