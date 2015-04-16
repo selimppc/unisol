@@ -1181,8 +1181,7 @@ class AdmAmwController extends \BaseController
     public function storeAdmTestExaminer()
     {
         $data = Input::all();
-        DB::beginTransaction();
-        try {
+
             $model = new AdmExaminer();
             $model->batch_id = Input::get('batch_id');
             $model->user_id = Input::get('user_id');
@@ -1191,15 +1190,23 @@ class AdmAmwController extends \BaseController
             $model->status = Input::get('status');
             $model->save();
             if ($model->validate($data)) {
-                $mod_comments = new AdmExaminerComments();
-                $mod_comments->batch_id = Input::get('batch_id');
-                $mod_comments->comment = Input::get('comment');
-                $mod_comments->commented_to = Input::get('user_id');
-                $name = $mod_comments->commented_to;
-                $mod_comments->commented_by = Auth::user()->get()->id;
-                $mod_comments->status = 1;
-                $mod_comments->save();
-                Session::flash('message', "Successfully Assigned to Examiner Id $name !");
+                DB::beginTransaction();
+                try {
+
+                    $mod_comments = new AdmExaminerComments();
+                    $mod_comments->batch_id = Input::get('batch_id');
+                    $mod_comments->comment = Input::get('comment');
+                    $mod_comments->commented_to = Input::get('user_id');
+                    $name = $mod_comments->commented_to;
+                    $mod_comments->commented_by = Auth::user()->get()->id;
+                    $mod_comments->status = 1;
+                    $mod_comments->save();
+                    Session::flash('message', "Successfully Assigned to Examiner Id $name !");
+                } catch (Exception $e) {
+                    //If there are any exceptions, rollback the transaction
+                    DB::rollback();
+                    Session::flash('danger', "Invalid Request !");
+                }
                 return Redirect::back();
             } else {
                 $errors = $model->errors();
@@ -1208,11 +1215,7 @@ class AdmAmwController extends \BaseController
                     ->with('errors', 'invalid');
             }
             DB::commit();
-        } catch (Exception $e) {
-            //If there are any exceptions, rollback the transaction
-            DB::rollback();
-            Session::flash('danger', "Invalid Request !");
-        }
+
     }
 
     public function viewAdmTestExaminers($batch_id){
@@ -1224,9 +1227,8 @@ class AdmAmwController extends \BaseController
     }
 
     public function admTestExaminersComments(){
-        $data = Input::all();
-        DB::beginTransaction();
-        try{
+            $data = Input::all();
+
             $model = new AdmExaminerComments();
             $model->batch_id = $data['batch_id'];
             $model->comment = $data['comment'];
@@ -1242,14 +1244,7 @@ class AdmAmwController extends \BaseController
                 Session::flash('errors', $errors);
                 return Redirect::back()->with('errors', 'invalid');
             }
-            DB::commit();
-        }
-        catch ( Exception $e ){
-            //If there are any exceptions, rollback the transaction
-            DB::rollback();
-            Session::flash('danger', "Comments not added.Invalid Request!");
-        }
-        return Redirect::back();
+
     }
 
     public function changeStatusByAdmTestExaminer($id){
