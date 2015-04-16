@@ -97,7 +97,7 @@
     <div class="text-right">
         {{ $model->links() }}
     </div>
-    
+
 {{----------------------Modal : degreeGroupModal--------------------------------------------------------------------------}}
     <div class="modal fade" id="degreeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
