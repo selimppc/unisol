@@ -817,9 +817,11 @@ class AdmAmwController extends \BaseController
         $duration = Degree::with('relDegreeLevel','relDegreeProgram','relDegreeGroup')
             ->where('id','=',$degree_id)->first()->duration;
 
+        $time = date('Y-m-d h:i:s', time());;
+
 
         return View::make('admission::amw.batch._form',compact(
-            'degree_id','dpg_list','year_list','semester_list','batch_number','degree_title','duration'
+            'degree_id','dpg_list','year_list','semester_list','batch_number','degree_title','duration','time'
         ));
     }
 

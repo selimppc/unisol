@@ -71,6 +71,8 @@
 
             {{Form::hidden('status', 1)}}
             {{Form::hidden('duration', $duration,['id'=>'duration-year'])}}
+             {{Form::hidden('adm_test_date', 1,['id'=>'adm_test_date'])}}
+
             <script>
                 function getStartDate(){
                     var duration = document.getElementById("duration-year").value;
@@ -84,11 +86,20 @@
                     document.getElementById("end-date").value = end_date;
 
 
-                    var adm_deadline = ( parseInt(year) )+"-01-01";
-                    var adm_test_date = (parseInt(year) )+"-01-015";
+                    var adm_deadline = new Date()
+                    var month1 = adm_deadline.getMonth() + 1
+                    var day1 = adm_deadline.getDate()
+                    var year1 = adm_deadline.getFullYear()
 
-                    document.getElementById("adm-deadline").value = adm_deadline;
-                    document.getElementById("adm-test-date").value = adm_test_date;
+                    var adm_test_date = new Date();
+                    var month2 = adm_deadline.getMonth() + 1
+                    var day2 = adm_deadline.getDate()
+                    var year2 = adm_deadline.getFullYear()
+
+
+                    document.getElementById("adm-deadline").value = year1 +"-"+ (month1+1) + "-" + day1 ;
+                    document.getElementById("adm-test-date").value = year2 +"-"+ (month2+1) + "-" + (day2+10) ;
+
 
 
                 }
