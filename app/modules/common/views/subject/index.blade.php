@@ -39,8 +39,8 @@
                     <th>
                         <input name="id" type="checkbox" id="checkbox" class="checkbox" value="">
                     </th>
-                    <th>Department</th>
                     <th>Subject</th>
+                    <th>Department</th>
                     <th>Description</th>
                     <th>Action</th>
                     </thead>
@@ -49,8 +49,8 @@
                     @foreach ($datas as $value)
                         <tr>
                             <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $value->id }}"></td>
-                            <td>{{$value->relDepartment->title}}</td>
                             <td class="subTitle">{{ $value->title }}</td>
+                            <td>{{$value->relDepartment->title}}</td>
                             <td class="subDesc">{{ $value->description }}</td>
                             <td>
 
