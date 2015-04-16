@@ -21,10 +21,9 @@
           </div>
 
           <div class='form-group'>
-              <div>{{ Form::label('priority', 'Priority') }}</div>
-              <div>{{ Form::select('priority',array('Select Any one'=>'','1'=>'1','2'=>'2','3'=>'3','4'=>'4','5'=>'5','6'=>'6','7'=>'7','8'=>'8','9'=>'9','10'=>'10'),
-                $edit_adm_test_subject->priority,
-              ['class'=>'form-control input-sm','required'])}}</div>
+              {{ Form::label('priority', 'Priority (Top priority 10 to less priority 1)') }}
+              {{ Form::select('priority',array('Select Any one'=>'','1'=>'1','2'=>'2','3'=>'3','4'=>'4','5'=>'5','6'=>'6','7'=>'7','8'=>'8','9'=>'9','10'=>'10'),
+                $edit_adm_test_subject->priority,['class'=>'form-control input-sm','required'])}}
           </div>
 
 

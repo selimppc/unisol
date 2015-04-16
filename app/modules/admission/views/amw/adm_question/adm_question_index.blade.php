@@ -32,6 +32,7 @@
                     </tr>
                     </thead>
                     <tbody>
+                    @if(isset($adm_question))
                     @foreach($adm_question as $values)
                         <tr>
                             <td><input type="checkbox" name="id[]" class="myCheckbox" value="{{ $values->id }}"></td>
@@ -50,6 +51,7 @@
                             </td>
                         </tr>
                     @endforeach
+                    @endif
                     </tbody>
                 </table>
                 {{form::close() }}

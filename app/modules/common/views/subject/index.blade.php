@@ -41,7 +41,6 @@
                     </th>
                     <th>Subject</th>
                     <th>Department</th>
-                    <th>Description</th>
                     <th>Action</th>
                     </thead>
                     <tbody class="searchBody">
@@ -51,7 +50,6 @@
                             <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $value->id }}"></td>
                             <td class="subTitle">{{ $value->title }}</td>
                             <td>{{$value->relDepartment->title}}</td>
-                            <td class="subDesc">{{ $value->description }}</td>
                             <td>
 
                                 <a href="{{ URL::route('common/subject/show', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#show" href="" ><i class="fa fa-eye" style="color: green"></i></a>

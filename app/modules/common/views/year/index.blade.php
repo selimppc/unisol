@@ -34,7 +34,6 @@
                 <input name="id" type="checkbox" id="checkbox" class="checkbox" value="">
             </th>
             <th>Year </th>
-            <th>Description</th>
             <th>Action</th>
         </tr>
         </thead>
@@ -44,7 +43,6 @@
                 <td><input type="checkbox" name="id[]"  class="myCheckbox" value="{{ $value->id }}">
                 </td>
                 <td>{{$value->title}}</td>
-                <td>{{$value->description}}</td>
                 <td>
                     <a href="{{ URL::route('year.show', ['id'=>$value->id])  }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showOne" href=""><i class="fa fa-eye" style="color: green"></i></a>
                     <a href="{{ URL::route('year.edit', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#edit-modal" href="" ><i class="fa fa-pencil-square-o" style="color: #0044cc"></i></a>

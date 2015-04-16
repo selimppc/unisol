@@ -500,14 +500,16 @@ class AdmAmwController extends \BaseController
 
                 if($degreeCourseCheck){
                     $exists [] = Course::findOrFail($degree_course->course_id)->course_code;
-                    Session::flash('info', 'Already Exists : '.$exists[$i]);
+                    Session::flash('info', "Already Exists :$flash_msg_course ");
                 }else{
                     $degree_course->save();
-                    $array [] = Course::findOrFail($degree_course->course_id)->course_code;
+                    //$exists [] = Course::findOrFail($degree_course->course_id)->course_code;
+                    DB::commit();
+                    Session::flash('message', "Successfully Added: $flash_msg_course ");
                 }
+
             }
-            DB::commit();
-            Session::flash('message', "Degree Course $flash_msg_course is Added");
+
         }
         catch ( Exception $e ){
             //If there are any exceptions, rollback the transaction

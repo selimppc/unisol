@@ -28,7 +28,6 @@
                                              </th>
                                             <th>Title</th>
                                             <th>Code</th>
-                                            <th>Description</th>
                                             <th>Action</th>
                                          </tr>
                                  </thead>
@@ -40,7 +39,6 @@
                                                             </td>
                                                             <td>{{ $value->title }}</td>
                                                             <td>{{ $value->code}}</td>
-                                                            <td>{{ $value->description}}</td>
 
                                                             <td>
                                                                  <a href="{{ URL::to('common/degree-group/show/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#degreeGroupModal" style="font-size: 12px;color: darkmagenta"><span class="fa fa-eye"></span></a>
