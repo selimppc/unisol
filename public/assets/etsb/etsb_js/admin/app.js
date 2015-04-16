@@ -604,7 +604,6 @@ $(window).load(function() {
                     menu.slideDown();
                     isActive = true;
                     btn.children(".fa-angle-left").first().removeClass("fa-angle-left").addClass("fa-angle-down");
-                    alert("OK");
                     btn.parent("li").addClass("active");
                 }
             });

@@ -1635,12 +1635,13 @@ class AdmAmwController extends \BaseController
     {
         $data = Input::all();
         $model = new Waiver();
-        $model->title = Input::get('title');
-        $name = $model->title;
         if($model->validate($data))
         {
             DB::beginTransaction();
             try {
+
+                $model->title = Input::get('title');
+                $name = $model->title;
                 $model->create($data);
                 DB::commit();
                 Session::flash('message', "$name Waiver  Added");
@@ -1754,16 +1755,14 @@ class AdmAmwController extends \BaseController
             $model->batch_id = Input::get('batch_id');
             $model->waiver_id = Input::get('waiver_id');
             $name = $model->relWaiver->title;
-            if ($model->save()) {
-                return Redirect::back();
-            }
+            $model->save();
             DB::commit();
             Session::flash('message', "Successfully added $name!");
         }
         catch ( Exception $e ){
             //If there are any exceptions, rollback the transaction
             DB::rollback();
-            Session::flash('danger', "$name Batch Waiver  not added.Invalid Request!");
+            Session::flash('danger', "$name already exists! ");
         }
         return Redirect::back();
     }

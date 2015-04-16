@@ -538,8 +538,8 @@ Route::any('admission/amw/batch-waiver/create/{batch_id}', [
     'uses' => 'AdmAmwController@batchWaiverCreate'
 ]);
 
-Route::any('admission/amw/batch-waiver/store/{batch_id}', [
-    'as' => 'admission.amw.batch-waiver.store',
+Route::any('admission/amw/store-batch-waiver', [
+    'as' => 'admission.amw.store-batch-waiver',
     'uses' => 'AdmAmwController@batchWaiverStore'
 ]);
 

@@ -17,7 +17,7 @@
             <li><a href="{{ URL::to('common/subject/') }}"> Subject </a></li>
             <li><a href="{{ URL::to('common/department/') }}"> Department </a></li>
 
-            <li><a href="{{ URL::to('common/adm_test_subject') }}"> Adm Test Subject </a></li>
+            <li><a href="{{ URL::to('common/adm_test_subject') }}"> Admission Test Subject </a></li>
             <li><a href="{{ URL::to('common/course') }}"> Course </a></li>
 
             <li><a href="{{ action('DegreeProgramController@degreeProgramIndex') }}"> Degree Program  </a></li>
@@ -27,15 +27,15 @@
         </ul>
     </li>
 
-    <li class="treeview active">
+    <li class="treeview">
         <a href="#">
             <i class="fa fa-download" style="color: #803a0f"></i>
             <span>Admission</span>
             <i class="fa fa-angle-left pull-right"></i>
         </a>
         <ul class="treeview-menu">
-            <li class="active"><a href="{{ URL::to('admission/amw/degree') }}"></i><i class="fa fa-flask" style="color: #db4509"></i> Degree (Amw)</a></li>
-            <li><a href="{{ URL::to('admission/amw/admission-test-home') }}"></i><i class="fa fa-flask" style="color: #db4509"></i> Admission Test (Ex,Qp, QPE)</a></li>
+            <li><a href="{{ URL::to('admission/amw/degree') }}"></i><i class="fa fa-flask" style="color: #db4509"></i> Degree</a></li>
+            <li><a href="{{ URL::to('admission/amw/admission-test-home') }}"></i><i class="fa fa-flask" style="color: #db4509"></i> Admission Test</a></li>
         </ul>
     </li>
 
