@@ -111,7 +111,7 @@
                                       <thead>
                                            <tr>
                                               <th>Level of Education</th>
-                                              <th>End Date</th>
+                                              <th>GPA</th>
                                               <th>Action</th>
                                            </tr>
                                       </thead>

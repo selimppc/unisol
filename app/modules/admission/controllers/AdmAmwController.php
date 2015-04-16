@@ -1822,40 +1822,36 @@ class AdmAmwController extends \BaseController
     public function waiverConstraintStore()
     {
         $data = Input::all();
-        DB::beginTransaction();
-        try {
-                $model = new WaiverConstraint();
-                $model->start_date = Input::get('start_date');
-                $model->end_date = Input::get('end_date');
-                $namestart = $model->start_date;
-                $nameend = $model->end_date;
-                $model->level_of_education = Input::get('level_of_education');
-                $model->gpa = Input::get('gpa');
-                $lavelOfEdu = $model->level_of_education;
-                $gpa = $model->gpa;
-                if($model->validate($data)){
-                    if($model->create($data)){
-                        if($namestart != null)
-                        {
-                            Session::flash('message',"Successfully Added StartDate:$namestart and EndDate:$nameend !");
-                        }
-                        else{
-                            Session::flash('message',"Successfully Added Level of Education:$lavelOfEdu and GPA:$gpa !");
-                        }
-                        return Redirect::back();
-                    }
-                }else{
-                    $errors = $model->errors();
-                    Session::flash('errors', $errors);
-                    return Redirect::back();
-                }
 
-            DB::commit();
-        }
-        catch ( Exception $e ){
-            //If there are any exceptions, rollback the transaction
-            DB::rollback();
-            Session::flash('danger', "Level of Education  not added.Invalid Request!");
+        $model = new WaiverConstraint();
+        $model->start_date = Input::get('start_date');
+        $model->end_date = Input::get('end_date');
+        $namestart = $model->start_date;
+        $nameend = $model->end_date;
+        $model->level_of_education = Input::get('level_of_education');
+        $model->gpa = Input::get('gpa');
+        $lavelOfEdu = $model->level_of_education;
+        $gpa = $model->gpa;
+        if($model->validate($data)){
+            DB::beginTransaction();
+            try {
+                 $model->create($data);
+                 if($namestart != null)
+                 {
+                    Session::flash('message',"Successfully Added StartDate: $namestart and EndDate: $nameend !");
+                 }else{
+                    Session::flash('message',"Successfully Added Level of Education: $lavelOfEdu and GPA: $gpa !");
+                 }
+                DB::commit();
+            }catch ( Exception $e ) {
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', "Level of Education  not added.Invalid Request!");
+            }
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back();
         }
         return Redirect::back();
 
@@ -1881,9 +1877,6 @@ class AdmAmwController extends \BaseController
 
     public function waiverConstUpdate($id)
     {
-        DB::beginTransaction();
-        try {
-
             $const_model = WaiverConstraint::find($id);
             $const_model->start_date = Input::get('start_date');
             $const_model->end_date = Input::get('end_date');
@@ -1896,24 +1889,27 @@ class AdmAmwController extends \BaseController
             $data = Input::all();
             $const_model->fill($data);
             if ($const_model->update($data)) {
-                if ($namestart != null) {
-                    Session::flash('message', "Successfully Updated StartDate:$namestart and EndDate:$nameend !");
-                } else {
-                    Session::flash('message', "Successfully Updated Level of Education:$lavelOfEdu and GPA:$gpa !");
+                DB::beginTransaction();
+                try {
+                    $const_model->update($data);
+                    if($namestart != null)
+                    {
+                        Session::flash('message',"Successfully Updated StartDate: $namestart and EndDate: $nameend !");
+                    }else{
+                        Session::flash('message',"Successfully Updated Level of Education: $lavelOfEdu and GPA: $gpa !");
+                    }
+                    DB::commit();
+                }catch ( Exception $e ) {
+                    //If there are any exceptions, rollback the transaction
+                    DB::rollback();
+                    Session::flash('danger', "Level of Education  not added.Invalid Request!");
                 }
-                return Redirect::back();
-            } else {
+            }else{
                 $errors = $const_model->errors();
                 Session::flash('errors', $errors);
                 return Redirect::back();
             }
-            DB::commit();
-        }catch ( Exception $e ){
-            //If there are any exceptions, rollback the transaction
-            DB::rollback();
-            Session::flash('danger', "Not updates. Invalid Request !");
-        }
-        return Redirect::back();
+            return Redirect::back();
     }
 
     public function waiverConstDelete($id)
