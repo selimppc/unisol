@@ -58,7 +58,8 @@ class CreateAdmission extends Migration {
             $table->dateTime('admtest_date');
             $table->time('admtest_start_time');
             $table->enum('status',array(
-                'open', 'close', 'approved', 'pending', 'cancel'
+                'admission-open', 'admission-close', 'admission-on-going', 'admission-up-coming',
+                'academic-running', 'academic-complete'
             ));
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
@@ -183,7 +184,9 @@ class CreateAdmission extends Migration {
             $table->increments('id');
             $table->unsignedInteger('batch_id')->nullable();
             $table->unsignedInteger('user_id')->nullable();
-            $table->string('type', 128);
+            $table->enum('type', array(
+                'question-setter', 'question-evaluator', 'both'
+            ));
             $table->integer('assigned_by', false, 11);
             $table->dateTime('deadline');
             $table->text('note');
