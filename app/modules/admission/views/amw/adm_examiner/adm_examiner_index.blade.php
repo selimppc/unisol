@@ -4,6 +4,8 @@
 @stop
 
 @section('content')
+<a class="pull-right btn btn-xs btn-success" href="{{ URL::route('admission.amw.admission-test-home')}}"> <i class="fa fa-arrow-circle-left"></i> Go Back</a>
+
  <h3>Manage Examiner for Admission Test  </h3>
  {{ Form::open(array('route' => 'admission.amw.admission-test-examiner.delete-adm-test-examiner')) }}
 
@@ -68,7 +70,7 @@
           </tbody>
         </table>
     {{form::close() }}
-        <a href="{{ URL::previous() }}" style="margin-left: 40%" class="btn btn-primary btn-xs" >Back</a>
+
 
             {{ $adm_test_examiner->links() }}
 

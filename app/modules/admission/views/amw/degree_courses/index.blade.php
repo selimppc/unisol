@@ -3,6 +3,8 @@
     @include('layouts._sidebar_amw')
 @stop
 @section('content')
+<a class="pull-right btn btn-xs btn-primary" href="{{ URL::route('admission.amw.degree.index')}}"> <i class="fa fa-arrow-circle-left"></i>Back To Degree</a>
+ <p>&nbsp;</p>
     <div class="box box-solid ">
         <div class="box-header">
           {{ Form::open(array('url' => 'admission/amw/degree-courses/save')) }}
@@ -50,7 +52,6 @@
                         </tbody>
                     </table>
                     {{ Form::close() }}
-                    <a href="{{URL::to('admission/amw/degree')}}" class="btn btn-xs btn-success" style="float: right;">Back</a>
                     {{ $deg_course_info->links() }}
                     <p>&nbsp;</p>
                     <p>&nbsp;</p>
