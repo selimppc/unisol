@@ -17,6 +17,7 @@ class CreateAdmission extends Migration {
             $table->unsignedInteger('degree_group_id')->nullable();
             $table->unsignedInteger('degree_program_id')->nullable();
             $table->unsignedInteger('department_id')->nullable();
+            $table->unique(['degree_level_id', 'degree_group_id', 'degree_program_id']);
             $table->text('description');
             $table->string('total_credit', 128);
             $table->string('duration', 128);
