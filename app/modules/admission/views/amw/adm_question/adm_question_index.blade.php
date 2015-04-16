@@ -15,8 +15,8 @@
                         <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('admission/amw/admission/create-admtest-question-paper',['bats_id'=>$bats_id])}}" data-toggle="modal" data-target="#modal" >Create Question Paper</a>
                     </div>
                     <div class="col-sm-6">
-                        <strong> Batch# </strong> {{ $batch->relBatch->batch_number }} </br>
-                        <strong> Degree Name: </strong> {{ $batch->relBatch->relDegree->relDegreeLevel->code }}{{ $batch->relBatch->relDegree->relDegreeGroup->code }} In {{ $batch->relBatch->relDegree->relDegreeProgram->code }} , {{ $batch->relBatch->relSemester->title }} - {{ $batch->relBatch->relYear->title }}
+                        <strong> Batch# </strong> {{ isset($batch->relBatch->batch_number) ? $batch->relBatch->batch_number : '' }} </br>
+                        <strong> Degree Name: </strong> {{isset( $batch->relBatch->relDegree->relDegreeLevel->code) ?$batch->relBatch->relDegree->relDegreeLevel->code : '' }}{{isset($batch->relBatch->relDegree->relDegreeGroup->code) ? $batch->relBatch->relDegree->relDegreeGroup->code : '' }} In {{isset($batch->relBatch->relDegree->relDegreeProgram->code) ? $batch->relBatch->relDegree->relDegreeProgram->code : '' }} , {{isset($batch->relBatch->relSemester->title)? $batch->relBatch->relSemester->title : '' }} - {{isset( $batch->relBatch->relYear->title) ? $batch->relBatch->relYear->title :'' }}
                     </div>
                 </div>
                 <table id="example" class="table table-striped  table-bordered"  >
@@ -38,11 +38,11 @@
                     @foreach($adm_question as $values)
                         <tr>
                             <td><input type="checkbox" name="id[]" class="myCheckbox" value="{{ $values->id }}"></td>
-                            <td>{{ $values->title }}</td>
-                            <td>{{date("d-m-Y", strtotime( $values->deadline ) )}}</td>
-                            <td>{{ $values->relBatchAdmtestSubject->relAdmtestSubject->title }}</td>
+                            <td> {{isset( $values->title)?  $values->title :''}} </td>
+                            <td>{{date("d-m-Y", strtotime((isset( $values->deadline)) ?  $values->deadline : '') ) }}</td>
+                            <td>{{isset( $values->relBatchAdmtestSubject->relAdmtestSubject->title) ?  $values->relBatchAdmtestSubject->relAdmtestSubject->title: ''}}</td>
                             <td> {{isset($values->s_faculty_user_id)? User::FullName($values->s_faculty_user_id) :''}} </td>
-                            <td> {{ $values->status }} </td>
+                            <td> {{isset($values->status) ? $values->status : '' }} </td>
                             <td>
                                 <a href="{{ URL::route('admission.amw.view-admtest-question-paper', [ 'id'=>$values->id ]) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#modal" data-placement="left" title="Show" href="#"> View </a>
 
