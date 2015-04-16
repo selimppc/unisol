@@ -16,13 +16,13 @@
                 <div class="row">
                     <div class="col-lg-12">
     {{--search db--}}
-        {{ Form::open(array('url' =>'year/show', 'class'=>'form-inline', 'role' => 'form')) }}
-        <div class="form-group"style="margin-top: 2px;margin-left: 850px">
-            {{ Form::label('search_text', 'Search Text:',array('class'=>'sr-only')) }}
-            {{ Form::text('search_text', Input::old('search_text'), array('class' => 'form-control','placeholder' => 'Search All')) }}
-        </div>
-        {{ Form::submit('Search', array('class' => 'btn btn-info')) }}
-        {{ Form::close() }}
+        {{--{{ Form::open(array('url' =>'year/show/', 'class'=>'form-inline', 'role' => 'form')) }}--}}
+        {{--<div class="form-group"style="margin-top: 2px;margin-left: 850px">--}}
+            {{--{{ Form::label('search_text', 'Search Text:',array('class'=>'sr-only')) }}--}}
+            {{--{{ Form::text('search_text', Input::old('search_text'), array('class' => 'form-control','placeholder' => 'Search All')) }}--}}
+        {{--</div>--}}
+        {{--{{ Form::submit('Search', array('class' => 'btn btn-info')) }}--}}
+        {{--{{ Form::close() }}--}}
 
     {{--search db ends--}}
 

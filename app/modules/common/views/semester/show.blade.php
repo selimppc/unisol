@@ -5,13 +5,21 @@
 <div class="modal-body">
     <div style="padding: 10px; width: 90%;">
         {{ Form::open(array('url'=>'semester/show','method' => '')) }}
-        <div class="jumbotron text-center">
-            <h2><strong>Name :</strong>{{ $term_semester->title }}</h2>
-            <p>
-                <strong> Description:</strong> {{ $term_semester->description }}
-            </p>
-        </div>
+        <table id="" class="table table-bordered table-hover table-striped">
+            <tr>
+                <td>Name:</td>
+                <td>
+                    {{isset($term_semester->title) ? $term_semester->title : '' }}
+                </td>
+            </tr>
+            <tr>
+                <td>Description:</td>
+                <td>
+                    {{isset($term_semester->description) ? $term_semester->description : '' }}
+                </td>
+            </tr>
 
+        </table>
         {{ Form::close() }}
     </div>
 </div>
