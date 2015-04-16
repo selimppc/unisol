@@ -23,10 +23,11 @@
 
                 <div class="col-sm-6">
                     {{ Form::label('year_id', 'Year') }}
-                   {{ Form::select('year_id',$year_list,null,['class'=>'form-control']) }}
+                   {{ Form::select('year_id',$year_list,null,['class'=>'form-control', 'id'=>'year-id', 'onchange'=>"getStartDate()"]) }}
                 </div>
             </div>
             <br>
+
 
             {{--<div class='form-group'>
                {{ Form::label('batch_number', 'Batch Number') }}
@@ -45,22 +46,22 @@
 
             <div class='form-group'>
                {{ Form::label('start_date', 'Start Date') }}
-               {{ Form::text('start_date', Input::old('start_date'),['class'=>'form-control date_picker']) }}
+               {{ Form::text('start_date', Input::old('start_date'),['class'=>'form-control date_picker', 'id'=>'start-date']) }}
             </div>
 
             <div class='form-group'>
                {{ Form::label('end_date', 'End Date') }}
-               {{ Form::text('end_date', Input::old('end_date'),['class'=>'form-control date_picker','required'=>'required']) }}
+               {{ Form::text('end_date', Input::old('end_date'),['class'=>'form-control date_picker', 'id'=>'end-date', 'required'=>'required']) }}
             </div>
 
             <div class='form-group'>
                {{ Form::label('admission_deadline', 'Admission Deadline') }}
-               {{ Form::text('admission_deadline', Input::old('admission_deadline'),['class'=>'form-control date_picker','required'=>'required']) }}
+               {{ Form::text('admission_deadline', Input::old('admission_deadline'),['id'=>'adm-deadline','class'=>'form-control date_picker','required'=>'required']) }}
             </div>
 
             <div class='form-group'>
                {{ Form::label('admtest_date', 'Admission Test Date') }}
-               {{ Form::text('admtest_date', Input::old('admtest_date'),['class'=>'form-control date_picker','required'=>'required']) }}
+               {{ Form::text('admtest_date', Input::old('admtest_date'),['id'=>'adm-test-date','class'=>'form-control date_picker','required'=>'required']) }}
             </div>
 
             <div class='form-group'>
@@ -69,6 +70,29 @@
             </div>
 
             {{Form::hidden('status', 1)}}
+            {{Form::hidden('duration', $duration,['id'=>'duration-year'])}}
+            <script>
+                function getStartDate(){
+                    var duration = document.getElementById("duration-year").value;
+                    var e = document.getElementById("year-id");
+                    var year = e.options[e.selectedIndex].text;
+
+                    var start_date = ( parseInt(year) )+"-01-12";
+                    var end_date = (parseInt(year) + parseInt(duration))+"-01-25";
+
+                    document.getElementById("start-date").value = start_date;
+                    document.getElementById("end-date").value = end_date;
+
+
+                    var adm_deadline = ( parseInt(year) )+"-01-01";
+                    var adm_test_date = (parseInt(year) )+"-01-015";
+
+                    document.getElementById("adm-deadline").value = adm_deadline;
+                    document.getElementById("adm-test-date").value = adm_test_date;
+
+
+                }
+            </script>
 
 
           {{ Form::submit('Save', array('class'=>'pull-right btn btn-info')) }}

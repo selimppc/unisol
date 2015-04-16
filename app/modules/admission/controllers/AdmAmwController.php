@@ -814,8 +814,12 @@ class AdmAmwController extends \BaseController
         $year_list = array('' => 'Select Year ') + Year::lists('title', 'id');
         $semester_list = array('' => 'Select Semester ') + Semester::lists('title', 'id');
 
+        $duration = Degree::with('relDegreeLevel','relDegreeProgram','relDegreeGroup')
+            ->where('id','=',$degree_id)->first()->duration;
+
+
         return View::make('admission::amw.batch._form',compact(
-            'degree_id','dpg_list','year_list','semester_list','batch_number','degree_title'
+            'degree_id','dpg_list','year_list','semester_list','batch_number','degree_title','duration'
         ));
     }
 
