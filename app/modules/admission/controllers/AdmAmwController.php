@@ -481,7 +481,6 @@ class AdmAmwController extends \BaseController
         $deg_id = Input::get('degree_id');
         $i = 0;
         $flash_msg_course = "";
-
         foreach($select as $value){
             $degree_course = new DegreeCourse();
             $degree_course->degree_id = $deg_id;
