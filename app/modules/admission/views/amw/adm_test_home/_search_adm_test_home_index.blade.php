@@ -54,24 +54,22 @@
                  <tbody>
                     @if(!empty($adm_test_home_data))
                          @foreach($adm_test_home_data as $values)
-                               <tr>
-                                   <td><input type="checkbox" name="id[]" class="myCheckbox" value="{{ $values->id }}"></td>
-    {{--                               <td>{{ $adm_test_mgt->relDegree->title }}</td>--}}
-                                   <td>{{ $values->relDegree->relDegreeProgram->code.''.$adm_test_mgt->relDegree->relDegreeGroup->code }}</td>
-                                   <td>{{ $values->relDegree->relDepartment->title }}</td>
-                                   <td>{{ $values->relBatch->batch_number }}</td>
-                                   <td>{{ $values->relYear->title }}</td>
-                                   <td>{{ $values->relSemester->title }}</td>
-                                   <td>{{ $values->relDegree->total_credit }}</td>
-                                   <td>{{ $values->relDegree->duration }}</td>
-                                   <td> QPE Status </td>
-                                   <td>
-                                      {{--<a href="{{ URL::route('admission.amw.admission-examiner-index', ['year_id'=>$adm_test_mgt->year_id , 'semester_id'=>$adm_test_mgt->semester_id , 'degree_id'=>$adm_test_mgt->degree_id ])  }}" class="btn btn-default btn-xs" >EX</a>--}}
-                                      <a href="{{ URL::to('admission/amw/admission-test-examiner') }}" class="btn btn-default btn-xs" >EX</a>
-                                      <a href="{{ URL::to('admission/amw/admission-test-question') }}" class="btn btn-default btn-xs" >QP</a>
-                                      <a href="{{ URL::to('admission/amw/admission-question-evaluation') }}" class="btn btn-default btn-xs" >QPE</a>
-                                   </td>
-                               </tr>
+                                <tr>
+                                  <td><input type="checkbox" name="id[]" class="myCheckbox" value="{{ $values->id }}"></td>
+                                  <td>{{ $values->relBatch->relDegree->relDegreeLevel->code.''.$values->relBatch->relDegree->relDegreeGroup->code.' In '.$values->relBatch->relDegree->relDegreeProgram->code }}</td>
+                                  <td>{{ $values->relBatch->relDegree->relDepartment->title }}</td>
+                                  <td>{{ $values->relBatch->batch_number }}</td>
+                                  <td>{{ $values->relBatch->relYear->title }}</td>
+                                  <td>{{ $values->relBatch->relSemester->title }}</td>
+                                  <td>{{ $values->relBatch->relDegree->total_credit }}</td>
+                                  <td >{{ $values->duration }}</td>
+                                  <td> QPE Status </td>
+                                  <td>
+                                     <a href="{{ URL::to('admission/amw/admission-test-examiner', [ 'year_id'=>$values->relBatch->year_id ,'semester_id'=>$values->relBatch->semester_id ,'batch_id'=>$values->batch_id ]) }}" class="btn btn-success btn-xs" data-toggle="tooltip" data-placement="bottom" title="Examiner">EX</a>
+                                     <a href="{{ URL::to('admission/amw/admission-test-question', [ 'bats_id'=>$values->id, 'batch_id'=>$values->batch_id ]) }}" class="btn btn-info btn-xs" data-toggle="tooltip" data-placement="bottom" title="Question Paper">QP</a>
+                                     <a href="{{ URL::route('admission.amw.question-paper-evaluation', [ 'bats_id'=>$values->id ] ) }}" class="btn btn-success btn-xs" data-toggle="tooltip" data-placement="bottom" title="Question Paper Evaluation">QPE</a>
+                                  </td>
+                                </tr>
                          @endforeach
                      @endif
                  </tbody>
