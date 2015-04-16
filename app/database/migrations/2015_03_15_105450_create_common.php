@@ -41,7 +41,7 @@ class CreateCommon extends Migration {
         Schema::create('year', function (Blueprint $table) {
 
             $table->increments('id', true);
-            $table->integer('title');
+            $table->integer('title')->unique();
             $table->text('description');
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
