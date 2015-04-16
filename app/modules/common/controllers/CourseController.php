@@ -27,11 +27,20 @@ class CourseController extends \BaseController {
         $model = new Course();
         $model->title = Input::get('title');
         $name = $model->title;
-        if($model->validate($data)){
-            if($model->create($data)){
+        if($model->validate($data))
+        {
+            DB::beginTransaction();
+            try {
+                if ($model->create($data))
+                    DB::commit();
                 Session::flash('message', "$name Course Added");
-                return Redirect::back();
             }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', "$name Course not added.Invalid Request!");
+            }
+            return Redirect::back();
         }else{
             $errors = $model->errors();
             Session::flash('errors', $errors);
@@ -53,20 +62,29 @@ class CourseController extends \BaseController {
 
 	public function update($id)
 	{
+        $data = Input::all();
         $model = Course::find($id);
         $model->title = Input::get('title');
         $name = $model->title;
-        $data = Input::all();
-        if($model->validate($data)){
-            if($model->update($data)){
-                Session::flash('message', "$name Course Updated");
-                return Redirect::back();
+        if($model->validate($data))
+        {
+            DB::beginTransaction();
+            try {
+                $model->update($data);
+                DB::commit();
+                Session::flash('message', "$name Course Updates");
             }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', "$name Course not updates. Invalid Request !");
+            }
+            return Redirect::back();
         }else{
             $errors = $model->errors();
             Session::flash('errors', $errors);
             return Redirect::back()
-                ->with('error', 'invalid');
+                ->with('errors', 'Input Data Not Valid');
         }
 	}
 

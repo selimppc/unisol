@@ -58,25 +58,27 @@ class AdmTestSubjectController extends \BaseController {
 
         $data = Input::all();
         $model = AdmTestSubject::find($id);
+        $model->title = Input::get('title');
+        $name = $model->title;
         if($model->validate($data))
         {
             DB::beginTransaction();
             try {
                 $model->update($data);
                 DB::commit();
-                Session::flash('message', "Admission Test Subject Updates");
+                Session::flash('message', "$name Admission Test Subject Updates");
             }
             catch ( Exception $e ){
                 //If there are any exceptions, rollback the transaction
                 DB::rollback();
-                Session::flash('danger', " Admission Test Subject not updates. Invalid Request !");
+                Session::flash('danger', "$name Admission Test Subject not updates. Invalid Request !");
             }
             return Redirect::back();
         }else{
             $errors = $model->errors();
             Session::flash('errors', $errors);
             return Redirect::back()
-                ->with('errors', 'invalid');
+                ->with('errors', 'Input Data Not Valid');
         }
     }
 

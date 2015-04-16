@@ -23,6 +23,7 @@
             </div>
             <div>
                 <button type="submit" class="btn">Sign me in</button>
+                {{--method is in Admission controller--}}
                 <a href="{{URL::to('password_reset')}}">Forgot Password ?</a>
                 <a href="{{URL::to('user/username_reset')}}">Forgot UserName ?</a>
             </div>
