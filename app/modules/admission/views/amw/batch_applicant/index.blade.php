@@ -106,8 +106,7 @@
                             @else
                             <p>&nbsp;</p>
                                 <div>
-                                   <p style="margin-left: 290px;color:#000000"><em>There Are No Applicant For Status : <strong style="color:#b11b64">{{$chk_status}}</strong></em>
-                                   <a style="margin-left: 50px" class="btn btn-xs btn-info" href="{{ action('AdmAmwController@batchApplicantIndex', $batch_id)}}">View All</a></p>
+                                   <p style="margin-left: 350px;color:#000000"><em>There Are No Applicant.</em>
                                 </div>
                             @endif
                             <p>&nbsp;</p>
