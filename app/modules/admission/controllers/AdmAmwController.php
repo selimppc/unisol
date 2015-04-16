@@ -1980,13 +1980,16 @@ class AdmAmwController extends \BaseController
 
         $ids = Input::get('ids');
         $status = Input::get('status');
-
-        foreach($ids as $key => $value){
-            $model = BatchApplicant::findOrFail($value);
-            $model->status = $status;
-            $model->save();
+        if($ids == null){
+            Session::flash('error',"You didn't select any applicant ! Please check at least one applicant !");
+        }else{
+            foreach($ids as $key => $value) {
+                $model = BatchApplicant::findOrFail($value);
+                $model->status = $status;
+                $model->save();
+            }
+            Session::flash('message','Successfully Updated applicant Status!');
         }
-        Session::flash('message','Successfully Updated applicant Status!');
         return Redirect::back();
     }
 
