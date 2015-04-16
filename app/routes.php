@@ -54,6 +54,9 @@ Route::any("sortable", [
     "uses" => "HomeController@sortable"
 ]);
 
+Route::get('/upload', 'HomeController@getUploadForm');
+Route::post('/upload/image','HomeController@postUpload');
+
 
 Route::group( array('before' => 'auth'), function(){
 
