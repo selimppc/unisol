@@ -24,7 +24,6 @@
                                 </th>
                                 <th>Department Name</th>
                                 <th>Department Head</th>
-                                <th>Description</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -34,7 +33,7 @@
                                     <td><input type="checkbox" name="ids[]"  class="myCheckbox" value="{{ $department->id }}"></td>
                                     <td align="left">{{ $department->title }}</td>
                                     <td align="left">{{ isset($department->dept_head_user_id) ? User::FullName($department->dept_head_user_id) : '' }}</td>
-                                    <td>{{ $department->description }}</td>
+
                                     <td>
                                         <a href="{{ URL::to('department/show/'.$department->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-show"><i class="fa fa-eye" style="color: green"></i></a>
 

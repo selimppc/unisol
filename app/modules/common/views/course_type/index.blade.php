@@ -27,8 +27,6 @@
                                                  <input name="id" type="checkbox" id="checkbox" class="checkbox" value="">
                                              </th>
                                             <th>Title</th>
-
-                                            <th>Description</th>
                                             <th>Action</th>
                                          </tr>
                                  </thead>
@@ -39,8 +37,6 @@
                                                             <td><input type="checkbox" name="ids[]"  class="myCheckbox" value="{{ $value->id }}">
                                                             </td>
                                                             <td>{{ $value->title }}</td>
-
-                                                            <td>{{ $value->description}}</td>
 
                                                             <td>
                                                                  <a href="{{ URL::to('common/course-type/show/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#courseTypeModal" style="font-size: 12px;color: darkmagenta"><span class="fa fa-eye"></span></a>
