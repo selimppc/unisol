@@ -1262,11 +1262,11 @@ class AdmAmwController extends \BaseController
         try {
             AdmExaminer::destroy(Request::get('id'));
             AdmExaminerComments::where('batch_id', Request::get('batch_id'));
-            Session::flash('danger', 'Deleted Successfully! ');
+            Session::flash('message', 'Deleted Successfully! ');
             return Redirect::back();
         }
         catch(exception $ex){
-            Session::flash('info', 'Invalid Request! ');
+            Session::flash('warning', 'Invalid Request! ');
             return Redirect::back();
         }
     }
