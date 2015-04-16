@@ -25,16 +25,25 @@ class AdmTestSubjectController extends \BaseController {
         $model = new AdmTestSubject();
         $model->title = Input::get('title');
         $name = $model->title;
-        if($model->validate($data)){
-            if($model->create($data)){
+        if($model->validate($data))
+        {
+            DB::beginTransaction();
+            try {
+                if ($model->create($data))
+                    DB::commit();
                 Session::flash('message', "$name Adm Test Subject Added");
-                return Redirect::back();
             }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', "Invalid!");
+            }
+            return Redirect::back();
         }else{
             $errors = $model->errors();
             Session::flash('errors', $errors);
             return Redirect::back()
-                ->with('error', 'invalid');
+                ->with('errors', 'invalid');
         }
     }
 
@@ -46,20 +55,28 @@ class AdmTestSubjectController extends \BaseController {
 
     public function Update($id)
     {
-        $model = AdmTestSubject::find($id);
+
         $data = Input::all();
-        $model->title = Input::get('title');
-        $name = $model->title;
-        if($model->validate($data)){
-            if($model->update($data)){
-                Session::flash('message', "$name Adm Test Subject Updated");
-                return Redirect::back();
+        $model = AdmTestSubject::find($id);
+        if($model->validate($data))
+        {
+            DB::beginTransaction();
+            try {
+                $model->update($data);
+                DB::commit();
+                Session::flash('message', "Admission Test Subject Updates");
             }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', " Admission Test Subject not updates. Invalid Request !");
+            }
+            return Redirect::back();
         }else{
             $errors = $model->errors();
             Session::flash('errors', $errors);
             return Redirect::back()
-                ->with('error', 'invalid');
+                ->with('errors', 'invalid');
         }
     }
 
