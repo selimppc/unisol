@@ -112,14 +112,6 @@ class ApplicantController extends \BaseController
     }
 
 
-//*************Applicant Forgot Password and forgot Username Start(R)*********************
-
-
-
-
-
-
-
 //**********************Applicant's User Account Info Start(R)****************************
 
     public  function userAccountInfoIndex()
@@ -150,20 +142,35 @@ class ApplicantController extends \BaseController
             );
             $validator = Validator::make(Input::all(), $rules);
             if ($validator->passes()) {
-                $account = Applicant::find($id);
-                $account->id = Auth::applicant()->get()->id;
-                $account->first_name = Input::get('first_name');
-                $account->middle_name = Input::get('middle_name');
-                $account->last_name = Input::get('last_name');
-                $account->username = Input::get('username');
-                $account->email = Input::get('email');
-                $account->save();
-
-                return Redirect::back()->with('message', 'Successfully Updated Information!');
-            } else {
+                DB::beginTransaction();
+                try{
+                    $account = Applicant::find($id);
+                    $account->id = Auth::applicant()->get()->id;
+                    $account->first_name = Input::get('first_name');
+                    $fflasmsg = $account->first_name;
+                    $account->middle_name = Input::get('middle_name');
+                    $mflashmsg = $account->middle_name;
+                    $account->last_name = Input::get('last_name');
+                    $lflashmsg= $account->last_name;
+                    $account->username = Input::get('username');
+                    $Uflashmsg = $account->username;
+                    $account->email = Input::get('email');
+                    $Eflashmsg = $account->email;
+                    $account->save();
+                    DB::commit();
+                    return Redirect::back()->with('message', "Successfully Updated FirstName:$fflasmsg, MiddleName:$mflashmsg, LastName:$lflashmsg, UserName:$Uflashmsg, Email:$Eflashmsg !");
+                }
+                catch ( Exception $e ){
+                    //If there are any exceptions, rollback the transaction
+                    DB::rollback();
+                    Session::flash('danger', " Information is not added.Invalid Request !");
+                }
+                return Redirect::back();
+            }
+            else {
                 return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
             }
-        }
+            }
         else {
             Session::flash('danger', "Please Login As Applicant!");
             return Redirect::route('user/login');
@@ -193,7 +200,10 @@ class ApplicantController extends \BaseController
             $data = Input::all();
             $applicant_model = new ApplicantProfile();
             if ($applicant_model->validate($data)) {
+                DB::beginTransaction();
+                try{
                 $applicant_model->applicant_id = Auth::applicant()->get()->id;
+                $FlashMsg= Auth::applicant()->get()->username ;
                 $applicant_model->date_of_birth = Input::get('date_of_birth');
                 $applicant_model->place_of_birth = Input::get('place_of_birth');
                 $applicant_model->gender = Input::get('gender');
@@ -212,15 +222,25 @@ class ApplicantController extends \BaseController
                 $applicant_model->zip_code = Input::get('zip_code');
                 $applicant_model->phone = Input::get('phone');
                 $applicant_model->save();
-                return Redirect::back()->with('message', 'Successfully Added!');
-            } else {
+                DB::commit();
+                return Redirect::back()->with('message', "Successfully Added Infomation to
+                 $FlashMsg Profile !");
+                }
+                catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', " Information is not added.Invalid Request !");
+                }
+                return Redirect::back();
+            }
+            else {
                 return Redirect::back()->with('error', "Data Not Saved !");
             }
         }
         else {
             Session::flash('danger', "Please Login As Applicant!");
             return Redirect::route('user/login');
-            }
+        }
     }
 
     public function editApplicantProfile($id)
@@ -238,29 +258,39 @@ class ApplicantController extends \BaseController
             );
             $validator = Validator::make(Input::all(), $rules);
             if ($validator->passes()) {
-                $applicant_model = ApplicantProfile::find($id);
-                $applicant_model->applicant_id = Auth::applicant()->get()->id;
-                $applicant_model->date_of_birth = Input::get('date_of_birth');
-                $applicant_model->place_of_birth = Input::get('place_of_birth');
-                $applicant_model->gender = Input::get('gender');
+                DB::beginTransaction();
+                try {
+                    $applicant_model = ApplicantProfile::find($id);
+                    $applicant_model->applicant_id = Auth::applicant()->get()->id;
+                    $FlashMsg= Auth::applicant()->get()->username ;
+                    $applicant_model->date_of_birth = Input::get('date_of_birth');
+                    $applicant_model->place_of_birth = Input::get('place_of_birth');
+                    $applicant_model->gender = Input::get('gender');
 
-                $imagefile = Input::file('profile_image');
-                $extension = $imagefile->getClientOriginalExtension();
-                $filename = str_random(12) . '.' . $extension;
-                $file = strtolower($filename);
-                $path = public_path("/applicant_images/profile/" . $file);
-                Image::make($imagefile->getRealPath())->resize(100, 100)->save($path);
+                    $imagefile = Input::file('profile_image');
+                    $extension = $imagefile->getClientOriginalExtension();
+                    $filename = str_random(12) . '.' . $extension;
+                    $file = strtolower($filename);
+                    $path = public_path("/applicant_images/profile/" . $file);
+                    Image::make($imagefile->getRealPath())->resize(100, 100)->save($path);
 
-                $applicant_model->profile_image = $file;
-                $applicant_model->city = Input::get('city');
-                $applicant_model->state = Input::get('state');
-                $applicant_model->country_id = Input::get('country_id');
-                $applicant_model->zip_code = Input::get('zip_code');
-                $applicant_model->phone = Input::get('phone');
-                $applicant_model->save();
-
-                return Redirect::back()->with('message', 'Successfully Updated Information!');
-            } else {
+                    $applicant_model->profile_image = $file;
+                    $applicant_model->city = Input::get('city');
+                    $applicant_model->state = Input::get('state');
+                    $applicant_model->country_id = Input::get('country_id');
+                    $applicant_model->zip_code = Input::get('zip_code');
+                    $applicant_model->phone = Input::get('phone');
+                    $applicant_model->save();
+                    DB::commit();
+                    return Redirect::back()->with('message', "Successfully Updated Infomation to $FlashMsg Profile !");
+                } catch (Exception $e) {
+                    //If there are any exceptions, rollback the transaction
+                    DB::rollback();
+                    Session::flash('danger', "$FlashMsg Profile Information is not added.Invalid Request !");
+                }
+                return Redirect::back();
+            }
+            else {
                 return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
             }
         }
@@ -282,16 +312,27 @@ class ApplicantController extends \BaseController
         );
         $validator = Validator::make(Input::all(), $rules);
         if ($validator->passes()) {
-            $profile = ApplicantProfile::find($id);
-            $imagefile = Input::file('profile_image');
-            $extension = $imagefile->getClientOriginalExtension();
-            $filename = str_random(12) . '.' . $extension;
-            $file = strtolower($filename);
-            $path = public_path("/applicant_images/profile/" . $file);
-            Image::make($imagefile->getRealPath())->resize(100, 100)->save($path);
-            $profile->profile_image = $file;
-            $profile->save();
-            return Redirect::back()->with('message', 'Successfully updated Profile Picture !');
+            DB::beginTransaction();
+            try {
+                $profile = ApplicantProfile::find($id);
+                $FlashMsg= Auth::applicant()->get()->username ;
+                $imagefile = Input::file('profile_image');
+                $extension = $imagefile->getClientOriginalExtension();
+                $filename = str_random(12) . '.' . $extension;
+                $file = strtolower($filename);
+                $path = public_path("/applicant_images/profile/" . $file);
+                Image::make($imagefile->getRealPath())->resize(100, 100)->save($path);
+                $profile->profile_image = $file;
+                $profile->save();
+                DB::commit();
+                return Redirect::back()->with('message', "Successfully Updated $FlashMsg Profile Picture !");
+            } catch (Exception $e) {
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', " Information is not added.Invalid Request !");
+            }
+            return Redirect::back();
+
         } else {
             return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
         }
@@ -312,6 +353,8 @@ class ApplicantController extends \BaseController
             return Redirect::route('user/login');
         }
     }
+
+//!!!!!!!Academic records code for save and update is in  AdmPublicController!!!!!!!!!!
 
     public function acmRecordsStore(){
 
@@ -421,7 +464,7 @@ class ApplicantController extends \BaseController
     }
 
 
-    //**************************Applicant Meta Information/Personal Info Start(R)*********
+//**************************Applicant Meta Information/Personal Info Start(R)*********
 
     public function personalInfoIndex()
     {
@@ -449,8 +492,11 @@ class ApplicantController extends \BaseController
         );
         $validator = Validator::make(Input::all(), $rules);
         if ($validator->passes()) {
+            DB::beginTransaction();
+            try{
             $applicant_personal_info =new ApplicantMeta();
             $applicant_personal_info->applicant_id = Auth::applicant()->get()->id;
+            $FlashMsg= Auth::applicant()->get()->username ;
             $applicant_personal_info->fathers_name = Input::get('fathers_name');
             $applicant_personal_info->mothers_name = Input::get('mothers_name');
             $applicant_personal_info->fathers_occupation = Input::get('fathers_occupation');
@@ -473,11 +519,18 @@ class ApplicantController extends \BaseController
             Image::make($imagefile->getRealPath())->resize(100, 100)->save($path);
             $applicant_personal_info->signature  = $file;
 
-
             $applicant_personal_info->present_address = Input::get('present_address');
             $applicant_personal_info->permanent_address = Input::get('permanent_address');
             $applicant_personal_info->save();
-            return Redirect::back()->with('message', 'Successfully updated Information!');
+            DB::commit();
+            return Redirect::back()->with('message', "Successfully Added $FlashMsg Personal Information !");
+            }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', " $FlashMsg Personal Information  is not added.Invalid Request !");
+            }
+            return Redirect::back();
         } else {
             return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
         }
@@ -494,36 +547,46 @@ class ApplicantController extends \BaseController
         );
         $validator = Validator::make(Input::all(), $rules);
         if ($validator->passes()) {
-            $applicant_personal_info = ApplicantMeta::find($id);
-            $applicant_personal_info->applicant_id = Auth::applicant()->get()->id;
-            $applicant_personal_info->fathers_name = Input::get('fathers_name');
-            $applicant_personal_info->mothers_name = Input::get('mothers_name');
-            $applicant_personal_info->fathers_occupation = Input::get('fathers_occupation');
-            $applicant_personal_info->fathers_phone = Input::get('fathers_phone');
-            $applicant_personal_info->freedom_fighter = Input::get('freedom_fighter');
-            $applicant_personal_info->mothers_occupation = Input::get('mothers_occupation');
-            $applicant_personal_info->mothers_phone = Input::get('mothers_phone');
-            $applicant_personal_info->national_id = Input::get('national_id');
-            $applicant_personal_info->driving_licence = Input::get('driving_licence');
-            $applicant_personal_info->passport = Input::get('passport');
-            $applicant_personal_info->national_id = Input::get('national_id');
-            $applicant_personal_info->marital_status = Input::get('marital_status');
-            $applicant_personal_info->religion = Input::get('religion');
+            DB::beginTransaction();
+            try {
+                $applicant_personal_info = ApplicantMeta::find($id);
+                $applicant_personal_info->applicant_id = Auth::applicant()->get()->id;
+                $FlashMsg= Auth::applicant()->get()->username ;
+                $applicant_personal_info->fathers_name = Input::get('fathers_name');
+                $applicant_personal_info->mothers_name = Input::get('mothers_name');
+                $applicant_personal_info->fathers_occupation = Input::get('fathers_occupation');
+                $applicant_personal_info->fathers_phone = Input::get('fathers_phone');
+                $applicant_personal_info->freedom_fighter = Input::get('freedom_fighter');
+                $applicant_personal_info->mothers_occupation = Input::get('mothers_occupation');
+                $applicant_personal_info->mothers_phone = Input::get('mothers_phone');
+                $applicant_personal_info->national_id = Input::get('national_id');
+                $applicant_personal_info->driving_licence = Input::get('driving_licence');
+                $applicant_personal_info->passport = Input::get('passport');
+                $applicant_personal_info->national_id = Input::get('national_id');
+                $applicant_personal_info->marital_status = Input::get('marital_status');
+                $applicant_personal_info->religion = Input::get('religion');
 
-            $imagefile = Input::file('signature');
-            $extension = $imagefile->getClientOriginalExtension();
-            $filename = str_random(12) . '.' . $extension;
-            $file = strtolower($filename);
-            $path = public_path("/applicant_images/app_meta/" . $file);
-            Image::make($imagefile->getRealPath())->resize(100, 100)->save($path);
-            $applicant_personal_info->signature  = $file;
+                $imagefile = Input::file('signature');
+                $extension = $imagefile->getClientOriginalExtension();
+                $filename = str_random(12) . '.' . $extension;
+                $file = strtolower($filename);
+                $path = public_path("/applicant_images/app_meta/" . $file);
+                Image::make($imagefile->getRealPath())->resize(100, 100)->save($path);
+                $applicant_personal_info->signature = $file;
 
-
-            $applicant_personal_info->present_address = Input::get('present_address');
-            $applicant_personal_info->permanent_address = Input::get('permanent_address');
-            $applicant_personal_info->save();
-            return Redirect::back()->with('message', 'Successfully updated Information!');
-        } else {
+                $applicant_personal_info->present_address = Input::get('present_address');
+                $applicant_personal_info->permanent_address = Input::get('permanent_address');
+                $applicant_personal_info->save();
+                DB::commit();
+                return Redirect::back()->with('message', "Successfully Updated $FlashMsg Personal Information !");
+            } catch (Exception $e) {
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', " $FlashMsg Personal Information  is not Updated.Invalid Request !");
+            }
+            return Redirect::back();
+        }
+        else {
             return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
         }
     }
@@ -541,8 +604,10 @@ class ApplicantController extends \BaseController
         );
         $validator = Validator::make(Input::all(), $rules);
         if ($validator->passes()) {
-
+            DB::beginTransaction();
+            try {
             $signature = ApplicantMeta::find($id);
+            $FlashMsg= Auth::applicant()->get()->username ;
             $imagefile = Input::file('signature');
             $extension = $imagefile->getClientOriginalExtension();
             $filename = str_random(12) . '.' . $extension;
@@ -551,7 +616,14 @@ class ApplicantController extends \BaseController
             Image::make($imagefile->getRealPath())->resize(100, 100)->save($path);
             $signature->signature  = $file;
             $signature->save();
-            return Redirect::back()->with('message', 'Successfully updated Information!');
+            DB::commit();
+            return Redirect::back()->with('message', "Successfully updated $FlashMsg Signatures !");
+            } catch (Exception $e) {
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', " $FlashMsg Signatures  is not Updated.Invalid Request !");
+            }
+            return Redirect::back();
         } else {
             return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
         }
@@ -639,8 +711,11 @@ class ApplicantController extends \BaseController
         );
         $validator = Validator::make(Input::all(), $rules);
         if ($validator->passes()) {
+            DB::beginTransaction();
+            try {
             $extra_curricular =new ApplicantExtraCurrActivity();
             $extra_curricular->applicant_id = Auth::applicant()->get()->id;
+            $FlashMsg= Auth::applicant()->get()->username ;
             $extra_curricular->title = Input::get('title');
             $extra_curricular->description = Input::get('description');
             $extra_curricular->achievement = Input::get('achievement');
@@ -652,7 +727,15 @@ class ApplicantController extends \BaseController
             Image::make($imagefile->getRealPath())->resize(100, 100)->save($path);
             $extra_curricular->certificate_medal  = $file;
             $extra_curricular->save();
-            return Redirect::back()->with('message', 'Successfully added Information!');
+            DB::commit();
+            return Redirect::back()->with('message', "Successfully Added $FlashMsg Extra Curricular Information !");
+            }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', "$FlashMsg Extra Curricular Information Is not Added.Invalid Request !");
+            }
+            return Redirect::back();
         } else {
             return Redirect::to('applicant/extra_curricular/')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
         }
@@ -676,20 +759,31 @@ class ApplicantController extends \BaseController
         );
         $validator = Validator::make(Input::all(), $rules);
         if ($validator->passes()) {
-            $extra_curricular = ApplicantExtraCurrActivity::find($id);
-            $extra_curricular->title = Input::get('title');
-            $extra_curricular->description = Input::get('description');
-            $extra_curricular->achievement = Input::get('achievement');
-            $imagefile = Input::file('certificate_medal');
-            $extension = $imagefile->getClientOriginalExtension();
-            $filename = str_random(12) . '.' . $extension;
-            $file = strtolower($filename);
-            $path = public_path("/applicant_images/extra_curri_act/" . $file);
-            Image::make($imagefile->getRealPath())->resize(100, 100)->save($path);
-            $extra_curricular->certificate_medal  = $file;
-            $extra_curricular->save();
-            return Redirect::back()->with('message', 'Successfully updated Information!');
-        } else {
+            DB::beginTransaction();
+            try {
+                $extra_curricular = ApplicantExtraCurrActivity::find($id);
+                $FlashMsg= Auth::applicant()->get()->username ;
+                $extra_curricular->title = Input::get('title');
+                $extra_curricular->description = Input::get('description');
+                $extra_curricular->achievement = Input::get('achievement');
+                $imagefile = Input::file('certificate_medal');
+                $extension = $imagefile->getClientOriginalExtension();
+                $filename = str_random(12) . '.' . $extension;
+                $file = strtolower($filename);
+                $path = public_path("/applicant_images/extra_curri_act/" . $file);
+                Image::make($imagefile->getRealPath())->resize(100, 100)->save($path);
+                $extra_curricular->certificate_medal = $file;
+                $extra_curricular->save();
+                DB::commit();
+                return Redirect::back()->with('message', "Successfully Updated $FlashMsg Extra Curricular Information !");
+            } catch (Exception $e) {
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', "$FlashMsg Extra Curricular Information is not Updated.Invalid Request !");
+            }
+            return Redirect::back();
+        }
+        else {
             return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
         }
     }
@@ -749,17 +843,27 @@ class ApplicantController extends \BaseController
         );
         $validator = Validator::make(Input::all(), $rules);
         if ($validator->passes()) {
+            DB::beginTransaction();
+            try {
             $data =new ApplicantMiscInfo();
             $data->applicant_id = Auth::applicant()->get()->id;
+            $FlashMsg= Auth::applicant()->get()->username ;
             $data->ever_admit_this_university = Input::get('ever_admit_this_university');
             $data->ever_dismiss = Input::get('ever_dismiss');
             $data->academic_honors_received = Input::get('academic_honors_received');
             $data->ever_admit_other_university = Input::get('ever_admit_other_university');
             $data->admission_test_center = Input::get('admission_test_center');
             $data->save();
-
-            return Redirect::back()->with('message', 'Successfully added Information!');
-        } else {
+            DB::commit();
+            return Redirect::back()->with('message', "Successfully Added $FlashMsg Miscellaneous Information !");
+            } catch (Exception $e) {
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', "$FlashMsg Miscellaneous Information is not Added.Invalid Request !");
+            }
+            return Redirect::back();
+        }
+        else {
            return Redirect::to('applicant/misc_info/')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
         }
     }
@@ -775,16 +879,25 @@ class ApplicantController extends \BaseController
             'ever_admit_this_university' => 'required',
         );
         $validator = Validator::make(Input::all(), $rules);
-        if ($validator->passes())
-        {
+        if ($validator->passes()){
+            DB::beginTransaction();
+            try {
             $model = ApplicantMiscInfo::find($id);
+            $FlashMsg= Auth::applicant()->get()->username ;
             $model->ever_admit_this_university = Input::get('ever_admit_this_university');
             $model->ever_dismiss = Input::get('ever_dismiss');
             $model->academic_honors_received = Input::get('academic_honors_received');
             $model->ever_admit_other_university = Input::get('ever_admit_other_university');
             $model->admission_test_center = Input::get('admission_test_center');
             $model->save();
-            return Redirect::back()->with('message', 'Successfully updated Information!');
+            DB::commit();
+            return Redirect::back()->with('message', "Successfully Updated $FlashMsg Miscellaneous Information !");
+            } catch (Exception $e) {
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', "$FlashMsg Miscellaneous Information is not Updated.Invalid Request !");
+            }
+            return Redirect::back();
         } else {
             return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
         }
@@ -800,7 +913,6 @@ class ApplicantController extends \BaseController
             $batch_ids = Input::get('ids');
             if($batch_ids){
                 foreach($batch_ids as $key => $value){
-
                     $data = new BatchApplicant();
                     $data->batch_id = $value;
                     $data->applicant_id = Auth::applicant()->get()->id;
