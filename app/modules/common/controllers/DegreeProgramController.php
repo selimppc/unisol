@@ -20,15 +20,25 @@ class DegreeProgramController extends \BaseController {
         $model = new DegreeProgram();
         $model->title = Input::get('title');
         $name = $model->title;
-        if($model->validate($data)){
-            if($model->create($data)){
-                Session::flash('message', "$name Degree Program Added");
-                return Redirect::back();
+        if($model->validate($data))
+        {
+            DB::beginTransaction();
+            try {
+                $model->create($data);
+                DB::commit();
+                Session::flash('message', "$name Degree Program  Added");
             }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', "$name Degree Program  not added.Invalid Request!");
+            }
+            return Redirect::back();
         }else{
             $errors = $model->errors();
             Session::flash('errors', $errors);
-            return Redirect::back();
+            return Redirect::back()
+                ->with('errors', 'invalid');
         }
     }
 
@@ -46,19 +56,29 @@ class DegreeProgramController extends \BaseController {
 
 	public function degreeProgramUpdate($id)
 	{
-        $model = DegreeProgram::find($id);
         $data = Input::all();
+        $model = DegreeProgram::find($id);
         $model->title = Input::get('title');
         $name = $model->title;
-        if($model->validate($data)){
-            if($model->update($data)){
-                Session::flash('message', "$name Degree Program Updated");
-                return Redirect::back();
+        if($model->validate($data))
+        {
+            DB::beginTransaction();
+            try {
+                $model->update($data);
+                DB::commit();
+                Session::flash('message', "$name Degree Program Updates");
             }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', "$name Degree Program not updates. Invalid Request !");
+            }
+            return Redirect::back();
         }else{
             $errors = $model->errors();
             Session::flash('errors', $errors);
-            return Redirect::back();
+            return Redirect::back()
+                ->with('errors', 'Input Data Not Valid');
         }
 	}
 

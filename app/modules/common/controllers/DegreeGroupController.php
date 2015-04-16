@@ -25,15 +25,25 @@ class DegreeGroupController extends \BaseController {
         $model = new DegreeGroup();
         $model->title = Input::get('title');
         $name = $model->title;
-        if($model->validate($data)){
-            if($model->create($data)){
-                Session::flash('message', "$name Degree Group Added");
-                return Redirect::back();
+        if($model->validate($data))
+        {
+            DB::beginTransaction();
+            try {
+                $model->create($data);
+                    DB::commit();
+                Session::flash('message', "$name Degree Group  Added");
             }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', "$name Degree Group  not added.Invalid Request!");
+            }
+            return Redirect::back();
         }else{
             $errors = $model->errors();
             Session::flash('errors', $errors);
-            return Redirect::back();
+            return Redirect::back()
+                ->with('errors', 'invalid');
         }
     }
 
@@ -51,19 +61,29 @@ class DegreeGroupController extends \BaseController {
 
 	public function degreeGroupUpdate($id)
 	{
-        $model = DegreeGroup::find($id);
         $data = Input::all();
+        $model = DegreeGroup::find($id);
         $model->title = Input::get('title');
         $name = $model->title;
-        if($model->validate($data)){
-            if($model->update($data)){
-                Session::flash('message', "$name Degree Group Updated");
-                return Redirect::back();
+        if($model->validate($data))
+        {
+            DB::beginTransaction();
+            try {
+                $model->update($data);
+                DB::commit();
+                Session::flash('message', "$name Degree Group Updates");
             }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', "$name Degree Group not updates. Invalid Request !");
+            }
+            return Redirect::back();
         }else{
             $errors = $model->errors();
             Session::flash('errors', $errors);
-            return Redirect::back();
+            return Redirect::back()
+                ->with('errors', 'Input Data Not Valid');
         }
 	}
 

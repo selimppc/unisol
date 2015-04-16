@@ -30,14 +30,24 @@ class SubjectController extends \BaseController {
 		{
 			if($token == Input::get('_token'))
 			{
-				$data = new Subject;
-				$data->department_id = Input::get('department_id');
-				$data->title = Input::get('title');
-				$name = $data->title;
-				$data->description = Input::get('description');
-				$data->save();
-				Session::flash('message', "$name Subject Added");
-				return Redirect::to('common/subject/');
+                DB::beginTransaction();
+                try{
+                    $data = new Subject;
+                    $data->department_id = Input::get('department_id');
+                    $data->title = Input::get('title');
+                    $name = $data->title;
+                    $data->description = Input::get('description');
+                    $data->save();
+
+                    DB::commit();
+                    Session::flash('message', "$name Subject Added");
+                }
+                catch ( Exception $e ){
+                    //If there are any exceptions, rollback the transaction
+                    DB::rollback();
+                    Session::flash('danger', " $name Subject is not added.Invalid Request !");
+                }
+                return Redirect::to('common/subject/');
 			}
 			else
 			{
@@ -114,14 +124,24 @@ class SubjectController extends \BaseController {
 		{
 			if($token == Input::get('_token'))
 			{
-				$data = Subject::find($id);
-				$data->department_id = Input::get('department_id');
-				$data->title = Input::get('title');
-				$name = $data->title;
-				$data->description = Input::get('description');
-				$data->save();
-				Session::flash('message', "$name Subject Updated");
-				return Redirect::to('common/subject/');
+                DB::beginTransaction();
+                try{
+                    $data = Subject::find($id);
+                    $data->department_id = Input::get('department_id');
+                    $data->title = Input::get('title');
+                    $name = $data->title;
+                    $data->description = Input::get('description');
+                    $data->save();
+
+                    DB::commit();
+                    Session::flash('message', "$name Subject Updated");
+                }
+                catch ( Exception $e ){
+                    //If there are any exceptions, rollback the transaction
+                    DB::rollback();
+                    Session::flash('danger', " $name Subject is not added.Invalid Request !");
+                }
+                return Redirect::to('common/subject/');
 			}
 			else
 			{
