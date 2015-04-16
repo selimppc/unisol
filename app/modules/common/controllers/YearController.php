@@ -20,13 +20,13 @@ class YearController extends \BaseController {
 	{
 		$token = csrf_token();
 		$rules = array(
-			'title' => 'Required|Min: 3|integer',
-			'description' => 'Required|min:3|integer'
+			'title' => 'Required|Min: 3|integer|unique:year',
+			'description' => 'Required|min:3'
 			);
 		$validator = Validator::make(Input::all(), $rules);
 		if($validator->fails())
 		{				
-			return Redirect::to('common/year/')->withErrors($validator)->withInput()->with('title', 'Create Subject');
+			return Redirect::to('common/year/')->withErrors($validator)->withInput()->with('title', 'Create year');
 		}
 		else
 		{
@@ -37,7 +37,7 @@ class YearController extends \BaseController {
 				$name = $data->title;
 				$data->description = Input::get('description');
 				$data->save();
-				Session::flash('message', "$name Year Added");
+				Session::flash('message', "$name Added");
 				return Redirect::to('common/year/');
 			}
 			else
@@ -112,8 +112,8 @@ class YearController extends \BaseController {
 	{
 		$token = csrf_token();
 		$rules = array(
-			'title' => 'Required|Min: 3|integer',
-			'description' => 'Required|min:3|integer'
+			'title' => 'Required|Min: 3|integer|unique:year',
+			'description' => 'Required|min:3'
 			);
 		$validator = Validator::make(Input::all(), $rules);
 		if($validator->fails())
@@ -129,7 +129,7 @@ class YearController extends \BaseController {
 				$name = $data->title;
 				$data->description = Input::get('description');
 				$data->save();
-				Session::flash('message', "$name Year Updated");
+				Session::flash('message', "$name Updated");
 				return Redirect::to('common/year/');
 			}
 			else
@@ -147,7 +147,7 @@ class YearController extends \BaseController {
 			$name = $data->title;
 			if($data->delete())
 			{
-				Session::flash('message', "$name Year Deleted");
+				Session::flash('message', "$name Deleted");
 				return Redirect::to('common/year/');
 			}
 		}
