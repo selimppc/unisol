@@ -2062,7 +2062,7 @@ class AdmAmwController extends \BaseController
                 ->where('batch_id','=',$batch_id)->get();
         }
         return View::make('admission::amw.batch_applicant.index',
-            compact('batch_id', 'batchApt','apt_data', 'status'));
+            compact('batch_id', 'batchApt','apt_data', 'status','chk_status'));
 
     }
 

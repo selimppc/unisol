@@ -4,10 +4,10 @@
 @stop
 @section('content')
 
-
-
     <div class="row">
+
     <div class="box box-solid ">
+
         <div class="col-sm-12">
            <div class="pull-left col-sm-4"> <h3> Batch Manage </h3>  </div>
            <div class="pull-right col-sm-4" style="padding-top: 1%;">
@@ -54,15 +54,17 @@
                @endforeach
              @endif
             </tbody>
+
         </table>
         </div>
 
         {{form::close() }}
-        <a href="{{ URL::to('admission/amw/degree') }}" style="margin-left: 40%" class="btn btn-primary btn-xs" >Back</a>
+
     </div>
 </div>
     <div class="text-right">
         {{ $batch_management->links() }}
+        <a class="pull-right btn btn-xs btn-primary" href="{{ URL::route('admission.amw.degree.index')}}"> <i class="fa fa-arrow-circle-left"></i>Back To Degree</a>
     </div>
 
     <p>&nbsp;</p>

@@ -3,6 +3,7 @@
     @include('layouts._sidebar_amw')
 @stop
 @section('content')
+<a class="pull-right btn btn-xs btn-primary" href="{{ URL::route('admission.amw.batch',['degree_id'=> $degree_name->degree_id])}}"> <i class="fa fa-arrow-circle-left"></i>Back To Batch</a>
 <h3> Manage Admission Test Subjects (MATS)  </h3>
     <div class="row">
     <div class="box box-solid ">
@@ -47,7 +48,7 @@
           </tbody>
         </table>
     {{form::close() }}
-    <a href="{{ URL::previous() }}" style="margin-left: 40%" class="btn btn-primary btn-xs" >Back</a>
+
 </div>
 </div>
 </div>
