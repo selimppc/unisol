@@ -459,6 +459,10 @@ class AdmAmwController extends \BaseController
     }
 
 
+
+
+
+//* * * * * * * * * * * * * * * * * * * * * * *  VERSION 2  Starts From Here* * * * * * * * * * * * * * * * * * * * * *
 //******************************Degree Course start(R)*****************************
 
     public function degree_courses_index($id)
@@ -477,29 +481,39 @@ class AdmAmwController extends \BaseController
     public function degree_courses_save()
     {
         $data = Input::all();
-        $select = Input::get('course_list');
-        $deg_id = Input::get('degree_id');
-        $i = 0;
-        $flash_msg_course = "";
-        foreach($select as $value){
-            $degree_course = new DegreeCourse();
-            $degree_course->degree_id = $deg_id;
-            $degree_course->course_id = $value;
 
-            $flash_name = $degree_course->relCourse->title;
-            $flash_msg_course = $flash_msg_course .", ". $flash_name;
+        DB::beginTransaction();
+        try {
+            $select = Input::get('course_list');
+            $deg_id = Input::get('degree_id');
+            $i = 0;
+            $flash_msg_course = "";
+            foreach($select as $value){
+                $degree_course = new DegreeCourse();
+                $degree_course->degree_id = $deg_id;
+                $degree_course->course_id = $value;
 
-            $degreeCourseCheck = $this->checkDegreeCourse($degree_course->degree_id, $degree_course->course_id);
+                $flash_name = $degree_course->relCourse->title;
+                $flash_msg_course = $flash_msg_course .", ". $flash_name;
 
-            if($degreeCourseCheck){
-                $exists [] = Course::findOrFail($degree_course->course_id)->course_code;
-                Session::flash('info', 'Already Exists : '.$exists[$i]);
-            }else{
-                $degree_course->save();
-                $array [] = Course::findOrFail($degree_course->course_id)->course_code;
+                $degreeCourseCheck = $this->checkDegreeCourse($degree_course->degree_id, $degree_course->course_id);
+
+                if($degreeCourseCheck){
+                    $exists [] = Course::findOrFail($degree_course->course_id)->course_code;
+                    Session::flash('info', 'Already Exists : '.$exists[$i]);
+                }else{
+                    $degree_course->save();
+                    $array [] = Course::findOrFail($degree_course->course_id)->course_code;
+                }
             }
+            DB::commit();
+            Session::flash('message', "Degree Course $flash_msg_course is Added");
         }
-        Session::flash('message',"Successfully added $flash_msg_course!");
+        catch ( Exception $e ){
+            //If there are any exceptions, rollback the transaction
+            DB::rollback();
+            Session::flash('danger', "Degree Course is  not added.Invalid Request!");
+        }
         return Redirect::back();
     }
 
@@ -597,18 +611,27 @@ class AdmAmwController extends \BaseController
     {
         $data = Input::all();
         $model = new BatchCourse();
-        if($model->validate($data)){
-            if($model->create($data)){
-                Session::flash('message','Successfully added Information!');
-                return Redirect::back();
-            }else{
-                Session::flash('danger','Invalid Request!');
-                return Redirect::back();
+        $model->title = Input::get('title');
+        $name = $model->title;
+        if($model->validate($data))
+        {
+            DB::beginTransaction();
+            try {
+                $model->create($data);
+                DB::commit();
+                Session::flash('message', "$name Batch Course  Added");
             }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', "$name Batch Course  not added.Invalid Request!");
+            }
+            return Redirect::back();
         }else{
             $errors = $model->errors();
             Session::flash('errors', $errors);
-            return Redirect::back();
+            return Redirect::back()
+                ->with('errors', 'Invalid Request');
         }
     }
 
@@ -630,23 +653,33 @@ class AdmAmwController extends \BaseController
     public function batch_data_save()
     {
         $data = Input::all();
-        $course_id = Input::get('id');
-        $batch_id = Input::get('batch_id');
-        $year_id = Input::get('year_id');
-        $semester_id = Input::get('semester_id');
-        $major_minor= Input::get('major_minor');
-        foreach ($course_id as $key => $value)
-        {
-            $data = new BatchCourse();
-            $data->course_id = $value;
-            $data->batch_id = $batch_id;
-            $data->year_id = $year_id;
-            $data->semester_id = $semester_id;
-            $data->major_minor = $major_minor;
-            $data->save();
 
+        DB::beginTransaction();
+        try {
+            $course_id = Input::get('id');
+            $batch_id = Input::get('batch_id');
+            $year_id = Input::get('year_id');
+            $semester_id = Input::get('semester_id');
+            $major_minor= Input::get('major_minor');
+            foreach ($course_id as $key => $value)
+            {
+                $data = new BatchCourse();
+                $data->course_id = $value;
+                $data->batch_id = $batch_id;
+                $data->year_id = $year_id;
+                $data->semester_id = $semester_id;
+                $data->major_minor = $major_minor;
+                $data->save();
+
+            }
+            DB::commit();
+            Session::flash('message', "Batch is Added");
         }
-        Session::flash('message','Successfully added Information!');
+        catch ( Exception $e ){
+            //If there are any exceptions, rollback the transaction
+            DB::rollback();
+            Session::flash('danger', "Batch is not added.Invalid Request!");
+        }
         return Redirect::back();
     }
 
@@ -688,62 +721,67 @@ class AdmAmwController extends \BaseController
             ->first();
         $comments_info = CourseConduct::with('relCourseConductComments')
                         ->where('course_id','=',$course_id)->get();
-        //print_r($comments_info);exit;
-
         return View::make('admission::amw.batch_course.assign_faculty_index',compact('facultyList','batch_course','cc_status', 'comments_info'));
     }
 
     public function assign_faculty_save()
    {
        $data = Input::all();
-       if(Input::get('revoke')){
-           $course_id = Input::get('course_id');
-           $course_conduct_id = CourseConduct::where('course_id', $course_id)->first()->id;
-           $course_conduct_comments_id = CourseConductComments::where('course_conduct_id', $course_conduct_id)->first()->id;
-           $course_conduct_comments = CourseConductComments::findOrFail($course_conduct_comments_id);
-           if($course_conduct_comments->destroy($course_conduct_comments_id)){
-               $course_conduct = CourseConduct::findOrFail($course_conduct_id);
-               if($course_conduct->destroy($course_conduct_id)){
-                   Session::flash('info', 'Successfully Revoked!');
-                   return Redirect::back();
+       DB::beginTransaction();
+       try {
+               if(Input::get('revoke')) {
+                   $course_id = Input::get('course_id');
+                   $course_conduct_id = CourseConduct::where('course_id', $course_id)->first()->id;
+                   $course_conduct_comments_id = CourseConductComments::where('course_conduct_id', $course_conduct_id)->first()->id;
+                   $course_conduct_comments = CourseConductComments::findOrFail($course_conduct_comments_id);
+                   if ($course_conduct_comments->destroy($course_conduct_comments_id)) {
+                       $course_conduct = CourseConduct::findOrFail($course_conduct_id);
+                       if ($course_conduct->destroy($course_conduct_id)) {
+                           Session::flash('info', 'Successfully Revoked!');
+                           return Redirect::back();
+                       }
+                   }
+               }elseif(Input::get('request')){
+                   $model = new CourseConduct();
+                   $model->course_id = Input::get('course_id');
+                   $model->faculty_user_id = Input::get('faculty_user_id');
+                   $model->year_id = Input::get('year_id');
+                   $model->semester_id = Input::get('semester_id');
+                   $model->degree_id = Input::get('degree_id');
+                   $model->status = 'requested';
+                   if($model->save()){
+                       $comments = new CourseConductComments();
+                       $comments->course_conduct_id = $model->id;
+                       $comments->comments = Input::get('comments');
+                       $comments->commented_to = Input::get('faculty_user_id');
+                       $comments->commented_by = Auth::user()->get()->id;
+                       $comments->status = '';
+                       if($comments->save()){
+                           Session::flash('message', 'Successfully added Information!');
+                           return Redirect::back();
+                       }else{
+                           $errors = $model->errors();
+                           Session::flash('errors', $errors);
+                           return Redirect::back();
+                       }
+                   }else{
+                       $errors = $model->errors();
+                       Session::flash('errors', $errors);
+                       return Redirect::back();
+                   }
                }
-           }
-
-       }elseif(Input::get('request')){
-           $model = new CourseConduct();
-           $model->course_id = Input::get('course_id');
-           $model->faculty_user_id = Input::get('faculty_user_id');
-           $model->year_id = Input::get('year_id');
-           $model->semester_id = Input::get('semester_id');
-           $model->degree_id = Input::get('degree_id');
-           $model->status = 'requested';
-           if($model->save()){
-               $comments = new CourseConductComments();
-               $comments->course_conduct_id = $model->id;
-               $comments->comments = Input::get('comments');
-               $comments->commented_to = Input::get('faculty_user_id');
-               $comments->commented_by = Auth::user()->get()->id;
-               $comments->status = '';
-               if($comments->save()){
-                   Session::flash('message', 'Successfully added Information!');
-                   return Redirect::back();
-               }else{
-                   $errors = $model->errors();
-                   Session::flash('errors', $errors);
-                   return Redirect::back();
-               }
-           }else{
-               $errors = $model->errors();
-               Session::flash('errors', $errors);
-               return Redirect::back();
-           }
+           DB::commit();
+           Session::flash('message', "Faculty Assigned");
        }
-
+       catch ( Exception $e ){
+           //If there are any exceptions, rollback the transaction
+           DB::rollback();
+           Session::flash('danger', "Faculty not Assigned.Invalid Request!");
+       }
    }
 
 
-
-//new code of admission module by shafi
+//new code of admission module by shafi : VERSION 2
 
 //.................................................batch....................................................
 
@@ -767,10 +805,9 @@ class AdmAmwController extends \BaseController
     public function batchCreate($degree_id)
     {
         $batch_number = Batch::where('degree_id','=',$degree_id)->count();
-
         $degree_title = Degree::with('relDegreeLevel','relDegreeProgram','relDegreeGroup')
             ->where('id','=',$degree_id)->first();
-        //print_r($degree_title);exit;
+
         $dpg_list = array('' => 'Select Degree Program ') + Degree::DegreeProgramGroup();
         $year_list = array('' => 'Select Year ') + Year::lists('title', 'id');
         $semester_list = array('' => 'Select Semester ') + Semester::lists('title', 'id');
@@ -789,7 +826,6 @@ class AdmAmwController extends \BaseController
         {
             DB::beginTransaction();
             try {
-
                 if ($model->create($data))
                 DB::commit();
                 Session::flash('message', "Batch Added");
@@ -806,13 +842,11 @@ class AdmAmwController extends \BaseController
             return Redirect::back()
                 ->with('errors', 'invalid');
         }
-
     }
 
     public function batchEdit($id)
     {
         $batch_edit = Batch::find($id);
-
         $dpg_list = array('' => 'Select Degree Program') + Degree::DegreeProgramGroup();
         $year_list = array('' => 'Select Year ') + Year::lists('title', 'id');
         $semester_list = array('' => 'Select Semester ') + Semester::lists('title', 'id');
@@ -826,7 +860,6 @@ class AdmAmwController extends \BaseController
         $model = Batch::find($id);
         if($model->validate($data))
         {
-
             DB::beginTransaction();
             try {
                 $model->update($data);
@@ -870,7 +903,6 @@ class AdmAmwController extends \BaseController
         }
     }
 
-
 //..............................................batch_admtest_subject...........................................
 
     public function indexBatchAdmTestSubject($batch_id)
@@ -892,24 +924,20 @@ class AdmAmwController extends \BaseController
     public function createBatchAdmTestSubject($batch_id)
     {
         $subject_id_result = AdmTestSubject::lists('title', 'id');
-
         $degree_name = Batch::with('relDegree','relDegree.relDegreeLevel','relDegree.relDegreeGroup','relYear','relSemester','relDegree.relDegreeProgram')
             ->where('id' ,'=', $batch_id)
             ->first();
         return View::make('admission::amw.batch_adm_test_subject._form',compact('batch_id','degree_name','subject_id_result'));
     }
-//transaction korte hobe
+
     public function storeBatchAdmTestSubject()
     {
         $data = Input::all();
-
-//        print_r($data);exit;
         $select = Input::get('admtest_subject');
         $batch_id = Input::get('batch_id');
 
         DB::beginTransaction();
         try {
-
             $i = 0;
             foreach ($select as $value) {
                 $degree_course = new BatchAdmtestSubject();
@@ -950,7 +978,6 @@ class AdmAmwController extends \BaseController
         return $result;
     }
 
-
     public function editBatchAdmTestSubject($id, $batch_id)
     {
         $batch_edit = BatchAdmtestSubject::findOrFail($id);
@@ -966,7 +993,6 @@ class AdmAmwController extends \BaseController
         $model = BatchAdmtestSubject::find($id);
         if($model->validate($data))
         {
-
             DB::beginTransaction();
             try {
                 $model->update($data);
@@ -987,9 +1013,7 @@ class AdmAmwController extends \BaseController
         }
     }
 
-
 //.................................................admtest_subject....................................................
-
 
     public function indexAdmissionTestSubject()
     {
@@ -1012,7 +1036,6 @@ class AdmAmwController extends \BaseController
         {
             DB::beginTransaction();
             try {
-
                 $model->create($data);
                 DB::commit();
                 Session::flash('message', "Successfully Added Admission Test Subject $name!");
@@ -1097,12 +1120,11 @@ class AdmAmwController extends \BaseController
         $year_id  = Input::get('year_id');
         $semester_id = Input::get('semester_id');
 
-        //$model = new BatchAdmtestSubject();
         $adm_test_home_data = BatchAdmtestSubject::with(['relBatch'=> function($query) use($year_id, $semester_id) {
                 $query->where('year_id', $year_id);
                 $query->where('semester_id', $semester_id);
             }])->get();
-//        print_r($adm_test_home_data);exit;
+
         $year_id = array('' => 'Select Year ') + Year::lists('title', 'id');
         $semester_id = array('' => 'Select Semester ') + Semester::lists('title', 'id');
 
@@ -1120,8 +1142,6 @@ class AdmAmwController extends \BaseController
         catch(exception $ex) {
             return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
         }
-
-
     }
 
 
@@ -1156,7 +1176,6 @@ class AdmAmwController extends \BaseController
         $data = Input::all();
         DB::beginTransaction();
         try {
-
             $model = new AdmExaminer();
             $model->batch_id = Input::get('batch_id');
             $model->user_id = Input::get('user_id');
@@ -1182,7 +1201,6 @@ class AdmAmwController extends \BaseController
                     ->with('errors', 'invalid');
             }
             DB::commit();
-
         } catch (Exception $e) {
             //If there are any exceptions, rollback the transaction
             DB::rollback();
@@ -1200,21 +1218,31 @@ class AdmAmwController extends \BaseController
 
     public function admTestExaminersComments(){
         $data = Input::all();
-        $model = new AdmExaminerComments();
-        $model->batch_id = $data['batch_id'];
-        $model->comment = $data['comment'];
-        $model->commented_to = $data['commented_to'];
-        $model->commented_by = Auth::user()->get()->id;
+        DB::beginTransaction();
+        try{
+            $model = new AdmExaminerComments();
+            $model->batch_id = $data['batch_id'];
+            $model->comment = $data['comment'];
+            $model->commented_to = $data['commented_to'];
+            $model->commented_by = Auth::user()->get()->id;
 
-        $user_name = User::FullName($model->commented_to);
-        if($model->save()){
-            Session::flash('message', 'Comments added To: '.$user_name);
-            return Redirect::back();
-        }else{
-            $errors = $model->errors();
-            Session::flash('errors', $errors);
-            return Redirect::back()->with('errors', 'invalid');
+            $user_name = User::FullName($model->commented_to);
+            if($model->save()){
+                Session::flash('message', 'Comments added To: '.$user_name);
+                return Redirect::back();
+            }else{
+                $errors = $model->errors();
+                Session::flash('errors', $errors);
+                return Redirect::back()->with('errors', 'invalid');
+            }
+            DB::commit();
         }
+        catch ( Exception $e ){
+            //If there are any exceptions, rollback the transaction
+            DB::rollback();
+            Session::flash('danger', "Comments not added.Invalid Request!");
+        }
+        return Redirect::back();
     }
 
     public function changeStatusByAdmTestExaminer($id){
@@ -1224,14 +1252,11 @@ class AdmAmwController extends \BaseController
             Session::flash('danger', 'Cancel or Revoked! ');
             return Redirect::back();
         }
-
     }
-
 
     public function deleteAdmTestExaminer(){
         $id = Input::get('id');
         $batch_id = Input::get('batch_id');
-
         try {
             AdmExaminer::destroy(Request::get('id'));
             AdmExaminerComments::where('batch_id', Request::get('batch_id'));
@@ -1254,7 +1279,6 @@ class AdmAmwController extends \BaseController
             function($query) use($batch_id) {
                 $query->where('batch_id', '=', $batch_id);
             }])->paginate(10);
-            //->where('batch_admtest_subject_id', $bats_id)->paginate(10);
 
         return View::make('admission::amw.adm_question.adm_question_index',
             compact('adm_question', 'batch', 'bats_id'));
@@ -1271,7 +1295,6 @@ class AdmAmwController extends \BaseController
             compact('bats_id', 'batch','admtest_subject', 'examiner_faculty_lists'));
     }
 
-
     public function storeAdmTestQuestionPaper()
     {
         $data = Input::all();
@@ -1282,7 +1305,6 @@ class AdmAmwController extends \BaseController
         {
             DB::beginTransaction();
             try {
-
                 $model->create($data);
                 DB::commit();
                 Session::flash('message', "Successfully Added Admission Test Question $name!");
@@ -1299,15 +1321,13 @@ class AdmAmwController extends \BaseController
             return Redirect::back()
                 ->with('errors', 'invalid');
         }
-
     }
 
     public function viewAdmTestQuestionPaper($id)
     {
         $view_questions = AdmQuestion::with('relBatchAdmtestSubject', 'relBatchAdmtestSubject.relBatch', 'relBatchAdmtestSubject.relBatch.relDegree')
             ->where('id', $id)->first();
-        return View::make('admission::amw.adm_question.view_question',compact(
-            'view_questions'));
+        return View::make('admission::amw.adm_question.view_question',compact('view_questions'));
     }
 
 
@@ -1387,45 +1407,34 @@ class AdmAmwController extends \BaseController
             compact('question_data', 'examiner_faculty_lists', 'comments','q_id'));
     }
 
-
     public function assignFacultyCommentsByQuestion()
     {
-//        $data = Input::all();
-//        $model = new AdmQuestionComments();
-//        if($model->validate($data)){
-//            if($model->create($data)){
-//                Session::flash('message', 'Assigned / Commented Successfully!');
-//                return Redirect::back();
-//            }
-//        }else{
-//            $errors = $model->errors();
-//            Session::flash('errors', $errors);
-//            return Redirect::back()
-//                ->with('error', 'invalid');
-//        }
-
-
         $info = Input::all();
-        $model = new AdmQuestionComments();
+        DB::beginTransaction();
+        try {
 
+            $model = new AdmQuestionComments();
+            $model->adm_question_id = $info['adm_question_id'];
+            $model->comment = $info['comment'];
+            $model->commented_to = $info['commented_to'];
+            $model->commented_by = Auth::user()->get()->id;
 
-        $model->adm_question_id = $info['adm_question_id'];
-        $model->comment = $info['comment'];
-        $model->commented_to = $info['commented_to'];
-        $model->commented_by = Auth::user()->get()->id;
-
-//        $user_name = User::FullName($model->commented_to);
-        if($model->save()){
-            Session::flash('message', 'Comments added');
-            return Redirect::back();
-        }else{
-            $errors = $model->errors();
-            Session::flash('errors', $errors);
-            return Redirect::back()->with('errors', 'invalid');
+            if ($model->save()) {
+                Session::flash('message', 'Comments added');
+                return Redirect::back();
+            } else {
+                $errors = $model->errors();
+                Session::flash('errors', $errors);
+                return Redirect::back()->with('errors', 'invalid');
+            }
+            DB::commit();
+        }catch ( Exception $e ){
+            //If there are any exceptions, rollback the transaction
+            DB::rollback();
+            Session::flash('danger', "Invalid Request!");
         }
+        return Redirect::back();
     }
-
-
 
 //..................................................Admission Test : Question Evaluation .......................................
 
@@ -1433,17 +1442,13 @@ class AdmAmwController extends \BaseController
     {
         $data = BatchAdmtestSubject::where('id', $bats_id)->first();
         $adm_question = AdmQuestion::where('batch_admtest_subject_id', $bats_id)->get();
-
         return View::make('admission::amw.qpe.index', compact('data', 'adm_question'));
     }
-
-
 
     public function studentListOfQpe($adm_question_id)
     {
         $data = AdmQuestion::where('id', $adm_question_id)->first();
         $adm_question_evaluation = AdmQuestionEvaluation::where('adm_question_id', $adm_question_id)->get();
-
         return View::make('admission::amw.qpe.student_list_eqp', compact('data', 'adm_question_evaluation'));
     }
 
@@ -1458,7 +1463,6 @@ class AdmAmwController extends \BaseController
         $data = AdmQuestion::where('id', $question_id)->first();
         $question_item_details = AdmQuestionEvaluation::with('relAdmQuestionItems')
             ->where('adm_question_items_id', $q_items_id)->get();
-
         return View::make('admission::amw.qpe.view_eqp_details', compact('data', 'question_item_details'));
     }
 
@@ -1487,23 +1491,33 @@ class AdmAmwController extends \BaseController
     public function admDegreeStore()
     {
         $data = Input::all();
-        $model = new Degree();
-        $model->degree_level_id = Input::get('degree_level_id');
-        $model->degree_group_id = Input::get('degree_group_id');
-        $model->degree_program_id = Input::get('degree_program_id');
-        $nameL = $model->relDegreeLevel->code;
-        $nameG = $model->relDegreeGroup->code;
-        $nameP = $model->relDegreeProgram->code;
-        if($model->validate($data)){
-            if($model->create($data)){
-                Session::flash('message',"Successfully Added $nameL$nameG In $nameP  Degree!");
-                return Redirect::back();
-            }
-            }else{
+        DB::beginTransaction();
+        try {
+            $model = new Degree();
+            $model->degree_level_id = Input::get('degree_level_id');
+            $model->degree_group_id = Input::get('degree_group_id');
+            $model->degree_program_id = Input::get('degree_program_id');
+            $nameL = $model->relDegreeLevel->code;
+            $nameG = $model->relDegreeGroup->code;
+            $nameP = $model->relDegreeProgram->code;
+            if ($model->validate($data)) {
+                if ($model->create($data)) {
+//                    Session::flash('message', "Successfully Added $nameL$nameG In $nameP  Degree!");
+                    return Redirect::back();
+                }
+            }else {
                 $errors = $model->errors();
                 Session::flash('errors', $errors);
                 return Redirect::back();
             }
+            DB::commit();
+            Session::flash('message', "Successfully Added $nameL$nameG In $nameP  Degree!");
+        }catch ( Exception $e ){
+            //If there are any exceptions, rollback the transaction
+            DB::rollback();
+            Session::flash('danger', "Degree not added.Invalid Request!");
+        }
+        return Redirect::back();
     }
 
     public function admDegreeShow($id)
@@ -1526,23 +1540,33 @@ class AdmAmwController extends \BaseController
     public function admDegreeUpdate($id)
     {
         $model = Degree::find($id);
-        $model->degree_level_id = Input::get('degree_level_id');
-        $model->degree_group_id = Input::get('degree_group_id');
-        $model->degree_program_id = Input::get('degree_program_id');
-        $nameL = $model->relDegreeLevel->code;
-        $nameG = $model->relDegreeGroup->code;
-        $nameP = $model->relDegreeProgram->code;
-        $data = Input::all();
-        if($model->validate($data)){
-            if($model->update($data)){
-                Session::flash('message',"Successfully Updated $nameL$nameG In $nameP  Degree!");
-                return Redirect::back();
-            }
+        DB::beginTransaction();
+        try {
+            $model->degree_level_id = Input::get('degree_level_id');
+            $model->degree_group_id = Input::get('degree_group_id');
+            $model->degree_program_id = Input::get('degree_program_id');
+            $nameL = $model->relDegreeLevel->code;
+            $nameG = $model->relDegreeGroup->code;
+            $nameP = $model->relDegreeProgram->code;
+            $data = Input::all();
+            if($model->validate($data)){
+                if($model->update($data)){
+//                    Session::flash('message',"Successfully Updated $nameL$nameG In $nameP  Degree!");
+                    return Redirect::back();
+                }
             }else{
                 $errors = $model->errors();
                 Session::flash('errors', $errors);
                 return Redirect::back();
             }
+            DB::commit();
+            Session::flash('message',"Successfully Updated $nameL$nameG In $nameP  Degree!");
+        }
+        catch ( Exception $e ){
+            //If there are any exceptions, rollback the transaction
+            DB::rollback();
+            Session::flash('danger', "Degree not updates. Invalid Request !");
+        }
     }
 
     public function admDegreeDelete($id)
@@ -1607,19 +1631,31 @@ class AdmAmwController extends \BaseController
         return View::make('admission::amw.waiver.waiver_modals._form');
     }
 
-    public function admWaiverStore(){
+    public function admWaiverStore()
+    {
         $data = Input::all();
         $model = new Waiver();
-
-        if($model->validate($data)){
-            if($model->create($data)){
-                Session::flash('message','Successfully added Information!');
-                return Redirect::back();
+        $model->title = Input::get('title');
+        $name = $model->title;
+        if($model->validate($data))
+        {
+            DB::beginTransaction();
+            try {
+                $model->create($data);
+                DB::commit();
+                Session::flash('message', "$name Waiver  Added");
             }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', "$name Waiver not added.Invalid Request!");
+            }
+            return Redirect::back();
         }else{
             $errors = $model->errors();
             Session::flash('errors', $errors);
-            return Redirect::back();
+            return Redirect::back()
+                ->with('errors', 'invalid');
         }
     }
 
@@ -1638,18 +1674,29 @@ class AdmAmwController extends \BaseController
 
     public function admWaiverUpdate($id)
     {
-        $model = Waiver::find($id);
         $data = Input::all();
-
-        if($model->validate($data)){
-            if($model->update($data)){
-                Session::flash('message','Successfully Updated Information!');
-                return Redirect::back();
+        $model = Waiver::find($id);
+        $model->title = Input::get('title');
+        $name = $model->title;
+        if($model->validate($data))
+        {
+            DB::beginTransaction();
+            try {
+                $model->update($data);
+                DB::commit();
+                Session::flash('message', "$name Waiver Updates");
             }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', "$name Waiver not updates. Invalid Request !");
+            }
+            return Redirect::back();
         }else{
             $errors = $model->errors();
             Session::flash('errors', $errors);
-            return Redirect::back();
+            return Redirect::back()
+                ->with('errors', 'Input Data Not Valid');
         }
     }
 
@@ -1667,7 +1714,11 @@ class AdmAmwController extends \BaseController
 
 //{------------------------------------ Batch Waiver --------------------------------------------------------------------------}
 
-    public function batchWaiverIndex($batch_id){
+    /**
+     * @param $batch_id
+     * @return mixed
+     */
+     public function batchWaiverIndex($batch_id){
 
         $model = Batch::find($batch_id);
         $batch_info = Batch::with('relDegree.relDegreeGroup','relDegree.relDegreeProgram','relDegree.relDegreeLevel','relYear','relSemester','relDegree')
@@ -1680,6 +1731,10 @@ class AdmAmwController extends \BaseController
             compact('model','batch_info','waiver_info'));
     }
 
+    /**
+     * @param $batch_id
+     * @return mixed
+     */
     public function batchWaiverCreate($batch_id)
     {
         $waiverList = array('' => 'Select Waiver Item ') + Waiver::lists('title','id');
@@ -1687,17 +1742,36 @@ class AdmAmwController extends \BaseController
             compact('waiverList','batch_id'));
 
     }
-    public function batchWaiverStore(){
 
-        $model = new BatchWaiver();
-        $model->batch_id = Input::get('batch_id');
-        $model->waiver_id = Input::get('waiver_id');
-        $name = $model->relWaiver->title;
-        if ($model->save()) {
-            return Redirect::back()
-                ->with('message', "Successfully added $name!");
+    /**
+     * @return mixed
+     */
+    public function batchWaiverStore()
+    {
+        DB::beginTransaction();
+        try {
+            $model = new BatchWaiver();
+            $model->batch_id = Input::get('batch_id');
+            $model->waiver_id = Input::get('waiver_id');
+            $name = $model->relWaiver->title;
+            if ($model->save()) {
+                return Redirect::back();
+            }
+            DB::commit();
+            Session::flash('message', "Successfully added $name!");
         }
+        catch ( Exception $e ){
+            //If there are any exceptions, rollback the transaction
+            DB::rollback();
+            Session::flash('danger', "$name Batch Waiver  not added.Invalid Request!");
+        }
+        return Redirect::back();
     }
+
+    /**
+     * @param $bw_id
+     * @return mixed
+     */
     public function batchWaiverDelete($bw_id)
     {
         try {
@@ -1715,6 +1789,12 @@ class AdmAmwController extends \BaseController
     }
 
 //{----------------------------------Waiver Constraint---------------------------------------------------------------------}
+
+    /**
+     * @param $batch_id
+     * @param $bw_id
+     * @return mixed
+     */
     public function waiverConstraintIndex($batch_id, $bw_id){
 
         $batchWaiver = BatchWaiver::with('relWaiver')->where('id', '=', $bw_id)->first();
@@ -1737,33 +1817,45 @@ class AdmAmwController extends \BaseController
     }
 
 
-    public function waiverConstraintStore(){
+    public function waiverConstraintStore()
+    {
         $data = Input::all();
-        $model = new WaiverConstraint();
-        $model->start_date = Input::get('start_date');
-        $model->end_date = Input::get('end_date');
-        $namestart = $model->start_date;
-        $nameend = $model->end_date;
-        $model->level_of_education = Input::get('level_of_education');
-        $model->gpa = Input::get('gpa');
-        $lavelOfEdu = $model->level_of_education;
-        $gpa = $model->gpa;
-        if($model->validate($data)){
-            if($model->create($data)){
-                if($namestart != null)
-                {
-                    Session::flash('message',"Successfully Added StartDate:$namestart and EndDate:$nameend !");
+        DB::beginTransaction();
+        try {
+                $model = new WaiverConstraint();
+                $model->start_date = Input::get('start_date');
+                $model->end_date = Input::get('end_date');
+                $namestart = $model->start_date;
+                $nameend = $model->end_date;
+                $model->level_of_education = Input::get('level_of_education');
+                $model->gpa = Input::get('gpa');
+                $lavelOfEdu = $model->level_of_education;
+                $gpa = $model->gpa;
+                if($model->validate($data)){
+                    if($model->create($data)){
+                        if($namestart != null)
+                        {
+                            Session::flash('message',"Successfully Added StartDate:$namestart and EndDate:$nameend !");
+                        }
+                        else{
+                            Session::flash('message',"Successfully Added Level of Education:$lavelOfEdu and GPA:$gpa !");
+                        }
+                        return Redirect::back();
+                    }
+                }else{
+                    $errors = $model->errors();
+                    Session::flash('errors', $errors);
+                    return Redirect::back();
                 }
-                else{
-                    Session::flash('message',"Successfully Added Level of Education:$lavelOfEdu and GPA:$gpa !");
-                }
-                return Redirect::back();
-            }
-        }else{
-            $errors = $model->errors();
-            Session::flash('errors', $errors);
-            return Redirect::back();
+
+            DB::commit();
         }
+        catch ( Exception $e ){
+            //If there are any exceptions, rollback the transaction
+            DB::rollback();
+            Session::flash('danger', "Level of Education  not added.Invalid Request!");
+        }
+        return Redirect::back();
 
     }
 
@@ -1785,35 +1877,41 @@ class AdmAmwController extends \BaseController
 
     }
 
-    public function waiverConstUpdate($id){
+    public function waiverConstUpdate($id)
+    {
+        DB::beginTransaction();
+        try {
 
-        $const_model = WaiverConstraint::find($id);
-        $const_model->start_date = Input::get('start_date');
-        $const_model->end_date = Input::get('end_date');
-        $namestart = $const_model->start_date;
-        $nameend = $const_model->end_date;
-        $const_model->level_of_education = Input::get('level_of_education');
-        $const_model->gpa = Input::get('gpa');
-        $lavelOfEdu = $const_model->level_of_education;
-        $gpa = $const_model->gpa;
-        $data = Input::all();
-        $const_model->fill($data);
-        if ($const_model->update($data)) {
-            if($namestart != null)
-            {
-                Session::flash('message',"Successfully Updated StartDate:$namestart and EndDate:$nameend !");
+            $const_model = WaiverConstraint::find($id);
+            $const_model->start_date = Input::get('start_date');
+            $const_model->end_date = Input::get('end_date');
+            $namestart = $const_model->start_date;
+            $nameend = $const_model->end_date;
+            $const_model->level_of_education = Input::get('level_of_education');
+            $const_model->gpa = Input::get('gpa');
+            $lavelOfEdu = $const_model->level_of_education;
+            $gpa = $const_model->gpa;
+            $data = Input::all();
+            $const_model->fill($data);
+            if ($const_model->update($data)) {
+                if ($namestart != null) {
+                    Session::flash('message', "Successfully Updated StartDate:$namestart and EndDate:$nameend !");
+                } else {
+                    Session::flash('message', "Successfully Updated Level of Education:$lavelOfEdu and GPA:$gpa !");
+                }
+                return Redirect::back();
+            } else {
+                $errors = $const_model->errors();
+                Session::flash('errors', $errors);
+                return Redirect::back();
             }
-            else{
-                Session::flash('message',"Successfully Updated Level of Education:$lavelOfEdu and GPA:$gpa !");
-            }
-            return Redirect::back();
+            DB::commit();
+        }catch ( Exception $e ){
+            //If there are any exceptions, rollback the transaction
+            DB::rollback();
+            Session::flash('danger', "Not updates. Invalid Request !");
         }
-
-        else{
-            $errors = $const_model->errors();
-            Session::flash('errors', $errors);
-            return Redirect::back();
-        }
+        return Redirect::back();
     }
 
     public function waiverConstDelete($id)
@@ -1861,19 +1959,27 @@ class AdmAmwController extends \BaseController
     {
         $data = Input::all();
         $model = new BatchEducationConstraint();
-
-        if($model->validate($data)){
-            if($model->create($data)){
-                Session::flash('message','Successfully added Information!');
-                return Redirect::back();
-            }else{
-                Session::flash('message','Invalid Request!');
-                return Redirect::back();
+        $model->title = Input::get('title');
+        $name = $model->title;
+        if($model->validate($data))
+        {
+            DB::beginTransaction();
+            try {
+                $model->create($data);
+                DB::commit();
+                Session::flash('message', "$name Batch Education Constraint Added");
             }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', "$name Batch Education Constraint not added.Invalid Request!");
+            }
+            return Redirect::back();
         }else{
             $errors = $model->errors();
             Session::flash('errors', $errors);
-            return Redirect::back();
+            return Redirect::back()
+                ->with('errors', 'invalid');
         }
     }
 
@@ -1893,18 +1999,29 @@ class AdmAmwController extends \BaseController
 
     public function admBatchEduConstUpdate($id)
     {
-        $model = BatchEducationConstraint::find($id);
         $data = Input::all();
-
-        if($model->validate($data)){
-            if($model->update($data)){
-                Session::flash('message','Successfully Updated Information!');
-                return Redirect::back();
+        $model = BatchEducationConstraint::find($id);
+        $model->title = Input::get('title');
+        $name = $model->title;
+        if($model->validate($data))
+        {
+            DB::beginTransaction();
+            try {
+                $model->update($data);
+                DB::commit();
+                Session::flash('message', "$name Batch Education Constraint Updates");
             }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', "$name Batch Education Constraint not updates. Invalid Request !");
+            }
+            return Redirect::back();
         }else{
             $errors = $model->errors();
             Session::flash('errors', $errors);
-            return Redirect::back();
+            return Redirect::back()
+                ->with('errors', 'Input Data Not Valid');
         }
     }
 
@@ -1945,7 +2062,7 @@ class AdmAmwController extends \BaseController
                 ->where('batch_id','=',$batch_id)->get();
         }
         return View::make('admission::amw.batch_applicant.index',
-            compact('batch_id', 'batchApt','apt_data', 'status'));
+            compact('batch_id', 'batchApt','apt_data', 'status','chk_status'));
 
     }
 

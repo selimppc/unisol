@@ -29,7 +29,6 @@ class WaiverController extends \BaseController {
 		//
 	}
 
-
 	/**
 	 * Show the form for editing the specified resource.
 	 *

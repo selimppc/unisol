@@ -17,7 +17,7 @@
         {{--{{ HTML::style('assets/etsb/etsb_css/daterangepicker/daterangepicker-bs3.css') }}--}}
         {{ HTML::style('assets/etsb/etsb_css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}
         {{ HTML::style('assets/etsb/etsb_css/style.css') }}
-        {{ HTML::script('assets/js/jquery-2.1.1.min.js') }}
+        {{ HTML::script('assets/etsb/etsb_js/jquery/jquery-2.1.1.min.js')}}
         {{ HTML::script('assets/etsb/etsb_js/icheck/icheck.js')}}
         {{ HTML::script('assets/etsb/etsb_js/etsb_scripts.js')}}
 
@@ -192,9 +192,6 @@
         {{ HTML::script('assets/etsb/etsb_js/datatables/dataTables.bootstrap.js')}}
         {{ HTML::script('assets/etsb/etsb_js/etsb_custom.js')}}
         {{ HTML::script('assets/etsb/etsb_js/shafi_scripts.js')}}
-
-
-        {{--// Ratna  //--}}
         {{ HTML::script('assets/js/ratna_script.js')}}
         @yield('script_section')
 

@@ -17,22 +17,28 @@ class SemesterController extends \BaseController {
 	public function store()
 	{
         $data = Input::all();
-        $semester = new Semester();
-        if ($semester->validate($data))
+        $model = new Semester();
+        $model->title = Input::get('title');
+        $name = $model->title;
+        if($model->validate($data))
         {
-            $semester->title = Input::get('title');
-            $name = $semester->title;
-            $semester->description = Input::get('description');
-            $semester->save();
-            Session::flash('message', "$name Semester Added");
-            return Redirect::to('common/semester/');
-        }
-        else
-        {
-            // failure, get errors
-            $errors = $semester->errors();
+            DB::beginTransaction();
+            try {
+                $model->create($data);
+                DB::commit();
+                Session::flash('message', "$name Semester  Added");
+            }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', "$name Semester not added.Invalid Request!");
+            }
+            return Redirect::back();
+        }else{
+            $errors = $model->errors();
             Session::flash('errors', $errors);
-            return Redirect::to('common/semester/');
+            return Redirect::back()
+                ->with('errors', 'invalid');
         }
 
 	}
@@ -70,21 +76,29 @@ class SemesterController extends \BaseController {
 	 */
 	public function update($id)
 	{
-        $rules = array(
-            'title' => 'required|Min: 3',
-            'description' => 'required|Min: 3',
-        );
-        $validator = Validator::make(Input::all(), $rules);
-        if ($validator->passes()) {
-            $semester = Semester::find($id);
-            $semester->title = Input::get('title');
-            $name = $semester->title;
-            $semester->description = Input::get('description');
-            $semester->save();
-            Session::flash('message', "$name Semester Updated");
-            return Redirect::to('common/semester/');
-        } else {
-            return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
+        $data = Input::all();
+        $model = Semester::find($id);
+        $model->title = Input::get('title');
+        $name = $model->title;
+        if($model->validate($data))
+        {
+            DB::beginTransaction();
+            try {
+                $model->update($data);
+                DB::commit();
+                Session::flash('message', "$name Semester Updates");
+            }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', "$name Semester not updates. Invalid Request !");
+            }
+            return Redirect::back();
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()
+                ->with('errors', 'Input Data Not Valid');
         }
 
 	}

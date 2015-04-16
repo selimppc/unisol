@@ -20,7 +20,6 @@ class DepartmentController extends BaseController{
 
         // get the POST data
         $data = Input::all();
-
         // create a new model instance
         $department = new Department();
         // attempt validation
@@ -131,7 +130,7 @@ class DepartmentController extends BaseController{
             catch ( Exception $e ){
                 //If there are any exceptions, rollback the transaction
                 DB::rollback();
-                Session::flash('danger', " $name is not added.Invalid Request !");
+                Session::flash('danger', " $name Department is not added.Invalid Request !");
             }
             return Redirect::to('common/department/');
         } else {

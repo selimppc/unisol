@@ -6,7 +6,7 @@
 
 @section('content')
 {{-----------------------------------------Help Text -------------------------------------------------------------------------------------}}
-<div class="row">
+<div class="row" xmlns="http://www.w3.org/1999/html">
     <div class="col-md-12">
     <a class="pull-right btn btn-xs btn-success" href="{{ URL::route('admission.amw.batch',['degree_id'=> $batchApt->degree_id])}}"> <i class="fa fa-arrow-circle-left"></i>Back To Batch Management</a>
 
@@ -41,9 +41,9 @@
           {{ Form::open(array('route'=>['admission.amw.batch-applicant.index',$batch_id],'class'=>'form-horizontal')) }}
           <div  class="col-lg-3 pull-right" >
               <div class="input-group input-group-sm">
-                  {{ Form::select('status', ['' => 'Select Status']+$status , Input::old('status'),['class'=>'form-control input-sm '])}}
+                  {{ Form::select('status', ['' => 'Select Status']+$status , Input::old('status'),['class'=>'form-control input-sm ','required'])}}
                   <span class="input-group-btn">
-                      <button class="btn btn-info btn-flat" type="submit">Filter</button>
+                      <button class="btn btn-info btn-flat" type="submit" >Filter</button>
                   </span>
               </div>
           </div>
@@ -54,53 +54,64 @@
           <div class="box-body">
                <div class="row">
                    <div class="col-lg-12">
+
                         {{ Form::open(['route' => ['admission.amw.batch-applicant.apply']]) }}
-                        <div class="col-lg-3" style="margin-left: -1%;">
-                            <div class="input-group input-group-sm">
-                              {{ Form::select('status', ['' => 'Select Status']+$status , Input::old('status'),['class'=>'form-control input-sm','required'])}}
-                              <span class="input-group-btn">
-                                  <button class="btn btn-info btn-flat" type="submit">Apply</button>
-                              </span>
+
+                            <div class="col-lg-3" style="margin-left: -1%;">
+                                <div class="input-group input-group-sm">
+                                  {{ Form::select('status', ['' => 'Select Status']+$status , Input::old('status'),['class'=>'form-control input-sm','required'])}}
+                                  <span class="input-group-btn">
+                                      <button class="btn btn-info btn-flat" type="submit">Apply</button>
+                                  </span>
+                                </div>
                             </div>
-                        </div>
-                      <table id="example" class="table table-bordered">
 
-                         <thead>
-                             <tr>
-                                 <th>
-                                     <input name="id" type="checkbox" id="checkbox" class="checkbox" value="">
-                                 </th>
-                                <th>Applicant Name</th>
-                                <th>Status</th>
-                                <th>Term</th>
-                                <th>Action</th>
-                             </tr>
-                         </thead>
-                         <tbody>
-                               @if(isset($apt_data))
-                                    @foreach($apt_data as $value)
-                                        <tr>
-                                            <td><input type="checkbox" name="ids[]"  class="myCheckbox" value="{{ $value->id }}">
-                                            </td>
-                                            <td>{{$value->relApplicant->first_name.''.$value->relApplicant->last_name}}</td>
-                                            <td> {{ empty($value->status) ? 'Status Do not added' : $status[$value->status] }}</td>
-                                            <td>{{$value->relBatch->relSemester->title}}</td>
+                            @if($apt_data->count())
 
-                                            <td>
-                                                 <a href="{{ URL::route('admission.amw.batch-applicant.view-applicant',['id'=>$value->id,'batch_id'=>$value->batch_id, 'applicant_id'=>$value->applicant_id])  }}" class="btn btn-default btn-xs" title="View Applicant's Info" ><b>View</b></a>
-                                                 <a class="btn btn-xs btn-success" href="{{ URL::to('admission/amw/batch-applicant/change/'.$value->id) }}" data-toggle="modal" data-target="#batchAptModal" ><b>Change Status</b></a>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                               @endif
-                         </tbody>
+                            <table id="example" class="table table-bordered">
 
-                   <p>&nbsp;</p>
-                      </table>
-                   <p>&nbsp;</p>
+                                 <thead>
+                                     <tr>
+                                         <th>
+                                             <input name="id" type="checkbox" id="checkbox" class="checkbox" value="">
+                                         </th>
+                                        <th>Applicant Name</th>
+                                        <th>Status</th>
+                                        <th>Term</th>
+                                        <th>Action</th>
+                                     </tr>
+                                 </thead>
+                                 <tbody>
+                                       @if(isset($apt_data))
+                                            @foreach($apt_data as $value)
+                                                <tr>
+                                                    <td><input type="checkbox" name="ids[]"  class="myCheckbox" value="{{ $value->id }}">
+                                                    </td>
+                                                    <td>{{$value->relApplicant->first_name.''.$value->relApplicant->last_name}}</td>
+                                                    <td> {{ empty($value->status) ? 'Status Do not added' : $status[$value->status] }}</td>
+                                                    <td>{{$value->relBatch->relSemester->title}}</td>
 
+                                                    <td>
+                                                         <a href="{{ URL::route('admission.amw.batch-applicant.view-applicant',['id'=>$value->id,'batch_id'=>$value->batch_id, 'applicant_id'=>$value->applicant_id])  }}" class="btn btn-default btn-xs" title="View Applicant's Info" ><b>View</b></a>
+                                                         <a class="btn btn-xs btn-success" href="{{ URL::to('admission/amw/batch-applicant/change/'.$value->id) }}" data-toggle="modal" data-target="#batchAptModal" ><b>Change Status</b></a>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                       @endif
+                                 </tbody>
 
-                   {{ Form::close() }}
+                                 <p>&nbsp;</p>
+                            </table>
+
+                            @else
+                            <p>&nbsp;</p>
+                                <div>
+                                   <p style="margin-left: 290px;color:#000000"><em>There Are No Applicant For Status : <strong style="color:#b11b64">{{$chk_status}}</strong></em>
+                                   <a style="margin-left: 50px" class="btn btn-xs btn-info" href="{{ action('AdmAmwController@batchApplicantIndex', $batch_id)}}">View All</a></p>
+                                </div>
+                            @endif
+                            <p>&nbsp;</p>
+                        {{ Form::close() }}
                    </div>
                </div>
           </div>

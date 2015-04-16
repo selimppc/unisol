@@ -26,16 +26,27 @@ class ExamCenterController extends \BaseController {
         $model = new ExmCenter();
         $model->title = Input::get('title');
         $name = $model->title;
-        if($model->validate($data)){
-            if($model->create($data)){
-                Session::flash('message', "$name Exam Center Added");
-                return Redirect::back();
+        if($model->validate($data))
+        {
+            DB::beginTransaction();
+            try {
+                $model->create($data);
+                DB::commit();
+                Session::flash('message', "$name Exam Center  Added");
             }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', "$name Exam Center not added.Invalid Request!");
+            }
+            return Redirect::back();
         }else{
             $errors = $model->errors();
             Session::flash('errors', $errors);
-            return Redirect::back();
+            return Redirect::back()
+                ->with('errors', 'invalid');
         }
+
     }
 
 	public function exmCenterShow($id)
@@ -52,19 +63,29 @@ class ExamCenterController extends \BaseController {
 
 	public function exmCenterUpdate($id)
 	{
-        $model = ExmCenter::find($id);
         $data = Input::all();
+        $model = ExmCenter::find($id);
         $model->title = Input::get('title');
         $name = $model->title;
-        if($model->validate($data)){
-            if($model->update($data)){
-                Session::flash('message', "$name Exam Center Updated");
-                return Redirect::back();
+        if($model->validate($data))
+        {
+            DB::beginTransaction();
+            try {
+                $model->update($data);
+                DB::commit();
+                Session::flash('message', "$name Exam Center Updates");
             }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', "$name Exam Center not updates. Invalid Request !");
+            }
+            return Redirect::back();
         }else{
             $errors = $model->errors();
             Session::flash('errors', $errors);
-            return Redirect::back();
+            return Redirect::back()
+                ->with('errors', 'Input Data Not Valid');
         }
 	}
 

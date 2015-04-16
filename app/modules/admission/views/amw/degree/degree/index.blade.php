@@ -44,6 +44,7 @@
                     <div class="col-lg-12">
                     <br>
                         {{ Form::open(array('route' => 'admission.amw.degree.dg_batch_delete')) }}
+                        @if($model->count())
                         <table id="example1" class="table table-bordered">
                             <thead>
                             <tr>
@@ -80,6 +81,13 @@
                             </tbody>
                             {{ Form::submit('Delete Items', array('class'=>'btn btn-xs btn-danger', 'id'=>'hide-button', 'style'=>'display:none'))}}
                         </table>
+                        @else
+                            <p>&nbsp;</p>
+                                <div>
+                                   <p style="margin-left: 350px;color:#000000"><em>No Data Found</em>
+                                   <a style="margin-left: 50px" class="btn btn-xs btn-info" href="{{ action('AdmAmwController@admDegreeIndex')}}">View All</a></p>
+                                </div>
+                            @endif
                         {{ Form::close() }}
                     </div>
                 </div>
@@ -89,7 +97,7 @@
     <div class="text-right">
         {{ $model->links() }}
     </div>
-    <a href="{{ URL::previous() }}" class="btn btn-success" style="margin-left: 40%">Back</a>
+    
 {{----------------------Modal : degreeGroupModal--------------------------------------------------------------------------}}
     <div class="modal fade" id="degreeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">

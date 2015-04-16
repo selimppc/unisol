@@ -124,7 +124,7 @@ class YearController extends \BaseController {
 		{
 			if($token == Input::get('_token'))
 			{
-				$data = new Year;
+				$data = Year::find($id);
 				$data->title = Input::get('title');
 				$name = $data->title;
 				$data->description = Input::get('description');

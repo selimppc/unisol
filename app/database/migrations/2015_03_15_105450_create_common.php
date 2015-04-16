@@ -9,7 +9,7 @@ class CreateCommon extends Migration {
 	{
         Schema::create('country', function(Blueprint $table) {
             $table->increments('id');
-            $table->string('code', 16);
+            $table->string('code', 16)->unique();
             $table->string('title', 128);
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
@@ -19,7 +19,7 @@ class CreateCommon extends Migration {
 
         Schema::create('semester', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title', 128);
+            $table->string('title', 128)->unique();
             $table->text('description');
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
@@ -30,7 +30,7 @@ class CreateCommon extends Migration {
         Schema::create('course_type', function(Blueprint $table)
         {
             $table->increments('id');
-            $table->string('title', 128);
+            $table->string('title', 128)->unique();
             $table->text('description');
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
@@ -41,7 +41,7 @@ class CreateCommon extends Migration {
         Schema::create('year', function (Blueprint $table) {
 
             $table->increments('id', true);
-            $table->integer('title');
+            $table->integer('title')->unique();
             $table->text('description');
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
@@ -53,7 +53,7 @@ class CreateCommon extends Migration {
         Schema::create('department', function(Blueprint $table)
         {
             $table->increments('id', true);
-            $table->string('title', 128);
+            $table->string('title', 128)->unique();
             $table->text('description');
             $table->unsignedInteger('dept_head_user_id')->nullable();
             $table->integer('created_by', false, 11);
@@ -65,7 +65,7 @@ class CreateCommon extends Migration {
         Schema::create('subject', function(Blueprint $table)
         {
             $table->increments('id');
-            $table->string('title', 128);
+            $table->string('title', 128)->unique();
             $table->unsignedInteger('department_id')->nullable();
             $table->text('description');
             $table->integer('created_by', false, 11);
@@ -79,7 +79,7 @@ class CreateCommon extends Migration {
 
         Schema::create('degree_level', function($table) {
             $table->increments('id');
-            $table->string('code', 128);
+            $table->string('code', 128)->unique();
             $table->string('title', 128);
             $table->string('description');
             $table->integer('created_by', false, 11);
@@ -90,7 +90,7 @@ class CreateCommon extends Migration {
 
         Schema::create('degree_program', function($table) {
             $table->increments('id');
-            $table->string('code', 128);
+            $table->string('code', 128)->unique();
             $table->string('title', 128);
             $table->string('description');
             $table->integer('created_by', false, 11);
@@ -101,7 +101,7 @@ class CreateCommon extends Migration {
 
         Schema::create('degree_group', function($table) {
             $table->increments('id');
-            $table->string('code', 128);
+            $table->string('code', 128)->unique();
             $table->string('title', 128);
             $table->string('description');
             $table->integer('created_by', false, 11);
@@ -112,7 +112,7 @@ class CreateCommon extends Migration {
 
         Schema::create('exm_center', function($table) {
             $table->increments('id');
-            $table->string('title', 128);
+            $table->string('title', 128)->unique();
             $table->string('description');
             $table->string('capacity', 128);
             $table->string('status', 128);
@@ -125,7 +125,7 @@ class CreateCommon extends Migration {
 
         Schema::create('billing_item', function(Blueprint $table) {
             $table->increments('id');
-            $table->string('title', 128);
+            $table->string('title', 128)->unique();
             $table->text('description');
             $table->tinyInteger('is_unit_qty', false)->length('1');
             $table->integer('created_by', false, 11);
@@ -136,7 +136,7 @@ class CreateCommon extends Migration {
 
         Schema::create('waiver', function(Blueprint $table) {
             $table->increments('id');
-            $table->string('title', 128);
+            $table->string('title', 128)->unique();
             $table->text('description');
             $table->string('waiver_type', 64);
             $table->tinyInteger('is_percentage', false, 1)->lenght(1);
@@ -154,7 +154,7 @@ class CreateCommon extends Migration {
         Schema::create('course', function(Blueprint $table) {
             $table->increments('id');
             $table->string('title', 128);
-            $table->string('course_code', 128);
+            $table->string('course_code', 128)->unique();
             $table->unsignedInteger('subject_id')->nullable();
             $table->unsignedInteger('course_type_id')->nullable();
             $table->text('description');
@@ -177,7 +177,7 @@ class CreateCommon extends Migration {
 
         Schema::create('admtest_subject', function(Blueprint $table) {
             $table->increments('id');
-            $table->string('title', 128);
+            $table->string('title', 128)->unique();
             $table->text('description');
             $table->string('priority', 128);
             $table->integer('created_by', false, 11);
@@ -189,7 +189,7 @@ class CreateCommon extends Migration {
 
         Schema::create('role', function(Blueprint $table) {
             $table->increments('id');
-            $table->string('code', 8);
+            $table->string('code', 8)->unique();
             $table->string('title', 128);
             $table->text('description');
             $table->tinyInteger('status', false, 1);
@@ -201,7 +201,7 @@ class CreateCommon extends Migration {
 
         Schema::create('designation', function(Blueprint $table) {
             $table->increments('id');
-            $table->string('code', 8);
+            $table->string('code', 8)->unique();
             $table->string('title', 128);
             $table->text('description');
             $table->tinyInteger('status', false, 1);
@@ -213,7 +213,7 @@ class CreateCommon extends Migration {
 
         Schema::create('board_university', function(Blueprint $table) {
             $table->increments('id');
-            $table->string('code', 8);
+            $table->string('code', 8)->unique();
             $table->string('title', 128);
             $table->string('country', 128);
             $table->enum('board_type',array(
