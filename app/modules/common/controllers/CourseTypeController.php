@@ -26,8 +26,8 @@ class CourseTypeController extends \BaseController {
         {
             DB::beginTransaction();
             try {
-                if ($model->create($data))
-                    DB::commit();
+                $model->create($data);
+                DB::commit();
                 Session::flash('message', "$name Course Type  Added");
             }
             catch ( Exception $e ){

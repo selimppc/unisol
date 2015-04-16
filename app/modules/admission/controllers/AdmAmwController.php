@@ -458,7 +458,7 @@ class AdmAmwController extends \BaseController
         }
     }
 
-
+//* * * * * * * * * * * * * * * * * * * * * * *  VERSION 2  Starts From Here* * * * * * * * * * * * * * * * * * * * * *
 //******************************Degree Course start(R)*****************************
 
     public function degree_courses_index($id)
@@ -477,29 +477,39 @@ class AdmAmwController extends \BaseController
     public function degree_courses_save()
     {
         $data = Input::all();
-        $select = Input::get('course_list');
-        $deg_id = Input::get('degree_id');
-        $i = 0;
-        $flash_msg_course = "";
-        foreach($select as $value){
-            $degree_course = new DegreeCourse();
-            $degree_course->degree_id = $deg_id;
-            $degree_course->course_id = $value;
 
-            $flash_name = $degree_course->relCourse->title;
-            $flash_msg_course = $flash_msg_course .", ". $flash_name;
+        DB::beginTransaction();
+        try {
+            $select = Input::get('course_list');
+            $deg_id = Input::get('degree_id');
+            $i = 0;
+            $flash_msg_course = "";
+            foreach($select as $value){
+                $degree_course = new DegreeCourse();
+                $degree_course->degree_id = $deg_id;
+                $degree_course->course_id = $value;
 
-            $degreeCourseCheck = $this->checkDegreeCourse($degree_course->degree_id, $degree_course->course_id);
+                $flash_name = $degree_course->relCourse->title;
+                $flash_msg_course = $flash_msg_course .", ". $flash_name;
 
-            if($degreeCourseCheck){
-                $exists [] = Course::findOrFail($degree_course->course_id)->course_code;
-                Session::flash('info', 'Already Exists : '.$exists[$i]);
-            }else{
-                $degree_course->save();
-                $array [] = Course::findOrFail($degree_course->course_id)->course_code;
+                $degreeCourseCheck = $this->checkDegreeCourse($degree_course->degree_id, $degree_course->course_id);
+
+                if($degreeCourseCheck){
+                    $exists [] = Course::findOrFail($degree_course->course_id)->course_code;
+                    Session::flash('info', 'Already Exists : '.$exists[$i]);
+                }else{
+                    $degree_course->save();
+                    $array [] = Course::findOrFail($degree_course->course_id)->course_code;
+                }
             }
+            DB::commit();
+            Session::flash('message', "Degree Course $flash_msg_course is Added");
         }
-        Session::flash('message',"Successfully added $flash_msg_course!");
+        catch ( Exception $e ){
+            //If there are any exceptions, rollback the transaction
+            DB::rollback();
+            Session::flash('danger', "Degree Course is  not added.Invalid Request!");
+        }
         return Redirect::back();
     }
 
@@ -595,20 +605,30 @@ class AdmAmwController extends \BaseController
     }
     public function batch_course_save()
     {
+
         $data = Input::all();
         $model = new BatchCourse();
-        if($model->validate($data)){
-            if($model->create($data)){
-                Session::flash('message','Successfully added Information!');
-                return Redirect::back();
-            }else{
-                Session::flash('danger','Invalid Request!');
-                return Redirect::back();
+        $model->title = Input::get('title');
+        $name = $model->title;
+        if($model->validate($data))
+        {
+            DB::beginTransaction();
+            try {
+                $model->create($data);
+                DB::commit();
+                Session::flash('message', "$name Batch Course  Added");
             }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', "$name Batch Course  not added.Invalid Request!");
+            }
+            return Redirect::back();
         }else{
             $errors = $model->errors();
             Session::flash('errors', $errors);
-            return Redirect::back();
+            return Redirect::back()
+                ->with('errors', 'Invalid Request');
         }
     }
 
@@ -630,23 +650,33 @@ class AdmAmwController extends \BaseController
     public function batch_data_save()
     {
         $data = Input::all();
-        $course_id = Input::get('id');
-        $batch_id = Input::get('batch_id');
-        $year_id = Input::get('year_id');
-        $semester_id = Input::get('semester_id');
-        $major_minor= Input::get('major_minor');
-        foreach ($course_id as $key => $value)
-        {
-            $data = new BatchCourse();
-            $data->course_id = $value;
-            $data->batch_id = $batch_id;
-            $data->year_id = $year_id;
-            $data->semester_id = $semester_id;
-            $data->major_minor = $major_minor;
-            $data->save();
 
+        DB::beginTransaction();
+        try {
+            $course_id = Input::get('id');
+            $batch_id = Input::get('batch_id');
+            $year_id = Input::get('year_id');
+            $semester_id = Input::get('semester_id');
+            $major_minor= Input::get('major_minor');
+            foreach ($course_id as $key => $value)
+            {
+                $data = new BatchCourse();
+                $data->course_id = $value;
+                $data->batch_id = $batch_id;
+                $data->year_id = $year_id;
+                $data->semester_id = $semester_id;
+                $data->major_minor = $major_minor;
+                $data->save();
+
+            }
+            DB::commit();
+            Session::flash('message', "Batch is Added");
         }
-        Session::flash('message','Successfully added Information!');
+        catch ( Exception $e ){
+            //If there are any exceptions, rollback the transaction
+            DB::rollback();
+            Session::flash('danger', "Batch is not added.Invalid Request!");
+        }
         return Redirect::back();
     }
 
@@ -696,6 +726,7 @@ class AdmAmwController extends \BaseController
     public function assign_faculty_save()
    {
        $data = Input::all();
+
        if(Input::get('revoke')){
            $course_id = Input::get('course_id');
            $course_conduct_id = CourseConduct::where('course_id', $course_id)->first()->id;
@@ -743,7 +774,7 @@ class AdmAmwController extends \BaseController
 
 
 
-//new code of admission module by shafi
+//new code of admission module by shafi : VERSION 2
 
 //.................................................batch....................................................
 
