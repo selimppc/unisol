@@ -503,7 +503,7 @@ class AdmAmwController extends \BaseController
                     Session::flash('info', "Already Exists :$flash_msg_course ");
                 }else{
                     $degree_course->save();
-                    $exists [] = Course::findOrFail($degree_course->course_id)->course_code;
+                    //$exists [] = Course::findOrFail($degree_course->course_id)->course_code;
                     DB::commit();
                     Session::flash('message', "Successfully Added: $flash_msg_course ");
                 }
