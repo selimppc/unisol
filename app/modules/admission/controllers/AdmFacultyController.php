@@ -21,7 +21,6 @@ class AdmFacultyController extends \BaseController {
     {
         $index_adm_examiner = AdmExaminer::with('relBatch','relBatch.relDegree',
             'relBatch.relDegree.relDepartment','relBatch.relYear','relBatch.relSemester')
-//            ->where('user_id', '=', Auth::user()->get()->id)
             ->get();
 
         $year_id = array('' => 'Select Year ') + Year::lists('title', 'id');
@@ -113,23 +112,32 @@ class AdmFacultyController extends \BaseController {
     public function viewAdmTestComment()
     {
         $data = Input::all();
-        $model = new AdmExaminerComments();
-        $model->batch_id = $data['batch_id'];
-        $model->comment = $data['comment'];
-        $model->commented_to = $data['commented_to'];
-        $model->commented_by = Auth::user()->get()->id;
 
-        $user_name = User::FullName($model->commented_to);
-        if($model->save()){
-            Session::flash('message', 'Comments added To: '.$user_name);
-            return Redirect::back();
-        }else{
-            $errors = $model->errors();
-            Session::flash('errors', $errors);
-            return Redirect::back()->with('errors', 'invalid');
+        DB::beginTransaction();
+        try {
+            $model = new AdmExaminerComments();
+            $model->batch_id = $data['batch_id'];
+            $model->comment = $data['comment'];
+            $model->commented_to = $data['commented_to'];
+            $model->commented_by = Auth::user()->get()->id;
+
+            $user_name = User::FullName($model->commented_to);
+            if ($model->save()) {
+                Session::flash('message', 'Comments added To: ' . $user_name);
+                return Redirect::back();
+            } else {
+                $errors = $model->errors();
+                Session::flash('errors', $errors);
+                return Redirect::back()->with('errors', 'invalid');
+            }
+            DB::commit();
+        }catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', " Comments not added");
         }
+        return Redirect::back();
     }
-
 
 
     /**
@@ -222,17 +230,19 @@ class AdmFacultyController extends \BaseController {
         $faculty_admisison_store_question_items = new AdmQuestionItems();
         if ($faculty_admisison_store_question_items->validate($data))
         {
-            $faculty_admisison_store_question_items->title = Input::get('title');
-            $faculty_admisison_store_question_items->adm_question_id = Input::get('adm_question_id');
-            $faculty_admisison_store_question_items->marks = Input::get('marks');
-            $opt_answer = Input::get('answer');
+            DB::beginTransaction();
+            try {
+                $faculty_admisison_store_question_items->title = Input::get('title');
+                $faculty_admisison_store_question_items->adm_question_id = Input::get('adm_question_id');
+                $faculty_admisison_store_question_items->marks = Input::get('marks');
+                $opt_answer = Input::get('answer');
 
-            if( strtolower(Input::get('mcq')) == 'mcq'){
-                if( strtolower(Input::get('question_type')) == 'mcq_single'){
-                    $faculty_admisison_store_question_items->question_type = 'radio';
-                    if(!empty($opt_answer)) {
-                        if($faculty_admisison_store_question_items->save())
-                            $adm_question_items_id = $faculty_admisison_store_question_items->id;
+                if (strtolower(Input::get('mcq')) == 'mcq') {
+                    if (strtolower(Input::get('question_type')) == 'mcq_single') {
+                        $faculty_admisison_store_question_items->question_type = 'radio';
+                        if (!empty($opt_answer)) {
+                            if ($faculty_admisison_store_question_items->save())
+                                $adm_question_items_id = $faculty_admisison_store_question_items->id;
                             $opt_title = Input::get('option_title');
                             $opt_answer = Input::get('answer');
 
@@ -251,31 +261,31 @@ class AdmFacultyController extends \BaseController {
                                 $adm_question_opt->save();
                                 $i++;
 
-                        } // saving last single data
-                        Session::flash('message', 'Option Data : Single Answer Saved!');
-                        return Redirect::back();
-                    }else {
-                        Session::flash('error', 'Single Options Answer is missing!');
-                        return Redirect::back();
-                    }
-                }else{
-                    $faculty_admisison_store_question_items->question_type = 'checkbox';
-                    if(!empty($opt_answer)) {
-                        if($faculty_admisison_store_question_items->save())
-                            $adm_question_items_id = $faculty_admisison_store_question_items->id;
+                            } // saving last single data
+                            Session::flash('message', 'Option Data : Single Answer Saved!');
+                            return Redirect::back();
+                        } else {
+                            Session::flash('error', 'Single Options Answer is missing!');
+                            return Redirect::back();
+                        }
+                    } else {
+                        $faculty_admisison_store_question_items->question_type = 'checkbox';
+                        if (!empty($opt_answer)) {
+                            if ($faculty_admisison_store_question_items->save())
+                                $adm_question_items_id = $faculty_admisison_store_question_items->id;
                             $opt_title = Input::get('option_title');
                             $opt_answer = Input::get('answer');
 
                             $i = 0;
-                            foreach($opt_title as $key => $value){
+                            foreach ($opt_title as $key => $value) {
                                 //Re-declare model each time you want to save data as loop.
                                 $adm_question_opt = new AdmQuestionOptAns();
                                 $adm_question_opt->adm_question_items_id = $adm_question_items_id;
                                 $adm_question_opt->title = $value;
                                 $adm_question_opt->answer = 0;
 
-                                foreach($opt_answer as $oa){
-                                    if($oa == $key)
+                                foreach ($opt_answer as $oa) {
+                                    if ($oa == $key)
                                         $adm_question_opt->answer = 1;
                                 }
                                 $adm_question_opt->save();
@@ -284,23 +294,29 @@ class AdmFacultyController extends \BaseController {
                             } // saving last single data
                             Session::flash('message', 'Option Data : Multiple Answer Saved!');
                             return Redirect::back();
-                        }else{
+                        } else {
                             Session::flash('error', 'Multiple Options Answer is missing!');
                             return Redirect::back();
                         }
                     }
-            }else{
-                $faculty_admisison_store_question_items->question_type = 'text';
-                if($faculty_admisison_store_question_items->save()){
-                    Session::flash('message', 'Option Data : Descriptive Answer Saved!');
-                    return Redirect::back();
-                }else{
-                    Session::flash('error', 'Descriptive Answer is missing!');
-                    return Redirect::back();
+                } else {
+                    $faculty_admisison_store_question_items->question_type = 'text';
+                    if ($faculty_admisison_store_question_items->save()) {
+                        Session::flash('message', 'Option Data : Descriptive Answer Saved!');
+                        return Redirect::back();
+                    } else {
+                        Session::flash('error', 'Descriptive Answer is missing!');
+                        return Redirect::back();
+                    }
                 }
+                // redirect
+            DB::commit();
             }
-            // redirect
-            Session::flash('message', 'Successfully Added!');
+            catch ( Exception $e ){
+                    //If there are any exceptions, rollback the transaction
+                    DB::rollback();
+                    Session::flash('danger', "Not added.Invalid Request!");
+            }
             return Redirect::back();
         }
         else
@@ -347,100 +363,106 @@ class AdmFacultyController extends \BaseController {
         $faculty_adm_update_question_items = new AdmQuestionItems();
         if ($faculty_adm_update_question_items->validate($data))
         {
-            $faculty_adm_update_question_items = AdmQuestionItems::find($id);
-            $faculty_adm_update_question_items->title = Input::get('title');
-            $faculty_adm_update_question_items->adm_question_id = Input::get('adm_question_id');
-            $faculty_adm_update_question_items->marks = Input::get('marks');
+            DB::beginTransaction();
+            try {
+                $faculty_adm_update_question_items = AdmQuestionItems::find($id);
+                $faculty_adm_update_question_items->title = Input::get('title');
+                $faculty_adm_update_question_items->adm_question_id = Input::get('adm_question_id');
+                $faculty_adm_update_question_items->marks = Input::get('marks');
 
-            if( strtolower(Input::get('mcq')) == 'mcq'){
-                if( strtolower(Input::get('r_c')) == 'mcq_single'){
-                    $faculty_adm_update_question_items->question_type = 'radio';
+                if (strtolower(Input::get('mcq')) == 'mcq') {
+                    if (strtolower(Input::get('r_c')) == 'mcq_single') {
+                        $faculty_adm_update_question_items->question_type = 'radio';
 
-                    if($faculty_adm_update_question_items->save()) {
+                        if ($faculty_adm_update_question_items->save()) {
 
-                        $adm_question_items_id = Input::get('id');
-                        $opt_title = Input::get('option_title');
-                        $opt_answer = Input::get('answer');
-                        $i = 0;
-                        foreach ($opt_title as $key => $value) {
+                            $adm_question_items_id = Input::get('id');
+                            $opt_title = Input::get('option_title');
+                            $opt_answer = Input::get('answer');
+                            $i = 0;
+                            foreach ($opt_title as $key => $value) {
 
-                            //Re-declare model each time you want to save data as loop.
-                            $adm_question_opt = (isset($adm_question_items_id)) ? AdmQuestionOptAns::find($adm_question_items_id[$i]) : new AdmQuestionOptAns() ;
-                            if(isset($adm_question_items_id) == null){
-                                $adm_question_opt->adm_question_items_id = $faculty_adm_update_question_items->id;
+                                //Re-declare model each time you want to save data as loop.
+                                $adm_question_opt = (isset($adm_question_items_id)) ? AdmQuestionOptAns::find($adm_question_items_id[$i]) : new AdmQuestionOptAns();
+                                if (isset($adm_question_items_id) == null) {
+                                    $adm_question_opt->adm_question_items_id = $faculty_adm_update_question_items->id;
+                                }
+
+                                #print_r($adm_question_items_id);exit;
+
+                                $adm_question_opt->title = $value;
+                                $adm_question_opt->answer = 0;
+
+                                foreach ($opt_answer as $oa) {
+                                    if ($oa == $key)
+                                        $adm_question_opt->answer = 1;
+                                }
+
+                                $adm_question_opt->save();
+                                $i++;
                             }
-
-                            #print_r($adm_question_items_id);exit;
-
-                            $adm_question_opt->title = $value;
-                            $adm_question_opt->answer = 0;
-
-                            foreach ($opt_answer as $oa) {
-                                if ($oa == $key)
-                                    $adm_question_opt->answer = 1;
-                            }
-
-                            $adm_question_opt->save();
-                            $i++;
+                            echo "Option Data : Single Answer Saved!";
+                        } else {
+                            echo "NO";
                         }
-                        echo "Option Data : Single Answer Saved!";
                     }else {
-                        echo "NO";
-                    }
-                }else{
-                    $faculty_adm_update_question_items->question_type = 'checkbox';
+                        $faculty_adm_update_question_items->question_type = 'checkbox';
 
 
-                    if($faculty_adm_update_question_items->save()){
-                        $adm_question_items_id = Input::get('id');
-
-                        #print_r($adm_question_items_id); exit;
-
-                        $opt_title = Input::get('option_title');
-                        $opt_answer = Input::get('answer');
-                        $i = 0;
-                        #print_r($opt_title);exit;
-                        foreach($opt_title as $key => $value){
-                            //Re-declare model each time you want to save data as loop.
-
-                            $adm_question_opt = (isset($adm_question_items_id)) ? AdmQuestionOptAns::find($adm_question_items_id[$i]) : new AdmQuestionOptAns() ;
+                        if ($faculty_adm_update_question_items->save()) {
+                            $adm_question_items_id = Input::get('id');
 
                             #print_r($adm_question_items_id); exit;
 
-                            if(isset($adm_question_items_id) == null){
-                                $adm_question_opt->adm_question_items_id = $faculty_adm_update_question_items->id;
+                            $opt_title = Input::get('option_title');
+                            $opt_answer = Input::get('answer');
+                            $i = 0;
+                            #print_r($opt_title);exit;
+                            foreach ($opt_title as $key => $value) {
+                                //Re-declare model each time you want to save data as loop.
 
+                                $adm_question_opt = (isset($adm_question_items_id)) ? AdmQuestionOptAns::find($adm_question_items_id[$i]) : new AdmQuestionOptAns();
+
+                                #print_r($adm_question_items_id); exit;
+
+                                if (isset($adm_question_items_id) == null) {
+                                    $adm_question_opt->adm_question_items_id = $faculty_adm_update_question_items->id;
+
+                                }
+                                $adm_question_opt->title = $value;
+                                $adm_question_opt->answer = 0;
+
+                                foreach ($opt_answer as $oa) {
+                                    if ($oa == $key)
+                                        $adm_question_opt->answer = 1;
+                                }
+
+                                $adm_question_opt->save();
+                                $i++;
                             }
-                            $adm_question_opt->title = $value;
-                            $adm_question_opt->answer = 0;
-
-                            foreach ($opt_answer as $oa) {
-                                if ($oa == $key)
-                                    $adm_question_opt->answer = 1;
-                            }
-
-                            $adm_question_opt->save();
-                            $i++;
+                            echo "Option Data : Multiple Answer Saved!";
+                        } else {
+                            echo "NO";
                         }
-                        echo "Option Data : Multiple Answer Saved!";
-                    }else{
-                        echo "NO";
                     }
+                } else {
+
+                    $faculty_adm_update_question_items->question_type = 'text';
+                    $faculty_adm_update_question_items->save();
+
+                    $adm_question_opt = new AdmQuestionOptAns();
+                    $adm_question_opt->destroy(Request::get('id'));
+
                 }
-            }else {
-
-                $faculty_adm_update_question_items->question_type = 'text';
-                $faculty_adm_update_question_items->save();
-
-                $adm_question_opt = new AdmQuestionOptAns();
-                $adm_question_opt->destroy(Request::get('id'));
-
+                DB::commit();
             }
-            // redirect
-            Session::flash('message', 'Successfully Updated!');
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', "Not updates.Invalid Request!");
+            }
             return Redirect::back();
-        }
-        else
+        }else
         {
             // failure, get errors
             $errors = $faculty_adm_update_question_items->errors();
@@ -459,7 +481,6 @@ class AdmFacultyController extends \BaseController {
 
         $assign_qp_assign = AdmQuestionComments::where('adm_question_id', $q_id)->get();
 
-
         return View::make('admission::faculty.question_papers.assign_qp',
             compact('assign_qp','assign_qp_assign','q_id'));
 
@@ -473,23 +494,31 @@ class AdmFacultyController extends \BaseController {
     {
         $info = Input::all();
 
-        $model = new AdmQuestionComments();
-
-
-        $model->adm_question_id = $info['adm_question_id'];
-        $model->comment = $info['comment'];
-        $model->commented_to = $info['commented_to'];
-        $model->commented_by = Auth::user()->get()->id;
+        DB::beginTransaction();
+        try {
+            $model = new AdmQuestionComments();
+            $model->adm_question_id = $info['adm_question_id'];
+            $model->comment = $info['comment'];
+            $model->commented_to = $info['commented_to'];
+            $model->commented_by = Auth::user()->get()->id;
 
 //        $user_name = User::FullName($model->commented_to);
-        if($model->save()){
-            Session::flash('message', 'Comments added');
-            return Redirect::back();
-        }else{
-            $errors = $model->errors();
-            Session::flash('errors', $errors);
-            return Redirect::back()->with('errors', 'invalid');
+            if($model->save()){
+                Session::flash('message', 'Comments added');
+                return Redirect::back();
+            }else{
+                $errors = $model->errors();
+                Session::flash('errors', $errors);
+                return Redirect::back()->with('errors', 'invalid');
+            }
+            DB::commit();
         }
+        catch ( Exception $e ){
+            //If there are any exceptions, rollback the transaction
+            DB::rollback();
+            Session::flash('danger', "Comments not added.Invalid Request!");
+        }
+        return Redirect::back();
     }
 
 
@@ -571,31 +600,32 @@ class AdmFacultyController extends \BaseController {
     public function storeEvaluatedQuestionItems()
     {
         $data = Input::all();
-        $model = AdmQuestionEvaluation::find($data['id']);
+        DB::beginTransaction();
+        try
+        {
+            $model = AdmQuestionEvaluation::find($data['id']);
 
-        if($model->validate($data)){
-            if($model->update($data)){
-                Session::flash('message', 'Successfully Updates Information!');
-                return Redirect::back();
+            if($model->validate($data)){
+                if($model->update($data)){
+                    Session::flash('message', 'Successfully Updates Information!');
+                    return Redirect::back();
+                }
+            }else{
+                $errors = $model->errors();
+                Session::flash('errors', $errors);
+                return Redirect::back()
+                    ->with('error', 'invalid');
             }
-        }else{
-            $errors = $model->errors();
-            Session::flash('errors', $errors);
-            return Redirect::back()
-                ->with('error', 'invalid');
+            DB::commit();
         }
+        catch ( Exception $e ){
+            //If there are any exceptions, rollback the transaction
+            DB::rollback();
+            Session::flash('danger', "Not updates. Invalid Request !");
+        }
+        return Redirect::back();
+
     }
-
-
-
-
-//    public function reEvaluateQuestionsitems()
-//    {
-//        return View::make('admission::faculty.question_papers.re-evaluate-questions-items',
-//            compact(''));
-//    }
-
-
 
     /**
      * @return mixed
@@ -610,11 +640,6 @@ class AdmFacultyController extends \BaseController {
             return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
         }
     }
-
-
-
-
-
 
     /**
      * @return mixed
@@ -678,23 +703,33 @@ class AdmFacultyController extends \BaseController {
     public function commentAssignCourse()
     {
         $info = Input::all();
-//        print_r(Input::get('adm_question_id'));exit;
-        $model = new CourseConductComments();
+        DB::beginTransaction();
+        try
+        {
+            $model = new CourseConductComments();
 
-        $model->course_conduct_id = $info['course_conduct_id'];
-        $model->comments = $info['comments'];
-        $model->commented_to = $info['commented_to'];
-        $model->commented_by = Auth::user()->get()->id;
+            $model->course_conduct_id = $info['course_conduct_id'];
+            $model->comments = $info['comments'];
+            $model->commented_to = $info['commented_to'];
+            $model->commented_by = Auth::user()->get()->id;
 
-//        $user_name = User::FullName($model->commented_to);
-        if($model->save()){
-            Session::flash('message', 'Comments added');
-            return Redirect::back();
-        }else{
-            $errors = $model->errors();
-            Session::flash('errors', $errors);
-            return Redirect::back()->with('errors', 'invalid');
+            if ($model->save()) {
+                Session::flash('message', 'Comments added');
+                return Redirect::back();
+            } else {
+                $errors = $model->errors();
+                Session::flash('errors', $errors);
+                return Redirect::back()->with('errors', 'invalid');
+            }
+            DB::commit();
         }
+        catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', "Comments not added. Invalid Request !");
+        }
+        return Redirect::back();
+
     }
 
     /**
