@@ -39,22 +39,22 @@
 
                 <div class='form-group'>
                    {{ Form::label('start_date', 'Start Date') }}
-                   {{ Form::text('start_date', $batch_edit->start_date,['class'=>'form-control date-picker input-sm']) }}
+                   {{ Form::text('start_date', $batch_edit->start_date,['class'=>'form-control date_picker input-sm']) }}
                 </div>
 
                 <div class='form-group'>
                    {{ Form::label('end_date', 'End Date') }}
-                   {{ Form::text('end_date', $batch_edit->end_date,['class'=>'form-control date-picker input-sm','required'=>'required']) }}
+                   {{ Form::text('end_date', $batch_edit->end_date,['class'=>'form-control date_picker input-sm','required'=>'required']) }}
                 </div>
 
                 <div class='form-group'>
                    {{ Form::label('admission_deadline', 'Admission Deadline') }}
-                   {{ Form::text('admission_deadline',$batch_edit->admission_deadline,['class'=>'form-control input-sm date-picker','required'=>'required']) }}
+                   {{ Form::text('admission_deadline',$batch_edit->admission_deadline,['class'=>'form-control input-sm date_picker','required'=>'required']) }}
                 </div>
 
                 <div class='form-group'>
                    {{ Form::label('admtest_date', 'Admission Test Date') }}
-                   {{ Form::text('admtest_date', $batch_edit->admtest_date,['class'=>'form-control date-picker input-sm','required'=>'required']) }}
+                   {{ Form::text('admtest_date', $batch_edit->admtest_date,['class'=>'form-control date_picker input-sm','required'=>'required']) }}
                 </div>
 
                 <div class='form-group'>
@@ -70,4 +70,6 @@
           <p>&nbsp;</p>
           {{Form::close()}}
       </div>
+
 </div>
+{{ HTML::script('assets/js/custom.js')}}
