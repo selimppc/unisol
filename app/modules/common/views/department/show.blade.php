@@ -5,13 +5,27 @@
 <div class="modal-body">
     <div style="padding: 10px; width: 90%;">
         {{ Form::open(array('url'=>'department/show/','method' => '')) }}
-            <div class="jumbotron text-center">
-                <h2><strong> Department Name:</strong>  {{ $department->title }}</h2>
-                <h2><strong> Department Head:</strong>  {{ User::FullName($department->dept_head_user_id)  }}</h2>
-                <h2>
-                    <strong> Description:</strong> {{ $department->description }}
-                </h2>
-            </div>
+        <table id="" class="table table-bordered table-hover table-striped">
+            <tr>
+                <td>Department Name:</td>
+                <td>
+                    {{isset($department->title) ? $department->title : '' }}
+                </td>
+            </tr>
+            <tr>
+                <td>Department Head:</td>
+                <td>
+                    {{--{{ User::FullName(isset($department->dept_head_user_id)) ? $department->dept_head_user_id : '' }}--}}
+                    {{ User::FullName($department->dept_head_user_id)  }}
+                </td>
+            </tr>
+            <tr>
+                <td>Description:</td>
+                <td>
+                    {{isset($department->description ) ? $department->description  : '' }}
+                </td>
+            </tr>
+        </table>
         {{ Form::close() }}
     </div>
 </div>
