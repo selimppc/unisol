@@ -201,6 +201,8 @@
         {{--{{ HTML::script('assets/etsb/etsb_js/admin/dashboard.js')}}--}}
         {{ HTML::script('assets/etsb/etsb_js/admin/demo.js')}}
 
+        {{ HTML::script('assets/etsb/etsb_js/validator/validator.js')}}
+
 
 
         @yield('script_section')

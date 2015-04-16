@@ -8,6 +8,7 @@
 
           {{Form::open(array('url'=> ['admission/amw/batch/update',$batch_edit->id], 'class'=>'form-horizontal','files'=>true))}}
           {{ Form::hidden('degree_id',$batch_edit->degree_id,['class'=>'form-control']) }}
+          {{ Form::hidden('batch_number', $batch_edit->batch_number,['class'=>'form-control input-sm','required'=>'required']) }}
 
                 <div class='form-group'>
 
@@ -23,12 +24,7 @@
                 </div>
 
                 <div class='form-group'>
-                   {{ Form::label('batch_number', 'Batch Number') }}
-                   {{ Form::hidden('batch_number', $batch_edit->batch_number,['class'=>'form-control input-sm','required'=>'required']) }}
-                </div>
-
-                <div class='form-group'>
-
+                   {{ Form::label('description', 'Description') }}
                    {{ Form::textarea('description', $batch_edit->description,['size' => '30x5','class'=>'form-control','required'=>'required']) }}
                 </div>
 
