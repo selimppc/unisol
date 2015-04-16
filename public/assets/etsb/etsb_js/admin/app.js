@@ -82,7 +82,6 @@ $(function() {
             group.find(".btn.active").removeClass("active");
             $(this).addClass("active");
             e.preventDefault();
-            alert("ok");
         });
 
     });
@@ -600,14 +599,12 @@ $(window).load(function() {
                     isActive = false;
                     btn.children(".fa-angle-down").first().removeClass("fa-angle-down").addClass("fa-angle-left");
                     btn.parent("li").removeClass("active");
-                    alert("ok");
                 } else {
                     //Slide down to open menu
                     menu.slideDown();
                     isActive = true;
                     btn.children(".fa-angle-left").first().removeClass("fa-angle-left").addClass("fa-angle-down");
                     btn.parent("li").addClass("active");
-                    alert("ok");
                 }
             });
 
