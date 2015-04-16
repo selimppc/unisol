@@ -1,6 +1,6 @@
 /*!
- * Author: SelimReza.com
- * Date: 4 Jan 2015
+ * Author: Abdullah A Almsaeed
+ * Date: 4 Jan 2014
  * Description:
  *      This file should be included in all pages
  !**/
@@ -110,7 +110,7 @@ $(function() {
         var content = $(".wrapper").height();
         //If the wrapper height is greater than the window
         if (content > height)
-            //then set sidebar height to the wrapper
+        //then set sidebar height to the wrapper
             $(".left-side, html, body").css("min-height", content + "px");
         else {
             //Otherwise, set the sidebar to the height of the window
@@ -133,10 +133,6 @@ $(function() {
      * iCheck plugin in.
      * You can find the documentation at http://fronteed.com/iCheck/
      */
-    /*$("input[type='checkbox']:not(.simple), input[type='radio']:not(.simple)").iCheck({
-        checkboxClass: 'icheckbox_minimal',
-        radioClass: 'iradio_minimal'
-    });*/
     $("input[type='checkbox']:not(.simple), input[type='radio']:not(.simple)").iCheck({
         checkboxClass: 'icheckbox_minimal',
         radioClass: 'iradio_minimal'
@@ -168,11 +164,11 @@ $(window).load(function() {
                 W.call(b, d) && (a[d] = b[d]);
             return c.prototype = b.prototype, a.prototype = new c, a.__super__ = b.prototype, a
         }, Y = [].indexOf || function(a) {
-            for (var b = 0, c = this.length; c > b; b++)
-                if (b in this && this[b] === a)
-                    return b;
-            return-1
-        };
+                for (var b = 0, c = this.length; c > b; b++)
+                    if (b in this && this[b] === a)
+                        return b;
+                return-1
+            };
         for (t = {catchupTime:500, initialRate:.03, minTime:500, ghostTime:500, maxProgressPerFrame:10, easeFactor:1.25, startOnPageLoad:!0, restartOnPushState:!0, restartOnRequestAfter:500, target:"body", elements:{checkInterval:100, selectors:["body"]}, eventLag:{minSamples:10, sampleCount:3, lagThreshold:3}, ajax:{trackMethods:["GET"], trackWebSockets:!1}}, B = function() {
             var a;
             return null != (a = "undefined" != typeof performance && null !== performance ? "function" == typeof performance.now ? performance.now() : void 0 : void 0) ? a : +new Date
@@ -608,6 +604,7 @@ $(window).load(function() {
                     menu.slideDown();
                     isActive = true;
                     btn.children(".fa-angle-left").first().removeClass("fa-angle-left").addClass("fa-angle-down");
+                    alert("OK");
                     btn.parent("li").addClass("active");
                 }
             });
@@ -693,44 +690,44 @@ $(window).load(function() {
     e[b] = 250;
     e[f] = true;
     $.event.special[j] = {setup: function() {
-            if (!e[f] && this[k]) {
-                return false;
-            }
-            var l = $(this);
-            a = a.add(l);
-            $.data(this, d, {w: l.width(), h: l.height()});
-            if (a.length === 1) {
-                g();
-            }
-        }, teardown: function() {
-            if (!e[f] && this[k]) {
-                return false
-            }
-            var l = $(this);
-            a = a.not(l);
-            l.removeData(d);
-            if (!a.length) {
-                clearTimeout(i);
-            }
-        }, add: function(l) {
-            if (!e[f] && this[k]) {
-                return false
-            }
-            var n;
-            function m(s, o, p) {
-                var q = $(this), r = $.data(this, d);
-                r.w = o !== c ? o : q.width();
-                r.h = p !== c ? p : q.height();
-                n.apply(this, arguments)
-            }
-            if ($.isFunction(l)) {
-                n = l;
-                return m
-            } else {
-                n = l.handler;
-                l.handler = m
-            }
-        }};
+        if (!e[f] && this[k]) {
+            return false;
+        }
+        var l = $(this);
+        a = a.add(l);
+        $.data(this, d, {w: l.width(), h: l.height()});
+        if (a.length === 1) {
+            g();
+        }
+    }, teardown: function() {
+        if (!e[f] && this[k]) {
+            return false
+        }
+        var l = $(this);
+        a = a.not(l);
+        l.removeData(d);
+        if (!a.length) {
+            clearTimeout(i);
+        }
+    }, add: function(l) {
+        if (!e[f] && this[k]) {
+            return false
+        }
+        var n;
+        function m(s, o, p) {
+            var q = $(this), r = $.data(this, d);
+            r.w = o !== c ? o : q.width();
+            r.h = p !== c ? p : q.height();
+            n.apply(this, arguments)
+        }
+        if ($.isFunction(l)) {
+            n = l;
+            return m
+        } else {
+            n = l.handler;
+            l.handler = m
+        }
+    }};
     function g() {
         i = h[k](function() {
             a.each(function() {
@@ -752,144 +749,144 @@ $(window).load(function() {
  */
 (function(f) {
     jQuery.fn.extend({slimScroll: function(h) {
-            var a = f.extend({width: "auto", height: "250px", size: "7px", color: "#000", position: "right", distance: "1px", start: "top", opacity: 0.4, alwaysVisible: !1, disableFadeOut: !1, railVisible: !1, railColor: "#333", railOpacity: 0.2, railDraggable: !0, railClass: "slimScrollRail", barClass: "slimScrollBar", wrapperClass: "slimScrollDiv", allowPageScroll: !1, wheelStep: 20, touchScrollStep: 200, borderRadius: "0px", railBorderRadius: "0px"}, h);
-            this.each(function() {
-                function r(d) {
-                    if (s) {
-                        d = d ||
-                                window.event;
-                        var c = 0;
-                        d.wheelDelta && (c = -d.wheelDelta / 120);
-                        d.detail && (c = d.detail / 3);
-                        f(d.target || d.srcTarget || d.srcElement).closest("." + a.wrapperClass).is(b.parent()) && m(c, !0);
-                        d.preventDefault && !k && d.preventDefault();
-                        k || (d.returnValue = !1)
-                    }
+        var a = f.extend({width: "auto", height: "250px", size: "7px", color: "#000", position: "right", distance: "1px", start: "top", opacity: 0.4, alwaysVisible: !1, disableFadeOut: !1, railVisible: !1, railColor: "#333", railOpacity: 0.2, railDraggable: !0, railClass: "slimScrollRail", barClass: "slimScrollBar", wrapperClass: "slimScrollDiv", allowPageScroll: !1, wheelStep: 20, touchScrollStep: 200, borderRadius: "0px", railBorderRadius: "0px"}, h);
+        this.each(function() {
+            function r(d) {
+                if (s) {
+                    d = d ||
+                    window.event;
+                    var c = 0;
+                    d.wheelDelta && (c = -d.wheelDelta / 120);
+                    d.detail && (c = d.detail / 3);
+                    f(d.target || d.srcTarget || d.srcElement).closest("." + a.wrapperClass).is(b.parent()) && m(c, !0);
+                    d.preventDefault && !k && d.preventDefault();
+                    k || (d.returnValue = !1)
                 }
-                function m(d, f, h) {
-                    k = !1;
-                    var e = d, g = b.outerHeight() - c.outerHeight();
-                    f && (e = parseInt(c.css("top")) + d * parseInt(a.wheelStep) / 100 * c.outerHeight(), e = Math.min(Math.max(e, 0), g), e = 0 < d ? Math.ceil(e) : Math.floor(e), c.css({top: e + "px"}));
-                    l = parseInt(c.css("top")) / (b.outerHeight() - c.outerHeight());
-                    e = l * (b[0].scrollHeight - b.outerHeight());
-                    h && (e = d, d = e / b[0].scrollHeight * b.outerHeight(), d = Math.min(Math.max(d, 0), g), c.css({top: d + "px"}));
-                    b.scrollTop(e);
-                    b.trigger("slimscrolling", ~~e);
+            }
+            function m(d, f, h) {
+                k = !1;
+                var e = d, g = b.outerHeight() - c.outerHeight();
+                f && (e = parseInt(c.css("top")) + d * parseInt(a.wheelStep) / 100 * c.outerHeight(), e = Math.min(Math.max(e, 0), g), e = 0 < d ? Math.ceil(e) : Math.floor(e), c.css({top: e + "px"}));
+                l = parseInt(c.css("top")) / (b.outerHeight() - c.outerHeight());
+                e = l * (b[0].scrollHeight - b.outerHeight());
+                h && (e = d, d = e / b[0].scrollHeight * b.outerHeight(), d = Math.min(Math.max(d, 0), g), c.css({top: d + "px"}));
+                b.scrollTop(e);
+                b.trigger("slimscrolling", ~~e);
+                v();
+                p()
+            }
+            function C() {
+                window.addEventListener ? (this.addEventListener("DOMMouseScroll", r, !1), this.addEventListener("mousewheel", r, !1), this.addEventListener("MozMousePixelScroll", r, !1)) : document.attachEvent("onmousewheel", r)
+            }
+            function w() {
+                u = Math.max(b.outerHeight() / b[0].scrollHeight * b.outerHeight(), D);
+                c.css({height: u + "px"});
+                var a = u == b.outerHeight() ? "none" : "block";
+                c.css({display: a})
+            }
+            function v() {
+                w();
+                clearTimeout(A);
+                l == ~~l ? (k = a.allowPageScroll, B != l && b.trigger("slimscroll", 0 == ~~l ? "top" : "bottom")) : k = !1;
+                B = l;
+                u >= b.outerHeight() ? k = !0 : (c.stop(!0, !0).fadeIn("fast"), a.railVisible && g.stop(!0, !0).fadeIn("fast"))
+            }
+            function p() {
+                a.alwaysVisible || (A = setTimeout(function() {
+                    a.disableFadeOut && s || (x || y) || (c.fadeOut("slow"), g.fadeOut("slow"))
+                }, 1E3))
+            }
+            var s, x, y, A, z, u, l, B, D = 30, k = !1, b = f(this);
+            if (b.parent().hasClass(a.wrapperClass)) {
+                var n = b.scrollTop(),
+                    c = b.parent().find("." + a.barClass), g = b.parent().find("." + a.railClass);
+                w();
+                if (f.isPlainObject(h)) {
+                    if ("height"in h && "auto" == h.height) {
+                        b.parent().css("height", "auto");
+                        b.css("height", "auto");
+                        var q = b.parent().parent().height();
+                        b.parent().css("height", q);
+                        b.css("height", q)
+                    }
+                    if ("scrollTo"in h)
+                        n = parseInt(a.scrollTo);
+                    else if ("scrollBy"in h)
+                        n += parseInt(a.scrollBy);
+                    else if ("destroy"in h) {
+                        c.remove();
+                        g.remove();
+                        b.unwrap();
+                        return
+                    }
+                    m(n, !1, !0)
+                }
+            } else {
+                a.height = "auto" == a.height ? b.parent().height() : a.height;
+                n = f("<div></div>").addClass(a.wrapperClass).css({position: "relative",
+                    overflow: "hidden", width: a.width, height: a.height});
+                b.css({overflow: "hidden", width: a.width, height: a.height});
+                var g = f("<div></div>").addClass(a.railClass).css({width: a.size, height: "100%", position: "absolute", top: 0, display: a.alwaysVisible && a.railVisible ? "block" : "none", "border-radius": a.railBorderRadius, background: a.railColor, opacity: a.railOpacity, zIndex: 90}), c = f("<div></div>").addClass(a.barClass).css({background: a.color, width: a.size, position: "absolute", top: 0, opacity: a.opacity, display: a.alwaysVisible ?
+                    "block" : "none", "border-radius": a.borderRadius, BorderRadius: a.borderRadius, MozBorderRadius: a.borderRadius, WebkitBorderRadius: a.borderRadius, zIndex: 99}), q = "right" == a.position ? {right: a.distance} : {left: a.distance};
+                g.css(q);
+                c.css(q);
+                b.wrap(n);
+                b.parent().append(c);
+                b.parent().append(g);
+                a.railDraggable && c.bind("mousedown", function(a) {
+                    var b = f(document);
+                    y = !0;
+                    t = parseFloat(c.css("top"));
+                    pageY = a.pageY;
+                    b.bind("mousemove.slimscroll", function(a) {
+                        currTop = t + a.pageY - pageY;
+                        c.css("top", currTop);
+                        m(0, c.position().top, !1)
+                    });
+                    b.bind("mouseup.slimscroll", function(a) {
+                        y = !1;
+                        p();
+                        b.unbind(".slimscroll")
+                    });
+                    return!1
+                }).bind("selectstart.slimscroll", function(a) {
+                    a.stopPropagation();
+                    a.preventDefault();
+                    return!1
+                });
+                g.hover(function() {
+                    v()
+                }, function() {
+                    p()
+                });
+                c.hover(function() {
+                    x = !0
+                }, function() {
+                    x = !1
+                });
+                b.hover(function() {
+                    s = !0;
                     v();
                     p()
-                }
-                function C() {
-                    window.addEventListener ? (this.addEventListener("DOMMouseScroll", r, !1), this.addEventListener("mousewheel", r, !1), this.addEventListener("MozMousePixelScroll", r, !1)) : document.attachEvent("onmousewheel", r)
-                }
-                function w() {
-                    u = Math.max(b.outerHeight() / b[0].scrollHeight * b.outerHeight(), D);
-                    c.css({height: u + "px"});
-                    var a = u == b.outerHeight() ? "none" : "block";
-                    c.css({display: a})
-                }
-                function v() {
-                    w();
-                    clearTimeout(A);
-                    l == ~~l ? (k = a.allowPageScroll, B != l && b.trigger("slimscroll", 0 == ~~l ? "top" : "bottom")) : k = !1;
-                    B = l;
-                    u >= b.outerHeight() ? k = !0 : (c.stop(!0, !0).fadeIn("fast"), a.railVisible && g.stop(!0, !0).fadeIn("fast"))
-                }
-                function p() {
-                    a.alwaysVisible || (A = setTimeout(function() {
-                        a.disableFadeOut && s || (x || y) || (c.fadeOut("slow"), g.fadeOut("slow"))
-                    }, 1E3))
-                }
-                var s, x, y, A, z, u, l, B, D = 30, k = !1, b = f(this);
-                if (b.parent().hasClass(a.wrapperClass)) {
-                    var n = b.scrollTop(),
-                            c = b.parent().find("." + a.barClass), g = b.parent().find("." + a.railClass);
-                    w();
-                    if (f.isPlainObject(h)) {
-                        if ("height"in h && "auto" == h.height) {
-                            b.parent().css("height", "auto");
-                            b.css("height", "auto");
-                            var q = b.parent().parent().height();
-                            b.parent().css("height", q);
-                            b.css("height", q)
-                        }
-                        if ("scrollTo"in h)
-                            n = parseInt(a.scrollTo);
-                        else if ("scrollBy"in h)
-                            n += parseInt(a.scrollBy);
-                        else if ("destroy"in h) {
-                            c.remove();
-                            g.remove();
-                            b.unwrap();
-                            return
-                        }
-                        m(n, !1, !0)
-                    }
-                } else {
-                    a.height = "auto" == a.height ? b.parent().height() : a.height;
-                    n = f("<div></div>").addClass(a.wrapperClass).css({position: "relative",
-                        overflow: "hidden", width: a.width, height: a.height});
-                    b.css({overflow: "hidden", width: a.width, height: a.height});
-                    var g = f("<div></div>").addClass(a.railClass).css({width: a.size, height: "100%", position: "absolute", top: 0, display: a.alwaysVisible && a.railVisible ? "block" : "none", "border-radius": a.railBorderRadius, background: a.railColor, opacity: a.railOpacity, zIndex: 90}), c = f("<div></div>").addClass(a.barClass).css({background: a.color, width: a.size, position: "absolute", top: 0, opacity: a.opacity, display: a.alwaysVisible ?
-                                "block" : "none", "border-radius": a.borderRadius, BorderRadius: a.borderRadius, MozBorderRadius: a.borderRadius, WebkitBorderRadius: a.borderRadius, zIndex: 99}), q = "right" == a.position ? {right: a.distance} : {left: a.distance};
-                    g.css(q);
-                    c.css(q);
-                    b.wrap(n);
-                    b.parent().append(c);
-                    b.parent().append(g);
-                    a.railDraggable && c.bind("mousedown", function(a) {
-                        var b = f(document);
-                        y = !0;
-                        t = parseFloat(c.css("top"));
-                        pageY = a.pageY;
-                        b.bind("mousemove.slimscroll", function(a) {
-                            currTop = t + a.pageY - pageY;
-                            c.css("top", currTop);
-                            m(0, c.position().top, !1)
-                        });
-                        b.bind("mouseup.slimscroll", function(a) {
-                            y = !1;
-                            p();
-                            b.unbind(".slimscroll")
-                        });
-                        return!1
-                    }).bind("selectstart.slimscroll", function(a) {
-                        a.stopPropagation();
-                        a.preventDefault();
-                        return!1
-                    });
-                    g.hover(function() {
-                        v()
-                    }, function() {
-                        p()
-                    });
-                    c.hover(function() {
-                        x = !0
-                    }, function() {
-                        x = !1
-                    });
-                    b.hover(function() {
-                        s = !0;
-                        v();
-                        p()
-                    }, function() {
-                        s = !1;
-                        p()
-                    });
-                    b.bind("touchstart", function(a, b) {
-                        a.originalEvent.touches.length && (z = a.originalEvent.touches[0].pageY)
-                    });
-                    b.bind("touchmove", function(b) {
-                        k || b.originalEvent.preventDefault();
-                        b.originalEvent.touches.length &&
-                                (m((z - b.originalEvent.touches[0].pageY) / a.touchScrollStep, !0), z = b.originalEvent.touches[0].pageY)
-                    });
-                    w();
-                    "bottom" === a.start ? (c.css({top: b.outerHeight() - c.outerHeight()}), m(0, !0)) : "top" !== a.start && (m(f(a.start).position().top, null, !0), a.alwaysVisible || c.hide());
-                    C()
-                }
-            });
-            return this
-        }});
+                }, function() {
+                    s = !1;
+                    p()
+                });
+                b.bind("touchstart", function(a, b) {
+                    a.originalEvent.touches.length && (z = a.originalEvent.touches[0].pageY)
+                });
+                b.bind("touchmove", function(b) {
+                    k || b.originalEvent.preventDefault();
+                    b.originalEvent.touches.length &&
+                    (m((z - b.originalEvent.touches[0].pageY) / a.touchScrollStep, !0), z = b.originalEvent.touches[0].pageY)
+                });
+                w();
+                "bottom" === a.start ? (c.css({top: b.outerHeight() - c.outerHeight()}), m(0, !0)) : "top" !== a.start && (m(f(a.start).position().top, null, !0), a.alwaysVisible || c.hide());
+                C()
+            }
+        });
+        return this
+    }});
     jQuery.fn.extend({slimscroll: jQuery.fn.slimScroll})
 })(jQuery);
 
@@ -914,7 +911,7 @@ $(window).load(function() {
         var c = a[0], e = a.parent(), f = b == l, A = b == m, B = b == s, K = A ? w : f ? E : "enabled", p = k(a, K + x(c[n])), N = k(a, b + x(c[n]));
         if (!0 !== c[b]) {
             if (!d &&
-                    b == l && c[n] == u && c.name) {
+                b == l && c[n] == u && c.name) {
                 var C = a.closest("form"), r = 'input[name="' + c.name + '"]', r = C.length ? C.find(r) : h(r);
                 r.each(function() {
                     this !== c && h(this).data(q) && t(h(this), b)
@@ -930,7 +927,7 @@ $(window).load(function() {
     }
     function t(a, b, d) {
         var c = a[0], e = a.parent(), f = b == l, h = b == m, q = b == s, p = h ? w : f ? E : "enabled", t = k(a, p + x(c[n])),
-                u = k(a, b + x(c[n]));
+            u = k(a, b + x(c[n]));
         if (!1 !== c[b]) {
             if (h || !d || "force" == d)
                 c[b] = !1;
@@ -956,7 +953,7 @@ $(window).load(function() {
     }
     function x(a) {
         return a.charAt(0).toUpperCase() +
-                a.slice(1)
+        a.slice(1)
     }
     function L(a, b, d, c) {
         if (!c) {
@@ -971,7 +968,7 @@ $(window).load(function() {
             a.each(function() {
                 var a = h(this);
                 c = a.is(d) ?
-                        c.add(a) : c.add(a.find(d))
+                    c.add(a) : c.add(a.find(d))
             })
         };
         if (/^(check|uncheck|toggle|indeterminate|determinate|disable|enable|update|destroy)$/i.test(a))
@@ -983,7 +980,7 @@ $(window).load(function() {
         if ("object" != typeof a && a)
             return this;
         var f = h.extend({checkedClass: l, disabledClass: s, indeterminateClass: m, labelHover: !0, aria: !1}, a), k = f.handle, B = f.hoverClass || "hover", x = f.focusClass || "focus", w = f.activeClass || "active", y = !!f.labelHover, C = f.labelHoverClass ||
-                "hover", r = ("" + f.increaseArea).replace("%", "") | 0;
+            "hover", r = ("" + f.increaseArea).replace("%", "") | 0;
         if ("checkbox" == k || k == u)
             d = 'input[type="' + k + '"]';
         -50 > r && (r = -50);
@@ -992,7 +989,7 @@ $(window).load(function() {
             var a = h(this);
             M(a);
             var c = this, b = c.id, e = -r + "%", d = 100 + 2 * r + "%", d = {position: "absolute", top: e, left: e, display: "block", width: d, height: d, margin: 0, padding: 0, background: "#fff", border: 0, opacity: 0}, e = J ? {position: "absolute", visibility: "hidden"} : r ? d : {position: "absolute", opacity: 0}, k = "checkbox" == c[n] ? f.checkboxClass || "icheckbox" : f.radioClass || "i" + u, m = h(G + '[for="' + b + '"]').add(a.closest(G)),
-                    A = !!f.aria, E = q + "-" + Math.random().toString(36).replace("0.", ""), g = '<div class="' + k + '" ' + (A ? 'role="' + c[n] + '" ' : "");
+                A = !!f.aria, E = q + "-" + Math.random().toString(36).replace("0.", ""), g = '<div class="' + k + '" ' + (A ? 'role="' + c[n] + '" ' : "");
             m.length && A && m.each(function() {
                 g += 'aria-labelledby="';
                 this.id ? g += this.id : (this.id = E, g += E);
@@ -1032,7 +1029,7 @@ $(window).load(function() {
                     !c[l] && D(a, l);
                 else if (/us|ur/.test(d))
                     g["blur" ==
-                            d ? z : v](x)
+                    d ? z : v](x)
             });
             d.on("click mousedown mouseup mouseover mouseout touchbegin.i touchend.i", function(b) {
                 var d = b[n], e = /wn|up/.test(d) ? w : B;
