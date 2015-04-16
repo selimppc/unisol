@@ -14,7 +14,7 @@
                 </div>
 
                 <div class='form-group'>
-                    {{ Form::label('priority', 'Priority') }}
+                    {{ Form::label('priority', 'Priority (Top priority 10 to less priority 1)') }}
                     {{ Form::text('priority' ,$edit_admission_test_subject->priority,['class'=>'form-control input-sm','required'])}}
                 </div>
 

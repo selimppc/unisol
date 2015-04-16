@@ -11,7 +11,7 @@
                     {{ Form::text('title', Input::old('title'),['class'=>'form-control','required'=>'required']) }}
                 </div>
                  <div class='form-group'>
-                    {{ Form::label('priority', 'Priority') }}
+                    {{ Form::label('priority', 'Priority (Top priority 10 to less priority 1)') }}
                     {{ Form::text('priority', Input::old('priority'),['class'=>'form-control','required'=>'required']) }}
                 </div>
                 <div class='form-group'>

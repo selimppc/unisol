@@ -11,7 +11,7 @@ class DepartmentController extends BaseController{
      public function index(){
 
          $departmentList = Department::orderBy('id', 'DESC')->paginate(10);
-         $facultyList = User::FacultyList();
+         $facultyList = array('' => 'Select Faculty ') + User::FacultyList();
          //print_r($facultyList);
          return View::make('common::department.index', compact('departmentList','facultyList'));
       }

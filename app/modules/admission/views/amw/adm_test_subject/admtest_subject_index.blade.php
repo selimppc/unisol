@@ -21,7 +21,7 @@
             <tr>
                <th><input name="id" id="checkbox" type="checkbox" class="checkbox" value=""></th>
                <th>Title</th>
-               <th>Priority</th>
+               <th>Priority (Top 10 to Less 1)</th>
                <th>Action</th>
             </tr>
      </thead>

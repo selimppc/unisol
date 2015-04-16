@@ -1122,10 +1122,11 @@ class AdmAmwController extends \BaseController
         $year_id  = Input::get('year_id');
         $semester_id = Input::get('semester_id');
 
-        $adm_test_home_data = BatchAdmtestSubject::with(['relBatch'=> function($query) use($year_id, $semester_id) {
-                $query->where('year_id', $year_id);
-                $query->where('semester_id', $semester_id);
-            }])->get();
+        $adm_test_home_data = BatchAdmtestSubject::join('batch', function ($query) use ($year_id, $semester_id) {
+            $query->on('batch.id', '=', 'batch_admtest_subject.batch_id');
+            $query->where('batch.year_id', '=', $year_id);
+            $query->where('batch.semester_id', '=', $semester_id);
+        })->paginate(10);
 
         $year_id = array('' => 'Select Year ') + Year::lists('title', 'id');
         $semester_id = array('' => 'Select Semester ') + Semester::lists('title', 'id');
@@ -1637,12 +1638,13 @@ class AdmAmwController extends \BaseController
     {
         $data = Input::all();
         $model = new Waiver();
-        $model->title = Input::get('title');
-        $name = $model->title;
         if($model->validate($data))
         {
             DB::beginTransaction();
             try {
+
+                $model->title = Input::get('title');
+                $name = $model->title;
                 $model->create($data);
                 DB::commit();
                 Session::flash('message', "$name Waiver  Added");
@@ -1756,16 +1758,14 @@ class AdmAmwController extends \BaseController
             $model->batch_id = Input::get('batch_id');
             $model->waiver_id = Input::get('waiver_id');
             $name = $model->relWaiver->title;
-            if ($model->save()) {
-                return Redirect::back();
-            }
+            $model->save();
             DB::commit();
             Session::flash('message', "Successfully added $name!");
         }
         catch ( Exception $e ){
             //If there are any exceptions, rollback the transaction
             DB::rollback();
-            Session::flash('danger', "$name Batch Waiver  not added.Invalid Request!");
+            Session::flash('danger', "$name already exists! ");
         }
         return Redirect::back();
     }
