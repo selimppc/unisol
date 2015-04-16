@@ -2,8 +2,8 @@
 @section('sidebar')
     @include('layouts._sidebar_faculty')
 @stop
-
 @section('content')
+<a class="pull-right btn btn-xs btn-primary" href="{{ URL::route('admission.faculty.admission-test')}}"> <i class="fa fa-arrow-circle-left"></i> Go Back </a>
     <h2> Question Paper</h2>
 
     <div class="row">
