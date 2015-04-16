@@ -6,7 +6,7 @@
 
 <div class="modal-body">
     <div style="padding: 20px;">
-        {{ Form::open(['route' => ['admission.amw.batch-waiver.store'], 'class'=>'form-horizontal','files' => true,]) }}
+        {{ Form::open(['route' => ['admission.amw.store-batch-waiver'], 'class'=>'form-horizontal','files' => true,]) }}
 
         {{ Form::hidden('batch_id', $batch_id)}}
         {{ Form::label('waiver_id', 'Waiver Item') }}
