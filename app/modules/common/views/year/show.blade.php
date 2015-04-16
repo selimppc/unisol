@@ -4,14 +4,22 @@
 </div>
 <div class="modal-body">
 	<div style="padding: 10px; width: 90%;">
-   {{ Form::open(array('url'=>'year/show','method' => '')) }}
+        {{ Form::open(array('url'=>'year/show','method' => '')) }}
+        <table id="" class="table table-bordered table-hover table-striped">
+            <tr>
+                <td>Year:</td>
+                <td>
+                    {{isset($years->title) ? $years->title : '' }}
+                </td>
+            </tr>
+            <tr>
+                <td>Description:</td>
+                <td>
+                    {{isset($years->description) ? $years->description : '' }}
+                </td>
+            </tr>
 
-        <div class="jumbotron text-center">
-            <h2><strong> Years:</strong>  {{ $years->title }}</h2>
-            <p>
-                <strong> Description:</strong> {{ $years->description }}
-            </p>
-        </div>
+        </table>
   {{ Form::close() }}
 </div>
 </div>
