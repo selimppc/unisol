@@ -19,7 +19,6 @@
             <th>Title</th>
             <th>Course Code</th>
             <th>Subject Name</th>
-            <th>Description</th>
             <th>Course Type</th>
             <th>Evaluation Total Marks </th>
             <th>Credit</th>
@@ -37,7 +36,6 @@
                     <td>{{ $course_list->title }}</td>
                     <td>{{ $course_list->course_code }}</td>
                     <td>{{ isset($course_list->course_type_id)? $course_list->relSubject->title :'' }}</td>
-                    <td>{{ $course_list->description }}</td>
                     <td>{{ isset($course_list->course_type_id)? $course_list->relCourseType->title :'' }}</td>
                     <td>{{ $course_list->evaluation_total_marks }}</td>
                     <td>{{ $course_list->credit }}</td>
