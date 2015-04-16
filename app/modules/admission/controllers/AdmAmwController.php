@@ -1714,7 +1714,11 @@ class AdmAmwController extends \BaseController
 
 //{------------------------------------ Batch Waiver --------------------------------------------------------------------------}
 
-    public function batchWaiverIndex($batch_id){
+    /**
+     * @param $batch_id
+     * @return mixed
+     */
+     public function batchWaiverIndex($batch_id){
 
         $model = Batch::find($batch_id);
         $batch_info = Batch::with('relDegree.relDegreeGroup','relDegree.relDegreeProgram','relDegree.relDegreeLevel','relYear','relSemester','relDegree')
@@ -1727,6 +1731,10 @@ class AdmAmwController extends \BaseController
             compact('model','batch_info','waiver_info'));
     }
 
+    /**
+     * @param $batch_id
+     * @return mixed
+     */
     public function batchWaiverCreate($batch_id)
     {
         $waiverList = array('' => 'Select Waiver Item ') + Waiver::lists('title','id');
@@ -1734,17 +1742,36 @@ class AdmAmwController extends \BaseController
             compact('waiverList','batch_id'));
 
     }
-    public function batchWaiverStore(){
 
-        $model = new BatchWaiver();
-        $model->batch_id = Input::get('batch_id');
-        $model->waiver_id = Input::get('waiver_id');
-        $name = $model->relWaiver->title;
-        if ($model->save()) {
-            return Redirect::back()
-                ->with('message', "Successfully added $name!");
+    /**
+     * @return mixed
+     */
+    public function batchWaiverStore()
+    {
+        DB::beginTransaction();
+        try {
+            $model = new BatchWaiver();
+            $model->batch_id = Input::get('batch_id');
+            $model->waiver_id = Input::get('waiver_id');
+            $name = $model->relWaiver->title;
+            if ($model->save()) {
+                return Redirect::back();
+            }
+            DB::commit();
+            Session::flash('message', "Successfully added $name!");
         }
+        catch ( Exception $e ){
+            //If there are any exceptions, rollback the transaction
+            DB::rollback();
+            Session::flash('danger', "$name Batch Waiver  not added.Invalid Request!");
+        }
+        return Redirect::back();
     }
+
+    /**
+     * @param $bw_id
+     * @return mixed
+     */
     public function batchWaiverDelete($bw_id)
     {
         try {
@@ -1762,6 +1789,12 @@ class AdmAmwController extends \BaseController
     }
 
 //{----------------------------------Waiver Constraint---------------------------------------------------------------------}
+
+    /**
+     * @param $batch_id
+     * @param $bw_id
+     * @return mixed
+     */
     public function waiverConstraintIndex($batch_id, $bw_id){
 
         $batchWaiver = BatchWaiver::with('relWaiver')->where('id', '=', $bw_id)->first();
@@ -1784,33 +1817,45 @@ class AdmAmwController extends \BaseController
     }
 
 
-    public function waiverConstraintStore(){
+    public function waiverConstraintStore()
+    {
         $data = Input::all();
-        $model = new WaiverConstraint();
-        $model->start_date = Input::get('start_date');
-        $model->end_date = Input::get('end_date');
-        $namestart = $model->start_date;
-        $nameend = $model->end_date;
-        $model->level_of_education = Input::get('level_of_education');
-        $model->gpa = Input::get('gpa');
-        $lavelOfEdu = $model->level_of_education;
-        $gpa = $model->gpa;
-        if($model->validate($data)){
-            if($model->create($data)){
-                if($namestart != null)
-                {
-                    Session::flash('message',"Successfully Added StartDate:$namestart and EndDate:$nameend !");
+        DB::beginTransaction();
+        try {
+                $model = new WaiverConstraint();
+                $model->start_date = Input::get('start_date');
+                $model->end_date = Input::get('end_date');
+                $namestart = $model->start_date;
+                $nameend = $model->end_date;
+                $model->level_of_education = Input::get('level_of_education');
+                $model->gpa = Input::get('gpa');
+                $lavelOfEdu = $model->level_of_education;
+                $gpa = $model->gpa;
+                if($model->validate($data)){
+                    if($model->create($data)){
+                        if($namestart != null)
+                        {
+                            Session::flash('message',"Successfully Added StartDate:$namestart and EndDate:$nameend !");
+                        }
+                        else{
+                            Session::flash('message',"Successfully Added Level of Education:$lavelOfEdu and GPA:$gpa !");
+                        }
+                        return Redirect::back();
+                    }
+                }else{
+                    $errors = $model->errors();
+                    Session::flash('errors', $errors);
+                    return Redirect::back();
                 }
-                else{
-                    Session::flash('message',"Successfully Added Level of Education:$lavelOfEdu and GPA:$gpa !");
-                }
-                return Redirect::back();
-            }
-        }else{
-            $errors = $model->errors();
-            Session::flash('errors', $errors);
-            return Redirect::back();
+
+            DB::commit();
         }
+        catch ( Exception $e ){
+            //If there are any exceptions, rollback the transaction
+            DB::rollback();
+            Session::flash('danger', "Level of Education  not added.Invalid Request!");
+        }
+        return Redirect::back();
 
     }
 
@@ -1832,35 +1877,41 @@ class AdmAmwController extends \BaseController
 
     }
 
-    public function waiverConstUpdate($id){
+    public function waiverConstUpdate($id)
+    {
+        DB::beginTransaction();
+        try {
 
-        $const_model = WaiverConstraint::find($id);
-        $const_model->start_date = Input::get('start_date');
-        $const_model->end_date = Input::get('end_date');
-        $namestart = $const_model->start_date;
-        $nameend = $const_model->end_date;
-        $const_model->level_of_education = Input::get('level_of_education');
-        $const_model->gpa = Input::get('gpa');
-        $lavelOfEdu = $const_model->level_of_education;
-        $gpa = $const_model->gpa;
-        $data = Input::all();
-        $const_model->fill($data);
-        if ($const_model->update($data)) {
-            if($namestart != null)
-            {
-                Session::flash('message',"Successfully Updated StartDate:$namestart and EndDate:$nameend !");
+            $const_model = WaiverConstraint::find($id);
+            $const_model->start_date = Input::get('start_date');
+            $const_model->end_date = Input::get('end_date');
+            $namestart = $const_model->start_date;
+            $nameend = $const_model->end_date;
+            $const_model->level_of_education = Input::get('level_of_education');
+            $const_model->gpa = Input::get('gpa');
+            $lavelOfEdu = $const_model->level_of_education;
+            $gpa = $const_model->gpa;
+            $data = Input::all();
+            $const_model->fill($data);
+            if ($const_model->update($data)) {
+                if ($namestart != null) {
+                    Session::flash('message', "Successfully Updated StartDate:$namestart and EndDate:$nameend !");
+                } else {
+                    Session::flash('message', "Successfully Updated Level of Education:$lavelOfEdu and GPA:$gpa !");
+                }
+                return Redirect::back();
+            } else {
+                $errors = $const_model->errors();
+                Session::flash('errors', $errors);
+                return Redirect::back();
             }
-            else{
-                Session::flash('message',"Successfully Updated Level of Education:$lavelOfEdu and GPA:$gpa !");
-            }
-            return Redirect::back();
+            DB::commit();
+        }catch ( Exception $e ){
+            //If there are any exceptions, rollback the transaction
+            DB::rollback();
+            Session::flash('danger', "Not updates. Invalid Request !");
         }
-
-        else{
-            $errors = $const_model->errors();
-            Session::flash('errors', $errors);
-            return Redirect::back();
-        }
+        return Redirect::back();
     }
 
     public function waiverConstDelete($id)
@@ -1908,19 +1959,27 @@ class AdmAmwController extends \BaseController
     {
         $data = Input::all();
         $model = new BatchEducationConstraint();
-
-        if($model->validate($data)){
-            if($model->create($data)){
-                Session::flash('message','Successfully added Information!');
-                return Redirect::back();
-            }else{
-                Session::flash('message','Invalid Request!');
-                return Redirect::back();
+        $model->title = Input::get('title');
+        $name = $model->title;
+        if($model->validate($data))
+        {
+            DB::beginTransaction();
+            try {
+                $model->create($data);
+                DB::commit();
+                Session::flash('message', "$name Batch Education Constraint Added");
             }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', "$name Batch Education Constraint not added.Invalid Request!");
+            }
+            return Redirect::back();
         }else{
             $errors = $model->errors();
             Session::flash('errors', $errors);
-            return Redirect::back();
+            return Redirect::back()
+                ->with('errors', 'invalid');
         }
     }
 
@@ -1940,18 +1999,29 @@ class AdmAmwController extends \BaseController
 
     public function admBatchEduConstUpdate($id)
     {
-        $model = BatchEducationConstraint::find($id);
         $data = Input::all();
-
-        if($model->validate($data)){
-            if($model->update($data)){
-                Session::flash('message','Successfully Updated Information!');
-                return Redirect::back();
+        $model = BatchEducationConstraint::find($id);
+        $model->title = Input::get('title');
+        $name = $model->title;
+        if($model->validate($data))
+        {
+            DB::beginTransaction();
+            try {
+                $model->update($data);
+                DB::commit();
+                Session::flash('message', "$name Batch Education Constraint Updates");
             }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', "$name Batch Education Constraint not updates. Invalid Request !");
+            }
+            return Redirect::back();
         }else{
             $errors = $model->errors();
             Session::flash('errors', $errors);
-            return Redirect::back();
+            return Redirect::back()
+                ->with('errors', 'Input Data Not Valid');
         }
     }
 

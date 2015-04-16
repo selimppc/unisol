@@ -75,7 +75,7 @@ class CourseTypeController extends \BaseController {
                 DB::rollback();
                 Session::flash('danger', "$name Course Type not updates. Invalid Request !");
             }
-                        return Redirect::back();
+            return Redirect::back();
         }else{
             $errors = $model->errors();
             Session::flash('errors', $errors);
