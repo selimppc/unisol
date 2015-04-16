@@ -7,19 +7,16 @@
       <div style="padding: 20px;">
 
           {{Form::open(array('url'=> ['admission/amw/batch/update',$batch_edit->id], 'class'=>'form-horizontal','files'=>true))}}
+          {{ Form::hidden('degree_id',$batch_edit->degree_id,['class'=>'form-control']) }}
 
                 <div class='form-group'>
-                    <div class="col-sm-4" style="padding-left: 0;">
-                        {{ Form::label('degree_id', 'Degree') }}
-                       {{ Form::select('degree_id',$dpg_list,$batch_edit->degree_id,['class'=>'form-control']) }}
-                    </div>
 
-                    <div class="col-sm-4" style="padding-right: 0;">
+                    <div class="col-sm-6" style="padding-right: 0;">
                         {{ Form::label('semester_id', 'Semester') }}
                        {{ Form::select('semester_id',$semester_list,$batch_edit->semester_id,['class'=>'form-control']) }}
                     </div>
 
-                    <div class="col-sm-4">
+                    <div class="col-sm-6">
                         {{ Form::label('year_id', 'Year') }}
                        {{ Form::select('year_id', $year_list, $batch_edit->year_id,['class'=>'form-control']) }}
                     </div>
@@ -27,11 +24,11 @@
 
                 <div class='form-group'>
                    {{ Form::label('batch_number', 'Batch Number') }}
-                   {{ Form::text('batch_number', $batch_edit->batch_number,['class'=>'form-control input-sm','required'=>'required']) }}
+                   {{ Form::hidden('batch_number', $batch_edit->batch_number,['class'=>'form-control input-sm','required'=>'required']) }}
                 </div>
 
                 <div class='form-group'>
-                   {{ Form::label('description', 'Description') }}
+
                    {{ Form::textarea('description', $batch_edit->description,['size' => '30x5','class'=>'form-control','required'=>'required']) }}
                 </div>
 
