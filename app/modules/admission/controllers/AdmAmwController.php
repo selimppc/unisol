@@ -1344,10 +1344,11 @@ class AdmAmwController extends \BaseController
 
     public function updateAdmTestQuestionPaper($id)
     {
+        $data = Input::all();
         $model = AdmQuestion::find($id);
         $model->title = Input::get('title');
         $name = $model->title;
-        $data = Input::all();
+
         if($model->validate($data))
         {
             DB::beginTransaction();

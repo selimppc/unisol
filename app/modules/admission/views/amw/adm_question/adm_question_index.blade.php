@@ -44,6 +44,7 @@
                             <td> {{isset($values->s_faculty_user_id)? User::FullName($values->s_faculty_user_id) :''}} </td>
                             <td> {{isset($values->status) ? $values->status : '' }} </td>
                             <td>
+                               if($values->status == requested
                                 <a href="{{ URL::route('admission.amw.view-admtest-question-paper', [ 'id'=>$values->id ]) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#modal" data-placement="left" title="Show" href="#"> View </a>
 
                                 <a href="{{ URL::route('admission.amw.edit-admtest-question-paper', [ 'id'=>$values->id ])  }}" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modal" data-placement="left" title="Edit" href="#"> Edit </a>

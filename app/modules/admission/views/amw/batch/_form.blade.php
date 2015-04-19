@@ -1,7 +1,7 @@
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
     <h4 class="modal-title" id="myModalLabel"> Add Batch: {{ $batch_number + 1 }} Of
-    {{$degree_title->relDegreeLevel->code.''.$degree_title->relDegreeGroup->code.' On '.$degree_title->relDegreeProgram->code}}</h4>
+    {{ $degree_title->relDegreeLevel->code.''.$degree_title->relDegreeGroup->code.' On '.$degree_title->relDegreeProgram->code }}</h4>
 
 </div>
 
@@ -78,9 +78,8 @@
                 function getStartDate(){
                     var duration = document.getElementById("duration-year").value;
                     var y = document.getElementById("year-id");
-//                    var s = document.getElementById("semester-id");
                     var year = y.options[y.selectedIndex].text;
-//                    var semester = s.options[s.selectedIndex].text;
+
 
                     var start_date = ( parseInt(year) )+"-01-12";
                     var end_date = (parseInt(year) + parseInt(duration))+"-01-25";
