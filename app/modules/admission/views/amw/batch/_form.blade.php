@@ -18,7 +18,7 @@
 
                 <div class="col-sm-6" style="padding-right: 0;">
                     {{ Form::label('semester_id', 'Semester') }}
-                   {{ Form::select('semester_id',$semester_list,null,['class'=>'form-control']) }}
+                   {{ Form::select('semester_id',$semester_list,null,['class'=>'form-control','onchange'=>"getStartDate()"]) }}
                 </div>
 
                 <div class="col-sm-6">
@@ -66,7 +66,8 @@
 
             <div class='form-group'>
                {{ Form::label('admtest_start_time', 'Admission Test Start Time') }}
-               {{ Form::text('admtest_start_time', Input::old('admtest_start_time'),['class'=>'form-control ','required'=>'required']) }}
+               {{ Form::Select('admtest_start_time', array('Select Any Time'=>'','09:00'=>'09:00','10:00'=>'10:00','11:00'=>'11:00','12:00'=>'12:00','03:00'=>'03:00','04:00'=>'04:00'),
+                Input::old('admtest_start_time'),['class'=>'form-control ','required'=>'required']) }}
             </div>
 
             {{Form::hidden('status', 1)}}
@@ -76,8 +77,10 @@
             <script>
                 function getStartDate(){
                     var duration = document.getElementById("duration-year").value;
-                    var e = document.getElementById("year-id");
-                    var year = e.options[e.selectedIndex].text;
+                    var y = document.getElementById("year-id");
+//                    var s = document.getElementById("semester-id");
+                    var year = y.options[y.selectedIndex].text;
+//                    var semester = s.options[s.selectedIndex].text;
 
                     var start_date = ( parseInt(year) )+"-01-12";
                     var end_date = (parseInt(year) + parseInt(duration))+"-01-25";
@@ -96,17 +99,23 @@
                     var day2 = adm_deadline.getDate()
                     var year2 = adm_deadline.getFullYear()
 
-
                     document.getElementById("adm-deadline").value = year1 +"-"+ (month1+1) + "-" + day1 ;
                     document.getElementById("adm-test-date").value = year2 +"-"+ (month2+1) + "-" + (day2+10) ;
 
-
-
                 }
+
+//                function addDays(){
+//                  var dt = new Date();
+//                  dt.setDate(dt.getDate() + 15);
+//                  alert(dt);
+//                 }
             </script>
 
 
           {{ Form::submit('Save', array('class'=>'pull-right btn btn-info')) }}
+          {{--<button id="dateBtn" onclick="addDays()">--}}
+           {{--Add more 15 days from today!--}}
+          {{--</button>--}}
           <a href="" class="pull-right btn btn-default" style="margin-right: 5px">Close</a>
 
           <p>&nbsp;</p>
