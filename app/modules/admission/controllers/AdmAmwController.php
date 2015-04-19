@@ -560,6 +560,7 @@ class AdmAmwController extends \BaseController
             ->where('batch_course.batch_id', $batch_id)->get();
 
         $year_data = array('' => 'Select Year ') + Year::lists('title', 'id');
+
         $semester_data = array('' => 'Select Semester ') + Semester::lists('title','id');
 
         /*$deg_course_info = DB::table('degree_course')

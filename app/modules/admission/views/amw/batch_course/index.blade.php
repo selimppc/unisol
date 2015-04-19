@@ -3,8 +3,6 @@
     @include('layouts._sidebar_amw')
 @stop
 @section('content')
-<a class="pull-right btn btn-xs btn-success" href="{{ URL::route('admission.amw.batch',['degree_id'=> $degree_title->degree_id])}}"> <i class="fa fa-arrow-circle-left"></i> Back To Batch Management</a>
-<p>&nbsp;</p>
 <div class="row">
 <div class="box box-solid ">
 
@@ -128,6 +126,7 @@
                     <td> {{isset($course_type_id) ? CourseType::findOrFail($course_type_id)->title : ''}}  </td>
                     <td> {{Course::findOrFail($value->course_id)->credit ;}} </td>
                     <td>{{ Form::select('year_id', $year_data,  Input::old('year_id'), array('class' => 'form-control','required'=>'required'))}}</td>
+                    {{--<td>{{Form::selectYear('year', 2015, 2018)}}</td>--}}
                     <td>{{ Form::select('semester_id', $semester_data, Input::old('semester_id'), array('class' => 'form-control','required'=>'required')) }}</td>
                     <td>{{ Form::checkbox('is_mandatory') }}</td>
                     <td>{{ Form::select('major_minor', array(''=>'Select Option','major' => 'Major', 'minor' => 'minor'), '', array('class' => 'form-control','required'=>'required'))}}</td>
@@ -141,9 +140,8 @@
     </table>
 {{--    {{ Form::close() }}--}}
     {{--{{ $deg_course_info->links() }}--}}
-    <p>&nbsp</p>
-    <p>&nbsp</p>
-
+        <a class="pull-right btn btn-xs btn-primary" href="{{ URL::route('admission.amw.batch',['degree_id'=> $degree_title->degree_id])}}"> <i class="fa fa-arrow-circle-left"></i> Back To Batch Management</a>
+        <p>&nbsp;</p>
     </div>
 
     {{-- Modal for delete --}}
