@@ -64,7 +64,7 @@
 </div>
     <div class="text-right">
         {{ $batch_management->links() }}
-        <a class="pull-right btn btn-xs btn-primary" href="{{ URL::route('admission.amw.degree.index')}}"> <i class="fa fa-arrow-circle-left"></i>Back To Degree</a>
+        <a class="pull-right btn btn-xs btn-primary" href="{{ URL::route('admission.amw.degree.index')}}"> <i class="fa fa-arrow-circle-left"></i> Back To Degree</a>
     </div>
 
     <p>&nbsp;</p>

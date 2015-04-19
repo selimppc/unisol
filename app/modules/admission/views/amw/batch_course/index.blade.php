@@ -3,8 +3,6 @@
     @include('layouts._sidebar_amw')
 @stop
 @section('content')
-<a class="pull-right btn btn-xs btn-success" href="{{ URL::route('admission.amw.batch',['degree_id'=> $degree_title->degree_id])}}"> <i class="fa fa-arrow-circle-left"></i> Back To Batch Management</a>
-<p>&nbsp;</p>
 <div class="row">
 <div class="box box-solid ">
 
@@ -142,9 +140,8 @@
     </table>
 {{--    {{ Form::close() }}--}}
     {{--{{ $deg_course_info->links() }}--}}
-    <p>&nbsp</p>
-    <p>&nbsp</p>
-
+        <a class="pull-right btn btn-xs btn-primary" href="{{ URL::route('admission.amw.batch',['degree_id'=> $degree_title->degree_id])}}"> <i class="fa fa-arrow-circle-left"></i> Back To Batch Management</a>
+        <p>&nbsp;</p>
     </div>
 
     {{-- Modal for delete --}}
