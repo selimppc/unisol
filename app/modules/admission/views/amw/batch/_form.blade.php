@@ -15,16 +15,17 @@
 
             <div class='form-group'>
 
+                <div class="col-sm-6">
+                   {{ Form::label('year_id', 'Year') }}
+                   {{ Form::select('year_id',$year_list,null,['class'=>'form-control','id'=>'year-id']) }}
+                </div>
 
                 <div class="col-sm-6" style="padding-right: 0;">
-                    {{ Form::label('semester_id', 'Semester') }}
-                   {{ Form::select('semester_id',$semester_list,null,['class'=>'form-control','onchange'=>"getStartDate()"]) }}
+                   {{ Form::label('semester_id', 'Semester') }}
+                   {{ Form::select('semester_id',$semester_list,null,['class'=>'form-control','id'=>'semester-id','onchange'=>"addDays()"]) }}
                 </div>
 
-                <div class="col-sm-6">
-                    {{ Form::label('year_id', 'Year') }}
-                   {{ Form::select('year_id',$year_list,null,['class'=>'form-control', 'id'=>'year-id', 'onchange'=>"getStartDate()"]) }}
-                </div>
+
             </div>
             <br>
 
@@ -75,39 +76,56 @@
              {{Form::hidden('adm_test_date', 1,['id'=>'adm_test_date'])}}
 
             <script>
-                function getStartDate(){
-                    var duration = document.getElementById("duration-year").value;
-                    var y = document.getElementById("year-id");
-                    var year = y.options[y.selectedIndex].text;
+                function addDays(){
+
+                		var duration = parseInt(document.getElementById("duration-year").value);
+
+                		var e = document.getElementById("year-id");
+                		var year = e.options[e.selectedIndex].text;
+
+                		var ea = document.getElementById("semester-id");
+                		var semester = ea.options[ea.selectedIndex].text;
+
+                		if(semester =="Spring"){
+
+                			var start_date = ( parseInt(year) )+"-02-09";
+                			var end_date = (parseInt(year) + parseInt(duration))+"-05-25";
+
+                			var da_te = new Date();
+                			da_te.setDate(da_te.getDate()+30)
+                			da_te.setMonth(da_te.getMonth()+1)
 
 
-                    var start_date = ( parseInt(year) )+"-01-12";
-                    var end_date = (parseInt(year) + parseInt(duration))+"-01-25";
+                		}else if(semester =="Summer"){
 
-                    document.getElementById("start-date").value = start_date;
-                    document.getElementById("end-date").value = end_date;
+                			var start_date = ( parseInt(year) )+"-06-10";
+                			var end_date = (parseInt(year) + parseInt(duration))+"-09-26";
+
+                			var da_te = new Date();
+                			da_te.setDate(da_te.getDate()+30)
+                			da_te.setMonth(da_te.getMonth()+1)
 
 
-                    var adm_deadline = new Date()
-                    var month1 = adm_deadline.getMonth() + 1
-                    var day1 = adm_deadline.getDate()
-                    var year1 = adm_deadline.getFullYear()
+                		}else if(semester =="Fall"){
 
-                    var adm_test_date = new Date();
-                    var month2 = adm_deadline.getMonth() + 1
-                    var day2 = adm_deadline.getDate()
-                    var year2 = adm_deadline.getFullYear()
+                			var start_date = ( parseInt(year) )+"-10-11";
+                			var end_date = (parseInt(year) + parseInt(duration))+"-01-27";
 
-                    document.getElementById("adm-deadline").value = year1 +"-"+ (month1+1) + "-" + day1 ;
-                    document.getElementById("adm-test-date").value = year2 +"-"+ (month2+1) + "-" + (day2+10) ;
+                			var da_te = new Date();
+                			da_te.setDate(da_te.getDate()+30)
+                			da_te.setMonth(da_te.getMonth()+1)
 
-                }
+                			//month = da_te.getMonth();
+                		}
 
-//                function addDays(){
-//                  var dt = new Date();
-//                  dt.setDate(dt.getDate() + 15);
-//                  alert(dt);
-//                 }
+                		document.getElementById("start-date").value = start_date;
+                		document.getElementById("end-date").value = end_date;
+
+
+                		document.getElementById("adm-deadline").value = parseInt(year) +"-"+ da_te.getMonth() + "-" + da_te.getDate() ;
+                		document.getElementById("adm-test-date").value = parseInt(year) +"-"+ da_te.getMonth() + "-" +( da_te.getDate() + 10);
+
+                	}
             </script>
 
 
