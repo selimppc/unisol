@@ -729,57 +729,52 @@ class AdmAmwController extends \BaseController
     public function assign_faculty_save()
    {
        $data = Input::all();
-       DB::beginTransaction();
-       try {
-               if(Input::get('revoke')) {
-                   $course_id = Input::get('course_id');
-                   $course_conduct_id = CourseConduct::where('course_id', $course_id)->first()->id;
-                   $course_conduct_comments_id = CourseConductComments::where('course_conduct_id', $course_conduct_id)->first()->id;
-                   $course_conduct_comments = CourseConductComments::findOrFail($course_conduct_comments_id);
-                   if ($course_conduct_comments->destroy($course_conduct_comments_id)) {
-                       $course_conduct = CourseConduct::findOrFail($course_conduct_id);
-                       if ($course_conduct->destroy($course_conduct_id)) {
-                           Session::flash('info', 'Successfully Revoked!');
-                           return Redirect::back();
-                       }
-                   }
-               }elseif(Input::get('request')){
-                   $model = new CourseConduct();
-                   $model->course_id = Input::get('course_id');
-                   $model->faculty_user_id = Input::get('faculty_user_id');
-                   $model->year_id = Input::get('year_id');
-                   $model->semester_id = Input::get('semester_id');
-                   $model->degree_id = Input::get('degree_id');
-                   $model->status = 'requested';
-                   if($model->save()){
-                       $comments = new CourseConductComments();
-                       $comments->course_conduct_id = $model->id;
-                       $comments->comments = Input::get('comments');
-                       $comments->commented_to = Input::get('faculty_user_id');
-                       $comments->commented_by = Auth::user()->get()->id;
-                       $comments->status = '';
-                       if($comments->save()){
-                           Session::flash('message', 'Successfully added Information!');
-                           return Redirect::back();
-                       }else{
-                           $errors = $model->errors();
-                           Session::flash('errors', $errors);
-                           return Redirect::back();
-                       }
-                   }else{
-                       $errors = $model->errors();
-                       Session::flash('errors', $errors);
-                       return Redirect::back();
-                   }
+       if(Input::get('revoke')) {
+           DB::beginTransaction();
+           try {
+               $course_id = Input::get('course_id');
+               $course_conduct_id = CourseConduct::where('course_id', $course_id)->first()->id;
+               $course_conduct_comments_id = CourseConductComments::where('course_conduct_id', $course_conduct_id)->first()->id;
+               $course_conduct_comments = CourseConductComments::findOrFail($course_conduct_comments_id);
+               if ($course_conduct_comments->destroy($course_conduct_comments_id)) {
+                   $course_conduct = CourseConduct::findOrFail($course_conduct_id);
+                   $course_conduct->destroy($course_conduct_id) ;
                }
-           DB::commit();
-           Session::flash('message', "Faculty Assigned");
+               DB::commit();
+               Session::flash('info', 'Successfully Revoked!');
+           }catch ( Exception $e ){
+               //If there are any exceptions, rollback the transaction
+               DB::rollback();
+               Session::flash('danger', "Faculty not Revoked!");
+           }
+       }elseif(Input::get('request')){
+           DB::beginTransaction();
+           try {
+               $model = new CourseConduct();
+               $model->course_id = Input::get('course_id');
+               $model->faculty_user_id = Input::get('faculty_user_id');
+               $model->year_id = Input::get('year_id');
+               $model->semester_id = Input::get('semester_id');
+               $model->degree_id = Input::get('degree_id');
+               $model->status = 'requested';
+               if($model->save()) {
+                   $comments = new CourseConductComments();
+                   $comments->course_conduct_id = $model->id;
+                   $comments->comments = Input::get('comments');
+                   $comments->commented_to = Input::get('faculty_user_id');
+                   $comments->commented_by = Auth::user()->get()->id;
+                   $comments->status = '';
+                   $comments->save();
+                }
+               Session::flash('message', 'Successfully added Information!');
+               DB::commit();
+           }catch ( Exception $e ){
+               //If there are any exceptions, rollback the transaction
+               DB::rollback();
+               Session::flash('danger', " Invalid Request!");
+           }
        }
-       catch ( Exception $e ){
-           //If there are any exceptions, rollback the transaction
-           DB::rollback();
-           Session::flash('danger', "Faculty not Assigned.Invalid Request!");
-       }
+       return Redirect::back();
    }
 
 
