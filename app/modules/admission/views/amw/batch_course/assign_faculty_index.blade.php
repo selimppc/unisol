@@ -3,8 +3,6 @@
     @include('layouts._sidebar_amw')
 @stop
 @section('content')
-    <a href="{{URL::previous()}}" class="pull-right btn btn-xs btn-primary"><i class="fa fa-arrow-circle-left"></i> Back To Degree Course</a>
-    <p>&nbsp;</p>
     <div class="box-body">
         <div class="row">
             <div class="col-lg-8"  style="margin-left: 15%">
@@ -87,6 +85,9 @@
                             </div>
                             {{Form::close()}}
                         </div>
+
+                <a href="{{URL::previous()}}" class="pull-right btn btn-xs btn-primary"><i class="fa fa-arrow-circle-left"></i> Back To Degree Course</a>
+                <p>&nbsp;</p>
                     </div>
                 </div>
             </div>
