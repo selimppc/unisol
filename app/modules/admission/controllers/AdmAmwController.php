@@ -1413,9 +1413,7 @@ class AdmAmwController extends \BaseController
 
     public function assignFacultyCommentsByQuestion()
     {
-        $info = Input::all();
-        DB::beginTransaction();
-        try {
+            $info = Input::all();
 
             $model = new AdmQuestionComments();
             $model->adm_question_id = $info['adm_question_id'];
@@ -1431,12 +1429,7 @@ class AdmAmwController extends \BaseController
                 Session::flash('errors', $errors);
                 return Redirect::back()->with('errors', 'invalid');
             }
-            DB::commit();
-        }catch ( Exception $e ){
-            //If there are any exceptions, rollback the transaction
-            DB::rollback();
-            Session::flash('danger', "Invalid Request!");
-        }
+
         return Redirect::back();
     }
 
