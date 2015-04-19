@@ -3,7 +3,7 @@
     @include('layouts._sidebar_amw')
 @stop
 @section('content')
-    <a class="pull-right btn btn-xs btn-primary" href="{{ URL::previous() }}"> <i class="fa fa-arrow-circle-left"></i>Back To Degree Course</a>
+    <a class="pull-right btn btn-xs btn-primary" href="{{URL::previous('admission/amw/batch-course/') }}"> <i class="fa fa-arrow-circle-left"></i>Back To Degree Course</a>
     <p>&nbsp;</p>
     <div class="box-body">
         <div class="row">
