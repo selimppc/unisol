@@ -3,7 +3,7 @@
     @include('layouts._sidebar_amw')
 @stop
 @section('content')
-    <a class="pull-right btn btn-xs btn-primary" href="{{URL::previous('admission/amw/batch-course/') }}"> <i class="fa fa-arrow-circle-left"></i>Back To Degree Course</a>
+    <a href="{{URL::previous()}}" class="pull-right btn btn-xs btn-primary"><i class="fa fa-arrow-circle-left"></i> Back To Degree Course</a>
     <p>&nbsp;</p>
     <div class="box-body">
         <div class="row">
@@ -78,7 +78,7 @@
                             <h4>Comments:</h4>
                             <div>{{ Form::textarea('comments', Input::old('comments'),['class' => 'form-control', 'style'=>'height: 100px;'])}}</div>
                             <div>
-                                {{--<a href="{{URL::previous()}}" class="btn btn-xs btn-default">Close</a>--}}
+
                                 @if(isset( $cc_status->status) == 'requested')
                                     {{ Form::submit('Revoke',['name' => 'revoke', 'class'=>'btn btn-xs btn-danger']) }}
                                 @else
