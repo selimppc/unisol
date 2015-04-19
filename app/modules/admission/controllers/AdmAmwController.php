@@ -1495,8 +1495,7 @@ class AdmAmwController extends \BaseController
     public function admDegreeStore()
     {
         $data = Input::all();
-        DB::beginTransaction();
-        try {
+
             $model = new Degree();
             $model->degree_level_id = Input::get('degree_level_id');
             $model->degree_group_id = Input::get('degree_group_id');
@@ -1505,22 +1504,17 @@ class AdmAmwController extends \BaseController
             $nameG = $model->relDegreeGroup->code;
             $nameP = $model->relDegreeProgram->code;
             if ($model->validate($data)) {
-                if ($model->create($data)) {
-//                    Session::flash('message', "Successfully Added $nameL$nameG In $nameP  Degree!");
-                    return Redirect::back();
+                DB::beginTransaction();
+                try {
+                    $model->create($data);
+                    DB::commit();
+                    Session::flash('message', "Successfully Added $nameL $nameG In $nameP  Degree!");
+                } catch (Exception $e) {
+                    //If there are any exceptions, rollback the transaction
+                    DB::rollback();
+                    Session::flash('danger', "Degree not added.Invalid Request!");
                 }
-            }else {
-                $errors = $model->errors();
-                Session::flash('errors', $errors);
-                return Redirect::back();
             }
-            DB::commit();
-            Session::flash('message', "Successfully Added $nameL$nameG In $nameP  Degree!");
-        }catch ( Exception $e ){
-            //If there are any exceptions, rollback the transaction
-            DB::rollback();
-            Session::flash('danger', "Degree not added.Invalid Request!");
-        }
         return Redirect::back();
     }
 
