@@ -31,12 +31,23 @@
         </div>
         <div class='form-group'>
             {{ Form::label('marks', 'Marks') }}
-            {{ Form::text('marks', Input::old('evaluation_total_marks'),['class'=>'form-control','required'=>'required']) }}
+            {{ Form::text('marks', Input::old('evaluation_total_marks'),['id'=>'marks-id','class'=>'form-control','required'=>'required']) }}
         </div>
         <div class='form-group'>
             {{ Form::label('qualify_marks', 'Qualify Marks') }}
-            {{ Form::text('qualify_marks', Input::old('qualify_marks'),['class'=>'form-control','required'=>'required']) }}
+            {{ Form::text('qualify_marks', Input::old('qualify_marks'),['id'=>'qualify-marks-id', 'class'=>'form-control', 'onchange'=>'qualifyMarks()', 'required'=>'required']) }}
         </div>
+        <script>
+            function qualifyMarks(){
+                var marks = parseInt( document.getElementById("marks-id").value ) ;
+                var qualify_marks = parseInt( document.getElementById("qualify-marks-id").value ) ;
+                if(qualify_marks > marks || qualify_marks < 1 ){
+                    document.getElementById("qualify-marks-id").value = '';
+                    alert("Error! Qualifying marks should not be 0 and must be less than Marks "+marks);
+                    return false;
+                }
+            }
+        </script>
 
         <div class='form-group'>
            {{ Form::label('duration', 'Duration in Minutes') }}
