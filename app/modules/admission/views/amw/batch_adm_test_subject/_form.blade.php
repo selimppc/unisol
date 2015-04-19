@@ -37,13 +37,16 @@
             {{ Form::label('qualify_marks', 'Qualify Marks') }}
             {{ Form::text('qualify_marks', Input::old('qualify_marks'),['id'=>'qualify-marks-id', 'class'=>'form-control', 'onchange'=>'qualifyMarks()', 'required'=>'required']) }}
         </div>
+        <div style="color: red" id ="errors">
+        </div>
         <script>
             function qualifyMarks(){
                 var marks = parseInt( document.getElementById("marks-id").value ) ;
                 var qualify_marks = parseInt( document.getElementById("qualify-marks-id").value ) ;
                 if(qualify_marks > marks || qualify_marks < 1 ){
                     document.getElementById("qualify-marks-id").value = '';
-                    alert("Error! Qualifying marks should not be 0 and must be less than Marks "+marks);
+                    document.getElementById('errors').innerHTML="Error! Qualifying marks should not be 0 and must be less than Marks " +marks;
+                    //alert("Error! Qualifying marks should not be 0 and must be less than Marks "+marks);
                     return false;
                 }
             }
