@@ -10,7 +10,7 @@
 
     <div class="box-body">
             <div class="col-lg-12">
-                <p class= "table.align th text-purple font-size text-bold margin-top-text">Courses of Batch {{$degree_title->batch_number}} of {{$degree_title->relDegree->relDegreeProgram->code}} {{$degree_title->relDegree->relDegreeGroup->code}} in {{$degree_title->relDegree->relDepartment->title}} Degree </p>
+                <p class= "text-purple font-size text-bold">Courses of Batch {{$degree_title->batch_number}} of {{$degree_title->relDegree->relDegreeProgram->code}} {{$degree_title->relDegree->relDegreeGroup->code}} in {{$degree_title->relDegree->relDepartment->title}} Degree </p>
                 <p>Total Credit: <b>{{$degree_title->relDegree->total_credit}} </b></p>
                 <p>So Far Added Credit:
                         <b>@foreach($addCourseCredit as $value)
@@ -21,8 +21,8 @@
                 {{ Form::hidden('degree_id', $degree_id , ['class'=>'form-control degree_id'])}}
                 @if(isset($batch_course_data))
                 @foreach($batch_course_data as $values)
-                    <h4 class="table.align th text-purple  font-size text-bold"> Year: {{$values['year']['relYear']['title']}} </h4>
-                    <h4 class="text-purple"> Semester: {{$values['semester']['relSemester']['title']}} </h4>
+                    <h4 class="text-purple font-size text-bold"> Year : {{$values['year']['relYear']['title']}} </h4>
+                    <h4 class="text-purple font-size"> Semester : {{$values['semester']['relSemester']['title']}} </h4>
                     @foreach($values['course_semester'] as $semester)
                         {{--<h4 class="text-purple">{{$semester['relSemester']['title']}}</h4>--}}
                             <table id="" class="table table-bordered table-hover table-striped">
@@ -94,7 +94,7 @@
     {{--------------Degree Course data-----------}}
 
     <p>&nbsp;</p>
-    <p class= "table.align th text-purple font-size text-bold margin-top-text">Degree Course List::   </p>
+    <p class= "text-purple font-size text-bold">Degree Course List ::  </p>
     <p>Please add course for batch <b>{{$degree_title->batch_number}}</b> from the following (Degree Course) table</p>
 {{--    {{ Form::open(array('url' => 'admission/amw/save/batch-data')) }}--}}
     <table id="example1" class="table table-bordered table-hover table-striped">
@@ -123,7 +123,7 @@
                          {{ Form::hidden('batch_id', $batch , ['class'=>'form-control batch_id'])}}
                     <td> {{Course::findOrFail($value->course_id)->title;}} ({{Course::findOrFail($value->course_id)->course_code;}})
                         {{ Form::hidden('course_id',($value->course_id))}}</td>
-                    <td> {{--{{Department::findOrFail($value->department_id)->title; }--}}}</td>
+                    <td> {{Department::findOrFail($value->department_id)->title; }}</td>
                     <?php $course_type_id = Course::findOrFail($value->course_id)->course_type_id; ?>
                     <td> {{isset($course_type_id) ? CourseType::findOrFail($course_type_id)->title : ''}}  </td>
                     <td> {{Course::findOrFail($value->course_id)->credit ;}} </td>
