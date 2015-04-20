@@ -5,7 +5,7 @@
 
 <div class="modal-body">
       <div style="padding: 20px;">
-          {{Form::open(array('route'=> ['admission.amw.admission-test-question.update-admtest-question-paper',$question->id], 'class'=>'form-horizontal','files'=>true))}}
+          {{Form::open(array('route'=> ['admission.amw.update-admtest-question-paper',$question->id], 'class'=>'form-horizontal','files'=>true))}}
 
                <div class='form-group'>
                     <strong> Batch# </strong> {{ $question->relBatchAdmtestSubject->relBatch->batch_number }} </br>
@@ -29,7 +29,7 @@
 
                 <div class='form-group'>
                     {{ Form::label('total_marks', 'Total Marks') }}
-                    {{ Form::text('total_marks' ,$question->total_marks,['class'=>'form-control input-sm','required'])}}
+                    {{ Form::text('total_marks', $question->total_marks,['class'=>'form-control input-sm','required'=>'required'])}}
                 </div>
 
                 <div class='form-group'>
