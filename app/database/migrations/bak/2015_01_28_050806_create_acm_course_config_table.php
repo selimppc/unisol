@@ -15,9 +15,9 @@ class CreateAcmCourseConfigTable extends Migration {
 		Schema::create('acm_course_config', function(Blueprint $table)
 		{
 			$table->increments('id', true);
-			$table->unsignedInteger('acm_marks_dist_item_id')->index();
+			$table->unsignedInteger('acm_marks_dist_item_id')->nullable();
 			$table->foreign('acm_marks_dist_item_id')->references('id')->on('acm_marks_dist_item');
-			$table->unsignedInteger('course_id')->index();
+			$table->unsignedInteger('course_id')->nullable();
 			$table->foreign('course_id')->references('id')->on('course_management');
 			$table->tinyInteger('marks', false, 3)->unsigned();
 			$table->boolean('readonly');

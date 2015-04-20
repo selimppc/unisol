@@ -510,11 +510,12 @@ class AdmAmwController extends \BaseController
                 }else{
                     $degree_course->save();
                     //$exists [] = Course::findOrFail($degree_course->course_id)->course_code;
+                    Session::flash('message', "Degree Course Added");
 
                 }
             }
             DB::commit();
-            Session::flash('message', "Degree Course Added");
+
         }
         catch ( Exception $e ){
             //If there are any exceptions, rollback the transaction
@@ -602,16 +603,15 @@ class AdmAmwController extends \BaseController
         foreach ($years as $year) {
             $batch_course_data[] = [
                 'semester' => BatchCourse::with('relSemester')->where('year_id', $year->year_id)
-                    ->where('batch_id', $batch_id)->groupBy('semester_id')->first(),
+                    ->where('batch_id', $batch_id)->groupBy('semester_id')->get(),
                 'year'=> $year,
                 'course_semester' => BatchCourse::with('relSemester','courseByCourse')
                     ->where('year_id', $year->year_id)->where('batch_id', $batch_id)
                     //->groupBy('semester_id')
+                    ->orderBy('semester_id')
                     ->get(),
             ];
         }
-        //print_r($batch_course_data);exit;
-
         return View::make('admission::amw.batch_course.index',compact(
             'batch','degree_id','degree_title','deg_course_info','year_data','semester_data','batch_course_data', 'addCourseCredit'
         ));
@@ -1496,6 +1496,7 @@ class AdmAmwController extends \BaseController
     public function updateAdmTestQuestionPaper($id)
     {
         $data = Input::all();
+
         $model = AdmQuestion::find($id);
         $model->title = Input::get('title');
         $name = $model->title;
@@ -1510,15 +1511,17 @@ class AdmAmwController extends \BaseController
             catch ( Exception $e ){
                 //If there are any exceptions, rollback the transaction
                 DB::rollback();
-                Session::flash('danger', " Updated Admission Test Question $name not added.Invalid Request !");
+                Session::flash('danger', "Admission Test Question $name! not updates. Invalid Request !");
             }
-            return Redirect::back();
+         return Redirect::back();
         }else{
             $errors = $model->errors();
             Session::flash('errors', $errors);
             return Redirect::back()
-                ->with('errors', 'invalid');
+                ->with('errors', 'Input Data Not Valid');
         }
+
+
     }
 
     /**
