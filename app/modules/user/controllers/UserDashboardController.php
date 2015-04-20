@@ -12,5 +12,10 @@ class UserDashboardController extends \BaseController {
         return View::make('user::dashboard.faculty');
     }
 
+    public function studentDashboard(){
+        Session::flash('message','Successfully Logged in as "Student" !');
+        return View::make('user::dashboard.student');
+    }
+
 
 }

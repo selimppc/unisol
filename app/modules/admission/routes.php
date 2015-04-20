@@ -88,6 +88,11 @@ Route::any('admission_test/amw/update_question_paper/{id}', [
     'uses' => 'AdmissionController@updateQuestionPaper'
 ]);
 
+Route::any('admission/amw/batch-delete-question-paper', [
+    'as' => 'admission.amw.batch-delete-question-paper',
+    'uses' => 'AdmAmwController@batchDeleteQuestionPaper'
+]);
+
 
 // ----------------------------------------AMW : Adm Degree Management --------------------------------------------------------
 

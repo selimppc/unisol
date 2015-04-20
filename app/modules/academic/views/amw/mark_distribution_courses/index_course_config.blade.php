@@ -3,35 +3,68 @@
     @include('layouts._sidebar_amw')
 @stop
 @section('content')
-    <h4 style="text-align: center;margin-bottom: 30px">{{$title}}</h4>
-    <table id="example" class="table table-bordered table-hover table-striped">
-        <thead>
-        <tr>
-            <th>CourseName</th>
-            <th>Department</th>
-            <th>Year</th>
-            <th>Semester</th>
-            <th>Status</th>
-            <th>Action</th>
-        </tr>
-        </thead>
-        <tbody>
-        @foreach ($datas as $value)
-            <tr>
-            <td><a href="{{ URL::route('config.show', ['course_id'=>$value->course_id])  }}" class="btn btn-link">{{$value->relCourse->title}}</a></td>
-            <td>{{$value->relCourse->relSubject->relDepartment->title}}</td>
-            <td>{{$value->relYear->title}}</td>
-            <td>{{$value->relSemester->title}}</td>
-            <td>{{ AcmCourseConfig::getCourseItemStatus($value->course_id, $value->relCourse->evaluation_total_marks) }}</td>
-            <td>
-                <a href="{{ URL::route('coursefind.show', ['course_id'=>$value->course_id])  }}" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#addNew" data-toggle="tooltip" data-placement="left" title="Mark/Dist" href="">MarksDistConfig</a>
+    <!-- START CUSTOM TABS -->
+    <h2 class="page-header text-purple tab-text-margin">Course List</h2>
+    <div class="row">
+           <div class="col-md-12">
+            <!-- Custom Tabs -->
+            <div class="nav-tabs-custom">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#tab_1" data-toggle="tab">Course List</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            Settings  <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li role="presentation" data-toggle="modal" data-target="#addCategory"><a role="menuitem" tabindex="-1" href="#"> </a></li>
+                        </ul>
+                    </li>
+                    <li class="pull-right" class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-gear"></i>&nbsp;</a>
+                        <ul class="dropdown-menu">
+                            <li role="presentation" data-toggle="modal" data-target="#addCategory"><a role="menuitem" tabindex="-1" href="#"> Add Category </a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="tab_1">
+                        <div class="box-body table-responsive ">
+                            <table id="example" class="table table-bordered table-hover table-striped">
+                                <thead>
+                                <tr>
+                                    <th>CourseName</th>
+                                    <th>Department</th>
+                                    <th>Year</th>
+                                    <th>Semester</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {{--@foreach ($datas as $value)--}}
+                                {{--<tr>--}}
+                                {{--<td><a href="{{ URL::route('config.show', ['course_id'=>$value->course_id])  }}" class="btn btn-link">{{$value->relCourse->title}}</a></td>--}}
+                                {{--<td>{{$value->relCourse->relSubject->relDepartment->title}}</td>--}}
+                                {{--<td>{{$value->relYear->title}}</td>--}}
+                                {{--<td>{{$value->relSemester->title}}</td>--}}
+                                {{--<td>{{ AcmCourseConfig::getCourseItemStatus($value->course_id, $value->relCourse->evaluation_total_marks) }}</td>--}}
+                                {{--<td>--}}
+                                {{--<a href="{{ URL::route('coursefind.show', ['course_id'=>$value->course_id])  }}" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#addNew" data-toggle="tooltip" data-placement="left" title="Mark/Dist" href="">MarksDistConfig</a>--}}
 
-                <a href="{{ URL::route('dist.show', ['id'=>$value->course_id]) }}" class="btn btn-sm btn-success" data-toggle="modal" data-target="#marksDistModal" data-toggle="tooltip" data-placement="left" title="Show/Dist" href="">ViewDistConfig</a>
-            </td>
-            </tr>
-        @endforeach
-        </tbody>
-    </table>
+                                {{--<a href="{{ URL::route('dist.show', ['id'=>$value->course_id]) }}" class="btn btn-sm btn-success" data-toggle="modal" data-target="#marksDistModal" data-toggle="tooltip" data-placement="left" title="Show/Dist" href="">ViewDistConfig</a>--}}
+                                {{--</td>--}}
+                                {{--</tr>--}}
+                                {{--@endforeach--}}
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     {{--Start all modal for amw--}}
     {{---------------------------------------------}}
