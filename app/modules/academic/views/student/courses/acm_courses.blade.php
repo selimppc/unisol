@@ -48,9 +48,10 @@
                                 <br>
                                 <div class="box-body table-responsive">
                                     <table id="example1" class="table table-bordered table-striped">
+
                                         <thead>
                                             <tr>
-                                                <th>course</th>
+                                                <th>Course</th>
                                                 <th>Credit</th>
                                                 <th>GPA</th>
                                                 <th>Status</th>
@@ -58,7 +59,25 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                               @if(isset($courses))
+                                                      @foreach($courses as $value)
+                                                          <tr>
 
+                                                              <td>{{$value->relBatchCourse->relCourse->title}}</td>
+
+                                                              <td></td>
+                                                              <td></td>
+                                                              <td></td>
+
+                                                              <td>
+                                                                   {{--<a href="{{ URL::to('admission/amw/batch-waiver/show/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#bwModal" style="font-size: 12px;color: darkmagenta"><span class="fa fa-eye"></span></a>--}}
+                                                                   {{--<a class="btn btn-xs btn-default" href="{{ URL::to('admission/amw/batch-waiver/edit/'.$value->id) }}" data-toggle="modal" data-target="#bwModal" style="font-size: 12px;color: lightseagreen"><i class="fa fa-edit"></i></a>--}}
+                                                                   {{--<a data-href="{{ URL::to('admission/amw/batch-waiver/delete/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" style="font-size: 12px;color: lightcoral"><span class="fa  fa-trash-o"></span></a>--}}
+                                {{----}}
+                                                              </td>
+                                                          </tr>
+                                                      @endforeach
+                                                @endif
 
                                         </tbody>
 
@@ -67,10 +86,10 @@
                             </div><!-- /.tab-pane -->
                             <div class="tab-pane" id="tab_2">
                                 <button class="pull-right btn btn-success btn-sm"  data-toggle="modal" data-target="#addPublications" >
-                                    Add Publication
+
                                 </button><br>
 
-                                <b>Publications:</b>
+
 
                                 <div class="box-body table-responsive">
                                     <table id="example3" class="table table-bordered table-striped">
