@@ -35,7 +35,7 @@ class AcmMarksDistItemTable extends Seeder {
             AcmMarksDistItem::insert(array(
                 'code' => $val,
                 'title' => $key,
-                'is_associate' => ($val == 'CLAS') ?1 : 0,
+                'is_associative' => ($val == 'CLAS') ?1 : 0,
                 'is_exam' => ($val == 'MIDT' || $val == 'FINT') ? 1 : 0,
                 'created_by' => '1',
                 'updated_by' => '1',
