@@ -289,6 +289,23 @@ class CreateAcademic extends Migration {
         });
 
 
+        Schema::create('acm_course_config', function(Blueprint $table)
+        {
+            $table->increments('id', true);
+            $table->unsignedInteger('acm_marks_dist_item_id')->nullable();
+            $table->unsignedInteger('course_id')->nullable();
+            $table->tinyInteger('marks', false, 3)->unsigned();
+            $table->boolean('readonly');
+            $table->boolean('default_item');
+            $table->boolean('is_attendance');
+            $table->timestamps();
+        });
+        Schema::table('acm_course_config', function($table) {
+            $table->foreign('acm_marks_dist_item_id')->references('id')->on('acm_marks_dist_item');
+            $table->foreign('course_id')->references('id')->on('course');
+        });
+
+
 
 	}
 
@@ -312,6 +329,7 @@ class CreateAcademic extends Migration {
         Schema::drop('acm_academic_assign_student_comments');
 
         Schema::drop('acm_academic_final_marks');
+        Schema::drop('acm_course_config');
 	}
 
 }
