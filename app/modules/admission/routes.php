@@ -355,8 +355,8 @@ Route::any('admission/amw/edit-admtest-question-paper/{id}',[
     'uses' => 'AdmAmwController@editAdmTestQuestionPaper'
 ]);
 
-Route::any('admission/amw/admission-test-question/update-admtest-question-paper/{id}',[
-    'as' => 'admission.amw.admission-test-question.update-admtest-question-paper',
+Route::any('admission/amw/update-admtest-question-paper/{id}',[
+    'as' => 'admission.amw.update-admtest-question-paper',
     'uses' => 'AdmAmwController@updateAdmTestQuestionPaper'
 ]);
 

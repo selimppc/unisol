@@ -589,11 +589,12 @@ class AdmAmwController extends \BaseController
         //retrieve degree id from Batch
         $degree_id = Batch::findOrFail($batch_id)->degree_id;
 
-        $deg_course_info = DB::table('degree_course')
-            ->leftJoin('batch_course', 'degree_course.course_id', '=', 'batch_course.course_id')
+        $deg_course_info = DB::table('degree_course')->whereNotExists(function($query) use($batch_id){
+                $query->from('batch_course')->whereRaw('degree_course.course_id = batch_course.course_id')
+                ->where('batch_course.batch_id','=', $batch_id);
+            })
             ->leftJoin('degree', 'degree_course.degree_id', '=', 'degree.id' )
-            //->where('batch_course.course_id', NULL)
-            ->where('degree_id', $degree_id)
+            ->where('degree_course.degree_id','=', $deg_id)
             ->select('degree_course.course_id', 'degree_course.degree_id', 'degree.department_id')
             ->get();
 
@@ -1495,6 +1496,7 @@ class AdmAmwController extends \BaseController
     public function updateAdmTestQuestionPaper($id)
     {
         $data = Input::all();
+
         $model = AdmQuestion::find($id);
         $model->title = Input::get('title');
         $name = $model->title;
@@ -1509,15 +1511,17 @@ class AdmAmwController extends \BaseController
             catch ( Exception $e ){
                 //If there are any exceptions, rollback the transaction
                 DB::rollback();
-                Session::flash('danger', " Updated Admission Test Question $name not added.Invalid Request !");
+                Session::flash('danger', "Admission Test Question $name! not updates. Invalid Request !");
             }
-            return Redirect::back();
+         return Redirect::back();
         }else{
             $errors = $model->errors();
             Session::flash('errors', $errors);
             return Redirect::back()
-                ->with('errors', 'invalid');
+                ->with('errors', 'Input Data Not Valid');
         }
+
+
     }
 
     /**

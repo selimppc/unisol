@@ -13,7 +13,7 @@ class DatabaseSeeder extends Seeder {
          *          *
          * It needs to maintain the dependency to other table. Non dependent table seed must be before dependant table.
          */
-        $credentials = array(
+        /*$credentials = array(
             'username'=> 'admin',
             'password'=>'admin'
         );
@@ -77,8 +77,8 @@ class DatabaseSeeder extends Seeder {
         $this->call('DesignationTable');
         $this->command->info('Designation table seeded!');
 
-       /* //$this->call('AcmMarksDistItemTable');
-        //$this->command->info('Academic Marks Distribution Item table seeded!');*/
+        //$this->call('AcmMarksDistItemTable');
+        //$this->command->info('Academic Marks Distribution Item table seeded!');
 
         $this->call('BillingItemTable');
         $this->command->info('Billing Item table seeded!');
@@ -86,14 +86,17 @@ class DatabaseSeeder extends Seeder {
         $this->call('BillingScheduleTable');
         $this->command->info('Billing Schedule table seeded!');
 
-        /*//$this->call('ClassTimeTable');
+        //$this->call('ClassTimeTable');
         //$this->command->info('Class Time table seeded!');
 
         //$this->call('ClassRoomTable');
-        //$this->command->info('Class Room table seeded!');*/
+        //$this->command->info('Class Room table seeded!');
 
         $this->call('UserProfileTable');
-        $this->command->info('User Profile table seeded!');
+        $this->command->info('User Profile table seeded!');*/
+
+        $this->call('AcmMarksDistItemTable');
+        $this->command->info('Acm Marks Dist Item table seeded!');
 	}
 
 }
