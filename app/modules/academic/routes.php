@@ -17,6 +17,7 @@ Ratna
 ==================================================================
 */
 include("routes_academic_ra.php");
+include("routes_academic_tjt.php");
 
 Route::any("academic/faculty", [
     "as"   => "academic/faculty",
