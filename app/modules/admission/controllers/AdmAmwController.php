@@ -559,17 +559,13 @@ class AdmAmwController extends \BaseController
             ->select(DB::raw('sum(course.credit) AS credit'))
             ->where('batch_course.batch_id', $batch_id)->get();
 
-        $year_data = array('' => 'Select Year ') + Year::lists('title', 'id');
+        //get year data according to degree duration
+        $year_id = Batch::findOrFail($batch_id)->year_id;
+        $duration = Degree::findOrFail($deg_id)->duration;
+        $year_by_batch = DB::table('year')->where('id', '>=', $year_id)->take($duration)->lists('title', 'id');
+        $year_data = array('' => 'Select Year ') + $year_by_batch;
 
         $semester_data = array('' => 'Select Semester ') + Semester::lists('title','id');
-
-        /*$deg_course_info = DB::table('degree_course')
-        ->leftJoin('batch_course', 'degree_course.course_id', '=', 'batch_course.course_id')
-        ->leftjoin('degree', 'degree_course.degree_id', '=', 'degree.id' )
-        ->where('degree_course.degree_id', '=', $deg_id)
-        ->where('batch_course.course_id', NULL)
-        ->select('degree_course.course_id', 'degree_course.degree_id', 'degree.department_id')
-        ->get();*/
 
         //retrieve degree id from Batch
         $degree_id = Batch::findOrFail($batch_id)->degree_id;
@@ -582,15 +578,6 @@ class AdmAmwController extends \BaseController
             ->select('degree_course.course_id', 'degree_course.degree_id', 'degree.department_id')
             ->get();
 
-        /*$deg_course_info = DB::table('degree_course')
-            ->leftJoin('batch_course', 'degree_course.course_id', '=', 'batch_course.course_id')
-            ->where('batch_course.course_id', NULL)
-            ->where('degree_course.degree_id', '=', $deg_id)
-            ->where('batch_course.batch_id', '=', $batch_id)
-            ->select('degree_course.course_id', 'degree_course.degree_id')
-            ->get();*/
-
-   //print_r($deg_course_info);exit;
         $years = BatchCourse::with('relYear')->where('batch_id', $batch_id)->groupBy('year_id')->get();
         foreach ($years as $year) {
             $batch_course_data[] = [
