@@ -6,7 +6,7 @@
 <a class="pull-right btn btn-xs btn-success" href="{{ URL::route('admission.amw.admission-test-home')}}"> <i class="fa fa-arrow-circle-left"></i> Go Back</a>
 
     <h3> Question paper </h3>
-    {{--{{ Form::open(array('url' => 'examination/amw/batchDelete')) }}--}}
+    {{ Form::open(array('url' => 'admission/amw/batch-delete-question-paper')) }}
     <div class="row">
         <div class="box box-solid ">
             <div class="box-body">

@@ -35,7 +35,8 @@
                                 <tr>
                                     <td>Degree:</td>
                                     <td>
-                                        {{$batch_course->relBatch->relDegree->title}}
+
+                                        {{ $batch_course->relDegree->relDegreeLevel->code.'  '.$batch_course->relDegree->relDegreeGroup->code.' On '.$batch_course->relDegree->relDegreeProgram->code }}
                                         {{ Form::hidden('degree_id',$batch_course->relBatch->relDegree->id ,Input::old('degree_id')) }}
                                     </td>
                                 </tr>
