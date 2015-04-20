@@ -127,3 +127,148 @@ Route::post('department/update/{id}',
 Route::get('department/show/{id}',
     'DepartmentController@show'
 );
+
+//{----------------------------------- Degree Program -------------------------------------------------------------------}
+
+
+Route::any('common/degree-program',
+    ['as'=>'common.degree-program.index',
+        'uses'=>'DegreeProgramController@degreeProgramIndex']);
+
+Route::any('common/degree-program/create',
+    ['as'=>'common.degree-program.create',
+        'uses'=>'DegreeProgramController@degreeProgramCreate']);
+
+Route::any('common/degree-program/store',
+    ['as'=>'common.degree-program.store',
+        'uses'=>'DegreeProgramController@degreeProgramStore']);
+
+
+Route::any('common/degree-program/show/{id}',
+    ['as'=>'common.degree-program.show',
+        'uses'=>'DegreeProgramController@degreeProgramShow']);
+
+Route::any('common/degree-program/edit/{id}',
+    ['as'=>'common.degree-program.edit',
+        'uses'=>'DegreeProgramController@degreeProgramEdit']);
+
+Route::any('common/degree-program/update/{id}',
+    ['as'=>'common.degree-program.update',
+        'uses'=>'DegreeProgramController@degreeProgramUpdate']);
+
+Route::any('common/degree-program/delete/{id}',
+    ['as'=>'common.degree-program.delete',
+        'uses'=>'DegreeProgramController@degreeProgramDelete']);
+
+Route::any('common/degree-program/batch_delete',
+    ['as'=>'common.degree-program.batch_delete',
+        'uses'=>'DegreeProgramController@degreeProgramBatchDelete']);
+
+//{-------------------------------Course Type--------------------------------------------------------------------------}
+
+Route::any('common/course-type',
+    ['as'=>'common.course-type.index',
+        'uses'=>'CourseTypeController@index']);
+
+
+Route::any('common/course-type/create',
+    ['as'=>'common.course-type.create',
+        'uses'=>'CourseTypeController@create']);
+
+
+Route::any('common/course-type/store',
+    ['as'=>'common.course-type.store',
+        'uses'=>'CourseTypeController@store']);
+
+
+Route::any('common/course-type/show/{id}',
+    ['as'=>'common.course-type.show',
+        'uses'=>'CourseTypeController@show']);
+
+Route::any('common/course-type/edit/{id}',
+    ['as'=>'common.course-type.edit',
+        'uses'=>'CourseTypeController@edit']);
+
+
+Route::any('common/course-type/update/{id}',
+    ['as'=>'common.course-type.update',
+        'uses'=>'CourseTypeController@update']);
+
+
+Route::any('common/course-type/delete/{id}',
+    ['as'=>'common.course-type.delete',
+        'uses'=>'CourseTypeController@delete']);
+
+Route::any('common/course-type/batch-delete',
+    ['as'=>'common.course-type.batch-delete',
+        'uses'=>'CourseTypeController@batchDelete']);
+
+
+//{--------------------------------- Degree Group ------------------------------------}
+
+Route::any('common/degree-group',
+    ['as'=>'common.degree-group.index',
+        'uses'=>'DegreeGroupController@degreeGroupIndex']);
+
+Route::any('common/degree-group/create',
+    ['as'=>'common.degree-group.create',
+        'uses'=>'DegreeGroupController@degreeGroupCreate']);
+
+Route::any('common/degree-group/store',
+    ['as'=>'common.degree-group.store',
+        'uses'=>'DegreeGroupController@degreeGroupStore']);
+
+
+Route::any('common/degree-group/show/{id}',
+    ['as'=>'common.degree-group.show',
+        'uses'=>'DegreeGroupController@degreeGroupShow']);
+
+Route::any('common/degree-group/edit/{id}',
+    ['as'=>'common.degree-group.edit',
+        'uses'=>'DegreeGroupController@degreeGroupEdit']);
+
+Route::any('common/degree-group/update/{id}',
+    ['as'=>'common.degree-group.update',
+        'uses'=>'DegreeGroupController@degreeGroupUpdate']);
+
+Route::any('common/degree-group/delete/{id}',
+    ['as'=>'common.degree-group.delete',
+        'uses'=>'DegreeGroupController@degreeGroupDelete']);
+
+Route::any('common/degree-group/batch_delete',
+    ['as'=>'common.degree-group.batch_delete',
+        'uses'=>'DegreeGroupController@degreeGroupBatchDelete']);
+
+// {------------------------------- Exm-Center ------------------------------------}
+Route::any('common/exm-center',
+    ['as'=>'common.exm-center.index',
+        'uses'=>'ExamCenterController@exmCenterIndex']);
+
+Route::any('common/exm-center/create',
+    ['as'=>'common.exm-center.create',
+        'uses'=>'ExamCenterController@exmCenterCreate']);
+
+Route::any('common/exm-center/store',
+    ['as'=>'common.exm-center.store',
+        'uses'=>'ExamCenterController@exmCenterStore']);
+
+Route::any('common/exm-center/show/{id}',
+    ['as'=>'common.exm-center.show',
+        'uses'=>'ExamCenterController@exmCenterShow']);
+
+Route::any('common/exm-center/edit/{id}',
+    ['as'=>'common.exm-center.edit',
+        'uses'=>'ExamCenterController@exmCenterEdit']);
+
+Route::any('common/exm-center/delete/{id}',
+    ['as'=>'common.exm-center.delete',
+        'uses'=>'ExamCenterController@exmCenterDelete']);
+
+Route::any('common/exm-center/batch-delete',
+    ['as'=>'common.exm-center.batch-delete',
+        'uses'=>'ExamCenterController@exmCenterBatchDelete']);
+
+Route::any('common/exm-center/update/{id}',
+    ['as'=>'common.exm-center.update',
+        'uses'=>'ExamCenterController@exmCenterUpdate']);
+

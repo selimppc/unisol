@@ -39,18 +39,6 @@
         </div>
         <div style="color: red" id ="errors">
         </div>
-        <script>
-            function qualifyMarks(){
-                var marks = parseInt( document.getElementById("marks-id").value ) ;
-                var qualify_marks = parseInt( document.getElementById("qualify-marks-id").value ) ;
-                if(qualify_marks > marks || qualify_marks < 1 ){
-                    document.getElementById("qualify-marks-id").value = '';
-                    document.getElementById('errors').innerHTML="Error! Qualifying marks should not be 0 and must be less than Marks " +marks;
-                    //alert("Error! Qualifying marks should not be 0 and must be less than Marks "+marks);
-                    return false;
-                }
-            }
-        </script>
 
         <div class='form-group'>
            {{ Form::label('duration', 'Duration in Minutes') }}
@@ -64,3 +52,20 @@
     {{Form::close()}}
    </div>
 </div>
+
+{{--------------- JS : Qualifying marks must be less than Marks ---------------------}}
+<script>
+    function qualifyMarks(){
+        var marks = parseInt( document.getElementById("marks-id").value ) ;
+        var qualify_marks = parseInt( document.getElementById("qualify-marks-id").value ) ;
+        if(qualify_marks > marks || qualify_marks < 1 ){
+            document.getElementById("qualify-marks-id").value = '';
+            document.getElementById('errors').innerHTML="Error! Qualifying marks should not be 0 and must be less than Marks " +marks;
+
+            return false;
+        }else{
+            document.getElementById('errors').innerHTML="";
+            return true;
+        }
+    }
+</script>

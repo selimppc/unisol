@@ -490,6 +490,7 @@ class AdmAmwController extends \BaseController
             $flash_msg_course = "";
             foreach($select as $value){
                 $degree_course = new DegreeCourse();
+
                 $degree_course->degree_id = $deg_id;
                 $degree_course->course_id = $value;
 
@@ -504,8 +505,7 @@ class AdmAmwController extends \BaseController
                 }else{
                     $degree_course->save();
                     //$exists [] = Course::findOrFail($degree_course->course_id)->course_code;
-                    DB::commit();
-                    Session::flash('message', "Successfully Added: $flash_msg_course ");
+
                 }
 
             }
@@ -560,6 +560,7 @@ class AdmAmwController extends \BaseController
             ->where('batch_course.batch_id', $batch_id)->get();
 
         $year_data = array('' => 'Select Year ') + Year::lists('title', 'id');
+
         $semester_data = array('' => 'Select Semester ') + Semester::lists('title','id');
 
         /*$deg_course_info = DB::table('degree_course')
@@ -576,7 +577,7 @@ class AdmAmwController extends \BaseController
         $deg_course_info = DB::table('degree_course')
             ->leftJoin('batch_course', 'degree_course.course_id', '=', 'batch_course.course_id')
             ->leftJoin('degree', 'degree_course.degree_id', '=', 'degree.id' )
-            ->where('batch_course.course_id', NULL)
+            //->where('batch_course.course_id', NULL)
             ->where('degree_id', $degree_id)
             ->select('degree_course.course_id', 'degree_course.degree_id', 'degree.department_id')
             ->get();
@@ -1277,7 +1278,7 @@ class AdmAmwController extends \BaseController
         $adm_question = AdmQuestion::with(['relBatchAdmtestSubject'=>
             function($query) use($batch_id) {
                 $query->where('batch_id', '=', $batch_id);
-            }])->paginate(10);
+            }])->latest('id')->paginate(10);
 
         return View::make('admission::amw.adm_question.adm_question_index',
             compact('adm_question', 'batch', 'bats_id'));
@@ -1343,22 +1344,22 @@ class AdmAmwController extends \BaseController
 
     public function updateAdmTestQuestionPaper($id)
     {
+        $data = Input::all();
         $model = AdmQuestion::find($id);
         $model->title = Input::get('title');
         $name = $model->title;
-        $data = Input::all();
         if($model->validate($data))
         {
             DB::beginTransaction();
             try {
                 $model->update($data);
                 DB::commit();
-                Session::flash('message', "$name Updates");
+                Session::flash('message', "Successfully Updated Admission Test Question $name!");
             }
             catch ( Exception $e ){
                 //If there are any exceptions, rollback the transaction
                 DB::rollback();
-                Session::flash('danger', " $name not updates. Invalid Request !");
+                Session::flash('danger', " Updated Admission Test Question $name not added.Invalid Request !");
             }
             return Redirect::back();
         }else{
@@ -1400,33 +1401,85 @@ class AdmAmwController extends \BaseController
     public function assignFacultyByQuestion($q_id)
     {
         $question_data = AdmQuestion::with('relBatchAdmtestSubject')->where('id', $q_id)->first();
+
         $examiner_faculty_lists = AdmQuestion::AdmissionExaminerList($question_data->relBatchAdmtestSubject->batch_id);
+
         $comments = AdmQuestionComments::where('adm_question_id', $q_id)->get();
+
         return View::make('admission::amw.adm_question.assign_faculty_by_question_comnnets',
             compact('question_data', 'examiner_faculty_lists', 'comments','q_id'));
     }
 
-    public function assignFacultyCommentsByQuestion()
+    public function assignFacultyCommentsByQuestion($id)
     {
-            $info = Input::all();
+        $info = Input::all();
 
-            $model = new AdmQuestionComments();
-            $model->adm_question_id = $info['adm_question_id'];
-            $model->comment = $info['comment'];
-            $model->commented_to = $info['commented_to'];
-            $model->commented_by = Auth::user()->get()->id;
+        $model1 = AdmQuestion::findOrFail($id);
+        $model1->status = 'assigned';
+        $model1->s_faculty_user_id = Input::get('commented_to');
+        $model1->save();
 
-            if ($model->save()) {
-                Session::flash('message', 'Comments added');
-                return Redirect::back();
-            } else {
-                $errors = $model->errors();
-                Session::flash('errors', $errors);
-                return Redirect::back()->with('errors', 'invalid');
-            }
+        $model = new AdmQuestionComments();
+        $model->adm_question_id = $info['adm_question_id'];
+        $model->comment = $info['comment'];
+        $model->commented_to = $info['commented_to'];
+        $model->commented_by = Auth::user()->get()->id;
+
+        if ($model->save()) {
+            Session::flash('message', 'Comments added');
+            return Redirect::back();
+        } else {
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()->with('errors', 'invalid');
+        }
 
         return Redirect::back();
     }
+
+
+
+    public function reAssignFaculty($q_id)
+    {
+        $question_data = AdmQuestion::with('relBatchAdmtestSubject')->where('id', $q_id)->first();
+
+        $examiner_faculty_lists = AdmQuestion::AdmissionExaminerList($question_data->relBatchAdmtestSubject->batch_id);
+
+        $comments = AdmQuestionComments::where('adm_question_id', $q_id)->get();
+
+        return View::make('admission::amw.adm_question.re_assign_faculty_by_question_comnnets',
+            compact('question_data', 'examiner_faculty_lists', 'comments','q_id'));
+    }
+
+    public function reAssignFacultyCommentsByQuestion($id)
+    {
+        $info = Input::all();
+
+        $model1 = AdmQuestion::findOrFail($id);
+        $model1->status = 'assigned';
+        $model1->s_faculty_user_id = Input::get('commented_to');
+        $model1->save();
+
+        $model = new AdmQuestionComments();
+        $model->adm_question_id = $info['adm_question_id'];
+        $model->comment = $info['comment'];
+        $model->commented_to = $info['commented_to'];
+        $model->commented_by = Auth::user()->get()->id;
+
+        if ($model->save()) {
+            Session::flash('message', 'Comments added');
+            return Redirect::back();
+        } else {
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()->with('errors', 'invalid');
+        }
+
+        return Redirect::back();
+    }
+
+
+
 
 //..................................................Admission Test : Question Evaluation .......................................
 

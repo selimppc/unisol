@@ -159,73 +159,6 @@ Route::group( array('before' => 'auth'), function(){
     ==================================================================
     */
 
-//{---------------------------------Version:2 -> Degree Group------------------------------------}
-
-    Route::any('common/degree-group',
-        ['as'=>'common.degree-group.index',
-            'uses'=>'DegreeGroupController@degreeGroupIndex']);
-
-    Route::any('common/degree-group/create',
-        ['as'=>'common.degree-group.create',
-            'uses'=>'DegreeGroupController@degreeGroupCreate']);
-
-    Route::any('common/degree-group/store',
-        ['as'=>'common.degree-group.store',
-            'uses'=>'DegreeGroupController@degreeGroupStore']);
-
-
-    Route::any('common/degree-group/show/{id}',
-        ['as'=>'common.degree-group.show',
-            'uses'=>'DegreeGroupController@degreeGroupShow']);
-
-    Route::any('common/degree-group/edit/{id}',
-        ['as'=>'common.degree-group.edit',
-            'uses'=>'DegreeGroupController@degreeGroupEdit']);
-
-    Route::any('common/degree-group/update/{id}',
-        ['as'=>'common.degree-group.update',
-            'uses'=>'DegreeGroupController@degreeGroupUpdate']);
-
-    Route::any('common/degree-group/delete/{id}',
-        ['as'=>'common.degree-group.delete',
-            'uses'=>'DegreeGroupController@degreeGroupDelete']);
-
-    Route::any('common/degree-group/batch_delete',
-            ['as'=>'common.degree-group.batch_delete',
-            'uses'=>'DegreeGroupController@degreeGroupBatchDelete']);
-
-// {------------------------------- Version:2 -> Exm-Center------------------------------------}
-    Route::any('common/exm-center',
-           ['as'=>'common.exm-center.index',
-            'uses'=>'ExamCenterController@exmCenterIndex']);
-
-    Route::any('common/exm-center/create',
-            ['as'=>'common.exm-center.create',
-            'uses'=>'ExamCenterController@exmCenterCreate']);
-
-    Route::any('common/exm-center/store',
-            ['as'=>'common.exm-center.store',
-            'uses'=>'ExamCenterController@exmCenterStore']);
-
-    Route::any('common/exm-center/show/{id}',
-           ['as'=>'common.exm-center.show',
-            'uses'=>'ExamCenterController@exmCenterShow']);
-
-    Route::any('common/exm-center/edit/{id}',
-        ['as'=>'common.exm-center.edit',
-            'uses'=>'ExamCenterController@exmCenterEdit']);
-
-    Route::any('common/exm-center/delete/{id}',
-           ['as'=>'common.exm-center.delete',
-            'uses'=>'ExamCenterController@exmCenterDelete']);
-
-    Route::any('common/exm-center/batch-delete',
-           ['as'=>'common.exm-center.batch-delete',
-            'uses'=>'ExamCenterController@exmCenterBatchDelete']);
-
-    Route::any('common/exm-center/update/{id}',
-           ['as'=>'common.exm-center.update',
-            'uses'=>'ExamCenterController@exmCenterUpdate']);
 
 //{------------------------------------ Waiver ---------------------------------------------------------}
 
@@ -241,16 +174,6 @@ Route::group( array('before' => 'auth'), function(){
           ['as'=>'common.waiver.store',
             'uses'=>'WaiverController@waiverStore']);
 
-
-
-
-    //{------------------ Degree Program  --------------------}
-    Route::any('degreeprogram/index','DegreeProgController@index');
-    Route::any('degreeprogram/store','DegreeProgController@store');
-    Route::any('degreeprogram/destroy/{id}','DegreeProgController@destroy');
-    Route::any('degreeprogram/edit/{id}','DegreeProgController@edit');
-    Route::post('degreeprogram/update/{id}','DegreeProgController@update');
-    Route::get('degreeprogram/show/{id}', 'DegreeProgController@show' );
 
 
 
