@@ -15,7 +15,7 @@ class DesignationTable extends Seeder {
         $items = array(
             'Lecturer' => 'Lecturer',
             'Assistant Professor' => 'Assistant Professor',
-            'Associate Professor' => 'Associate Professor',
+           // 'Associate Professor' => 'Associate Professor',
             'Professor' => 'Professor',
             'Junior Accountant' => 'Junior Accountant',
             'Senior Accountant' => 'Senior Accountant',
@@ -34,7 +34,7 @@ class DesignationTable extends Seeder {
         //DegreeLevel: 'under_graduate','graduate','post_graduate','post_doctorate'
         foreach($items as $key => $val){
             Designation::insert(array(
-                'code' =>'---',
+                'code' =>$key,
                 'title' => $val,
                 'description' => $val,
                 'created_by' => '1',
