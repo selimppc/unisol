@@ -202,6 +202,7 @@
         {{ HTML::script('assets/etsb/etsb_js/admin/demo.js')}}
 
         {{ HTML::script('assets/etsb/etsb_js/validator/validator.js')}}
+        {{ HTML::script('assets/etsb/etsb_js/icheck/icheck.js')}}
 
 
 
