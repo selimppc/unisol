@@ -120,39 +120,37 @@ class AcmAmwController extends \BaseController {
 
 	public function config_index()
 	{
-//		$course_data= CourseManagement::with('relYear', 'relSemester', 'relCourse', 'relCourse.relSubject.relDepartment','relCourseType')
-//			->get();
-		return View::make('academic::amw.mark_distribution_courses.index_course_config')->with('title', 'CourseManagement List to Course Config');
+		$course = CourseConduct::latest('id')->with('relCourse','relCourse.relCourseType','relYear','relSemester','relDegree','relDegree.relDepartment')->get();
+
+		return View::make('academic::amw.mark_distribution_courses.index_course_config',compact('course'));
 	}
 
 	public function find_course_info($course_id)
 	{
-		$data= CourseManagement::with('relCourseType', 'relCourse')
+		$data= CourseConduct::with('relCourse','relCourse.relCourseType')
 			->where('course_id', '=', $course_id)
 			->first();
 
-		//first() means one array return and get() means object return
-
 		//To edit and update retrived data from Database
-		$course_data = DB::table('acm_course_config')
-			->select(
-				'acm_course_config.id as isConfigId',
-				'acm_course_config.acm_marks_dist_item_id as item_id',
-				'acm_course_config.readonly',
-				'acm_course_config.default_item',
-				'acm_course_config.is_attendance',
-				'acm_course_config.marks as actual_marks',
-				'acm_marks_dist_item.title as acm_dist_item_title',
-				'course.id as course_id2',
-				'course.evaluation_total_marks as evaluation_total_marks'
-
-			)
-
-			->join('course','acm_course_config.course_id','=', 'course.id')
-			->join('acm_marks_dist_item','acm_course_config.acm_marks_dist_item_id','=', 'acm_marks_dist_item.id')
-			->where('course.id', $course_id)
-			->get();
-		return View::make('academic::amw.mark_distribution_courses.show_course_to_insert')->with('datas', $data)->with('course_data', $course_data);
+//		$course_data = DB::table('acm_course_config')
+//			->select(
+//				'acm_course_config.id as isConfigId',
+//				'acm_course_config.acm_marks_dist_item_id as item_id',
+//				'acm_course_config.readonly',
+//				'acm_course_config.default_item',
+//				'acm_course_config.is_attendance',
+//				'acm_course_config.marks as actual_marks',
+//				'acm_marks_dist_item.title as acm_dist_item_title',
+//				'course.id as course_id2',
+//				'course.evaluation_total_marks as evaluation_total_marks'
+//
+//			)
+//
+//			->join('course','acm_course_config.course_id','=', 'course.id')
+//			->join('acm_marks_dist_item','acm_course_config.acm_marks_dist_item_id','=', 'acm_marks_dist_item.id')
+//			->where('course.id', $course_id)
+//			->get();
+		return View::make('academic::amw.mark_distribution_courses.show_course_to_insert',compact('data'));
 
 	}
 	public function save_acm_course_config_data()
