@@ -60,7 +60,7 @@
 
                                                         </tbody>
 
-                                                        <strong style="color:blueviolet">{{$value->relBatchCourse->relBatch->relSemester->title.' ,'.
+                                                        <strong style="color:midnightblue">{{$value->relBatchCourse->relBatch->relSemester->title.' ,'.
                                                         $value->relBatchCourse->relBatch->relYear->title}}</strong>
                                              </table>
                                           @else
