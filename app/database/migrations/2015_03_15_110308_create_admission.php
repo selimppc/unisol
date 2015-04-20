@@ -311,7 +311,7 @@ class CreateAdmission extends Migration {
             $table->dateTime('deadline');
             $table->string('total_marks', 8);
             $table->enum('status',array(
-                'requested', 'deny', 'accepted', 'cancel'
+                'requested', 'deny', 'accepted', 'cancel', 'assigned'
             ));
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
