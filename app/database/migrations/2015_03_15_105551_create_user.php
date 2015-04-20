@@ -51,7 +51,7 @@ class CreateUser extends Migration {
             $table->string('city',32);
             $table->string('state',32);
             $table->string('country',64);
-            $table->tinyInteger('zip_code', false, 5);
+            $table->integer('zip_code', false, 5);
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
