@@ -4,95 +4,66 @@
 class AcmMarksDistItem extends Eloquent
 {
 
+    //TODO :: model attributes and rules and validation
     protected $table = 'acm_marks_dist_item';
-
-
-    public function acmcourseconfig(){
-        return $this->HasOne('AcmCourseConfig');
-    }
-    // ratna code
-    public static function AcmMarksDistName($itemId)
-    {
-        $data = AcmMarksDistItem::find($itemId);
-        return $data->title;
-    }
-
-    //shafi code
-
-//    public static function AcmMarksDistItemIsExam($itemId)
-//    {
-//        $data = AcmMarksDistItem::find($itemId);
-//        return $data->is_exam;
-//    }
-
-
-
-    public function relExmExamList(){
-        return $this->belongsTo('ExmExamList');
-    }
-
-    //shafi code ends here
-
-
+    protected $fillable = [
+        'code', 'title', 'is_associative', 'is_exam',
+        'is_online'
+    ];
 
     private $errors;
-    // 1 Create data validation
-    private $rules = array(
-        'title' => 'required|min :3'
+    private $rules = [
+        'code' => 'required',
+        'title' => 'required',
 
-    );
+        'is_associative' => 'required|integer',
+        'is_exam' => 'required|integer',
+        'is_online' => 'required|integer',
 
+    ];
     public function validate($data)
     {
-        // make a new validator object
         $validate = Validator::make($data, $this->rules);
-        // check for failure
-        if ($validate->fails()) {
-            // set errors and return false
-            $this->errors = $validate->errors();
-            return false;
-        }
-        // validation pass
-        return true;
-    }
-
-    // 2 update data validation
-
-    private $rules2 = array(
-        'title' => 'required|min :3'
-
-    );
-
-    public function validate2($data)
-    {
-        // make a new validator object
-        $validate = Validator::make($data, $this->rules2);
-
-        // check for failure
         if ($validate->fails())
         {
-            // set errors and return false
             $this->errors = $validate->errors();
             return false;
         }
-
-        // validation pass
         return true;
     }
-
     public function errors()
     {
         return $this->errors;
     }
 
+
+    //TODO : Model Relationship
+    public function relAcmMarksDistribution(){
+        return $this->HasMany('AcmMarksDistribution' );
+    }
+    public function relAcmAcademicFinalMarks(){
+        return $this->HasMany('AcmAcademicFinalMarks');
+    }
+    public function relExmExamList(){
+        return $this->HasMany('ExmExamList');
+    }
+
+
+    // TODO : user info while saving data into table
     public static function boot(){
         parent::boot();
         static::creating(function($query){
-            $query->created_by = Auth::user()->get()->id;
-            $query->updated_by = Auth::user()->get()->id;
+            if(Auth::user()->check()){
+                $query->created_by = Auth::user()->get()->id;
+            }
         });
         static::updating(function($query){
-            $query->updated_by = Auth::user()->get()->id;
+            if(Auth::user()->check()){
+                $query->updated_by = Auth::user()->get()->id;
+            }
         });
     }
+
+
+    //TODO : Scope Area
 }
