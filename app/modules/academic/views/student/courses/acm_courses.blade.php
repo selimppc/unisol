@@ -1,4 +1,3 @@
-
 @extends('layouts.layout')
 
 @section('sidebar')
@@ -7,125 +6,120 @@
 
 @section('content')
 
-    <!-- Right side column. Contains the navbar and content of the page -->
-    <aside class="">
+<h3 class="box-title">Courses</h3>
+<div class="row">
+        <div class="col-lg-12">
+            <div class="box box-solid">
+                <div class="box-header">
 
-        <!-- Main content -->
-        <section class="content">
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                    <div class="box-group" id="accordion">
+                        <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
+                        @if(isset($total_credit))
+                             <strong style="color:midnightblue;font-size: medium">Total Credit  : {{$total_credit->relBatchCourse->relBatch->relDegree->total_credit}}</strong>
+                        @endif
+                        <div class="panel box box-primary">
+                            <div class="box-header">
 
+                                <h5 class="box-title">
 
-            <!-- START CUSTOM TABS -->
-            <h2 class="page-header">Courses</h2>
-            <div class="row">
-                <div class="col-md-12">
-                    <!-- Custom Tabs -->
-                    <div class="nav-tabs-custom">
-                        <ul class="nav nav-tabs">
-                            <li class="active"><a href="#tab_1" data-toggle="tab">Completed  </a></li>
-                            <li><a href="#tab_2" data-toggle="tab">Running</a></li>
-                            <li class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                    Settings  <span class="caret"></span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li role="presentation" data-toggle="modal" data-target="#addCategory"><a role="menuitem" tabindex="-1" href="#"> Add Category </a></li>
-                                    <li role="presentation" data-toggle="modal" data-target="#addResearchReview"><a role="menuitem" tabindex="-1" href="#"> Add Journal </a></li>
-                                </ul>
-                            </li>
-                            <li class="pull-right" class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-gear"></i>&nbsp;</a>
-                                <ul class="dropdown-menu">
-                                    <li role="presentation" data-toggle="modal" data-target="#addCategory"><a role="menuitem" tabindex="-1" href="#"> Add Category </a></li>
-                                    <li role="presentation" data-toggle="modal" data-target="#addResearchReview"><a role="menuitem" tabindex="-1" href="#"> Add Journal </a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                        <div class="tab-content">
-                            <div class="tab-pane active" id="tab_1">
-                                {{--<button class="pull-right btn btn-success btn-sm"  data-toggle="modal" data-target="#addResearchReview" >--}}
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" style="font-size: smaller;text-decoration: underline">
+                                       Completed
+                                    </a>
+                                </h5>
+                            </div>
+                            <div id="collapseOne" class="panel-collapse collapse in">
+                                <div class="box-body">
+                                    <div class="row">
 
-                                {{--</button>--}}
-                                <br>
-                                <div class="box-body table-responsive">
-                                    <table id="example1" class="table table-bordered table-striped">
+                                          <div class="col-lg-12">
+                                          @if(isset($courses))
+                                             <table class="table  table-bordered">
 
-                                        <thead>
-                                            <tr>
-                                                <th>Course</th>
-                                                <th>Credit</th>
-                                                <th>GPA</th>
-                                                <th>Status</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                               @if(isset($courses))
-                                                      @foreach($courses as $value)
+                                                   <thead>
                                                           <tr>
-
-                                                              <td>{{$value->relBatchCourse->relCourse->title}}</td>
-
-                                                              <td></td>
-                                                              <td></td>
-                                                              <td></td>
-
-                                                              <td>
-                                                                   {{--<a href="{{ URL::to('admission/amw/batch-waiver/show/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#bwModal" style="font-size: 12px;color: darkmagenta"><span class="fa fa-eye"></span></a>--}}
-                                                                   {{--<a class="btn btn-xs btn-default" href="{{ URL::to('admission/amw/batch-waiver/edit/'.$value->id) }}" data-toggle="modal" data-target="#bwModal" style="font-size: 12px;color: lightseagreen"><i class="fa fa-edit"></i></a>--}}
-                                                                   {{--<a data-href="{{ URL::to('admission/amw/batch-waiver/delete/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" style="font-size: 12px;color: lightcoral"><span class="fa  fa-trash-o"></span></a>--}}
-                                {{----}}
-                                                              </td>
+                                                             <th>Course</th>
+                                                             <th>Credit</th>
+                                                             <th>GPA</th>
+                                                             <th>Status</th>
+                                                             <th>Action</th>
                                                           </tr>
-                                                      @endforeach
-                                                @endif
+                                                   </thead>
+                                                        <tbody>
 
-                                        </tbody>
+                                                                @foreach($courses as $value)
+                                                                   <tr>
+                                                                        <td>{{($value->relBatchCourse->relCourse->title )}}</td>
+                                                                        <td>{{ $value->relBatchCourse->relCourse->credit}}</td>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                   </tr>
+                                                                @endforeach
 
+                                                        </tbody>
+
+                                                        <strong style="color:blueviolet">{{$value->relBatchCourse->relBatch->relSemester->title.' ,'.
+                                                        $value->relBatchCourse->relBatch->relYear->title}}</strong>
+                                             </table>
+                                          @else
+                                               {{"No Data found !"}}
+                                          @endif
+                                          </div>
+                                      </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel box box-danger">
+                            <div class="box-header">
+                                <h5 class="box-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" style="font-size: smaller;text-decoration: underline">
+                                        Running
+                                    </a>
+                                </h5>
+                            </div>
+                            <div id="collapseTwo" class="panel-collapse collapse">
+                                 <div class="box-body">
+                                       <div class="row">
+
+                                             <div class="col-lg-12">
+                                                 <table class="table table-bordered">
+                                                       <thread>
+
+                                                       </thread>
+
+                                                 </table>
+                                             </div>
+                                         </div>
+
+                                 </div>
+                            </div>
+                        </div>
+                        <div class="panel box box-success">
+                            <div class="box-header">
+                                <h4 class="box-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" style="font-size: smaller;text-decoration: underline">
+                                        Left
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseThree" class="panel-collapse collapse">
+                                <div class="box-body">
+                                    <table class="table table-bordered">
+                                      <thread>
+
+                                      </thread>
                                     </table>
-                                </div><!-- /.box -->
-                            </div><!-- /.tab-pane -->
-                            <div class="tab-pane" id="tab_2">
-                                <button class="pull-right btn btn-success btn-sm"  data-toggle="modal" data-target="#addPublications" >
 
-                                </button><br>
-
-
-
-                                <div class="box-body table-responsive">
-                                    <table id="example3" class="table table-bordered table-striped">
-                                        <thead>
-                                        <tr>
-                                            <th>Publication</th>
-                                            <th>Description</th>
-                                            <th>Category </th>
-                                            <th>Resources</th>
-                                            <th>Status</th>
-                                            <th>Action</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- /.box-body -->
+            </div><!-- /.box -->
+        </div><!-- /.col -->
+    </div><!-- /.row -->
 
 
-
-
-                                        </tbody>
-
-                                    </table>
-                                </div><!-- /.box -->
-                            </div><!-- /.tab-pane -->
-                        </div><!-- /.tab-content -->
-                    </div><!-- nav-tabs-custom -->
-                </div><!-- /.col -->
-
-
-            </div> <!-- /.row -->
-            <!-- END CUSTOM TABS -->
-
-
-
-        </section><!-- /.content -->
-    </aside><!-- /.right-side -->
-</div><!-- ./wrapper -->
-
-
-@stop
+    @stop
