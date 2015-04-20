@@ -3,69 +3,88 @@
 class ExmExamList extends \Eloquent
 {
 
+    //TODO :: model attributes and rules and validation
     protected $table = 'exm_exam_list';
+    protected $fillable = [
+        'year_id', 'semester_id', 'course_conduct_id', 'title','acm_marks_dist_item_id',
+        'status'
+    ];
+
     private $errors;
+    private $rules = [
+        'year_id' => 'required|integer',
+        'semester_id' => 'required|integer',
+        'course_conduct_id' => 'required|integer',
+        'title' => 'required',
+        'acm_marks_dist_item_id' => 'required|integer',
 
-    public function relCourseManagement()
-    {
-        return $this->belongsTo('CourseManagement', 'course_management_id', 'id');
-
-    }
-
-
-    public function ExmExaminer(){
-        return $this->belongsTo('ExmExaminer');
-    }
-
-    public function relAcmMarksDistItem()
-    {
-        return $this->belongsTo('AcmMarksDistItem', 'acm_marks_dist_item_id', 'id');
-    }
-
-    private $rules = array(
-        'title'  => 'required',
-    );
+        //'status' => 'required|integer',
+    ];
 
     public function validate($data)
     {
-        // make a new validator object
         $validate = Validator::make($data, $this->rules);
-        // check for failure
         if ($validate->fails())
         {
-            // set errors and return false
             $this->errors = $validate->errors();
             return false;
         }
-        // validation pass
         return true;
     }
-
     public function errors()
     {
         return $this->errors;
     }
 
 
-    public function scopeCourseList($query){
-        $query = $this::join('course_management',  function($query){
-            $query->on('course_management.id', '=', 'exm_exam_list.course_management_id');
-        })
-            ->join('course', 'course.id', '=', 'course_management.course_id')
-            ->select(DB::raw('course.title as title, exm_exam_list.course_management_id as cm_id'))
-            ->lists('title', 'cm_id');
-        return $query;
+    //TODO : Model Relationship
+    public function relExmExaminer(){
+        return $this->HasMany('ExmExaminer');
+    }
+    public function relExmExaminerComments(){
+        return $this->HasMany('ExmExaminerComments');
+    }
+    public function relExmQuestion(){
+        return $this->HasMany('ExmQuestion');
     }
 
+    public function relYear(){
+        return $this->belongsTo('Year', 'year_id', 'id');
+    }
+    public function relSemester(){
+        return $this->belongsTo('Semester', 'semester_id', 'id');
+    }
+    public function relAcmMarksDistItem(){
+        return $this->belongsTo('AcmMarksDistItem', 'acm_marks_dist_item_id', 'id');
+    }
+
+    // TODO : user info while saving data into table
     public static function boot(){
         parent::boot();
         static::creating(function($query){
-            $query->created_by = Auth::user()->get()->id;
-            $query->updated_by = Auth::user()->get()->id;
+            if(Auth::user()->check()){
+                $query->created_by = Auth::user()->get()->id;
+            }
         });
         static::updating(function($query){
-            $query->updated_by = Auth::user()->get()->id;
+            if(Auth::user()->check()){
+                $query->updated_by = Auth::user()->get()->id;
+            }
         });
     }
+
+
+    //TODO : Scope Area
+
+    public function scopeCourseList($query){
+        $query = $this::join('course_conduct',  function($query){
+            $query->on('course_conduct.id', '=', 'exm_exam_list.course_conduct_id');
+        })
+            ->join('course', 'course.id', '=', 'course_conduct.course_id')
+            ->select(DB::raw('course.title as title, exm_exam_list.course_conduct_id as cc_id'))
+            ->lists('title', 'cc_id');
+        return $query;
+    }
+
 
 }
