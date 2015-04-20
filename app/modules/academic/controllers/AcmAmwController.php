@@ -9,7 +9,7 @@ class AcmAmwController extends \BaseController {
 
 
 	//*****************Start amw dist item code***********************
-	public function amw_index()
+	/*public function amw_index()
 	{
 		$data = AcmMarksDistItem::orderBy('id', 'DESC')->paginate(5);
 		return View::make('academic::amw.mark_distribution_courses.index')->with('datas', $data)->with('title', 'Course Marks Distribution Item List');
@@ -113,16 +113,16 @@ class AcmAmwController extends \BaseController {
 	public function destroy($id)
 	{
 		//
-	}
+	}*/
 	//End code
 
 //****************Start amw course config code****************
 
 	public function config_index()
 	{
-		$course_data= CourseManagement::with('relYear', 'relSemester', 'relCourse', 'relCourse.relSubject.relDepartment','relCourseType')
-			->get();
-		return View::make('academic::amw.mark_distribution_courses.index_course_config')->with('title', 'CourseManagement List to Course Config')->with('datas', $course_data);
+//		$course_data= CourseManagement::with('relYear', 'relSemester', 'relCourse', 'relCourse.relSubject.relDepartment','relCourseType')
+//			->get();
+		return View::make('academic::amw.mark_distribution_courses.index_course_config')->with('title', 'CourseManagement List to Course Config');
 	}
 
 	public function find_course_info($course_id)
