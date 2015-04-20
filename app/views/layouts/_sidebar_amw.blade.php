@@ -41,6 +41,17 @@
 
 
 
+    <li class="treeview">
+        <a href="#">
+            <i class="fa fa-book text-purple"></i>
+            <span>Academic</span>
+            <i class="fa fa-angle-left pull-right"></i>
+        </a>
+        <ul class="treeview-menu">
+            <li><a href="{{ URL::to('academic/amw/config/') }}"></i><i class="fa fa-stack-overflow text-blue"></i> Courses</a></li>
+            <li><a href=""></i><i class="fa fa-qrcode text-green"></i> Exam Center</a></li>
+        </ul>
+    </li>
 
 
 </ul>
