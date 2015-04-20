@@ -21,6 +21,7 @@ return array(
     'AcmCourseConfig' => $baseDir . '/app/modules/academic/models/AcmCourseConfig.php',
     'AcmFacultyController' => $baseDir . '/app/modules/academic/controllers/AcmFacultyController.php',
     'AcmMarksDistItem' => $baseDir . '/app/modules/academic/models/AcmMarksDistItem.php',
+    'AcmMarksDistItemTable' => $baseDir . '/app/database/seeds/AcmMarksDistItemTable.php',
     'AcmMarksDistribution' => $baseDir . '/app/modules/academic/models/AcmMarksDistribution.php',
     'AcmMarksPolicy' => $baseDir . '/app/modules/academic/models/AcmMarksPolicy.php',
     'AcmStudentController' => $baseDir . '/app/modules/academic/controllers/AcmStudentController.php',
