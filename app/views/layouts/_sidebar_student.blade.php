@@ -28,6 +28,18 @@
         </ul>
     </li>
 
+    <li class="treeview">
+            <a href="#">
+                <i class="fa fa-folder-open" style="color:#0089db"></i>
+                <span>Academics</span>
+                <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="treeview-menu">
+                <li><a href="{{ URL::to('academic/student/courses') }}">Courses</a></li>
+
+            </ul>
+        </li>
+
 
 
 </ul>

@@ -1496,6 +1496,7 @@ class AdmAmwController extends \BaseController
     public function updateAdmTestQuestionPaper($id)
     {
         $data = Input::all();
+
         $model = AdmQuestion::find($id);
         $model->title = Input::get('title');
         $name = $model->title;
@@ -1510,15 +1511,17 @@ class AdmAmwController extends \BaseController
             catch ( Exception $e ){
                 //If there are any exceptions, rollback the transaction
                 DB::rollback();
-                Session::flash('danger', " Updated Admission Test Question $name not added.Invalid Request !");
+                Session::flash('danger', "Admission Test Question $name! not updates. Invalid Request !");
             }
-            return Redirect::back();
+         return Redirect::back();
         }else{
             $errors = $model->errors();
             Session::flash('errors', $errors);
             return Redirect::back()
-                ->with('errors', 'invalid');
+                ->with('errors', 'Input Data Not Valid');
         }
+
+
     }
 
     /**

@@ -8,12 +8,15 @@ class AcmStudentController extends \BaseController {
 
 	public function acmCoursesIndex()
 	{
-        return View::make('academic::student.courses.acm_courses');
+        $courses = CourseEnrollment::with('relBatchCourse.relCourse','relBatchCourse.relCourse.relYear')->get();
+       // print_r($courses);exit;
+
+        return View::make('academic::student.courses.acm_courses',compact('courses'));
 	}
 
 	public function create()
 	{
-		//
+
 	}
 
 	public function store()
