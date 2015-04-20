@@ -15,7 +15,7 @@ class DesignationTable extends Seeder {
         $items = array(
             'Lecturer' => 'Lecturer',
             'Assistant Professor' => 'Assistant Professor',
-           // 'Associate Professor' => 'Associate Professor',
+            'Associate Professor' => 'Associate Professor',
             'Professor' => 'Professor',
             'Junior Accountant' => 'Junior Accountant',
             'Senior Accountant' => 'Senior Accountant',
