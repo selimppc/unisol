@@ -1,19 +1,17 @@
 <?php
-class AcmAcademicAssignStudent extends \Eloquent
+class AcmAcademicFinalMarks extends \Eloquent
 {
     //TODO :: model attributes and rules and validation
-    protected $table = 'acm_academic_assign_student';
+    protected $table = 'acm_academic_final_marks';
     protected $fillable = [
-        'acm_academic_id', 'student_user_id', 'assigned_by', 'exm_question_id','marks',
-        'status'
+        'course_conduct_id', 'acm_marks_dist_item_id', 'user_id', 'marks'
     ];
 
     private $errors;
     private $rules = [
-        'acm_academic_id' => 'required|integer',
-        'student_user_id' => 'required|integer',
-        'assigned_by' => 'required|integer',
-        'exm_question_id' => 'required|integer',
+        'course_conduct_id' => 'required|integer',
+        'acm_marks_dist_item_id' => 'required|integer',
+        'user_id' => 'required|integer',
         'marks' => 'required',
         //'status' => 'required|integer',
     ];
@@ -35,17 +33,13 @@ class AcmAcademicAssignStudent extends \Eloquent
 
 
     //TODO : Model Relationship
-    public function relAcmAcademicAssignStudentSubmission(){
-        return $this->HasMany('AcmAcademicAssignStudentSubmission');
-    }
-    public function relAcmAcademicAssignStudentComments(){
-        return $this->HasMany('AcmAcademicAssignStudentComments');
+    public function relAcmMarksDistItem(){
+        return $this->belongsTo('AcmMarksDistItem', 'acm_marks_dist_item_id', 'id');
     }
 
-    public function relAcmAcademic(){
-        return $this->belongsTo('AcmAcademic', 'acm_academic', 'id');
+    public function relCourseConduct(){
+        return $this->belongsTo('CourseConduct', 'course_conduct_id', 'id');
     }
-
 
     // TODO : user info while saving data into table
     public static function boot(){
