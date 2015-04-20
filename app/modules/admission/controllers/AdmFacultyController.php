@@ -54,16 +54,6 @@ class AdmFacultyController extends \BaseController {
         $year_id = Input::get('year_id');
         $semester_id = Input::get('semester_id');
 
-
-
-//        $search_index_adm_examiner = AdmExaminer::with(['relBatch' => function($query) use($year_id, $semester_id) {
-//                $query->where('year_id', '=', $year_id);
-//                $query->where('semester_id', '=', $semester_id);
-//            }],'relBatch.relDegree','relBatch.relDegree.relDepartment',
-//            'relBatch.relYear','relBatch.relSemester')
-//            ->get();
-
-
         $search_index_adm_examiner = AdmExaminer::join('batch', function ($query) use ($year_id, $semester_id) {
             $query->on('batch.id', '=', 'adm_examiner.batch_id');
             $query->where('batch.year_id', '=', $year_id);
@@ -104,8 +94,6 @@ class AdmFacultyController extends \BaseController {
         }
     }
 
-
-
     /**
      * @return mixed
      */
@@ -113,29 +101,22 @@ class AdmFacultyController extends \BaseController {
     {
         $data = Input::all();
 
-        DB::beginTransaction();
-        try {
-            $model = new AdmExaminerComments();
-            $model->batch_id = $data['batch_id'];
-            $model->comment = $data['comment'];
-            $model->commented_to = $data['commented_to'];
-            $model->commented_by = Auth::user()->get()->id;
+        $model = new AdmExaminerComments();
+        $model->batch_id = $data['batch_id'];
+        $model->comment = $data['comment'];
+        $model->commented_to = $data['commented_to'];
+        $model->commented_by = Auth::user()->get()->id;
 
-            $user_name = User::FullName($model->commented_to);
-            if ($model->save()) {
-                Session::flash('message', 'Comments added To: ' . $user_name);
-                return Redirect::back();
-            } else {
-                $errors = $model->errors();
-                Session::flash('errors', $errors);
-                return Redirect::back()->with('errors', 'invalid');
-            }
-            DB::commit();
-        }catch ( Exception $e ){
-                //If there are any exceptions, rollback the transaction
-                DB::rollback();
-                Session::flash('danger', " Comments not added");
+        $user_name = User::FullName($model->commented_to);
+        if ($model->save()) {
+            Session::flash('message', 'Comments added To: ' . $user_name);
+            return Redirect::back();
+        } else {
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()->with('errors', 'invalid');
         }
+
         return Redirect::back();
     }
 
@@ -169,10 +150,6 @@ class AdmFacultyController extends \BaseController {
                 ->where('batch_admtest_subject_id' ,'=', $ba->id)
                 ->get();
         }
-
-//        print_r($admtest_question_paper);exit;
-
-
 
         $degree_id = Batch::where('id' ,'=', $batch_id )
             ->where('semester_id' ,'=', $semester_id)
@@ -210,7 +187,6 @@ class AdmFacultyController extends \BaseController {
 
     }
 
-
     /**
      * @param $qid = AdmQuestion's id
      * @return mixed
@@ -230,8 +206,6 @@ class AdmFacultyController extends \BaseController {
         $faculty_admisison_store_question_items = new AdmQuestionItems();
         if ($faculty_admisison_store_question_items->validate($data))
         {
-            DB::beginTransaction();
-            try {
                 $faculty_admisison_store_question_items->title = Input::get('title');
                 $faculty_admisison_store_question_items->adm_question_id = Input::get('adm_question_id');
                 $faculty_admisison_store_question_items->marks = Input::get('marks');
@@ -310,14 +284,6 @@ class AdmFacultyController extends \BaseController {
                     }
                 }
                 // redirect
-            DB::commit();
-            }
-            catch ( Exception $e ){
-                    //If there are any exceptions, rollback the transaction
-                    DB::rollback();
-                    Session::flash('danger', "Not added.Invalid Request!");
-            }
-            return Redirect::back();
         }
         else
         {
@@ -363,8 +329,7 @@ class AdmFacultyController extends \BaseController {
         $faculty_adm_update_question_items = new AdmQuestionItems();
         if ($faculty_adm_update_question_items->validate($data))
         {
-            DB::beginTransaction();
-            try {
+
                 $faculty_adm_update_question_items = AdmQuestionItems::find($id);
                 $faculty_adm_update_question_items->title = Input::get('title');
                 $faculty_adm_update_question_items->adm_question_id = Input::get('adm_question_id');
@@ -454,14 +419,6 @@ class AdmFacultyController extends \BaseController {
                     $adm_question_opt->destroy(Request::get('id'));
 
                 }
-                DB::commit();
-            }
-            catch ( Exception $e ){
-                //If there are any exceptions, rollback the transaction
-                DB::rollback();
-                Session::flash('danger', "Not updates.Invalid Request!");
-            }
-            return Redirect::back();
         }else
         {
             // failure, get errors
@@ -494,31 +451,22 @@ class AdmFacultyController extends \BaseController {
     {
         $info = Input::all();
 
-        DB::beginTransaction();
-        try {
+
             $model = new AdmQuestionComments();
             $model->adm_question_id = $info['adm_question_id'];
             $model->comment = $info['comment'];
             $model->commented_to = $info['commented_to'];
             $model->commented_by = Auth::user()->get()->id;
 
-//        $user_name = User::FullName($model->commented_to);
+            $user_name = User::FullName($model->commented_to);
             if($model->save()){
-                Session::flash('message', 'Comments added');
+                Session::flash('message', 'Comments added To: ' . $user_name );
                 return Redirect::back();
             }else{
                 $errors = $model->errors();
                 Session::flash('errors', $errors);
                 return Redirect::back()->with('errors', 'invalid');
             }
-            DB::commit();
-        }
-        catch ( Exception $e ){
-            //If there are any exceptions, rollback the transaction
-            DB::rollback();
-            Session::flash('danger', "Comments not added.Invalid Request!");
-        }
-        return Redirect::back();
     }
 
 
@@ -564,6 +512,7 @@ class AdmFacultyController extends \BaseController {
     public function evaluateQuestionsItems($a_q_id , $no_q = false )
     {
         $all = AdmQuestionEvaluation::where('adm_question_id', $a_q_id)->get();
+
         foreach ($all as $ev_itm) {
             $ev_id [] = $ev_itm->id;
             $ev_q_item_id [] = $ev_itm->adm_question_items_id;
@@ -600,31 +549,31 @@ class AdmFacultyController extends \BaseController {
     public function storeEvaluatedQuestionItems()
     {
         $data = Input::all();
-        DB::beginTransaction();
-        try
-        {
-            $model = AdmQuestionEvaluation::find($data['id']);
 
-            if($model->validate($data)){
+        $model = AdmQuestionEvaluation::find($data['id']);
+
+        if($model->validate($data)){
+            DB::beginTransaction();
+            try
+            {
                 if($model->update($data)){
                     Session::flash('message', 'Successfully Updates Information!');
                     return Redirect::back();
                 }
-            }else{
-                $errors = $model->errors();
-                Session::flash('errors', $errors);
-                return Redirect::back()
-                    ->with('error', 'invalid');
+                DB::commit();
             }
-            DB::commit();
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', "Not updates. Invalid Request !");
+            }
+            return Redirect::back();
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()
+                ->with('error', 'invalid');
         }
-        catch ( Exception $e ){
-            //If there are any exceptions, rollback the transaction
-            DB::rollback();
-            Session::flash('danger', "Not updates. Invalid Request !");
-        }
-        return Redirect::back();
-
     }
 
     /**
@@ -690,7 +639,6 @@ class AdmFacultyController extends \BaseController {
 
         $assign_course_commnt = CourseConductComments::where('course_conduct_id', $id)->get();
 
-
         return View::make('admission::faculty.course.assign_course',
             compact('assign_course','assign_course_commnt','id'));
 
@@ -703,32 +651,21 @@ class AdmFacultyController extends \BaseController {
     public function commentAssignCourse()
     {
         $info = Input::all();
-        DB::beginTransaction();
-        try
-        {
-            $model = new CourseConductComments();
+        $model = new CourseConductComments();
 
-            $model->course_conduct_id = $info['course_conduct_id'];
-            $model->comments = $info['comments'];
-            $model->commented_to = $info['commented_to'];
-            $model->commented_by = Auth::user()->get()->id;
+        $model->course_conduct_id = $info['course_conduct_id'];
+        $model->comments = $info['comments'];
+        $model->commented_to = $info['commented_to'];
+        $model->commented_by = Auth::user()->get()->id;
 
-            if ($model->save()) {
-                Session::flash('message', 'Comments added');
-                return Redirect::back();
-            } else {
-                $errors = $model->errors();
-                Session::flash('errors', $errors);
-                return Redirect::back()->with('errors', 'invalid');
-            }
-            DB::commit();
+        if ($model->save()) {
+            Session::flash('message', 'Comments added');
+            return Redirect::back();
+        }else {
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()->with('errors', 'invalid');
         }
-        catch ( Exception $e ){
-                //If there are any exceptions, rollback the transaction
-                DB::rollback();
-                Session::flash('danger', "Comments not added. Invalid Request !");
-        }
-        return Redirect::back();
 
     }
 
@@ -745,8 +682,4 @@ class AdmFacultyController extends \BaseController {
             return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
         }
     }
-
-
-
-
 }
