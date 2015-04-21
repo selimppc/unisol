@@ -49,7 +49,7 @@
         </a>
         <ul class="treeview-menu">
             <li><a href="{{ URL::to('academic/amw/config/') }}"></i><i class="fa fa-stack-overflow text-blue"></i> Courses</a></li>
-            <li><a href=""></i><i class="fa fa-qrcode text-green"></i> Exam Center</a></li>
+            <li><a href="{{ URL::to('common/exm-center') }}"></i><i class="fa fa-qrcode text-green"></i> Exam Center</a></li>
         </ul>
     </li>
 
