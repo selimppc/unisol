@@ -4,7 +4,14 @@
         {{$data->relCourse->title}}</h4>
 </div>
 <div class="modal-body">
-    <p> Total Marks: {{ $data->relCourse->evaluation_total_marks}}</p>
+    <p>Evaluation Total Marks:
+        <b>{{ isset($data->relCourse->evaluation_total_marks) ? $data->relCourse->evaluation_total_marks : 'No Item Added!'}}</b>
+    </p>
+    <p>So Far Added Marks:
+        <b>@foreach($totalmarks as $value)
+                {{ isset($value->marks) ? $value->marks : 'No Item Added!'}}
+            @endforeach</b>
+    </p>
     <div class="form-horizontal">
         <div class="form-group">
             {{ Form::hidden('course_id', $data->course_id, ['class'=>'course_id'])}}

@@ -130,6 +130,11 @@ class AcmAmwController extends \BaseController {
 		$data= CourseConduct::with('relCourse','relCourse.relCourseType')
 			->where('course_id', '=', $course_id)
 			->first();
+
+		$totalmarks = DB::table('acm_course_config')
+			->select(DB::raw('sum(marks) AS marks'))
+			->where('course_id', $course_id)->get();
+
 		//To edit and update retrived data from Database
 		$course_data = DB::table('acm_course_config')
 			->select(
@@ -149,7 +154,7 @@ class AcmAmwController extends \BaseController {
 			->where('course.id', $course_id)
 			->get();
 
-		return View::make('academic::amw.mark_distribution_courses.show_course_to_insert',compact('data','course_data'));
+		return View::make('academic::amw.mark_distribution_courses.show_course_to_insert',compact('data','course_data','totalmarks'));
 
 	}
 	public function save_acm_course_config_data()
@@ -250,6 +255,11 @@ class AcmAmwController extends \BaseController {
 		$data= CourseConduct::with('relCourse','relCourse.relCourseType')
 			->where('course_id', '=', $course_id)
 			->first();
+
+		$totalmarks = DB::table('acm_course_config')
+			->select(DB::raw('sum(marks) AS marks'))
+			->where('course_id', $course_id)->get();
+
 		$course_data = DB::table('acm_course_config')
 			->select(
 				'acm_course_config.id as isConfigId',
@@ -267,7 +277,8 @@ class AcmAmwController extends \BaseController {
 			->join('acm_marks_dist_item','acm_course_config.acm_marks_dist_item_id','=', 'acm_marks_dist_item.id')
 			->where('course.id', $course_id)
 			->get();
-		return View::make('academic::amw.mark_distribution_courses.show_course_config',compact('datas','config_data','totalmarks','coursetitle','data','course_data'));
+
+		return View::make('academic::amw.mark_distribution_courses.show_course_config',compact('datas','config_data','totalmarks','coursetitle','data','course_data','totalmarks'));
 	}
 
 	public function show_config($id)
