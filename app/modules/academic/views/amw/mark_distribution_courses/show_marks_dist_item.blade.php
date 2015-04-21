@@ -1,12 +1,18 @@
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-    <h4 class="modal-title" style="text-align: center;color: #800080;font-size:large">Course:
-    {{isset($course->relCourse->title) ? $course->relCourse->title: '' }} Marks Distribution</h4>
+    @if(isset($course))
+        <h4 class="modal-title" style="text-align: center;color: #800080;font-size:large">Course:
+        {{isset($course->relCourse->title) ? $course->relCourse->title : ''}} Marks Distribution</h4>
+    @else
+        <h4 class="modal-title" style="text-align: center;color: #800080;font-size:large">Course Marks Distribution</h4>
+    @endif
 </div>
 <div class="modal-body">
     <div style="padding: 10px; width: 90%;">
-        <p>Following is the MarksDistribution of this course.</p>
-        <p>Total Marks:
+        <p>Evaluation Total Marks:
+            <b>{{ isset($course->relCourse->evaluation_total_marks) ? $course->relCourse->evaluation_total_marks : 'No Item Added!'}}</b>
+        </p>
+        <p>So Far Added Marks:
             <b>@foreach($totalmarks as $value)
                     {{ isset($value->marks) ? $value->marks : 'No Item Added!'}}
                 @endforeach</b>

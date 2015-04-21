@@ -3,7 +3,6 @@
     @include('layouts._sidebar_amw')
 @stop
 @section('content')
-    <!-- START CUSTOM TABS -->
     <h2 class="page-header text-purple tab-text-margin">Course List</h2>
     <div class="row">
            <div class="col-md-12">

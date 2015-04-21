@@ -21,8 +21,15 @@
         @endforeach
         </tbody>
     </table>
-    <p>Following is the MarksDistribution of {{isset($coursetitle->relCourse->title) ? $coursetitle->relCourse->title: '' }}</p>
-    <p>Total Marks:
+    @if(isset($coursetitle))
+        <p>Following is the Marks Distribution of {{isset($coursetitle->relCourse->title) ? $coursetitle->relCourse->title: '' }}</p>
+    @else
+        <p>{{''}}</p>
+    @endif
+    <p>Evaluation Total Marks:
+        <b>{{ isset($coursetitle->relCourse->evaluation_total_marks) ? $coursetitle->relCourse->evaluation_total_marks : 'No Item Added!'}}</b>
+    </p>
+    <p>So Far Added Marks:
         <b>@foreach($totalmarks as $value)
                 {{ isset($value->marks) ? $value->marks : 'No Item Added!'}}
             @endforeach</b>
@@ -50,4 +57,5 @@
     <div class="modal-footer">
         <a href="{{URL::to('academic/amw/config/')}}" class="btn btn-primary">Back</a>
     </div>
+
 @stop
