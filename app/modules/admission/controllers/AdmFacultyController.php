@@ -149,6 +149,7 @@ class AdmFacultyController extends \BaseController {
     public function admTestQuestionPaper($year_id, $semester_id, $batch_id )
     {
         $examiner_type = AdmExaminer::where('batch_id', $batch_id)->first()->type;
+
         $ba_subject = Batch::with('relBatchAdmtestSubject','relBatchAdmtestSubject.relAdmQuestion')
             ->where('id', '=', $batch_id)
             ->get();
@@ -338,7 +339,7 @@ class AdmFacultyController extends \BaseController {
                 $faculty_adm_update_question_items->marks = Input::get('marks');
 
                 if (strtolower(Input::get('mcq')) == 'mcq') {
-                    if (strtolower(Input::get('r_c')) == 'mcq_single') {
+                    if (strtolower(Input::get('question_type')) == 'mcq_single') {
                         $faculty_adm_update_question_items->question_type = 'radio';
 
                         if ($faculty_adm_update_question_items->save()) {
@@ -368,9 +369,11 @@ class AdmFacultyController extends \BaseController {
                                 $adm_question_opt->save();
                                 $i++;
                             }
-                            echo "Option Data : Single Answer Saved!";
+                            echo "Option Data : Single Answer Updates!";
+                            return Redirect::back();
                         } else {
-                            echo "NO";
+                            echo "Single Answer Not Updates";
+                            return Redirect::back();
                         }
                     }else {
                         $faculty_adm_update_question_items->question_type = 'checkbox';
@@ -407,18 +410,29 @@ class AdmFacultyController extends \BaseController {
                                 $adm_question_opt->save();
                                 $i++;
                             }
-                            echo "Option Data : Multiple Answer Saved!";
+                            Session::flash('message', 'Option Data : Multiple Answer Updates!!');
+                            return Redirect::back();
+
                         } else {
-                            echo "NO";
+                            Session::flash('message', 'Option Data : Multiple Answer Not Updates!!');
+                            return Redirect::back();
                         }
                     }
                 } else {
 
                     $faculty_adm_update_question_items->question_type = 'text';
-                    $faculty_adm_update_question_items->save();
+                    if ($faculty_adm_update_question_items->save()) {
+                        Session::flash('message', 'Option Data : Descriptive Answer Updates!');
+
+                    } else {
+                        Session::flash('error', 'Descriptive Answer Not Updates!');
+
+                    }
 
                     $adm_question_opt = new AdmQuestionOptAns();
                     $adm_question_opt->destroy(Request::get('id'));
+
+                    return Redirect::back();
 
                 }
         }else
