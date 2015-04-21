@@ -148,11 +148,11 @@ class AdmFacultyController extends \BaseController {
      */
     public function admTestQuestionPaper($year_id, $semester_id, $batch_id )
     {
-        $ba_subject = BatchAdmtestSubject::with('relAdmQuestion', 'relBatch.relAdmExaminer')
+        $ba_subject = AdmExaminer::with('relBatch', 'relBatch.relBatchAdmtestSubject',
+            'relBatch.relBatchAdmtestSubject.relAdmQuestion')
             ->where('batch_id', '=', $batch_id)
             ->get();
 
-        print_r($ba_subject);exit;
 
         $degree_id = Batch::where('id' ,'=', $batch_id )
             ->where('semester_id' ,'=', $semester_id)
