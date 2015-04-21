@@ -148,11 +148,10 @@ class AdmFacultyController extends \BaseController {
      */
     public function admTestQuestionPaper($year_id, $semester_id, $batch_id )
     {
-        $ba_subject = AdmExaminer::with('relBatch', 'relBatch.relBatchAdmtestSubject',
-            'relBatch.relBatchAdmtestSubject.relAdmQuestion')
-            ->where('batch_id', '=', $batch_id)
+        $examiner_type = AdmExaminer::where('batch_id', $batch_id)->first()->type;
+        $ba_subject = Batch::with('relBatchAdmtestSubject','relBatchAdmtestSubject.relAdmQuestion')
+            ->where('id', '=', $batch_id)
             ->get();
-
 
         $degree_id = Batch::where('id' ,'=', $batch_id )
             ->where('semester_id' ,'=', $semester_id)
@@ -164,7 +163,7 @@ class AdmFacultyController extends \BaseController {
             ->first();
 
         return View::make('admission::faculty.question_papers.question_papers',
-            compact('ba_subject','degree_id','degree_data','semester_id','year_id'));
+            compact('ba_subject','degree_id','degree_data','semester_id','year_id', 'examiner_type'));
     }
 
     /**

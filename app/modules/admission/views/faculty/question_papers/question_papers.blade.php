@@ -36,33 +36,32 @@
                       </thead>
                       <tbody>
                           @foreach($ba_subject as $values)
-                          	{{--{{ $values->relBatch->relBatchAdmtestSubject }}--}}
-                          	@foreach($values->relBatch->relBatchAdmtestSubject as $qt)
-                          		{{--{{$qt->rel_adm_question}}--}}
-                          		@foreach($qt->rel_adm_question as $question)
+                          	{{--{{ $values->relBatchAdmtestSubject->id }}--}}
+                          	@foreach($values->relBatchAdmtestSubject as $qt)
+                          		{{--{{$qt->relAdmQuestion->id}}--}}
+                          		@foreach($qt->relAdmQuestion as $question)
+                                    {{$question->id }}
 
                                     <tr>
-                                        {{--<td><input type="checkbox" name="id[]" class="myCheckbox" value="{{ $values['id'] }}"></td>--}}
-
-                                        <td>{{ $values->id }}</td>
+                                        <td><input type="checkbox" name="id[]" class="myCheckbox" value="{{ $question->id }}"></td>
 
                                         <td>{{ $question->title }}</td>
                                         <td>{{ $question->deadline }}</td>
                                         <td>{{ $qt->relAdmtestSubject->title }}</td>
-                                        <td>{{ $qt->relBatch->relDegree->relDepartment->title }}</td>
-                                        <td>{{ $qt->relBatch->relYear->title }}</td>
-                                        <td>{{ $qt->relBatch->relSemester->title }}</td>
-                                        <td>{{ $values->type }}</td>
+                                        <td>{{ $values->relDegree->relDepartment->title }}</td>
+                                        <td>{{ $values->relYear->title }}</td>
+                                        <td>{{ $values->relSemester->title }}</td>
+                                        <td> {{$examiner_type}} </td>
                                         <td>
-                                             @if( $values->type == 'both' )
-                                                   <a href="{{ URL::route('admission.faculty.question-papers.view-question-paper',['id'=>$values->id]) }}" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modal">VQP</a>
-                                                   <a href="{{ URL::route('admission.faculty.question-papers.view-questions-items',['id'=>$values->id]) }}" class="btn btn-primary btn-xs" >VQs</a>
-                                                   <a href="{{ URL::route('admission.faculty.question-papers.view-assign-to-question-paper',['q_id'=>$values->id]) }}" class="btn bg-purple btn-xs" data-toggle="modal" data-target="#modal" >Comments</a>
-                                             @elseif( $values->type == 'question-setter' )
-                                                   <a href="{{ URL::route('admission.faculty.question-papers.view-question-paper',['id'=>$values->id]) }}" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modal">VQP</a>
-                                                   <a href="{{ URL::route('admission.faculty.question-papers.add-question-paper-item',['qid'=>$values->id]) }}" class="btn btn-info btn-xs " data-toggle="modal" data-target="#modal">AQ</a>
-                                                   <a href="{{ URL::route('admission.faculty.question-papers.view-questions-items',['id'=>$values->id]) }}" class="btn btn-primary btn-xs" >VQs</a>
-                                                   <a href="{{ URL::route('admission.faculty.question-papers.view-assign-to-question-paper',['q_id'=>$values->id]) }}" class="btn bg-purple btn-xs" data-toggle="modal" data-target="#modal" >Comments</a>
+                                             @if( $examiner_type == 'both' )
+                                                   <a href="{{ URL::route('admission.faculty.question-papers.view-question-paper',['question_id'=>$question->id]) }}" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modal">VQP</a>
+                                                   <a href="{{ URL::route('admission.faculty.question-papers.view-questions-items',['question_id'=>$question->id]) }}" class="btn btn-primary btn-xs" >VQs</a>
+                                                   <a href="{{ URL::route('admission.faculty.question-papers.view-assign-to-question-paper',['question_id'=>$question->id]) }}" class="btn bg-purple btn-xs" data-toggle="modal" data-target="#modal" >Comments</a>
+                                             @elseif( $examiner_type == 'question-setter' )
+                                                   <a href="{{ URL::route('admission.faculty.question-papers.view-question-paper',['question_id'=>$question->id]) }}" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modal">VQP</a>
+                                                   <a href="{{ URL::route('admission.faculty.question-papers.add-question-paper-item',['question_id'=>$question->id]) }}" class="btn btn-info btn-xs " data-toggle="modal" data-target="#modal">AQ</a>
+                                                   <a href="{{ URL::route('admission.faculty.question-papers.view-questions-items',['question_id'=>$question->id]) }}" class="btn btn-primary btn-xs" >VQs</a>
+                                                   <a href="{{ URL::route('admission.faculty.question-papers.view-assign-to-question-paper',['question_id'=>$question->id]) }}" class="btn bg-purple btn-xs" data-toggle="modal" data-target="#modal" >Comments</a>
 
                                              @else
                                                    <a href="{{ URL::route('admission.faculty.question-papers.evaluate-questions',['adm_question_id'=>$values->id]) }}" class="btn bg-navy btn-xs " >Evaluate</a>
