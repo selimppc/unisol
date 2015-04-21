@@ -165,7 +165,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     public function scopeFacultyList($query){
         $role_id = Role::where('code', '=', 'faculty')->first()->id;
 
-        $query = $this::join('user_profile', function($query){
+        $query = array('' => 'Select Faculty ') + $this::join('user_profile', function($query){
                 $query->on('user_profile.user_id', '=', 'user.id');
             })
             ->select(DB::raw('CONCAT(user_profile.first_name, " ", user_profile.last_name) as full_name'), 'user.id as user_id')
@@ -181,7 +181,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
     public function scopeAmwList($query){
         $role_id = Role::where('code', '=', 'amw')->first()->id;
-        $query = $this::join('user_profile', function($query){
+        $query = array('' => 'Select AMW ') + $this::join('user_profile', function($query){
             $query->on('user_profile.user_id', '=', 'user.id');
         })
             ->select(DB::raw('CONCAT(user_profile.first_name, " ", user_profile.last_name) as full_name'), 'user.id as user_id')
