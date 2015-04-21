@@ -62,7 +62,6 @@ Route::post('academic/amw/config/acmconfigdelete/ajax',
 
 
 
-
 //*********------****** FACULTY START ******------*********
 
 //******************Faculty Marks Distribution(R)***************************

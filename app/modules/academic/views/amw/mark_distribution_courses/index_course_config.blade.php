@@ -47,12 +47,11 @@
                                 <td>{{$value->relCourse->relSubject->relDepartment->title}}</td>
                                 <td>{{$value->relYear->title}}</td>
                                 <td>{{$value->relSemester->title}}</td>
-                                {{--<td>{{ AcmCourseConfig::getCourseItemStatus($value->course_id, $value->relCourse->evaluation_total_marks) }}</td>--}}
-                                    <td>NO</td>
+                                <td>{{ AcmCourseConfig::getCourseItemStatus($value->course_id, $value->relCourse->evaluation_total_marks) }}</td>
                                 <td>
-                                <a href="{{ URL::route('coursefind.show', ['course_id'=>$value->course_id])  }}" class="btn btn-xs btn-default text-blue" data-toggle="modal" data-target="#addNew" data-toggle="tooltip" data-placement="left" title="Mark/Dist" href=""><i class="fa fa-plus text-purple"></i> Marks Distribution</a>
+                                <a href="{{ URL::route('coursefind.show', ['course_id'=>$value->course_id])  }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#addNew" data-toggle="tooltip" data-placement="left" title="Marks Distribution" href=""><i class="fa fa-plus text-purple"></i> Marks Distribution</a>
 
-                                <a href="{{ URL::route('dist.show', ['id'=>$value->course_id]) }}" class="btn btn-xs btn-default text-blue" data-toggle="modal" data-target="#marksDistModal" data-toggle="tooltip" data-placement="left" title="Show/Dist" href=""><i class="fa fa-eye text-green "></i> View Distribution</a>
+                                <a href="{{ URL::route('dist.show', ['id'=>$value->course_id]) }}" class="btn btn-xs btn-default text-blue" data-toggle="modal" data-target="#marksDistModal" data-toggle="tooltip" data-placement="left" title="Show Distribution" href=""><i class="fa fa-eye text-green "></i> View Distribution</a>
                                 </td>
                                 </tr>
                                 @endforeach
@@ -72,6 +71,7 @@
     <div class="modal fade" id="addNew" tabindex="-1" role="dialog" aria-labelledby="addScholarship" aria-hidden="true" data-keyboard="false" data-backdrop="static">
         <div class="modal-dialog modal-lg">
             <div class="modal-content ">
+
 
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
