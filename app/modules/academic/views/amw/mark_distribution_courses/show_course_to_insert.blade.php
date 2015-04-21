@@ -16,7 +16,7 @@
                 {{ Form::select('acm_marks_dist_item_id', [''=>'Select Option'] + AcmMarksDistItem::orderBy('title')->lists('title', 'id'),Input::old('acm_marks_dist_item_id'), ['class'=>'form-control addConfigListItem']) }}
             </div>
             <div class="col-md-4">
-                {{ Form::submit('ADD', ['class'=>'btn btn-info addConfigList','onClick'=>'addCourseListItem()']) }}
+                {{ Form::submit('ADD', ['class'=>'btn btn-xs btn-success addConfigList','onClick'=>'addCourseListItem()']) }}
             </div>
         </div>
     </div>
@@ -62,7 +62,7 @@
         @endforeach
         </tbody>
         <tr>
-            <td colspan="7">{{ Form::submit('Submit', ['class'=>'btn btn-info'] ) }}</td>
+            <td colspan="7">{{ Form::submit('Submit', ['class'=>'btn btn-xs btn-success'] ) }}</td>
         </tr>
     </table>
     {{Form::close()}}

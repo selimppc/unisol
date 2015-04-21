@@ -220,7 +220,6 @@ class AcmAmwController extends \BaseController {
 		if(Request::ajax())
 		{
 			$course_config_id = Input::get('acm_course_config_id');
-
 			$data = AcmCourseConfig::find($course_config_id);
 			if($data->delete())
 				return Response::json(['msg'=> 'Data Successfully Deleted']);
@@ -247,7 +246,28 @@ class AcmAmwController extends \BaseController {
 			->select(DB::raw('sum(marks) AS marks'))
 			->where('course_id', $course_id)->get();
 
-		return View::make('academic::amw.mark_distribution_courses.show_course_config',compact('datas','config_data','totalmarks','coursetitle'));
+		//To add marks distribution item from view page
+		$data= CourseConduct::with('relCourse','relCourse.relCourseType')
+			->where('course_id', '=', $course_id)
+			->first();
+		$course_data = DB::table('acm_course_config')
+			->select(
+				'acm_course_config.id as isConfigId',
+				'acm_course_config.acm_marks_dist_item_id as item_id',
+				'acm_course_config.readonly',
+				'acm_course_config.default_item',
+				'acm_course_config.is_attendance',
+				'acm_course_config.marks as actual_marks',
+				'acm_marks_dist_item.title as acm_dist_item_title',
+				'course.id as course_id2',
+				'course.evaluation_total_marks as evaluation_total_marks'
+
+			)
+			->join('course','acm_course_config.course_id','=', 'course.id')
+			->join('acm_marks_dist_item','acm_course_config.acm_marks_dist_item_id','=', 'acm_marks_dist_item.id')
+			->where('course.id', $course_id)
+			->get();
+		return View::make('academic::amw.mark_distribution_courses.show_course_config',compact('datas','config_data','totalmarks','coursetitle','data','course_data'));
 	}
 
 	public function show_config($id)
