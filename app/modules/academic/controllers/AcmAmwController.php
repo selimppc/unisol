@@ -130,27 +130,27 @@ class AcmAmwController extends \BaseController {
 		$data= CourseConduct::with('relCourse','relCourse.relCourseType')
 			->where('course_id', '=', $course_id)
 			->first();
-
+//    $datas = AcmCourseConfig::with('relCourse')	->where('course_id', '=', $course_id)->get();print_r($datas);exit;
 		//To edit and update retrived data from Database
-//		$course_data = DB::table('acm_course_config')
-//			->select(
-//				'acm_course_config.id as isConfigId',
-//				'acm_course_config.acm_marks_dist_item_id as item_id',
-//				'acm_course_config.readonly',
-//				'acm_course_config.default_item',
-//				'acm_course_config.is_attendance',
-//				'acm_course_config.marks as actual_marks',
-//				'acm_marks_dist_item.title as acm_dist_item_title',
-//				'course.id as course_id2',
-//				'course.evaluation_total_marks as evaluation_total_marks'
-//
-//			)
-//
-//			->join('course','acm_course_config.course_id','=', 'course.id')
-//			->join('acm_marks_dist_item','acm_course_config.acm_marks_dist_item_id','=', 'acm_marks_dist_item.id')
-//			->where('course.id', $course_id)
-//			->get();
-		return View::make('academic::amw.mark_distribution_courses.show_course_to_insert',compact('data'));
+		$course_data = DB::table('acm_course_config')
+			->select(
+				'acm_course_config.id as isConfigId',
+				'acm_course_config.acm_marks_dist_item_id as item_id',
+				'acm_course_config.readonly',
+				'acm_course_config.default_item',
+				'acm_course_config.is_attendance',
+				'acm_course_config.marks as actual_marks',
+				'acm_marks_dist_item.title as acm_dist_item_title',
+				'course.id as course_id2',
+				'course.evaluation_total_marks as evaluation_total_marks'
+
+			)
+			->join('course','acm_course_config.course_id','=', 'course.id')
+			->join('acm_marks_dist_item','acm_course_config.acm_marks_dist_item_id','=', 'acm_marks_dist_item.id')
+			->where('course.id', $course_id)
+			->get();
+
+		return View::make('academic::amw.mark_distribution_courses.show_course_to_insert',compact('data','course_data'));
 
 	}
 	public function save_acm_course_config_data()
@@ -170,9 +170,9 @@ class AcmAmwController extends \BaseController {
 			$model1 = ($acm_config_id[$i]) ? AcmCourseConfig::find($acm_config_id[$i]) : new AcmCourseConfig;
 
 			if($acm_config_id[$i])
-				$model1->updated_by = Auth::user()->get()->role_id;
+				$model1->updated_by = Auth::user()->get()->id;
 			else
-				$model1->created_by =Auth::user()->get()->id;
+				$model1->created_by = Auth::user()->get()->id;
 
 			$model1->acm_marks_dist_item_id = $acm_item_id[$i];
 			$model1->course_id = $data['course_id'][$i];
