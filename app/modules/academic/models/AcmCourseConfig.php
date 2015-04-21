@@ -27,12 +27,12 @@ class AcmCourseConfig extends Eloquent
                     $totalEntry += $percent;
                 }
             }
-//            if($totalEntry == 100)
-//            {
-//                return 'Done';
-//            }
+            if($totalEntry == 100)
+            {
+                return 'Done';
+            }
             if ($totalEntry < 100 && $totalEntry > 0) {
-                return 'Distribution Item added';
+                return 'Partial';
             }
             else
             {
@@ -41,7 +41,7 @@ class AcmCourseConfig extends Eloquent
         }
         else
         {
-            return 'No Distribution Item added';
+            return 'No';
         }
 
     }
