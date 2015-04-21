@@ -5,7 +5,9 @@
 @stop
 
 @section('content')
-
+<div>
+<a class="pull-right btn btn-xs btn-info btn-link" href="{{ URL::route('academic.student.enrollment')}}"  title="Enrollment"><strong style="color: darkgreen;font-size: medium">Enrollment</strong></a>
+</div>
 <h3 class="box-title">Courses</h3>
 <div class="row">
         <div class="col-lg-12">
