@@ -239,11 +239,15 @@ class AcmAmwController extends \BaseController {
 			->where('course_id', '=', $course_id)
 			->get();
 
+		$coursetitle= AcmCourseConfig::with('relAcmMarksDistItem', 'relCourse')
+			->where('course_id', '=', $course_id)
+			->first();
+
 		$totalmarks = DB::table('acm_course_config')
 			->select(DB::raw('sum(marks) AS marks'))
 			->where('course_id', $course_id)->get();
 
-		return View::make('academic::amw.mark_distribution_courses.show_course_config',compact('datas','config_data','totalmarks'));
+		return View::make('academic::amw.mark_distribution_courses.show_course_config',compact('datas','config_data','totalmarks','coursetitle'));
 	}
 
 	public function show_config($id)

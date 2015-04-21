@@ -21,7 +21,7 @@
         @endforeach
         </tbody>
     </table>
-    <p>Following is the MarksDistribution of this course.</p>
+    <p>Following is the MarksDistribution of {{isset($coursetitle->relCourse->title) ? $coursetitle->relCourse->title: '' }}</p>
     <p>Total Marks:
         <b>@foreach($totalmarks as $value)
                 {{ isset($value->marks) ? $value->marks : 'No Item Added!'}}
