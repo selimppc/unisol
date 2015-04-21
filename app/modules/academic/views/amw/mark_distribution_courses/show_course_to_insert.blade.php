@@ -1,6 +1,7 @@
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-    <h4 class="modal-title">Show Course Item config</h4>
+    <h4 class="modal-title" style="text-align: center;color: #800080;font-size:large"> Add/Edit Marks Distribution Item for Course:
+        {{$data->relCourse->title}}</h4>
 </div>
 <div class="modal-body">
     <p> Total Marks: {{ $data->relCourse->evaluation_total_marks}}</p>
@@ -32,7 +33,7 @@
         </thead>
         <tbody class="acm_course_config_list">
         {{ Form::hidden('course_conduct_id', $data->id, ['class'=>'form-control course_management_id'])}}
-        {{ Form::hidden('course_type_id', $data->course_type_id, ['class'=>'form-control course_type'])}}
+        {{ Form::hidden('course_type_id', $data->relCourse->course_type_id, ['class'=>'form-control course_type'])}}
         <?php $counter = 0;?>
         @foreach($course_data as $key=>$value)
             <tr>
@@ -66,6 +67,7 @@
     </table>
     {{Form::close()}}
 </div>
+
 <div class="modal-footer">
     <a href="{{URL::to('academic/amw/config/')}}" class="btn btn-default">Close </a>
 </div>

@@ -12,3 +12,10 @@ Route::any('academic/student/courses',
         'uses'=>'AcmStudentController@acmCoursesIndex']);
 
 
+Route::any('academic/student/enrollment',
+    ['as'=>'academic.student.enrollment',
+        'uses'=>'AcmStudentController@acmEnrollment']);
+
+Route::any('academic/student/course-enrollment',
+    ['as'=>'academic.student.course-enrollment',
+        'uses'=>'AcmStudentController@acmCoursesEnrollment']);

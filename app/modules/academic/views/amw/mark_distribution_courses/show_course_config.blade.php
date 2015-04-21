@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 @section('sidebar')
-    @include('academic::_sidebar')
+    @include('layouts._sidebar_amw')
 @stop
 @section('content')
     <table class="table table-bordered">
@@ -21,25 +21,32 @@
         @endforeach
         </tbody>
     </table>
-    <p>Following is the MarksDistribution of this course.</p>
-    {{--<p> Total Marks: {{ $datas['relCourse']['evaluation_total_marks']}}</p>--}}
+    @if(isset($coursetitle))
+        <p>Following is the Marks Distribution of {{isset($coursetitle->relCourse->title) ? $coursetitle->relCourse->title: '' }}</p>
+    @else
+        <p>{{''}}</p>
+    @endif
+    <p>Evaluation Total Marks:
+        <b>{{ isset($coursetitle->relCourse->evaluation_total_marks) ? $coursetitle->relCourse->evaluation_total_marks : 'No Item Added!'}}</b>
+    </p>
+    <p>So Far Added Marks:
+        <b>@foreach($totalmarks as $value)
+                {{ isset($value->marks) ? $value->marks : 'No Item Added!'}}
+            @endforeach</b>
+    </p>
     <table class="table table-bordered">
         <thead>
         <th>Item</th>
         <th>Marks(%)</th>
         <th>Actual Marks</th>
-        {{--<th>Course</th>--}}
         <th>IsAttendance</th>
         </thead>
         <tbody>
         @foreach($config_data as  $dkey => $dvalue)
-            {{--<p>Total Marks:</p>--}}
-            {{--<p>{{$dvalue['relCourse']['evaluation_total_marks']}}</p>--}}
             <tr>
                 <td>{{$dvalue['relAcmMarksDistItem']['title']}}</td>
                 <td>{{(($dvalue->marks * 100)/$dvalue['relCourse']['evaluation_total_marks'])}}</td>
                 <td>{{$dvalue->marks}}</td>
-                {{--<td>{{$dvalue['relCourse']['title']}}</td>--}}
                 <td>{{($dvalue->is_attendance == 1) ? 'Yes' : '';}}</td>
             </tr>
         @endforeach
@@ -50,4 +57,5 @@
     <div class="modal-footer">
         <a href="{{URL::to('academic/amw/config/')}}" class="btn btn-primary">Back</a>
     </div>
+
 @stop

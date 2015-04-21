@@ -71,6 +71,8 @@
             $("#ch_bkash").hide();
             $("#ch_credt_card").show();
         });
+        $('input#ce-mandatory-id').iCheck('disable');
+
 
         $(".textarea").wysihtml5();
 
