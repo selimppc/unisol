@@ -42,7 +42,9 @@
                           		@foreach($qt->rel_adm_question as $question)
 
                                     <tr>
-                                        <td><input type="checkbox" name="id[]" class="myCheckbox" value="{{ $values['id'] }}"></td>
+                                        {{--<td><input type="checkbox" name="id[]" class="myCheckbox" value="{{ $values['id'] }}"></td>--}}
+
+                                        <td>{{ $values->id }}</td>
 
                                         <td>{{ $question->title }}</td>
                                         <td>{{ $question->deadline }}</td>
