@@ -27,8 +27,8 @@
                             @if($view_examiner->status == 'requested' )
                                <a href="#" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#confirm_deny">Deny</a>
                                <a href="#" class="btn btn-success btn-xs" data-toggle="modal" data-target="#confirm_accept">Accept</a>
-                            @elseif( $view_examiner->status == 'accepted' )
-                               <a href="{{ URL::route('admission.faculty.question-papers.admtest-question-paper', [ 'year_id'=>$view_examiner->relBatch->year_id ,'semester_id'=>$view_examiner->relBatch->semester_id ,'batch_id'=>$view_examiner->batch_id  ]) }}" class="btn btn-info btn-xs" >Questions</a>
+                            {{--@elseif( $view_examiner->status == 'accepted' )--}}
+                               {{--<a href="{{ URL::route('admission.faculty.question-papers.admtest-question-paper', [ 'year_id'=>$view_examiner->relBatch->year_id ,'semester_id'=>$view_examiner->relBatch->semester_id ,'batch_id'=>$view_examiner->batch_id  ]) }}" class="btn btn-info btn-xs" >Questions</a>--}}
                             @endif
 
                         </td>

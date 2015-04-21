@@ -59,8 +59,8 @@ class AdmFacultyController extends \BaseController {
             $query->on('batch.id', '=', 'adm_examiner.batch_id');
             $query->where('batch.year_id', '=', $year_id);
             $query->where('batch.semester_id', '=', $semester_id);
-        })  ->select(DB::raw('adm_examiner.batch_id','adm_examiner.status',
-                             'batch.id','batch.year_id','batch.semester_id'))
+        })  ->select(DB::raw('adm_examiner.id as exm_id , adm_examiner.batch_id , adm_examiner.status as exm_status ,
+                             batch.id , batch.year_id , batch.semester_id '))
             ->get();
 
 //        print_r($search_index_adm_examiner);exit;

@@ -51,17 +51,17 @@
                              @foreach($search_index_adm_examiner as $index_adm_examiner_list)
                                  <tr>
                                      <td><input type="checkbox" name="id[]" class="myCheckbox" value="{{ $index_adm_examiner_list['id'] }}"></td>
-                                      <td>{{ HTML::linkAction('AdmFacultyController@viewAdmTest',$index_adm_examiner_list->relBatch->relDegree->relDegreeLevel->code.''.$index_adm_examiner_list->relBatch->relDegree->relDegreeGroup->code ,['id'=>$index_adm_examiner_list->id,'batch_id'=>$index_adm_examiner_list->batch_id], ['data-toggle'=>"modal", 'data-target'=>"#modal"]) }}</td>
+                                      <td>{{ HTML::linkAction('AdmFacultyController@viewAdmTest',$index_adm_examiner_list->relBatch->relDegree->relDegreeLevel->code.''.$index_adm_examiner_list->relBatch->relDegree->relDegreeGroup->code ,['id'=>$index_adm_examiner_list->exm_id,'batch_id'=>$index_adm_examiner_list->batch_id], ['data-toggle'=>"modal", 'data-target'=>"#modal"]) }}</td>
                                       <td>{{ isset($index_adm_examiner_list->relBatch->relDegree->relDepartment->title) ? $index_adm_examiner_list->relBatch->relDegree->relDepartment->title : '' }}</td>
                                       <td>{{ isset($index_adm_examiner_list->relBatch->relYear->title) ? $index_adm_examiner_list->relBatch->relYear->title : ''}}</td>
                                       <td>{{ isset($index_adm_examiner_list->relBatch->relSemester->title) ? $index_adm_examiner_list->relBatch->relSemester->title : '' }}</td>
                                       <td>{{ isset($index_adm_examiner_list->relBatch->relDegree->total_credit) ? $index_adm_examiner_list->relBatch->relDegree->total_credit : '' }}</td>
-                                      <td>{{ isset($index_adm_examiner_list->status) ? $index_adm_examiner_list->status : ''  }} </td>
+                                      <td>{{ isset($index_adm_examiner_list->exm_status) ? $index_adm_examiner_list->exm_status : ''  }} </td>
                                      <td>
-                                         @if($index_adm_examiner_list->status == 'requested' )
+                                         @if($index_adm_examiner_list->exm_status == 'requested' )
                                              <a class="btn btn-primary btn-xs" data-href="{{ URL::route('admission.faculty.admission-test.change-status-to-accept',['id'=>$index_adm_examiner_list->id]) }}" data-toggle="modal" data-target="#confirm-delete" href="">Accept</a>
                                              <a class="btn btn-success btn-xs" data-href="{{ URL::route('admission.faculty.admission-test.change-status-to-deny',['id'=>$index_adm_examiner_list->id]) }}" data-toggle="modal" data-target="#confirm-delete" href="">Deny</a>
-                                         @elseif( $index_adm_examiner_list->status == 'accepted' )
+                                         @elseif( $index_adm_examiner_list->exm_status == 'accepted' )
                                              <a href="{{ URL::route('admission.faculty.question-papers.admtest-question-paper', [ 'year_id'=>$index_adm_examiner_list->relBatch->year_id ,'semester_id'=>$index_adm_examiner_list->relBatch->semester_id ,'batch_id'=>$index_adm_examiner_list->batch_id  ]) }}" class="btn btn-info btn-xs" >Questions</a>
                                          @endif
                                      </td>
