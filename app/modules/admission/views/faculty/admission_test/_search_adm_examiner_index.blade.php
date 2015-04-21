@@ -56,7 +56,7 @@
                                       <td>{{ isset($index_adm_examiner_list->relBatch->relYear->title) ? $index_adm_examiner_list->relBatch->relYear->title : ''}}</td>
                                       <td>{{ isset($index_adm_examiner_list->relBatch->relSemester->title) ? $index_adm_examiner_list->relBatch->relSemester->title : '' }}</td>
                                       <td>{{ isset($index_adm_examiner_list->relBatch->relDegree->total_credit) ? $index_adm_examiner_list->relBatch->relDegree->total_credit : '' }}</td>
-                                      <td>{{ $index_adm_examiner_list->status }} </td>
+                                      <td>{{ isset($index_adm_examiner_list->status) ? $index_adm_examiner_list->status : ''  }} </td>
                                      <td>
                                          @if($index_adm_examiner_list->status == 'requested' )
                                              <a class="btn btn-primary btn-xs" data-href="{{ URL::route('admission.faculty.admission-test.change-status-to-accept',['id'=>$index_adm_examiner_list->id]) }}" data-toggle="modal" data-target="#confirm-delete" href="">Accept</a>
