@@ -6,6 +6,7 @@
  * Time: 10:16 AM
  */
 
+
 Route::any('academic/student/courses',
     ['as'=>'academic.student.courses.index',
         'uses'=>'AcmStudentController@acmCoursesIndex']);
