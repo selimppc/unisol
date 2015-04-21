@@ -32,7 +32,7 @@ class AcmCourseConfig extends Eloquent
 //                return 'Done';
 //            }
             if ($totalEntry < 100 && $totalEntry > 0) {
-                return 'Distribution Item added';
+                return 'Distribution Done';
             }
             else
             {
@@ -41,7 +41,7 @@ class AcmCourseConfig extends Eloquent
         }
         else
         {
-            return 'No Distribution Item added';
+            return 'No';
         }
 
     }
