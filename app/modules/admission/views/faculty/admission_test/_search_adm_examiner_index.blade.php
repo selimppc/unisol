@@ -3,7 +3,7 @@
     @include('layouts._sidebar_faculty')
 @stop
 @section('content')
-    <h2> Admission Test</h2>
+    <h2> Search Admission Test</h2>
     <div class="row">
           <div class="col-sm-12">
                   {{ Form::open(array('url' => 'admission/faculty/admission-test/search-adm-examiner-index')) }}
@@ -27,7 +27,7 @@
            </div>
     </div>
 
-    <a href="{{ URL::previous() }}" class="btn btn-success btn-xs">Back</a>
+    <a href="{{ URL::to('admission/faculty/admission-test') }}" class="btn btn-success btn-xs">Back</a>
 
      {{ Form::open(array('url' => 'admission/faculty/admission_test/batchDelete')) }}
                     <table id="example" class="table table-striped  table-bordered"  >
@@ -45,30 +45,30 @@
                                     <th>Status</th>
                                     <th>Action</th>
                                  </tr>
-                      </thead>
-                      <tbody>
-                      @if(isset($search_index_adm_examiner))
-                         @foreach($search_index_adm_examiner as $index_adm_examiner_list)
-                             <tr>
-                                 <td><input type="checkbox" name="id[]" class="myCheckbox" value="{{ $index_adm_examiner_list['id'] }}"></td>
-                                  <td>{{ isset($index_adm_examiner_list->relBatch->relDegree->relDegreeProgram->code) ? $index_adm_examiner_list->relBatch->relDegree->relDegreeProgram->code.''.$index_adm_examiner_list->relBatch->relDegree->relDegreeGroup->code :'' }}</td>
-                                  <td>{{ isset($index_adm_examiner_list->relBatch->relDegree->relDepartment->title) ? $index_adm_examiner_list->relBatch->relDegree->relDepartment->title : '' }}</td>
-                                  <td>{{ isset($index_adm_examiner_list->relBatch->relYear->title) ? $index_adm_examiner_list->relBatch->relYear->title : ''}}</td>
-                                  <td>{{ isset($index_adm_examiner_list->relBatch->relSemester->title) ? $index_adm_examiner_list->relBatch->relSemester->title : '' }}</td>
-                                  <td>{{ isset($index_adm_examiner_list->relBatch->relDegree->total_credit) ? $index_adm_examiner_list->relBatch->relDegree->total_credit : '' }}</td>
-                                  <td>{{ isset($index_adm_examiner_list->status) ? $index_adm_examiner_list->status : 'OK' }} </td>
-                                 <td>
-                                         @if($index_adm_examiner_list->status == 'Requested' )
-                                           <a class="btn btn-primary btn-xs" data-href="{{ URL::route('admission.faculty.admission-test.change-status-to-accept',['id'=>$index_adm_examiner_list->id]) }}" data-toggle="modal" data-target="#confirm-delete" href="">Accept</a>
-                                           <a class="btn btn-success btn-xs" data-href="{{ URL::route('admission.faculty.admission-test.change-status-to-deny',['id'=>$index_adm_examiner_list->id]) }}" data-toggle="modal" data-target="#confirm-delete" href="">Deny</a>
-                                         @elseif( $index_adm_examiner_list->status == 'Accepted' )
-                                           <a href="{{ URL::route('admission.faculty.question-papers.admtest-question-paper', [ 'year_id'=>$index_adm_examiner_list->relBatch->year_id ,'semester_id'=>$index_adm_examiner_list->relBatch->semester_id ,'batch_id'=>$index_adm_examiner_list->batch_id  ]) }}" class="btn btn-info btn-xs" >Questions</a>
+                          </thead>
+                          <tbody>
+                          @if(isset($search_index_adm_examiner))
+                             @foreach($search_index_adm_examiner as $index_adm_examiner_list)
+                                 <tr>
+                                     <td><input type="checkbox" name="id[]" class="myCheckbox" value="{{ $index_adm_examiner_list['id'] }}"></td>
+                                      <td>{{ HTML::linkAction('AdmFacultyController@viewAdmTest',$index_adm_examiner_list->relBatch->relDegree->relDegreeLevel->code.''.$index_adm_examiner_list->relBatch->relDegree->relDegreeGroup->code ,['id'=>$index_adm_examiner_list->id,'batch_id'=>$index_adm_examiner_list->batch_id], ['data-toggle'=>"modal", 'data-target'=>"#modal"]) }}</td>
+                                      <td>{{ isset($index_adm_examiner_list->relBatch->relDegree->relDepartment->title) ? $index_adm_examiner_list->relBatch->relDegree->relDepartment->title : '' }}</td>
+                                      <td>{{ isset($index_adm_examiner_list->relBatch->relYear->title) ? $index_adm_examiner_list->relBatch->relYear->title : ''}}</td>
+                                      <td>{{ isset($index_adm_examiner_list->relBatch->relSemester->title) ? $index_adm_examiner_list->relBatch->relSemester->title : '' }}</td>
+                                      <td>{{ isset($index_adm_examiner_list->relBatch->relDegree->total_credit) ? $index_adm_examiner_list->relBatch->relDegree->total_credit : '' }}</td>
+                                      <td>{{ $index_adm_examiner_list->status }} </td>
+                                     <td>
+                                         @if($index_adm_examiner_list->status == 'requested' )
+                                             <a class="btn btn-primary btn-xs" data-href="{{ URL::route('admission.faculty.admission-test.change-status-to-accept',['id'=>$index_adm_examiner_list->id]) }}" data-toggle="modal" data-target="#confirm-delete" href="">Accept</a>
+                                             <a class="btn btn-success btn-xs" data-href="{{ URL::route('admission.faculty.admission-test.change-status-to-deny',['id'=>$index_adm_examiner_list->id]) }}" data-toggle="modal" data-target="#confirm-delete" href="">Deny</a>
+                                         @elseif( $index_adm_examiner_list->status == 'accepted' )
+                                             <a href="{{ URL::route('admission.faculty.question-papers.admtest-question-paper', [ 'year_id'=>$index_adm_examiner_list->relBatch->year_id ,'semester_id'=>$index_adm_examiner_list->relBatch->semester_id ,'batch_id'=>$index_adm_examiner_list->batch_id  ]) }}" class="btn btn-info btn-xs" >Questions</a>
                                          @endif
-                                 </td>
-                             </tr>
-                        @endforeach
-                       @endif
-                      </tbody>
+                                     </td>
+                                 </tr>
+                            @endforeach
+                           @endif
+                          </tbody>
                     </table>
      {{ Form::close() }}
 
@@ -79,7 +79,6 @@
           </div>
         </div>
 </div>
-
 
 
 <!-- Modal :: Delete Confirmation -->
@@ -107,6 +106,4 @@
                          $('.debug-url').html('Delete URL: <strong>' + $(this).find('.danger').attr('href') + '</strong>');
                      })
             </script>
-
-
 @stop

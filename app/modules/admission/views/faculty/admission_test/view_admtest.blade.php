@@ -1,6 +1,6 @@
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-     <h1> View Admission Test "{{User::FullName($view_examiner->user_id)}}"</h1>
+     <h1> View Admission Test "{{ User::FullName($view_examiner->user_id) }}"</h1>
 </div>
 
 <div style="padding-left: 10px; width: 90%;">
@@ -24,10 +24,10 @@
                         <td>Status :</td>
                         <td>{{ $view_examiner->status }}
 
-                            @if($view_examiner->status == 'Requested' )
+                            @if($view_examiner->status == 'requested' )
                                <a href="#" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#confirm_deny">Deny</a>
                                <a href="#" class="btn btn-success btn-xs" data-toggle="modal" data-target="#confirm_accept">Accept</a>
-                            @elseif( $view_examiner->status == 'Accepted' )
+                            @elseif( $view_examiner->status == 'accepted' )
                                <a href="{{ URL::route('admission.faculty.question-papers.admtest-question-paper', [ 'year_id'=>$view_examiner->relBatch->year_id ,'semester_id'=>$view_examiner->relBatch->semester_id ,'batch_id'=>$view_examiner->batch_id  ]) }}" class="btn btn-info btn-xs" >Questions</a>
                             @endif
 

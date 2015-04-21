@@ -58,8 +58,14 @@ class AdmFacultyController extends \BaseController {
             $query->on('batch.id', '=', 'adm_examiner.batch_id');
             $query->where('batch.year_id', '=', $year_id);
             $query->where('batch.semester_id', '=', $semester_id);
-        })->paginate(10);
-        
+        });
+
+//        $search_index_adm_examiner = AdmExaminer::select(['adm_examiner.status'])->get();
+//        if (isset($status) && !empty($status)) $search_index_adm_examiner = $search_index_adm_examiner->where('adm_examiner.status', '=', $search_index_adm_examiner->status);
+//
+
+
+
         $year_id = array('' => 'Select Year ') + Year::lists('title', 'id');
         $semester_id = array('' => 'Select Semester ') + Semester::lists('title', 'id');
 
