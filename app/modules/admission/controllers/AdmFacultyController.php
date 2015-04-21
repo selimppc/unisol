@@ -51,6 +51,7 @@ class AdmFacultyController extends \BaseController {
      */
     public function searchAdmExaminer()
     {
+
         $year_id = Input::get('year_id');
         $semester_id = Input::get('semester_id');
 
@@ -58,8 +59,12 @@ class AdmFacultyController extends \BaseController {
             $query->on('batch.id', '=', 'adm_examiner.batch_id');
             $query->where('batch.year_id', '=', $year_id);
             $query->where('batch.semester_id', '=', $semester_id);
-        })->paginate(10);
-        
+        })  ->select(DB::raw('adm_examiner.id as exm_id , adm_examiner.batch_id , adm_examiner.status as exm_status ,
+                             batch.id , batch.year_id , batch.semester_id '))
+            ->get();
+
+//        print_r($search_index_adm_examiner);exit;
+
         $year_id = array('' => 'Select Year ') + Year::lists('title', 'id');
         $semester_id = array('' => 'Select Semester ') + Semester::lists('title', 'id');
 

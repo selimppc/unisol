@@ -130,35 +130,32 @@ class AcmAmwController extends \BaseController {
 		$data= CourseConduct::with('relCourse','relCourse.relCourseType')
 			->where('course_id', '=', $course_id)
 			->first();
-
 		//To edit and update retrived data from Database
-//		$course_data = DB::table('acm_course_config')
-//			->select(
-//				'acm_course_config.id as isConfigId',
-//				'acm_course_config.acm_marks_dist_item_id as item_id',
-//				'acm_course_config.readonly',
-//				'acm_course_config.default_item',
-//				'acm_course_config.is_attendance',
-//				'acm_course_config.marks as actual_marks',
-//				'acm_marks_dist_item.title as acm_dist_item_title',
-//				'course.id as course_id2',
-//				'course.evaluation_total_marks as evaluation_total_marks'
-//
-//			)
-//
-//			->join('course','acm_course_config.course_id','=', 'course.id')
-//			->join('acm_marks_dist_item','acm_course_config.acm_marks_dist_item_id','=', 'acm_marks_dist_item.id')
-//			->where('course.id', $course_id)
-//			->get();
-		return View::make('academic::amw.mark_distribution_courses.show_course_to_insert',compact('data'));
+		$course_data = DB::table('acm_course_config')
+			->select(
+				'acm_course_config.id as isConfigId',
+				'acm_course_config.acm_marks_dist_item_id as item_id',
+				'acm_course_config.readonly',
+				'acm_course_config.default_item',
+				'acm_course_config.is_attendance',
+				'acm_course_config.marks as actual_marks',
+				'acm_marks_dist_item.title as acm_dist_item_title',
+				'course.id as course_id2',
+				'course.evaluation_total_marks as evaluation_total_marks'
+
+			)
+			->join('course','acm_course_config.course_id','=', 'course.id')
+			->join('acm_marks_dist_item','acm_course_config.acm_marks_dist_item_id','=', 'acm_marks_dist_item.id')
+			->where('course.id', $course_id)
+			->get();
+
+		return View::make('academic::amw.mark_distribution_courses.show_course_to_insert',compact('data','course_data'));
 
 	}
 	public function save_acm_course_config_data()
 	{
 		$data = Input::all();
-
 		$isDefault = Input::get('isDefault');
-		// $course_management_id = Input::get('course_management_id');
 		$course_type_id = Input::get('course_type_id');
 		$isAttendance = Input::get('isAttendance');
 		$isReadOnly = Input::get('isReadOnly');
@@ -166,43 +163,35 @@ class AcmAmwController extends \BaseController {
 		$acm_item_id = Input::get('acm_marks_dist_item_id');
 		$count = count($acm_item_id);
 		for($i=0; $i < $count; $i++) {
-			//$model1 = $data['acm_config_id'][$i] ? AcmCourseConfig::find($acm_config_id[$i]) : new AcmCourseConfig;
 			$model1 = ($acm_config_id[$i]) ? AcmCourseConfig::find($acm_config_id[$i]) : new AcmCourseConfig;
-
-			if($acm_config_id[$i])
-				$model1->updated_by = Auth::user()->get()->role_id;
-			else
-				$model1->created_by =Auth::user()->get()->id;
-
+			if ($acm_config_id[$i]){
+				$model1->updated_by = Auth::user()->get()->id;}
+			else {
+			$model1->created_by = Auth::user()->get()->id;
 			$model1->acm_marks_dist_item_id = $acm_item_id[$i];
 			$model1->course_id = $data['course_id'][$i];
 			$model1->marks = $data['actual_marks'][$i];
 			$model1->default_item = 0;
-			if($isDefault){
-				foreach($isDefault as $isd){
-					if($isd == $i)
+			if ($isDefault) {
+				foreach ($isDefault as $isd) {
+					if ($isd == $i)
 						$model1->default_item = 1;
 				}
 			}
 			$model1->is_attendance = 0;
-			if($isAttendance) {
+			if ($isAttendance) {
 				foreach ($isAttendance as $isa) {
 					if ($isa == $i) {
 						$model1->is_attendance = 1;
 						$check_data = AcmAttendanceConfig::where('course_type_id', '=', $course_type_id)->first();
-						if(count($check_data) > 0)
-						{
+						if (count($check_data) > 0) {
 							$acm_config = AcmAttendanceConfig::find($check_data->id);
 							$acm_config->course_type_id = $course_type_id;
-							// $acm_config->course_management_id = $course_management_id;
 							$acm_config->acm_marks_dist_item_id = $acm_item_id[$i];
 							$acm_config->save();
-						}
-						else
-						{
+						} else {
 							$acm_config = new AcmAttendanceConfig;
 							$acm_config->course_type_id = $course_type_id;
-							// $acm_config->course_management_id = $course_management_id;
 							$acm_config->acm_marks_dist_item_id = $acm_item_id[$i];
 							$acm_config->save();
 						}
@@ -210,19 +199,21 @@ class AcmAmwController extends \BaseController {
 				}
 			}
 			$model1->readonly = 0;
-			if($isReadOnly){
-				foreach($isReadOnly as $isr){
-					if($isr == $i)
+			if ($isReadOnly) {
+				foreach ($isReadOnly as $isr) {
+					if ($isr == $i)
 						$model1->readonly = 1;
 				}
 			}
 			$model1->save();
 		}
+		}
 
 		// redirect
-		Session::flash('message', 'ACM Course Configuration Data Successfully Added !!');
+		Session::flash('message', 'Successfully Added Marks Distribution item!');
 		return Redirect::to('academic/amw/config/');
 	}
+
 	//Ajax delete in modal
 	public function ajax_delete_acm_course_config()
 	{
@@ -240,23 +231,40 @@ class AcmAmwController extends \BaseController {
 
 	public function course_config_show($course_id)
 	{
-		$data= CourseManagement::with('relYear', 'relSemester', 'relCourse', 'relCourse.relSubject.relDepartment')
+		$datas= CourseConduct::with('relYear', 'relSemester', 'relCourse', 'relCourse.relSubject.relDepartment')
 			->where('course_id', '=', $course_id)
 			->get();
+
 		$config_data= AcmCourseConfig::with('relAcmMarksDistItem', 'relCourse')
 			->where('course_id', '=', $course_id)
 			->get();
-		return View::make('academic::amw.mark_distribution_courses.show_course_config')->with('datas', $data)->with('config_data',$config_data);
+
+		$coursetitle= AcmCourseConfig::with('relAcmMarksDistItem', 'relCourse')
+			->where('course_id', '=', $course_id)
+			->first();
+
+		$totalmarks = DB::table('acm_course_config')
+			->select(DB::raw('sum(marks) AS marks'))
+			->where('course_id', $course_id)->get();
+
+		return View::make('academic::amw.mark_distribution_courses.show_course_config',compact('datas','config_data','totalmarks','coursetitle'));
 	}
 
 	public function show_config($id)
 	{
-		$data= AcmCourseConfig::with('relAcmMarksDistItem', 'relCourse')
+		$datas= AcmCourseConfig::with('relAcmMarksDistItem', 'relCourse')
 			->where('course_id', '=', $id)
-			//->where('is_attendance', '=', 1)
 			->get();
 
-		return View::make('academic::amw.mark_distribution_courses.show_marks_dist_item')->with('datas', $data);
+		$course= AcmCourseConfig::with('relAcmMarksDistItem', 'relCourse')
+			->where('course_id', '=', $id)
+			->first();
+
+		$totalmarks = DB::table('acm_course_config')
+			->select(DB::raw('sum(marks) AS marks'))
+			->where('course_id', $id)->get();
+
+		return View::make('academic::amw.mark_distribution_courses.show_marks_dist_item',compact('datas','course','totalmarks'));
 	}
 
 //End code

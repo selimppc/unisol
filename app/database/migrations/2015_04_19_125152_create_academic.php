@@ -298,6 +298,8 @@ class CreateAcademic extends Migration {
             $table->boolean('readonly');
             $table->boolean('default_item');
             $table->boolean('is_attendance');
+            $table->integer('created_by', false, 11);
+            $table->integer('updated_by', false, 11);
             $table->timestamps();
         });
         Schema::table('acm_course_config', function($table) {

@@ -36,7 +36,7 @@ Route::any('academic/amw/batch/delete',
 
 //*********------******  AMW START   ******------*********
 
-//*****************Amw Course Config**************************************
+//*****************Amw Course Config(R)**************************************
 
 Route::get('academic/amw/config/',
     'AcmAmwController@config_index'
@@ -61,9 +61,11 @@ Route::post('academic/amw/config/acmconfigdelete/ajax',
 );
 
 
-//*********------******  FACULTY START   ******------*********
 
-//******************Faculty Marks Distribution***************************
+
+//*********------****** FACULTY START ******------*********
+
+//******************Faculty Marks Distribution(R)***************************
 
 Route::get('academic/faculty/',
     'AcmFacultyController@index'
