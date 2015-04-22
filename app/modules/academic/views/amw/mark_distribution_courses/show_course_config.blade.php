@@ -3,7 +3,8 @@
     @include('layouts._sidebar_amw')
 @stop
 @section('content')
-    <table class="table table-bordered">
+    <div class="box-body table-responsive ">
+    <table class="table table-bordered table-hover table-striped">
         <thead>
         <th>CourseName</th>
         <th>Department</th>
@@ -21,19 +22,24 @@
         @endforeach
         </tbody>
     </table>
+    </div>
+
     @if(isset($coursetitle))
         <p>Marks Distribution Done.Following is the Distribution of Course : {{isset($coursetitle->relCourse->title) ? $coursetitle->relCourse->title: 'No Item Added!' }}</p>
     @else <p>Marks Distribution Is Not Done Yet.</p>
     @endif
-    <p>Evaluation Total Marks:
-        <b>{{ isset($coursetitle->relCourse->evaluation_total_marks) ? $coursetitle->relCourse->evaluation_total_marks : 'No Item Added!'}}</b>
-    </p>
+
+    <p>Evaluation Total Marks:<b>{{ isset($coursetitle->relCourse->evaluation_total_marks) ? $coursetitle->relCourse->evaluation_total_marks : 'No Item Added!'}}</b></p>
+
     <p>So Far Added Marks:
         <b>@foreach($totalmarks as $value)
                 {{ isset($value->marks) ? $value->marks : 'No Item Added!'}}
-            @endforeach</b>
+           @endforeach</b>
     </p>
-    <table class="table table-bordered">
+
+    <div>&nbsp;</div>
+    <div class="box-body table-responsive ">
+    <table class="table table-bordered table-hover table-striped">
         <thead>
         <th>Item</th>
         <th>Marks(%)</th>
@@ -51,8 +57,9 @@
         @endforeach
         </tbody>
     </table>
+    </div>
     <p>If Marks Distribution Is Not Done Then Go to Distribution And Make It Done First.
-        <button type="button" class="btn-xs btn btn-facebook" data-toggle="modal" data-target="#myModal" data-toggle="tooltip" data-placement="left" title="Marks Distribution"><i class="fa fa-plus text-green"></i> Marks Distribution
+        <button type="button" class="btn-xs btn text-maroon" style="background:#5CE6E6" data-toggle="modal" data-target="#myModal" data-toggle="tooltip" data-placement="left" title="Marks Distribution"> <i class="fa fa-plus text-purple"></i> Marks Distribution
         </button>
     </p>
     <div class="modal-footer">

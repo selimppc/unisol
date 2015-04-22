@@ -76,5 +76,6 @@
 </div>
 
 <div class="modal-footer">
-    <a href="{{URL::to('academic/amw/config/')}}" class="btn btn-default">Close </a>
+    <a href="{{URL::previous()}}" class="btn btn-default">Close </a>
+    {{--<a href="{{URL::current()}}" class="btn btn-default">close</a>--}}
 </div>

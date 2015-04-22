@@ -3,7 +3,7 @@
     @include('layouts._sidebar_amw')
 @stop
 @section('content')
-    <h2 class="page-header text-purple tab-text-margin">Course List</h2>
+    <h2 class="page-header text-purple tab-text-margin">Marks Distribution At Courses</h2>
     <div class="row">
            <div class="col-md-12">
             <!-- Custom Tabs -->
@@ -77,14 +77,6 @@
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 
-    <!-- Show course info Modal -->
-    <div class="modal fade" id="showModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true" data-keyboard="false" data-backdrop="static">
-        <div class="modal-dialog">
-            <div class="modal-content">
-
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
 
     <!-- Show course marksdistribution Modal -->
     <div class="modal fade" id="marksDistModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true" data-keyboard="false" data-backdrop="static">
