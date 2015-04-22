@@ -66,7 +66,7 @@ Route::post('academic/amw/config/acmconfigdelete/ajax',
 
 //******************Faculty Marks Distribution(R)***************************
 
-Route::get('academic/faculty/',
+Route::get('academic/faculty/course/config',
     'AcmFacultyController@index'
 );
 Route::any('academic/faculty/course/marksdistitem/show/{cm_id}',[

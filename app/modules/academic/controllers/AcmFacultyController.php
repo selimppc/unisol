@@ -7,18 +7,17 @@ class AcmFacultyController extends \BaseController {
 		//$this->beforeFilter('academicFaculty', array('except' => array('index')));
     }
 
-	//*********************Marks Distribution at Courses Start***********************************
+//*********************Marks Distribution at Courses Start(R)*************************
 
 	public function  index()
 	{
 		$title = 'Course List';
 		$faculty_id = Auth::user()->get()->id;
-		$datas= CourseManagement::with('relYear', 'relSemester', 'relCourse', 'relCourse.relSubject.relDepartment','relCourseType')
-				->where('user_id', '=', $faculty_id)
+		$datas= CourseConduct::latest('id')->with('relCourse','relCourse.relCourseType','relYear','relSemester','relDegree','relDegree.relDepartment')
+				->where('faculty_user_id', '=', $faculty_id)
 				->get();
 		return View::make('academic::faculty.mark_distribution_courses.index', compact(
-				'title', 'datas'
-		));
+				'title', 'datas'));
 	}
 
 	public function course_marks_dist_show($cm_id)
