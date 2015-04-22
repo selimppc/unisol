@@ -216,7 +216,7 @@ class AcmAmwController extends \BaseController {
 
 		// redirect
 		Session::flash('message', 'Successfully Added Marks Distribution item!');
-		return Redirect::to('academic/amw/config/');
+		return Redirect::back();
 	}
 
 	//Ajax delete in modal
