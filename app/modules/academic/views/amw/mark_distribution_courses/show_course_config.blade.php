@@ -33,6 +33,7 @@
                 {{ isset($value->marks) ? $value->marks : 'No Item Added!'}}
             @endforeach</b>
     </p>
+    <div>&nbsp;</div>
     <table class="table table-bordered">
         <thead>
         <th>Item</th>
@@ -52,7 +53,7 @@
         </tbody>
     </table>
     <p>If Marks Distribution Is Not Done Then Go to Distribution And Make It Done First.
-        <button type="button" class="btn-xs btn btn-facebook" data-toggle="modal" data-target="#myModal" data-toggle="tooltip" data-placement="left" title="Marks Distribution"><i class="fa fa-plus text-green"></i> Marks Distribution
+        <button type="button" class="btn-xs btn btn-facebook" data-toggle="modal" data-target="#myModal" data-toggle="tooltip" data-placement="left" title="Marks Distribution"><i class="fa fa-plus text-aqua"></i> Marks Distribution
         </button>
     </p>
     <div class="modal-footer">
