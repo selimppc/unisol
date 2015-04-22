@@ -5,10 +5,11 @@
 @stop
 
 @section('content')
-{{--<div>--}}
-{{--<a class="pull-right btn btn-xs btn-info btn-link" href="{{ URL::route('academic.student.enrollment')}}"  title="Enrollment"><strong style="color: darkgreen;font-size: medium">Enrollment</strong></a>--}}
-{{--</div>--}}
-<h3 class="box-title">Course Enrollment At </h3>
+<a class="pull-right btn btn-xs btn-success" href="{{ URL::route('academic.student.courses.index')}}"><b><i class="fa fa-arrow-circle-left"></i>Go Back</b></a>
+
+<h4 class="box-title"><b>Course Enrollment At {{$semester_title }} ,{{$year_title}}</b></h4>
+{{--<h4> Year: {{$year_title}}</h4>--}}
+{{--<h4> Semester : {{$semester_title }}</h4>--}}
 <div class="row">
         <div class="col-lg-12">
             <div class="box box-solid">
@@ -28,7 +29,7 @@
                                     </a>
                                 </h5>
                             </div>
-                            <div id="collapseOne" class="panel-collapse collapse in">
+                            <div id="collapseOne" class="panel-collapse ">
                                 <div class="box-body">
                                     <div class="row">
 
@@ -84,6 +85,7 @@
 
                                              <div class="col-lg-12">
                                              {{ Form::open(['route' => ['academic.student.course-enrollment']]) }}
+                                             {{--{{Form::hidden('year_id',$year_id)}}--}}
                                                   <table class="table  table-bordered">
 
                                                         <thead>
@@ -133,25 +135,58 @@
                                  </div>
                             </div>
                         </div>
-                        {{--<div class="panel box box-success">--}}
-                            {{--<div class="box-header">--}}
-                                {{--<h4 class="box-title">--}}
-                                    {{--<a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" style="font-size: smaller;text-decoration: underline">--}}
-                                        {{--Left--}}
-                                    {{--</a>--}}
-                                {{--</h4>--}}
-                            {{--</div>--}}
-                            {{--<div id="collapseThree" class="panel-collapse collapse">--}}
-                                {{--<div class="box-body">--}}
-                                    {{--<table class="table table-bordered">--}}
-                                      {{--<thread>--}}
+                        <div class="panel box box-success">
+                            <div class="box-header">
+                                <h4 class="box-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" style="font-size: smaller;text-decoration: underline">
+                                        Left
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseThree" class="panel-collapse collapse">
+                                <div class="box-body">
+                                                                    <div class="row">
 
-                                      {{--</thread>--}}
-                                    {{--</table>--}}
+                                                                          <div class="col-lg-12">
+                                                                          @if(isset($courses))
+                                                                             <table class="table  table-bordered">
 
-                                {{--</div>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
+                                                                                   <thead>
+                                                                                          <tr>
+                                                                                             <th>Course</th>
+                                                                                             <th>Credit</th>
+                                                                                             <th>GPA</th>
+                                                                                             <th>Status</th>
+                                                                                             <th>Action</th>
+                                                                                          </tr>
+                                                                                   </thead>
+                                                                                        <tbody>
+
+                                                                                                {{--@foreach($courses as $value)--}}
+                                                                                                   {{--<tr>--}}
+                                                                                                        {{--<td>{{($value->relBatchCourse->relCourse->title )}}</td>--}}
+                                                                                                        {{--<td>{{ $value->relBatchCourse->relCourse->credit}}</td>--}}
+                                                                                                        {{--<td></td>--}}
+                                                                                                        {{--<td></td>--}}
+                                                                                                        {{--<td></td>--}}
+                                                                                                   {{--</tr>--}}
+                                                                                                {{--@endforeach--}}
+
+                                                                                        </tbody>
+
+
+                                                                                        {{--<strong style="color:midnightblue">{{--}}
+                                                                                        {{--isset($courses->relBatchCourse->relBatch->relYear->title)}}</strong>--}}
+
+                                                                             </table>
+                                                                          @else
+                                                                               {{"No Data found !"}}
+                                                                          @endif
+                                                                          </div>
+                                                                      </div>
+                                                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div><!-- /.box-body -->
             </div><!-- /.box -->
