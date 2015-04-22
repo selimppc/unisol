@@ -247,10 +247,6 @@ class AcmAmwController extends \BaseController {
 			->where('course_id', '=', $course_id)
 			->first();
 
-		$totalmarks = DB::table('acm_course_config')
-			->select(DB::raw('sum(marks) AS marks'))
-			->where('course_id', $course_id)->get();
-
 		//To add marks distribution item from view page
 		$data= CourseConduct::with('relCourse','relCourse.relCourseType')
 			->where('course_id', '=', $course_id)
@@ -278,7 +274,7 @@ class AcmAmwController extends \BaseController {
 			->where('course.id', $course_id)
 			->get();
 
-		return View::make('academic::amw.mark_distribution_courses.show_course_config',compact('datas','config_data','totalmarks','coursetitle','data','course_data','totalmarks'));
+		return View::make('academic::amw.mark_distribution_courses.show_course_config',compact('datas','config_data','totalmarks','coursetitle','data','course_data'));
 	}
 
 	public function show_config($id)
