@@ -1,10 +1,10 @@
 @extends('layouts.layout')
 @section('sidebar')
-    @include('academic::_sidebar')
+    @include('layouts._sidebar_amw')
 @stop
 @section('content')
-    {{--<h4>{{$title}}</h4>--}}
-        <table class="table table-bordered">
+    <div class="box-body table-responsive ">
+        <table class="table table-bordered table-hover table-striped">
             <thead>
             <th>CourseName</th>
             <th>Department</th>
@@ -12,7 +12,6 @@
             <th>Semester</th>
             </thead>
             <tbody>
-
             @foreach($data as $value)
                 <tr>
                     <td>{{$value['relCourse']['title']}}</td>
@@ -24,11 +23,24 @@
             @endforeach
             </tbody>
         </table>
-        <p>Following is the MarksDistribution of this course.</p>
+    </div>
 
+    @if(isset($coursetitle))
+        <p>Marks Distribution Done.Following is the Distribution of Course : {{isset($coursetitle->relCourseConduct->relCourse->title) ? $coursetitle->relCourseConduct->relCourse->title: 'No Item Added!' }}</p>
+    @else <p>Marks Distribution Is Not Done Yet.</p>
+    @endif
 
+    <p>Evaluation Total Marks:<b>{{ isset($coursetitle->relCourseConduct->relCourse->evaluation_total_marks) ? $coursetitle->relCourseConduct->relCourse->evaluation_total_marks : 'No Item Added!'}}</b></p>
 
-        <table class="table table-bordered">
+    <p>So Far Added Marks:
+        <b>@foreach($totalmarks as $value)
+                {{ isset($value->marks) ? $value->marks : 'No Item Added!'}}
+            @endforeach</b>
+    </p>
+
+    <div>&nbsp;</div>
+    <div class="box-body table-responsive ">
+        <table class="table table-bordered table-hover table-striped">
             <thead>
             <th>Item</th>
             <th>Marks(%)</th>
@@ -45,7 +57,7 @@
 
                 <tr>
                     <td>{{$dvalue['relAcmMarksDistItem']['title']}}</td>
-                    <td>{{(($dvalue->marks * 100)/$dvalue['relCourseManagement']['relCourse']['evaluation_total_marks'])}}</td>
+                    <td>{{(($dvalue->marks * 100)/$dvalue['relCourseConduct']['relCourse']['evaluation_total_marks'])}}</td>
                     <td>{{$dvalue->marks}}</td>
                     <td>{{$dvalue->acm_marks_policy}}</td>
                     <td>{{($dvalue->is_attendance == 1) ? 'Yes' : '';}}</td>
@@ -54,14 +66,31 @@
             {{--@endif--}}
             </tbody>
         </table>
-        <p>If Marks Distribution is not done then go to distribution and make it done first.<a href="{{URL::to('academic/faculty/')}}" class="btn btn-link">MarksDistribution</a>
-
-            <a href="{{URL::to('academic/faculty/')}}" class="btn btn-primary" style="margin-left: 260px">Back </a>
-
-        </p>
     </div>
-</div>
-<div class="modal-footer">
+    <p>If Marks Distribution Is Not Done Then Go to Distribution And Make It Done First.
+        <button type="button" class="btn-xs btn text-maroon" style="background:#5CE6E6" data-toggle="modal" data-target="#myModal" data-toggle="tooltip" data-placement="left" title="Marks Distribution"> <i class="fa fa-plus text-purple"></i> Marks Distribution
+        </button>
+    </p>
+    <div class="modal-footer">
+        <a href="{{URL::to('academic/faculty/course/config')}}" class="pull-right btn-xs btn-success"> <i class="fa fa-arrow-circle-left"></i> Back</a>
+    </div>
+    <p>&nbsp;</p>
 
-</div>
+    {{--<!-- add new Dist Item -->--}}
+    {{--<div id="myModal" class="modal fade"data-keyboard="false" data-backdrop="static">--}}
+        {{--<div class="modal-dialog modal-lg">--}}
+            {{--<div class="modal-content">--}}
+                {{--<div class="modal-body">--}}
+                    {{--{{ Form::open(array('url' => 'academic/amw/course/marks/save', 'method' =>'post', 'role'=>'form','files'=>'true')) }}--}}
+                    {{--@include('academic::amw.mark_distribution_courses.show_course_to_insert')--}}
+                    {{--{{ Form::close() }}--}}
+                {{--</div>--}}
+            {{--</div>--}}
+        {{--</div>--}}
+    {{--</div>--}}
+
 @stop
+
+
+
+

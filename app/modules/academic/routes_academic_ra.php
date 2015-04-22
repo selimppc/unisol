@@ -34,8 +34,7 @@ Route::any('academic/amw/batch/delete',
 );*/
 
 
-//*********------******  AMW START   ******------*********
-
+//&&&&&&&&&&&&&&&&&&  AMW START  &&&&&&&&&&&&&&&&&&&&&&&
 //*****************Amw Course Config(R)**************************************
 
 Route::get('academic/amw/config/',
@@ -62,14 +61,13 @@ Route::post('academic/amw/config/acmconfigdelete/ajax',
 
 
 
-//*********------****** FACULTY START ******------*********
-
-//******************Faculty Marks Distribution(R)***************************
+//&&&&&&&&&&&&&&&&&  FACULTY START  &&&&&&&&&&&&&&&&&&&&&&&
+//******************Faculty Marks Distribution(R)********************
 
 Route::get('academic/faculty/course/config',
     'AcmFacultyController@index'
 );
-Route::any('academic/faculty/course/marksdistitem/show/{cm_id}',[
+Route::any('academic/faculty/course/marksdistitem/show/{cc_id}',[
     'as' => 'coursemarksdist.show',
     'uses'=> 'AcmFacultyController@course_marks_dist_show'
 ]);

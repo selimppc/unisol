@@ -1,16 +1,22 @@
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-    <h4 class="modal-title">Show Course Item config</h4>
+    <h4 class="modal-title" style="text-align: center;color: #800080;font-size:large"> Add/Edit Marks Distribution Item for Course:
+        {{$data->relCourse->title}}</h4>
 </div>
 <div class="modal-body">
-
-    <p> Total Marks: {{ $datas->relCourse->evaluation_total_marks}}</p>
-
+    <p>Evaluation Total Marks:
+        <b>{{ isset($data->relCourse->evaluation_total_marks) ? $data->relCourse->evaluation_total_marks : 'No Item Added!'}}</b>
+    </p>
+    <p>So Far Added Marks:
+        <b>@foreach($totalmarks as $value)
+                {{ isset($value->marks) ? $value->marks : 'No Item Added!'}}
+            @endforeach</b>
+    </p>
     <div class="form-horizontal">
         <div class="form-group">
-            {{ Form::hidden('course_id', $datas->course_id, ['class'=>'form-control course_id'])}}
-            {{ Form::hidden('course_title', $datas->relCourse->course_title, ['class'=>'form-control course_title'])}}
-            {{ Form::hidden('course_evaluation_total_marks', $datas->relCourse->evaluation_total_marks, ['class'=>'course_evalution_marks'])}}
+            {{ Form::hidden('course_id', $data->course_id, ['class'=>'course_id'])}}
+            {{ Form::hidden('course_title', $data->relCourse->title, ['class'=>' course_title'])}}
+            {{ Form::hidden('course_evaluation_total_marks', $data->relCourse->evaluation_total_marks, ['class'=>'course_evalution_marks'])}}
 
         </div>
 
@@ -39,8 +45,8 @@
 
         <tbody class="acm_marks_dist_list">
 
-        {{ Form::hidden('course_management_id', $datas->id, ['class'=>'form-control course_management_id'])}}
-        {{ Form::hidden('course_type_id', $datas->course_type_id, ['class'=>'form-control course_type'])}}
+        {{ Form::hidden('course_conduct_id', $data->id, ['class'=>'course_conduct_id'])}}
+        {{ Form::hidden('course_type_id', $data->relCourse->course_type_id, ['class'=>'course_type'])}}
         <?php $counter = 0;?>
         @foreach($course_result as $key=>$value)
 
@@ -63,9 +69,9 @@
                 <td>
                     {{--To check readonly field--}}
                     @if($value->readonly == 1)
-                        <input type="text" name="marks_percent[]" value="{{ ($value->actual_marks/$datas->relCourse->evaluation_total_marks) * 100 }}" class="form-control totalPer amw_marks_percent{{$key}}" id="marks_percent_id{{$key}}" onchange="calculateActualMarksFaculty(this.id, {{$datas->relCourse->evaluation_total_marks}},this.value)" onblur="calculateTotalMarksPercent(this)" readonly required />
+                        <input type="text" name="marks_percent[]" value="{{ ($value->actual_marks/$data->relCourse->evaluation_total_marks) * 100 }}" class="form-control totalPer amw_marks_percent{{$key}}" id="marks_percent_id{{$key}}" onchange="calculateActualMarksFaculty(this.id, {{$data->relCourse->evaluation_total_marks}},this.value)" onblur="calculateTotalMarksPercent(this)" readonly required />
                     @else
-                        <input type="text" name="marks_percent[]" value="{{ ($value->actual_marks/$datas->relCourse->evaluation_total_marks) * 100 }}" class="form-control totalPer amw_marks_percent{{$key}}"  id="marks_percent_id{{$key}}" onchange="calculateActualMarksFaculty(this.id, {{$datas->relCourse->evaluation_total_marks}},this.value)" onblur="calculateTotalMarksPercent(this)" required />
+                        <input type="text" name="marks_percent[]" value="{{ ($value->actual_marks/$data->relCourse->evaluation_total_marks) * 100 }}" class="form-control totalPer amw_marks_percent{{$key}}"  id="marks_percent_id{{$key}}" onchange="calculateActualMarksFaculty(this.id, {{$data->relCourse->evaluation_total_marks}},this.value)" onblur="calculateTotalMarksPercent(this)" required />
                     @endif
 
                 </td>

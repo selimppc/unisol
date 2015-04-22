@@ -22,14 +22,23 @@ class AcmFacultyController extends \BaseController {
 
 	public function course_marks_dist_show($cm_id)
 	{
-		$data= CourseManagement::with('relYear', 'relSemester', 'relCourse', 'relCourse.relSubject.relDepartment')
+		$data= CourseConduct::with('relCourse','relCourse.relCourseType','relYear','relSemester','relDegree','relDegree.relDepartment')
 			->where('id', '=', $cm_id)
 			->get();
-		$config_data = AcmMarksDistribution::with('relAcmMarksDistItem', 'relCourseManagement.relCourse')
-			->where('course_management_id', '=', $cm_id)
+
+		$config_data = AcmMarksDistribution::with('relAcmMarksDistItem', 'relCourseConduct.relCourse')
+			->where('course_conduct_id', '=', $cm_id)
 			->get();
-		return View::make('academic::faculty.mark_distribution_courses.show')->with(['data'=>$data,
-			'config_data'=>$config_data]);
+
+        $coursetitle= AcmMarksDistribution::with('relAcmMarksDistItem', 'relCourseConduct.relCourse')
+            ->where('course_conduct_id', '=', $cm_id)
+            ->first();
+
+        $totalmarks = DB::table('acm_marks_distribution')
+            ->select(DB::raw('sum(marks) AS marks'))
+            ->where('course_conduct_id', $cm_id)->get();
+
+		return View::make('academic::faculty.mark_distribution_courses.show',compact('data','config_data','coursetitle','totalmarks'));
 	}
 	public function marks_dist_show($cm_id)
 	{
@@ -43,13 +52,17 @@ class AcmFacultyController extends \BaseController {
 
 	public function find_marksdist_info($course_id)
 	{
-		$data= CourseManagement::with('relCourseType', 'relCourse')
-			->where('course_id', '=', $course_id)
-			->first();
+		$data=CourseConduct::with('relCourse','relCourse.relCourseType')
+            ->where('course_id', '=', $course_id)
+            ->first();
 
-		//$data->id now contains the course_management_id
+        $totalmarks = DB::table('acm_course_config')
+            ->select(DB::raw('sum(marks) AS marks'))
+            ->where('course_id', $course_id)->get();
 
-		$acm_marks_distribution = AcmMarksDistribution::where('course_management_id', '=', $data->id)->get();
+        //$data->id now contains the course_management_id
+
+		$acm_marks_distribution = AcmMarksDistribution::where('course_conduct_id', '=', $data->id)->get();
 
 		if(isset($acm_marks_distribution[0])!=null){
 			// $result = $acm_marks_distribution;
@@ -66,13 +79,13 @@ class AcmFacultyController extends \BaseController {
 					'acm_marks_distribution.acm_marks_policy',
 					'course.id as course_id2'
 				)
-				->join('course_management','acm_marks_distribution.course_management_id','=', 'course_management.id')
-				->join('course','course_management.course_id','=', 'course.id')
+				->join('course_conduct','acm_marks_distribution.course_conduct_id','=', 'course_conduct.id')
+				->join('course','course_conduct.course_id','=', 'course.id')
 				->join('acm_marks_dist_item','acm_marks_distribution.acm_marks_dist_item_id','=', 'acm_marks_dist_item.id')
-				->where('acm_marks_distribution.course_management_id', $data->id)
+				->where('acm_marks_distribution.course_conduct_id', $data->id)
 				->get();
 		}else{
-			$result = DB::table('acm_course_config')
+			$course_result = DB::table('acm_course_config')
 				->select(
 					'acm_course_config.id as isConfigId',
 					'acm_course_config.acm_marks_dist_item_id as item_id',
@@ -90,14 +103,14 @@ class AcmFacultyController extends \BaseController {
 				->where('course.id', $course_id)
 				->get();
 		}
-		return View::make('academic::faculty.mark_distribution_courses.show_marks_dist_to_insert')->with('course_result',$result)->with('datas',$data);
+		return View::make('academic::faculty.mark_distribution_courses.show_marks_dist_to_insert',compact('course_result','data','totalmarks'));
 	}
 
 	public function save_acm_marks_distribution_data()
 	{
 		$data = Input::all();
 		$Default_item = Input::get('isDefault');
-		$course_management_id = Input::get('course_management_id');
+		$course_management_id = Input::get('course_conduct_id');
 		$course_type_id = Input::get('course_type_id');
 		$isAttendance = Input::get('isAttendance');
 		$ReadOnly = Input::get('isReadOnly');
@@ -110,7 +123,7 @@ class AcmFacultyController extends \BaseController {
 		for($i=0; $i < $count; $i++)
 		{
 			$marks_dist = (isset($acm_marks_distribution_id[$i])) ? AcmMarksDistribution::find($acm_marks_distribution_id[$i]) : new AcmMarksDistribution;
-			$marks_dist->course_management_id = $course_management_id;
+			$marks_dist->course_conduct_id = $course_management_id;
 			$marks_dist->acm_marks_dist_item_id = $acm_item_id[$i];
 			$marks_dist->marks = $actual_marks[$i];
 			$marks_dist->acm_marks_policy =$acm_marks_policy[$i];
