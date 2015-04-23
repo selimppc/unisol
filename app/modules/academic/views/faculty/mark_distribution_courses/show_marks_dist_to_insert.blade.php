@@ -1,5 +1,5 @@
 <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+    <button type="button" class="close" data-dismiss="modal">{{HTML::image('assets/icon/media-close-btn.png')}}</button>
     <h4 class="modal-title" style="text-align: center;color: #800080;font-size:large"> Add/Edit Marks Distribution Item for Course:
         {{$data->relCourse->title}}</h4>
 </div>
@@ -17,19 +17,16 @@
             {{ Form::hidden('course_id', $data->course_id, ['class'=>'course_id'])}}
             {{ Form::hidden('course_title', $data->relCourse->title, ['class'=>' course_title'])}}
             {{ Form::hidden('course_evaluation_total_marks', $data->relCourse->evaluation_total_marks, ['class'=>'course_evalution_marks'])}}
-
         </div>
-
         <div class="form-group">
             <div class="col-md-4">
                 {{ Form::select('acm_marks_dist_item_id', [''=>'Select Option'] + AcmMarksDistItem::orderBy('title')->lists('title', 'id'),Input::old('acm_marks_dist_item_id'), ['class'=>'form-control addDistListItem']) }}
             </div>
             <div class="col-md-4">
-                {{ Form::submit('ADD', ['class'=>'btn btn-info addConfigList','onClick'=>'addMarksDistItem()']) }}
+                {{ Form::submit('ADD', ['class'=>'btn btn-xs btn-success addConfigList','onClick'=>'addMarksDistItem()']) }}
             </div>
         </div>
     </div>
-
     {{ Form::open(array('url'=>'academic/faculty/marks/distribution/save','method' => '')) }}
     <table class="table table-bordered small-header-table" id="facultyMarksDist" >
         <thead>
@@ -42,14 +39,11 @@
         <th>Policy</th>
         <th>Action</th>
         </thead>
-
         <tbody class="acm_marks_dist_list">
-
         {{ Form::hidden('course_conduct_id', $data->id, ['class'=>'course_conduct_id'])}}
         {{ Form::hidden('course_type_id', $data->relCourse->course_type_id, ['class'=>'course_type'])}}
         <?php $counter = 0;?>
-        @foreach($course_result as $key=>$value)
-
+        @foreach($result as $key=>$value)
             <tr>
                 <td width="130">
                     @if(isset($value->isMarksId))
@@ -73,16 +67,13 @@
                     @else
                         <input type="text" name="marks_percent[]" value="{{ ($value->actual_marks/$data->relCourse->evaluation_total_marks) * 100 }}" class="form-control totalPer amw_marks_percent{{$key}}"  id="marks_percent_id{{$key}}" onchange="calculateActualMarksFaculty(this.id, {{$data->relCourse->evaluation_total_marks}},this.value)" onblur="calculateTotalMarksPercent(this)" required />
                     @endif
-
                 </td>
                 <td>
                     <!-- <input type="text" name="actual_marks[]" value="{{$value->actual_marks}}" class="amw_actual_marks" readonly/> -->
                     {{ Form::text('actual_marks[]', $value->actual_marks, ['class'=> 'form-control amw_actual_marks','required' => 'required', 'readonly'=>'true']) }}
                 </td>
-
                 <td>
                     @if($value->readonly=='1')
-                        Yes
                         {{ Form::checkbox('isReadOnly[]', $counter, ($value->readonly)? $value->readonly : Input::old('isReadOnly'.$key)) }}
                     @else
                         No
@@ -91,7 +82,6 @@
                 </td>
                 <td>{{ Form::radio('isDefault[]', $counter, ($value->default_item) ? $value->default_item : Input::old('isDefault'.$key)) }}
                 </td>
-
                 <td>{{ Form::radio('isAttendance[]', $counter, ($value->is_attendance) ? $value->is_attendance : Input::old('isAttendance'.$key)) }}</td>
                 <td>
                     @if(isset($value->isMarksId))
@@ -100,7 +90,6 @@
                         {{ Form::select('policy_id[]', array(''=>'Select Option','attendance' => 'Attendance', 'best_one' => 'Best One','avarage'=>'Average','avarage_top_n'=>'Average of Top N','sum' => 'Sum','single' => 'Single'), '', array('class' => 'form-control','required'=>'required'))}}
                     @endif
                     {{--Auth::user()->id--}}
-
                 </td>
                 {{--Ajax delete if find faculty created_by and auth id=2--}}
                 @if(isset($value->CBid ) && $value->CBid == Auth::user()->get()->id )
@@ -109,8 +98,10 @@
                 @else
                 @endif
             </tr>
-            <?php $counter++;?>
 
+
+
+            <?php $counter++;?>
             <script>
                 // Add item is to arrayList at edit time.
                 item_id = <?php echo($value->item_id) ?>;
@@ -150,19 +141,19 @@
 
             </script>
 
-        @endforeach
 
+        @endforeach
         </tbody>
 
         <tr>
             <td colspan="6"><span class="totalPerSum"></span></td>
-            <td colspan="2">{{ Form::submit('Submit', ['class'=>'btn btn-info saveInMarksDist'] ) }}</td>
+            <td colspan="2">{{ Form::submit('Submit', ['class'=>'btn btn-xs btn-success saveInMarksDist'] ) }}</td>
         </tr>
-
     </table>
     {{Form::close()}}
 
 </div>
 <div class="modal-footer">
-    <a href="{{URL::to('academic/faculty/')}}" class="btn btn-default pull-right">Close </a>
+    {{--<button type="button" class="btn-default btn-xs" data-dismiss="modal">Close</button>--}}
+    <button class="btn btn-default" data-dismiss="modal" type="button">Close</button>
 </div>
