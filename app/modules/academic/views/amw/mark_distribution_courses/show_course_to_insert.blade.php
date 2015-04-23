@@ -72,10 +72,9 @@
             <td colspan="7">{{ Form::submit('Submit', ['class'=>'btn btn-xs btn-success'] ) }}</td>
         </tr>
     </table>
+    <div class="modal-footer">
+        <button type="button" class="btn-default btn-xs" data-dismiss="modal">Close</button>
+    </div>
     {{Form::close()}}
 </div>
 
-<div class="modal-footer">
-    <a href="{{URL::previous()}}" class="btn btn-default">Close </a>
-    {{--<a href="{{URL::current()}}" class="btn btn-default">close</a>--}}
-</div>
