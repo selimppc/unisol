@@ -459,8 +459,8 @@ class AdmAmwController extends \BaseController
     }
 
 
-//* * * * * * * * * * * * * * * * * * * * * * *  VERSION 2  Starts From Here* * * * * * * * * * * * * * * * * * * * * *
-//******************************Degree Course start(R)*****************************
+// * * * * * * * * * * * * * * * * * * * * * * *  VERSION 2  Starts From Here* * * * * * * * * * * * * * * * * * * * * * *
+//* * * * * * * * * * * * * * * * * * * * * * * Degree Course start(R) * * * * * * * *  * * * * * * * * * * * * * * * * *
 
     /**
      * @param $id
