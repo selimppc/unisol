@@ -184,7 +184,7 @@ class AdmFacultyController extends \BaseController {
      */
     public function viewQuestionsItems($id)
     {
-        $view_adm_qp_items = AdmQuestionItems::where('adm_question_id', '=', $id)->get();
+        $view_adm_qp_items = AdmQuestionItems::where('adm_question_id', '=', $id)->latest('id')->get();
         return View::make('admission::faculty.question_papers.view_qp_items',
             compact('view_adm_qp_items'));
 
