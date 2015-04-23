@@ -54,17 +54,8 @@ class BatchCourse extends Eloquent{
         return $this->HasMany('CourseEnrollment');
     }
 
-    public function relYearByYear(){
-        return $this->hasMany('BatchCourse', 'year_id')->groupBy('year_id');
-    }
 
-    public function relSemesterByYear(){
-        return $this->hasMany('BatchCourse', 'year_id');
-    }
 
-    public function relCourseBySemester(){
-        return $this->hasMany('BatchCourse', 'year_id');
-    }
 
     
     // TODO : user info while saving data into table
@@ -88,8 +79,10 @@ class BatchCourse extends Eloquent{
 
     //TODO :: Scope Area
     public function courseByCourse() {
-        return $this->hasMany('BatchCourse', 'id', 'id') ;
+        return $this->hasMany('BatchCourse', 'id') ;
     }
+
+
 
 
 
