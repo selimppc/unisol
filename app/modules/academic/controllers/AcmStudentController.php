@@ -17,9 +17,9 @@ class AcmStudentController extends \BaseController {
         })->orderBy('year_id')->orderBy('semester_id')->get();
 
         foreach($course_list as $key => $value){
-            $left_courses[$value->relYear->title][$value->relsemester->title][$value->id] = $value->relCourse->title;
+            $left_courses[$value->relYear->title][$value->relsemester->title][$value->id]['title'] = $value->relCourse->title;
+            $left_courses[$value->relYear->title][$value->relsemester->title][$value->id]['credit'] = $value->relCourse->credit;
         }
-
         return View::make('academic::student.courses.acm_courses',compact('courses','total_credit','left_courses','batch_courses'));
     }
 
@@ -51,15 +51,12 @@ class AcmStudentController extends \BaseController {
             $batch_courses = BatchCourse::with('relBatch','relSemester','relYear')
                 ->where('year_id', $current_year_id)->where('semester_id', $current_semester_id)->get();
         }
-        //print_r($batch_courses);exit;
         return View::make('academic::student.courses.enrollment',compact('batch_courses', 'year_title', 'semester_title'));
     }
 
 	public function acmCoursesEnrollment()
 	{
-
         $checked_ids = Input::get('ids');
-        //print_r($checked_ids);exit;
 
         if($checked_ids ){
             foreach($checked_ids as $key => $value){
@@ -70,7 +67,6 @@ class AcmStudentController extends \BaseController {
                 //$data->applicant_id = Auth::applicant()->get()->id;
 
                     $data->save();
-
             }exit;
         }else{
             Session::flash('info', "data do not added!");
