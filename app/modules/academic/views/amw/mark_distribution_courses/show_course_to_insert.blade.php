@@ -72,9 +72,10 @@
             <td colspan="7">{{ Form::submit('Submit', ['class'=>'btn btn-xs btn-success'] ) }}</td>
         </tr>
     </table>
+    {{Form::close()}}
     <div class="modal-footer">
         <button type="button" class="btn-default btn-xs" data-dismiss="modal">Close</button>
     </div>
-    {{Form::close()}}
+
 </div>
 
