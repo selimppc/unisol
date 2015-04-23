@@ -1,5 +1,5 @@
 <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+    <button type="button" class="close" data-dismiss="modal">{{HTML::image('assets/icon/media-close-btn.png')}}</button>
     <h4 class="modal-title" style="text-align: center;color: #800080;font-size:large"> Add/Edit Marks Distribution Item for Course:
         {{$data->relCourse->title}}</h4>
 </div>
@@ -72,9 +72,10 @@
             <td colspan="7">{{ Form::submit('Submit', ['class'=>'btn btn-xs btn-success'] ) }}</td>
         </tr>
     </table>
-    <div class="modal-footer">
-        <button type="button" class="btn-default btn-xs" data-dismiss="modal">Close</button>
-    </div>
     {{Form::close()}}
+    <div class="modal-footer">
+        <button class="btn btn-default" data-dismiss="modal" type="button">Close</button>
+    </div>
+
 </div>
 
