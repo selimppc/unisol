@@ -43,9 +43,10 @@ class AcmStudentController extends \BaseController {
             $applicant_id = User::findOrFail(Auth::user()->get()->id)->applicant_id;
             $batch_id = BatchApplicant::where('applicant_id', $applicant_id)->first()->batch_id;
             $batch_data = Batch::findOrFail($batch_id);
-            $current_year_id = $batch_data->year_id;$year_title = Year::findOrFail($current_year_id)->title;
-            $current_semester_id = $batch_data->semester_id; $semester_title = Semester::findOrFail($current_semester_id)->title;
-
+            $current_year_id = $batch_data->year_id;
+            $year_title = Year::findOrFail($current_year_id)->title;
+            $current_semester_id = $batch_data->semester_id;
+            $semester_title = Semester::findOrFail($current_semester_id)->title;
 
             $batch_courses = BatchCourse::with('relBatch','relSemester','relYear')
                 ->where('year_id', $current_year_id)->where('semester_id', $current_semester_id)->get();
@@ -64,7 +65,7 @@ class AcmStudentController extends \BaseController {
             foreach($checked_ids as $key => $value){
                 $data = new CourseEnrollment();
 
-                $data->taken_in_year_id = Input::get('taken_in_year_id');
+                $data->student_user_id = User::findOrFail(Auth::user()->get()->id)->applicant_id;
                 //$data->taken_in_semester_id = $value;
                 //$data->applicant_id = Auth::applicant()->get()->id;
 
