@@ -866,7 +866,12 @@ class AdmAmwController extends \BaseController
      */
     public function batchStore()
     {
+
+
         $data = Input::all();
+
+//        print_r($data);exit;
+        
         $model = new Batch();
 
         if($model->validate($data))
