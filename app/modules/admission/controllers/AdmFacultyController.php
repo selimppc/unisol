@@ -215,7 +215,7 @@ class AdmFacultyController extends \BaseController {
                 $opt_answer = Input::get('answer');
 
                 if (strtolower(Input::get('mcq')) == 'mcq') {
-                    if (strtolower(Input::get('question_type')) == 'mcq_single') {
+                    if (strtolower(Input::get('q_type')) == 'mcq_single') {
                         $faculty_admisison_store_question_items->question_type = 'radio';
                         if (!empty($opt_answer)) {
                             if ($faculty_admisison_store_question_items->save())
@@ -451,9 +451,7 @@ class AdmFacultyController extends \BaseController {
     public function viewAssignQuestionPaper($q_id)
     {
         $assign_qp = AdmQuestion::findOrFail($q_id);
-
         $assign_qp_assign = AdmQuestionComments::where('adm_question_id', $q_id)->get();
-
         return View::make('admission::faculty.question_papers.assign_qp',
             compact('assign_qp','assign_qp_assign','q_id'));
 
