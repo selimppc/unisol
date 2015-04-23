@@ -24,6 +24,7 @@ class AdmFacultyController extends \BaseController {
             ->get();
 
         $year_id = array('' => 'Select Year ') + Year::lists('title', 'id');
+
         $semester_id = array('' => 'Select Semester ') + Semester::lists('title', 'id');
         return View::make('admission::faculty.admission_test.index',
             compact('index_adm_examiner','year_id','semester_id'));
@@ -62,8 +63,6 @@ class AdmFacultyController extends \BaseController {
         })  ->select(DB::raw('adm_examiner.id as exm_id , adm_examiner.batch_id , adm_examiner.status as exm_status ,
                              batch.id , batch.year_id , batch.semester_id '))
             ->get();
-
-//        print_r($search_index_adm_examiner);exit;
 
         $year_id = array('' => 'Select Year ') + Year::lists('title', 'id');
         $semester_id = array('' => 'Select Semester ') + Semester::lists('title', 'id');

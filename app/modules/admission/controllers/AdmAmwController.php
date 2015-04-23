@@ -459,8 +459,8 @@ class AdmAmwController extends \BaseController
     }
 
 
-//* * * * * * * * * * * * * * * * * * * * * * *  VERSION 2  Starts From Here* * * * * * * * * * * * * * * * * * * * * *
-//******************************Degree Course start(R)*****************************
+// * * * * * * * * * * * * * * * * * * * * * * *  VERSION 2  Starts From Here* * * * * * * * * * * * * * * * * * * * * * *
+//* * * * * * * * * * * * * * * * * * * * * * * Degree Course start(R) * * * * * * * *  * * * * * * * * * * * * * * * * *
 
     /**
      * @param $id
@@ -1542,10 +1542,10 @@ class AdmAmwController extends \BaseController
      */
     public function viewQuestionItemDetails($q_items_id)
     {
-        $faculty_ViewQuestionItems = AdmQuestionItems::where('id', $q_items_id)->first();
-        $options = AdmQuestionOptAns::where('adm_question_items_id', $faculty_ViewQuestionItems->id)->get();
+        $question_item = AdmQuestionItems::where('id', $q_items_id)->first();
+        $question_item_details = AdmQuestionOptAns::where('adm_question_items_id', $q_items_id)->get();
         return View::make('admission::amw.adm_question.view_question_item_details',
-            compact('faculty_ViewQuestionItems', 'options'));
+            compact('question_item', 'question_item_details'));
     }
 
     /**
@@ -1556,7 +1556,7 @@ class AdmAmwController extends \BaseController
     {
         $question_data = AdmQuestion::with('relBatchAdmtestSubject')->where('id', $q_id)->first();
 
-        $examiner_faculty_lists = AdmQuestion::AdmissionExaminerList($question_data->relBatchAdmtestSubject->batch_id);
+        $examiner_faculty_lists = array('' => 'Select Examiner ') + AdmQuestion::AdmissionExaminerList($question_data->relBatchAdmtestSubject->batch_id);
 
         $comments = AdmQuestionComments::where('adm_question_id', $q_id)->get();
 
@@ -1601,7 +1601,7 @@ class AdmAmwController extends \BaseController
     {
         $question_data = AdmQuestion::with('relBatchAdmtestSubject')->where('id', $q_id)->first();
 
-        $examiner_faculty_lists = AdmQuestion::AdmissionExaminerList($question_data->relBatchAdmtestSubject->batch_id);
+        $examiner_faculty_lists = array('' => 'Select Examiner ') + AdmQuestion::AdmissionExaminerList($question_data->relBatchAdmtestSubject->batch_id);
 
         $comments = AdmQuestionComments::where('adm_question_id', $q_id)->get();
 
