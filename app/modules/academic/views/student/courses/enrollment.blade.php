@@ -54,6 +54,8 @@
                                       <div class="col-lg-12">
                                          {{ Form::open(['route' => ['academic.student.course-enrollment']]) }}
                                          {{--{{Form::hidden('student_user_id',$student_user_id)}}--}}
+                                         {{Form::hidden('taken_in_year',  $current_year_id)}}
+                                         {{Form::hidden('taken_in_semester', $current_semester_id)}}
                                               <table class="table  table-bordered">
                                                    <thead>
                                                        <tr>
