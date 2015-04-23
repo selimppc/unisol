@@ -17,10 +17,7 @@
                 </div><!-- /.box-header -->
                 <div class="box-body">
                     <div class="box-group" id="accordion">
-                        <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
-                        {{--@if(isset($total_credit))--}}
-                             {{--<strong style="color:midnightblue;font-size: medium">Total Credit  : {{$total_credit->relBatchCourse->relBatch->relDegree->total_credit}}</strong>--}}
-                        {{--@endif--}}
+
                         <div class="panel box box-primary">
                             <div class="box-header">
 
@@ -36,40 +33,7 @@
                                     <div class="row">
 
                                           <div class="col-lg-12">
-                                          {{--@if(isset($courses))--}}
-                                             {{--<table class="table  table-bordered">--}}
 
-                                                   {{--<thead>--}}
-                                                          {{--<tr>--}}
-                                                             {{--<th>Course</th>--}}
-                                                             {{--<th>Credit</th>--}}
-                                                             {{--<th>GPA</th>--}}
-                                                             {{--<th>Status</th>--}}
-                                                             {{--<th>Action</th>--}}
-                                                          {{--</tr>--}}
-                                                   {{--</thead>--}}
-                                                        {{--<tbody>--}}
-
-                                                                {{--@foreach($courses as $value)--}}
-                                                                   {{--<tr>--}}
-                                                                        {{--<td>{{($value->relBatchCourse->relCourse->title )}}</td>--}}
-                                                                        {{--<td>{{ $value->relBatchCourse->relCourse->credit}}</td>--}}
-                                                                        {{--<td></td>--}}
-                                                                        {{--<td></td>--}}
-                                                                        {{--<td></td>--}}
-                                                                   {{--</tr>--}}
-                                                                {{--@endforeach--}}
-
-                                                        {{--</tbody>--}}
-
-
-                                                        {{--<strong style="color:midnightblue">--}}{{--}}--}}
-                                                        {{--isset($courses->relBatchCourse->relBatch->relYear->title)}}</strong>--}}
-
-                                             {{--</table>--}}
-                                          {{--@else--}}
-                                               {{--{{"No Data found !"}}--}}
-                                          {{--@endif--}}
                                           </div>
                                       </div>
                                 </div>
@@ -100,20 +64,28 @@
                                  </div>
                             </div>
                         </div>
+              {{----------------------------- Left ----------------------------------------------------------}}
+                        <h4>
+                           Left
+                        </h4>
                         <div class="panel box box-success">
                             <div class="box-header">
+
+                            </div>
+                            <div class="box-header">
                                 <h4 class="box-title">
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" style="font-size: smaller;text-decoration: underline">
-                                    Left
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" style="font-size:smaller;text-decoration: underline;color:lightcoral">
+                                    Semester 1
+
                                     </a>
                                 </h4>
                             </div>
-                            <div id="collapseThree" class="panel-collapse ">
+                            <div id="collapseThree" class="panel-collapse">
                                 <div class="box-body">
                                     <div class="row">
 
                                           <div class="col-lg-12">
-                                              @if(isset($batch_courses1))
+                                              @if(isset($left_courses))
                                                  <table class="table  table-bordered">
 
                                                        <thead>
@@ -126,18 +98,26 @@
                                                               </tr>
                                                        </thead>
                                                        <tbody>
-                                                            @foreach($batch_courses1 as $value)
-                                                                   <tr>
-                                                                        <td>{{($value->relCourse->title )}}</td>
-                                                                        <td>{{ $value->relCourse->credit}}</td>
-                                                                        <td></td>
-                                                                        <td></td>
-                                                                        <td></td>
-                                                                   </tr>
+
+                                                           @foreach($left_courses as $values)
+                                                                {{--Batch Course id: {{$values->id}} <br>--}}
+                                                                {{--Year : {{$values->year_id}} <br>--}}
+                                                                {{--Semester : {{$values->semester_id}} <br>--}}
+                                                                {{--Course: {{$values->course_id}}<br><br>--}}
+                                                                @foreach($values->relYearByYear as $year)
+                                                                    Year: {{$year->year_id}}<br>
+                                                                    @foreach($values->relSemesterByYear as $sem)
+                                                                       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                                                                       Semester: {{$sem->semester_id}}<br>
+                                                                            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                                                                            @foreach($values->relCourseBySemester as $cs)
+                                                                            Course: {{$cs}}<br><br>
+                                                                            @endforeach
+                                                                       <br>
+                                                                    @endforeach
                                                                 @endforeach
-                                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" style="font-size: smaller;text-decoration: underline">
-                                                                      {{$value->relYear->title . ' ,'. $value->relSemester->title}}
-                                                                </a>
+
+                                                           @endforeach
                                                        </tbody>
                                                  </table>
                                               @else
@@ -147,47 +127,50 @@
                                       </div>
                                 </div>
                             </div>
-        {{------------------------------------------------}}
-                            <div id="collapseThree" class="panel-collapse ">
+ {{------------------------------------------------------------------------------------------------------------------------------}}
+                            <div class="box-header">
+                                <h4 class="box-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour" style="font-size: smaller;text-decoration: underline;color:lightseagreen">
+                                    Semester 2
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseFour" class="panel-collapse collapse">
                                 <div class="box-body">
                                     <div class="row">
 
                                           <div class="col-lg-12">
-                                          @if(isset($batch_courses2))
-                                             <table class="table  table-bordered">
-
-                                                   <thead>
-                                                          <tr>
-                                                             <th>Course</th>
-                                                             <th>Credit</th>
-                                                             <th>GPA</th>
-                                                             <th>Status</th>
-                                                             <th>Action</th>
-                                                          </tr>
-                                                   </thead>
-                                                   <tbody>
-                                                         @foreach($batch_courses2 as $value)
-                                                               <tr>
-                                                                    <td>{{($value->relCourse->title )}}</td>
-                                                                    <td>{{ $value->relCourse->credit}}</td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                               </tr>
-                                                         @endforeach
-                                                         <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" style="font-size: smaller;text-decoration: underline">
-                                                               {{$value->relYear->title . ' ,'. $value->relSemester->title}}
-                                                         </a>
-                                                   </tbody>
-                                             </table>
-                                          @else
-                                               {{"No Data found !"}}
-                                          @endif
-
+                                              @if(isset($batch_courses2))
+                                                 <table class="table  table-bordered">
+                                                       <thead>
+                                                              <tr>
+                                                                 <th>Course</th>
+                                                                 <th>Credit</th>
+                                                                 <th>GPA</th>
+                                                                 <th>Status</th>
+                                                                 <th>Action</th>
+                                                              </tr>
+                                                       </thead>
+                                                       <tbody>
+                                                            @foreach($batch_courses2 as $value)
+                                                                   <tr>
+                                                                        <td>{{($value->relCourse->title )}}</td>
+                                                                        <td>{{ $value->relCourse->credit}}</td>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                   </tr>
+                                                            @endforeach
+                                                       </tbody>
+                                                 </table>
+                                              @else
+                                                   {{"No Data found !"}}
+                                              @endif
                                           </div>
                                       </div>
                                 </div>
                             </div>
+ {{----------------------------------------------------------------------------------------------------------------------------}}
                         </div>
                     </div>
                 </div><!-- /.box-body -->

@@ -50,6 +50,22 @@ class BatchCourse extends Eloquent{
         return $this->belongsTo('Semester', 'semester_id', 'id');
     }
 
+    public function relCourseEnrollment(){
+        return $this->HasMany('CourseEnrollment');
+    }
+
+    public function relYearByYear(){
+        return $this->hasMany('BatchCourse', 'year_id')->groupBy('year_id');
+    }
+
+    public function relSemesterByYear(){
+        return $this->hasMany('BatchCourse', 'year_id');
+    }
+
+    public function relCourseBySemester(){
+        return $this->hasMany('BatchCourse', 'year_id');
+    }
+
     
     // TODO : user info while saving data into table
     public static function boot(){

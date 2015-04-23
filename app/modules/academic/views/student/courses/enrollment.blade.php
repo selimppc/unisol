@@ -135,58 +135,7 @@
                                  </div>
                             </div>
                         </div>
-                        <div class="panel box box-success">
-                            <div class="box-header">
-                                <h4 class="box-title">
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" style="font-size: smaller;text-decoration: underline">
-                                        Left
-                                    </a>
-                                </h4>
-                            </div>
-                            <div id="collapseThree" class="panel-collapse collapse">
-                                <div class="box-body">
-                                                                    <div class="row">
 
-                                                                          <div class="col-lg-12">
-                                                                          @if(isset($courses))
-                                                                             <table class="table  table-bordered">
-
-                                                                                   <thead>
-                                                                                          <tr>
-                                                                                             <th>Course</th>
-                                                                                             <th>Credit</th>
-                                                                                             <th>GPA</th>
-                                                                                             <th>Status</th>
-                                                                                             <th>Action</th>
-                                                                                          </tr>
-                                                                                   </thead>
-                                                                                        <tbody>
-
-                                                                                                {{--@foreach($courses as $value)--}}
-                                                                                                   {{--<tr>--}}
-                                                                                                        {{--<td>{{($value->relBatchCourse->relCourse->title )}}</td>--}}
-                                                                                                        {{--<td>{{ $value->relBatchCourse->relCourse->credit}}</td>--}}
-                                                                                                        {{--<td></td>--}}
-                                                                                                        {{--<td></td>--}}
-                                                                                                        {{--<td></td>--}}
-                                                                                                   {{--</tr>--}}
-                                                                                                {{--@endforeach--}}
-
-                                                                                        </tbody>
-
-
-                                                                                        {{--<strong style="color:midnightblue">{{--}}
-                                                                                        {{--isset($courses->relBatchCourse->relBatch->relYear->title)}}</strong>--}}
-
-                                                                             </table>
-                                                                          @else
-                                                                               {{"No Data found !"}}
-                                                                          @endif
-                                                                          </div>
-                                                                      </div>
-                                                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div><!-- /.box-body -->
             </div><!-- /.box -->
