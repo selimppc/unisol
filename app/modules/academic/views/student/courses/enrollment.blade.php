@@ -78,7 +78,7 @@
                                                                  <td></td>
                                                                  <td>
                                                                  @if($value['is_mandatory']==1)
-                                                                    <input type="checkbox" name="ids[]"  class="myCheckbox" value="1"  onclick="return false" checked >
+                                                                    <input type="checkbox" name="ids[]"  class="myCheckbox" value="1" checked>
                                                                     {{--{{Form::checkbox('ids[]', true, array('id'=>'ce-mandatory-id')  )}}--}}
                                                                  @else
                                                                      {{--<input type="checkbox" name="ids[]"  id="check" class="myCheckbox" value="" >--}}

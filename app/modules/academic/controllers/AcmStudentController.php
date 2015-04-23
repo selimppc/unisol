@@ -24,7 +24,9 @@ class AcmStudentController extends \BaseController {
     }
 
 	public function acmEnrollment(){
+
         $completed_data = CourseEnrollment::where('status', 'pass')->orderBy('id', 'DESC')->first();
+
         if($completed_data){
             $current_year_id = $completed_data->taken_in_year_id ? $completed_data->taken_in_year_id + 1 :'';
             $current_semester = $completed_data->taken_in_semester_id;
@@ -34,7 +36,9 @@ class AcmStudentController extends \BaseController {
             $semester_title = Semester::findOrFail($current_semester_id)->title;
             $batch_courses = BatchCourse::with('relBatch','relSemester','relYear')
                 ->where('year_id', $current_year_id)->where('semester_id', $current_semester_id)->get();
+
         }elseif(empty($completed_data)){
+
             $applicant_id = User::findOrFail(Auth::user()->get()->id)->applicant_id;
             $batch_id = BatchApplicant::where('applicant_id', $applicant_id)->first()->batch_id;
 
@@ -67,10 +71,10 @@ class AcmStudentController extends \BaseController {
                 $model->student_user_id = $student_user_id;
                 $model->taken_in_year_id = $taken_in_year;
                 $model->taken_in_semester_id = $taken_in_semester;
-                $model->status = 'pending';
+                $model->status =$value;
                 $model->save();
             }
-            Session::flash('success', "data saved!");
+            Session::flash('message', "Successfully added Courses For Enrollment!");
             return Redirect::back();
         }else{
             Session::flash('info', "data do not added!");
