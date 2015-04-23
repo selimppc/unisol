@@ -24,7 +24,6 @@
             </tbody>
         </table>
     </div>
-
     @if(isset($coursetitle))
         <p>Marks Distribution Done.Following is the Distribution of Course : {{isset($coursetitle->relCourseConduct->relCourse->title) ? $coursetitle->relCourseConduct->relCourse->title: 'No Item Added!' }}</p>
     @else <p>Marks Distribution Is Not Done Yet.</p>
@@ -49,10 +48,6 @@
             <th>IsAttendance</th>
             </thead>
             <tbody>
-            {{--Determine whether a variable is considered to be empty. A variable is considered empty if it does not exist or if its value equals FALSE. empty() does not generate a warning if the variable does not exist.--}}
-            {{--@if(!empty($notFound))--}}
-            {{--<p>Sorry nothing found for your query!</p>--}}
-            {{--@else--}}
             @foreach($config_data as  $dkey => $dvalue)
 
                 <tr>
@@ -68,7 +63,7 @@
         </table>
     </div>
     <p>If Marks Distribution Is Not Done Then Go to Distribution And Make It Done First.
-        <button type="button" class="btn-xs btn text-maroon" style="background:#5CE6E6" data-toggle="modal" data-target="#myModal" data-toggle="tooltip" data-placement="left" title="Marks Distribution"> <i class="fa fa-plus text-purple"></i> Marks Distribution
+        <button type="button" class="btn-xs btn text-maroon" style="background:#5CE6E6" data-toggle="modal" data-target="#addModal" data-toggle="tooltip" data-placement="left" title="Marks Distribution"> <i class="fa fa-plus text-purple"></i> Marks Distribution
         </button>
     </p>
     <div class="modal-footer">
@@ -76,13 +71,13 @@
     </div>
     <p>&nbsp;</p>
 
-    {{--<!-- add new Dist Item -->--}}
-    {{--<div id="myModal" class="modal fade"data-keyboard="false" data-backdrop="static">--}}
+    <!-- add new Dist Item -->
+    {{--<div id="addModal" class="modal fade"data-keyboard="false" data-backdrop="static">--}}
         {{--<div class="modal-dialog modal-lg">--}}
             {{--<div class="modal-content">--}}
                 {{--<div class="modal-body">--}}
-                    {{--{{ Form::open(array('url' => 'academic/amw/course/marks/save', 'method' =>'post', 'role'=>'form','files'=>'true')) }}--}}
-                    {{--@include('academic::amw.mark_distribution_courses.show_course_to_insert')--}}
+                    {{--{{ Form::open(array('url' => 'academic/faculty/marks/distribution/save', 'method' =>'post', 'role'=>'form','files'=>'true')) }}--}}
+                    {{--@include('academic::faculty.mark_distribution_courses.show')--}}
                     {{--{{ Form::close() }}--}}
                 {{--</div>--}}
             {{--</div>--}}

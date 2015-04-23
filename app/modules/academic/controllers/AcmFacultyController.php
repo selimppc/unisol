@@ -44,9 +44,9 @@ class AcmFacultyController extends \BaseController {
 
 	public function marks_dist_show($cc_id)
 	{
-		$dist_data = AcmMarksDistribution::with('relAcmMarksDistItem', 'relCourseConduct.relCourse')
-			->where('course_conduct_id', '=', $cc_id)
-			->get();
+        $dist_data = AcmMarksDistribution::with('relAcmMarksDistItem', 'relCourseConduct.relCourse')
+            ->where('course_conduct_id', '=', $cc_id)
+            ->get();
 
         $coursetitle= AcmMarksDistribution::with('relCourseConduct.relCourse')
             ->where('course_conduct_id', '=', $cc_id)
@@ -56,7 +56,7 @@ class AcmFacultyController extends \BaseController {
             ->select(DB::raw('sum(marks) AS marks'))
             ->where('course_conduct_id', $cc_id)->get();
 
-		return View::make('academic::faculty.mark_distribution_courses.show_marks_distribution',compact('dist_data','coursetitle','totalmarks'));
+        return View::make('academic::faculty.mark_distribution_courses.show_marks_distribution',compact('dist_data','coursetitle','totalmarks'));
 	}
 
 	public function find_marksdist_info($course_id,$cc_id)
