@@ -24,7 +24,6 @@
             </tbody>
         </table>
     </div>
-
     @if(isset($coursetitle))
         <p>Marks Distribution Done.Following is the Distribution of Course : {{isset($coursetitle->relCourseConduct->relCourse->title) ? $coursetitle->relCourseConduct->relCourse->title: 'No Item Added!' }}</p>
     @else <p>Marks Distribution Is Not Done Yet.</p>
@@ -49,10 +48,6 @@
             <th>IsAttendance</th>
             </thead>
             <tbody>
-            {{--Determine whether a variable is considered to be empty. A variable is considered empty if it does not exist or if its value equals FALSE. empty() does not generate a warning if the variable does not exist.--}}
-            {{--@if(!empty($notFound))--}}
-            {{--<p>Sorry nothing found for your query!</p>--}}
-            {{--@else--}}
             @foreach($config_data as  $dkey => $dvalue)
 
                 <tr>

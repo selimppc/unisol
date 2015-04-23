@@ -98,9 +98,6 @@
                 @else
                 @endif
             </tr>
-
-
-
             <?php $counter++;?>
             <script>
                 // Add item is to arrayList at edit time.
