@@ -18,44 +18,46 @@
 
                 {{ Form::hidden('degree_id', $degree_id , ['class'=>'form-control degree_id'])}}
                 @if(isset($batch_course_data))
-                @foreach($batch_course_data as $values)
-                    <h4 class="text-purple font-size text-bold"> Year : {{$values['year']['relYear']['title']}} </h4>
-                    {{--<h4 class="text-purple font-size"> Semester : {{$values['semester']['relSemester']['title']}} </h4>--}}
-                    @foreach($values['course_semester'] as $semester)
-                        <h4 class="text-purple">{{$semester['relSemester']['title']}}</h4>
-                            <table id="" class="table table-bordered table-hover table-striped">
-                                <thead>
-                                <tr>
-                                    <th>Title With Code</th>
-                                    <th>Department</th>
-                                    <th>Type</th>
-                                    <th>Credit</th>
-                                    <th>Mandatory</th>
-                                    <th>Faculty</th>
-                                    <th>Action</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @foreach($semester['courseByCourse'] as $course)
-                                    <tr>
-                                        <td> {{$course->relCourse->title}} ( {{$course->relCourse->course_code}} ) </td>
-                                        <td> {{$semester['relBatch']['relDegree']['relDepartment']['title']}}</td>
-                                        <td> {{isset($course->relCourse->relCourseType->title) ? $course->relCourse->relCourseType->title : 'course type missing'}} </td>
-                                        <td> {{isset($course->relCourse->credit) ? $course->relCourse->credit : 'credit missing'}} </td>
-                                        <td> {{ $semester['is_mandatory_course']==1 ? 'Yes' : 'No'}}</td>
-                                        <td> <a href="{{ URL::route('assign-faculty',['course_id'=>$semester['course_id'],'dep_id'=>$semester['relBatch']['relDegree']['department_id'] ]) }}" class="btn btn-facebook btn-xs" > Assign</a>
-                                        </td>
-                                        <td>
-                                            <a data-href="{{ URL::route('batch-course-delete',['bcid'=>$semester['id']]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa fa-trash-o" style="color:red"></i></a>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
-                            <br>
+                @foreach($batch_course_data as $yr => $semesters)
+                	<h4 class="text-purple font-size text-bold"> Year : {{$yr}} </h4>
+                	@foreach($semesters as $sm => $courses)
+                		<h4 class="text-purple"> {{$sm}}</h4>
+                			<table id="" class="table table-bordered table-hover table-striped">
+                				<thead>
+                				<tr>
+                					<th>Course Title</th>
+                					<th>Department</th>
+                					<th>Type</th>
+                					<th>Credit</th>
+                					<th>Mandatory</th>
+                					<th>Faculty</th>
+                					<th>Action</th>
+                				</tr>
+                				</thead>
+                				<tbody>
 
-                    @endforeach
-                     <br> <br>
+                				@foreach($courses as $c => $v)
+
+                					<tr>
+                						<td> {{$v['title']}} </td>
+                						<td> {{$v['department']}}</td>
+                						<td> {{$v['type']}} </td>
+                						<td> {{$v['credit']}} </td>
+                						<td> {{$v['mandatory'] == 1? 'Yes':'No'}}</td>
+                						<td> <a href="{{ URL::route('assign-faculty',['bc_id'=>$c ]) }}" class="btn btn-facebook btn-xs" > Assign</a>
+                						</td>
+                						<td>
+                							<a data-href="{{ URL::route('batch-course-delete',['bc_id'=>$c ]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa fa-trash-o" style="color:red"></i></a>
+                						</td>
+                					</tr>
+
+                				@endforeach
+                				</tbody>
+                			</table>
+                			<br>
+
+                	@endforeach
+                	 <br> <br>
                 @endforeach
                 @else
                     <table id="" class="table table-bordered table-hover table-striped">
