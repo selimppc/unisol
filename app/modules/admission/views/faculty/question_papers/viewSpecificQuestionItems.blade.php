@@ -4,7 +4,6 @@
 </div>
 
 <div style="margin-left: 5%; padding: 10px; width: 90%;">
-     {{ Form::open(array('route'=>'examination.faculty.viewQuestionItems','method' => '')) }}
          <div class="span9 well" style="font-size: large; margin-left: 10px">
                  <strong> Question Paper:</strong> &nbsp &nbsp {{ $faculty_ViewQuestionItems->relAdmQuestion->title }}
                  </br>
@@ -62,5 +61,4 @@
         <a href="{{URL::previous()}}" class="pull-right btn btn-default">Close </a>
 
         </br></br>
-     {{ Form::close() }}
 </div>

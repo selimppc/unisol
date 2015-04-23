@@ -1542,10 +1542,10 @@ class AdmAmwController extends \BaseController
      */
     public function viewQuestionItemDetails($q_items_id)
     {
-        $question_item = AdmQuestionItems::where('id', $q_items_id)->first();
-        $question_item_details = AdmQuestionOptAns::where('adm_question_items_id', $q_items_id)->get();
+        $faculty_ViewQuestionItems = AdmQuestionItems::where('id', $q_items_id)->first();
+        $options = AdmQuestionOptAns::where('adm_question_items_id', $faculty_ViewQuestionItems->id)->get();
         return View::make('admission::amw.adm_question.view_question_item_details',
-            compact('question_item', 'question_item_details'));
+            compact('faculty_ViewQuestionItems', 'options'));
     }
 
     /**
