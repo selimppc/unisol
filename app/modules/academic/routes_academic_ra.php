@@ -61,7 +61,7 @@ Route::post('academic/amw/config/acmconfigdelete/ajax',
 
 
 
-//&&&&&&&&&&&&&&&&&  FACULTY START  &&&&&&&&&&&&&&&&&&&&&&&
+//>>>>>>>>>>>>>>>>>>  FACULTY START  <<<<<<<<<<<<<<<<<<<<<<<
 //******************Faculty Marks Distribution(R)********************
 
 Route::get('academic/faculty/course/config',
@@ -74,7 +74,7 @@ Route::any('academic/faculty/course/marksdistitem/show/{cc_id}',[
 Route::post('academic/faculty/marks/distribution/save',
     'AcmFacultyController@save_acm_marks_distribution_data'
 );
-Route::any('academic/faculty/marksdist/show/{course_id}',[
+Route::any('academic/faculty/marksdist/show/{course_id}/{cc_id}',[
     'as' => 'marksdistfind.show',
     'uses'=> 'AcmFacultyController@find_marksdist_info'
 ]);

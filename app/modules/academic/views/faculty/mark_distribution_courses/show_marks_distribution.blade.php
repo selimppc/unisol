@@ -1,6 +1,6 @@
 <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-    <h4 class="modal-title">Show Marks distribution of courses Information</h4>
+    <button type="button" class="close" data-dismiss="modal">{{HTML::image('assets/icon/media-close-btn.png')}}</button>
+    <h4 class="modal-title">Show Marks distribution of Courses Information</h4>
 </div>
 <div class="modal-body">
     <div style="padding: 10px; width: 90%;">
@@ -14,7 +14,6 @@
             </thead>
             <tbody>
             @foreach($dist_data as  $dkey => $dvalue)
-
                 <tr>
                     <td>{{$dvalue['relAcmMarksDistItem']['title']}}</td>
                     <td>{{(($dvalue->marks * 100)/$dvalue['relCourseManagement']['relCourse']['evaluation_total_marks'])}}</td>
@@ -29,5 +28,5 @@
     </div>
 </div>
 <div class="modal-footer">
-    <a href="{{URL::to('academic/faculty/')}}" class="btn btn-default">Close </a>
+    <a href="{{URL::to('academic/faculty/course/config')}}" class="btn btn-default">Close </a>
 </div>

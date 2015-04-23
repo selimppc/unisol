@@ -20,26 +20,27 @@ class AcmFacultyController extends \BaseController {
 				'title', 'datas'));
 	}
 
-	public function course_marks_dist_show($cm_id)
+	public function course_marks_dist_show($cc_id)
 	{
 		$data= CourseConduct::with('relCourse','relCourse.relCourseType','relYear','relSemester','relDegree','relDegree.relDepartment')
-			->where('id', '=', $cm_id)
+			->where('id', '=', $cc_id)
 			->get();
 
 		$config_data = AcmMarksDistribution::with('relAcmMarksDistItem', 'relCourseConduct.relCourse')
-			->where('course_conduct_id', '=', $cm_id)
+			->where('course_conduct_id', '=', $cc_id)
 			->get();
 
         $coursetitle= AcmMarksDistribution::with('relAcmMarksDistItem', 'relCourseConduct.relCourse')
-            ->where('course_conduct_id', '=', $cm_id)
+            ->where('course_conduct_id', '=', $cc_id)
             ->first();
 
         $totalmarks = DB::table('acm_marks_distribution')
             ->select(DB::raw('sum(marks) AS marks'))
-            ->where('course_conduct_id', $cm_id)->get();
+            ->where('course_conduct_id', $cc_id)->get();
 
 		return View::make('academic::faculty.mark_distribution_courses.show',compact('data','config_data','coursetitle','totalmarks'));
 	}
+
 	public function marks_dist_show($cm_id)
 	{
 		$dist_data = AcmMarksDistribution::with('relAcmMarksDistItem', 'relCourseManagement.relCourse')
@@ -50,15 +51,15 @@ class AcmFacultyController extends \BaseController {
 			'dist_data',$dist_data);
 	}
 
-	public function find_marksdist_info($course_id)
+	public function find_marksdist_info($course_id,$cc_id)
 	{
 		$data=CourseConduct::with('relCourse','relCourse.relCourseType')
             ->where('course_id', '=', $course_id)
             ->first();
 
-        $totalmarks = DB::table('acm_course_config')
+        $totalmarks = DB::table('acm_marks_distribution')
             ->select(DB::raw('sum(marks) AS marks'))
-            ->where('course_id', $course_id)->get();
+            ->where('course_conduct_id', $cc_id)->get();
 
         //$data->id now contains the course_management_id
 
@@ -72,8 +73,8 @@ class AcmFacultyController extends \BaseController {
 					'acm_marks_distribution.acm_marks_dist_item_id as item_id',
 					'acm_marks_dist_item.title as acm_dist_item_title',
 					'acm_marks_distribution.marks as actual_marks',
-					'acm_marks_distribution.readonly as readonly',
-					'acm_marks_distribution.default_item as default_item',
+					'acm_marks_distribution.is_readonly as readonly',
+					'acm_marks_distribution.is_default as default_item',
 					'acm_marks_distribution.is_attendance',
 					'acm_marks_distribution.created_by as CBid',
 					'acm_marks_distribution.acm_marks_policy',
@@ -85,7 +86,7 @@ class AcmFacultyController extends \BaseController {
 				->where('acm_marks_distribution.course_conduct_id', $data->id)
 				->get();
 		}else{
-			$course_result = DB::table('acm_course_config')
+            $result = DB::table('acm_course_config')
 				->select(
 					'acm_course_config.id as isConfigId',
 					'acm_course_config.acm_marks_dist_item_id as item_id',
@@ -103,7 +104,7 @@ class AcmFacultyController extends \BaseController {
 				->where('course.id', $course_id)
 				->get();
 		}
-		return View::make('academic::faculty.mark_distribution_courses.show_marks_dist_to_insert',compact('course_result','data','totalmarks'));
+		return View::make('academic::faculty.mark_distribution_courses.show_marks_dist_to_insert',compact('result','data','totalmarks'));
 	}
 
 	public function save_acm_marks_distribution_data()
@@ -128,11 +129,11 @@ class AcmFacultyController extends \BaseController {
 			$marks_dist->marks = $actual_marks[$i];
 			$marks_dist->acm_marks_policy =$acm_marks_policy[$i];
 
-			$marks_dist->default_item = 0;
+			$marks_dist->is_default = 0;
 			if($Default_item){
 				foreach($Default_item as $isd){
 					if($isd == $i)
-						$marks_dist->default_item = 1;
+						$marks_dist->is_default = 1;
 
 				}
 			}
@@ -161,11 +162,11 @@ class AcmFacultyController extends \BaseController {
 					}
 				}
 			}
-			$marks_dist->readonly = 0;
+			$marks_dist->is_readonly = 0;
 			if($ReadOnly){
 				foreach($ReadOnly as $isr){
 					if($isr == $i)
-						$marks_dist->readonly = 1;
+						$marks_dist->is_readonly = 1;
 				}
 			}
 			// Assign created_by and updated_by user id
@@ -180,9 +181,10 @@ class AcmFacultyController extends \BaseController {
 			//$acm_config->acm_attendance_config_id->save($marks_dist);
 		}
 		// redirect
-		Session::flash('message', 'ACM Course Configuration Data Successfully Added !!');
-		return Redirect::to('academic/faculty');
+        Session::flash('message', 'Successfully Added Marks Distribution item!');
+        return Redirect::back();
 	}
+
     //Ajax delete in modal
 	public function ajax_delete_acm_marks_dist()
 	{
