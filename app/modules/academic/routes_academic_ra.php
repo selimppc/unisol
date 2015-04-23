@@ -78,7 +78,7 @@ Route::any('academic/faculty/marksdist/show/{course_id}/{cc_id}',[
     'as' => 'marksdistfind.show',
     'uses'=> 'AcmFacultyController@find_marksdist_info'
 ]);
-Route::any('marks-item/{cm_id}',[
+Route::any('marks-item/{cc_id}',[
     'as' => 'marksdist.show',
     'uses'=> 'AcmFacultyController@marks_dist_show'
 ]);

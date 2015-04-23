@@ -44,8 +44,8 @@
                                     <td>{{$value->relCourse->relSubject->relDepartment->title}}</td>
                                     <td>{{$value->relYear->title}}</td>
                                     <td>{{$value->relSemester->title}}</td>
-                                    {{--<td>{{ AcmMarksDistribution::getMarksDistItemStatus($value->id, $value->relCourse->evaluation_total_marks) }}</td>--}}
-                                    <td></td>
+                                    <td>{{ AcmMarksDistribution::getMarksDistItemStatus($value->id, $value->relCourse->evaluation_total_marks) }}</td>
+
                                     <td>
                                         <a href="{{ URL::route('marksdistfind.show', ['course_id'=>$value->course_id,'cc_id'=>$value->id])}}"class="btn btn-xs btn-default" data-toggle="modal" data-target="#addModal" data-toggle="tooltip" data-placement="left" title="Marks Distribution" href=""><i class="fa fa-plus text-purple"></i> Marks Distribution</a>
 
