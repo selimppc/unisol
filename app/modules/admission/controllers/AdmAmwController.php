@@ -1556,7 +1556,7 @@ class AdmAmwController extends \BaseController
     {
         $question_data = AdmQuestion::with('relBatchAdmtestSubject')->where('id', $q_id)->first();
 
-        $examiner_faculty_lists = array('' => 'Select Examiner ') + AdmQuestion::AdmissionExaminerList($question_data->relBatchAdmtestSubject->batch_id);
+        $examiner_faculty_lists = AdmQuestion::AdmissionExaminerList($question_data->relBatchAdmtestSubject->batch_id);
 
         $comments = AdmQuestionComments::where('adm_question_id', $q_id)->get();
 
@@ -1601,7 +1601,7 @@ class AdmAmwController extends \BaseController
     {
         $question_data = AdmQuestion::with('relBatchAdmtestSubject')->where('id', $q_id)->first();
 
-        $examiner_faculty_lists = array('' => 'Select Examiner ') + AdmQuestion::AdmissionExaminerList($question_data->relBatchAdmtestSubject->batch_id);
+        $examiner_faculty_lists = AdmQuestion::AdmissionExaminerList($question_data->relBatchAdmtestSubject->batch_id);
 
         $comments = AdmQuestionComments::where('adm_question_id', $q_id)->get();
 
