@@ -1,3 +1,4 @@
+
 @extends('layouts.layout')
 
 @section('sidebar')
@@ -85,7 +86,7 @@
 
                                              <div class="col-lg-12">
                                              {{ Form::open(['route' => ['academic.student.course-enrollment']]) }}
-                                             {{--{{Form::hidden('year_id',$year_id)}}--}}
+                                             {{Form::hidden('taken_in_year_id',1)}}
                                                   <table class="table  table-bordered">
 
                                                         <thead>
@@ -103,14 +104,14 @@
                                                                   @if(isset($batch_courses))
                                                                      @foreach($batch_courses as $value)
                                                                         <tr>
-                                                                             <td>{{($value->relCourse->title )}}</td>
+                                                                             <td>{{($value->course_id )}}</td>
                                                                              <td>{{ $value->relCourse->credit}}</td>
                                                                              <td></td>
                                                                              <td>{{$value['is_mandatory']==1 ? 'Yes' : 'No'}}</td>
                                                                              <td></td>
                                                                              <td>
                                                                              @if($value['is_mandatory']==1)
-                                                                                <input type="checkbox" name="ids[]"  id="ce-mandatory-id" class="myCheckbox" value="1" checked="checked" >
+                                                                                <input type="checkbox" name="ids[]"  class="myCheckbox" value="1"  onclick="return false" checked >
                                                                                 {{--{{Form::checkbox('ids[]', true, array('id'=>'ce-mandatory-id')  )}}--}}
                                                                              @else
                                                                                  {{--<input type="checkbox" name="ids[]"  id="check" class="myCheckbox" value="" >--}}
@@ -143,4 +144,4 @@
     </div><!-- /.row -->
 
 
-    @stop
+   @stop

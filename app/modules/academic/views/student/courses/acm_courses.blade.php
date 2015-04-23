@@ -98,26 +98,15 @@
                                                               </tr>
                                                        </thead>
                                                        <tbody>
-
-                                                           @foreach($left_courses as $values)
-                                                                {{--Batch Course id: {{$values->id}} <br>--}}
-                                                                {{--Year : {{$values->year_id}} <br>--}}
-                                                                {{--Semester : {{$values->semester_id}} <br>--}}
-                                                                {{--Course: {{$values->course_id}}<br><br>--}}
-                                                                @foreach($values->relYearByYear as $year)
-                                                                    Year: {{$year->year_id}}<br>
-                                                                    @foreach($values->relSemesterByYear as $sem)
-                                                                       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                                                                       Semester: {{$sem->semester_id}}<br>
-                                                                            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                                                                            @foreach($values->relCourseBySemester as $cs)
-                                                                            Course: {{$cs}}<br><br>
-                                                                            @endforeach
-                                                                       <br>
-                                                                    @endforeach
-                                                                @endforeach
-
-                                                           @endforeach
+                                                           @foreach($left_courses as $yr => $semesters)
+                                                                   @foreach($semesters as $sm => $courses)
+                                                                       <div><h4>{{$sm}}, {{$yr}}</h4>
+                                                                           @foreach($courses as $c => $v)
+                                                                               {{$v}} <br>
+                                                                           @endforeach
+                                                                       </div>
+                                                                   @endforeach
+                                                               @endforeach
                                                        </tbody>
                                                  </table>
                                               @else

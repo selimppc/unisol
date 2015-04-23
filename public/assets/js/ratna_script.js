@@ -265,7 +265,7 @@ function addMarksDistItem() {
 
         contentBody.append(str);
     }
-
+}
     //*******************
 //This function is used to calculate the total percent when add an item into popup. if total percent is more than 100, submit button will disapper instantly.
 // if total marks percent is less than 100 then submit button will appear soon. This function is decleared in marks_percent text box in "onblur" event.
@@ -296,4 +296,3 @@ function addMarksDistItem() {
 //    }
 
 
-}

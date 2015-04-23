@@ -1,9 +1,22 @@
 <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-    <h4 class="modal-title">Show Marks distribution of courses Information</h4>
+    <button type="button" class="close" data-dismiss="modal">{{HTML::image('assets/icon/media-close-btn.png')}}</button>
+    @if(isset($course))
+        <h4 class="modal-title" style="text-align: center;color: #800080;font-size:large">Course:
+            {{isset($coursetitle->relCourseConduct->relCourse->title) ? $coursetitle->relCourseConduct->relCourse->title : ''}} Marks Distribution</h4>
+    @else
+        <h4 class="modal-title" style="text-align: center;color: #800080;font-size:large">Course Marks Distribution</h4>
+    @endif
 </div>
 <div class="modal-body">
     <div style="padding: 10px; width: 90%;">
+        <p>Evaluation Total Marks:
+            <b>{{ isset($coursetitle->relCourseConduct->relCourse->evaluation_total_marks) ? $coursetitle->relCourseConduct->relCourse->evaluation_total_marks : 'No Item Added!'}}</b>
+        </p>
+        <p>So Far Added Marks:
+            <b>@foreach($totalmarks as $value)
+                    {{ isset($value->marks) ? $value->marks : 'No Item Added!'}}
+                @endforeach</b>
+        </p>
         <table class="table table-bordered">
             <thead>
             <th>Item</th>
@@ -14,10 +27,9 @@
             </thead>
             <tbody>
             @foreach($dist_data as  $dkey => $dvalue)
-
                 <tr>
                     <td>{{$dvalue['relAcmMarksDistItem']['title']}}</td>
-                    <td>{{(($dvalue->marks * 100)/$dvalue['relCourseManagement']['relCourse']['evaluation_total_marks'])}}</td>
+                    <td>{{(($dvalue->marks * 100)/$dvalue['relCourseConduct']['relCourse']['evaluation_total_marks'])}}</td>
                     <td>{{$dvalue->marks}}</td>
                     <td>{{$dvalue->acm_marks_policy}}</td>
                     <td>{{($dvalue->is_attendance == 1) ? 'Yes' : '';}}</td>
@@ -25,9 +37,8 @@
             @endforeach
             </tbody>
         </table>
-        <p>If Marks Distribution is not done then go to distribution and make it done first.<a href="{{URL::to('academic/faculty/')}}" class="btn btn-link">MarksDistribution</a></p>
     </div>
 </div>
 <div class="modal-footer">
-    <a href="{{URL::to('academic/faculty/')}}" class="btn btn-default">Close </a>
+    <a href="{{URL::to('academic/faculty/course/config')}}" class="btn btn-default">Close </a>
 </div>

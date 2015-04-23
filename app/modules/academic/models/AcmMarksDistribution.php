@@ -37,6 +37,40 @@ class AcmMarksDistribution extends \Eloquent
         return $this->errors;
     }
 
+    //static function to show status in courses Marks distribution page
+
+    public static function getMarksDistItemStatus($course_conduct_id, $evalution_marks)
+    {
+        $totalEntry = 0;
+        $datas = AcmMarksDistribution::where('course_conduct_id', '=', $course_conduct_id)->get();
+        if (count($datas) > 0) {
+            foreach ($datas as $item_marks) {
+                if($item_marks->marks > 0)
+                {
+                    $percent = ($item_marks->marks / round($evalution_marks)) * 100;
+                    $totalEntry += $percent;
+                }
+            }
+            if($totalEntry == 100)
+            {
+                return 'Done';
+            }
+            elseif ($totalEntry < 100 && $totalEntry > 0)
+            {
+                return 'Partial';
+            }
+            else
+            {
+                return 'No';
+            }
+        }
+        else
+        {
+            return 'No Item added';
+        }
+
+    }
+    //static function ends here
 
     //TODO : Model Relationship
     public function relAcmAcademic(){

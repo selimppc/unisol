@@ -25,12 +25,12 @@
                                      <th rowspan="70%" style="vertical-align: middle"><b style="font-size: medium">Degree Name</b></th>
                                  </tr>
                                  @foreach($batch_applicant as $value)
-
                                      <tr>
                                           <td class="col-lg-10">
                                                 <a href="{{ URL::route('admission.applicant.admission.test_details',
                                                     ['id' => $value->id]) }}">
-                                                    {{ $value->relBatch->relDegree->title }} Of {{$value->relBatch->relDegree->relDegreeGroup->title}} On {{$value->relBatch->relDegree->relDepartment->title}}
+                                                    {{ $value->relBatch->relDegree->relDegreeLevel->code.'  '.$value->relBatch->relDegree->relDegreeGroup->code.' in '.$value->relBatch->relDegree->relDegreeProgram->code }}
+
                                                 </a>, Batch :{{ $value->relBatch->batch_number }}
                                           </td>
                                      </tr>
