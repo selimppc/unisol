@@ -255,7 +255,7 @@ class AcmFacultyController extends \BaseController {
 		}
 	}
 
-	//************************Marks Distribution Item Class Start************************
+	//************************Marks Distribution Item Class Start***********************
 
 	public function class_index($marks_dist_id,$cmid)
 	{
@@ -264,7 +264,7 @@ class AcmFacultyController extends \BaseController {
 		$datas = AcmAcademic::with('relAcmClassSchedule')
 			->where('acm_marks_distribution_id', '=', $marks_dist_id)
 			->get();
-		$data= CourseManagement::with( 'relCourse')
+		$data= CourseConduct::with( 'relCourse')
 			->where('id', '=', $cmid)
 			->get();
 		$config_data = AcmMarksDistribution::with('relAcmMarksDistItem', 'relCourseManagement.relCourse')
