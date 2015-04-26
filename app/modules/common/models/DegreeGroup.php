@@ -13,7 +13,7 @@ class DegreeGroup extends \Eloquent
         'title' => 'required',
         'code' => ['required',
             'max:20',
-            'min:3',
+            'min:1',
             'Regex:/\A(?!.*[:;]-\))[ -~]+\z/'],
         //'description' => 'alpha_dash',
     ];
