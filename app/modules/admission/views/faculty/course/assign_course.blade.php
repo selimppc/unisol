@@ -21,7 +21,7 @@
                     </tr>
                     <tr>
                         <td>Degree :</td>
-                        <td>{{ $assign_course->relDegree->relDegreeLevel->code.'  '.$assign_course->relDegree->relDegreeGroup->code}}</td>
+                        <td>{{ $assign_course->relDegree->relDegreeLevel->code.'  '.$assign_course->relDegree->relDegreeGroup->code.' in '.$assign_course->relDegree->relDegreeProgram->code }}</td>
                     </tr>
                     <tr>
                         <td>Department :</td>
