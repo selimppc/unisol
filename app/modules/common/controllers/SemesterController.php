@@ -9,7 +9,7 @@ class SemesterController extends \BaseController {
 	 */
 	public function index()
 	{
-        $semester = Semester::orderBy('id', 'DESC')->paginate(5);
+        $semester = Semester::orderBy('id', 'DESC')->paginate(10);
         return View::make('common::semester.index')->with('term_semester',$semester);
         //ok
 	}

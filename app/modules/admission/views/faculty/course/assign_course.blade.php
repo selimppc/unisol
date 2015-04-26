@@ -21,7 +21,7 @@
                     </tr>
                     <tr>
                         <td>Degree :</td>
-                        <td>{{ $assign_course->relDegree->relDegreeLevel->code.'  '.$assign_course->relDegree->relDegreeGroup->code}}</td>
+                        <td>{{ $assign_course->relDegree->relDegreeLevel->code.'  '.$assign_course->relDegree->relDegreeGroup->code.' in '.$assign_course->relDegree->relDegreeProgram->code }}</td>
                     </tr>
                     <tr>
                         <td>Department :</td>
@@ -42,7 +42,7 @@
                     </p>
                 @endforeach
                 <div class="form-group">
-                      {{ Form::textarea('comments', Null, ['class' => 'form-control', 'placeholder'=>'Your Comments Here', 'style'=>'height: 100px;']) }}
+                      {{ Form::textarea('comments', Null, ['onkeyup'=>"javascript:this.value=this.value.replace(/[<,>]/g,'');",'class' => 'form-control', 'placeholder'=>'Your Comments Here', 'style'=>'height: 100px;']) }}
                 </div>
             </p>
         </div>

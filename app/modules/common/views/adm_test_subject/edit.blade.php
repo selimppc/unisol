@@ -17,7 +17,7 @@
 
           <div class='form-group'>
               <div>{{ Form::label('description', 'Description') }}</div>
-              <div>{{ Form::textarea('description', $edit_adm_test_subject->description,['class'=>'form-control input-sm','size' => '30x5'])}}</div>
+              <div>{{ Form::textarea('description', $edit_adm_test_subject->description,['onkeyup'=>"javascript:this.value=this.value.replace(/[<,>]/g,'');",'class'=>'form-control input-sm','size' => '30x5'])}}</div>
           </div>
 
           <div class='form-group'>

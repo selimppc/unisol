@@ -45,7 +45,7 @@
                     <br>
                         {{ Form::open(array('route' => 'admission.amw.degree.dg_batch_delete')) }}
                         @if($model->count())
-                        <table id="example1" class="table table-bordered">
+                        <table id="example" class="table table-bordered">
                             <thead>
                             <tr>
                                 <th>

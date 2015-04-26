@@ -25,19 +25,30 @@ class YearController extends \BaseController {
 			);
 		$validator = Validator::make(Input::all(), $rules);
 		if($validator->fails())
-		{				
+		{
 			return Redirect::to('common/year/')->withErrors($validator)->withInput()->with('title', 'Create year');
 		}
 		else
 		{
 			if($token == Input::get('_token'))
 			{
-				$data = new Year;
-				$data->title = Input::get('title');
-				$name = $data->title;
-				$data->description = Input::get('description');
-				$data->save();
-				Session::flash('message', "$name Added");
+                DB::beginTransaction();
+                try{
+                    $data = new Year;
+                    $data->title = Input::get('title');
+                    $name = $data->title;
+                    $data->description = Input::get('description');
+                    $data->save();
+
+                    DB::commit();
+                    Session::flash('message', "$name Year Added");
+                }
+                catch ( Exception $e ){
+                    //If there are any exceptions, rollback the transaction
+                    DB::rollback();
+                    Session::flash('danger', " $name Year is not added.Invalid Request !");
+                }
+
 				return Redirect::to('common/year/');
 			}
 			else
@@ -112,7 +123,7 @@ class YearController extends \BaseController {
 	{
 		$token = csrf_token();
 		$rules = array(
-			'title' => 'Required|Min: 3|integer|unique:year',
+			'title' => 'Required|Min: 3|integer',
 			'description' => 'Required|min:3'
 			);
 		$validator = Validator::make(Input::all(), $rules);
@@ -124,12 +135,23 @@ class YearController extends \BaseController {
 		{
 			if($token == Input::get('_token'))
 			{
-				$data = Year::find($id);
-				$data->title = Input::get('title');
-				$name = $data->title;
-				$data->description = Input::get('description');
-				$data->save();
-				Session::flash('message', "$name Updated");
+                DB::beginTransaction();
+                try{
+                    $data = Year::find($id);
+                    $data->title = Input::get('title');
+                    $name = $data->title;
+                    $data->description = Input::get('description');
+                    $data->save();
+
+                    DB::commit();
+                    Session::flash('message', "$name Updated");
+                }
+                catch ( Exception $e ){
+                    //If there are any exceptions, rollback the transaction
+                    DB::rollback();
+                    Session::flash('danger', " $name Year is not added.Invalid Request !");
+                }
+
 				return Redirect::to('common/year/');
 			}
 			else

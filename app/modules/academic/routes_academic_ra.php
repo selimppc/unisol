@@ -34,8 +34,9 @@ Route::any('academic/amw/batch/delete',
 );*/
 
 
-//&&&&&&&&&&&&&&&&&&  AMW START  &&&&&&&&&&&&&&&&&&&&&&&
-//*****************Amw Course Config(R)**************************************
+//>>>>>>>>>>>>>>>>> AMW START <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+//*****************Amw Course Config(R)*********************
 
 Route::get('academic/amw/config/',
     'AcmAmwController@config_index'
@@ -61,13 +62,14 @@ Route::post('academic/amw/config/acmconfigdelete/ajax',
 
 
 
-//>>>>>>>>>>>>>>>>>>  FACULTY START  <<<<<<<<<<<<<<<<<<<<<<<
-//******************Faculty Marks Distribution(R)********************
+//>>>>>>>>>>>>>>>>>>>> FACULTY START  <<<<<<<<<<<<<<<<<<<<<<<
+
+//*****************Faculty Course Marks Distribution(R)**********
 
 Route::get('academic/faculty/course/config',
     'AcmFacultyController@index'
 );
-Route::any('academic/faculty/course/marksdistitem/show/{cc_id}',[
+Route::any('academic/faculty/course/marksdistitem/show/{cc_id}/{course_id}',[
     'as' => 'coursemarksdist.show',
     'uses'=> 'AcmFacultyController@course_marks_dist_show'
 ]);
@@ -86,13 +88,13 @@ Route::post('academic/faculty/marksdist/acmmarksdistdelete/ajax',
     'AcmFacultyController@ajax_delete_acm_marks_dist'
 );
 
-//******************Faculty Marks Distribution Item Class*****************
+//******************Faculty Marks Distribution Item *****************
 
-Route::any('academic/faculty/marksdistitem/class/{marks_dist_id}/{cmid}',
-    'AcmFacultyController@class_index'
+Route::any('academic/faculty/marksdistitem/{marks_dist_id}/{cc_id}/{item_id}',
+    'AcmFacultyController@item_index'
 );
-Route::post('academic/faculty/marksdistitem/class/save',
-    'AcmFacultyController@save_marksdist_item_class_data'
+Route::post('academic/faculty/marksdistitem/save',
+    'AcmFacultyController@save_marksdist_item_data'
 );
 Route::any('academic/faculty/class/show/{id}',[
     'as' => 'class.show',
@@ -111,7 +113,7 @@ Route::post('academic/faculty/acadetailsdelete/ajax',
 );
 
 //******************Faculty Marks Distribution Item Class Test*****************
-
+/*
 Route::any('academic/faculty/marks/dist/item/class_test/{marks_dist_id}/{cmid}',
     'AcmFacultyController@class_test_index'
 );
@@ -156,7 +158,7 @@ Route::post('comments/save',
 );
 //******************Faculty Marks Distribution Item Assignment****************
 
-Route::any('academic/faculty/marks/dist/item/assignment/{marks_dist_id}/{cmid}',
+Route::any('academic/faculty/marks/dist/item/assignment/{marks_dist_id}/{cc_id}/{item_id}',
     'AcmFacultyController@assignment_index'
 );
 Route::post('assignment/save',

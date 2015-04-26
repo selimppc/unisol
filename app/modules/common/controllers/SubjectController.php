@@ -73,7 +73,7 @@ class SubjectController extends \BaseController {
 
 			});
 		}
-		$datas = $q->orderBy('id', 'DESC')->paginate(5);
+		$datas = $q->orderBy('id', 'DESC')->paginate(10);
 		return View::make('common::subject.index', compact('title', 'datas', 'department'));
 	}
 

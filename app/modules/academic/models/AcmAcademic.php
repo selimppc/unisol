@@ -10,9 +10,9 @@ class AcmAcademic extends \Eloquent
 
     private $errors;
     private $rules = [
-        'course_conduct_id' => 'required|integer',
-        'acm_marks_distribution_id' => 'required|integer',
-        'acm_class_schedule_id' => 'required|integer',
+        //'course_conduct_id' => 'required|integer',
+       // 'acm_marks_distribution_id' => 'required|integer',
+        //'acm_class_schedule_id' => 'required|integer',
         //'status' => 'required|integer',
     ];
 

@@ -15,7 +15,7 @@
 
           <div class='form-group'>
                 <div>{{ Form::label('description', 'Description') }}</div>
-                <div>{{ Form::textarea('description',Input::old('description') ,['class'=>'form-control input-sm', 'style'=>'height: 100px;'])}}</div>
+                <div>{{ Form::textarea('description',Input::old('description') ,['onkeyup'=>"javascript:this.value=this.value.replace(/[<,>]/g,'');",'class'=>'form-control input-sm', 'style'=>'height: 100px;'])}}</div>
           </div>
 
             <div class='form-group'>
@@ -67,7 +67,7 @@
                 <div>{{ Form::select ('policy_retake',  array('' => 'Select one',
                     'less-grade' => 'Less Grade', 'no-less' => 'No Less','best-one'=>'Best One',
                     'latest-one'=>'latest One'), Input::old('policy_retake'),
-                     array('class' => 'form-control input-sm')) }}</div>
+                     array('class' => 'form-control input-sm','required')) }}</div>
              </div>
             <div class="col-lg-6" style="padding-right: 0;">
                 <div>{{ Form::label('policy_course_taking', 'Course Taking Policy') }}<span class="text-danger">*</span></div>
@@ -75,7 +75,7 @@
                       'strict' => 'Strict',
                       'relaxed' => 'Relaxed'),
                       Input::old('policy_course_taking'),
-                      array('class' => 'form-control input-sm')) }}
+                      array('class' => 'form-control input-sm','required')) }}
                 </div>
              </div>
           </div>
