@@ -78,7 +78,7 @@ class YearController extends \BaseController {
 				
 			});
 		}
-		$data = $q->orderBy('id', 'DESC')->paginate(5);
+		$data = $q->orderBy('id', 'DESC')->paginate(10);
 		return View::make('common::year.index')->with('datas',$data)->with('title','All Year List');
 	}
 
