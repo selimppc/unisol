@@ -871,14 +871,14 @@ class AdmAmwController extends \BaseController
         $data = Input::all();
 
 //        print_r($data);exit;
-        
+
         $model = new Batch();
 
         if($model->validate($data))
         {
             DB::beginTransaction();
             try {
-                if ($model->create($data))
+                $model->create($data);
                 DB::commit();
                 Session::flash('message', "Batch Added");
             }
