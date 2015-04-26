@@ -13,7 +13,7 @@
                     {{ isset($value->marks) ? $value->marks : 'No Item Added!'}}
                 @endforeach</b>
         </p>
-        <table class="table table-bordered">
+        <table class="table table-bordered table-hover table-striped">
             <thead>
             <th>Item</th>
             <th>Marks(%)</th>
