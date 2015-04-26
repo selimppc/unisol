@@ -18,30 +18,45 @@ class YearController extends \BaseController {
 	}
 	public function save()
 	{
-        $data = Input::all();
-        $model = new Year();
-        $model->title = Input::get('title');
-        $name = $model->title;
-        if($model->validate($data))
-        {
-            DB::beginTransaction();
-            try {
-                $model->create($data);
-                DB::commit();
-                Session::flash('message', "$name Year  Added");
-            }
-            catch ( Exception $e ){
-                //If there are any exceptions, rollback the transaction
-                DB::rollback();
-                Session::flash('danger', "$name Year not added.Invalid Request!");
-            }
-            return Redirect::back();
-        }else{
-            $errors = $model->errors();
-            Session::flash('errors', $errors);
-            return Redirect::back()
-                ->with('errors', 'invalid');
-        }
+		$token = csrf_token();
+		$rules = array(
+			'title' => 'Required|Min: 3|integer|unique:year',
+			'description' => 'Required|min:3'
+			);
+		$validator = Validator::make(Input::all(), $rules);
+		if($validator->fails())
+		{
+			return Redirect::to('common/year/')->withErrors($validator)->withInput()->with('title', 'Create year');
+		}
+		else
+		{
+			if($token == Input::get('_token'))
+			{
+                DB::beginTransaction();
+                try{
+                    $data = new Year;
+                    $data->title = Input::get('title');
+                    $name = $data->title;
+                    $data->description = Input::get('description');
+                    $data->save();
+
+                    DB::commit();
+                    Session::flash('message', "$name Year Added");
+                }
+                catch ( Exception $e ){
+                    //If there are any exceptions, rollback the transaction
+                    DB::rollback();
+                    Session::flash('danger', " $name Year is not added.Invalid Request !");
+                }
+
+				return Redirect::to('common/year/');
+			}
+			else
+			{
+				Session::flash('message', 'Token Mismatched');
+				return Redirect::to('common/year/');
+			}
+		}
 	}
 
 	/**
@@ -74,7 +89,7 @@ class YearController extends \BaseController {
 				
 			});
 		}
-		$data = $q->orderBy('id', 'DESC')->paginate(10);
+		$data = $q->orderBy('id', 'DESC')->paginate(5);
 		return View::make('common::year.index')->with('datas',$data)->with('title','All Year List');
 	}
 
@@ -106,30 +121,45 @@ class YearController extends \BaseController {
 	 */
 	public function update($id)
 	{
-        $data = Input::all();
-        $model = Year::find($id);
-        $model->title = Input::get('title');
-        $name = $model->title;
-        if($model->validate($data))
-        {
-            DB::beginTransaction();
-            try {
-                $model->update($data);
-                DB::commit();
-                Session::flash('message', "$name Year Updates");
-            }
-            catch ( Exception $e ){
-                //If there are any exceptions, rollback the transaction
-                DB::rollback();
-                Session::flash('danger', "$name Year not updates. Invalid Request !");
-            }
-            return Redirect::back();
-        }else{
-            $errors = $model->errors();
-            Session::flash('errors', $errors);
-            return Redirect::back()
-                ->with('errors', 'Input Data Not Valid');
-        }
+		$token = csrf_token();
+		$rules = array(
+			'title' => 'Required|Min: 3|integer',
+			'description' => 'Required|min:3'
+			);
+		$validator = Validator::make(Input::all(), $rules);
+		if($validator->fails())
+		{
+			return Redirect::to('common/year/')->withErrors($validator)->withInput()->with('title', 'Create Subject');
+		}
+		else
+		{
+			if($token == Input::get('_token'))
+			{
+                DB::beginTransaction();
+                try{
+                    $data = Year::find($id);
+                    $data->title = Input::get('title');
+                    $name = $data->title;
+                    $data->description = Input::get('description');
+                    $data->save();
+
+                    DB::commit();
+                    Session::flash('message', "$name Updated");
+                }
+                catch ( Exception $e ){
+                    //If there are any exceptions, rollback the transaction
+                    DB::rollback();
+                    Session::flash('danger', " $name Year is not added.Invalid Request !");
+                }
+
+				return Redirect::to('common/year/');
+			}
+			else
+			{
+				Session::flash('message', 'Token Mismatched');
+				return Redirect::to('common/year/');
+			}
+		}
 	}
 
 	public function delete($id)
