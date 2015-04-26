@@ -113,8 +113,8 @@ Route::post('academic/faculty/acadetailsdelete/ajax',
 );
 
 //******************Faculty Marks Distribution Item Class Test*****************
-
-/*Route::any('academic/faculty/marks/dist/item/class_test/{marks_dist_id}/{cmid}',
+/*
+Route::any('academic/faculty/marks/dist/item/class_test/{marks_dist_id}/{cmid}',
     'AcmFacultyController@class_test_index'
 );
 Route::post('class_test/save',
@@ -272,4 +272,3 @@ Route::any('final/term/assign/comments/{assign_std_id}',[
 Route::post('finalterm/comments/save',
     'AcmFacultyController@save_final_term_comments'
 );
-*/

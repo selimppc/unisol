@@ -289,7 +289,6 @@ class AcmFacultyController extends \BaseController {
 		if ($datas->validate($data)) {
 			$datas->course_conduct_id = Input::get('course_conduct_id');
 			$datas->acm_marks_distribution_id = Input::get('marks_dist_id');
-            print_r($datas->acm_marks_distribution_id );exit;
 			$datas->title = Input::get('title');
 			$datas->description = Input::get('description');
 			$datas->acm_class_schedule_id = Input::get('class_schedule');
