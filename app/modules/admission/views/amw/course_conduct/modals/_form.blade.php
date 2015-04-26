@@ -34,7 +34,7 @@
 
   <div class='form-group'>
         <div>{{ Form::label('description', 'Description') }}</div>
-        <div>{{ Form::text('description',Input::old('description') ,['class'=>'form-control input-sm','required'])}}</div>
+        <div>{{ Form::text('description',Input::old('description') ,['onkeyup'=>"javascript:this.value=this.value.replace(/[<,>]/g,'');",'class'=>'form-control input-sm','required'])}}</div>
   </div>
 
   <div class='form-group'>

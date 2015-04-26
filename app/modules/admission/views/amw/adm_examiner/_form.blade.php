@@ -38,7 +38,7 @@
 
             <div class="form-group">
                      {{ Form::label('comment', 'Comment:') }}
-                     {{ Form::textarea('comment',Input::old('comment'), ['class' => 'form-control','placeholder'=>'Your Comments Here', 'style'=>'height: 100px;']) }}
+                     {{ Form::textarea('comment',Input::old('comment'), ['onkeyup'=>"javascript:this.value=this.value.replace(/[<,>]/g,'');",'class' => 'form-control','placeholder'=>'Your Comments Here', 'style'=>'height: 100px;']) }}
             </div>
 
       {{ Form::submit('Save', array('class'=>'pull-right btn btn-info')) }}

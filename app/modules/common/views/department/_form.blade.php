@@ -9,7 +9,7 @@
     </div>
     <div class='form-group'>
         <div>{{ Form::label('description', ' Description') }}</div>
-        <div>{{ Form::textarea('description', Input::old('description'),['class'=>'form-control ','spellcheck'=> 'true']) }}</div>
+        <div>{{ Form::textarea('description', Input::old('description'),['onkeyup'=>"javascript:this.value=this.value.replace(/[<,>]/g,'');",'class'=>'form-control ','spellcheck'=> 'true']) }}</div>
     </div>
     {{ Form::submit('Save', array('class'=>'btn btn-primary')) }}
     <a href="{{URL::to('common/department/')}}" class="btn btn-default">Close </a>

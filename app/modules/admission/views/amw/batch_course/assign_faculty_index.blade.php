@@ -75,7 +75,7 @@
                         </div>
                         <div class='form-group'>
                             <h4>Comments:</h4>
-                            <div>{{ Form::textarea('comments', Input::old('comments'),['class' => 'form-control', 'style'=>'height: 100px;'])}}</div>
+                            <div>{{ Form::textarea('comments', Input::old('comments'),['onkeyup'=>"javascript:this.value=this.value.replace(/[<,>]/g,'');",'class' => 'form-control', 'style'=>'height: 100px;'])}}</div>
                             <div>
 
                                 @if(isset( $cc_status->status) == 'requested')

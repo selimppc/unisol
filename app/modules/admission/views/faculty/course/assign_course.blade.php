@@ -42,7 +42,7 @@
                     </p>
                 @endforeach
                 <div class="form-group">
-                      {{ Form::textarea('comments', Null, ['class' => 'form-control', 'placeholder'=>'Your Comments Here', 'style'=>'height: 100px;']) }}
+                      {{ Form::textarea('comments', Null, ['onkeyup'=>"javascript:this.value=this.value.replace(/[<,>]/g,'');",'class' => 'form-control', 'placeholder'=>'Your Comments Here', 'style'=>'height: 100px;']) }}
                 </div>
             </p>
         </div>
