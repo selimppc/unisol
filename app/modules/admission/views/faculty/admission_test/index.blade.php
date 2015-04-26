@@ -70,6 +70,7 @@
                           @endforeach
                       </tbody>
                     </table>
+                    {{ $index_adm_examiner->links() }}
     {{ Form::close() }}
 
 {{--modal--}}
