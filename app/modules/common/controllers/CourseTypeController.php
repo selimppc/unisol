@@ -5,7 +5,7 @@ class CourseTypeController extends \BaseController {
 
 	public function index()
 	{
-        $model = CourseType::orderBy('id', 'DESC')->paginate(5);
+        $model = CourseType::orderBy('id', 'DESC')->paginate(10);
         return View::make('common::course_type.index',
                   compact('model'));
 
