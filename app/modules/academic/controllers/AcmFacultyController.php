@@ -96,7 +96,7 @@ class AcmFacultyController extends \BaseController {
             ->where('course_conduct_id', '=', $cc_id)
             ->get();
 
-        $coursetitle= AcmMarksDistribution::with('relCourseConduct.relCourse')
+        $coursetitle= AcmMarksDistribution::with('relAcmMarksDistItem', 'relCourseConduct.relCourse')
             ->where('course_conduct_id', '=', $cc_id)
             ->first();
 
@@ -117,7 +117,7 @@ class AcmFacultyController extends \BaseController {
             ->select(DB::raw('sum(marks) AS marks'))
             ->where('course_conduct_id', $cc_id)->get();
 
-        //$data->id now contains the course_management_id
+        //$data->id now contains the course_conduct_id
 
 		$acm_marks_distribution = AcmMarksDistribution::where('course_conduct_id', '=', $data->id)->get();
 

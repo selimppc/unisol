@@ -1,11 +1,7 @@
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal">{{HTML::image('assets/icon/media-close-btn.png')}}</button>
-    @if(isset($course))
         <h4 class="modal-title" style="text-align: center;color: #800080;font-size:large">Course:
-            {{isset($coursetitle->relCourseConduct->relCourse->title) ? $coursetitle->relCourseConduct->relCourse->title : ''}} Marks Distribution</h4>
-    @else
-        <h4 class="modal-title" style="text-align: center;color: #800080;font-size:large">Course Marks Distribution</h4>
-    @endif
+            {{isset($coursetitle->relCourseConduct->relCourse->title) ? $coursetitle->relCourseConduct->relCourse->title: 'Show' }} Marks Distribution</h4>
 </div>
 <div class="modal-body">
     <div style="padding: 10px; width: 90%;">
@@ -17,7 +13,7 @@
                     {{ isset($value->marks) ? $value->marks : 'No Item Added!'}}
                 @endforeach</b>
         </p>
-        <table class="table table-bordered">
+        <table class="table table-bordered table-hover table-striped">
             <thead>
             <th>Item</th>
             <th>Marks(%)</th>
@@ -40,5 +36,5 @@
     </div>
 </div>
 <div class="modal-footer">
-    <a href="{{URL::to('academic/faculty/course/config')}}" class="btn btn-default">Close </a>
+    <a href="{{URL::to('academic/faculty/course/config')}}" class="btn btn-default">Close</a>
 </div>
