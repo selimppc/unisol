@@ -20,11 +20,15 @@ class AcmFacultyController extends \BaseController {
 				'title', 'datas'));
 	}
 
-	public function course_marks_dist_show($cc_id)
+	public function course_marks_dist_show($cc_id,$course_id)
 	{
-		$data= CourseConduct::with('relCourse','relCourse.relCourseType','relYear','relSemester','relDegree','relDegree.relDepartment')
+		$datas= CourseConduct::with('relCourse','relCourse.relCourseType','relYear','relSemester','relDegree','relDegree.relDepartment')
 			->where('id', '=', $cc_id)
 			->get();
+
+        $data=CourseConduct::with('relCourse','relCourse.relCourseType')
+            ->where('course_id', '=', $course_id)
+            ->first();
 
 		$config_data = AcmMarksDistribution::with('relAcmMarksDistItem', 'relCourseConduct.relCourse')
 			->where('course_conduct_id', '=', $cc_id)
@@ -38,7 +42,51 @@ class AcmFacultyController extends \BaseController {
             ->select(DB::raw('sum(marks) AS marks'))
             ->where('course_conduct_id', $cc_id)->get();
 
-		return View::make('academic::faculty.mark_distribution_courses.show',compact('data','config_data','coursetitle','totalmarks'));
+        //$data->id now contains the course_conduct_id
+
+        $acm_marks_distribution = AcmMarksDistribution::where('course_conduct_id', '=', $data->id)->get();
+
+        if(isset($acm_marks_distribution[0])!=null){
+            // $result = $acm_marks_distribution;
+            $result = DB::table('acm_marks_distribution')
+                ->select(
+                    'acm_marks_distribution.id as isMarksId',
+                    'acm_marks_distribution.acm_marks_dist_item_id as item_id',
+                    'acm_marks_dist_item.title as acm_dist_item_title',
+                    'acm_marks_distribution.marks as actual_marks',
+                    'acm_marks_distribution.is_readonly as readonly',
+                    'acm_marks_distribution.is_default as default_item',
+                    'acm_marks_distribution.is_attendance',
+                    'acm_marks_distribution.created_by as CBid',
+                    'acm_marks_distribution.acm_marks_policy',
+                    'course.id as course_id2'
+                )
+                ->join('course_conduct','acm_marks_distribution.course_conduct_id','=', 'course_conduct.id')
+                ->join('course','course_conduct.course_id','=', 'course.id')
+                ->join('acm_marks_dist_item','acm_marks_distribution.acm_marks_dist_item_id','=', 'acm_marks_dist_item.id')
+                ->where('acm_marks_distribution.course_conduct_id', $data->id)
+                ->get();
+        }else{
+            $result = DB::table('acm_course_config')
+                ->select(
+                    'acm_course_config.id as isConfigId',
+                    'acm_course_config.acm_marks_dist_item_id as item_id',
+                    'acm_course_config.readonly',
+                    'acm_course_config.default_item',
+                    'acm_course_config.is_attendance',
+                    'acm_course_config.created_by',
+                    'acm_course_config.marks as actual_marks',
+                    'acm_marks_dist_item.title as acm_dist_item_title',
+                    'course.id as course_id2',
+                    'course.evaluation_total_marks as evaluation_total_marks'
+                )
+                ->join('course','acm_course_config.course_id','=', 'course.id')
+                ->join('acm_marks_dist_item','acm_course_config.acm_marks_dist_item_id','=', 'acm_marks_dist_item.id')
+                ->where('course.id', $course_id)
+                ->get();
+        }
+
+		return View::make('academic::faculty.mark_distribution_courses.show',compact('datas','data','config_data','coursetitle','totalmarks','result'));
 	}
 
 

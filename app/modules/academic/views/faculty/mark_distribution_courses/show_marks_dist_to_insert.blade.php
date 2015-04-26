@@ -2,7 +2,7 @@
     <button type="button" class="close" data-dismiss="modal">{{HTML::image('assets/icon/media-close-btn.png')}}</button>
     <h4 class="modal-title" style="text-align: center;color: #800080;font-size:large"> Add/Edit Marks Distribution Item for Course:
         {{$data->relCourse->title}}</h4>
-</div>
+</div></div>
 <div class="modal-body">
     <p>Evaluation Total Marks:
         <b>{{ isset($data->relCourse->evaluation_total_marks) ? $data->relCourse->evaluation_total_marks : 'No Item Added!'}}</b>

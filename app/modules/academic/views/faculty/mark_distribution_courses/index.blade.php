@@ -40,7 +40,7 @@
                                 <tbody>
                                 @foreach ($datas as $value)
                                 <tr>
-                                    <td><a href="{{ URL::route('coursemarksdist.show', ['cc_id'=>$value->id])  }}" class=" btn-link">{{$value->relCourse->title}}</a></td>
+                                    <td><a href="{{ URL::route('coursemarksdist.show', ['cc_id'=>$value->id,'course_id'=>$value->course_id])  }}" class=" btn-link">{{$value->relCourse->title}}</a></td>
                                     <td>{{$value->relCourse->relSubject->relDepartment->title}}</td>
                                     <td>{{$value->relYear->title}}</td>
                                     <td>{{$value->relSemester->title}}</td>

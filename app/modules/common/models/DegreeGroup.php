@@ -11,7 +11,10 @@ class DegreeGroup extends \Eloquent
     private $errors;
     private $rules = [
         'title' => 'required',
-        'code' => 'required|alpha_dash',
+        'code' => ['required',
+            'max:20',
+            'min:1',
+            'Regex:/\A(?!.*[:;]-\))[ -~]+\z/'],
         //'description' => 'alpha_dash',
     ];
     public function validate($data)
