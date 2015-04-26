@@ -54,6 +54,8 @@
                                       <div class="col-lg-12">
                                          {{ Form::open(['route' => ['academic.student.course-enrollment']]) }}
                                          {{--{{Form::hidden('student_user_id',$student_user_id)}}--}}
+                                         {{Form::hidden('taken_in_year',  $current_year_id)}}
+                                         {{Form::hidden('taken_in_semester', $current_semester_id)}}
                                               <table class="table  table-bordered">
                                                    <thead>
                                                        <tr>
@@ -76,7 +78,7 @@
                                                                  <td></td>
                                                                  <td>
                                                                  @if($value['is_mandatory']==1)
-                                                                    <input type="checkbox" name="ids[]"  class="myCheckbox" value="1"  onclick="return false" checked >
+                                                                    <input type="checkbox" name="ids[]"  class="myCheckbox" value="1" checked>
                                                                     {{--{{Form::checkbox('ids[]', true, array('id'=>'ce-mandatory-id')  )}}--}}
                                                                  @else
                                                                      {{--<input type="checkbox" name="ids[]"  id="check" class="myCheckbox" value="" >--}}

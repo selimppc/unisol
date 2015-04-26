@@ -102,8 +102,8 @@
                                                                   <tbody>
                                                                      @foreach($courses as $c => $v)
                                                                         <tr>
-                                                                           <td>{{$v}}</td>
-                                                                           <td></td>
+                                                                           <td>{{$v['title']}}</td>
+                                                                           <td>{{$v['credit']}}</td>
                                                                            <td></td>
                                                                            <td></td>
                                                                            <td></td>

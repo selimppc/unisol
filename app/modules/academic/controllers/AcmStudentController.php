@@ -17,9 +17,9 @@ class AcmStudentController extends \BaseController {
         })->orderBy('year_id')->orderBy('semester_id')->get();
 
         foreach($course_list as $key => $value){
-            $left_courses[$value->relYear->title][$value->relsemester->title][$value->id] = $value->relCourse->title;
+            $left_courses[$value->relYear->title][$value->relsemester->title][$value->id]['title'] = $value->relCourse->title;
+            $left_courses[$value->relYear->title][$value->relsemester->title][$value->id]['credit'] = $value->relCourse->credit;
         }
-
         return View::make('academic::student.courses.acm_courses',compact('courses','total_credit','left_courses','batch_courses'));
     }
 
@@ -37,41 +37,45 @@ class AcmStudentController extends \BaseController {
             $batch_courses = BatchCourse::with('relBatch','relSemester','relYear')
                 ->where('year_id', $current_year_id)->where('semester_id', $current_semester_id)->get();
 
-        }
+        }elseif(empty($completed_data)){
 
-        if(empty($completed_data)){
             $applicant_id = User::findOrFail(Auth::user()->get()->id)->applicant_id;
             $batch_id = BatchApplicant::where('applicant_id', $applicant_id)->first()->batch_id;
+
             $batch_data = Batch::findOrFail($batch_id);
+
             $current_year_id = $batch_data->year_id;
             $year_title = Year::findOrFail($current_year_id)->title;
             $current_semester_id = $batch_data->semester_id;
             $semester_title = Semester::findOrFail($current_semester_id)->title;
 
-            $batch_courses = BatchCourse::with('relBatch','relSemester','relYear')
-                ->where('year_id', $current_year_id)->where('semester_id', $current_semester_id)->get();
+            $batch_courses = BatchCourse::where('year_id', $current_year_id)->where('semester_id', $current_semester_id)->get();
         }
-        //print_r($batch_courses);exit;
-        return View::make('academic::student.courses.enrollment',compact('batch_courses', 'year_title', 'semester_title'));
+
+        return View::make('academic::student.courses.enrollment',compact(
+            'batch_courses', 'year_title', 'semester_title', 'current_year_id', 'current_semester_id'
+        ));
     }
 
 	public function acmCoursesEnrollment()
 	{
-
         $checked_ids = Input::get('ids');
-        //print_r($checked_ids);exit;
+        $taken_in_year = Input::get('taken_in_year');
+        $taken_in_semester = Input::get('taken_in_semester');
+        $student_user_id = Auth::user()->get()->id;
 
         if($checked_ids ){
             foreach($checked_ids as $key => $value){
-                $data = new CourseEnrollment();
-
-                $data->student_user_id = User::findOrFail(Auth::user()->get()->id)->applicant_id;
-                //$data->taken_in_semester_id = $value;
-                //$data->applicant_id = Auth::applicant()->get()->id;
-
-                    $data->save();
-
-            }exit;
+                $model = new CourseEnrollment();
+                $model->batch_course_id = $value;
+                $model->student_user_id = $student_user_id;
+                $model->taken_in_year_id = $taken_in_year;
+                $model->taken_in_semester_id = $taken_in_semester;
+                $model->status =$value;
+                $model->save();
+            }
+            Session::flash('message', "Successfully added Courses For Enrollment!");
+            return Redirect::back();
         }else{
             Session::flash('info', "data do not added!");
             return Redirect::back();

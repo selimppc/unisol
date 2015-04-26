@@ -599,19 +599,16 @@ class AdmAmwController extends \BaseController
             ->select('degree_course.course_id', 'degree_course.degree_id', 'degree.department_id')
             ->get();
 
-        $years = BatchCourse::with('relYear')->where('batch_id', $batch_id)->groupBy('year_id')->get();
-        foreach ($years as $year) {
-            $batch_course_data[] = [
-                'semester' => BatchCourse::with('relSemester')->where('year_id', $year->year_id)
-                    ->where('batch_id', $batch_id)->groupBy('semester_id')->get(),
-                'year'=> $year,
-                'course_semester' => BatchCourse::with('relSemester','courseByCourse')
-                    ->where('year_id', $year->year_id)->where('batch_id', $batch_id)
-                    //->groupBy('semester_id')
-                    ->orderBy('semester_id')
-                    ->get(),
-            ];
+        $bc_list = BatchCourse::with('relYear')->where('batch_id', $batch_id)->orderBy('year_id')->orderBy('semester_id')->get();
+        foreach($bc_list as $key => $value){
+            $batch_course_data[$value->relYear->title][$value->relsemester->title][$value->id]['title'] = $value->relCourse->title;
+            $batch_course_data[$value->relYear->title][$value->relsemester->title][$value->id]['mandatory'] = $value->is_mandatory;
+            $batch_course_data[$value->relYear->title][$value->relsemester->title][$value->id]['department'] = $value->relBatch->relDegree->relDepartment->title;
+            $batch_course_data[$value->relYear->title][$value->relsemester->title][$value->id]['type'] = $value->relCourse->relCourseType->title;
+            $batch_course_data[$value->relYear->title][$value->relsemester->title][$value->id]['credit'] = $value->relCourse->credit;
         }
+
+
         return View::make('admission::amw.batch_course.index',compact(
             'batch','degree_id','degree_title','deg_course_info','year_data','semester_data','batch_course_data', 'addCourseCredit'
         ));
@@ -738,18 +735,21 @@ class AdmAmwController extends \BaseController
      * @param $dep_id
      * @return mixed
      */
-    public function assign_faculty_index($course_id, $dep_id)
+    public function assign_faculty_index($bc_id)
     {
+        $data = BatchCourse::findOrFail($bc_id);
         $batch_course = BatchCourse::with('relBatch','relBatch.relDegree','relCourse','relYear','relSemester')
-            ->where('course_id' , '=' ,$course_id)
+            ->where('course_id' , '=' , $data->course_id)
             ->first();
 
         $facultyList =  array('' => 'Select faculty ') +User::FacultyList();
-        $cc_status = CourseConduct::where('course_id' , '=' ,$course_id)
+        $cc_status = CourseConduct::where('course_id' , '=' ,$data->course_id)
             ->first();
         $comments_info = CourseConduct::with('relCourseConductComments')
-                        ->where('course_id','=',$course_id)->get();
-        return View::make('admission::amw.batch_course.assign_faculty_index',compact('facultyList','batch_course','cc_status', 'comments_info'));
+                        ->where('course_id','=', $data->course_id)->get();
+        return View::make('admission::amw.batch_course.assign_faculty_index',compact(
+            'facultyList','batch_course','cc_status', 'comments_info'
+        ));
     }
 
     /**
