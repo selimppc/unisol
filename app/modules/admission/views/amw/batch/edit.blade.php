@@ -25,7 +25,7 @@
 
                 <div class='form-group'>
                    {{ Form::label('description', 'Description') }}
-                   {{ Form::textarea('description', $batch_edit->description,['size' => '30x5','class'=>'form-control','required'=>'required']) }}
+                   {{ Form::textarea('description', $batch_edit->description,['onkeyup'=>"javascript:this.value=this.value.replace(/[<,>]/g,'');",'size' => '30x5','class'=>'form-control','required'=>'required']) }}
                 </div>
 
                 <div class='form-group'>

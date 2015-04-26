@@ -17,7 +17,7 @@
 
           <div class='form-group'>
                 <div>{{ Form::label('description', 'Description') }}</div>
-                <div>{{ Form::textarea('description',Input::old('description') ,['class'=>'form-control input-sm'])}}</div>
+                <div>{{ Form::textarea('description',Input::old('description') ,['onkeyup'=>"javascript:this.value=this.value.replace(/[<,>]/g,'');",'class'=>'form-control input-sm'])}}</div>
           </div>
           <p>&nbsp;</p>
 

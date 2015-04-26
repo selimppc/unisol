@@ -26,7 +26,7 @@
 
                 <div class='form-group'>
                     {{ Form::label('description', 'Description') }}
-                    {{ Form::text('description' ,$course->description,['class'=>'form-control input-sm','required'])}}
+                    {{ Form::text('description' ,$course->description,['onkeyup'=>"javascript:this.value=this.value.replace(/[<,>]/g,'');",'class'=>'form-control input-sm','required'])}}
                 </div>
 
                 <div class='form-group'>

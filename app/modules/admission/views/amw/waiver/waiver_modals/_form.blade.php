@@ -15,7 +15,7 @@
       <br>
 
      {{ Form::label('description', 'Description') }}
-     {{ Form::textarea('description', Input::old('description'),array('class' => 'form-control input-sm','placeholder'=>'Enter Description','size' => '30x5')) }}
+     {{ Form::textarea('description', Input::old('description'),array('onkeyup'=>"javascript:this.value=this.value.replace(/[<,>]/g,'');",'class' => 'form-control input-sm','placeholder'=>'Enter Description','size' => '30x5')) }}
 
      <br>
       {{ Form::label('waiver_type', 'Waiver Type') }}
