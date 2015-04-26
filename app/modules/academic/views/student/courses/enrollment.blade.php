@@ -6,6 +6,7 @@
 @stop
 
 @section('content')
+
 <a class="pull-right btn btn-xs btn-success" href="{{ URL::route('academic.student.courses.index')}}"><b><i class="fa fa-arrow-circle-left"></i>Go Back</b></a>
 
 <h4 class="box-title"><b>Course Enrollment At {{$semester_title }} ,{{$year_title}}</b></h4>
@@ -71,19 +72,17 @@
                                                       @if(isset($batch_courses))
                                                          @foreach($batch_courses as $value)
                                                             <tr>
-                                                                 <td>{{($value->course_id )}}</td>
+                                                                 <td>{{($value->relCourse->title )}}</td>
                                                                  <td>{{ $value->relCourse->credit}}</td>
                                                                  <td></td>
                                                                  <td>{{$value['is_mandatory']==1 ? 'Yes' : 'No'}}</td>
                                                                  <td></td>
                                                                  <td>
-                                                                 @if($value['is_mandatory']==1)
-                                                                    <input type="checkbox" name="ids[]"  class="myCheckbox" value="1" checked>
-                                                                    {{--{{Form::checkbox('ids[]', true, array('id'=>'ce-mandatory-id')  )}}--}}
-                                                                 @else
-                                                                     {{--<input type="checkbox" name="ids[]"  id="check" class="myCheckbox" value="" >--}}
-                                                                      {{Form::checkbox('ids[]', 1, false )}}
-                                                                 @endif
+                                                                     @if($value['is_mandatory']==1)
+                                                                        <input type="checkbox" name="ids[]" id="checkboxID" class="myCheckbox" value="{{$value->id}}" checked="checked">
+                                                                     @else
+                                                                         <input type="checkbox" name="ids[]"  id="check" class="myCheckbox" value="{{$value->id}}" >
+                                                                     @endif
                                                                  </td>
                                                             </tr>
                                                          @endforeach
@@ -109,3 +108,5 @@
 
 
 @stop
+
+
