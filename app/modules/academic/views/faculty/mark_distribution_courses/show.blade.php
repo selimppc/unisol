@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 @section('sidebar')
-    @include('layouts._sidebar_amw')
+    @include('academic::_sidebar')
 @stop
 @section('content')
     <div class="box-body table-responsive ">
