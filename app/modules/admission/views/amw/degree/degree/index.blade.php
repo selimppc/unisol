@@ -19,10 +19,6 @@
 </div><!-- /.row -->
 {{-----------------------------------------Help Text ends ----------------------------------------------------------------------}}
 
-@foreach($model as $val)
-    {{$val->id}}<br>
-@endforeach
-
 
             {{-------------------Searching Starts--------------------------------------------------------------}}
 
@@ -44,46 +40,48 @@
                 </p>
             {{------------Searching Ends--------------------------------------------------------------------}}
 
-            <div class="box-body">
+            <div class="box box-solid ">
                 <div class="row">
                     <div class="col-lg-12">
                         <br>
                         {{ Form::open(array('route' => 'admission.amw.degree.dg_batch_delete')) }}
                         @if($model->count())
-                        <table id="example1" class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th><input name="id" type="checkbox" id="checkbox" class="checkbox" value=""></th>
-                                    <th>Degree(Title)</th>
-                                    <th>Department </th>
-                                    <th>Total Credit</th>
-                                    <th>Duration</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @if(isset($model))
-                                    @foreach($model as $value)
-                                        <tr>
-                                            <td><input type="checkbox" name="id[]"  class="myCheckbox" value="{{ $value->id }}">
-                                            </td>
-                                            <td>{{ $value->relDegreeLevel->code.''.$value->relDegreeGroup->code.' In '.$value->relDegreeProgram->code }}</td>
-                                            <td>{{ $value->relDepartment->title }}</td>
-                                            <td>{{ $value->total_credit}}</td>
-                                            <td>{{ $value->duration}}</td>
-                                            <td>
-                                                <a href="{{ URL::route('admission.amw.degree.show', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#degreeModal" style="font-size: 12px;color: darkmagenta" title="View"><span class="fa fa-eye"></span></a>
-                                                <a class="btn btn-xs btn-default" href="{{ URL::route('admission.amw.degree.edit', ['id'=>$value->id]) }}" data-toggle="modal" data-target="#degreeModal" style="font-size: 12px;color: lightseagreen"><i class="fa fa-edit" title="Update"></i></a>
-                                                <a data-href="{{ URL::to('admission/amw/degree/delete/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" style="font-size: 12px;color: lightcoral" title="Remove"><span class="fa  fa-trash-o"></span></a>
-                                                <a href="{{ URL::route('admission.amw.degree_courses', ['id'=>$value->id])  }}" class="btn btn-xs btn-info" title="Degree Course"> DC </a>
-                                                <a href="{{ URL::route('admission.amw.batch', ['degree_id'=>$value->id])  }}" class="btn btn-xs btn-success" title="Batch Manage"> BM </a>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                @endif
-                            </tbody>
-                            {{ Form::submit('Delete Items', array('class'=>'btn btn-xs btn-danger', 'id'=>'hide-button', 'style'=>'display:none'))}}
-                        </table>
+                        <div class="box-body">
+                            <table id="example" class="table table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th><input name="id" type="checkbox" id="checkbox" class="checkbox" value=""></th>
+                                        <th>Degree(Title)</th>
+                                        <th>Department </th>
+                                        <th>Total Credit</th>
+                                        <th>Duration</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if(isset($model))
+                                        @foreach($model as $value)
+                                            <tr>
+                                                <td><input type="checkbox" name="id[]"  class="myCheckbox" value="{{ $value->id }}">
+                                                </td>
+                                                <td>{{ $value->relDegreeLevel->code.''.$value->relDegreeGroup->code.' In '.$value->relDegreeProgram->code }}</td>
+                                                <td>{{ $value->relDepartment->title }}</td>
+                                                <td>{{ $value->total_credit}}</td>
+                                                <td>{{ $value->duration}}</td>
+                                                <td>
+                                                    <a href="{{ URL::route('admission.amw.degree.show', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#degreeModal" style="font-size: 12px;color: darkmagenta" title="View"><span class="fa fa-eye"></span></a>
+                                                    <a class="btn btn-xs btn-default" href="{{ URL::route('admission.amw.degree.edit', ['id'=>$value->id]) }}" data-toggle="modal" data-target="#degreeModal" style="font-size: 12px;color: lightseagreen"><i class="fa fa-edit" title="Update"></i></a>
+                                                    <a data-href="{{ URL::to('admission/amw/degree/delete/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" style="font-size: 12px;color: lightcoral" title="Remove"><span class="fa  fa-trash-o"></span></a>
+                                                    <a href="{{ URL::route('admission.amw.degree_courses', ['id'=>$value->id])  }}" class="btn btn-xs btn-info" title="Degree Course"> DC </a>
+                                                    <a href="{{ URL::route('admission.amw.batch', ['degree_id'=>$value->id])  }}" class="btn btn-xs btn-success" title="Batch Manage"> BM </a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    @endif
+                                </tbody>
+                                {{ Form::submit('Delete Items', array('class'=>'btn btn-xs btn-danger', 'id'=>'hide-button', 'style'=>'display:none'))}}
+                            </table>
+                        </div>
                         @else
                             <p>&nbsp;</p>
                                 <div>
