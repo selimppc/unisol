@@ -88,13 +88,13 @@ Route::post('academic/faculty/marksdist/acmmarksdistdelete/ajax',
     'AcmFacultyController@ajax_delete_acm_marks_dist'
 );
 
-//******************Faculty Marks Distribution Item Class*****************
+//******************Faculty Marks Distribution Item *****************
 
-Route::any('academic/faculty/marksdistitem/class/{marks_dist_id}/{cmid}',
-    'AcmFacultyController@class_index'
+Route::any('academic/faculty/marksdistitem/{marks_dist_id}/{cc_id}/{item_id}',
+    'AcmFacultyController@item_index'
 );
-Route::post('academic/faculty/marksdistitem/class/save',
-    'AcmFacultyController@save_marksdist_item_class_data'
+Route::post('academic/faculty/marksdistitem/save',
+    'AcmFacultyController@save_marksdist_item_data'
 );
 Route::any('academic/faculty/class/show/{id}',[
     'as' => 'class.show',
@@ -114,7 +114,7 @@ Route::post('academic/faculty/acadetailsdelete/ajax',
 
 //******************Faculty Marks Distribution Item Class Test*****************
 
-Route::any('academic/faculty/marks/dist/item/class_test/{marks_dist_id}/{cmid}',
+/*Route::any('academic/faculty/marks/dist/item/class_test/{marks_dist_id}/{cmid}',
     'AcmFacultyController@class_test_index'
 );
 Route::post('class_test/save',
@@ -158,7 +158,7 @@ Route::post('comments/save',
 );
 //******************Faculty Marks Distribution Item Assignment****************
 
-Route::any('academic/faculty/marks/dist/item/assignment/{marks_dist_id}/{cmid}',
+Route::any('academic/faculty/marks/dist/item/assignment/{marks_dist_id}/{cc_id}/{item_id}',
     'AcmFacultyController@assignment_index'
 );
 Route::post('assignment/save',
@@ -272,3 +272,4 @@ Route::any('final/term/assign/comments/{assign_std_id}',[
 Route::post('finalterm/comments/save',
     'AcmFacultyController@save_final_term_comments'
 );
+*/

@@ -255,35 +255,45 @@ class AcmFacultyController extends \BaseController {
 		}
 	}
 
-	//************************Marks Distribution Item Class Start***********************
+	//************************Marks Distribution Item  ***********************
 
-	public function class_index($marks_dist_id,$cmid)
+	public function item_index($marks_dist_id,$cc_id,$item_id)
 	{
+        $marks_dist_item_id = $item_id;
+        $marks_dist = $marks_dist_id;
+        $course_con_id = $cc_id;
 		$date_time= array('' => 'Select Date') + AcmClassSchedule::lists('day', 'id');
-		$title = 'All Class List';
 		$datas = AcmAcademic::with('relAcmClassSchedule')
 			->where('acm_marks_distribution_id', '=', $marks_dist_id)
 			->get();
+
 		$data= CourseConduct::with( 'relCourse')
-			->where('id', '=', $cmid)
+			->where('id', '=', $cc_id)
 			->get();
-		$config_data = AcmMarksDistribution::with('relAcmMarksDistItem', 'relCourseManagement.relCourse')
-			->where('course_management_id', '=', $cmid)
+
+		$config_data = AcmMarksDistribution::with('relAcmMarksDistItem', 'relCourseConduct.relCourse')
+			->where('course_conduct_id', '=', $cc_id)
 			->get();
-		return View::make('academic::faculty.mark_distribution_courses.marks_dist_item_class.index', compact('title', 'datas', 'config_data','data', 'marks_dist_id', 'cmid','date_time'));
+
+        $coursetitle= AcmMarksDistribution::with('relAcmMarksDistItem', 'relCourseConduct.relCourse')
+            ->where('course_conduct_id', '=', $cc_id)
+            ->first();
+
+		return View::make('academic::faculty.mark_distribution_courses.marks_dist_item.index', compact('marks_dist','course_con_id','datas', 'config_data','data', 'marks_dist_id', 'cmid','date_time','coursetitle','marks_dist_item_id'));
 	}
 
-	public function save_marksdist_item_class_data()
+	public function save_marksdist_item_data()
 	{
 		$data = Input::all();
 		$datas = new AcmAcademic();
 		if ($datas->validate($data)) {
-			$datas->course_management_id = Input::get('course_management_id');
+			$datas->course_conduct_id = Input::get('course_conduct_id');
 			$datas->acm_marks_distribution_id = Input::get('marks_dist_id');
+            print_r($datas->acm_marks_distribution_id );exit;
 			$datas->title = Input::get('title');
 			$datas->description = Input::get('description');
-			$datas->acm_class_schedule_id = Input::get('class_time');
-			$datas->created_by = Auth::user()->get()->id;
+			$datas->acm_class_schedule_id = Input::get('class_schedule');
+			//$datas->created_by = Auth::user()->get()->id;
 			$datas->save();
 			$academic_id = $datas->id;//to get last inserted id
 			//file upload starts here

@@ -38,26 +38,26 @@
                                 $check_array = array(1,2,3,4,5);
                                 $marks_dist_item_id = $dvalue['relAcmMarksDistItem']['id'];
                                 $marks_dist_id = $dvalue->id;
-                                $course_management_id = $dvalue['course_management_id'];
+                                $course_conduct_id = $dvalue['course_conduct_id'];
                                 $url_link = '';
                                 ?>
                                 @if(in_array($marks_dist_item_id, $check_array))
                                     <?php
                                     switch ($marks_dist_item_id) {
                                         case 1:
-                                            $url_link = 'academic/faculty/marksdistitem/class/'.$marks_dist_id.'/'.$course_management_id;
+                                            $url_link = 'academic/faculty/marksdistitem/'.$marks_dist_id.'/'.$course_conduct_id.'/'. $marks_dist_item_id;
                                             break;
                                         case 2:
-                                            $url_link = 'academic/faculty/marks/dist/item/assignment/'.$marks_dist_id.'/'.$course_management_id;
+                                            $url_link = 'academic/faculty/marksdistitem/'.$marks_dist_id.'/'.$course_conduct_id.'/'. $marks_dist_item_id;
                                             break;
                                         case 3:
-                                            $url_link = 'academic/faculty/marks/dist/item/class_test/'.$marks_dist_id.'/'.$course_management_id;
+                                            $url_link = 'academic/faculty/marksdistitem/'.$marks_dist_id.'/'.$course_conduct_id.'/'. $marks_dist_item_id;
                                             break;
                                         case 4:
-                                            $url_link = 'academic/faculty/marks/dist/item/midterm/'.$marks_dist_id.'/'.$course_management_id;
+                                            $url_link = 'academic/faculty/marksdistitem/'.$marks_dist_id.'/'.$course_conduct_id.'/'. $marks_dist_item_id;
                                             break;
                                         case 5:
-                                            $url_link = 'academic/faculty/marks/dist/item/final/term/'.$marks_dist_id.'/'.$course_management_id;
+                                            $url_link = 'academic/faculty/marksdistitem/'.$marks_dist_id.'/'.$course_conduct_id.'/'. $marks_dist_item_id;
                                             break;
 
                                         default:
