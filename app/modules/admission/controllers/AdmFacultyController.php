@@ -21,7 +21,7 @@ class AdmFacultyController extends \BaseController {
     {
         $index_adm_examiner = AdmExaminer::with('relBatch','relBatch.relDegree',
             'relBatch.relDegree.relDepartment','relBatch.relYear','relBatch.relSemester')
-            ->get();
+            ->orderby('id','DESC')->paginate(10);
 
         $year_id = array('' => 'Select Year ') + Year::lists('title', 'id');
 
