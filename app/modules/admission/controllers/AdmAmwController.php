@@ -1600,7 +1600,7 @@ class AdmAmwController extends \BaseController
         $model->commented_by = Auth::user()->get()->id;
 
         if ($model->save()) {
-            Session::flash('message', 'Comments added');
+            Session::flash('message', 'Faculty Assigned and Comments added');
             return Redirect::back();
         } else {
             $errors = $model->errors();
@@ -1642,7 +1642,7 @@ class AdmAmwController extends \BaseController
         $model->commented_by = Auth::user()->get()->id;
 
         if ($model->save()) {
-            Session::flash('message', 'Comments added');
+            Session::flash('message', 'Faculty Re-assigned and Comments added');
             return Redirect::back();
         } else {
             $errors = $model->errors();
