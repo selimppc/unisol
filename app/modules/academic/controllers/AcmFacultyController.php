@@ -282,6 +282,7 @@ class AcmFacultyController extends \BaseController
     public function save_marksdist_item_data()
     {
         $data = Input::all();
+        $redirect_url = Input::get('redirect_url');
         $datas = new AcmAcademic();
         if ($datas->validate($data)) {
             $datas->course_conduct_id = Input::get('course_conduct_id');
@@ -309,12 +310,12 @@ class AcmFacultyController extends \BaseController
             }
             //file upload ends
             Session::flash('message', "Successfully Added $flashmsg !");
-            return Redirect::back();
+            return Redirect::to($redirect_url);
         } else {
             // failure, get errors
             $errors = $datas->errors();
             Session::flash('errors', $errors);
-            return Redirect::back();
+            return Redirect::to($redirect_url);
         }
     }
 
@@ -343,7 +344,12 @@ class AcmFacultyController extends \BaseController
         $datas = AcmAcademicDetails::with('relAcmAcademic')
             ->where('acm_academic_id', '=', $id)
             ->get();
-        return View::make('academic::faculty.mark_distribution_courses.marks_dist_item.edit', compact('edit_data', 'date_time', 'datas'));
+
+        $item_title = AcmAcademic::with('relAcmClassSchedule', 'relAcmClassSchedule.relAcmClassTime')
+            ->where('id', '=', $id)
+            ->first();
+
+        return View::make('academic::faculty.mark_distribution_courses.marks_dist_item.edit', compact('edit_data', 'date_time', 'datas','item_title'));
     }
 
     public function update_class($id)
@@ -396,35 +402,36 @@ class AcmFacultyController extends \BaseController
         }
     }
 
-
-    //***************assign class test****************
-
+    //***************assign Item****************
     /**
      * @param $acm_id
      * @param $cm_id
      * @param $mark_dist_id
      * @return mixed
      */
-    public function assign_class_test($acm_id, $cm_id, $mark_dist_id, $course_id)
+    public function item_assign($acm_id, $cc_id, $mark_dist_id, $course_id)
     {
-        $student_of_course = CourseManagement::where('course_id', '=', $course_id)->get();
-        foreach ($student_of_course as $key => $value) {
-            $acm_academic_ass_std [] = AcmAcademicAssignStudent::where('user_id', '=', $value->user_id)
-                ->where('course_id', '=', $value->course_id)
-                ->get();
-        }
+//        $student_of_course = CourseConduct::where('course_id', '=', $course_id)->get();
+//        foreach ($student_of_course as $key => $value) {
+//            $acm_academic_ass_std [] = AcmAcademicAssignStudent::where('user_id', '=', $value->user_id)
+//                ->where('course_id', '=', $value->course_id)
+//                ->get();
+//        }
         $acm = AcmAcademic::with('relAcmClassSchedule')
             ->where('id', '=', $acm_id)
             ->first();
+
         $exam_questions = array('' => 'Select Examination Question') + ExmQuestion::lists('title', 'id');
-        $data = CourseManagement::with('relCourse')
-            ->where('id', '=', $cm_id)
+
+        $data = CourseConduct::with('relCourse')
+            ->where('id', '=', $cc_id)
             ->get();
-        $config_data = AcmMarksDistribution::with('relAcmMarksDistItem', 'relCourseManagement.relCourse')
-            ->where('course_management_id', '=', $cm_id)
+
+        $config_data = AcmMarksDistribution::with('relAcmMarksDistItem', 'relCourseConduct.relCourse')
+            ->where('course_conduct_id', '=', $cc_id)
             ->get();
-        return View::make('academic::faculty.mark_distribution_courses.marks_dist_item_class_test.assign', compact(
-            'acm', 'data', 'config_data', 'exam_questions', 'cm_data', 'acm_academic_ass_std',
+
+        return View::make('academic::faculty.mark_distribution_courses.marks_dist_item.assign', compact('acm', 'data', 'config_data', 'exam_questions', 'student_of_course',
             'course_management'
         ));
     }

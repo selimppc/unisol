@@ -1,6 +1,8 @@
 <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-    <h4 class="modal-title">Edit class</h4>
+    <button type="button" class="close" data-dismiss="modal">{{HTML::image('assets/icon/media-close-btn.png')}}</button>
+    <h4 class="modal-title" style="text-align: center;color: #800080;font-size:large">Edit ::
+        {{isset($item_title->title) ? $item_title->title :''}}
+    </h4>
 </div>
 <div class="modal-body edit_modal_aca">
     <div style="padding: 10px; width: 90%;">
@@ -33,8 +35,8 @@
         </div>
         <div class="modal-footer">
             {{ Form::hidden('redirect_url', URL::previous()) }}
-            {{ Form::submit('Submit', array('class'=>'btn btn-primary')) }}
-            <a href="{{URL::previous()}}" class="btn btn-default">Close</a>
+            {{ Form::submit('Submit', array('class'=>'btn btn-success btn-xs')) }}
+            <a href="{{URL::previous()}}" class="btn btn-default btn-xs">Close</a>
         </div>
         {{ Form::close() }}
     </div>
