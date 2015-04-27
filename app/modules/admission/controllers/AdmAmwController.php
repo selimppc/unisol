@@ -848,7 +848,7 @@ class AdmAmwController extends \BaseController
             ->where('id','=',$degree_id)->first();
 
         $dpg_list = array('' => 'Select Degree Program ') + Degree::DegreeProgramGroup();
-        $year_list = array('' => 'Select Year ') + Year::lists('title', 'id');
+
         $semester_list = array('' => 'Select Semester ') + Semester::lists('title', 'id');
 
         $duration = Degree::with('relDegreeLevel','relDegreeProgram','relDegreeGroup')
@@ -856,9 +856,18 @@ class AdmAmwController extends \BaseController
 
         $time = date('Y-m-d h:i:s', time());;
 
+        $year_list = array('' => 'Select Year ') + Year::lists('title', 'id');
+        $current_year = Year::where('title', Date('Y'))->first()->id;
+
+//        //get year data according to degree duration
+//        $duration = Degree::findOrFail($deg_id)->duration;
+//        $curretn_year = DB::table('year')->where('id', '>=', $year_id)->take($duration+2)->lists('title', 'id');
+//        $year_list = array('' => 'Select Year ') + $year_by_batch;
+
 
         return View::make('admission::amw.batch._form',compact(
-            'degree_id','dpg_list','year_list','semester_list','batch_number','degree_title','duration','time'
+            'degree_id','dpg_list','year_list','semester_list','batch_number','degree_title','duration','time',
+            'current_year'
         ));
     }
 
@@ -1562,7 +1571,7 @@ class AdmAmwController extends \BaseController
     {
         $question_data = AdmQuestion::with('relBatchAdmtestSubject')->where('id', $q_id)->first();
 
-        $examiner_faculty_lists = array('' => 'Select Examiner ') + AdmQuestion::AdmissionExaminerList($question_data->relBatchAdmtestSubject->batch_id);
+        $examiner_faculty_lists = AdmQuestion::AdmissionExaminerList($question_data->relBatchAdmtestSubject->batch_id);
 
         $comments = AdmQuestionComments::where('adm_question_id', $q_id)->get();
 
@@ -1581,6 +1590,7 @@ class AdmAmwController extends \BaseController
         $model1 = AdmQuestion::findOrFail($id);
         $model1->status = 'assigned';
         $model1->s_faculty_user_id = Input::get('commented_to');
+        $model1->e_faculty_user_id = Input::get('commented_to');
         $model1->save();
 
         $model = new AdmQuestionComments();
@@ -1607,7 +1617,7 @@ class AdmAmwController extends \BaseController
     {
         $question_data = AdmQuestion::with('relBatchAdmtestSubject')->where('id', $q_id)->first();
 
-        $examiner_faculty_lists = array('' => 'Select Examiner ') + AdmQuestion::AdmissionExaminerList($question_data->relBatchAdmtestSubject->batch_id);
+        $examiner_faculty_lists = AdmQuestion::AdmissionExaminerList($question_data->relBatchAdmtestSubject->batch_id);
 
         $comments = AdmQuestionComments::where('adm_question_id', $q_id)->get();
 
@@ -1622,6 +1632,7 @@ class AdmAmwController extends \BaseController
         $model1 = AdmQuestion::findOrFail($id);
         $model1->status = 'assigned';
         $model1->s_faculty_user_id = Input::get('commented_to');
+        $model1->e_faculty_user_id = Input::get('commented_to');
         $model1->save();
 
         $model = new AdmQuestionComments();

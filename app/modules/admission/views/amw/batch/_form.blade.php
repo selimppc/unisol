@@ -15,9 +15,10 @@
 
             <div class='form-group'>
 
+
                 <div class="col-sm-6">
                    {{ Form::label('year_id', 'Year') }}
-                   {{ Form::select('year_id',$year_list,null,['class'=>'form-control','id'=>'year-id']) }}
+                   {{ Form::select('year_id', $year_list, $current_year, ['class'=>'form-control','id'=>'year-id']) }}
                 </div>
 
                 <div class="col-sm-6" style="padding-right: 0;">
@@ -98,7 +99,11 @@
 
                 			var da_te = new Date();
                 			da_te.setDate(da_te.getDate()+30)
-                			da_te.setMonth(da_te.getMonth()+1)
+                			da_te.setMonth(da_te.getMonth())
+
+                			var today = new Date();
+                            var nextmonth = new Date(today);
+                            nextmonth.setDate(today.getDate()+10);
 
 
                 		}else if(semester =="Summer"){
@@ -108,7 +113,11 @@
 
                 			var da_te = new Date();
                 			da_te.setDate(da_te.getDate()+30)
-                			da_te.setMonth(da_te.getMonth()+1)
+                			da_te.setMonth(da_te.getMonth())
+
+                			var today = new Date();
+                            var nextmonth = new Date(today);
+                            nextmonth.setDate(today.getDate()+10);
 
 
                 		}else if(semester =="Fall"){
@@ -118,9 +127,14 @@
 
                 			var da_te = new Date();
                 			da_te.setDate(da_te.getDate()+30)
-                			da_te.setMonth(da_te.getMonth()+1)
+                			da_te.setMonth(da_te.getMonth())
 
-                			//month = da_te.getMonth();
+
+
+                			var today = new Date();
+                            var nextmonth = new Date(today);
+                            nextmonth.setDate(today.getDate()+10);
+
                 		}
 
                 		document.getElementById("start-date").value = start_date;
@@ -128,7 +142,7 @@
 
 
                 		document.getElementById("adm-deadline").value = parseInt(year) +"-"+ da_te.getMonth() + "-" + da_te.getDate() ;
-                	   document.getElementById("adm-test-date").value = parseInt(year) +"-"+ da_te.getMonth() + "-" + da_te.getDate() ;
+                	   document.getElementById("adm-test-date").value = parseInt(year) +"-"+ (nextmonth.getMonth()+1) + "-" + nextmonth.getDate() ;
 
                 	}
             </script>
