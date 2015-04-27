@@ -7,7 +7,7 @@
 
         {{ Form::model($edit_data,array('route'=> array('class/update',$edit_data->id), 'method' => 'POST', 'files' => true)) }}
         <div class='form-group'>
-            {{ Form::label('title', 'Class Title') }}
+            {{ Form::label('title', 'Title') }}
             {{ Form::text('title', Input::old('title'),['class'=>'form-control','spellcheck'=> 'true','required'=>'required']) }}
         </div>
         <div class='form-group'>
@@ -15,8 +15,8 @@
             {{ Form::textarea('description', Input::old('description'),['class'=>'form-control','spellcheck'=> 'true','required'=>'required','size'=>'30x5']) }}
         </div>
         <div class='form-group'>
-            {{ Form::label('class_time', 'Class Time') }}
-            {{ Form::select('class_time',$date_time,($edit_data->acm_class_schedule_id) ? $edit_data->acm_class_schedule_id : Input::old('class_time'),['class'=>'form-control','required']) }}
+            {{ Form::label('class_schedule', 'Date') }}
+            {{ Form::select('class_schedule',$date_time,($edit_data->acm_class_schedule_id) ? $edit_data->acm_class_schedule_id : Input::old('class_schedule'),['class'=>'form-control','required']) }}
         </div>
         <div class="well">
             @foreach($datas as $rkey => $value)
@@ -34,7 +34,7 @@
         <div class="modal-footer">
             {{ Form::hidden('redirect_url', URL::previous()) }}
             {{ Form::submit('Submit', array('class'=>'btn btn-primary')) }}
-            <a href="{{URL::previous('academic/faculty/marksdistitem/class/')}}" class="btn btn-default">Close</a>
+            <a href="{{URL::previous()}}" class="btn btn-default">Close</a>
         </div>
         {{ Form::close() }}
     </div>

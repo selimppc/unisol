@@ -102,7 +102,7 @@ Route::any('academic/faculty/show/{id}',[
 ]);
 Route::get('item-edit/{id}', [
     'as' => 'item.edit',
-    'uses' => 'AcmFacultyController@item_class'
+    'uses' => 'AcmFacultyController@item_edit'
 ]);
 Route::any('class-update/{id}', [
     'as' => 'class/update',

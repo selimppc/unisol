@@ -16,19 +16,21 @@
         <th>Action</th>
         </thead>
         <tbody>
+        @if(isset($datas))
         @foreach ($datas as $value)
             <tr>
-                <td>{{$value->title}}</td>
-                <td>{{$value->description}}</td>
+                <td>{{isset($value->title)? $value->title :''}}</td>
+                <td>{{isset($value->description) ? $value->description:''}}</td>
                 <td>{{($value->status == 1) ? 'Active' : 'Inactive';}}</td>
-                <td>{{$value->relAcmClassSchedule->day}}</td>
+                <td>{{isset($value->relAcmClassSchedule->day)? $value->relAcmClassSchedule->day : ''}}</td>
                 <td>
                     <a href="{{ URL::route('item.show', ['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" href=""><i class="fa fa-eye" style="color: green"></i></a>
 
-                    <a href="{{ URL::route('class.edit', ['id'=>$value->id]) }}" class="subEdit btn btn-xs btn-default" data-toggle="modal" data-target="#editModal" href="" ><i class="fa fa-pencil-square-o" style="color: #0044cc"></i></a>
+                    <a href="{{ URL::route('item.edit', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#editModal" href="" ><i class="fa fa-pencil-square-o" style="color: #0044cc"></i></a>
                 </td>
             </tr>
         @endforeach
+        @endif
         </tbody>
     </table>
 
@@ -45,22 +47,24 @@
         <th>Action</th>
         </thead>
         <tbody>
+        @if(isset($datas))
         @foreach ($datas as $value)
             <tr>
-                <td>{{$value->title}}</td>
-                <td>{{$value->description}}</td>
+                <td>{{isset($value->title) ? $value->title: '' }}</td>
+                <td>{{isset($value->description) ? $value->description: ''}}</td>
                 <td>{{($value->status == 1) ? 'Active' : 'Inactive';}}</td>
-                <td>{{$value->relAcmClassSchedule->day}}</td>
+                <td>{{isset($value->relAcmClassSchedule->day) ? $value->relAcmClassSchedule->day : ''}}</td>
                 <td>
                     <a href="{{ URL::route('item.show', ['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" href=""><i class="fa fa-eye" style="color: green"></i></a>
 
-                    {{--<a href="{{ URL::route('assignment.edit', ['id'=>$value->id]) }}" class="subEdit btn btn-xs btn-default" data-toggle="modal" data-target="#editModal" href="" ><i class="fa fa-pencil-square-o" style="font-size: 18px;color: #0044cc"></i></a>--}}
+                    <a href="{{ URL::route('item.edit', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#editModal" href="" ><i class="fa fa-pencil-square-o" style="color: #0044cc"></i></a>
 
                     {{--<a href="{{ URL::route('assign.assign',['id'=>$value->id, 'cmid'=>$value->course_management_id, 'marksid'=>$value->acm_marks_distribution_id,--}}
                          {{--'course_id'=>$value->relCourseManagement->course_id])  }}" class="btn btn-default btn-xs"> Assign </a>--}}
                 </td>
             </tr>
         @endforeach
+        @endif
         </tbody>
     </table>
 
@@ -77,22 +81,24 @@
             <th>Action</th>
             </thead>
             <tbody>
+            @if(isset($datas))
             @foreach ($datas as $value)
                 <tr>
-                    <td>{{$value->title}}</td>
-                    <td>{{$value->description}}</td>
+                    <td>{{isset($value->title) ? $value->title : ''}}</td>
+                    <td>{{isset($value->description) ? $value->description : ''}}</td>
                     <td>{{($value->status == 1) ? 'Active' : 'Inactive';}}</td>
-                    <td>{{$value->relAcmClassSchedule->day}}</td>
+                    <td>{{isset($value->relAcmClassSchedule->day)? $value->relAcmClassSchedule->day : ''}}</td>
                     <td>
                         <a href="{{ URL::route('item.show', ['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" href=""><i class="fa fa-eye" style="color: green"></i></a>
 
-                        {{--<a href="{{ URL::route('class_test.edit', ['id'=>$value->id]) }}" class="subEdit btn btn-xs btn-default" data-toggle="modal" data-target="#editModal" href="" ><i class="fa fa-pencil-square-o" style="font-size: 18px;color: #0044cc"></i></a>--}}
+                        <a href="{{ URL::route('item.edit', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#editModal" href="" ><i class="fa fa-pencil-square-o" style="color: #0044cc"></i></a>
 
                         {{--<a href="{{ URL::route('class/test.assign',['id'=>$value->id, 'cmid'=>$value->course_management_id, 'marksid'=>$value->acm_marks_distribution_id,--}}
                          {{--'course_id'=>$value->relCourseManagement->course_id])  }}" class="btn btn-default btn-xs"> Assign </a>--}}
                     </td>
                 </tr>
             @endforeach
+            @endif
             </tbody>
         </table>
 
@@ -109,21 +115,24 @@
             <th>Action</th>
             </thead>
             <tbody>
+            @if(isset($datas))
             @foreach ($datas as $value)
                 <tr>
-                    <td>{{$value->title}}</td>
-                    <td>{{$value->description}}</td>
+                    <td>{{isset($value->title) ? $value->title :''}}</td>
+                    <td>{{isset($value->description) ? $value->description:''}}</td>
                     <td>{{($value->status == 1) ? 'Active' : 'Inactive';}}</td>
-                    <td>{{$value->relAcmClassSchedule->day}}</td>
+                    <td>{{isset($value->relAcmClassSchedule->day) ? $value->relAcmClassSchedule->day : ''}}</td>
                     <td>
                         <a href="{{ URL::route('item.show', ['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" href=""><i class="fa fa-eye" style="color: green"></i></a>
-                        {{--<a href="{{ URL::route('midterm.edit', ['id'=>$value->id]) }}" class="subEdit btn btn-xs btn-default" data-toggle="modal" data-target="#editModal" href="" ><i class="fa fa-pencil-square-o" style="font-size: 18px;color: #0044cc"></i></a>--}}
+
+                        <a href="{{ URL::route('item.edit', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#editModal" href="" ><i class="fa fa-pencil-square-o" style="color: #0044cc"></i></a>
 
                         {{--<a href="{{ URL::route('mid/term.assign',['id'=>$value->id, 'cmid'=>$value->course_management_id, 'marksid'=>$value->acm_marks_distribution_id,--}}
                          {{--'course_id'=>$value->relCourseManagement->course_id])  }}" class="btn btn-default btn-xs"> Assign </a>--}}
                     </td>
                 </tr>
             @endforeach
+            @endif
             </tbody>
         </table>
 
@@ -140,21 +149,24 @@
             <th>Action</th>
             </thead>
             <tbody>
+            @if(isset($datas))
             @foreach ($datas as $value)
                 <tr>
-                    <td>{{$value->title}}</td>
-                    <td>{{$value->description}}</td>
+                    <td>{{isset($value->title) ? $value->title :''}}</td>
+                    <td>{{isset($value->description) ? $value->description:''}}</td>
                     <td>{{($value->status == 1) ? 'Active' : 'Inactive';}}</td>
-                    <td>{{$value->relAcmClassSchedule->day}}</td>
+                    <td>{{isset($value->relAcmClassSchedule->day) ? $value->relAcmClassSchedule->day : ''}}</td>
                     <td>
                         <a href="{{ URL::route('item.show', ['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" href=""><i class="fa fa-eye" style="color: green"></i></a>
-                        {{--<a href="{{ URL::route('finalterm.edit', ['id'=>$value->id]) }}" class="subEdit btn btn-xs btn-default" data-toggle="modal" data-target="#editModal" href="" ><i class="fa fa-pencil-square-o" style="font-size: 18px;color: #0044cc"></i></a>--}}
+
+                        <a href="{{ URL::route('item.edit', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#editModal" href="" ><i class="fa fa-pencil-square-o" style="color: #0044cc"></i></a>
 
                         {{--<a href="{{ URL::route('final/term.assign',['id'=>$value->id, 'cmid'=>$value->course_management_id, 'marksid'=>$value->acm_marks_distribution_id,--}}
                          {{--'course_id'=>$value->relCourseManagement->course_id])  }}" class="btn btn-default btn-xs"> Assign </a>--}}
                     </td>
                 </tr>
             @endforeach
+            @endif
             </tbody>
         </table>
     @endif
