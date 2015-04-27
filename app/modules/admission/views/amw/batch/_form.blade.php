@@ -16,12 +16,9 @@
             <div class='form-group'>
 
 
-
-             <?php  $year_list = range(date("Y"), 2000); ?>
-
                 <div class="col-sm-6">
                    {{ Form::label('year_id', 'Year') }}
-                   {{ Form::select('year_id',$year_list,null,['class'=>'form-control','id'=>'year-id']) }}
+                   {{ Form::select('year_id', $year_list, $current_year, ['class'=>'form-control','id'=>'year-id']) }}
                 </div>
 
                 <div class="col-sm-6" style="padding-right: 0;">

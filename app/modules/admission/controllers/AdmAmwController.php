@@ -856,8 +856,8 @@ class AdmAmwController extends \BaseController
 
         $time = date('Y-m-d h:i:s', time());;
 
-//        $year_list = array('' => 'Select Year ') + Year::lists('title', 'id');
-
+        $year_list = array('' => 'Select Year ') + Year::lists('title', 'id');
+        $current_year = Year::where('title', Date('Y'))->first()->id;
 
 //        //get year data according to degree duration
 //        $duration = Degree::findOrFail($deg_id)->duration;
@@ -866,7 +866,8 @@ class AdmAmwController extends \BaseController
 
 
         return View::make('admission::amw.batch._form',compact(
-            'degree_id','dpg_list','year_list','semester_list','batch_number','degree_title','duration','time'
+            'degree_id','dpg_list','year_list','semester_list','batch_number','degree_title','duration','time',
+            'current_year'
         ));
     }
 
