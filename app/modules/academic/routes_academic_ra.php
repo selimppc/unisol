@@ -88,7 +88,7 @@ Route::post('academic/faculty/marksdist/acmmarksdistdelete/ajax',
     'AcmFacultyController@ajax_delete_acm_marks_dist'
 );
 
-//******************Faculty Marks Distribution Item *****************
+//****************Faculty All 5 Marks Distribution(R)*****************
 
 Route::any('academic/faculty/marksdistitem/{marks_dist_id}/{cc_id}/{item_id}',
     'AcmFacultyController@item_index'
@@ -96,13 +96,13 @@ Route::any('academic/faculty/marksdistitem/{marks_dist_id}/{cc_id}/{item_id}',
 Route::post('academic/faculty/marksdistitem/save',
     'AcmFacultyController@save_marksdist_item_data'
 );
-Route::any('academic/faculty/class/show/{id}',[
-    'as' => 'class.show',
-    'uses'=> 'AcmFacultyController@show_class'
+Route::any('academic/faculty/show/{id}',[
+    'as' => 'item.show',
+    'uses'=> 'AcmFacultyController@item_show'
 ]);
-Route::get('class-edit/{id}', [
-    'as' => 'class.edit',
-    'uses' => 'AcmFacultyController@edit_class'
+Route::get('item-edit/{id}', [
+    'as' => 'item.edit',
+    'uses' => 'AcmFacultyController@item_edit'
 ]);
 Route::any('class-update/{id}', [
     'as' => 'class/update',
@@ -111,6 +111,29 @@ Route::any('class-update/{id}', [
 Route::post('academic/faculty/acadetailsdelete/ajax',
     'AcmFacultyController@ajax_delete_aca_academic_details'
 );
+
+//+-----class test assign start-----
+
+Route::any('academic/faculty/marks-dist-item/class_test/assign/{acm_id}/{cc_id}/{mark_dist_id}/{course_id}',[
+    'as' => 'item.assign',
+    'uses'=> 'AcmFacultyController@item_assign'
+]);
+Route::any('batch/assign',[
+    'as' => 'batch.assign',
+    'uses'=> 'AcmFacultyController@batch_assign_class_test'
+]);
+Route::any('class_test/assign/comments/{assign_std_id}',[
+    'as' => 'classtest.comments',
+    'uses'=> 'AcmFacultyController@comments_assign_class_test'
+]);
+Route::post('comments/save',
+    'AcmFacultyController@save_comments'
+);
+
+
+
+
+
 
 //******************Faculty Marks Distribution Item Class Test*****************
 /*
