@@ -43,9 +43,9 @@
                   <div class="form-group">
                     {{ Form::label('gender','Answer Type') }}
                     {{ Form::label('mcq','Single Answer', array('class'=>'radio-inline')) }}
-                    {{ Form::radio('question_type', 'mcq_single', Input::old('question_type'), ['id'=>'single', 'checked']) }}
+                    {{ Form::radio('q_type', 'mcq_single', Input::old('q_type'), ['id'=>'single', 'checked']) }}
                     {{ Form::label('mcq','Multiple Answer', array('class'=>'radio-inline')) }}
-                    {{ Form::radio('question_type', 'mcq_multiple', Input::old('question_type'), ['id'=>'multiple']) }}
+                    {{ Form::radio('q_type', 'mcq_multiple', Input::old('q_type'), ['id'=>'multiple']) }}
                   </div>
                   <div id="myRadioGroup">
                         <div id="fields">
