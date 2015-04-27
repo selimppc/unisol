@@ -20,6 +20,12 @@ class AcmStudentController extends \BaseController {
             $left_courses[$value->relYear->title][$value->relsemester->title][$value->id]['title'] = $value->relCourse->title;
             $left_courses[$value->relYear->title][$value->relsemester->title][$value->id]['credit'] = $value->relCourse->credit;
         }
+
+        $total_credit = DB::table('batch_course')
+            ->select(DB::raw('SUM(course.credit) as total_credit'))
+            ->leftJoin('course', 'batch_course.course_id', '=', 'course.id')
+            ->where('batch_course.batch_id', '=', $batch_id)
+            ->first();
         return View::make('academic::student.courses.acm_courses',compact('courses','total_credit','left_courses','batch_courses'));
     }
 
@@ -61,26 +67,44 @@ class AcmStudentController extends \BaseController {
 	{
         $checked_ids = Input::get('ids');
         $taken_in_year = Input::get('taken_in_year');
+        $year_title = Year::findOrFail($taken_in_year)->title;
         $taken_in_semester = Input::get('taken_in_semester');
+        $semester_title = Semester::findOrFail($taken_in_semester)->title;
         $student_user_id = Auth::user()->get()->id;
 
         if($checked_ids ){
             foreach($checked_ids as $key => $value){
+
                 $model = new CourseEnrollment();
                 $model->batch_course_id = $value;
+
                 $model->student_user_id = $student_user_id;
                 $model->taken_in_year_id = $taken_in_year;
                 $model->taken_in_semester_id = $taken_in_semester;
-                $model->status =$value;
+                //$model->status =;
                 $model->save();
             }
             Session::flash('message', "Successfully added Courses For Enrollment!");
-            return Redirect::back();
-        }else{
+            return Redirect::route('academic.student.course-enrollment.tution-fees',['year'=>$year_title,'semester'=>$semester_title]);
+        }
+        else{
             Session::flash('info', "data do not added!");
             return Redirect::back();
         }
 	}
+    public function acmCoursesTutionFees($year_title,$semester_title){
+
+        $enrolled_courses = CourseEnrollment::where('status', 'pending')->orderBy('id', 'DESC')->get();
+
+        $total_credit = DB::table('course_enrollment')
+            ->select(DB::raw('SUM(course.credit) as total_credit'))
+            ->leftJoin('batch_course', 'course_enrollment.batch_course_id', '=', 'batch_course.id')
+            ->leftJoin('course', 'batch_course.course_id', '=', 'course.id')
+            ->where('course_enrollment.status', '=', 'pending')
+            ->first();
+
+        return View::make('academic::student.courses.tution_fees',compact('enrolled_courses','year_title','semester_title', 'total_credit','semester_title'));
+    }
 
 
 	public function show($id)

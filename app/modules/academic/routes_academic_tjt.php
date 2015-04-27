@@ -19,3 +19,7 @@ Route::any('academic/student/enrollment',
 Route::any('academic/student/course-enrollment',
     ['as'=>'academic.student.course-enrollment',
         'uses'=>'AcmStudentController@acmCoursesEnrollment']);
+
+Route::any('academic/student/course-enrollment/tution-fees/{year_title}/{semester_title}',
+    ['as'=>'academic.student.course-enrollment.tution-fees',
+        'uses'=>'AcmStudentController@acmCoursesTutionFees']);

@@ -9,6 +9,10 @@
 <a class="pull-right btn btn-xs btn-info btn-link" href="{{ URL::route('academic.student.enrollment')}}"  title="Enrollment"><strong style="color: darkgreen;font-size: medium">Enrollment</strong></a>
 </div>
 <h3 class="box-title">Courses</h3>
+<div style="background-color:lightgray; color:white; padding:8px;">
+   <b style="color: #005580">Total Credit :{{ $total_credit->total_credit }} </b>
+</div>
+<br>
 <div class="row">
     <div class="col-lg-12">
         <div class="box box-solid">
@@ -28,11 +32,12 @@
                                 </a>
                             </h5>
                         </div>
-                        <div id="collapseOne" class="panel-collapse collapse in">
+                        <div id="collapseOne" class="panel-collapse">
                             <div class="box-body">
                                 <div class="row">
 
                                       <div class="col-lg-12">
+
 
                                       </div>
                                   </div>
