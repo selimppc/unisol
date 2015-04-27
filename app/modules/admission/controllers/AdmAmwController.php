@@ -848,13 +848,21 @@ class AdmAmwController extends \BaseController
             ->where('id','=',$degree_id)->first();
 
         $dpg_list = array('' => 'Select Degree Program ') + Degree::DegreeProgramGroup();
-        $year_list = array('' => 'Select Year ') + Year::lists('title', 'id');
+
         $semester_list = array('' => 'Select Semester ') + Semester::lists('title', 'id');
 
         $duration = Degree::with('relDegreeLevel','relDegreeProgram','relDegreeGroup')
             ->where('id','=',$degree_id)->first()->duration;
 
         $time = date('Y-m-d h:i:s', time());;
+
+//        $year_list = array('' => 'Select Year ') + Year::lists('title', 'id');
+
+
+//        //get year data according to degree duration
+//        $duration = Degree::findOrFail($deg_id)->duration;
+//        $curretn_year = DB::table('year')->where('id', '>=', $year_id)->take($duration+2)->lists('title', 'id');
+//        $year_list = array('' => 'Select Year ') + $year_by_batch;
 
 
         return View::make('admission::amw.batch._form',compact(
