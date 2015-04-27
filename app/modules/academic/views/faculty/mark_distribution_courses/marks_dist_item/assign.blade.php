@@ -33,10 +33,10 @@
                     {{--{{ Form::hidden('assign_stu_id', $value[$i]['id'], ['class'=>'assign_stu_id'])}}--}}
                 {{--</td>--}}
                 {{--<td>{{User::FullName($value[$i]['user_id'])}}</td>--}}
-                {{--<td>{{Semester::find(CourseManagement::where('course_id', '=', $value[0]['course_id'])--}}
+                {{--<td>{{Semester::find(CourseConduct::where('course_id', '=', $value[0]['course_id'])--}}
                     {{--->where('user_id', '=', $value[0]['user_id'])--}}
                     {{--->first()->semester_id)->title; }}</td>--}}
-                {{--<td>{{Year::find(CourseManagement::where('course_id', '=', $value[0]['course_id'])--}}
+                {{--<td>{{Year::find(CourseConduct::where('course_id', '=', $value[0]['course_id'])--}}
                       {{--->where('user_id', '=', $value[0]['user_id'])--}}
                       {{--->first()->year_id)->title; }}</td>--}}
                 {{--<td></td>--}}

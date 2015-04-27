@@ -120,11 +120,11 @@ Route::any('academic/faculty/marks-dist-item/class_test/assign/{acm_id}/{cc_id}/
 ]);
 Route::any('batch/assign',[
     'as' => 'batch.assign',
-    'uses'=> 'AcmFacultyController@batch_assign_class_test'
+    'uses'=> 'AcmFacultyController@batch_assign_item'
 ]);
 Route::any('class_test/assign/comments/{assign_std_id}',[
-    'as' => 'classtest.comments',
-    'uses'=> 'AcmFacultyController@comments_assign_class_test'
+    'as' => 'item.comments',
+    'uses'=> 'AcmFacultyController@comments_assign_item'
 ]);
 Route::post('comments/save',
     'AcmFacultyController@save_comments'
