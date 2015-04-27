@@ -583,7 +583,7 @@ class AdmAmwController extends \BaseController
         //get year data according to degree duration
         $year_id = Batch::findOrFail($batch_id)->year_id;
         $duration = Degree::findOrFail($deg_id)->duration;
-        $year_by_batch = DB::table('year')->where('id', '>=', $year_id)->take($duration)->lists('title', 'id');
+        $year_by_batch = DB::table('year')->where('id', '>=', $year_id)->take($duration+2)->lists('title', 'id');
         $year_data = array('' => 'Select Year ') + $year_by_batch;
 
         $semester_data = array('' => 'Select Semester ') + Semester::lists('title','id');
