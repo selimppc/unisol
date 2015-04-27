@@ -67,7 +67,12 @@
 
             <div class='form-group'>
                {{ Form::label('admtest_start_time', 'Admission Test Start Time') }}
-               {{ Form::Select('admtest_start_time', array('Select Any Time'=>'','09:00'=>'09:00','10:00'=>'10:00','11:00'=>'11:00','12:00'=>'12:00','03:00'=>'03:00','04:00'=>'04:00'),
+               {{ Form::Select('admtest_start_time',
+                    array(''=>'Select Time','08:00:00'=>'08:00:00','08:30:00'=>'08:30:00','09:00:00'=>'09:00:00','09:30:00'=>'09:30:00',
+                                            '10:00:00'=>'10:00:00','10:30:00'=>'10:30:00','11:00:00'=>'11:00:00','11:30:00'=>'11:30:00',
+                                            '12:00:00'=>'12:00:00','12:30:00'=>'12:30:00','01:00:00'=>'01:00:00','01:30:00'=>'01:30:00',
+                                            '02:00:00'=>'02:00:00','02:30:00'=>'02:30:00','03:00:00'=>'03:00:00','03:30:00'=>'03:30:00',
+                                            '04:00:00'=>'04:00:00','04:30:00'=>'04:30:00','05:00:00'=>'05:00:00','05:30:00'=>'05:30:00'),
                 Input::old('admtest_start_time'),['class'=>'form-control ','required'=>'required']) }}
             </div>
 
@@ -123,7 +128,7 @@
 
 
                 		document.getElementById("adm-deadline").value = parseInt(year) +"-"+ da_te.getMonth() + "-" + da_te.getDate() ;
-                		document.getElementById("adm-test-date").value = parseInt(year) +"-"+ da_te.getMonth() + "-" +( da_te.getDate() + 10);
+                	   document.getElementById("adm-test-date").value = parseInt(year) +"-"+ da_te.getMonth() + "-" + da_te.getDate() ;
 
                 	}
             </script>
