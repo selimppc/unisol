@@ -35,7 +35,7 @@ class ExamCenterController extends \BaseController {
                 $model->capacity = Input::get('capacity');
                 $model->status = 'Free';
                 $model->save();
-                
+
                 DB::commit();
                 Session::flash('message', "$name Exam Center  Added");
             }
