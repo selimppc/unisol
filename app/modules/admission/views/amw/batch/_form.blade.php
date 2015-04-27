@@ -98,7 +98,11 @@
 
                 			var da_te = new Date();
                 			da_te.setDate(da_te.getDate()+30)
-                			da_te.setMonth(da_te.getMonth()+1)
+                			da_te.setMonth(da_te.getMonth())
+
+                			var today = new Date();
+                            var nextmonth = new Date(today);
+                            nextmonth.setDate(today.getDate()+10);
 
 
                 		}else if(semester =="Summer"){
@@ -108,7 +112,11 @@
 
                 			var da_te = new Date();
                 			da_te.setDate(da_te.getDate()+30)
-                			da_te.setMonth(da_te.getMonth()+1)
+                			da_te.setMonth(da_te.getMonth())
+
+                			var today = new Date();
+                            var nextmonth = new Date(today);
+                            nextmonth.setDate(today.getDate()+10);
 
 
                 		}else if(semester =="Fall"){
@@ -118,9 +126,14 @@
 
                 			var da_te = new Date();
                 			da_te.setDate(da_te.getDate()+30)
-                			da_te.setMonth(da_te.getMonth()+1)
+                			da_te.setMonth(da_te.getMonth())
 
-                			//month = da_te.getMonth();
+
+
+                			var today = new Date();
+                            var nextmonth = new Date(today);
+                            nextmonth.setDate(today.getDate()+10);
+
                 		}
 
                 		document.getElementById("start-date").value = start_date;
@@ -128,7 +141,7 @@
 
 
                 		document.getElementById("adm-deadline").value = parseInt(year) +"-"+ da_te.getMonth() + "-" + da_te.getDate() ;
-                	   document.getElementById("adm-test-date").value = parseInt(year) +"-"+ da_te.getMonth() + "-" + da_te.getDate() ;
+                	   document.getElementById("adm-test-date").value = parseInt(year) +"-"+ (nextmonth.getMonth()+1) + "-" + nextmonth.getDate() ;
 
                 	}
             </script>
