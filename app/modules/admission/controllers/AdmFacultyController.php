@@ -337,8 +337,9 @@ class AdmFacultyController extends \BaseController {
                 $faculty_adm_update_question_items->adm_question_id = Input::get('adm_question_id');
                 $faculty_adm_update_question_items->marks = Input::get('marks');
 
+
                 if (strtolower(Input::get('mcq')) == 'mcq') {
-                    if (strtolower(Input::get('question_type')) == 'mcq_single') {
+                    if (strtolower(Input::get('q_type')) == 'mcq_single') {
                         $faculty_adm_update_question_items->question_type = 'radio';
 
                         if ($faculty_adm_update_question_items->save()) {
@@ -375,6 +376,7 @@ class AdmFacultyController extends \BaseController {
                             return Redirect::back();
                         }
                     }else {
+
                         $faculty_adm_update_question_items->question_type = 'checkbox';
 
 
