@@ -1571,7 +1571,7 @@ class AdmAmwController extends \BaseController
     {
         $question_data = AdmQuestion::with('relBatchAdmtestSubject')->where('id', $q_id)->first();
 
-        $examiner_faculty_lists = array('' => 'Select Examiner ') + AdmQuestion::AdmissionExaminerList($question_data->relBatchAdmtestSubject->batch_id);
+        $examiner_faculty_lists = AdmQuestion::AdmissionExaminerList($question_data->relBatchAdmtestSubject->batch_id);
 
         $comments = AdmQuestionComments::where('adm_question_id', $q_id)->get();
 
@@ -1590,6 +1590,7 @@ class AdmAmwController extends \BaseController
         $model1 = AdmQuestion::findOrFail($id);
         $model1->status = 'assigned';
         $model1->s_faculty_user_id = Input::get('commented_to');
+        $model1->e_faculty_user_id = Input::get('commented_to');
         $model1->save();
 
         $model = new AdmQuestionComments();
@@ -1616,7 +1617,7 @@ class AdmAmwController extends \BaseController
     {
         $question_data = AdmQuestion::with('relBatchAdmtestSubject')->where('id', $q_id)->first();
 
-        $examiner_faculty_lists = array('' => 'Select Examiner ') + AdmQuestion::AdmissionExaminerList($question_data->relBatchAdmtestSubject->batch_id);
+        $examiner_faculty_lists = AdmQuestion::AdmissionExaminerList($question_data->relBatchAdmtestSubject->batch_id);
 
         $comments = AdmQuestionComments::where('adm_question_id', $q_id)->get();
 
@@ -1631,6 +1632,7 @@ class AdmAmwController extends \BaseController
         $model1 = AdmQuestion::findOrFail($id);
         $model1->status = 'assigned';
         $model1->s_faculty_user_id = Input::get('commented_to');
+        $model1->e_faculty_user_id = Input::get('commented_to');
         $model1->save();
 
         $model = new AdmQuestionComments();
