@@ -6,11 +6,13 @@
 
 @section('content')
 <div>
-<a class="pull-right btn btn-xs btn-info btn-link" href="{{ URL::route('academic.student.enrollment')}}"  title="Enrollment"><strong style="color: darkgreen;font-size: medium">Enrollment</strong></a>
+     <a class="pull-right btn btn-xs btn-info btn-link" href="{{ URL::route('academic.student.enrollment')}}"  title="Enrollment"><strong style="color: darkgreen;font-size: medium">Enrollment</strong></a>
 </div>
 <h3 class="box-title">Courses</h3>
 <div style="background-color:lightgray; color:white; padding:8px;">
-   <b style="color: #005580">Total Credit :{{ $total_credit->total_credit }} </b>
+   <b style="margin-left: 80px;color: #005580">Total Credit : {{ isset($total_credit->relBatch->relDegree->total_credit) ? $total_credit->relBatch->relDegree->total_credit:'0' }}</b>
+   <b style="margin-left: 60px;color: #005580">Accomplished Credit : {{isset($accomplished_credit->accomplished_credit) ? $accomplished_credit->accomplished_credit:'0'}}</b>
+   <b style="margin-left: 60px;color: #005580">Left Yet(Credit) : {{isset($left_credit) ? $left_credit : ''}}</b>
 </div>
 <br>
 <div class="row">
@@ -35,12 +37,50 @@
                         <div id="collapseOne" class="panel-collapse">
                             <div class="box-body">
                                 <div class="row">
-
-                                      <div class="col-lg-12">
-
-
-                                      </div>
-                                  </div>
+                                    <div class="col-lg-12">
+                                         <table class="table  table-bordered">
+                                             @if(isset($completed_course_in_year))
+                                                <a  style="font-size:medium;text-decoration: underline;color:teal">
+                                                    {{$completed_course_in_year->relBatchCourse->relSemester->title}},{{$completed_course_in_year->relBatchCourse->relYear->title}}
+                                                </a>
+                                             @endif
+                                            <thead>
+                                                <tr>
+                                                   <th>Course</th>
+                                                   <th>Credit</th>
+                                                   <th>GPA</th>
+                                                   <th>Status</th>
+                                                   <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                               @if(isset($completed_course))
+                                                  @foreach($completed_course as $value)
+                                                     <tr>
+                                                          <td>{{($value->relBatchCourse->relCourse->title )}}</td>
+                                                          <td>{{ $value->relBatchCourse->relCourse->credit}}</td>
+                                                          <td></td>
+                                                          <td>
+                                                              @if($value['status']== 'pass')
+                                                                 {{strtoupper($value->status)}}
+                                                              @else
+                                                                 <b style="color: lightcoral">{{strtoupper($value->status)}}</b>
+                                                              @endif
+                                                          </td>
+                                                          <td>
+                                                               @if($value['status']== 'pass')
+                                                                 <a class="btn btn-xs btn-success" href="{{ URL::route('academic.student.enrollment')}}"  title="Retake">Retake</a>
+                                                               @endif
+                                                          </td>
+                                                     </tr>
+                                                  @endforeach
+                                               @else
+                                                   {{"No Data found !"}}
+                                               @endif
+                                            </tbody>
+                                         </table>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -52,16 +92,49 @@
                                 </a>
                             </h5>
                         </div>
-                        <div id="collapseTwo" class="panel-collapse collapse">
+                        <div id="collapseTwo" class="panel-collapse ">
                              <div class="box-body">
                                    <div class="row">
-
                                          <div class="col-lg-12">
-                                             <table class="table table-bordered">
-                                                   <thread>
-
-                                                   </thread>
-
+                                             <table class="table  table-bordered">
+                                                  @if(isset($running_course_in_year))
+                                                     <a  style="font-size:medium;text-decoration: underline;color:#005580">
+                                                         {{$running_course_in_year->relBatchCourse->relYear->title}},{{$running_course_in_year->relBatchCourse->relSemester->title}}
+                                                     </a>
+                                                  @endif
+                                                 <thead>
+                                                     <tr>
+                                                        <th>Course</th>
+                                                        <th>Credit</th>
+                                                        <th>GPA</th>
+                                                        <th>Status</th>
+                                                        <th>Action</th>
+                                                     </tr>
+                                                 </thead>
+                                                 <tbody>
+                                                    @if(isset($running_course))
+                                                       @foreach($running_course as $value)
+                                                          <tr>
+                                                               <td>{{($value->relBatchCourse->relCourse->title )}}</td>
+                                                               <td>{{ $value->relBatchCourse->relCourse->credit}}</td>
+                                                               <td></td>
+                                                               <td>
+                                                                 {{strtoupper($value->status)}}
+                                                               </td>
+                                                               <td>
+                                                                   @if($value->status == 'enrolled')
+                                                                      <a class="btn btn-xs btn-info" href="{{ URL::route('academic.student.enrollment')}}"  title="Retake">Revoke</a>
+                                                                   @endif
+                                                                   @if($value->status == 'revoked')
+                                                                      <a class="btn btn-xs btn-info" href="{{ URL::route('academic.student.enrollment')}}"  title="Retake">Invoke</a>
+                                                                   @endif
+                                                               </td>
+                                                          </tr>
+                                                       @endforeach
+                                                    @else
+                                                        {{"No Data found !"}}
+                                                    @endif
+                                                 </tbody>
                                              </table>
                                          </div>
                                      </div>
