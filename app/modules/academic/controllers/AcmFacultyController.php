@@ -310,12 +310,12 @@ class AcmFacultyController extends \BaseController
             }
             //file upload ends
             Session::flash('message', "Successfully Added $flashmsg !");
-            return Redirect::to($redirect_url);
+            return Redirect::back();
         } else {
             // failure, get errors
             $errors = $datas->errors();
             Session::flash('errors', $errors);
-            return Redirect::to($redirect_url);
+            return Redirect::back();
         }
     }
 
@@ -355,7 +355,7 @@ class AcmFacultyController extends \BaseController
     public function update_class($id)
     {
         $data = Input::all();
-        $redirect_url = Input::get('redirect_url');
+        //$redirect_url = Input::get('redirect_url');
         if (($data)) {
             $datas = AcmAcademic::find($id);
             $datas->title = Input::get('title');
@@ -380,9 +380,10 @@ class AcmFacultyController extends \BaseController
             }
             //file upload ends
             Session::flash('message', "Successfully Updated $flashmsg !");
-            return Redirect::to($redirect_url);
+            //return Redirect::to($redirect_url);
+            return Redirect::back();
         } else {
-            return Redirect::to($redirect_url);
+            return Redirect::back();
         }
     }
 
@@ -436,7 +437,7 @@ class AcmFacultyController extends \BaseController
         ));
     }
 
-    public function batch_assign_class_test()
+    public function batch_assign_item()
     {
         $data = Input::all();
         $chk = Input::get('chk');
@@ -481,7 +482,7 @@ class AcmFacultyController extends \BaseController
         }
     }
 
-    public function comments_assign_class_test($assign_std_id)
+    public function comments_assign_item($assign_std_id)
     {
         $assign_std = AcmAcademicAssignStudent::with('relAcmAcademic', 'relAcmAcademic.relCourseManagement')
             ->where('id', '=', $assign_std_id)

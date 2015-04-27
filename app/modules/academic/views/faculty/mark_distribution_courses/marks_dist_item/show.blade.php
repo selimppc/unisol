@@ -44,8 +44,10 @@
             {{--{{ HTML::image('file/item_class_file/'.$value->file)}}--}}
             {{ HTML::image('file/item_class_file/'.$value->file, $value->file,['class'=>'col-md-3'])}}
         @endforeach
-        <div class="modal-footer">
-            <a href="{{URL::previous()}}" class="btn btn-default" style="margin-top: 20px">Close</a>
-        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-default btn-xs" data-dismiss="modal" type="button">Close</button>
     </div>
 </div>
+

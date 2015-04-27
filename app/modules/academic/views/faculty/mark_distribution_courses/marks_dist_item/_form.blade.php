@@ -15,9 +15,6 @@
                 {{ Form::file('images[]', array('multiple'=>true)) }}
         </div>
         <div class="modal-footer">
-                {{--{{ Form::submit('Submit', array('class'=>'btn btn-success btn-xs')) }}--}}
-                {{--<a href="{{URL::previous()}}" class="btn btn-default btn-xs">Close</a>--}}
-            {{ Form::hidden('redirect_url', URL::previous()) }}
-            {{ Form::submit('Submit', array('class'=>'btn btn-success btn-xs')) }}
-            <a href="{{URL::previous()}}" class="btn btn-default btn-xs">Close</a>
+                {{ Form::submit('Submit', array('class'=>'btn btn-success btn-xs')) }}
+                <button class="btn btn-default btn-xs" data-dismiss="modal" type="button">Close</button>
         </div>

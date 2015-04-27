@@ -38,12 +38,13 @@
                                 <th>Action</th>
                                 </thead>
                                 <tbody>
+                                @if(isset($datas))
                                 @foreach ($datas as $value)
                                 <tr>
-                                    <td><a href="{{ URL::route('coursemarksdist.show', ['cc_id'=>$value->id,'course_id'=>$value->course_id])  }}" class=" btn-link">{{$value->relCourse->title}}</a></td>
-                                    <td>{{$value->relCourse->relSubject->relDepartment->title}}</td>
-                                    <td>{{$value->relYear->title}}</td>
-                                    <td>{{$value->relSemester->title}}</td>
+                                    <td><a href="{{ URL::route('coursemarksdist.show', ['cc_id'=>$value->id,'course_id'=>$value->course_id])  }}" class=" btn-link">{{isset($value->relCourse->title) ?$value->relCourse->title : ''}}</a></td>
+                                    <td>{{isset($value->relCourse->relSubject->relDepartment->title) ? $value->relCourse->relSubject->relDepartment->title :''}}</td>
+                                    <td>{{isset($value->relYear->title)? $value->relYear->title: ''}}</td>
+                                    <td>{{isset($value->relSemester->title)? $value->relSemester->title : ''}}</td>
                                     <td>{{ AcmMarksDistribution::getMarksDistItemStatus($value->id, $value->relCourse->evaluation_total_marks) }}</td>
 
                                     <td>
@@ -53,6 +54,7 @@
                                     </td>
                                 </tr>
                                @endforeach
+                                @endif
                                 </tbody>
                             </table>
                         </div>
