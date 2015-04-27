@@ -96,13 +96,13 @@ Route::any('academic/faculty/marksdistitem/{marks_dist_id}/{cc_id}/{item_id}',
 Route::post('academic/faculty/marksdistitem/save',
     'AcmFacultyController@save_marksdist_item_data'
 );
-Route::any('academic/faculty/class/show/{id}',[
-    'as' => 'class.show',
-    'uses'=> 'AcmFacultyController@show_class'
+Route::any('academic/faculty/show/{id}',[
+    'as' => 'item.show',
+    'uses'=> 'AcmFacultyController@item_show'
 ]);
-Route::get('class-edit/{id}', [
-    'as' => 'class.edit',
-    'uses' => 'AcmFacultyController@edit_class'
+Route::get('item-edit/{id}', [
+    'as' => 'item.edit',
+    'uses' => 'AcmFacultyController@item_class'
 ]);
 Route::any('class-update/{id}', [
     'as' => 'class/update',

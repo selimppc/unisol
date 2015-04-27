@@ -293,6 +293,7 @@ class AcmFacultyController extends \BaseController {
             $flashmsg = $datas->title;
 			$datas->description = Input::get('description');
 			$datas->acm_class_schedule_id = Input::get('class_schedule');
+			$datas->status = 1;
 			$datas->save();
 			$academic_id = $datas->id;//to get last inserted id
 			//file upload starts here
@@ -319,17 +320,23 @@ class AcmFacultyController extends \BaseController {
             return Redirect::back();
 		}
 	}
-	public function show_class($id)
+	public function item_show($id)
 	{
 		$data = AcmAcademic::with('relAcmClassSchedule','relAcmClassSchedule.relAcmClassTime')
 			->where('id','=' ,$id)
 			->get();
+
+        $item_title = AcmAcademic::with('relAcmClassSchedule','relAcmClassSchedule.relAcmClassTime')
+            ->where('id','=' ,$id)
+            ->first();
+
 		$datas = AcmAcademicDetails::with('relAcmAcademic')
 			->where('acm_academic_id','=' ,$id)
 			->get();
-		return View::make('academic::faculty.mark_distribution_courses.marks_dist_item_class.show',compact('data','datas'));
+
+		return View::make('academic::faculty.mark_distribution_courses.marks_dist_item.show',compact('data','datas','item_title'));
 	}
-	public function edit_class($id)
+	public function item_class($id)
 	{
 		$date_time= array('' => 'Select Date') + AcmClassSchedule::lists('day', 'id');
 		$model = new AcmAcademic();
@@ -337,7 +344,7 @@ class AcmFacultyController extends \BaseController {
 		$datas = AcmAcademicDetails::with('relAcmAcademic')
 			->where('acm_academic_id','=' ,$id)
 			->get();
-		return View::make('academic::faculty.mark_distribution_courses.marks_dist_item_class.edit',compact('edit_data','date_time','datas'));
+		return View::make('academic::faculty.mark_distribution_courses.marks_dist_item.edit',compact('edit_data','date_time','datas'));
 	}
 
 	public function update_class($id)

@@ -3,6 +3,7 @@
     @include('academic::_sidebar')
 @stop
 @section('content')
+    @if(isset($marks_dist_item_id))
     @if($marks_dist_item_id == 1)
     <h4 style="text-align: center ;color: #800080; font-size: large">All Class List</h4>
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addItem" style="margin-bottom: 5px">Add Class</button>
@@ -10,8 +11,8 @@
         <thead>
         <th>Title</th>
         <th>Description</th>
-        <th>status</th>
-        <th>Class date</th>
+        <th>Status</th>
+        <th>Class Date</th>
         <th>Action</th>
         </thead>
         <tbody>
@@ -22,9 +23,9 @@
                 <td>{{($value->status == 1) ? 'Active' : 'Inactive';}}</td>
                 <td>{{$value->relAcmClassSchedule->day}}</td>
                 <td>
-                    <a href="{{ URL::route('class.edit', ['id'=>$value->id]) }}" class="subEdit btn btn-xs btn-default" data-toggle="modal" data-target="#editModal" href="" ><i class="fa fa-pencil-square-o" style="font-size: 18px;color: #0044cc"></i></a>
+                    <a href="{{ URL::route('item.show', ['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" href=""><i class="fa fa-eye" style="color: green"></i></a>
 
-                    <a href="{{ URL::route('class.show', ['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" href=""><i class="fa fa-eye" style="font-size: 18px;color: green"></i></a>
+                    <a href="{{ URL::route('class.edit', ['id'=>$value->id]) }}" class="subEdit btn btn-xs btn-default" data-toggle="modal" data-target="#editModal" href="" ><i class="fa fa-pencil-square-o" style="color: #0044cc"></i></a>
                 </td>
             </tr>
         @endforeach
@@ -39,7 +40,7 @@
         <thead>
         <th>Title</th>
         <th>Description</th>
-        <th>status</th>
+        <th>Status</th>
         <th>Deadline</th>
         <th>Action</th>
         </thead>
@@ -51,9 +52,9 @@
                 <td>{{($value->status == 1) ? 'Active' : 'Inactive';}}</td>
                 <td>{{$value->relAcmClassSchedule->day}}</td>
                 <td>
-                    {{--<a href="{{ URL::route('assignment.edit', ['id'=>$value->id]) }}" class="subEdit btn btn-xs btn-default" data-toggle="modal" data-target="#editModal" href="" ><i class="fa fa-pencil-square-o" style="font-size: 18px;color: #0044cc"></i></a>--}}
+                    <a href="{{ URL::route('item.show', ['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" href=""><i class="fa fa-eye" style="color: green"></i></a>
 
-                    {{--<a href="{{ URL::route('assignment.show', ['id'=>$value->id])  }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" href=""><i class="fa fa-eye" style="font-size: 18px;color: green"></i></a>--}}
+                    {{--<a href="{{ URL::route('assignment.edit', ['id'=>$value->id]) }}" class="subEdit btn btn-xs btn-default" data-toggle="modal" data-target="#editModal" href="" ><i class="fa fa-pencil-square-o" style="font-size: 18px;color: #0044cc"></i></a>--}}
 
                     {{--<a href="{{ URL::route('assign.assign',['id'=>$value->id, 'cmid'=>$value->course_management_id, 'marksid'=>$value->acm_marks_distribution_id,--}}
                          {{--'course_id'=>$value->relCourseManagement->course_id])  }}" class="btn btn-default btn-xs"> Assign </a>--}}
@@ -71,7 +72,7 @@
             <thead>
             <th>Title</th>
             <th>Description</th>
-            <th>status</th>
+            <th>Status</th>
             <th>Deadline</th>
             <th>Action</th>
             </thead>
@@ -83,9 +84,9 @@
                     <td>{{($value->status == 1) ? 'Active' : 'Inactive';}}</td>
                     <td>{{$value->relAcmClassSchedule->day}}</td>
                     <td>
-                        {{--<a href="{{ URL::route('class_test.edit', ['id'=>$value->id]) }}" class="subEdit btn btn-xs btn-default" data-toggle="modal" data-target="#editModal" href="" ><i class="fa fa-pencil-square-o" style="font-size: 18px;color: #0044cc"></i></a>--}}
+                        <a href="{{ URL::route('item.show', ['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" href=""><i class="fa fa-eye" style="color: green"></i></a>
 
-                        {{--<a href="{{ URL::route('class_test.show', ['id'=>$value->id])  }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" href=""><i class="fa fa-eye" style="font-size: 18px;color: green"></i></a>--}}
+                        {{--<a href="{{ URL::route('class_test.edit', ['id'=>$value->id]) }}" class="subEdit btn btn-xs btn-default" data-toggle="modal" data-target="#editModal" href="" ><i class="fa fa-pencil-square-o" style="font-size: 18px;color: #0044cc"></i></a>--}}
 
                         {{--<a href="{{ URL::route('class/test.assign',['id'=>$value->id, 'cmid'=>$value->course_management_id, 'marksid'=>$value->acm_marks_distribution_id,--}}
                          {{--'course_id'=>$value->relCourseManagement->course_id])  }}" class="btn btn-default btn-xs"> Assign </a>--}}
@@ -103,7 +104,7 @@
             <thead>
             <th>Title</th>
             <th>Description</th>
-            <th>status</th>
+            <th>Status</th>
             <th>Deadline</th>
             <th>Action</th>
             </thead>
@@ -115,9 +116,8 @@
                     <td>{{($value->status == 1) ? 'Active' : 'Inactive';}}</td>
                     <td>{{$value->relAcmClassSchedule->day}}</td>
                     <td>
+                        <a href="{{ URL::route('item.show', ['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" href=""><i class="fa fa-eye" style="color: green"></i></a>
                         {{--<a href="{{ URL::route('midterm.edit', ['id'=>$value->id]) }}" class="subEdit btn btn-xs btn-default" data-toggle="modal" data-target="#editModal" href="" ><i class="fa fa-pencil-square-o" style="font-size: 18px;color: #0044cc"></i></a>--}}
-
-                        {{--<a href="{{ URL::route('midterm.show', ['id'=>$value->id])  }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" href=""><i class="fa fa-eye" style="font-size: 18px;color: green"></i></a>--}}
 
                         {{--<a href="{{ URL::route('mid/term.assign',['id'=>$value->id, 'cmid'=>$value->course_management_id, 'marksid'=>$value->acm_marks_distribution_id,--}}
                          {{--'course_id'=>$value->relCourseManagement->course_id])  }}" class="btn btn-default btn-xs"> Assign </a>--}}
@@ -135,7 +135,7 @@
             <thead>
             <th>Title</th>
             <th>Description</th>
-            <th>status</th>
+            <th>Status</th>
             <th>Deadline</th>
             <th>Action</th>
             </thead>
@@ -147,9 +147,8 @@
                     <td>{{($value->status == 1) ? 'Active' : 'Inactive';}}</td>
                     <td>{{$value->relAcmClassSchedule->day}}</td>
                     <td>
+                        <a href="{{ URL::route('item.show', ['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" href=""><i class="fa fa-eye" style="color: green"></i></a>
                         {{--<a href="{{ URL::route('finalterm.edit', ['id'=>$value->id]) }}" class="subEdit btn btn-xs btn-default" data-toggle="modal" data-target="#editModal" href="" ><i class="fa fa-pencil-square-o" style="font-size: 18px;color: #0044cc"></i></a>--}}
-
-                        {{--<a href="{{ URL::route('finalterm.show', ['id'=>$value->id])  }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" href=""><i class="fa fa-eye" style="font-size: 18px;color: green"></i></a>--}}
 
                         {{--<a href="{{ URL::route('final/term.assign',['id'=>$value->id, 'cmid'=>$value->course_management_id, 'marksid'=>$value->acm_marks_distribution_id,--}}
                          {{--'course_id'=>$value->relCourseManagement->course_id])  }}" class="btn btn-default btn-xs"> Assign </a>--}}
@@ -158,9 +157,8 @@
             @endforeach
             </tbody>
         </table>
-
     @endif
-
+    @endif
 
     {{--All Modal--}}
     {{---------------------------------------------}}
