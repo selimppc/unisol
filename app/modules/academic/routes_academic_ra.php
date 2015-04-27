@@ -88,7 +88,7 @@ Route::post('academic/faculty/marksdist/acmmarksdistdelete/ajax',
     'AcmFacultyController@ajax_delete_acm_marks_dist'
 );
 
-//******************Faculty Marks Distribution Item *****************
+//****************Faculty All 5 Marks Distribution(R)*****************
 
 Route::any('academic/faculty/marksdistitem/{marks_dist_id}/{cc_id}/{item_id}',
     'AcmFacultyController@item_index'

@@ -290,9 +290,9 @@ class AcmFacultyController extends \BaseController {
 			$datas->course_conduct_id = Input::get('course_conduct_id');
 			$datas->acm_marks_distribution_id = Input::get('marks_dist_id');
 			$datas->title = Input::get('title');
+            $flashmsg = $datas->title;
 			$datas->description = Input::get('description');
 			$datas->acm_class_schedule_id = Input::get('class_schedule');
-			//$datas->created_by = Auth::user()->get()->id;
 			$datas->save();
 			$academic_id = $datas->id;//to get last inserted id
 			//file upload starts here
@@ -310,12 +310,13 @@ class AcmFacultyController extends \BaseController {
 				}
 			}
 			//file upload ends
-			return Redirect::back()->with('message','Successfully added!');
+            Session::flash('message', "Successfully Added $flashmsg !");
+			return Redirect::back();
 		} else {
 			// failure, get errors
 			$errors = $datas->errors();
 			Session::flash('errors', $errors);
-			return Redirect::to('academic/faculty/marksdistitem/class');
+            return Redirect::back();
 		}
 	}
 	public function show_class($id)
