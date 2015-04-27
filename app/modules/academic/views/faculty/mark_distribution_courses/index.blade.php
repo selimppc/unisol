@@ -39,21 +39,21 @@
                                 </thead>
                                 <tbody>
                                 @if(isset($datas))
-                                @foreach ($datas as $value)
-                                <tr>
-                                    <td><a href="{{ URL::route('coursemarksdist.show', ['cc_id'=>$value->id,'course_id'=>$value->course_id])  }}" class=" btn-link">{{isset($value->relCourse->title) ?$value->relCourse->title : ''}}</a></td>
-                                    <td>{{isset($value->relCourse->relSubject->relDepartment->title) ? $value->relCourse->relSubject->relDepartment->title :''}}</td>
-                                    <td>{{isset($value->relYear->title)? $value->relYear->title: ''}}</td>
-                                    <td>{{isset($value->relSemester->title)? $value->relSemester->title : ''}}</td>
-                                    <td>{{ AcmMarksDistribution::getMarksDistItemStatus($value->id, $value->relCourse->evaluation_total_marks) }}</td>
+                                    @foreach ($datas as $value)
+                                        <tr>
+                                            <td><a href="{{ URL::route('coursemarksdist.show', ['cc_id'=>$value->id,'course_id'=>$value->course_id])  }}" class=" btn-link">{{isset($value->relCourse->title) ?$value->relCourse->title : ''}}</a></td>
+                                            <td>{{isset($value->relCourse->relSubject->relDepartment->title) ? $value->relCourse->relSubject->relDepartment->title :''}}</td>
+                                            <td>{{isset($value->relYear->title)? $value->relYear->title: ''}}</td>
+                                            <td>{{isset($value->relSemester->title)? $value->relSemester->title : ''}}</td>
+                                            <td>{{ AcmMarksDistribution::getMarksDistItemStatus($value->id, $value->relCourse->evaluation_total_marks) }}</td>
 
-                                    <td>
-                                        <a href="{{ URL::route('marksdistfind.show', ['course_id'=>$value->course_id,'cc_id'=>$value->id])}}"class="btn btn-xs btn-default" data-toggle="modal" data-target="#addModal" data-toggle="tooltip" data-placement="left" title="Marks Distribution" href=""><i class="fa fa-plus text-purple"></i> Marks Distribution</a>
+                                            <td>
+                                                <a href="{{ URL::route('marksdistfind.show', ['course_id'=>$value->course_id,'cc_id'=>$value->id])}}"class="btn btn-xs btn-default" data-toggle="modal" data-target="#addModal" data-toggle="tooltip" data-placement="left" title="Marks Distribution" href=""><i class="fa fa-plus text-purple"></i> Marks Distribution</a>
 
-                                        <a href="{{ URL::route('marksdist.show', ['cc_id'=>$value->id])}}" class="btn btn-xs btn-default text-blue" data-toggle="modal" data-target="#showMarksDist" data-toggle="tooltip" data-placement="left" title="Show Distribution" href=""><i class="fa fa-eye text-green "></i> View Distribution</a>
-                                    </td>
-                                </tr>
-                               @endforeach
+                                                <a href="{{ URL::route('marksdist.show', ['cc_id'=>$value->id])}}" class="btn btn-xs btn-default text-blue" data-toggle="modal" data-target="#showMarksDist" data-toggle="tooltip" data-placement="left" title="Show Distribution" href=""><i class="fa fa-eye text-green "></i> View Distribution</a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 @endif
                                 </tbody>
                             </table>
@@ -90,9 +90,9 @@
 
 @stop
 @section('script_section')
-   <script>
-       {{---------------------Faculty Marks Distribution----------------------------}}
+    <script>
+        {{---------------------Faculty Marks Distribution----------------------------}}
 
-   </script>
+    </script>
 
 @stop
