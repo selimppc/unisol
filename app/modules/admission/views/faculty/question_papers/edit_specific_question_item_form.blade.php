@@ -35,11 +35,11 @@
                              {{ Form::label('Answer Type:') }}
                              <div class="radio">
                                   <label>
-                                       {{ Form::radio('q_type', 'mcq_single',($faculty_editQuestionItems->question_type == 'radio'), ['id'=>'single', 'class'=>'radio']) }}
+                                       {{ Form::radio('q_type', 'mcq_single', ($faculty_editQuestionItems->question_type == 'radio'), ['id'=>'single', 'class'=>'radio']) }}
                                        Single Answer &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                   </label>
                                   <label>
-                                       {{ Form::radio('q_type', 'mcq_multiple',($faculty_editQuestionItems->question_type == 'checkbox'), ['id'=>'multiple', 'class'=>'radio']) }}
+                                       {{ Form::radio('q_type', 'mcq_multiple', ($faculty_editQuestionItems->question_type == 'checkbox'), ['id'=>'multiple', 'class'=>'radio']) }}
                                        Multiple Answer
                                   </label>
                              </div>

@@ -30,7 +30,12 @@ class ExamCenterController extends \BaseController {
         {
             DB::beginTransaction();
             try {
-                $model->create($data);
+                $model->title = Input::get('title');
+                $model->description = Input::get('description');
+                $model->capacity = Input::get('capacity');
+                $model->status = 'Free';
+                $model->save();
+
                 DB::commit();
                 Session::flash('message', "$name Exam Center  Added");
             }

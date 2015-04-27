@@ -282,7 +282,8 @@ class AdmAmwController extends \BaseController
         }
     }
 
-    public function degreeWaiverDelete($id){
+    public function degreeWaiverDelete($id)
+    {
         try {
             DegreeWaiver::find($id)->delete();
             return Redirect::back()
@@ -333,8 +334,8 @@ class AdmAmwController extends \BaseController
         }
     }
 
-    public function degWaiverConstDelete($id){
-
+    public function degWaiverConstDelete($id)
+    {
         WaiverConstraint::find($id)->delete();
         return Redirect::back()
             ->with('message', 'Successfully deleted Information!');
@@ -1795,21 +1796,15 @@ class AdmAmwController extends \BaseController
     public function admDegreeDelete($id)
     {
         try {
-            $data= Degree::find($id);
-            $data->degree_level_id = Input::get('degree_level_id');
-            $data->degree_group_id = Input::get('degree_group_id');
-            $data->degree_program_id = Input::get('degree_program_id');
-            $nameL = $data->relDegreeLevel->code;
-            $nameG = $data->relDegreeGroup->code;
-            $nameP = $data->relDegreeProgram->code;
-            if($data->delete())
-            {
-                Session::flash('message',"Successfully DEleted $nameL$nameG In $nameP  Degree!");
-                return Redirect::back();
-            }
-        } catch (exception $ex) {
-            return Redirect::back()->with('danger', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+            Degree::find($id)->delete();
+            return Redirect::back()
+                ->with('message', 'Successfully deleted Information!');
         }
+        catch(exception $ex){
+            return Redirect::back()
+                ->with('message', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+        }
+
     }
 
     public function admDegreeBatchDelete()
