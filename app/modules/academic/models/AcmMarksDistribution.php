@@ -38,7 +38,6 @@ class AcmMarksDistribution extends \Eloquent
     }
 
     //static function to show status in courses Marks distribution page
-
     public static function getMarksDistItemStatus($course_conduct_id, $evalution_marks)
     {
         $totalEntry = 0;

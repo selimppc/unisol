@@ -118,8 +118,8 @@
 
                                             <a href="{{ URL::route('item.edit', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#editModal"data-toggle="tooltip" data-placement="left" title="Edit Item"  href="" ><i class="fa fa-pencil-square-o" style="color: #0044cc"></i></a>
 
-                                            {{--<a href="{{ URL::route('assign.assign',['id'=>$value->id, 'cmid'=>$value->course_management_id, 'marksid'=>$value->acm_marks_distribution_id,--}}
-                                            {{--'course_id'=>$value->relCourseManagement->course_id])  }}" class="btn btn-default btn-xs"> Assign </a>--}}
+                                            <a href="{{ URL::route('item.assign',['id'=>$value->id, 'cc_id'=>$value->course_conduct_id, 'marksid'=>$value->acm_marks_distribution_id,
+                                                 'course_id'=>$value->relCourseConduct->course_id]) }}" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="left" title="Assign Student"><i class="fa fa-plus text-purple"></i> Assign</a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -246,8 +246,8 @@
 
                                                 <a href="{{ URL::route('item.edit', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#editModal"data-toggle="tooltip" data-placement="left" title="Edit Item"  href="" ><i class="fa fa-pencil-square-o" style="color: #0044cc"></i></a>
 
-                                                {{--<a href="{{ URL::route('mid/term.assign',['id'=>$value->id, 'cmid'=>$value->course_management_id, 'marksid'=>$value->acm_marks_distribution_id,--}}
-                                                {{--'course_id'=>$value->relCourseManagement->course_id])  }}" class="btn btn-default btn-xs"> Assign </a>--}}
+                                                <a href="{{ URL::route('item.assign',['id'=>$value->id, 'cc_id'=>$value->course_conduct_id, 'marksid'=>$value->acm_marks_distribution_id,
+                                             'course_id'=>$value->relCourseConduct->course_id]) }}" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="left" title="Assign Student"><i class="fa fa-plus text-purple"></i> Assign</a>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -310,8 +310,8 @@
 
                                             <a href="{{ URL::route('item.edit', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#editModal"data-toggle="tooltip" data-placement="left" title="Edit Item"  href="" ><i class="fa fa-pencil-square-o" style="color: #0044cc"></i></a>
 
-                                            {{--<a href="{{ URL::route('final/term.assign',['id'=>$value->id, 'cmid'=>$value->course_management_id, 'marksid'=>$value->acm_marks_distribution_id,--}}
-                                            {{--'course_id'=>$value->relCourseManagement->course_id])  }}" class="btn btn-default btn-xs"> Assign </a>--}}
+                                            <a href="{{ URL::route('item.assign',['id'=>$value->id, 'cc_id'=>$value->course_conduct_id, 'marksid'=>$value->acm_marks_distribution_id,
+                                                 'course_id'=>$value->relCourseConduct->course_id]) }}" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="left" title="Assign Student"><i class="fa fa-plus text-purple"></i> Assign</a>
                                         </td>
                                     </tr>
                                 @endforeach

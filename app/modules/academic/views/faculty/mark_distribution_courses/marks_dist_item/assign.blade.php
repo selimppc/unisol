@@ -27,34 +27,34 @@
         </thead>
         <tbody>
         <?php $i=0; ?>
-        {{--@foreach($acm_academic_ass_std as $key => $value)--}}
-            {{--<tr>--}}
-                {{--<td><input type="checkbox" name="chk[]" class="myCheckbox" value="{{$value[$i]['id']}}">--}}
-                    {{--{{ Form::hidden('assign_stu_id', $value[$i]['id'], ['class'=>'assign_stu_id'])}}--}}
-                {{--</td>--}}
-                {{--<td>{{User::FullName($value[$i]['user_id'])}}</td>--}}
-                {{--<td>{{Semester::find(CourseConduct::where('course_id', '=', $value[0]['course_id'])--}}
-                    {{--->where('user_id', '=', $value[0]['user_id'])--}}
-                    {{--->first()->semester_id)->title; }}</td>--}}
-                {{--<td>{{Year::find(CourseConduct::where('course_id', '=', $value[0]['course_id'])--}}
-                      {{--->where('user_id', '=', $value[0]['user_id'])--}}
-                      {{--->first()->year_id)->title; }}</td>--}}
-                {{--<td></td>--}}
-                {{--<td>{{$value[$i]['status']}}</td>--}}
-                {{--<td>--}}
+        @foreach($acm_academic_ass_std as $key => $value)
+            <tr>
+                <td><input type="checkbox" name="chk[]" class="myCheckbox" value="{{$value[$i]['id']}}">
+                    {{ Form::hidden('assign_stu_id', $value[$i]['id'], ['class'=>'assign_stu_id'])}}
+                </td>
+                <td> {{--{{User::FullName($value[$i]['user_id'])}}--}} </td>
+                <td> {{--{{Semester::find(CourseConduct::where('course_id', '=', $value[0]['course_id'])
+                    ->where('user_id', '=', $value[0]['user_id'])
+                    ->first()->semester_id)->title; }}--}}</td>
+                <td> {{--{{Year::find(CourseConduct::where('course_id', '=', $value[0]['course_id'])
+                      ->where('user_id', '=', $value[0]['user_id'])
+                      ->first()->year_id)->title; }}--}} </td>
+                <td></td>
+                <td>{{$value[$i]['status']}}</td>
+                <td>
                     {{--<a href="{{ URL::route('midterm.comments', [ 'assign_std'=>$value[$i]['id'] ]) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#commentsModal"> Comments </a>--}}
 
-                    {{--<a href="" class="btn btn-primary btn-xs"> Evaluation </a>--}}
+                    <a href="" class="btn btn-primary btn-xs"> Evaluation </a>
 
-                    {{--@if($value[$i]['status'] == "A")--}}
-                        {{--{{ Form::submit('Revoke', ['name' => 'revoke', 'class' => 'btn btn-danger btn-xs']) }}--}}
-                    {{--@else--}}
-                        {{--{{ Form::submit('Assign', ['name' => 'assign', 'class' => 'btn btn-success btn-xs']) }}--}}
-                    {{--@endif--}}
+                    @if($value[$i]['status'] == "A")
+                        {{ Form::submit('Revoke', ['name' => 'revoke', 'class' => 'btn btn-danger btn-xs']) }}
+                    @else
+                        {{ Form::submit('Assign', ['name' => 'assign', 'class' => 'btn btn-success btn-xs']) }}
+                    @endif
 
-                {{--</td>--}}
-            {{--</tr>--}}
-        {{--@endforeach--}}
+                </td>
+            </tr>
+        @endforeach
         </tbody>
     </table>
     <div class="button" style="margin-top: 10px">

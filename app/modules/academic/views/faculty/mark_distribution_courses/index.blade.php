@@ -69,7 +69,7 @@
     {{---------------------------------------------}}
 
     <!-- Add New marks dist Item Modal -->
-    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addScholarship" aria-hidden="true">
+    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addScholarship" aria-hidden="true" data-keyboard="false" data-backdrop="static" >
         <div class="modal-dialog modal-lg">
             {{--<div class="modal-dialog" style="width: 980px; height: 350px;">--}}
             <div class="modal-content ">
@@ -80,7 +80,7 @@
     </div>
 
     <!-- Show marks_distribution Modal -->
-    <div class="modal fade" id="showMarksDist" tabindex="-1" role="dialog" aria-labelledby="addScholarship" aria-hidden="true">
+    <div class="modal fade" id="showMarksDist" tabindex="-1" role="dialog" aria-labelledby="addScholarship" aria-hidden="true" data-keyboard="false" data-backdrop="static">
         <div class="modal-dialog">
             <div class="modal-content">
 
@@ -89,9 +89,43 @@
     </div><!-- /.modal -->
 
 @stop
+
 @section('script_section')
     <script>
         {{---------------------Faculty Marks Distribution----------------------------}}
+        {{------------------------Ajax delete in modal----------------------}}
+
+       /* function deleteMarkDistTr(getId, distId) {
+
+            var is_marksdist_id = distId;
+
+            if (is_marksdist_id > 0) {
+
+                var check = confirm("Are you sure to delete this item??");
+                if (check) {
+                    $.ajax({
+                        url: 'academic/faculty/marksdist/acmmarksdistdelete/ajax',
+                        type: 'POST',
+                        dataType: 'json',
+                        data: {acm_marks_distribution_id: is_marksdist_id}
+                    })
+                            .done(function (msg) {
+                                //console.log(msg);
+                                var whichtr = $('#' + getId).closest("tr");
+                                whichtr.fadeOut(500).remove();
+                                arrayItems.pop(getId);//To stop additem if exist
+                            });
+                }
+                else {
+                    return false;
+                }
+            } else {
+                //if acm_course_config id not found jst remove the tr form the popup. that not delete the data form the db.
+                var whichtr = $('#' + getId).closest("tr");
+                whichtr.fadeOut(500).remove();
+                arrayItems.pop(getId);//To stop additem if exist
+            }
+        }*/
 
     </script>
 

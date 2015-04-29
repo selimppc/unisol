@@ -74,7 +74,7 @@
     </table>
     {{Form::close()}}
     <div class="modal-footer">
-        <button class="btn btn-default" data-dismiss="modal" type="button">Close</button>
+        <button class="btn btn-default btn-xs" data-dismiss="modal" type="button">Close</button>
     </div>
 
 </div>

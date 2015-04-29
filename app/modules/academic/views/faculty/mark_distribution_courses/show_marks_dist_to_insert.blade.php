@@ -65,11 +65,11 @@
                     @if($value->readonly == 1)
                         <input type="text" name="marks_percent[]" value="{{ ($value->actual_marks/$data->relCourse->evaluation_total_marks) * 100 }}" class="form-control totalPer amw_marks_percent{{$key}}" id="marks_percent_id{{$key}}" onchange="calculateActualMarksFaculty(this.id, {{$data->relCourse->evaluation_total_marks}},this.value)" onblur="calculateTotalMarksPercent(this)" readonly required />
                     @else
-                        <input type="text" name="marks_percent[]" value="{{ ($value->actual_marks/$data->relCourse->evaluation_total_marks) * 100 }}" class="form-control totalPer amw_marks_percent{{$key}}"  id="marks_percent_id{{$key}}" onchange="calculateActualMarksFaculty(this.id, {{$data->relCourse->evaluation_total_marks}},this.value)" onblur="calculateTotalMarksPercent(this)" required />
+                        <input type="text" name="marks_percent[]" value="{{ ($value->actual_marks/$data->relCourse->evaluation_total_marks) * 100 }}" class="form-control totalPer amw_marks_percent{{$key}}"  id="marks_percent_id{{$key}}" onchange="calculateActualMarksFaculty(this.id, {{$data->relCourse->evaluation_total_marks}},this.value)" onblur="calculateTotalMarksPercent(this)"  required />
                     @endif
                 </td>
                 <td>
-                    <!-- <input type="text" name="actual_marks[]" value="{{$value->actual_marks}}" class="amw_actual_marks" readonly/> -->
+                    {{--<input type="text" name="actual_marks[]" value="{{$value->actual_marks}}" class="amw_actual_marks" readonly/> --}}
                     {{ Form::text('actual_marks[]', $value->actual_marks, ['class'=> 'form-control amw_actual_marks','required' => 'required', 'readonly'=>'true']) }}
                 </td>
                 <td>
@@ -151,6 +151,5 @@
 
 </div>
 <div class="modal-footer">
-    {{--<button type="button" class="btn-default btn-xs" data-dismiss="modal">Close</button>--}}
-    <button class="btn btn-default" data-dismiss="modal" type="button">Close</button>
+    <button class="btn btn-default btn-xs" data-dismiss="modal" type="button">Close</button>
 </div>

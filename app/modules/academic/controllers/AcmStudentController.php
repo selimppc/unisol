@@ -20,18 +20,42 @@ class AcmStudentController extends \BaseController {
             $left_courses[$value->relYear->title][$value->relsemester->title][$value->id]['title'] = $value->relCourse->title;
             $left_courses[$value->relYear->title][$value->relsemester->title][$value->id]['credit'] = $value->relCourse->credit;
         }
+        $total_credit = BatchCourse::with('relBatch','relBatch.relDegree')->where('batch_id','=',$batch_id)->first();
 
-        $total_credit = DB::table('batch_course')
-            ->select(DB::raw('SUM(course.credit) as total_credit'))
+       /*Completed Courses*/
+        $completed_course = CourseEnrollment::with('relBatchCourse','relBatchCourse.relCourse')->whereIn('status',array('pass','fail'))->get();
+        $completed_course_in_year = CourseEnrollment::with('relBatchCourse','relBatchCourse.relYear','relBatchCourse.relSemester')->whereIn('status',array('pass','fail'))->first();
+
+        /*Running Courses*/
+        $running_course = CourseEnrollment::with('relBatchCourse','relBatchCourse.relCourse')->whereIn('status', array('enrolled', 'revoked'))->get();
+        $running_course_in_year = CourseEnrollment::with('relBatchCourse','relBatchCourse.relYear','relBatchCourse.relSemester')->where('status','enrolled')->first();
+
+        /*Accomplished Credit*/
+        $accomplished_credit = DB::table('course_enrollment')
+            ->select(DB::raw('SUM(course.credit) as accomplished_credit'))
+            ->leftJoin('batch_course', 'course_enrollment.batch_course_id', '=', 'batch_course.id')
             ->leftJoin('course', 'batch_course.course_id', '=', 'course.id')
-            ->where('batch_course.batch_id', '=', $batch_id)
+            ->where('course_enrollment.status', '=', 'pass')
             ->first();
-        return View::make('academic::student.courses.acm_courses',compact('courses','total_credit','left_courses','batch_courses'));
+
+        /*Left Credit*/
+        $left_credit = $total_credit->relBatch->relDegree->total_credit -  $accomplished_credit->accomplished_credit;
+
+        return View::make('academic::student.courses.acm_courses',compact('courses','total_credit','left_courses','batch_courses',
+            'completed_course','completed_course_in_year','running_course','accomplished_credit','left_credit','running_course_in_year'));
     }
 
 	public function acmEnrollment(){
 
-        $completed_data = CourseEnrollment::where('status', 'pass')->orderBy('id', 'DESC')->first();
+        $completed_data = CourseEnrollment::where('status', 'pass')->first();
+
+//        foreach($completed_data as $key => $value){
+//            //$left_courses[$value->relYear->title][$value->relsemester->title][$value->id]['title'] = $value->relCourse->title;
+//            //$left_courses[$value->relYear->title][$value->relsemester->title][$value->id]['credit'] = $value->relCourse->credit;
+//            $data = CourseEnrollment::
+//        }
+
+        //print_r($completed_data);exit;
 
         if($completed_data){
             $current_year_id = $completed_data->taken_in_year_id ? $completed_data->taken_in_year_id + 1 :'';
@@ -57,31 +81,34 @@ class AcmStudentController extends \BaseController {
 
             $batch_courses = BatchCourse::where('year_id', $current_year_id)->where('semester_id', $current_semester_id)->get();
         }
+            $previous_incomplete_courses = CourseEnrollment::with('relBatchCourse','relBatchCourse.relCourse')->whereIn('status',array('fail','retake'))->get();
 
-        return View::make('academic::student.courses.enrollment',compact(
-            'batch_courses', 'year_title', 'semester_title', 'current_year_id', 'current_semester_id'
+        return View::make('academic::student.courses.enrollment',compact('batch_courses', 'year_title', 'semester_title',
+                        'current_year_id', 'current_semester_id','previous_incomplete_courses'
         ));
     }
 
 	public function acmCoursesEnrollment()
 	{
         $checked_ids = Input::get('ids');
+        //print_r($checked_ids);exit;
+
         $taken_in_year = Input::get('taken_in_year');
-        $year_title = Year::findOrFail($taken_in_year)->title;
         $taken_in_semester = Input::get('taken_in_semester');
-        $semester_title = Semester::findOrFail($taken_in_semester)->title;
         $student_user_id = Auth::user()->get()->id;
+
+        $year_title = Year::findOrFail($taken_in_year)->title;
+        $semester_title = Semester::findOrFail($taken_in_semester)->title;
 
         if($checked_ids ){
             foreach($checked_ids as $key => $value){
 
                 $model = new CourseEnrollment();
                 $model->batch_course_id = $value;
-
                 $model->student_user_id = $student_user_id;
                 $model->taken_in_year_id = $taken_in_year;
                 $model->taken_in_semester_id = $taken_in_semester;
-                //$model->status =;
+                $model->status ='1';
                 $model->save();
             }
             Session::flash('message', "Successfully added Courses For Enrollment!");
@@ -92,15 +119,16 @@ class AcmStudentController extends \BaseController {
             return Redirect::back();
         }
 	}
+
     public function acmCoursesTutionFees($year_title,$semester_title){
 
-        $enrolled_courses = CourseEnrollment::where('status', 'pending')->orderBy('id', 'DESC')->get();
+        $enrolled_courses = CourseEnrollment::where('status', 'enrolled')->orderBy('id', 'DESC')->get();
 
         $total_credit = DB::table('course_enrollment')
             ->select(DB::raw('SUM(course.credit) as total_credit'))
             ->leftJoin('batch_course', 'course_enrollment.batch_course_id', '=', 'batch_course.id')
             ->leftJoin('course', 'batch_course.course_id', '=', 'course.id')
-            ->where('course_enrollment.status', '=', 'pending')
+            ->where('course_enrollment.status', '=', 'enrolled')
             ->first();
 
         return View::make('academic::student.courses.tution_fees',compact('enrolled_courses','year_title','semester_title', 'total_credit','semester_title'));
