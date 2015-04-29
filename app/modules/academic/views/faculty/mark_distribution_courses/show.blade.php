@@ -25,7 +25,7 @@
         </table>
     </div>
     @if(isset($coursetitle))
-        <p>Marks Distribution Done.Following is the Distribution of Course : {{isset($coursetitle->relCourseConduct->relCourse->title) ? $coursetitle->relCourseConduct->relCourse->title: 'No Item Added!' }}</p>
+        <p>Marks Distribution is Done.Following is the Distribution of Course : {{isset($coursetitle->relCourseConduct->relCourse->title) ? $coursetitle->relCourseConduct->relCourse->title: 'No Item Added!' }}</p>
     @else <p>Marks Distribution Is Not Done Yet.</p>
     @endif
 

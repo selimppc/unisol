@@ -4,7 +4,7 @@
             {{isset($coursetitle->relCourseConduct->relCourse->title) ? $coursetitle->relCourseConduct->relCourse->title: 'Show' }} Marks Distribution</h4>
 </div>
 <div class="modal-body">
-    <div style="padding: 10px; width: 90%;">
+    <div style="padding: 20px">
         <p>Evaluation Total Marks:
             <b>{{ isset($coursetitle->relCourseConduct->relCourse->evaluation_total_marks) ? $coursetitle->relCourseConduct->relCourse->evaluation_total_marks : 'No Item Added!'}}</b>
         </p>
@@ -36,5 +36,5 @@
     </div>
 </div>
 <div class="modal-footer">
-    <a href="{{URL::to('academic/faculty/course/config')}}" class="btn btn-default">Close</a>
+    <button class="btn btn-default btn-xs" data-dismiss="modal" type="button">Close</button>
 </div>
