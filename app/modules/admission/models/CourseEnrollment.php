@@ -47,10 +47,10 @@ class CourseEnrollment extends Eloquent{
     }
 
     public function relYear(){
-        return $this->belongsTo('Year', 'taken_year_id', 'id');
+        return $this->belongsTo('Year', 'taken_in_year_id', 'id');
     }
     public function relSemester(){
-        return $this->belongsTo('Semester', 'taken_semester_id', 'id');
+        return $this->belongsTo('Semester', 'taken_in_semester_id', 'id');
     }
 
     

@@ -5,10 +5,10 @@
 @section('content')
     {{ Form::open(array('url' => 'batch/assign')) }}
     <p style="text-align: center;color: #800080;font-size:large ">Assign of {{$acm->title}} to Student</p>
-    {{ Form::hidden('acm_academic_id', $acm->id, ['class'=>'form-control acm_academic_id'])}}
+    {{ Form::text('acm_academic_id', $acm->id, ['class'=>'form-control acm_academic_id'])}}
     <div class='form-group' style="width: 300px">
         {{ Form::label('exam_question', 'Examination Question:') }}
-        {{ Form::select('exam_question',$exam_questions,Input::old('exam_question'),['class'=>'form-control','']) }}
+        {{ Form::select('exam_question',$exam_questions,Input::old('exam_question'),['class'=>'form-control','required']) }}
     </div>
     <p style="color: cornflowerblue">Help Text: If CT question is not prepared then tell faculty to create question paper.</p>
     <table id="example" class="table table-bordered table-hover table-striped">
@@ -26,27 +26,22 @@
         </tr>
         </thead>
         <tbody>
-        <?php $i=0; ?>
-        @foreach($acm_academic_ass_std as $key => $value)
+        @foreach($course_enroll as $key => $value)
             <tr>
-                <td><input type="checkbox" name="chk[]" class="myCheckbox" value="{{$value[$i]['id']}}">
-                    {{ Form::hidden('assign_stu_id', $value[$i]['id'], ['class'=>'assign_stu_id'])}}
+                <td><input type="checkbox" name="chk[]" class="myCheckbox" value="{{$value->id}}">
+                    {{--{{ Form::text('assign_stu_id',$value->id , ['class'=>'assign_stu_id'])}}--}}
                 </td>
-                <td> {{--{{User::FullName($value[$i]['user_id'])}}--}} </td>
-                <td> {{--{{Semester::find(CourseConduct::where('course_id', '=', $value[0]['course_id'])
-                    ->where('user_id', '=', $value[0]['user_id'])
-                    ->first()->semester_id)->title; }}--}}</td>
-                <td> {{--{{Year::find(CourseConduct::where('course_id', '=', $value[0]['course_id'])
-                      ->where('user_id', '=', $value[0]['user_id'])
-                      ->first()->year_id)->title; }}--}} </td>
-                <td></td>
-                <td>{{$value[$i]['status']}}</td>
+                <td>{{$value->relUser->relUserProfile->last_name}}</td>
+                <td>{{isset($value->taken_in_semester_id)? $value->relSemester->title : ''}}</td>
+                <td>{{isset($value->taken_in_year_id) ? $value->relYear->title : ''}}</td>
+                <td>{{isset($value->batch_course_id) ? $value->relBatchCourse->relCourse->relSubject->relDepartment->title : ''}}</td>
+                <td>{{$value->status}}</td>
                 <td>
-                    {{--<a href="{{ URL::route('midterm.comments', [ 'assign_std'=>$value[$i]['id'] ]) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#commentsModal"> Comments </a>--}}
+                    <a href="{{URL::route('item.comments',['acm_assign_stu_id'=>$value->id])}}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#commentsModal"> Comments </a>
 
                     <a href="" class="btn btn-primary btn-xs"> Evaluation </a>
 
-                    @if($value[$i]['status'] == "A")
+                    @if($value->status == 'Accepted')
                         {{ Form::submit('Revoke', ['name' => 'revoke', 'class' => 'btn btn-danger btn-xs']) }}
                     @else
                         {{ Form::submit('Assign', ['name' => 'assign', 'class' => 'btn btn-success btn-xs']) }}
@@ -58,7 +53,7 @@
         </tbody>
     </table>
     <div class="button" style="margin-top: 10px">
-        <a href="{{URL::previous('academic/faculty/marks/dist/item/class_test/')}}" class="btn btn-info btn-xs ">Back</a>
+        <a href="{{URL::previous()}}" class="btn btn-info btn-xs ">Back</a>
         {{ Form::submit('Do Assign', ['name' => 'assign', 'class' => 'btn btn-success btn-xs']) }}
         {{ Form::submit('Do Revoke', ['name' => 'revoke','class' => 'btn btn-danger btn-xs']) }}
 

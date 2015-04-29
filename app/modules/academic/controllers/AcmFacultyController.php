@@ -410,17 +410,10 @@ class AcmFacultyController extends \BaseController
      * @param $mark_dist_id
      * @return mixed
      */
-    public function item_assign($acm_id, $cc_id, $mark_dist_id, $course_id)
+    public function item_assign($acm_id, $cc_id, $mark_dist_id)
     {
 
         $course_list = CourseConduct::findOrFail($cc_id);
-        /*$course_enroll = CourseEnrollment::with(['relUser', 'relBatchCourse'=> function($query) use($course_list){
-            $query->where('course_id', $course_list->course_id);
-            }])
-        ->where('taken_in_year_id', $course_list->year_id)
-        ->where('taken_in_semester_id', $course_list->semester_id)
-        ->where('status', 'enrolled')
-        ->get();*/
 
         $course_enroll = CourseEnrollment::with('relUser')
             ->whereExists(function($query) use($course_list)
@@ -431,13 +424,13 @@ class AcmFacultyController extends \BaseController
             })
         ->where('taken_in_year_id', $course_list->year_id)
         ->where('taken_in_semester_id', $course_list->semester_id)
-        ->where('status', 'enrolled')
+        ->where('status', 'Accepted')
         ->get();
 
-        $acm = AcmAcademic::with('relAcmClassSchedule')
+        $acm = AcmAcademic::with('relAcmAcademicAssignStudent')
             ->where('id', '=', $acm_id)
             ->first();
-
+       // print_r($acm);exit;
         $exam_questions = array('' => 'Select Examination Question') + ExmQuestion::lists('title', 'id');
 
         $data = CourseConduct::with('relCourse')
@@ -448,7 +441,7 @@ class AcmFacultyController extends \BaseController
             ->where('course_conduct_id', '=', $cc_id)
             ->get();
 
-        return View::make('academic::faculty.mark_distribution_courses.marks_dist_item.assign', compact('course_enroll','acm','exam_questions', 'data', 'config_data'));
+        return View::make('academic::faculty.mark_distribution_courses.marks_dist_item.assign', compact('course_enroll','course_list','acm','exam_questions', 'data', 'config_data'));
     }
 
     public function batch_assign_item()
@@ -498,7 +491,7 @@ class AcmFacultyController extends \BaseController
 
     public function comments_assign_item($assign_std_id)
     {
-        $assign_std = AcmAcademicAssignStudent::with('relAcmAcademic', 'relAcmAcademic.relCourseManagement')
+        $assign_std = AcmAcademicAssignStudent::with('relAcmAcademic', 'relAcmAcademic.relCourseConduct')
             ->where('id', '=', $assign_std_id)
             ->first();//Execute the query and get the first result.
 
@@ -506,7 +499,7 @@ class AcmFacultyController extends \BaseController
             ->where('acm_assign_std_id', '=', $assign_std_id)
             ->get();//Execute the query as a "select" statement.
 
-        return View::make('academic::faculty.mark_distribution_courses.marks_dist_item_class_test.ct_comments', compact('assign_std', 'comments_info'));
+        return View::make('academic::faculty.mark_distribution_courses.marks_dist_item.comments', compact('assign_std', 'comments_info'));
 
     }
 

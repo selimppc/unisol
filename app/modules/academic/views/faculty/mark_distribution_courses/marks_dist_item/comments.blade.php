@@ -7,7 +7,7 @@
 
         <div class="jumbotron text-left" style="padding-top: 2px; padding-left: 2px; padding-bottom: 5px; background-color: #FFEBE6;">
             @foreach($comments_info as $comments_info)
-                <strong>Comments:</strong><h4> {{ $comments_info->comments }}</h4>
+                <strong>Comments:</strong><h4> {{isset($comments_info->comments) ? $comments_info->comments : ''}}</h4>
                 <strong>By:</strong>
                 {{--<h4> {{ $comments_info->commented_by }}</h4>--}}
                 <br>
@@ -16,7 +16,7 @@
 
         {{ Form::open(array('url' => array('comments/save'), 'method' =>'post'))  }}
 
-        {{ Form::hidden('assign_stu_user_id', $assign_std->id, ['class'=>'form-control assign_stu_user_id'])}}
+        {{ Form::text('assign_stu_user_id', $assign_std->id, ['class'=>'form-control assign_stu_user_id'])}}
 
         <div class='form-group'>
             {{ Form::label('comments', 'CT Comments') }}
