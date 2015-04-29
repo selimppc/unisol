@@ -1,25 +1,33 @@
-<div class="container">
-<div class="panel-group" id="accordion">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h4 class="panel-title">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-          <span class="glyphicon glyphicon-minus"></span>
-          Collapsible Group Item #1
-        </a>
-      </h4>
+@extends('layouts.layout')
+
+@section('sidebar')
+ @include('layouts._sidebar_student')
+@stop
+@section('content')
+
+<section class="col-lg-12 connectedSortable">
+    <!-- Map box -->
+    <div class="box box-solid bg-gray">
+        <div class="box-header">
+            <!-- tools box -->
+            <div class="pull-right box-tools">
+                <button class="btn btn-primary btn-sm daterange pull-right" data-toggle="tooltip" title="Date range"><i class="fa fa-calendar"></i></button>
+                <button class="btn btn-primary btn-sm pull-right" data-widget='collapse' data-toggle="tooltip" title="Collapse" style="margin-right: 5px;"><i class="fa fa-minus"></i></button>
+            </div><!-- /. tools -->
+
+            <i class="fa fa-map-marker"></i>
+            <h3 class="box-title">
+                Course
+            </h3>
+        </div>
+        <div class="box-body">
+            <div id="world-map" style="height: 250px;">
+                Hello
+            </div>
+        </div><!-- /.box-body-->
     </div>
-    <div id="collapseOne" class="panel-collapse collapse in">
-      <div class="panel-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-      </div>
-    </div>
-  </div>
+    <!-- /.box -->
+</section><!-- right col -->
 
 
-</div>
-</div>
-
- {{ HTML::style('assets/css/accordion.css') }}
-
- {{ HTML::script('assets/js/accordion.js') }}
+@stop
