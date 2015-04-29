@@ -118,7 +118,7 @@ class CreateAdmission extends Migration {
             $table->unsignedInteger('batch_course_id')->nullable();
             $table->unsignedInteger('student_user_id')->nullable();
             $table->enum('status',array(
-                'requested', 'deny', 'accepted', 'cancel'
+                'enrolled', 'pass', 'fail', 'invoked', 'revoked'
             ));
             $table->unsignedInteger('taken_in_year_id')->nullable();
             $table->unsignedInteger('taken_in_semester_id')->nullable();

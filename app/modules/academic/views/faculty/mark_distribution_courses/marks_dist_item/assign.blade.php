@@ -28,6 +28,7 @@
             <div class="tab-content">
                 <div class="tab-pane active" id="tab_1">
                     <div class="box-body table-responsive ">
+                        <div>&nbsp;</div>
                         {{ Form::open(array('url' => 'batch/assign')) }}
                         {{ Form::hidden('acm_academic_id',$acm->id, ['class'=>'form-control acm_academic_id'])}}
                         <div class='form-group' style="width: 300px">
@@ -66,7 +67,7 @@
 
                                         <a href="" class="btn btn-primary btn-xs"> Evaluation </a>
 
-                                        @if($value->status == 'Accepted')
+                                        @if($value->status == 'Enrolled')
                                             {{ Form::submit('Revoke', ['name' => 'revoke', 'class' => 'btn btn-danger btn-xs']) }}
                                         @else
                                             {{ Form::submit('Assign', ['name' => 'assign', 'class' => 'btn btn-success btn-xs']) }}
@@ -83,8 +84,7 @@
                             {{ Form::submit('Do Revoke', ['name' => 'revoke','class' => 'btn btn-danger btn-xs']) }}
                         </div>
                         {{ Form::close() }}
-                        <p>&nbsp;</p>
-                        <p>&nbsp;</p>
+                        <div>&nbsp;</div>
                     </div>
                 </div>
             </div>

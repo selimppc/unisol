@@ -424,7 +424,7 @@ class AcmFacultyController extends \BaseController
             })
         ->where('taken_in_year_id', $course_list->year_id)
         ->where('taken_in_semester_id', $course_list->semester_id)
-        ->where('status', 'Accepted')
+        ->where('status', 'Enrolled')
         ->get();
 
         $acm = AcmAcademic::with('relAcmAcademicAssignStudent')
