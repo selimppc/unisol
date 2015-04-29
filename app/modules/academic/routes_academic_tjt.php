@@ -23,3 +23,11 @@ Route::any('academic/student/course-enrollment',
 Route::any('academic/student/course-enrollment/tution-fees/{year_title}/{semester_title}',
     ['as'=>'academic.student.course-enrollment.tution-fees',
         'uses'=>'AcmStudentController@acmCoursesTutionFees']);
+
+Route::any('academic/student/courses/change-status/{id}',
+    ['as'=>'academic.student.courses.change-status',
+        'uses'=>'AcmStudentController@acmCoursesChangeStatus']);
+
+Route::any('academic/student/courses/obtained-marks/{batch_course_id}',
+    ['as'=>'academic.student.courses.obtained-marks',
+        'uses'=>'AcmStudentController@showObtainedMarks']);

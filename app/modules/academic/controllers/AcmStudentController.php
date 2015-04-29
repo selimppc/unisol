@@ -23,21 +23,24 @@ class AcmStudentController extends \BaseController {
         $total_credit = BatchCourse::with('relBatch','relBatch.relDegree')->where('batch_id','=',$batch_id)->first();
 
        /*Completed Courses*/
-        $completed_course = CourseEnrollment::with('relBatchCourse','relBatchCourse.relCourse')->whereIn('status',array('pass','fail'))->get();
-        $completed_course_in_year = CourseEnrollment::with('relBatchCourse','relBatchCourse.relYear','relBatchCourse.relSemester')->whereIn('status',array('pass','fail'))->first();
+        $completed_course = CourseEnrollment::with('relBatchCourse','relBatchCourse.relCourse')
+                            ->whereIn('status',array('pass','fail'))->get();
+        $completed_course_in_year = CourseEnrollment::with('relBatchCourse','relBatchCourse.relYear','relBatchCourse.relSemester')
+                           ->whereIn('status',array('pass','fail'))->first();
 
         /*Running Courses*/
-        $running_course = CourseEnrollment::with('relBatchCourse','relBatchCourse.relCourse')->whereIn('status', array('enrolled', 'revoked'))->get();
-        $running_course_in_year = CourseEnrollment::with('relBatchCourse','relBatchCourse.relYear','relBatchCourse.relSemester')->where('status','enrolled')->first();
+        $running_course = CourseEnrollment::with('relBatchCourse','relBatchCourse.relCourse')
+                           ->whereIn('status', array('enrolled', 'revoked','invoked'))->get();
+        $running_course_in_year = CourseEnrollment::with('relBatchCourse','relBatchCourse.relYear','relBatchCourse.relSemester')
+                          ->where('status','enrolled')->first();
 
         /*Accomplished Credit*/
         $accomplished_credit = DB::table('course_enrollment')
-            ->select(DB::raw('SUM(course.credit) as accomplished_credit'))
-            ->leftJoin('batch_course', 'course_enrollment.batch_course_id', '=', 'batch_course.id')
-            ->leftJoin('course', 'batch_course.course_id', '=', 'course.id')
-            ->where('course_enrollment.status', '=', 'pass')
-            ->first();
-
+                        ->select(DB::raw('SUM(course.credit) as accomplished_credit'))
+                        ->leftJoin('batch_course', 'course_enrollment.batch_course_id', '=', 'batch_course.id')
+                        ->leftJoin('course', 'batch_course.course_id', '=', 'course.id')
+                        ->where('course_enrollment.status', '=', 'pass')
+                        ->first();
         /*Left Credit*/
         $left_credit = $total_credit->relBatch->relDegree->total_credit -  $accomplished_credit->accomplished_credit;
 
@@ -48,14 +51,6 @@ class AcmStudentController extends \BaseController {
 	public function acmEnrollment(){
 
         $completed_data = CourseEnrollment::where('status', 'pass')->first();
-
-//        foreach($completed_data as $key => $value){
-//            //$left_courses[$value->relYear->title][$value->relsemester->title][$value->id]['title'] = $value->relCourse->title;
-//            //$left_courses[$value->relYear->title][$value->relsemester->title][$value->id]['credit'] = $value->relCourse->credit;
-//            $data = CourseEnrollment::
-//        }
-
-        //print_r($completed_data);exit;
 
         if($completed_data){
             $current_year_id = $completed_data->taken_in_year_id ? $completed_data->taken_in_year_id + 1 :'';
@@ -132,6 +127,46 @@ class AcmStudentController extends \BaseController {
             ->first();
 
         return View::make('academic::student.courses.tution_fees',compact('enrolled_courses','year_title','semester_title', 'total_credit','semester_title'));
+    }
+
+    public function acmCoursesChangeStatus($id){
+
+        $data = Input::all();
+        $result =  CourseEnrollment::find($id);
+        if($result->status == 'enrolled') {
+            $result->status = '4';
+            $result->update($data);
+        }
+        if($result->status == 'revoked'){
+            $result->status = '6';
+            $result->update($data);
+        }
+            return Redirect::back();
+    }
+
+    public function showObtainedMarks($batch_course_id){
+
+        $courses = CourseEnrollment::with('relBatchCourse','relBatchCourse.relCourse')
+            ->where('batch_course_id','=',$batch_course_id)->first();
+
+        $course_id = BatchCourse::find($batch_course_id)->course_id;
+        $course_conduct_id = CourseConduct::where('course_id','=',$course_id)->first();
+        if($course_conduct_id){
+//            $acm_academic_item = AcmAcademic::with('relCourseConduct','relAcmMarksDistribution','relAcmClassSchedule','relAcmClassSchedule.relAcmClassTime')
+//                ->where('course_conduct_id','=',  $course_conduct_id->id)
+//                //->where('acm_marks_distribution_id','=',  $course_conduct_id)\
+//                ->get();
+
+            $acm_academic_item = AcmAcademic::with(
+               [ 'relAcmMarksDistribution'=>function($query) use($course_conduct_id){
+                $query->whereRaw('acm_academic.course_conduct_id = acm_marks_distribution.course_conduct_id')
+                    ->where('acm_marks_distribution.course_conduct_id',  $course_conduct_id->id);
+              }])->where('course_conduct_id','=',  $course_conduct_id->id)
+                ->get();
+
+        }print_r($acm_academic_item);exit;
+        return View::make('academic::student.courses.acm_course_items.obtained_marks',compact('courses','acm_academic_item'));
+
     }
 
 

@@ -115,18 +115,23 @@
                                                     @if(isset($running_course))
                                                        @foreach($running_course as $value)
                                                           <tr>
-                                                               <td>{{($value->relBatchCourse->relCourse->title )}}</td>
+                                                               <td>
+                                                                   <a href="{{ URL::route('academic.student.courses.obtained-marks',
+                                                                       ['id' => $value->batch_course_id]) }}" class="btn-link" >
+                                                                       {{($value->relBatchCourse->relCourse->title )}}
+                                                                   </a>
+                                                               </td>
                                                                <td>{{ $value->relBatchCourse->relCourse->credit}}</td>
                                                                <td></td>
-                                                               <td>
+                                                               <td class="status">
                                                                  {{strtoupper($value->status)}}
                                                                </td>
                                                                <td>
                                                                    @if($value->status == 'enrolled')
-                                                                      <a class="btn btn-xs btn-info" href="{{ URL::route('academic.student.enrollment')}}"  title="Retake">Revoke</a>
+                                                                      <a class="btn btn-xs btn-info" data-href="{{ URL::route('academic.student.courses.change-status',['id'=>$value->id])}}" title="Retake" data-toggle="modal" data-target="#confirm-status" >Revoke</a>
                                                                    @endif
                                                                    @if($value->status == 'revoked')
-                                                                      <a class="btn btn-xs btn-info" href="{{ URL::route('academic.student.enrollment')}}"  title="Retake">Invoke</a>
+                                                                      <a class="btn btn-xs btn-info"  data-href="{{ URL::route('academic.student.courses.change-status',['id'=>$value->id])}}" title="Retake" data-toggle="modal" data-target="#confirm-status">Invoke</a>
                                                                    @endif
                                                                </td>
                                                           </tr>
@@ -209,5 +214,25 @@
     </div><!-- /.col -->
 </div><!-- /.row -->
 
+<!-- Modal for status -->
+    <div class="modal fade " id="confirm-status" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel" >Status Change Confirmation</h4>
+              </div>
+              <div class="modal-body">
+                    <p style="font-size: medium;color:#000000">Are You Sure {{$value->status}} This Course  ?</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-xs btn-default" data-dismiss="modal">Cancel</button>
+                <a href="{{ URL::route('academic.student.courses.change-status',['id'=>$value->id])}}" class="btn btn-xs btn-primary" id="yes">Yes</a>
+              </div>
+        </div>
+      </div>
+    </div>
+
 
 @stop
+
