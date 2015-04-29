@@ -46,7 +46,7 @@ class AcmFacultyController extends \BaseController
 
         //$data->id now contains the course_conduct_id
 
-        $acm_marks_distribution = AcmMarksDistribution::where('course_conduct_id', '=', $data->id)->get();
+        /*$acm_marks_distribution = AcmMarksDistribution::where('course_conduct_id', '=', $data->id)->get();
 
         if (isset($acm_marks_distribution[0]) != null) {
             // $result = $acm_marks_distribution;
@@ -86,7 +86,7 @@ class AcmFacultyController extends \BaseController
                 ->join('acm_marks_dist_item', 'acm_course_config.acm_marks_dist_item_id', '=', 'acm_marks_dist_item.id')
                 ->where('course.id', $course_id)
                 ->get();
-        }
+        }*/
 
         return View::make('academic::faculty.mark_distribution_courses.show', compact('datas', 'data', 'config_data', 'coursetitle', 'totalmarks', 'result'));
     }

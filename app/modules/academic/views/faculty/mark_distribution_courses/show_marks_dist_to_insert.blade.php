@@ -151,6 +151,5 @@
 
 </div>
 <div class="modal-footer">
-    {{--<button type="button" class="btn-default btn-xs" data-dismiss="modal">Close</button>--}}
-    <button class="btn btn-default" data-dismiss="modal" type="button">Close</button>
+    <button class="btn btn-default btn-xs" data-dismiss="modal" type="button">Close</button>
 </div>
