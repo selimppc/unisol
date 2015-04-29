@@ -412,12 +412,28 @@ class AcmFacultyController extends \BaseController
      */
     public function item_assign($acm_id, $cc_id, $mark_dist_id, $course_id)
     {
-//        $student_of_course = CourseConduct::where('course_id', '=', $course_id)->get();
-//        foreach ($student_of_course as $key => $value) {
-//            $acm_academic_ass_std [] = AcmAcademicAssignStudent::where('user_id', '=', $value->user_id)
-//                ->where('course_id', '=', $value->course_id)
-//                ->get();
-//        }
+
+        $course_list = CourseConduct::findOrFail($cc_id);
+        /*$course_enroll = CourseEnrollment::with(['relUser', 'relBatchCourse'=> function($query) use($course_list){
+            $query->where('course_id', $course_list->course_id);
+            }])
+        ->where('taken_in_year_id', $course_list->year_id)
+        ->where('taken_in_semester_id', $course_list->semester_id)
+        ->where('status', 'enrolled')
+        ->get();*/
+
+        $course_enroll = CourseEnrollment::with('relUser')
+            ->whereExists(function($query) use($course_list)
+            {
+                $query->from('batch_course')
+                    ->whereRaw('batch_course.id = course_enrollment.batch_course_id')
+                    ->where('batch_course.course_id', $course_list->course_id);
+            })
+        ->where('taken_in_year_id', $course_list->year_id)
+        ->where('taken_in_semester_id', $course_list->semester_id)
+        ->where('status', 'enrolled')
+        ->get();
+
         $acm = AcmAcademic::with('relAcmClassSchedule')
             ->where('id', '=', $acm_id)
             ->first();
@@ -432,9 +448,7 @@ class AcmFacultyController extends \BaseController
             ->where('course_conduct_id', '=', $cc_id)
             ->get();
 
-        return View::make('academic::faculty.mark_distribution_courses.marks_dist_item.assign', compact('acm', 'data', 'config_data', 'exam_questions', 'student_of_course',
-            'course_management'
-        ));
+        return View::make('academic::faculty.mark_distribution_courses.marks_dist_item.assign', compact('course_enroll','acm','exam_questions', 'data', 'config_data'));
     }
 
     public function batch_assign_item()

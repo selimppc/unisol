@@ -122,7 +122,7 @@ class CreateAdmission extends Migration {
             ));
             $table->unsignedInteger('taken_in_year_id')->nullable();
             $table->unsignedInteger('taken_in_semester_id')->nullable();
-            //$table->unique(['batch_course_id as bc_id', 'student_user_id as su_id', 'taken_in_year_id as tiy_id', 'taken_in_semester_id as tis_id']);
+            $table->unique(['batch_course_id', 'student_user_id', 'taken_in_year_id', 'taken_in_semester_id']);
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
