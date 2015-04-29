@@ -112,9 +112,9 @@ Route::post('academic/faculty/acadetailsdelete/ajax',
     'AcmFacultyController@ajax_delete_aca_academic_details'
 );
 
-//+-----class test assign start-----
+//+-----assign start-----
 
-Route::any('academic/faculty/marks-dist-item/class_test/assign/{acm_id}/{cc_id}/{mark_dist_id}/{course_id}',[
+Route::any('academic/faculty/marks-dist-item/assign/{acm_id}/{cc_id}/{mark_dist_id}',[
     'as' => 'item.assign',
     'uses'=> 'AcmFacultyController@item_assign'
 ]);

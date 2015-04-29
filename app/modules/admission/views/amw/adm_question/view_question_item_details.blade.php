@@ -5,17 +5,17 @@
 
 <div style="margin-left: 5%; padding: 10px; width: 90%;">
          <div class="span9 well" style="font-size: large; margin-left: 10px">
-                 <strong> Question Paper:</strong> &nbsp &nbsp {{ $faculty_ViewQuestionItems->relAdmQuestion->title }}
+                 <strong> Question Paper:</strong> &nbsp &nbsp {{ $question_item->relAdmQuestion->title }}
                  </br>
-                 <strong> Title:</strong> &nbsp &nbsp {{ $faculty_ViewQuestionItems->title }}
+                 <strong> Title:</strong> &nbsp &nbsp {{ $question_item->title }}
                  </br>
-                 <strong> Marks:</strong> &nbsp &nbsp {{ $faculty_ViewQuestionItems->marks }}
+                 <strong> Marks:</strong> &nbsp &nbsp {{ $question_item->marks }}
                  </br></br>
                  <div class="container">
                    <div class="row">
-                        @if($faculty_ViewQuestionItems->question_type == 'radio')
+                        @if($question_item->question_type == 'radio')
                             <div class="row">
-                               @foreach($options as $op)
+                               @foreach($question_item_details as $op)
                                   <div class="col-sm-12">
                                        <div class="col-sm-6">
                                            <div class="col-sm-4">
@@ -32,9 +32,9 @@
                                   </div>
                                @endforeach
                             </div>
-                        @elseif($faculty_ViewQuestionItems->question_type == 'checkbox')
+                        @elseif($question_item->question_type == 'checkbox')
                                 <div class="row">
-                                   @foreach($options as $op)
+                                   @foreach($question_item_details as $op)
                                       <div class="col-sm-12">
                                            <div class="col-sm-6">
                                                <div class="col-sm-4">

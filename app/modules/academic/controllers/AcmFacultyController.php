@@ -46,7 +46,7 @@ class AcmFacultyController extends \BaseController
 
         //$data->id now contains the course_conduct_id
 
-        $acm_marks_distribution = AcmMarksDistribution::where('course_conduct_id', '=', $data->id)->get();
+        /*$acm_marks_distribution = AcmMarksDistribution::where('course_conduct_id', '=', $data->id)->get();
 
         if (isset($acm_marks_distribution[0]) != null) {
             // $result = $acm_marks_distribution;
@@ -86,7 +86,7 @@ class AcmFacultyController extends \BaseController
                 ->join('acm_marks_dist_item', 'acm_course_config.acm_marks_dist_item_id', '=', 'acm_marks_dist_item.id')
                 ->where('course.id', $course_id)
                 ->get();
-        }
+        }*/
 
         return View::make('academic::faculty.mark_distribution_courses.show', compact('datas', 'data', 'config_data', 'coursetitle', 'totalmarks', 'result'));
     }
@@ -410,18 +410,27 @@ class AcmFacultyController extends \BaseController
      * @param $mark_dist_id
      * @return mixed
      */
-    public function item_assign($acm_id, $cc_id, $mark_dist_id, $course_id)
+    public function item_assign($acm_id, $cc_id, $mark_dist_id)
     {
-//        $student_of_course = CourseConduct::where('course_id', '=', $course_id)->get();
-//        foreach ($student_of_course as $key => $value) {
-//            $acm_academic_ass_std [] = AcmAcademicAssignStudent::where('user_id', '=', $value->user_id)
-//                ->where('course_id', '=', $value->course_id)
-//                ->get();
-//        }
-        $acm = AcmAcademic::with('relAcmClassSchedule')
+
+        $course_list = CourseConduct::findOrFail($cc_id);
+
+        $course_enroll = CourseEnrollment::with('relUser')
+            ->whereExists(function($query) use($course_list)
+            {
+                $query->from('batch_course')
+                    ->whereRaw('batch_course.id = course_enrollment.batch_course_id')
+                    ->where('batch_course.course_id', $course_list->course_id);
+            })
+        ->where('taken_in_year_id', $course_list->year_id)
+        ->where('taken_in_semester_id', $course_list->semester_id)
+        ->where('status', 'Accepted')
+        ->get();
+
+        $acm = AcmAcademic::with('relAcmAcademicAssignStudent')
             ->where('id', '=', $acm_id)
             ->first();
-
+       // print_r($acm);exit;
         $exam_questions = array('' => 'Select Examination Question') + ExmQuestion::lists('title', 'id');
 
         $data = CourseConduct::with('relCourse')
@@ -432,9 +441,7 @@ class AcmFacultyController extends \BaseController
             ->where('course_conduct_id', '=', $cc_id)
             ->get();
 
-        return View::make('academic::faculty.mark_distribution_courses.marks_dist_item.assign', compact('acm', 'data', 'config_data', 'exam_questions', 'student_of_course',
-            'course_management'
-        ));
+        return View::make('academic::faculty.mark_distribution_courses.marks_dist_item.assign', compact('course_enroll','course_list','acm','exam_questions', 'data', 'config_data'));
     }
 
     public function batch_assign_item()
@@ -484,7 +491,7 @@ class AcmFacultyController extends \BaseController
 
     public function comments_assign_item($assign_std_id)
     {
-        $assign_std = AcmAcademicAssignStudent::with('relAcmAcademic', 'relAcmAcademic.relCourseManagement')
+        $assign_std = AcmAcademicAssignStudent::with('relAcmAcademic', 'relAcmAcademic.relCourseConduct')
             ->where('id', '=', $assign_std_id)
             ->first();//Execute the query and get the first result.
 
@@ -492,7 +499,7 @@ class AcmFacultyController extends \BaseController
             ->where('acm_assign_std_id', '=', $assign_std_id)
             ->get();//Execute the query as a "select" statement.
 
-        return View::make('academic::faculty.mark_distribution_courses.marks_dist_item_class_test.ct_comments', compact('assign_std', 'comments_info'));
+        return View::make('academic::faculty.mark_distribution_courses.marks_dist_item.comments', compact('assign_std', 'comments_info'));
 
     }
 
