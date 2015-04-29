@@ -4,13 +4,13 @@
 @stop
 @section('content')
     {{ Form::open(array('url' => 'batch/assign')) }}
-    <p style="text-align: center;color: #800080;font-size:large ">Assign of {{$acm->title}} to Student</p>
-    {{ Form::text('acm_academic_id', $acm->id, ['class'=>'form-control acm_academic_id'])}}
+    <p style="text-align: center;color: #800080;font-size:large ">Assign of {{isset($acm->title) ? $acm->title : ''}} to Student</p>
+    {{ Form::hidden('acm_academic_id',$acm->id, ['class'=>'form-control acm_academic_id'])}}
     <div class='form-group' style="width: 300px">
         {{ Form::label('exam_question', 'Examination Question:') }}
         {{ Form::select('exam_question',$exam_questions,Input::old('exam_question'),['class'=>'form-control','required']) }}
     </div>
-    <p style="color: cornflowerblue">Help Text: If CT question is not prepared then tell faculty to create question paper.</p>
+    <p style="color: cornflowerblue">Help Text: If Question is not Prepared Then Tell Faculty to Create Question Paper.</p>
     <table id="example" class="table table-bordered table-hover table-striped">
         <thead>
         <tr>
