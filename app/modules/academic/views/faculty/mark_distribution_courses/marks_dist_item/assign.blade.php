@@ -3,8 +3,33 @@
     @include('academic::_sidebar')
 @stop
 @section('content')
+    <h2 class="page-header text-purple tab-text-margin">Assign of {{isset($acm->title) ? $acm->title : ''}} to Student</h2>
+    <div class="row">
+        <div class="col-md-12">
+            <!-- Custom Tabs -->
+            <div class="nav-tabs-custom">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#tab_1" data-toggle="tab">Class List</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            Settings  <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li role="presentation" data-toggle="modal" data-target="#addCategory"><a role="menuitem" tabindex="-1" href="#"> </a></li>
+                        </ul>
+                    </li>
+                    <li class="pull-right" class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-gear"></i>&nbsp;</a>
+                        <ul class="dropdown-menu">
+                            <li role="presentation" data-toggle="modal" data-target="#addCategory"><a role="menuitem" tabindex="-1" href="#"> Add Category </a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="tab_1">
+                        <div class="box-body table-responsive ">
     {{ Form::open(array('url' => 'batch/assign')) }}
-    <p style="text-align: center;color: #800080;font-size:large ">Assign of {{isset($acm->title) ? $acm->title : ''}} to Student</p>
+
     {{ Form::hidden('acm_academic_id',$acm->id, ['class'=>'form-control acm_academic_id'])}}
     <div class='form-group' style="width: 300px">
         {{ Form::label('exam_question', 'Examination Question:') }}
@@ -52,6 +77,10 @@
         @endforeach
         </tbody>
     </table>
+    </div>
+</div>
+</div>
+</div>
     <div class="button" style="margin-top: 10px">
         <a href="{{URL::previous()}}" class="btn btn-info btn-xs ">Back</a>
         {{ Form::submit('Do Assign', ['name' => 'assign', 'class' => 'btn btn-success btn-xs']) }}
