@@ -252,7 +252,7 @@ class AcmFacultyController extends \BaseController
         }
     }
 
-    //************************Marks Distribution Item  ***********************
+    //************************ Marks Distribution Item **************************
 
     public function item_index($marks_dist_id, $cc_id, $item_id)
     {
