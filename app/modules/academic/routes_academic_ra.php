@@ -84,7 +84,7 @@ Route::any('marks-item/{cc_id}',[
     'as' => 'marksdist.show',
     'uses'=> 'AcmFacultyController@marks_dist_show'
 ]);
-Route::post('academic/faculty/marksdist/acmmarksdistdelete/ajax',
+Route::post('/marksdist/acmmarksdistdelete/ajax',
     'AcmFacultyController@ajax_delete_acm_marks_dist'
 );
 

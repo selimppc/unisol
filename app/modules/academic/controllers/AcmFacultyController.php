@@ -387,6 +387,8 @@ class AcmFacultyController extends \BaseController
         }
     }
 
+    //Faculty can only delete those item which is added by him.He cant delete any data which is config by amw(table = Acm_course_config).
+
     public function ajax_delete_aca_academic_details()
     {
         if (Request::ajax()) {
@@ -394,12 +396,23 @@ class AcmFacultyController extends \BaseController
             $token = Input::get('token');
             if (Session::token() == $token) {
                 $data = AcmAcademicDetails::find($aca_academic_details_id);
-                if ($data->delete()) {
-                    return Response::json(['msg' => 'Data Successfully Deleted']);
-                } else
-                    return Response::json(['msg' => 'Data Successfully Not Deleted']);
-            }
+                try {
+                    $data->delete();
+                    $msg = array('msg' => 'Data Successfully Deleted');
+                    $response = Response::json($msg);
+                    $response->header('Content-Type', 'application/json');
+                    return $response;
+                   // return Response::json(['msg' => 'Data Successfully Deleted']);
+                }catch (exception $ex){
+                    //return Response::json(['msg' => 'Data Successfully Not Deleted']);
+                    $msg = array('msg' => 'Data Successfully Deleted');
+                    $response = Response::json($msg);
+                    $response->header('Content-Type', 'application/json');
+                    return $response;
+                }
 
+
+            }
         }
     }
 

@@ -113,13 +113,13 @@
                         var check = confirm("Are you sure to delete this item??");
                         if (check) {
                             $.ajax({
-                                url: 'faculty/marksdist/acmmarksdistdelete/ajax',
+                                url: '/marksdist/acmmarksdistdelete/ajax',
                                 type: 'POST',
                                 dataType: 'json',
                                 data: {acm_marks_distribution_id: is_marksdist_id}
                             })
                                     .done(function (msg) {
-                                        //console.log(msg);
+                                        alert(msg);
                                         var whichtr = $('#' + getId).closest("tr");
                                         whichtr.fadeOut(500).remove();
                                         arrayItems.pop(getId);//To stop additem if exist
