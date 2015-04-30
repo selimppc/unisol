@@ -91,7 +91,7 @@
 
 @section('script_section')
     <script>
-          {{---------------------AMW Marks Distribution----------------------------}}
+          //---------------------AMW Marks Distribution----------------------------}}
 
         $tableItemCounter = 0;//To stop additem if exist
         var arrayItems=[];//To stop additem if exist
@@ -149,7 +149,7 @@
 
         }
 
-      {{---------------------amw ajax delete in popup----------------------------}}
+      //---------------------amw ajax delete in popup----------------------------}}
 
         function deleteNearestTr(getId, acmId)
         {
@@ -187,6 +187,16 @@
             }
 
         }
+
+         //---------AMW Course_config Course calculate ActualMarks in text filed------}}
+
+          function calculateActualMarksAmw(class_name, course_evalution_marks, selected_percent_marks)
+          {
+              var total = (selected_percent_marks/100)*course_evalution_marks;
+              var actual_marks = $('.'+class_name).closest('tr').find('.amw_actual_marks').val(total);
+              // console.log(class_name+"//"+total);
+          }
+
     </script>
 
 @stop
