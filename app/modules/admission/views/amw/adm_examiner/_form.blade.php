@@ -23,7 +23,7 @@
 
             <div class="form-group">
                 {{ Form::label('user_id', 'Name of Faculty:') }}
-                {{ Form::select('user_id', User::AmwList(),Input::old('user_id'), array('class' => 'form-control','required'=>'required') ) }}
+                {{ Form::select('user_id', User::FacultyList(),Input::old('user_id'), array('class' => 'form-control','required'=>'required') ) }}
             </div>
 
            <div class="form-group">

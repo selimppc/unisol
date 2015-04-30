@@ -1216,10 +1216,11 @@ class AdmAmwController extends \BaseController
             $semester_id = Input::get('semester_id');
             $admission_test_home = BatchAdmtestSubject::with(['relBatch'=> function($query) use($year_id, $semester_id) {
                 //$query->where('year_id', '=', $year_id)->where('semester_id', '=', $semester_id);
-            }])->get();
+            }])->groupBy('batch_id')
+                ->get();
         }else{
             $admission_test_home = BatchAdmtestSubject::with('relBatch','relBatch.relDegree',
-                'relBatch.relDegree.relDepartment','relBatch.relYear','relBatch.relSemester')->get();
+                'relBatch.relDegree.relDepartment','relBatch.relYear','relBatch.relSemester')->groupBy('batch_id')->get();
         }
         $year_id = array('' => 'Select Year ') + Year::lists('title', 'id');
         $semester_id = array('' => 'Select Semester ') + Semester::lists('title', 'id');
@@ -1442,7 +1443,7 @@ class AdmAmwController extends \BaseController
         $batch = BatchAdmtestSubject::with('relBatch')->where('id', $bats_id)->first();
 
         $admtest_subject = BatchAdmtestSubject::AdmissionTestSubjectByBatchId($batch->batch_id);
-        $examiner_faculty_lists = AdmQuestion::AdmissionExaminerList($batch->batch_id);
+        $examiner_faculty_lists = array(''=>'Select An Examiner') + AdmQuestion::AdmissionExaminerList($batch->batch_id);
         return View::make('admission::amw.adm_question._form',
             compact('bats_id', 'batch','admtest_subject', 'examiner_faculty_lists'));
     }
