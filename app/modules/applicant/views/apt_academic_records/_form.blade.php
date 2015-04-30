@@ -38,7 +38,7 @@
                  <div id="board" style="display:none"><label class="small">{{ Form::radio('board_type','board',null) }} Board</label>
                      <div style="display:none" class="board">
                        {{ Form::select('board_university_board', array('' => 'Select one',
-                             'Dhaka' => 'Dhaka', 'Chittagong' => 'Chittagong', 'Comilla'=>'Comilla','Khulna'=>'Khulna','Syllhet'=>'Syllhet'),
+                             'Dhaka' => 'Dhaka', 'Chittagong' => 'Chittagong', 'Comilla'=>'Comilla','Khulna'=>'Khulna','Syllhet'=>'Syllhet','Rajshahi'=>'Rajshahi','Jessore'=>'Jessore'),
                              Input::old('board_university'),
                              array('class' => 'form-control')) }}
                      </div>

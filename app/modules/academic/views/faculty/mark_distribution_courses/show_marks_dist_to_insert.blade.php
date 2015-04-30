@@ -63,9 +63,9 @@
                 <td>
                     {{--To check readonly field--}}
                     @if($value->readonly == 1)
-                        <input type="text" name="marks_percent[]" value="{{ ($value->actual_marks/$data->relCourse->evaluation_total_marks) * 100 }}" class="form-control totalPer amw_marks_percent{{$key}}" id="marks_percent_id{{$key}}" onchange="calculateActualMarksFaculty(this.id, {{$data->relCourse->evaluation_total_marks}},this.value)" onblur="calculateTotalMarksPercent(this)" readonly required />
+                        <input type="text" name="marks_percent[]" value="{{ ($value->actual_marks/$data->relCourse->evaluation_total_marks) * 100 }}" class="form-control totalPer amw_marks_percent{{$key}}" id="marks_percent_id{{$key}}" onchange="calculateActualMarksFaculty(this.id {{$data->relCourse->evaluation_total_marks}},this.value)" readonly required />
                     @else
-                        <input type="text" name="marks_percent[]" value="{{ ($value->actual_marks/$data->relCourse->evaluation_total_marks) * 100 }}" class="form-control totalPer amw_marks_percent{{$key}}"  id="marks_percent_id{{$key}}" onchange="calculateActualMarksFaculty(this.id, {{$data->relCourse->evaluation_total_marks}},this.value)" onblur="calculateTotalMarksPercent(this)"  required />
+                        <input type="text" name="marks_percent[]" value="{{ ($value->actual_marks/$data->relCourse->evaluation_total_marks) * 100 }}" class="form-control totalPer amw_marks_percent{{$key}}"  id="marks_percent_id{{$key}}" onchange="calculateActualMarksFaculty(this.id {{$data->relCourse->evaluation_total_marks}},this.value)"  required />
                     @endif
                 </td>
                 <td>
@@ -113,13 +113,13 @@
                         var check = confirm("Are you sure to delete this item??");
                         if (check) {
                             $.ajax({
-                                url: 'faculty/marksdist/acmmarksdistdelete/ajax',
+                                url: '/marksdist/acmmarksdistdelete/ajax',
                                 type: 'POST',
                                 dataType: 'json',
                                 data: {acm_marks_distribution_id: is_marksdist_id}
                             })
                                     .done(function (msg) {
-                                        //console.log(msg);
+                                        alert(msg);
                                         var whichtr = $('#' + getId).closest("tr");
                                         whichtr.fadeOut(500).remove();
                                         arrayItems.pop(getId);//To stop additem if exist

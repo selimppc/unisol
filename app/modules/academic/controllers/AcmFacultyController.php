@@ -205,13 +205,13 @@ class AcmFacultyController extends \BaseController
                             $acm_config->course_type_id = $course_type_id;
                             $acm_config->acm_marks_dist_item_id = $acm_item_id[$i];
                             $acm_config->save();
-                            // $attendance_id = $acm_config->id;//to get last inserted id
+                           //$attendance_id = $acm_config->id;//to get last inserted id
                         } else {
                             $acm_config = new AcmAttendanceConfig;
                             $acm_config->course_type_id = $course_type_id;
                             $acm_config->acm_marks_dist_item_id = $acm_item_id[$i];
                             $acm_config->save();
-                            //$attendance_id = $acm_config->id;//to get last inserted id
+                           // $attendance_id = $acm_config->id;//to get last inserted id
                         }
                     }
                 }
@@ -230,9 +230,9 @@ class AcmFacultyController extends \BaseController
                 $marks_dist->created_by = Auth::user()->get()->id;
             else
                 $marks_dist->updated_by = Auth::user()->get()->id;
-            //$marks_dist->acm_attendance_config_id = $attendance_id;
-            $marks_dist->save();
-            //$acm_config->acm_attendance_config_id->save($marks_dist);
+               // $marks_dist->acm_attendance_config_id = $attendance_id;
+                $marks_dist->save();
+                //$acm_config->acm_attendance_config_id->save($marks_dist);
         }
         // redirect
         Session::flash('message', 'Successfully Added Marks Distribution item!');
@@ -252,7 +252,7 @@ class AcmFacultyController extends \BaseController
         }
     }
 
-    //************************Marks Distribution Item  ***********************
+    //************************ Marks Distribution Item **************************
 
     public function item_index($marks_dist_id, $cc_id, $item_id)
     {
@@ -387,6 +387,8 @@ class AcmFacultyController extends \BaseController
         }
     }
 
+    //Faculty can only delete those item which is added by him.He cant delete any data which is config by amw(table = Acm_course_config).
+
     public function ajax_delete_aca_academic_details()
     {
         if (Request::ajax()) {
@@ -394,12 +396,23 @@ class AcmFacultyController extends \BaseController
             $token = Input::get('token');
             if (Session::token() == $token) {
                 $data = AcmAcademicDetails::find($aca_academic_details_id);
-                if ($data->delete()) {
-                    return Response::json(['msg' => 'Data Successfully Deleted']);
-                } else
-                    return Response::json(['msg' => 'Data Successfully Not Deleted']);
-            }
+                try {
+                    $data->delete();
+                    $msg = array('msg' => 'Data Successfully Deleted');
+                    $response = Response::json($msg);
+                    $response->header('Content-Type', 'application/json');
+                    return $response;
+                   // return Response::json(['msg' => 'Data Successfully Deleted']);
+                }catch (exception $ex){
+                    //return Response::json(['msg' => 'Data Successfully Not Deleted']);
+                    $msg = array('msg' => 'Data Successfully Deleted');
+                    $response = Response::json($msg);
+                    $response->header('Content-Type', 'application/json');
+                    return $response;
+                }
 
+
+            }
         }
     }
 
@@ -412,9 +425,9 @@ class AcmFacultyController extends \BaseController
      */
     public function item_assign($acm_id, $cc_id, $mark_dist_id)
     {
+        // get student information with course and save to Assign Student Table with some blank
 
         $course_list = CourseConduct::findOrFail($cc_id);
-
         $course_enroll = CourseEnrollment::with('relUser')
             ->whereExists(function($query) use($course_list)
             {
@@ -427,12 +440,29 @@ class AcmFacultyController extends \BaseController
         ->where('status', 'Enrolled')
         ->get();
 
-        $acm = AcmAcademic::with('relAcmAcademicAssignStudent')
-            ->where('id', '=', $acm_id)
-            ->first();
-       // print_r($acm);exit;
+        // save student user id and academic id as well
+
+        foreach($course_enroll as $values ){
+            $check = $this->checkStdAssign($acm_id, $values->student_user_id);
+            if(!$check){
+                $model = new AcmAcademicAssignStudent();
+                $model->acm_academic_id = $acm_id;
+                $model->student_user_id = $values->student_user_id;
+                $model->save();
+            }
+        }
+
+        $std_assign = AcmAcademicAssignStudent::with('relAcmAcademic','relAcmAcademic.relCourseConduct','relAcmAcademic.relCourseConduct.relCourse','relUser','relUser.relUserProfile')
+                ->where('acm_academic_id', $acm_id)
+                ->get();
+
         $exam_questions = array('' => 'Select Examination Question') + ExmQuestion::lists('title', 'id');
 
+        $item_title = AcmAcademic::with('relAcmAcademicAssignStudent')
+            ->where('id', '=', $acm_id)
+            ->first();
+
+        //--------For sidebar data--------
         $data = CourseConduct::with('relCourse')
             ->where('id', '=', $cc_id)
             ->get();
@@ -440,8 +470,23 @@ class AcmFacultyController extends \BaseController
         $config_data = AcmMarksDistribution::with('relAcmMarksDistItem', 'relCourseConduct.relCourse')
             ->where('course_conduct_id', '=', $cc_id)
             ->get();
+        //--------end sidebar-------------
 
-        return View::make('academic::faculty.mark_distribution_courses.marks_dist_item.assign', compact('course_enroll','course_list','acm','exam_questions', 'data', 'config_data'));
+        return View::make('academic::faculty.mark_distribution_courses.marks_dist_item.assign', compact('course_enroll','course_list','item_title','exam_questions','std_assign','data','config_data'));
+    }
+
+    /*
+     * Academic Id : $acm_academic_id
+     * Student User ID : $student_user_id
+     * return: 1 if data exists !
+     */
+    protected function checkStdAssign($acm_academic_id, $student_user_id){
+        $result = DB::table('acm_academic_assign_student')
+            ->select(DB::raw('1'))
+            ->where('acm_academic_id', $acm_academic_id)
+            ->where('student_user_id', $student_user_id)
+            ->first();
+        return $result;
     }
 
     public function batch_assign_item()
@@ -454,10 +499,7 @@ class AcmFacultyController extends \BaseController
         if (Input::get('assign')) {
             if ($chk) {
                 foreach ($chk as $key => $value) {
-                    $model = AcmAcademicAssignStudent::find($value);
-                    if ($aca_id) {
-                        $model->acm_academic_id = $aca_id;
-                    }
+                    $model = AcmAcademicAssignStudent::findOrFail($value);
                     if ($exam_id) {
                         $model->exm_question_id = $exam_id;
                     }
@@ -467,7 +509,7 @@ class AcmFacultyController extends \BaseController
                     $model->status = 'A';
                     $model->save();
                 }
-                return Redirect::back()->with('message', 'Successfully added!');
+                return Redirect::back()->with('message', 'Successfully Assigned !');
             } else {
                 return Redirect::back()->with('error', "You didn't select any Item !");
             }
@@ -476,30 +518,32 @@ class AcmFacultyController extends \BaseController
             if ($chk) {
                 foreach ($chk as $key => $value) {
                     $model = AcmAcademicAssignStudent::find($value);
-                    if ($aca_id) {
-                        $model->acm_academic_id = $aca_id;
-                    }
                     $model->status = 'NA';
                     $model->save();
                 }
-                return Redirect::back()->with('message', 'Successfully Revoked!');
+                return Redirect::back()->with('message', 'Successfully Revoked !');
             } else {
                 return Redirect::back()->with('error', "You didn't select any Item !");
             }
         }
     }
 
-    public function comments_assign_item($assign_std_id)
+    public function comments_assign_item($assign_std_id,$acm_id)
     {
         $assign_std = AcmAcademicAssignStudent::with('relAcmAcademic', 'relAcmAcademic.relCourseConduct')
             ->where('id', '=', $assign_std_id)
             ->first();//Execute the query and get the first result.
 
+        $item_title = AcmAcademicAssignStudent::with('relAcmAcademic','relUser','relUser.relUserProfile')
+            ->where('acm_academic_id', '=', $acm_id)
+            ->first();
+
+
         $comments_info = AcmAcademicAssignStudentComments::with('relAcmAcademicAssignStudent')
             ->where('acm_assign_std_id', '=', $assign_std_id)
             ->get();//Execute the query as a "select" statement.
 
-        return View::make('academic::faculty.mark_distribution_courses.marks_dist_item.comments', compact('assign_std', 'comments_info'));
+        return View::make('academic::faculty.mark_distribution_courses.marks_dist_item.comments', compact('assign_std', 'comments_info','item_title'));
 
     }
 
@@ -512,10 +556,10 @@ class AcmFacultyController extends \BaseController
         if ($data) {
             $datas->acm_assign_std_id = $acm_assign_id;
             $datas->comments = $comments;
-            //	$datas->commented_by = Auth::user()->get()->id;
+            $datas->commented_by = Auth::user()->get()->id;
             $datas->save();
-            //file upload ends
-            return Redirect::back()->with('message', 'Successfully added!');
+            Session::flash('message', "Successfully Added Comments!");
+            return Redirect::back();
         } else {
             // failure, get errors
             $errors = $datas->errors();
@@ -523,5 +567,16 @@ class AcmFacultyController extends \BaseController
             return Redirect::to('academic/faculty/marks-dist-item/class_test/assign/');
         }
     }
+     public function evaluation($assign_std_id,$acm_id)
+     {
+         $marks = AcmAcademicAssignStudent::with('relAcmAcademic', 'relAcmAcademic.relCourseConduct')
+             ->where('id', '=', $assign_std_id)
+             ->first();//Execute the query and get the first result.
 
+         $item_title = AcmAcademicAssignStudent::with('relAcmAcademic','relUser','relUser.relUserProfile')
+             ->where('acm_academic_id', '=', $acm_id)
+             ->first();
+
+         return View::make('academic::faculty.mark_distribution_courses.marks_dist_item.evaluation', compact('marks','item_title'));
+     }
 }

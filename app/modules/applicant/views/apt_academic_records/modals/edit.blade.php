@@ -26,7 +26,7 @@
 <div id="board"><label class="small">{{ Form::radio('board_type','board',($model->board_type == 'board')) }} Board</label>
     <div style="display:{{($model->board_type=='board')? 'block':'none'}}" class="board">
       {{ Form::select('board_university_board', array('' => 'Select one',
-            'Dhaka' => 'Dhaka', 'Chittagong' => 'Chittagong', 'Comilla'=>'Comilla','Khulna'=>'Khulna','Syllhet'=>'Syllhet'),
+            'Dhaka' => 'Dhaka', 'Chittagong' => 'Chittagong', 'Comilla'=>'Comilla','Khulna'=>'Khulna','Syllhet'=>'Syllhet','Rajshahi'=>'Rajshahi','Jessore'=>'Jessore'),
             $model->board_university,
             array('class' => 'form-control')) }}
     </div>

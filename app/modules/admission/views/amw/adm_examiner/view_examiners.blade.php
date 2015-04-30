@@ -29,9 +29,12 @@
 
                 @foreach($exm_comment_info as $comment)
                     <p style="padding: 1%; background: #efefef;">
-                        <b><small>{{ User::FullName($comment->commented_to); }}</small></b><br>
-                      &nbsp; &nbsp; &nbsp; {{ $comment->comment }}
-                    </p>
+                       <b><small>{{ User::FullName($comment->commented_by) }}</small></b>
+                       &nbsp; As &nbsp; <b><small>{{  strtoupper(Role::RoleName($comment->commented_by)) }} </small></b><br>
+                     {{--<strong>{{ User::FullName($assign_qp->faculty_user_id) }}</strong>,--}}
+                     {{ User::FullName($comment->commented_to) }},
+                     {{ $comment->comment }}
+                   </p>
                 @endforeach
 
                 <div class="form-group">

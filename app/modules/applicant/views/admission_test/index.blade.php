@@ -33,7 +33,7 @@
                                     <tr>
                                         <td>
                                             <a href="{{URL::route('applicant.admission-test-subject',['batch_id'=>$value->batch_id])}}" class="btn-link">
-                                                {{isset($value->relBatch->relDegree->title)? $value->relBatch->relDegree->title : ''}},
+                                                {{ $value->relBatch->relDegree->relDegreeLevel->code.' '.$value->relBatch->relDegree->relDegreeGroup->code.' On '.$value->relBatch->relDegree->relDegreeProgram->code }},
                                                 {{isset($value->relBatch->relSemester->title) ? $value->relBatch->relSemester->title : '' }},
                                                 {{isset($value->relBatch->relYear->title)?$value->relBatch->relYear->title : ''}}
                                             </a>
