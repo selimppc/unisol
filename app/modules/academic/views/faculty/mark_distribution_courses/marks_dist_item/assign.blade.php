@@ -53,27 +53,27 @@
                             <tbody>
                             @if(isset($course_enroll))
                             @foreach($course_enroll as $key => $value)
-                                <tr>
-                                    <td><input type="checkbox" name="chk[]" class="myCheckbox" value="{{$value->id}}">
-                                        {{--{{ Form::text('assign_stu_id',$value->id , ['class'=>'assign_stu_id'])}}--}}
-                                    </td>
-                                    <td>{{$value->relUser->relUserProfile->last_name}}</td>
-                                    <td>{{isset($value->taken_in_semester_id)? $value->relSemester->title : ''}}</td>
-                                    <td>{{isset($value->taken_in_year_id) ? $value->relYear->title : ''}}</td>
-                                    <td>{{isset($value->batch_course_id) ? $value->relBatchCourse->relCourse->relSubject->relDepartment->title : ''}}</td>
-                                    <td>{{$value->status}}</td>
-                                    <td>
-                                        <a href="{{URL::route('item.comments',['acm_assign_stu_id'=>$value->id])}}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#commentsModal"> Comments </a>
+                            <tr>
+                                <td><input type="checkbox" name="chk[]" class="myCheckbox" value="{{$value->id}}">
+                                    {{--{{ Form::text('assign_stu_id',$value->id , ['class'=>'assign_stu_id'])}}--}}
+                                </td>
+                                <td>{{$value->relUser->relUserProfile->last_name}}</td>
+                                <td>{{isset($value->taken_in_semester_id)? $value->relSemester->title : ''}}</td>
+                                <td>{{isset($value->taken_in_year_id) ? $value->relYear->title : ''}}</td>
+                                <td>{{isset($value->batch_course_id) ? $value->relBatchCourse->relCourse->relSubject->relDepartment->title : ''}}</td>
+                                <td></td>
+                                <td>
+                                    <a href="{{URL::route('item.comments',['acm_assign_stu_id'=>$value->id])}}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#commentsModal"> Comments </a>
 
-                                        <a href="" class="btn btn-primary btn-xs"> Evaluation </a>
+                                    <a href="" class="btn btn-primary btn-xs"> Evaluation </a>
 
-                                        @if($value->status == 'Enrolled')
-                                            {{ Form::submit('Revoke', ['name' => 'revoke', 'class' => 'btn btn-danger btn-xs']) }}
-                                        @else
-                                            {{ Form::submit('Assign', ['name' => 'assign', 'class' => 'btn btn-success btn-xs']) }}
-                                        @endif
-                                    </td>
-                                </tr>
+                                    @if($value->status == 'Enrolled')
+                                        {{ Form::submit('Revoke', ['name' => 'revoke', 'class' => 'btn btn-danger btn-xs']) }}
+                                    @else
+                                        {{ Form::submit('Assign', ['name' => 'assign', 'class' => 'btn btn-success btn-xs']) }}
+                                    @endif
+                                </td>
+                            </tr>
                             @endforeach
                             @endif
                             </tbody>
