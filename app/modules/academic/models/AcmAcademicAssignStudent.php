@@ -43,9 +43,12 @@ class AcmAcademicAssignStudent extends \Eloquent
     }
 
     public function relAcmAcademic(){
-        return $this->belongsTo('AcmAcademic', 'acm_academic', 'id');
+        return $this->belongsTo('AcmAcademic', 'acm_academic_id', 'id');
     }
 
+    public function relUser(){
+        return $this->belongsTo('User', 'student_user_id', 'id');
+    }
 
     // TODO : user info while saving data into table
     public static function boot(){

@@ -122,7 +122,7 @@ Route::any('batch/assign',[
     'as' => 'batch.assign',
     'uses'=> 'AcmFacultyController@batch_assign_item'
 ]);
-Route::any('class_test/assign/comments/{assign_std_id}',[
+Route::any('class_test/assign/comments/{assign_std_id}/{acm_id}',[
     'as' => 'item.comments',
     'uses'=> 'AcmFacultyController@comments_assign_item'
 ]);
