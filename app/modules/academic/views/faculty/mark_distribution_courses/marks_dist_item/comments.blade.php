@@ -1,19 +1,19 @@
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal">{{HTML::image('assets/icon/media-close-btn.png')}}</button>
     <h4 class="modal-title" style="text-align: center;color: #800080;font-size:large">
-        {{isset($item_title->relAcmAcademic->title) ? $item_title->relAcmAcademic->title: ''}} Comments</h4>
+        {{isset($item_title->relAcmAcademic->title) ? $item_title->relAcmAcademic->title: ''}} :: Comments</h4>
 </div>
 <div class="modal-body">
-    <div style="padding: 10px; width: 90%;">
-        <p>Title :{{isset($item_title->relAcmAcademic->title) ? $item_title->relAcmAcademic->title: ''}}</p>
+    <div style="padding: 10px;">
+        <p><strong>Title :</strong> {{isset($item_title->relAcmAcademic->title) ? $item_title->relAcmAcademic->title: ''}}</p>
 
-        <p >Conversation with :
+        <p ><strong>Conversation with :</strong>
             {{isset($item_title->relUser->relUserProfile->last_name) ? $item_title->relUser->relUserProfile->last_name : ''}}</p>
 
-        <div class="jumbotron text-left" style="padding-top: 2px; padding-left: 2px; padding-bottom: 5px; background-color: #FFEBE6;">
+        <div class="jumbotron text-left" style="padding-top: 2px; background-color: #E3E7EA;">
             @foreach($comments_info as $comments_info)
-                <strong>Comments:</strong><h4> {{isset($comments_info->comments) ? $comments_info->comments : ''}}</h4>
-                <strong>By:</strong>
+                <strong>Comments : </strong><h4> {{isset($comments_info->comments) ? $comments_info->comments : ''}}</h4>
+                <strong>By : </strong>
                 {{--<h4> {{ $comments_info->commented_by }}</h4>--}}
                 <h4></h4>
                 <br>
