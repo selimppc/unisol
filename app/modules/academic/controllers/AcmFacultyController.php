@@ -205,13 +205,13 @@ class AcmFacultyController extends \BaseController
                             $acm_config->course_type_id = $course_type_id;
                             $acm_config->acm_marks_dist_item_id = $acm_item_id[$i];
                             $acm_config->save();
-                            // $attendance_id = $acm_config->id;//to get last inserted id
+                           //$attendance_id = $acm_config->id;//to get last inserted id
                         } else {
                             $acm_config = new AcmAttendanceConfig;
                             $acm_config->course_type_id = $course_type_id;
                             $acm_config->acm_marks_dist_item_id = $acm_item_id[$i];
                             $acm_config->save();
-                            //$attendance_id = $acm_config->id;//to get last inserted id
+                           // $attendance_id = $acm_config->id;//to get last inserted id
                         }
                     }
                 }
@@ -230,9 +230,9 @@ class AcmFacultyController extends \BaseController
                 $marks_dist->created_by = Auth::user()->get()->id;
             else
                 $marks_dist->updated_by = Auth::user()->get()->id;
-            //$marks_dist->acm_attendance_config_id = $attendance_id;
-            $marks_dist->save();
-            //$acm_config->acm_attendance_config_id->save($marks_dist);
+               // $marks_dist->acm_attendance_config_id = $attendance_id;
+                $marks_dist->save();
+                //$acm_config->acm_attendance_config_id->save($marks_dist);
         }
         // redirect
         Session::flash('message', 'Successfully Added Marks Distribution item!');
