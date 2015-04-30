@@ -554,5 +554,16 @@ class AcmFacultyController extends \BaseController
             return Redirect::to('academic/faculty/marks-dist-item/class_test/assign/');
         }
     }
+     public function evaluation($assign_std_id,$acm_id)
+     {
+         $marks = AcmAcademicAssignStudent::with('relAcmAcademic', 'relAcmAcademic.relCourseConduct')
+             ->where('id', '=', $assign_std_id)
+             ->first();//Execute the query and get the first result.
 
+         $item_title = AcmAcademicAssignStudent::with('relAcmAcademic','relUser','relUser.relUserProfile')
+             ->where('acm_academic_id', '=', $acm_id)
+             ->first();
+
+         return View::make('academic::faculty.mark_distribution_courses.marks_dist_item.evaluation', compact('marks','item_title'));
+     }
 }
