@@ -65,7 +65,7 @@
                                 <td>
                                     <a href="{{URL::route('item.comments',['acm_assign_stu_id'=>$value->id,'acm_id'=>$value->acm_academic_id,'student_user_id'=>$value->student_user_id])}}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#commentsModal"> Comments </a>
 
-                                    <a href="" class="btn btn-primary btn-xs"> Evaluation </a>
+                                    <a href="{{URL::route('item.evaluation',['acm_assign_stu_id'=>$value->id,'acm_id'=>$value->acm_academic_id,'student_user_id'=>$value->student_user_id])}}" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#evaluationModal"> Evaluation </a>
 
                                     @if($value->status == 'A')
                                         {{ Form::submit('Revoke', ['name' => 'revoke', 'class' => 'btn btn-danger btn-xs']) }}
@@ -91,14 +91,23 @@
         </div>
     </div>
 </div>
-    {{--Assign comments modal--}}
-    <div class="modal fade" id="commentsModal" tabindex="-1" role="dialog" aria-labelledby="addScholarship" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
 
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
+{{--Assign comments modal--}}
+<div class="modal fade" id="commentsModal" tabindex="-1" role="dialog" aria-labelledby="addScholarship" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="evaluationModal" tabindex="-1" role="dialog" aria-labelledby="addScholarship" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 @stop
 
