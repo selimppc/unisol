@@ -31,6 +31,7 @@
                     <p style="padding: 1%; background: #efefef;">
                         <b><small>{{ User::FullName($comment->commented_to); }}</small></b>
                         As &nbsp; <b><small>{{  strtoupper(Role::RoleName($comment->commented_by)) }} </small></b><br>
+                      <strong>{{ User::FullName($assign_qp->s_faculty_user_id) }}</strong>,
                       &nbsp; &nbsp; &nbsp; {{ $comment->comment }}
                     </p>
                 @endforeach

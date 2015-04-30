@@ -63,11 +63,12 @@
                             @foreach($comments_info as $comments)
                                 <p>
                                     <b> {{isset($comments->relCourseConductComments->commented_by) ? User::FullName($comments->relCourseConductComments->commented_by) :'Faculty Not found!' }} </b>
-                                    <span class="pull-right"> As {{isset($comments->relCourseConductComments->commented_by) ? User::FullName($comments->relCourseConductComments->commented_by) :'Role ' }} </span>
+                                    <span class="pull-right"> As {{ strtoupper(Role::RoleName($comments->relCourseConductComments->commented_by)) }} </span>
                                 </p>
                                 <p>
                                     <strong>Comments:</strong> <br>
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <strong>{{ User::FullName($cc_status->faculty_user_id) }}</strong>,
                                         {{$comments->relCourseConductComments->comments }}
 
                                 </p>
