@@ -50,7 +50,7 @@
                     {{ Form::hidden('course_id[]', $value->course_id2, ['class'=>'get_course_id']) }}
                     {{ $value->acm_dist_item_title}}
                 </td>
-                <td><input type="text" name="marks_percent[]" value="{{ ($value->actual_marks/$value->evaluation_total_marks) * 100 }}" class="amw_marks_percent{{$key}}" onchange="calculateActualMarks(this.className, {{$value->evaluation_total_marks}},this.value)" required/> </td>
+                <td><input type="text" name="marks_percent[]" value="{{ ($value->actual_marks/$value->evaluation_total_marks) * 100 }}" class="amw_marks_percent{{$key}}" onchange="calculateActualMarksAmw(this.className, {{$value->evaluation_total_marks}},this.value)" required/> </td>
                 <td>
                     <input type="text" name="actual_marks[]" value="{{$value->actual_marks}}" class="amw_actual_marks" readonly/>
                 </td>
