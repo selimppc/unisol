@@ -10,8 +10,8 @@
     <div class="box-header">
     <p>
         <div class="col-xs-4">
-            <b>Degree</b> :: {{$data->relBatch->relDegree->relDegreeProgram->code}}
-                    {{$data->relBatch->relDegree->relDegreeGroup->code}} in {{$data->relBatch->relDegree->relDepartment->title}} -
+            <b>Degree</b> :: {{$data->relBatch->relDegree->relDegreeLevel->code}}
+                    {{$data->relBatch->relDegree->relDegreeGroup->code}} in {{$data->relBatch->relDegree->relDegreeProgram->code}} -
                     {{ $data->relBatch->relSemester->title }} - {{ $data->relBatch->relYear->title }}
         </div>
         <div class="col-xs-4">

@@ -69,6 +69,8 @@
                 </table>
                 {{form::close() }}
 
+                {{$adm_question->links()}}
+
             </div>
         </div>
     </div>
