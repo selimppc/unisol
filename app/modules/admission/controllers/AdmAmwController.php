@@ -1241,7 +1241,7 @@ class AdmAmwController extends \BaseController
             $query->on('batch.id', '=', 'batch_admtest_subject.batch_id');
             $query->where('batch.year_id', '=', $year_id);
             $query->where('batch.semester_id', '=', $semester_id);
-        })->paginate(10);
+        })->groupBy('batch_id')->paginate(10);
 
         $year_id = array('' => 'Select Year ') + Year::lists('title', 'id');
         $semester_id = array('' => 'Select Semester ') + Semester::lists('title', 'id');
