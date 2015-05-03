@@ -129,19 +129,29 @@ class AcmStudentController extends \BaseController {
         return View::make('academic::student.courses.tution_fees',compact('enrolled_courses','year_title','semester_title', 'total_credit','semester_title'));
     }
 
-    public function acmCoursesChangeStatus($id){
+    public function acmCoursesStatus($id, $value){
 
         $data = Input::all();
-        $result =  CourseEnrollment::find($id);
-        if($result->status == 'enrolled') {
-            $result->status = '4';
-            $result->update($data);
-        }
-        if($result->status == 'revoked'){
-            $result->status = '6';
-            $result->update($data);
-        }
-            return Redirect::back();
+
+        $model =  CourseEnrollment::find($id);
+        $model->status = $value;
+        $model->save();
+       // echo $id;exit;
+
+//        if($result->status == 'enrolled') {
+//            $result->status = 'revoked';
+//            $result->update($data);
+//        }
+//        if($result->status == 'revoked'){
+//            $result->status = '6';
+//            $result->update($data);
+//        }
+        return Redirect::back();
+
+    }
+    public function acmCoursesChangeStatus($id){
+        echo 'ok';exit;
+
     }
 
     public function showObtainedMarks($batch_course_id){
@@ -150,23 +160,68 @@ class AcmStudentController extends \BaseController {
             ->where('batch_course_id','=',$batch_course_id)->first();
 
         $course_id = BatchCourse::find($batch_course_id)->course_id;
-        $course_conduct_id = CourseConduct::where('course_id','=',$course_id)->first();
-        if($course_conduct_id){
-//            $acm_academic_item = AcmAcademic::with('relCourseConduct','relAcmMarksDistribution','relAcmClassSchedule','relAcmClassSchedule.relAcmClassTime')
-//                ->where('course_conduct_id','=',  $course_conduct_id->id)
-//                //->where('acm_marks_distribution_id','=',  $course_conduct_id)\
-//                ->get();
+        $course_conduct = CourseConduct::where('course_id','=',$course_id)->first();
 
-            $acm_academic_item = AcmAcademic::with(
-               [ 'relAcmMarksDistribution'=>function($query) use($course_conduct_id){
-                $query->whereRaw('acm_academic.course_conduct_id = acm_marks_distribution.course_conduct_id')
-                    ->where('acm_marks_distribution.course_conduct_id',  $course_conduct_id->id);
-              }])->where('course_conduct_id','=',  $course_conduct_id->id)
-                ->get();
+        if($course_conduct){
 
-        }print_r($acm_academic_item);exit;
-        return View::make('academic::student.courses.acm_course_items.obtained_marks',compact('courses','acm_academic_item'));
+            $dist_item_clss = AcmMarksDistItem::where('code', 'clss')->first()->id;
+            $class = AcmAcademic::whereExists(function($query) use($dist_item_clss){
+                    $query->from('acm_marks_distribution')->whereRaw('acm_academic.acm_marks_distribution_id =  acm_marks_distribution.id')
+                    ->where('acm_marks_distribution.acm_marks_dist_item_id', $dist_item_clss);
+                })
+                ->where('course_conduct_id', $course_conduct->id )->get();
 
+            $dist_item_clst = AcmMarksDistItem::where('code', 'clst')->first()->id;
+            $class_test = AcmAcademic::whereExists(function($query) use($dist_item_clst){
+                $query->from('acm_marks_distribution')->whereRaw('acm_academic.acm_marks_distribution_id =  acm_marks_distribution.id')
+                    ->where('acm_marks_distribution.acm_marks_dist_item_id', $dist_item_clst);
+            })
+                ->where('course_conduct_id', $course_conduct->id )->get();
+
+            $dist_item_assignment = AcmMarksDistItem::where('code', 'assn')->first();
+
+            if($dist_item_assignment){
+                $assignment = AcmAcademic::whereExists(function($query) use($dist_item_assignment){
+                    $query->from('acm_marks_distribution')->whereRaw('acm_academic.acm_marks_distribution_id =  acm_marks_distribution.id')
+                        ->where('acm_marks_distribution.acm_marks_dist_item_id', $dist_item_assignment->id);
+                })
+                    ->where('course_conduct_id', $course_conduct->id )->get();
+            }
+
+            $dist_item_midterm = AcmMarksDistItem::where('code', 'midt')->first();
+
+            if($dist_item_midterm){
+                $midterm = AcmAcademic::whereExists(function($query) use($dist_item_midterm){
+                    $query->from('acm_marks_distribution')->whereRaw('acm_academic.acm_marks_distribution_id =  acm_marks_distribution.id')
+                        ->where('acm_marks_distribution.acm_marks_dist_item_id', $dist_item_midterm->id);
+                })
+                    ->where('course_conduct_id', $course_conduct->id )->get();
+            }
+
+            $dist_item_termfinal = AcmMarksDistItem::where('code', 'fint')->first();
+
+            if($dist_item_termfinal){
+                $term_final = AcmAcademic::whereExists(function($query) use($dist_item_termfinal){
+                    $query->from('acm_marks_distribution')->whereRaw('acm_academic.acm_marks_distribution_id =  acm_marks_distribution.id')
+                        ->where('acm_marks_distribution.acm_marks_dist_item_id', $dist_item_termfinal->id);
+                })
+                    ->where('course_conduct_id', $course_conduct->id )->get();
+            }
+        }
+        return View::make('academic::student.courses.acm_course_items.obtained_marks',compact('courses','class','class_test','assignment','midterm','term_final'));
+
+    }
+
+    public function viewClass($id){
+
+        $model = AcmAcademic::find($id);
+        return View::make('academic::student.modals.class_view',compact('model'));
+    }
+
+    public function viewAssignment($id){
+
+        $model = AcmAcademic::find($id);
+        return View::make('academic::student.modals.assignment_view',compact('model'));
     }
 
 

@@ -128,10 +128,16 @@
                                                                </td>
                                                                <td>
                                                                    @if($value->status == 'enrolled')
-                                                                      <a class="btn btn-xs btn-info" data-href="{{ URL::route('academic.student.courses.change-status',['id'=>$value->id])}}" title="Retake" data-toggle="modal" data-target="#confirm-status" >Revoke</a>
+                                                                   {{--FORM--}}
+                                                                   {{--HIDDE--}}
+                                                                   {{--SUB--}}
+                                                                      <a class="btn btn-xs btn-info" data-href="{{ URL::route('academic.student.courses.status',['id'=>$value->id, 'value'=>'revoked'])}}" title="Retake" data-toggle="modal" data-target="#confirm-status" >
+                                                                      Revoke
+                                                                      </a>
+                                                                      {{--CLOS--}}
                                                                    @endif
                                                                    @if($value->status == 'revoked')
-                                                                      <a class="btn btn-xs btn-info"  data-href="{{ URL::route('academic.student.courses.change-status',['id'=>$value->id])}}" title="Retake" data-toggle="modal" data-target="#confirm-status">Invoke</a>
+                                                                      <a class="btn btn-xs btn-info"  data-href="{{ URL::route('academic.student.courses.status',['id'=>$value->id])}}" title="Retake" data-toggle="modal" data-target="#confirm-status">Invoke</a>
                                                                    @endif
                                                                </td>
                                                           </tr>
@@ -223,16 +229,22 @@
                 <h4 class="modal-title" id="myModalLabel" >Status Change Confirmation</h4>
               </div>
               <div class="modal-body">
-                    <p style="font-size: medium;color:#000000">Are You Sure {{$value->status}} This Course  ?</p>
+                    <p style="font-size: medium;color:#000000">Are You Sure to do this  ?</p>
+
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-xs btn-default" data-dismiss="modal">Cancel</button>
-                <a href="{{ URL::route('academic.student.courses.change-status',['id'=>$value->id])}}" class="btn btn-xs btn-primary" id="yes">Yes</a>
+                <a href="" class="btn btn-xs btn-primary">Yes</a>
               </div>
         </div>
       </div>
     </div>
 
-
+<script>
+    $('#confirm-status').on('show.bs.modal', function (e) {
+        $(this).find('.primary').attr('href', $(e.relatedTarget).data('href'));
+        $('.debug-url').html('Delete URL: <strong>' + $(this).find('.primary').attr('href') + '</strong>');
+    });
+</script>
 @stop
 
