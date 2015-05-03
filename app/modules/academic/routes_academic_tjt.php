@@ -28,9 +28,9 @@ Route::any('academic/student/courses/status/{id}/{value}',
     ['as'=>'academic.student.courses.status',
         'uses'=>'AcmStudentController@acmCoursesStatus']);
 
-Route::any('academic/student/courses/change-status/{id}',
-    ['as'=>'academic.student.courses.change-status',
-        'uses'=>'AcmStudentController@acmCoursesChangeStatus']);
+//Route::any('academic/student/courses/change-status/{id}/{value}',
+//    ['as'=>'academic.student.courses.change-status',
+//        'uses'=>'AcmStudentController@acmCoursesChangeStatus']);
 
 Route::any('academic/student/courses/obtained-marks/{batch_course_id}',
     ['as'=>'academic.student.courses.obtained-marks',
@@ -43,3 +43,11 @@ Route::any('academic/student/courses/class-view/{id}',
 Route::any('academic/student/courses/assignment-view/{id}',
     ['as'=>'academic.student.courses.assignment-view',
         'uses'=>'AcmStudentController@viewAssignment']);
+
+Route::any('academic/student/exam-enrollment/{batch_course_id}',
+    ['as'=>'academic.student.exam-enrollment',
+        'uses'=>'AcmStudentController@acmExamEnrollment']);
+
+Route::any('academic/student/checkout',
+    ['as'=>'academic.student.checkout',
+        'uses'=>'AcmStudentController@acmCheckout']);

@@ -12,7 +12,7 @@
 <div style="background-color:lightgray; color:white; padding:8px;">
    <b style="margin-left: 80px;color: #005580">Total Credit : {{ isset($total_credit->relBatch->relDegree->total_credit) ? $total_credit->relBatch->relDegree->total_credit:'0' }}</b>
    <b style="margin-left: 60px;color: #005580">Accomplished Credit : {{isset($accomplished_credit->accomplished_credit) ? $accomplished_credit->accomplished_credit:'0'}}</b>
-   <b style="margin-left: 60px;color: #005580">Left Yet(Credit) : {{isset($left_credit) ? $left_credit : ''}}</b>
+   {{--<b style="margin-left: 60px;color: #005580">Left Yet(Credit) : {{isset($left_credit) ? $left_credit : '0'}}</b>--}}
 </div>
 <br>
 <div class="row">
@@ -123,21 +123,16 @@
                                                                </td>
                                                                <td>{{ $value->relBatchCourse->relCourse->credit}}</td>
                                                                <td></td>
-                                                               <td class="status">
+                                                               <td>
                                                                  {{strtoupper($value->status)}}
                                                                </td>
                                                                <td>
                                                                    @if($value->status == 'enrolled')
-                                                                   {{--FORM--}}
-                                                                   {{--HIDDE--}}
-                                                                   {{--SUB--}}
-                                                                      <a class="btn btn-xs btn-info" data-href="{{ URL::route('academic.student.courses.status',['id'=>$value->id, 'value'=>'revoked'])}}" title="Retake" data-toggle="modal" data-target="#confirm-status" >
-                                                                      Revoke
-                                                                      </a>
-                                                                      {{--CLOS--}}
+                                                                      <a data-href="{{ URL::route('academic.student.courses.status',['id'=>$value->id, 'value'=>'revoked'])}}" class="btn btn-xs btn-info" data-toggle="modal" data-target="#confirm-status-one" href="" >Revoke</a>
+
                                                                    @endif
                                                                    @if($value->status == 'revoked')
-                                                                      <a class="btn btn-xs btn-info"  data-href="{{ URL::route('academic.student.courses.status',['id'=>$value->id])}}" title="Retake" data-toggle="modal" data-target="#confirm-status">Invoke</a>
+                                                                      <a class="btn btn-xs btn-info"  data-href="{{ URL::route('academic.student.courses.status',['id'=>$value->id,'value'=>'invoked'])}}" title="Retake" data-toggle="modal" data-target="#confirm-status-one">Invoke</a>
                                                                    @endif
                                                                </td>
                                                           </tr>
@@ -148,8 +143,7 @@
                                                  </tbody>
                                              </table>
                                          </div>
-                                     </div>
-
+                                   </div>
                              </div>
                         </div>
                     </div>
@@ -165,7 +159,7 @@
                                 </a>
                             </h4>
                         </div>
-                        <div id="collapseThree" class="panel-collapse collapse">
+                        <div id="collapseThree" class="panel-collapse ">
                             <div class="box-body">
                                 <div class="row">
 
@@ -240,11 +234,27 @@
       </div>
     </div>
 
-<script>
-    $('#confirm-status').on('show.bs.modal', function (e) {
-        $(this).find('.primary').attr('href', $(e.relatedTarget).data('href'));
-        $('.debug-url').html('Delete URL: <strong>' + $(this).find('.primary').attr('href') + '</strong>');
-    });
-</script>
+
+
+{{--<!-- Modal for delete -->--}}
+    <div class="modal fade" id="confirm-status-one" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Confirm to change status</h4>
+                </div>
+                <div class="modal-body">
+                    <strong>Are you sure to change status?</strong>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <a href="#" class="btn btn-primary primary">Change</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
 @stop
 

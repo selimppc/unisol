@@ -3,6 +3,11 @@ $('#confirm-delete').on('show.bs.modal', function (e) {
     $('.debug-url').html('Delete URL: <strong>' + $(this).find('.danger').attr('href') + '</strong>');
 });
 
+$('#confirm-status-one').on('show.bs.modal', function (e) {
+    $(this).find('.primary').attr('href', $(e.relatedTarget).data('href'));
+    $('.debug-url').html('Status URL: <strong>' + $(this).find('.primary').attr('href') + '</strong>');
+});
+
 //$('#myTable').tablesorter(); //for table sorting
 
 // for table filter

@@ -5,7 +5,7 @@
 @stop
 @section('content')
 
-<a class="pull-right btn btn-xs btn-success" href="{{ URL::route('academic.student.courses.index')}}"><b><i class="fa fa-arrow-circle-left"></i>Go Back</b></a>
+<a class="pull-right btn btn-xs btn-info" href="{{ URL::route('academic.student.exam-enrollment',$batch_course_id)}}"><b>Enroll For Exam</b></a>
 
 <div class="wrapper row-offcanvas row-offcanvas-left">
 
@@ -26,15 +26,14 @@
                             Settings  <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
-                            {{--<li role="presentation" data-toggle="modal" data-target="#addCategory"><a role="menuitem" tabindex="-1" href="#"> Add Category </a></li>--}}
+                            <li role="presentation" data-toggle="modal" data-target="#addCategory"><a role="menuitem" tabindex="-1" href="#">  Enroll For Exam </a></li>
                             {{--<li role="presentation" data-toggle="modal" data-target="#addResearchReview"><a role="menuitem" tabindex="-1" href="#"> Add Journal </a></li>--}}
                         </ul>
                     </li>
                     <li class="pull-right" class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-gear"></i>&nbsp;</a>
                         <ul class="dropdown-menu">
-                            <li role="presentation" data-toggle="modal" data-target="#addCategory"><a role="menuitem" tabindex="-1" href="#"> Add Category </a></li>
-                            <li role="presentation" data-toggle="modal" data-target="#addResearchReview"><a role="menuitem" tabindex="-1" href="#"> Add Journal </a></li>
+                            <li role="presentation" data-toggle="modal" data-target="#addCategory"><a role="menuitem" tabindex="-1" href="#"> Enroll For Exam </a></li>
                         </ul>
                     </li>
                 </ul>
@@ -62,9 +61,9 @@
                                        @endforeach
                                    @endif
                                 </tbody>
-
                             </table>
                         </div><!-- /.box -->
+                        <a class="pull-right btn btn-xs btn-circle" href="{{ URL::route('academic.student.courses.index')}}" title="Back To Courses"><b style="color: #000000;font-size: medium"><i class="fa fa-arrow-circle-left"></i></b></a><p>&nbsp;</p>
                     </div><!-- /.tab-pane -->
 
                     <div class="tab-pane" id="tab_2">
@@ -244,12 +243,12 @@
     <!-- END CUSTOM TABS -->
 </div><!-- ./wrapper -->
 
-{{----------------------------------------------Modal : degreeGroupModal--------------------------------------------------------------------------}}
+{{----------------------------------------------Modal : course_itemModal--------------------------------------------------------------------------}}
 <div class="modal fade" id="course_item" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
 
-       </div>
+        </div>
       </div>
  </div>
 

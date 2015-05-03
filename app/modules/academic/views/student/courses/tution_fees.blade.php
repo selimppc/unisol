@@ -119,7 +119,7 @@
 {{--------------------------------------------------------------------------------------}}
 
 
-<a class="pull-right btn btn-xs btn-primary" href="{{ URL::route('academic.student.courses.index')}}"><b><i class="fa fa-arrow-circle-right"></i> Checkout</b></a>
+<a class="pull-right btn btn-xs btn-primary" href="{{ URL::route('academic.student.checkout')}}"><b><i class="fa fa-arrow-circle-right"></i> Checkout</b></a>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 
