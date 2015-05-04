@@ -12,7 +12,7 @@
 <div style="background-color:lightgray; color:white; padding:8px;">
    <b style="margin-left: 80px;color: #005580">Total Credit : {{ isset($total_credit->relBatch->relDegree->total_credit) ? $total_credit->relBatch->relDegree->total_credit:'0' }}</b>
    <b style="margin-left: 60px;color: #005580">Accomplished Credit : {{isset($accomplished_credit->accomplished_credit) ? $accomplished_credit->accomplished_credit:'0'}}</b>
-   {{--<b style="margin-left: 60px;color: #005580">Left Yet(Credit) : {{$total_credit->relBatch->relDegree->total_credit - $accomplished_credit->accomplished_credit}}</b>--}}
+   <b style="margin-left: 60px;color: #005580">Left Yet(Credit) : {{$total_credit->relBatch->relDegree->total_credit - $accomplished_credit->accomplished_credit }}</b>
 
 </div>
 <br>
@@ -42,7 +42,7 @@
                                          <table class="table  table-bordered">
                                              @if(isset($completed_course_in_year))
                                                 <a  style="font-size:medium;text-decoration: underline;color:teal">
-                                                    {{$completed_course_in_year->relBatchCourse->relSemester->title}},{{$completed_course_in_year->relBatchCourse->relYear->title}}
+                                                     {{$completed_course_in_year->relSemester->title}}, {{$completed_course_in_year->relYear->title}}
                                                 </a>
                                              @endif
                                             <thead>
@@ -100,7 +100,7 @@
                                              <table class="table  table-bordered">
                                                   @if(isset($running_course_in_year))
                                                      <a  style="font-size:medium;text-decoration: underline;color:#005580">
-                                                         {{$running_course_in_year->relBatchCourse->relYear->title}},{{$running_course_in_year->relBatchCourse->relSemester->title}}
+                                                        {{$running_course_in_year->relSemester->title}}, {{$running_course_in_year->relYear->title}}
                                                      </a>
                                                   @endif
                                                  <thead>

@@ -5,7 +5,7 @@
 @stop
 @section('content')
 
-<a class="pull-right btn btn-xs btn-success" href="{{ URL::route('academic.student.enrollment')}}"><b><i class="fa fa-arrow-circle-left"></i>Go Back</b></a>
+<a class="pull-right btn btn-xs btn-success" href="{{ URL::route('academic.student.courses.index')}}"><b><i class="fa fa-arrow-circle-left"></i>Go Back</b></a>
 
 <h4 class="box-title"><b>Course Enrollment At {{$semester_title }} ,{{$year_title}}</b></h4>
 
