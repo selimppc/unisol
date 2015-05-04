@@ -60,6 +60,7 @@
                             </tbody>
                         </table>
                     </div>
+                    {{--<input type="button"  value="Back" onclick="window.history.go(-2)" />--}}
                 </div>
             </div>
         </div>
@@ -67,7 +68,6 @@
         {{--<a class="pull-right btn btn-xs btn-primary" href="{{ URL::route('coursemarksdist.show')}}"> <i class="fa fa-arrow-circle-left"></i> Back</a>--}}
     </div>
 </div>
-
 
 @elseif($marks_dist_item_id == 2)
 
