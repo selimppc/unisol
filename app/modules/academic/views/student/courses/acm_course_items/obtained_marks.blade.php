@@ -51,8 +51,8 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                   @if(isset($courses))
-                                       @foreach($courses as $c => $v)
+                                   @if(isset($acm_marks_dist_item))
+                                       @foreach($acm_marks_dist_item as $value)
                                              <tr>
                                                 <td></td>
                                                 <td></td>

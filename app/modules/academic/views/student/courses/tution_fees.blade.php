@@ -105,8 +105,7 @@
                                <table id="" class="table table-bordered table-striped">
 
                                    <tbody>
-                                          {{--@foreach()--}}
-                                          {{--@endforeach--}}
+
                                    </tbody>
 
                                </table>
@@ -119,7 +118,7 @@
 {{--------------------------------------------------------------------------------------}}
 
 
-<a class="pull-right btn btn-xs btn-primary" href="{{ URL::route('academic.student.checkout')}}"><b><i class="fa fa-arrow-circle-right"></i> Checkout</b></a>
+<a class="pull-right btn btn-xs btn-primary" href="{{ URL::route('academic.student.checkout',['year_title'=>$year_title,'semester_title'=>$semester_title])}}"><b><i class="fa fa-arrow-circle-right"></i> Checkout</b></a>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 

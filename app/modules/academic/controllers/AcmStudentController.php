@@ -12,7 +12,6 @@ class AcmStudentController extends \BaseController {
         $applicant_id = User::findOrFail(Auth::user()->get()->id)->applicant_id;
         $batch_id = BatchApplicant::where('applicant_id', $applicant_id)->first()->batch_id;
 
-
         $course_list = BatchCourse::whereNotExists(function ($query) use ($batch_id){
             $query->from('course_enrollment')->whereRaw('course_enrollment.batch_course_id = batch_course.id')
                 ->where('batch_course.batch_id', '=', $batch_id);
@@ -54,7 +53,7 @@ class AcmStudentController extends \BaseController {
 
 	public function acmEnrollment(){
 
-        $completed_data = CourseEnrollment::where('status', 'pass')->first();
+        $completed_data = CourseEnrollment::where('status', 'fail')->orWhere('status', 'pass')->first();
 
         if($completed_data){
             $current_year_id = $completed_data->taken_in_year_id ? $completed_data->taken_in_year_id + 1 :'';
@@ -81,11 +80,18 @@ class AcmStudentController extends \BaseController {
             $batch_courses = BatchCourse::where('year_id', $current_year_id)->where('semester_id', $current_semester_id)->get();
         }
             $previous_incomplete_courses = CourseEnrollment::with('relBatchCourse','relBatchCourse.relCourse')->whereIn('status',array('fail','retake'))->get();
-            //$credit = BatchCourse::with('relBatch','relBatch.relDegree')->where('batch_id','=',$batch_data->id)->first();
-            //print_r($credit);exit;
+
+            $credit = BatchCourse::with('relBatch','relBatch.relDegree')->first();
+
+            $enrolled_credit = DB::table('course_enrollment')
+            ->select(DB::raw('SUM(course.credit) as enrolled_credit'))
+            ->leftJoin('batch_course', 'course_enrollment.batch_course_id', '=', 'batch_course.id')
+            ->leftJoin('course', 'batch_course.course_id', '=', 'course.id')
+            ->where('course_enrollment.status', '=', 'enrolled')
+            ->first();
 
         return View::make('academic::student.courses.enrollment',compact('batch_courses', 'year_title', 'semester_title',
-                        'current_year_id', 'current_semester_id','previous_incomplete_courses','credit'
+                        'current_year_id', 'current_semester_id','previous_incomplete_courses','credit','enrolled_credit'
         ));
     }
 
@@ -100,33 +106,48 @@ class AcmStudentController extends \BaseController {
         $year_title = Year::findOrFail($taken_in_year)->title;
         $semester_title = Semester::findOrFail($taken_in_semester)->title;
 
+//        if($checked_ids ){
+//            foreach($checked_ids  as $key => $value){
+//                $model = new CourseEnrollment();
+//                $model->batch_course_id = $value;
+//                $model->student_user_id = $student_user_id;
+//                $model->taken_in_year_id = $taken_in_year;
+//                $model->taken_in_semester_id = $taken_in_semester;
+//                $model->status ='1';
+//
+//                $dataCheck = DB::table('course_enrollment')
+//                    ->select(DB::raw('1'))
+//                    ->where('batch_course_id', '=', $model->batch_course_id)
+//                    ->where('taken_in_year_id', '=', $model->taken_in_year_id)
+//                    ->where('taken_in_semester_id', '=', $model->taken_in_semester_id)
+//                    ->get();
+//
+//                if($dataCheck){
+//                    Session::flash('info','The selected Course(s)already enrolled !');
+//                    return Redirect::route('academic.student.course-enrollment.tution-fees',['year'=>$year_title,'semester'=>$semester_title]);
+//                }else{
+//                    $model->save();
+//                }
+//                Session::flash('message', "Successfully added Courses For Enrollment!");
+//                return Redirect::route('academic.student.course-enrollment.tution-fees',['year'=>$year_title,'semester'=>$semester_title]);
+//            }
+//        }else{
+//            Session::flash('info', "Please select course for enrollment!");
+//            return Redirect::back();
+//        }
         if($checked_ids ){
-            foreach($checked_ids  as $key => $value){
+            foreach($checked_ids as $key => $value){
                 $model = new CourseEnrollment();
                 $model->batch_course_id = $value;
                 $model->student_user_id = $student_user_id;
                 $model->taken_in_year_id = $taken_in_year;
                 $model->taken_in_semester_id = $taken_in_semester;
                 $model->status ='1';
-
-                $dataCheck = DB::table('course_enrollment')
-                    ->select(DB::raw('1'))
-                    ->where('batch_course_id', '=', $model->batch_course_id)
-                    ->where('taken_in_year_id', '=', $model->taken_in_year_id)
-                    ->where('taken_in_semester_id', '=', $model->taken_in_semester_id)
-                    ->get();
-
-                if($dataCheck){
-                    Session::flash('info','The selected Course(s)already enrolled !');
-                    return Redirect::route('academic.student.course-enrollment.tution-fees',['year'=>$year_title,'semester'=>$semester_title]);
-                }else{
-                    $model->save();
-                }
-                Session::flash('message', "Successfully added Courses For Enrollment!");
-                return Redirect::route('academic.student.course-enrollment.tution-fees',['year'=>$year_title,'semester'=>$semester_title]);
+                $model->save();
             }
-        }
-        else{
+            Session::flash('message', "Successfully added Courses For Enrollment!");
+            return Redirect::route('academic.student.course-enrollment.tution-fees',['year'=>$year_title,'semester'=>$semester_title]);
+        }else{
             Session::flash('info', "Please select course for enrollment!");
             return Redirect::back();
         }
@@ -157,24 +178,9 @@ class AcmStudentController extends \BaseController {
             $model->status = $value;
             $model->save();
         }
-
-       // echo $id;exit;
-
-//        if($model->status == 'enrolled') {
-//            $model->status = 'revoked';
-//            $model->update($data);
-//        }
-//        if($model->status == 'revoked'){
-//            $model->status = '6';
-//            $model->update($data);
-//        }
         return Redirect::back();
-
     }
-    public function acmCoursesChangeStatus($id){
-        echo 'ok';exit;
 
-    }
 
     public function showObtainedMarks($batch_course_id){
 
@@ -185,20 +191,26 @@ class AcmStudentController extends \BaseController {
         $course_conduct = CourseConduct::where('course_id','=',$course_id)->first();
 
         if($course_conduct){
+//            $acm_marks_dist_item = AcmMarksDistribution::with('relAcmMarksDistItem')->where('course_conduct_id','=',$course_conduct->id)->get();
+//            print_r($acm_marks_dist_item);exit;
 
-            $dist_item_clss = AcmMarksDistItem::where('code', 'clss')->first()->id;
-            $class = AcmAcademic::whereExists(function($query) use($dist_item_clss){
+            $dist_item_clss = AcmMarksDistItem::where('code', 'clss')->first();
+            if($dist_item_clss){
+                $class = AcmAcademic::whereExists(function($query) use($dist_item_clss){
                     $query->from('acm_marks_distribution')->whereRaw('acm_academic.acm_marks_distribution_id =  acm_marks_distribution.id')
-                    ->where('acm_marks_distribution.acm_marks_dist_item_id', $dist_item_clss);
+                        ->where('acm_marks_distribution.acm_marks_dist_item_id', $dist_item_clss->id);
                 })
-                ->where('course_conduct_id', $course_conduct->id )->get();
+                    ->where('course_conduct_id', $course_conduct->id )->get();
+            }
 
-            $dist_item_clst = AcmMarksDistItem::where('code', 'clst')->first()->id;
-            $class_test = AcmAcademic::whereExists(function($query) use($dist_item_clst){
-                $query->from('acm_marks_distribution')->whereRaw('acm_academic.acm_marks_distribution_id =  acm_marks_distribution.id')
-                    ->where('acm_marks_distribution.acm_marks_dist_item_id', $dist_item_clst);
-            })
-                ->where('course_conduct_id', $course_conduct->id )->get();
+            $dist_item_clst = AcmMarksDistItem::where('code', 'clst')->first();
+            if($dist_item_clst){
+                $class_test = AcmAcademic::whereExists(function($query) use($dist_item_clst){
+                    $query->from('acm_marks_distribution')->whereRaw('acm_academic.acm_marks_distribution_id =  acm_marks_distribution.id')
+                        ->where('acm_marks_distribution.acm_marks_dist_item_id', $dist_item_clst->id);
+                })
+                    ->where('course_conduct_id', $course_conduct->id )->get();
+            }
 
             $dist_item_assignment = AcmMarksDistItem::where('code', 'assn')->first();
 
@@ -230,7 +242,8 @@ class AcmStudentController extends \BaseController {
                     ->where('course_conduct_id', $course_conduct->id )->get();
             }
         }
-        return View::make('academic::student.courses.acm_course_items.obtained_marks',compact('courses','class','class_test','assignment','midterm','term_final','batch_course_id'));
+        return View::make('academic::student.courses.acm_course_items.obtained_marks',compact('courses','class','class_test',
+            'assignment','midterm','term_final','batch_course_id','acm_marks_dist_item'));
 
     }
 
@@ -251,7 +264,7 @@ class AcmStudentController extends \BaseController {
         return View::make('academic::student.courses.enroll_exam',compact('batch_course_id'));
     }
 
-    public function acmCheckout(){
-        return View::make('academic::student.courses.checkout');
+    public function acmCheckout($year_title,$semester_title){
+        return View::make('academic::student.courses.checkout',compact('year_title','semester_title'));
     }
 }

@@ -12,7 +12,8 @@
 <div style="background-color:lightgray; color:white; padding:8px;">
    <b style="margin-left: 80px;color: #005580">Total Credit : {{ isset($total_credit->relBatch->relDegree->total_credit) ? $total_credit->relBatch->relDegree->total_credit:'0' }}</b>
    <b style="margin-left: 60px;color: #005580">Accomplished Credit : {{isset($accomplished_credit->accomplished_credit) ? $accomplished_credit->accomplished_credit:'0'}}</b>
-   {{--<b style="margin-left: 60px;color: #005580">Left Yet(Credit) : {{isset($left_credit) ? $left_credit : '0'}}</b>--}}
+   {{--<b style="margin-left: 60px;color: #005580">Left Yet(Credit) : {{$total_credit->relBatch->relDegree->total_credit - $accomplished_credit->accomplished_credit}}</b>--}}
+
 </div>
 <br>
 <div class="row">
@@ -69,7 +70,7 @@
                                                           </td>
                                                           <td>
                                                                @if($value['status']== 'pass')
-                                                                 <a class="btn btn-xs btn-success" href="{{ URL::route('academic.student.enrollment')}}"  title="Retake">Retake</a>
+                                                                 <a class="btn btn-xs btn-success" href=""  title="Retake">Retake</a>
                                                                @endif
                                                           </td>
                                                      </tr>

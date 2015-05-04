@@ -12,8 +12,8 @@
 <h4 class="box-title"><b>Course Enrollment At {{$semester_title }} ,{{$year_title}}</b></h4>
 
 <div style="background-color:lightgray; color:white; padding:8px;">
-   {{--<b style="margin-left: 30px;color: #005580">Max Credit : {{isset($credit->relBatch->relDegree->credit_max_per_semester) ? $credit->relBatch->relDegree->credit_max_per_semester :''}}</b>--}}
-   {{--<b style="margin-left: 60px;color: #005580">Min Credit : {{isset($credit->relBatch->relDegree->credit_min_per_semester) ? $credit->relBatch->relDegree->credit_min_per_semester :''}}</b>--}}
+   <b style="margin-left: 30px;color: #005580">Max Credit : {{isset($credit->relBatch->relDegree->credit_max_per_semester) ? $credit->relBatch->relDegree->credit_max_per_semester :''}}</b>
+   <b style="margin-left: 60px;color: #005580">Min Credit : {{isset($credit->relBatch->relDegree->credit_min_per_semester) ? $credit->relBatch->relDegree->credit_min_per_semester :''}}</b>
 </div>
 
  <div class="row">
@@ -113,7 +113,7 @@
                                                                  <td>New</td>
                                                                  <td>
                                                                      @if($value['is_mandatory']==1)
-                                                                        <input type="checkbox" name="ids[]" id="checkboxID" class="myCheckbox" value="{{$value->id}}" checked="checked">
+                                                                        <input type="checkbox" name="ids[]" id="check" class="myCheckbox" value="{{$value->id}}" checked="checked">
                                                                      @else
                                                                          <input type="checkbox" name="ids[]"  id="check" class="myCheckbox" value="{{$value->id}}" >
                                                                      @endif
@@ -125,7 +125,8 @@
                                                       @endif
                                                    </tbody>
                                               </table>
-                                              <p>&nbsp;</p>
+                                              <br>
+                                              <strong>Total Credit So Far : {{isset($enrolled_credit->enrolled_credit) ? $enrolled_credit->enrolled_credit :'0'}}</strong>
                                          {{ Form::submit('Next', ['class'=>'pull-right btn btn-xs btn-info'])}}
                                          {{ Form::close() }}
 

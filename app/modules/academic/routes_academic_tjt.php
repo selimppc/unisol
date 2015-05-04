@@ -48,6 +48,6 @@ Route::any('academic/student/exam-enrollment/{batch_course_id}',
     ['as'=>'academic.student.exam-enrollment',
         'uses'=>'AcmStudentController@acmExamEnrollment']);
 
-Route::any('academic/student/checkout',
+Route::any('academic/student/checkout/{year_title}/{semester_title}',
     ['as'=>'academic.student.checkout',
         'uses'=>'AcmStudentController@acmCheckout']);
