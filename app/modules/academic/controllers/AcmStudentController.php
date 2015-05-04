@@ -43,10 +43,6 @@ class AcmStudentController extends \BaseController {
                         ->leftJoin('course', 'batch_course.course_id', '=', 'course.id')
                         ->where('course_enrollment.status', '=', 'pass')
                         ->first();
-        /*Left Credit*/
-//        if($accomplished_credit){
-//            $left_credit = $total_credit->relBatch->relDegree->total_credit -  $accomplished_credit->accomplished_credit;
-//        }
 
         return View::make('academic::student.courses.acm_courses',compact('courses','total_credit','left_courses','batch_courses',
             'completed_course','completed_course_in_year','running_course','accomplished_credit','left_credit','running_course_in_year'));
@@ -54,6 +50,8 @@ class AcmStudentController extends \BaseController {
 
 	public function acmEnrollment(){
 
+        $applicant_id = User::findOrFail(Auth::user()->get()->id)->applicant_id;
+        $batch_id = BatchApplicant::where('applicant_id', $applicant_id)->first()->batch_id;
         $completed_data = CourseEnrollment::where('status', 'fail')->orWhere('status', 'pass')->first();
 
         if($completed_data){
@@ -63,14 +61,16 @@ class AcmStudentController extends \BaseController {
 
             $year_title = Year::findOrFail($current_year_id)->title;
             $semester_title = Semester::findOrFail($current_semester_id)->title;
-            $batch_courses = BatchCourse::with('relBatch','relSemester','relYear')
-                ->where('year_id', $current_year_id)->where('semester_id', $current_semester_id)
-                ->get();
+            //$batch_courses = BatchCourse::with('relBatch','relSemester','relYear')
+            $batch_courses = BatchCourse::whereNotExists(function ($query) use ($batch_id){
+                $query->from('course_enrollment')->whereRaw('course_enrollment.batch_course_id = batch_course.id')
+                    ->where('batch_course.batch_id', '=', $batch_id)
+                    ->where('course_enrollment.student_user_id', '=', Auth::user()->get()->id);
+            })//->where('semester_id', $current_semester_id)//where('year_id', $current_year_id)
+            //->where('semester_id', $current_semester_id)
+            ->having('year_id', '<=', $current_year_id)->get();
 
-        }elseif(empty($completed_data)){
-
-            $applicant_id = User::findOrFail(Auth::user()->get()->id)->applicant_id;
-            $batch_id = BatchApplicant::where('applicant_id', $applicant_id)->first()->batch_id;
+        }elseif(empty($completed_data)){    //////
 
             $batch_data = Batch::findOrFail($batch_id);
 
@@ -109,16 +109,18 @@ class AcmStudentController extends \BaseController {
         $batch_id = BatchApplicant::where('applicant_id', $applicant_id)->first()->batch_id;
         $degree_id = Batch::where('id','=',$batch_id)->first()->degree_id;
         $max_credit = Degree::where('id','=',$degree_id)->first()->credit_max_per_semester;
-        //print_r($max_credit);exit;
+        $min_credit = Degree::where('id','=',$degree_id)->first()->credit_min_per_semester;
 
         $checked_ids = Input::get('ids');
-
         $taken_in_year = Input::get('taken_in_year');
         $taken_in_semester = Input::get('taken_in_semester');
         $student_user_id = Auth::user()->get()->id;
 
         $year_title = Year::findOrFail($taken_in_year)->title;
         $semester_title = Semester::findOrFail($taken_in_semester)->title;
+
+        //TODO : Credit Limit Using JS
+        $sem_count = count($checked_ids) * 3;
 
         if($checked_ids ){
 
@@ -129,12 +131,16 @@ class AcmStudentController extends \BaseController {
                 $model->taken_in_year_id = $taken_in_year;
                 $model->taken_in_semester_id = $taken_in_semester;
                 $model->status ='1';
-//                if(count($model->)){
-//
-//                }
-                $model->save();
+                if($sem_count > $max_credit){
+                    Session::flash('danger', "Credit Limit exceed. Max Limit is 18!");
+                }elseif($sem_count < $min_credit){
+                    Session::flash('danger', "Credit Limit exceed.Min Limit is 6!");
+                }
+                else{
+                    $model->save();
+                    Session::flash('message', "Successfully added Courses For Enrollment!");
+                }
             }
-            Session::flash('message', "Successfully added Courses For Enrollment!");
             return Redirect::route('academic.student.course-enrollment.tution-fees',['year'=>$year_title,'semester'=>$semester_title]);
         }else{
             Session::flash('info', "Please select course for enrollment!");
