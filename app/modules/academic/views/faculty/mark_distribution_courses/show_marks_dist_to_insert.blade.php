@@ -85,9 +85,9 @@
                 <td>{{ Form::radio('isAttendance[]', $counter, ($value->is_attendance) ? $value->is_attendance : Input::old('isAttendance'.$key)) }}</td>
                 <td>
                     @if(isset($value->isMarksId))
-                        {{ Form::select('policy_id[]', array(''=>'Select Option','attendance' => 'Attendance', 'best_one' => 'Best One','avarage'=>'Average','avarage_top_n'=>'Average of Top N','sum' => 'Sum','single' => 'Single'), $value->acm_marks_policy, array('class' => 'form-control','required'=>'required'))}}
+                        {{ Form::select('policy_id[]', array(''=>'Select Option','attendance' => 'Attendance', 'best_one' => 'Best One','avarage'=>'Average','avarage_top_n'=>'Average of Top N','sum' => 'Sum','single' => 'Single'), $value->acm_marks_policy, array('class' => 'form-control','required'))}}
                     @else
-                        {{ Form::select('policy_id[]', array(''=>'Select Option','attendance' => 'Attendance', 'best_one' => 'Best One','avarage'=>'Average','avarage_top_n'=>'Average of Top N','sum' => 'Sum','single' => 'Single'), '', array('class' => 'form-control','required'=>'required'))}}
+                        {{ Form::select('policy_id[]', array(''=>'Select Option','attendance' => 'Attendance', 'best_one' => 'Best One','avarage'=>'Average','avarage_top_n'=>'Average of Top N','sum' => 'Sum','single' => 'Single'), '', array('class' => 'form-control','required'))}}
                     @endif
                     {{--Auth::user()->id--}}
                 </td>
@@ -119,7 +119,8 @@
                                 data: {acm_marks_distribution_id: is_marksdist_id}
                             })
                                     .done(function (msg) {
-                                        alert(msg);
+                                       console.log(msg);
+                                        //alert(msg);
                                         var whichtr = $('#' + getId).closest("tr");
                                         whichtr.fadeOut(500).remove();
                                         arrayItems.pop(getId);//To stop additem if exist
@@ -129,7 +130,7 @@
                             return false;
                         }
                     } else {
-                        //if acm_course_config id not found jst remove the tr form the popup. that not delete the data form the db.
+                        //if acm_marks_distribution_id  not found jst remove the tr form the popup.that not delete the data form the db.
                         var whichtr = $('#' + getId).closest("tr");
                         whichtr.fadeOut(500).remove();
                         arrayItems.pop(getId);//To stop additem if exist
@@ -137,18 +138,14 @@
                 }
 
             </script>
-
-
         @endforeach
         </tbody>
-
         <tr>
             <td colspan="6"><span class="totalPerSum"></span></td>
             <td colspan="2">{{ Form::submit('Submit', ['class'=>'btn btn-xs btn-success saveInMarksDist'] ) }}</td>
         </tr>
     </table>
     {{Form::close()}}
-
 </div>
 <div class="modal-footer">
     <button class="btn btn-default btn-xs" data-dismiss="modal" type="button">Close</button>

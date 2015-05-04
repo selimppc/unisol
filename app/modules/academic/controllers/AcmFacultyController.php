@@ -246,9 +246,20 @@ class AcmFacultyController extends \BaseController
             $acm_marks_distribution_id = Input::get('acm_marks_distribution_id');
             $data = AcmMarksDistribution::find($acm_marks_distribution_id);
             if ($data->delete())
-                return Response::json(['msg' => 'Data Successfully Deleted']);
-            else
-                return Response::json(['msg' => 'Data Successfully Not Deleted']);
+                try {
+                    $data->delete();
+                   /* $msg = array('msg' => 'Data Successfully Deleted');
+                    $response = Response::json($msg);
+                    $response->header('Content-Type', 'application/json');
+                    return $response;*/
+                    return Response::json(['msg' => 'Data Successfully Deleted']);
+                }catch (exception $ex){
+                    return Response::json(['msg' => 'Data Successfully Not Deleted']);
+                  /*  $msg = array('msg' => 'Data Successfully Deleted');
+                    $response = Response::json($msg);
+                    $response->header('Content-Type', 'application/json');
+                    return $response;*/
+                }
         }
     }
 
@@ -398,17 +409,17 @@ class AcmFacultyController extends \BaseController
                 $data = AcmAcademicDetails::find($aca_academic_details_id);
                 try {
                     $data->delete();
-                    $msg = array('msg' => 'Data Successfully Deleted');
+                    /*$msg = array('msg' => 'Data Successfully Deleted');
                     $response = Response::json($msg);
                     $response->header('Content-Type', 'application/json');
-                    return $response;
-                   // return Response::json(['msg' => 'Data Successfully Deleted']);
+                    return $response;*/
+                   return Response::json(['msg' => 'Data Successfully Deleted']);
                 }catch (exception $ex){
-                    //return Response::json(['msg' => 'Data Successfully Not Deleted']);
-                    $msg = array('msg' => 'Data Successfully Deleted');
+                    return Response::json(['msg' => 'Data Successfully Not Deleted']);
+                    /*$msg = array('msg' => 'Data Successfully Deleted');
                     $response = Response::json($msg);
                     $response->header('Content-Type', 'application/json');
-                    return $response;
+                    return $response;*/
                 }
 
 
@@ -471,7 +482,6 @@ class AcmFacultyController extends \BaseController
             ->where('course_conduct_id', '=', $cc_id)
             ->get();
         //--------end sidebar-------------
-
         return View::make('academic::faculty.mark_distribution_courses.marks_dist_item.assign', compact('course_enroll','course_list','item_title','exam_questions','std_assign','data','config_data'));
     }
 
@@ -537,7 +547,6 @@ class AcmFacultyController extends \BaseController
         $item_title = AcmAcademicAssignStudent::with('relAcmAcademic','relUser','relUser.relUserProfile')
             ->where('acm_academic_id', '=', $acm_id)
             ->first();
-
 
         $comments_info = AcmAcademicAssignStudentComments::with('relAcmAcademicAssignStudent')
             ->where('acm_assign_std_id', '=', $assign_std_id)
