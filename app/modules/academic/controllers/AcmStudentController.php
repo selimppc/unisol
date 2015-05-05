@@ -183,13 +183,20 @@ class AcmStudentController extends \BaseController {
             ->where('batch_course_id','=',$batch_course_id)->first();
 
         $course_id = BatchCourse::find($batch_course_id)->course_id;
-        $course_conduct = CourseConduct::where('course_id','=',$course_id)->first();
-//        $course_conduct_id = AcmMarksDistribution::where('course_conduct_id','=',$course_conduct->id)->first()->course_conduct_id;
+        if($course_id){
+            $course_conduct = CourseConduct::where('course_id','=',$course_id)->first();
+        }
 
         if($course_conduct){
-//            $acm_marks_dist_item = AcmMarksDistribution::with('relAcmMarksDistItem')->where('course_conduct_id','=', $course_conduct_id)->get();
+           //$data = obtained_marks_item
+            $data = AcmMarksDistribution::with('relAcmMarksDistItem')->where('course_conduct_id', $course_conduct->id)->get();
 
             $dist_item_clss = AcmMarksDistItem::where('code', 'clss')->first();
+            $dist_item_clst = AcmMarksDistItem::where('code', 'clst')->first();
+            $dist_item_assignment = AcmMarksDistItem::where('code', 'assn')->first();
+            $dist_item_midterm = AcmMarksDistItem::where('code', 'midt')->first();
+            $dist_item_termfinal = AcmMarksDistItem::where('code', 'fint')->first();
+
             if($dist_item_clss){
                 $class = AcmAcademic::whereExists(function($query) use($dist_item_clss){
                     $query->from('acm_marks_distribution')->whereRaw('acm_academic.acm_marks_distribution_id =  acm_marks_distribution.id')
@@ -198,7 +205,6 @@ class AcmStudentController extends \BaseController {
                     ->where('course_conduct_id', $course_conduct->id )->get();
             }
 
-            $dist_item_clst = AcmMarksDistItem::where('code', 'clst')->first();
             if($dist_item_clst){
                 $class_test = AcmAcademic::whereExists(function($query) use($dist_item_clst){
                     $query->from('acm_marks_distribution')->whereRaw('acm_academic.acm_marks_distribution_id =  acm_marks_distribution.id')
@@ -206,8 +212,6 @@ class AcmStudentController extends \BaseController {
                 })
                     ->where('course_conduct_id', $course_conduct->id )->get();
             }
-
-            $dist_item_assignment = AcmMarksDistItem::where('code', 'assn')->first();
 
             if($dist_item_assignment){
                 $assignment = AcmAcademic::whereExists(function($query) use($dist_item_assignment){
@@ -217,8 +221,6 @@ class AcmStudentController extends \BaseController {
                     ->where('course_conduct_id', $course_conduct->id )->get();
             }
 
-            $dist_item_midterm = AcmMarksDistItem::where('code', 'midt')->first();
-
             if($dist_item_midterm){
                 $midterm = AcmAcademic::whereExists(function($query) use($dist_item_midterm){
                     $query->from('acm_marks_distribution')->whereRaw('acm_academic.acm_marks_distribution_id =  acm_marks_distribution.id')
@@ -226,8 +228,6 @@ class AcmStudentController extends \BaseController {
                 })
                     ->where('course_conduct_id', $course_conduct->id )->get();
             }
-
-            $dist_item_termfinal = AcmMarksDistItem::where('code', 'fint')->first();
 
             if($dist_item_termfinal){
                 $term_final = AcmAcademic::whereExists(function($query) use($dist_item_termfinal){
@@ -238,7 +238,7 @@ class AcmStudentController extends \BaseController {
             }
         }
         return View::make('academic::student.courses.acm_course_items.obtained_marks',compact('courses','class','class_test',
-            'assignment','midterm','term_final','batch_course_id','acm_marks_dist_item'));
+            'assignment','midterm','term_final','batch_course_id', 'data'));
     }
 
     public function viewClass($id){

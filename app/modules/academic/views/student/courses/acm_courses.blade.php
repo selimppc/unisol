@@ -120,7 +120,7 @@
                                                           <tr>
                                                                <td>
                                                                    <a href="{{ URL::route('academic.student.courses.obtained-marks',
-                                                                       ['id' => $value->batch_course_id]) }}" class="btn-link" >
+                                                                       ['batch_course_id' => $value->batch_course_id]) }}" class="btn-link" >
                                                                        {{($value->relBatchCourse->relCourse->title )}}
                                                                    </a>
                                                                </td>

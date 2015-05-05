@@ -51,11 +51,11 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                   @if(isset($acm_marks_dist_item))
-                                       @foreach($acm_marks_dist_item as $value)
+                                   @if(isset($data))
+                                       @foreach($data as $value)
                                              <tr>
                                                 <td>{{$value->relAcmMarksDistItem->title}}</td>
-                                                <td></td>
+                                                <td>---</td>
                                                 <td>{{$value->marks}}</td>
                                              </tr>
                                        @endforeach
@@ -258,4 +258,12 @@
       </div>
  </div>
 
+
+{{--@if(count($data))--}}
+     {{--@foreach($data as $value)--}}
+            {{--{{$value->relAcmMarksDistItem->title}} <br>--}}
+     {{--@endforeach--}}
+{{--@else--}}
+    {{--{{ "Data not Found!" }}--}}
+{{--@endif--}}
 @stop
