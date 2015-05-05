@@ -12,7 +12,9 @@
 <div style="background-color:lightgray; color:white; padding:8px;">
    <b style="margin-left: 80px;color: #005580">Total Credit : {{ isset($total_credit->relBatch->relDegree->total_credit) ? $total_credit->relBatch->relDegree->total_credit:'0' }}</b>
    <b style="margin-left: 60px;color: #005580">Accomplished Credit : {{isset($accomplished_credit->accomplished_credit) ? $accomplished_credit->accomplished_credit:'0'}}</b>
-   <b style="margin-left: 60px;color: #005580">Left Yet(Credit) : {{$total_credit->relBatch->relDegree->total_credit - $accomplished_credit->accomplished_credit }}</b>
+   @if(isset($total_credit->relBatch->relDegree->total_credit))
+       <b style="margin-left: 60px;color: #005580">Left Yet(Credit) : {{$total_credit->relBatch->relDegree->total_credit - $accomplished_credit->accomplished_credit}}</b>
+   @endif
 
 </div>
 <br>
