@@ -45,7 +45,7 @@ class AcmStudentController extends \BaseController {
                         ->first();
 
         return View::make('academic::student.courses.acm_courses',compact('courses','total_credit','left_courses','batch_courses',
-            'completed_course','completed_course_in_year','running_course','accomplished_credit','left_credit','running_course_in_year'));
+            'completed_course','completed_course_in_year','running_course','accomplished_credit','running_course_in_year'));
     }
 
 	public function acmEnrollment(){
@@ -184,10 +184,10 @@ class AcmStudentController extends \BaseController {
 
         $course_id = BatchCourse::find($batch_course_id)->course_id;
         $course_conduct = CourseConduct::where('course_id','=',$course_id)->first();
+        $course_conduct_id = AcmMarksDistribution::where('course_conduct_id','=',$course_conduct->id)->first()->course_conduct_id;
 
         if($course_conduct){
-//            $acm_marks_dist_item = AcmMarksDistribution::with('relAcmMarksDistItem')->where('course_conduct_id','=',$course_conduct->id)->get();
-//            print_r($acm_marks_dist_item);exit;
+            $acm_marks_dist_item = AcmMarksDistribution::with('relAcmMarksDistItem')->where('course_conduct_id','=', $course_conduct_id)->get();
 
             $dist_item_clss = AcmMarksDistItem::where('code', 'clss')->first();
             if($dist_item_clss){

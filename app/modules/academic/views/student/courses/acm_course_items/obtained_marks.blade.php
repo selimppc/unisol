@@ -54,9 +54,9 @@
                                    @if(isset($acm_marks_dist_item))
                                        @foreach($acm_marks_dist_item as $value)
                                              <tr>
+                                                <td>{{$value->relAcmMarksDistItem->title}}</td>
                                                 <td></td>
-                                                <td></td>
-                                                <td></td>
+                                                <td>{{$value->marks}}</td>
                                              </tr>
                                        @endforeach
                                    @endif
@@ -91,9 +91,10 @@
                                       @endforeach
                                    @endif
                                 </tbody>
-
                             </table>
                         </div><!-- /.box -->
+                        <a class="pull-right btn btn-xs btn-circle" href="{{ URL::route('academic.student.courses.index')}}" title="Back To Courses"><b style="color: #000000;font-size: medium"><i class="fa fa-arrow-circle-left"></i></b></a>
+                        <p>&nbsp;</p>
                     </div><!-- /.tab-pane -->
 
  {{------------------Starts :Class Test  -----------------------------------------------------}}
@@ -124,9 +125,10 @@
                                       @endforeach
                                    @endif
                                 </tbody>
-
                             </table>
                         </div><!-- /.box -->
+                        <a class="pull-right btn btn-xs btn-circle" href="{{ URL::route('academic.student.courses.index')}}" title="Back To Courses"><b style="color: #000000;font-size: medium"><i class="fa fa-arrow-circle-left"></i></b></a>
+                        <p>&nbsp;</p>
                     </div><!-- /.tab-pane -->
 {{------------------Ends :Class Test  -----------------------------------------------------}}
 
@@ -163,9 +165,10 @@
                                      @endforeach
                                   @endif
                                </tbody>
-
                            </table>
                        </div><!-- /.box -->
+                       <a class="pull-right btn btn-xs btn-circle" href="{{ URL::route('academic.student.courses.index')}}" title="Back To Courses"><b style="color: #000000;font-size: medium"><i class="fa fa-arrow-circle-left"></i></b></a>
+                       <p>&nbsp;</p>
                    </div><!-- /.tab-pane -->
 {{------------------Ends : Assignment  -----------------------------------------------------}}
 
@@ -197,9 +200,10 @@
                                     @endforeach
                                  @endif
                               </tbody>
-
                           </table>
                       </div><!-- /.box -->
+                      <a class="pull-right btn btn-xs btn-circle" href="{{ URL::route('academic.student.courses.index')}}" title="Back To Courses"><b style="color: #000000;font-size: medium"><i class="fa fa-arrow-circle-left"></i></b></a>
+                      <p>&nbsp;</p>
                    </div><!-- /.tab-pane -->
 {{------------------Ends : Mid Term  -----------------------------------------------------}}
 
@@ -233,6 +237,8 @@
                                 </tbody>
                             </table>
                        </div><!-- /.box -->
+                       <a class="pull-right btn btn-xs btn-circle" href="{{ URL::route('academic.student.courses.index')}}" title="Back To Courses"><b style="color: #000000;font-size: medium"><i class="fa fa-arrow-circle-left"></i></b></a>
+                       <p>&nbsp;</p>
                    </div><!-- /.tab-pane -->
 {{------------------Ends :Term  Final-----------------------------------------------------}}
 
