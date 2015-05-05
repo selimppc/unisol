@@ -184,10 +184,10 @@ class AcmStudentController extends \BaseController {
 
         $course_id = BatchCourse::find($batch_course_id)->course_id;
         $course_conduct = CourseConduct::where('course_id','=',$course_id)->first();
-        $course_conduct_id = AcmMarksDistribution::where('course_conduct_id','=',$course_conduct->id)->first()->course_conduct_id;
+//        $course_conduct_id = AcmMarksDistribution::where('course_conduct_id','=',$course_conduct->id)->first()->course_conduct_id;
 
         if($course_conduct){
-            $acm_marks_dist_item = AcmMarksDistribution::with('relAcmMarksDistItem')->where('course_conduct_id','=', $course_conduct_id)->get();
+//            $acm_marks_dist_item = AcmMarksDistribution::with('relAcmMarksDistItem')->where('course_conduct_id','=', $course_conduct_id)->get();
 
             $dist_item_clss = AcmMarksDistItem::where('code', 'clss')->first();
             if($dist_item_clss){
