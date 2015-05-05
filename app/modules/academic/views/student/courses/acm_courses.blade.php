@@ -131,11 +131,11 @@
                                                                </td>
                                                                <td>
                                                                    @if($value->status == 'enrolled')
-                                                                      <a data-href="{{ URL::route('academic.student.courses.status',['id'=>$value->id, 'value'=>'revoked'])}}" class="btn btn-xs btn-info" data-toggle="modal" data-target="#confirm-status-one" href="" >Revoke</a>
+                                                                      <a data-href="{{ URL::route('academic.student.courses.status',['id'=>$value->id, 'value'=>'revoked'])}}" class="btn btn-xs btn-info" data-toggle="modal" data-target="" href="" >Revoke</a>
 
                                                                    @endif
                                                                    @if($value->status == 'revoked')
-                                                                      <a class="btn btn-xs btn-info"  data-href="{{ URL::route('academic.student.courses.status',['id'=>$value->id,'value'=>'invoked'])}}" title="Retake" data-toggle="modal" data-target="#confirm-status-one">Invoke</a>
+                                                                      <a class="btn btn-xs btn-info"  data-href="{{ URL::route('academic.student.courses.status',['id'=>$value->id,'value'=>'invoked'])}}" title="Retake" data-toggle="modal" data-target="">Invoke</a>
                                                                    @endif
                                                                </td>
                                                           </tr>
@@ -217,29 +217,7 @@
     </div><!-- /.col -->
 </div><!-- /.row -->
 
-<!-- Modal for status -->
-    <div class="modal fade " id="confirm-status" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel" >Status Change Confirmation</h4>
-              </div>
-              <div class="modal-body">
-                    <p style="font-size: medium;color:#000000">Are You Sure to do this  ?</p>
-
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-xs btn-default" data-dismiss="modal">Cancel</button>
-                <a href="" class="btn btn-xs btn-primary">Yes</a>
-              </div>
-        </div>
-      </div>
-    </div>
-
-
-
-{{--<!-- Modal for delete -->--}}
+{{--<!-- Modal for status -->--}}
     <div class="modal fade" id="confirm-status-one" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog">
             <div class="modal-content">
