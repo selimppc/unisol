@@ -239,7 +239,6 @@ class AcmStudentController extends \BaseController {
         }
         return View::make('academic::student.courses.acm_course_items.obtained_marks',compact('courses','class','class_test',
             'assignment','midterm','term_final','batch_course_id','acm_marks_dist_item'));
-
     }
 
     public function viewClass($id){
