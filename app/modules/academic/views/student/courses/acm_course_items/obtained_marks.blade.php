@@ -15,12 +15,12 @@
             <!-- Custom Tabs -->
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#tab_1" data-toggle="tab">Obtained Marks </a></li>
-                    <li><a href="#tab_2" data-toggle="tab">Class</a></li>
-                    <li><a href="#tab_3" data-toggle="tab">Class Test</a></li>
-                    <li><a href="#tab_4" data-toggle="tab">Assignment</a></li>
-                    <li><a href="#tab_5" data-toggle="tab">Mid Term</a></li>
-                    <li><a href="#tab_6" data-toggle="tab">Term Final</a></li>
+                    <li class="active"><a href="#tab_1" data-toggle="tab" style="color:#800080">Obtained Marks </a></li>
+                    <li><a href="#tab_2" data-toggle="tab"  style="color:#000000">Class</a></li>
+                    <li><a href="#tab_3" data-toggle="tab"  style="color:#000000">Class Test</a></li>
+                    <li><a href="#tab_4" data-toggle="tab"  style="color:#000000">Assignment</a></li>
+                    <li><a href="#tab_5" data-toggle="tab"  style="color:#000000">Mid Term</a></li>
+                    <li><a href="#tab_6" data-toggle="tab"  style="color:#000000">Term Final</a></li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                             Settings  <span class="caret"></span>
