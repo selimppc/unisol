@@ -131,11 +131,11 @@
                                                                </td>
                                                                <td>
                                                                    @if($value->status == 'enrolled')
-                                                                      <a data-href="{{ URL::route('academic.student.courses.status',['id'=>$value->id, 'value'=>'revoked'])}}" class="btn btn-xs btn-info" data-toggle="modal" data-target="" href="" >Revoke</a>
+                                                                      <a data-href="{{ URL::route('academic.student.courses.status',['id'=>$value->id, 'value'=>'revoked'])}}" class="btn btn-xs btn-info" data-toggle="modal" data-target="#confirm-status-one" href="" >Revoke</a>
 
                                                                    @endif
                                                                    @if($value->status == 'revoked')
-                                                                      <a class="btn btn-xs btn-info"  data-href="{{ URL::route('academic.student.courses.status',['id'=>$value->id,'value'=>'invoked'])}}" title="Retake" data-toggle="modal" data-target="">Invoke</a>
+                                                                      <a class="btn btn-xs btn-info"  data-href="{{ URL::route('academic.student.courses.status',['id'=>$value->id,'value'=>'invoked'])}}" title="Retake" data-toggle="modal" data-target="#confirm-status-one">Invoke</a>
                                                                    @endif
                                                                </td>
                                                           </tr>
