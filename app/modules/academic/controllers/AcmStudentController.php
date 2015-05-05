@@ -11,11 +11,13 @@ class AcmStudentController extends \BaseController {
 
         $applicant_id = User::findOrFail(Auth::user()->get()->id)->applicant_id;
         $batch_id = BatchApplicant::where('applicant_id', $applicant_id)->first()->batch_id;
+        #print_r($applicant_id);
+        #print_r($batch_id);exit;
 
         $course_list = BatchCourse::whereNotExists(function ($query) use ($batch_id){
-            $query->from('course_enrollment')->whereRaw('course_enrollment.batch_course_id = batch_course.id')
-                ->where('batch_course.batch_id', '=', $batch_id);
-        })->orderBy('year_id')->orderBy('semester_id')->get();
+            $query->from('course_enrollment')->whereRaw('course_enrollment.batch_course_id = batch_course.id');
+               // ->where('batch_course.batch_id', '=', $batch_id);
+        })->where('batch_id', '=', $batch_id)->orderBy('year_id')->orderBy('semester_id')->get();
 
         foreach($course_list as $key => $value){
             $left_courses[$value->relYear->title][$value->relsemester->title][$value->id]['title'] = $value->relCourse->title;
@@ -64,10 +66,11 @@ class AcmStudentController extends \BaseController {
             //$batch_courses = BatchCourse::with('relBatch','relSemester','relYear')
             $batch_courses = BatchCourse::whereNotExists(function ($query) use ($batch_id){
                 $query->from('course_enrollment')->whereRaw('course_enrollment.batch_course_id = batch_course.id')
-                    ->where('batch_course.batch_id', '=', $batch_id)
+//                    ->where('batch_course.batch_id', '=', $batch_id)
                     ->where('course_enrollment.student_user_id', '=', Auth::user()->get()->id);
             })//->where('semester_id', $current_semester_id)//where('year_id', $current_year_id)
             //->where('semester_id', $current_semester_id)
+            ->where('batch_course.batch_id', '=', $batch_id)
             ->having('year_id', '<=', $current_year_id)->get();
 
         }elseif(empty($completed_data)){    //////
@@ -81,10 +84,11 @@ class AcmStudentController extends \BaseController {
 
             $batch_courses = BatchCourse::whereNotExists(function ($query) use ($batch_id){
                 $query->from('course_enrollment')->whereRaw('course_enrollment.batch_course_id = batch_course.id')
-                    ->where('batch_course.batch_id', '=', $batch_id)
+//                    ->where('batch_course.batch_id', '=', $batch_id)
                     ->where('course_enrollment.student_user_id', '=', Auth::user()->get()->id);
                 })//->where('semester_id', $current_semester_id)//where('year_id', $current_year_id)
                 //->where('semester_id', $current_semester_id)
+            ->where('batch_course.batch_id', '=', $batch_id)
                 ->having('year_id', '<=', $current_year_id)->get();
         }
             $previous_incomplete_courses = CourseEnrollment::with('relBatchCourse','relBatchCourse.relCourse')->whereIn('status',array('fail','retake'))->get();
