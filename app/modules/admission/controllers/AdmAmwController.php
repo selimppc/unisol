@@ -591,14 +591,17 @@ class AdmAmwController extends \BaseController
         //retrieve degree id from Batch
         $degree_id = Batch::findOrFail($batch_id)->degree_id;
 
-        $deg_course_info = DB::table('degree_course')->whereNotExists(function($query) use($batch_id){
+        /*$deg_course_info = DB::table('degree_course')->whereNotExists(function($query) use($batch_id){
                 $query->from('batch_course')->whereRaw('degree_course.course_id = batch_course.course_id')
                 ->where('batch_course.batch_id','=', $batch_id);
             })
             ->leftJoin('degree', 'degree_course.degree_id', '=', 'degree.id' )
             ->where('degree_course.degree_id','=', $deg_id)
             ->select('degree_course.course_id', 'degree_course.degree_id', 'degree.department_id')
-            ->get();
+            ->get();*/
+
+        $deg_course_info = AdmVDdegreeCourse::where('degree_id', $deg_id)->where('batch_id', $batch_id)->get();
+
 
         $bc_list = BatchCourse::with('relYear')->where('batch_id', $batch_id)->orderBy('year_id')->orderBy('semester_id')->get();
         foreach($bc_list as $key => $value){
