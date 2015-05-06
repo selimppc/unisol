@@ -51,7 +51,7 @@ class CreateAdmission extends Migration {
             $table->unsignedInteger('year_id')->nullable();
             $table->unsignedInteger('semester_id')->nullable();
             $table->string('batch_number', 32);
-            $table->unique(['degree_id', 'batch_number']);
+            $table->unique(['degree_id','year_id', 'semester_id']);
             $table->text('description');
             $table->dateTime('start_date');
             $table->dateTime('end_date');
