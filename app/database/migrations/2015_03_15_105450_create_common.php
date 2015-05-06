@@ -115,7 +115,9 @@ class CreateCommon extends Migration {
             $table->string('title', 128)->unique();
             $table->string('description');
             $table->string('capacity', 128);
-            $table->string('status', 128);
+            $table->enum('status',array(
+                'free', 'engaged','under-construction', 'not-ready','un-attendant'
+            ));
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
