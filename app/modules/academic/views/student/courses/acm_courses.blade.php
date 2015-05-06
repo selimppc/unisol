@@ -120,7 +120,7 @@
                                                           <tr>
                                                                <td>
                                                                    <a href="{{ URL::route('academic.student.courses.obtained-marks',
-                                                                       ['id' => $value->batch_course_id]) }}" class="btn-link" >
+                                                                       ['batch_course_id' => $value->batch_course_id]) }}" class="btn-link" >
                                                                        {{($value->relBatchCourse->relCourse->title )}}
                                                                    </a>
                                                                </td>
@@ -217,29 +217,7 @@
     </div><!-- /.col -->
 </div><!-- /.row -->
 
-<!-- Modal for status -->
-    <div class="modal fade " id="confirm-status" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel" >Status Change Confirmation</h4>
-              </div>
-              <div class="modal-body">
-                    <p style="font-size: medium;color:#000000">Are You Sure to do this  ?</p>
-
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-xs btn-default" data-dismiss="modal">Cancel</button>
-                <a href="" class="btn btn-xs btn-primary">Yes</a>
-              </div>
-        </div>
-      </div>
-    </div>
-
-
-
-{{--<!-- Modal for delete -->--}}
+{{--<!-- Modal for status -->--}}
     <div class="modal fade" id="confirm-status-one" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog">
             <div class="modal-content">
