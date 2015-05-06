@@ -9,7 +9,7 @@ Thumbs.db
 .idea/
 /vendor
 vendor/
-/app/config/database.php
+app/config/database.php
 test//
 public/error_log
 public/file
