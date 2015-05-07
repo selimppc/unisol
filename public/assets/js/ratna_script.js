@@ -227,6 +227,12 @@ function addMarksDistItem() {
     var listItem = $('.addDistListItem').val();
     var listItemTitle = $(".addDistListItem option:selected").text();
 
+    if(listItem == ""){
+        alert("Please Select Valid Marks Distribution Item!");
+        return;
+    }
+    
+
     item_id = parseInt($(".addDistListItem option:selected").val());//To stop additem if exist
     var index = $.inArray(item_id, arrayItems);//To stop additem if exist
 
