@@ -53,8 +53,8 @@
        <div>{{ Form::label('passport', ' Passport') }}</div>
        <div>{{ Form::text('passport', Input::old('passport'),['class'=>'form-control ']) }}</div>
 
-       <div>{{ Form::label('place_of_birth', ' Place of birth') }}<span class="text-danger">*</span></div>
-       <div>{{ Form::text('place_of_birth', Input::old('place_of_birth'),['class'=>'form-control ']) }}</div>
+       {{--<div>{{ Form::label('place_of_birth', ' Place of birth') }}<span class="text-danger">*</span></div>--}}
+       {{--<div>{{ Form::text('place_of_birth', Input::old('place_of_birth'),['class'=>'form-control ']) }}</div>--}}
 
        <div>{{ Form::label('marital_status', ' Marital status') }}</div>
        <div>
