@@ -446,12 +446,12 @@ class AcmFacultyController extends \BaseController
                     ->whereRaw('batch_course.id = course_enrollment.batch_course_id')
                     ->where('batch_course.course_id', $course_list->course_id);
             })
-        ->where('taken_in_year_id', $course_list->year_id)
-        ->where('taken_in_semester_id', $course_list->semester_id)
+        ->where('taken_in_year_id', $course_list->year_id)//year id from course_conduct
+        ->where('taken_in_semester_id', $course_list->semester_id)//semester_id from course_conduct
         ->where('status', 'Enrolled')
         ->get();
 
-        // save student user id and academic id as well
+        // save student_user_id and acm_academic_id as well
 
         foreach($course_enroll as $values ){
             $check = $this->checkStdAssign($acm_id, $values->student_user_id);
