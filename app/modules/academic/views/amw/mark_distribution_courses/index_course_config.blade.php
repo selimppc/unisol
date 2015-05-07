@@ -103,6 +103,12 @@
         function addCourseListItem(){
 
             var listItem = $('.addConfigListItem').val();
+
+            if(listItem == ""){
+                alert("Please Select Valid Marks Distribution Item!");
+                return;
+            }
+            
             var listItemTitle = $( ".addConfigListItem option:selected" ).text();
 
             item_id = parseInt($( ".addConfigListItem option:selected" ).val());//To stop additem if exist
