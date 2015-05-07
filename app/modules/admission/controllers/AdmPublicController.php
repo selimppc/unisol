@@ -323,7 +323,7 @@ class AdmPublicController extends \BaseController {
             $applicant_meta_records->national_id = Input::get('national_id');
             $applicant_meta_records->driving_licence = Input::get('driving_licence');
             $applicant_meta_records->passport = Input::get('passport');
-            $applicant_meta_records->place_of_birth = Input::get('place_of_birth');
+//            $applicant_meta_records->place_of_birth = Input::get('place_of_birth');
             $applicant_meta_records->national_id = Input::get('national_id');
             $applicant_meta_records->marital_status = Input::get('marital_status');
             $applicant_meta_records->nationality = Input::get('nationality');
@@ -372,7 +372,7 @@ class AdmPublicController extends \BaseController {
                 $applicant_meta_records->national_id = Input::get('national_id');
                 $applicant_meta_records->driving_licence = Input::get('driving_licence');
                 $applicant_meta_records->passport = Input::get('passport');
-                $applicant_meta_records->place_of_birth = Input::get('place_of_birth');
+//                $applicant_meta_records->place_of_birth = Input::get('place_of_birth');
                 $applicant_meta_records->marital_status = Input::get('marital_status');
                 $applicant_meta_records->nationality = Input::get('nationality');
                 $applicant_meta_records->religion = Input::get('religion');
