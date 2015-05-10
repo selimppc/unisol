@@ -44,7 +44,6 @@ class ApplicantAdmissionController extends \BaseController {
         }
         $batch_admtest_subject_id = $data->id;
 
-
         return View::make('applicant::admission_test.subject_exam',compact('data', 'adm_question_id', 'batch_admtest_subject_id'));
     }
 
