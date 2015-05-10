@@ -570,41 +570,23 @@ class AdmAmwController extends \BaseController
      */
     public function batch_course_index($batch_id, $deg_id)
     {
-        /*$degree_title = Batch::with('relDegree', 'relDegree.relDegreeCourse', 'relDegree.relDegreeProgram', 'relDegree.relDegreeGroup', 'relDegree.relDepartment' )
-            ->where('id' , '=' ,$batch_id)->first();*/
         $batch = Batch::with('relDegree')->where('id', '=', $batch_id)->first();
+        if(!$batch) {
+            Session::flash('danger', "This batch does not exist!");
+            return Redirect::intended('errors.missing');
+        }
 
-        /*$addCourseCredit = DB::table('batch_course')
-            ->join('course', 'course.id', '=', 'batch_course.course_id')
-            ->select(DB::raw('sum(course.credit) AS credit'))
-            ->where('batch_course.batch_id', $batch_id)->get();*/
         $addCourseCredit = DB::table('adm_v_batch_course')
             ->select(DB::raw('sum(course_credit) AS credit'))
             ->where('batch_id', $batch_id)->get();
 
-        //get year data according to degree duration
-        //$year_id = Batch::findOrFail($batch_id)->year_id;
-        //$duration = Degree::findOrFail($deg_id)->duration;
         $year_by_batch = DB::table('year')->where('id', '>=', $batch->year_id)->take($batch->relDegree->duration + 2)->lists('title', 'id');
         $year_data = array('' => 'Select Year ') + $year_by_batch;
 
         $semester_data = array('' => 'Select Semester ') + Semester::lists('title','id');
 
-        //retrieve degree id from Batch
-        //$deg_id = Batch::findOrFail($batch_id)->degree_id;
-
-        /*$deg_course_info = DB::table('degree_course')->whereNotExists(function($query) use($batch_id){
-                $query->from('batch_course')->whereRaw('degree_course.course_id = batch_course.course_id')
-                ->where('batch_course.batch_id','=', $batch_id);
-            })
-            ->leftJoin('degree', 'degree_course.degree_id', '=', 'degree.id' )
-            ->where('degree_course.degree_id','=', $deg_id)
-            ->select('degree_course.course_id', 'degree_course.degree_id', 'degree.department_id')
-            ->get();*/
-
         $deg_course_info = AdmVDdegreeCourse::where('degree_id', $deg_id)->where('batch_id', $batch_id)->get();
 
-        //$bc_list = BatchCourse::with('relYear')->where('batch_id', $batch_id)->orderBy('year_id')->orderBy('semester_id')->get();
         $bc_list = AdmVBatchCourse::where('batch_id', $batch_id)->orderBy('year')->orderBy('semester')->get();
         foreach($bc_list as $key => $value){
             $batch_course_data[$value->year][$value->semester][$value->id]['title']         = $value->course;
@@ -617,7 +599,6 @@ class AdmAmwController extends \BaseController
         return View::make('admission::amw.batch_course.index',compact(
             'batch_id','deg_id','batch','deg_course_info','year_data','semester_data','batch_course_data', 'addCourseCredit'
         ));
-
     }
 
     /**
