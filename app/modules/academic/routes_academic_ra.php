@@ -66,9 +66,12 @@ Route::post('academic/amw/config/acmconfigdelete/ajax',
 
 //*****************Faculty Course Marks Distribution(R)**********
 
-Route::get('academic/faculty/course/config',
-    'AcmFacultyController@index'
-);
+Route::any('academic/faculty/course/config',[
+    'as' => 'academic.faculty.course.config',
+    'uses'=> 'AcmFacultyController@index'
+]);
+
+
 Route::any('academic/faculty/course/marksdistitem/show/{cc_id}/{course_id}',[
     'as' => 'coursemarksdist.show',
     'uses'=> 'AcmFacultyController@course_marks_dist_show'
@@ -118,10 +121,24 @@ Route::any('academic/faculty/marks-dist-item/assign/{acm_id}/{cc_id}/{mark_dist_
     'as' => 'item.assign',
     'uses'=> 'AcmFacultyController@item_assign'
 ]);
-Route::any('batch/assign',[
+
+Route::any('batch/assign/{id}',[
     'as' => 'batch.assign',
-    'uses'=> 'AcmFacultyController@batch_assign_item'
+    'uses'=> 'AcmFacultyController@assign_item'
 ]);
+
+Route::any('batch/revoke/{id}',[
+    'as' => 'batch.revoke',
+    'uses'=> 'AcmFacultyController@revoke_item'
+]);
+
+
+Route::any('batch/batchAssignRevoke',[
+    'as' => 'batch.batchAssignRevoke',
+    'uses'=> 'AcmFacultyController@batch_assign_or_revoke_item'
+]);
+
+
 Route::any('assign/comments/{assign_std_id}/{acm_id}',[
     'as' => 'item.comments',
     'uses'=> 'AcmFacultyController@comments_assign_item'

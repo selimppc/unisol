@@ -60,7 +60,7 @@
                             </tbody>
                         </table>
                     </div>
-                    {{--<input type="button"  value="Back" onclick="window.history.go(-2)" />--}}
+                    <a href="{{ URL::route('academic.faculty.course.config') }}" class="btn btn-info btn-xs ">Back</a>
                 </div>
             </div>
         </div>
@@ -126,6 +126,7 @@
                             </tbody>
                         </table>
                     </div>
+                     <a href="{{ URL::route('academic.faculty.course.config') }}" class="btn btn-info btn-xs ">Back</a>
                 </div>
             </div>
         </div>
@@ -189,6 +190,7 @@
                             </tbody>
                         </table>
                     </div>
+                     <a href="{{ URL::route('academic.faculty.course.config') }}" class="btn btn-info btn-xs ">Back</a>
                 </div>
             </div>
         </div>
@@ -252,6 +254,7 @@
                                 </tbody>
                             </table>
                         </div>
+                         <a href="{{ URL::route('academic.faculty.course.config') }}" class="btn btn-info btn-xs ">Back</a>
                     </div>
                 </div>
             </div>
@@ -315,6 +318,7 @@
                             </tbody>
                         </table>
                     </div>
+                     <a href="{{ URL::route('academic.faculty.course.config') }}" class="btn btn-info btn-xs ">Back</a>
                 </div>
             </div>
         </div>

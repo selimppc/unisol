@@ -17,10 +17,10 @@
             <a href="{{ URL::route('admission.amw.batch-adm-test-subject.create_admtest_subject',['batch_id'=>$batch_id])}}" class="pull-right btn btn-sm btn-info" data-toggle="modal" data-target="#modal" >Add Subject To Degree</a>
            </div>
         </div>
-
+        {{ Form::open(array('url' => 'admission/amw/batch-delete-batchadmtest-subject')) }}
         <table id="example" class="table table-striped  table-bordered"  >
               <thead>
-               {{ Form::submit('Delete Items', array('class'=>'btn btn-danger btn-xs', 'id'=>'hide-button', 'style'=>'display:none'))}} <br>
+
                  <tr>
                     <th><input name="id" type="checkbox" id="checkbox" class="checkbox" value=""></th>
                     <th>Subject</th>
@@ -30,10 +30,12 @@
                  </tr>
           </thead>
           <tbody>
+          {{ Form::submit('Delete Items', array('class'=>'btn btn-xs btn-danger', 'id'=>'hide-button', 'style'=>'display:none'))}}
             @if(!empty($degree_test_sbjct))
               @foreach($degree_test_sbjct as $batch_adm_tst_sbjct)
                 <tr>
-                    <td><input type="checkbox" name="id[]" class="myCheckbox" value="{{ $batch_adm_tst_sbjct['id'] }}"></td>
+                    <td><input type="checkbox" name="id[]" class="myCheckbox" value="{{ $batch_adm_tst_sbjct->id }}"></td>
+                    {{--<td><input type="checkbox" name="ids[]"  class="myCheckbox" value="{{ $value->id }}">--}}
                     <td>{{ isset($batch_adm_tst_sbjct->relAdmTestSubject->title) ? $batch_adm_tst_sbjct->relAdmTestSubject->title : '' }} </td>
                     <td>{{ $batch_adm_tst_sbjct->marks }} </td>
                     <td>{{ $batch_adm_tst_sbjct->duration }} &nbsp; Minutes</td>
@@ -46,6 +48,7 @@
               @endforeach
             @endif
           </tbody>
+          {{ Form::submit('Delete Items', array('class'=>'btn btn-danger btn-xs', 'id'=>'hide-button', 'style'=>'display:none'))}}
         </table>
     {{form::close() }}
 

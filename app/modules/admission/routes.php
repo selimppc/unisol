@@ -236,6 +236,11 @@ Route::any('admission/amw/batch-adm-test-subject/update_admtest_subject/{id}', [
     'uses' => 'AdmAmwController@updateBatchAdmTestSubject'
 ]);
 
+Route::any('admission/amw/batch-delete-batchadmtest-subject', [
+    'as' => 'admission.amw.batch-adm-test-subject.batch-delete-admtest-subject',
+    'uses' => 'AdmAmwController@batchAdmTestSubjectBatchDelete'
+]);
+
 
 
 //...................................Only Adm Test Subject........................................................

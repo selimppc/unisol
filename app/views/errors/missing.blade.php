@@ -7,7 +7,7 @@
 @section('content')
 
     <div style="width: 98%; margin: 0 auto; background: #ffffff; padding: 2%;">
-        <h1 style="color: #aaa;"> Oops! You missed something in <b style="color: red;">Routes</b> ! </h1>
+        <h1 style="color: red;"> Oops! You missed something.</b> ! </h1>
         {{ HTML::image('/img/404.jpg', '404 error') }}
     </div>
 
