@@ -1,16 +1,16 @@
 @extends('layouts.layout')
 @section('content')
 
-    <script>
+    {{--<script>
         $(document).ready(function(){
             //$('#CreateModal').modal('show');
             $('#user-access').modal('show');
         });
-    </script>
+    </script>--}}
 
 
      <!-- User - Access Modal -->
-     <div data-backdrop="static" data-keyboard="false" class="modal fade" id="user-access" tabindex="-1" role="dialog" aria-labelledby="addCategory" aria-hidden="true">
+     <div data-backdrop="static" data-keyboard="false" class="modal fade" id="user-access" tabindex="-1" role="dialog" aria-labelledby="addCategory" aria-hidden="false">
          <div class="modal-dialog">
              <div class="modal-content">
                  <div class="modal-header">

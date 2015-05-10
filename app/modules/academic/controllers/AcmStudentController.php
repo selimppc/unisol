@@ -3,7 +3,7 @@
 class AcmStudentController extends \BaseController {
 
     function __construct() {
-        $this->beforeFilter('academicStudent', array('except' => array('acmCoursesIndex')));
+        $this->beforeFilter('academicStudent', array('except' => array('')));
     }
 
     public function acmCoursesIndex()
@@ -11,7 +11,6 @@ class AcmStudentController extends \BaseController {
         if(Auth::user()->check()) {
             $applicant_id = User::findOrFail(Auth::user()->get()->id)->applicant_id;
             $batch_id = BatchApplicant::where('applicant_id', $applicant_id)->first()->batch_id;
-
 
             $course_list = BatchCourse::whereNotExists(function ($query) use ($batch_id){
                 $query->from('course_enrollment')->whereRaw('course_enrollment.batch_course_id = batch_course.id');
@@ -54,9 +53,8 @@ class AcmStudentController extends \BaseController {
             return View::make('academic::student.courses.acm_courses',compact('courses','total_credit','left_courses','batch_courses',
                 'completed_course','completed_course_in_year','running_course','accomplished_credit','running_course_in_year'));
 
-        }
-        else {
-            Session::flash('danger', "Please Login As Applicant!");
+        } else {
+            Session::flash('danger', "Please Login As Student!");
             return Redirect::route('user/login');
         }
 

@@ -72,11 +72,11 @@
             $("#ch_credt_card").show();
         });
 
-
         $('input#ce-mandatory-id').iCheck('readonly');
 
-
         $(".textarea").wysihtml5();
+
+
 
     });
 }(jQuery.noConflict(true)));
