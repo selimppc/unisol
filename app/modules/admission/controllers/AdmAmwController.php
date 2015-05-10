@@ -1210,10 +1210,12 @@ class AdmAmwController extends \BaseController
         if($this->isPostRequest()){
             $year_id  = Input::get('year_id');
             $semester_id = Input::get('semester_id');
-            $admission_test_home = BatchAdmtestSubject::with(['relBatch'=> function($query) use($year_id, $semester_id) {
-                //$query->where('year_id', '=', $year_id)->where('semester_id', '=', $semester_id);
-            }])->groupBy('batch_id')
-                ->get();
+
+            $admission_test_home = BatchAdmtestSubject::join('batch', function ($query) use ($year_id, $semester_id) {
+                $query->on('batch.id', '=', 'batch_admtest_subject.batch_id');
+                $query->where('batch.year_id', '=', $year_id);
+                $query->where('batch.semester_id', '=', $semester_id);
+            })->groupBy('batch_id')->paginate(10);
         }else{
             $admission_test_home = BatchAdmtestSubject::with('relBatch','relBatch.relDegree',
                 'relBatch.relDegree.relDepartment','relBatch.relYear','relBatch.relSemester')->groupBy('batch_id')->get();
@@ -1221,34 +1223,13 @@ class AdmAmwController extends \BaseController
         $year_id = array('' => 'Select Year ') + Year::lists('title', 'id');
         $semester_id = array('' => 'Select Semester ') + Semester::lists('title', 'id');
 
+        // To use the old values effective use the following line before  return view::make
+        Input::flash();
+
         return View::make('admission::amw.adm_test_home.index',
             compact('admission_test_home','admission_test_batch','year_id','semester_id'));
     }
 
-    /**
-     * @return mixed
-     */
-    public function admissionTestSearchIndex()
-    {
-        $year_id  = Input::get('year_id');
-        $semester_id = Input::get('semester_id');
-
-        $adm_test_home_data = BatchAdmtestSubject::join('batch', function ($query) use ($year_id, $semester_id) {
-            $query->on('batch.id', '=', 'batch_admtest_subject.batch_id');
-            $query->where('batch.year_id', '=', $year_id);
-            $query->where('batch.semester_id', '=', $semester_id);
-        })->groupBy('batch_id')->paginate(10);
-
-        $year_id = array('' => 'Select Year ') + Year::lists('title', 'id');
-        $semester_id = array('' => 'Select Semester ') + Semester::lists('title', 'id');
-
-        // To use the old values effective use the following line before  return view:: make
-        Input::flash();
-        
-        return View::make('admission::amw.adm_test_home._search_adm_test_home_index',
-            compact('adm_test_home_data','year_id','semester_id'));
-
-    }
 
     /**
      * @return mixed
