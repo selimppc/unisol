@@ -1274,13 +1274,12 @@ class AdmAmwController extends \BaseController
      */
     public function addAdmTestExaminer($year_id, $semester_id, $batch_id)
     {
-        /*$degree_id = Batch::where('id' ,'=', $batch_id )
-            ->where('semester_id' ,'=', $semester_id)
-            ->where('year_id' ,'=', $year_id)
-            ->first()->degree_id;
-        $degree_data = Degree::with('relDepartment')
-            ->where('id','=', $degree_id)->first();*/
-        $batch = Batch::with('relVDegree')->where('id', '=', $batch_id)->first();
+        $batch = Batch::with('relVDegree')
+            ->where('id', '=', $batch_id)
+            ->where('year_id', '=', $year_id)
+            ->where('semester_id', '=', $semester_id)
+            ->first();
+        $degree_id = $batch->relVdegree->id;
 
         return View::make('admission::amw.adm_examiner._form',compact('batch','degree_id','batch_id'));
     }
