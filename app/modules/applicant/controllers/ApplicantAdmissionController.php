@@ -36,9 +36,9 @@ class ApplicantAdmissionController extends \BaseController {
     public function admission_test_subject_exam($batch_id, $admtest_subject_id)
     {
         $data = BatchAdmtestSubject::where('batch_id', $batch_id)->where('admtest_subject_id', $admtest_subject_id)->first();
-        $adm_question = AdmQuestion::where('batch_admtest_subject_id', $data->id)->first()->id;
+        $adm_question = AdmQuestion::where('batch_admtest_subject_id', $data->id)->first();
         if($adm_question){
-            $adm_question_id = $adm_question;
+            $adm_question_id = $adm_question->id;
         }else{
             $adm_question_id = '';
         }
