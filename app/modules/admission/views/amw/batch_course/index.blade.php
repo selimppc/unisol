@@ -8,7 +8,7 @@
 
     <div class="box-body">
             <div class="col-lg-12">
-                <p class= "text-purple font-size text-bold">Courses of Batch {{$batch->batch_number}} of {{$batch->relDegree->title}} in {{$batch->relDegree->detp_title}} Degree </p>
+                <p class= "text-purple font-size text-bold">Courses of Batch {{$batch->batch_number}} of {{$batch->relVDegree->title}} in {{$batch->relVDegree->dept_title}} Department</p>
                 <p>Total Credit: <b>{{$batch->relDegree->total_credit}} </b></p>
                 <p>So Far Added Credit:
                         <b>@foreach($addCourseCredit as $value)
