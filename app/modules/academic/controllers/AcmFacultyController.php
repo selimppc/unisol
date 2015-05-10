@@ -44,50 +44,6 @@ class AcmFacultyController extends \BaseController
             ->select(DB::raw('sum(marks) AS marks'))
             ->where('course_conduct_id', $cc_id)->get();
 
-        //$data->id now contains the course_conduct_id
-
-        /*$acm_marks_distribution = AcmMarksDistribution::where('course_conduct_id', '=', $data->id)->get();
-
-        if (isset($acm_marks_distribution[0]) != null) {
-            // $result = $acm_marks_distribution;
-            $result = DB::table('acm_marks_distribution')
-                ->select(
-                    'acm_marks_distribution.id as isMarksId',
-                    'acm_marks_distribution.acm_marks_dist_item_id as item_id',
-                    'acm_marks_dist_item.title as acm_dist_item_title',
-                    'acm_marks_distribution.marks as actual_marks',
-                    'acm_marks_distribution.is_readonly as readonly',
-                    'acm_marks_distribution.is_default as default_item',
-                    'acm_marks_distribution.is_attendance',
-                    'acm_marks_distribution.created_by as CBid',
-                    'acm_marks_distribution.acm_marks_policy',
-                    'course.id as course_id2'
-                )
-                ->join('course_conduct', 'acm_marks_distribution.course_conduct_id', '=', 'course_conduct.id')
-                ->join('course', 'course_conduct.course_id', '=', 'course.id')
-                ->join('acm_marks_dist_item', 'acm_marks_distribution.acm_marks_dist_item_id', '=', 'acm_marks_dist_item.id')
-                ->where('acm_marks_distribution.course_conduct_id', $data->id)
-                ->get();
-        } else {
-            $result = DB::table('acm_course_config')
-                ->select(
-                    'acm_course_config.id as isConfigId',
-                    'acm_course_config.acm_marks_dist_item_id as item_id',
-                    'acm_course_config.readonly',
-                    'acm_course_config.default_item',
-                    'acm_course_config.is_attendance',
-                    'acm_course_config.created_by',
-                    'acm_course_config.marks as actual_marks',
-                    'acm_marks_dist_item.title as acm_dist_item_title',
-                    'course.id as course_id2',
-                    'course.evaluation_total_marks as evaluation_total_marks'
-                )
-                ->join('course', 'acm_course_config.course_id', '=', 'course.id')
-                ->join('acm_marks_dist_item', 'acm_course_config.acm_marks_dist_item_id', '=', 'acm_marks_dist_item.id')
-                ->where('course.id', $course_id)
-                ->get();
-        }*/
-
         return View::make('academic::faculty.mark_distribution_courses.show', compact('datas', 'data', 'config_data', 'coursetitle', 'totalmarks', 'result'));
     }
 
@@ -230,9 +186,8 @@ class AcmFacultyController extends \BaseController
                 $marks_dist->created_by = Auth::user()->get()->id;
             else
                 $marks_dist->updated_by = Auth::user()->get()->id;
-               // $marks_dist->acm_attendance_config_id = $attendance_id;
                 $marks_dist->save();
-                //$acm_config->acm_attendance_config_id->save($marks_dist);
+
         }
         // redirect
         Session::flash('message', 'Successfully Added Marks Distribution item!');
@@ -248,17 +203,9 @@ class AcmFacultyController extends \BaseController
             if ($data->delete())
                 try {
                     $data->delete();
-                   /* $msg = array('msg' => 'Data Successfully Deleted');
-                    $response = Response::json($msg);
-                    $response->header('Content-Type', 'application/json');
-                    return $response;*/
                     return Response::json(['msg' => 'Data Successfully Deleted']);
                 }catch (exception $ex){
                     return Response::json(['msg' => 'Data Successfully Not Deleted']);
-                  /*  $msg = array('msg' => 'Data Successfully Deleted');
-                    $response = Response::json($msg);
-                    $response->header('Content-Type', 'application/json');
-                    return $response;*/
                 }
         }
     }
@@ -474,10 +421,6 @@ class AcmFacultyController extends \BaseController
         $item_title = AcmAcademic::with('relAcmAcademicAssignStudent')
             ->where('id', '=', $acm_id)
             ->first();
-
-//        $data = CourseConduct::with('relCourse')
-//            ->where('id', '=', $cc_id)
-//            ->get();
 
         //--------For sidebar data--------
         $coursetitle = AcmMarksDistribution::with('relAcmMarksDistItem', 'relCourseConduct.relCourse')
