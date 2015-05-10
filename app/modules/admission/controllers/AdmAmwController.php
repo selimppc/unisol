@@ -1105,6 +1105,18 @@ class AdmAmwController extends \BaseController
         }
     }
 
+    public function batchAdmTestSubjectBatchDelete()
+    {
+        try {
+            BatchAdmtestSubject::destroy(Request::get('id'));
+
+            return Redirect::back()->with('message', 'Successfully deleted Information!');
+        } catch (exception $ex) {
+
+            return Redirect::back()->with('danger', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+        }
+    }
+
 //.................................................admtest_subject....................................................
 
     /**
