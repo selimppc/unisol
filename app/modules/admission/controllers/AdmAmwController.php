@@ -607,13 +607,12 @@ class AdmAmwController extends \BaseController
         //$bc_list = BatchCourse::with('relYear')->where('batch_id', $batch_id)->orderBy('year_id')->orderBy('semester_id')->get();
         $bc_list = AdmVBatchCourse::where('batch_id', $batch_id)->orderBy('year')->orderBy('semester')->get();
         foreach($bc_list as $key => $value){
-            $batch_course_data[$value->Year][$value->semester][$value->id]['title']         = $value->course;
-            $batch_course_data[$value->Year][$value->semester][$value->id]['mandatory']     = $value->mandatory;
-            $batch_course_data[$value->Year][$value->semester][$value->id]['department']    = $value->department;
-            $batch_course_data[$value->Year][$value->semester][$value->id]['type']          = $value->course_type;
-            $batch_course_data[$value->Year][$value->semester][$value->id]['credit']        = $value->course_credit;
+            $batch_course_data[$value->year][$value->semester][$value->id]['title']         = $value->course;
+            $batch_course_data[$value->year][$value->semester][$value->id]['mandatory']     = $value->mandatory;
+            $batch_course_data[$value->year][$value->semester][$value->id]['department']    = $value->department;
+            $batch_course_data[$value->year][$value->semester][$value->id]['type']          = $value->course_type;
+            $batch_course_data[$value->year][$value->semester][$value->id]['credit']        = $value->course_credit;
         }
-
 
         return View::make('admission::amw.batch_course.index',compact(
             'batch_id','deg_id','batch','deg_course_info','year_data','semester_data','batch_course_data', 'addCourseCredit'
