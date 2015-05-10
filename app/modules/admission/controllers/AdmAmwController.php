@@ -1443,10 +1443,12 @@ class AdmAmwController extends \BaseController
      */
     public function createAdmTestQuestionPaper($bats_id)
     {
+
         $batch = BatchAdmtestSubject::with('relBatch')->where('id', $bats_id)->first();
 
-        $admtest_subject = BatchAdmtestSubject::AdmissionTestSubjectByBatchId($batch->batch_id);
-        $examiner_faculty_lists = array(''=>'Select An Examiner') + AdmQuestion::AdmissionExaminerList($batch->batch_id);
+            $admtest_subject = BatchAdmtestSubject::AdmissionTestSubjectByBatchId($batch->batch_id);
+            $examiner_faculty_lists = AdmQuestion::AdmissionExaminerList($batch->batch_id);
+
         return View::make('admission::amw.adm_question._form',
             compact('bats_id', 'batch','admtest_subject', 'examiner_faculty_lists'));
     }

@@ -379,13 +379,15 @@ class AdmPublicController extends \BaseController {
                 $applicant_meta_records->present_address = Input::get('present_address');
                 $applicant_meta_records->permanent_address = Input::get('permanent_address');
 
-                $imagefile = Input::file('signature');
-                $extension = $imagefile->getClientOriginalExtension();
-                $filename = str_random(12) . '.' . $extension;
-                $file = strtolower($filename);
-                $path = public_path("/applicant_images/app_meta/" . $file);
-                Image::make($imagefile->getRealPath())->resize(100, 100)->save($path);
-                $applicant_meta_records->signature  = $file;
+                if($file){
+                    $imagefile = Input::file('signature');
+                    $extension = $imagefile->getClientOriginalExtension();
+                    $filename = str_random(12) . '.' . $extension;
+                    $file = strtolower($filename);
+                    $path = public_path("/applicant_images/app_meta/" . $file);
+                    Image::make($imagefile->getRealPath())->resize(100, 100)->save($path);
+                    $applicant_meta_records->signature  = $file;
+                }
 
                 $applicant_meta_records->save();
 

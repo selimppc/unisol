@@ -18,23 +18,23 @@
 
        <div>
           {{ Form::label('place_of_birth', 'Birth Place') }}<span class="text-danger">*</span>
-          {{ Form::text('place_of_birth', Input::old('place_of_birth'),array('class' => 'form-control','placeholder'=>'')) }}
+          {{ Form::text('place_of_birth', Input::old('place_of_birth'),['class'=>'form-control','required'=>'required']) }}
        </div>
 
        <div>
           {{ Form::label('phone', 'Phone') }}<span class="text-danger">*</span>
-          {{ Form::text('phone', Input::old('phone'),array('class' => 'form-control','placeholder'=>'')) }}
+          {{ Form::text('phone', Input::old('phone'),array('class' => 'form-control','placeholder'=>'','required'=>'required')) }}
        </div>
        <br>
        <div>
          {{ Form::label('gender', 'Gender') }}<span class="text-danger">*</span>
          <div class="form-inline">
              <div class="radio">
-                 {{ Form::radio('gender', 'male', (Input::old('gender') == 'male'), array('id'=>'male', 'class'=>'radio')) }}
+                 {{ Form::radio('gender', 'male', (Input::old('gender') == 'male'), array('id'=>'male', 'class'=>'radio','required'=>'required')) }}
                  {{ Form::label('male', 'male') }}
              </div>
              <div class="radio">
-                  {{ Form::radio('gender', 'female', (Input::old('gender') == 'female'), array('id'=>'female', 'class'=>'radio')) }}
+                  {{ Form::radio('gender', 'female', (Input::old('gender') == 'female'), array('id'=>'female', 'class'=>'radio','required'=>'required')) }}
                   {{ Form::label('female', 'Female') }}
              </div>
          </div>
@@ -45,10 +45,12 @@
           @if(isset($applicant_personal_info->profile_image))
           {{ Form::label('profile_image', 'Profile Image') }}
           {{ HTML::image('/applicant_images/profile/' . $applicant_personal_info->profile_image) }}
-          @endif
+          {{ Form::file('profile_image',array('multiple'=>true,)) }}
+          @else
           <p>&nbsp;</p>
           {{ Form::label('profile_image', 'Select Profile Picture :') }}<span class="text-danger">*</span>
-          {{ Form::file('profile_image',array('multiple'=>true)) }}
+          {{ Form::file('profile_image',array('multiple'=>true,'required'=>'required')) }}
+          @endif
        </div>
        <br>
 
@@ -69,7 +71,7 @@
 
        <div>
           {{ Form::label('zip_code', 'Zip Code') }}<span class="text-danger">*</span>
-          {{ Form::text('zip_code', Input::old('zip_code'),array('class' => 'form-control','placeholder'=>'')) }}
+          {{ Form::text('zip_code', Input::old('zip_code'),array('class' => 'form-control','placeholder'=>'','required'=>'required')) }}
        </div>
        <p>&nbsp;</p>
 
