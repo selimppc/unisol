@@ -9,7 +9,7 @@
 <div class="box box-solid ">
 <div class="box-body">
   <div class="col-sm-12">
-    {{ Form::open(array('url' => 'admission/amw/adm-test-home/search-adm-test-index')) }}
+    {{ Form::open(array('url' => 'admission/amw/admission-test-home')) }}
       <div class="col-sm-8">
        <div class="col-sm-3">
         {{ Form::label('year_id', 'Year') }}
