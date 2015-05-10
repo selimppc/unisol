@@ -35,23 +35,15 @@ class ApplicantAdmissionController extends \BaseController {
 
     public function admission_test_subject_exam($batch_id, $admtest_subject_id)
     {
-        if(!$batch_id  ||  !$admtest_subject_id ){
-            $data = BatchAdmtestSubject::where('batch_id', $batch_id)->where('admtest_subject_id', $admtest_subject_id)->first();
-            $adm_question_id = '';
-            $batch_admtest_subject_id = '';
-
+        $data = BatchAdmtestSubject::where('batch_id', $batch_id)->where('admtest_subject_id', $admtest_subject_id)->first();
+        $adm_question = AdmQuestion::where('batch_admtest_subject_id', $data->id)->first()->id;
+        if($adm_question){
+            $adm_question_id = $adm_question;
         }else{
-            print_r($batch_id." --  ");
-            print_r($admtest_subject_id);
-            exit;
-            $data = BatchAdmtestSubject::where('batch_id', $batch_id)->where('admtest_subject_id', $admtest_subject_id)->first();
-            if($data){
-                $adm_question_id = AdmQuestion::where('batch_admtest_subject_id', $data->id)->first()->id;
-                $batch_admtest_subject_id = $data->id;
-            }
+            $adm_question_id = '';
         }
-       /*$question_items = AdmQuestionItems::with('relAdmQuestionOptAns')
-            ->where('adm_question_id', $adm_question_id)->get();*/
+        $batch_admtest_subject_id = $data->id;
+
 
         return View::make('applicant::admission_test.subject_exam',compact('data', 'adm_question_id', 'batch_admtest_subject_id'));
     }
