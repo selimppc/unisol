@@ -41,11 +41,15 @@ class ApplicantAdmissionController extends \BaseController {
                 $adm_question_id = AdmQuestion::where('batch_admtest_subject_id', $data->id)->first()->id;
                 $batch_admtest_subject_id = $data->id;
             }
+        }else{
+            $data = BatchAdmtestSubject::where('batch_id', $batch_id)->where('admtest_subject_id', $admtest_subject_id)->first();
+            $adm_question_id = '';
+            $batch_admtest_subject_id = '';
         }
        /*$question_items = AdmQuestionItems::with('relAdmQuestionOptAns')
             ->where('adm_question_id', $adm_question_id)->get();*/
 
-        return View::make('applicant::admission_test.subject_exam',compact('data','adm_question_id', 'batch_admtest_subject_id'));
+        return View::make('applicant::admission_test.subject_exam',compact('data', 'adm_question_id', 'batch_admtest_subject_id'));
     }
 
     public function start_admission_test(){
