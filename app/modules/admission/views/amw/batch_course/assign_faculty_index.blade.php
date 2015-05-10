@@ -60,6 +60,7 @@
                             <h4 class="text-purple">Status:  {{ isset($cc_status->status)? $cc_status->status : 'No Status Yet'}}</h4>
                         </div>
                         <div class="jumbotron text-left" style="padding-top: 2px; padding-left: 2px; padding-bottom: 5px; background-color: #FFEBE6;">
+                         @if(isset($comments_info))
                             @foreach($comments_info as $comments)
                                 <p>
                                     <b> {{isset($comments->relCourseConductComments->commented_by) ? User::FullName($comments->relCourseConductComments->commented_by) :'Faculty Not found!' }} </b>
@@ -73,6 +74,7 @@
 
                                 </p>
                             @endforeach
+                         @endif
                         </div>
                         <div class='form-group'>
                             <h4>Comments:</h4>
