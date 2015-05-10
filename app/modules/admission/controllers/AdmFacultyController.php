@@ -3,7 +3,7 @@
 class AdmFacultyController extends \BaseController {
 
     function __construct() {
-        $this->beforeFilter('admFaculty', array('except' => array('index')));
+        $this->beforeFilter('admFaculty', array('except' => array('')));
     }
 
     protected function isPostRequest()
@@ -673,7 +673,10 @@ class AdmFacultyController extends \BaseController {
         $model->commented_to = $info['commented_to'];
         $model->commented_by = Auth::user()->get()->id;
 
-        if ($model->save()) {
+        $model2 = CourseConduct::find($info['course_conduct_id']);
+        $model2->status = 'accepted';
+
+        if ($model->save() && $model2->save()) {
             Session::flash('message', 'Comments added');
             return Redirect::back();
         }else {
