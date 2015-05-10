@@ -107,6 +107,7 @@
                                                     <th>Course</th>
                                                     <th>Credit</th>
                                                     <th>GPA</th>
+                                                    <th>student Name</th>
                                                     <th>Status</th>
                                                     <th>Action</th>
                                                 </tr>
@@ -123,6 +124,7 @@
                                                             </td>
                                                             <td>{{ isset($value->relBatchCourse->relCourse->credit) ? $value->relBatchCourse->relCourse->credit : ''}}</td>
                                                             <td></td>
+                                                            <td>{{ $value->student_user_id  }}</td>
                                                             <td>
                                                                 {{strtoupper($value->status)}}
                                                             </td>
