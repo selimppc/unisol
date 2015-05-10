@@ -14,7 +14,7 @@
             @foreach($comments_info as $comments_info)
                 <strong>Comments : </strong><h4> {{isset($comments_info->comments) ? $comments_info->comments : ''}}</h4>
                 <strong>By : </strong>
-                {{--<h4> {{ $comments_info->commented_by }}</h4>--}}
+                <h4>{{ User::FullName($comments_info->commented_by); }}</h4>
                 <h4></h4>
                 <br>
             @endforeach
