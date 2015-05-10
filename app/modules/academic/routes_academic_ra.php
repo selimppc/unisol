@@ -130,9 +130,9 @@ Route::any('batch/revoke/{id}',[
 ]);
 
 
-Route::any('batch/batchAssign',[
-    'as' => 'batch.batchAssign',
-    'uses'=> 'AcmFacultyController@batch_assign_item'
+Route::any('batch/batchAssignRevoke',[
+    'as' => 'batch.batchAssignRevoke',
+    'uses'=> 'AcmFacultyController@batch_assign_or_revoke_item'
 ]);
 
 
