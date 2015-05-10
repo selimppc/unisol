@@ -118,10 +118,24 @@ Route::any('academic/faculty/marks-dist-item/assign/{acm_id}/{cc_id}/{mark_dist_
     'as' => 'item.assign',
     'uses'=> 'AcmFacultyController@item_assign'
 ]);
-Route::any('batch/assign',[
+
+Route::any('batch/assign/{id}',[
     'as' => 'batch.assign',
+    'uses'=> 'AcmFacultyController@assign_item'
+]);
+
+Route::any('batch/revoke/{id}',[
+    'as' => 'batch.revoke',
+    'uses'=> 'AcmFacultyController@revoke_item'
+]);
+
+
+Route::any('batch/batchAssign',[
+    'as' => 'batch.batchAssign',
     'uses'=> 'AcmFacultyController@batch_assign_item'
 ]);
+
+
 Route::any('assign/comments/{assign_std_id}/{acm_id}',[
     'as' => 'item.comments',
     'uses'=> 'AcmFacultyController@comments_assign_item'

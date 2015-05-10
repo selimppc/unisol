@@ -506,6 +506,44 @@ class AcmFacultyController extends \BaseController
         return $result;
     }
 
+
+    public function assign_item($id)
+    {
+       // $data = Input::find($id);
+        $aca_id = Input::get('acm_academic_id');
+        $exam_id = Input::get('exam_question');
+
+
+        $model = AcmAcademicAssignStudent::findOrFail($id);
+        if ($exam_id) {
+            $model->exm_question_id = $exam_id;
+        }
+        if (Auth::user()->check()) {
+            $model->assigned_by = Auth::user()->get()->id;
+        }
+        $model->status = 'A';
+        $model->save();
+
+        return Redirect::back()->with('message', 'Successfully Assigned !');
+    }
+
+    public function revoke_item($id)
+    {
+        // $data = Input::find($id);
+        $aca_id = Input::get('acm_academic_id');
+        $exam_id = Input::get('exam_question');
+
+        $model = AcmAcademicAssignStudent::find($id);
+        $model->status = 'NA';
+        $model->save();
+
+        return Redirect::back()->with('message', 'Successfully Revoked !');
+
+    }
+
+
+
+
     public function batch_assign_item()
     {
         $data = Input::all();

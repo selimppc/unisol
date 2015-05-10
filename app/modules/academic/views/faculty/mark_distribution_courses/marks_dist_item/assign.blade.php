@@ -29,7 +29,7 @@
                 <div class="tab-pane active" id="tab_1">
                     <div class="box-body table-responsive ">
                         <div>&nbsp;</div>
-                        {{ Form::open(array('url' => 'batch/assign')) }}
+                        {{ Form::open(array('url' => 'batch/batchAssign')) }}
                         {{--{{ Form::hidden('acm_academic_id',$acm->id, ['class'=>'form-control acm_academic_id'])}}--}}
                         <div class='form-group' style="width: 300px">
                             {{ Form::label('exam_question', 'Examination Question:') }}
@@ -68,9 +68,10 @@
                                     <a href="{{URL::route('item.evaluation',['acm_assign_stu_id'=>$value->id,'acm_id'=>$value->acm_academic_id,'student_user_id'=>$value->student_user_id])}}" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#evaluationModal"> Evaluation </a>
 
                                     @if($value->status == 'A')
-                                        {{ Form::submit('Revoke', ['name' => 'revoke', 'class' => 'btn btn-danger btn-xs']) }}
-                                    @else
-                                        {{ Form::submit('Assign', ['name' => 'assign', 'class' => 'btn btn-success btn-xs']) }}
+                                        <a href="{{URL::route('batch.revoke',['id'=>$value->id])}}" class="btn btn-primary btn-xs"> Revoke </a>
+                                    @elseif($value->status == 'NA')
+{{--                                        {{ Form::submit('Assign', ['name' => 'assign', 'class' => 'btn btn-success btn-xs']) }}--}}
+                                        <a href="{{URL::route('batch.assign',['id'=>$value->id])}}" class="btn btn-primary btn-xs"> Assign </a>
                                     @endif
                                 </td>
                             </tr>
@@ -79,7 +80,7 @@
                             </tbody>
                         </table>
                         <div class="button" style="margin-top: 10px">
-                            <a href="{{URL::previous()}}" class="btn btn-info btn-xs ">Back</a>
+                            <a href="{{ URL::back() }}" class="btn btn-info btn-xs ">Back</a>
                             {{ Form::submit('Do Assign', ['name' => 'assign', 'class' => 'btn btn-success btn-xs']) }}
                             {{ Form::submit('Do Revoke', ['name' => 'revoke','class' => 'btn btn-danger btn-xs']) }}
                         </div>
