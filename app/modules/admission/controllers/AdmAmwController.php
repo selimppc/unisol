@@ -570,26 +570,28 @@ class AdmAmwController extends \BaseController
      */
     public function batch_course_index($batch_id, $deg_id)
     {
-        $batch = $batch_id;
-        $degree_id = $deg_id;;
-        $degree_title = Batch::with('relDegree', 'relDegree.relDegreeCourse', 'relDegree.relDegreeProgram', 'relDegree.relDegreeGroup', 'relDegree.relDepartment' )
-            ->where('id' , '=' ,$batch_id)->first();
+        /*$degree_title = Batch::with('relDegree', 'relDegree.relDegreeCourse', 'relDegree.relDegreeProgram', 'relDegree.relDegreeGroup', 'relDegree.relDepartment' )
+            ->where('id' , '=' ,$batch_id)->first();*/
+        $batch = Batch::with('relDegree')->where('id', '=', $batch_id)->first();
 
-        $addCourseCredit = DB::table('batch_course')
+        /*$addCourseCredit = DB::table('batch_course')
             ->join('course', 'course.id', '=', 'batch_course.course_id')
             ->select(DB::raw('sum(course.credit) AS credit'))
-            ->where('batch_course.batch_id', $batch_id)->get();
+            ->where('batch_course.batch_id', $batch_id)->get();*/
+        $addCourseCredit = DB::table('adm_v_batch_course')
+            ->select(DB::raw('sum(course_credit) AS credit'))
+            ->where('batch_id', $batch_id)->get();
 
         //get year data according to degree duration
-        $year_id = Batch::findOrFail($batch_id)->year_id;
-        $duration = Degree::findOrFail($deg_id)->duration;
-        $year_by_batch = DB::table('year')->where('id', '>=', $year_id)->take($duration+2)->lists('title', 'id');
+        //$year_id = Batch::findOrFail($batch_id)->year_id;
+        //$duration = Degree::findOrFail($deg_id)->duration;
+        $year_by_batch = DB::table('year')->where('id', '>=', $batch->year_id)->take($batch->relDegree->duration + 2)->lists('title', 'id');
         $year_data = array('' => 'Select Year ') + $year_by_batch;
 
         $semester_data = array('' => 'Select Semester ') + Semester::lists('title','id');
 
         //retrieve degree id from Batch
-        $degree_id = Batch::findOrFail($batch_id)->degree_id;
+        //$deg_id = Batch::findOrFail($batch_id)->degree_id;
 
         /*$deg_course_info = DB::table('degree_course')->whereNotExists(function($query) use($batch_id){
                 $query->from('batch_course')->whereRaw('degree_course.course_id = batch_course.course_id')
@@ -602,19 +604,19 @@ class AdmAmwController extends \BaseController
 
         $deg_course_info = AdmVDdegreeCourse::where('degree_id', $deg_id)->where('batch_id', $batch_id)->get();
 
-
-        $bc_list = BatchCourse::with('relYear')->where('batch_id', $batch_id)->orderBy('year_id')->orderBy('semester_id')->get();
+        //$bc_list = BatchCourse::with('relYear')->where('batch_id', $batch_id)->orderBy('year_id')->orderBy('semester_id')->get();
+        $bc_list = AdmVBatchCourse::where('batch_id', $batch_id)->orderBy('year')->orderBy('semester')->get();
         foreach($bc_list as $key => $value){
-            $batch_course_data[$value->relYear->title][$value->relsemester->title][$value->id]['title'] = $value->relCourse->title;
-            $batch_course_data[$value->relYear->title][$value->relsemester->title][$value->id]['mandatory'] = $value->is_mandatory;
-            $batch_course_data[$value->relYear->title][$value->relsemester->title][$value->id]['department'] = $value->relBatch->relDegree->relDepartment->title;
-            $batch_course_data[$value->relYear->title][$value->relsemester->title][$value->id]['type'] = $value->relCourse->relCourseType->title;
-            $batch_course_data[$value->relYear->title][$value->relsemester->title][$value->id]['credit'] = $value->relCourse->credit;
+            $batch_course_data[$value->Year][$value->semester][$value->id]['title']         = $value->course;
+            $batch_course_data[$value->Year][$value->semester][$value->id]['mandatory']     = $value->mandatory;
+            $batch_course_data[$value->Year][$value->semester][$value->id]['department']    = $value->department;
+            $batch_course_data[$value->Year][$value->semester][$value->id]['type']          = $value->course_type;
+            $batch_course_data[$value->Year][$value->semester][$value->id]['credit']        = $value->course_credit;
         }
 
 
         return View::make('admission::amw.batch_course.index',compact(
-            'batch','degree_id','degree_title','deg_course_info','year_data','semester_data','batch_course_data', 'addCourseCredit'
+            'batch_id','deg_id','batch','deg_course_info','year_data','semester_data','batch_course_data', 'addCourseCredit'
         ));
 
     }

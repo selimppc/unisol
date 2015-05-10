@@ -8,15 +8,15 @@
 
     <div class="box-body">
             <div class="col-lg-12">
-                <p class= "text-purple font-size text-bold">Courses of Batch {{$degree_title->batch_number}} of {{$degree_title->relDegree->relDegreeProgram->code}} {{$degree_title->relDegree->relDegreeGroup->code}} in {{$degree_title->relDegree->relDepartment->title}} Degree </p>
-                <p>Total Credit: <b>{{$degree_title->relDegree->total_credit}} </b></p>
+                <p class= "text-purple font-size text-bold">Courses of Batch {{$batch->batch_number}} of {{$batch->relDegree->title}} in {{$batch->relDegree->detp_title}} Degree </p>
+                <p>Total Credit: <b>{{$batch->relDegree->total_credit}} </b></p>
                 <p>So Far Added Credit:
                         <b>@foreach($addCourseCredit as $value)
                             {{ isset($value->credit) ? $value->credit : 'No Course taken'}}
                         @endforeach</b>
                 </p>
 
-                {{ Form::hidden('degree_id', $degree_id , ['class'=>'form-control degree_id'])}}
+                {{ Form::hidden('degree_id', $deg_id , ['class'=>'form-control degree_id'])}}
                 @if(isset($batch_course_data))
                 @foreach($batch_course_data as $yr => $semesters)
                 	<h4 class="text-purple font-size text-bold"> Year : {{$yr}} </h4>
@@ -96,7 +96,7 @@
 
     <p>&nbsp;</p>
     <p class= "text-purple font-size text-bold">Degree Course List ::  </p>
-    <p>Please add course for batch <b>{{$degree_title->batch_number}}</b> from the following (Degree Course) table</p>
+    <p>Please add course for batch <b>{{$batch->batch_number}}</b> from the following (Degree Course) table</p>
 {{--{{ Form::open(array('url' => 'admission/amw/save/batch-data')) }}--}}
     <table id="example1" class="table table-bordered table-hover table-striped">
         <thead>
@@ -120,7 +120,7 @@
                 <tr>
                     <td> <input type="checkbox" name="id[]"  class="myCheckbox" value="{{$value->course_id}}"> </td>
                 {{Form::open(array('url' => 'admission/amw/batch-course/save'))}}
-                {{ Form::hidden('batch_id', $batch , ['class'=>'form-control batch_id'])}}
+                {{ Form::hidden('batch_id', $batch_id , ['class'=>'form-control batch_id'])}}
                     <td> {{$value->course}} ({{$value->course_code}})</td>
                 {{ Form::hidden('course_id',($value->course_id))}}
                     <td> {{$value->department}} </td>
@@ -140,7 +140,7 @@
     </table>
 {{--    {{ Form::close() }}--}}
     {{--{{ $deg_course_info->links() }}--}}
-        <a class="pull-right btn btn-xs btn-primary" href="{{ URL::route('admission.amw.batch',['degree_id'=> $degree_title->degree_id])}}"> <i class="fa fa-arrow-circle-left"></i> Back To Batch Management</a>
+        <a class="pull-right btn btn-xs btn-primary" href="{{ URL::route('admission.amw.batch',['degree_id'=> $batch->relDegree->degree_id])}}"> <i class="fa fa-arrow-circle-left"></i> Back To Batch Management</a>
         <p>&nbsp;</p>
     </div>
 
