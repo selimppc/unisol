@@ -20,9 +20,11 @@
                             <table class="table table-striped  table-bordered">
                                 <tr>
                                     <th>Degree:</th>
-                                    <td>  {{isset($batch_applicant->relBatch->relDegree->title)? $batch_applicant->relBatch->relDegree->title : ''}},
-                                        {{isset($batch_applicant->relBatch->relSemester->title) ? $batch_applicant->relBatch->relSemester->title : '' }},
-                                        {{isset($batch_applicant->relBatch->relYear->title)? $batch_applicant->relBatch->relYear->title : ''}}</td>
+                                    <td> {{isset($batch_applicant->relBatch->relDegree->relDegreeLevel->code)? $batch_applicant->relBatch->relDegree->relDegreeLevel->code : ''}}
+                                         {{isset($batch_applicant->relBatch->relDegree->relDegreeGroup->code)? $batch_applicant->relBatch->relDegree->relDegreeGroup->code : ''}} In
+                                         {{isset($batch_applicant->relBatch->relDegree->relDegreeProgram->code)? $batch_applicant->relBatch->relDegree->relDegreeProgram->code : ''}},
+                                         {{isset($batch_applicant->relBatch->relSemester->title) ? $batch_applicant->relBatch->relSemester->title : '' }}-
+                                         {{isset($batch_applicant->relBatch->relYear->title)? $batch_applicant->relBatch->relYear->title : ''}}</td>
                                 </tr>
                                 <tr>
                                     <th>Test Date:</th>
@@ -57,6 +59,7 @@
                                 @endforeach
                                 </tbody>
                             </table>
+                            <a class="pull-right btn btn-xs btn-circle" href="{{ URL::route('applicant.admission-test')}}" title="Back To Courses"><b style="color: #000000;font-size: medium"><i class="fa fa-arrow-circle-left"></i></b></a><br>
                         </div>
                     </div>
                 </div>
