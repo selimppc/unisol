@@ -69,7 +69,7 @@
 
                                     @if($value->status == 'A')
                                         <a href="{{URL::route('batch.revoke',['id'=>$value->id])}}" class="btn btn-danger btn-xs"> Revoke </a>
-                                    @elseif($value->status == 'NA')
+                                    @elseif($value->status == 'NA' || $value->status == '' )
 {{--                                        {{ Form::submit('Assign', ['name' => 'assign', 'class' => 'btn btn-success btn-xs']) }}--}}
                                         <a href="{{URL::route('batch.assign',['id'=>$value->id])}}" class="btn btn-primary btn-xs"> Assign </a>
                                     @endif

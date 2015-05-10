@@ -582,7 +582,6 @@ class AdmAmwController extends \BaseController
 
         $year_by_batch = DB::table('year')->where('id', '>=', $batch->year_id)->take($batch->relDegree->duration + 2)->lists('title', 'id');
         $year_data = array('' => 'Select Year ') + $year_by_batch;
-
         $semester_data = array('' => 'Select Semester ') + Semester::lists('title','id');
 
         $deg_course_info = AdmVDdegreeCourse::where('degree_id', $deg_id)->where('batch_id', $batch_id)->get();
@@ -1243,6 +1242,9 @@ class AdmAmwController extends \BaseController
         $year_id = array('' => 'Select Year ') + Year::lists('title', 'id');
         $semester_id = array('' => 'Select Semester ') + Semester::lists('title', 'id');
 
+        // To use the old values effective use the following line before  return view:: make
+        Input::flash();
+        
         return View::make('admission::amw.adm_test_home._search_adm_test_home_index',
             compact('adm_test_home_data','year_id','semester_id'));
 
