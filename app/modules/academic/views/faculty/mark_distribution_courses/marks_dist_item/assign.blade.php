@@ -80,7 +80,7 @@
                             </tbody>
                         </table>
                         <div class="button" style="margin-top: 10px">
-                            <a href="{{ URL::back() }}" class="btn btn-info btn-xs ">Back</a>
+                            <a href="{{ URL::previous() }}" class="btn btn-info btn-xs ">Back</a>
                             {{ Form::submit('Do Assign', ['name' => 'assign', 'class' => 'btn btn-success btn-xs']) }}
                             {{ Form::submit('Do Revoke', ['name' => 'revoke','class' => 'btn btn-danger btn-xs']) }}
                         </div>
