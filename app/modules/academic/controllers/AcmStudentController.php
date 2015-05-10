@@ -179,7 +179,6 @@ class AcmStudentController extends \BaseController {
     public function acmCoursesStatus($id, $value){
 
         if($value=='revoked'){
-            echo "ok";echo $id; exit;
             $model =  CourseEnrollment::find($id);
             $model->status = $value;
             $model->save();
