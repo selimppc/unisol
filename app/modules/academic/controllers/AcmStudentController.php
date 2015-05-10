@@ -34,7 +34,7 @@ class AcmStudentController extends \BaseController {
             $s_u_id = Auth::user()->get()->id;
 
             $running_course = CourseEnrollment::with('relBatchCourse','relBatchCourse.relCourse')
-                ->whereIn('status', array('enrolled', 'revoked','invoked'))
+                ->whereIn('status', array('enrolled', 'revoked', 'invoked'))
                 ->where('student_user_id', '=', $s_u_id)
                 ->get();
 
@@ -146,9 +146,9 @@ class AcmStudentController extends \BaseController {
                 $model->taken_in_semester_id = $taken_in_semester;
                 $model->status ='1';
                 if($sem_count > $max_credit){
-                    Session::flash('danger', "Credit Limit exceed. Max Limit is 18!");
+                    Session::flash('danger', "Credit Limit exceed. Max Limit is $max_credit!");
                 }elseif($sem_count < $min_credit){
-                    Session::flash('danger', "Credit Limit exceed.Min Limit is 6!");
+                    Session::flash('danger', "Less Credit. Min Limit is $min_credit!");
                 }
                 else{
                     $model->save();
@@ -179,6 +179,7 @@ class AcmStudentController extends \BaseController {
     public function acmCoursesStatus($id, $value){
 
         if($value=='revoked'){
+            echo "ok";exit;
             $model =  CourseEnrollment::find($id);
             $model->status = $value;
             $model->save();
