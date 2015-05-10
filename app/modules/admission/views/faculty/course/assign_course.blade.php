@@ -31,16 +31,29 @@
                         <td>Status :</td>
                         <td>{{ $assign_course->status }}</td>
                     </tr>
+
                 </table>
+
                 <small>Comments as below: </small>
 
                 @foreach($assign_course_commnt as $do_comments)
                     <p style="padding: 1%; background: #efefef;">
-                        <b><small>{{ User::FullName($do_comments->commented_to); }}</small></b>
+                        <b><small>
+                        @if($do_comments->commented_to)
+                            {{ User::FullName($do_comments->commented_to); }}
+                        @endif
+                        </small></b>
                         As &nbsp; <b><small>{{  strtoupper(Role::RoleName($do_comments->commented_by)) }} </small></b><br>
                       &nbsp; &nbsp; &nbsp; {{ $do_comments->comments }}
                     </p>
                 @endforeach
+
+                <div class='form-group'>
+                    {{ Form::label('cc_status', 'Select Status') }}
+                    {{ Form::select('cc_status', array('accepted' => 'accepted', 'requested' => 'requested', 'deny' => 'deny'), ['class'=>'form-control','required'=>'required']) }}
+                </div>
+
+
                 <div class="form-group">
                       {{ Form::textarea('comments', Null, ['onkeyup'=>"javascript:this.value=this.value.replace(/[<,>]/g,'');",'class' => 'form-control', 'placeholder'=>'Your Comments Here', 'style'=>'height: 100px;']) }}
                 </div>

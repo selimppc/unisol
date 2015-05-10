@@ -674,8 +674,7 @@ class AdmFacultyController extends \BaseController {
         $model->commented_by = Auth::user()->get()->id;
 
         $model2 = CourseConduct::find($info['course_conduct_id']);
-        $model2->status = 'accepted';
-
+        $model2->status = Input::get('cc_status');
         if ($model->save() && $model2->save()) {
             Session::flash('message', 'Comments added');
             return Redirect::back();
