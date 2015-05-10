@@ -544,7 +544,7 @@ class AcmFacultyController extends \BaseController
 
 
 
-    public function batch_assign_item()
+    public function batch_assign_or_revoke_item()
     {
         $data = Input::all();
         $chk = Input::get('chk');
