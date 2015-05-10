@@ -279,6 +279,7 @@ class AcmFacultyController extends \BaseController
             ->where('id', '=', $cc_id)
             ->get();
 
+        //Side bar data start
         $config_data = AcmMarksDistribution::with('relAcmMarksDistItem', 'relCourseConduct.relCourse')
             ->where('course_conduct_id', '=', $cc_id)
             ->get();
@@ -286,6 +287,7 @@ class AcmFacultyController extends \BaseController
         $coursetitle = AcmMarksDistribution::with('relAcmMarksDistItem', 'relCourseConduct.relCourse')
             ->where('course_conduct_id', '=', $cc_id)
             ->first();
+        //Side bar data end
 
         return View::make('academic::faculty.mark_distribution_courses.marks_dist_item.index', compact('marks_dist', 'course_con_id', 'datas', 'config_data', 'data', 'marks_dist_id', 'cmid', 'date_time', 'coursetitle', 'marks_dist_item_id'));
     }
@@ -473,16 +475,21 @@ class AcmFacultyController extends \BaseController
             ->where('id', '=', $acm_id)
             ->first();
 
-        //--------For sidebar data--------
-        $data = CourseConduct::with('relCourse')
-            ->where('id', '=', $cc_id)
-            ->get();
+//        $data = CourseConduct::with('relCourse')
+//            ->where('id', '=', $cc_id)
+//            ->get();
 
+        //--------For sidebar data--------
+        $coursetitle = AcmMarksDistribution::with('relAcmMarksDistItem', 'relCourseConduct.relCourse')
+            ->where('course_conduct_id', '=', $cc_id)
+            ->first();
         $config_data = AcmMarksDistribution::with('relAcmMarksDistItem', 'relCourseConduct.relCourse')
             ->where('course_conduct_id', '=', $cc_id)
             ->get();
+
         //--------end sidebar-------------
-        return View::make('academic::faculty.mark_distribution_courses.marks_dist_item.assign', compact('course_enroll','course_list','item_title','exam_questions','std_assign','data','config_data'));
+
+        return View::make('academic::faculty.mark_distribution_courses.marks_dist_item.assign', compact('course_enroll','course_list','item_title','exam_questions','std_assign','data','config_data','coursetitle'));
     }
 
     /*
