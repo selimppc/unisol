@@ -3,7 +3,7 @@
 class AcmStudentController extends \BaseController {
 
     function __construct() {
-        $this->beforeFilter('academicStudent', array('except' => array('acmCoursesIndex')));
+        $this->beforeFilter('academicStudent', array('except' => array('')));
     }
 
     public function acmCoursesIndex()
@@ -11,7 +11,6 @@ class AcmStudentController extends \BaseController {
         if(Auth::user()->check()) {
             $applicant_id = User::findOrFail(Auth::user()->get()->id)->applicant_id;
             $batch_id = BatchApplicant::where('applicant_id', $applicant_id)->first()->batch_id;
-
 
             $course_list = BatchCourse::whereNotExists(function ($query) use ($batch_id){
                 $query->from('course_enrollment')->whereRaw('course_enrollment.batch_course_id = batch_course.id');
@@ -35,7 +34,7 @@ class AcmStudentController extends \BaseController {
             $s_u_id = Auth::user()->get()->id;
 
             $running_course = CourseEnrollment::with('relBatchCourse','relBatchCourse.relCourse')
-                ->whereIn('status', array('enrolled', 'revoked','invoked'))
+                ->whereIn('status', array('enrolled', 'revoked', 'invoked'))
                 ->where('student_user_id', '=', $s_u_id)
                 ->get();
 
@@ -54,9 +53,8 @@ class AcmStudentController extends \BaseController {
             return View::make('academic::student.courses.acm_courses',compact('courses','total_credit','left_courses','batch_courses',
                 'completed_course','completed_course_in_year','running_course','accomplished_credit','running_course_in_year'));
 
-        }
-        else {
-            Session::flash('danger', "Please Login As Applicant!");
+        } else {
+            Session::flash('danger', "Please Login As Student!");
             return Redirect::route('user/login');
         }
 
@@ -148,9 +146,9 @@ class AcmStudentController extends \BaseController {
                 $model->taken_in_semester_id = $taken_in_semester;
                 $model->status ='1';
                 if($sem_count > $max_credit){
-                    Session::flash('danger', "Credit Limit exceed. Max Limit is 18!");
+                    Session::flash('danger', "Credit Limit exceed. Max Limit is $max_credit!");
                 }elseif($sem_count < $min_credit){
-                    Session::flash('danger', "Credit Limit exceed.Min Limit is 6!");
+                    Session::flash('danger', "Less Credit. Min Limit is $min_credit!");
                 }
                 else{
                     $model->save();
