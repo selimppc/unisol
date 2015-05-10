@@ -66,9 +66,12 @@ Route::post('academic/amw/config/acmconfigdelete/ajax',
 
 //*****************Faculty Course Marks Distribution(R)**********
 
-Route::get('academic/faculty/course/config',
-    'AcmFacultyController@index'
-);
+Route::any('academic/faculty/course/config',[
+    'as' => 'academic.faculty.course.config',
+    'uses'=> 'AcmFacultyController@index'
+]);
+
+
 Route::any('academic/faculty/course/marksdistitem/show/{cc_id}/{course_id}',[
     'as' => 'coursemarksdist.show',
     'uses'=> 'AcmFacultyController@course_marks_dist_show'
