@@ -51,6 +51,11 @@ class Batch extends Eloquent{
     public function relDegree(){
         return $this->belongsTo('Degree', 'degree_id', 'id');
     }
+
+    public function relVDegree(){
+        return $this->belongsTo('AdmVDegree', 'degree_id', 'id');
+    }
+
     public function relYear(){
         return $this->belongsTo('Year', 'year_id', 'id');
     }
