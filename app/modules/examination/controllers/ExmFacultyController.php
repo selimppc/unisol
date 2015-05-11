@@ -21,6 +21,10 @@ class ExmFacultyController extends \BaseController {
 
     }
 
+    public function questionPaper()
+    {
+
+    }
 
 
 //fct: Question List
