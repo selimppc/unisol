@@ -18,6 +18,7 @@ Shafi
 */
 
 include("routes_sh.php");
+include("routes_sh2.php");
 
 //Route::any('',[
 //    'as' =>'',
