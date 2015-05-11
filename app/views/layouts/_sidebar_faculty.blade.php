@@ -31,7 +31,7 @@
 
     <li class="treeview">
             <a href="#">
-                <i class="fa  fa-edit"></i>
+                <i class="fa fa-edit" style="color: #09b021"></i>
                 <span>Examination</span>
                 <i class="fa fa-angle-left pull-right"></i>
             </a>
