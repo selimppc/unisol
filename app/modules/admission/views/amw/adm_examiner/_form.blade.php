@@ -8,8 +8,7 @@
         {{Form::open(array('url'=>'admission/amw/admission-test-examiner/store-admission-test-examiner', 'class'=>'form-horizontal','files'=>true))}}
 
             <div class='form-group'>
-                <strong> Degree Name: </strong>{{ $batch->relDegree->title }} </br>
-                {{--<strong> Department: </strong>{{ $degree_data->relDepartment->title }}--}}
+                <strong> Degree Name: </strong>{{ $batch->relVDegree->title }} </br>
             </div>
 
            {{ Form::hidden('batch_id',$batch_id,Input::old('batch_id')) }} </br>

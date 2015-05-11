@@ -150,6 +150,7 @@ return array(
     'CreateExmQuestionOptAnsTable' => $baseDir . '/app/database/migrations/bak/2015_01_25_000021_create_exm_question_opt_ans_table.php',
     'CreateFacultyTable' => $baseDir . '/app/database/migrations/bak/2015_01_14_000102_create_faculty_table.php',
     'CreateFees' => $baseDir . '/app/database/migrations/2015_03_15_171558_create_fees.php',
+    'CreateHr' => $baseDir . '/app/database/migrations/2015_05_11_104704_create_hr.php',
     'CreateLibrary' => $baseDir . '/app/database/migrations/2015_04_21_170930_create_library.php',
     'CreateMarksDistributionRl' => $baseDir . '/app/database/migrations/version-1/2015_02_01_04_create_marks_distribution_rl.php',
     'CreateQuestionPrepareRl' => $baseDir . '/app/database/migrations/version-1/2015_02_01_03_create_question_prepare_rl.php',
