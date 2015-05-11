@@ -19,6 +19,7 @@ Shafi
 
 include("routes_sh.php");
 include("routes_sh2.php");
+include("routes_exm_tjt.php");
 
 //Route::any('',[
 //    'as' =>'',
