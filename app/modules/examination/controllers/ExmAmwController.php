@@ -522,10 +522,11 @@ public function assign_faculty(){
             [
                 'relCourseConduct', 'relCourseConduct.relCourse', 'relCourseConduct.relCourse.relSubject.relDepartment',
                 'relCourseConduct.relYear','relCourseConduct.relSemester', 'relAcmMarksDistItem' => function ($query)
-                { $query->where('is_exam', 1); }
+                { $query->where('acm_marks_dist_item.is_exam','=', 1); }
             ]
         )->get();
-       // print_r($exam_data);exit;
+
+
 
         return View::make('examination::amw.exam.exam_list',compact('exam_data','year_id','semester_id'));
 

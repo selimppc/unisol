@@ -65,7 +65,7 @@
                         </div><!-- /.box -->
                         <a class="pull-right btn btn-xs btn-circle" href="{{ URL::route('academic.student.courses.index')}}" title="Back To Courses"><b style="color: #000000;font-size: medium"><i class="fa fa-arrow-circle-left"></i></b></a><p>&nbsp;</p>
                     </div><!-- /.tab-pane -->
-
+{{------------------Starts :Class -----------------------------------------------------}}
                     <div class="tab-pane" id="tab_2">
                         <div class="box-body table-responsive"><p>&nbsp;</p>
                             <table id="" class="table table-bordered table-striped">
