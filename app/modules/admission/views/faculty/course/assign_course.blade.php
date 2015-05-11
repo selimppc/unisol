@@ -50,7 +50,7 @@
 
                 <div class='form-group'>
                     {{ Form::label('cc_status', 'Select Status') }}
-                    {{ Form::select('cc_status', array('accepted' => 'accepted', 'requested' => 'requested', 'deny' => 'deny'), ['class'=>'form-control','required'=>'required']) }}
+                    {{ Form::select('cc_status', array('accepted' => 'accepted', 'requested' => 'requested', 'deny' => 'deny'), array('class' => 'form-control','required'=>'required')) }}
                 </div>
 
 
