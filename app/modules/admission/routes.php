@@ -335,7 +335,7 @@ Route::any('admission/amw/admission-test-examiner/delete-adm-test-examiner',[
 ]);
 //...................................Admission Question........................................................
 
-Route::any('admission/amw/admission-test-question/{bats_id}/{batch_id}',[
+Route::any('admission/amw/admission-test-question/{batch_id}',[
     'as' => 'admission.amw.admission-test-question',
     'uses' => 'AdmAmwController@admQuestionIndex'
 ]);

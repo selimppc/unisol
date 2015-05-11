@@ -12,11 +12,11 @@
             <div class="box-body">
                 <div class="row">
                     <div class="pull-right col-sm-4">
-                        <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('admission/amw/admission/create-admtest-question-paper',['bats_id'=>$bats_id])}}" data-toggle="modal" data-target="#modal" >Create Question Paper</a>
+                        <a class="pull-right btn btn-sm btn-info" href="{{ URL::to('admission/amw/admission/create-admtest-question-paper')}}" data-toggle="modal" data-target="#modal" >Create Question Paper</a>
                     </div>
                     <div class="col-sm-6">
-                        <strong> Batch# </strong> {{ isset($batch->relBatch->batch_number) ? $batch->relBatch->batch_number : '' }} </br>
-                        <strong> Degree Name: </strong> {{isset( $batch->relBatch->relDegree->relDegreeLevel->code) ?$batch->relBatch->relDegree->relDegreeLevel->code : '' }}{{isset($batch->relBatch->relDegree->relDegreeGroup->code) ? $batch->relBatch->relDegree->relDegreeGroup->code : '' }} In {{isset($batch->relBatch->relDegree->relDegreeProgram->code) ? $batch->relBatch->relDegree->relDegreeProgram->code : '' }} , {{isset($batch->relBatch->relSemester->title)? $batch->relBatch->relSemester->title : '' }} - {{isset( $batch->relBatch->relYear->title) ? $batch->relBatch->relYear->title :'' }}
+                        <strong> Batch# </strong> {{ isset($batch->batch_number) ? $batch->batch_number : '' }} </br>
+                        <strong> Degree Name: </strong> {{isset( $batch->relVDegree->title) ?$batch->relVDegree->title : ''}} at {{isset( $batch->relYear->title) ? $batch->relYear->title :'' }}
                     </div>
                 </div>
                 <table id="example" class="table table-striped  table-bordered"  >
@@ -40,8 +40,8 @@
                             <td><input type="checkbox" name="id[]" class="myCheckbox" value="{{ $values->id }}"></td>
                             <td> {{isset( $values->title)?  $values->title :''}} </td>
                             <td>{{date("d-m-Y", strtotime((isset( $values->deadline)) ?  $values->deadline : '') ) }}</td>
-                            <td>{{isset( $values->relBatchAdmtestSubject->relAdmtestSubject->id) ?  $values->relBatchAdmtestSubject->relAdmtestSubject->id: ''}}</td>
-                            <td> {{isset($values->s_faculty_user_id)? User::FullName($values->s_faculty_user_id) :''}} </td>
+                            <td>{{isset( $values->relBatchAdmtestSubject->relAdmtestSubject->title) ?  $values->relBatchAdmtestSubject->relAdmtestSubject->title: ''}}</td>
+                            <td> {{isset($values->relUser->relUserProfile->id)? $values->relUser->relUserProfile->first_name." ". $values->relUser->relUserProfile->middle_name." ".$values->relUser->relUserProfile->last_name :''}} </td>
                             <td> {{isset($values->status) ? $values->status : '' }} </td>
                             <td>
                                @if( $values->status == "requested" )

@@ -1402,16 +1402,20 @@ class AdmAmwController extends \BaseController
      * @param $batch_id = batch_id
      * @return mixed
      */
-    public function admQuestionIndex($bats_id, $batch_id)
+    public function admQuestionIndex($batch_id)
     {
-        $batch = BatchAdmtestSubject::with('relBatch')->where('id', $bats_id)->first();
-        $adm_question = AdmQuestion::with(['relBatchAdmtestSubject'=>
-            function($query) use($batch_id) {
-                $query->where('batch_id', '=', $batch_id);
-            }])->latest('id')->paginate(10);
+        $batch = Batch::with('relVDegree', 'relYear')->where('id', '=', $batch_id)->first();
 
-        return View::make('admission::amw.adm_question.adm_question_index',
-            compact('adm_question', 'batch', 'bats_id'));
+        $adm_question = AdmQuestion::with('relBatchAdmtestSubject', 'relUser.relUserProfile', 'relBatchAdmtestSubject.relBatch', 'relBatchAdmtestSubject.relAdmtestSubject')
+            ->whereExists(function($query) use($batch_id)
+            {
+                $query->from('batch_admtest_subject')
+                    ->whereRaw('batch_admtest_subject.id = adm_question.batch_admtest_subject_id')
+                    ->where('batch_admtest_subject.batch_id', $batch_id);
+            })
+            ->latest('id')->paginate(10);
+
+        return View::make('admission::amw.adm_question.adm_question_index', compact('adm_question', 'batch', 'bats_id'));
     }
 
     /**

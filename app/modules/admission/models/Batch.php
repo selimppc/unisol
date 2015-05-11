@@ -86,6 +86,15 @@ class Batch extends Eloquent{
         return $this->HasMany('BatchEducationConstraint');
     }
 
+    public function relBatchAdmTestSubjects(){
+        return $this->belongsToMany('AdmTestSubject', 'batch_admtest_subject', 'batch_id', 'admtest_subject_id');
+    }
+
+    public function relBatchAdmQuestion(){
+        return $this->hasManyThrough('AdmQuestion', 'BatchAdmtestSubject', 'batch_id', 'batch_admtest_subject_id');
+    }
+
+
     //TODO : on Save created_by or Updated_by
     public static function boot(){
         parent::boot();
