@@ -15,7 +15,20 @@ class ExmFacultyController extends \BaseController {
 
         return View::make('examination::faculty.prepare_question_paper.index')->with('datas', $data);
     }
-    //fct: Question List
+
+    public function examinationList()
+    {
+
+    }
+
+    public function questionPaper()
+    {
+
+    }
+
+
+//fct: Question List
+
     public function questionList()
     {
         $question_list_faculty = ExmQuestionItems::orderBy('id', 'DESC')->paginate(15);

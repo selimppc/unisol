@@ -28,4 +28,16 @@
             <li><a href="{{URL::to('academic/faculty/course/config')}}"></i><i class="fa fa-stack-overflow text-blue"></i> Courses</a></li>
         </ul>
     </li>
+
+    <li class="treeview">
+            <a href="#">
+                <i class="fa  fa-edit"></i>
+                <span>Examination</span>
+                <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="treeview-menu">
+                <li><a href="{{URL::to('examination/faculty/examination-list')}}"></i><i class="fa fa-qrcode" style="color: #db8f18"></i> Examination</a></li>
+                <li><a href="{{URL::to('examination/faculty/question-paper')}}"></i><i class="fa fa-building-o" style="color: #4644db"></i> Question Paper</a></li>
+            </ul>
+    </li>
 </ul>
