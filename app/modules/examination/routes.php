@@ -18,6 +18,8 @@ Shafi
 */
 
 include("routes_sh.php");
+include("routes_sh2.php");
+include("routes_exm_tjt.php");
 
 //Route::any('',[
 //    'as' =>'',
@@ -131,4 +133,51 @@ Route::any('examination/amw/storeExaminers',[
 Route::any('examination/amw/viewExaminers/{id}', [
     'as' => 'examination.amw.viewExaminers',
     'uses' => 'ExmAmwController@viewExaminers'
+]);
+
+
+
+//Route::any('examination/amw/storeQuestionPaper','ExmAmwController@storeQuestionPaper');
+
+Route::any('examination/amw/viewQuestion/{id}', [
+    'as' => 'examination.amw.viewQuestion',
+    'uses' => 'ExmAmwController@viewQuestion'
+]);
+
+Route::any('examination/amw/create',[
+    'as' =>'examination/amw/create',
+    'uses' => 'ExmAmwController@createQuestionPaper'
+]);
+
+
+
+Route::any('examination/amw/assignto',[
+    'as' =>'examination/amw/assignto',
+    'uses' => 'ExmAmwController@assignTo'
+]);
+
+
+Route::any('examination/amw/questionList',[
+    'as' =>'examination/amw/questionList',
+    'uses' => 'ExmAmwController@questionList'
+]);
+
+Route::any('examination/amw/viewQuestionItems/{id}', [
+    'as' => 'examination.amw.viewQuestionItems',
+    'uses' => 'ExmAmwController@viewQuestionItems'
+]);
+
+Route::any('examination/amw/destroy/{id}', [
+    'as' => 'examination.amw.destroy',
+    'uses' => 'ExmAmwController@destroy'
+]);
+
+Route::any('examination/amw/batchDelete',[
+    'as' =>'examination/amw/batchDelete',
+    'uses' => 'ExmAmwController@batchDelete'
+]);
+
+Route::any('examination/amw/batchItemsDelete',[
+    'as' =>'examination/amw/batchItemsDelete',
+    'uses' => 'ExmAmwController@batchItemsDelete'
 ]);

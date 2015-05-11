@@ -51,6 +51,18 @@
         </ul>
     </li>
 
+    <li class="treeview">
+            <a href="#">
+                <i class="fa fa-pencil" style="color:deepskyblue"></i>
+                <span>Examination</span>
+                <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="treeview-menu">
+                <li><a href="{{ URL::to('admission/amw/degree') }}"></i><i class="fa fa-list text-blue"></i> Exam List</a></li>
+                {{--<li><a href="{{ URL::to('admission/amw/admission-test-home') }}"></i><i class="fa fa-flask" style="color: #db4509"></i> Admission Test</a></li>--}}
+            </ul>
+        </li>
+
 
 </ul>
 
