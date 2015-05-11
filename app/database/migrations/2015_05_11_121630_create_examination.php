@@ -12,6 +12,50 @@ class CreateExamination extends Migration {
 	 */
 	public function up()
 	{
+        Schema::create('exm_examiner', function(Blueprint $table) {
+            $table->increments('id');
+            $table->unsignedInteger('exm_exam_list_id')->nullable();
+            $table->unsignedInteger('user_id')->nullable();
+            $table->enum('type', array(
+                'question-setter', 'question-evaluator', 'both'
+            ));
+            $table->integer('assigned_by', false, 11);
+            $table->dateTime('deadline');
+            $table->text('note');
+            $table->enum('status',array(
+                'requested', 'deny', 'accepted', 'cancel'
+            ));
+            $table->integer('created_by', false, 11);
+            $table->integer('updated_by', false, 11);
+            $table->timestamps();
+            $table->engine = 'InnoDB';
+        });
+        Schema::table('exm_examiner', function($table) {
+            $table->foreign('exm_exam_list_id')->references('id')->on('exm_exam_list');
+            $table->foreign('user_id')->references('id')->on('user');
+        });
+
+
+
+        Schema::create('exm_examiner_comments', function(Blueprint $table) {
+            $table->increments('id');
+            $table->unsignedInteger('exm_exam_list_id')->nullable();
+            $table->text('comment');
+            $table->integer('commented_to', false, 11);
+            $table->integer('commented_by', false, 11);
+            $table->enum('status',array(
+                'open', 'close'
+            ));
+            $table->integer('created_by', false, 11);
+            $table->integer('updated_by', false, 11);
+            $table->timestamps();
+            $table->engine = 'InnoDB';
+        });
+        Schema::table('exm_examiner_comments', function($table) {
+            $table->foreign('exm_exam_list_id')->references('id')->on('exm_exam_list');
+        });
+
+
         Schema::create('exm_question_items', function(Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('exm_question_id')->nullable();
@@ -128,6 +172,8 @@ class CreateExamination extends Migration {
 
 	public function down()
 	{
+        Schema::drop('exm_examiner');
+        Schema::drop('exm_examiner_comments');
         Schema::drop('exm_question_items');
         Schema::drop('exm_question_comments');
         Schema::drop('exm_question_opt_ans');
