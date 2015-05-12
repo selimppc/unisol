@@ -207,18 +207,7 @@ class ExmAmwController extends \BaseController {
 
 
 
-//    public function createExamination(){
-//
-//        $year_id = Year::lists('title', 'id');
-//        $semester_id = Semester::lists('title', 'id');
-//        $exam_type = AcmMarksDistItem::lists('title','id');
-//        $course_name = Course::lists('title','id');
-//
-//        return View::make('examination::amw.prepare_question_paper._addExamination_form', compact(
-//            'add_examination','year_id','semester_id','exam_type','course_name'
-//            ));
-//
-//    }
+
     public function storeExamination(){
 
         $data = Input::all();
@@ -251,18 +240,8 @@ class ExmAmwController extends \BaseController {
         }
 
     }
-    public function viewExamination($id){
-        $view_examination_amw = ExmExamList::find($id);
-        return View::make('examination::amw.prepare_question_paper.viewExamination')->with('view_examination_amw', $view_examination_amw);
 
-    }
-    public function editExamination($id)
-    {
-        $course_list = ExmExamList::CourseList();
-        $edit_examination = ExmExamList::find($id);
-        return View::make('examination::amw.prepare_question_paper.editExamination',
-            compact('edit_examination', 'course_list'));
-    }
+
     public function updateExamination($id)
     {
         $data = Input::all();
@@ -515,21 +494,61 @@ public function assign_faculty(){
 
 /*--------------------------------  Version 2 :Starts Here  -----------------------------------------------------------------------------------------*/
 
-
     public function examList(){
 
-        $exam_data = ExmExamList::with(
-            [
-                'relCourseConduct', 'relCourseConduct.relCourse', 'relCourseConduct.relCourse.relSubject.relDepartment',
-                'relCourseConduct.relYear','relCourseConduct.relSemester', 'relAcmMarksDistItem' => function ($query)
-                { $query->where('acm_marks_dist_item.is_exam','=', 1); }
-            ]
-        )->get();
-
-
+        $exam_data = ExmExamList::with('relCourseConduct','relCourseConduct.relCourse','relYear','relSemester',
+            'relCourseConduct.relCourse.relSubject.relDepartment','relAcmMarksDistItem')->whereExists(function ($query){
+                    $query->from('acm_marks_dist_item')->whereRaw('acm_marks_dist_item.id = exm_exam_list.acm_marks_dist_item_id')
+                    ->where('acm_marks_dist_item.is_exam', '=', 1);
+                  })->get();
 
         return View::make('examination::amw.exam.exam_list',compact('exam_data','year_id','semester_id'));
 
+    }
+
+        public function createExamination(){
+
+            $year_id = Year::lists('title', 'id');
+            $semester_id = Semester::lists('title', 'id');
+            $exam_type = AcmMarksDistItem::where('is_exam','=',1)->lists('title','id');
+            $course_list = ExmExamList::CourseList();
+
+            return View::make('examination::amw.exam.add_exam_form', compact(
+            'add_examination','year_id','semester_id','exam_type','course_list'
+            ));
+
+    }
+
+//    public function viewExamData($id){
+//
+//        $exam_data = ExmExamList::with('relAcmMarksDistItem','relCourseConduct','relCourseConduct.relCourse','relYear','relSemester')->find($id);
+//        return View::make('examination::amw.exam.view_exam_data',compact('exam_data'));
+//    }
+//
+//    public function editExamination($id)
+//    {
+//        $course_list = ExmExamList::CourseList();
+//        $edit_examination = ExmExamList::find($id);
+//        return View::make('examination::amw.prepare_question_paper.editExamination',
+//            compact('edit_examination', 'course_list'));
+//    }
+
+    public function deleteExamData($id){
+
+        try {
+            $data= ExmExamList::find($id);
+            $title = AcmMarksDistItem::with('relExmExamList')->where('id','=',$id)->first()->title;
+
+            if($data->delete())
+            {
+                Session::flash('info', "$title Deleted");
+                return Redirect::back();
+            }
+        }
+        catch
+        (exception $ex){
+            return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+        }
     }
 
 }

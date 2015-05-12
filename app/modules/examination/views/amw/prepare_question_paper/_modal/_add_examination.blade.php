@@ -7,7 +7,7 @@
             </div>
             <div class="modal-body">
                 {{ Form::open(array('url' => 'examination/amw/storeExamination', 'method' =>'post', 'role'=>'form','files'=>'true'))  }}
-                        @include('examination::amw/prepare_question_paper/_addExamination_form')
+                        @include('examination::......exam._addExamination_form')
                 {{ Form::close() }}
             </div>
 
