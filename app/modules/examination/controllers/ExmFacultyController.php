@@ -23,7 +23,7 @@ class ExmFacultyController extends \BaseController {
                 $query->on('exm_exam_list.id', '=', 'exm_examiner.exm_exam_list_id');
                 $query->where('exm_exam_list.year_id', '=', $year_id);
                 $query->where('exm_exam_list.semester_id', '=', $semester_id);
-            })->select(DB::raw('exm_examiner.exm_exam_list_id as exm_exam_list_id','exm_examiner.status as status'))->get();
+            })->select(DB::raw('exm_examiner.exm_exam_list_id as exm_exam_list_id , exm_examiner.status as status'))->get();
 
 //            print_r($examination_list);exit;
         }else{

@@ -114,7 +114,7 @@
                   </div>
                   <div class="modal-footer">
                         <a href="" class="btn-sm btn-default">Close</a>
-                        <a href="#" class="btn btn-Success danger">OK</a>
+                        <a href="#" class="btn-sm btn-Success danger">OK</a>
                   </div>
             </div>
           </div>
