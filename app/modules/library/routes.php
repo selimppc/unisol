@@ -11,6 +11,13 @@
 |
 */
 
+Route::group(['prefix' => 'library'], function() {
 
+    Route::get('/', function() {
+        return 'Thank you so much!';
+    });
+
+
+});
 
 
