@@ -34,7 +34,21 @@
             "app/modules/applicant/controllers",
             "app/modules/applicant/models",
             "app/modules/fees/controllers",
-            "app/modules/fees/models"
+            "app/modules/fees/models",
+            "app/modules/inventory/controllers",
+            "app/modules/inventory/models",
+            "app/modules/accounts/controllers",
+            "app/modules/accounts/models",
+            "app/modules/payment/controllers",
+            "app/modules/payment/models",
+            "app/modules/library/controllers",
+            "app/modules/library/models",
+            "app/modules/hr/controllers",
+            "app/modules/hr/models",
+            "app/modules/rnc/controllers",
+            "app/modules/rnc/models",
+            "app/modules/cfo/controllers",
+            "app/modules/cfo/models"
 		],
 
         "files":[
