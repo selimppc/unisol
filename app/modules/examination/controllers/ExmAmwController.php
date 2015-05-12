@@ -208,38 +208,7 @@ class ExmAmwController extends \BaseController {
 
 
 
-    public function storeExamination(){
 
-        $data = Input::all();
-        $store_exam = new ExmExamList();
-        if ($store_exam->validate($data))
-        {
-            // success code
-            $store_exam->title = Input::get('title');
-            $store_exam->year_id = Input::get('year_id');
-//            print_r($store_exam->year_id);exit;
-            $store_exam->semester_id = Input::get('semester_id');
-            $store_exam->course_management_id = Input::get('course_management_id');
-            $store_exam->acm_marks_dist_item_id = Input::get('acm_marks_dist_item_id');
-            $store_exam->status = '0';
-
-
-            $store_exam->save();
-
-            // redirect
-            Session::flash('message', 'Examination Successfully Added!');
-            return Redirect::to('examination/amw/examination');
-        }
-        else
-        {
-            // failure, get errors
-            $errors = $store_exam->errors();
-            Session::flash('errors', $errors);
-
-            return Redirect::to('examination/amw/create');
-        }
-
-    }
 
 
     public function updateExamination($id)
@@ -303,27 +272,6 @@ class ExmAmwController extends \BaseController {
 
 
     }
-
-
-
-    public function examination(){
-
-        $exam_data = ExmExamList::with(
-            [
-                'relCourseManagement', 'relCourseManagement.relCourse',
-                'relCourseManagement.relCourse.relSubject.relDepartment',
-                'relAcmMarksDistItem' => function ($query)
-                { $query->where('is_exam', 1); }
-            ]
-        )->get();
-
-        $year_id = Year::lists('title', 'id');
-        $semester_id = Semester::lists('title', 'id');
-
-        return View::make('examination::amw.prepare_question_paper.examination',compact('exam_data','year_id','semester_id'));
-    }
-
-
 
 
     public function search(){
@@ -508,15 +456,74 @@ public function assign_faculty(){
 
         public function createExamination(){
 
-            $year_id = Year::lists('title', 'id');
-            $semester_id = Semester::lists('title', 'id');
-            $exam_type = AcmMarksDistItem::where('is_exam','=',1)->lists('title','id');
-            $course_list = ExmExamList::CourseList();
+            $year_id = ['' => 'Select Year'] + Year::lists('title', 'id');
+            $semester_id = ['' => 'Select Semester'] + Semester::lists('title', 'id');
+            $exam_type = ['' => 'Select Exam Type'] + AcmMarksDistItem::where('is_exam','=',1)->lists('title','id');
+            $course_list = ['' => 'Select Course']+ Course::lists('title', 'id');
 
             return View::make('examination::amw.exam.add_exam_form', compact(
             'add_examination','year_id','semester_id','exam_type','course_list'
             ));
 
+    }
+
+    public function dropDownCourses(){
+
+        $year = Input::get('year');
+        $semester = Input::get('semester');
+
+        $courses = CourseConduct::join('course', function($query){
+                $query->on('course_conduct.course_id', '=', 'course.id');
+            })
+                ->where('course_conduct.year_id', '=', $year)
+                ->where('course_conduct.semester_id', '=', $semester)
+                ->select(DB::raw('course.title as c_title, course_conduct.course_id as cc_course_id'))
+                ->lists('c_title', 'cc_course_id');
+
+//        DB::table('users')
+//            ->join('contacts', function($join)
+//            {
+//                $join->on('users.id', '=', 'contacts.user_id')
+//                    ->where('contacts.user_id', '>', 5);
+//            })
+//            ->get();
+
+
+//print_r($query);exit;
+//        $courses = CourseConduct::with('relCourse')->where('year_id','=',$year)
+//            ->lists('course_id','id');
+
+        if($courses){
+            return Response::make(['please select one'] + $courses);
+        }else{
+            return Response::make(['no data found']);
+        }
+    }
+
+    public function storeExamination(){
+
+        $data = Input::all();
+        $store_exam = new ExmExamList();
+        if ($store_exam->validate($data))
+        {
+            $store_exam->title = Input::get('title');
+            $store_exam->year_id = Input::get('year_id');
+            $store_exam->semester_id = Input::get('semester_id');
+            $store_exam->course_management_id = Input::get('course_management_id');
+            $store_exam->acm_marks_dist_item_id = Input::get('acm_marks_dist_item_id');
+            $store_exam->status = '0';
+
+            $store_exam->save();
+
+            Session::flash('message', 'Examination Successfully Added!');
+            return Redirect::to('examination/amw/examination');
+        }
+        else
+        {
+            $errors = $store_exam->errors();
+            Session::flash('errors', $errors);
+            return Redirect::to('examination/amw/create');
+        }
     }
 
 //    public function viewExamData($id){

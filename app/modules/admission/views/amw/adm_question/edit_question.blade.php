@@ -8,8 +8,8 @@
           {{Form::open(array('route'=> ['admission.amw.update-admtest-question-paper',$question->id], 'class'=>'form-horizontal','files'=>true))}}
 
                <div class='form-group'>
-                    <strong> Batch# </strong> {{ $question->relBatchAdmtestSubject->relBatch->batch_number }} </br>
-                    <strong> Degree Name: </strong> {{ $question->relBatchAdmtestSubject->relBatch->relDegree->relDegreeLevel->code }}{{ $question->relBatchAdmtestSubject->relBatch->relDegree->relDegreeGroup->code }} In {{ $question->relBatchAdmtestSubject->relBatch->relDegree->relDegreeProgram->code }} , {{ $question->relBatchAdmtestSubject->relBatch->relSemester->title }} - {{ $question->relBatchAdmtestSubject->relBatch->relYear->title }}
+                    <strong> Batch# </strong> {{ isset($batch->batch_number) ? $batch->batch_number : '' }} </br>
+                    <strong> Degree Name: </strong> {{isset( $batch->relVDegree->title) ?$batch->relVDegree->title : ''}} at {{isset( $batch->relYear->title) ? $batch->relYear->title :'' }}
               </div>
 
                 <div class='form-group'>
@@ -54,3 +54,4 @@
           {{Form::close()}}
       </div>
 </div>
+{{ HTML::script('assets/js/custom.js')}}
