@@ -6,20 +6,48 @@ class ExmFacultyController extends \BaseController {
         $this->beforeFilter('exmFaculty', array('except' => array('')));
     }
 
-    //fct: Examiner index
+    protected function isPostRequest()
+    {
+        return Input::server("REQUEST_METHOD") == "POST";
+    }
+
+    // Faculty: Examiner index
 
     public function examinationList()
     {
-        $data = ExmExaminer::with('relExmExamList','relExmExamList.relYear',
-            'relExmExamList.relSemester','relExmExamList.relCourseConduct',
-            'relExmExamList.relCourseConduct.relCourse','relExmExamList.relAcmMarksDistItem')
-            ->get();
+        if($this->isPostRequest()){
+            $year_id  = Input::get('year_id');
+            $semester_id = Input::get('semester_id');
 
+            $examination_list = ExmExaminer::join('exm_exam_list', function ($query) use ($year_id, $semester_id) {
+                $query->on('exm_exam_list.id', '=', 'exm_examiner.exm_exam_list_id');
+                $query->where('exm_exam_list.year_id', '=', $year_id);
+                $query->where('exm_exam_list.semester_id', '=', $semester_id);
+            })->select(DB::raw('exm_examiner.exm_exam_list_id as exm_exam_list_id , exm_examiner.status as status'))->get();
+
+//            print_r($examination_list);exit;
+        }else{
+            $examination_list = ExmExaminer::with('relExmExamList','relExmExamList.relYear',
+                'relExmExamList.relSemester','relExmExamList.relCourseConduct',
+                'relExmExamList.relCourseConduct.relCourse','relExmExamList.relCourseConduct.relDegree.relDepartment',
+                'relExmExamList.relAcmMarksDistItem')->get();
+        }
         $year_id = array('' => 'Select Year ') + Year::lists('title', 'id');
         $semester_id = array('' => 'Select Semester ') + Semester::lists('title', 'id');
 
+        // To use the old values effective use the following line before  return view::make
+        Input::flash();
+
+//        $examination_list = ExmExaminer::with('relExmExamList','relExmExamList.relYear',
+//            'relExmExamList.relSemester','relExmExamList.relCourseConduct',
+//            'relExmExamList.relCourseConduct.relCourse','relExmExamList.relAcmMarksDistItem')
+//            ->get();
+//
+//        $year_id = array('' => 'Select Year ') + Year::lists('title', 'id');
+//        $semester_id = array('' => 'Select Semester ') + Semester::lists('title', 'id');
+
         return View::make('examination::faculty.examination_list.index',
-            compact('data','year_id','semester_id'));;
+            compact('examination_list','year_id','semester_id'));;
 
     }
 
@@ -48,7 +76,7 @@ class ExmFacultyController extends \BaseController {
 
     public function questionPaper($exm_list_id)
     {
-        echo"$exm_list_id is ok";
+        echo"$exm_list_id is coming";
 
     }
 

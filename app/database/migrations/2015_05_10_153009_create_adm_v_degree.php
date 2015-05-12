@@ -18,7 +18,7 @@ class CreateAdmVDegree extends Migration {
                 dg.policy_course_taking		AS policy_course_taking,
                 dg.credit_min_per_semester 	AS credit_min_per_semester,
                 dg.credit_max_per_semester 	AS credit_max_per_semester,
-                CONCAT(dl.code, dgp.code, "in", dp.code) AS title,
+                CONCAT(dl.code, dgp.code, " in ", dp.code) AS title,
                 dpt.title			AS dept_title
 
 
@@ -29,6 +29,7 @@ class CreateAdmVDegree extends Migration {
                 JOIN department dpt ON dpt.id = dg.department_id
 
                 ORDER BY dg.id
+
                 )
         ' );
 	}

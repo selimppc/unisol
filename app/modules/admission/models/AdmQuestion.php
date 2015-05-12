@@ -42,7 +42,10 @@ class AdmQuestion extends Eloquent{
     public function relBatchAdmtestSubject(){
         return $this->belongsTo('BatchAdmtestSubject', 'batch_admtest_subject_id', 'id');
     }
-    public function relUser(){
+    public function relSUser(){
+        return $this->belongsTo('User', 's_faculty_user_id', 'id');
+    }
+    public function relEUser(){
         return $this->belongsTo('User', 'e_faculty_user_id', 'id');
     }
     public function relAdmQuestionComments(){
@@ -77,15 +80,14 @@ class AdmQuestion extends Eloquent{
     }
 
 
-    //TODO : Scope Area
-
+    //TODO : Status filtering
     public function scopeAdmissionExaminerList($query , $batch_id){
         $query = AdmExaminer::join('user_profile', function($join)
         {
             $join->on('adm_examiner.user_id', '=', 'user_profile.user_id');
         })
             ->where('adm_examiner.batch_id', '=', $batch_id)
-            ->where('adm_examiner.status', '=', 'requested')
+            //->where('adm_examiner.status', '=', 'requested')
             ->select(DB::raw('CONCAT(user_profile.first_name, " ", user_profile.middle_name, " ", user_profile.last_name) AS full_name, adm_examiner.user_id as id'))
             ->lists('full_name', 'id');
         return $query;

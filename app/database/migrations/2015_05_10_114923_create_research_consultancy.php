@@ -7,6 +7,17 @@ class CreateResearchConsultancy extends Migration {
 
 	public function up()
 	{
+        Schema::create('currency', function(Blueprint $table)
+        {
+            $table->increments('id', true);
+            $table->string('title', 32);
+            $table->string('code', 8);
+            $table->float('exchange_rate');
+            $table->integer('created_by', false, 11);
+            $table->integer('updated_by', false, 11);
+            $table->timestamps();
+        });
+
         Schema::create('rnc_category', function(Blueprint $table)
         {
             $table->increments('id', true);
@@ -131,6 +142,7 @@ class CreateResearchConsultancy extends Migration {
 
 	public function down()
 	{
+        Schema::drop('currency');
         Schema::drop('rnc_category');
         Schema::drop('rnc_config');
         Schema::drop('rnc_research_paper');

@@ -1406,7 +1406,7 @@ class AdmAmwController extends \BaseController
     {
         $batch = Batch::with('relVDegree', 'relYear')->where('id', '=', $batch_id)->first();
 
-        $adm_question = AdmQuestion::with('relBatchAdmtestSubject', 'relUser.relUserProfile', 'relBatchAdmtestSubject.relBatch', 'relBatchAdmtestSubject.relAdmtestSubject')
+        $adm_question = AdmQuestion::with('relBatchAdmtestSubject', 'relSUser.relUserProfile', 'relEUser.relUserProfile', 'relBatchAdmtestSubject.relBatch', 'relBatchAdmtestSubject.relAdmtestSubject')
             ->whereExists(function($query) use($batch_id)
             {
                 $query->from('batch_admtest_subject')
@@ -1483,9 +1483,10 @@ class AdmAmwController extends \BaseController
      */
     public function editAdmTestQuestionPaper($id)
     {
-        $question = AdmQuestion::with('relBatchAdmtestSubject')->where('id', $id)->first();
-        $batch_admtest_subject = BatchAdmtestSubject::BatchAdmissionTestSubjectLists($question->batch_admtest_subject_id);
-        $examiner_faculty_lists = AdmQuestion::AdmissionExaminerList($question->relBatchAdmtestSubject->batch_id);
+        $question = AdmQuestion::with('relBatchAdmtestSubject', 'relBatchAdmtestSubject.relBatch', 'relBatchAdmtestSubject.relBatch.relDegree')
+            ->where('id', $id)->first();
+        $batch_admtest_subject = BatchAdmtestSubject::BatchAdmissionTestSubjectLists($question->relBatchAdmtestSubject->relBatch->id);
+        $examiner_faculty_lists = AdmQuestion::AdmissionExaminerList($question->relBatchAdmtestSubject->relBatch->id);
 
         return View::make('admission::amw.adm_question.edit_question',
             compact('question','batch_admtest_subject','examiner_faculty_lists'));
