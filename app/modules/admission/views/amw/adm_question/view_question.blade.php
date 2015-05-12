@@ -8,16 +8,12 @@
     <table class="table table-striped  table-bordered"  >
         <tr>
             <td> Batch # </td>
-            <td> {{$view_questions->relBatchAdmtestSubject->relBatch->batch_number }} </td>
+            <td> {{ isset($batch->batch_number) ? $batch->batch_number : '' }} </td>
         </tr>
         <tr>
             <td> Degree Name: </td>
             <td>
-            {{ $view_questions->relBatchAdmtestSubject->relBatch->relDegree->relDegreeLevel->code }}
-            {{ $view_questions->relBatchAdmtestSubject->relBatch->relDegree->relDegreeGroup->code }} in
-            {{ $view_questions->relBatchAdmtestSubject->relBatch->relDegree->relDegreeProgram->code }},
-            {{ $view_questions->relBatchAdmtestSubject->relBatch->relSemester->title }} -
-            {{ $view_questions->relBatchAdmtestSubject->relBatch->relYear->title }}
+                {{isset( $batch->relVDegree->title) ?$batch->relVDegree->title : ''}} at {{isset( $batch->relYear->title) ? $batch->relYear->title :'' }}
             </td>
         </tr>
         <tr>
@@ -37,8 +33,21 @@
             <td>{{ $view_questions->total_marks }} </td>
         </tr>
         <tr>
-            <td> Assigned To: </td>
-            <td> {{ isset($view_questions->s_faculty_user_id) ? User::FullName($view_questions->s_faculty_user_id) : '' }} </td>
+            <td> Setter </td>
+            <td>{{isset($view_questions->s_faculty_user_id)? $view_questions->relSUser->relUserProfile->first_name." ". $view_questions->relSUser->relUserProfile->middle_name." ".$view_questions->relSUser->relUserProfile->last_name :''}}
+                <br> {{ isset($view_questions->s_status) ? ucfirst($view_questions->s_status) : '' }}
+            </td>
+        </tr>
+        <tr>
+            <td> Evaluator: </td>
+            <td> {{isset($view_questions->e_faculty_user_id)? $view_questions->relEUser->relUserProfile->first_name." ". $view_questions->relEUser->relUserProfile->middle_name." ".$view_questions->relEUser->relUserProfile->last_name :''}}
+                <br> {{ isset($view_questions->e_status) ? ucfirst($view_questions->e_status) : '' }}
+            </td>
+        </tr>
+
+        <tr>
+            <td>Status</td>
+            <td>{{isset($view_questions->status) ? ucfirst($view_questions->status) : '' }} </td>
         </tr>
 
     </table>

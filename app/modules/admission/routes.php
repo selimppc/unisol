@@ -340,7 +340,7 @@ Route::any('admission/amw/admission-test-question/{batch_id}',[
     'uses' => 'AdmAmwController@admQuestionIndex'
 ]);
 
-Route::any('admission/amw/admission/create-admtest-question-paper/{bats_id}',[
+Route::any('admission/amw/admission/create-admtest-question-paper/{batch_id}',[
     'as' => 'admission.amw.admission.create-admtest-question-paper',
     'uses' => 'AdmAmwController@createAdmTestQuestionPaper'
 ]);
@@ -375,26 +375,25 @@ Route::any('admission/amw/question/view-question-item-details/{q_items_id}',[
     'uses' => 'AdmAmwController@viewQuestionItemDetails'
 ]);
 
-Route::any('admission/amw/assign-faculty-by-question/{q_id}',[
-    'as' => 'admission.amw.assign-faculty-by-question',
-    'uses' => 'AdmAmwController@assignFacultyByQuestion'
-]);
 Route::any('admission/amw/admission-test/comments-by-question/{id}',[
     'as' => 'admission.amw.admission-test.comments-by-question',
     'uses' => 'AdmAmwController@assignFacultyCommentsByQuestion'
 ]);
 
-Route::any('admission/amw/re-assign-faculty/{q_id}',[
-    'as' => 'admission.amw.re-assign-faculty',
-    'uses' => 'AdmAmwController@reAssignFaculty'
+Route::any('admission/amw/assign-faculty-setter/{q_id}',[
+    'as' => 'admission.amw.assign-faculty-setter',
+    'uses' => 'AdmAmwController@AssignFacultySetter'
+]);
+
+Route::any('admission/amw/assign-faculty-evaluator/{q_id}',[
+    'as' => 'admission.amw.assign-faculty-evaluator',
+    'uses' => 'AdmAmwController@AssignFacultyEvaluator'
 ]);
 
 Route::any('admission/amw/admission-test/comments-re-assign/{id}',[
     'as' => 'admission.amw.admission-test.comments-re-assign',
     'uses' => 'AdmAmwController@reAssignFacultyCommentsByQuestion'
 ]);
-
-
 
 
 

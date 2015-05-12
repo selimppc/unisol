@@ -11,4 +11,11 @@
 |
 */
 
+Route::group(['prefix' => 'payment'], function() {
 
+    Route::get('/', function() {
+        return 'Thank you so much!';
+    });
+
+
+});

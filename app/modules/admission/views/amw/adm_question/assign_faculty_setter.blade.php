@@ -1,6 +1,6 @@
 <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-    <h4>Re-Assign Examiner and Comments </h4>
+<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+    <h4>Assign Question Setter </h4>
 </div>
 
 <div style="padding: 4%; ">
@@ -22,20 +22,22 @@
                 {{ Form::select('commented_to', $examiner_faculty_lists, $question_data->s_faculty_user_id, ['class' => 'form-control']) }}
             </div>
 
-            <div class="form-group">
-              {{Form::label('commented_to', 'Evaluator('.ucfirst($question_data->e_status)).')'}}
-              {{ Form::select('commented_to', $examiner_faculty_lists, $question_data->e_faculty_user_id, ['class' => 'form-control']) }}
-            </div>
-
             {{Form::hidden('commented_by', Auth::user()->get()->id )}}
 
             <small>Comments as below: </small>
             @foreach($comments as $comment)
                 <p style="padding: 1%; background: #efefef;">
-                   <b><small>{{ User::FullName($comment->commented_by); }}</small></b>
-                   As &nbsp; <b><small>{{  strtoupper(Role::RoleName($comment->commented_by)) }} </small></b><br>
-                 {{--<strong>{{ User::FullName($assign_qp->faculty_user_id) }}</strong>,--}}
-                 &nbsp; &nbsp; &nbsp; {{ $comment->comment }}
+                    <small>To: </small> {{ isset($comment->relToUser->relUserProfile->first_name) ? $comment->relToUser->relUserProfile->first_name : '' }}
+                           {{ isset($comment->relToUser->relUserProfile->middle_name) ? $comment->relToUser->relUserProfile->middle_name : '' }}
+                           {{ isset($comment->relToUser->relUserProfile->last_name) ? $comment->relToUser->relUserProfile->last_name : '' }}
+                    <small> as {{ $comment->relToUser->relRole->title }}</small>
+                    <br>
+                        {{ $comment->comment }}
+                        <br>
+                    <small>By: </small> {{ isset($comment->relByUser->relUserProfile->first_name) ? $comment->relByUser->relUserProfile->first_name : '' }}
+                            {{ isset($comment->relByUser->relUserProfile->middle_name) ? $comment->relByUser->relUserProfile->middle_name : '' }}
+                            {{ isset($comment->relByUser->relUserProfile->last_name) ? $comment->relByUser->relUserProfile->last_name : '' }}
+                    <small> as {{ $comment->relByUser->relRole->title }}</small>
                </p>
             @endforeach
 

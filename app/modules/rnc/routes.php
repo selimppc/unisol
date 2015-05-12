@@ -10,5 +10,12 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
+Route::group(['prefix' => 'rnc'], function() {
 
+    Route::get('/', function() {
+        return 'Thank you so much!';
+    });
+
+
+});
 

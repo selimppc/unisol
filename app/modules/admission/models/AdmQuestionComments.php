@@ -39,6 +39,14 @@ class AdmQuestionComments extends Eloquent{
         return $this->belongsTo('AdmQuestion', 'adm_question_id', 'id');
     }
 
+    public function relToUser(){
+        return $this->hasOne('User', 'id', 'commented_to');
+    }
+
+    public function relByUser(){
+        return $this->hasOne('User', 'id', 'commented_by');
+    }
+
 
     // TODO : user info while saving data into table
     public static function boot(){
