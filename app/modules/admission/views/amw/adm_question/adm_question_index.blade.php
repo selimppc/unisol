@@ -28,7 +28,8 @@
                         <th>Title</th>
                         <th>Deadline</th>
                         <th>Subject</th>
-                        <th>Assigned</th>
+                        <th>Setter</th>
+                        <th>Evaluator</th>
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
@@ -41,8 +42,13 @@
                             <td> {{isset( $values->title)?  $values->title :''}} </td>
                             <td>{{date("d-m-Y", strtotime((isset( $values->deadline)) ?  $values->deadline : '') ) }}</td>
                             <td>{{isset( $values->relBatchAdmtestSubject->relAdmtestSubject->title) ?  $values->relBatchAdmtestSubject->relAdmtestSubject->title: ''}}</td>
-                            <td> {{isset($values->relUser->relUserProfile->id)? $values->relUser->relUserProfile->first_name." ". $values->relUser->relUserProfile->middle_name." ".$values->relUser->relUserProfile->last_name :''}} </td>
-                            <td> {{isset($values->status) ? $values->status : '' }} </td>
+                            <td> {{isset($values->relSUser->relUserProfile->id)? $values->relSUser->relUserProfile->first_name." ". $values->relSUser->relUserProfile->middle_name." ".$values->relSUser->relUserProfile->last_name :''}}
+                                <br> {{ isset($values->s_status) ? ucfirst($values->s_status) : '' }}
+                            </td>
+                            <td> {{isset($values->relEUser->relUserProfile->id)? $values->relEUser->relUserProfile->first_name." ". $values->relEUser->relUserProfile->middle_name." ".$values->relEUser->relUserProfile->last_name :''}}
+                                <br> {{ isset($values->e_status) ? ucfirst($values->e_status) : '' }}
+                            </td>
+                            <td> {{isset($values->status) ? ucfirst($values->status) : '' }} </td>
                             <td>
                                @if( $values->status == "requested" )
                                         <a href="{{ URL::route('admission.amw.view-admtest-question-paper', [ 'id'=>$values->id ]) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#modal" data-placement="left" title="Show" href="#"> View </a>
@@ -75,8 +81,8 @@
         </div>
     </div>
 
-    <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog" style="z-index:1050">
+    <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="z-index:1050">
+        <div class="modal-dialog" >
             <div class="modal-content">
             </div>
         </div>
