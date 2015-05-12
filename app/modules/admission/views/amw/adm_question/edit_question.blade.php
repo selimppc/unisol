@@ -2,7 +2,7 @@
     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
     <h4 class="modal-title" id="myModalLabel"> Edit Admission Test Question</h4>
 </div>
-
+{{ HTML::script('assets/js/custom.js')}}
 <div class="modal-body">
       <div style="padding: 20px;">
           {{Form::open(array('route'=> ['admission.amw.update-admtest-question-paper',$question->id], 'class'=>'form-horizontal','files'=>true))}}
@@ -33,9 +33,14 @@
                 </div>
 
                 <div class='form-group'>
-                    {{ Form::label('examiner_facutly_user_id', 'Assign To') }}
-                    {{ Form::Select('examiner_facutly_user_id', $examiner_faculty_lists , $question->examiner_facutly_user_id,['class'=>'form-control input-sm','required'])}}
+                    {{ Form::label('s_faculty_user_id', 'Question Setter') }}
+                    {{ Form::Select('s_faculty_user_id', $examiner_faculty_lists , $question->s_faculty_user_id,['class'=>'form-control input-sm','required'])}}
                 </div>
+
+                  <div class='form-group'>
+                      {{ Form::label('e_faculty_user_id', 'Question Evaluator') }}
+                      {{ Form::Select('e_faculty_user_id', $examiner_faculty_lists , $question->e_faculty_user_id,['class'=>'form-control input-sm','required'])}}
+                  </div>
 
           <p>&nbsp;</p>
 
