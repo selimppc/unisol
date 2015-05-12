@@ -1422,13 +1422,13 @@ class AdmAmwController extends \BaseController
      * @param $bats_id
      * @return mixed
      */
-    public function createAdmTestQuestionPaper($bats_id)
+    public function createAdmTestQuestionPaper($batch_id)
     {
 
-        $batch = BatchAdmtestSubject::with('relBatch')->where('id', $bats_id)->first();
+        //$batch = BatchAdmtestSubject::with('relBatch')->where('id', $bats_id)->first();
 
-            $admtest_subject = BatchAdmtestSubject::AdmissionTestSubjectByBatchId($batch->batch_id);
-            $examiner_faculty_lists = AdmQuestion::AdmissionExaminerList($batch->batch_id);
+            $admtest_subject = BatchAdmtestSubject::AdmissionTestSubjectByBatchId($batch_id);
+            $examiner_faculty_lists = AdmQuestion::AdmissionExaminerList($batch_id);
 
         return View::make('admission::amw.adm_question._form',
             compact('bats_id', 'batch','admtest_subject', 'examiner_faculty_lists'));
@@ -1471,9 +1471,11 @@ class AdmAmwController extends \BaseController
      */
     public function viewAdmTestQuestionPaper($id)
     {
-        $view_questions = AdmQuestion::with('relBatchAdmtestSubject', 'relBatchAdmtestSubject.relBatch', 'relBatchAdmtestSubject.relBatch.relDegree')
+        $view_questions = AdmQuestion::with('relBatchAdmtestSubject', 'relSUser.relUserProfile', 'relEUser.relUserProfile', 'relBatchAdmtestSubject.relBatch', 'relBatchAdmtestSubject.relBatch.relDegree')
             ->where('id', $id)->first();
-        return View::make('admission::amw.adm_question.view_question',compact('view_questions'));
+        $batch = Batch::with('relVDegree', 'relYear')->where('id', '=', $view_questions->relBatchAdmtestSubject->batch_id)->first();
+
+        return View::make('admission::amw.adm_question.view_question',compact('view_questions', 'batch'));
     }
 
 
@@ -1488,8 +1490,9 @@ class AdmAmwController extends \BaseController
         $batch_admtest_subject = BatchAdmtestSubject::BatchAdmissionTestSubjectLists($question->relBatchAdmtestSubject->relBatch->id);
         $examiner_faculty_lists = AdmQuestion::AdmissionExaminerList($question->relBatchAdmtestSubject->relBatch->id);
 
+        $batch = Batch::with('relVDegree', 'relYear')->where('id', '=', $question->relBatchAdmtestSubject->batch_id)->first();
         return View::make('admission::amw.adm_question.edit_question',
-            compact('question','batch_admtest_subject','examiner_faculty_lists'));
+            compact('question','batch_admtest_subject','examiner_faculty_lists', 'batch'));
     }
 
     /**
@@ -1551,21 +1554,7 @@ class AdmAmwController extends \BaseController
             compact('question_item', 'question_item_details'));
     }
 
-    /**
-     * @param $q_id :: question ID
-     * @return mixed
-     */
-    public function assignFacultyByQuestion($q_id)
-    {
-        $question_data = AdmQuestion::with('relBatchAdmtestSubject')->where('id', $q_id)->first();
 
-        $examiner_faculty_lists = AdmQuestion::AdmissionExaminerList($question_data->relBatchAdmtestSubject->batch_id);
-
-        $comments = AdmQuestionComments::where('adm_question_id', $q_id)->get();
-
-        return View::make('admission::amw.adm_question.assign_faculty_by_question_comnnets',
-            compact('question_data', 'examiner_faculty_lists', 'comments','q_id'));
-    }
 
     /**
      * @param $id
@@ -1601,16 +1590,34 @@ class AdmAmwController extends \BaseController
 
 
 
-    public function reAssignFaculty($q_id)
+
+
+    public function AssignFacultySetter($q_id)
     {
         $question_data = AdmQuestion::with('relBatchAdmtestSubject')->where('id', $q_id)->first();
 
         $examiner_faculty_lists = AdmQuestion::AdmissionExaminerList($question_data->relBatchAdmtestSubject->batch_id);
 
-        $comments = AdmQuestionComments::where('adm_question_id', $q_id)->get();
+        $comments = AdmQuestionComments::with('relToUser', 'relToUser.relUserProfile', 'relToUser.relRole', 'relByUser', 'relByUser.relUserProfile', 'relByUser.relRole')->where('adm_question_id', $q_id)->get();
 
-        return View::make('admission::amw.adm_question.re_assign_faculty_by_question_comnnets',
-            compact('question_data', 'examiner_faculty_lists', 'comments','q_id'));
+        $batch = Batch::with('relVDegree', 'relYear')->where('id', '=', $question_data->relBatchAdmtestSubject->batch_id)->first();
+
+        return View::make('admission::amw.adm_question.assign_faculty_setter',
+            compact('question_data', 'examiner_faculty_lists', 'comments','q_id', 'batch'));
+    }
+
+    public function AssignFacultyEvaluator($q_id)
+    {
+        $question_data = AdmQuestion::with('relBatchAdmtestSubject')->where('id', $q_id)->first();
+
+        $examiner_faculty_lists = AdmQuestion::AdmissionExaminerList($question_data->relBatchAdmtestSubject->batch_id);
+
+        $comments = AdmQuestionComments::with('relToUser', 'relToUser.relUserProfile', 'relToUser.relRole', 'relByUser', 'relByUser.relUserProfile', 'relByUser.relRole')->where('adm_question_id', $q_id)->get();
+
+        $batch = Batch::with('relVDegree', 'relYear')->where('id', '=', $question_data->relBatchAdmtestSubject->batch_id)->first();
+
+        return View::make('admission::amw.adm_question.assign_faculty_evaluator',
+            compact('question_data', 'examiner_faculty_lists', 'comments','q_id', 'batch'));
     }
 
     public function reAssignFacultyCommentsByQuestion($id)
