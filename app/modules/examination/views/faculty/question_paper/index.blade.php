@@ -5,7 +5,7 @@
 @stop
 
 @section('content')
-<a class="pull-right btn btn-xs btn-primary" href="{{ URL::route('admission.faculty.admission-test')}}"> <i class="fa fa-arrow-circle-left"></i> Go Back </a>
+{{--<a class="pull-right btn btn-xs btn-primary" href="{{ URL::route('admission.faculty.admission-test')}}"> <i class="fa fa-arrow-circle-left"></i> Go Back </a>--}}
     <h2> Question Paper</h2>
 
      {{--{{ Form::open(array('url' => 'admission/faculty/admission-test/qpBatchDelete')) }}--}}
