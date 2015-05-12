@@ -19,11 +19,14 @@ class ExmFacultyController extends \BaseController {
             $year_id  = Input::get('year_id');
             $semester_id = Input::get('semester_id');
 
+//            ->groupBy('exm_exam_list_id')
+
             $examination_list = ExmExaminer::join('exm_exam_list', function ($query) use ($year_id, $semester_id) {
                 $query->on('exm_exam_list.id', '=', 'exm_examiner.exm_exam_list_id');
                 $query->where('exm_exam_list.year_id', '=', $year_id);
                 $query->where('exm_exam_list.semester_id', '=', $semester_id);
-            })->select(DB::raw('exm_examiner.exm_exam_list_id as exm_exam_list_id , exm_examiner.status as status'))->get();
+            })->select(DB::raw('exm_examiner.exm_exam_list_id as exm_exam_list_id , exm_examiner.status as status'))
+              ->get();
         }else{
             $examination_list = ExmExaminer::with('relExmExamList','relExmExamList.relYear',
                 'relExmExamList.relSemester','relExmExamList.relCourseConduct',
@@ -89,7 +92,7 @@ class ExmFacultyController extends \BaseController {
 
 
 
-    
+
 //fct: Question List
 
     public function questionList()
