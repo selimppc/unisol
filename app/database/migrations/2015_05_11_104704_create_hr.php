@@ -104,7 +104,7 @@ class CreateHr extends Migration {
 
 
 
-        Schema::create('hr_load_head', function(Blueprint $table)
+        Schema::create('hr_loan_head', function(Blueprint $table)
         {
             $table->increments('id', true);
             $table->unsignedInteger('hr_employee_id')->nullable();
@@ -122,24 +122,24 @@ class CreateHr extends Migration {
             $table->integer('updated_by', false, 11);
             $table->timestamps();
         });
-        Schema::table('hr_load_head', function($table) {
+        Schema::table('hr_loan_head', function($table) {
             $table->foreign('hr_employee_id')->references('id')->on('hr_employee');
         });
 
 
 
-        Schema::create('hr_load_detail', function(Blueprint $table)
+        Schema::create('hr_loan_detail', function(Blueprint $table)
         {
             $table->increments('id', true);
-            $table->unsignedInteger('hr_load_head_id')->nullable();
+            $table->unsignedInteger('hr_loan_head_id')->nullable();
             $table->float('amount');
             $table->dateTime('date');
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
         });
-        Schema::table('hr_load_detail', function($table) {
-            $table->foreign('hr_load_head_id')->references('id')->on('hr_load_head');
+        Schema::table('hr_loan_detail', function($table) {
+            $table->foreign('hr_loan_head_id')->references('id')->on('hr_loan_head');
         });
 
 
@@ -207,7 +207,21 @@ class CreateHr extends Migration {
         });
 
 
-
+        Schema::create('hr_salary_advance', function(Blueprint $table)
+        {
+            $table->increments('id', true);
+            $table->unsignedInteger('hr_employee_id')->nullable();
+            $table->string('title', 32);
+            $table->float('amount');
+            $table->dateTime('date');
+            $table->text('description');
+            $table->integer('created_by', false, 11);
+            $table->integer('updated_by', false, 11);
+            $table->timestamps();
+        });
+        Schema::table('hr_salary_advance', function($table) {
+            $table->foreign('hr_employee_id')->references('id')->on('hr_employee');
+        });
 
         Schema::create('hr_salary_deduction', function(Blueprint $table)
         {
@@ -262,21 +276,7 @@ class CreateHr extends Migration {
         });
 
 
-        Schema::create('hr_advance_salary', function(Blueprint $table)
-        {
-            $table->increments('id', true);
-            $table->unsignedInteger('hr_employee_id')->nullable();
-            $table->string('title', 32);
-            $table->float('amount');
-            $table->dateTime('date');
-            $table->text('description');
-            $table->integer('created_by', false, 11);
-            $table->integer('updated_by', false, 11);
-            $table->timestamps();
-        });
-        Schema::table('hr_advance_salary', function($table) {
-            $table->foreign('hr_employee_id')->references('id')->on('hr_employee');
-        });
+
 
 
 
@@ -504,13 +504,7 @@ class CreateHr extends Migration {
             $table->integer('updated_by', false, 11);
             $table->timestamps();
         });
-
-
-
-        //TODO::
-        Schema::table('table', function($table) {
-            $table->foreign('currency_id')->references('id')->on('currency');
-        });
+        
 	}
 
 	public function down()
@@ -522,8 +516,8 @@ class CreateHr extends Migration {
         Schema::drop('hr_salary_grade');
         Schema::drop('hr_employee');
 
-        Schema::drop('hr_load_head');
-        Schema::drop('hr_load_detail');
+        Schema::drop('hr_loan_head');
+        Schema::drop('hr_loan_detail');
         Schema::drop('hr_over_time');
         Schema::drop('hr_bonus');
 
@@ -531,7 +525,7 @@ class CreateHr extends Migration {
 
         Schema::drop('hr_salary_deduction');
         Schema::drop('hr_salary_allowance');
-        Schema::drop('hr_advance_salary');
+        Schema::drop('hr_salary_advance');
 
         Schema::drop('hr_salary_transaction');
         Schema::drop('hr_salary_transaction_detail');
