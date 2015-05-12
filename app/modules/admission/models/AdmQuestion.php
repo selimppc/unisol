@@ -43,7 +43,7 @@ class AdmQuestion extends Eloquent{
         return $this->belongsTo('BatchAdmtestSubject', 'batch_admtest_subject_id', 'id');
     }
     public function relUser(){
-        return $this->belongsTo('User', 'examiner_faculty_user_id', 'id');
+        return $this->belongsTo('User', 'e_faculty_user_id', 'id');
     }
     public function relAdmQuestionComments(){
         return $this->HasMany('AdmQuestionComments');

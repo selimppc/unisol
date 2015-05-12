@@ -518,12 +518,18 @@ public function assign_faculty(){
 
     public function examList(){
 
+        $exam_data = ExmExamList::with(
+            [
+                'relCourseConduct', 'relCourseConduct.relCourse', 'relCourseConduct.relCourse.relSubject.relDepartment',
+                'relCourseConduct.relYear','relCourseConduct.relSemester', 'relAcmMarksDistItem' => function ($query)
+                { $query->where('acm_marks_dist_item.is_exam','=', 1); }
+            ]
+        )->get();
 
+
+
+        return View::make('examination::amw.exam.exam_list',compact('exam_data','year_id','semester_id'));
 
     }
-
-
-
-
 
 }

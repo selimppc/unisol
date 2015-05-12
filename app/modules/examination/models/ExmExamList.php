@@ -57,6 +57,9 @@ class ExmExamList extends \Eloquent
     public function relAcmMarksDistItem(){
         return $this->belongsTo('AcmMarksDistItem', 'acm_marks_dist_item_id', 'id');
     }
+    public function relCourseConduct(){
+        return $this->belongsTo('CourseConduct','course_conduct_id','id');
+    }
 
     // TODO : user info while saving data into table
     public static function boot(){

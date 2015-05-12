@@ -6,25 +6,57 @@ class ExmFacultyController extends \BaseController {
         $this->beforeFilter('exmFaculty', array('except' => array('')));
     }
 
-    //fct: Question papers index
-    public function index()
-    {
-        $data = ExmQuestion::with('relCourseManagement', 'relCourseManagement.relYear',
-            'relCourseManagement.relSemester','relCourseManagement.relCourse.relSubject.relDepartment')
-            ->get();
-
-        return View::make('examination::faculty.prepare_question_paper.index')->with('datas', $data);
-    }
+    //fct: Examiner index
 
     public function examinationList()
     {
+        $data = ExmExaminer::with('relExmExamList','relExmExamList.relYear',
+            'relExmExamList.relSemester','relExmExamList.relCourseConduct',
+            'relExmExamList.relCourseConduct.relCourse','relExmExamList.relAcmMarksDistItem')
+            ->get();
+
+        $year_id = array('' => 'Select Year ') + Year::lists('title', 'id');
+        $semester_id = array('' => 'Select Semester ') + Semester::lists('title', 'id');
+
+        return View::make('examination::faculty.examination_list.index',
+            compact('data','year_id','semester_id'));;
 
     }
 
-    public function questionPaper()
+    public function changeStatustoDenyByFacultyEXM($id){
+        $model = ExmExaminer::findOrFail($id);
+        $model->status = 'Deny';
+        if($model->save()){
+            Session::flash('warning', 'Deny or Revoked! ');
+            return Redirect::back();
+        }
+    }
+
+    public function changeStatusToAcceptedByFacultyEXM($id){
+        $model = ExmExaminer::findOrFail($id);
+        $model->status = 'Accepted';
+        if($model->save()){
+            Session::flash('message', 'Requested Accepted! ');
+            return Redirect::back();
+        }
+    }
+
+    public function examinationListBatchDelete()
     {
 
     }
+
+    public function questionPaper($exm_list_id)
+    {
+        echo"$exm_list_id is ok";
+
+    }
+
+
+
+
+
+
 
 
 //fct: Question List
