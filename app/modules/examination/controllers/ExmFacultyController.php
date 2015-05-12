@@ -48,7 +48,7 @@ class ExmFacultyController extends \BaseController {
 
     public function questionPaper($exm_list_id)
     {
-        echo"$exm_list_id is ok";
+        echo"$exm_list_id is coming";
 
     }
 
