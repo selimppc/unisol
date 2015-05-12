@@ -10,7 +10,7 @@ class AdmQuestion extends Eloquent{
     protected $table = 'adm_question';
     protected $fillable = [
         'batch_admtest_subject_id', 's_faculty_user_id', 'e_faculty_user_id', 'title', 'deadline', 'total_marks',
-        'status',
+        'status', 's_status', 'e_status'
     ];
     private $errors;
     private $rules = [
