@@ -11,4 +11,11 @@
 |
 */
 
+Route::group(['prefix' => 'hr'], function() {
 
+    Route::get('/', function() {
+        return 'Thank you so much!';
+    });
+
+
+});
