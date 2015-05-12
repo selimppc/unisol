@@ -62,10 +62,8 @@ class ExmFacultyController extends \BaseController {
     {
         try {
             ExmExaminer::destroy(Request::get('id'));
-
             return Redirect::back()->with('message', 'Successfully deleted Information!');
         } catch (exception $ex) {
-
             return Redirect::back()->with('danger', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
         }
 
@@ -73,40 +71,15 @@ class ExmFacultyController extends \BaseController {
 
     public function questionPaper($exm_list_id)
     {
-//        $examiner_type = ExmExaminer::where('exm_exam_list_id', $exm_list_id)->first()->type;
-//
-//        $ba_subject = ExmExaminer::with('relBatchAdmtestSubject','relBatchAdmtestSubject.relAdmQuestion')
-//            ->where('id', '=', $exm_list_id)
-//            ->get();
-//
-//        $degree_id = ExmExamList::where('id' ,'=', $exm_list_id )
-//            ->where('semester_id' ,'=', 'exm_exam_list.semester_id')
-//            ->where('year_id' ,'=', 'exm_exam_list.year_id')
-//            ->first()->degree_id;
-//
-//        $degree_data = Degree::with('relDepartment')
-//            ->where('id','=', $degree_id)
-//            ->first();
-//
-//        return View::make('admission::faculty.question_papers.question_papers',
-//            compact('ba_subject','degree_id','degree_data','semester_id','year_id', 'examiner_type'));
-
-        $examiner_type = ExmExaminer::where('exm_exam_list_id',$exm_list_id)->where('user_id', Auth::user()->get()->id)->first()->id;
-//        print_r($examiner_type);exit;
+        $examiner_type = ExmExaminer::where('exm_exam_list_id',$exm_list_id)->first();
 
         $question_paper = ExmQuestion::with('relExmExamList', 'relExmExamList.relYear',
             'relExmExamList.relSemester','relCourseConduct.relDegree','relExaminerFacultyUser')
             ->where('exm_exam_list_id', '=', $exm_list_id)
             ->get();
 
-//        print_r($question_paper);exit;
-
         return View::make('examination::faculty.question_paper.index',
             compact('examiner_type','question_paper','exm_list_id'));
-
-
-
-
 
     }
 
@@ -116,7 +89,7 @@ class ExmFacultyController extends \BaseController {
 
 
 
-
+    
 //fct: Question List
 
     public function questionList()
