@@ -133,6 +133,13 @@ return array(
         'App\Modules\Applicant\ServiceProvider',
         'Intervention\Image\ImageServiceProvider',
         'App\Modules\Fees\ServiceProvider',
+        'App\Modules\Accounts\ServiceProvider',
+        'App\Modules\Cfo\ServiceProvider',
+        'App\Modules\Hr\ServiceProvider',
+        'App\Modules\Inventory\ServiceProvider',
+        'App\Modules\Library\ServiceProvider',
+        'App\Modules\Payment\ServiceProvider',
+        'App\Modules\Rnc\ServiceProvider',
 	),
 
 	/*

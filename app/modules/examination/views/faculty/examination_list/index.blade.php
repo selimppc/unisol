@@ -66,12 +66,12 @@
                            <td>{{ $values->relExmExamList->relAcmMarksDistItem->title }}</td>
                            <td>{{ $values->relExmExamList->relYear->title }}</td>
                            <td>{{ $values->relExmExamList->relSemester->title }}</td>
-                           <td>{{ $values->status }}</td>
+                           <td>{{ ucfirst($values->status) }}</td>
                            <td>
-                              @if($values->status == 'Requested' )
+                              @if($values->status == 'requested' )
                                       <a class="btn btn-primary btn-xs" data-href="{{ URL::route('examination.faculty.admission-test.change-status-to-accept',['id'=>$values->id]) }}" data-toggle="modal" data-target="#confirm-delete" href="">Accept</a>
                                       <a class="btn btn-success btn-xs" data-href="{{ URL::route('examination.faculty.examination-list.change-status-to-deny',['id'=>$values->id]) }}" data-toggle="modal" data-target="#confirm-delete" href="">Deny</a>
-                              @elseif( $values->status == 'Accepted' )
+                              @elseif( $values->status == 'accepted' )
                                       <a href="{{ URL::route('examination.faculty.exm-question-paper', ['exm_list_id'=>$values->exm_exam_list_id]) }}" class="btn btn-info btn-xs" >Questions</a>
                               @endif
                            </td>
@@ -114,7 +114,7 @@
                   </div>
                   <div class="modal-footer">
                         <a href="" class="btn-sm btn-default">Close</a>
-                        <a href="#" class="btn btn-Success danger">OK</a>
+                        <a href="#" class="btn-sm btn-Success danger">OK</a>
                   </div>
             </div>
           </div>
