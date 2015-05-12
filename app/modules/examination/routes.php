@@ -37,20 +37,20 @@ Route::any('examination/amw/examination',[
     'uses' => 'ExmAmwController@examination'
 ]);
 
-Route::any('examination/amw/createExamination',[
-    'as' =>'examination/amw/createExamination',
-    'uses' => 'ExmAmwController@createExamination'
-]);
+//Route::any('examination/amw/createExamination',[
+//    'as' =>'examination/amw/createExamination',
+//    'uses' => 'ExmAmwController@createExamination'
+//]);
 
 Route::any('examination/amw/storeExamination',[
     'as' =>'examination/amw/storeExamination',
     'uses' => 'ExmAmwController@storeExamination'
 ]);
 
-Route::any('examination/amw/viewExamination/{id}', [
-    'as' => 'examination.amw.viewExamination',
-    'uses' => 'ExmAmwController@viewExamination'
-]);
+//Route::any('examination/amw/viewExamination/{id}', [
+//    'as' => 'examination.amw.viewExamination',
+//    'uses' => 'ExmAmwController@viewExamination'
+//]);
 Route::any('examination/amw/editExamination/{exam_list_id}', [
     'as' => 'examination.amw.editExamination',
     'uses' => 'ExmAmwController@editExamination'
