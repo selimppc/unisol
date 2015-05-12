@@ -11,4 +11,7 @@
 |
 */
 
-
+Route::any('inventory', function()
+{
+    return 'Hello Inventory!';
+});
