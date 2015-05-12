@@ -27,10 +27,10 @@ Route::group(['prefix' => 'examination'], function() {
         'uses' => 'ExmAmwController@deshboard'
     ]);
 
-    Route::any('amw/examination',[
-        'as' =>'examination/amw/examination',
-        'uses' => 'ExmAmwController@examination'
-    ]);
+//    Route::any('amw/examination',[
+//        'as' =>'examination/amw/examination',
+//        'uses' => 'ExmAmwController@examination'
+//    ]);
 
     //Route::any('amw/createExamination',[
     //    'as' =>'examination/amw/createExamination',
@@ -46,19 +46,19 @@ Route::group(['prefix' => 'examination'], function() {
     //    'as' => 'examination.amw.viewExamination',
     //    'uses' => 'ExmAmwController@viewExamination'
     //]);
-    Route::any('amw/editExamination/{exam_list_id}', [
-        'as' => 'examination.amw.editExamination',
-        'uses' => 'ExmAmwController@editExamination'
-    ]);
-    Route::any('amw/updateExamination/{exam_list_id}', [
-        'as' => 'examination.amw.updateExamination',
-        'uses' => 'ExmAmwController@updateExamination'
-    ]);
+//    Route::any('amw/editExamination/{exam_list_id}', [
+//        'as' => 'examination.amw.editExamination',
+//        'uses' => 'ExmAmwController@editExamination'
+//    ]);
+//    Route::any('amw/updateExamination/{exam_list_id}', [
+//        'as' => 'examination.amw.updateExamination',
+//        'uses' => 'ExmAmwController@updateExamination'
+//    ]);
 
-    Route::any('amw/store',[
-        'as' =>'examination/amw/store',
-        'uses' => 'ExmAmwController@storeQuestionPaper'
-    ]);
+//    Route::any('amw/store',[
+//        'as' =>'examination/amw/store',
+//        'uses' => 'ExmAmwController@storeQuestionPaper'
+//    ]);
 
     Route::any('amw/editQuestionPaper/{id}', [
         'as' => 'examination.amw.editQuestionPaper',

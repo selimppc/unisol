@@ -7,7 +7,7 @@
 <div class="modal-body">
       <div style="padding: 0px 20px 20px 20px;">
           {{Form::open(array('url'=>'examination/amw/store-exam', 'class'=>'form-horizontal','files'=>true))}}
-          {{Form::hidden('course_conduct_id', $course_conduct_id)}}
+          {{--{{Form::hidden('course_conduct_id', 1)}}--}}
 
           <div class="row">
                   <div class="help-text-top">
@@ -21,23 +21,24 @@
           </div>
 
           <div class="form-group">
-              {{ Form::label('exam_type', 'Exam Type') }}
-              {{ Form::select('acm_marks_dist_item_id',$exam_type, Input::old('acm_marks_dist_item_id'), array('class' => 'form-control')) }}
+              {{ Form::label('acm_marks_dist_item_id', 'Exam Type') }}
+              {{ Form::select('acm_marks_dist_item_id', $exam_type, Input::old('acm_marks_dist_item_id'), array('class' => 'form-control')) }}
           </div>
-{{Form::open(array('url'=>'examination/amw/drop-down-courses', 'class'=>'form-horizontal','files'=>true))}}
+
           <div class="form-group">
                 {{ Form::label('semester_id', 'Semester') }}
                 {{ Form::select('semester_id', $semester_id, Input::old('semester_id'), array('class' => 'form-control', 'id'=>'sem-data')) }}
             </div>
+             {{--{{Form::open(array('url'=>'examination/amw/drop-down-courses', 'class'=>'form-horizontal','files'=>true))}}--}}
 
           <div class="form-group">
               {{ Form::label('year_id', 'Year') }}
-              {{ Form::select('year_id',$year_id, Input::old(''), ['id'=>'course_name','class'=>'form-control'] ) }}
+              {{ Form::select('year_id',$year_id, Input::old('year_id'), ['id'=>'course_name','class'=>'form-control'] ) }}
           </div>
 
           <div class="form-group">
-              {{ Form::label('course_name', 'Course Name') }}
-              {{ Form::select('course_name',$course_list, Input::old('course_name'), ['id'=>'dependable-list', 'class'=>'form-control','placeholder'=>'fgfdhfhj']) }}
+              {{ Form::label('course_conduct_id', 'Course Name') }}
+              {{ Form::select('course_conduct_id', $course_list, Input::old('course_conduct_id'), ['id'=>'dependable-list', 'class'=>'form-control','placeholder'=>'']) }}
           </div>
 
 

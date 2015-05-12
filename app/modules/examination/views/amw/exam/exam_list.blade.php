@@ -4,7 +4,7 @@
 @stop
 @section('content')
 
-<a class="pull-right btn btn-sm btn-info" href="{{ URL::to('examination/amw/create-exam/'.$course_conduct_id }}" data-toggle="modal" data-target="#exam-data" style="color: #ffffff" title="New Degree"><b>Add Examination</b></a>
+<a class="pull-right btn btn-sm btn-info" href="{{ URL::route('examination.amw.create-exam') }}" data-toggle="modal" data-target="#exam-data" style="color: #ffffff" title="New Degree"><b>Add Examination</b></a>
 
 <h3>Examination</h3>
 

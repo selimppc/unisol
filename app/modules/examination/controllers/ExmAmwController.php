@@ -450,11 +450,11 @@ public function assign_faculty(){
                     ->where('acm_marks_dist_item.is_exam', '=', 1);
                   })->get();
 
-        return View::make('examination::amw.exam.exam_list',compact('exam_data','year_id','semester_id'));
+        return View::make('examination::amw.exam.exam_list',compact('exam_data','year_id','semester_id','course_conduct_id'));
 
     }
 
-        public function createExamination($course_conduct_id){
+        public function createExamination(){
 
             $year_id = ['' => 'Select Year'] + Year::lists('title', 'id');
             $semester_id = ['' => 'Select Semester'] + Semester::lists('title', 'id');
@@ -477,8 +477,8 @@ public function assign_faculty(){
             })
                 ->where('course_conduct.year_id', '=', $year)
                 ->where('course_conduct.semester_id', '=', $semester)
-                ->select(DB::raw('course.title as c_title, course_conduct.course_id as cc_course_id'))
-                ->lists('c_title', 'cc_course_id');
+                ->select(DB::raw('course.title as c_title, course_conduct.id as cc_id'))
+                ->lists('c_title', 'cc_id');
 
         if($courses){
             return Response::make(['please select one'] + $courses);
@@ -492,21 +492,19 @@ public function assign_faculty(){
     public function storeExamination(){
 
         $data = Input::all();
-
         $model = new ExmExamList();
-
         if($model->validate($data))
         {
             DB::beginTransaction();
             try {
                 $model->create($data);
                 DB::commit();
-                Session::flash('message', "Batch Added");
+                Session::flash('message', " Added");
             }
             catch ( Exception $e ){
                 //If there are any exceptions, rollback the transaction
                 DB::rollback();
-                Session::flash('danger', " Batch not added.Invalid Request !");
+                Session::flash('danger', " not added.Invalid Request !");
             }
             return Redirect::back();
         }else{
