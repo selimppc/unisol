@@ -42,10 +42,10 @@ Route::any('examination/amw/examination',[
 //    'uses' => 'ExmAmwController@createExamination'
 //]);
 
-Route::any('examination/amw/storeExamination',[
-    'as' =>'examination/amw/storeExamination',
-    'uses' => 'ExmAmwController@storeExamination'
-]);
+//Route::any('examination/amw/storeExamination',[
+//    'as' =>'examination/amw/storeExamination',
+//    'uses' => 'ExmAmwController@storeExamination'
+//]);
 
 //Route::any('examination/amw/viewExamination/{id}', [
 //    'as' => 'examination.amw.viewExamination',

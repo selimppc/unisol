@@ -20,6 +20,16 @@ Route::any('examination/amw/create-exam',[
     'uses' => 'ExmAmwController@createExamination'
 ]);
 
+Route::any('examination/amw/store-exam',[
+    'as' =>'examination.amw.store-exam',
+    'uses' => 'ExmAmwController@storeExamination'
+]);
+
+Route::any('examination/amw/drop-down-courses',[
+    'as' =>'examination.amw.drop-down-courses',
+    'uses' => 'ExmAmwController@dropDownCourses'
+]);
+
 Route::any('examination/amw/view-exam-data/{id}', [
     'as' => 'examination.amw.view-exam-data',
     'uses' => 'ExmAmwController@viewExamData'
