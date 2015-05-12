@@ -35,7 +35,13 @@
                                 <td>{{ $question->relCourseConduct->relDegree->relDepartment->title }}</td>
                                 <td>{{ $question->relExmExamList->relYear->title }}</td>
                                 <td>{{ $question->relExmExamList->relSemester->title }}</td>
-                                <td>{{ isset($examiner_type->id) ? $examiner_type->id : '' }} </td>
+                                <td>
+                                    @if($examiner_type->user_id != Auth::user()->get()->id)
+                                                 {{ "No" }}
+                                    @else
+                                                 {{ "Yes" }}
+                                    @endif
+                                </td>
                                 <td>
                                      {{--@if( $examiner_type == 'both' )--}}
                                            {{--<a href="{{ URL::route('admission.faculty.question-papers.view-question-paper',['question_id'=>$question->id]) }}" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modal">VQP</a>--}}
