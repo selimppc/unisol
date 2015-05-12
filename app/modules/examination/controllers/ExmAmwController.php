@@ -454,7 +454,7 @@ public function assign_faculty(){
 
     }
 
-        public function createExamination(){
+        public function createExamination($course_conduct_id){
 
             $year_id = ['' => 'Select Year'] + Year::lists('title', 'id');
             $semester_id = ['' => 'Select Semester'] + Semester::lists('title', 'id');
@@ -462,7 +462,7 @@ public function assign_faculty(){
             $course_list = ['' => 'Select Course']+ Course::lists('title', 'id');
 
             return View::make('examination::amw.exam.add_exam_form', compact(
-            'add_examination','year_id','semester_id','exam_type','course_list'
+            'add_examination','year_id','semester_id','exam_type','course_list','course_conduct_id'
             ));
 
     }
@@ -480,22 +480,11 @@ public function assign_faculty(){
                 ->select(DB::raw('course.title as c_title, course_conduct.course_id as cc_course_id'))
                 ->lists('c_title', 'cc_course_id');
 
-//        DB::table('users')
-//            ->join('contacts', function($join)
-//            {
-//                $join->on('users.id', '=', 'contacts.user_id')
-//                    ->where('contacts.user_id', '>', 5);
-//            })
-//            ->get();
-
-
-//print_r($query);exit;
-//        $courses = CourseConduct::with('relCourse')->where('year_id','=',$year)
-//            ->lists('course_id','id');
-
         if($courses){
             return Response::make(['please select one'] + $courses);
-        }else{
+//            return Redirect::route('examination.amw.store-exam');
+        }
+        else{
             return Response::make(['no data found']);
         }
     }
@@ -503,26 +492,28 @@ public function assign_faculty(){
     public function storeExamination(){
 
         $data = Input::all();
-        $store_exam = new ExmExamList();
-        if ($store_exam->validate($data))
-        {
-            $store_exam->title = Input::get('title');
-            $store_exam->year_id = Input::get('year_id');
-            $store_exam->semester_id = Input::get('semester_id');
-            $store_exam->course_management_id = Input::get('course_management_id');
-            $store_exam->acm_marks_dist_item_id = Input::get('acm_marks_dist_item_id');
-            $store_exam->status = '0';
 
-            $store_exam->save();
+        $model = new ExmExamList();
 
-            Session::flash('message', 'Examination Successfully Added!');
-            return Redirect::to('examination/amw/examination');
-        }
-        else
+        if($model->validate($data))
         {
-            $errors = $store_exam->errors();
+            DB::beginTransaction();
+            try {
+                $model->create($data);
+                DB::commit();
+                Session::flash('message', "Batch Added");
+            }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', " Batch not added.Invalid Request !");
+            }
+            return Redirect::back();
+        }else{
+            $errors = $model->errors();
             Session::flash('errors', $errors);
-            return Redirect::to('examination/amw/create');
+            return Redirect::back()
+                ->with('errors', 'invalid');
         }
     }
 

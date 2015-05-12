@@ -15,7 +15,7 @@ Route::any('examination/amw/exam-list',[
     'uses' => 'ExmAmwController@examList'
 ]);
 
-Route::any('examination/amw/create-exam',[
+Route::any('examination/amw/create-exam/{course_conduct_id}',[
     'as' =>'examination.amw.create-exam',
     'uses' => 'ExmAmwController@createExamination'
 ]);
