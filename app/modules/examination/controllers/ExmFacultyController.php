@@ -24,8 +24,6 @@ class ExmFacultyController extends \BaseController {
                 $query->where('exm_exam_list.year_id', '=', $year_id);
                 $query->where('exm_exam_list.semester_id', '=', $semester_id);
             })->select(DB::raw('exm_examiner.exm_exam_list_id as exm_exam_list_id , exm_examiner.status as status'))->get();
-
-//            print_r($examination_list);exit;
         }else{
             $examination_list = ExmExaminer::with('relExmExamList','relExmExamList.relYear',
                 'relExmExamList.relSemester','relExmExamList.relCourseConduct',
@@ -38,17 +36,8 @@ class ExmFacultyController extends \BaseController {
         // To use the old values effective use the following line before  return view::make
         Input::flash();
 
-//        $examination_list = ExmExaminer::with('relExmExamList','relExmExamList.relYear',
-//            'relExmExamList.relSemester','relExmExamList.relCourseConduct',
-//            'relExmExamList.relCourseConduct.relCourse','relExmExamList.relAcmMarksDistItem')
-//            ->get();
-//
-//        $year_id = array('' => 'Select Year ') + Year::lists('title', 'id');
-//        $semester_id = array('' => 'Select Semester ') + Semester::lists('title', 'id');
-
         return View::make('examination::faculty.examination_list.index',
-            compact('examination_list','year_id','semester_id'));;
-
+            compact('examination_list','year_id','semester_id'));
     }
 
     public function changeStatustoDenyByFacultyEXM($id){
@@ -71,6 +60,14 @@ class ExmFacultyController extends \BaseController {
 
     public function examinationListBatchDelete()
     {
+        try {
+            ExmExaminer::destroy(Request::get('id'));
+
+            return Redirect::back()->with('message', 'Successfully deleted Information!');
+        } catch (exception $ex) {
+
+            return Redirect::back()->with('danger', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+        }
 
     }
 
