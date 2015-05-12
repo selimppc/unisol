@@ -8,17 +8,6 @@ class CreateHr extends Migration {
 	public function up()
 	{
 
-        Schema::create('currency', function(Blueprint $table)
-        {
-            $table->increments('id', true);
-            $table->string('title', 32);
-            $table->string('code', 8);
-            $table->float('exchange_rate');
-            $table->integer('created_by', false, 11);
-            $table->integer('updated_by', false, 11);
-            $table->timestamps();
-        });
-
         Schema::create('hr_bank', function(Blueprint $table)
         {
             $table->increments('id', true);
@@ -115,14 +104,411 @@ class CreateHr extends Migration {
 
 
 
+        Schema::create('hr_load_head', function(Blueprint $table)
+        {
+            $table->increments('id', true);
+            $table->unsignedInteger('hr_employee_id')->nullable();
+            $table->string('title', 32);
+            $table->float('loan_amount');
+            $table->dateTime('loan_date');
+            $table->float('monthly_repayment_amount');
+            $table->dateTime('payment_start_date');
+            $table->text('description');
+            $table->decimal('number_of_installment', 2, 0);
+            $table->enum('work_shift', array(
+                'new', 'running', 'complete',
+            ));
+            $table->integer('created_by', false, 11);
+            $table->integer('updated_by', false, 11);
+            $table->timestamps();
+        });
+        Schema::table('hr_load_head', function($table) {
+            $table->foreign('hr_employee_id')->references('id')->on('hr_employee');
+        });
+
+
+
+        Schema::create('hr_load_detail', function(Blueprint $table)
+        {
+            $table->increments('id', true);
+            $table->unsignedInteger('hr_load_head_id')->nullable();
+            $table->float('amount');
+            $table->dateTime('date');
+            $table->integer('created_by', false, 11);
+            $table->integer('updated_by', false, 11);
+            $table->timestamps();
+        });
+        Schema::table('hr_load_detail', function($table) {
+            $table->foreign('hr_load_head_id')->references('id')->on('hr_load_head');
+        });
+
+
+
+        Schema::create('hr_over_time', function(Blueprint $table)
+        {
+            $table->increments('id', true);
+            $table->unsignedInteger('hr_employee_id')->nullable();
+            $table->dateTime('sign_in');
+            $table->dateTime('sign_out');
+            $table->enum('type', array(
+                'active', 'close',
+            ));
+            $table->integer('created_by', false, 11);
+            $table->integer('updated_by', false, 11);
+            $table->timestamps();
+        });
+        Schema::table('hr_over_time', function($table) {
+            $table->foreign('hr_employee_id')->references('id')->on('hr_employee');
+        });
+
+
+        Schema::create('hr_bonus', function(Blueprint $table)
+        {
+            $table->increments('id', true);
+            $table->unsignedInteger('hr_employee_id')->nullable();
+            $table->string('title', 32);
+            $table->float('amount');
+            $table->dateTime('date');
+            $table->enum('status', array(
+                'active', 'close',
+            ));
+            $table->integer('created_by', false, 11);
+            $table->integer('updated_by', false, 11);
+            $table->timestamps();
+        });
+        Schema::table('hr_bonus', function($table) {
+            $table->foreign('hr_employee_id')->references('id')->on('hr_employee');
+        });
+
+
+
+
+        Schema::create('hr_salary', function(Blueprint $table)
+        {
+            $table->increments('id', true);
+            $table->unsignedInteger('hr_employee_id')->nullable();
+            $table->enum('salary_type', array(
+                'monthly', 'weekly', 'yearly', 'hourly'
+            ));
+            $table->unsignedInteger('currency_id')->nullable();
+            $table->float('exchange_rate');
+            $table->float('gross');
+            $table->float('basic');
+            $table->enum('status', array(
+                'active', 'close',
+            ));
+            $table->integer('created_by', false, 11);
+            $table->integer('updated_by', false, 11);
+            $table->timestamps();
+        });
+        Schema::table('hr_salary', function($table) {
+            $table->foreign('hr_employee_id')->references('id')->on('hr_employee');
+            $table->foreign('currency_id')->references('id')->on('currency');
+        });
+
+
+
+
+        Schema::create('hr_salary_deduction', function(Blueprint $table)
+        {
+            $table->increments('id', true);
+            $table->unsignedInteger('hr_employee_id')->nullable();
+            $table->string('title', 32);
+            $table->enum('type', array(
+                'loan', 'salary-advance', 'tax', 'other'
+            ));
+            $table->unsignedInteger('hr_loan_head_id')->nullable();
+            $table->unsignedInteger('hr_salary_advance_id')->nullable();
+            $table->float('amount');
+            $table->dateTime('date');
+            $table->enum('status', array(
+                'active', 'close',
+            ));
+            $table->integer('created_by', false, 11);
+            $table->integer('updated_by', false, 11);
+            $table->timestamps();
+        });
+        Schema::table('hr_salary_deduction', function($table) {
+            $table->foreign('hr_employee_id')->references('id')->on('hr_employee');
+            $table->foreign('hr_loan_head_id')->references('id')->on('hr_loan_head');
+            $table->foreign('hr_salary_advance_id')->references('id')->on('hr_salary_advance');
+        });
+
+
+
+
+        Schema::create('hr_salary_allowance', function(Blueprint $table)
+        {
+            $table->increments('id', true);
+            $table->unsignedInteger('hr_salary_id')->nullable();
+            $table->unsignedInteger('hr_allowance_id')->nullable();
+            $table->string('title', 32);
+            $table->boolean('is_percentage');
+            $table->float('percentage');
+            $table->enum('allowance_type', array(
+                '%-of-basic', 'fixed-amount',
+            ));
+            $table->float('amount');
+            $table->enum('status', array(
+                'active', 'close',
+            ));
+            $table->integer('created_by', false, 11);
+            $table->integer('updated_by', false, 11);
+            $table->timestamps();
+        });
+        Schema::table('hr_salary_allowance', function($table) {
+            $table->foreign('hr_salary_id')->references('id')->on('hr_salary');
+            $table->foreign('hr_allowance_id')->references('id')->on('hr_allowance');
+        });
+
+
+        Schema::create('hr_advance_salary', function(Blueprint $table)
+        {
+            $table->increments('id', true);
+            $table->unsignedInteger('hr_employee_id')->nullable();
+            $table->string('title', 32);
+            $table->float('amount');
+            $table->dateTime('date');
+            $table->text('description');
+            $table->integer('created_by', false, 11);
+            $table->integer('updated_by', false, 11);
+            $table->timestamps();
+        });
+        Schema::table('hr_advance_salary', function($table) {
+            $table->foreign('hr_employee_id')->references('id')->on('hr_employee');
+        });
+
+
+
+        Schema::create('hr_salary_transaction', function(Blueprint $table)
+        {
+            $table->increments('id', true);
+            $table->string('trn_number', 32);
+            $table->unsignedInteger('hr_employee_id')->nullable();
+            $table->dateTime('date');
+            $table->unsignedInteger('year_id')->nullable();
+
+            $table->string('period');
+            $table->float('total_amount');
+            $table->enum('status', array(
+                'open', 'ask-for-interview', 'approved', 'denied', 'request-for-update'
+            ));
+            $table->integer('created_by', false, 11);
+            $table->integer('updated_by', false, 11);
+            $table->timestamps();
+        });
+        Schema::table('hr_salary_transaction', function($table) {
+            $table->foreign('hr_employee_id')->references('id')->on('hr_employee');
+            $table->foreign('year_id')->references('id')->on('year');
+        });
+
+
+
+
+
+        Schema::create('hr_salary_transaction_detail', function(Blueprint $table)
+        {
+            $table->increments('id', true);
+            $table->unsignedInteger('hr_salary_transaction_id')->nullable();
+            $table->enum('type', array(
+                'allowance', 'deduction', 'over-time', 'bonus', 'commission'
+            ));
+
+            $table->unsignedInteger('hr_salary_allowance_id')->nullable();
+            $table->unsignedInteger('hr_salary_deduction_id')->nullable();
+            $table->unsignedInteger('hr_over_time_id')->nullable();
+            $table->unsignedInteger('hr_bonus_id')->nullable();
+            $table->decimal('percentage', 2, 0);
+            $table->float('amount');
+            $table->integer('created_by', false, 11);
+            $table->integer('updated_by', false, 11);
+            $table->timestamps();
+        });
+        Schema::table('hr_salary_transaction_detail', function($table) {
+            $table->foreign('hr_salary_transaction_id')->references('id')->on('hr_salary_transaction');
+            $table->foreign('hr_salary_allowance_id')->references('id')->on('hr_salary_allowance');
+            $table->foreign('hr_salary_deduction_id')->references('id')->on('hr_salary_deduction');
+            $table->foreign('hr_over_time_id')->references('id')->on('hr_over_time');
+            $table->foreign('hr_bonus_id')->references('id')->on('hr_bonus');
+        });
+
+
+
+
+        Schema::create('hr_attendance', function(Blueprint $table)
+        {
+            $table->increments('id', true);
+            $table->unsignedInteger('hr_employee_id')->nullable();
+
+            $table->dateTime('date');
+            $table->dateTime('sign_in_time');
+            $table->dateTime('sign_out_time');
+
+            $table->dateTime('lunch_break_out_time');
+            $table->dateTime('lunch_break_in_time');
+            $table->dateTime('break_out_time');
+            $table->dateTime('break_in_time');
+            $table->text('note');
+
+            $table->integer('created_by', false, 11);
+            $table->integer('updated_by', false, 11);
+            $table->timestamps();
+        });
+        Schema::table('hr_attendance', function($table) {
+            $table->foreign('hr_employee_id')->references('id')->on('hr_employee');
+        });
+
+
+
+        Schema::create('hr_leave_type', function(Blueprint $table)
+        {
+            $table->increments('id', true);
+            $table->string('title', 32);
+            $table->string('code', 8);
+            $table->enum('employee_type', array(
+                'permanent', 'full-time', 'part-time', 'contractual', 'project'
+            ));
+            $table->integer('created_by', false, 11);
+            $table->integer('updated_by', false, 11);
+            $table->timestamps();
+        });
+
+
+
+
+
+        Schema::create('hr_leave', function(Blueprint $table)
+        {
+            $table->increments('id', true);
+            $table->unsignedInteger('forward_to')->nullable();
+            $table->unsignedInteger('hr_leave_type_id')->nullable();
+            $table->text('reason');
+
+            $table->enum('leave_duration', array(
+                'full-day', 'half-day'
+            ));
+            $table->dateTime('from_date');
+            $table->dateTime('to_date');
+
+            $table->string('alt_contact_no', 32);
+            $table->unsignedInteger('alt_hr_employee_id')->nullable();
+            $table->enum('status', array(
+                'rejected', 'canceled', 'pending-approval', 'scheduled', 'taken', 'approved'
+            ));
+
+            $table->integer('created_by', false, 11);
+            $table->integer('updated_by', false, 11);
+            $table->timestamps();
+        });
+        Schema::table('hr_leave', function($table) {
+            $table->foreign('forward_to')->references('id')->on('hr_employee');
+            $table->foreign('hr_leave_type_id')->references('id')->on('hr_leave_type');
+            $table->foreign('alt_hr_employee_id')->references('id')->on('hr_employee');
+        });
+
+
+
+        Schema::create('hr_leave_comments', function(Blueprint $table)
+        {
+            $table->increments('id', true);
+            $table->unsignedInteger('hr_leave_id')->nullable();
+            $table->text('comment');
+
+            $table->integer('created_by', false, 11);
+            $table->integer('updated_by', false, 11);
+            $table->timestamps();
+        });
+        Schema::table('hr_leave_comments', function($table) {
+            $table->foreign('hr_leave_id')->references('id')->on('hr_leave');
+        });
+
+
+        Schema::create('hr_leave_comments', function(Blueprint $table)
+        {
+            $table->increments('id', true);
+            $table->unsignedInteger('hr_leave_id')->nullable();
+            $table->text('comment');
+
+            $table->integer('created_by', false, 11);
+            $table->integer('updated_by', false, 11);
+            $table->timestamps();
+        });
+        Schema::table('hr_leave_comments', function($table) {
+            $table->foreign('hr_leave_id')->references('id')->on('hr_leave');
+        });
+
+
+        Schema::create('hr_work_week', function(Blueprint $table)
+        {
+            $table->increments('id', true);
+            $table->unsignedInteger('year_id')->nullable();
+            $table->enum('month', array(
+                'january', 'february', 'march', 'april', 'may', 'june',
+                'july', 'august', 'september', 'october', 'november', 'december'
+            ));
+            $table->enum('day', array(
+                'saturday', 'sunday', 'monday', 'tuesday', 'wednesday', 'thursday',
+                'friday',
+            ));
+            $table->enum('status', array(
+                'full-day', 'half-day', 'not-working-day', 'weekend', 'holiday', 'vacation',
+            ));
+
+            $table->integer('created_by', false, 11);
+            $table->integer('updated_by', false, 11);
+            $table->timestamps();
+        });
+        Schema::table('hr_work_week', function($table) {
+            $table->foreign('year_id')->references('id')->on('year');
+        });
+
+
+
+        Schema::create('hr_provident_fund', function(Blueprint $table)
+        {
+            $table->increments('id', true);
+            $table->unsignedInteger('hr_employee_id')->nullable();
+            $table->enum('month', array(
+                'january', 'february', 'march', 'april', 'may', 'june',
+                'july', 'august', 'september', 'october', 'november', 'december'
+            ));
+            $table->float('employee_contribution_amount');
+            $table->float('company_contribution_amount');
+            $table->enum('status', array(
+                'open', 'pending', 'approved', 'cancel',
+            ));
+            $table->integer('created_by', false, 11);
+            $table->integer('updated_by', false, 11);
+            $table->timestamps();
+        });
+        Schema::table('hr_provident_fund', function($table) {
+            $table->foreign('hr_employee_id')->references('id')->on('hr_employee');
+        });
+
+
+
+        Schema::create('hr_provident_fund_config', function(Blueprint $table)
+        {
+            $table->increments('id', true);
+            $table->enum('employee_type', array(
+                'permanent'
+            ));
+            $table->decimal('contribution_amount', 8,2);
+            $table->decimal('company_contribution_0', 8,2);
+            $table->decimal('company_contribution_25', 8,2);
+            $table->decimal('company_contribution_50', 8,2);
+            $table->decimal('company_contribution_75', 8,2);
+            $table->decimal('company_contribution_100', 8,2);
+
+            $table->integer('created_by', false, 11);
+            $table->integer('updated_by', false, 11);
+            $table->timestamps();
+        });
+        
+
 
         //TODO::
-        Schema::table('rnc_financial_transaction', function($table) {
-            $table->foreign('currency_id')->references('id')->on('currency');
-            $table->foreign('currency_id')->references('id')->on('currency');
-            $table->foreign('currency_id')->references('id')->on('currency');
-            $table->foreign('currency_id')->references('id')->on('currency');
-            $table->foreign('currency_id')->references('id')->on('currency');
+        Schema::table('table', function($table) {
             $table->foreign('currency_id')->references('id')->on('currency');
         });
 	}
@@ -130,7 +516,7 @@ class CreateHr extends Migration {
 	public function down()
 	{
         Schema::drop('hr_bank');
-        Schema::drop('currency');
+
         Schema::drop('hr_tax_rule');
         Schema::drop('hr_allowance');
         Schema::drop('hr_salary_grade');

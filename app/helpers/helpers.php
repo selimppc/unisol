@@ -195,4 +195,37 @@ class Helpers {
 
 
 
+
+
+    /**
+     * This determines the foreign key relations automatically to prevent the need to figure out the columns.
+     *
+     * @param \Illuminate\Database\Query\Builder $query
+     * @param string $relation_name
+     * @param string $operator
+     * @param string $type
+     * @param bool   $where
+     * @return \Illuminate\Database\Query\Builder
+     */
+    public function scopeModelJoin($query, $relation_name, $operator = '=', $type = 'left', $where = false) {
+        $relation = $this->$relation_name();
+        $table = $relation->getRelated()->getTable();
+        $one = $relation->getQualifiedParentKeyName();
+        $two = $relation->getForeignKey();
+
+        if (empty($query->columns)) {
+            $query->select($this->getTable().".*");
+        }
+        foreach (\Schema::getColumnListing($table) as $related_column) {
+            $query->addSelect(new Expression("`$table`.`$related_column` AS `$table.$related_column`"));
+        }
+        return $query->join($table, $one, $operator, $two, $type, $where); //->with($relation_name);
+
+    }
+
+
+
+
+
+
 } 
