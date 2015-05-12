@@ -10,13 +10,34 @@
 |
 */
 
-
 Route::any('examination/amw/exam-list',[
     'as' =>'examination.amw.exam-list',
     'uses' => 'ExmAmwController@examList'
 ]);
 
+Route::any('examination/amw/create-exam',[
+    'as' =>'examination.amw.create-exam',
+    'uses' => 'ExmAmwController@createExamination'
+]);
 
+Route::any('examination/amw/view-exam-data/{id}', [
+    'as' => 'examination.amw.view-exam-data',
+    'uses' => 'ExmAmwController@viewExamData'
+]);
+
+Route::any('examination/amw/edit-exam-data/{id}', [
+    'as' => 'examination.amw.edit-exam-data',
+    'uses' => 'ExmAmwController@editExamData'
+]);
+Route::any('examination/amw/update-exam-data/{id}', [
+    'as' => 'examination.amw.update-exam-data',
+    'uses' => 'ExmAmwController@updateExamData'
+]);
+
+Route::any('examination/amw/delete-exam-data/{id}', [
+    'as' => 'examination.amw.delete-exam-data',
+    'uses' => 'ExmAmwController@deleteExamData'
+]);
 
 
 
