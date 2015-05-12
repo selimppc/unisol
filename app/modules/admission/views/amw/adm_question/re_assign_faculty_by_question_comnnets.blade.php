@@ -8,22 +8,26 @@
         {{Form::hidden('adm_question_id', $q_id )}}
         {{Form::hidden('commented_to', $question_data->s_faculty_user_id)}}
 
-            <h5> <strong>Batch # </strong>{{$question_data->relBatchAdmtestSubject->relBatch->batch_number}} </h5>
+            <h5> <strong>Batch # </strong>{{ isset($batch->batch_number) ? $batch->batch_number : '' }} </h5>
             <h5>  <strong>Degree Name : </strong>
-                {{ $question_data->relBatchAdmtestSubject->relBatch->relDegree->relDegreeLevel->code }}
-                {{ $question_data->relBatchAdmtestSubject->relBatch->relDegree->relDegreeGroup->code }} In
-                {{ $question_data->relBatchAdmtestSubject->relBatch->relDegree->relDegreeProgram->code }},
-                {{ $question_data->relBatchAdmtestSubject->relBatch->relSemester->title }} -
-                {{ $question_data->relBatchAdmtestSubject->relBatch->relYear->title }}
+                {{isset( $batch->relVDegree->title) ?$batch->relVDegree->title : ''}} at {{isset( $batch->relYear->title) ? $batch->relYear->title :'' }}
             </h5>
 
             <strong>Subject : </strong>{{ $question_data->relBatchAdmtestSubject->relAdmtestSubject->title }}
+            <br>
             <strong>Question Title : </strong>{{ $question_data->title }}
 
             <div class="form-group">
-              {{Form::label('commented_to', 'Examiner (Select Examiner)')}}
-              {{ Form::select('commented_to', $examiner_faculty_lists, $question_data->commented_to, ['class' => 'form-control']) }}
-            </div> {{Form::hidden('commented_by', Auth::user()->get()->id )}}
+                {{Form::label('commented_to', 'Setter ('.ucfirst($question_data->s_status.')'))}}
+                {{ Form::select('commented_to', $examiner_faculty_lists, $question_data->s_faculty_user_id, ['class' => 'form-control']) }}
+            </div>
+
+            <div class="form-group">
+              {{Form::label('commented_to', 'Evaluator('.ucfirst($question_data->e_status)).')'}}
+              {{ Form::select('commented_to', $examiner_faculty_lists, $question_data->e_faculty_user_id, ['class' => 'form-control']) }}
+            </div>
+
+            {{Form::hidden('commented_by', Auth::user()->get()->id )}}
 
             <small>Comments as below: </small>
             @foreach($comments as $comment)
