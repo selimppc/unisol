@@ -1424,14 +1424,12 @@ class AdmAmwController extends \BaseController
      */
     public function createAdmTestQuestionPaper($batch_id)
     {
-
-        //$batch = BatchAdmtestSubject::with('relBatch')->where('id', $bats_id)->first();
-
-            $admtest_subject = BatchAdmtestSubject::AdmissionTestSubjectByBatchId($batch_id);
-            $examiner_faculty_lists = AdmQuestion::AdmissionExaminerList($batch_id);
+        $batch = Batch::with('relVDegree', 'relYear', 'relSemester')->where('id', '=', $batch_id)->first();
+        $admtest_subject = BatchAdmtestSubject::AdmissionTestSubjectByBatchId($batch_id);
+        $examiner_faculty_lists = AdmQuestion::AdmissionExaminerList($batch_id);
 
         return View::make('admission::amw.adm_question._form',
-            compact('bats_id', 'batch','admtest_subject', 'examiner_faculty_lists'));
+            compact('batch','admtest_subject', 'examiner_faculty_lists'));
     }
 
     /**
@@ -1588,10 +1586,6 @@ class AdmAmwController extends \BaseController
         return Redirect::back();
     }
 
-
-
-
-
     public function AssignFacultySetter($q_id)
     {
         $question_data = AdmQuestion::with('relBatchAdmtestSubject')->where('id', $q_id)->first();
@@ -1625,24 +1619,31 @@ class AdmAmwController extends \BaseController
         $info = Input::all();
 
         $model1 = AdmQuestion::findOrFail($id);
-        $model1->status = 'assigned';
-        $model1->s_faculty_user_id = Input::get('commented_to');
-        $model1->e_faculty_user_id = Input::get('commented_to');
+        //$model1->status = 'assigned';
+        if(Input::get('examiner_type') == 'setter'){
+            $model1->s_faculty_user_id = Input::get('commented_to');
+            $model1->s_status = Input::get('s_status');
+        }else {
+            $model1->e_faculty_user_id = Input::get('commented_to');
+            $model1->e_status = Input::get('e_status');
+        }
+
         $model1->save();
+        if($info['comment']) {
+            $model = new AdmQuestionComments();
+            $model->adm_question_id = $info['adm_question_id'];
+            $model->comment = $info['comment'];
+            $model->commented_to = $info['commented_to'];
+            $model->commented_by = Auth::user()->get()->id;
 
-        $model = new AdmQuestionComments();
-        $model->adm_question_id = $info['adm_question_id'];
-        $model->comment = $info['comment'];
-        $model->commented_to = $info['commented_to'];
-        $model->commented_by = Auth::user()->get()->id;
-
-        if ($model->save()) {
-            Session::flash('message', 'Faculty Re-assigned and Comments added');
-            return Redirect::back();
-        } else {
-            $errors = $model->errors();
-            Session::flash('errors', $errors);
-            return Redirect::back()->with('errors', 'invalid');
+            if ($model->save()) {
+                Session::flash('message', 'Faculty assigning and Comments added');
+                return Redirect::back();
+            } else {
+                $errors = $model->errors();
+                Session::flash('errors', $errors);
+                return Redirect::back()->with('errors', 'invalid');
+            }
         }
 
         return Redirect::back();

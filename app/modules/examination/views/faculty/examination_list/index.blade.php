@@ -36,7 +36,7 @@
         <br><br><br><br>
 
 
-          {{ Form::open(array('url' => 'examination/faculty/examination-list/batchDelete')) }}
+          {{ Form::open(array('url' => 'faculty/examination-list/batchDelete')) }}
               <table id="example" class="table table-striped  table-bordered"  >
                  <thead>
                     {{ Form::submit('Delete Items', array('class'=>'btn btn-danger', 'id'=>'hide-button', 'style'=>'display:none'))}}
@@ -69,10 +69,10 @@
                            <td>{{ ucfirst($values->status) }}</td>
                            <td>
                               @if($values->status == 'requested' )
-                                      <a class="btn btn-primary btn-xs" data-href="{{ URL::route('examination.faculty.admission-test.change-status-to-accept',['id'=>$values->id]) }}" data-toggle="modal" data-target="#confirm-delete" href="">Accept</a>
-                                      <a class="btn btn-success btn-xs" data-href="{{ URL::route('examination.faculty.examination-list.change-status-to-deny',['id'=>$values->id]) }}" data-toggle="modal" data-target="#confirm-delete" href="">Deny</a>
+                                      <a class="btn btn-primary btn-xs" data-href="{{ URL::route('faculty.admission-test.change-status-to-accept',['id'=>$values->id]) }}" data-toggle="modal" data-target="#confirm-delete" href="">Accept</a>
+                                      <a class="btn btn-success btn-xs" data-href="{{ URL::route('faculty.examination-list.change-status-to-deny',['id'=>$values->id]) }}" data-toggle="modal" data-target="#confirm-delete" href="">Deny</a>
                               @elseif( $values->status == 'accepted' )
-                                      <a href="{{ URL::route('examination.faculty.exm-question-paper', ['exm_list_id'=>$values->exm_exam_list_id]) }}" class="btn btn-info btn-xs" >Questions</a>
+                                      <a href="{{ URL::route('faculty.exm-question-paper', ['exm_list_id'=>$values->exm_exam_list_id]) }}" class="btn btn-info btn-xs" >Questions</a>
                               @endif
                            </td>
                        </tr>

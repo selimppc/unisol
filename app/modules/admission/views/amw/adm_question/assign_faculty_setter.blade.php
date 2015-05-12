@@ -6,6 +6,7 @@
 <div style="padding: 4%; ">
     {{ Form::open(array('route'=>['admission.amw.admission-test.comments-re-assign',$question_data->id],'method' => 'POST')) }}
         {{Form::hidden('adm_question_id', $q_id )}}
+        {{Form::hidden('examiner_type', 'setter' )}}
         {{Form::hidden('commented_to', $question_data->s_faculty_user_id)}}
 
             <h5> <strong>Batch # </strong>{{ isset($batch->batch_number) ? $batch->batch_number : '' }} </h5>
@@ -18,7 +19,8 @@
             <strong>Question Title : </strong>{{ $question_data->title }}
 
             <div class="form-group">
-                {{Form::label('commented_to', 'Setter ('.ucfirst($question_data->s_status.')'))}}
+                {{Form::label('commented_to', 'Setter')}}
+                ({{ Form::select('s_status', ['requested'=> 'Requested', 'cancel'=>'Cancel','assigned' => 'Assigned'], $question_data->s_staus) }})
                 {{ Form::select('commented_to', $examiner_faculty_lists, $question_data->s_faculty_user_id, ['class' => 'form-control']) }}
             </div>
 

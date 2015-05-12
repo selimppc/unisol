@@ -10,8 +10,9 @@
         {{Form::open(array('url'=>'admission/amw/save-admission-question', 'method'=>'POST','files'=>true))}}
 
                <div class='form-group'>
-                     <strong> Batch# </strong> {{ $batch->relBatch->batch_number }} </br>
-                     <strong> Degree Name: </strong> {{ $batch->relBatch->relDegree->relDegreeLevel->code }}{{ $batch->relBatch->relDegree->relDegreeGroup->code }} In {{ $batch->relBatch->relDegree->relDegreeProgram->code }} , {{ $batch->relBatch->relSemester->title }} - {{ $batch->relBatch->relYear->title }}
+                     <strong> Batch# </strong> {{ $batch->batch_number }} </br>
+                     <strong> Degree Name: </strong> {{ $batch->relVDegree->title }},
+                        {{ $batch->relSemester->title }} - {{ $batch->relYear->title }}
                </div>
 
                 <div class='form-group'>
@@ -34,10 +35,14 @@
                     {{ Form::text('total_marks', Input::old('total_marks'),['class'=>'form-control','required'=>'required']) }}
                 </div>
                 <div class='form-group'>
-                    {{ Form::label('s_faculty_user_id', 'Assign To') }}
+                    {{ Form::label('s_faculty_user_id', 'Setter') }}
                     {{ Form::select('s_faculty_user_id', $examiner_faculty_lists, Input::old('s_faculty_user_id'),['class'=>'form-control']) }}
                 </div>
-                {{ Form::hidden('status', 'requested') }}
+                 <div class='form-group'>
+                     {{ Form::label('e_faculty_user_id', 'Evaluator') }}
+                     {{ Form::select('e_faculty_user_id', $examiner_faculty_lists, Input::old('e_faculty_user_id'),['class'=>'form-control']) }}
+                 </div>
+                {{ Form::hidden('status', 'open') }}
 
 
               {{ Form::submit('Save', array('class'=>'pull-right btn btn-info')) }}

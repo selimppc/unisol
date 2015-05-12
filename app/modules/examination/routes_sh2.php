@@ -5,24 +5,24 @@
 
 
 //FACULTY ROUTE CONFIGURATION
-Route::any('examination/faculty/examination-list',[
-    'as' =>'examination.faculty.examination-list',
+Route::any('faculty/examination-list',[
+    'as' =>'faculty.examination-list',
     'uses' => 'ExmFacultyController@examinationList'
 ]);
 
-Route::any('examination/faculty/examination-list/batchDelete',[
-    'as' =>'examination.faculty.examination-list.batchDelete',
+Route::any('faculty/examination-list/batchDelete',[
+    'as' =>'faculty.examination-list.batchDelete',
     'uses' => 'ExmFacultyController@examinationListBatchDelete'
 ]);
 
-Route::any('examination/faculty/examination-list/change-status-to-deny/{id}',[
-    'as' => 'examination.faculty.examination-list.change-status-to-deny',
+Route::any('faculty/examination-list/change-status-to-deny/{id}',[
+    'as' => 'faculty.examination-list.change-status-to-deny',
     'uses' => 'ExmFacultyController@changeStatustoDenyByFacultyEXM'
 ]);
 
 
-Route::any('examination/faculty/examination-list/change-status-to-accept/{id}',[
-    'as' => 'examination.faculty.admission-test.change-status-to-accept',
+Route::any('faculty/examination-list/change-status-to-accept/{id}',[
+    'as' => 'faculty.admission-test.change-status-to-accept',
     'uses' => 'ExmFacultyController@changeStatusToAcceptedByFacultyEXM'
 ]);
 
@@ -31,8 +31,8 @@ Route::any('examination/faculty/examination-list/change-status-to-accept/{id}',[
 
 
 
-Route::any('examination/faculty/exm-question-paper/{exm_list_id}',[
-    'as' =>'examination.faculty.exm-question-paper',
+Route::any('faculty/exm-question-paper/{exm_list_id}',[
+    'as' =>'faculty.exm-question-paper',
     'uses' => 'ExmFacultyController@questionPaper'
 ]);
 
