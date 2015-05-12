@@ -223,6 +223,9 @@ class CreateHr extends Migration {
             $table->foreign('hr_employee_id')->references('id')->on('hr_employee');
         });
 
+
+
+
         Schema::create('hr_salary_deduction', function(Blueprint $table)
         {
             $table->increments('id', true);
@@ -423,19 +426,6 @@ class CreateHr extends Migration {
         });
 
 
-        Schema::create('hr_leave_comments', function(Blueprint $table)
-        {
-            $table->increments('id', true);
-            $table->unsignedInteger('hr_leave_id')->nullable();
-            $table->text('comment');
-
-            $table->integer('created_by', false, 11);
-            $table->integer('updated_by', false, 11);
-            $table->timestamps();
-        });
-        Schema::table('hr_leave_comments', function($table) {
-            $table->foreign('hr_leave_id')->references('id')->on('hr_leave');
-        });
 
 
         Schema::create('hr_work_week', function(Blueprint $table)
@@ -504,7 +494,7 @@ class CreateHr extends Migration {
             $table->integer('updated_by', false, 11);
             $table->timestamps();
         });
-        
+
 	}
 
 	public function down()
