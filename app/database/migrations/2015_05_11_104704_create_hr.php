@@ -94,7 +94,7 @@ class CreateHr extends Migration {
             $table->timestamps();
         });
         Schema::table('hr_employee', function($table) {
-            $table->foreign('user_id')->references('id')->on('currency');
+            $table->foreign('user_id')->references('id')->on('user');
             $table->foreign('hr_salary_grade_id')->references('id')->on('hr_salary_grade');
             $table->foreign('department_id')->references('id')->on('department');
             $table->foreign('designation_id')->references('id')->on('designation');
@@ -504,7 +504,7 @@ class CreateHr extends Migration {
             $table->integer('updated_by', false, 11);
             $table->timestamps();
         });
-        
+
 
 
         //TODO::
