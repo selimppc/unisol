@@ -120,6 +120,7 @@ return array(
     'CourseTypeController' => $baseDir . '/app/modules/common/controllers/CourseTypeController.php',
     'CourseTypeTable' => $baseDir . '/app/database/seeds/CourseTypeTable.php',
     'CreateAcademic' => $baseDir . '/app/database/migrations/2015_04_19_125152_create_academic.php',
+    'CreateAccounts' => $baseDir . '/app/database/migrations/2015_05_12_124953_create_accounts.php',
     'CreateAcmAcademicRl' => $baseDir . '/app/database/migrations/version-1/2015_02_15_06_create_acm_academic_rl.php',
     'CreateAcmAttendanceConfigTable' => $baseDir . '/app/database/migrations/bak/2015_01_15_000105_create_acm_attendance_config_table.php',
     'CreateAcmCourseConfigTable' => $baseDir . '/app/database/migrations/bak/2015_01_28_050806_create_acm_course_config_table.php',
