@@ -17,7 +17,7 @@ Route::any('faculty/examination-list/batchDelete',[
 
 Route::any('faculty/examination-list/change-status-to-deny/{id}',[
     'as' => 'faculty.examination-list.change-status-to-deny',
-    'uses' => 'ExmFacultyController@changeStatustoDenyByFacultyEXM'
+    'uses' => 'ExmFacultyController@changeStatusToDenyByFacultyEXM'
 ]);
 
 

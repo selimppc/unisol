@@ -16,7 +16,7 @@
                   <div class="col-sm-8">
                        <div class="col-sm-3">
                                 {{ Form::label('year_id', 'Year') }}
-                                {{ Form::select('year_id',$year_id, Input::old('year_id'), array('class' => 'form-control','required'=>'required') ) }}
+                                {{ Form::select('year_id',$year_id, $current_year, array('class' => 'form-control','required'=>'required') ) }}
 
                        </div>
                        <div class="col-sm-3">

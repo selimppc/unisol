@@ -11,27 +11,37 @@ class ExmFacultyController extends \BaseController {
         return Input::server("REQUEST_METHOD") == "POST";
     }
 
+/* - - - - - - - - - - - - - - -  - - - - - -  - Newly Started ; VERSION : 2 - - - - - - - - - - - - - - - - - - - - - - - - - */
+
     // Faculty: Examiner index
 
     public function examinationList()
     {
+        $current_year = Year::where('title', Date('Y'))->first()->id;
+
         if($this->isPostRequest()){
             $year_id  = Input::get('year_id');
             $semester_id = Input::get('semester_id');
 
-//            ->groupBy('exm_exam_list_id')
-
-            $examination_list = ExmExaminer::join('exm_exam_list', function ($query) use ($year_id, $semester_id) {
-                $query->on('exm_exam_list.id', '=', 'exm_examiner.exm_exam_list_id');
-                $query->where('exm_exam_list.year_id', '=', $year_id);
-                $query->where('exm_exam_list.semester_id', '=', $semester_id);
-            })->select(DB::raw('exm_examiner.exm_exam_list_id as exm_exam_list_id , exm_examiner.status as status'))
-              ->get();
-
+            $examination_list = ExmExaminer::with('relExmExamList','relExmExamList.relYear',
+                'relExmExamList.relSemester','relExmExamList.relCourseConduct',
+                'relExmExamList.relCourseConduct.relCourse','relExmExamList.relCourseConduct.relDegree.relDepartment',
+                'relExmExamList.relAcmMarksDistItem')
+                ->whereExists(function($query) use($year_id, $semester_id)
+                {
+                    $query->from('exm_exam_list')
+                        ->whereRaw('exm_exam_list.id = exm_examiner.exm_exam_list_id')
+                        ->where('exm_exam_list.year_id', '=', $year_id)
+                        ->where('exm_exam_list.semester_id', '=', $semester_id);
+                })
+                ->get();
 
             //print_r($examination_list);exit;
-            DB::setDefaultConnection('mysql2');
-            print_r($examination_list[0]->relExmExamList->year_id);exit;
+            // To check the code and relation that is it hit the database on
+            // view pages relation or grab the data from the first hit
+
+//            DB::setDefaultConnection('mysql2');
+//            print_r($examination_list[0]->relExmExamList->year_id);exit;
 
         }else{
             $examination_list = ExmExaminer::with('relExmExamList','relExmExamList.relYear',
@@ -46,10 +56,10 @@ class ExmFacultyController extends \BaseController {
         Input::flash();
 
         return View::make('examination::faculty.examination_list.index',
-            compact('examination_list','year_id','semester_id'));
+            compact('current_year','examination_list','year_id','semester_id'));
     }
 
-    public function changeStatustoDenyByFacultyEXM($id){
+    public function changeStatusToDenyByFacultyEXM($id){
         $model = ExmExaminer::findOrFail($id);
         $model->status = 'Deny';
         if($model->save()){
@@ -98,7 +108,7 @@ class ExmFacultyController extends \BaseController {
 
 
 
-
+/* - - - - - - - - - - - - - - -  - - - - - -  - VERSION : 1 - - - - - - - - - - - - - - - - - - - - - - - - - */
 //fct: Question List
 
     public function questionList()
