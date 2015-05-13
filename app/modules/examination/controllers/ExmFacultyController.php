@@ -28,8 +28,6 @@ class ExmFacultyController extends \BaseController {
                 'relExmExamList.relSemester','relExmExamList.relCourseConduct',
                 'relExmExamList.relCourseConduct.relCourse','relExmExamList.relCourseConduct.relDegree.relDepartment',
                 'relExmExamList.relAcmMarksDistItem')
-//                ->whereRaw('acm_marks_dist_item.id = exm_exam_list.acm_marks_dist_item_id')
-//                ->where('acm_marks_dist_item.is_exam', '=', 1)
                 ->whereExists(function($query) use($year_id, $semester_id)
                     {
                         $query->from('exm_exam_list')
@@ -39,19 +37,11 @@ class ExmFacultyController extends \BaseController {
                     })
                 ->get();
 
-            //print_r($examination_list);exit;
-            // To check the code and relation that is it hit the database on
-            // view pages relation or grab the data from the first hit
-
-//            DB::setDefaultConnection('mysql2');
-//            print_r($examination_list[0]->relExmExamList->year_id);exit;
-
         }else{
             $examination_list = ExmExaminer::with('relExmExamList','relExmExamList.relYear',
                 'relExmExamList.relSemester','relExmExamList.relCourseConduct',
                 'relExmExamList.relCourseConduct.relCourse','relExmExamList.relCourseConduct.relDegree.relDepartment',
                 'relExmExamList.relAcmMarksDistItem')->get();
-//            echo "NO"; exit;
         }
         $year_id = array('' => 'Select Year ') + Year::lists('title', 'id');
         $semester_id = array('' => 'Select Semester ') + Semester::lists('title', 'id');
