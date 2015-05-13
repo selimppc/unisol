@@ -59,7 +59,7 @@
 
                             <div class="col-lg-3" style="margin-left: -1%;">
                                 <div class="input-group input-group-sm">
-                                  {{ Form::select('status', ['' => 'Select Status']+$status , Input::old('status'),['class'=>'form-control input-sm','required'])}}
+                                  {{ Form::select('a_status', ['' => 'Select Status']+$status , Input::old('a_status'),['class'=>'form-control input-sm','required'])}}
                                   <span class="input-group-btn">
                                       <button class="btn btn-info btn-flat" type="submit">Apply</button>
                                   </span>
