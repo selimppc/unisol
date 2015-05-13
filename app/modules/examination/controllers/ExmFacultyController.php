@@ -11,22 +11,41 @@ class ExmFacultyController extends \BaseController {
         return Input::server("REQUEST_METHOD") == "POST";
     }
 
+/* - - - - - - - - - - - - - - -  - - - - - -  - Newly Started ; VERSION : 2 - - - - - - - - - - - - - - - - - - - - - - - - - */
+
     // Faculty: Examiner index
 
     public function examinationList()
     {
+        $current_year = Year::where('title', Date('Y'))->first()->id;
+
+
         if($this->isPostRequest()){
             $year_id  = Input::get('year_id');
             $semester_id = Input::get('semester_id');
 
-//            ->groupBy('exm_exam_list_id')
+            $examination_list = ExmExaminer::with('relExmExamList','relExmExamList.relYear',
+                'relExmExamList.relSemester','relExmExamList.relCourseConduct',
+                'relExmExamList.relCourseConduct.relCourse','relExmExamList.relCourseConduct.relDegree.relDepartment',
+                'relExmExamList.relAcmMarksDistItem')
+//                ->whereRaw('acm_marks_dist_item.id = exm_exam_list.acm_marks_dist_item_id')
+//                ->where('acm_marks_dist_item.is_exam', '=', 1)
+                ->whereExists(function($query) use($year_id, $semester_id)
+                    {
+                        $query->from('exm_exam_list')
+                            ->whereRaw('exm_exam_list.id = exm_examiner.exm_exam_list_id')
+                            ->where('exm_exam_list.year_id', '=', $year_id)
+                            ->where('exm_exam_list.semester_id', '=', $semester_id);
+                    })
+                ->get();
 
-            $examination_list = ExmExaminer::join('exm_exam_list', function ($query) use ($year_id, $semester_id) {
-                $query->on('exm_exam_list.id', '=', 'exm_examiner.exm_exam_list_id');
-                $query->where('exm_exam_list.year_id', '=', $year_id);
-                $query->where('exm_exam_list.semester_id', '=', $semester_id);
-            })->select(DB::raw('exm_examiner.exm_exam_list_id as exm_exam_list_id , exm_examiner.status as status'))
-              ->get();
+            //print_r($examination_list);exit;
+            // To check the code and relation that is it hit the database on
+            // view pages relation or grab the data from the first hit
+
+//            DB::setDefaultConnection('mysql2');
+//            print_r($examination_list[0]->relExmExamList->year_id);exit;
+
         }else{
             $examination_list = ExmExaminer::with('relExmExamList','relExmExamList.relYear',
                 'relExmExamList.relSemester','relExmExamList.relCourseConduct',
@@ -40,10 +59,48 @@ class ExmFacultyController extends \BaseController {
         Input::flash();
 
         return View::make('examination::faculty.examination_list.index',
-            compact('examination_list','year_id','semester_id'));
+            compact('exam_name','current_year','examination_list','year_id','semester_id'));
     }
 
-    public function changeStatustoDenyByFacultyEXM($id){
+    public function viewExaminer($id , $exm_list_id)
+    {
+        $view_examination = ExmExaminer::with('relExmExamList','relExmExamList.relYear','relExmExamList.relSemester',
+            'relExmExamList.relCourseConduct','relExmExamList.relCourseConduct.relDegree',
+            'relExmExamList.relCourseConduct.relDegree.relDepartment',
+            'relExmExamList.relAcmMarksDistItem',
+            'relExmExamList.relCourseConduct.relCourse.relSubject','relExmExamList.relCourseConduct.relUser')
+            ->where('exm_exam_list_id', $exm_list_id)->first();
+
+        $view_examiner_comments = ExmExaminerComments::where('exm_exam_list_id', $exm_list_id)->get();
+
+        return View::make('examination::faculty.examination_list.view_examination',
+            compact('id','view_examination','view_examiner_comments'));
+
+
+    }
+
+    public function viewExaminerComment()
+    {
+//            $data = Input::all();
+//            $model = new ExmExaminerComments();
+//            $model->batch_id = $data['batch_id'];
+//            $model->comment = $data['comment'];
+//            $model->commented_to = $data['commented_to'];
+//            $model->commented_by = Auth::user()->get()->id;
+//
+//            $user_name = User::FullName($model->commented_to);
+//            if($model->save()){
+//            Session::flash('message', 'Comments added To: '.$user_name);
+//            return Redirect::back();
+//            }else{
+//                $errors = $model->errors();
+//                Session::flash('errors', $errors);
+//                return Redirect::back()->with('errors', 'invalid');
+//            }
+    }
+
+
+    public function changeStatusToDeny($id){
         $model = ExmExaminer::findOrFail($id);
         $model->status = 'Deny';
         if($model->save()){
@@ -52,7 +109,7 @@ class ExmFacultyController extends \BaseController {
         }
     }
 
-    public function changeStatusToAcceptedByFacultyEXM($id){
+    public function changeStatusToAccepted($id){
         $model = ExmExaminer::findOrFail($id);
         $model->status = 'Accepted';
         if($model->save()){
@@ -92,7 +149,7 @@ class ExmFacultyController extends \BaseController {
 
 
 
-
+/* - - - - - - - - - - - - - - -  - - - - - -  - VERSION : 1 - - - - - - - - - - - - - - - - - - - - - - - - - */
 //fct: Question List
 
     public function questionList()

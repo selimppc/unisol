@@ -16,7 +16,7 @@
                   <div class="col-sm-8">
                        <div class="col-sm-3">
                                 {{ Form::label('year_id', 'Year') }}
-                                {{ Form::select('year_id',$year_id, Input::old('year_id'), array('class' => 'form-control','required'=>'required') ) }}
+                                {{ Form::select('year_id',$year_id, $current_year, array('class' => 'form-control','required'=>'required') ) }}
 
                        </div>
                        <div class="col-sm-3">
@@ -59,8 +59,7 @@
                      @foreach($examination_list as $values)
                        <tr>
                            <td><input type="checkbox" name="id[]" class="myCheckbox" value="{{ $values->id }}"></td>
-                           <td>{{ $values->relExmExamList->title }}</td>
-                           {{--<b>{{ HTML::linkAction('ExmFacultyController@viewExmExamList',User::FullName($values->user_id),['id'=>$values->batch_id], ['data-toggle'=>"modal", 'data-target'=>"#modal"]) }}</b>--}}
+                           <td>{{ HTML::linkAction('ExmFacultyController@viewExaminer', ExmExaminer::ExamName($values->exm_exam_list_id),['id'=>$values->id,'exm_list_id'=>$values->exm_exam_list_id], ['data-toggle'=>"modal", 'data-target'=>"#modal"]) }}</td>
                            <td>{{ $values->relExmExamList->relCourseConduct->relDegree->relDepartment->title }}</td>
                            <td>{{ $values->relExmExamList->relCourseConduct->relCourse->title }}</td>
                            <td>{{ $values->relExmExamList->relAcmMarksDistItem->title }}</td>

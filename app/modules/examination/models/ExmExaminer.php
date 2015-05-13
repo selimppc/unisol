@@ -55,6 +55,13 @@ class ExmExaminer extends \Eloquent
         return $this->errors;
     }
 
+    public function scopeExamName($query , $exm_exam_list_id){
+        $query = ExmExamList::select(DB::raw('title AS exam_name'))
+            ->where('exm_exam_list.id', '=', $exm_exam_list_id)
+            ->first()->exam_name;
+        return $query;
+    }
+
 
     public static function boot(){
         parent::boot();
