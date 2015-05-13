@@ -12,6 +12,11 @@
 
 <h3>Examination</h3>
 
+@if(Session::get('year'))
+    {{"OK"}}
+@endif
+
+
 <div class="row">
    <div class="col-md-12 ">
       <div class="box box-solid">
@@ -71,7 +76,6 @@
                                       <a data-href="{{URL::route('examination.amw.delete-exam-data', ['id'=>$exam_list->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" style="font-size: 12px;color: lightcoral"><span class="fa  fa-trash-o"></span></a>
                                    </td>
                                 </tr>
-                           @endif
                         @endforeach
                         {{--<a class="pull-right btn btn-sm btn-info" href="{{ URL::route('amw.exam-list') }}"  style="color: #ffffff" ><b>All</b></a>--}}
                     @else
