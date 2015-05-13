@@ -10,8 +10,8 @@
 |
 */
 
-Route::any('examination/amw/exam-list',[
-    'as' =>'examination.amw.exam-list',
+Route::any('amw/exam-list',[
+    'as' =>'amw.exam-list',
     'uses' => 'ExmAmwController@examList'
 ]);
 
@@ -20,13 +20,13 @@ Route::any('examination/amw/create-exam',[
     'uses' => 'ExmAmwController@createExamination'
 ]);
 
-Route::any('examination/amw/store-exam',[
-    'as' =>'examination.amw.store-exam',
+Route::any('amw/store-exam',[
+    'as' =>'amw.store-exam',
     'uses' => 'ExmAmwController@storeExamination'
 ]);
 
-Route::any('examination/amw/drop-down-courses',[
-    'as' =>'examination.amw.drop-down-courses',
+Route::any('amw/drop-down-courses',[
+    'as' =>'amw.drop-down-courses',
     'uses' => 'ExmAmwController@dropDownCourses'
 ]);
 
