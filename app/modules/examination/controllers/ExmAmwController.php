@@ -211,36 +211,36 @@ class ExmAmwController extends \BaseController {
 
 
 
-    public function updateExamination($id)
-    {
-        $data = Input::all();
-        $update_exam = new ExmExamList();
-        if ($update_exam->validate($data))
-        {
-            // success code
-            $update_exam = ExmExamList::find($id);
-            $update_exam->title = Input::get('title');
-            $update_exam->year_id = Input::get('year_id');
-            $update_exam->semester_id = Input::get('semester_id');
-            $update_exam->course_management_id = Input::get('course_management_id');
-            $update_exam->acm_marks_dist_item_id = Input::get('acm_marks_dist_item_id');
-            $update_exam->status = '0';
-
-            $update_exam->save();
-
-            // redirect
-            Session::flash('message', 'Examination Successfully Updated!');
-            return Redirect::to('examination/amw/examination');
-        }
-        else
-        {
-            // failure, get errors
-            $errors = $update_exam->errors();
-            Session::flash('errors', $errors);
-
-            return Redirect::to('examination/amw/edit');
-        }
-    }
+//    public function updateExamination($id)
+//    {
+//        $data = Input::all();
+//        $update_exam = new ExmExamList();
+//        if ($update_exam->validate($data))
+//        {
+//            // success code
+//            $update_exam = ExmExamList::find($id);
+//            $update_exam->title = Input::get('title');
+//            $update_exam->year_id = Input::get('year_id');
+//            $update_exam->semester_id = Input::get('semester_id');
+//            $update_exam->course_management_id = Input::get('course_management_id');
+//            $update_exam->acm_marks_dist_item_id = Input::get('acm_marks_dist_item_id');
+//            $update_exam->status = '0';
+//
+//            $update_exam->save();
+//
+//            // redirect
+//            Session::flash('message', 'Examination Successfully Updated!');
+//            return Redirect::to('examination/amw/examination');
+//        }
+//        else
+//        {
+//            // failure, get errors
+//            $errors = $update_exam->errors();
+//            Session::flash('errors', $errors);
+//
+//            return Redirect::to('examination/amw/edit');
+//        }
+//    }
 
     public function questionsItemShow($question_item_id){
 
@@ -444,105 +444,161 @@ public function assign_faculty(){
 
     public function examList(){
 
-        $exam_data = ExmExamList::with('relCourseConduct','relCourseConduct.relCourse','relYear','relSemester',
-            'relCourseConduct.relCourse.relSubject.relDepartment','relAcmMarksDistItem')->whereExists(function ($query){
-                    $query->from('acm_marks_dist_item')->whereRaw('acm_marks_dist_item.id = exm_exam_list.acm_marks_dist_item_id')
-                    ->where('acm_marks_dist_item.is_exam', '=', 1);
-                  })->get();
+        if($this->isPostRequest()){
+            $year_id  = Input::get('year_id');
+            $semester_id = Input::get('semester_id');
 
-        return View::make('examination::amw.exam.exam_list',compact('exam_data','year_id','semester_id','course_conduct_id'));
+            $exam_data = ExmExamList::join('course_conduct', function ($query) use ($year_id, $semester_id) {
+                $query->on('course_conduct.id', '=', 'exm_exam_list.course_conduct_id');
+                $query->where('course_conduct.year_id', '=', $year_id);
+                $query->where('course_conduct.semester_id', '=', $semester_id);
+            })->groupBy('course_conduct_id')->paginate(10);
+        }else{
+            $exam_data = ExmExamList::with('relCourseConduct','relCourseConduct.relCourse','relYear','relSemester',
+                        'relCourseConduct.relCourse.relSubject.relDepartment','relAcmMarksDistItem')->whereExists(function ($query){
+                  $query->from('acm_marks_dist_item')->whereRaw('acm_marks_dist_item.id = exm_exam_list.acm_marks_dist_item_id')
+                        ->where('acm_marks_dist_item.is_exam', '=', 1);
+            })->get();
+        }
+        $year_id = array('' => 'Select Year ') + Year::lists('title', 'id');
+        $semester_id = array('' => 'Select Semester ') + Semester::lists('title', 'id');
+
+
+
+
+
+
+
+
+//        $exam_data = ExmExamList::with('relCourseConduct','relCourseConduct.relCourse','relYear','relSemester',
+//              'relCourseConduct.relCourse.relSubject.relDepartment','relAcmMarksDistItem')->whereExists(function ($query){
+//                    $query->from('acm_marks_dist_item')->whereRaw('acm_marks_dist_item.id = exm_exam_list.acm_marks_dist_item_id')
+//                    ->where('acm_marks_dist_item.is_exam', '=', 1);
+//                  })->get();
+
+         return View::make('examination::amw.exam.exam_list',compact('exam_data','year_id','semester_id'));
 
     }
 
-        public function createExamination(){
+    public function createExamination(){
 
-            $year_id = ['' => 'Select Year'] + Year::lists('title', 'id');
-            $semester_id = ['' => 'Select Semester'] + Semester::lists('title', 'id');
-            $exam_type = ['' => 'Select Exam Type'] + AcmMarksDistItem::where('is_exam','=',1)->lists('title','id');
-            $course_list = ['' => 'Select Course']+ Course::lists('title', 'id');
+          $year_id = ['' => 'Select Year'] + Year::lists('title', 'id');
+          $semester_id = ['' => 'Select Semester'] + Semester::lists('title', 'id');
+          $exam_type = ['' => 'Select Exam Type'] + AcmMarksDistItem::where('is_exam','=',1)->lists('title','id');
+          $course_list = ['' => 'Select Course']+ Course::lists('title', 'id');
 
-            return View::make('examination::amw.exam.add_exam_form', compact(
-            'add_examination','year_id','semester_id','exam_type','course_list','course_conduct_id'
-            ));
+          return View::make('examination::amw.exam.add_exam_form', compact(
+               'year_id','semester_id','exam_type','course_list'));
 
     }
 
-    public function dropDownCourses(){
+    public function createAjaxCourseList(){
 
-        $year = Input::get('year');
-        $semester = Input::get('semester');
+          $year = Input::get('year');
+          $semester = Input::get('semester');
 
-        $courses = CourseConduct::join('course', function($query){
+          $courses = CourseConduct::join('course', function($query){
                 $query->on('course_conduct.course_id', '=', 'course.id');
-            })
+             })
                 ->where('course_conduct.year_id', '=', $year)
                 ->where('course_conduct.semester_id', '=', $semester)
                 ->select(DB::raw('course.title as c_title, course_conduct.id as cc_id'))
                 ->lists('c_title', 'cc_id');
 
-        if($courses){
+          if($courses){
             return Response::make(['please select one'] + $courses);
-//            return Redirect::route('examination.amw.store-exam');
-        }
-        else{
+          }
+          else{
             return Response::make(['no data found']);
-        }
+          }
     }
 
     public function storeExamination(){
 
         $data = Input::all();
         $model = new ExmExamList();
+        if($model->validate($data)) {
+                DB::beginTransaction();
+                try {
+                    $model->create($data);
+                    DB::commit();
+                    Session::flash('message', " Successfully Added Examination ");
+                }
+                catch ( Exception $e ){
+                    //If there are any exceptions, rollback the transaction
+                    DB::rollback();
+                    Session::flash('danger', "Examination not added.Invalid Request !");
+                }
+                return Redirect::back();
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()
+                ->with('errors', 'invalid');
+            }
+    }
+
+    public function viewExamination($id){
+
+        $exam_data = ExmExamList::with('relAcmMarksDistItem','relCourseConduct','relCourseConduct.relCourse','relYear','relSemester')->find($id);
+        return View::make('examination::amw.exam.view_exam_data',compact('exam_data'));
+    }
+
+    public function editExamination($id)
+    {
+        $model = ExmExamList::find($id);
+        $year_id = ['' => 'Select Year'] + Year::lists('title', 'id');
+        $semester_id = ['' => 'Select Semester'] + Semester::lists('title', 'id');
+        $exam_type = ['' => 'Select Exam Type'] + AcmMarksDistItem::where('is_exam','=',1)->lists('title','id');
+
+        return View::make('examination::amw.exam.edit_exam',compact('model', 'course_list','year_id','semester_id','exam_type','courses'));
+    }
+
+    public function updateExamination($id){
+
+        $data = Input::all();
+        $model = ExmExamList::find($id);
+        $model->title = Input::get('title');
+        $name = $model->title;
         if($model->validate($data))
         {
             DB::beginTransaction();
             try {
-                $model->create($data);
+                $model->update($data);
                 DB::commit();
-                Session::flash('message', " Added");
+                Session::flash('message', "$name  Updates");
             }
             catch ( Exception $e ){
                 //If there are any exceptions, rollback the transaction
                 DB::rollback();
-                Session::flash('danger', " not added.Invalid Request !");
+                Session::flash('danger', "$name not updates. Invalid Request !");
             }
             return Redirect::back();
         }else{
             $errors = $model->errors();
             Session::flash('errors', $errors);
             return Redirect::back()
-                ->with('errors', 'invalid');
+                ->with('errors', 'Input Data Not Valid');
         }
     }
 
-//    public function viewExamData($id){
-//
-//        $exam_data = ExmExamList::with('relAcmMarksDistItem','relCourseConduct','relCourseConduct.relCourse','relYear','relSemester')->find($id);
-//        return View::make('examination::amw.exam.view_exam_data',compact('exam_data'));
-//    }
-//
-//    public function editExamination($id)
-//    {
-//        $course_list = ExmExamList::CourseList();
-//        $edit_examination = ExmExamList::find($id);
-//        return View::make('examination::amw.prepare_question_paper.editExamination',
-//            compact('edit_examination', 'course_list'));
-//    }
-
-    public function deleteExamData($id){
+    public function deleteExamination($id){
 
         try {
             $data= ExmExamList::find($id);
-            $title = AcmMarksDistItem::with('relExmExamList')->where('id','=',$id)->first()->title;
+
+           /* $exam_title = ExmExamList::join('acm_marks_dist_item', function($query){
+                $query->on('exm_exam_list.acm_marks_dist_item_id', '=', 'acm_marks_dist_item.id');
+            })->select(DB::raw('acm_marks_dist_item.title as exam_title'))->get();*/
+
+            $exam_title = $data->title;
 
             if($data->delete())
             {
-                Session::flash('info', "$title Deleted");
+                Session::flash('info', "Successfully Deleted $exam_title ");
                 return Redirect::back();
             }
-        }
-        catch
-        (exception $ex){
+        } catch (exception $ex){
             return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
         }
     }
