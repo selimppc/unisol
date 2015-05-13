@@ -59,8 +59,7 @@
                      @foreach($examination_list as $values)
                        <tr>
                            <td><input type="checkbox" name="id[]" class="myCheckbox" value="{{ $values->id }}"></td>
-                           <td>{{ $values->relExmExamList->title }}</td>
-                           {{--<b>{{ HTML::linkAction('ExmFacultyController@viewExmExamList',User::FullName($values->user_id),['id'=>$values->batch_id], ['data-toggle'=>"modal", 'data-target'=>"#modal"]) }}</b>--}}
+                           <td>{{ HTML::linkAction('ExmFacultyController@viewExamination', ExmExaminer::ExamName($values->exm_exam_list_id),['id'=>$values->exm_exam_list_id], ['data-toggle'=>"modal", 'data-target'=>"#modal"]) }}</td>
                            <td>{{ $values->relExmExamList->relCourseConduct->relDegree->relDepartment->title }}</td>
                            <td>{{ $values->relExmExamList->relCourseConduct->relCourse->title }}</td>
                            <td>{{ $values->relExmExamList->relAcmMarksDistItem->title }}</td>

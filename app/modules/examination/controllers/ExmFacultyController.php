@@ -19,6 +19,7 @@ class ExmFacultyController extends \BaseController {
     {
         $current_year = Year::where('title', Date('Y'))->first()->id;
 
+
         if($this->isPostRequest()){
             $year_id  = Input::get('year_id');
             $semester_id = Input::get('semester_id');
@@ -56,10 +57,18 @@ class ExmFacultyController extends \BaseController {
         Input::flash();
 
         return View::make('examination::faculty.examination_list.index',
-            compact('current_year','examination_list','year_id','semester_id'));
+            compact('exam_name','current_year','examination_list','year_id','semester_id'));
     }
 
-    public function changeStatusToDenyByFacultyEXM($id){
+    public function viewExamination()
+    {
+
+        echo " Hi !!! ";
+
+
+    }
+
+    public function changeStatusToDeny($id){
         $model = ExmExaminer::findOrFail($id);
         $model->status = 'Deny';
         if($model->save()){
@@ -68,7 +77,7 @@ class ExmFacultyController extends \BaseController {
         }
     }
 
-    public function changeStatusToAcceptedByFacultyEXM($id){
+    public function changeStatusToAccepted($id){
         $model = ExmExaminer::findOrFail($id);
         $model->status = 'Accepted';
         if($model->save()){

@@ -17,18 +17,18 @@ Route::any('faculty/examination-list/batchDelete',[
 
 Route::any('faculty/examination-list/change-status-to-deny/{id}',[
     'as' => 'faculty.examination-list.change-status-to-deny',
-    'uses' => 'ExmFacultyController@changeStatusToDenyByFacultyEXM'
+    'uses' => 'ExmFacultyController@changeStatusToDeny'
 ]);
-
 
 Route::any('faculty/examination-list/change-status-to-accept/{id}',[
     'as' => 'faculty.admission-test.change-status-to-accept',
-    'uses' => 'ExmFacultyController@changeStatusToAcceptedByFacultyEXM'
+    'uses' => 'ExmFacultyController@changeStatusToAccepted'
 ]);
 
-
-
-
+Route::any('faculty/examination-list/change-status-to-accept/{id}',[
+    'as' => 'faculty.admission-test.change-status-to-accept',
+    'uses' => 'ExmFacultyController@viewExamination'
+]);
 
 
 Route::any('faculty/exm-question-paper/{exm_list_id}',[
