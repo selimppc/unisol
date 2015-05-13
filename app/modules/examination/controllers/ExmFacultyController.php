@@ -51,6 +51,7 @@ class ExmFacultyController extends \BaseController {
                 'relExmExamList.relSemester','relExmExamList.relCourseConduct',
                 'relExmExamList.relCourseConduct.relCourse','relExmExamList.relCourseConduct.relDegree.relDepartment',
                 'relExmExamList.relAcmMarksDistItem')->get();
+//            echo "NO"; exit;
         }
         $year_id = array('' => 'Select Year ') + Year::lists('title', 'id');
         $semester_id = array('' => 'Select Semester ') + Semester::lists('title', 'id');
@@ -73,30 +74,29 @@ class ExmFacultyController extends \BaseController {
 
         $view_examiner_comments = ExmExaminerComments::where('exm_exam_list_id', $exm_list_id)->get();
 
-        return View::make('examination::faculty.examination_list.view_examination',
+        return View::make('examination::faculty.examination_list.view_examiner',
             compact('id','view_examination','view_examiner_comments'));
-
 
     }
 
-    public function viewExaminerComment()
+    public function saveExaminerComment()
     {
-//            $data = Input::all();
-//            $model = new ExmExaminerComments();
-//            $model->batch_id = $data['batch_id'];
-//            $model->comment = $data['comment'];
-//            $model->commented_to = $data['commented_to'];
-//            $model->commented_by = Auth::user()->get()->id;
-//
-//            $user_name = User::FullName($model->commented_to);
-//            if($model->save()){
-//            Session::flash('message', 'Comments added To: '.$user_name);
-//            return Redirect::back();
-//            }else{
-//                $errors = $model->errors();
-//                Session::flash('errors', $errors);
-//                return Redirect::back()->with('errors', 'invalid');
-//            }
+            $data = Input::all();
+            $model = new ExmExaminerComments();
+            $model->exm_exam_list_id = $data['exm_exam_list_id'];
+            $model->comment = $data['comment'];
+            $model->commented_to = $data['commented_to'];
+            $model->commented_by = Auth::user()->get()->id;
+
+            $user_name = User::FullName($model->commented_to);
+            if($model->save()){
+            Session::flash('message', 'Comments added To: '.$user_name);
+            return Redirect::back();
+            }else{
+                $errors = $model->errors();
+                Session::flash('errors', $errors);
+                return Redirect::back()->with('errors', 'Invalid Request');
+            }
     }
 
 
@@ -126,8 +126,9 @@ class ExmFacultyController extends \BaseController {
         } catch (exception $ex) {
             return Redirect::back()->with('danger', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
         }
-
     }
+
+
 
     public function questionPaper($exm_list_id)
     {

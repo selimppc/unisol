@@ -31,9 +31,9 @@ Route::any('faculty/examination-list/view-examiner/{id}/{exm_list_id}',[
 ]);
 //ok
 
-Route::any('faculty/examination-list/view-examiner-comment',[
-    'as' => 'faculty.examination-list.view-examiner-comment',
-    'uses' => 'ExmFacultyController@viewExaminerComment'
+Route::any('faculty/examination-list/save-examiner-comment',[
+    'as' => 'faculty.examination-list.save-examiner-comment',
+    'uses' => 'ExmFacultyController@saveExaminerComment'
 ]);
 
 

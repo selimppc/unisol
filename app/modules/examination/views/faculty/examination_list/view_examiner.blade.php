@@ -4,8 +4,9 @@
 </div>
 
 <div style="padding-left: 8%; width: 90%;">
-    {{Form::open(array('route'=>'faculty.examination-list.view-examiner-comment','method' => 'POST')) }}
-{{--                {{Form::hidden('commented_to', $view_examination->user_id)}}--}}
+    {{Form::open(array('route'=>'faculty.examination-list.save-examiner-comment','method' => 'POST')) }}
+                {{Form::hidden('exm_exam_list_id', $view_examination->exm_exam_list_id)}}
+                {{Form::hidden('commented_to', $view_examination->user_id)}}
                 <table class="table table-striped  table-bordered">
                     <tr>
                         <td><strong> Department:</strong></td>
@@ -20,7 +21,7 @@
                         <td>{{ isset($view_examination->user_id) ? User::FullName($view_examination->user_id) : 'No Faculty' }}</td>
                     </tr>
 
-                     <tr>
+                    <tr>
                         <td><strong> Status:</strong></td>
                         <td>{{ ucfirst($view_examination->status) }}
                             @if($view_examination->status == 'requested' )
@@ -28,7 +29,7 @@
                                 <a href="#" class="btn btn-success btn-xs" data-toggle="modal" data-target="#confirm_accept">Accept</a>
                             @endif
                         </td>
-                     </tr>
+                    </tr>
                 </table>
 
                  <small>Comments: </small>
