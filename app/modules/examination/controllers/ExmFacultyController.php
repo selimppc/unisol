@@ -28,13 +28,15 @@ class ExmFacultyController extends \BaseController {
                 'relExmExamList.relSemester','relExmExamList.relCourseConduct',
                 'relExmExamList.relCourseConduct.relCourse','relExmExamList.relCourseConduct.relDegree.relDepartment',
                 'relExmExamList.relAcmMarksDistItem')
+//                ->whereRaw('acm_marks_dist_item.id = exm_exam_list.acm_marks_dist_item_id')
+//                ->where('acm_marks_dist_item.is_exam', '=', 1)
                 ->whereExists(function($query) use($year_id, $semester_id)
-                {
-                    $query->from('exm_exam_list')
-                        ->whereRaw('exm_exam_list.id = exm_examiner.exm_exam_list_id')
-                        ->where('exm_exam_list.year_id', '=', $year_id)
-                        ->where('exm_exam_list.semester_id', '=', $semester_id);
-                })
+                    {
+                        $query->from('exm_exam_list')
+                            ->whereRaw('exm_exam_list.id = exm_examiner.exm_exam_list_id')
+                            ->where('exm_exam_list.year_id', '=', $year_id)
+                            ->where('exm_exam_list.semester_id', '=', $semester_id);
+                    })
                 ->get();
 
             //print_r($examination_list);exit;
@@ -60,13 +62,43 @@ class ExmFacultyController extends \BaseController {
             compact('exam_name','current_year','examination_list','year_id','semester_id'));
     }
 
-    public function viewExamination()
+    public function viewExaminer($id , $exm_list_id)
     {
+        $view_examination = ExmExaminer::with('relExmExamList','relExmExamList.relYear','relExmExamList.relSemester',
+            'relExmExamList.relCourseConduct','relExmExamList.relCourseConduct.relDegree',
+            'relExmExamList.relCourseConduct.relDegree.relDepartment',
+            'relExmExamList.relAcmMarksDistItem',
+            'relExmExamList.relCourseConduct.relCourse.relSubject','relExmExamList.relCourseConduct.relUser')
+            ->where('exm_exam_list_id', $exm_list_id)->first();
 
-        echo " Hi !!! ";
+        $view_examiner_comments = ExmExaminerComments::where('exm_exam_list_id', $exm_list_id)->get();
+
+        return View::make('examination::faculty.examination_list.view_examination',
+            compact('id','view_examination','view_examiner_comments'));
 
 
     }
+
+    public function viewExaminerComment()
+    {
+//            $data = Input::all();
+//            $model = new ExmExaminerComments();
+//            $model->batch_id = $data['batch_id'];
+//            $model->comment = $data['comment'];
+//            $model->commented_to = $data['commented_to'];
+//            $model->commented_by = Auth::user()->get()->id;
+//
+//            $user_name = User::FullName($model->commented_to);
+//            if($model->save()){
+//            Session::flash('message', 'Comments added To: '.$user_name);
+//            return Redirect::back();
+//            }else{
+//                $errors = $model->errors();
+//                Session::flash('errors', $errors);
+//                return Redirect::back()->with('errors', 'invalid');
+//            }
+    }
+
 
     public function changeStatusToDeny($id){
         $model = ExmExaminer::findOrFail($id);
