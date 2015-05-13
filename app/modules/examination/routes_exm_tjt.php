@@ -27,26 +27,26 @@ Route::any('amw/store-exam',[
 
 Route::any('amw/drop-down-courses',[
     'as' =>'amw.drop-down-courses',
-    'uses' => 'ExmAmwController@dropDownCourses'
+    'uses' => 'ExmAmwController@createAjaxCourseList'
 ]);
 
-Route::any('examination/amw/view-exam-data/{id}', [
-    'as' => 'examination.amw.view-exam-data',
-    'uses' => 'ExmAmwController@viewExamData'
+Route::any('amw/view-exam-data/{id}', [
+    'as' => 'amw.view-exam-data',
+    'uses' => 'ExmAmwController@viewExamination'
 ]);
 
-Route::any('examination/amw/edit-exam-data/{id}', [
-    'as' => 'examination.amw.edit-exam-data',
-    'uses' => 'ExmAmwController@editExamData'
+Route::any('amw/edit-exam-data/{id}', [
+    'as' => 'amw.edit-exam-data',
+    'uses' => 'ExmAmwController@editExamination'
 ]);
-Route::any('examination/amw/update-exam-data/{id}', [
-    'as' => 'examination.amw.update-exam-data',
-    'uses' => 'ExmAmwController@updateExamData'
+Route::any('amw/update-exam-data/{id}', [
+    'as' => 'amw.update-exam-data',
+    'uses' => 'ExmAmwController@updateExamination'
 ]);
 
 Route::any('examination/amw/delete-exam-data/{id}', [
     'as' => 'examination.amw.delete-exam-data',
-    'uses' => 'ExmAmwController@deleteExamData'
+    'uses' => 'ExmAmwController@deleteExamination'
 ]);
 
 
