@@ -28,8 +28,6 @@ class ExmFacultyController extends \BaseController {
                 'relExmExamList.relSemester','relExmExamList.relCourseConduct',
                 'relExmExamList.relCourseConduct.relCourse','relExmExamList.relCourseConduct.relDegree.relDepartment',
                 'relExmExamList.relAcmMarksDistItem')
-//                ->whereRaw('acm_marks_dist_item.id = exm_exam_list.acm_marks_dist_item_id')
-//                ->where('acm_marks_dist_item.is_exam', '=', 1)
                 ->whereExists(function($query) use($year_id, $semester_id)
                     {
                         $query->from('exm_exam_list')
@@ -38,13 +36,6 @@ class ExmFacultyController extends \BaseController {
                             ->where('exm_exam_list.semester_id', '=', $semester_id);
                     })
                 ->get();
-
-            //print_r($examination_list);exit;
-            // To check the code and relation that is it hit the database on
-            // view pages relation or grab the data from the first hit
-
-//            DB::setDefaultConnection('mysql2');
-//            print_r($examination_list[0]->relExmExamList->year_id);exit;
 
         }else{
             $examination_list = ExmExaminer::with('relExmExamList','relExmExamList.relYear',
@@ -69,34 +60,39 @@ class ExmFacultyController extends \BaseController {
             'relExmExamList.relCourseConduct.relDegree.relDepartment',
             'relExmExamList.relAcmMarksDistItem',
             'relExmExamList.relCourseConduct.relCourse.relSubject','relExmExamList.relCourseConduct.relUser')
-            ->where('exm_exam_list_id', $exm_list_id)->first();
+            ->where('exm_exam_list_id', $exm_list_id)
+            ->where('id', $id)
+            ->first();
+
+//        $view_a = ExmExaminer::where('exm_exam_list_id', $exm_list_id)->first();
+//
+//        print_r($view_a);exit;
 
         $view_examiner_comments = ExmExaminerComments::where('exm_exam_list_id', $exm_list_id)->get();
 
-        return View::make('examination::faculty.examination_list.view_examination',
+        return View::make('examination::faculty.examination_list.view_examiner',
             compact('id','view_examination','view_examiner_comments'));
-
 
     }
 
-    public function viewExaminerComment()
+    public function saveExaminerComment()
     {
-//            $data = Input::all();
-//            $model = new ExmExaminerComments();
-//            $model->batch_id = $data['batch_id'];
-//            $model->comment = $data['comment'];
-//            $model->commented_to = $data['commented_to'];
-//            $model->commented_by = Auth::user()->get()->id;
-//
-//            $user_name = User::FullName($model->commented_to);
-//            if($model->save()){
-//            Session::flash('message', 'Comments added To: '.$user_name);
-//            return Redirect::back();
-//            }else{
-//                $errors = $model->errors();
-//                Session::flash('errors', $errors);
-//                return Redirect::back()->with('errors', 'invalid');
-//            }
+            $data = Input::all();
+            $model = new ExmExaminerComments();
+            $model->exm_exam_list_id = $data['exm_exam_list_id'];
+            $model->comment = $data['comment'];
+            $model->commented_to = $data['commented_to'];
+            $model->commented_by = Auth::user()->get()->id;
+
+            $user_name = User::FullName($model->commented_to);
+            if($model->save()){
+            Session::flash('message', 'Comments added To: '.$user_name);
+            return Redirect::back();
+            }else{
+                $errors = $model->errors();
+                Session::flash('errors', $errors);
+                return Redirect::back()->with('errors', 'Invalid Request');
+            }
     }
 
 
@@ -126,8 +122,9 @@ class ExmFacultyController extends \BaseController {
         } catch (exception $ex) {
             return Redirect::back()->with('danger', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
         }
-
     }
+
+
 
     public function questionPaper($exm_list_id)
     {
