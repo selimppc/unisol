@@ -463,21 +463,9 @@ public function assign_faculty(){
         $year_id = array('' => 'Select Year ') + Year::lists('title', 'id');
         $semester_id = array('' => 'Select Semester ') + Semester::lists('title', 'id');
 
+        Input::flash();
 
-
-
-
-
-
-
-//        $exam_data = ExmExamList::with('relCourseConduct','relCourseConduct.relCourse','relYear','relSemester',
-//              'relCourseConduct.relCourse.relSubject.relDepartment','relAcmMarksDistItem')->whereExists(function ($query){
-//                    $query->from('acm_marks_dist_item')->whereRaw('acm_marks_dist_item.id = exm_exam_list.acm_marks_dist_item_id')
-//                    ->where('acm_marks_dist_item.is_exam', '=', 1);
-//                  })->get();
-
-         return View::make('examination::amw.exam.exam_list',compact('exam_data','year_id','semester_id'));
-
+        return View::make('examination::amw.exam.exam_list',compact('exam_data','year_id','semester_id'));
     }
 
     public function createExamination(){

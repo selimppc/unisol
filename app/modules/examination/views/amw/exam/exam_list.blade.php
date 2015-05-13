@@ -6,6 +6,10 @@
 
 <a class="pull-right btn btn-sm btn-info" href="{{ URL::route('examination.amw.create-exam') }}" data-toggle="modal" data-target="#exam-data" style="color: #ffffff" title="New Degree"><b>Add Examination</b></a>
 
+<div style="display:none" class="view-button">
+ <a class="pull-right btn btn-sm btn-info"  href="{{ URL::route('amw.exam-list') }}"  style="color: #ffffff"><b>All</b></a>
+</div>
+
 <h3>Examination</h3>
 
 <div class="row">
@@ -26,7 +30,8 @@
                  </div>
                  <div class="col-sm-2" style="padding-top: 1%">
                   </br>
-                  {{ Form::submit('Filter', array('class'=>'btn btn-success btn-sm' ))}}
+                  {{ Form::submit('Filter', array('class'=>'btn btn-success btn-sm','id'=>'button'))}}
+                  {{--<input class="btn btn-success btn-sm" type="submit" value="Filter" onclick="View()">--}}
                  </div>
                  </div>
               {{ Form::close() }}
@@ -52,25 +57,24 @@
                 <tbody>
                     @if(isset($exam_data))
                         @foreach($exam_data as $exam_list)
-                            <tr>
-                               <td><input type="checkbox" name="id[]" class="myCheckbox" value=""></td>
-                               <td>{{ $exam_list->title }}</td>
-                               <td>{{ $exam_list->relCourseConduct->relCourse->relSubject->relDepartment->title}}</td>
-                               <td>{{ $exam_list->relCourseConduct->relCourse->title}}</td>
-                               <td>{{ $exam_list->relAcmMarksDistItem['title']}}</td>
-                               <td>{{$exam_list->relYear->title}}</td>
-                               <td>{{$exam_list->relSemester->title}}</td>
-                               <td>
-                                  <a href="{{ URL::route('amw.view-exam-data', ['id'=>$exam_list->id])  }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#exam-data" title="Show" style="font-size: 11px;color: darkmagenta"><span class="fa fa-eye"></span></a>
-                                  <a href="{{ URL::route('amw.edit-exam-data', ['id'=>$exam_list->id])  }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#exam-data" title="Edit" style="font-size: 12px;color: lightseagreen"><i class="fa fa-edit"></i></a>
-                                  <a data-href="{{URL::route('examination.amw.delete-exam-data', ['id'=>$exam_list->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" style="font-size: 12px;color: lightcoral"><span class="fa  fa-trash-o"></span></a>
-                               </td>
-                            </tr>
+                                <tr>
+                                   <td><input type="checkbox" name="id[]" class="myCheckbox" value=""></td>
+                                   <td>{{ $exam_list->title }}</td>
+                                   <td>{{ $exam_list->relCourseConduct->relCourse->relSubject->relDepartment->title}}</td>
+                                   <td>{{ $exam_list->relCourseConduct->relCourse->title}}</td>
+                                   <td>{{ $exam_list->relAcmMarksDistItem['title']}}</td>
+                                   <td>{{$exam_list->relYear->title}}</td>
+                                   <td>{{$exam_list->relSemester->title}}</td>
+                                   <td>
+                                      <a href="{{ URL::route('amw.view-exam-data', ['id'=>$exam_list->id])  }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#exam-data" title="Show" style="font-size: 11px;color: darkmagenta"><span class="fa fa-eye"></span></a>
+                                      <a href="{{ URL::route('amw.edit-exam-data', ['id'=>$exam_list->id])  }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#exam-data" title="Edit" style="font-size: 12px;color: lightseagreen"><i class="fa fa-edit"></i></a>
+                                      <a data-href="{{URL::route('examination.amw.delete-exam-data', ['id'=>$exam_list->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" style="font-size: 12px;color: lightcoral"><span class="fa  fa-trash-o"></span></a>
+                                   </td>
+                                </tr>
+                           @endif
                         @endforeach
-                        <a class="pull-right btn btn-sm btn-info" href="{{ URL::route('amw.exam-list') }}"  style="color: #ffffff" ><b>All</b></a>
+                        {{--<a class="pull-right btn btn-sm btn-info" href="{{ URL::route('amw.exam-list') }}"  style="color: #ffffff" ><b>All</b></a>--}}
                     @else
-                        <a class="pull-right btn btn-sm btn-info" href="{{ URL::route('amw.exam-list') }}"  style="color: #ffffff" ><b>All</b></a>
-
                     @endif
                 </tbody>
              </table>
@@ -110,5 +114,12 @@
       </div>
     </div>
  </div>
+
+ <script>
+   function View() {
+         $('.view-button').show();
+//           return false;
+       }
+ </script>
 
 @stop
