@@ -60,7 +60,13 @@ class ExmFacultyController extends \BaseController {
             'relExmExamList.relCourseConduct.relDegree.relDepartment',
             'relExmExamList.relAcmMarksDistItem',
             'relExmExamList.relCourseConduct.relCourse.relSubject','relExmExamList.relCourseConduct.relUser')
-            ->where('exm_exam_list_id', $exm_list_id)->first();
+            ->where('exm_exam_list_id', $exm_list_id)
+            ->where('id', $id)
+            ->first();
+
+//        $view_a = ExmExaminer::where('exm_exam_list_id', $exm_list_id)->first();
+//
+//        print_r($view_a);exit;
 
         $view_examiner_comments = ExmExaminerComments::where('exm_exam_list_id', $exm_list_id)->get();
 

@@ -25,8 +25,8 @@
                         <td><strong> Status:</strong></td>
                         <td>{{ ucfirst($view_examination->status) }}
                             @if($view_examination->status == 'requested' )
-                                <a href="#" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#confirm_deny">Deny</a>
-                                <a href="#" class="btn btn-success btn-xs" data-toggle="modal" data-target="#confirm_accept">Accept</a>
+                                <a class="btn btn-primary btn-xs" data-href="{{ URL::route('faculty.examination-list.change-status-to-accept',['id'=>$view_examination->id]) }}" data-toggle="modal" data-target="#confirm-delete" href="">Accept</a>
+                                <a class="btn btn-success btn-xs" data-href="{{ URL::route('faculty.examination-list.change-status-to-deny',['id'=>$view_examination->id]) }}" data-toggle="modal" data-target="#confirm-delete" href="">Deny</a>
                             @endif
                         </td>
                     </tr>
@@ -53,7 +53,7 @@
                         </div>
 
                         {{ Form::submit('Submit Comment', array('class'=>'pull-right btn-sm btn-info')) }}
-                        <a href="" class="pull-right btn-sm bg-navy" style="margin-right: 5px">Close</a>
+                        <a href="" class="pull-right btn-sm btn-primary" style="margin-right: 5px" span class="glyphicon-refresh">Close</a>
                         &nbsp;
                         </br>
                         &nbsp;
@@ -62,46 +62,30 @@
 
 
 
-             <div class="modal fade " id="confirm_accept" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="myModalLabel">Confirm Accept</h4>
-                        </div>
-                        <div class="modal-body">
-                            <strong>Are you sure to Accept This Request?</strong>
+             <!-- Modal :: Delete Confirmation -->
+                     <div class="modal fade " id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="confirm-delete" aria-hidden="true">
+                       <div class="modal-dialog">
+                         <div class="modal-content">
+                               <div class="modal-header">
+                                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                 <h4 class="modal-title" id="myModalLabel">Confirmation</h4>
+                               </div>
+                               <div class="modal-body">
+                                     <strong>Are you sure ?</strong>
+                               </div>
+                               <div class="modal-footer">
+                                     <a href="" class="btn-sm btn-default">Close</a>
+                                     <a href="#" class="btn-sm bg-blue btn-Success danger">OK</a>
+                               </div>
+                         </div>
+                       </div>
+                     </div>
 
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                            <a href="{{ URL::route('faculty.admission-test.change-status-to-accept',['id'=>$view_examination->id]) }}" class="btn btn-success">Accept</a>
-
-
-                        </div>
-                    </div>
-                </div>
-             </div>
-
-
-             <div class="modal fade " id="confirm_deny" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="myModalLabel">Confirm Deny</h4>
-                            </div>
-                            <div class="modal-body">
-                                <strong>Are you sure to Deny This Request?</strong>
-
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                <a href="{{ URL::route('faculty.examination-list.change-status-to-deny',['id'=>$view_examination->id]) }}" class="btn btn-warning">Deny</a>
-
-                            </div>
-                        </div>
-                    </div>
-             </div>
+                     <script>
+                               $('#confirm-delete').on('show.bs.modal', function(e) {
+                                  $(this).find('.danger').attr('href', $(e.relatedTarget).data('href'));
+                                  $('.debug-url').html('Delete URL: <strong>' + $(this).find('.danger').attr('href') + '</strong>');
+                              })
+                     </script>
 
 </div>

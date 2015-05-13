@@ -16,23 +16,23 @@ Route::any('faculty/examination-list/batchDelete',[
 ]);
 
 Route::any('faculty/examination-list/change-status-to-deny/{id}',[
-    'as' => 'faculty.examination-list.change-status-to-deny',
+    'as' =>'faculty.examination-list.change-status-to-deny',
     'uses' => 'ExmFacultyController@changeStatusToDeny'
 ]);
 
 Route::any('faculty/examination-list/change-status-to-accept/{id}',[
-    'as' => 'faculty.admission-test.change-status-to-accept',
+    'as' =>'faculty.examination-list.change-status-to-accept',
     'uses' => 'ExmFacultyController@changeStatusToAccepted'
 ]);
 
 Route::any('faculty/examination-list/view-examiner/{id}/{exm_list_id}',[
-    'as' => 'faculty.examination-list.view-examiner',
+    'as' =>'faculty.examination-list.view-examiner',
     'uses' => 'ExmFacultyController@viewExaminer'
 ]);
 //ok
 
 Route::any('faculty/examination-list/save-examiner-comment',[
-    'as' => 'faculty.examination-list.save-examiner-comment',
+    'as' =>'faculty.examination-list.save-examiner-comment',
     'uses' => 'ExmFacultyController@saveExaminerComment'
 ]);
 
