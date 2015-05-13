@@ -25,10 +25,18 @@ Route::any('faculty/examination-list/change-status-to-accept/{id}',[
     'uses' => 'ExmFacultyController@changeStatusToAccepted'
 ]);
 
-Route::any('faculty/examination-list/change-status-to-accept/{id}',[
-    'as' => 'faculty.admission-test.change-status-to-accept',
-    'uses' => 'ExmFacultyController@viewExamination'
+Route::any('faculty/examination-list/view-examiner/{id}/{exm_list_id}',[
+    'as' => 'faculty.examination-list.view-examiner',
+    'uses' => 'ExmFacultyController@viewExaminer'
 ]);
+//ok
+
+Route::any('faculty/examination-list/view-examiner-comment',[
+    'as' => 'faculty.examination-list.view-examiner-comment',
+    'uses' => 'ExmFacultyController@viewExaminerComment'
+]);
+
+
 
 
 Route::any('faculty/exm-question-paper/{exm_list_id}',[
