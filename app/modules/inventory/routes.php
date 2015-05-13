@@ -56,7 +56,7 @@ Route::group(['prefix' => 'inventory'], function() {
 
 
 
-    
+
 
 
 });
