@@ -56,7 +56,43 @@ Route::group(['prefix' => 'inventory'], function() {
 
 
 
-    
+    /*
+     *  ====================================================================================
+     *  Product  Area
+     *  =====================================================================================
+     */
+
+    /// Product Category
+    Route::get("product", [
+        "as"   => "product",
+        "uses" => "InvProductController@index_product"
+    ]);
+
+    Route::post("product/store", [
+        "as"   => "product/store",
+        "uses" => "InvProductController@store_product"
+    ]);
+    Route::any("product/show/{pc_id}", [
+        "as"   => "product/show",
+        "uses" => "InvProductController@show_product"
+    ]);
+    Route::any("product/edit/{pc_id}", [
+        "as"   => "product/edit",
+        "uses" => "InvProductController@edit_product"
+    ]);
+    Route::any("product/destroy/{pc_id}", [
+        "as"   => "product/destroy",
+        "uses" => "InvProductController@destroy_product"
+    ]);
+    Route::any("product-batch-delete", [
+        "as"   => "product-batch-delete",
+        "uses" => "InvProductController@batch_delete_product"
+    ]);
+
+
+
+
+
 
 
 });

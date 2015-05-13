@@ -36,7 +36,7 @@
 
           <div class="form-group">
               {{ Form::label('course_conduct_id', 'Course Name') }}
-              {{ Form::select('course_conduct_id', ['' => 'Select Course'], Input::old('course_conduct_id'), ['id'=>'dependable-list', 'class'=>'form-control','placeholder'=>'']) }}
+              {{ Form::select('course_conduct_id', ['' => 'Select Course',  '1'=>'OK'], Input::old('course_conduct_id'), ['id'=>'dependable-list', 'class'=>'form-control','placeholder'=>'']) }}
           </div>
 
           <div class='form-group'>

@@ -133,6 +133,127 @@ class InvProductController extends \BaseController {
 
 
 
+    /*
+     *  ====================================================================================
+     *  Product  Area
+     *  =====================================================================================
+     */
+
+
+    /*
+     * All data list(s)
+     */
+    public function index_product()
+    {
+        $pageTitle = 'Product Items';
+        $data = InvProduct::all();
+        return View::make('inventory::product.index', compact('pageTitle', 'data'));
+    }
+
+    /*
+     * Store input data into  product table
+     *
+     */
+    public function store_product()
+    {
+        if($this->isPostRequest()){
+            $input_data = Input::all();
+            $model = new InvProduct();
+            if($model->validate($input_data)) {
+                DB::beginTransaction();
+                try {
+                    $model->create($input_data);
+                    DB::commit();
+                    Session::flash('message', 'Success !');
+                } catch (Exception $e) {
+                    //If there are any exceptions, rollback the transaction`
+                    DB::rollback();
+                    Session::flash('danger', 'Failed !');
+                }
+            }
+        }
+        return Redirect::back();
+
+    }
+
+    /*
+     * Show specific model data only
+     * $pc_id => product category ID
+     */
+    public function show_product($pc_id){
+        $data = InvProduct::findOrFail($pc_id);
+        return View::make('inventory::product.show', compact('pageTitle', 'data'));
+    }
+
+    /*
+     * edit and update specific model data only
+     * $pc_id => product category ID
+     */
+    public function edit_product($pc_id){
+        if($this->isPostRequest()){
+            $input_data = Input::all();
+            $model = InvProduct::findOrFail($pc_id);
+            if($model->validate($input_data)){
+                DB::beginTransaction();
+                try{
+                    $model->update($input_data);
+                    DB::commit();
+                    Session::flash('message', 'Success !');
+                }catch ( Exception $e ){
+                    //If there are any exceptions, rollback the transaction`
+                    DB::rollback();
+                    Session::flash('danger', 'Failed !');
+                }
+            }
+            return Redirect::back();
+        }else{
+            $model = InvProduct::findOrFail($pc_id);
+            return View::make('inventory::product.edit', compact('model'));
+        }
+
+    }
+
+    /*
+     * Delete specific model data only
+     * $pc_id => product category ID
+     */
+    public function destroy_product($pc_id){
+        DB::beginTransaction();
+        try{
+            InvProduct::destroy($pc_id);
+            DB::commit();
+            Session::flash('message', 'Success !');
+        }catch ( Exception $e ){
+            //If there are any exceptions, rollback the transaction`
+            DB::rollback();
+            Session::flash('danger', 'Failed !');
+        }
+        return Redirect::back();
+    }
+
+    /*
+     * Mass / Batch Delete from Product Category Table
+     */
+    public function batch_delete_product()
+    {
+        DB::beginTransaction();
+        try{
+            InvProduct::destroy(Request::get('id'));
+            DB::commit();
+            Session::flash('message', 'Success !');
+        }catch( Exception $e ){
+            //If there are any exceptions, rollback the transaction`
+            DB::rollback();
+            Session::flash('danger', 'Failed !');
+        }
+        return Redirect::back();
+    }
+
+
+
+
+
+
 
 
 
