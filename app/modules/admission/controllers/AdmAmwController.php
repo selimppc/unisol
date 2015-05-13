@@ -1508,6 +1508,15 @@ class AdmAmwController extends \BaseController
         {
             DB::beginTransaction();
             try {
+                //Check previous status and if status is changed to Selected then ensure that other questions of same subject
+                //status must not be "Selected"
+                if($model->status != $data['status'] and $data['status'] == 'selected'){
+                    DB::table('adm_question')
+                        ->where('batch_admtest_subject_id', $data['batch_admtest_subject_id'])
+                        ->where('status', 'selected')
+                        ->update(array('status' => 'open'));
+                }
+
                 $model->update($data);
                 DB::commit();
                 Session::flash('message', "Successfully Updated Admission Test Question $name!");
@@ -2262,7 +2271,7 @@ class AdmAmwController extends \BaseController
         $model = new BatchApplicant();
 
         //view info according to batch(admission on)
-        $batchApt = Batch::with('relDegree.relDegreeGroup','relDegree.relDegreeProgram','relDegree.relDepartment','relYear','relSemester')
+        $batchApt = Batch::with('relDegree.relDegreeGroup','relDegree.relDegreeProgram','relDegree.relDepartment', 'relDegree.relDegreeLevel','relYear','relSemester')
             ->where('id', '=', $batch_id)
             ->first();
         $status =  $model->getStatus();
@@ -2281,6 +2290,8 @@ class AdmAmwController extends \BaseController
             $apt_data = BatchApplicant::with('relBatch','relApplicant','relBatch.relSemester')
                 ->where('batch_id','=',$batch_id)->get();
         }
+
+        Input::flash();
         return View::make('admission::amw.batch_applicant.index',
             compact('batch_id', 'batchApt','apt_data', 'status','chk_status'));
 
@@ -2313,17 +2324,13 @@ class AdmAmwController extends \BaseController
         }
     }
     public function batchApplicantApply($id){
-
         $ids = Input::get('ids');
-        $status = Input::get('status');
+        $status = Input::get('a_status');
         if($ids == null){
             Session::flash('error',"You didn't select any applicant ! Please check at least one applicant !");
         }else{
-            foreach($ids as $key => $value) {
-                $model = BatchApplicant::findOrFail($value);
-                $model->status = $status;
-                $model->save();
-            }
+            // Batch Update query
+            BatchApplicant::whereIn("id", $ids)->update(array('status' => $status));
             Session::flash('message','Successfully Updated applicant Status!');
         }
         return Redirect::back();
@@ -2357,6 +2364,8 @@ class AdmAmwController extends \BaseController
         if(count($applicant_extra_curr_activities)< 1) {
             Session::flash('info', "Applicant's Extra Curricular Activities Do Not Added !");
         }
+
+        Input::flash();
 
         return View::make('admission::amw.batch_applicant.view_applicant_info',
             compact('applicant_id','batch_id','applicant_account_info', 'applicant_profile_info',

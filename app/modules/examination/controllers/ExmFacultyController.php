@@ -28,6 +28,7 @@ class ExmFacultyController extends \BaseController {
                 'relExmExamList.relSemester','relExmExamList.relCourseConduct',
                 'relExmExamList.relCourseConduct.relCourse','relExmExamList.relCourseConduct.relDegree.relDepartment',
                 'relExmExamList.relAcmMarksDistItem')
+                ->where('user_id','=',Auth::user()->get()->id)
                 ->whereExists(function($query) use($year_id, $semester_id)
                     {
                         $query->from('exm_exam_list')
@@ -41,7 +42,9 @@ class ExmFacultyController extends \BaseController {
             $examination_list = ExmExaminer::with('relExmExamList','relExmExamList.relYear',
                 'relExmExamList.relSemester','relExmExamList.relCourseConduct',
                 'relExmExamList.relCourseConduct.relCourse','relExmExamList.relCourseConduct.relDegree.relDepartment',
-                'relExmExamList.relAcmMarksDistItem')->get();
+                'relExmExamList.relAcmMarksDistItem')
+                ->where('user_id','=',Auth::user()->get()->id)
+                ->get();
         }
         $year_id = array('' => 'Select Year ') + Year::lists('title', 'id');
         $semester_id = array('' => 'Select Semester ') + Semester::lists('title', 'id');
@@ -128,11 +131,14 @@ class ExmFacultyController extends \BaseController {
 
     public function questionPaper($exm_list_id)
     {
-        $examiner_type = ExmExaminer::where('exm_exam_list_id',$exm_list_id)->first();
+        $examiner_type = ExmExaminer::where('exm_exam_list_id',$exm_list_id)
+            ->where('user_id','=',Auth::user()->get()->id)
+            ->first();
 
         $question_paper = ExmQuestion::with('relExmExamList', 'relExmExamList.relYear',
             'relExmExamList.relSemester','relCourseConduct.relDegree','relExaminerFacultyUser')
             ->where('exm_exam_list_id', '=', $exm_list_id)
+            ->where('examiner_faculty_user_id','=',Auth::user()->get()->id)
             ->get();
 
         return View::make('examination::faculty.question_paper.index',

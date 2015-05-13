@@ -43,22 +43,17 @@
                                     @endif
                                 </td>
                                 <td>
-                                     {{--@if( $examiner_type == 'both' )--}}
+                                     @if( $examiner_type->user_id != Auth::user()->get()->id )
                                            {{--<a href="{{ URL::route('admission.faculty.question-papers.view-question-paper',['question_id'=>$question->id]) }}" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modal">VQP</a>--}}
                                            {{--<a href="{{ URL::route('admission.faculty.question-papers.view-questions-items',['question_id'=>$question->id]) }}" class="btn btn-primary btn-xs" >VQs</a>--}}
-                                           {{--<a href="{{ URL::route('admission.faculty.question-papers.add-question-paper-item',['question_id'=>$question->id]) }}" class="btn btn-info btn-xs " data-toggle="modal" data-target="#modal">AQ</a>--}}
-                                           {{--<a href="{{ URL::route('admission.faculty.question-papers.view-assign-to-question-paper',['question_id'=>$question->id]) }}" class="btn bg-purple btn-xs" data-toggle="modal" data-target="#modal" >Comments</a>--}}
-                                           {{--<a href="{{ URL::route('admission.faculty.question-papers.evaluate-questions',['adm_question_id'=>$values->id]) }}" class="btn bg-navy btn-xs " >Evaluate</a>--}}
-                                     {{--@elseif( $examiner_type == 'question-setter' )--}}
+
+                                     @elseif( $examiner_type == 'question-setter' )
                                            {{--<a href="{{ URL::route('admission.faculty.question-papers.view-question-paper',['question_id'=>$question->id]) }}" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modal">VQP</a>--}}
                                            {{--<a href="{{ URL::route('admission.faculty.question-papers.add-question-paper-item',['question_id'=>$question->id]) }}" class="btn btn-info btn-xs " data-toggle="modal" data-target="#modal">AQ</a>--}}
                                            {{--<a href="{{ URL::route('admission.faculty.question-papers.view-questions-items',['question_id'=>$question->id]) }}" class="btn btn-primary btn-xs" >VQs</a>--}}
                                            {{--<a href="{{ URL::route('admission.faculty.question-papers.view-assign-to-question-paper',['question_id'=>$question->id]) }}" class="btn bg-purple btn-xs" data-toggle="modal" data-target="#modal" >Comments</a>--}}
 
-                                     {{--@else--}}
-                                           {{--<a href="{{ URL::route('admission.faculty.question-papers.evaluate-questions',['adm_question_id'=>$values->id]) }}" class="btn bg-navy btn-xs " >Evaluate</a>--}}
-                                           {{--<a href="{{ URL::route('admission.faculty.question-papers.view-assign-to-question-paper',['q_id'=>$values->id]) }}" class="btn bg-purple btn-xs" data-toggle="modal" data-target="#modal" >Comments</a>--}}
-                                     {{--@endif--}}
+                                     @endif
                                 </td>
                             </tr>
                           @endforeach
