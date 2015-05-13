@@ -540,9 +540,17 @@ public function assign_faculty(){
         $year_id = ['' => 'Select Year'] + Year::lists('title', 'id');
         $semester_id = ['' => 'Select Semester'] + Semester::lists('title', 'id');
         $exam_type = ['' => 'Select Exam Type'] + AcmMarksDistItem::where('is_exam','=',1)->lists('title','id');
-        $course_list = "o";
 
-        return View::make('examination::amw.exam.edit_exam',compact('model', 'course_list','year_id','semester_id','exam_type','courses'));
+        $course_list = ExmExamList::join('course_conduct', function($query) {
+                $query->on('exm_exam_list.course_conduct_id', '=', 'course_conduct.id');
+            })->join('course', function($join){
+                $join->on('course.id', '=', 'course_conduct.course_id');
+            })
+            ->where('exm_exam_list.id', $id)
+            ->select(DB::raw('exm_exam_list.course_conduct_id as id, course.title as title'))
+            ->lists('title','id');
+
+        return View::make('examination::amw.exam.edit_exam',compact('model', 'course_list','year_id','semester_id','exam_type','course_list'));
     }
 
     public function updateExamination($id){
