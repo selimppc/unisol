@@ -602,4 +602,9 @@ public function assign_faculty(){
         }
     }
 
+    public function viewExmCourseList(){
+
+        return View::make('examination::amw.courses._exm_course_list');
+    }
+
 }
