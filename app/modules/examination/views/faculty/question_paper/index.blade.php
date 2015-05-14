@@ -50,7 +50,7 @@
                                 <td>
 
                                      @if( $question->s_faculty_user_id == $question->e_faculty_user_id )
-                                           {{ "Both Setter & Evaluator" }}
+                                           {{ "Both" }}
                                      @elseif( $question->s_faculty_user_id == Auth::user()->get()->id )
                                            {{ "Setter" }}
                                      @elseif( $question->e_faculty_user_id == Auth::user()->get()->id )
