@@ -188,18 +188,25 @@ class ExmFacultyController extends \BaseController {
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+// starting just now
 
 
-
-    public function addExmQuestionPaperItem()
+    public function addExmQuestionPaperItem($exm_question_id)
     {
+        $add_exm_qp_items = ExmQuestion::find($exm_question_id);
+
+        return View::make('examination::faculty.question_paper._addQuestItemForm',
+            compact('add_exm_qp_items'));
 
     }
 
 
 
-    public function viewExmQuestionsItems()
+    public function viewExmQuestionsItems($exm_question_id)
     {
+        $view_exm_qp_items = ExmQuestionItems::where('exm_question_id', '=', $exm_question_id)->latest('id')->get();
+        return View::make('examination::faculty.question_paper.view_qp_items',
+            compact('view_exm_qp_items'));
 
     }
 
@@ -207,11 +214,13 @@ class ExmFacultyController extends \BaseController {
 
     public function saveComment()
     {
+        echo "Comment";
 
     }
 
     public function evaluateExm()
     {
+        echo "Evaluate";
 
     }
 
