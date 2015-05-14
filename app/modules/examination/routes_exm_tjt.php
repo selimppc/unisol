@@ -9,7 +9,7 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
-
+//Examinations
 Route::any('amw/exam-list',[
     'as' =>'amw.exam-list',
     'uses' => 'ExmAmwController@examList'
@@ -49,6 +49,25 @@ Route::any('examination/amw/delete-exam-data/{id}', [
     'uses' => 'ExmAmwController@deleteExamination'
 ]);
 
+Route::any('amw/view-exm-courses/{year_id}/{semester_id}',[
+    'as' =>'amw.view-exm-courses',
+    'uses' => 'ExmAmwController@viewExmCourseList'
+]);
 
+//Examiners
+Route::any('amw/examiners/{exm_exam_list_id}', [
+    'as' => 'amw.examiners',
+    'uses' => 'ExmAmwController@indexExaminers'
+]);
+
+Route::any('amw/examiners/create/{exm_exam_list_id}', [
+    'as' => 'amw.examiners.create',
+    'uses' => 'ExmAmwController@createExaminers'
+]);
+
+Route::any('amw/examiners/store', [
+    'as' => 'amw.examiners.store',
+    'uses' => 'ExmAmwController@storeExaminers'
+]);
 
 
