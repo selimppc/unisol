@@ -127,19 +127,7 @@ class ExmFacultyController extends \BaseController {
         $question_paper = ExmQuestion::with('relExmExamList', 'relExmExamList.relYear',
             'relExmExamList.relSemester','relCourseConduct.relDegree','relSUser','relEUser')
             ->where('exm_exam_list_id', '=', $exm_list_id)
-//            ->where('s_faculty_user_id','=',Auth::user()->get()->id)
-//            ->where('e_faculty_user_id','=',Auth::user()->get()->id)
             ->get();
-
-
-//            ->whereExists(function($query) use($exm_list_id)
-//            {
-//                $query->from('exm_exam_list')
-////                    ->whereRaw('exm_exam_list.id = exm_question.exm_exam_list_id')
-//                    ->where('exm_exam_list.id', $exm_list_id);
-//            })
-//            ->get();
-
 
         return View::make('examination::faculty.question_paper.index',
             compact('examiner_type','question_paper','exm_list_id'));
@@ -150,7 +138,16 @@ class ExmFacultyController extends \BaseController {
 
     public function viewExmQuestionPaper($exm_question_id)
     {
-        $view_exm_qp = AdmQuestion::find($exm_question_id);
+//        $view_exm_qp = ExmQuestion::find($exm_question_id);
+
+        $view_exm_qp = ExmQuestion::with('relExmExamList','relExmExamList.relYear','relExmExamList.relSemester',
+            'relExmExamList.relCourseConduct','relExmExamList.relCourseConduct.relDegree',
+            'relExmExamList.relCourseConduct.relDegree.relDepartment',
+            'relExmExamList.relAcmMarksDistItem',
+            'relExmExamList.relCourseConduct.relCourse.relSubject','relExmExamList.relCourseConduct.relUser')
+        ->where('id', $exm_question_id)
+        ->first();
+
         return View::make('examination::faculty.question_paper.view_exm_question_paper',
             compact('view_exm_qp'));
     }
