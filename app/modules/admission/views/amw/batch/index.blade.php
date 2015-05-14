@@ -32,23 +32,23 @@
                 </tr>
             </thead>
             <tbody>
-            @if(isset($batch_management))
-              @foreach($batch_management as $batch_list)
+            @if(isset($batch))
+              @foreach($batch as $b)
                 <tr>
-                   <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $batch_list->id }}"></td>
-                   <td>{{ $batch_list->relDegree->relDegreeLevel->code.' '.$batch_list->relDegree->relDegreeGroup->code.' In '.$batch_list->relDegree->relDegreeProgram->code }}</td>
-                   <td>{{ $batch_list->batch_number }}</td>
-                   <td>{{ $batch_list->relDegree->relDepartment->title }}</td>
-                   <td>{{ $batch_list->relYear->title }}</td>
-                   <td>{{ $batch_list->relSemester->title }}</td>
-                   <td>{{ $batch_list->status }}</td>
+                   <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $b->id }}"></td>
+                   <td>{{ $b->relDegree->relDegreeLevel->code.' '.$b->relDegree->relDegreeGroup->code.' In '.$b->relDegree->relDegreeProgram->code }}</td>
+                   <td>{{ $b->batch_number }}</td>
+                   <td>{{ $b->relDegree->relDepartment->title }}</td>
+                   <td>{{ $b->relYear->title }}</td>
+                   <td>{{ $b->relSemester->title }}</td>
+                   <td>{{ $b->status }}</td>
                    <td>
-                     <a href="{{ URL::to('admission/amw/batch/show/'.$batch_list->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#modal" style="font-size: 12px;color: darkmagenta"><span class="fa fa-eye"></span></a>
-                     <a class="btn btn-xs btn-default" href="{{ URL::to('admission/amw/batch/edit/'.$batch_list->id) }}" data-toggle="modal" data-target="#modal" style="font-size: 12px;color: lightseagreen"><i class="fa fa-edit"></i></a>
-                     <a href="{{ URL::to('admission/amw/batch-adm-test-subject/'.$batch_list->id)  }}" class="btn btn-info btn-xs" title="Manage AdmTest Subject" >MATS</a>
-                     <a href="{{ URL::route('admission.amw.batch-waiver.index',['batch_id'=>$batch_list->id ])  }}" class="btn btn-success btn-xs" title="Manage Waiver"  >MW</a>
-                     <a href="{{ URL::route('admission.amw.batch-applicant.index',['id'=>$batch_list->id ])  }}" class="btn btn-info btn-xs" title="Manage Applicant"  >MA</a>
-                     <a href="{{ URL::route('admission.amw.batch_course',['id'=>$batch_list->id,'degree_id'=>$batch_list->degree_id])  }}" class="btn btn-success btn-xs" >BC</a>
+                     <a href="{{ URL::to('admission/amw/batch/show/'.$b->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#modal" style="font-size: 12px;color: darkmagenta"><span class="fa fa-eye"></span></a>
+                     <a class="btn btn-xs btn-default" href="{{ URL::to('admission/amw/batch/edit/'.$b->id) }}" data-toggle="modal" data-target="#modal" style="font-size: 12px;color: lightseagreen"><i class="fa fa-edit"></i></a>
+                     <a href="{{ URL::to('admission/amw/batch-adm-test-subject/'.$b->id)  }}" class="btn btn-info btn-xs" title="Manage AdmTest Subject" >MATS</a>
+                     <a href="{{ URL::route('admission.amw.batch-waiver.index',['batch_id'=>$b->id ])  }}" class="btn btn-success btn-xs" title="Manage Waiver"  >MW</a>
+                     <a href="{{ URL::route('admission.amw.batch-applicant.index',['id'=>$b->id ])  }}" class="btn btn-info btn-xs" title="Manage Applicant"  >MA</a>
+                     <a href="{{ URL::route('admission.amw.batch_course',['id'=>$b->id,'degree_id'=>$b->degree_id])  }}" class="btn btn-success btn-xs" >BC</a>
                    </td>
                 </tr>
                @endforeach
@@ -63,7 +63,7 @@
     </div>
 </div>
     <div class="text-right">
-        {{ $batch_management->links() }}
+        {{ $batch->links() }}
         <a class="pull-right btn btn-xs btn-primary" href="{{ URL::route('admission.amw.degree.index')}}"> <i class="fa fa-arrow-circle-left"></i> Back To Degree</a>
     </div>
 
