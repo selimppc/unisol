@@ -21,7 +21,9 @@
                                     <th>Dept</th>
                                     <th>Year</th>
                                     <th>Term</th>
-                                    <th>Is Examiner</th>
+                                    <th>Setter</th>
+                                    <th>Evaluator</th>
+                                    <th>Role</th>
                                     <th>Action</th>
                                  </tr>
                       </thead>
@@ -31,28 +33,51 @@
                                 <td><input type="checkbox" name="id[]" class="myCheckbox" value="{{ $question->id }}"></td>
 
                                 <td>{{ $question->title }}</td>
-                                <td>{{ $question->deadline }}</td>
+                                <td>{{ date("d-m-Y", strtotime((isset( $question->deadline)) ?  $question->deadline : '') ) }}</td>
                                 <td>{{ $question->relCourseConduct->relDegree->relDepartment->title }}</td>
                                 <td>{{ $question->relExmExamList->relYear->title }}</td>
                                 <td>{{ $question->relExmExamList->relSemester->title }}</td>
-                                <td>
-                                    @if($examiner_type->user_id != Auth::user()->get()->id)
-                                        {{ "No" }}
-                                    @else
-                                        {{ "Yes" }}
-                                    @endif
+
+                                <td> {{isset($question->relSUser->relUserProfile->id)? $question->relSUser->relUserProfile->first_name." ". $question->relSUser->relUserProfile->middle_name." ".$question->relSUser->relUserProfile->last_name :''}}
+                                    <br> {{ isset($question->s_status) ? ucfirst($question->s_status) : '' }}
+                                    <a href="{{ URL::route('faculty.assign-exm-faculty-setter', [ 'e_q_id'=>$question->id ]) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#modal" data-placement="left" title="Assign Faculty" href="#"> Assign </a>
+                                </td>
+
+                                <td> {{isset($question->relEUser->relUserProfile->id)? $question->relEUser->relUserProfile->first_name." ". $question->relEUser->relUserProfile->middle_name." ".$question->relEUser->relUserProfile->last_name :''}}
+                                    <br> {{ isset($question->e_status) ? ucfirst($question->e_status) : '' }}
+                                    <a href="{{ URL::route('faculty.assign-exm-faculty-evaluator', [ 'e_q_id'=>$question->id ]) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#modal" data-placement="left" title="Assign Faculty" href="#"> Assign </a>
                                 </td>
                                 <td>
-                                     @if( $question->s_faculty_user_id == Auth::user()->get()->id )
+
+                                     @if( $question->s_faculty_user_id == $question->e_faculty_user_id )
+                                           {{ "Both Setter & Evaluator" }}
+                                     @elseif( $question->s_faculty_user_id == Auth::user()->get()->id )
+                                           {{ "Setter" }}
+                                     @elseif( $question->e_faculty_user_id == Auth::user()->get()->id )
+                                           {{ "Evaluator" }}
+                                     @endif
+
+                                </td>
+
+                                <td>
+                                     @if( $question->s_faculty_user_id == $question->e_faculty_user_id )
+                                         <a href="{{ URL::route('faculty.exm-question-paper.view-exm-question-paper',['exm_question_id'=>$question->id]) }}" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modal">VQP</a>
+                                         <a href="{{ URL::route('faculty.exm-question-paper.view-exm-questions-items',['exm_question_id'=>$question->id]) }}" class="btn btn-primary btn-xs" >VQs</a>
+                                         <a href="{{ URL::route('faculty.exm-question-paper.add-exm-question-paper-item',['exm_question_id'=>$question->id]) }}" class="btn btn-info btn-xs " data-toggle="modal" data-target="#modal">AQ</a>
+                                         <a href="{{ URL::route('faculty.exm-question-paper.save-comment',['exm_question_id'=>$question->id]) }}" class="btn bg-maroon btn-xs" data-toggle="modal" data-target="#modal" >Comments</a>
+                                         <a href="{{ URL::route('faculty.exm-question-paper.evaluate',['exm_question_id'=>$question->id]) }}" class="btn bg-orange btn-xs" data-toggle="modal" data-target="#modal" >Evaluate</a>
+
+                                     @elseif( $question->s_faculty_user_id == Auth::user()->get()->id )
                                            <a href="{{ URL::route('faculty.exm-question-paper.view-exm-question-paper',['exm_question_id'=>$question->id]) }}" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modal">VQP</a>
                                            <a href="{{ URL::route('faculty.exm-question-paper.view-exm-questions-items',['exm_question_id'=>$question->id]) }}" class="btn btn-primary btn-xs" >VQs</a>
+                                           <a href="{{ URL::route('faculty.exm-question-paper.add-exm-question-paper-item',['exm_question_id'=>$question->id]) }}" class="btn btn-info btn-xs " data-toggle="modal" data-target="#modal">AQ</a>
+                                           <a href="{{ URL::route('faculty.exm-question-paper.save-comment',['exm_question_id'=>$question->id]) }}" class="btn bg-maroon btn-xs" data-toggle="modal" data-target="#modal" >Comments</a>
 
                                      @elseif( $question->e_faculty_user_id == Auth::user()->get()->id )
                                            <a href="{{ URL::route('faculty.exm-question-paper.view-exm-question-paper',['exm_question_id'=>$question->id]) }}" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modal">VQP</a>
-                                           <a href="{{ URL::route('faculty.exm-question-paper.add-exm-question-paper-item',['exm_question_id'=>$question->id]) }}" class="btn btn-info btn-xs " data-toggle="modal" data-target="#modal">AQ</a>
                                            <a href="{{ URL::route('faculty.exm-question-paper.view-exm-questions-items',['exm_question_id'=>$question->id]) }}" class="btn btn-primary btn-xs" >VQs</a>
-                                           <a href="{{ URL::route('faculty.exm-question-paper.save-comment',['exm_question_id'=>$question->id]) }}" class="btn bg-purple btn-xs" data-toggle="modal" data-target="#modal" >Comments</a>
-                                     @elseif( $question->s_faculty_user_id == Auth::user()->get()->id && $question->e_faculty_user_id == Auth::user()->get()->id )
+                                           <a href="{{ URL::route('faculty.exm-question-paper.save-comment',['exm_question_id'=>$question->id]) }}" class="btn bg-maroon btn-xs" data-toggle="modal" data-target="#modal" >Comments</a>
+                                           <a href="{{ URL::route('faculty.exm-question-paper.evaluate',['exm_question_id'=>$question->id]) }}" class="btn btn-xs bg-orange" data-toggle="modal" data-target="#modal" >Evaluate</a>
 
                                      @endif
                                 </td>

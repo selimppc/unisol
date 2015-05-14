@@ -284,6 +284,7 @@ class InvProductController extends \BaseController {
 
 
 
+
     /*
      * if missing method in this controller with array of parameter(s)
      */

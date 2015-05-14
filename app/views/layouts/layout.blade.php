@@ -144,9 +144,9 @@
                             <b>Success! </b> {{Session::get("message")}}</div>
                       @endif
                       @if(Session::has('error'))
-                           <div class="alert alert-warning alert-dismissable">
+                           <div class="alert alert-error alert-dismissable">
                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                           <b>Warning! </b> {{Session::get("error")}}</div>
+                           <b>Error! </b> {{Session::get("error")}}</div>
                       @endif
                       @if(Session::has('info'))
                           <div class="alert alert-info alert-dismissable">
@@ -159,6 +159,12 @@
                            <b>Alert! </b> {{Session::get("danger")}}</div>
 
                      @endif
+                     @if(Session::has('warning'))
+                            <div class="alert alert-warning alert-dismissable">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <b>Warning! </b> {{Session::get("warning")}}</div>
+
+                      @endif
 
                     @yield('content')
 

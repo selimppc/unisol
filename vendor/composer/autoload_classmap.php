@@ -208,6 +208,7 @@ return array(
     'InvProduct' => $baseDir . '/app/modules/inventory/models/InvProduct.php',
     'InvProductCategory' => $baseDir . '/app/modules/inventory/models/InvProductCategory.php',
     'InvProductController' => $baseDir . '/app/modules/inventory/controllers/InvProductController.php',
+    'InvSupplier' => $baseDir . '/app/modules/inventory/models/InvSupplier.php',
     'MarkdistributionController' => $baseDir . '/app/modules/academic/controllers/MarkdistributionController.php',
     'PHPUnit_Extensions_GroupTestSuite' => $vendorDir . '/phpunit/phpunit/PHPUnit/Extensions/GroupTestSuite.php',
     'PHPUnit_Extensions_PhptTestCase' => $vendorDir . '/phpunit/phpunit/PHPUnit/Extensions/PhptTestCase.php',
