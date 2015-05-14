@@ -41,6 +41,11 @@
                       {{ Form::label('e_faculty_user_id', 'Question Evaluator') }}
                       {{ Form::Select('e_faculty_user_id', $examiner_faculty_lists , $question->e_faculty_user_id,['class'=>'form-control input-sm','required'])}}
                   </div>
+                  <div class='form-group'>
+                      {{ Form::label('status', 'Question Status') }}
+                      {{ Form::select('status', ['open'=> 'Open', 'selected'=>'Selected','close' => 'Close'], $question->staus,['class'=>'form-control input-sm','required']) }}
+                  </div>
+
 
           <p>&nbsp;</p>
 

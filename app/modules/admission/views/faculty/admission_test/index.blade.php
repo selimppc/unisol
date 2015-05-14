@@ -9,16 +9,16 @@
 
     <div class="row">
           <div class="col-sm-12">
-                  {{ Form::open(array('url' => 'admission/faculty/admission-test/search-adm-examiner-index')) }}
+                  {{ Form::open(array('url' => 'admission/faculty/admission-test')) }}
                     <div class="col-sm-8">
                          <div class="col-sm-3">
                                   {{ Form::label('year_id', 'Year') }}
-                                  {{ Form::select('year_id',$year_id, Input::old('year_id'), array('class' => 'form-control','required'=>'required') ) }}
+                                  {{ Form::select('year_id',$year_id, Input::old('year_id'), array('class' => 'form-control') ) }}
 
                          </div>
                          <div class="col-sm-3">
                                   {{ Form::label('semester_id', 'Semester') }}
-                                  {{ Form::select('semester_id',$semester_id, Input::old('semester_id'), array('class' => 'form-control','required'=>'required')) }}
+                                  {{ Form::select('semester_id',$semester_id, Input::old('semester_id'), array('class' => 'form-control')) }}
 
                          </div>
                          <div class="col-sm-2">
