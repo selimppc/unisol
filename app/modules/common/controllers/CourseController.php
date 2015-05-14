@@ -4,13 +4,13 @@ class CourseController extends \BaseController {
 
 	public function index()
 	{
-        $course = Course::latest('id')->paginate(10);
+        $course = Course::with('relSubject', 'relCourseType')->latest('id')->paginate(10);
         return View::make('common::course.index',compact('course'));
 	}
 
     public function show($id)
     {
-        $course = Course::find($id);
+        $course = Course::with('relSubject', 'relCourseType')->find($id);
         return View::make('common::course.show',compact('course'));
     }
 
