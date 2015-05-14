@@ -128,23 +128,60 @@ class ExmFacultyController extends \BaseController {
     }
 
 
+// till now all ok
+
+
 
     public function questionPaper($exm_list_id)
     {
         $examiner_type = ExmExaminer::where('exm_exam_list_id',$exm_list_id)
-            ->where('user_id','=',Auth::user()->get()->id)
+//            ->where('user_id','=',Auth::user()->get()->id)
             ->first();
 
         $question_paper = ExmQuestion::with('relExmExamList', 'relExmExamList.relYear',
             'relExmExamList.relSemester','relCourseConduct.relDegree','relExaminerFacultyUser')
             ->where('exm_exam_list_id', '=', $exm_list_id)
-            ->where('examiner_faculty_user_id','=',Auth::user()->get()->id)
+            ->where('s_faculty_user_id','=',Auth::user()->get()->id)
+            ->where('e_faculty_user_id','=',Auth::user()->get()->id)
             ->get();
 
         return View::make('examination::faculty.question_paper.index',
             compact('examiner_type','question_paper','exm_list_id'));
 
     }
+
+
+    public function viewExmQuestionPaper($exm_question_id)
+    {
+
+        $view_exm_qp = AdmQuestion::find($exm_question_id);
+        return View::make('examination::faculty.question_paper.view_exm_question_paper',
+            compact('view_exm_qp'));
+
+    }
+
+
+
+    public function addExmQuestionPaperItem()
+    {
+
+    }
+
+
+
+    public function viewExmQuestionsItems()
+    {
+
+    }
+
+
+
+    public function saveComment()
+    {
+
+    }
+
+
 
 
 
