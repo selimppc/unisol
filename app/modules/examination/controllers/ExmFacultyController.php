@@ -135,7 +135,7 @@ class ExmFacultyController extends \BaseController {
     public function questionPaper($exm_list_id)
     {
         $examiner_type = ExmExaminer::where('exm_exam_list_id',$exm_list_id)
-            ->where('user_id','=',Auth::user()->get()->id)
+//            ->where('user_id','=',Auth::user()->get()->id)
             ->first();
 
         $question_paper = ExmQuestion::with('relExmExamList', 'relExmExamList.relYear',

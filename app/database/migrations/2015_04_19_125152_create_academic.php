@@ -199,11 +199,20 @@ class CreateAcademic extends Migration {
             $table->increments('id');
             $table->unsignedInteger('exm_exam_list_id')->nullable();
             $table->unsignedInteger('course_conduct_id')->nullable();
-            $table->unsignedInteger('examiner_faculty_user_id')->nullable();
+            $table->unsignedInteger('s_faculty_user_id')->nullable();
+            $table->unsignedInteger('e_faculty_user_id')->nullable();
             $table->string('title', 128);
             $table->date('deadline');
             $table->string('total_marks', 128);
-            $table->string('status', 32);
+            $table->enum('s_status',array(
+                'requested', 'deny', 'accepted', 'cancel', 'assigned'
+            ));
+            $table->enum('e_status',array(
+                'requested', 'deny', 'accepted', 'cancel', 'assigned'
+            ));
+            $table->enum('status',array(
+                'open', 'selected', 'close'
+            ));
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
@@ -212,7 +221,8 @@ class CreateAcademic extends Migration {
         Schema::table('exm_question', function($table) {
             $table->foreign('exm_exam_list_id')->references('id')->on('exm_exam_list');
             $table->foreign('course_conduct_id')->references('id')->on('course_conduct');
-            $table->foreign('examiner_faculty_user_id')->references('id')->on('user');
+            $table->foreign('s_faculty_user_id')->references('id')->on('user');
+            $table->foreign('e_faculty_user_id')->references('id')->on('user');
         });
 
 
