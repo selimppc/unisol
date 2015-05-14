@@ -9,9 +9,9 @@ class CreateInventory extends Migration {
 	{
         Schema::create('inv_supplier', function(Blueprint $table) {
             $table->increments('id');
-            $table->string('code', 8);
+            $table->string('code', 8)->unique();
             $table->string('company_name',32);
-            $table->text('address');
+            $table->text('address')->nullable();
             $table->unsignedInteger('country_id')->nullable();
             $table->decimal('zip_code', 5,0);
             $table->string('contact_person',32);
@@ -32,9 +32,9 @@ class CreateInventory extends Migration {
 
         Schema::create('inv_product_category', function(Blueprint $table) {
             $table->increments('id');
-            $table->string('code', 8);
+            $table->string('code', 8)->unique();
             $table->string('title',32);
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
@@ -45,9 +45,9 @@ class CreateInventory extends Migration {
 
         Schema::create('inv_product', function(Blueprint $table) {
             $table->increments('id');
-            $table->string('code', 8);
+            $table->string('code', 8)->unique();
             $table->string('title',32);
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->string('image', 32);
             $table->enum('product_class', array(
                 'service', 'product',
@@ -75,7 +75,7 @@ class CreateInventory extends Migration {
 
         Schema::create('inv_transfer_head', function(Blueprint $table) {
             $table->increments('id');
-            $table->string('transfer_number', 16);
+            $table->string('transfer_number', 16)->unique();
             $table->string('transfer_to', 16);
             $table->dateTime('date');
             $table->dateTime('confirm_date');
@@ -95,6 +95,7 @@ class CreateInventory extends Migration {
             $table->increments('id');
             $table->unsignedInteger('inv_transfer_head_id')->nullable();
             $table->unsignedInteger('inv_product_id')->nullable();
+            $table->unique(['inv_transfer_head_id', 'inv_product_id']);
             $table->decimal('unit');
             $table->decimal('quantity');
             $table->float('rate');
@@ -111,7 +112,7 @@ class CreateInventory extends Migration {
 
         Schema::create('inv_requisition_head', function(Blueprint $table) {
             $table->increments('id');
-            $table->string('requisition_no',16);
+            $table->string('requisition_no',16)->unique();
             $table->unsignedInteger('inv_supplier_id')->nullable();
             $table->dateTime('date');
             $table->text('note');
@@ -138,6 +139,7 @@ class CreateInventory extends Migration {
             $table->increments('id');
             $table->unsignedInteger('inv_requisition_head_id')->nullable();
             $table->unsignedInteger('inv_product_id')->nullable();
+            $table->unique(['inv_requisition_head_id', 'inv_product_id']);
             $table->float('rate');
             $table->decimal('unit');
             $table->decimal('quantity');
@@ -156,7 +158,7 @@ class CreateInventory extends Migration {
 
         Schema::create('inv_purchase_order_head', function(Blueprint $table) {
             $table->increments('id');
-            $table->string('purchase_no', 16);
+            $table->string('purchase_no', 16)->unique();
             $table->unsignedInteger('inv_requisition_head_id')->nullable();
             $table->enum('pay_terms', array(
                 'cash', 'cheque'
@@ -184,6 +186,7 @@ class CreateInventory extends Migration {
             $table->increments('id');
             $table->unsignedInteger('inv_po_head_id')->nullable();
             $table->unsignedInteger('inv_product_id')->nullable();
+            $table->unique(['inv_po_head_id', 'inv_product_id']);
             $table->decimal('quantity');
             $table->decimal('grn_quantity');
             $table->decimal('tax_rate');
@@ -244,6 +247,7 @@ class CreateInventory extends Migration {
             $table->increments('id');
             $table->unsignedInteger('inv_grn_head_id')->nullable();
             $table->unsignedInteger('inv_product_id')->nullable();
+            $table->unique(['inv_grn_head_id', 'inv_product_id']);
             $table->string('batch_number');
             $table->dateTime('expire_date');
             $table->decimal('receive_quantity');

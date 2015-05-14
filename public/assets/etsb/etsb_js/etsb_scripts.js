@@ -77,6 +77,9 @@
         $(".textarea").wysihtml5();
 
 
+
+
+
     });
 }(jQuery.noConflict(true)));
 

@@ -11,16 +11,16 @@ class CreateAdmVDegree extends Migration {
         DB::statement( 'CREATE VIEW adm_v_degree AS
             (
                 SELECT
-                dg.id 				AS id,
-                dg.duration 			AS duration,
-                dg.total_credit			AS total_credit,
-                dg.policy_retake		AS policy_retake,
+                dg.id 				        AS id,
+                dg.duration 			    AS duration,
+                dg.total_credit			    AS total_credit,
+                dg.policy_retake		    AS policy_retake,
                 dg.policy_course_taking		AS policy_course_taking,
                 dg.credit_min_per_semester 	AS credit_min_per_semester,
                 dg.credit_max_per_semester 	AS credit_max_per_semester,
                 CONCAT(dl.code, dgp.code, " in ", dp.code) AS title,
-                dpt.title			AS dept_title
-
+                dpt.title			        AS dept_title,
+                dpt.id                      AS dept_id
 
                 FROM degree dg
                 JOIN degree_level dl ON dl.id = dg.degree_level_id

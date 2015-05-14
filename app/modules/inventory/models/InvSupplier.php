@@ -1,11 +1,11 @@
 <?php
-class InvProduct extends \Eloquent
+class InvSupplier extends \Eloquent
 {
     //TODO :: model attributes and rules and validation
-    protected $table = 'inv_product';
+    protected $table = 'inv_supplier';
     protected $fillable = [
-        'code', 'title', 'description', 'image','product_class', 'inv_product_category_id', 'cost_price',
-        'purchase_unit', 'purchase_unit_quantity', 'stock_unit', 'stock_unit_quantity', 'stock_type'
+        'code', 'company_name', 'address', 'country_id','zip_code', 'contact_person', 'phone',
+        'cell_phone', 'fax', 'email', 'web', 'status'
     ];
 
     private $errors;
@@ -33,8 +33,8 @@ class InvProduct extends \Eloquent
 
 
     //TODO : Model Relationship
-    public function relInvProductCategory(){
-        return $this->belongsTo('InvProductCategory', 'inv_product_category_id', 'id');
+    public function relCountry(){
+        return $this->belongsTo('Country', 'country_id', 'id');
     }
 
 
@@ -56,22 +56,6 @@ class InvProduct extends \Eloquent
 
     //TODO : Scope Area
 
-    public static function product_class(){
-        $result = [
-            ''=>'Select Product Class',
-            'service'=>'Service',
-            'product'=>'Product'
-        ];
-        return $result;
-    }
 
-    public static function stockType(){
-        $result = [
-            ''=>'Select Stock Type',
-            'stock'=>'stock',
-            'non-stock'=>'non-stock'
-        ];
-        return $result;
-    }
 
 }
