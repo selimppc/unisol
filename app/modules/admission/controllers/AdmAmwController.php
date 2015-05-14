@@ -469,15 +469,20 @@ class AdmAmwController extends \BaseController
      */
     public function degree_courses_index($id)
     {
-        $degree_id = $id;
-        $degree_title = Degree::with('relDegreeCourse')
-            ->where('id' , '=' ,$id)
-            ->first();
-        $course_list = Course::lists('title', 'id');
+        $degree = AdmVDegree::where('id', $id)->first();
+
         $deg_course_info = DegreeCourse::with('relCourse','relCourse.relSubject.relDepartment','relCourse.relCourseType')
             ->where('degree_id', '=' ,$id)
             ->paginate(10);
-        return View::make('admission::amw.degree_courses.index',compact('course_list','deg_course_info','deg_course','degree_id','degree_title'));
+
+        // Show at drop down which courses are not at added course list
+        $edc = array();
+        foreach($deg_course_info as $dci){
+            $edc[] =$dci->relCourse->id;
+        }
+        $course_list = Course::whereNotIn('id',$edc)->lists('title', 'id');
+
+        return View::make('admission::amw.degree_courses.index',compact('course_list','deg_course_info','degree'));
     }
 
     /**
@@ -502,21 +507,14 @@ class AdmAmwController extends \BaseController
 
                 $flash_name = $degree_course->relCourse->title;
                 $flash_msg_course = $flash_msg_course .", ". $flash_name;
-
-                $degreeCourseCheck = $this->checkDegreeCourse($degree_course->degree_id, $degree_course->course_id);
-
-                if($degreeCourseCheck){
-                    $exists [] = Course::findOrFail($degree_course->course_id)->course_code;
-                    Session::flash('info', "Already Exists :$flash_msg_course ");
+                if($degree_course->save()){
+                    Session::flash('message', "Degree Course is added.");
                 }else{
-                    $degree_course->save();
-                    //$exists [] = Course::findOrFail($degree_course->course_id)->course_code;
-                    Session::flash('message', "Degree Course Added");
 
+                    Session::flash('message', "Degree Course is not added");
                 }
             }
             DB::commit();
-
         }
         catch ( Exception $e ){
             //If there are any exceptions, rollback the transaction
@@ -524,19 +522,6 @@ class AdmAmwController extends \BaseController
             Session::flash('danger', " Degree Course is not added.Invalid Request !");
         }
         return Redirect::back();
-    }
-
-    /**
-     * @param $degree_id
-     * @param $course_id
-     * @return mixed
-     */
-    protected function checkDegreeCourse($degree_id, $course_id){
-        $result = DB::table('degree_course')->select(DB::raw('1'))
-            ->where('course_id', '=', $course_id)
-            ->where('degree_id', '=', $degree_id)
-            ->first();
-        return $result;
     }
 
     /**
@@ -802,13 +787,13 @@ class AdmAmwController extends \BaseController
      */
     public function batchIndex($degree_id)
     {
-        $batch_management = Batch::where('degree_id', '=', $degree_id)->latest('id')->paginate(10);
-        $dpg_list = array('' => 'Select Degree Program ') + Degree::DegreeProgramGroup();
-        $year_list = array('' => 'Year ') + Year::lists('title', 'id');
-        $department_list = array('' => 'Department ') + Department::lists('title', 'id');
-
+        $batch = Batch::with('relVDegree')->where('degree_id', '=', $degree_id)->latest('id')->paginate(10);
+        //$dpg_list = array('' => 'Select Degree Program ') + Degree::DegreeProgramGroup();
+        //$year_list = array('' => 'Year ') + Year::lists('title', 'id');
+        //$department_list = array('' => 'Department ') + Department::lists('title', 'id');
+        //print_r($batch);exit;
         return View::make('admission::amw.batch.index',
-            compact('degree_id','batch_management','dpg_list','year_list','department_list'));
+            compact('batch', 'degree_id'));
     }
 
     /**
@@ -828,30 +813,15 @@ class AdmAmwController extends \BaseController
     public function batchCreate($degree_id)
     {
         $batch_number = Batch::where('degree_id','=',$degree_id)->count();
-        $degree_title = Degree::with('relDegreeLevel','relDegreeProgram','relDegreeGroup')
-            ->where('id','=',$degree_id)->first();
-
+        $degree = AdmVDegree::find($degree_id);
         $dpg_list = array('' => 'Select Degree Program ') + Degree::DegreeProgramGroup();
-
         $semester_list = array('' => 'Select Semester ') + Semester::lists('title', 'id');
-
-        $duration = Degree::with('relDegreeLevel','relDegreeProgram','relDegreeGroup')
-            ->where('id','=',$degree_id)->first()->duration;
-
-        $time = date('Y-m-d h:i:s', time());;
-
+        $time = date('Y-m-d h:i:s', time());
         $year_list = array('' => 'Select Year ') + Year::lists('title', 'id');
         $current_year = Year::where('title', Date('Y'))->first()->id;
 
-//        //get year data according to degree duration
-//        $duration = Degree::findOrFail($deg_id)->duration;
-//        $curretn_year = DB::table('year')->where('id', '>=', $year_id)->take($duration+2)->lists('title', 'id');
-//        $year_list = array('' => 'Select Year ') + $year_by_batch;
-
-
         return View::make('admission::amw.batch._form',compact(
-            'degree_id','dpg_list','year_list','semester_list','batch_number','degree_title','duration','time',
-            'current_year'
+            'degree_id', 'dpg_list', 'year_list', 'semester_list', 'batch_number', 'degree', 'time', 'current_year'
         ));
     }
 
@@ -860,12 +830,7 @@ class AdmAmwController extends \BaseController
      */
     public function batchStore()
     {
-
-
         $data = Input::all();
-
-//        print_r($data);exit;
-
         $model = new Batch();
 
         if($model->validate($data))
@@ -877,16 +842,15 @@ class AdmAmwController extends \BaseController
                 Session::flash('message', "Batch Added");
             }
             catch ( Exception $e ){
-                    //If there are any exceptions, rollback the transaction
-                    DB::rollback();
-                    Session::flash('danger', " Batch not added.Invalid Request !");
-                }
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', " Batch not added.Invalid Request !");
+            }
             return Redirect::back();
         }else{
             $errors = $model->errors();
             Session::flash('errors', $errors);
-            return Redirect::back()
-                ->with('errors', 'invalid');
+            return Redirect::back()->with('errors', 'invalid');
         }
     }
 
@@ -896,12 +860,13 @@ class AdmAmwController extends \BaseController
      */
     public function batchEdit($id)
     {
-        $batch_edit = Batch::find($id);
+        $batch = Batch::find($id);
+        $degree = AdmVDegree::find($batch->degree_id);
         $dpg_list = array('' => 'Select Degree Program') + Degree::DegreeProgramGroup();
         $year_list = array('' => 'Select Year ') + Year::lists('title', 'id');
         $semester_list = array('' => 'Select Semester ') + Semester::lists('title', 'id');
 
-        return View::make('admission::amw.batch.edit',compact('batch_edit','dpg_list','year_list','semester_list'));
+        return View::make('admission::amw.batch.edit',compact('batch','dpg_list','year_list','semester_list', 'degree'));
     }
 
     /**
@@ -1710,9 +1675,18 @@ class AdmAmwController extends \BaseController
      {------------------- Version:2 ->Admission--> Degree ------------------------------------}
      */
     public function admDegreeIndex(){
-        $model = Degree::with('relDegreeLevel','relDegreeProgram')->orderby('id','DESC')->paginate(10);
+        $dept_id = Input::get('search_department');
+
+        // Showing from adm_v_degree
+        if(isset($dept_id) and $dept_id != '')
+            $model = AdmVDegree::where('dept_id', $dept_id)->orderby('id','DESC')->paginate(10);
+        else
+            $model = AdmVDegree::orderby('id','DESC')->paginate(10);
 
         $department = array('' => 'Select Department ') + Department::lists('title', 'id');
+
+        Input::flash();
+
         return View::make('admission::amw.degree.degree.index',
             compact('model','department'));
     }
@@ -1751,17 +1725,19 @@ class AdmAmwController extends \BaseController
             }
         }
         else {
-        $errors = $model->errors();
-        Session::flash('errors', $errors);
-        return Redirect::back()->with('errors', 'invalid');
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()->with('errors', 'invalid');
         }
+
         return Redirect::back();
     }
 
     public function admDegreeShow($id)
     {
-        $model = Degree::find($id);
-        return View::make('admission::amw.degree.degree.degree_show',compact('model'));
+        // No need to view from Adm_v_degree as this is single one.
+        $model = Degree::with('relDepartment', 'relDegreeProgram', 'relDegreeGroup', 'relDegreeLevel')->find($id);
+        return View::make('admission::amw.degree.degree.show',compact('model'));
     }
 
     public function admDegreeEdit($id)
@@ -1771,7 +1747,7 @@ class AdmAmwController extends \BaseController
         $degree_program = array('' => 'Select Department ') + DegreeProgram::lists('title', 'id');
         $degree_group = array('' => 'Select Department ') + DegreeGroup::lists('title', 'id');
         $degree_level = array('' => 'Select Degree Level ') + DegreeLevel::lists('title', 'id');
-        return View::make('admission::amw.degree.degree.degree_edit',
+        return View::make('admission::amw.degree.degree.edit',
             compact('model','department','degree_program','degree_group','degree_level'));
     }
 
@@ -1818,9 +1794,8 @@ class AdmAmwController extends \BaseController
         }
         catch(exception $ex){
             return Redirect::back()
-                ->with('message', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+                ->with('warning', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
         }
-
     }
 
     public function admDegreeBatchDelete()
@@ -1830,24 +1805,10 @@ class AdmAmwController extends \BaseController
             return Redirect::back()->with('message', 'Successfully deleted Information!');
         }
         catch(exception $ex) {
-            return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+            return Redirect::back()->with('warning', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
         }
     }
 
-
-
-    public function admDegreeSearch()
-    {
-        $searchQuery = $department_id = Input::get('search_department');
-        $department = array('' => 'Select Department ') + Department::lists('title', 'id');
-        if($searchQuery){
-            $model = Degree::with(['relDepartment'])->where('department_id', '=', $searchQuery)->paginate(5);
-            return View::make('admission::amw.degree.degree.index',
-                compact('model','department'));
-        }else{
-            return Redirect::to('admission/amw/degree');
-        }
-    }
     //{----------------- Waiver ----------------------------------------------------------------}
 
     //TODO : Add Billing Details.............

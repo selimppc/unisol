@@ -21,7 +21,7 @@
 
 {{-------------------Searching Starts--------------------------------------------------------------}}
 
-            <p>{{ Form::open(array('url'=>'admission/amw/degree/search','class'=>'form-horizontal')) }}
+            <p>{{ Form::open(array('url'=>'admission/amw/degree','class'=>'form-horizontal')) }}
                 <div  class="col-lg-3">
                     <div class="input-group input-group-sm">
                         {{ Form::select('search_department', $department , Input::old('search_department'),['class'=>'form-control input-sm '])}}
@@ -55,6 +55,7 @@
                                 <th>Department </th>
                                 <th>Total Credit</th>
                                 <th>Duration</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -64,10 +65,11 @@
                                     <tr>
                                         <td><input type="checkbox" name="id[]"  class="myCheckbox" value="{{ $value->id }}">
                                         </td>
-                                        <td>{{ $value->relDegreeLevel->code.''.$value->relDegreeGroup->code.' In '.$value->relDegreeProgram->code }}</td>
-                                        <td>{{ $value->relDepartment->title }}</td>
+                                        <td>{{ $value->title }}</td>
+                                        <td>{{ $value->dept_title }}</td>
                                         <td>{{ $value->total_credit}}</td>
                                         <td>{{ $value->duration}}</td>
+                                        <td>{{ ucfirst($value->status)}}</td>
                                         <td>
                                             <a href="{{ URL::route('admission.amw.degree.show', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#degreeModal" style="font-size: 12px;color: darkmagenta" title="View"><span class="fa fa-eye"></span></a>
                                             <a class="btn btn-xs btn-default" href="{{ URL::route('admission.amw.degree.edit', ['id'=>$value->id]) }}" data-toggle="modal" data-target="#degreeModal" style="font-size: 12px;color: lightseagreen"><i class="fa fa-edit" title="Update"></i></a>

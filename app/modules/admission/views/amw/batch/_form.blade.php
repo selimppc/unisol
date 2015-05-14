@@ -1,7 +1,7 @@
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
     <h4 class="modal-title" id="myModalLabel"> Add Batch: {{ $batch_number + 1 }} Of
-    {{ $degree_title->relDegreeLevel->code.''.$degree_title->relDegreeGroup->code.' On '.$degree_title->relDegreeProgram->code }}</h4>
+    {{ $degree->title}}</h4>
 
 </div>
 
@@ -78,7 +78,7 @@
             </div>
 
             {{Form::hidden('status', 1)}}
-            {{Form::hidden('duration', $duration,['id'=>'duration-year'])}}
+            {{Form::hidden('duration', $degree->duration,['id'=>'duration-year'])}}
              {{Form::hidden('adm_test_date', 1,['id'=>'adm_test_date'])}}
 
             <script>
