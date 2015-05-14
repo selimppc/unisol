@@ -12,12 +12,12 @@
            <div class="pull-left col-sm-4"> <h3> {{$pageTitle}} </h3>  </div>
            <div class="pull-right col-sm-4" style="padding-top: 1%;">
                 <button type="button" class="pull-right btn btn-sm btn-info" data-toggle="modal" data-target="#modal">
-                  Add Product Category
+                  + New Product
                 </button>
            </div>
         </div>
 
-        {{Form::open([ 'route'=>'product/category/batch-delete' ])}}
+        {{Form::open([ 'route'=>'product-batch-delete' ])}}
        <div class="box-body">
         <table id="example" class="table table-striped  table-bordered" >
             <thead>
@@ -38,9 +38,9 @@
                     <td>{{$values->title}}</td>
                     <td>{{$values->description}}</td>
                     <td>
-                        <a href="{{ URL::route('product/category/show', ['pc_id'=>$values->id ])  }}" class="btn btn-default btn-xs" title="Manage Applicant" data-toggle="modal" data-target="#modal-pc"><span class="fa fa-eye"></span></a>
-                        <a href="{{ URL::route('product/category/edit',['pc_id'=>$values->id])  }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal-pc"> <i class="fa fa-edit"></i></a>
-                        <a data-href="{{ URL::route('product/category/destroy', ['pc_id'=>$values->id ]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa fa-trash-o" ></i></a>
+                        <a href="{{ URL::route('product/show', ['p_id'=>$values->id ])  }}" class="btn btn-default btn-xs" title="Manage Applicant" data-toggle="modal" data-target="#modal-pc"><span class="fa fa-eye"></span></a>
+                        <a href="{{ URL::route('product/edit',['p_id'=>$values->id])  }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal-pc"> <i class="fa fa-edit"></i></a>
+                        <a data-href="{{ URL::route('product/destroy', ['p_id'=>$values->id ]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa fa-trash-o" ></i></a>
 
                     </td>
 
@@ -55,8 +55,8 @@
     </div>
 
 </div>
-{{Form::open(['route'=>'product/category/store', 'files'=>true])}}
-        @include('inventory::product_category._modal._modal')
+{{Form::open(['route'=>'product/store', 'files'=>true])}}
+        @include('inventory::product._modal._modal')
 {{ Form::close() }}
 
 

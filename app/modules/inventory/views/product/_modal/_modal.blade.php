@@ -7,7 +7,7 @@
         <h4 class="modal-title" id="myModalLabel">Product Category</h4>
       </div>
       <div class="modal-body">
-        @include('inventory::product_category._form')
+        @include('inventory::product._form')
       </div>
     </div>
   </div>

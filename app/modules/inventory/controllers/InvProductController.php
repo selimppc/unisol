@@ -147,7 +147,8 @@ class InvProductController extends \BaseController {
     {
         $pageTitle = 'Product Items';
         $data = InvProduct::all();
-        return View::make('inventory::product.index', compact('pageTitle', 'data'));
+        $pc_lists = [''=>'Select Product Category'] + InvProductCategory::ProductCategoryLists();
+        return View::make('inventory::product.index', compact('pageTitle', 'data', 'pc_lists'));
     }
 
     /*
