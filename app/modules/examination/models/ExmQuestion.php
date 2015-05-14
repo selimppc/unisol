@@ -13,7 +13,8 @@ class ExmQuestion extends \Eloquent
     private $rules = [
         'exm_exam_list_id' => 'required|integer',
         'course_conduct_id' => 'required|integer',
-        'examiner_faculty_user_id' => 'required|integer',
+        's_faculty_user_id' => 'integer',
+        'e_faculty_user_id' => 'integer',
         'title' => 'required',
         'deadline' => 'required',
         'total_marks' => 'required',
@@ -48,8 +49,11 @@ class ExmQuestion extends \Eloquent
     public function relCourseConduct(){
         return $this->belongsTo('CourseConduct', 'course_conduct_id', 'id');
     }
-    public function relExaminerFacultyUser(){
-        return $this->belongsTo('User', 'examiner_faculty_user_id', 'id');
+    public function relSUser(){
+        return $this->belongsTo('User', 's_faculty_user_id', 'id');
+    }
+    public function relEUser(){
+        return $this->belongsTo('User', 'e_faculty_user_id', 'id');
     }
     public function relExmExamList(){
         return $this->belongsTo('ExmExamList', 'exm_exam_list_id', 'id');
