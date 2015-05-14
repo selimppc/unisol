@@ -54,6 +54,10 @@ class InvProductCategory extends \Eloquent
 
 
     //TODO : Scope Area
+    public function scopeProductCategoryLists($query){
+        $query = InvProductCategory::lists('title', 'id');
+        return $query;
 
+    }
 
 }

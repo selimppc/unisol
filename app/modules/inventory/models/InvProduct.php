@@ -56,5 +56,13 @@ class InvProduct extends \Eloquent
 
     //TODO : Scope Area
 
+    public static function product_class(){
+        $result = [
+            ''=>'Select Product Class',
+            'service'=>'Service',
+            'product'=>'Product'
+        ];
+        return $result;
+    }
 
 }

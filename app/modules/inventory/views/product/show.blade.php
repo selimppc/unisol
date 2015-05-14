@@ -1,13 +1,13 @@
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-     <h3> View Product Category </h3>
+     <h3> View Product </h3>
 </div>
 
 <div style="padding: 2%; width: 99%;">
 <div class="modal-body">
 
     <div class="row">
-    <h3><strong> Product Category Name :</strong>{{ $data->title }}</h3>
+    <h3><strong> Product Name :</strong>{{ $data->title }}</h3>
     <table class="table table-striped  table-bordered">
         <tr>
             <td><strong> Code:</strong></td>

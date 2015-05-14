@@ -34,10 +34,17 @@
               {{ Form::select('year_id',$year_id, Input::old('year_id'), ['id'=>'course_name','class'=>'form-control'] ) }}
           </div>
 
-          <div class="form-group">
-              {{ Form::label('course_conduct_id', 'Course Name') }}
-              {{ Form::select('course_conduct_id', ['' => 'Select Course',  '1'=>'OK'], Input::old('course_conduct_id'), ['id'=>'dependable-list', 'class'=>'form-control','placeholder'=>'']) }}
-          </div>
+           @if($course_list)
+              <div class="form-group">
+                  {{ Form::label('course_conduct_id', 'Course Name') }}
+                  {{ Form::select('course_conduct_id',$course_list, Input::old('course_conduct_id'),['id'=>'dependable-list', 'class'=>'form-control','placeholder'=>'']) }}
+              </div>
+          @else
+              <div class="form-group">
+                 {{ Form::label('course_conduct_id', 'Course Name') }}
+                 {{ Form::select('course_conduct_id', $course_list, Input::old('course_conduct_id'), ['id'=>'dependable-list', 'class'=>'form-control','placeholder'=>'']) }}
+              </div>
+          @endif
 
           <div class='form-group'>
               {{ Form::submit('Save', array('class'=>'pull-right btn btn-primary')) }}
