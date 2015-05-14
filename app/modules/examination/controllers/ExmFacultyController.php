@@ -213,11 +213,10 @@ class ExmFacultyController extends \BaseController {
 
     }
 
+    public function evaluateExm()
+    {
 
-
-
-
-
+    }
 
 
 

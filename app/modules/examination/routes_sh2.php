@@ -85,6 +85,14 @@ Route::any('faculty/exm-question-paper/save-comment/{exm_question_id}',[
 ]);
 
 
+Route::any('faculty/exm-question-paper/evaluate/{exm_question_id}',[
+    'as' =>'faculty.exm-question-paper.evaluate',
+    'uses' => 'ExmFacultyController@evaluateExm'
+]);
+
+
+
+
 
 
 
