@@ -65,4 +65,13 @@ class InvProduct extends \Eloquent
         return $result;
     }
 
+    public static function stockType(){
+        $result = [
+            ''=>'Select Stock Type',
+            'stock'=>'stock',
+            'non-stock'=>'non-stock'
+        ];
+        return $result;
+    }
+
 }

@@ -6,9 +6,9 @@
 <div style="padding: 2%; width: 99%;">
 <div class="modal-body">
 
-    {{Form::model($model, ['route'=> ['product/category/edit', $model->id], 'method' => 'patch', 'role' => 'form', 'files' => true,])}}
+    {{Form::model($model, ['route'=> ['product/edit', $model->id], 'method' => 'patch', 'role' => 'form', 'files' => true,])}}
             {{ Form::hidden('id', $model->id) }}
-            @include('inventory::product_category._form')
+            @include('inventory::product._form')
     {{ Form::close() }}
 
 </div>

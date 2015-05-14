@@ -166,7 +166,7 @@ class InvProductController extends \BaseController {
                     $model->create($input_data);
                     DB::commit();
                     Session::flash('message', 'Success !');
-                } catch (Exception $e) {
+                }catch (Exception $e) {
                     //If there are any exceptions, rollback the transaction`
                     DB::rollback();
                     Session::flash('danger', 'Failed !');
@@ -179,21 +179,21 @@ class InvProductController extends \BaseController {
 
     /*
      * Show specific model data only
-     * $pc_id => product category ID
+     * $p_id => product ID
      */
-    public function show_product($pc_id){
-        $data = InvProduct::findOrFail($pc_id);
+    public function show_product($p_id){
+        $data = InvProduct::findOrFail($p_id);
         return View::make('inventory::product.show', compact('pageTitle', 'data'));
     }
 
     /*
      * edit and update specific model data only
-     * $pc_id => product category ID
+     * $p_id => product ID
      */
-    public function edit_product($pc_id){
+    public function edit_product($p_id){
         if($this->isPostRequest()){
             $input_data = Input::all();
-            $model = InvProduct::findOrFail($pc_id);
+            $model = InvProduct::findOrFail($p_id);
             if($model->validate($input_data)){
                 DB::beginTransaction();
                 try{
@@ -208,7 +208,7 @@ class InvProductController extends \BaseController {
             }
             return Redirect::back();
         }else{
-            $model = InvProduct::findOrFail($pc_id);
+            $model = InvProduct::findOrFail($p_id);
             return View::make('inventory::product.edit', compact('model'));
         }
 
@@ -216,12 +216,12 @@ class InvProductController extends \BaseController {
 
     /*
      * Delete specific model data only
-     * $pc_id => product category ID
+     * $p_id => product ID
      */
-    public function destroy_product($pc_id){
+    public function destroy_product($p_id){
         DB::beginTransaction();
         try{
-            InvProduct::destroy($pc_id);
+            InvProduct::destroy($p_id);
             DB::commit();
             Session::flash('message', 'Success !');
         }catch ( Exception $e ){

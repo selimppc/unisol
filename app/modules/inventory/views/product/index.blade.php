@@ -24,10 +24,18 @@
                   {{ Form::submit('Delete Items', ['class'=>'btn btn-danger btn-xs', 'id'=>'hide-button', 'style'=>'display:none', 'onclick'=> "return confirm('Are you sure you want to delete?')"])}}
                 <tr>
                     <th><input name="id" type="checkbox" id="checkbox" class="checkbox" value=""></th>
-                    <th>Code</th>
-                    <th>Title</th>
-                    <th>Description</th>
-                    <th>Action</th>
+                    <th> Code</th>
+                    <th> Title</th>
+                    <th> Image </th>
+                    <th> Product Class</th>
+                    <th> Product Category  </th>
+                    <th> Cost Price </th>
+                    <th> Pur. Unit </th>
+                    <th> Pur. Unit QTY </th>
+                    <th> Stock Unit</th>
+                    <th> Stock Unit QTY</th>
+                    <th> Stock Type</th>
+                    <th> Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -36,7 +44,15 @@
                     <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $values->id }}"></td>
                     <td>{{$values->code}}</td>
                     <td>{{$values->title}}</td>
-                    <td>{{$values->description}}</td>
+                    <td>{{$values->image}}</td>
+                    <td>{{$values->product_class}}</td>
+                    <td>{{$values->relInvProductCategory->title}}</td>
+                    <td>{{$values->cost_price}}</td>
+                    <td>{{$values->purchase_unit}}</td>
+                    <td>{{$values->purchase_unit_quantity}}</td>
+                    <td>{{$values->stock_unit}}</td>
+                    <td>{{$values->stock_unit_quantity}}</td>
+                    <td>{{$values->stock_type}}</td>
                     <td>
                         <a href="{{ URL::route('product/show', ['p_id'=>$values->id ])  }}" class="btn btn-default btn-xs" title="Manage Applicant" data-toggle="modal" data-target="#modal-pc"><span class="fa fa-eye"></span></a>
                         <a href="{{ URL::route('product/edit',['p_id'=>$values->id])  }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal-pc"> <i class="fa fa-edit"></i></a>

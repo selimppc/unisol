@@ -1,6 +1,6 @@
 
 <div class='form-group'>
-   {{ Form::label('code', 'Category Code') }}
+   {{ Form::label('code', 'Product Code') }}
    {{ Form::text('code', Input::old('code'),['class'=>'form-control', 'style'=>'text-transform: uppercase;', 'required']) }}
 </div>
 
@@ -11,7 +11,7 @@
 
 <div class='form-group'>
    {{ Form::label('description', 'Description') }}
-   {{ Form::textarea('description', Input::old('description'),[ 'size'=>'35x5', 'class'=>'form-control']) }}
+   {{ Form::textarea('description', Input::old('description'),['onkeyup'=>"javascript:this.value=this.value.replace(/[<,>]/g,'');", 'size' => '30x5', 'class'=>'form-control']) }}
 </div>
 
 <div class='form-group'>
@@ -27,12 +27,12 @@
 
 <div class='form-group'>
    {{ Form::label('inv_product_category_id', 'Product Category') }}
-   {{ Form::select('inv_product_category_id', $pc_lists, Input::old('inv_product_category_id'),['class'=>'form-control',  'required']) }}
+   {{ Form::select('inv_product_category_id', InvProductCategory::ProductCategoryLists(), Input::old('inv_product_category_id'),['class'=>'form-control',  'required']) }}
 </div>
 
 <div class='form-group'>
    {{ Form::label('cost_price', 'Cost Price') }}
-   {{ Form::text('cost_price', Input::old('cost_price'),['class'=>'form-control', 'required']) }}
+   {{ Form::text('cost_price', Input::old('cost_price'),['id'=>'cost-price', 'class'=>'form-control', 'required']) }}
 </div>
 
 <div class='form-group'>
@@ -59,7 +59,7 @@
 
 <div class='form-group'>
    {{ Form::label('stock_type', 'Stock Type') }}
-   {{ Form::text('stock_type', Input::old('stock_type'),['class'=>'form-control',  'required']) }}
+   {{ Form::select('stock_type', InvProduct::stockType(), Input::old('stock_type'),['class'=>'form-control',  'required']) }}
 </div>
 
 
@@ -67,3 +67,4 @@
 <a href="" class="pull-right btn btn-default" style="margin-right: 5px">Close</a>
 
 <p>&nbsp;</p>
+@include('inventory::product._script')

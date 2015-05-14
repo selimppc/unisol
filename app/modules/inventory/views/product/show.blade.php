@@ -22,6 +22,48 @@
             <td><strong> Description:</strong></td>
             <td>{{ $data->description }}</td>
         </tr>
+
+        <tr>
+            <td><strong> Image:</strong></td>
+            <td>{{ $data->image }}</td>
+        </tr>
+        <tr>
+            <td><strong> Product Class:</strong></td>
+            <td>{{ $data->product_class }}</td>
+        </tr>
+
+        <tr>
+            <td><strong> Product Category:</strong></td>
+            <td>{{ $data->relInvProductCategory->title }}</td>
+        </tr>
+        <tr>
+            <td><strong> Cost Price:</strong></td>
+            <td>{{ $data->cost_price }}</td>
+        </tr>
+
+        <tr>
+            <td><strong> Purchase Unit:</strong></td>
+            <td>{{ $data->purchase_unit }}</td>
+        </tr>
+        <tr>
+            <td><strong> Purchase Unit QTY:</strong></td>
+            <td>{{ $data->purchase_unit_quantity }}</td>
+        </tr>
+
+        <tr>
+            <td><strong> Stock Unit :</strong></td>
+            <td>{{ $data->stock_unit }}</td>
+        </tr>
+        <tr>
+            <td><strong> Stock Unit QTY:</strong></td>
+            <td>{{ $data->stock_unit_quantity }}</td>
+        </tr>
+
+        <tr>
+            <td><strong> Stock Type:</strong></td>
+            <td>{{ $data->stock_type }}</td>
+        </tr>
+
     </table>
 
     </div>
