@@ -37,6 +37,13 @@ Route::any('faculty/examination-list/save-examiner-comment',[
 ]);
 
 
+Route::any('faculty/exm-question-paper/{exm_list_id}',[
+    'as' =>'faculty.exm-question-paper',
+    'uses' => 'ExmFacultyController@questionPaper'
+]);
+
+
+
 
 
 Route::any('faculty/exm-question-paper/{exm_list_id}',[
@@ -44,5 +51,28 @@ Route::any('faculty/exm-question-paper/{exm_list_id}',[
     'uses' => 'ExmFacultyController@questionPaper'
 ]);
 
+
+
+Route::any('faculty/exm-question-paper/view-exm-question-paper/{exm_question_id}',[
+    'as' =>'faculty.exm-question-paper.view-exm-question-paper',
+    'uses' => 'ExmFacultyController@viewExmQuestionPaper'
+]);
+
+
+Route::any('faculty/exm-question-paper/add-exm-question-paper-item/{exm_question_id}',[
+    'as' =>'faculty.exm-question-paper.add-exm-question-paper-item',
+    'uses' => 'ExmFacultyController@addExmQuestionPaperItem'
+]);
+
+
+Route::any('faculty/exm-question-paper/view-exm-questions-items/{exm_question_id}',[
+    'as' =>'faculty.exm-question-paper.view-exm-questions-items',
+    'uses' => 'ExmFacultyController@viewExmQuestionsItems'
+]);
+
+Route::any('faculty/exm-question-paper/save-comment/{exm_question_id}',[
+    'as' =>'faculty.exm-question-paper.save-comment',
+    'uses' => 'ExmFacultyController@saveComment'
+]);
 
 
