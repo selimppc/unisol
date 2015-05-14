@@ -17,5 +17,14 @@ class ExmQuestionComments extends \Eloquent
         });
     }
 
+    // TODO : Relation
+    public function relToUser(){
+        return $this->hasOne('User', 'id', 'commented_to');
+    }
+
+    public function relByUser(){
+        return $this->hasOne('User', 'id', 'commented_by');
+    }
+
 
 }

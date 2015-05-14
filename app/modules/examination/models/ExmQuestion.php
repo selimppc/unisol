@@ -75,7 +75,18 @@ class ExmQuestion extends \Eloquent
     }
 
 
-    //TODO : Scope Area
+    //TODO : Status filtering
+    public function scopeExaminationExaminerList($query , $exm_list_id){
+        $query = ExmExaminer::join('user_profile', function($join)
+        {
+            $join->on('exm_examiner.user_id', '=', 'user_profile.user_id');
+        })
+            ->where('exm_examiner.exm_exam_list_id', '=', $exm_list_id)
+            //->where('adm_examiner.status', '=', 'requested')
+            ->select(DB::raw('CONCAT(user_profile.first_name, " ", user_profile.middle_name, " ", user_profile.last_name) AS full_name, exm_examiner.user_id as id'))
+            ->lists('full_name', 'id');
+        return $query;
+    }
 
 
 
