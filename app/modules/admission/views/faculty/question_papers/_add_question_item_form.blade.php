@@ -6,7 +6,7 @@
 <div class="modal-body">
      <div style="padding: 20px;">
 
-        {{Form::open(array('url'=>'faculty/exm-quest-paper-item/store-exm-quest-paper-item', 'class'=>'form-horizontal','files'=>true))}}
+        {{Form::open(array('url'=>'admission/faculty/question-papers/store-question-paper-item', 'class'=>'form-horizontal','files'=>true))}}
            {{Form::hidden('adm_question_id', $question_item->id, ['class'=>'form-control'])}}
              <fieldset style="width: 90%; padding: 20px">
 

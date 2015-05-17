@@ -133,7 +133,6 @@ class ExmFacultyController extends \BaseController {
             compact('examiner_type','question_paper','exm_list_id'));
 
     }
-// till now all ok
 
 
     public function viewExmQuestionPaper($exm_question_id)
@@ -151,8 +150,6 @@ class ExmFacultyController extends \BaseController {
         return View::make('examination::faculty.question_paper.view_exm_question_paper',
             compact('view_exm_qp'));
     }
-
-
 
 
 //    public function AssignExmFacultySetter($e_q_id)
@@ -182,13 +179,6 @@ class ExmFacultyController extends \BaseController {
 //        return View::make('examination::faculty.question_paper.assign_exm_faculty_evaluator',
 //            compact('exm_question_data', 'examiner_faculty_lists', 'comments','e_q_id', 'exm_exam_list'));
 //    }
-
-
-
-
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-// starting just now
 
 
     public function addExaminationModuleQuestionPaperItem($exm_question_id)
@@ -255,7 +245,7 @@ class ExmFacultyController extends \BaseController {
                         $i = 0;
                         foreach ($opt_title as $key => $value) {
                             //Re-declare model each time you want to save data as loop.
-                            $exm_question_opt = new ExmQuestionOptAns();
+                            $exm_question_opt = new ExmQuestionOptionAnswer();
                             $exm_question_opt->exm_question_items_id = $exm_question_items_id;
                             $exm_question_opt->title = $value;
                             $exm_question_opt->answer = 0;
@@ -299,10 +289,6 @@ class ExmFacultyController extends \BaseController {
 
     }
 
-
-
-
-
     public function viewExmQuestionsItems($exm_question_id)
     {
         $view_exm_qp_items = ExmQuestionItems::where('exm_question_id', '=', $exm_question_id)->latest('id')->get();
@@ -311,6 +297,10 @@ class ExmFacultyController extends \BaseController {
 
     }
 
+    // till now all ok
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+// starting just now
 
 
     public function saveComment()

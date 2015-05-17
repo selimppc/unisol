@@ -70,7 +70,7 @@ Route::any('faculty/examination-quest-paper-item/add-exm-quest-paper-item/{exm_q
 
 // still working on it|
 Route::any('faculty/exm-quest-paper-item/store-exm-quest-paper-item',[
-    'as' =>'faculty.examination-quest-paper-item.add-exm-quest-paper-item',
+    'as' =>'faculty.examination-quest-paper-item.store-exm-quest-paper-item',
     'uses' => 'ExmFacultyController@storeExmQPItem'
 ]);
 
