@@ -30,8 +30,9 @@
                     <th> Note  </th>
                     <th> Req: Type </th>
                     <th> Status </th>
-
                     <th> Action</th>
+                    <th> Create PO</th>
+
                 </tr>
             </thead>
             <tbody>
@@ -46,10 +47,12 @@
                     <td>{{Str::title($values->status)}}</td>
 
                     <td>
-                        <a href="{{ URL::route('requisition-show', ['s_id'=>$values->id ])  }}" class="btn btn-default btn-xs" title="Manage Applicant" data-toggle="modal" data-target="#modal-pc"><span class="fa fa-eye"></span></a>
-                        <a href="{{ URL::route('requisition-edit',['s_id'=>$values->id])  }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal-pc"> <i class="fa fa-edit"></i></a>
-                        <a data-href="{{ URL::route('requisition-destroy', ['s_id'=>$values->id ]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa fa-trash-o" ></i></a>
-
+                        <a href="{{ URL::route('requisition-show', ['req_id'=>$values->id ])  }}" class="btn btn-default btn-xs" title="Manage Applicant" data-toggle="modal" data-target="#modal-pc"><span class="fa fa-eye"></span></a>
+                        <a href="{{ URL::route('requisition-edit',['req_id'=>$values->id])  }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal-pc"> <i class="fa fa-edit"></i></a>
+                        <a data-href="{{ URL::route('requisition-destroy', ['req_id'=>$values->id ]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa fa-circle-o-notch" style="color: red" data-toggle="tooltip" data-placement="bottom" title="Cancel"></i></a>
+                    </td>
+                    <td>
+                        <a data-href="{{ URL::route('create/purchase-order', ['req_id'=>$values->id ]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa fa-adjust" style="color: red" data-toggle="tooltip" data-placement="bottom" title="Cancel"></i></a>
                     </td>
 
                  </tr>
@@ -61,6 +64,8 @@
         {{form::close() }}
 
     </div>
+
+    {{$data->links();}}
 
 </div>
 {{Form::open(['route'=>'requisition-store', 'files'=>true])}}
