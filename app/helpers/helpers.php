@@ -227,5 +227,20 @@ class Helpers {
 
 
 
+    /**
+     * @param $istr as prefix
+     * @param $seq as sequence
+     * @param $seq as length of the generated string
+     * @return $gs as generated string
+     */
+    function req_no_generator($istr, $seq, $length = 8){
+        $gs = $istr.str_pad($seq, $length, '0', STR_PAD_LEFT);
+
+        return $gs;
+    }
+
+
+
+
 
 } 

@@ -1,11 +1,11 @@
 <?php
-class InvSupplier extends \Eloquent
+class InvRequisitionHead extends \Eloquent
 {
     //TODO :: model attributes and rules and validation
-    protected $table = 'inv_supplier';
+    protected $table = 'inv_requisition_head';
     protected $fillable = [
-        'code', 'company_name', 'address', 'country_id','zip_code', 'contact_person', 'phone',
-        'cell_phone', 'fax', 'email', 'web', 'status'
+        'requisition_no', 'inv_supplier_id', 'date',
+        'note', 'requisition_type', 'status'
     ];
 
     private $errors;
@@ -33,8 +33,8 @@ class InvSupplier extends \Eloquent
 
 
     //TODO : Model Relationship
-    public function relCountry(){
-        return $this->belongsTo('Country', 'country_id', 'id');
+    public function relInvSupplier(){
+        return $this->belongsTo('InvSupplier', 'inv_supplier_id', 'id');
     }
 
 
@@ -55,9 +55,20 @@ class InvSupplier extends \Eloquent
 
 
     //TODO : Scope Area
-
-    public function scopeGetSupplier(){
-        $query = $this::lists('company_name', 'id');
+    public static function getRequisitionType(){
+        $query = [
+            'purchase'=>'Purchase',
+            'distribution'=>'Distribution',
+        ];
+        return $query;
+    }
+    public static function getStatus(){
+        $query = [
+            'open'=>'Open',
+            'approved'=>'Approved',
+            'close'=>'Close',
+            'cancel'=>'Cancel'
+        ];
         return $query;
     }
 

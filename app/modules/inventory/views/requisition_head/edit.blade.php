@@ -4,11 +4,11 @@
 </div>
 
 <div style="padding: 2%; width: 99%;">
-<div class="modal-body">
+<div class="modal-body" >
 
     {{Form::model($model, ['route'=> ['supplier/edit', $model->id], 'method' => 'patch', 'role' => 'form', 'files' => true,])}}
             {{ Form::hidden('id', $model->id) }}
-            @include('inventory::supplier._form')
+            @include('inventory::requisition_head._form')
     {{ Form::close() }}
 
 </div>

@@ -1,11 +1,11 @@
 <?php
-class InvSupplier extends \Eloquent
+class InvRequisitionDetail extends \Eloquent
 {
     //TODO :: model attributes and rules and validation
-    protected $table = 'inv_supplier';
+    protected $table = 'inv_requisition_detail';
     protected $fillable = [
-        'code', 'company_name', 'address', 'country_id','zip_code', 'contact_person', 'phone',
-        'cell_phone', 'fax', 'email', 'web', 'status'
+        'inv_requisition_head_id', 'inv_product_id', 'rate',
+        'unit', 'quantity'
     ];
 
     private $errors;
@@ -33,8 +33,11 @@ class InvSupplier extends \Eloquent
 
 
     //TODO : Model Relationship
-    public function relCountry(){
-        return $this->belongsTo('Country', 'country_id', 'id');
+    public function relInvProduct(){
+        return $this->belongsTo('InvProduct', 'inv_product_id', 'id');
+    }
+    public function relInvRequisitionHead(){
+        return $this->belongsTo('InvRequisitionHead', 'inv_requisition_head_id', 'id');
     }
 
 
@@ -56,10 +59,6 @@ class InvSupplier extends \Eloquent
 
     //TODO : Scope Area
 
-    public function scopeGetSupplier(){
-        $query = $this::lists('company_name', 'id');
-        return $query;
-    }
 
 
 }
