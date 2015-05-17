@@ -41,7 +41,7 @@
                     <p style="padding: 1%; background: #efefef;">
                       Comments To Examiner  <b>{{ User::FullName($comment->commented_to) }}</b>
                       From <b>{{ User::FullName($comment->commented_by) }}</b>&nbsp; As &nbsp;
-                      <b><small>{{  strtoupper(Role::RoleName($comment->commented_by)) }} </small></b><br>
+                      <b><small>{{  strtoupper(Role::RoleName($comment->commented_by)) }} : </small></b><br>
                      {{ $comment->comment }}
                    </p>
                 @endforeach

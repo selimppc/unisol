@@ -84,3 +84,19 @@ Route::any('amw/comments/examiners', [
     'as' => 'amw.comments-examiners',
     'uses' => 'ExmAmwController@commentsToExaminers'
 ]);
+
+Route::any('amw/question-papers/{exm_exam_list_id}/{course_conduct_id}', [
+    'as' => 'amw.question-papers',
+    'uses' => 'ExmAmwController@indexQuestionPapers'
+]);
+
+Route::any('examination/amw/question-papers/create/{exm_exam_list_id}/{course_conduct_id}', [
+    'as' => 'amw.question-papers.create',
+    'uses' => 'ExmAmwController@createQuestionPapers'
+]);
+
+Route::any('amw/question-papers/store', [
+    'as' => 'amw.question-papers.store',
+    'uses' => 'ExmAmwController@storeQuestionPapers'
+]);
+
