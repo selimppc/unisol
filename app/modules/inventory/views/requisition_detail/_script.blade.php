@@ -11,5 +11,9 @@
           }
         });
     });
+
+    function addProduct(){
+      alert("OK");
+    }
 </script>
 

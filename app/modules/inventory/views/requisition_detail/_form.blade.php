@@ -26,7 +26,7 @@
         </div>
     </div>
     <div class="col-sm-3" style="padding: 4%">
-        <button class="pull-right btn-sm btn-linkedin"> + Product</button>
+        <button class="pull-right btn-sm btn-linkedin" onclick="addProduct()"> + Product</button>
     </div>
 </div>
 
