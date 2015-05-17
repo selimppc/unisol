@@ -1,12 +1,9 @@
 @extends('layouts.layout')
-
 @section('sidebar')
     @include('layouts._sidebar_faculty')
 @stop
-
 @section('content')
     <h3>Examination List </h3>
-
 
 <div class="row">
 <div class="box box-solid ">
@@ -32,9 +29,7 @@
             {{ Form::close() }}
           </div>
 
-
         <br><br><br><br>
-
 
           {{ Form::open(array('url' => 'faculty/examination-list/batchDelete')) }}
               <table id="example" class="table table-striped  table-bordered"  >
@@ -98,7 +93,6 @@
               </div>
         </div>
     </div>
-
 
     <!-- Modal :: Delete Confirmation -->
         <div class="modal fade " id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="confirm-delete" aria-hidden="true">

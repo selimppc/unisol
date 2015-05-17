@@ -14,12 +14,6 @@ class ExmQuestionItems extends \Eloquent
         'marks' => 'required',
     );
 
-    public static function getQuestionsName($quesId){
-        $data = ExmQuestion::find($quesId);
-        return $data->title;
-
-    }
-
     public function validate($data)
     {
         // make a new validator object
@@ -34,6 +28,25 @@ class ExmQuestionItems extends \Eloquent
         // validation pass
         return true;
     }
+
+
+
+    public static function getQuestionsName($quesId){
+        $data = ExmQuestion::find($quesId);
+        return $data->title;
+
+    }
+
+    //TODO : Model Relationship
+
+    public function relExmQuestion(){
+        return $this->belongsTo('ExmQuestion', 'exm_question_id', 'id');
+    }
+    public function relExmQuestionOptAns(){
+        return $this->HasMany('ExmQuestionOptionAnswer');
+    }
+
+
 
     public function errors()
     {

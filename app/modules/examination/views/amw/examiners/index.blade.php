@@ -14,8 +14,8 @@
           {{ Form::open(array('url' => 'examination/amw/batchDelete')) }}
              <table id="example" class="table table-striped  table-bordered">
              <div style="background-color:lightgray; color:white; padding:8px;">
-                 <b style="margin-left: 20px;color: #005580">Course Title: {{isset($year_title) ? $year_title : ''}}</b>
-                 <b style="margin-left: 100px;color: #005580">Exam Type : {{isset($semester_title) ? $semester_title :''}}</b><br>
+                 {{--<b style="margin-left: 20px;color: #005580">Course Title: {{isset($year_title) ? $year_title : ''}}</b>--}}
+                 {{--<b style="margin-left: 100px;color: #005580">Exam Type : {{isset($exam_type) ? $exam_type :''}}</b><br>--}}
                  <b style="margin-left: 20px;color: #005580">Year: {{isset($year_title) ? $year_title : ''}}</b>
                  <b style="margin-left: 150px;color: #005580">Semester : {{isset($semester_title) ? $semester_title :''}}</b>
              </div>
@@ -25,7 +25,8 @@
                        <tr>
                           <th><input name="id" type="checkbox" id="checkbox" class="checkbox" value=""></th>
                           <th>Name of Examiner</th>
-                          <th>Dept</th>
+                          <th>Department</th>
+                          <th>Examiner Type</th>
                           <th>Status</th>
                           <th>Action</th>
                        </tr>
@@ -36,13 +37,18 @@
                             <tr>
                                 <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $exmr['id'] }}"></td>
                                 <td>
-                                     {{$exmr->relUser->relUserProfile->first_name.' '.$exmr->relUser->relUserProfile->middle_name.' '.$exmr->relUser->relUserProfile->last_name}}
+                                     <a href="{{ URL::route('amw.view-examiners',
+                                         ['id'=>$exmr->id]) }}" class="btn-link" title="Exm Details For This Year" style="color:#800080" data-toggle="modal" data-target="#examiner-data">
+                                         {{$exmr->relUser->relUserProfile->first_name.' '.$exmr->relUser->relUserProfile->middle_name.' '.$exmr->relUser->relUserProfile->last_name}}
+                                     </a>
                                 </td>
                                 <td>{{ $exmr->relExmExamList->relCourseConduct->relCourse->relSubject->relDepartment->title }}</td>
+                                <td>{{$exmr->type}}</td>
                                 <td>{{ $exmr->status }}</td>
                                 <td>
-                                   {{--<a href="{{ URL::to('')}}" class=" btn btn-xs btn-info">Examiners</a>--}}
-                                   {{--<a href="{{ URL::to('examination/amw/index',['exam_list_id'=>$exmr->id , 'course_man_id'=>$course_list->course_management_id]) }}" class="btn btn-default">Question Paper</a>--}}
+                                   @if($exmr->status != 'cancel')
+                                       <a href="{{URL::route('amw.revoke-examiners', ['id'=>$exmr->id])}}" class="btn btn-info btn-xs">Cancel</a>
+                                   @endif
                                 </td>
                             </tr>
                         @endforeach
@@ -67,4 +73,31 @@
       </div>
  </div>
 
+
+ {{--<!-- Modal for status -->--}}
+     <div class="modal fade" id="cancel-status" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+         <div class="modal-dialog">
+             <div class="modal-content">
+                 <div class="modal-header">
+                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                     <h4 class="modal-title" id="myModalLabel">Confirm to change status</h4>
+                 </div>
+                 <div class="modal-body">
+                     <strong>Are you sure to change status?</strong>
+                 </div>
+                 <div class="modal-footer">
+                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                     <a href="#" class="btn btn-primary primary">Change</a>
+                 </div>
+             </div>
+         </div>
+     </div>
+
 @stop
+
+<script>
+$('#cancel-status').on('show.bs.modal', function (e) {
+    $(this).find('.primary').attr('href', $(e.relatedTarget).data('href'));
+    $('.debug-url').html('Status URL: <strong>' + $(this).find('.primary').attr('href') + '</strong>');
+});
+</script>
