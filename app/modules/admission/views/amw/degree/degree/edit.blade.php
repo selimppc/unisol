@@ -78,10 +78,12 @@
              </div>
           </div>
 
-          {{--<div class='form-group'>
+          <div class='form-group'>
                 <div>{{ Form::label('status	', 'Status') }}</div>
-                <div>{{ Form::text('status	',$model->status ,['class'=>'form-control input-sm','required'])}}</div>
-          </div>--}}
+                <div>{{ Form::select('status',array(
+                      'open' => 'Open',
+                      'close' => 'Close'),$model->status ,['class'=>'form-control input-sm'])}}</div>
+          </div>
           <p>&nbsp;</p>
 
           <div>

@@ -4,7 +4,9 @@ class ExmExaminer extends \Eloquent
 {
     protected $table = 'exm_examiner';
 
-    private $errors;
+    protected $fillable = [
+        'exm_exam_list_id', 'user_id', 'type', 'assigned_by','deadline','note','status'
+    ];
 
     public function relExmExamList(){
         return $this->belongsTo('ExmExamList','exm_exam_list_id','id');
@@ -14,24 +16,18 @@ class ExmExaminer extends \Eloquent
         return $this->belongsTo('User','user_id','id');
     }
 
-//    public function relCourseManagement()
-//    {
-//        return $this->belongsTo('CourseManagement', 'course_management_id', 'id');
-//
-//    }
 
-
-
+    private $errors;
     private $rules = array(
 
-//        'exm_exam_list_id'  => 'required',
-//        'user_id'  => 'required',
+        'exm_exam_list_id'  => 'required',
+        'user_id'  => 'required',
 
-//        'type'  => 'required',
-//        'assigned_by'  => 'required',
-//        'deadline'  => 'required',
-//        'note'  => 'required',
-//        'status'  => 'required',
+        'type'  => 'required',
+        'assigned_by'  => 'required',
+        'deadline'  => 'required',
+        'note'  => 'required',
+        'status'  => 'required',
 
     );
 

@@ -213,7 +213,7 @@
 
             <div class="col-md-9">
                     {{--Error handling--}}
-                    @if ( $errors->count() > 0 )
+                    @if ( isset($errors) and isset($errors->count) and $errors->count() > 0 )
                         <div class="alert alert-danger">
                             <ul>
                                 @foreach($errors->all() as $message )

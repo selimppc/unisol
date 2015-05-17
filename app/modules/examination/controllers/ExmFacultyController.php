@@ -67,10 +67,6 @@ class ExmFacultyController extends \BaseController {
             ->where('id', $id)
             ->first();
 
-//        $view_a = ExmExaminer::where('exm_exam_list_id', $exm_list_id)->first();
-//
-//        print_r($view_a);exit;
-
         $view_examiner_comments = ExmExaminerComments::where('exm_exam_list_id', $exm_list_id)->get();
 
         return View::make('examination::faculty.examination_list.view_examiner',
@@ -97,7 +93,6 @@ class ExmFacultyController extends \BaseController {
                 return Redirect::back()->with('errors', 'Invalid Request');
             }
     }
-
 
     public function changeStatusToDeny($id){
         $model = ExmExaminer::findOrFail($id);
@@ -127,50 +122,91 @@ class ExmFacultyController extends \BaseController {
         }
     }
 
-
-// till now all ok
-
-
-
     public function questionPaper($exm_list_id)
     {
-        $examiner_type = ExmExaminer::where('exm_exam_list_id',$exm_list_id)
-//            ->where('user_id','=',Auth::user()->get()->id)
-            ->first();
-
         $question_paper = ExmQuestion::with('relExmExamList', 'relExmExamList.relYear',
-            'relExmExamList.relSemester','relCourseConduct.relDegree','relExaminerFacultyUser')
+            'relExmExamList.relSemester','relCourseConduct.relDegree','relSUser','relEUser')
             ->where('exm_exam_list_id', '=', $exm_list_id)
-            ->where('s_faculty_user_id','=',Auth::user()->get()->id)
-            ->where('e_faculty_user_id','=',Auth::user()->get()->id)
             ->get();
 
         return View::make('examination::faculty.question_paper.index',
             compact('examiner_type','question_paper','exm_list_id'));
 
     }
+// till now all ok
 
 
     public function viewExmQuestionPaper($exm_question_id)
     {
+//        $view_exm_qp = ExmQuestion::find($exm_question_id);
 
-        $view_exm_qp = AdmQuestion::find($exm_question_id);
+        $view_exm_qp = ExmQuestion::with('relExmExamList','relExmExamList.relYear','relExmExamList.relSemester',
+            'relExmExamList.relCourseConduct','relExmExamList.relCourseConduct.relDegree',
+            'relExmExamList.relCourseConduct.relDegree.relDepartment',
+            'relExmExamList.relAcmMarksDistItem',
+            'relExmExamList.relCourseConduct.relCourse.relSubject','relExmExamList.relCourseConduct.relUser')
+        ->where('id', $exm_question_id)
+        ->first();
+
         return View::make('examination::faculty.question_paper.view_exm_question_paper',
             compact('view_exm_qp'));
+    }
+
+
+
+
+    public function AssignExmFacultySetter($e_q_id)
+    {
+        $exm_question_data = ExmQuestion::with('relExmExamList')->where('id', $e_q_id)->first();
+
+        $examiner_faculty_lists = ExmQuestion::ExaminationExaminerList($exm_question_data->exm_exam_list_id);
+
+        $comments = ExmQuestionComments::with('relToUser', 'relToUser.relUserProfile', 'relToUser.relRole', 'relByUser', 'relByUser.relUserProfile', 'relByUser.relRole')->where('exm_question_id', $e_q_id)->get();
+
+        $exm_exam_list = ExmExamList::with('relCourseConduct','relCourseConduct.relDegree', 'relYear')->where('id', '=', $exm_question_data->exm_exam_list_id)->first();
+
+        return View::make('examination::faculty.question_paper.assign_exm_faculty_setter',
+            compact('exm_question_data', 'examiner_faculty_lists', 'comments','e_q_id', 'exm_exam_list'));
+    }
+
+    public function AssignExmFacultyEvaluator($e_q_id)
+    {
+        $exm_question_data = ExmQuestion::with('relExmExamList')->where('id', $e_q_id)->first();
+
+        $examiner_faculty_lists = ExmQuestion::ExaminationExaminerList($exm_question_data->exm_exam_list_id);
+
+        $comments = ExmQuestionComments::with('relToUser', 'relToUser.relUserProfile', 'relToUser.relRole', 'relByUser', 'relByUser.relUserProfile', 'relByUser.relRole')->where('exm_question_id', $e_q_id)->get();
+
+        $exm_exam_list = ExmExamList::with('relCourseConduct','relCourseConduct.relDegree', 'relYear')->where('id', '=', $exm_question_data->exm_exam_list_id)->first();
+
+        return View::make('examination::faculty.question_paper.assign_exm_faculty_evaluator',
+            compact('exm_question_data', 'examiner_faculty_lists', 'comments','e_q_id', 'exm_exam_list'));
+    }
+
+
+
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+// starting just now
+
+
+    public function addExmQuestionPaperItem($exm_question_id)
+    {
+        $add_exm_qp_items = ExmQuestion::find($exm_question_id);
+
+        return View::make('examination::faculty.question_paper._addQuestItemForm',
+            compact('add_exm_qp_items'));
 
     }
 
 
 
-    public function addExmQuestionPaperItem()
+    public function viewExmQuestionsItems($exm_question_id)
     {
-
-    }
-
-
-
-    public function viewExmQuestionsItems()
-    {
+        $view_exm_qp_items = ExmQuestionItems::where('exm_question_id', '=', $exm_question_id)->latest('id')->get();
+        return View::make('examination::faculty.question_paper.view_qp_items',
+            compact('view_exm_qp_items'));
 
     }
 
@@ -178,14 +214,15 @@ class ExmFacultyController extends \BaseController {
 
     public function saveComment()
     {
+        echo "Comment";
 
     }
 
+    public function evaluateExm()
+    {
+        echo "Evaluate";
 
-
-
-
-
+    }
 
 
 
