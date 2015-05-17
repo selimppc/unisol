@@ -48,30 +48,34 @@ Route::any('faculty/exm-question-paper/view-exm-question-paper/{exm_question_id}
 ]);
 
 
-// still working |
-
-
-Route::any('faculty/assign-exm-faculty-setter/{e_q_id}',[
-    'as' => 'faculty.assign-exm-faculty-setter',
-    'uses' => 'ExmFacultyController@AssignExmFacultySetter'
-]);
-
-Route::any('faculty/assign-exm-faculty-evaluator/{e_q_id}',[
-    'as' => 'faculty.assign-exm-faculty-evaluator',
-    'uses' => 'ExmFacultyController@AssignExmFacultyEvaluator'
-]);
-
-
-
+//Route::any('faculty/assign-exm-faculty-setter/{e_q_id}',[
+//    'as' => 'faculty.assign-exm-faculty-setter',
+//    'uses' => 'ExmFacultyController@AssignExmFacultySetter'
+//]);
+//
+//Route::any('faculty/assign-exm-faculty-evaluator/{e_q_id}',[
+//    'as' => 'faculty.assign-exm-faculty-evaluator',
+//    'uses' => 'ExmFacultyController@AssignExmFacultyEvaluator'
+//]);
 
 
 // kaj baki view, file location everything.... route setting ok
 
 
-Route::any('faculty/exm-question-paper/add-exm-question-paper-item/{exm_question_id}',[
-    'as' =>'faculty.exm-question-paper.add-exm-question-paper-item',
-    'uses' => 'ExmFacultyController@addExmQuestionPaperItem'
+Route::any('faculty/examination-quest-paper-item/add-exm-quest-paper-item/{exm_question_id}',[
+    'as' =>'faculty.examination-quest-paper-item.add-exm-quest-paper-item',
+    'uses' => 'ExmFacultyController@addExaminationModuleQuestionPaperItem'
 ]);
+
+
+// still working on it|
+Route::any('faculty/exm-quest-paper-item/store-exm-quest-paper-item',[
+    'as' =>'faculty.examination-quest-paper-item.add-exm-quest-paper-item',
+    'uses' => 'ExmFacultyController@storeExmQPItem'
+]);
+
+
+
 
 
 Route::any('faculty/exm-question-paper/view-exm-questions-items/{exm_question_id}',[
@@ -83,6 +87,8 @@ Route::any('faculty/exm-question-paper/save-comment/{exm_question_id}',[
     'as' =>'faculty.exm-question-paper.save-comment',
     'uses' => 'ExmFacultyController@saveComment'
 ]);
+
+
 
 
 Route::any('faculty/exm-question-paper/evaluate/{exm_question_id}',[

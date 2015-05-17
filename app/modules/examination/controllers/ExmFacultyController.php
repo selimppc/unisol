@@ -155,33 +155,33 @@ class ExmFacultyController extends \BaseController {
 
 
 
-    public function AssignExmFacultySetter($e_q_id)
-    {
-        $exm_question_data = ExmQuestion::with('relExmExamList')->where('id', $e_q_id)->first();
+//    public function AssignExmFacultySetter($e_q_id)
+//    {
+//        $exm_question_data = ExmQuestion::with('relExmExamList')->where('id', $e_q_id)->first();
+//
+//        $examiner_faculty_lists = ExmQuestion::ExaminationExaminerList($exm_question_data->exm_exam_list_id);
+//
+//        $comments = ExmQuestionComments::with('relToUser', 'relToUser.relUserProfile', 'relToUser.relRole', 'relByUser', 'relByUser.relUserProfile', 'relByUser.relRole')->where('exm_question_id', $e_q_id)->get();
+//
+//        $exm_exam_list = ExmExamList::with('relCourseConduct','relCourseConduct.relDegree', 'relYear')->where('id', '=', $exm_question_data->exm_exam_list_id)->first();
+//
+//        return View::make('examination::faculty.question_paper.assign_exm_faculty_setter',
+//            compact('exm_question_data', 'examiner_faculty_lists', 'comments','e_q_id', 'exm_exam_list'));
+//    }
 
-        $examiner_faculty_lists = ExmQuestion::ExaminationExaminerList($exm_question_data->exm_exam_list_id);
-
-        $comments = ExmQuestionComments::with('relToUser', 'relToUser.relUserProfile', 'relToUser.relRole', 'relByUser', 'relByUser.relUserProfile', 'relByUser.relRole')->where('exm_question_id', $e_q_id)->get();
-
-        $exm_exam_list = ExmExamList::with('relCourseConduct','relCourseConduct.relDegree', 'relYear')->where('id', '=', $exm_question_data->exm_exam_list_id)->first();
-
-        return View::make('examination::faculty.question_paper.assign_exm_faculty_setter',
-            compact('exm_question_data', 'examiner_faculty_lists', 'comments','e_q_id', 'exm_exam_list'));
-    }
-
-    public function AssignExmFacultyEvaluator($e_q_id)
-    {
-        $exm_question_data = ExmQuestion::with('relExmExamList')->where('id', $e_q_id)->first();
-
-        $examiner_faculty_lists = ExmQuestion::ExaminationExaminerList($exm_question_data->exm_exam_list_id);
-
-        $comments = ExmQuestionComments::with('relToUser', 'relToUser.relUserProfile', 'relToUser.relRole', 'relByUser', 'relByUser.relUserProfile', 'relByUser.relRole')->where('exm_question_id', $e_q_id)->get();
-
-        $exm_exam_list = ExmExamList::with('relCourseConduct','relCourseConduct.relDegree', 'relYear')->where('id', '=', $exm_question_data->exm_exam_list_id)->first();
-
-        return View::make('examination::faculty.question_paper.assign_exm_faculty_evaluator',
-            compact('exm_question_data', 'examiner_faculty_lists', 'comments','e_q_id', 'exm_exam_list'));
-    }
+//    public function AssignExmFacultyEvaluator($e_q_id)
+//    {
+//        $exm_question_data = ExmQuestion::with('relExmExamList')->where('id', $e_q_id)->first();
+//
+//        $examiner_faculty_lists = ExmQuestion::ExaminationExaminerList($exm_question_data->exm_exam_list_id);
+//
+//        $comments = ExmQuestionComments::with('relToUser', 'relToUser.relUserProfile', 'relToUser.relRole', 'relByUser', 'relByUser.relUserProfile', 'relByUser.relRole')->where('exm_question_id', $e_q_id)->get();
+//
+//        $exm_exam_list = ExmExamList::with('relCourseConduct','relCourseConduct.relDegree', 'relYear')->where('id', '=', $exm_question_data->exm_exam_list_id)->first();
+//
+//        return View::make('examination::faculty.question_paper.assign_exm_faculty_evaluator',
+//            compact('exm_question_data', 'examiner_faculty_lists', 'comments','e_q_id', 'exm_exam_list'));
+//    }
 
 
 
@@ -191,14 +191,115 @@ class ExmFacultyController extends \BaseController {
 // starting just now
 
 
-    public function addExmQuestionPaperItem($exm_question_id)
+    public function addExaminationModuleQuestionPaperItem($exm_question_id)
     {
+
         $add_exm_qp_items = ExmQuestion::find($exm_question_id);
 
         return View::make('examination::faculty.question_paper._addQuestItemForm',
             compact('add_exm_qp_items'));
 
     }
+
+    public function storeExmQPItem()
+    {
+        $data = Input::all();
+
+        $fclty_exmna_str_qstn_itms = new ExmQuestionItems();
+        if ($fclty_exmna_str_qstn_itms->validate($data))
+        {
+            $fclty_exmna_str_qstn_itms->title = Input::get('title');
+            $fclty_exmna_str_qstn_itms->exm_question_id = Input::get('exm_question_id');
+            $fclty_exmna_str_qstn_itms->marks = Input::get('marks');
+            $opt_answer = Input::get('answer');
+
+            if (strtolower(Input::get('mcq')) == 'mcq') {
+                if (strtolower(Input::get('q_type')) == 'mcq_single') {
+                    $fclty_exmna_str_qstn_itms->question_type = 'radio';
+                    if (!empty($opt_answer)) {
+                        if ($fclty_exmna_str_qstn_itms->save())
+                            $exm_question_items_id = $fclty_exmna_str_qstn_itms->id;
+                        $opt_title = Input::get('option_title');
+                        $opt_answer = Input::get('answer');
+
+                        $i = 0;
+                        foreach ($opt_title as $key => $value) {
+                            //Re-declare model each time you want to save data as loop.
+                            $exm_question_opt = new ExmQuestionOptionAnswer();
+                            $exm_question_opt->exm_question_items_id = $exm_question_items_id;
+                            $exm_question_opt->title = $value;
+                            $exm_question_opt->answer = 0;
+
+                            foreach ($opt_answer as $oa) {
+                                if ($oa == $key)
+                                    $exm_question_opt->answer = 1;
+                            }
+                            $exm_question_opt->save();
+                            $i++;
+
+                        } // saving last single data
+                        Session::flash('message', 'Option Data : Single Answer Saved!');
+                        return Redirect::back();
+                    } else {
+                        Session::flash('error', 'Single Options Answer is missing!');
+                        return Redirect::back();
+                    }
+                } else {
+                    $fclty_exmna_str_qstn_itms->question_type = 'checkbox';
+                    if (!empty($opt_answer)) {
+                        if ($fclty_exmna_str_qstn_itms->save())
+                            $exm_question_items_id = $fclty_exmna_str_qstn_itms->id;
+                        $opt_title = Input::get('option_title');
+                        $opt_answer = Input::get('answer');
+
+                        $i = 0;
+                        foreach ($opt_title as $key => $value) {
+                            //Re-declare model each time you want to save data as loop.
+                            $exm_question_opt = new ExmQuestionOptAns();
+                            $exm_question_opt->exm_question_items_id = $exm_question_items_id;
+                            $exm_question_opt->title = $value;
+                            $exm_question_opt->answer = 0;
+
+                            foreach ($opt_answer as $oa) {
+                                if ($oa == $key)
+                                    $exm_question_opt->answer = 1;
+                            }
+                            $exm_question_opt->save();
+                            $i++;
+
+                        } // saving last single data
+                        Session::flash('message', 'Option Data : Multiple Answer Saved!');
+                        return Redirect::back();
+                    } else {
+                        Session::flash('error', 'Multiple Options Answer is missing!');
+                        return Redirect::back();
+                    }
+                }
+            } else {
+                $fclty_exmna_str_qstn_itms->question_type = 'text';
+                if ($fclty_exmna_str_qstn_itms->save()) {
+                    Session::flash('message', 'Option Data : Descriptive Answer Saved!');
+                    return Redirect::back();
+                } else {
+                    Session::flash('error', 'Descriptive Answer is missing!');
+                    return Redirect::back();
+                }
+            }
+            // redirect
+        }
+        else
+        {
+            // failure, get errors
+            $errors = $fclty_exmna_str_qstn_itms->errors();
+            Session::flash('errors', $errors);
+
+            return Redirect::back();
+        }
+
+
+    }
+
+
 
 
 
@@ -223,6 +324,7 @@ class ExmFacultyController extends \BaseController {
         echo "Evaluate";
 
     }
+
 
 
 

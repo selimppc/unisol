@@ -1,13 +1,13 @@
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-    <h4 class="modal-title" id="myModalLabel">Add Question Item for <b>{{$add_exm_qp_items->title}} </b></h4>
+    <h4 class="modal-title" id="myModalLabel">Add Exm Question Item for <b>{{$add_exm_qp_items->title}} </b></h4>
 </div>
 
 <div class="modal-body">
      <div style="padding: 20px;">
 
-        {{Form::open(array('url'=>'admission/faculty/question-papers/store-question-paper-item', 'class'=>'form-horizontal','files'=>true))}}
-           {{Form::hidden('adm_question_id', $add_exm_qp_items->id, ['class'=>'form-control'])}}
+        {{Form::open(array('url'=>'examination/faculty/exm-quest-paper-item/store-exm-quest-paper-item', 'class'=>'form-horizontal','files'=>true))}}
+           {{Form::hidden('exm_question_id', $add_exm_qp_items->id, ['class'=>'form-control'])}}
              <fieldset style="width: 90%; padding: 20px">
 
                  <div class='form-group'>
