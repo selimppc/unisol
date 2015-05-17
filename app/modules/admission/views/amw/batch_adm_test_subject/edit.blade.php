@@ -8,32 +8,32 @@
 
      <div class="pull-left">
          <strong> Degree: </strong>
-         {{ $degree_name->relDegree->relDegreeLevel->code.'  '.$degree_name->relDegree->relDegreeGroup->code.' In '.$degree_name->relDegree->relDegreeProgram->code }},
-         {{$degree_name->relSemester->title}} - {{$degree_name->relYear->title}}
+         {{ $batch->relVDegree->title }},
+         {{$batch->relSemester->title}} - {{$batch->relYear->title}}
      </div>
 
-      {{Form::open(array('url'=> ['admission/amw/batch-adm-test-subject/update_admtest_subject',$batch_edit->id], 'class'=>'form-horizontal','files'=>true))}}
-      {{ Form::hidden('batch_id', $batch_id, Input::old('batch_id')) }} </br></br>
+      {{Form::open(array('url'=> ['admission/amw/batch-adm-test-subject/update_admtest_subject',$batch_admtest_subject->id], 'class'=>'form-horizontal','files'=>true))}}
+      {{ Form::hidden('batch_id', $batch->id, Input::old('batch_id')) }} </br></br>
 
         <div class='form-group'>
            {{ Form::label('admtest_subject_id', 'Admission Test Subject') }}
-           {{ Form::select('admtest_subject_id', $subject_id_result, $batch_edit->admtest_subject_id,['class'=>'form-control']) }}
+           {{ Form::select('admtest_subject_id', $subject_id_result, $batch_admtest_subject->admtest_subject_id,['class'=>'form-control']) }}
         </div>
         <div class='form-group'>
           {{ Form::label('description', 'Description') }}
-          {{ Form::textarea('description', $batch_edit->description,['onkeyup'=>"javascript:this.value=this.value.replace(/[<,>]/g,'');",'size' => '30x5','class'=>'form-control','required'=>'required']) }}
+          {{ Form::textarea('description', $batch_admtest_subject->description,['onkeyup'=>"javascript:this.value=this.value.replace(/[<,>]/g,'');",'size' => '30x5','class'=>'form-control','required'=>'required']) }}
         </div>
         <div class='form-group'>
             {{ Form::label('marks', 'Marks') }}
-            {{ Form::text('marks', $batch_edit->marks,['class'=>'form-control','required'=>'required']) }}
+            {{ Form::text('marks', $batch_admtest_subject->marks,['class'=>'form-control','required'=>'required']) }}
         </div>
         <div class='form-group'>
             {{ Form::label('qualify_marks', 'Qualify Marks') }}
-            {{ Form::text('qualify_marks',$batch_edit->qualify_marks ,['class'=>'form-control','required'=>'required']) }}
+            {{ Form::text('qualify_marks',$batch_admtest_subject->qualify_marks ,['class'=>'form-control','required'=>'required']) }}
         </div>
         <div class='form-group'>
            {{ Form::label('duration', 'Duration in Minutes') }}
-           {{ Form::text('duration', $batch_edit->duration, ['class'=>'form-control','required'=>'required']) }}
+           {{ Form::text('duration', $batch_admtest_subject->duration, ['class'=>'form-control','required'=>'required']) }}
         </div>
 
       <p>&nbsp;</p>
