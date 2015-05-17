@@ -38,9 +38,9 @@
                 @foreach($data as $values)
                  <tr>
                     <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $values->id }}"></td>
-                    <td><b>{{ link_to_route('requisition-detail',$values->requisition_no,['req_id'=>$values->id], ['data-toggle'=>"modal", 'data-target'=>"#modal"]) }}</b></td>
+                    <td><b>{{ link_to_route('requisition-detail',$values->requisition_no,['req_id'=>$values->id], ['data-toggle'=>"modal", 'data-target'=>"#modal-pc"]) }}</b></td>
                     <td>{{Str::title($values->relInvSupplier->company_name)}}</td>
-                    <td>{{$values->date}}</td>
+                    <td>{{ $values->date }}  </td>
                     <td>{{$values->note}}</td>
                     <td>{{Str::title($values->requisition_type)}}</td>
                     <td>{{Str::title($values->status)}}</td>

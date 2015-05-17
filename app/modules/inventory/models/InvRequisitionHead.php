@@ -1,4 +1,6 @@
 <?php
+//use Carbon\Carbon;
+
 class InvRequisitionHead extends \Eloquent
 {
     //TODO :: model attributes and rules and validation
@@ -70,6 +72,10 @@ class InvRequisitionHead extends \Eloquent
             'cancel'=>'Cancel'
         ];
         return $query;
+    }
+
+    public function getDateAttribute($date) {
+        return Carbon::parse($date)->format('d-M-Y'); //Change the format to whichever you desire
     }
 
 

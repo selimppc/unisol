@@ -161,7 +161,7 @@ Route::group(['prefix' => 'inventory'], function() {
      *  Requisition  Area
      *  =====================================================================================
      */
-    Route::post("requisition-detail/{req_id}", [
+    Route::any("requisition-detail/{req_id}", [
         "as"   => "requisition-detail",
         "uses" => "InvRequisitionHeadController@detail_requisition"
     ]);

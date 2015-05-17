@@ -140,6 +140,7 @@ return array(
         'App\Modules\Library\ServiceProvider',
         'App\Modules\Payment\ServiceProvider',
         'App\Modules\Rnc\ServiceProvider',
+
 	),
 
 	/*
@@ -171,6 +172,7 @@ return array(
 		'Artisan'           => 'Illuminate\Support\Facades\Artisan',
 		'Auth'              => 'Illuminate\Support\Facades\Auth',
 		'Blade'             => 'Illuminate\Support\Facades\Blade',
+        'Carbon'            => 'Carbon\Carbon',
 		'Cache'             => 'Illuminate\Support\Facades\Cache',
 		'ClassLoader'       => 'Illuminate\Support\ClassLoader',
 		'Config'            => 'Illuminate\Support\Facades\Config',
