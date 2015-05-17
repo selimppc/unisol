@@ -931,11 +931,11 @@ class AdmAmwController extends \BaseController
      * @param $id
      * @return mixed
      */
-    public function viewBatchAdmTestSubject($id)
+    public function viewBatchAdmTestSubject($id, $batch_id)
     {
-        $view_adm_test_subject = BatchAdmtestSubject::with('relAdmTestSubject')->find($id);
-        $batch = Batch::with('relVDegree')->find($id);
-        return View::make('admission::amw.batch_adm_test_subject.view',compact('view_adm_test_subject', 'batch'));
+        $adm_test_subject = BatchAdmtestSubject::with('relAdmTestSubject')->find($id);
+        $batch = Batch::with('relVDegree')->find($batch_id);
+        return View::make('admission::amw.batch_adm_test_subject.view',compact('adm_test_subject', 'batch'));
     }
 
     /**
