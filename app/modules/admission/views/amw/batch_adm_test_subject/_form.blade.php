@@ -8,15 +8,15 @@
       <div class="row">
           <div class="pull-left">
               <strong> Degree: </strong>
-              {{ $degree_name->relDegree->relDegreeLevel->code.''.$degree_name->relDegree->relDegreeGroup->code.' In '.$degree_name->relDegree->relDegreeProgram->code.' ,' }}
-              {{$degree_name->relSemester->title}} - {{$degree_name->relYear->title}}
+              {{ $batch->relVDegree->title.' ,' }}
+              {{$batch->relSemester->title}} - {{$batch->relYear->title}}
           </div>
       </div>
     {{Form::open(array('url'=>'admission/amw/batch-adm-test-subjects/store_admtest_subjects', 'class'=>'form-horizontal','files'=>true))}}
       {{ Form::hidden('batch_id',$batch_id,Input::old('batch_id')) }} <br>
         <div class='form-group'>
-           {{ Form::label('admtest_subject[]', 'Admission Test Subject') }}
-           {{ Form::select('admtest_subject[]',$subject_id_result,Input::old('admtest_subject') ? Input::old('admtest_subject') : $subject_id_result,[ 'class'=>'form-control', 'required']) }}
+           {{ Form::label('admtest_subject_id', 'Admission Test Subject') }}
+           {{ Form::select('admtest_subject_id',$subject_id_result,Input::old('admtest_subject_id') ? Input::old('admtest_subject') : $subject_id_result,[ 'class'=>'form-control', 'required']) }}
            <small>for adding new admission subject got to <a href="{{ URL::to('admission/amw/admission-test-subject')}}"  >Admission Test Subject</a></small>
         </div>
 
@@ -27,7 +27,7 @@
         {{--</div>--}}
         <div class='form-group'>
           {{ Form::label('description', 'Description') }}
-          {{ Form::textarea('description', Input::old('description'),['onkeyup'=>"javascript:this.value=this.value.replace(/[<,>]/g,'');",'size' => '30x5','class'=>'form-control','required'=>'required']) }}
+          {{ Form::textarea('description', Input::old('description'),['onkeyup'=>"javascript:this.value=this.value.replace(/[<,>]/g,'');",'size' => '30x5','class'=>'form-control']) }}
         </div>
         <div class='form-group'>
             {{ Form::label('marks', 'Marks') }}

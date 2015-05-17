@@ -91,7 +91,80 @@ Route::group(['prefix' => 'inventory'], function() {
 
 
 
+    /*
+     *  ====================================================================================
+     *  Supplier  Area
+     *  =====================================================================================
+     */
 
+    /// Supplier
+    Route::get("supplier", [
+        "as"   => "supplier",
+        "uses" => "InvSupplierController@index_supplier"
+    ]);
+
+    Route::post("supplier/store", [
+        "as"   => "supplier/store",
+        "uses" => "InvSupplierController@store_supplier"
+    ]);
+    Route::any("supplier/show/{pc_id}", [
+        "as"   => "supplier/show",
+        "uses" => "InvSupplierController@show_supplier"
+    ]);
+    Route::any("supplier/edit/{pc_id}", [
+        "as"   => "supplier/edit",
+        "uses" => "InvSupplierController@edit_supplier"
+    ]);
+    Route::any("supplier/destroy/{pc_id}", [
+        "as"   => "supplier/destroy",
+        "uses" => "InvSupplierController@destroy_supplier"
+    ]);
+    Route::any("supplier-batch-delete", [
+        "as"   => "supplier-batch-delete",
+        "uses" => "InvSupplierController@batch_delete_supplier"
+    ]);
+
+
+
+    /*
+     *  ====================================================================================
+     *  Requisition  Area
+     *  =====================================================================================
+     */
+
+    /// Supplier
+    Route::get("requisition", [
+        "as"   => "requisition",
+        "uses" => "InvRequisitionHeadController@index_requisition"
+    ]);
+
+
+    Route::post("requisition-store", [
+        "as"   => "requisition-store",
+        "uses" => "InvRequisitionHeadController@store_requisition"
+    ]);
+    Route::post("requisition-show", [
+        "as"   => "requisition-show",
+        "uses" => "InvRequisitionHeadController@show_requisition"
+    ]);
+    Route::post("requisition-edit", [
+        "as"   => "requisition-edit",
+        "uses" => "InvRequisitionHeadController@edit_requisition"
+    ]);
+    Route::post("requisition-destroy", [
+        "as"   => "requisition-destroy",
+        "uses" => "InvRequisitionHeadController@destroy_requisition"
+    ]);
+
+    /*
+     *  ====================================================================================
+     *  Requisition  Area
+     *  =====================================================================================
+     */
+    Route::any("requisition-detail/{req_id}", [
+        "as"   => "requisition-detail",
+        "uses" => "InvRequisitionHeadController@detail_requisition"
+    ]);
 
 
 

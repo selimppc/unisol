@@ -921,12 +921,10 @@ class AdmAmwController extends \BaseController
      */
     public function indexBatchAdmTestSubject($batch_id)
     {
-        $degree_test_sbjct = BatchAdmtestSubject::where('batch_id' ,'=', $batch_id)->get();
-        $degree_name = Batch::with('relDegree','relDegree.relDegreeLevel','relDegree.relDegreeGroup')
-            ->where('id' ,'=', $batch_id)
-            ->first();
+        $batch_test_subject = BatchAdmtestSubject::where('batch_id' ,'=', $batch_id)->get();
+        $batch = Batch::with('relVDegree')->find($batch_id);
         return View::make('admission::amw.batch_adm_test_subject.index',
-            compact('batch_id','degree_test_sbjct','degree_name'));
+            compact('batch_test_subject','batch'));
     }
 
     /**
@@ -935,8 +933,9 @@ class AdmAmwController extends \BaseController
      */
     public function viewBatchAdmTestSubject($id)
     {
-        $view_adm_test_subject = BatchAdmtestSubject::find($id);
-        return View::make('admission::amw.batch_adm_test_subject.view',compact('view_adm_test_subject'));
+        $view_adm_test_subject = BatchAdmtestSubject::with('relAdmTestSubject')->find($id);
+        $batch = Batch::with('relVDegree')->find($id);
+        return View::make('admission::amw.batch_adm_test_subject.view',compact('view_adm_test_subject', 'batch'));
     }
 
     /**
@@ -946,10 +945,9 @@ class AdmAmwController extends \BaseController
     public function createBatchAdmTestSubject($batch_id)
     {
         $subject_id_result = AdmTestSubject::lists('title', 'id');
-        $degree_name = Batch::with('relDegree','relDegree.relDegreeLevel','relDegree.relDegreeGroup','relYear','relSemester','relDegree.relDegreeProgram')
-            ->where('id' ,'=', $batch_id)
-            ->first();
-        return View::make('admission::amw.batch_adm_test_subject._form',compact('batch_id','degree_name','subject_id_result'));
+        $batch = Batch::with('relVDegree', 'relSemester', 'relYear')->find($batch_id);
+
+        return View::make('admission::amw.batch_adm_test_subject._form',compact('batch_id','degree_name','subject_id_result', 'batch'));
     }
 
     /**
@@ -958,33 +956,13 @@ class AdmAmwController extends \BaseController
     public function storeBatchAdmTestSubject()
     {
         $data = Input::all();
-        $select = Input::get('admtest_subject');
-        $batch_id = Input::get('batch_id');
 
         DB::beginTransaction();
         try {
-            $i = 0;
-            foreach ($select as $value) {
-                $degree_course = new BatchAdmtestSubject();
-                $degree_course->description = Input::get('description');
-                $degree_course->marks = Input::get('marks');
-                $degree_course->qualify_marks = Input::get('qualify_marks');
-                $degree_course->duration = Input::get('duration');
-                $degree_course->batch_id = $batch_id;
-                $degree_course->admtest_subject_id = $value;
-
-                $degreeCourseCheck = $this->checkBatchAdmTestSubject($degree_course->batch_id, $degree_course->admtest_subject_id);
-
-                if ($degreeCourseCheck) {
-                    $exists [] = AdmTestSubject::findOrFail($degree_course->admtest_subject_id)->title;
-                    Session::flash('info', 'Already Exists : ' . $exists[$i]);
-                } else {
-                    $degree_course->save();
-                    $array [] = AdmTestSubject::findOrFail($degree_course->admtest_subject_id)->title;
-                    Session::flash('message', 'Successfully Added ! ' . $array[$i]);
-                }
-            }
+            $degree_course = new BatchAdmtestSubject();
+            $degree_course->create($data);
             DB::commit();
+            Session::flash('message', 'Successfully Added ! ');
         }
         catch ( Exception $e ){
             //If there are any exceptions, rollback the transaction
@@ -995,30 +973,17 @@ class AdmAmwController extends \BaseController
     }
 
     /**
-     * @param $batch_id
-     * @param $admtest_subject_id
-     * @return mixed
-     */
-    protected function checkBatchAdmTestSubject($batch_id, $admtest_subject_id){
-        $result = DB::table('batch_admtest_subject')->select(DB::raw('1'))
-            ->where('admtest_subject_id', '=', $admtest_subject_id)
-            ->where('batch_id', '=', $batch_id)
-            ->first();
-        return $result;
-    }
-
-    /**
      * @param $id
      * @param $batch_id
      * @return mixed
      */
     public function editBatchAdmTestSubject($id, $batch_id)
     {
-        $batch_edit = BatchAdmtestSubject::findOrFail($id);
-        $degree_name = Batch::with('relDegree')->first();
+        $batch_admtest_subject = BatchAdmtestSubject::findOrFail($id);
+        $batch = Batch::with('relVDegree', 'relSemester', 'relYear')->find($batch_id);
         $subject_id_result = AdmTestSubject::lists('title', 'id');
 
-        return View::make('admission::amw.batch_adm_test_subject.edit',compact('batch_id','degree_name','batch_edit','subject_id_result'));
+        return View::make('admission::amw.batch_adm_test_subject.edit',compact('batch','batch_admtest_subject','subject_id_result'));
     }
 
     /**

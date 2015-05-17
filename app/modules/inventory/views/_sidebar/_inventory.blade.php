@@ -12,7 +12,8 @@
         <ul class="treeview-menu">
             <li><a href="{{URL::route('product')}}"><i class="fa fa-angle-double-right"></i> Product Master</a></li>
             <li><a href="{{URL::route('product/category')}}"><i class="fa fa-angle-double-right"></i> Product Category</a></li>
-            <li><a href=""><i class="fa fa-angle-double-right"></i> PR-Test</a></li>
+            <li><a href="{{URL::route('supplier')}}"><i class="fa fa-angle-double-right"></i> Supplier Master</a></li>
+            <li><a href="{{URL::route('requisition')}}"><i class="fa fa-angle-double-right"></i> Requisition</a></li>
         </ul>
     </li>
 

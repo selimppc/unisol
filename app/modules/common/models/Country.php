@@ -7,4 +7,10 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 class Country  extends Eloquent{
     protected $table = 'country';
 
+
+    public static function country_lists(){
+        $result = Country::lists('title', 'id');
+        return $result;
+    }
+
 } 
