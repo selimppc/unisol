@@ -5,8 +5,8 @@ class ExmQuestion extends \Eloquent
     //TODO :: model attributes and rules and validation
     protected $table = 'exm_question';
     protected $fillable = [
-        'exm_exam_list_id', 'course_conduct_id', 'examiner_faculty_user_id', 'title','deadline',
-        'total_marks', 'status',
+        'exm_exam_list_id', 'course_conduct_id', 'e_faculty_user_id','s_faculty_user_id', 'title','deadline',
+        'total_marks', 'status','e_status','s_status'
     ];
 
     private $errors;
@@ -76,12 +76,12 @@ class ExmQuestion extends \Eloquent
 
 
     //TODO : Status filtering
-    public function scopeExaminationExaminerList($query , $exm_list_id){
+    public function scopeExaminationExaminerList($query , $exm_exam_list_id){
         $query = ExmExaminer::join('user_profile', function($join)
         {
             $join->on('exm_examiner.user_id', '=', 'user_profile.user_id');
         })
-            ->where('exm_examiner.exm_exam_list_id', '=', $exm_list_id)
+            ->where('exm_examiner.exm_exam_list_id', '=', $exm_exam_list_id)
             //->where('adm_examiner.status', '=', 'requested')
             ->select(DB::raw('CONCAT(user_profile.first_name, " ", user_profile.middle_name, " ", user_profile.last_name) AS full_name, exm_examiner.user_id as id'))
             ->lists('full_name', 'id');
