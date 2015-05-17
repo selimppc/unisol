@@ -101,7 +101,10 @@ Route::any('faculty/exm-question-papers/specific-exm-question-update/{e_q_i_id}'
 
 
 
-
+Route::any('faculty/exm-question-paper/assign-exm-question-comment/{e_q_id}',[
+    'as' =>'faculty.exm-question-paper.assign-exm-question-comment',
+    'uses' => 'ExmFacultyController@assignExmQuestionPaper'
+]);
 
 
 

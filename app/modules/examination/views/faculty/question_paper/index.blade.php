@@ -64,19 +64,19 @@
                                          <a href="{{ URL::route('faculty.exm-question-paper.view-exm-question-paper',['exm_question_id'=>$question->id]) }}" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modal">VQP</a>
                                          <a href="{{ URL::route('faculty.examination-quest-paper-item.add-exm-quest-paper-item',['exm_question_id'=>$question->id]) }}" class="btn btn-info btn-xs " data-toggle="modal" data-target="#modal">AQ</a>
                                          <a href="{{ URL::route('faculty.exm-question-paper.view-exm-questions-items',['exm_question_id'=>$question->id]) }}" class="btn btn-primary btn-xs" >VQs</a>
-                                         <a href="{{ URL::route('faculty.exm-question-paper.save-comment',['exm_question_id'=>$question->id]) }}" class="btn bg-maroon btn-xs" data-toggle="modal" data-target="#modal" >Comments</a>
+                                         <a href="{{ URL::route('faculty.exm-question-paper.assign-exm-question-comment',['e_q_id'=>$question->id]) }}" class="btn bg-maroon btn-xs" data-toggle="modal" data-target="#modal" >Comments</a>
                                          <a href="{{ URL::route('faculty.exm-question-paper.evaluate',['exm_question_id'=>$question->id]) }}" class="btn bg-orange btn-xs" data-toggle="modal" data-target="#modal" >Evaluate</a>
 
                                      @elseif( $question->s_faculty_user_id == Auth::user()->get()->id )
                                            <a href="{{ URL::route('faculty.exm-question-paper.view-exm-question-paper',['exm_question_id'=>$question->id]) }}" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modal">VQP</a>
                                            <a href="{{ URL::route('faculty.examination-quest-paper-item.add-exm-quest-paper-item',['exm_question_id'=>$question->id]) }}" class="btn btn-info btn-xs " data-toggle="modal" data-target="#modal">AQ</a>
                                            <a href="{{ URL::route('faculty.exm-question-paper.view-exm-questions-items',['exm_question_id'=>$question->id]) }}" class="btn btn-primary btn-xs" >VQs</a>
-                                           <a href="{{ URL::route('faculty.exm-question-paper.save-comment',['exm_question_id'=>$question->id]) }}" class="btn bg-maroon btn-xs" data-toggle="modal" data-target="#modal" >Comments</a>
+                                           <a href="{{ URL::route('faculty.exm-question-paper.assign-exm-question-comment',['e_q_id'=>$question->id]) }}" class="btn bg-maroon btn-xs" data-toggle="modal" data-target="#modal" >Comments</a>
 
                                      @elseif( $question->e_faculty_user_id == Auth::user()->get()->id )
                                            <a href="{{ URL::route('faculty.exm-question-paper.view-exm-question-paper',['exm_question_id'=>$question->id]) }}" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modal">VQP</a>
                                            <a href="{{ URL::route('faculty.exm-question-paper.view-exm-questions-items',['exm_question_id'=>$question->id]) }}" class="btn btn-primary btn-xs" >VQs</a>
-                                           <a href="{{ URL::route('faculty.exm-question-paper.save-comment',['exm_question_id'=>$question->id]) }}" class="btn bg-maroon btn-xs" data-toggle="modal" data-target="#modal" >Comments</a>
+                                           <a href="{{ URL::route('faculty.exm-question-paper.assign-exm-question-comment',['e_q_id'=>$question->id]) }}" class="btn bg-maroon btn-xs" data-toggle="modal" data-target="#modal" >Comments</a>
                                            <a href="{{ URL::route('faculty.exm-question-paper.evaluate',['exm_question_id'=>$question->id]) }}" class="btn btn-xs bg-orange" data-toggle="modal" data-target="#modal" >Evaluate</a>
 
                                      @endif
