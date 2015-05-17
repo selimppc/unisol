@@ -440,11 +440,6 @@ class ExmFacultyController extends \BaseController {
     }
 
 
-// till now all ok
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-// starting just now
-
     public function assignExmQuestionPaper($e_q_id)
     {
         $assign_exm_qp = ExmQuestion::findOrFail($e_q_id);
@@ -477,13 +472,16 @@ class ExmFacultyController extends \BaseController {
 
     }
 
+// till now all ok
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// starting just now
+
+
     public function evaluateExm()
     {
         echo "Evaluate";
 
     }
-
-
 
 
 /* - - - - - - - - - - - - - - -  - - - - - -  - VERSION : 1 - - - - - - - - - - - - - - - - - - - - - - - - - */

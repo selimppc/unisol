@@ -1,9 +1,7 @@
 @extends('layouts.layout')
-
 @section('sidebar')
     @include('layouts._sidebar_faculty')
 @stop
-
 @section('content')
 {{--<a class="pull-right btn btn-xs btn-primary" href="{{ URL::route('admission.faculty.admission-test')}}"> <i class="fa fa-arrow-circle-left"></i> Go Back </a>--}}
     <h2> Question Paper</h2>
@@ -86,7 +84,6 @@
                       </tbody>
                     </table>
      {{--{{ Form::close() }}--}}
-
 
 <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog" style="z-index:1050">

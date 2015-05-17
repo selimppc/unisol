@@ -29,7 +29,7 @@
                            <tr>
                                <td>Status :</td>
                                <td>
-                                   {{ ucfirst($assign_exm_qp->s_status) }} as {{ "Setter" }}
+                                   {{ ucfirst($assign_exm_qp->s_status) }} as {{ "Setter" }} </br>
                                    {{ ucfirst($assign_exm_qp->e_status) }} as {{ "Evaluator" }}
                                </td>
                            </tr>
@@ -53,8 +53,6 @@
                            </tr>
                     @endif
 
-
-
                 </table>
                 <small>Comment: </small>
 
@@ -63,14 +61,11 @@
                         <b><small>{{ User::FullName($comment->commented_by); }}</small></b>
                         As &nbsp; <b><small>{{  strtoupper(Role::RoleName($comment->commented_by)) }} </small></b><br>
 
-
                       @if( $assign_exm_qp->s_faculty_user_id == Auth::user()->get()->id )
                               <strong>{{ User::FullName($assign_exm_qp->s_faculty_user_id) }}</strong>,
                       @elseif( $assign_exm_qp->e_faculty_user_id == Auth::user()->get()->id )
                               <strong>{{ User::FullName($assign_exm_qp->e_faculty_user_id) }}</strong>,
                       @endif
-
-
                       &nbsp; &nbsp; &nbsp; {{ $comment->comment }}
 
                     </p>

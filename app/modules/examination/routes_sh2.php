@@ -1,8 +1,4 @@
 <?php
-//AMW ROUTE CONFIGURATION
-
-
-
 
 //FACULTY ROUTE CONFIGURATION
 Route::any('faculty/examination-list',[
@@ -29,13 +25,11 @@ Route::any('faculty/examination-list/view-examiner/{id}/{exm_list_id}',[
     'as' =>'faculty.examination-list.view-examiner',
     'uses' => 'ExmFacultyController@viewExaminer'
 ]);
-//ok
 
 Route::any('faculty/examination-list/save-examiner-comment',[
     'as' =>'faculty.examination-list.save-examiner-comment',
     'uses' => 'ExmFacultyController@saveExaminerComment'
 ]);
-
 
 Route::any('faculty/exm-question-paper/{exm_list_id}',[
     'as' =>'faculty.exm-question-paper',
@@ -47,7 +41,6 @@ Route::any('faculty/exm-question-paper/view-exm-question-paper/{exm_question_id}
     'uses' => 'ExmFacultyController@viewExmQuestionPaper'
 ]);
 
-
 //Route::any('faculty/assign-exm-faculty-setter/{e_q_id}',[
 //    'as' => 'faculty.assign-exm-faculty-setter',
 //    'uses' => 'ExmFacultyController@AssignExmFacultySetter'
@@ -58,15 +51,10 @@ Route::any('faculty/exm-question-paper/view-exm-question-paper/{exm_question_id}
 //    'uses' => 'ExmFacultyController@AssignExmFacultyEvaluator'
 //]);
 
-
-
-
-
 Route::any('faculty/examination-quest-paper-item/add-exm-quest-paper-item/{exm_question_id}',[
     'as' =>'faculty.examination-quest-paper-item.add-exm-quest-paper-item',
     'uses' => 'ExmFacultyController@addExaminationModuleQuestionPaperItem'
 ]);
-
 
 Route::any('faculty/exm-quest-paper-item/store-exm-quest-paper-item',[
     'as' =>'faculty.examination-quest-paper-item.store-exm-quest-paper-item',
@@ -78,40 +66,35 @@ Route::any('faculty/exm-question-paper/view-exm-questions-items/{exm_question_id
     'uses' => 'ExmFacultyController@viewExmQuestionsItems'
 ]);
 
-// still working on it|
-
 
 Route::any('faculty/exm-question-papers/specific-exm-question-view/{e_q_i_id}',[
     'as' => 'faculty.exm-question-papers.specific-exm-question-view',
     'uses' => 'ExmFacultyController@viewSpecificExmQuestionItems'
 ]);
-//ok
 
 Route::any('faculty/exm-question-papers/specific-exm-question-edit/{e_q_i_id}',[
     'as' => 'faculty.exm-question-papers.specific-exm-question-edit',
     'uses' => 'ExmFacultyController@editSpecificExmQuestionItems'
 ]);
-//ok
 
 Route::any('faculty/exm-question-papers/specific-exm-question-update/{e_q_i_id}',[
     'as' => 'faculty.exm-question-papers.specific-exm-question-update',
     'uses' => 'ExmFacultyController@updateSpecificExmQuestionItems'
 ]);
 
-
-
-
 Route::any('faculty/exm-question-paper/assign-exm-question-comment/{e_q_id}',[
     'as' =>'faculty.exm-question-paper.assign-exm-question-comment',
     'uses' => 'ExmFacultyController@assignExmQuestionPaper'
 ]);
 
-
-
 Route::any('faculty/exm-question-paper/save-comment/{exm_question_id}',[
     'as' =>'faculty.exm-question-paper.save-comment',
     'uses' => 'ExmFacultyController@saveComment'
 ]);
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// still working on it ->>
+
 
 
 Route::any('faculty/exm-question-paper/evaluate/{exm_question_id}',[
