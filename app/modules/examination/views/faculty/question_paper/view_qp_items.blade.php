@@ -21,30 +21,30 @@
                                  </tr>
                       </thead>
                       <tbody>
-                          {{--@foreach($view_adm_qp_items as $view_adm_qp_items_list)--}}
-                                {{--<tr>--}}
-                                    {{--<td><input type="checkbox" name="id[]" class="myCheckbox" value="{{ $view_adm_qp_items_list['id'] }}"></td>--}}
+                          @foreach($view_exm_qp_items as $view_qp_items)
+                                <tr>
+                                    <td><input type="checkbox" name="id[]" class="myCheckbox" value="{{ $view_qp_items['id'] }}"></td>
 
-                                    {{--<td>{{ $view_adm_qp_items_list->title }}</td>--}}
+                                    <td>{{ $view_qp_items->title }}</td>
 
-                                    {{--<td>--}}
-                                        {{--@if($view_adm_qp_items_list->question_type == 'text')--}}
-                                          {{--Descriptive--}}
-                                        {{--@elseif($view_adm_qp_items_list->question_type == "radio")--}}
-                                          {{--MCQ / Single--}}
-                                        {{--@else--}}
-                                          {{--MCQ / Multiple--}}
-                                        {{--@endif--}}
-                                    {{--</td>--}}
+                                    <td>
+                                        @if($view_qp_items->question_type == 'text')
+                                          Descriptive
+                                        @elseif($view_qp_items->question_type == "radio")
+                                          MCQ / Single
+                                        @else
+                                          MCQ / Multiple
+                                        @endif
+                                    </td>
 
-                                    {{--<td>{{ $view_adm_qp_items_list->marks }}</td>--}}
+                                    <td>{{ $view_qp_items->marks }}</td>
 
-                                    {{--<td>--}}
-                                        {{--<a href="{{ URL::route('admission.faculty.question-papers.specific-question-view',['id'=>$view_adm_qp_items_list->id]) }}" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modal">View</a>--}}
-                                        {{--<a href="{{ URL::route('admission.faculty.question-papers.specific-question-edit',['id'=>$view_adm_qp_items_list->id]) }}" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modal" >Edit</a>--}}
-                                    {{--</td>--}}
-                                {{--</tr>--}}
-                          {{--@endforeach--}}
+                                    <td>
+                                        <a href="{{ URL::route('faculty.exm-question-papers.specific-exm-question-view',['e_q_i_id'=>$view_qp_items->id]) }}" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modal">View</a>
+                                        <a href="{{ URL::route('faculty.exm-question-papers.specific-exm-question-edit',['e_q_i_id'=>$view_qp_items->id]) }}" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modal" >Edit</a>
+                                    </td>
+                                </tr>
+                          @endforeach
                       </tbody>
                     </table>
 

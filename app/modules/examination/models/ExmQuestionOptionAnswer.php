@@ -7,16 +7,16 @@ class ExmQuestionOptionAnswer extends \Eloquent
 
     private $errors;
 
-    private $rules = array(
+    protected $fillable = [
+        'exm_question_items_id', 'title', 'answer',
+    ];
 
+    private $rules = array(
+        'exm_question_items_id' => 'required|integer',
         'title'  => 'required',
         'answer' => 'required',
 
-
     );
-
-
-
 
     public function validate($data)
     {
@@ -36,6 +36,11 @@ class ExmQuestionOptionAnswer extends \Eloquent
     public function errors()
     {
         return $this->errors;
+    }
+
+    //TODO : Model Relationship
+    public function relExmQuestionItems(){
+        return $this->belongsTo('ExmQuestionItems', 'exm_question_items_id', 'id');
     }
 
 

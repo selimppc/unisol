@@ -33,13 +33,10 @@ class AdmQuestionOptAns extends Eloquent{
         return $this->errors;
     }
 
-
     //TODO : Model Relationship
     public function relAdmQuestionItems(){
         return $this->belongsTo('AdmQuestionItems', 'adm_question_items_id', 'id');
     }
-
-
 
     // TODO : user info while saving data into table
     public static function boot(){
