@@ -177,6 +177,16 @@ Route::group(['prefix' => 'inventory'], function() {
         "uses" => "InvRequisitionHeadController@ajaxGetProductAutoComplete"
     ]);
 
+    Route::any("store-requisition-detail", [
+        "as"   => "store-requisition-detail",
+        "uses" => "InvRequisitionHeadController@store_requisition_detail"
+    ]);
+
+    Route::any("ajax-delete-req-detail/{id}", [
+        "as"   => "ajax-delete-req-detail",
+        "uses" => "InvRequisitionHeadController@ajax_delete_req_detail"
+    ]);
+
 
 
 });

@@ -131,7 +131,8 @@ class InvRequisitionHeadController extends \BaseController {
 
     public function detail_requisition($req_id){
         $req_head = InvRequisitionHead::find($req_id);
-        return View::make('inventory::requisition_detail.add_edit', compact('req_id', 'req_head'));
+        $req_dt = InvRequisitionDetail::where('inv_requisition_head_id', $req_id)->get();
+        return View::make('inventory::requisition_detail.add_edit', compact('req_id', 'req_head', 'req_dt'));
     }
 
     // AJax Product Search
@@ -150,9 +151,42 @@ class InvRequisitionHeadController extends \BaseController {
                 'id' => $query->id,
                 'rate'=>$query->cost_price ,
                 'unit' =>$query->purchase_unit,
+                'name' => $query->title
             ];
         }
         return Response::json($results);
+    }
+
+
+    public function store_requisition_detail(){
+        $data = Input::all();
+        $model = new InvRequisitionDetail();
+        DB::beginTransaction();
+        try{
+            $model->create($data);
+            DB::commit();
+            Session::flash('message', 'Success !');
+        }catch ( Exception $e ){
+            //If there are any exceptions, rollback the transaction`
+            DB::rollback();
+            Session::flash('danger', 'Failed !');
+        }
+        return Redirect::back();
+    }
+
+    public function ajax_delete_req_detail($id){
+        $id = Input::get('id');
+        $model = InvRequisitionDetail::find($id);
+        DB::beginTransaction();
+        try{
+            $model->destroy();
+            DB::commit();
+            return Response::json(" Successfully Deleted");
+        }catch ( Exception $e ){
+            //If there are any exceptions, rollback the transaction`
+            DB::rollback();
+            return Response::json("  Can not delete !");
+        }
     }
 
 
