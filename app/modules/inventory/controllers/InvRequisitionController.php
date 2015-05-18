@@ -146,7 +146,9 @@ class InvRequisitionHeadController extends \BaseController {
      *  =====================================================================================
      */
 
-
+    /*
+     * detail of requisition item(s)
+     */
     public function detail_requisition($req_id){
         $req_head = InvRequisitionHead::find($req_id);
         $req_dt = InvRequisitionDetail::where('inv_requisition_head_id', $req_id)->get();
@@ -176,6 +178,10 @@ class InvRequisitionHeadController extends \BaseController {
     }
 
 
+    /*
+     * Store Requisition Detail products
+     *
+     */
     public function store_requisition_detail(){
         $data = Input::all();
         for($i = 0; $i < count(Input::get('inv_product_id')) ; $i++){
@@ -203,6 +209,11 @@ class InvRequisitionHeadController extends \BaseController {
         return Redirect::back();
     }
 
+
+    /*
+     * $id = Requisition Detail ID
+     *
+     */
     public function ajax_delete_req_detail($id){
         $id = Input::get('id');
         DB::beginTransaction();
