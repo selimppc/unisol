@@ -210,7 +210,7 @@ Route::any('admission/amw/batch-adm-test-subject/{batch_id}',[
 ]);
 
 
-Route::any('admission/amw/batch-adm-test-subject/view_admtest_subject/{id}', [
+Route::any('admission/amw/batch-adm-test-subject/view_admtest_subject/{id}/{batch_id}', [
     'as' => 'admission.amw.batch-adm-test-subject.view_admtest_subject',
     'uses' => 'AdmAmwController@viewBatchAdmTestSubject'
 ]);

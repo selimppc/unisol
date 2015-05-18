@@ -787,11 +787,8 @@ class AdmAmwController extends \BaseController
      */
     public function batchIndex($degree_id)
     {
-        $batch = Batch::with('relVDegree')->where('degree_id', '=', $degree_id)->latest('id')->paginate(10);
-        //$dpg_list = array('' => 'Select Degree Program ') + Degree::DegreeProgramGroup();
-        //$year_list = array('' => 'Year ') + Year::lists('title', 'id');
-        //$department_list = array('' => 'Department ') + Department::lists('title', 'id');
-        //print_r($batch);exit;
+        $batch = Batch::with('relVDegree', 'relYear', 'relSemester')->where('degree_id', '=', $degree_id)->latest('id')->paginate(10);
+
         return View::make('admission::amw.batch.index',
             compact('batch', 'degree_id'));
     }
@@ -802,8 +799,8 @@ class AdmAmwController extends \BaseController
      */
     public function batchShow($id)
     {
-        $b_m_course = Batch::find($id);
-        return View::make('admission::amw.batch.show',compact('b_m_course'));
+        $batch = Batch::with('relVDegree', 'relYear', 'relSemester')->find($id);
+        return View::make('admission::amw.batch.view',compact('batch'));
     }
 
     /**
@@ -860,13 +857,13 @@ class AdmAmwController extends \BaseController
      */
     public function batchEdit($id)
     {
-        $batch = Batch::find($id);
-        $degree = AdmVDegree::find($batch->degree_id);
+        $batch = Batch::with('relVDegree')->find($id);
+        //$degree = AdmVDegree::find($batch->degree_id);
         $dpg_list = array('' => 'Select Degree Program') + Degree::DegreeProgramGroup();
         $year_list = array('' => 'Select Year ') + Year::lists('title', 'id');
         $semester_list = array('' => 'Select Semester ') + Semester::lists('title', 'id');
 
-        return View::make('admission::amw.batch.edit',compact('batch','dpg_list','year_list','semester_list', 'degree'));
+        return View::make('admission::amw.batch.edit',compact('batch','dpg_list','year_list','semester_list'));
     }
 
     /**
@@ -931,11 +928,11 @@ class AdmAmwController extends \BaseController
      * @param $id
      * @return mixed
      */
-    public function viewBatchAdmTestSubject($id)
+    public function viewBatchAdmTestSubject($id, $batch_id)
     {
-        $view_adm_test_subject = BatchAdmtestSubject::with('relAdmTestSubject')->find($id);
-        $batch = Batch::with('relVDegree')->find($id);
-        return View::make('admission::amw.batch_adm_test_subject.view',compact('view_adm_test_subject', 'batch'));
+        $adm_test_subject = BatchAdmtestSubject::with('relAdmTestSubject')->find($id);
+        $batch = Batch::with('relVDegree')->find($batch_id);
+        return View::make('admission::amw.batch_adm_test_subject.view',compact('adm_test_subject', 'batch'));
     }
 
     /**
@@ -947,7 +944,7 @@ class AdmAmwController extends \BaseController
         $subject_id_result = AdmTestSubject::lists('title', 'id');
         $batch = Batch::with('relVDegree', 'relSemester', 'relYear')->find($batch_id);
 
-        return View::make('admission::amw.batch_adm_test_subject._form',compact('batch_id','degree_name','subject_id_result', 'batch'));
+        return View::make('admission::amw.batch_adm_test_subject._form',compact('batch_id','subject_id_result', 'batch'));
     }
 
     /**
@@ -1150,6 +1147,7 @@ class AdmAmwController extends \BaseController
             $admission_test_home = BatchAdmtestSubject::with('relBatch','relBatch.relDegree',
                 'relBatch.relDegree.relDepartment','relBatch.relYear','relBatch.relSemester')->groupBy('batch_id')->get();
         }
+
         $year_id = array('' => 'Select Year ') + Year::lists('title', 'id');
         $semester_id = array('' => 'Select Semester ') + Semester::lists('title', 'id');
 
@@ -1157,7 +1155,7 @@ class AdmAmwController extends \BaseController
         Input::flash();
 
         return View::make('admission::amw.adm_test_home.index',
-            compact('admission_test_home','admission_test_batch','year_id','semester_id'));
+            compact('admission_test_home','year_id','semester_id'));
     }
 
 
@@ -1959,7 +1957,6 @@ class AdmAmwController extends \BaseController
         $batchWaiver = BatchWaiver::with('relWaiver')->where('id', '=', $bw_id)->first();
         $timeDependent = WaiverConstraint::where('batch_waiver_id','=',$bw_id)->where('is_time_dependent','=', 1)->get();
         $gpaDependent = WaiverConstraint::where('batch_waiver_id','=',$bw_id)->where('is_time_dependent','=', 0)->get();
-        //print_r($waiverConstraint);exit;
         return View::make('admission::amw.waiver_constraint.index', compact('bw_id', 'batchWaiver','timeDependent', 'gpaDependent'));
     }
 
@@ -1979,31 +1976,43 @@ class AdmAmwController extends \BaseController
     public function waiverConstraintStore()
     {
         $data = Input::all();
-
         $model = new WaiverConstraint();
-        $model->start_date = Input::get('start_date');
-        $model->end_date = Input::get('end_date');
-        $namestart = $model->start_date;
-        $nameend = $model->end_date;
-        $model->level_of_education = Input::get('level_of_education');
-        $model->gpa = Input::get('gpa');
-        $lavelOfEdu = $model->level_of_education;
-        $gpa = $model->gpa;
+        $namestart = Input::get('start_date');
+
+        $exist_message = '';
+        if(isset($namestart) and $namestart != ''){
+            $count = DB::select('select count(id) as cnt from waiver_constraint where batch_waiver_id = ? and is_time_dependent=?', array($data['batch_waiver_id'], 1));
+            if($count[0]->cnt > 1)
+                $exist_message = "Already time constraint is added.";
+
+            $nameend = Input::get('end_date');
+        }else{
+            $count = DB::select('select count(id) as cnt from waiver_constraint where batch_waiver_id = ? and level_of_education = ? and is_time_dependent=?', array($data['batch_waiver_id'], $data['level_of_education'], 0));
+            if($count[0]->cnt > 1)
+                $exist_message = $data['level_of_education']." level constraint is added already.";
+
+            $lavelOfEdu = Input::get('level_of_education');
+            $gpa = Input::get('gpa');
+        }
+
+        if($exist_message){
+            Session::flash('info', $exist_message);
+            return Redirect::back();
+        }
         if($model->validate($data)){
             DB::beginTransaction();
             try {
-                 $model->create($data);
-                 if($namestart != null)
-                 {
-                    Session::flash('message',"Successfully Added StartDate: $namestart and EndDate: $nameend !");
-                 }else{
-                    Session::flash('message',"Successfully Added Level of Education: $lavelOfEdu and GPA: $gpa !");
-                 }
+                $model->create($data);
+                if ($namestart != null) {
+                    Session::flash('message', "Successfully Added StartDate: $namestart and EndDate: $nameend !");
+                } else {
+                    Session::flash('message', "Successfully Added Level of Education: $lavelOfEdu and GPA: $gpa !");
+                }
                 DB::commit();
             }catch ( Exception $e ) {
                 //If there are any exceptions, rollback the transaction
                 DB::rollback();
-                Session::flash('danger', "Level of Education  not added.Invalid Request!");
+                Session::flash('danger', "Invalid Request! Time constraint or gpa constraint is invalid.");
             }
         }else{
             $errors = $model->errors();

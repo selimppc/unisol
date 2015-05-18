@@ -12,11 +12,11 @@
         <div class="span9 well" style="font-size: large; margin-left: 40px">
             <h2><strong>Degree : </strong>{{ $batch->relVDegree->title}}</h2>
             <p>
-                <strong> Subject: </strong> {{ $view_adm_test_subject->relAdmTestSubject->title }} <br>
-                <strong> Description: </strong> {{ $view_adm_test_subject->description }}<br>
-                <strong> Marks: </strong> {{ $view_adm_test_subject->marks}}<br>
-                <strong> Qualifying Marks: </strong> {{ $view_adm_test_subject->qualify_marks }}<br>
-                <strong> Duration in Minute: </strong> {{ $view_adm_test_subject->duration }} <br>
+                <strong> Subject: </strong> {{ $adm_test_subject->relAdmTestSubject->title }} <br>
+                <strong> Description: </strong> {{ $adm_test_subject->description }}<br>
+                <strong> Marks: </strong> {{ $adm_test_subject->marks}}<br>
+                <strong> Qualifying Marks: </strong> {{ $adm_test_subject->qualify_marks }}<br>
+                <strong> Duration in Minute: </strong> {{ $adm_test_subject->duration }} <br>
 
             </p>
         </div>
