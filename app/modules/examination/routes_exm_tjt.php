@@ -55,7 +55,7 @@ Route::any('amw/view-exm-courses/{year_id}/{semester_id}',[
 ]);
 
 //Examiners
-Route::any('amw/examiners/{exm_exam_list_id}', [
+Route::any('amw/examiners/{exm_exam_list_id}/{year_id}/{semester_id}', [
     'as' => 'amw.examiners',
     'uses' => 'ExmAmwController@indexExaminers'
 ]);
@@ -65,9 +65,38 @@ Route::any('amw/examiners/create/{exm_exam_list_id}', [
     'uses' => 'ExmAmwController@createExaminers'
 ]);
 
-Route::any('amw/examiners/store', [
+Route::any('examination/amw/examiners/store', [
     'as' => 'amw.examiners.store',
     'uses' => 'ExmAmwController@storeExaminers'
 ]);
 
+Route::any('amw/revoke-examiners/{id}',[
+    'as' => 'amw.revoke-examiners',
+    'uses' => 'ExmAmwController@revokeExaminers'
+]);
+
+Route::any('amw/view-examiners/{id}', [
+    'as' => 'amw.view-examiners',
+    'uses' => 'ExmAmwController@viewExaminers'
+]);
+
+Route::any('amw/comments/examiners', [
+    'as' => 'amw.comments-examiners',
+    'uses' => 'ExmAmwController@commentsToExaminers'
+]);
+
+Route::any('amw/question-papers/{exm_exam_list_id}/{course_conduct_id}', [
+    'as' => 'amw.question-papers',
+    'uses' => 'ExmAmwController@indexQuestionPapers'
+]);
+
+Route::any('examination/amw/question-papers/create/{exm_exam_list_id}/{course_conduct_id}', [
+    'as' => 'amw.question-papers.create',
+    'uses' => 'ExmAmwController@createQuestionPapers'
+]);
+
+Route::any('amw/question-papers/store', [
+    'as' => 'amw.question-papers.store',
+    'uses' => 'ExmAmwController@storeQuestionPapers'
+]);
 

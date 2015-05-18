@@ -143,11 +143,12 @@ Route::group(['prefix' => 'inventory'], function() {
         "as"   => "requisition-store",
         "uses" => "InvRequisitionHeadController@store_requisition"
     ]);
-    Route::post("requisition-show", [
+
+    Route::get("requisition-show/{req_id}", [
         "as"   => "requisition-show",
         "uses" => "InvRequisitionHeadController@show_requisition"
     ]);
-    Route::post("requisition-edit", [
+    Route::get("requisition-edit/{req_id}", [
         "as"   => "requisition-edit",
         "uses" => "InvRequisitionHeadController@edit_requisition"
     ]);
@@ -155,15 +156,39 @@ Route::group(['prefix' => 'inventory'], function() {
         "as"   => "requisition-destroy",
         "uses" => "InvRequisitionHeadController@destroy_requisition"
     ]);
+    Route::post("batch-requisition-destroy", [
+        "as"   => "batch-requisition-destroy",
+        "uses" => "InvRequisitionHeadController@batch_delete_requisition"
+    ]);
+
+    Route::post("create/purchase-order", [
+        "as"   => "create/purchase-order",
+        "uses" => "InvRequisitionHeadController@create_purchase_order"
+    ]);
 
     /*
      *  ====================================================================================
-     *  Requisition  Area
+     *  Requisition Detail  Area
      *  =====================================================================================
      */
     Route::any("requisition-detail/{req_id}", [
         "as"   => "requisition-detail",
         "uses" => "InvRequisitionHeadController@detail_requisition"
+    ]);
+
+    Route::any("ajax/get-product-auto-complete", [
+        "as"   => "ajax/get-product-auto-complete",
+        "uses" => "InvRequisitionHeadController@ajaxGetProductAutoComplete"
+    ]);
+
+    Route::any("store-requisition-detail", [
+        "as"   => "store-requisition-detail",
+        "uses" => "InvRequisitionHeadController@store_requisition_detail"
+    ]);
+
+    Route::any("ajax-delete-req-detail/{id}", [
+        "as"   => "ajax-delete-req-detail",
+        "uses" => "InvRequisitionHeadController@ajax_delete_req_detail"
     ]);
 
 

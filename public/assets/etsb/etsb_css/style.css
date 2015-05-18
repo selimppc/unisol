@@ -3572,3 +3572,35 @@ fieldset[disabled] .btn-vk.active {
     border: 1px solid #aaa;
     opacity: 1;
 }
+
+
+/* Autocomplete UI */
+.ui-autocomplete{
+    z-index:10000;
+    background: transparent;
+}
+.ui-menu-item{
+    float: left;
+    width: 41%;
+    margin-left: -3%;
+    background: #efefef;
+    display: block;
+    padding: 3px 15px;
+    border-radius: 3px;
+    clear: both;
+    font-weight: normal;
+    line-height: 18px;
+    color: #555555;
+    white-space: nowrap;
+    border-bottom: 1px solid white;
+}
+.ui-menu-item:hover{
+    cursor: pointer;
+    color: #ffffff;
+    text-decoration: none;
+    background-color: #0088cc;
+    border-radius: 0px;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    background-image: none;
+}

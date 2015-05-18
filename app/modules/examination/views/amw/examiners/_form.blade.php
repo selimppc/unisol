@@ -51,5 +51,6 @@
           {{Form::close()}}
       </div>
  </div>
+ <p>&nbsp;</p>
 
  {{ HTML::script('assets/js/custom.js')}}

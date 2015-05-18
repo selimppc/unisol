@@ -1,21 +1,19 @@
 <?php
-use Illuminate\Auth\UserTrait;
-use Illuminate\Auth\UserInterface;
-use Illuminate\Auth\Reminders\RemindableTrait;
-use Illuminate\Auth\Reminders\RemindableInterface;
 
-class AdmQuestionOptAns extends Eloquent{
-
+class ExmQuestionEvaluation extends \Eloquent
+{
     //TODO :: model attributes and rules and validation
-    protected $table = 'adm_question_opt_ans';
+    protected $table = 'exm_question_evaluation';
     protected $fillable = [
-        'adm_question_items_id', 'title', 'answer',
+        'exm_question_id','exm_question_items_id', 'student_user_id', 'marks', 'note'
     ];
+
     private $errors;
     private $rules = [
-        'adm_question_items_id' => 'required|integer',
-        'title' => 'required',
-        'answer' => 'required',
+        'student_user_id' => 'integer',
+        'exm_question_id' => 'integer',
+        'exm_question_items_id' => 'integer',
+        'marks' => 'numeric',
     ];
 
     public function validate($data)
@@ -33,10 +31,29 @@ class AdmQuestionOptAns extends Eloquent{
         return $this->errors;
     }
 
+
     //TODO : Model Relationship
-    public function relAdmQuestionItems(){
-        return $this->belongsTo('AdmQuestionItems', 'adm_question_items_id', 'id');
+    public function relStudentUser(){
+        return $this->belongsTo('User', 'student_user_id', 'id');
     }
+
+    public function relExmQuestion(){
+        return $this->belongsTo('ExmQuestion', 'exm_question_id', 'id');
+    }
+    public function relExmQuestionItems(){
+        return $this->belongsTo('ExmQuestionItems', 'exm_question_items_id', 'id');
+    }
+
+    public function relExmQuestionAnsText(){
+        return $this->HasMany('ExmQuestionAnsText');
+    }
+    public function relExmQuestionAnsRadio(){
+        return $this->HasMany('ExmQuestionAnsRadio');
+    }
+    public function relExmQuestionAnsCheckbox(){
+        return $this->HasMany('ExmQuestionAnsCheckbox');
+    }
+
 
     // TODO : user info while saving data into table
     public static function boot(){
@@ -61,4 +78,6 @@ class AdmQuestionOptAns extends Eloquent{
     //TODO : Scope Area
 
 
-} 
+
+
+}

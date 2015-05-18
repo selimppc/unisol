@@ -4,17 +4,16 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class AdmQuestionOptAns extends Eloquent{
+class ExmQuestionAnsRadio extends Eloquent{
 
     //TODO :: model attributes and rules and validation
-    protected $table = 'adm_question_opt_ans';
+    protected $table = 'exm_question_ans_radio';
     protected $fillable = [
-        'adm_question_items_id', 'title', 'answer',
+        'exm_question_evaluation_id', 'answer',
     ];
     private $errors;
     private $rules = [
-        'adm_question_items_id' => 'required|integer',
-        'title' => 'required',
+        'exm_question_evaluation_id' => 'required|integer',
         'answer' => 'required',
     ];
 
@@ -33,10 +32,12 @@ class AdmQuestionOptAns extends Eloquent{
         return $this->errors;
     }
 
+
     //TODO : Model Relationship
-    public function relAdmQuestionItems(){
-        return $this->belongsTo('AdmQuestionItems', 'adm_question_items_id', 'id');
+    public function relExmQuestionEvaluation(){
+        return $this->belongsTo('ExmQuestionEvaluation', 'exm_question_evaluation_id', 'id');
     }
+
 
     // TODO : user info while saving data into table
     public static function boot(){
