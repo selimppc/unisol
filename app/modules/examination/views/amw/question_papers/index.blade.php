@@ -27,33 +27,48 @@
                        </tr>
                 </thead>
                 <tbody>
-                    @if(isset($adm_question))
-                        @foreach($adm_question as $values)
+                    @if(isset($exm_question))
+                        @foreach($exm_question as $values)
                             <tr>
                                 <td><input type="checkbox" name="id[]" class="myCheckbox" value="{{ $values->id }}"></td>
+
                                 <td> {{isset( $values->title)?  $values->title :''}} </td>
+
                                 <td>{{date("d-m-Y", strtotime((isset( $values->deadline)) ?  $values->deadline : '') ) }}</td>
-                                <td>{{isset( $values->relBatchAdmtestSubject->relAdmtestSubject->title) ?  $values->relBatchAdmtestSubject->relAdmtestSubject->title: ''}}</td>
+
+                                <td>{{isset( $values->relCourseConduct->relCourse->relSubject->title) ?  $values->relCourseConduct->relCourse->relSubject->title: ''}}</td>
+
                                 <td> {{isset($values->relSUser->relUserProfile->id)? $values->relSUser->relUserProfile->first_name." ". $values->relSUser->relUserProfile->middle_name." ".$values->relSUser->relUserProfile->last_name :''}}
-                                    <br> {{ isset($values->s_status) ? ucfirst($values->s_status) : '' }}
-                                    <a href="{{ URL::route('admission.amw.assign-faculty-setter', [ 'q_id'=>$values->id ]) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#modal" data-placement="left" title="Assign Faculty" href="#"> Assign </a>
+
+                                    <br> ({{ isset($values->s_status) ?ucfirst($values->s_status) : '' }})
+                                    @if($values->s_status == 'assigned')
+                                        <a href="{{ URL::route('amw.assign-setter', [ 'q_id'=>$values->id,'exm_exam_list_id'=>$values->exm_exam_list_id ]) }}" class="btn bg-teal btn-xs" data-toggle="modal" data-target="#questions" data-placement="left" title="Assign Faculty" ><b style="color: #000000">Re-Assign</b></a>
+                                    @else
+                                        <a href="{{ URL::route('amw.assign-setter', [ 'q_id'=>$values->id,'exm_exam_list_id'=>$values->exm_exam_list_id ]) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#questions" data-placement="left" title="Assign Faculty"> Assign </a>
+                                    @endif
                                 </td>
+
                                 <td> {{isset($values->relEUser->relUserProfile->id)? $values->relEUser->relUserProfile->first_name." ". $values->relEUser->relUserProfile->middle_name." ".$values->relEUser->relUserProfile->last_name :''}}
-                                    <br> {{ isset($values->e_status) ? ucfirst($values->e_status) : '' }}
-                                    <a href="{{ URL::route('admission.amw.assign-faculty-evaluator', [ 'q_id'=>$values->id ]) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#modal" data-placement="left" title="Assign Faculty" href="#"> Assign </a>
+                                    <br> ({{ isset($values->e_status) ? ucfirst($values->e_status) : '' }})
+                                    @if($values->s_status == 'assigned')
+                                       <a href="{{ URL::route('amw.assign-evaluator', [ 'q_id'=>$values->id ,'exm_exam_list_id'=>$values->exm_exam_list_id]) }}" class="btn  bg-teal btn-xs" data-toggle="modal" data-target="#questions" data-placement="left" title="Assign Faculty" href="#"><b style="color: #000000">Re-Assign</b></a>
+                                    @else
+                                       <a href="{{ URL::route('amw.assign-evaluator', [ 'q_id'=>$values->id ,'exm_exam_list_id'=>$values->exm_exam_list_id]) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#questions" data-placement="left" title="Assign Faculty" href="#"> Assign </a>
+                                    @endif
+
                                 </td>
+
                                 <td> {{isset($values->status) ? ucfirst($values->status) : '' }} </td>
+
                                 <td>
                                    @if( strtolower($values->status) == "close" )
-                                            <a href="{{ URL::route('admission.amw.view-admtest-question-paper', [ 'id'=>$values->id ]) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#modal" data-placement="left" title="Show" href="#"> View </a>
-                                            <a href="{{ URL::route('admission.amw.edit-admtest-question-paper', [ 'id'=>$values->id ]) }}" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modal" data-placement="left" title="Edit" href="#"> Edit </a>
+                                            <a href="{{ URL::route('amw.view-question', [ 'id'=>$values->id ]) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#questions" data-placement="left" title="Show" href="#"> View </a>
+                                            <a href="{{ URL::route('amw.edit-question', [ 'id'=>$values->id,'exm_exam_list_id'=>$values->exm_exam_list_id,'course_conduct_id'=>$values->course_conduct_id ]) }}" class="btn btn-success btn-xs" data-toggle="modal" data-target="#questions" data-placement="left" title="Edit" href="#"> Edit </a>
                                             <a href="{{ URL::route('admission.amw.view-questions-by-paper', [ 'q_id'=>$values->id ]) }}" class="btn btn-default btn-xs" title="View Questions" > VQ(s)</a>
                                    @else
-                                            <a href="{{ URL::route('admission.amw.view-admtest-question-paper', [ 'id'=>$values->id ]) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#modal" data-placement="left" title="Show" href="#"> View </a>
-                                            <a href="{{ URL::route('admission.amw.edit-admtest-question-paper', [ 'id'=>$values->id ]) }}" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modal" data-placement="left" title="Edit" href="#"> Edit </a>
-                                            <a href="{{ URL::route('admission.amw.view-questions-by-paper', [ 'q_id'=>$values->id ]) }}" class="btn btn-default btn-xs" title="View Questions" > VQ(s)</a>
-                                            {{--<a href="{{ URL::route('admission.amw.re-assign-faculty', [ 'q_id'=>$values->id ]) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#modal" data-placement="left" title="Assign Faculty" href="#"> RAssign </a>--}}
-
+                                            <a href="{{ URL::route('amw.view-question', [ 'id'=>$values->id ]) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#questions" data-placement="left" title="Show" href="#"> View </a>
+                                            <a href="{{ URL::route('amw.edit-question', [ 'id'=>$values->id ,'exm_exam_list_id'=>$values->exm_exam_list_id,'course_conduct_id'=>$values->course_conduct_id]) }}" class="btn btn-success btn-xs" data-toggle="modal" data-target="#questions" data-placement="left" title="Edit" href="#"> Edit </a>
+                                            <a href="{{ URL::route('amw.question-list', [ 'q_id'=>$values->id ]) }}" class="btn btn-default btn-xs" title="View Questions" > VQ(s)</a>
                                    @endif
                                 </td>
                             </tr>
@@ -62,6 +77,7 @@
                 </tbody>
              </table>
           {{form::close() }}
+           {{$exm_question->links()}}
 
           <p>&nbsp;</p>
       </div>

@@ -5,13 +5,10 @@
 </div>
 
 <div style="padding: 2%; width: 99%;">
-<div class="modal-body" >
-
-{{--    {{Form::model($model, ['route'=> ['detail-requisition', $model->id], 'method' => 'patch', 'role' => 'form', 'files' => true,])}}--}}
-{{--            {{ Form::hidden('id', $model->id) }}--}}
-            @include('inventory::requisition_detail._form')
-{{--    {{ Form::close() }}--}}
-
+<div class="modal-body " >
+{{Form::open(['route'=>'store-requisition-detail'])}}
+  @include('inventory::requisition_detail._form')
+{{ Form::close() }}
 </div>
 </div>
 

@@ -3592,6 +3592,7 @@ fieldset[disabled] .btn-vk.active {
     line-height: 18px;
     color: #555555;
     white-space: nowrap;
+    border-bottom: 1px solid white;
 }
 .ui-menu-item:hover{
     cursor: pointer;

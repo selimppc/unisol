@@ -156,6 +156,10 @@ Route::group(['prefix' => 'inventory'], function() {
         "as"   => "requisition-destroy",
         "uses" => "InvRequisitionHeadController@destroy_requisition"
     ]);
+    Route::post("batch-requisition-destroy", [
+        "as"   => "batch-requisition-destroy",
+        "uses" => "InvRequisitionHeadController@batch_delete_requisition"
+    ]);
 
     Route::post("create/purchase-order", [
         "as"   => "create/purchase-order",
@@ -175,6 +179,16 @@ Route::group(['prefix' => 'inventory'], function() {
     Route::any("ajax/get-product-auto-complete", [
         "as"   => "ajax/get-product-auto-complete",
         "uses" => "InvRequisitionHeadController@ajaxGetProductAutoComplete"
+    ]);
+
+    Route::any("store-requisition-detail", [
+        "as"   => "store-requisition-detail",
+        "uses" => "InvRequisitionHeadController@store_requisition_detail"
+    ]);
+
+    Route::any("ajax-delete-req-detail/{id}", [
+        "as"   => "ajax-delete-req-detail",
+        "uses" => "InvRequisitionHeadController@ajax_delete_req_detail"
     ]);
 
 

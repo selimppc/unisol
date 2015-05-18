@@ -41,7 +41,7 @@
                     <td>{{ $bats->duration }} &nbsp; Minutes</td>
 
                     <td>
-                          <a href="{{ URL::route('admission.amw.batch-adm-test-subject.view_admtest_subject', ['id'=>$bats->id])  }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#modal" data-placement="left" title="Show" href="#">View</a>
+                          <a href="{{ URL::route('admission.amw.batch-adm-test-subject.view_admtest_subject', ['id'=>$bats->id, 'batch_id'=>$bats->batch_id])  }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#modal" data-placement="left" title="Show" href="#">View</a>
                           <a href="{{ URL::route('admission.amw.batch-adm-test-subject.edit_admtest_subject', ['id'=>$bats->id, 'batch_id'=>$bats->batch_id])  }}" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modal" data-placement="left" title="Edit" href="#">Edit</a>
                     </td>
                 </tr>

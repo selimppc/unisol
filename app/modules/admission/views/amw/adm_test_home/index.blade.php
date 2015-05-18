@@ -51,24 +51,26 @@
              <tbody>
                 @if(isset($admission_test_home))
                  @foreach($admission_test_home as $values)
-                   <tr>
-                       <td><input type="checkbox" name="id[]" class="myCheckbox" value="{{ $values->id }}"></td>
-                       <td>{{ $values->relBatch->relDegree->relDegreeLevel->code.''.$values->relBatch->relDegree->relDegreeGroup->code.' In '.$values->relBatch->relDegree->relDegreeProgram->code }}</td>
-                       <td>{{ $values->relBatch->relDegree->relDepartment->title }}</td>
-                       <td>{{ $values->relBatch->batch_number }}</td>
-                       <td>{{ $values->relBatch->relYear->title }}</td>
-                       <td>{{ $values->relBatch->relSemester->title }}</td>
-                       <td>{{ $values->relBatch->relDegree->total_credit }}</td>
-                       <td >{{ $values->relBatch->relDegree->duration }}</td>
-                       <td> QPE Status </td>
-                       <td>
-                          <a href="{{ URL::to('admission/amw/admission-test-examiner', [ 'year_id'=>$values->relBatch->year_id ,'semester_id'=>$values->relBatch->semester_id ,'batch_id'=>$values->batch_id ]) }}" class="btn btn-success btn-xs" data-toggle="tooltip" data-placement="bottom" title="Examiner">EX</a>
-                          <a href="{{ URL::to('admission/amw/admission-test-question', [ 'batch_id'=>$values->batch_id ]) }}" class="btn btn-info btn-xs" data-toggle="tooltip" data-placement="bottom" title="Question Paper">QP</a>
-                          <a href="{{ URL::route('admission.amw.question-paper-evaluation', [ 'bats_id'=>$values->id ] ) }}" class="btn btn-success btn-xs" data-toggle="tooltip" data-placement="bottom" title="Question Paper Evaluation">QPE</a>
-                       </td>
-                   </tr>
+                     @if(isset($values->relBatch))
+                       <tr>
+                           <td><input type="checkbox" name="id[]" class="myCheckbox" value="{{ $values->id }}"></td>
+                           <td>{{ $values->relBatch->relDegree->relDegreeLevel->code.''.$values->relBatch->relDegree->relDegreeGroup->code.' In '.$values->relBatch->relDegree->relDegreeProgram->code }}</td>
+                           <td>{{ isset($values->relBatch->relDegree->relDepartment->title) ? $values->relBatch->relDegree->relDepartment->title : '' }}</td>
+                           <td>{{ isset($values->relBatch->batch_number) ? $values->relBatch->batch_number : '' }}</td>
+                           <td>{{ isset($values->relBatch->relYear->title) ? $values->relBatch->relYear->title : '' }}</td>
+                           <td>{{ isset($values->relBatch->relSemester->title)? $values->relBatch->relSemester->title : '' }}</td>
+                           <td>{{ isset($values->relBatch->relDegree->total_credit) ?$values->relBatch->relDegree->total_credit : '' }}</td>
+                           <td >{{ isset($values->relBatch->relDegree->duration) ? $values->relBatch->relDegree->duration : '' }}</td>
+                           <td> QPE Status </td>
+                           <td>
+                              <a href="{{ URL::to('admission/amw/admission-test-examiner', [ 'year_id'=>$values->relBatch->year_id ,'semester_id'=>$values->relBatch->semester_id ,'batch_id'=>$values->batch_id ]) }}" class="btn btn-success btn-xs" data-toggle="tooltip" data-placement="bottom" title="Examiner">EX</a>
+                              <a href="{{ URL::to('admission/amw/admission-test-question', [ 'batch_id'=>$values->batch_id ]) }}" class="btn btn-info btn-xs" data-toggle="tooltip" data-placement="bottom" title="Question Paper">QP</a>
+                              <a href="{{ URL::route('admission.amw.question-paper-evaluation', [ 'bats_id'=>$values->id ] ) }}" class="btn btn-success btn-xs" data-toggle="tooltip" data-placement="bottom" title="Question Paper Evaluation">QPE</a>
+                           </td>
+                       </tr>
+                     @endif
                  @endforeach
-                 @endif
+                @endif
              </tbody>
       </table>
   {{form::close() }}

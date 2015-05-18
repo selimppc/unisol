@@ -37,7 +37,9 @@
 
     </div>
 
-
+<p>
+    <b> Product Detail(s)</b>
+</p>
     <div class="row">
         <table id="example" class="table table-striped  table-bordered" >
             <thead>
