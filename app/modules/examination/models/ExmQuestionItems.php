@@ -46,6 +46,10 @@ class ExmQuestionItems extends \Eloquent
         return $this->HasMany('ExmQuestionOptionAnswer');
     }
 
+    public function relExmQuestionEvaluation(){
+        return $this->HasMany('ExmQuestionEvaluation');
+    }
+
 
 
     public function errors()
