@@ -7,7 +7,7 @@
     {{ Form::open(array('route'=>['admission.amw.admission-test.comments-re-assign',$question_data->id],'method' => 'POST')) }}
     {{Form::hidden('adm_question_id', $q_id )}}
     {{Form::hidden('examiner_type', 'evaluator' )}}
-    {{Form::hidden('commented_to', $question_data->s_faculty_user_id)}}
+    {{--{{Form::hidden('commented_to', $question_data->s_faculty_user_id)}}--}}
 
     <h5> <strong>Batch # </strong>{{ isset($batch->batch_number) ? $batch->batch_number : '' }} </h5>
     <h5>  <strong>Degree Name : </strong>

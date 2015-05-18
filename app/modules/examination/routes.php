@@ -100,10 +100,10 @@ Route::group(['prefix' => 'examination'], function() {
     //    'uses' => ''
     //]);
 
-    Route::any('amw/assign_faculty',[
-        'as' =>'examination.amw.assign_faculty',
-        'uses' => 'ExmAmwController@assign_faculty'
-    ]);
+//    Route::any('amw/assign_faculty',[
+//        'as' =>'examination.amw.assign_faculty',
+//        'uses' => 'ExmAmwController@assign_faculty'
+//    ]);
 
 //    Route::any('amw/examiners/{year_id}/{semester_id}/{course_management_id}/{acm_marks_dist_item_id}/{exm_exam_list_id}',[
 //        'as' =>'examination/amw/examiners',

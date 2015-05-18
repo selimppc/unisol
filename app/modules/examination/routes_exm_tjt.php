@@ -100,3 +100,40 @@ Route::any('amw/question-papers/store', [
     'uses' => 'ExmAmwController@storeQuestionPapers'
 ]);
 
+Route::any('amw/view-question/{id}', [
+    'as' => 'amw.view-question',
+    'uses' => 'ExmAmwController@viewQuestionPaper'
+]);
+
+Route::any('amw/edit-question/{id}/{exm_exam_list_id}/{course_conduct_id}', [
+    'as' => 'amw.edit-question',
+    'uses' => 'ExmAmwController@editQuestionPaper'
+]);
+
+Route::any('amw/update-question/{id}', [
+    'as' => 'amw.update-question',
+    'uses' => 'ExmAmwController@updateQuestionPaper'
+]);
+
+Route::any('amw/assign-setter/{q_id}/{exm_exam_list_id}',[
+    'as' => 'amw.assign-setter',
+    'uses' => 'ExmAmwController@assignSetter'
+]);
+
+Route::any('amw/assign-evaluator/{q_id}/{exm_exam_list_id}',[
+    'as' => 'amw.assign-evaluator',
+    'uses' => 'ExmAmwController@assignEvaluator'
+]);
+
+Route::any('amw/assign-examiner-comments/{id}',[
+    'as' => 'amw.assign-examiner-comments',
+    'uses' => 'ExmAmwController@assignExaminerWithComments'
+]);
+
+Route::any('amw/question-list/{id}', [
+    'as' => 'amw.question-list',
+    'uses' => 'ExmAmwController@questionList'
+]);
+
+
+
