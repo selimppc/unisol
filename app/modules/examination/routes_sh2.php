@@ -104,23 +104,17 @@ Route::any('faculty/exm-question-paper/evaluate-exm-questions/{exm_question_id}'
 ]);
 
 
+
+
 Route::any('faculty/exm-question-paper/evaluate-exm-questions-items/{exm_question_id}/{no_q}',[
     'as' => 'faculty.exm-question-paper.evaluate-exm-questions-items',
-    'uses' => 'ExmFacultyController@evaluateQuestionsitems'
+    'uses' => 'ExmFacultyController@evaluateExmQuestionsItems'
 ]);
 
 
 Route::any('faculty/exm-question-paper/store-evaluated-exm-questions',[
     'as' => 'faculty.exm-question-paper.store-evaluated-exm-questions',
     'uses' => 'ExmFacultyController@storeEvaluatedExmQuestionItems'
-]);
-
-
-
-
-Route::any('faculty/question-paper/re-evaluate-exm-questions-items/{id}',[
-    'as' => 'faculty.question-paper.re-evaluate-exm-questions-items',
-    'uses' => 'ExmFacultyController@reEvaluateExmQuestionsitems'
 ]);
 
 
