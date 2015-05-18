@@ -24,7 +24,7 @@ class InvRequisitionHeadController extends \BaseController {
     public function index_requisition()
     {
         $pageTitle = 'Requisition Lists';
-        $data = InvRequisitionHead::latest('id')->paginate('10');
+        $data = InvRequisitionHead::where('status', '!=','cancel')->latest('id')->paginate('10');
         return View::make('inventory::requisition_head.index', compact('pageTitle', 'data'));
     }
 
@@ -114,6 +114,24 @@ class InvRequisitionHeadController extends \BaseController {
 
 
     /*
+     * Mass / Batch Delete from Product Category Table
+     */
+    public function batch_delete_requisition()
+    {
+        DB::beginTransaction();
+        try{
+            InvRequisitionHead::whereIn('id', Request::get('id'))->update(['status'=> 'cancel']);
+            DB::commit();
+            Session::flash('message', 'Success !');
+        }catch( Exception $e ){
+            //If there are any exceptions, rollback the transaction`
+            DB::rollback();
+            Session::flash('danger', 'Failed !');
+        }
+        return Redirect::back();
+    }
+
+    /*
      * Create Purchase Order
      */
     public function create_purchase_order($req_id){
@@ -198,6 +216,8 @@ class InvRequisitionHeadController extends \BaseController {
             return Response::json("Can not delete !");
         }
     }
+
+
 
 
 }

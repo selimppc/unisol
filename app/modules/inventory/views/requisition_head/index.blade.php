@@ -17,13 +17,13 @@
            </div>
         </div>
 
-        {{Form::open([ 'route'=>'supplier-batch-delete' ])}}
+        {{Form::open([ 'route'=>'batch-requisition-destroy' ])}}
        <div class="box-body">
         <table id="example" class="table table-striped  table-bordered" >
             <thead>
-                  {{ Form::submit('Delete Items', ['class'=>'btn btn-danger btn-xs', 'id'=>'hide-button', 'style'=>'display:none', 'onclick'=> "return confirm('Are you sure you want to delete?')"])}}
+                  {{ Form::submit('Delete Items', ['class'=>'btn btn-danger btn-xs', 'id'=>'hide-button', 'style'=>'display:none', 'onclick'=> "return confirm('Are you sure you want to cancel?')"])}}
                 <tr>
-                    <th><input name="id" type="checkbox" id="checkbox" class="checkbox" value=""></th>
+                    <th><input type="checkbox" id="checkbox" class="checkbox" value=""></th>
                     <th> Requisition NO: </th>
                     <th> Supplier </th>
                     <th> Date </th>
@@ -37,9 +37,11 @@
             </thead>
             <tbody>
                 @foreach($data as $values)
-                 <tr>
+                 <tr style="{{$values->status=='approved' ? 'background-color: burlywood' : '' }}">
                     <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $values->id }}"></td>
-                    <td><b>{{ link_to_route('requisition-detail',$values->requisition_no,['req_id'=>$values->id], ['data-toggle'=>"modal", 'data-target'=>"#modal-pc"]) }}</b></td>
+                    <td><b>
+                        {{ link_to_route($values->status!="approved" ?'requisition-detail' : 'requisition-show',$values->requisition_no,['req_id'=>$values->id], ['data-toggle'=>"modal", 'data-target'=>"#modal-pc"]) }}
+                    </b></td>
                     <td>{{Str::title($values->relInvSupplier->company_name)}}</td>
                     <td>{{ $values->date }}  </td>
                     <td>{{$values->note}}</td>
@@ -47,12 +49,18 @@
                     <td>{{Str::title($values->status)}}</td>
 
                     <td>
-                        <a href="{{ URL::route('requisition-show', ['req_id'=>$values->id ])  }}" class="btn btn-default btn-xs" title="Manage Applicant" data-toggle="modal" data-target="#modal-pc"><span class="fa fa-eye"></span></a>
-                        <a href="{{ URL::route('requisition-edit',['req_id'=>$values->id])  }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal-pc"> <i class="fa fa-edit"></i></a>
-                        <a data-href="{{ URL::route('requisition-destroy', ['req_id'=>$values->id ]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa fa-circle-o-notch" style="color: red" data-toggle="tooltip" data-placement="bottom" title="Cancel"></i></a>
+                        @if($values->status=='open')
+                            <a href="{{ URL::route('requisition-show', ['req_id'=>$values->id ])  }}" class="btn btn-default btn-xs" title="Manage Applicant" data-toggle="modal" data-target="#modal-pc"><span class="fa fa-eye"></span></a>
+                            <a href="{{ URL::route('requisition-edit',['req_id'=>$values->id])  }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal-pc"> <i class="fa fa-edit"></i></a>
+                            <a data-href="{{ URL::route('requisition-destroy', ['req_id'=>$values->id ]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa fa-circle-o-notch" style="color: red" data-toggle="tooltip" data-placement="bottom" title="Cancel"></i></a>
+                        @elseif($values->status=='approved')
+                            <a href="{{ URL::route('requisition-show', ['req_id'=>$values->id ])  }}" class="btn btn-default btn-xs" title="Manage Applicant" data-toggle="modal" data-target="#modal-pc"><span class="fa fa-eye"></span></a>
+                        @endif
                     </td>
                     <td>
-                        <a data-href="{{ URL::route('create/purchase-order', ['req_id'=>$values->id ]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa fa-adjust" style="color: red" data-toggle="tooltip" data-placement="bottom" title="Cancel"></i></a>
+                        @if($values->status != 'approved')
+                            <a data-href="{{ URL::route('create/purchase-order', ['req_id'=>$values->id ]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa fa-adjust" style="color: darkslategray" data-toggle="tooltip" data-placement="bottom" title="Cancel"></i> PO</a>
+                        @endif
                     </td>
 
                  </tr>
