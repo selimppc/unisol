@@ -1,6 +1,7 @@
 <?php
 
-//FACULTY ROUTE CONFIGURATION
+//FACULTY ROUTE CONFIGURATION :: VERSION 2
+
 Route::any('faculty/examination-list',[
     'as' =>'faculty.examination-list',
     'uses' => 'ExmFacultyController@examinationList'
@@ -65,7 +66,6 @@ Route::any('faculty/exm-question-paper/view-exm-questions-items/{exm_question_id
     'as' =>'faculty.exm-question-paper.view-exm-questions-items',
     'uses' => 'ExmFacultyController@viewExmQuestionsItems'
 ]);
-
 
 Route::any('faculty/exm-question-papers/specific-exm-question-view/{e_q_i_id}',[
     'as' => 'faculty.exm-question-papers.specific-exm-question-view',
