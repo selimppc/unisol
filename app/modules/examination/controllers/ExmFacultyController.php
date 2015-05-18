@@ -471,10 +471,107 @@ class ExmFacultyController extends \BaseController {
 // starting just now
 
 
-    public function evaluateExm()
+    public function evaluateExmQuestions($exm_question_id)
     {
-        echo "Evaluate";
+        $data = ExmQuestion::with('relBatchAdmtestSubject',
+            'relBatchAdmtestSubject.relBatch','relBatchAdmtestSubject.relAdmtestSubject')
+            ->where('id','=',$exm_question_id)->first();
 
+        $evaluation_qp = ExmQuestionEvaluation::with('relBatchApplicant','relBatchApplicant.relApplicant')
+            ->where('adm_question_id','=', $exm_question_id)
+            ->latest('id')->groupBy('adm_question_id')
+            ->select(DB::raw('SUM(marks) as ev_marks, id as id, batch_applicant_id, adm_question_id, adm_question_items_id'))
+            ->get();
+        //print_r($evaluation_qp);exit;
+
+        return View::make('admission::faculty.question_papers.evaluate_question_paper',
+            compact('evaluation_qp','data'));
+
+    }
+
+
+
+
+    public function evaluateQuestions($adm_question_id)
+    {
+        $data = AdmQuestion::with('relBatchAdmtestSubject',
+            'relBatchAdmtestSubject.relBatch','relBatchAdmtestSubject.relAdmtestSubject')
+            ->where('id','=',$adm_question_id)->first();
+
+        $evaluation_qp = AdmQuestionEvaluation::with('relBatchApplicant','relBatchApplicant.relApplicant')
+            ->where('adm_question_id','=', $adm_question_id)
+            ->latest('id')->groupBy('adm_question_id')
+            ->select(DB::raw('SUM(marks) as ev_marks, id as id, batch_applicant_id, adm_question_id, adm_question_items_id'))
+            ->get();
+        //print_r($evaluation_qp);exit;
+
+        return View::make('admission::faculty.question_papers.evaluate_question_paper',
+            compact('evaluation_qp','data'));
+    }
+
+
+    public function evaluateQuestionsItems($a_q_id , $no_q = false )
+    {
+        $all = AdmQuestionEvaluation::where('adm_question_id', $a_q_id)->get();
+
+        foreach ($all as $ev_itm) {
+            $ev_id [] = $ev_itm->id;
+            $ev_q_item_id [] = $ev_itm->adm_question_items_id;
+            $ev_marks [] = $ev_itm->marks;
+        }
+        $no_q = !empty($no_q) ? $no_q : 0;
+        $total_question = count($all);
+        $q_item_info = AdmQuestionItems::findOrFail($ev_q_item_id[$no_q]);
+        $evaluation_id = $ev_id[$no_q];
+        $evaluation_marks = $ev_marks[$no_q];
+
+        $data_question = AdmQuestion::with('relBatchAdmtestSubject',
+            'relBatchAdmtestSubject.relBatch', 'relBatchAdmtestSubject.relAdmtestSubject')
+            ->where('id', '=', $a_q_id)->first();
+
+        $evaluate_qp = AdmQuestionEvaluation::with('relBatchApplicant', 'relBatchApplicant.relApplicant',
+            'relAdmQuestionItems', 'relAdmQuestionItems.relAdmQuestion')
+            ->where('adm_question_id', '=', $a_q_id)
+            ->latest('id')
+            ->first();
+
+        $total_marks = AdmQuestionEvaluation::where('adm_question_id','=', $a_q_id)
+            ->latest('id')->groupBy('adm_question_id')
+            ->select(DB::raw('SUM(marks) as ev_marks'))
+            ->first();
+
+        return View::make('admission::faculty.question_papers.evaluate-questions-items',
+            compact('data_question', 'evaluate_qp', 'a_q_id', 'evaluation_id','evaluation_marks', 'eva_q_ans', 'b', 'total_question', 'no_q', 'q_item_info', 'total_marks'));
+    }
+
+    public function storeEvaluatedQuestionItems()
+    {
+        $data = Input::all();
+
+        $model = AdmQuestionEvaluation::find($data['id']);
+
+        if($model->validate($data)){
+            DB::beginTransaction();
+            try
+            {
+                if($model->update($data)){
+                    Session::flash('message', 'Successfully Updates Information!');
+                    return Redirect::back();
+                }
+                DB::commit();
+            }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', "Not updates. Invalid Request !");
+            }
+            return Redirect::back();
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()
+                ->with('error', 'invalid');
+        }
     }
 
 

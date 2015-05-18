@@ -46,6 +46,10 @@ class ExmQuestion extends \Eloquent
         return $this->HasMany('ExmQuestionComments');
     }
 
+    public function relExmQuestionEvaluation(){
+        return $this->HasMany('ExmQuestionEvaluation');
+    }
+
     public function relCourseConduct(){
         return $this->belongsTo('CourseConduct', 'course_conduct_id', 'id');
     }
