@@ -19,14 +19,14 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>
+                <h4 class="modal-title" id="myModalLabel">Confirm Cancel</h4>
             </div>
             <div class="modal-body">
-                <strong>Are you sure to delete?</strong>
+                <strong>Are you sure to Cancel?</strong>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                <a href="#" class="btn btn-danger danger">Delete</a>
+                <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+                <a href="#" class="btn btn-danger danger">Cancel</a>
 
             </div>
         </div>

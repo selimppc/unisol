@@ -88,7 +88,7 @@ class CreateApplicant extends Migration {
             $table->increments('id');
             $table->unsignedInteger('applicant_id')->nullable();
             $table->enum('level_of_education',array(
-                'psc', 'jsc', 'ssc', 'hsc', 'grad', 'under_grad', 'bachelor', 'diploma', 'post_grad', 'o_level', 'a_level'
+                '','psc', 'jsc', 'ssc', 'hsc', 'grad', 'under_grad', 'bachelor', 'diploma', 'post_grad', 'o_level', 'a_level'
             ));
             $table->string('degree_name',64);
             $table->string('institute_name',128);
