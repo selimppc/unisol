@@ -14,7 +14,9 @@
     });
 
     $(function(){
-      $('#delete-dt').click(function() {
+      $('.delete-dt').click(function(e) {
+        e.preventDefault();
+        var $btn = $(this);
         $.ajax({
             url: 'ajax-delete-req-detail/{id}',
             type: 'POST',
@@ -22,7 +24,9 @@
             data: { id:  $(this).data("href") },
             success: function(response)
             {
+                $btn.closest("tr").remove();
                 $('#something-delete').html(response);
+
             }
         });
       });
@@ -60,7 +64,7 @@
                     $invProductUnit = $("#product-unit").val();
                     $invProductQuantity = $("#product-quantity").val();
 
-                    $('#test').append("<tr> <td><input value='"+$product_name+"' readonly> <input name='inv_product_id' type='hidden' value='"+$product_id+"'></td> <td><input name='rate' value='"+$invProductRate+"' readonly></td>  <td><input name='unit' value='"+$invProductUnit+"' readonly></td> <td><input name='quantity' value='"+$invProductQuantity+"' readonly></td> </tr>");
+                    $('#test').append("<tr> <td><input value='"+$product_name+"' readonly> <input name='inv_product_id[]' type='hidden' value='"+$product_id+"'></td> <td><input name='rate[]' value='"+$invProductRate+"' readonly></td>  <td><input name='unit[]' value='"+$invProductUnit+"' readonly></td> <td><input name='quantity[]' value='"+$invProductQuantity+"' readonly></td> </tr>");
                     $arrayProducts.push($td_productCode);
 
                     //flush the input fields
@@ -69,6 +73,8 @@
                     $("#product-rate").val("");
                     $("#product-unit").val("");
                     $("#product-quantity").val("");
+                    $("#search_product").val("");
+
                 }
             }
         }

@@ -60,14 +60,15 @@
 
     <tbody>
     <?php $counter = 0;?>
+
     @foreach($req_dt as $key=>$value)
         <tr>
-            <td>{{$value->relInvProduct->title}}</td>
+            <td>{{isset($value->inv_product_id) ? $value->relInvProduct->title : ''}}</td>
             <td>{{$value->rate}}</td>
             <td>{{$value->unit}}</td>
             <td>{{round($value->quantity)}}</td>
             <td>
-                <a data-href="{{ $value->id }}" class="btn btn-default btn-sm" id="delete-dt" ><i class="fa  fa-trash-o" style="font-size: 15px;color: red"></i></a>
+                <a data-href="{{ $value->id }}" class="btn btn-default btn-sm delete-dt" id="delete-dt{{ $value->id }}" ><i class="fa  fa-trash-o" style="font-size: 15px;color: red"></i></a>
 
             </td>
         </tr>
@@ -80,6 +81,7 @@
             });
         </script>
    @endforeach
+
 </table>
 
 {{ Form::submit('Submit (Product) ', ['class'=>'pull-right btn btn-xs btn-success', 'style'=>'padding: 1%;'] ) }}

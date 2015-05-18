@@ -160,10 +160,21 @@ class InvRequisitionHeadController extends \BaseController {
 
     public function store_requisition_detail(){
         $data = Input::all();
+        for($i = 0; $i < count(Input::get('inv_product_id')) ; $i++){
+            $dt[] = [
+                'inv_requisition_head_id' => Input::get('inv_requisition_head_id'),
+                'inv_product_id'=> Input::get('inv_product_id')[$i],
+                'rate'=> Input::get('rate')[$i],
+                'unit'=> Input::get('unit')[$i],
+                'quantity'=> Input::get('quantity')[$i],
+            ];
+        }
         $model = new InvRequisitionDetail();
         DB::beginTransaction();
         try{
-            $model->create($data);
+            foreach($dt as $values){
+                $model->create($values);
+            }
             DB::commit();
             Session::flash('message', 'Success !');
         }catch ( Exception $e ){
@@ -176,16 +187,15 @@ class InvRequisitionHeadController extends \BaseController {
 
     public function ajax_delete_req_detail($id){
         $id = Input::get('id');
-        $model = InvRequisitionDetail::find($id);
         DB::beginTransaction();
         try{
-            $model->destroy();
+            InvRequisitionDetail::destroy($id); //Batch::destroy(Request::get('id'));
             DB::commit();
-            return Response::json(" Successfully Deleted");
+            return Response::json("Successfully Deleted");
         }catch ( Exception $e ){
             //If there are any exceptions, rollback the transaction`
             DB::rollback();
-            return Response::json("  Can not delete !");
+            return Response::json("Can not delete !");
         }
     }
 
