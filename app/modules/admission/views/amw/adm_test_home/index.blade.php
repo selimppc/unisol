@@ -63,7 +63,7 @@
                            <td >{{ isset($values->relBatch->relDegree->duration) ? $values->relBatch->relDegree->duration : '' }}</td>
                            <td> QPE Status </td>
                            <td>
-                              <a href="{{ URL::to('admission/amw/admission-test-examiner', [ 'year_id'=>$values->relBatch->year_id ,'semester_id'=>$values->relBatch->semester_id ,'batch_id'=>$values->batch_id ]) }}" class="btn btn-success btn-xs" data-toggle="tooltip" data-placement="bottom" title="Examiner">EX</a>
+                              <a href="{{ URL::to('admission/amw/admission-test-examiner', [ 'batch_id'=>$values->batch_id ]) }}" class="btn btn-success btn-xs" data-toggle="tooltip" data-placement="bottom" title="Examiner">EX</a>
                               <a href="{{ URL::to('admission/amw/admission-test-question', [ 'batch_id'=>$values->batch_id ]) }}" class="btn btn-info btn-xs" data-toggle="tooltip" data-placement="bottom" title="Question Paper">QP</a>
                               <a href="{{ URL::route('admission.amw.question-paper-evaluation', [ 'bats_id'=>$values->id ] ) }}" class="btn btn-success btn-xs" data-toggle="tooltip" data-placement="bottom" title="Question Paper Evaluation">QPE</a>
                            </td>

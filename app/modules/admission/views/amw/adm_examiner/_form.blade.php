@@ -5,7 +5,7 @@
 
 <div class="modal-body">
      <div style="padding: 20px;">
-        {{Form::open(array('url'=>'admission/amw/admission-test-examiner/store-admission-test-examiner', 'class'=>'form-horizontal','files'=>true))}}
+        {{Form::open(array('url'=>'admission/amw/admexaminer-add', 'class'=>'form-horizontal','files'=>true))}}
 
             <div class='form-group'>
                 <strong> Degree Name: </strong>{{ $batch->relVDegree->title }} </br>
@@ -16,7 +16,7 @@
             <div class='form-group'>
                 {{ Form::label('type', 'Examiner Type') }}
                 {{ Form::select('type',
-                array('question-setter' => 'question-setter','question-evaluator' => 'question-evaluator','both' => 'both'),
+                array('question-setter' => 'Question Setter','question-evaluator' => 'Question Evaluator','both' => 'Both'),
                 Input::old('type'),['class'=>'form-control','required'=>'required']) }}
             </div>
 
