@@ -136,10 +136,10 @@ class ExmFacultyController extends \BaseController {
     public function viewExmQuestionPaper($exm_question_id)
     {
         $view_exm_qp = ExmQuestion::with('relExmExamList','relExmExamList.relYear','relExmExamList.relSemester',
-            'relExmExamList.relCourseConduct','relExmExamList.relCourseConduct.relDegree',
-            'relExmExamList.relCourseConduct.relDegree.relDepartment',
+            'relCourseConduct','relCourseConduct.relDegree',
+            'relCourseConduct.relDegree.relDepartment',
             'relExmExamList.relAcmMarksDistItem',
-            'relExmExamList.relCourseConduct.relCourse.relSubject','relExmExamList.relCourseConduct.relUser')
+            'relCourseConduct.relCourse.relSubject','relCourseConduct.relUser')
         ->where('id', $exm_question_id)
         ->first();
 
@@ -473,105 +473,134 @@ class ExmFacultyController extends \BaseController {
 
     public function evaluateExmQuestions($exm_question_id)
     {
-        $data = ExmQuestion::with('relBatchAdmtestSubject',
-            'relBatchAdmtestSubject.relBatch','relBatchAdmtestSubject.relAdmtestSubject')
+        $exm_data = ExmQuestion::with('relExmExamList','relExmExamList.relYear','relExmExamList.relSemester',
+            'relCourseConduct','relCourseConduct.relDegree',
+            'relCourseConduct.relDegree.relDepartment',
+            'relExmExamList.relAcmMarksDistItem',
+            'relCourseConduct.relCourse.relSubject','relCourseConduct.relUser')
             ->where('id','=',$exm_question_id)->first();
 
-        $evaluation_qp = ExmQuestionEvaluation::with('relBatchApplicant','relBatchApplicant.relApplicant')
-            ->where('adm_question_id','=', $exm_question_id)
-            ->latest('id')->groupBy('adm_question_id')
-            ->select(DB::raw('SUM(marks) as ev_marks, id as id, batch_applicant_id, adm_question_id, adm_question_items_id'))
+        $evaluation_exm_qp = ExmQuestionEvaluation::with('relExmQuestionItems','relExmQuestion',
+            'relStudentUser','relStudentUser.relUserProfile')
+            ->where('exm_question_id','=', $exm_question_id)
+            ->latest('id')
+//            ->groupBy('exm_question_id')
+            ->select(DB::raw('SUM(marks) as ev_marks, id as id, student_user_id, exm_question_id, exm_question_items_id'))
             ->get();
-        //print_r($evaluation_qp);exit;
 
-        return View::make('admission::faculty.question_papers.evaluate_question_paper',
-            compact('evaluation_qp','data'));
+
+        //print_r($evaluation_exm_qp);exit;
+
+        return View::make('examination::faculty.question_paper.evaluate_exm_question_paper',
+            compact('evaluation_exm_qp','exm_data'));
 
     }
 
 
+    //pore
 
-
-    public function evaluateQuestions($adm_question_id)
+    public function evaluateExmQuestionsItems($e_q_id , $no_q = false )
     {
-        $data = AdmQuestion::with('relBatchAdmtestSubject',
-            'relBatchAdmtestSubject.relBatch','relBatchAdmtestSubject.relAdmtestSubject')
-            ->where('id','=',$adm_question_id)->first();
-
-        $evaluation_qp = AdmQuestionEvaluation::with('relBatchApplicant','relBatchApplicant.relApplicant')
-            ->where('adm_question_id','=', $adm_question_id)
-            ->latest('id')->groupBy('adm_question_id')
-            ->select(DB::raw('SUM(marks) as ev_marks, id as id, batch_applicant_id, adm_question_id, adm_question_items_id'))
-            ->get();
-        //print_r($evaluation_qp);exit;
-
-        return View::make('admission::faculty.question_papers.evaluate_question_paper',
-            compact('evaluation_qp','data'));
-    }
-
-
-    public function evaluateQuestionsItems($a_q_id , $no_q = false )
-    {
-        $all = AdmQuestionEvaluation::where('adm_question_id', $a_q_id)->get();
+        $all = ExmQuestionEvaluation::where('exm_question_id', $e_q_id)->get();
 
         foreach ($all as $ev_itm) {
             $ev_id [] = $ev_itm->id;
-            $ev_q_item_id [] = $ev_itm->adm_question_items_id;
+            $ev_q_item_id [] = $ev_itm->exm_question_items_id;
             $ev_marks [] = $ev_itm->marks;
         }
         $no_q = !empty($no_q) ? $no_q : 0;
         $total_question = count($all);
-        $q_item_info = AdmQuestionItems::findOrFail($ev_q_item_id[$no_q]);
+        $q_item_info = ExmQuestionItems::findOrFail($ev_q_item_id[$no_q]);
         $evaluation_id = $ev_id[$no_q];
         $evaluation_marks = $ev_marks[$no_q];
 
-        $data_question = AdmQuestion::with('relBatchAdmtestSubject',
-            'relBatchAdmtestSubject.relBatch', 'relBatchAdmtestSubject.relAdmtestSubject')
-            ->where('id', '=', $a_q_id)->first();
+        $data_exm_question = ExmQuestion::with('relExmExamList','relExmExamList.relYear',
+            'relExmExamList.relSemester','relCourseConduct','relCourseConduct.relDegree',
+            'relCourseConduct.relDegree.relDepartment',
+            'relExmExamList.relAcmMarksDistItem',
+            'relCourseConduct.relCourse.relSubject','relCourseConduct.relUser')
+            ->where('id', '=', $e_q_id)->first();
 
-        $evaluate_qp = AdmQuestionEvaluation::with('relBatchApplicant', 'relBatchApplicant.relApplicant',
-            'relAdmQuestionItems', 'relAdmQuestionItems.relAdmQuestion')
-            ->where('adm_question_id', '=', $a_q_id)
+        $evaluate_exm_qp = ExmQuestionEvaluation::with('relExmQuestionItems','relExmQuestion',
+            'relStudentUser','relStudentUser.relUserProfile')
+            ->where('exm_question_id', '=', $e_q_id)
             ->latest('id')
             ->first();
+//        print_r($evaluate_exm_qp->id);exit;
 
-        $total_marks = AdmQuestionEvaluation::where('adm_question_id','=', $a_q_id)
-            ->latest('id')->groupBy('adm_question_id')
+        $total_marks = ExmQuestionEvaluation::where('exm_question_id','=', $e_q_id)
+            ->latest('id')->groupBy('exm_question_id')
             ->select(DB::raw('SUM(marks) as ev_marks'))
             ->first();
 
-        return View::make('admission::faculty.question_papers.evaluate-questions-items',
-            compact('data_question', 'evaluate_qp', 'a_q_id', 'evaluation_id','evaluation_marks', 'eva_q_ans', 'b', 'total_question', 'no_q', 'q_item_info', 'total_marks'));
+        $exm_q_stu_answer_text = ExmQuestionAnsText::where('exm_question_evaluation_id', $evaluate_exm_qp->id)->first();
+
+//        print_r($exm_q_stu_answer_text);exit;
+
+        return View::make('examination::faculty.question_paper.evaluate-exm-questions-items',
+            compact('exm_q_stu_answer_text','data_exm_question', 'evaluate_exm_qp', 'e_q_id', 'evaluation_id','evaluation_marks', 'eva_q_ans', 'b', 'total_question', 'no_q', 'q_item_info', 'total_marks'));
     }
 
-    public function storeEvaluatedQuestionItems()
+
+    public function storeEvaluatedExmQuestionItems()
     {
+//        $data = Input::all();
+//        $model = ExmQuestionAnsText::find($data['id']);
+//        if($model->validate($data)){
+//            DB::beginTransaction();
+//            try
+//            {
+//                if($model->update($data)){
+//                    Session::flash('message', 'Successfully Updates Information!');
+//                    return Redirect::back();
+//                }
+//                DB::commit();
+//            }
+//            catch ( Exception $e ){
+//                //If there are any exceptions, rollback the transaction
+//                DB::rollback();
+//                Session::flash('danger', "Not updates. Invalid Request !");
+//            }
+//            return Redirect::back();
+//        }else{
+//            $errors = $model->errors();
+//            Session::flash('errors', $errors);
+//            return Redirect::back()
+//                ->with('error', 'invalid');
+//        }
+
+
+
+
         $data = Input::all();
+        print_r($data);exit;
 
-        $model = AdmQuestionEvaluation::find($data['id']);
+        $model = new ExmQuestionAnsText();
+        $model->exm_question_evaluation_id = Input::get('exm_question_evaluation_id');
 
-        if($model->validate($data)){
+        if ($model->validate($data)) {
             DB::beginTransaction();
-            try
-            {
-                if($model->update($data)){
-                    Session::flash('message', 'Successfully Updates Information!');
-                    return Redirect::back();
-                }
+            try {
+                $model->create($data);
                 DB::commit();
-            }
-            catch ( Exception $e ){
+                Session::flash('message', "Successfully Evaluated");
+            } catch (Exception $e) {
                 //If there are any exceptions, rollback the transaction
                 DB::rollback();
-                Session::flash('danger', "Not updates. Invalid Request !");
+                Session::flash('danger', "Not Evaluated!");
             }
-            return Redirect::back();
-        }else{
+        }
+        else {
             $errors = $model->errors();
             Session::flash('errors', $errors);
-            return Redirect::back()
-                ->with('error', 'invalid');
+            return Redirect::back()->with('errors', 'invalid');
         }
+
+        return Redirect::back();
+
+
+
+
     }
 
 

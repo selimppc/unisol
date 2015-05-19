@@ -46,104 +46,61 @@ class ExmAmwController extends \BaseController {
 //    }
 
     //amw: Store Question Paper
-    public function storeQuestionPaper()
-    {
-        $data = Input::all();
-        $exam_list_id = Input::get('exam_list_id');
-        $course_man_id = Input::get('course_man_id');
-//        print_r($exam_list_id);exit;
 
-        $prepare_question_paper = new ExmQuestion();
 
-        if ($prepare_question_paper->validate($data))
-        {
-            // success code
-            $prepare_question_paper->exm_exam_list_id = Input::get('exam_list_id');
-            $prepare_question_paper->course_management_id = Input::get('course_man_id');
-            $prepare_question_paper->examiner_faculty_user_id = Input::get('examiner_faculty_user_id');
-            $prepare_question_paper->title = Input::get('title');
-            $prepare_question_paper->deadline = Input::get('deadline');
-            $prepare_question_paper->total_marks = Input::get('total_marks');
-            $prepare_question_paper->save();
-
-            // redirect
-            Session::flash('message', 'Question Paper Successfully Added!');
-            return Redirect::back();
-        }
-        else
-        {
-            // failure, get errors
-            $errors = $prepare_question_paper->errors();
-            Session::flash('errors', $errors);
-
-            return Redirect::to('examination/amw/create');
-        }
-        //ok
-    }
-    //amw: Edit Question Paper
-    public function editQuestionPaper($exam_list_id)
-    {
-        $prepare_question_paper = ExmQuestion::find($exam_list_id);
-
-//        $exam_list_id = Input::get('exam_list_id');
-
-        // Show the edit employee form.
-        return View::make('examination::amw.prepare_question_paper.editQuestionPaper',compact('prepare_question_paper','exam_list_id','course_man_id'));
-        //ok
-    }
     //amw: Update Question Paper
-    public function updateQuestionPaper($id)
-    {
-        // get the POST data
-        $data = Input::all($id);
-        $exam_list_id = Input::get('exam_list_id');
-//        $course_man_id= Input::get('course_man_id');
-
-//        print_r($exam_list_id);exit;
-        // create a new model instance
-        $prepare_question_paper = new ExmQuestion();
-        // attempt validation
-        if ($prepare_question_paper->validate($data))
-        {
-            $prepare_question_paper = ExmQuestion::find($id);
-//           print_r($prepare_question_paper);exit;
-
-            $prepare_question_paper->exm_exam_list_id = Input::get('exam_list_id');
-            $prepare_question_paper->course_management_id = Input::get('course_man_id');
-            $prepare_question_paper->examiner_faculty_user_id = Input::get('examiner_faculty_user_id');
-
-            $prepare_question_paper->title = Input::get('title');
-            $prepare_question_paper->deadline = Input::get('deadline');
-            $prepare_question_paper->total_marks = Input::get('total_marks');
-
-
-//            print_r($exam_list_id);exit;
-
-            $prepare_question_paper->save();
-            // redirect
-            Session::flash('message', 'Question Paper Successfully Updated!');
-
-            return Redirect::back();
-
-//            return Redirect::route('examination/amw/index', ['exam_list_id'=>$exam_list_id]);
-
-        }
-        else
-        {
-            // failure, get errors
-            $errors = $prepare_question_paper->errors();
-            Session::flash('errors', $errors);
-
-            return Redirect::to('examination/amw/index');
-        }
-        //ok
-    }
+//    public function updateQuestionPaper($id)
+//    {
+//        // get the POST data
+//        $data = Input::all($id);
+//        $exam_list_id = Input::get('exam_list_id');
+////        $course_man_id= Input::get('course_man_id');
+//
+////        print_r($exam_list_id);exit;
+//        // create a new model instance
+//        $prepare_question_paper = new ExmQuestion();
+//        // attempt validation
+//        if ($prepare_question_paper->validate($data))
+//        {
+//            $prepare_question_paper = ExmQuestion::find($id);
+////           print_r($prepare_question_paper);exit;
+//
+//            $prepare_question_paper->exm_exam_list_id = Input::get('exam_list_id');
+//            $prepare_question_paper->course_management_id = Input::get('course_man_id');
+//            $prepare_question_paper->examiner_faculty_user_id = Input::get('examiner_faculty_user_id');
+//
+//            $prepare_question_paper->title = Input::get('title');
+//            $prepare_question_paper->deadline = Input::get('deadline');
+//            $prepare_question_paper->total_marks = Input::get('total_marks');
+//
+//
+////            print_r($exam_list_id);exit;
+//
+//            $prepare_question_paper->save();
+//            // redirect
+//            Session::flash('message', 'Question Paper Successfully Updated!');
+//
+//            return Redirect::back();
+//
+////            return Redirect::route('examination/amw/index', ['exam_list_id'=>$exam_list_id]);
+//
+//        }
+//        else
+//        {
+//            // failure, get errors
+//            $errors = $prepare_question_paper->errors();
+//            Session::flash('errors', $errors);
+//
+//            return Redirect::to('examination/amw/index');
+//        }
+//        //ok
+//    }
     //amw: Question List
-    public function questionList()
-    {
-        $question_list_amw = ExmQuestionItems::orderBy('id', 'DESC')->paginate(5);
-        return View::make('examination::amw.prepare_question_paper.questionList')->with('QuestionListAmw',$question_list_amw);
-    }
+//    public function questionList()
+//    {
+//        $question_list_amw = ExmQuestionItems::orderBy('id', 'DESC')->paginate(5);
+//        return View::make('examination::amw.prepare_question_paper.questionList')->with('QuestionListAmw',$question_list_amw);
+//    }
     //amw: View Question Items
     public function viewQuestionItems($id)
     {
@@ -232,119 +189,6 @@ class ExmAmwController extends \BaseController {
 
     }
 
-//    public function examiners( $year_id, $semester_id, $course_management_id, $acm_marks_dist_item_id,$exm_exam_list_id)
-//    {
-//        $examiners_home = ExmExaminer::with('relExmExamList','relExmExamList.relCourseManagement', 'relExmExamList.relCourseManagement.relYear',
-//                'relExmExamList.relCourseManagement.relSemester','relExmExamList.relCourseManagement.relCourse.relSubject.relDepartment')
-//                ->where('exm_exam_list_id', '=', $exm_exam_list_id)
-//                ->get();
-//
-////        print_r($examiners_home);exit;
-//
-//        $course_title = CourseManagement::with('relCourse')->where('id' ,'=', $course_management_id)->first()->relCourse->title;
-//
-////        $exam_list_id = ExmExaminer::where('exm_exam_list_id' ,'=', $exam_list_id)->get();
-//
-//        return View::make('examination::amw.prepare_question_paper.examiners',
-//            compact('examiners_home','acm_marks_dist_item_id','course_management_id', 'year_id',
-//                    'semester_id', 'course_title','exm_exam_list_id'));
-//    }
-    public function get_all_examiners( ){
-
-
-        $examiners_list = ExmExaminer::with('relExmExamList','relExmExamList.relCourseManagement', 'relExmExamList.relCourseManagement.relYear',
-            'relExmExamList.relCourseManagement.relSemester','relExmExamList.relCourseManagement.relCourse.relSubject.relDepartment')
-            ->get();
-
-//        $course_title = CourseManagement::with('relCourse')->where('id' ,'=', $course_management_id)->first()->relCourse->title;
-//        $exam_list_id = ExmExaminer::where('exm_exam_list_id' ,'=', $exam_list_id)->get();
-
-        return View::make('examination::amw.prepare_question_paper.examiners_all',
-            compact('examiners_list'));
-    }
-//    public function storeExaminers(){
-//        $data = Input::all();
-//        $examiner_mdeol = new ExmExaminer();
-//
-//        if ($examiner_mdeol->validate($data))
-//        {
-//            // success code
-//            $examiner_mdeol->exm_exam_list_id = Input::get('exm_exam_list_id');
-//            $examiner_mdeol->user_id = Input::get('user_id');
-//            $examiner_mdeol->type = 'type as examiners';
-//
-//            if($examiner_mdeol->save()){
-//
-//                $examiner_comments = new ExmExaminerComments();
-//                $examiner_comments->exm_exam_list_id = Input::get('exm_exam_list_id');
-//                $examiner_comments->comment = Input::get('comment');
-//                $examiner_comments->commented_to = Input::get('user_id');
-//                $examiner_comments->commented_by = Auth::user()->get()->id;
-//
-//                if($examiner_comments->save()){
-//                    Session::flash('message', 'Examiner Successfully Added!');
-//                    return Redirect::back();
-//                }
-//            }else{
-//                // redirect
-//                Session::flash('error', 'Failed!');
-//                return Redirect::back();
-//            }
-//            // redirect
-//            Session::flash('message', 'Examiner Successfully Added!');
-//            return Redirect::to('examination/amw/examiners');
-//        }
-//    }
-//    public function viewExaminers($id){
-//        $view_examiner_amw = ExmExaminer::find($id);
-//        return View::make('examination::amw.prepare_question_paper.viewExaminers',compact('view_examiner_amw'));
-//    }
-
-//    public function addExaminers(){
-//        return View::make('examination::amw.prepare_question_paper._addExamination_form', compact('add_examiner'));
-//    }
-
-//    public function assignFaculty($id){
-//
-//        $assign_faculty = ExmExaminer::find($id);
-//        return View::make('examination::amw.prepare_question_paper._assignFaculty_form',compact('assign_faculty'));
-//
-//    }
-
-public function assign_faculty(){
-    $data = Input::all();
-    $examiner_mdeol = new ExmExaminer();
-
-    if ($examiner_mdeol->validate($data))
-    {
-        // success code
-        $examiner_mdeol->exm_exam_list_id = Input::get('exm_exam_list_id');
-        $examiner_mdeol->user_id = Input::get('user_id');
-        $examiner_mdeol->type = 'type as faculty';
-
-        if($examiner_mdeol->save()){
-
-            $examiner_comments = new ExmExaminerComments();
-            $examiner_comments->exm_exam_list_id = Input::get('exm_exam_list_id');
-            $examiner_comments->comment = Input::get('comment');
-            $examiner_comments->commented_to = Input::get('user_id');
-            $examiner_comments->commented_by = Auth::user()->get()->id;
-
-            if($examiner_comments->save()){
-                Session::flash('message', 'Faculty Successfully Assigned!');
-                return Redirect::back();
-            }
-        }else{
-            // redirect
-            Session::flash('error', 'Failed!');
-            return Redirect::back();
-        }
-//        // redirect
-//        Session::flash('message', 'Examiner Successfully Added!');
-//        return Redirect::to('examination/amw/examiners');
-    }
-
-}
 
 /*--------------------------------  Version 2 :Starts Here  -----------------------------------------------------------------------------------------*/
 
@@ -614,22 +458,23 @@ public function assign_faculty(){
 
     public function indexQuestionPapers($exm_exam_list_id,$course_conduct_id){
 
-        $exm_question = ExmQuestion::with('relExmExamList', 'relSUser.relUserProfile', 'relEUser.relUserProfile')
-            ->whereExists(function($query) use($exm_exam_list_id)
+        $exm_question = ExmQuestion::with('relExmExamList', 'relSUser.relUserProfile', 'relEUser.relUserProfile','relCourseConduct.relCourse.relSubject')
+            ->whereExists(function($query) use($course_conduct_id)
             {
                 $query->from('exm_exam_list')
                     ->whereRaw('exm_exam_list.id = exm_question.exm_exam_list_id')
-                    ->where('batch_admtest_subject.batch_id', $exm_exam_list_id);
+                    ->where('exm_exam_list.course_conduct_id', $course_conduct_id);
             })
             ->latest('id')->paginate(10);
-        return View::make('examination::amw.question_papers.index',compact('examiners_list','year_title','semester_title','exm_exam_list_id','course_conduct_id'));
+
+        return View::make('examination::amw.question_papers.index',compact('exm_question','exm_exam_list_id','course_conduct_id'));
     }
 
     public function createQuestionPapers($exm_exam_list_id,$course_conduct_id){
 
         $examiner_faculty_lists = ExmQuestion::ExaminationExaminerList($exm_exam_list_id);
 
-        return View::make('examination::amw.question_papers._form',compact('examiner_faculty_lists','course_conduct_id','exm_exam_list_id'));
+        return View::make('examination::amw.question_papers.create',compact('examiner_faculty_lists','course_conduct_id','exm_exam_list_id'));
     }
 
     public function storeQuestionPapers(){
@@ -645,7 +490,7 @@ public function assign_faculty(){
             try {
                 $model->create($data);
                 DB::commit();
-                Session::flash('message', " Successfully Added Examination ");
+                Session::flash('message', " Successfully Added  ");
             }
             catch ( Exception $e ){
                 //If there are any exceptions, rollback the transaction
@@ -661,5 +506,106 @@ public function assign_faculty(){
         }
     }
 
+    public function viewQuestionPaper($id)
+    {
+        $model =  ExmQuestion::with('relExmExamList','relExmExamList.relAcmMarksDistItem','relCourseConduct.relCourse')->find($id);
+        return View::make('examination::amw.question_papers.view', compact('model'));
+    }
+
+    public function editQuestionPaper($id,$exm_exam_list_id,$course_conduct_id)
+    {
+        $model = ExmQuestion::find($id);
+        $examiner_faculty_lists = ExmQuestion::ExaminationExaminerList($exm_exam_list_id);
+        return View::make('examination::amw.question_papers.edit',compact('model','examiner_faculty_lists','course_conduct_id','exm_exam_list_id'));
+    }
+
+    public function updateQuestionPaper($id){
+
+        $data = Input::all();
+        $model = ExmQuestion::findOrFail($id);
+        $model->exm_exam_list_id = Input::get('exm_exam_list_id');
+        $model->course_conduct_id = Input::get('course_conduct_id');
+
+        if($model->validate($data)) {
+            DB::beginTransaction();
+            try {
+                $model->update($data);
+                DB::commit();
+                Session::flash('message', " Successfully updated  ");
+            }
+            catch ( Exception $e ){
+                DB::rollback();
+                Session::flash('danger', "Invalid Request !");
+            }
+            return Redirect::back();
+        }else{
+
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()
+                ->with('errors', 'invalid');
+        }
+    }
+
+    public function assignSetter($q_id,$exm_exam_list_id)
+    {
+        $question_data = ExmQuestion::with('relCourseConduct.relCourse.relSubject')->where('id', $q_id)->first();
+        $examiner_faculty_lists = ExmQuestion::ExaminationExaminerList($exm_exam_list_id);
+        $comments = ExmQuestionComments::with('relToUser', 'relToUser.relUserProfile', 'relToUser.relRole', 'relByUser', 'relByUser.relUserProfile', 'relByUser.relRole')->where('exm_question_id', $q_id)->get();
+
+        return View::make('examination::amw.question_papers.assign_setter',
+            compact('question_data', 'examiner_faculty_lists','q_id','comments'));
+    }
+
+    public function assignEvaluator($q_id,$exm_exam_list_id)
+    {
+        $question_data = ExmQuestion::with('relCourseConduct.relCourse.relSubject')->where('id', $q_id)->first();
+        $examiner_faculty_lists = ExmQuestion::ExaminationExaminerList($exm_exam_list_id);
+        $comments = ExmQuestionComments::with('relToUser', 'relToUser.relUserProfile', 'relToUser.relRole', 'relByUser', 'relByUser.relUserProfile', 'relByUser.relRole')->where('exm_question_id', $q_id)->get();
+
+        return View::make('examination::amw.question_papers.assign_evaluator',
+            compact('question_data', 'examiner_faculty_lists', 'comments','q_id'));
+    }
+
+    public function assignExaminerWithComments($id)
+    {
+        $data = Input::all();
+
+        $model1 = ExmQuestion::findOrFail($id);
+
+        if(Input::get('examiner_type') == 'setter'){
+            $model1->s_faculty_user_id = Input::get('commented_to');
+            $model1->s_status = Input::get('s_status');
+        }else {
+            $model1->e_faculty_user_id = Input::get('commented_to');
+            $model1->e_status = Input::get('e_status');
+        }
+
+        $model1->save();
+        if($data['comment']) {
+            $model = new ExmQuestionComments();
+            $model->exm_question_id = $data['exm_question_id'];
+            $model->comment = $data['comment'];
+            $model->commented_to = $data['commented_to'];
+            $model->commented_by = Auth::user()->get()->id;
+
+            if ($model->save()) {
+                Session::flash('message', 'Faculty assigning and Comments added');
+                return Redirect::back();
+            } else {
+                $errors = $model->errors();
+                Session::flash('errors', $errors);
+                return Redirect::back()->with('errors', 'invalid');
+            }
+        }
+        return Redirect::back();
+    }
+
+    public function questionList($question_item_id){
+
+        $question_list = ExmQuestionItems::where('exm_question_id' ,'=', $question_item_id)->get();
+
+        return View::make('examination::amw.questions.question_list', compact('question_list'));
+    }
 
 }

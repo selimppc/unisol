@@ -40,12 +40,16 @@ class BatchAdmtestSubject extends Eloquent{
     public function relBatch(){
         return $this->belongsTo('Batch', 'batch_id', 'id');
     }
+
     public function relAdmtestSubject(){
         return $this->belongsTo('AdmTestSubject', 'admtest_subject_id', 'id');
     }
+
     public function relAdmQuestion(){
         return $this->HasMany('AdmQuestion');
     }
+
+
 
 
     // TODO : user info while saving data into table
