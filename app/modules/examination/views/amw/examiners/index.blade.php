@@ -13,12 +13,12 @@
       <div class="box box-solid">
           {{ Form::open(array('url' => 'examination/amw/batchDelete')) }}
              <table id="example" class="table table-striped  table-bordered">
-             <div style="background-color:lightgray; color:white; padding:8px;">
-                 <b style="margin-left: 20px;color: #005580">Course Title: {{isset($year_title) ? $year_title : ''}}</b>
-                 <b style="margin-left: 100px;color: #005580">Exam Type : {{isset($exam_type->type) ? $exam_type->type :''}}</b><br>
-                 <b style="margin-left: 20px;color: #005580">Year: {{isset($year_title) ? $year_title : ''}}</b>
-                 <b style="margin-left: 150px;color: #005580">Semester : {{isset($semester_title) ? $semester_title :''}}</b>
-             </div>
+             {{--<div style="background-color:lightgray; color:white; padding:8px;">--}}
+                 {{--<b style="margin-left: 20px;color: #005580">Course Title: {{isset($year_title) ? $year_title : ''}}</b>--}}
+                 {{--<b style="margin-left: 100px;color: #005580">Exam Type : {{isset($exam_type->type) ? $exam_type->type :''}}</b><br>--}}
+                 {{--<b style="margin-left: 20px;color: #005580">Year: {{isset($year_title) ? $year_title : ''}}</b>--}}
+                 {{--<b style="margin-left: 150px;color: #005580">Semester : {{isset($semester_title) ? $semester_title :''}}</b>--}}
+             {{--</div>--}}
                 <thead>
                    {{ Form::submit('Delete Items', array('class'=>'btn btn-xs btn-danger', 'id'=>'hide-button', 'style'=>'display:none'))}}
                        <br>
