@@ -4,18 +4,30 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class ExmQuestionAnsText extends Eloquent{
+class LibBook extends Eloquent{
 
     //TODO :: model attributes and rules and validation
-    protected $table = 'exm_question_ans_text';
+    protected $table='lib_books';
     protected $fillable = [
-        'exm_question_evaluation_id', 'answer','marks'
+        'title','isbn','lib_book_category_id','lib_book_author_id','lib_book_publisher_id','edition','stock_type','shelf_number','book_type','commercial','file','book_price','digital_sell_price','is_rented'
     ];
     private $errors;
     private $rules = [
-        'exm_question_evaluation_id' => 'integer',
-        //'answer' => 'required',
+        'title' => 'required',
+        'lib_book_category_id' => 'required|integer',
+        'lib_book_author_id' => 'required|integer',
+        'lib_book_publisher_id' => 'required|integer',
+        'edition' => 'required',
+        'stock_type' => 'required',
+        'shelf_number' => 'required',
+        'book_type' => 'required',
+        'commercial' => 'required',
+        'file' => 'required',
+        'book_price' => 'required',
+        'digital_sell_price' => 'required',
+        'is_rented' => 'required',
     ];
+
 
     public function validate($data)
     {
@@ -34,9 +46,23 @@ class ExmQuestionAnsText extends Eloquent{
 
 
     //TODO : Model Relationship
-    public function relExmQuestionEvaluation(){
-        return $this->belongsTo('ExmQuestionEvaluation', 'exm_question_evaluation_id', 'id');
+
+    public function relCountry(){
+        return $this->belongsTo('Country','country_id','id');
     }
+    public function relLibBookCategory(){
+        return $this->belongsTo('LibBookCategory','lib_book_category_id','id');
+    }
+    public function relLibBookAuthor(){
+        return $this->belongsTo('LibBookAuthor','lib_book_author_id','id');
+    }
+    public function relLibBookPublisher(){
+        return $this->belongsTo('LibBookPublisher','lib_book_publisher_id','id');
+    }
+
+    /* public function relBatchCourse(){
+         return $this->HasMany('BatchCourse');
+     }*/
 
 
     // TODO : user info while saving data into table
@@ -61,5 +87,4 @@ class ExmQuestionAnsText extends Eloquent{
 
     //TODO : Scope Area
 
-
-} 
+}

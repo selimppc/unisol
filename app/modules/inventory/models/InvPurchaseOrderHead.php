@@ -1,19 +1,19 @@
 <?php
 //use Carbon\Carbon;
 
-class InvPurchasePrderHead extends \Eloquent
+class InvPurchaseOrderHead extends \Eloquent
 {
     //TODO :: model attributes and rules and validation
     protected $table = 'inv_purchase_order_head';
     protected $fillable = [
         'purchase_no', 'inv_requisition_head_id', 'pay_terms',
-        'delivery_date	', 'tax', 'tax_amount', 'discount_rate',
-        'discount_amount', 'amount'
+        'delivery_date', 'tax', 'tax_amount', 'discount_rate',
+        'discount_amount', 'amount', 'status'
     ];
 
     private $errors;
     private $rules = [
-        'purchase_no' => 'required|integer',
+        //'purchase_no' => 'required|integer',
         //'acm_marks_distribution_id' => 'required|integer',
         //'acm_class_schedule_id' => 'required|integer',
         //'status' => 'required|integer',
@@ -36,8 +36,8 @@ class InvPurchasePrderHead extends \Eloquent
 
 
     //TODO : Model Relationship
-    public function relInvSupplier(){
-        return $this->belongsTo('InvSupplier', 'inv_supplier_id', 'id');
+    public function relInvRequisitionHead(){
+        return $this->belongsTo('InvRequisitionHead', 'inv_requisition_head_id', 'id');
     }
 
 
@@ -58,8 +58,17 @@ class InvPurchasePrderHead extends \Eloquent
 
 
     //TODO : Scope Area
-    public function getDateAttribute($date) {
-        return Carbon::parse($date)->format('d-M-Y'); //Change the format to whichever you desire
+    public function getDeliveryDateAttribute($delivery_date) {
+        return Carbon::parse($delivery_date)->format('d-M-Y'); //Change the format to whichever you desire
+    }
+    public static function getStatus(){
+        $query = [
+            'open'=>'Open',
+            'approved'=>'Approved',
+            'close'=>'Close',
+            'cancel'=>'Cancel'
+        ];
+        return $query;
     }
 
 

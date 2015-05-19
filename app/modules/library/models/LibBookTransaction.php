@@ -4,18 +4,22 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class ExmQuestionAnsText extends Eloquent{
+class LibBookTransaction extends Eloquent{
 
     //TODO :: model attributes and rules and validation
-    protected $table = 'exm_question_ans_text';
+    protected $table='lib_book_transaction';
     protected $fillable = [
-        'exm_question_evaluation_id', 'answer','marks'
+        'user_id', 'lib_books_id','issue_date','return_date','status'
     ];
     private $errors;
     private $rules = [
-        'exm_question_evaluation_id' => 'integer',
-        //'answer' => 'required',
+        'lib_books_id' => 'required|integer',
+        'issue_date' => 'required',
+        'return_date' => 'required',
+        /*'status' => 'required',*/
+
     ];
+
 
     public function validate($data)
     {
@@ -34,8 +38,8 @@ class ExmQuestionAnsText extends Eloquent{
 
 
     //TODO : Model Relationship
-    public function relExmQuestionEvaluation(){
-        return $this->belongsTo('ExmQuestionEvaluation', 'exm_question_evaluation_id', 'id');
+    public function relLibBook(){
+        return $this->belongsTo('LibBook','lib_books_id','id');
     }
 
 
@@ -61,5 +65,4 @@ class ExmQuestionAnsText extends Eloquent{
 
     //TODO : Scope Area
 
-
-} 
+}

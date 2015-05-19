@@ -1,20 +1,20 @@
 <?php
-use Illuminate\Auth\UserTrait;
-use Illuminate\Auth\UserInterface;
-use Illuminate\Auth\Reminders\RemindableTrait;
-use Illuminate\Auth\Reminders\RemindableInterface;
-
-class ExmQuestionAnsText extends Eloquent{
-
+class InvPurchaseOrderDetail extends \Eloquent
+{
     //TODO :: model attributes and rules and validation
-    protected $table = 'exm_question_ans_text';
+    protected $table = 'inv_purchase_order_detail';
     protected $fillable = [
-        'exm_question_evaluation_id', 'answer','marks'
+        'inv_po_head_id', 'inv_product_id', 'quantity',
+        'grn_quantity', 'tax_rate', 'tax_amount', 'unit',
+        'unit_quantity', 'purchase_rate', 'amount'
     ];
+
     private $errors;
     private $rules = [
-        'exm_question_evaluation_id' => 'integer',
-        //'answer' => 'required',
+        'inv_po_head_id' => 'required|integer',
+        'inv_product_id' => 'required|integer',
+        //'acm_class_schedule_id' => 'required|integer',
+        //'status' => 'required|integer',
     ];
 
     public function validate($data)
@@ -34,8 +34,11 @@ class ExmQuestionAnsText extends Eloquent{
 
 
     //TODO : Model Relationship
-    public function relExmQuestionEvaluation(){
-        return $this->belongsTo('ExmQuestionEvaluation', 'exm_question_evaluation_id', 'id');
+    public function relInvPurchaseOrderHead(){
+        return $this->belongsTo('InvPurchaseOrderHead', 'inv_po_head_id', 'id');
+    }
+    public function relInvProduct(){
+        return $this->belongsTo('InvProduct', 'inv_product_id', 'id');
     }
 
 
@@ -45,15 +48,11 @@ class ExmQuestionAnsText extends Eloquent{
         static::creating(function($query){
             if(Auth::user()->check()){
                 $query->created_by = Auth::user()->get()->id;
-            }elseif(Auth::applicant()->check()){
-                $query->created_by = Auth::applicant()->get()->id;
             }
         });
         static::updating(function($query){
             if(Auth::user()->check()){
                 $query->updated_by = Auth::user()->get()->id;
-            }elseif(Auth::applicant()->check()){
-                $query->updated_by = Auth::applicant()->get()->id;
             }
         });
     }
@@ -62,4 +61,5 @@ class ExmQuestionAnsText extends Eloquent{
     //TODO : Scope Area
 
 
-} 
+
+}

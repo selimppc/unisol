@@ -7,7 +7,7 @@
         <h4 class="modal-title" id="myModalLabel">New Requisition </h4>
       </div>
       <div class="modal-body">
-        @include('inventory::requisition_head._form')
+        @include('inventory::po_head._form')
       </div>
     </div>
   </div>
