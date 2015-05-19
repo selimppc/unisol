@@ -1,12 +1,17 @@
 
 <div class='form-group'>
-   {{ Form::label('requisition_no', 'Requisition No ') }}
-   {{ Form::text('requisition_no', Input::old('requisition_no'),['class'=>'form-control', 'style'=>'text-transform: uppercase;', 'required']) }}
+   {{ Form::label('purchase_no', 'Purchase Order No ') }}
+   {{ Form::text('purchase_no', Input::old('purchase_no'),['class'=>'form-control', 'style'=>'text-transform: uppercase;', 'required']) }}
 </div>
 
+{{--<div class='form-group'>
+   {{ Form::label('inv_requisition_head_id', 'inv_requisition_head_id') }}
+   {{ Form::select('inv_requisition_head_id', InvSupplier::GetSupplier(), Input::old('inv_requisition_head_id'),['class'=>'form-control', 'required']) }}
+</div>--}}
+
 <div class='form-group'>
-   {{ Form::label('inv_supplier_id', 'Supplier') }}
-   {{ Form::select('inv_supplier_id', InvSupplier::GetSupplier(), Input::old('inv_supplier_id'),['class'=>'form-control', 'required']) }}
+   {{ Form::label('pay_terms', 'Pay Terms') }}
+   {{ Form::select('pay_terms', ['cash'=>'cash', 'cheque'=>'cheque'], Input::old('pay_terms'),['class'=>'form-control', 'required']) }}
 </div>
 
 <div class='form-group'>

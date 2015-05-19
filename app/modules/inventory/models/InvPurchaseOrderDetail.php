@@ -1,20 +1,18 @@
 <?php
-//use Carbon\Carbon;
-
-class InvPurchasePrderHead extends \Eloquent
+class InvPurchaseOrderDetail extends \Eloquent
 {
     //TODO :: model attributes and rules and validation
-    protected $table = 'inv_purchase_order_head';
+    protected $table = 'nv_purchase_order_detail';
     protected $fillable = [
-        'purchase_no', 'inv_requisition_head_id', 'pay_terms',
-        'delivery_date	', 'tax', 'tax_amount', 'discount_rate',
-        'discount_amount', 'amount'
+        'inv_po_head_id', 'inv_product_id', 'quantity',
+        'grn_quantity', 'tax_rate', 'tax_amount', 'unit',
+        'unit_quantity', 'purchase_rate', 'amount'
     ];
 
     private $errors;
     private $rules = [
-        'purchase_no' => 'required|integer',
-        //'acm_marks_distribution_id' => 'required|integer',
+        'inv_po_head_id' => 'required|integer',
+        'inv_product_id' => 'required|integer',
         //'acm_class_schedule_id' => 'required|integer',
         //'status' => 'required|integer',
     ];
@@ -36,8 +34,11 @@ class InvPurchasePrderHead extends \Eloquent
 
 
     //TODO : Model Relationship
-    public function relInvSupplier(){
-        return $this->belongsTo('InvSupplier', 'inv_supplier_id', 'id');
+    public function relInvPurchaseOrderHead(){
+        return $this->belongsTo('InvPurchaseOrderHead', 'inv_po_head_id', 'id');
+    }
+    public function relInvProduct(){
+        return $this->belongsTo('InvProduct', 'inv_product_id', 'id');
     }
 
 
@@ -58,9 +59,7 @@ class InvPurchasePrderHead extends \Eloquent
 
 
     //TODO : Scope Area
-    public function getDateAttribute($date) {
-        return Carbon::parse($date)->format('d-M-Y'); //Change the format to whichever you desire
-    }
+
 
 
 }
