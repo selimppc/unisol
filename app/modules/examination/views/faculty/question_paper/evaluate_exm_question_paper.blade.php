@@ -63,19 +63,21 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                @foreach($evaluation_exm_qp as $evaluation)
+{{--                                                @if(!isset($evaluation_exm_qp))--}}
+                                                    @foreach($evaluation_exm_qp as $evaluation)
 
-                                                    <tr>
-                                                    <td><input type="checkbox" name="id[]" class="myCheckbox" value="{{ $evaluation['id'] }}"></td>
-                                                        <td> {{ $evaluation->relStudentUser->relUserProfile->first_name.' '.$evaluation->relStudentUser->relUserProfile->middle_name.' '.$evaluation->relStudentUser->relUserProfile->last_name }} </td>
-                                                        <td> {{ $evaluation->relExmQuestion->status }} </td>
-                                                        <td> {{ $evaluation->ev_marks }}</td>
+                                                        <tr>
+                                                        <td><input type="checkbox" name="id[]" class="myCheckbox" value="{{ $evaluation['id'] }}"></td>
+                                                            <td> {{ $evaluation->relStudentUser->relUserProfile->first_name.' '.$evaluation->relStudentUser->relUserProfile->middle_name.' '.$evaluation->relStudentUser->relUserProfile->last_name }} </td>
+                                                            <td> {{ $evaluation->relExmQuestion->status }} </td>
+                                                            <td> {{ $evaluation->ev_marks }}</td>
 
-                                                        <td width="140">
-                                                            <a href="{{ URL::route('faculty.exm-question-paper.evaluate-exm-questions-items',['e_q_id'=>$evaluation->exm_question_id , 'no_q'=>0 ]) }}" class="btn bg-orange btn-xs " >Evaluate</a>
-                                                        </td>
-                                                    </tr>
-                                                @endforeach
+                                                            <td width="140">
+                                                                <a href="{{ URL::route('faculty.exm-question-paper.evaluate-exm-questions-items',['e_q_id'=>$evaluation->exm_question_id , 'no_q'=>0 ]) }}" class="btn bg-orange btn-xs " >Evaluate</a>
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                                {{--@endif--}}
                                                 </tbody>
                                             </table>
                                       {{ Form::close() }}

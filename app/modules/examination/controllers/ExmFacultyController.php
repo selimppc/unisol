@@ -466,10 +466,6 @@ class ExmFacultyController extends \BaseController {
 
     }
 
-// till now all ok
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-// starting just now
-
 
     public function evaluateExmQuestions($exm_question_id)
     {
@@ -497,7 +493,11 @@ class ExmFacultyController extends \BaseController {
     }
 
 
-    //pore
+// till now all ok
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// starting just now
+
+
 
     public function evaluateExmQuestionsItems($e_q_id , $no_q = false )
     {
@@ -514,6 +514,25 @@ class ExmFacultyController extends \BaseController {
         $evaluation_id = $ev_id[$no_q];
         $evaluation_marks = $ev_marks[$no_q];
 
+        $evaluate_exm_qp = ExmQuestionEvaluation::with('relExmQuestionItems','relExmQuestion',
+            'relStudentUser','relStudentUser.relUserProfile')
+            ->where('exm_question_id', '=', $e_q_id)
+            ->latest('id')
+            ->first();
+
+//        $all_ans_text = ExmQuestionAnsText::where('exm_question_evaluation_id', $evaluate_exm_qp->id)->get();
+//
+//        foreach ($all_ans_text as $ev_itm_text) {
+//            $ev_text_id [] = $ev_itm_text->id;
+//            $ev_q_item_text_id [] = $ev_itm_text->answer;
+//        }
+//
+//        $no_q = !empty($no_q) ? $no_q : 0;
+//        $total_answer = count($all);
+//        $q_item_info_text = ExmQuestionAnsText::findOrFail($ev_q_item_text_id[$no_q]);
+//        $evaluation_text_id = $ev_text_id[$no_q];
+
+
         $data_exm_question = ExmQuestion::with('relExmExamList','relExmExamList.relYear',
             'relExmExamList.relSemester','relCourseConduct','relCourseConduct.relDegree',
             'relCourseConduct.relDegree.relDepartment',
@@ -521,24 +540,23 @@ class ExmFacultyController extends \BaseController {
             'relCourseConduct.relCourse.relSubject','relCourseConduct.relUser')
             ->where('id', '=', $e_q_id)->first();
 
-        $evaluate_exm_qp = ExmQuestionEvaluation::with('relExmQuestionItems','relExmQuestion',
-            'relStudentUser','relStudentUser.relUserProfile')
-            ->where('exm_question_id', '=', $e_q_id)
-            ->latest('id')
-            ->first();
+//        $evaluate_exm_qp = ExmQuestionEvaluation::with('relExmQuestionItems','relExmQuestion',
+//            'relStudentUser','relStudentUser.relUserProfile')
+//            ->where('exm_question_id', '=', $e_q_id)
+//            ->latest('id')
+//            ->first();
 
         $total_marks = ExmQuestionEvaluation::where('exm_question_id','=', $e_q_id)
             ->latest('id')->groupBy('exm_question_id')
             ->select(DB::raw('SUM(marks) as ev_marks'))
             ->first();
 
-
         $exm_q_stu_answer_text = ExmQuestionAnsText::where('exm_question_evaluation_id', $evaluate_exm_qp->id)->first();
 
         return View::make('examination::faculty.question_paper.evaluate-exm-questions-items',
             compact('exm_q_stu_answer_text','data_exm_question',
                 'evaluate_exm_qp', 'e_q_id', 'evaluation_id','evaluation_marks',
-                'eva_q_ans', 'b', 'total_question', 'no_q',
+                'eva_q_ans', 'b', 'total_question', 'no_q','total_answer','q_item_info_text','evaluation_text_id',
                 'q_item_info', 'total_marks','q_item_evalu_info'));
     }
 
