@@ -4,7 +4,7 @@
 @stop
 @section('content')
 
-{{--<a class="pull-right btn btn-sm btn-info" href="{{ URL::route('examination.amw.create-exam') }}" data-toggle="modal" data-target="#exam-data" style="color: #ffffff" title="New Examination"><b>+ Add Examination</b></a>--}}
+<a class="pull-right btn btn-xs btn-info" href="{{ URL::route('amw.exam-list') }}"  style="color: #ffffff" title="Back to Exam List"><b>Back</b></a>
 
 <h3>Examination :Courses</h3>
 
@@ -13,6 +13,10 @@
       <div class="box box-solid">
           {{ Form::open(array('url' => 'examination/amw/batchDelete')) }}
              <table id="example" class="table table-striped  table-bordered">
+             <div style="background-color:lightgray; color:white; padding:8px;">
+                 <b style="margin-left: 20px;color: #005580">Year: {{isset($year_title) ? $year_title : ''}}</b>
+                 <b style="margin-left: 50px;color: #005580">Semester : {{isset($semester_title) ? $semester_title :''}}</b>
+             </div>
                 <thead>
                    {{ Form::submit('Delete Items', array('class'=>'btn btn-xs btn-danger', 'id'=>'hide-button', 'style'=>'display:none'))}}
                        <br>

@@ -68,7 +68,7 @@
                                    @else
                                             <a href="{{ URL::route('amw.view-question', [ 'id'=>$values->id ]) }}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#questions" data-placement="left" title="Show" href="#"> View </a>
                                             <a href="{{ URL::route('amw.edit-question', [ 'id'=>$values->id ,'exm_exam_list_id'=>$values->exm_exam_list_id,'course_conduct_id'=>$values->course_conduct_id]) }}" class="btn btn-success btn-xs" data-toggle="modal" data-target="#questions" data-placement="left" title="Edit" href="#"> Edit </a>
-                                            <a href="{{ URL::route('amw.question-list', [ 'q_id'=>$values->id ]) }}" class="btn btn-default btn-xs" title="View Questions" > VQ(s)</a>
+                                            <a href="{{ URL::route('amw.question-list', [ 'exm_question_id'=>$values->id ]) }}" class="btn btn-default btn-xs" title="View Questions" > VQ(s)</a>
                                    @endif
                                 </td>
                             </tr>
@@ -76,6 +76,8 @@
                     @endif
                 </tbody>
              </table>
+             <a class="pull-right btn btn-xs btn-info" href="{{ URL::route('amw.exam-list') }}"  style="color: #ffffff" title="Back to Exam List"><b>Back</b></a>
+             <br>
           {{form::close() }}
            {{$exm_question->links()}}
 

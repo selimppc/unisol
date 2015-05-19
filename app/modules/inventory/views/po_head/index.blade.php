@@ -17,7 +17,7 @@
            </div>
         </div>
 
-        {{Form::open([ 'route'=>'batch-requisition-destroy' ])}}
+        {{Form::open([ 'route'=>'batch-purchase-order-destroy' ])}}
        <div class="box-body">
         <table id="example" class="table table-striped  table-bordered" >
             <thead>
@@ -25,14 +25,17 @@
                 <tr>
                     <th><input type="checkbox" id="checkbox" class="checkbox" value=""></th>
                     <th> PO NO: </th>
-                    <th> Requisition NO: </th>
+                    <th> Req NO: </th>
                     <th> Pay Terms </th>
                     <th> Delivery Date  </th>
+                    <th> Tax (%)</th>
                     <th> Tax Amount </th>
-                    <th> Discount Rate </th>
-                    <th> Discount Amount</th>
+                    <th> Dis.t Rate (%) </th>
+                    <th> Disc. Amount</th>
+                    <th> Amount </th>
                     <th> Status</th>
                     <th> Action </th>
+                    <th> GRN</th>
                 </tr>
             </thead>
             <tbody>
@@ -40,14 +43,14 @@
                  <tr style="{{$values->status=='approved' ? 'background-color: burlywood' : '' }}">
                     <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $values->id }}"></td>
                     <td><b>
-                        {{ link_to_route($values->status!="approved" ?'requisition-detail' : 'requisition-show',$values->purchase_no,['req_id'=>$values->id], ['data-toggle'=>"modal", 'data-target'=>"#modal-pc"]) }}
+                        {{ link_to_route($values->status!="approved" ?'purchase-order-detail' : 'purchase-order-show',$values->purchase_no,['po_id'=>$values->id], ['data-toggle'=>"modal", 'data-target'=>"#modal-pc"]) }}
                     </b></td>
                     <td>{{isset($values->inv_requisition_head_id) ? Str::title($values->relRequisitionHear->requisition_no) : ''}}</td>
                     <td>{{ $values->pay_terms }}  </td>
                     <td>{{ $values->delivery_date }}</td>
-                    <td>{{ $values->tax }} (%)</td>
+                    <td>{{ round($values->tax) }}</td>
                     <td>{{ $values->tax_amount }}</td>
-                    <td>{{ $values->discount_rate }} (%)</td>
+                    <td>{{ round($values->discount_rate) }} </td>
                     <td>{{ $values->discount_amount }}</td>
                     <td>{{ $values->amount }}</td>
                     <td>{{Str::title($values->status)}}</td>
@@ -80,7 +83,7 @@
     {{$data->links();}}
 
 </div>
-{{Form::open(['route'=>'requisition-store', 'files'=>true])}}
+{{Form::open(['route'=>'purchase-order-store', 'files'=>true])}}
         @include('inventory::po_head._modal._modal')
 {{ Form::close() }}
 
@@ -88,7 +91,7 @@
 
 {{-- Modal Area --}}
 <div class="modal fade" id="modal-pc" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg" style="z-index:1050">
     <div class="modal-content">
     </div>
   </div>

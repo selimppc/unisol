@@ -9,6 +9,7 @@
             $('#product-rate').val(ui.item.rate);
             $('#product-unit').val(ui.item.unit);
             $('#product-name').val(ui.item.name);
+            $('#product-quantity').val(ui.item.po_unit_qty);
           }
         });
     });
@@ -18,7 +19,7 @@
         e.preventDefault();
         var $btn = $(this);
         $.ajax({
-            url: 'ajax-delete-req-detail/{id}',
+            url: 'ajax-delete-po-detail/{id}',
             type: 'POST',
             dataType: 'json',
             data: { id:  $(this).data("href") },
@@ -64,7 +65,7 @@
                     $invProductUnit = $("#product-unit").val();
                     $invProductQuantity = $("#product-quantity").val();
 
-                    $('#test').append("<tr> <td><input value='"+$product_name+"' readonly> <input name='inv_product_id[]' type='hidden' value='"+$product_id+"'></td> <td><input name='rate[]' value='"+$invProductRate+"' readonly></td>  <td><input name='unit[]' value='"+$invProductUnit+"' readonly></td> <td><input name='quantity[]' value='"+$invProductQuantity+"' readonly></td> </tr>");
+                    $('#test').append("<tr> <td><input value='"+$product_name+"' readonly> <input name='inv_product_id[]' type='hidden' value='"+$product_id+"'></td>  <td><input name='unit[]' value='"+$invProductUnit+"' readonly></td> <td><input name='quantity[]' value='"+$invProductQuantity+"' readonly></td> <td><input name='rate[]' value='"+$invProductRate+"' readonly></td> </tr>");
                     $arrayProducts.push($td_productCode);
 
                     //flush the input fields

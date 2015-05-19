@@ -373,11 +373,14 @@ class ExmAmwController extends \BaseController {
                 'relExmExamList.relCourseConduct.relSemester','relExmExamList.relCourseConduct.relCourse.relSubject.relDepartment')
                 ->where('exm_exam_list_id', '=', $exm_exam_list_id)
                 ->get();
+//        $exam_type = ExmExaminer::with('relExmExamList','relExmExamList.relCourseConduct.relCourse')
+//            ->where('exm_exam_list_id', '=', $exm_exam_list_id)
+//            ->get();
 
         $year_title = Year::findOrFail($year_id)->title;
         $semester_title = Semester::findOrFail($semester_id)->title;
 
-        return View::make('examination::amw.examiners.index',compact('examiners_list','year_title','semester_title','exm_exam_list_id'));
+        return View::make('examination::amw.examiners.index',compact('examiners_list','year_title','semester_title','exm_exam_list_id','year_id','semester_id','exam_type'));
     }
 
     public function createExaminers($exm_exam_list_id){
@@ -601,11 +604,21 @@ class ExmAmwController extends \BaseController {
         return Redirect::back();
     }
 
-    public function questionList($question_item_id){
+    public function questionList($exm_question_id){
 
-        $question_list = ExmQuestionItems::where('exm_question_id' ,'=', $question_item_id)->get();
+        $question_list = ExmQuestionItems::where('exm_question_id' ,'=', $exm_question_id)->get();
+        $ques_paper_title = ExmQuestion::findOrFail($exm_question_id)->title;
 
-        return View::make('examination::amw.questions.question_list', compact('question_list'));
+        return View::make('examination::amw.questions.question_list', compact('question_list','ques_paper_title','course_title'));
+    }
+
+    public function viewQuestionItem($id){
+
+        $question_item = ExmQuestionItems::with('relExmQuestion')->find($id);
+
+        $q_details = ExmQuestionOptionAnswer::where('exm_question_items_id','=', $id)->get();
+
+        return View::make('examination::amw.questions.view',compact('question_item','q_details','answer'));
     }
 
 }

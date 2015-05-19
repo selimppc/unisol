@@ -9,7 +9,7 @@ class ExmQuestionAnsText extends Eloquent{
     //TODO :: model attributes and rules and validation
     protected $table = 'exm_question_ans_text';
     protected $fillable = [
-        'exm_question_evaluation_id', 'answer',
+        'exm_question_evaluation_id', 'answer','marks'
     ];
     private $errors;
     private $rules = [
