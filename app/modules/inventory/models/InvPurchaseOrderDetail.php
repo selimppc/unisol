@@ -2,7 +2,7 @@
 class InvPurchaseOrderDetail extends \Eloquent
 {
     //TODO :: model attributes and rules and validation
-    protected $table = 'nv_purchase_order_detail';
+    protected $table = 'inv_purchase_order_detail';
     protected $fillable = [
         'inv_po_head_id', 'inv_product_id', 'quantity',
         'grn_quantity', 'tax_rate', 'tax_amount', 'unit',

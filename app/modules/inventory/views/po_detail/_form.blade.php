@@ -6,6 +6,9 @@
         border: none;
         width: 99%;
     }
+    .ui-menu-item{
+        width: 63%;
+    }
 
 </style>
 <div class='form-group'>
@@ -16,30 +19,33 @@
 {{Form::hidden('invProductName', null,['id'=>'product-name'])}}
 
 <div class='row'>
+
     <div class="col-sm-3">
         <div class='form-group'>
-            {{ Form::label('invProductRate', 'Rate') }}
-               {{ Form::text('invProductRate', Input::old('invProductRate'),['id'=>'product-rate']) }}
-        </div>
-    </div>
-    <div class="col-sm-3">
-        <div class='form-group'>
-           {{ Form::label('invProductUnit', 'Unit') }}
+           {{ Form::label('invProductUnit', 'Unit Quantity') }}
            {{ Form::text('invProductUnit', Input::old('invProductUnit'),['id'=>'product-unit']) }}
         </div>
     </div>
     <div class="col-sm-3">
         <div class='form-group'>
-           {{ Form::label('invProductQuantity', 'Quantity') }}
+           {{ Form::label('invProductQuantity', 'P.O. Quantity') }}
            {{ Form::text('invProductQuantity', Input::old('invProductQuantity'),['id'=>'product-quantity']) }}
         </div>
     </div>
+    <div class="col-sm-3">
+        <div class='form-group'>
+            {{ Form::label('invProductRate', 'Purchase Rate') }}
+               {{ Form::text('invProductRate', Input::old('invProductRate'),['id'=>'product-rate']) }}
+        </div>
+    </div>
+
     <div class="col-sm-3" style="padding: 4%">
         <input type="button" class="pull-right btn-xs btn-linkedin" id="add-new-product" value="+ Product">
     </div>
+
 </div>
 
-@include('inventory::requisition_detail._script')
+@include('inventory::po_detail._script')
 
 <p>
     <b> Product Detail(s)</b>
@@ -48,25 +54,25 @@
 <table class="table table-bordered small-header-table" id="amwCourseConfig">
     <thead>
     <th>Product Name</th>
-    <th>Rate </th>
-    <th>Unit </th>
-    <th>Quantity</th>
+    <th>Unit Quantity </th>
+    <th>Purchase Order Quantity</th>
+    <th>Purchase Rate </th>
     <th>Action</th>
     </thead>
 
-        {{Form::hidden('inv_requisition_head_id', $req_head->id)}}
+        {{Form::hidden('inv_po_head_id', $po_head->id)}}
     <tbody id="test">
     </tbody>
 
     <tbody>
     <?php $counter = 0;?>
 
-    @foreach($req_dt as $key=>$value)
+    @foreach($po_dt as $key=>$value)
         <tr>
             <td>{{isset($value->inv_product_id) ? $value->relInvProduct->title : ''}}</td>
-            <td>{{$value->rate}}</td>
-            <td>{{$value->unit}}</td>
-            <td>{{round($value->quantity)}}</td>
+            <td>{{round($value->unit)}}</td>
+            <td>{{round($value->unit_quantity)}}</td>
+            <td>{{round($value->purchase_rate, 2)}}</td>
             <td>
                 <a data-href="{{ $value->id }}" class="btn btn-default btn-sm delete-dt" id="delete-dt{{ $value->id }}" ><i class="fa  fa-trash-o" style="font-size: 15px;color: red"></i></a>
 

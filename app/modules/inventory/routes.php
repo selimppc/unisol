@@ -204,30 +204,29 @@ Route::group(['prefix' => 'inventory'], function() {
         "uses" => "InvPurchaseOrderController@index_purchase_order"
     ]);
 
-
     Route::post("purchase-order-store", [
         "as"   => "purchase-order-store",
         "uses" => "InvPurchaseOrderController@store_purchase_order"
     ]);
 
-    Route::get("purchase-order-show/{po_id}", [
+    Route::any("purchase-order-show/{po_id}", [
         "as"   => "purchase-order-show",
         "uses" => "InvPurchaseOrderController@show_purchase_order"
     ]);
-    Route::get("purchase-order-edit/{po_id}", [
+    Route::any("purchase-order-edit/{po_id}", [
         "as"   => "purchase-order-edit",
         "uses" => "InvPurchaseOrderController@edit_purchase_order"
     ]);
-    Route::post("purchase-order-destroy", [
+    Route::any("purchase-order-destroy", [
         "as"   => "purchase-order-destroy",
         "uses" => "InvPurchaseOrderController@destroy_purchase_order"
     ]);
-    Route::post("batch-purchase-order-destroy", [
+    Route::any("batch-purchase-order-destroy", [
         "as"   => "batch-purchase-order-destroy",
         "uses" => "InvPurchaseOrderController@batch_delete_purchase_order"
     ]);
 
-    Route::post("create-grn/{po_id}", [
+    Route::any("create-grn/{po_id}", [
         "as"   => "create-grn",
         "uses" => "InvPurchaseOrderController@create_grn"
     ]);
