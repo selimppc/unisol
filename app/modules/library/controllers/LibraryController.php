@@ -8,18 +8,9 @@ class LibraryController extends \BaseController {
         //$this->beforeFilter('academicFaculty', array('except' => array('index')));
     }
 
-
-
-
-
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
 	public function index()
 	{
-		//
+		return View::Make('library::book_category.index');
 	}
 
 
@@ -41,7 +32,33 @@ class LibraryController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+        $data = Input::all();
+
+//        print_r($data);exit;
+        $model = new LibBookCategory();
+
+        /*$model->title = Input::get('title');
+        $name = $model->title;*/
+        if($model->validate($data))
+        {
+            DB::beginTransaction();
+            try {
+                if ($model->create($data))
+                    DB::commit();
+                Session::flash('message', " Book Category Added");
+            }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', " Book Category not added.Invalid Request!");
+            }
+            return Redirect::back();
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()
+                ->with('errors', 'invalid');
+        }
 	}
 
 
