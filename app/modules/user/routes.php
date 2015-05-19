@@ -42,6 +42,10 @@ Route::group(["after" => "auth"], function() {
         "as"   => "user/student-dashboard",
         "uses" => "UserDashboardController@studentDashboard"
     ]);
+    Route::any("user/librarian-dashboard", [
+        "as"   => "user/librarian-dashboard",
+        "uses" => "UserDashboardController@librarianDashboard"
+    ]);
 
 });
 
