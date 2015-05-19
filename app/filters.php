@@ -196,6 +196,21 @@ Route::filter('exmStudent', function()
 
 
 
+/*======================================================================
+//For Library Module
+========================================================================*/
+Route::filter('librarian', function()
+{
+    if (Auth::user()->check()){
+        $role_id = Auth::user()->get()->role_id;
+        $role = User::hasRole($role_id);
+        if($role != 'librarian')
+            return Redirect::guest('user-access');
+    }else{
+        return Redirect::guest('user/login');
+    }
+
+});
 
 /*
 |--------------------------------------------------------------------------
