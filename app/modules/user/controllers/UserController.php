@@ -61,6 +61,9 @@ class UserController extends \BaseController {
             if($user_role=="student"){
                 return Redirect::to("user/student-dashboard");
             }
+            if($user_role=="librarian"){
+                return Redirect::to("user/librarian-dashboard");
+            }
         }else{
             return View::make('user::user.login');
         }
