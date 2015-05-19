@@ -161,7 +161,7 @@ Route::group(['prefix' => 'inventory'], function() {
         "uses" => "InvRequisitionHeadController@batch_delete_requisition"
     ]);
 
-    Route::post("create/purchase-order", [
+    Route::post("create/purchase-order/{req_id}", [
         "as"   => "create/purchase-order",
         "uses" => "InvRequisitionHeadController@create_purchase_order"
     ]);

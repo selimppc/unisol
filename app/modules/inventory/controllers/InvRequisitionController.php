@@ -136,6 +136,10 @@ class InvRequisitionHeadController extends \BaseController {
      */
     public function create_purchase_order($req_id){
         echo $req_id;
+
+        /*$success = DB::select(
+            'INSERT INTO inv_purchase_order_head SELECT * FROM inv_requisition_head WHERE inv_requisition_head.id = inv_purchase_order_head.inv_requisition_head_id'
+        );*/
     }
 
 
