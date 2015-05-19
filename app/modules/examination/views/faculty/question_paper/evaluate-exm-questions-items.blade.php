@@ -37,11 +37,12 @@
 
                         <div class="box-body">
 
-                              {{Form::open(array('url'=>'examination/faculty/exm-question-paper/store-evaluated-exm-questions', 'class'=>'form-horizontal','files'=>true))}}
-                                     {{Form::hidden('id', $evaluation_id ) }}
-                                     {{ Form::hidden('student_user_id', $evaluate_exm_qp->student_user_id ) }}
-                                     {{ Form::hidden('exm_question_id', $e_q_id ) }}
-                                      {{ Form::hidden('exm_question_items_id', $q_item_info->id ) }}
+                              {{ Form::open(array('url'=>'examination/faculty/exm-question-paper-to-store-evaluated-exm-questions', 'method' => 'POST' )) }}
+                                     {{Form::hidden('id', $exm_q_stu_answer_text->id ) }}
+                                     {{Form::hidden('exm_question_evaluation_id', $evaluation_id ) }}
+                                     {{--{{ Form::hidden('student_user_id', $evaluate_exm_qp->student_user_id ) }}--}}
+                                     {{--{{ Form::hidden('exm_question_id', $e_q_id ) }}--}}
+                                      {{--{{ Form::hidden('exm_question_items_id', $q_item_info->id ) }}--}}
 
                                      <strong>Question No: </strong>&nbsp;&nbsp;{{ $no_q+1 }}
                                       &nbsp;&nbsp;
@@ -67,7 +68,7 @@
                                     </div>
 
 
-                                   {{ Form::submit('Evaluate',  array( 'id'=>'submit_if', 'class'=>'btn btn-primary btn-xs')) }}
+                                   {{ Form::submit('Evaluate',array('id'=>'submit_if','class'=>'btn btn-primary btn-xs')) }}
 
                                    <a href="{{ URL::route('faculty.exm-question-paper.evaluate-exm-questions',['exm_question_id'=>$e_q_id]) }}" style="margin-right: .65%;" class="pull-left btn btn-success btn-xs">Back</a>
 
@@ -79,11 +80,8 @@
 
                                     @if(  ($no_q + 1) < $total_question )
                                         <a href="{{ URL::route('faculty.exm-question-paper.evaluate-exm-questions-items',['exm_question_id'=>$e_q_id, 'no_q'=>$no_q+1 ]) }}" class="btn bg-orange btn-xs " >Next</a>
-
                                     @else
-
                                             <a href="{{ URL::route('faculty.exm-question-paper.evaluate-exm-questions',['exm_question_id'=>$e_q_id]) }}" class="btn bg-purple btn-xs">Finish</a>
-
                                     @endif
 
                               {{ Form::close()  }}
