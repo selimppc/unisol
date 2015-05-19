@@ -112,8 +112,8 @@ Route::any('faculty/exm-question-paper/evaluate-exm-questions-items/{exm_questio
 ]);
 
 
-Route::any('faculty/exm-question-paper/store-evaluated-exm-questions',[
-    'as' => 'faculty.exm-question-paper.store-evaluated-exm-questions',
+Route::any('faculty/exm-question-paper-to-store-evaluated-exm-questions',[
+    'as' => 'faculty.exm-question-paper-to-store-evaluated-exm-questions',
     'uses' => 'ExmFacultyController@storeEvaluatedExmQuestionItems'
 ]);
 
