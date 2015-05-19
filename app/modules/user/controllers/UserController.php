@@ -50,6 +50,7 @@ class UserController extends \BaseController {
     }
 
     public static function userAccessTo(){
+
         if(Auth::user()->check()){
             $user_role = User::hasRole(Auth::user()->get()->role_id);
             if($user_role=="amw"){
