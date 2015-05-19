@@ -1361,7 +1361,7 @@ class AdmAmwController extends \BaseController
             })
             ->latest('id')->paginate(10);
 
-        return View::make('admission::amw.adm_question.adm_question_index', compact('adm_question', 'batch', 'bats_id'));
+        return View::make('admission::amw.adm_question.index', compact('adm_question', 'batch', 'bats_id'));
     }
 
     /**
@@ -1431,12 +1431,16 @@ class AdmAmwController extends \BaseController
     {
         $question = AdmQuestion::with('relBatchAdmtestSubject', 'relBatchAdmtestSubject.relBatch', 'relBatchAdmtestSubject.relBatch.relDegree')
             ->where('id', $id)->first();
+
         $batch_admtest_subject = BatchAdmtestSubject::BatchAdmissionTestSubjectLists($question->relBatchAdmtestSubject->relBatch->id);
-        $examiner_faculty_lists = AdmQuestion::AdmissionExaminerList($question->relBatchAdmtestSubject->relBatch->id);
+        $examiner_setter_lists = AdmQuestion::ExaminerList($question->relBatchAdmtestSubject->relBatch->id, 'question-setter');
+        $examiner_evaluator_lists = AdmQuestion::ExaminerList($question->relBatchAdmtestSubject->relBatch->id, 'question-evaluator');
 
         $batch = Batch::with('relVDegree', 'relYear')->where('id', '=', $question->relBatchAdmtestSubject->batch_id)->first();
-        return View::make('admission::amw.adm_question.edit_question',
-            compact('question','batch_admtest_subject','examiner_faculty_lists', 'batch'));
+
+        Input::flash();
+        return View::make('admission::amw.adm_question.edit',
+            compact('question','batch_admtest_subject','examiner_setter_lists', 'examiner_evaluator_lists', 'batch'));
     }
 
     /**

@@ -93,4 +93,22 @@ class AdmQuestion extends Eloquent{
         return $query;
     }
 
+    /**
+     * @param $query
+     * @param $batch_id
+     * @param string $type
+     * @return mixed
+     */
+    public function scopeExaminerList($query , $batch_id, $type = 'both'){
+        $query = AdmExaminer::join('user_profile', function($join)
+        {
+            $join->on('adm_examiner.user_id', '=', 'user_profile.user_id');
+        })
+            ->where('adm_examiner.batch_id', '=', $batch_id)
+            ->whereIn('adm_examiner.type', array($type, 'both'))
+            ->select(DB::raw('CONCAT(user_profile.first_name, " ", user_profile.middle_name, " ", user_profile.last_name) AS full_name, adm_examiner.user_id as id'))
+            ->lists('full_name', 'id');
+        return $query;
+    }
+
 } 
