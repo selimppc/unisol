@@ -129,6 +129,7 @@ class CreateExamination extends Migration {
             $table->increments('id');
             $table->unsignedInteger('exm_question_evaluation_id')->nullable();
             $table->text('answer');
+            $table->string('marks', 8);
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
@@ -142,7 +143,7 @@ class CreateExamination extends Migration {
         Schema::create('exm_question_ans_radio', function(Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('exm_question_evaluation_id')->nullable();
-            $table->tinyInteger('answer',false, 1);
+            $table->unsignedInteger('opt_ans_id')->nullable();
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
@@ -150,13 +151,14 @@ class CreateExamination extends Migration {
         });
         Schema::table('exm_question_ans_radio', function($table) {
             $table->foreign('exm_question_evaluation_id')->references('id')->on('exm_question_evaluation');
+            $table->foreign('opt_ans_id')->references('id')->on('exm_question_opt_ans');
         });
 
 
         Schema::create('exm_question_ans_checkbox', function(Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('exm_question_evaluation_id')->nullable();
-            $table->tinyInteger('answer',false, 1);
+            $table->unsignedInteger('opt_ans_id')->nullable();
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
@@ -164,6 +166,7 @@ class CreateExamination extends Migration {
         });
         Schema::table('exm_question_ans_checkbox', function($table) {
             $table->foreign('exm_question_evaluation_id')->references('id')->on('exm_question_evaluation');
+            $table->foreign('opt_ans_id')->references('id')->on('exm_question_opt_ans');
         });
 
 
