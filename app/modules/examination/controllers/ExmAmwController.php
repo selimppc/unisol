@@ -169,7 +169,8 @@ class ExmAmwController extends \BaseController {
                 return Redirect::back();
               }
         } catch (exception $ex){
-            return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+            Session::flash('warning','Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+            return Redirect::back();
         }
     }
 
