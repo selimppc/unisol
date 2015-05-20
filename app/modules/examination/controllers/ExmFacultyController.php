@@ -499,8 +499,13 @@ class ExmFacultyController extends \BaseController {
 
 
 
-    public function evaluateExmQuestionsItems($e_q_id , $no_q = false )
+    public function evaluateExmQuestionsItems($e_q_id , $no_q = false , $evaluation_id)
     {
+
+        $desc_answer = ExmQuestionAnsText::where('exm_question_evaluation_id',$evaluation_id)->first();
+
+//        print_r($eva_all->answer);exit;
+
         $all = ExmQuestionEvaluation::where('exm_question_id', $e_q_id)->get();
 
         foreach ($all as $ev_itm) {
@@ -555,7 +560,7 @@ class ExmFacultyController extends \BaseController {
 
         return View::make('examination::faculty.question_paper.evaluate-exm-questions-items',
             compact('exm_q_stu_answer_text','data_exm_question',
-                'evaluate_exm_qp', 'e_q_id', 'evaluation_id','evaluation_marks',
+                'evaluate_exm_qp', 'e_q_id', 'evaluation_id','evaluation_marks','desc_answer',
                 'eva_q_ans', 'b', 'total_question', 'no_q','total_answer','q_item_info_text','evaluation_text_id',
                 'q_item_info', 'total_marks','q_item_evalu_info'));
     }
