@@ -42,7 +42,7 @@
                     <td><b>
                         {{ link_to_route($values->status!="approved" ?'requisition-detail' : 'requisition-show',$values->requisition_no,['req_id'=>$values->id], ['data-toggle'=>"modal", 'data-target'=>"#modal-pc"]) }}
                     </b></td>
-                    <td>{{Str::title($values->relInvSupplier->company_name)}}</td>
+                    <td>{{isset($values->inv_supplier_id) ? Str::title($values->relInvSupplier->company_name) : ''}}</td>
                     <td>{{ $values->date }}  </td>
                     <td>{{$values->note}}</td>
                     <td>{{Str::title($values->requisition_type)}}</td>
