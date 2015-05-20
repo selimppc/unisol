@@ -15,6 +15,7 @@
             <li><a href="{{URL::route('supplier')}}"><i class="fa fa-angle-double-right"></i> Supplier Master</a></li>
             <li><a href="{{URL::route('requisition')}}"><i class="fa fa-angle-double-right"></i> Requisition</a></li>
             <li><a href="{{URL::route('purchase-order')}}"><i class="fa fa-angle-double-right"></i> Purchase Order</a></li>
+            <li><a href="{{URL::route('grn')}}"><i class="fa fa-angle-double-right"></i> GRN </a></li>
         </ul>
     </li>
 

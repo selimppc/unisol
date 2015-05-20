@@ -151,16 +151,16 @@ Route::group(['prefix' => 'inventory'], function() {
         "as"   => "requisition-edit",
         "uses" => "InvRequisitionHeadController@edit_requisition"
     ]);
-    Route::post("requisition-destroy", [
+    Route::any("requisition-destroy/{req_id}", [
         "as"   => "requisition-destroy",
         "uses" => "InvRequisitionHeadController@destroy_requisition"
     ]);
-    Route::post("batch-requisition-destroy", [
+    Route::any("batch-requisition-destroy", [
         "as"   => "batch-requisition-destroy",
         "uses" => "InvRequisitionHeadController@batch_delete_requisition"
     ]);
 
-    Route::post("create/purchase-order/{req_id}", [
+    Route::any("create/purchase-order/{req_id}", [
         "as"   => "create/purchase-order",
         "uses" => "InvRequisitionHeadController@create_purchase_order"
     ]);
@@ -254,6 +254,19 @@ Route::group(['prefix' => 'inventory'], function() {
     Route::any("ajax-delete-po-detail/{id}", [
         "as"   => "ajax-delete-po-detail",
         "uses" => "InvPurchaseOrderController@ajax_delete_po_detail"
+    ]);
+
+
+
+    /*
+     *  ====================================================================================
+     *  GRN  Area
+     *  =====================================================================================
+     */
+
+    Route::any("grn", [
+        "as"   => "grn",
+        "uses" => "InvPurchaseOrderController@index_grn"
     ]);
 
 

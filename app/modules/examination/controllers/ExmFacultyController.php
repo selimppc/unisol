@@ -498,9 +498,14 @@ class ExmFacultyController extends \BaseController {
 // starting just now
 
 
-
+//$evaluation_id
     public function evaluateExmQuestionsItems($e_q_id , $no_q = false )
     {
+
+//        $desc_answer = ExmQuestionAnsText::where('exm_question_evaluation_id',$evaluation_id)->first();
+
+//        print_r($desc_answer->answer);exit;
+
         $all = ExmQuestionEvaluation::where('exm_question_id', $e_q_id)->get();
 
         foreach ($all as $ev_itm) {
@@ -520,16 +525,17 @@ class ExmFacultyController extends \BaseController {
             ->latest('id')
             ->first();
 
-//        $all_ans_text = ExmQuestionAnsText::where('exm_question_evaluation_id', $evaluate_exm_qp->id)->get();
+//        $all_ans_text = ExmQuestionAnsText::where('exm_question_evaluation_id', $evaluation_id)->get();
 //
 //        foreach ($all_ans_text as $ev_itm_text) {
 //            $ev_text_id [] = $ev_itm_text->id;
+//            $ev_ex_q_txt_id [] = $ev_itm_text->exm_question_evaluation_id;
 //            $ev_q_item_text_id [] = $ev_itm_text->answer;
 //        }
 //
 //        $no_q = !empty($no_q) ? $no_q : 0;
 //        $total_answer = count($all);
-//        $q_item_info_text = ExmQuestionAnsText::findOrFail($ev_q_item_text_id[$no_q]);
+//        $q_item_info_text = ExmQuestionAnsText::findOrFail($ev_ex_q_txt_id[$no_q]);
 //        $evaluation_text_id = $ev_text_id[$no_q];
 
 
@@ -555,7 +561,7 @@ class ExmFacultyController extends \BaseController {
 
         return View::make('examination::faculty.question_paper.evaluate-exm-questions-items',
             compact('exm_q_stu_answer_text','data_exm_question',
-                'evaluate_exm_qp', 'e_q_id', 'evaluation_id','evaluation_marks',
+                'evaluate_exm_qp', 'e_q_id', 'evaluation_id','evaluation_marks','desc_answer',
                 'eva_q_ans', 'b', 'total_question', 'no_q','total_answer','q_item_info_text','evaluation_text_id',
                 'q_item_info', 'total_marks','q_item_evalu_info'));
     }
