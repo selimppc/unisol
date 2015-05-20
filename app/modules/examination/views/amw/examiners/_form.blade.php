@@ -16,8 +16,8 @@
           {{ Form::hidden('exm_exam_list_id',$exm_exam_list_id) }}
           {{ Form::hidden('status','Requested', Input::old('status')) }}
 
-           <div class='form-group'><span class="text-danger">*</span>
-               {{ Form::label('type', 'Examiner Type') }}
+           <div class='form-group'>
+               {{ Form::label('type', 'Examiner Type') }}<span class="text-danger">*</span>
                {{ Form::select('type',
                array('question-setter' => 'question-setter','question-evaluator' => 'question-evaluator','both' => 'both'),
                Input::old('type'),['class'=>'form-control','required'=>'required']) }}
