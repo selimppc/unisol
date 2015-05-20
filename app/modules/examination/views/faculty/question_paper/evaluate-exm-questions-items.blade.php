@@ -38,11 +38,8 @@
                         <div class="box-body">
 
                               {{ Form::open(array('url'=>'examination/faculty/exm-question-paper-to-store-evaluated-exm-questions', 'method' => 'POST' )) }}
-                                     {{Form::hidden('id', $exm_q_stu_answer_text->id ) }}
+                                     {{Form::hidden('id', $desc_ans->id ) }}
                                      {{Form::hidden('exm_question_evaluation_id', $evaluation_id ) }}
-                                     {{--{{ Form::hidden('student_user_id', $evaluate_exm_qp->student_user_id ) }}--}}
-                                     {{--{{ Form::hidden('exm_question_id', $e_q_id ) }}--}}
-                                      {{--{{ Form::hidden('exm_question_items_id', $q_item_info->id ) }}--}}
 
                                      <strong>Question No: </strong>&nbsp;&nbsp;{{ $no_q+1 }}
                                       &nbsp;&nbsp;
@@ -51,22 +48,16 @@
                                      <strong>Question Title Here: &nbsp;&nbsp; </strong> {{ $q_item_info->title }}
                                      <br><br>
 
-                                      {{--ekhane kaj baki--}}
-
-                                     <strong>Question Answer Here: &nbsp;&nbsp; </strong> {{ $exm_q_stu_answer_text->answer }}
+                                     <strong>Question Answer Here: &nbsp;&nbsp; </strong> {{ $desc_ans->answer }}
                                      <br><br>
 
-                                    {{--$evaluation_marks = oi item er marks koto exm_question_items er marks e--}}
-
                                     {{ Form::hidden('exm_question_evaluation_id', $evaluate_exm_qp->id ) }}
-
 
                                     <div class='form-group' style="margin-left: 4%;">
                                       {{ Form::label('marks', 'Marks') }}
                                       {{ Form::text('marks', Input::old('marks'),['required'=>'required']) }}
                                        <strong>out of : </strong> {{  $q_item_info->marks}}
                                     </div>
-
 
                                    {{ Form::submit('Evaluate',array('id'=>'submit_if','class'=>'btn btn-primary btn-xs')) }}
 
