@@ -106,7 +106,7 @@ Route::any('faculty/exm-question-paper/evaluate-exm-questions/{exm_question_id}'
 
 
 
-Route::any('faculty/exm-question-paper/evaluate-exm-questions-items/{exm_question_id}/{no_q}',[
+Route::any('faculty/exm-question-paper/evaluate-exm-questions-items/{exm_question_id}/{no_q}/{evaluation_id}',[
     'as' => 'faculty.exm-question-paper.evaluate-exm-questions-items',
     'uses' => 'ExmFacultyController@evaluateExmQuestionsItems'
 ]);
