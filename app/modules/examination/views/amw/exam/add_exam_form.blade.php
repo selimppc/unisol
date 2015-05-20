@@ -74,14 +74,13 @@
 
 {{------------------Error Message Show------------------}}
  <script>
-  function SelectSemester(){
+      function SelectSemester(){
 
-     var semester_value =  document.getElementById("sem-data").value ;
-     if(semester_value === ""){
-       document.getElementById('errors').innerHTML="Please Select Semester At First.";
-     }else{
-     $("#errors").hide();
-     }
-    }
-
- </script>
+         var semester_value =  document.getElementById("sem-data").value ;
+         if(semester_value === ""){
+             document.getElementById('errors').innerHTML="Please Select Semester At First.";
+         }else{
+             $("#errors").hide();
+         }
+      }
+</script>

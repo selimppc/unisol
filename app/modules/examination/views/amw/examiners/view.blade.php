@@ -6,6 +6,7 @@
 <div style="padding-left: 10px; width: 90%;">
 
     {{ Form::open(array('route'=>'amw.comments-examiners','method' => 'POST')) }}
+    {{Form::hidden('id', $data->id)}}
     {{Form::hidden('exm_exam_list_id', $data->exm_exam_list_id)}}
     {{Form::hidden('commented_to', $data->user_id)}}
         <div  style="padding-left: 8%">
@@ -23,6 +24,12 @@
                     <tr>
                         <td>Name of Faculty :</td>
                         <td>{{User::FullName($data->user_id)}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ Form::label('type', 'Examiner Type') }}</td>
+                        <td>{{ Form::select('type',
+                    array('question-setter' => 'Question Setter','question-evaluator' => 'Question Evaluator','both' => 'Both'),
+                    $data->type,['class'=>'form-control','required'=>'required']) }}</td>
                     </tr>
                     <tr>
                         <td>Status :</td>
