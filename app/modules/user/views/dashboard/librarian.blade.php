@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 @section('sidebar')
-   {{-- @include('layouts._sidebar_faculty')--}}
+    @include('layouts._sidebar_library')
 @stop
 
 @section('content')

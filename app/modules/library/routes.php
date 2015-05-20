@@ -1,15 +1,11 @@
 <?php
-
 /*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the Closure to execute when that URI is requested.
-|
-*/
+|-----------------------
+ * Created by PhpStorm.
+ * User: ratna
+ * Date: 19-May-15
+ * Time: 1:43 PM
+ */
 
 Route::group(['prefix' => 'library'], function() {
 
@@ -17,6 +13,12 @@ Route::group(['prefix' => 'library'], function() {
         return 'Thank you so much!';
     });
 
+    Route::get('book/category',
+        'LibraryController@index'
+    );
+    Route::post('category/save',
+        'LibraryController@store'
+    );
 
 });
 

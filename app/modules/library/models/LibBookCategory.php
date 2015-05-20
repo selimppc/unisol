@@ -13,13 +13,12 @@ class LibBookCategory extends Eloquent{
     ];
     private $errors;
     private $rules = [
-        'code' => 'required',
-        'title' => 'required',
-        'description' => 'alpha_dash',
-        /*'status' => 'required',*/
+       //'code' => 'required',
+       //'title' => 'required',
+      // 'description' => 'alpha_dash',
+       // 'status' => 'required',
 
     ];
-
 
     public function validate($data)
     {

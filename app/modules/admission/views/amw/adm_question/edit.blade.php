@@ -34,12 +34,12 @@
 
                 <div class='form-group'>
                     {{ Form::label('s_faculty_user_id', 'Question Setter') }}
-                    {{ Form::Select('s_faculty_user_id', $examiner_faculty_lists , $question->s_faculty_user_id,['class'=>'form-control input-sm','required'])}}
+                    {{ Form::Select('s_faculty_user_id', $examiner_setter_lists , $question->s_faculty_user_id,['class'=>'form-control input-sm','required'])}}
                 </div>
 
                   <div class='form-group'>
                       {{ Form::label('e_faculty_user_id', 'Question Evaluator') }}
-                      {{ Form::Select('e_faculty_user_id', $examiner_faculty_lists , $question->e_faculty_user_id,['class'=>'form-control input-sm','required'])}}
+                      {{ Form::Select('e_faculty_user_id', $examiner_evaluator_lists , $question->e_faculty_user_id,['class'=>'form-control input-sm','required'])}}
                   </div>
                   <div class='form-group'>
                       {{ Form::label('status', 'Question Status') }}

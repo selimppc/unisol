@@ -55,12 +55,12 @@ class InvPurchaseOrderController extends \BaseController {
 
     /*
      * Show specific model data only
-     * $re_id => purchase_order head ID
+     * $po_id => purchase_order head ID
      */
-    public function show_purchase_order($re_id){
-        $data = InvPurchaseOrderHead::where('status', '!=','cancel')->find($re_id);
-        $req_dt = InvPurchaseOrderDetail::where('inv_requisition_head_id', $data->id)->get();
-        return View::make('inventory::requisition_head.show', compact('pageTitle', 'data', 'req_dt'));
+    public function show_purchase_order($po_id){
+        $data = InvPurchaseOrderHead::where('status', '!=','cancel')->find($po_id);
+        $po_dt = InvPurchaseOrderDetail::where('inv_po_head_id', $data->id)->get();
+        return View::make('inventory::po_head.show', compact('pageTitle', 'data', 'po_dt'));
     }
 
     /*
@@ -70,7 +70,7 @@ class InvPurchaseOrderController extends \BaseController {
     public function edit_purchase_order($re_id){
         if($this->isPostRequest()){
             $input_data = Input::all();
-            $model = InvRequisitionHead::findOrFail($re_id);
+            $model = InvPurchaseOrderHead::findOrFail($re_id);
             if($model->validate($input_data)){
                 DB::beginTransaction();
                 try{
@@ -85,18 +85,18 @@ class InvPurchaseOrderController extends \BaseController {
             }
             return Redirect::back();
         }else{
-            $model = InvRequisitionHead::findOrFail($re_id);
-            return View::make('inventory::requisition_head.edit', compact('model'));
+            $model = InvPurchaseOrderHead::findOrFail($re_id);
+            return View::make('inventory::po_head.edit', compact('model'));
         }
 
     }
 
     /*
      * Delete specific model data only
-     * $re_id => purchase_order ID
+     * $po_id => purchase_order ID
      */
-    public function destroy_purchase_order($re_id){
-        $model = InvRequisitionHead::findOrFail($re_id);
+    public function destroy_purchase_order($po_id){
+        $model = InvPurchaseOrderHead::findOrFail($po_id);
         $model->status = 'cancel';
         DB::beginTransaction();
         try{
@@ -152,10 +152,10 @@ class InvPurchaseOrderController extends \BaseController {
     /*
      * detail of purchase_order item(s)
      */
-    public function detail_purchase_order($req_id){
-        $req_head = InvRequisitionHead::find($req_id);
-        $req_dt = InvRequisitionDetail::where('inv_requisition_head_id', $req_id)->get();
-        return View::make('inventory::requisition_detail.add_edit', compact('req_id', 'req_head', 'req_dt'));
+    public function detail_purchase_order($po_id){
+        $po_head = InvPurchaseOrderHead::find($po_id);
+        $po_dt = InvPurchaseOrderDetail::where('inv_po_head_id', $po_id)->get();
+        return View::make('inventory::po_detail.add_edit', compact('po_id', 'po_head', 'po_dt'));
     }
 
     // AJax Product Search
@@ -174,6 +174,7 @@ class InvPurchaseOrderController extends \BaseController {
                 'id' => $query->id,
                 'rate'=>$query->cost_price ,
                 'unit' =>$query->purchase_unit,
+                'po_unit_qty' =>$query->purchase_unit_quantity,
                 'name' => $query->title
             ];
         }
@@ -189,14 +190,14 @@ class InvPurchaseOrderController extends \BaseController {
         $data = Input::all();
         for($i = 0; $i < count(Input::get('inv_product_id')) ; $i++){
             $dt[] = [
-                'inv_requisition_head_id' => Input::get('inv_requisition_head_id'),
+                'inv_po_head_id' => Input::get('inv_po_head_id'),
                 'inv_product_id'=> Input::get('inv_product_id')[$i],
-                'rate'=> Input::get('rate')[$i],
                 'unit'=> Input::get('unit')[$i],
-                'quantity'=> Input::get('quantity')[$i],
+                'unit_quantity'=> Input::get('quantity')[$i],
+                'purchase_rate'=> Input::get('rate')[$i],
             ];
         }
-        $model = new InvRequisitionDetail();
+        $model = new InvPurchaseOrderDetail();
         DB::beginTransaction();
         try{
             foreach($dt as $values){
@@ -221,7 +222,7 @@ class InvPurchaseOrderController extends \BaseController {
         $id = Input::get('id');
         DB::beginTransaction();
         try{
-            InvRequisitionDetail::destroy($id); //Batch::destroy(Request::get('id'));
+            InvPurchaseOrderDetail::destroy($id); //Batch::destroy(Request::get('id'));
             DB::commit();
             return Response::json("Successfully Deleted");
         }catch ( Exception $e ){

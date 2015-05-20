@@ -302,7 +302,7 @@ Route::any('admission/amw/adm-test-home/search-adm-test-index',[
 //...................................Admission Examiner........................................................
 ///{year_id}/{semester_id}/{degree_id}
 
-Route::any('admission/amw/admission-test-examiner/{year_id}/{semester_id}/{batch_id}',[
+Route::any('admission/amw/admission-test-examiner/{batch_id}',[
     'as' => 'admission.amw.admission-test-examiner',
     'uses' => 'AdmAmwController@admExaminerIndex'
 ]);
@@ -312,8 +312,8 @@ Route::any('admission/amw/admission-test-examiner/add-admission-test-examiner/{y
     'uses' => 'AdmAmwController@addAdmTestExaminer'
 ]);
 
-Route::any('admission/amw/admission-test-examiner/store-admission-test-examiner',[
-    'as' => 'admission.amw.admission-test-examiner.store-admission-test-examiner',
+Route::any('admission/amw/admexaminer-add',[
+    'as' => 'admission.amw.admexaminer-add',
     'uses' => 'AdmAmwController@storeAdmTestExaminer'
 ]);
 
@@ -321,8 +321,8 @@ Route::any('admission/amw/admission-test-examiner/view-admission-test-examiner/{
     'as' => 'admission.amw.admission-test-examiner.view-admission-test-examiner',
     'uses' => 'AdmAmwController@viewAdmTestExaminers'
 ]);
-Route::any('admission/amw/admission-test-examiner/adm-test-examiners-comments',[
-    'as' => 'admission.amw.admission-test-examiner.adm-test-examiners-comments',
+Route::any('admission/amw/admexaminer-comments',[
+    'as' => 'admission.amw.admexaminer-comments',
     'uses' => 'AdmAmwController@admTestExaminersComments'
 ]);
 Route::any('admission/amw/admission-test-examiner/change-status-by-test-examiner/{id}',[

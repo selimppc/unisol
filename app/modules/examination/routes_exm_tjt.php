@@ -130,9 +130,14 @@ Route::any('amw/assign-examiner-comments/{id}',[
     'uses' => 'ExmAmwController@assignExaminerWithComments'
 ]);
 
-Route::any('amw/question-list/{id}', [
+Route::any('amw/question-list/{exm_question_id}', [
     'as' => 'amw.question-list',
     'uses' => 'ExmAmwController@questionList'
+]);
+
+Route::any('amw/view-question/{id}', [
+    'as' => 'amw.view-question',
+    'uses' => 'ExmAmwController@viewQuestionItem'
 ]);
 
 
