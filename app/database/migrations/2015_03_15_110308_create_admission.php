@@ -418,6 +418,7 @@ class CreateAdmission extends Migration {
             $table->enum('progress_status',array(
                 'evaluated', 'partial-evaluate', 'not-evaluated', 'pending'
             ));
+            $table->integer('evaluator_user_id', false, 11);
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
