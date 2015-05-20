@@ -38,8 +38,11 @@
                         <div class="box-body">
 
                               {{ Form::open(array('url'=>'examination/faculty/exm-question-paper-to-store-evaluated-exm-questions', 'method' => 'POST' )) }}
-                                     {{Form::hidden('id', $desc_ans->id ) }}
-                                     {{Form::hidden('exm_question_evaluation_id', $evaluation_id ) }}
+                                     {{ Form::hidden('id', $evaluate_exm_qp->id ) }}
+                                     {{ Form::hidden('evaluator_user_id', Auth::user()->get()->id ) }}
+                                     {{ Form::hidden('student_user_id', $evaluate_exm_qp->student_user_id ) }}
+                                     {{ Form::hidden('exm_question_item_id', $evaluate_exm_qp->exm_question_items_id ) }}
+                                     {{ Form::hidden('exm_question_id', $e_q_id ) }}
 
                                      <strong>Question No: </strong>&nbsp;&nbsp;{{ $no_q+1 }}
                                       &nbsp;&nbsp;
@@ -51,11 +54,9 @@
                                      <strong>Question Answer Here: &nbsp;&nbsp; </strong> {{ $desc_ans->answer }}
                                      <br><br>
 
-                                    {{ Form::hidden('exm_question_evaluation_id', $evaluate_exm_qp->id ) }}
-
                                     <div class='form-group' style="margin-left: 4%;">
                                       {{ Form::label('marks', 'Marks') }}
-                                      {{ Form::text('marks', Input::old('marks'),['required'=>'required']) }}
+                                      {{ Form::text('marks',$evaluation_marks, Input::old('marks'),['required'=>'required']) }}
                                        <strong>out of : </strong> {{  $q_item_info->marks}}
                                     </div>
 
