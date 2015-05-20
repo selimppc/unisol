@@ -160,6 +160,7 @@ class CreateInventory extends Migration {
             $table->increments('id');
             $table->string('purchase_no', 16)->unique();
             $table->unsignedInteger('inv_requisition_head_id')->nullable();
+            $table->unsignedInteger('inv_supplier_id')->nullable();
             $table->enum('pay_terms', array(
                 'cash', 'cheque'
             ));
@@ -179,6 +180,7 @@ class CreateInventory extends Migration {
         });
         Schema::table('inv_purchase_order_head', function($table) {
             $table->foreign('inv_requisition_head_id')->references('id')->on('inv_requisition_head');
+            $table->foreign('inv_supplier_id')->references('id')->on('inv_supplier');
         });
 
 

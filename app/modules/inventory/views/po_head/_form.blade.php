@@ -11,6 +11,11 @@
 
 <div class='form-group'>
    {{ Form::label('pay_terms', 'Pay Terms') }}
+   {{ Form::select('pay_terms', $supplier_lists, Input::old('pay_terms'),['class'=>'form-control', 'required']) }}
+</div>
+
+<div class='form-group'>
+   {{ Form::label('pay_terms', 'Pay Terms') }}
    {{ Form::select('pay_terms', ['cash'=>'cash', 'cheque'=>'cheque'], Input::old('pay_terms'),['class'=>'form-control', 'required']) }}
 </div>
 
