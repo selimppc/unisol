@@ -73,13 +73,13 @@
                                    <a href="{{ URL::route('faculty.exm-question-paper.evaluate-exm-questions',['exm_question_id'=>$e_q_id]) }}" style="margin-right: .65%;" class="pull-left btn btn-success btn-xs">Back</a>
 
                                     @if( $no_q > 0 )
-                                        <a href="{{ URL::route('faculty.exm-question-paper.evaluate-exm-questions-items',['exm_question_id'=>$e_q_id, 'no_q'=>$no_q-1 ]) }}" class="btn bg-red btn-xs " >Previous</a>
+                                        <a href="{{ URL::route('faculty.exm-question-paper.evaluate-exm-questions-items',['exm_question_id'=>$e_q_id, 'evaluation_id'=>$evaluation_id, 'no_q'=>$no_q-1 ]) }}" class="btn bg-red btn-xs " >Previous</a>
                                     @endif
 
                                    &nbsp;
 
                                     @if(  ($no_q + 1) < $total_question )
-                                        <a href="{{ URL::route('faculty.exm-question-paper.evaluate-exm-questions-items',['exm_question_id'=>$e_q_id, 'no_q'=>$no_q+1 ]) }}" class="btn bg-orange btn-xs " >Next</a>
+                                        <a href="{{ URL::route('faculty.exm-question-paper.evaluate-exm-questions-items',['exm_question_id'=>$e_q_id, 'evaluation_id'=>$evaluation_id, 'no_q'=>$no_q+1 ]) }}" class="btn bg-orange btn-xs " >Next</a>
                                     @else
                                             <a href="{{ URL::route('faculty.exm-question-paper.evaluate-exm-questions',['exm_question_id'=>$e_q_id]) }}" class="btn bg-purple btn-xs">Finish</a>
                                     @endif

@@ -564,7 +564,7 @@ class ExmFacultyController extends \BaseController {
                 'evaluate_exm_qp', 'e_q_id', 'evaluation_id','evaluation_marks','desc_answer',
                 'eva_q_ans', 'b', 'total_question', 'no_q',
                 'total_answer','q_item_info_text','evaluation_text_id','data_exm_question',
-                'q_item_info', 'total_marks','q_item_evalu_info'));
+                'q_item_info', 'total_marks','q_item_evalu_info','evaluation_id'));
     }
 
 
