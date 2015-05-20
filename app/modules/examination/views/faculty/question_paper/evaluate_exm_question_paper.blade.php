@@ -73,8 +73,8 @@
                                                             <td> {{ $evaluation->ev_marks }}</td>
 
                                                             <td width="140">
-                                                                <a href="{{ URL::route('faculty.exm-question-paper.evaluate-exm-questions-items',['e_q_id'=>$evaluation->exm_question_id ,'no_q'=>0 ]) }}" class="btn bg-orange btn-xs " >Evaluate</a>
-                                                            {{--,'evaluation_id'=>$evaluation->id--}}
+                                                                <a href="{{ URL::route('faculty.exm-question-paper.evaluate-exm-questions-items',['e_q_id'=>$evaluation->exm_question_id ,'evaluation_id'=>$evaluation->id,'no_q'=>0 ]) }}" class="btn bg-orange btn-xs " >Evaluate</a>
+
                                                             </td>
                                                         </tr>
                                                     @endforeach

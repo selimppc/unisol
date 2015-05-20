@@ -499,7 +499,7 @@ class ExmFacultyController extends \BaseController {
 
 
 //$evaluation_id
-    public function evaluateExmQuestionsItems($e_q_id , $no_q = false )
+    public function evaluateExmQuestionsItems($e_q_id , $evaluation_id, $no_q = false )
     {
 
 //        $desc_answer = ExmQuestionAnsText::where('exm_question_evaluation_id',$evaluation_id)->first();
@@ -557,7 +557,7 @@ class ExmFacultyController extends \BaseController {
             ->select(DB::raw('SUM(marks) as ev_marks'))
             ->first();
 
-        $exm_q_stu_answer_text = ExmQuestionAnsText::where('exm_question_evaluation_id', $evaluate_exm_qp->id)->first();
+        $exm_q_stu_answer_text = ExmQuestionAnsText::where('exm_question_evaluation_id', $evaluation_id)->first();
 
         return View::make('examination::faculty.question_paper.evaluate-exm-questions-items',
             compact('exm_q_stu_answer_text',
