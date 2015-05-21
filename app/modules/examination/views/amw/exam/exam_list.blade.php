@@ -12,11 +12,6 @@
 
 <h3>Examination</h3>
 
-@if(Session::get('year'))
-    {{"OK"}}
-@endif
-
-
 <div class="row">
    <div class="col-md-12 ">
       <div class="box box-solid">
