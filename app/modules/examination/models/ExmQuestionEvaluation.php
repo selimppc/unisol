@@ -45,7 +45,7 @@ class ExmQuestionEvaluation extends \Eloquent
     }
 
     public function relExmQuestionAnsText(){
-        return $this->HasMany('ExmQuestionAnsText');
+        return $this->HasOne('ExmQuestionAnsText');
     }
     public function relExmQuestionAnsRadio(){
         return $this->HasMany('ExmQuestionAnsRadio');

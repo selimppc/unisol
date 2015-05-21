@@ -573,7 +573,7 @@ class ExmFacultyController extends \BaseController {
             ->skip($no_q)
             ->take(1)
             ->first();
-        #print_r($q_evaluation);exit;
+        //print_r($q_evaluation);exit;
 
         /*foreach ($all as $ev_itm) {
             $ev_id [] = $ev_itm->id;

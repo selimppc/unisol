@@ -48,10 +48,10 @@
                                       &nbsp;&nbsp;
                                      <strong>Out of: &nbsp;&nbsp;</strong> {{ $count->total }}
                                      <br><br>
-                                     <strong>Question Title Here: &nbsp;&nbsp; </strong> {{ $q_evaluation->relExmQuestionItems->title }}
+                                     <strong>Question Title : &nbsp;&nbsp; </strong> {{ $q_evaluation->relExmQuestionItems->title }}
                                      <br><br>
 
-                                     <strong>Question Answer Here: &nbsp;&nbsp; </strong> {{ isset($q_evaluation->relExmQuestionAnsText->answer) ? $q_evaluation->relExmQuestionAnsText->answer : 'not found' }}
+                                     <strong>Question Answer : &nbsp;&nbsp; </strong> {{ $q_evaluation->relExmQuestionAnsText->answer }}
                                      <br><br>
 
                                     <div class='form-group' style="margin-left: 4%;">
