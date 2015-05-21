@@ -7,7 +7,7 @@ class AdmVQuestionEvaluation extends Migration {
 
     public function up()
     {
-        DB::statement( 'CREATE VIEW adm_v_batch_course AS (
+        DB::statement( 'CREATE VIEW adm_v_question_evaluation AS (
             SELECT
             aqe.batch_applicant_id 			AS batch_applicant_id,
             aqe.adm_question_id 			AS adm_question_id,
