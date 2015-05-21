@@ -61,9 +61,10 @@ class LibraryController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function editCategory($id)
 	{
-		//
+        $edit_category = LibBookCategory::find($id);
+        return View::make('library::book_category.edit',compact('edit_category'));
 	}
 
 
