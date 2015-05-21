@@ -44,6 +44,9 @@ class CourseConduct extends Eloquent{
     public function relDegree(){
         return $this->belongsTo('Degree', 'degree_id', 'id');
     }
+    public function relVDegree(){
+        return $this->belongsTo('AdmVDegree', 'degree_id', 'id');
+    }
     public function relCourseConductComments(){
         return $this->belongsTo('CourseConductComments', 'id', 'course_conduct_id');
     }
