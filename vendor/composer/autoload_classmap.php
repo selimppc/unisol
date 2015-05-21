@@ -218,6 +218,7 @@ return array(
     'InvRequisitionDetail' => $baseDir . '/app/modules/inventory/models/InvRequisitionDetail.php',
     'InvRequisitionHead' => $baseDir . '/app/modules/inventory/models/InvRequisitionHead.php',
     'InvRequisitionHeadController' => $baseDir . '/app/modules/inventory/controllers/InvRequisitionController.php',
+    'InvStockController' => $baseDir . '/app/modules/inventory/controllers/InvStockController.php',
     'InvSupplier' => $baseDir . '/app/modules/inventory/models/InvSupplier.php',
     'InvSupplierController' => $baseDir . '/app/modules/inventory/controllers/InvSupplierController.php',
     'LibBook' => $baseDir . '/app/modules/library/models/LibBook.php',
