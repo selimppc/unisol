@@ -278,5 +278,15 @@ Route::group(['prefix' => 'inventory'], function() {
         "uses" => "InvGrnController@show_grn_detail"
     ]);
 
+    Route::any("ajax-grn-detail-store", [
+        "as"   => "ajax-grn-detail-store",
+        "uses" => "InvGrnController@ajax_grn_detail_store"
+    ]);
+
+    Route::any("ajax-delete-grn-detail/{g_id}", [
+        "as"   => "ajax-delete-grn-detail",
+        "uses" => "InvGrnController@ajax_delete_grn_detail"
+    ]);
+
 
 });
