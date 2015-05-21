@@ -399,7 +399,7 @@ Route::any('admission/amw/admission-test/comments-re-assign/{id}',[
 
 //...................................Admission Question Evaluation........................................................
 
-Route::any('admission/amw/question-paper-evaluation/{bats_id}',[
+Route::any('admission/amw/question-paper-evaluation/{batch_id}',[
     'as' => 'admission.amw.question-paper-evaluation',
     'uses' => 'AdmAmwController@questionPaperEvaluation'
 ]);
