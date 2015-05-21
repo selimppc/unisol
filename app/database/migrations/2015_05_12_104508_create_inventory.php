@@ -139,7 +139,7 @@ class CreateInventory extends Migration {
             $table->increments('id');
             $table->unsignedInteger('inv_requisition_head_id')->nullable();
             $table->unsignedInteger('inv_product_id')->nullable();
-            $table->unique(['inv_requisition_head_id', 'inv_product_id']);
+            $table->unique(['inv_requisition_head_id', 'inv_product_id'], 'unique-key');
             $table->float('rate');
             $table->decimal('unit');
             $table->decimal('quantity');
