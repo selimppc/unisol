@@ -569,7 +569,7 @@ class ExmFacultyController extends \BaseController {
         $desc_ans = ExmQuestionAnsText::where('exm_question_evaluation_id', $eva_id)->first();
         $total_question = count($all);
         $q_item_info = ExmQuestionItems::findOrFail($ev_q_item_id[$no_q]);
-        $evaluation_id = $ev_id[$no_q];
+        //$evaluation_id = $ev_id[$no_q];
         $evaluation_marks = $ev_marks[$no_q];
 
         $evaluate_exm_qp = ExmQuestionEvaluation::with('relExmQuestionItems','relExmQuestion',
@@ -628,7 +628,7 @@ class ExmFacultyController extends \BaseController {
             $errors = $model->errors();
             Session::flash('errors', $errors);
             return Redirect::back()
-                ->with('error', 'invalid');
+                ->with('errors', 'invalid');
         }
 
     }
