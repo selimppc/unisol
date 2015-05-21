@@ -1648,7 +1648,7 @@ class AdmAmwController extends \BaseController
             })
             ->where('status', 'selected')
             ->latest('id')->get();
-
+        //print_r($adm_question);exit;
         return View::make('admission::amw.qpe.index', compact('batch', 'adm_question'));
     }
 
