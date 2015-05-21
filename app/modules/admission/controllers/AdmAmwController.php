@@ -1182,16 +1182,15 @@ class AdmAmwController extends \BaseController
      * @param $batch_id
      * @return mixed
      */
-    public function admExaminerIndex( $year_id, $semester_id, $batch_id)
+    public function admExaminerIndex($batch_id)
     {
-        $adm_test_examiner = AdmExaminer::latest('id')->where('batch_id', $batch_id)->paginate(10);
+        $adm_test_examiner = AdmExaminer::with('relUser', 'relUser.relUserProfile')->latest('id')->where('batch_id', $batch_id)->paginate(10);
 
-        $degree_batch = Batch::with('relDegree', 'relDegree.relDepartment', 'relSemester', 'relYear')
+        $batch_degree = Batch::with('relVDegree', 'relSemester', 'relYear')
             ->where('id', $batch_id )->first();
 
-        return View::make('admission::amw.adm_examiner.adm_examiner_index',
-            compact('adm_test_examiner','degree_batch'));
-
+        return View::make('admission::amw.adm_examiner.index',
+            compact('adm_test_examiner','batch_degree'));
     }
 
     /**
@@ -1218,7 +1217,13 @@ class AdmAmwController extends \BaseController
     public function storeAdmTestExaminer()
     {
         $data = Input::all();
+        $count = DB::select('select count(id) as cnt from adm_examiner where user_id = ? and batch_id = ?', array(Input::get('user_id'), Input::get('batch_id')));
+        if($count[0]->cnt > 0){
 
+            return Redirect::back()
+                ->with('error', 'This user is already in the examiner list. If you want to change the type, edit it from comments section.');
+        }
+        //Else save the new entry.
         $model = new AdmExaminer();
         $model->batch_id = Input::get('batch_id');
         $model->user_id = Input::get('user_id');
@@ -1233,7 +1238,7 @@ class AdmAmwController extends \BaseController
                 $mod_comments->batch_id = Input::get('batch_id');
                 $mod_comments->comment = Input::get('comment');
                 $mod_comments->commented_to = Input::get('user_id');
-                $name = $mod_comments->commented_to;
+                $name = User::FullName(Input::get('user_id'));
                 $mod_comments->commented_by = Auth::user()->get()->id;
                 $mod_comments->status = 1;
                 $mod_comments->save();
@@ -1259,11 +1264,19 @@ class AdmAmwController extends \BaseController
      * @return mixed
      */
     public function viewAdmTestExaminers($batch_id){
-        $data = AdmExaminer::with('relBatch','relBatch.relDegree', 'relBatch.relAdmExaminerComments')
-            ->where('batch_id', $batch_id)->first();
-        $exm_comment_info = AdmExaminerComments::where('batch_id', $batch_id)->get();
-        return View::make('admission::amw.adm_examiner.view_examiners',
-            compact('data','exm_comment_info'));
+        /**
+         * TODO:: Needs to create a view for this.
+         */
+        $data = AdmExaminer::with('relUser', 'relUser.relUserProfile', 'relBatch','relBatch.relVDegree', 'relBatch.relAdmExaminerComments',
+            'relBatch.relAdmExaminerComments.relCommentedToUser', 'relBatch.relAdmExaminerComments.relCommentedByUser',
+            'relBatch.relAdmExaminerComments.relCommentedToUser.relUserProfile', 'relBatch.relAdmExaminerComments.relCommentedByUser.relUserProfile',
+            'relBatch.relAdmExaminerComments.relCommentedToUser.relRole', 'relBatch.relAdmExaminerComments.relCommentedByUser.relRole')
+            ->where('id', $batch_id)->first();
+
+        Input::flash();
+
+        return View::make('admission::amw.adm_examiner.view',
+            compact('data'));
     }
 
     /**
@@ -1273,6 +1286,11 @@ class AdmAmwController extends \BaseController
     {
         $data = Input::all();
 
+        // Now it can change type as AMW may wants to change the examiner type.
+        $examiner = AdmExaminer::find($data['id']);
+        $examiner->update($data);
+
+        // Save comments as usual
         $model = new AdmExaminerComments();
         $model->batch_id = $data['batch_id'];
         $model->comment = $data['comment'];
@@ -1343,7 +1361,7 @@ class AdmAmwController extends \BaseController
             })
             ->latest('id')->paginate(10);
 
-        return View::make('admission::amw.adm_question.adm_question_index', compact('adm_question', 'batch', 'bats_id'));
+        return View::make('admission::amw.adm_question.index', compact('adm_question', 'batch', 'bats_id'));
     }
 
     /**
@@ -1413,12 +1431,16 @@ class AdmAmwController extends \BaseController
     {
         $question = AdmQuestion::with('relBatchAdmtestSubject', 'relBatchAdmtestSubject.relBatch', 'relBatchAdmtestSubject.relBatch.relDegree')
             ->where('id', $id)->first();
+
         $batch_admtest_subject = BatchAdmtestSubject::BatchAdmissionTestSubjectLists($question->relBatchAdmtestSubject->relBatch->id);
-        $examiner_faculty_lists = AdmQuestion::AdmissionExaminerList($question->relBatchAdmtestSubject->relBatch->id);
+        $examiner_setter_lists = AdmQuestion::ExaminerList($question->relBatchAdmtestSubject->relBatch->id, 'question-setter');
+        $examiner_evaluator_lists = AdmQuestion::ExaminerList($question->relBatchAdmtestSubject->relBatch->id, 'question-evaluator');
 
         $batch = Batch::with('relVDegree', 'relYear')->where('id', '=', $question->relBatchAdmtestSubject->batch_id)->first();
-        return View::make('admission::amw.adm_question.edit_question',
-            compact('question','batch_admtest_subject','examiner_faculty_lists', 'batch'));
+
+        Input::flash();
+        return View::make('admission::amw.adm_question.edit',
+            compact('question','batch_admtest_subject','examiner_setter_lists', 'examiner_evaluator_lists', 'batch'));
     }
 
     /**

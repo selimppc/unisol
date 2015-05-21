@@ -23,8 +23,9 @@ class InvPurchaseOrderController extends \BaseController {
     public function index_purchase_order()
     {
         $pageTitle = 'Purchase Order Lists';
+        $supplier_lists = InvSupplier::lists('company_name', 'id');
         $data = InvPurchaseOrderHead::where('status', '!=','cancel')->latest('id')->paginate('10');
-        return View::make('inventory::po_head.index', compact('pageTitle', 'data'));
+        return View::make('inventory::po_head.index', compact('pageTitle', 'data', 'supplier_lists'));
     }
 
     /*

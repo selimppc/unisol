@@ -11,185 +11,6 @@ class ExmAmwController extends \BaseController {
         return Input::server("REQUEST_METHOD") == "POST";
     }
 
-
-    //amw: View question paper
-    public function viewQuestion($id)
-    {
-        $view_question_amw = ExmQuestion::find($id)->paginate(3);
-        return View::make('examination::amw.prepare_question_paper.viewQuestion')->with('viewPrepareQuestionPaperAmw', $view_question_amw);
-    }
-    //amw: assignTo
-    public function assignTo()
-    {
-        echo "Not Done Yet";
-    }
-    //amw: Create Question Paper
-//    public function createQuestionPaper()
-//    {
-//
-////        $courseList = CourseManagement::with('relCourse')
-////            ->select('relCourse.title', 'relCourse.id')
-////            ->get(['title', 'course_id']);
-////        print_r($courseList);exit;
-//
-//        $courseList = DB::table('course_management')
-//            ->join('course', 'course_management.course_id', '=', 'course.id')
-//            ->select('course.title as title', 'course.id as id')
-//            ->lists('title', 'id');
-//
-//        print_r($courseList);exit;
-//
-////
-////
-////
-////        return View::make('examination::amw.prepare_question_paper.create', compact('crt_question_ppr','courseList'));
-//    }
-
-    //amw: Store Question Paper
-
-
-    //amw: Update Question Paper
-//    public function updateQuestionPaper($id)
-//    {
-//        // get the POST data
-//        $data = Input::all($id);
-//        $exam_list_id = Input::get('exam_list_id');
-////        $course_man_id= Input::get('course_man_id');
-//
-////        print_r($exam_list_id);exit;
-//        // create a new model instance
-//        $prepare_question_paper = new ExmQuestion();
-//        // attempt validation
-//        if ($prepare_question_paper->validate($data))
-//        {
-//            $prepare_question_paper = ExmQuestion::find($id);
-////           print_r($prepare_question_paper);exit;
-//
-//            $prepare_question_paper->exm_exam_list_id = Input::get('exam_list_id');
-//            $prepare_question_paper->course_management_id = Input::get('course_man_id');
-//            $prepare_question_paper->examiner_faculty_user_id = Input::get('examiner_faculty_user_id');
-//
-//            $prepare_question_paper->title = Input::get('title');
-//            $prepare_question_paper->deadline = Input::get('deadline');
-//            $prepare_question_paper->total_marks = Input::get('total_marks');
-//
-//
-////            print_r($exam_list_id);exit;
-//
-//            $prepare_question_paper->save();
-//            // redirect
-//            Session::flash('message', 'Question Paper Successfully Updated!');
-//
-//            return Redirect::back();
-//
-////            return Redirect::route('examination/amw/index', ['exam_list_id'=>$exam_list_id]);
-//
-//        }
-//        else
-//        {
-//            // failure, get errors
-//            $errors = $prepare_question_paper->errors();
-//            Session::flash('errors', $errors);
-//
-//            return Redirect::to('examination/amw/index');
-//        }
-//        //ok
-//    }
-    //amw: Question List
-//    public function questionList()
-//    {
-//        $question_list_amw = ExmQuestionItems::orderBy('id', 'DESC')->paginate(5);
-//        return View::make('examination::amw.prepare_question_paper.questionList')->with('QuestionListAmw',$question_list_amw);
-//    }
-    //amw: View Question Items
-    public function viewQuestionItems($id)
-    {
-        $amw_ViewQuestionItems = DB::table('exm_question_items')
-            ->where('id', $id)
-            ->first();
-
-        $options = DB::table('exm_question_opt_ans')
-            ->where('exm_question_items_id', $amw_ViewQuestionItems->id)
-            ->get();
-
-        return View::make('examination::amw.prepare_question_paper.viewQuestionItems', compact('amw_ViewQuestionItems', 'options'));
-
-    }
-    //amw: Destroy
-    public function destroy($id)
-    {
-        try {
-            ExmQuestion::find($id)->delete();
-            return Redirect::back()->with('message', 'Successfully deleted Information!');
-        }
-        catch(exception $ex){
-            return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
-
-        }
-        //ok
-    }
-    //amw: batch delete->question
-    public function batchDelete()
-    {
-        try {
-            ExmQuestion::destroy(Request::get('id'));
-            return Redirect::back()->with('message', 'Successfully deleted Information!');
-        }
-        catch
-        (exception $ex){
-            return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
-
-        }
-        //ok
-    }
-    //amw: batch delete->Question item
-    public function batchItemsDelete()
-    {
-        try {
-            ExmQuestionItems::destroy(Request::get('id'));
-            return Redirect::back()->with('message', 'Successfully deleted Information!');
-        }
-        catch
-        (exception $ex){
-            return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
-
-        }
-    }
-    //amw: examination
-    public function deshboard(){
-        return View::make('examination::amw.prepare_question_paper.deshboard');
-
-    }
-
-    public function questionsItemShow($question_item_id){
-
-        $questions_item = ExmQuestionItems::where('exm_question_id' ,'=', $question_item_id)
-            ->get();
-
-        $question_name = ExmQuestion::lists('title', 'id');
-
-        $q_l = ExmQuestionItems::all();
-        return View::make('examination::amw.prepare_question_paper.question_items',compact('questions_item','q_l','question_name'));
-    }
-    //amw: Questions
-    public function index($exam_list_id,$course_man_id)
-    {
-        $data = ExmQuestion::with('relCourseManagement', 'relCourseManagement.relYear',
-            'relCourseManagement.relSemester','relCourseManagement.relCourse.relSubject.relDepartment')
-            ->first();
-
-
-        $question_paper = ExmQuestion::where('exm_exam_list_id' ,'=', $exam_list_id)
-            ->where('course_management_id' ,'=', $course_man_id)
-            ->get();
-
-//        print_r($question_paper);exit;
-
-        return View::make('examination::amw.prepare_question_paper.index',compact('question_paper','exam_list_id','data','course_man_id'));
-
-    }
-
-
 /*--------------------------------  Version 2 :Starts Here  -----------------------------------------------------------------------------------------*/
 
     public function examList(){
@@ -210,7 +31,7 @@ class ExmAmwController extends \BaseController {
                         'relCourseConduct.relCourse.relSubject.relDepartment','relAcmMarksDistItem')->whereExists(function ($query){
                   $query->from('acm_marks_dist_item')->whereRaw('acm_marks_dist_item.id = exm_exam_list.acm_marks_dist_item_id')
                         ->where('acm_marks_dist_item.is_exam', '=', 1);
-            })->get();
+            }) ->latest('id')->get();
         }
         $year_id = array('' => 'Select Year ') + Year::lists('title', 'id');
         $semester_id = array('' => 'Select Semester ') + Semester::lists('title', 'id');
@@ -257,25 +78,42 @@ class ExmAmwController extends \BaseController {
 
         $data = Input::all();
         $model = new ExmExamList();
+
+        $model->year_id = Input::get('year_id');
+        $model->semester_id = Input::get('semester_id');
+        $model->course_conduct_id = Input::get('course_conduct_id');
+        $model->acm_marks_dist_item_id = Input::get('acm_marks_dist_item_id');
+
         if($model->validate($data)) {
-                DB::beginTransaction();
-                try {
+            //query for already exists data
+            $examCheck = DB::table('exm_exam_list')
+                ->select(DB::raw('1'))
+                ->where('year_id', '=', $model->year_id)
+                ->where('semester_id', '=', $model->semester_id)
+                ->where('semester_id', '=', $model->semester_id)
+                ->where('course_conduct_id', '=', $model->course_conduct_id)
+                ->where('acm_marks_dist_item_id', '=', $model->acm_marks_dist_item_id)
+                ->get();
+            if($examCheck){
+                Session::flash('info','Already Exists This Examination');
+                return Redirect::back();
+            }else{
+                try{
                     $model->create($data);
                     DB::commit();
-                    Session::flash('message', " Successfully Added Examination ");
-                }
-                catch ( Exception $e ){
-                    //If there are any exceptions, rollback the transaction
-                    DB::rollback();
-                    Session::flash('danger', "Examination not added.Invalid Request !");
+                    Session::flash('message', " Successfully Added  ");
+                }catch ( Exception $e ){
+                        DB::rollback();
+                        Session::flash('danger', "Examination not added.Invalid Request !");
                 }
                 return Redirect::back();
+            }
         }else{
             $errors = $model->errors();
             Session::flash('errors', $errors);
             return Redirect::back()
                 ->with('errors', 'invalid');
-            }
+        }
     }
 
     public function viewExamination($id){
@@ -348,7 +186,8 @@ class ExmAmwController extends \BaseController {
                 return Redirect::back();
               }
         } catch (exception $ex){
-            return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+            Session::flash('warning','Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+            return Redirect::back();
         }
     }
 
@@ -373,9 +212,6 @@ class ExmAmwController extends \BaseController {
                 'relExmExamList.relCourseConduct.relSemester','relExmExamList.relCourseConduct.relCourse.relSubject.relDepartment')
                 ->where('exm_exam_list_id', '=', $exm_exam_list_id)
                 ->get();
-//        $exam_type = ExmExaminer::with('relExmExamList','relExmExamList.relCourseConduct.relCourse')
-//            ->where('exm_exam_list_id', '=', $exm_exam_list_id)
-//            ->get();
 
         $year_title = Year::findOrFail($year_id)->title;
         $semester_title = Semester::findOrFail($semester_id)->title;
@@ -392,21 +228,30 @@ class ExmAmwController extends \BaseController {
         $data = Input::all();
         $model = new ExmExaminer();
         $model->exm_exam_list_id = Input::get('exm_exam_list_id');
+        $model->user_id = Input::get('user_id');
+        $model->type = Input::get('type');
 
         if($model->validate($data)) {
-
-            DB::beginTransaction();
-            try {
-                $model->create($data);
-                DB::commit();
-                Session::flash('message', " Successfully Added Examiner ");
+            //query for already exists data
+            $examinerCheck = DB::table('exm_examiner')
+                ->select(DB::raw('1'))
+                ->where('user_id', '=', $model->user_id)
+                ->where('exm_exam_list_id', '=', $model->exm_exam_list_id)
+                ->get();
+            if($examinerCheck){
+                Session::flash('info','This user already exists in the examiner list. If you want to change the examiner-type, edit it from comments section at user link.');
+                return Redirect::back();
+            }else{
+                try{
+                    $model->create($data);
+                    DB::commit();
+                    Session::flash('message', " Successfully Added  ");
+                }catch ( Exception $e ){
+                    DB::rollback();
+                    Session::flash('danger', "Examination not added.Invalid Request !");
+                }
+                return Redirect::back();
             }
-            catch ( Exception $e ){
-                //If there are any exceptions, rollback the transaction
-                DB::rollback();
-                Session::flash('danger', "Examiner not added.Invalid Request !");
-            }
-            return Redirect::back();
         }else{
             $errors = $model->errors();
             Session::flash('errors', $errors);
@@ -440,6 +285,9 @@ class ExmAmwController extends \BaseController {
     public function commentsToExaminers()
     {
         $data = Input::all();
+
+        $examiner = ExmExaminer::find($data['id']);
+        $examiner->update($data);
 
         $model = new ExmExaminerComments();
         $model->exm_exam_list_id = $data['exm_exam_list_id'];
@@ -476,12 +324,10 @@ class ExmAmwController extends \BaseController {
     public function createQuestionPapers($exm_exam_list_id,$course_conduct_id){
 
         $examiner_faculty_lists = ExmQuestion::ExaminationExaminerList($exm_exam_list_id);
-
         return View::make('examination::amw.question_papers.create',compact('examiner_faculty_lists','course_conduct_id','exm_exam_list_id'));
     }
 
     public function storeQuestionPapers(){
-
 
         $data = Input::all();
         $model = new ExmQuestion();
@@ -496,7 +342,6 @@ class ExmAmwController extends \BaseController {
                 Session::flash('message', " Successfully Added  ");
             }
             catch ( Exception $e ){
-                //If there are any exceptions, rollback the transaction
                 DB::rollback();
                 Session::flash('danger', "Examination not added.Invalid Request !");
             }
@@ -573,7 +418,6 @@ class ExmAmwController extends \BaseController {
     public function assignExaminerWithComments($id)
     {
         $data = Input::all();
-
         $model1 = ExmQuestion::findOrFail($id);
 
         if(Input::get('examiner_type') == 'setter'){
@@ -583,8 +427,8 @@ class ExmAmwController extends \BaseController {
             $model1->e_faculty_user_id = Input::get('commented_to');
             $model1->e_status = Input::get('e_status');
         }
-
         $model1->save();
+
         if($data['comment']) {
             $model = new ExmQuestionComments();
             $model->exm_question_id = $data['exm_question_id'];
@@ -615,7 +459,6 @@ class ExmAmwController extends \BaseController {
     public function viewQuestionItem($id){
 
         $question_item = ExmQuestionItems::with('relExmQuestion')->find($id);
-
         $q_details = ExmQuestionOptionAnswer::where('exm_question_items_id','=', $id)->get();
 
         return View::make('examination::amw.questions.view',compact('question_item','q_details','answer'));

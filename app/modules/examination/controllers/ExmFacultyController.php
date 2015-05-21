@@ -15,6 +15,10 @@ class ExmFacultyController extends \BaseController {
 
     // Faculty: Examiner index
 
+    /**
+     * @author : Shafi
+     * @return mixed
+     */
     public function examinationList()
     {
         $current_year = Year::where('title', Date('Y'))->first()->id;
@@ -54,6 +58,12 @@ class ExmFacultyController extends \BaseController {
             compact('exam_name','current_year','examination_list','year_id','semester_id'));
     }
 
+    /**
+     * @author Shafi
+     * @param $id
+     * @param $exm_list_id
+     * @return mixed
+     */
     public function viewExaminer($id , $exm_list_id)
     {
         $view_examination = ExmExaminer::with('relExmExamList','relExmExamList.relYear','relExmExamList.relSemester',
@@ -72,6 +82,10 @@ class ExmFacultyController extends \BaseController {
 
     }
 
+    /**
+     * @author Shafi
+     * @return mixed
+     */
     public function saveExaminerComment()
     {
             $data = Input::all();
@@ -92,6 +106,11 @@ class ExmFacultyController extends \BaseController {
             }
     }
 
+    /**
+     * @author Shafi
+     * @param $id
+     * @return mixed
+     */
     public function changeStatusToDeny($id){
         $model = ExmExaminer::findOrFail($id);
         $model->status = 'Deny';
@@ -101,6 +120,11 @@ class ExmFacultyController extends \BaseController {
         }
     }
 
+    /**
+     * @author Shafi
+     * @param $id
+     * @return mixed
+     */
     public function changeStatusToAccepted($id){
         $model = ExmExaminer::findOrFail($id);
         $model->status = 'Accepted';
@@ -110,6 +134,10 @@ class ExmFacultyController extends \BaseController {
         }
     }
 
+    /**
+     * @author Shafi
+     * @return mixed
+     */
     public function examinationListBatchDelete()
     {
         try {
@@ -120,6 +148,11 @@ class ExmFacultyController extends \BaseController {
         }
     }
 
+    /**
+     * @author Shafi
+     * @param $exm_list_id
+     * @return mixed
+     */
     public function questionPaper($exm_list_id)
     {
         $question_paper = ExmQuestion::with('relExmExamList', 'relExmExamList.relYear',
@@ -132,6 +165,11 @@ class ExmFacultyController extends \BaseController {
 
     }
 
+    /**
+     * @author Shafi
+     * @param $exm_question_id
+     * @return mixed
+     */
 
     public function viewExmQuestionPaper($exm_question_id)
     {
@@ -147,36 +185,11 @@ class ExmFacultyController extends \BaseController {
             compact('view_exm_qp'));
     }
 
-
-//    public function AssignExmFacultySetter($e_q_id)
-//    {
-//        $exm_question_data = ExmQuestion::with('relExmExamList')->where('id', $e_q_id)->first();
-//
-//        $examiner_faculty_lists = ExmQuestion::ExaminationExaminerList($exm_question_data->exm_exam_list_id);
-//
-//        $comments = ExmQuestionComments::with('relToUser', 'relToUser.relUserProfile', 'relToUser.relRole', 'relByUser', 'relByUser.relUserProfile', 'relByUser.relRole')->where('exm_question_id', $e_q_id)->get();
-//
-//        $exm_exam_list = ExmExamList::with('relCourseConduct','relCourseConduct.relDegree', 'relYear')->where('id', '=', $exm_question_data->exm_exam_list_id)->first();
-//
-//        return View::make('examination::faculty.question_paper.assign_exm_faculty_setter',
-//            compact('exm_question_data', 'examiner_faculty_lists', 'comments','e_q_id', 'exm_exam_list'));
-//    }
-
-//    public function AssignExmFacultyEvaluator($e_q_id)
-//    {
-//        $exm_question_data = ExmQuestion::with('relExmExamList')->where('id', $e_q_id)->first();
-//
-//        $examiner_faculty_lists = ExmQuestion::ExaminationExaminerList($exm_question_data->exm_exam_list_id);
-//
-//        $comments = ExmQuestionComments::with('relToUser', 'relToUser.relUserProfile', 'relToUser.relRole', 'relByUser', 'relByUser.relUserProfile', 'relByUser.relRole')->where('exm_question_id', $e_q_id)->get();
-//
-//        $exm_exam_list = ExmExamList::with('relCourseConduct','relCourseConduct.relDegree', 'relYear')->where('id', '=', $exm_question_data->exm_exam_list_id)->first();
-//
-//        return View::make('examination::faculty.question_paper.assign_exm_faculty_evaluator',
-//            compact('exm_question_data', 'examiner_faculty_lists', 'comments','e_q_id', 'exm_exam_list'));
-//    }
-
-
+    /**
+     * @author Shafi
+     * @param $exm_question_id
+     * @return mixed
+     */
     public function addExaminationModuleQuestionPaperItem($exm_question_id)
     {
         $add_exm_qp_items = ExmQuestion::find($exm_question_id);
@@ -184,6 +197,10 @@ class ExmFacultyController extends \BaseController {
             compact('add_exm_qp_items'));
     }
 
+    /**
+     * @author Shafi
+     * @return mixed
+     */
     public function storeExmQPItem()
     {
         $data = Input::all();
@@ -283,6 +300,11 @@ class ExmFacultyController extends \BaseController {
 
     }
 
+    /**
+     * @author Shafi
+     * @param $exm_question_id
+     * @return mixed
+     */
     public function viewExmQuestionsItems($exm_question_id)
     {
         $view_exm_qp_items = ExmQuestionItems::where('exm_question_id', '=', $exm_question_id)->latest('id')->get();
@@ -290,6 +312,11 @@ class ExmFacultyController extends \BaseController {
             compact('view_exm_qp_items'));
     }
 
+    /**
+     * @author Shafi
+     * @param $e_q_i_id
+     * @return mixed
+     */
     public function viewSpecificExmQuestionItems($e_q_i_id)
     {
         $fclt_view_exm_qstn_items = ExmQuestionItems::where('id', $e_q_i_id)->first();
@@ -299,7 +326,11 @@ class ExmFacultyController extends \BaseController {
     }
 
 
-
+    /**
+     * @author Shafi
+     * @param $e_q_i_id
+     * @return mixed
+     */
     public function editSpecificExmQuestionItems($e_q_i_id)
     {
         $fclty_edit_exm_quest_items = ExmQuestionItems::where('id', $e_q_i_id)->first();
@@ -309,6 +340,11 @@ class ExmFacultyController extends \BaseController {
     }
 
 
+    /**
+     * @author Shafi
+     * @param $e_q_i_id
+     * @return mixed
+     */
     public function updateSpecificExmQuestionItems($e_q_i_id)
     {
         $data = Input::all($e_q_i_id);
@@ -434,6 +470,11 @@ class ExmFacultyController extends \BaseController {
     }
 
 
+    /**
+     * @author Shafi
+     * @param $e_q_id
+     * @return mixed
+     */
     public function assignExmQuestionPaper($e_q_id)
     {
         $assign_exm_qp = ExmQuestion::findOrFail($e_q_id);
@@ -444,6 +485,10 @@ class ExmFacultyController extends \BaseController {
     }
 
 
+    /**
+     * @author Shafi
+     * @return mixed
+     */
     public function saveComment()
     {
         $info = Input::all();
@@ -467,6 +512,11 @@ class ExmFacultyController extends \BaseController {
     }
 
 
+    /**
+     * @author Shafi
+     * @param $exm_question_id
+     * @return mixed
+     */
     public function evaluateExmQuestions($exm_question_id)
     {
         $exm_data = ExmQuestion::with('relExmExamList','relExmExamList.relYear','relExmExamList.relSemester',
@@ -498,8 +548,14 @@ class ExmFacultyController extends \BaseController {
 // starting just now
 
 
-
-    public function evaluateExmQuestionsItems($e_q_id , $no_q = false )
+    /**
+     * @author Shafi
+     * @param $e_q_id
+     * @param $evaluation_id
+     * @param bool $no_q
+     * @return mixed
+     */
+    public function evaluateExmQuestionsItems($e_q_id ,$evaluation_id, $no_q = false )
     {
         $all = ExmQuestionEvaluation::where('exm_question_id', $e_q_id)->get();
 
@@ -509,6 +565,8 @@ class ExmFacultyController extends \BaseController {
             $ev_marks [] = $ev_itm->marks;
         }
         $no_q = !empty($no_q) ? $no_q : 0;
+        $eva_id = $ev_id[$no_q] ;
+        $desc_ans = ExmQuestionAnsText::where('exm_question_evaluation_id', $eva_id)->first();
         $total_question = count($all);
         $q_item_info = ExmQuestionItems::findOrFail($ev_q_item_id[$no_q]);
         $evaluation_id = $ev_id[$no_q];
@@ -520,19 +578,6 @@ class ExmFacultyController extends \BaseController {
             ->latest('id')
             ->first();
 
-//        $all_ans_text = ExmQuestionAnsText::where('exm_question_evaluation_id', $evaluate_exm_qp->id)->get();
-//
-//        foreach ($all_ans_text as $ev_itm_text) {
-//            $ev_text_id [] = $ev_itm_text->id;
-//            $ev_q_item_text_id [] = $ev_itm_text->answer;
-//        }
-//
-//        $no_q = !empty($no_q) ? $no_q : 0;
-//        $total_answer = count($all);
-//        $q_item_info_text = ExmQuestionAnsText::findOrFail($ev_q_item_text_id[$no_q]);
-//        $evaluation_text_id = $ev_text_id[$no_q];
-
-
         $data_exm_question = ExmQuestion::with('relExmExamList','relExmExamList.relYear',
             'relExmExamList.relSemester','relCourseConduct','relCourseConduct.relDegree',
             'relCourseConduct.relDegree.relDepartment',
@@ -540,32 +585,31 @@ class ExmFacultyController extends \BaseController {
             'relCourseConduct.relCourse.relSubject','relCourseConduct.relUser')
             ->where('id', '=', $e_q_id)->first();
 
-//        $evaluate_exm_qp = ExmQuestionEvaluation::with('relExmQuestionItems','relExmQuestion',
-//            'relStudentUser','relStudentUser.relUserProfile')
-//            ->where('exm_question_id', '=', $e_q_id)
-//            ->latest('id')
-//            ->first();
-
         $total_marks = ExmQuestionEvaluation::where('exm_question_id','=', $e_q_id)
             ->latest('id')->groupBy('exm_question_id')
             ->select(DB::raw('SUM(marks) as ev_marks'))
             ->first();
 
-        $exm_q_stu_answer_text = ExmQuestionAnsText::where('exm_question_evaluation_id', $evaluate_exm_qp->id)->first();
-
         return View::make('examination::faculty.question_paper.evaluate-exm-questions-items',
-            compact('exm_q_stu_answer_text','data_exm_question',
-                'evaluate_exm_qp', 'e_q_id', 'evaluation_id','evaluation_marks',
-                'eva_q_ans', 'b', 'total_question', 'no_q','total_answer','q_item_info_text','evaluation_text_id',
-                'q_item_info', 'total_marks','q_item_evalu_info'));
+            compact('exm_q_stu_answer_text',
+                'evaluate_exm_qp', 'e_q_id', 'evaluation_id','evaluation_marks','desc_ans',
+                'eva_q_ans', 'b', 'total_question', 'no_q',
+                'total_answer','q_item_info_text','evaluation_text_id','data_exm_question',
+                'q_item_info', 'total_marks','q_item_evalu_info','evaluation_id','eva_id'));
     }
 
 
+    /**
+     * @author Shafi
+     * @return mixed
+     */
     public function storeEvaluatedExmQuestionItems()
     {
         $data = Input::all();
 
-        $model = ExmQuestionAnsText::find(Input::get('id'));
+       #print_r($data);exit;
+
+        $model = ExmQuestionEvaluation::find($data['id']);
         if($model->validate($data)){
             DB::beginTransaction();
             try
@@ -586,12 +630,6 @@ class ExmFacultyController extends \BaseController {
             return Redirect::back()
                 ->with('error', 'invalid');
         }
-
-
-
-
-
-
 
     }
 

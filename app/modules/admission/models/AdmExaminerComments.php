@@ -40,6 +40,14 @@ class AdmExaminerComments extends Eloquent{
         return $this->belongsTo('Batch', 'batch_id', 'id');
     }
 
+    public function relCommentedToUser(){
+        return $this->belongsTo('User', 'commented_to', 'id');
+    }
+
+    public function relCommentedByUser(){
+        return $this->belongsTo('User', 'commented_by', 'id');
+    }
+
 
     // TODO : user info while saving data into table
     public static function boot(){

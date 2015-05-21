@@ -1,7 +1,7 @@
 
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-    <h4>View Question : {{$model->title}} In {{$model->relCourseConduct->relCourse->title}}</h4>
+    <h4>View Question : {{isset($model->title) ? $model->title:''}} In {{isset($model->relCourseConduct->relCourse->title) ? $model->relCourseConduct->relCourse->title :''}}</h4>
 </div>
 
 <div style="padding: 4%; ">
@@ -10,19 +10,19 @@
 
         <tr>
             <td> Name Of Examination : </td>
-            <td> {{ $model->relExmExamList->relAcmMarksDistItem->title }} </td>
+            <td> {{ isset($model->relExmExamList->relAcmMarksDistItem->title) ? $model->relExmExamList->relAcmMarksDistItem->title :'' }} </td>
         </tr>
         <tr>
             <td> Title : </td>
-            <td> {{ $model->title }} </td>
+            <td> {{ isset($model->title) ? $model->title :'' }} </td>
         </tr>
         <tr>
             <td> Deadline : </td>
-            <td> {{ $model->deadline }} </td>
+            <td> {{ isset($model->deadline) ? $model->deadline :''}} </td>
         </tr>
         <tr>
             <td>Total Marks :</td>
-            <td>{{ $model->total_marks }} </td>
+            <td>{{ isset($model->total_marks) ? $model->total_marks :'' }} </td>
         </tr>
         <tr>
             <td> Setter </td>
