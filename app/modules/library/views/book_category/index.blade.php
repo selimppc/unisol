@@ -35,7 +35,7 @@
                     <div class="tab-pane active" id="tab_1">
                         <div class="box-body table-responsive ">
 
-                {{--    {{ Form::open(array('url' => 'batch/delete')) }}--}}
+                {{--{{ Form::open(array('url' => 'batch/delete')) }}--}}
                     <table id="example" class="table table-bordered table-hover table-striped">
                         <thead>
                         <tr>
@@ -51,8 +51,9 @@
                         <tbody>
 
                         </tbody>
-                        {{ Form::submit('Delete Items', array('class'=>'btn btn-xs btn-danger', 'id'=>'hide-button', 'style'=>'display:none'))}}
+
                     </table>
+                        {{ Form::submit('Delete', array('class'=>'btn btn-xs btn-danger', 'id'=>'hide-button', 'style'=>'display:none'))}}
                     {{ Form::close() }}
 
                    {{-- {{ $datas->links() }}--}}
@@ -70,7 +71,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">{{HTML::image('assets/icon/media-close-btn.png')}}</button>
-                    <h4 class="modal-title" style="text-align: center;color: #800080;font-size: x-large">Create Year</h4>
+                    <h4 class="modal-title" style="text-align: center;color: #800080;font-size: x-large">Create Book Category</h4>
                 </div>
                 <div class="modal-body">
                     {{ Form::open(array('url' => 'library/category/save', 'method' =>'post', 'role'=>'form','files'=>'true')) }}
