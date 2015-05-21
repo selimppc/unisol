@@ -49,7 +49,22 @@
                         </tr>
                         </thead>
                         <tbody>
+                        @foreach ($data as $value)
+                            <tr>
+                                <td><input type="checkbox" name="id[]"  class="myCheckbox" value="{{ $value->id }}">
+                                </td>
+                                <td>{{$value->code}}</td>
+                                <td>{{$value->title}}</td>
+                                <td>{{$value->description}}</td>
+                                <td>
+                                    <a href="{{ URL::route('category.view', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" href=""><i class="fa fa-eye" style="color: green"></i></a>
 
+                                    <a href="{{ URL::route('category.edit', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#edit-modal" href="" ><i class="fa fa-pencil-square-o" style="color: #0044cc"></i></a>
+
+                                    <a data-href="{{ URL::to('category/delete/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa  fa-trash-o" style="color:red"></i></a>
+                                </td>
+                            </tr>
+                        @endforeach
                         </tbody>
 
                     </table>
@@ -94,7 +109,7 @@
     </div>
 
     {{--<!-- Modal for show -->--}}
-    <div class="modal fade" id="showOne" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal fade" id="showModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog">
             <div class="modal-content">
 
