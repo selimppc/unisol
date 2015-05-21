@@ -13,10 +13,10 @@ class LibBookCategory extends Eloquent{
     ];
     private $errors;
     private $rules = [
-       'code' => 'required',
+      /* 'code' => 'required',
        'title' => 'required',
        'description' => 'alpha_dash',
-        'status' => 'required',
+        'status' => 'required',*/
 
     ];
 

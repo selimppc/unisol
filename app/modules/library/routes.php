@@ -20,9 +20,13 @@ Route::group(['prefix' => 'library'], function() {
     Route::get('book/category',
         'LibraryController@index'
     );
-    Route::post('category/save',
-        'LibraryController@storeCategory'
-    );
+//    Route::post('category/save',
+//        'LibraryController@storeCategory'
+//    );
+    Route::any('category/save',[
+        'as' => 'category.save',
+        'uses'=> 'LibraryController@storeCategory'
+    ]);
     Route::any('category/view/{id}',[
         'as' => 'category.view',
         'uses'=> 'LibraryController@viewCategory'
@@ -32,15 +36,16 @@ Route::group(['prefix' => 'library'], function() {
         'uses'=> 'LibraryController@editCategory'
     ]);
     Route::any('category/update/{id}', [
-        'as' => 'category/update',
+        'as' => 'category.update',
         'uses' => 'LibraryController@updateCategory'
     ]);
     Route::get('category/delete/{id}',
         'LibraryController@deleteCategory'
     );
-    Route::any('category/batch/delete',
-        'LibraryController@batchdeleteCategory'
-    );
+    Route::any('category/batch/delete/{id}', [
+        'as' => 'category.batch.delete',
+        'uses' => 'LibraryController@batchdeleteCategory'
+    ]);
 });
 
 

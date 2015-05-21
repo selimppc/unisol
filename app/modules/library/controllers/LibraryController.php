@@ -19,19 +19,19 @@ class LibraryController extends \BaseController {
         $data = Input::all();
         $model = new LibBookCategory();
         $model->title = Input::get('title');
-        $flashmsg = $model->title;
+        $flash_msg = $model->title;
         if($model->validate($data))
         {
             DB::beginTransaction();
             try {
                 if ($model->create($data))
                     DB::commit();
-                Session::flash('message', "$flashmsg Book Category Successfully Added");
+                Session::flash('message', "$flash_msg Book Category Successfully Added");
             }
             catch ( Exception $e ){
                 //If there are any exceptions, rollback the transaction
                 DB::rollback();
-                Session::flash('danger', "$flashmsg Book Category not added.Invalid Request!");
+                Session::flash('danger', "$flash_msg Book Category not added.Invalid Request!");
             }
             return Redirect::back();
         }else{
@@ -74,9 +74,32 @@ class LibraryController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function updateCategory($id)
 	{
-		//
+        $data = Input::all();
+        $model = LibBookCategory::find($id);
+        $model->title = Input::get('title');
+        $flash_msg = $model->title;
+        if($model->validate($data))
+        {
+            DB::beginTransaction();
+            try {
+                $model->update($data);
+                DB::commit();
+                Session::flash('message', "$flash_msg Book Category Successfully Updated");
+            }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', "$flash_msg Book Category not updates. Invalid Request !");
+            }
+            return Redirect::back();
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()
+                ->with('errors', 'Input Data Not Valid');
+        }
 	}
 
 
@@ -86,6 +109,36 @@ class LibraryController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
+    public function deleteCategory($id)
+    {
+
+        try {
+            $data= LibBookCategory::find($id);
+            $name = $data->title;
+            if($data->delete())
+            {
+                Session::flash('message', "$name Deleted");
+                return Redirect::back();
+            }
+        }
+        catch
+        (exception $ex){
+            return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+
+        }
+    }
+    public function batchdeleteCategory($id)
+    {
+        try {
+            LibBookCategory::destroy(Request::get('id'));
+            Session::flash('message', "Success: Selected items Deleted ");
+            return Redirect::back();
+        }
+        catch
+        (exception $ex){
+            return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+        }
+    }
 	public function destroy($id)
 	{
 		//
