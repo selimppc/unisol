@@ -18,6 +18,16 @@ class CreateHr extends Migration {
             $table->integer('updated_by', false, 11);
             $table->timestamps();
         });
+        Schema::create('currency', function(Blueprint $table)
+        {
+            $table->increments('id', true);
+            $table->string('title', 32);
+            $table->string('code', 32);
+            $table->float('exchange_rate');
+            $table->integer('created_by', false, 11);
+            $table->integer('updated_by', false, 11);
+            $table->timestamps();
+        });
 
         Schema::create('hr_tax_rule', function(Blueprint $table)
         {
@@ -500,6 +510,7 @@ class CreateHr extends Migration {
 	public function down()
 	{
         Schema::drop('hr_bank');
+        Schema::drop('currency');
 
         Schema::drop('hr_tax_rule');
         Schema::drop('hr_allowance');
