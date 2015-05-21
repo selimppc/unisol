@@ -7,8 +7,8 @@ composer.lock
 Thumbs.db
 .idea
 .idea/
-/vendor
-vendor/
+vendor/*
+public/vendor/*
 app/config/database.php
 test//
 public/error_log

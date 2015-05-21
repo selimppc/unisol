@@ -43,6 +43,9 @@ class AdmQuestionItems extends Eloquent{
         return $this->HasMany('AdmQuestionOptAns');
     }
 
+    public function relAdmQuestionEvaluation(){
+        return $this->HasMany('AdmQuestionEvaluation');
+    }
 
     // TODO : user info while saving data into table
     public static function boot(){

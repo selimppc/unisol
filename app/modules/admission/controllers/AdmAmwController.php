@@ -1352,7 +1352,8 @@ class AdmAmwController extends \BaseController
     {
         $batch = Batch::with('relVDegree', 'relYear')->where('id', '=', $batch_id)->first();
 
-        $adm_question = AdmQuestion::with('relBatchAdmtestSubject', 'relSUser.relUserProfile', 'relEUser.relUserProfile', 'relBatchAdmtestSubject.relBatch', 'relBatchAdmtestSubject.relAdmtestSubject')
+        $adm_question = AdmQuestion::with('relBatchAdmtestSubject', 'relSUser.relUserProfile', 'relEUser.relUserProfile',
+            'relBatchAdmtestSubject.relBatch', 'relBatchAdmtestSubject.relAdmtestSubject')
             ->whereExists(function($query) use($batch_id)
             {
                 $query->from('batch_admtest_subject')
@@ -1415,7 +1416,8 @@ class AdmAmwController extends \BaseController
      */
     public function viewAdmTestQuestionPaper($id)
     {
-        $view_questions = AdmQuestion::with('relBatchAdmtestSubject', 'relSUser.relUserProfile', 'relEUser.relUserProfile', 'relBatchAdmtestSubject.relBatch', 'relBatchAdmtestSubject.relBatch.relDegree')
+        $view_questions = AdmQuestion::with('relBatchAdmtestSubject', 'relSUser.relUserProfile', 'relEUser.relUserProfile',
+            'relBatchAdmtestSubject.relBatch', 'relBatchAdmtestSubject.relBatch.relDegree')
             ->where('id', $id)->first();
         $batch = Batch::with('relVDegree', 'relYear')->where('id', '=', $view_questions->relBatchAdmtestSubject->batch_id)->first();
 
@@ -1551,9 +1553,13 @@ class AdmAmwController extends \BaseController
 
         $examiner_faculty_lists = AdmQuestion::AdmissionExaminerList($question_data->relBatchAdmtestSubject->batch_id);
 
-        $comments = AdmQuestionComments::with('relToUser', 'relToUser.relUserProfile', 'relToUser.relRole', 'relByUser', 'relByUser.relUserProfile', 'relByUser.relRole')->where('adm_question_id', $q_id)->get();
+        $comments = AdmQuestionComments::with('relToUser', 'relToUser.relUserProfile', 'relToUser.relRole', 'relByUser',
+            'relByUser.relUserProfile', 'relByUser.relRole')
+            ->where('adm_question_id', $q_id)->get();
 
-        $batch = Batch::with('relVDegree', 'relYear')->where('id', '=', $question_data->relBatchAdmtestSubject->batch_id)->first();
+        $batch = Batch::with('relVDegree', 'relYear')
+            ->where('id', '=', $question_data->relBatchAdmtestSubject->batch_id)
+            ->first();
 
         return View::make('admission::amw.adm_question.assign_faculty_setter',
             compact('question_data', 'examiner_faculty_lists', 'comments','q_id', 'batch'));
@@ -1622,25 +1628,50 @@ class AdmAmwController extends \BaseController
     }
 
 
-
-
 //..................................................Admission Test : Question Evaluation .......................................
 
-    public function questionPaperEvaluation($bats_id)
+    /**
+     * @param $batch_id
+     * @return mixed
+     */
+    public function questionPaperEvaluation($batch_id)
     {
-        $data = BatchAdmtestSubject::where('id', $bats_id)->first();
-        $adm_question = AdmQuestion::where('batch_admtest_subject_id', $bats_id)->get();
-        return View::make('admission::amw.qpe.index', compact('data', 'adm_question'));
-    }
+        $batch = Batch::with('relVDegree', 'relYear', 'relSemester')->where('id', $batch_id)->first();
 
-    public function studentListOfQpe($adm_question_id)
-    {
-        $data = AdmQuestion::where('id', $adm_question_id)->first();
-        $adm_question_evaluation = AdmQuestionEvaluation::where('adm_question_id', $adm_question_id)->get();
-        return View::make('admission::amw.qpe.student_list_eqp', compact('data', 'adm_question_evaluation'));
+        $adm_question = AdmQuestion::with('relBatchAdmtestSubject', 'relSUser.relUserProfile', 'relEUser.relUserProfile',
+            'relBatchAdmtestSubject.relBatch', 'relBatchAdmtestSubject.relAdmtestSubject')
+            ->whereExists(function($query) use($batch_id)
+            {
+                $query->from('batch_admtest_subject')
+                    ->whereRaw('batch_admtest_subject.id = adm_question.batch_admtest_subject_id')
+                    ->where('batch_admtest_subject.batch_id', $batch_id);
+            })
+            ->where('status', 'selected')
+            ->latest('id')->get();
+
+        return View::make('admission::amw.qpe.index', compact('batch', 'adm_question'));
     }
 
     /**
+     * @param $adm_question_id
+     * @return mixed
+     */
+    public function studentListOfQpe($adm_question_id)
+    {
+        $adm_question = AdmQuestion::with('relBatchAdmtestSubject', 'relBatchAdmtestSubject.relAdmtestSubject', 'relBatchAdmtestSubject.relBatch',
+            'relBatchAdmtestSubject.relBatch.relVDegree',
+            'relBatchAdmtestSubject.relBatch.relYear', 'relBatchAdmtestSubject.relBatch.relSemester')
+            ->where('id', $adm_question_id)->first();
+
+        $adm_question_evaluation = AdmQuestionEvaluation::where('adm_question_id', $adm_question_id)
+            ->groupby('batch_applicant_id')
+            ->get();
+
+        return View::make('admission::amw.qpe.student_eqp', compact('adm_question', 'adm_question_evaluation'));
+    }
+
+    /**
+     * @author Almas
      * @param $ba_id :: Batch Applicant ID
      * @param $question_id  :: Adm_Question_Id
      * @param $q_items_id :: Adm_question_items_id
@@ -1648,10 +1679,41 @@ class AdmAmwController extends \BaseController
      */
     public function viewDetailsOfQpe($ba_id, $question_id, $q_items_id)
     {
-        $data = AdmQuestion::where('id', $question_id)->first();
-        $question_item_details = AdmQuestionEvaluation::with('relAdmQuestionItems')
-            ->where('adm_question_items_id', $q_items_id)->get();
-        return View::make('admission::amw.qpe.view_eqp_details', compact('data', 'question_item_details'));
+        $data = AdmQuestion::with('relBatchAdmtestSubject.relAdmtestSubject')->where('id', $question_id)->first();
+
+        $question_items = AdmVQuestionEvaluation::with('relAdmQuestionItems', 'relAdmQuestionOptAns')
+            ->where('adm_question_id', $question_id)
+            ->where('batch_applicant_id', $ba_id)
+            ->get();
+
+        foreach($question_items as $qs){
+            $i = 0;
+            $qlist[$qs->adm_question_items_id]['question_title']       = $qs->relAdmQuestionItems->title;
+            $qlist[$qs->adm_question_items_id]['marks']                 = $qs->marks;
+            $qlist[$qs->adm_question_items_id]['type']       = $qs->question_type;
+            foreach($qs->relAdmQuestionOptAns as $aqoa){
+                $qlist[$qs->adm_question_items_id]['options'][$i]['id']       = $aqoa->id;
+                $qlist[$qs->adm_question_items_id]['options'][$i]['title']    = $aqoa->title;
+                $qlist[$qs->adm_question_items_id]['options'][$i]['answer']   = $aqoa->answer;
+                $i++;
+            }
+            if($qs->question_type == 'checkbox')
+                $qlist[$qs->adm_question_items_id]['answer'][]          = $qs->canswer;
+            elseif($qs->question_type == 'radio')
+                $qlist[$qs->adm_question_items_id]['answer']            = $qs->ranswer;
+            if($qs->question_type == 'text')
+                $qlist[$qs->adm_question_items_id]['answer']            = $qs->tanswer;
+
+        }
+
+        $count = DB::table('adm_question_evaluation')
+            ->select(DB::raw('count(adm_question_evaluation.id) as total, sum(adm_question_evaluation.marks) as marks'))
+            ->join('adm_question_items', 'adm_question_items.id', '=', 'adm_question_evaluation.adm_question_items_id')
+            //->where('exm_question_items.question_type', '=','text')
+            ->where('adm_question_evaluation.adm_question_id', $question_id)
+            ->first();
+
+       return View::make('admission::amw.qpe.view_eqp_details', compact('data', 'qlist', 'count'));
     }
 
 //{-----------Version: 2 (Tanin) -----------------------------------------------------------------}

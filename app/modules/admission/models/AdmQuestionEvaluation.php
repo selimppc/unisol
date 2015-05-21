@@ -39,21 +39,28 @@ class AdmQuestionEvaluation extends Eloquent{
     public function relBatchApplicant(){
         return $this->belongsTo('BatchApplicant', 'batch_applicant_id', 'id');
     }
+
     public function relAdmQuestion(){
         return $this->belongsTo('AdmQuestion', 'adm_question_id', 'id');
     }
+
     public function relAdmQuestionItems(){
         return $this->belongsTo('AdmQuestionItems', 'adm_question_items_id', 'id');
     }
+
     public function relAdmQuestionAnsText(){
         return $this->HasMany('AdmQuestionAnsText');
     }
+
     public function relAdmQuestionAnsRadio(){
         return $this->HasMany('AdmQuestionAnsRadio');
     }
+
     public function relAdmQuestionAnsCheckbox(){
         return $this->HasMany('AdmQuestionAnsCheckbox');
     }
+
+
 
 
     // TODO : user info while saving data into table
