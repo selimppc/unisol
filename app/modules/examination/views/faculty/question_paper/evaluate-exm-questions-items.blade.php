@@ -38,11 +38,11 @@
                         <div class="box-body">
 
                               {{ Form::open(array('url'=>'examination/faculty/exm-question-paper-to-store-evaluated-exm-questions', 'method' => 'POST' )) }}
-                                     {{Form::hidden('id', $exm_q_stu_answer_text->id ) }}
-                                     {{Form::hidden('exm_question_evaluation_id', $evaluation_id ) }}
-                                     {{--{{ Form::hidden('student_user_id', $evaluate_exm_qp->student_user_id ) }}--}}
-                                     {{--{{ Form::hidden('exm_question_id', $e_q_id ) }}--}}
-                                      {{--{{ Form::hidden('exm_question_items_id', $q_item_info->id ) }}--}}
+                                     {{ Form::hidden('id', $evaluate_exm_qp->id ) }}
+                                     {{ Form::hidden('evaluator_user_id', Auth::user()->get()->id ) }}
+                                     {{ Form::hidden('student_user_id', $evaluate_exm_qp->student_user_id ) }}
+                                     {{ Form::hidden('exm_question_item_id', $evaluate_exm_qp->exm_question_items_id ) }}
+                                     {{ Form::hidden('exm_question_id', $e_q_id ) }}
 
                                      <strong>Question No: </strong>&nbsp;&nbsp;{{ $no_q+1 }}
                                       &nbsp;&nbsp;
@@ -51,35 +51,27 @@
                                      <strong>Question Title Here: &nbsp;&nbsp; </strong> {{ $q_item_info->title }}
                                      <br><br>
 
-                                      {{--ekhane kaj baki--}}
-
-                                     <strong>Question Answer Here: &nbsp;&nbsp; </strong> {{ $exm_q_stu_answer_text->answer }}
+                                     <strong>Question Answer Here: &nbsp;&nbsp; </strong> {{ $desc_ans->answer }}
                                      <br><br>
-
-                                    {{--$evaluation_marks = oi item er marks koto exm_question_items er marks e--}}
-
-                                    {{ Form::hidden('exm_question_evaluation_id', $evaluate_exm_qp->id ) }}
-
 
                                     <div class='form-group' style="margin-left: 4%;">
                                       {{ Form::label('marks', 'Marks') }}
-                                      {{ Form::text('marks', Input::old('marks'),['required'=>'required']) }}
+                                      {{ Form::text('marks',$evaluation_marks, Input::old('marks'),['required'=>'required']) }}
                                        <strong>out of : </strong> {{  $q_item_info->marks}}
                                     </div>
-
 
                                    {{ Form::submit('Evaluate',array('id'=>'submit_if','class'=>'btn btn-primary btn-xs')) }}
 
                                    <a href="{{ URL::route('faculty.exm-question-paper.evaluate-exm-questions',['exm_question_id'=>$e_q_id]) }}" style="margin-right: .65%;" class="pull-left btn btn-success btn-xs">Back</a>
 
                                     @if( $no_q > 0 )
-                                        <a href="{{ URL::route('faculty.exm-question-paper.evaluate-exm-questions-items',['exm_question_id'=>$e_q_id, 'no_q'=>$no_q-1 ]) }}" class="btn bg-red btn-xs " >Previous</a>
+                                        <a href="{{ URL::route('faculty.exm-question-paper.evaluate-exm-questions-items',['exm_question_id'=>$e_q_id, 'evaluation_id'=>$evaluation_id, 'no_q'=>$no_q-1 ]) }}" class="btn bg-red btn-xs " >Previous</a>
                                     @endif
 
                                    &nbsp;
 
                                     @if(  ($no_q + 1) < $total_question )
-                                        <a href="{{ URL::route('faculty.exm-question-paper.evaluate-exm-questions-items',['exm_question_id'=>$e_q_id, 'no_q'=>$no_q+1 ]) }}" class="btn bg-orange btn-xs " >Next</a>
+                                        <a href="{{ URL::route('faculty.exm-question-paper.evaluate-exm-questions-items',['exm_question_id'=>$e_q_id, 'evaluation_id'=>$evaluation_id, 'no_q'=>$no_q+1 ]) }}" class="btn bg-orange btn-xs " >Next</a>
                                     @else
                                             <a href="{{ URL::route('faculty.exm-question-paper.evaluate-exm-questions',['exm_question_id'=>$e_q_id]) }}" class="btn bg-purple btn-xs">Finish</a>
                                     @endif

@@ -100,8 +100,8 @@ Route::any('amw/question-papers/store', [
     'uses' => 'ExmAmwController@storeQuestionPapers'
 ]);
 
-Route::any('amw/view-question/{id}', [
-    'as' => 'amw.view-question',
+Route::any('amw/view-question-paper/{id}', [
+    'as' => 'amw.view-question-paper',
     'uses' => 'ExmAmwController@viewQuestionPaper'
 ]);
 

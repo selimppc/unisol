@@ -5,7 +5,7 @@ class ExmQuestionEvaluation extends \Eloquent
     //TODO :: model attributes and rules and validation
     protected $table = 'exm_question_evaluation';
     protected $fillable = [
-        'exm_question_id','exm_question_items_id', 'student_user_id', 'marks', 'note'
+        'exm_question_id','exm_question_items_id', 'student_user_id', 'marks', 'note','evaluator_user_id'
     ];
 
     private $errors;

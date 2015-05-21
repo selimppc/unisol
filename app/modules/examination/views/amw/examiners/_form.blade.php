@@ -6,7 +6,6 @@
 
  <div class="modal-body">
       <div style="padding: 0px 20px 20px 20px;">
-          {{--{{Form::open(array('url'=>'examination/amw/examiners/store', 'class'=>'form-horizontal','files'=>true))}}--}}
           {{Form::open(['route'=>'amw.examiners.store', 'files'=>true])}}
           <div class="row">
               <div class="help-text-top">
@@ -18,13 +17,13 @@
           {{ Form::hidden('status','Requested', Input::old('status')) }}
 
            <div class='form-group'>
-               {{ Form::label('type', 'Examiner Type') }}
+               {{ Form::label('type', 'Examiner Type') }}<span class="text-danger">*</span>
                {{ Form::select('type',
                array('question-setter' => 'question-setter','question-evaluator' => 'question-evaluator','both' => 'both'),
                Input::old('type'),['class'=>'form-control','required'=>'required']) }}
            </div>
 
-           <div class="form-group">
+           <div class="form-group"><span class="text-danger">*</span>
                {{ Form::label('user_id', 'Name of Faculty:') }}
                {{ Form::select('user_id', User::FacultyList(),Input::old('user_id'), array('class' => 'form-control','required'=>'required') ) }}
            </div>
@@ -34,7 +33,7 @@
               {{ Form::hidden('assigned_by', Auth::user()->get()->id ,Input::old('assigned_by'), array('class' => 'form-control','required'=>'required') ) }}
           </div>
 
-          <div class="form-group">
+          <div class="form-group"><span class="text-danger">*</span>
               {{ Form::label('deadline', 'Deadline') }}
               {{ Form::text('deadline', Input::old('deadline'), array('class' => 'form-control date_picker','required'=>'required')) }}
           </div>

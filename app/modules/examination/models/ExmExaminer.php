@@ -26,7 +26,7 @@ class ExmExaminer extends \Eloquent
         'type'  => 'required',
         'assigned_by'  => 'required',
         'deadline'  => 'required',
-        'note'  => 'required',
+       // 'note'  => 'required',
         'status'  => 'required',
 
     );
@@ -68,5 +68,18 @@ class ExmExaminer extends \Eloquent
         static::updating(function($query){
             $query->updated_by = Auth::user()->get()->id;
         });
+    }
+
+
+    public function scopeExaminersList($query , $batch_id, $type = 'both'){
+        $query = ExmExaminer::join('user_profile', function($join)
+        {
+            $join->on('exm_examiner.user_id', '=', 'user_profile.user_id');
+        })
+            ->where('exm_examiner.batch_id', '=', $batch_id)
+            ->whereIn('exm_examiner.type', array($type, 'both'))
+            ->select(DB::raw('CONCAT(user_profile.first_name, " ", user_profile.middle_name, " ", user_profile.last_name) AS full_name, exm_examiner.user_id as id'))
+            ->lists('full_name', 'id');
+        return $query;
     }
 }

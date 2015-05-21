@@ -31,7 +31,7 @@ class ExmAmwController extends \BaseController {
                         'relCourseConduct.relCourse.relSubject.relDepartment','relAcmMarksDistItem')->whereExists(function ($query){
                   $query->from('acm_marks_dist_item')->whereRaw('acm_marks_dist_item.id = exm_exam_list.acm_marks_dist_item_id')
                         ->where('acm_marks_dist_item.is_exam', '=', 1);
-            })->get();
+            }) ->latest('id')->get();
         }
         $year_id = array('' => 'Select Year ') + Year::lists('title', 'id');
         $semester_id = array('' => 'Select Semester ') + Semester::lists('title', 'id');
@@ -78,25 +78,42 @@ class ExmAmwController extends \BaseController {
 
         $data = Input::all();
         $model = new ExmExamList();
+
+        $model->year_id = Input::get('year_id');
+        $model->semester_id = Input::get('semester_id');
+        $model->course_conduct_id = Input::get('course_conduct_id');
+        $model->acm_marks_dist_item_id = Input::get('acm_marks_dist_item_id');
+
         if($model->validate($data)) {
-                DB::beginTransaction();
-                try {
+            //query for already exists data
+            $examCheck = DB::table('exm_exam_list')
+                ->select(DB::raw('1'))
+                ->where('year_id', '=', $model->year_id)
+                ->where('semester_id', '=', $model->semester_id)
+                ->where('semester_id', '=', $model->semester_id)
+                ->where('course_conduct_id', '=', $model->course_conduct_id)
+                ->where('acm_marks_dist_item_id', '=', $model->acm_marks_dist_item_id)
+                ->get();
+            if($examCheck){
+                Session::flash('info','Already Exists This Examination');
+                return Redirect::back();
+            }else{
+                try{
                     $model->create($data);
                     DB::commit();
-                    Session::flash('message', " Successfully Added Examination ");
-                }
-                catch ( Exception $e ){
-                    //If there are any exceptions, rollback the transaction
-                    DB::rollback();
-                    Session::flash('danger', "Examination not added.Invalid Request !");
+                    Session::flash('message', " Successfully Added  ");
+                }catch ( Exception $e ){
+                        DB::rollback();
+                        Session::flash('danger', "Examination not added.Invalid Request !");
                 }
                 return Redirect::back();
+            }
         }else{
             $errors = $model->errors();
             Session::flash('errors', $errors);
             return Redirect::back()
                 ->with('errors', 'invalid');
-            }
+        }
     }
 
     public function viewExamination($id){
@@ -195,9 +212,6 @@ class ExmAmwController extends \BaseController {
                 'relExmExamList.relCourseConduct.relSemester','relExmExamList.relCourseConduct.relCourse.relSubject.relDepartment')
                 ->where('exm_exam_list_id', '=', $exm_exam_list_id)
                 ->get();
-//        $exam_type = ExmExaminer::with('relExmExamList','relExmExamList.relCourseConduct.relCourse')
-//            ->where('exm_exam_list_id', '=', $exm_exam_list_id)
-//            ->get();
 
         $year_title = Year::findOrFail($year_id)->title;
         $semester_title = Semester::findOrFail($semester_id)->title;
@@ -214,20 +228,30 @@ class ExmAmwController extends \BaseController {
         $data = Input::all();
         $model = new ExmExaminer();
         $model->exm_exam_list_id = Input::get('exm_exam_list_id');
+        $model->user_id = Input::get('user_id');
+        $model->type = Input::get('type');
 
         if($model->validate($data)) {
-
-            DB::beginTransaction();
-            try {
-                $model->create($data);
-                DB::commit();
-                Session::flash('message', " Successfully Added Examiner ");
+            //query for already exists data
+            $examinerCheck = DB::table('exm_examiner')
+                ->select(DB::raw('1'))
+                ->where('user_id', '=', $model->user_id)
+                ->where('exm_exam_list_id', '=', $model->exm_exam_list_id)
+                ->get();
+            if($examinerCheck){
+                Session::flash('info','This user already exists in the examiner list. If you want to change the examiner-type, edit it from comments section at user link.');
+                return Redirect::back();
+            }else{
+                try{
+                    $model->create($data);
+                    DB::commit();
+                    Session::flash('message', " Successfully Added  ");
+                }catch ( Exception $e ){
+                    DB::rollback();
+                    Session::flash('danger', "Examination not added.Invalid Request !");
+                }
+                return Redirect::back();
             }
-            catch ( Exception $e ){
-                DB::rollback();
-                Session::flash('danger', "Examiner not added.Invalid Request !");
-            }
-            return Redirect::back();
         }else{
             $errors = $model->errors();
             Session::flash('errors', $errors);
@@ -261,6 +285,9 @@ class ExmAmwController extends \BaseController {
     public function commentsToExaminers()
     {
         $data = Input::all();
+
+        $examiner = ExmExaminer::find($data['id']);
+        $examiner->update($data);
 
         $model = new ExmExaminerComments();
         $model->exm_exam_list_id = $data['exm_exam_list_id'];
