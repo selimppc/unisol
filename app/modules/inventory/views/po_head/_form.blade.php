@@ -10,8 +10,8 @@
 </div>--}}
 
 <div class='form-group'>
-   {{ Form::label('pay_terms', 'Pay Terms') }}
-   {{ Form::select('pay_terms', $supplier_lists, Input::old('pay_terms'),['class'=>'form-control', 'required']) }}
+   {{ Form::label('inv_supplier_id', 'Supplier') }}
+   {{ Form::select('inv_supplier_id', $supplier_lists, Input::old('inv_supplier_id'),['class'=>'form-control', 'required']) }}
 </div>
 
 <div class='form-group'>
@@ -25,17 +25,16 @@
 </div>
 
 
-
-<div class='form-group'>
+{{--<div class='form-group'>
    {{ Form::label('tax', 'Tax (%)') }}
    {{ Form::text('tax', Input::old('tax'),['class'=>'form-control', 'required']) }}
-</div>
+</div>--}}
 
 
-<div class='form-group'>
+{{--<div class='form-group'>
    {{ Form::label('tax_amount', 'Tax Amount') }}
    {{ Form::text('tax_amount', Input::old('tax_amount'),['class'=>'form-control', 'required']) }}
-</div>
+</div>--}}
 
 
 <div class='form-group'>
@@ -44,15 +43,16 @@
 </div>
 
 
-<div class='form-group'>
+{{--<div class='form-group'>
    {{ Form::label('discount_amount', 'Discount Amount') }}
    {{ Form::text('discount_amount', Input::old('discount_amount'),['class'=>'form-control', 'required']) }}
-</div>
+</div>--}}
 
-<div class='form-group'>
+{{--<div class='form-group'>
    {{ Form::label('amount', ' Amount') }}
    {{ Form::text('amount', Input::old('amount'),['class'=>'form-control', 'required']) }}
-</div>
+</div>--}}
+
 
 <div class='form-group'>
    {{ Form::label('status', 'status') }}

@@ -257,7 +257,6 @@ Route::group(['prefix' => 'inventory'], function() {
     ]);
 
 
-
     /*
      *  ====================================================================================
      *  GRN  Area
@@ -266,7 +265,17 @@ Route::group(['prefix' => 'inventory'], function() {
 
     Route::any("grn", [
         "as"   => "grn",
-        "uses" => "InvPurchaseOrderController@index_grn"
+        "uses" => "InvGrnController@index_grn"
+    ]);
+
+    Route::any("create-grn/{grn_id}/{po_id}", [
+        "as"   => "create-grn",
+        "uses" => "InvGrnController@create_grn"
+    ]);
+
+    Route::any("show-grn-detail/{grn_id}", [
+        "as"   => "show-grn-detail",
+        "uses" => "InvGrnController@show_grn_detail"
     ]);
 
 
