@@ -39,7 +39,9 @@ class InvGrnController extends \BaseController {
 
 
     public function show_grn_detail($grn_id){
-
+        $grn_head = InvGrnHead::find($grn_id);
+        $grn_dt = InvGrnDetail::where('inv_grn_head_id', $grn_id)->get();
+        return View::make('inventory::grn.show', compact('grn_id', 'grn_head', 'grn_dt'));
     }
 
     public function ajax_grn_detail_store(){
