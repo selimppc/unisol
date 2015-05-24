@@ -116,6 +116,9 @@ class CreateExamination extends Migration {
             $table->string('marks', 8);
             $table->text('note');
             $table->integer('evaluator_user_id', false, 11);
+            $table->enum('progress_status',array(
+                'evaluated', 'partial-evaluate', 'not-evaluated', 'pending'
+            ));
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
