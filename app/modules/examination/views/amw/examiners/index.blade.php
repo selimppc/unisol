@@ -94,7 +94,6 @@
          </div>
      </div>
 
-@stop
 
 <script>
 $('#cancel-status').on('show.bs.modal', function (e) {
@@ -102,3 +101,7 @@ $('#cancel-status').on('show.bs.modal', function (e) {
     $('.debug-url').html('Status URL: <strong>' + $(this).find('.primary').attr('href') + '</strong>');
 });
 </script>
+
+@stop
+
+

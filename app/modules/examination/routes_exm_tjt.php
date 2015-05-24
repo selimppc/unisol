@@ -140,5 +140,18 @@ Route::any('amw/view-question/{id}', [
     'uses' => 'ExmAmwController@viewQuestionItem'
 ]);
 
+Route::any('amw/qpe/{exm_exam_list_id}/{course_conduct_id}', [
+    'as' => 'amw.qpe',
+    'uses' => 'ExmAmwController@questionPaperEvaluation'
+]);
 
+Route::any('amw/student-list-qpe/{exm_question_id}',[
+    'as' => 'amw.student-list-qpe',
+    'uses' => 'ExmAmwController@studentListOfQpe'
+]);
+
+Route::any('amw/details-qpe/{student_user_id}/{question_id}',[
+    'as' => 'amw.details-qpe',
+    'uses' => 'ExmAmwController@viewDetailsOfQpe'
+]);
 

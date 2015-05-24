@@ -464,4 +464,70 @@ class ExmAmwController extends \BaseController {
         return View::make('examination::amw.questions.view',compact('question_item','q_details','answer'));
     }
 
+    public function questionPaperEvaluation($exm_exam_list_id,$course_conduct_id)
+    {
+        $exm_question = ExmQuestion::with('relExmExamList', 'relSUser.relUserProfile', 'relEUser.relUserProfile','relCourseConduct.relCourse.relSubject')
+            ->whereExists(function($query) use($course_conduct_id)
+            {
+                $query->from('exm_exam_list')
+                    ->whereRaw('exm_exam_list.id = exm_question.exm_exam_list_id')
+                    ->where('exm_exam_list.course_conduct_id', $course_conduct_id);
+            })
+            ->where('status', 'selected')
+            ->latest('id')->get();
+//print_r($exm_question);exit;
+        return View::make('examination::amw.qpe.index',compact('exm_question','exm_exam_list_id'));
+    }
+
+    public function studentListOfQpe($exm_question_id)
+    {
+        /*$adm_question = ExmQuestion::with('relBatchAdmtestSubject', 'relBatchAdmtestSubject.relAdmtestSubject', 'relBatchAdmtestSubject.relBatch',
+            'relBatchAdmtestSubject.relBatch.relVDegree',
+            'relBatchAdmtestSubject.relBatch.relYear', 'relBatchAdmtestSubject.relBatch.relSemester')
+            ->where('id', $exm_question_id)->first();*/
+
+        $exm_question_evaluation = ExmQuestionEvaluation::where('exm_question_id', $exm_question_id)
+            ->groupby('student_user_id')
+            ->get();
+
+        return View::make('examination::amw.qpe.student_qpe', compact('exm_question_evaluation'));
+    }
+
+    public function viewDetailsOfQpe($student_user_id, $question_id){
+
+        $data = ExmQuestion::with('relCourseConduct','relCourseConduct.relCourse.relSubject')->where('id', $question_id)->first();
+        //print_r($data->id);exit;
+        $question_items = ExmVQuestionEvaluation::with('relExmQuestionItems', 'relExmQuestionOptionAnswer')
+            ->where('exm_question_id', $question_id)
+            ->where('student_user_id', $student_user_id)
+            ->get();
+
+        foreach($question_items as $qs){
+            $i = 0;
+            $qlist[$qs->exm_question_items_id]['question_title']       = $qs->relExmQuestionItems->title;
+            $qlist[$qs->exm_question_items_id]['marks']                 = $qs->marks;
+            $qlist[$qs->exm_question_items_id]['type']       = $qs->question_type;
+            foreach($qs->relExmQuestionOptionAnswer as $aqoa){
+                $qlist[$qs->exm_question_items_id]['options'][$i]['id']       = $aqoa->id;
+                $qlist[$qs->exm_question_items_id]['options'][$i]['title']    = $aqoa->title;
+                $qlist[$qs->exm_question_items_id]['options'][$i]['answer']   = $aqoa->answer;
+                $i++;
+            }
+            if($qs->question_type == 'checkbox')
+                $qlist[$qs->exm_question_items_id]['answer'][]          = $qs->canswer;
+            elseif($qs->question_type == 'radio')
+                $qlist[$qs->exm_question_items_id]['answer']            = $qs->ranswer;
+            if($qs->question_type == 'text')
+                $qlist[$qs->exm_question_items_id]['answer']            = $qs->tanswer;
+
+        }
+        $count = DB::table('exm_question_evaluation')
+            ->select(DB::raw('count(exm_question_evaluation.id) as total, sum(exm_question_evaluation.marks) as marks'))
+            ->join('exm_question_items', 'exm_question_items.id', '=', 'exm_question_evaluation.exm_question_items_id')
+            ->where('exm_question_evaluation.exm_question_id', $question_id)
+            ->first();
+        //print_r($count);exit;
+
+        return View::make('examination::amw.qpe.details_qpe', compact('data', 'qlist', 'count'));
+    }
 }
