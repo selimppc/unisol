@@ -1,4 +1,7 @@
 @extends('layouts.layout')
+@section('top_menu')
+    @include('layouts._top_menu')
+@stop
     @section('sidebar')
         {{--@include('applicant::_sidebar')--}}
     @stop

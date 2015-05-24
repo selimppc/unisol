@@ -1,4 +1,7 @@
 @extends('layouts._master')
+@section('top_menu')
+    @include('layouts._top_menu')
+@stop
 @section('sidebar')
   @include('academic::theoryclass.class.sidebar')
 @stop
