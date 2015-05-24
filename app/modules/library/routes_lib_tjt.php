@@ -11,4 +11,17 @@
 */
 //Library : Faculty
 
+Route::any('faculty/book',[
+    'as' =>'faculty.book',
+    'uses' => 'LibFacultyController@index'
+]);
 
+Route::any('faculty/add-book-to-cart/{book_id}',[
+    'as' =>'faculty.add-book-to-cart',
+    'uses' => 'LibFacultyController@addBookToCart'
+]);
+
+Route::any('faculty/book-transaction',[
+    'as' =>'faculty.book-transaction',
+    'uses' => 'LibFacultyController@getBookTransaction'
+]);

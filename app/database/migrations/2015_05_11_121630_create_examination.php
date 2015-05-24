@@ -59,7 +59,9 @@ class CreateExamination extends Migration {
         Schema::create('exm_question_items', function(Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('exm_question_id')->nullable();
-            $table->string('question_type', 32);
+            $table->enum('question_type',array(
+                'text', 'radio', 'checkbox'
+            ));
             $table->string('title', 128);
             $table->string('marks', 8);
             $table->tinyInteger('status',false, 1);
@@ -130,7 +132,6 @@ class CreateExamination extends Migration {
             $table->increments('id');
             $table->unsignedInteger('exm_question_evaluation_id')->nullable();
             $table->text('answer');
-            $table->string('marks', 8);
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();

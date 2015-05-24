@@ -40,4 +40,16 @@
 {{--                <li><a href="{{URL::to('examination/faculty/question-paper')}}"></i><i class="fa fa-building-o" style="color: #4644db"></i> Question Paper</a></li>--}}
             </ul>
     </li>
+
+    <li class="treeview">
+        <a href="#">
+            <i class="fa fa-folder-open-o" style="color: #003399"></i>
+            <span>Library</span>
+            <i class="fa fa-angle-left pull-right"></i>
+        </a>
+        <ul class="treeview-menu">
+            <li><a tabindex="-1" a href="{{ URL::to('library/faculty/book') }}"><i class="fa fa-search-plus" style="color: #db8f18""></i>Search Book</a></li>
+
+        </ul>
+    </li>
 </ul>

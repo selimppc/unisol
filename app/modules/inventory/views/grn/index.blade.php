@@ -36,8 +36,8 @@
             @if(isset($data))
                 @foreach($data as $values)
                  <tr style="{{$values->status=='approved' ? 'background-color: burlywood' : '' }}">
-                    <td><b>
-                        {{ link_to_route($values->status!="approved" ?'show-grn-detail' : 'create-grn',$values->inv_po_head_id,['po_id'=>isset($values->inv_po_head_id) ? $values->inv_po_head_id : ""], ['data-toggle'=>"modal", 'data-target'=>"#modal-pc"]) }}
+                    <td width="80"><b>
+                        {{ link_to_route($values->status!="approved" ?'show-grn-detail' : 'create-grn', $values->relInvPurchaseOrderHead->purchase_no ,['po_id'=>isset($values->inv_po_head_id) ? $values->inv_po_head_id : ""], ['data-toggle'=>"modal", 'data-target'=>"#modal-pc"]) }}
                     </b></td>
                     <td>{{ $values->voucher_no}}</td>
                     <td>{{ $values->date }}  </td>
@@ -54,7 +54,7 @@
 
                     <td>
                         @if($values->status != 'approved')
-                            <a href="{{ URL::route('create-grn', ['grn_id'=>$values->id,'po_id'=>$values->inv_po_head_id ]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#modal-pc" ><i class="fa fa-2x" style="color: darkslategray" data-toggle="tooltip" data-placement="bottom" title="Cancel"></i> + GRN</a>
+                            <a href="{{ URL::route('create-grn', ['grn_id'=>$values->id,'po_id'=>$values->inv_po_head_id ]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#modal-pc" ><i class="fa fa-2x" style="color: darkslategray" data-toggle="tooltip" data-placement="bottom" title="Cancel"></i> + Create GRN</a>
                             <a href="{{ URL::route('create-grn', ['po_id'=>$values->id ]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" ><i class="fa fa-2x" style="color: darkslategray" data-toggle="tooltip" data-placement="bottom" title="Cancel"></i> Confirm GRN</a>
                         @endif
                     </td>
