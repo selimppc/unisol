@@ -5,7 +5,30 @@
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
         </a>
     </li>
-
+    <li class="treeview">
+        <a href="#">
+            <i class="fa fa-leaf" style="color: #09b021"></i>
+            <span>Sign up and Sign In</span>
+            <i class="fa fa-angle-left pull-right"></i>
+        </a>
+        <ul class="treeview-menu">
+            <li class="">
+                <a href="{{ URL::route('user/sign') }}">
+                    <i class="fa fa-dashboard"></i> <span>Sign In</span>
+                </a>
+            </li>
+            <li class="">
+                <a href="#">
+                    <i class="fa fa-dashboard"></i> <span>User Sign Up</span>
+                </a>
+            </li>
+            <li class="">
+                <a href="{{ URL::to('applicant/registration') }}">
+                    <i class="fa fa-dashboard"></i> <span>Applicant Sign Up</span>
+                </a>
+            </li>
+        </ul>
+    </li>
     <li class="treeview">
         <a href="#">
             <i class="fa fa-leaf" style="color: #09b021"></i>

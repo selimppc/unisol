@@ -1,6 +1,9 @@
 @extends('layouts.layout')
+@section('top_menu')
+    @include('layouts._top_menu_public')
+@stop
 @section('sidebar')
-    @include('layouts._sidebar_applicant')
+    @include('layouts._sidebar_public')
 @stop
 @section('content')
 
@@ -55,14 +58,14 @@
                 <br>
                 <br>
                 {{ Form::close() }}
-                <div class="margin text-center">
+                {{--<div class="margin text-center">
                     <span>Register using social networks</span>
                     <br/>
                     <button class="btn bg-light-blue btn-circle"><i class="fa fa-facebook"></i></button>
                     <button class="btn bg-aqua btn-circle"><i class="fa fa-twitter"></i></button>
                     <button class="btn bg-red btn-circle"><i class="fa fa-google-plus"></i></button>
 
-                </div>
+                </div>--}}
             </div><!-- /.box -->
             {{--</div>--}}
         </div>
