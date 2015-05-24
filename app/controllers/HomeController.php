@@ -42,10 +42,10 @@ class HomeController extends BaseController {
         $date = date('Y-m-d H:i:s', time());
         $shortFormat = strtotime($date);
         $expireDate = date("Y-m-d H:i:s", ($shortFormat+(60*5)));
-
-        //return View::make('test.index')->with('pageTitle','Welcome to ETSB!');
-
-        return Redirect::to("user/user-access-to");
+        if(Auth::check())
+            return Redirect::to("user/user-access-to");
+        else
+            return View::make('public.index')->with('pageTitle','Welcome!');
     }
 
 

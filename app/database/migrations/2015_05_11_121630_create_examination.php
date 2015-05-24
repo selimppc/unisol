@@ -135,7 +135,6 @@ class CreateExamination extends Migration {
             $table->increments('id');
             $table->unsignedInteger('exm_question_evaluation_id')->nullable();
             $table->text('answer');
-            $table->string('marks', 8);
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();

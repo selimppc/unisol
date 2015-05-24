@@ -57,6 +57,7 @@ Route::any("sortable", [
 Route::get('/upload', 'HomeController@getUploadForm');
 Route::post('/upload/image','HomeController@postUpload');
 
+Route::get('/','HomeController@index');
 
 Route::group( array('before' => 'auth'), function(){
 
@@ -66,7 +67,7 @@ Route::group( array('before' => 'auth'), function(){
     ==================================================================
     */
 
-    Route::get('/','HomeController@index');
+
     Route::any('user/create','HomeController@userCreate');
 
     Route::any('user/sign','HomeController@userSign');

@@ -1658,6 +1658,9 @@ class AdmAmwController extends \BaseController
      */
     public function studentListOfQpe($adm_question_id)
     {
+        /**
+         * TODO: Have to Create view for applicant status and marks calculation.
+         */
         $adm_question = AdmQuestion::with('relBatchAdmtestSubject', 'relBatchAdmtestSubject.relAdmtestSubject', 'relBatchAdmtestSubject.relBatch',
             'relBatchAdmtestSubject.relBatch.relVDegree',
             'relBatchAdmtestSubject.relBatch.relYear', 'relBatchAdmtestSubject.relBatch.relSemester')
