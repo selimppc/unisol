@@ -70,7 +70,7 @@
                            <th>Publisher</th>
                            <th>Edition</th>
                            <th>Book Type</th>
-                           <th>Price</th>
+                           <th>Price(TK.)</th>
                            <th>Is Rented?</th>
                            <th>Action</th>
                         </tr>
