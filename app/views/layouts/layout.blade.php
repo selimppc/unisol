@@ -43,7 +43,7 @@
                     <span class="icon-bar"></span>
                 </a>
                 <div class="navbar-right">
-                    @section('top_menu')
+                    @yield('top_menu')
                 </div>
             </nav>
         </header>
@@ -75,7 +75,7 @@
                     </form>
                     <!-- /.search form -->
                     <!-- sidebar menu: : style can be found in sidebar.less -->
-                    @section('sidebar')
+                    @yield('sidebar')
                     @show
                 </section>
                 <!-- /.sidebar -->
