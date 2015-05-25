@@ -1,8 +1,11 @@
  @extends('layouts.layout')
- @section('sidebar')
-     @include('layouts._sidebar_faculty')
- @stop
- @section('content')
+  @section('top_menu')
+      @include('layouts._top_menu')
+  @stop
+  @section('sidebar')
+      @include('layouts._sidebar_faculty')
+  @stop
+  @section('content')
 <a class="pull-right btn btn-xs btn-info"  style="color: #ffffff" href="{{ URL::route('faculty.book') }}" title="Back to Exam List" id="addBook"><b>Back</b></a>
 
  <h3>Your Cart</h3>
@@ -12,6 +15,7 @@
        <div class="box box-solid">
            {{ Form::open(array('url' => 'examination/amw/batchDelete')) }}
            <p>&nbsp;</p>
+
               <table id="" class="table table-striped  table-bordered"  >
                  <thead>
                     {{ Form::submit('Delete Items', array('class'=>'btn btn-danger', 'id'=>'hide-button', 'style'=>'display:none'))}}
@@ -24,18 +28,19 @@
                         </tr>
                  </thead>
                  <tbody>
-                     @if(isset($model))
+                     @if(isset($all_cart_books))
+                        @foreach($all_cart_books as $acb)
                           <tr>
                               <td><input type="checkbox" name="id[]" class="myCheckbox" value=""></td>
-                              <td>@if(Session::get('title'))
-
-                                  @endif
+                              <td>
+                                {{$acb->title}}
                               </td>
 
 
                               <td></td>
                               <td></td>
                           </tr>
+                          @endforeach
                      @endif
                  </tbody>
               </table>
