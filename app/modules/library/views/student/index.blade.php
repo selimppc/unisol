@@ -12,6 +12,13 @@
  <div class="row">
     <div class="col-md-12 ">
        <div class="box box-solid">
+       <div>
+            <span class="label label-success pull-right" style="margin-right:40px ">3</span>
+            <button class="pull-right btn" style="color: #ff1210;margin-right: 50px" id="viewCartBook"><i class="fa fa-shopping-cart"></i></button>
+
+       </div>
+
+
        <br>
            {{-------------- Filter :Starts -------------------------------------------}}
            <div>
@@ -41,6 +48,7 @@
                   {{ Form::submit('Search', array('class'=>' pull-left btn btn-success btn-xs','id'=>'button'))}}
                </div>
                {{ Form::close() }}
+
            </div>
            <br><br>
             {{-------------- Filter :Ends -------------------------------------------}}
@@ -61,7 +69,6 @@
                            <th>Commercial</th>
                            <th>Book Price(TK.)</th>
                            <th>Sell Price(TK.)</th>
-                           <th>Is Rented?</th>
                            <th>Action</th>
                         </tr>
                  </thead>
@@ -83,17 +90,20 @@
                                   <td>{{ $list->commercial }}</td>
                                   <td>{{ $list->book_price }}</td>
                                   <td>{{ $list->digital_sell_price }}</td>
-                                  <td>{{ $list->is_rented }}</td>
                                   <td>
                                       {{--<a href="" class="btn btn-default btn-xs" data-toggle="modal" data-target="#book" title="Show" style="font-size: 11px;color: darkmagenta"><span class="fa fa-eye"></span></a>--}}
-                                      @if($list->is_rented == 'yes')
-                                        <a href="{{ URL::route('student.add-book-to-cart',['book_id'=>$list->id]) }}"
-                                        class="btn-link" title="Add Book" style="color:darkblue"><b><ins>Add To Cart</ins></b>
-                                        </a>
-                                      @elseif($list->commercial == 'no')
+                                      @if($list->commercial == 'no')
                                         <a href="{{ URL::route('student.download-file') }}"
-                                        class="btn-link" title="download" style="color:darkblue"><b><ins>Download</ins></b>
+                                        class="btn-link" title="download" style="color:#8b0835"><b><i class="fa fa-download"></i></b>
                                         </a>
+
+                                      @else
+                                      {{ Form::open(array('url' => 'library/student/add-to-cart')) }}
+                                        <a href="{{ URL::route('student.add-book-to-cart',['book_id'=>$list->id]) }}"
+                                        class="btn-link" title="Add Book to Cart" style="color:#0d8b0e"><b><i class="fa fa-shopping-cart"></i></b>
+                                        </a>
+                                      {{ Form::close() }}
+
                                       @endif
                                       {{--<a data-href="{{URL::route('examination.amw.delete-exam-data', ['id'=>$exam_list->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" style="font-size: 12px;color: lightcoral"><span class="fa  fa-trash-o"></span></a>--}}
                                   </td>
