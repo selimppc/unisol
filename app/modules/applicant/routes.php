@@ -2,9 +2,14 @@
 
 //***********************Applicant Sign up Start(R)**********************
 
-Route::any('/applicant/registration',
-    'ApplicantController@applicant_signup'
-);
+//Route::get('applicant/registration',
+//    'ApplicantController@applicant_signup'
+//);
+
+Route::any("/applicant/signup", [
+    "as"   => "applicant.signup",
+    "uses" => "ApplicantController@signup"
+]);
 
 Route::any('applicant/store',
     'ApplicantController@applicant_signup_data_save'

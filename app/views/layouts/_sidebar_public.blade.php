@@ -13,7 +13,7 @@
         </a>
         <ul class="treeview-menu">
             <li class="">
-                <a href="{{ URL::route('user/sign') }}">
+                <a href="{{ URL::to('user/sign') }}">
                     <i class="fa fa-dashboard"></i> <span>Sign In</span>
                 </a>
             </li>
@@ -23,7 +23,7 @@
                 </a>
             </li>
             <li class="">
-                <a href="{{ URL::to('applicant/registration') }}">
+                <a href="{{ URL::to('applicant/signup') }}">
                     <i class="fa fa-dashboard"></i> <span>Applicant Sign Up</span>
                 </a>
             </li>

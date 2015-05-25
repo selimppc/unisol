@@ -69,15 +69,14 @@ Route::group( array('before' => 'auth'), function(){
     */
     Route::any('user/usermeta','HomeController@testUserMeta');
     Route::any('user/usermeta',     ['as' => 'user/usermeta',       'uses' => 'HomeController@userUserMeta' ]);
-
-    Route::any('user/create',       ['as' => 'user/create',         'uses' => 'HomeController@userCreate' ]);
+    /*Route::any('user/create',       ['as' => 'user/create',         'uses' => 'HomeController@userCreate' ]);
     Route::any('user/sign',         ['as' => 'user/sign',           'uses' => 'HomeController@userSign' ]);
     Route::any('user/registration', ['as' => 'user/registration',   'uses' => 'HomeController@userSignUp' ]);
-    Route::any('user/infostore',    ['as' => 'user/infostore',      'uses' => 'HomeController@userInfoStore' ]);
-    //Route::any('user/create','HomeController@userCreate');
-    /*Route::any('user/sign','HomeController@userSign');
+    Route::any('user/infostore',    ['as' => 'user/infostore',      'uses' => 'HomeController@userInfoStore' ]);*/
+    Route::any('user/create','HomeController@userCreate');
+    Route::any('user/sign','HomeController@userSign');
     Route::any('user/registration','HomeController@userSignUp');
-    Route::any('user/infostore','HomeController@userInfoStore');*/
+    Route::any('user/infostore','HomeController@userInfoStore');
 
 
     /*

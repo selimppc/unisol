@@ -1,4 +1,7 @@
 @extends('layouts.master')
+@section('top_menu')
+    @include('layouts._top_menu')
+@stop
 
 @section('sidebar')
     @include('semester._sidebar')
