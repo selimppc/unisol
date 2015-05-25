@@ -60,6 +60,7 @@ Route::post('/upload/image','HomeController@postUpload');
 Route::get('/','HomeController@index');
 
 // Following routings are given to direct user to use dashboard.
+Route::get('admission/','HomeController@index');
 Route::get('academic/','HomeController@index');
 Route::get('examination/','HomeController@index');
 Route::get('applicant/','HomeController@index');
