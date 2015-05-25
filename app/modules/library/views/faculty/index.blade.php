@@ -6,10 +6,9 @@
      @include('layouts._sidebar_faculty')
  @stop
  @section('content')
-
-<div id="mydiv"></div>
- <h3>Library</h3>
 @include('library::show_cart')
+ <h3>Library</h3>
+
  <div class="row">
     <div class="col-md-12 ">
        <div class="box box-solid">
