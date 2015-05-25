@@ -42,6 +42,9 @@ class LibBookTransaction extends Eloquent{
         return $this->belongsTo('LibBook','lib_books_id','id');
     }
 
+    public function relUser(){
+        return $this->belongsTo('User','user_id','id');
+    }
 
     // TODO : user info while saving data into table
     public static function boot(){

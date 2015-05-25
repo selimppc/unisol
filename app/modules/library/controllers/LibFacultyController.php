@@ -40,8 +40,14 @@ class LibFacultyController extends \BaseController {
 
 	public function addBookToCart($id)
 	{
-        if($id) {
-            $model = LibBook::with('relLibBookCategory', 'relLibBookAuthor', 'relLibBookPublisher')->where('id', '=', $id)->first();
+        $model = LibBook::with('relLibBookCategory', 'relLibBookAuthor', 'relLibBookPublisher')->where('id', '=', $id)->get();
+        //print_r($model);exit;
+        if($model) {
+            $cart[] = $model;
+            //print_r($cart);exit;
+            Session::push('cart', $id);
+
+            //Session::get('cart.items');
         }
         return View::make('library::faculty.add_book',compact('model','number'));
 	}
