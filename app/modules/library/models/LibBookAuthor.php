@@ -13,13 +13,13 @@ class LibBookAuthor extends Eloquent{
     ];
     private $errors;
     private $rules = [
-        'name' => 'required',
+       /* 'name' => 'required',*/
         /* 'email' => 'required|email|unique:lib_book_author',*/
-        'email' => 'required',
+     /*   'email' => 'required',
         'phone' => 'required',
         'address' => 'required',
         'country_id' => 'required|integer',
-        'note' => 'required',
+        'note' => 'required',*/
 
     ];
 
