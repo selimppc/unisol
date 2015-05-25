@@ -31,7 +31,7 @@
                     <th> Note </th>
                     <th> Status </th>
                     <th> Action</th>
-                    <th> Create PO</th>
+                    <th> Confirm </th>
 
                 </tr>
             </thead>
@@ -39,13 +39,23 @@
             @if(isset($data))
                 @foreach($data as $values)
                  <tr>
+                    <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $values->id }}"></td>
                     <td>{{$values->transfer_number }}</td>
                     <td>{{$values->transfer_to }}</td>
                     <td>{{$values->date }}</td>
                     <td>{{$values->confirm_date }}</td>
                     <td>{{$values->note }}</td>
                     <td>{{$values->status }}</td>
-                    <td>{{$values->status }}</td>
+                    <td>
+                        @if($values->status=='open')
+                        <a href="{{ URL::route('requisition-show', ['req_id'=>$values->id ])  }}" class="btn btn-default btn-xs" title="Manage Applicant" data-toggle="modal" data-target="#modal-pc"><span class="fa fa-eye"></span></a>
+                        <a href="{{ URL::route('requisition-edit',['req_id'=>$values->id])  }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal-pc"> <i class="fa fa-edit"></i></a>
+                        <a data-href="{{ URL::route('requisition-destroy', ['req_id'=>$values->id ]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa fa-circle-o-notch" style="color: red" data-toggle="tooltip" data-placement="bottom" title="Cancel"></i></a>
+                    @elseif($values->status=='approved')
+                        <a href="{{ URL::route('requisition-show', ['req_id'=>$values->id ])  }}" class="btn btn-default btn-xs" title="Manage Applicant" data-toggle="modal" data-target="#modal-pc"><span class="fa fa-eye"></span></a>
+                    @endif
+
+                    </td>
                     <td>{{$values->status }}</td>
                  </tr>
                 @endforeach
@@ -61,7 +71,7 @@
 {{--    {{$data->links();}}--}}
 
 </div>
-{{Form::open(['route'=>'requisition-store', 'files'=>true])}}
+{{Form::open(['route'=>'store-stock-dispatch', 'files'=>true])}}
         @include('inventory::stock._modal._modal')
 {{ Form::close() }}
 
