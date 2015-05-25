@@ -1,14 +1,15 @@
 <?php
 
-include("routes_applicant_tj.php");
-
-Route::group( array('after' => 'auth'), function(){
-
 //***********************Applicant Sign up Start(R)**********************
 
-Route::any('/applicant/registration',
-    'ApplicantController@applicant_signup'
-);
+//Route::get('applicant/registration',
+//    'ApplicantController@applicant_signup'
+//);
+
+Route::any("/applicant/signup", [
+    "as"   => "applicant.signup",
+    "uses" => "ApplicantController@signup"
+]);
 
 Route::any('applicant/store',
     'ApplicantController@applicant_signup_data_save'
@@ -17,6 +18,9 @@ Route::any('applicant/store',
 Route::get('register/verify/{verified_code}',
     'ApplicantController@applicant_signup_confirm'
 );
+
+Route::group( array('after' => 'auth'), function(){
+
 
 //********************Change Password Start(R)****************************
 
