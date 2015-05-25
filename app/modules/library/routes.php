@@ -10,6 +10,7 @@
 Route::group(['prefix' => 'library'], function() {
 
     include("routes_lib_tjt.php");
+    include("routes_sh.php");
 
     Route::get('/', function() {
         return 'Thank you so much!';
