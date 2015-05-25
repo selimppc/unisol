@@ -5,8 +5,9 @@ class ApplicantController extends \BaseController
 
 //**************************Applicant Sign Up Start(R)***********************
 
-    public  function applicant_signup()
+    public  function signup()
     {
+
         return View::make('applicant::signup.signup');
     }
 
