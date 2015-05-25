@@ -236,7 +236,7 @@
                 </div>
                 <div class="modal-body">
                     {{ Form::open(array('url' => 'library/category/save', 'method' =>'post', 'role'=>'form','files'=>'true')) }}
-                    @include('library::book_category._form')
+                    @include('library::librarian.book_category._form')
                     {{ Form::close() }}
                 </div>
 
