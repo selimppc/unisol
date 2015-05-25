@@ -16,11 +16,11 @@ Route::group(['prefix' => 'library'], function() {
         return 'Thank you so much!';
     });
 
-   /**************One method for all index****************/
-    Route::get('/book',
+    /**********Library Book Category Start****************/
+
+    Route::get('book/category',
         'LibraryController@index'
     );
-    /**********Library Book Category Start****************/
     Route::any('category/save',[
         'as' => 'category.save',
         'uses'=> 'LibraryController@storeCategory'
@@ -47,7 +47,10 @@ Route::group(['prefix' => 'library'], function() {
 
     /**********Library Book Author Start****************/
 
-  /*  Route::any('author/save',[
+    Route::get('book/author',
+        'LibraryController@indexAuthor'
+    );
+    Route::any('author/save',[
         'as' => 'author.save',
         'uses'=> 'LibraryController@storeAuthor'
     ]);
@@ -69,7 +72,7 @@ Route::group(['prefix' => 'library'], function() {
     Route::any('author/batch/delete/{id}', [
         'as' => 'author.batch.delete',
         'uses' => 'LibraryController@batchdeleteAuthor'
-    ]);*/
+    ]);
 
 
 });
