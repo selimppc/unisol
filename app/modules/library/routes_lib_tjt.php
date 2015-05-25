@@ -25,3 +25,8 @@ Route::any('faculty/book-transaction',[
     'as' =>'faculty.book-transaction',
     'uses' => 'LibFacultyController@getBookTransaction'
 ]);
+
+Route::any('faculty/view-cart',[
+    'as' =>'faculty.view-cart',
+    'uses' => 'LibFacultyController@viewBookToCart'
+]);
