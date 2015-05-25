@@ -5,6 +5,7 @@
 @section('sidebar')
     @include('layouts._sidebar_library')
 @stop
+
 @section('content')
     <h2 class="page-header text-purple tab-text-margin text-center">Library Management</h2>
     <div class="row">
@@ -171,7 +172,7 @@
                     </div><!-- /.tab-pane -->
 
                     {{--****** Book Publisher Start*******--}}
-                    
+
                     <div class="tab-pane" id="tab_2">
                         <div class="box-body table-responsive ">
                             <button type="button" class=" btn btn-xs btn-success fa fa-plus " data-toggle="modal" data-target="#myModal" >
@@ -235,7 +236,7 @@
                 </div>
                 <div class="modal-body">
                     {{ Form::open(array('url' => 'library/category/save', 'method' =>'post', 'role'=>'form','files'=>'true')) }}
-                    @include('library::book_category._form')
+                    @include('library::librarian.book_category._form')
                     {{ Form::close() }}
                 </div>
 
