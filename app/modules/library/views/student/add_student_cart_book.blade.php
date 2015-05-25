@@ -6,7 +6,7 @@
      @include('layouts._sidebar_student')
 @stop
 @section('content')
-<a class="pull-right btn btn-info"  style="color: #ffffff" href="{{ URL::route('student.find-book') }}" title="Back to Exam List" id="addBook"><b>Back</b></a>
+<a class="pull-right btn btn-info btn-xs"  style="color: #ffffff" href="{{ URL::route('student.find-book') }}" title="Back to Exam List" id="addBook"><b>Back</b></a>
 
  <h3>Your Cart</h3>
 
@@ -23,6 +23,7 @@
                            <th><input name="id" type="checkbox" id="checkbox" class="checkbox" value=""></th>
                            <th>Book Name</th>
                            <th>Price</th>
+                           <th>Action</th>
                         </tr>
                  </thead>
                  <tbody>
@@ -32,6 +33,9 @@
                                <td><input type="checkbox" name="id[]" class="myCheckbox" value=""></td>
                                <td>{{ $acsb->title }}</td>
                                <td>{{ $acsb->digital_sell_price }}</td>
+                               <td>
+                                    <a href="#" class="btn-link" title="Checkout" style="color:#02158b"><b><i class="fa fa-arrow-circle-o-right"></i></b></a>
+                               </td>
                            </tr>
                          @endforeach
                      @endif
