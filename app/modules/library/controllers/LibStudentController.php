@@ -34,9 +34,16 @@ class LibStudentController extends \BaseController {
         $book_category_id = array('' => 'Select Category ') + LibBookCategory::lists('title', 'id');
         $book_author_id = array('' => 'Select Author ') + LibBookAuthor::lists('name', 'id');
         $book_publisher_id = array('' => 'Select Publisher ') + LibBookPublisher::lists('name', 'id');
-        /*$lib_book_id = array('' => 'Select Book ') + LibBook::lists('title', 'id');*/
 
-        return View::make('library::student.index',compact('number','book_category_id','book_author_id','book_publisher_id','lib_book_id','model'));
+
+        if(Session::get('cartBooks')){
+            $all_cart_book_ids = Session::get('cartBooks');
+            $all_cart_books = LibBook::with('relLibBookCategory', 'relLibBookAuthor', 'relLibBookPublisher')->whereIn('id', $all_cart_book_ids)->get();
+        }else{
+            $all_cart_books = array();
+        }
+
+        return View::make('library::student.index',compact('all_cart_books','book_category_id','book_author_id','book_publisher_id','lib_book_id','model'));
     }
 
 
@@ -58,11 +65,22 @@ class LibStudentController extends \BaseController {
 
         $number = count($all_cart_st_books);
 
-        #return View::make('library::student.add_student_cart_book',compact('all_cart_st_books','number'));
-        Session::flash('message', 'Successfully Added to Cart!');
-        return Redirect::back()->with('number', $number);
+        return View::make('library::student.add_student_cart_book',compact('all_cart_st_books','number'));
+
 
     }
+
+
+    public function getDownload()
+    {
+        $file= public_path(). "/img/pdf.pdf";
+        $headers = array(
+            'Content-Type: application/pdf',
+        );
+        return Response::download($file, 'book.pdf', $headers);
+
+    }
+
 
     public function viewBookToCart(){
         $all_cart_st_books = Session::get('cartBooks');
