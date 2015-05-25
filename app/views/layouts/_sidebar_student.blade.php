@@ -38,7 +38,19 @@
                 <li><a href="{{ URL::to('academic/student/courses') }}">Courses</a></li>
 
             </ul>
-        </li>
+    </li>
+
+     <li class="treeview">
+            <a href="#">
+                <i class="fa fa-list-alt" style="color: #992177"></i>
+                <span>Library</span>
+                <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="treeview-menu">
+                <li><a tabindex="-1" a href="{{ URL::to('library/student/find-book') }}"><i class="fa fa-book" style="color: #2327db"></i>Find Book</a></li>
+
+            </ul>
+     </li>
 
 
 
