@@ -6,19 +6,13 @@
      @include('layouts._sidebar_student')
  @stop
  @section('content')
- {{--<a class="pull-right btn btn-sm btn-info" href="{{ URL::route('examination.amw.create-exam') }}" data-toggle="modal" data-target="#exam-data" style="color: #ffffff" title="New Examination"><b>+ Add Examination</b></a>--}}
+ @include('library::show_cart')
+
  <h3>Library</h3>
 
  <div class="row">
     <div class="col-md-12 ">
        <div class="box box-solid">
-       <div>
-            <span class="label label-success pull-right" style="margin-right:40px ">3</span>
-            <button class="pull-right btn" style="color: #ff1210;margin-right: 50px" id="viewCartBook"><i class="fa fa-shopping-cart"></i></button>
-
-       </div>
-
-
        <br>
            {{-------------- Filter :Starts -------------------------------------------}}
            <div>
@@ -93,17 +87,14 @@
                                   <td>
                                       {{--<a href="" class="btn btn-default btn-xs" data-toggle="modal" data-target="#book" title="Show" style="font-size: 11px;color: darkmagenta"><span class="fa fa-eye"></span></a>--}}
                                       @if($list->commercial == 'no')
-                                        <a href="{{ URL::route('student.download-file') }}"
-                                        class="btn-link" title="download" style="color:#8b0835"><b><i class="fa fa-download"></i></b>
-                                        </a>
+                                        {{--<a href="{{ URL::route('student.download-file') }}"--}}
+                                        {{--class="btn-link" title="download" style="color:#8b0835"><b><i class="fa fa-download"></i></b>--}}
+                                        {{--</a>--}}
+
+                                        <a href="{{ URL::route('student.book.download') }}" class="btn btn-large btn-success pull-right" ><i class="fa fa-download"></i></a>
 
                                       @else
-                                      {{ Form::open(array('url' => 'library/student/add-to-cart')) }}
-                                        <a href="{{ URL::route('student.add-book-to-cart',['book_id'=>$list->id]) }}"
-                                        class="btn-link" title="Add Book to Cart" style="color:#0d8b0e"><b><i class="fa fa-shopping-cart"></i></b>
-                                        </a>
-                                      {{ Form::close() }}
-
+                                        <a href="{{ URL::route('student.add-book-to-cart',['book_id'=>$list->id]) }}" class="btn btn-info btn-large" ><i class="fa fa-shopping-cart"></i></a>
                                       @endif
                                       {{--<a data-href="{{URL::route('examination.amw.delete-exam-data', ['id'=>$exam_list->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" style="font-size: 12px;color: lightcoral"><span class="fa  fa-trash-o"></span></a>--}}
                                   </td>
@@ -122,6 +113,35 @@
  </div>
 
  <!-- Modal  -->
+  <!-- View Details Modal -->
+  <div class="modal fade" id="downloadView" tabindex="-1" role="dialog" aria-labelledby="viewDetails" aria-hidden="true">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                  <h4 class="modal-title">Theory Class : Day 2</h4>
+              </div>
+              <div class="modal-body">
+                  <h2> Theory Class : Day 2 </h2>
+                  <p>
+                      <iframe width="560" height="315" src="//www.youtube.com/embed/qY173FCff_c" frameborder="0" allowfullscreen></iframe>
+                  </p>
+                  <p><b><a href="../video/class.zip">Download</a> </b></p>
+
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-success" data-dismiss="modal">Back</button>
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+              </div>
+          </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+
+
+
+
+
   <div class="modal fade" id="book" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
        <div class="modal-dialog">
          <div class="modal-content">
@@ -150,11 +170,11 @@
      </div>
   </div>
 
-<script>
-  $('#addBook').change(function(){
-     $.get("{{ url('faculty/store-book/{book_id}')}}",
-  });
-</script>
+{{--<script>--}}
+  {{--$('#addBook').change(function(){--}}
+     {{--$.get("{{ url('faculty/store-book/{book_id}')}}",--}}
+  {{--});--}}
+{{--</script>--}}
 
  @stop
 

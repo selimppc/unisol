@@ -11,11 +11,6 @@
 |
 */
 
-/*
-==================================================================
-Shafi
-==================================================================
-*/
 
 include("routes_tjt.php");
 include("routes_ra.php");
@@ -23,24 +18,6 @@ include("routes_sh.php");
 
 // ----------------------------------------       VERSION 1    ---------------------------------------------------------
 // ----------------------------------------AMW : Admission Test --------------------------------------------------------
-
-
-//Deshboard
-//Route::any('admission_test/amw/dashboard', [
-//    'as' => 'admission_test.amw.dashboard',
-//    'uses' => 'AdmissionController@admAmwDashboard'
-//]);
-//
-////Index
-//Route::any('admission_test/amw/index',[
-//    'as' => 'admission_test.amw.index',
-//    'uses' => 'AdmissionController@admissionTestIndex'
-//]);
-//
-//Route::any('admission_test/amw/search-index', [
-//    'as' => 'admission_test.amw.search_index',
-//    'uses' => 'AdmissionController@searchIndex'
-//]);
 
 // ----------------------------------------AMW : Examiner --------------------------------------------------------
 

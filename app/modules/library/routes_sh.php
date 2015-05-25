@@ -16,6 +16,14 @@ Route::any('student/find-book',[
     'uses' => 'LibStudentController@findBooks'
 ]);
 
+
+
+Route::any('student/book/download',[
+    'as' =>'student.book.download',
+    'uses' => 'LibStudentController@getDownload'
+]);
+
+
 Route::any('student/add-book-to-cart/{book_id}',[
     'as' =>'student.add-book-to-cart',
     'uses' => 'LibStudentController@addBookToStudentCart'
