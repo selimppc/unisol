@@ -7,13 +7,14 @@ class LibraryController extends \BaseController {
         $this->beforeFilter('librarian', array('except' => array('')));
         //$this->beforeFilter('academicFaculty', array('except' => array('index')));
     }
-
+    
 	public function index()
 	{
         $data= LibBookCategory::orderBy('id', 'DESC')->paginate(5);
 		return View::Make('library::librarian.book_category.index',compact('data'));
 	}
 
+    /**********************Library Book Category start***************************/
 	public function storeCategory()
 	{
         $data = Input::all();
@@ -143,6 +144,9 @@ class LibraryController extends \BaseController {
 	{
 		//
 	}
+
+    /**********************Library Book Author start***************************/
+
 
 
 }
