@@ -6,7 +6,7 @@
      @include('layouts._sidebar_student')
 @stop
 @section('content')
-<a class="pull-right btn btn-xs btn-info"  style="color: #ffffff" href="{{ URL::route('faculty.book') }}" title="Back to Exam List" id="addBook"><b>Back</b></a>
+<a class="pull-right btn btn-info"  style="color: #ffffff" href="{{ URL::route('student.find-book') }}" title="Back to Exam List" id="addBook"><b>Back</b></a>
 
  <h3>Your Cart</h3>
 
@@ -22,18 +22,18 @@
                         <tr>
                            <th><input name="id" type="checkbox" id="checkbox" class="checkbox" value=""></th>
                            <th>Book Name</th>
-                           <th></th>
                            <th>Price</th>
                         </tr>
                  </thead>
                  <tbody>
-                     @if(isset($model))
-                          <tr>
-                              <td><input type="checkbox" name="id[]" class="myCheckbox" value=""></td>
-                              <td>{{$model->title}}</td>
-                              <td></td>
-                              <td></td>
-                          </tr>
+                     @if(isset($all_cart_st_books))
+                         @foreach($all_cart_st_books as $acsb)
+                           <tr>
+                               <td><input type="checkbox" name="id[]" class="myCheckbox" value=""></td>
+                               <td>{{ $acsb->title }}</td>
+                               <td>{{ $acsb->digital_sell_price }}</td>
+                           </tr>
+                         @endforeach
                      @endif
                  </tbody>
               </table>
