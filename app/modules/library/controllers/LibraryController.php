@@ -11,7 +11,7 @@ class LibraryController extends \BaseController {
 	public function index()
 	{
         $data= LibBookCategory::orderBy('id', 'DESC')->paginate(5);
-		return View::Make('library::book_category.index',compact('data'));
+		return View::Make('library::librarian.book_category.index',compact('data'));
 	}
 
 	public function storeCategory()
@@ -51,7 +51,7 @@ class LibraryController extends \BaseController {
 	public function viewCategory($id)
 	{
         $view_category = LibBookCategory::find($id);
-        return View::make('library::book_category.view',compact('view_category'));
+        return View::make('library::librarian.book_category.view',compact('view_category'));
 	}
 
 
@@ -64,7 +64,7 @@ class LibraryController extends \BaseController {
 	public function editCategory($id)
 	{
         $edit_category = LibBookCategory::find($id);
-        return View::make('library::book_category.edit',compact('edit_category'));
+        return View::make('library::librarian.book_category.edit',compact('edit_category'));
 	}
 
 
