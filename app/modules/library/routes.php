@@ -21,9 +21,6 @@ Route::group(['prefix' => 'library'], function() {
     Route::get('book/category',
         'LibraryController@index'
     );
-//    Route::post('category/save',
-//        'LibraryController@storeCategory'
-//    );
     Route::any('category/save',[
         'as' => 'category.save',
         'uses'=> 'LibraryController@storeCategory'
