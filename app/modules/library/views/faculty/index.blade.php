@@ -6,12 +6,13 @@
      @include('layouts._sidebar_faculty')
  @stop
  @section('content')
- {{--<a class="pull-right btn btn-sm btn-info" href="{{ URL::route('examination.amw.create-exam') }}" data-toggle="modal" data-target="#exam-data" style="color: #ffffff" title="New Examination"><b>+ Add Examination</b></a>--}}
+@include('library::show_cart')
  <h3>Library</h3>
 
  <div class="row">
     <div class="col-md-12 ">
        <div class="box box-solid">
+       <!--Include show_cart.blade.php-->
        <br>
            {{-------------- Filter :Starts -------------------------------------------}}
            <div>
@@ -99,7 +100,7 @@
                                   <td>
                                       {{--<a href="" class="btn btn-default btn-xs" data-toggle="modal" data-target="#book" title="Show" style="font-size: 11px;color: darkmagenta"><span class="fa fa-eye"></span></a>--}}
                                       @if($list->is_rented == 'yes')
-                                        <a href="{{ URL::route('faculty.add-book-to-cart',['book_id'=>$list->id]) }}"
+                                        <a href="{{ URL::route('faculty.add-book-to-cart',['book_id'=>$list->id]) }}" id="addCart" onclick="testAjax()"
                                         class="btn-link" title="Add Book" style="color:darkblue"><b><ins>Add To Cart</ins></b>
                                         </a>
                                       @endif
@@ -148,10 +149,20 @@
      </div>
   </div>
 
+{{--<script>--}}
+  {{--$('#addCart').change(function(handleData){--}}
+     {{--$.ajax("{{ url('faculty/add-book-to-cart/{book_id}')}}",--}}
+     {{--success:function(data) {--}}
+     {{--handleData data;--}}
+           {{--}--}}
+  {{--});--}}
+{{--</script>--}}
+
+
+
 <script>
-  $('#addBook').change(function(){
-     $.get("{{ url('faculty/store-book/{book_id}')}}",
-  });
+
+
 </script>
 
  @stop
