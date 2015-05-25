@@ -1,4 +1,7 @@
 @extends('layouts.layout')
+@section('top_menu')
+    @include('layouts._top_menu')
+@stop
 @section('sidebar')
     @include('layouts._sidebar_amw')
 @stop
@@ -10,31 +13,29 @@
     <div class="box-header">
     <p>
        <div class="col-xs-4">
-           <b>Degree</b> :: {{$data->relBatchAdmtestSubject->relBatch->relDegree->relDegreeProgram->code}}
-                   {{$data->relBatchAdmtestSubject->relBatch->relDegree->relDegreeGroup->code}} in {{$data->relBatchAdmtestSubject->relBatch->relDegree->relDepartment->title}} -
-                   {{ $data->relBatchAdmtestSubject->relBatch->relSemester->title }} - {{ $data->relBatchAdmtestSubject->relBatch->relYear->title }}
+           <b>Degree</b> :: {{$adm_question->relBatchAdmtestSubject->relBatch->relVDegree->title }}
        </div>
        <div class="col-xs-4">
-           <b>Credit</b> : {{$data->relBatchAdmtestSubject->relBatch->relDegree->total_credit}}
+           <b>Credit</b> : {{$adm_question->relBatchAdmtestSubject->relBatch->relVDegree->total_credit}}
        </div>
        <div class="col-xs-4">
-           <b>Department</b> : {{$data->relBatchAdmtestSubject->relBatch->relDegree->relDepartment->title}}
+           <b>Department</b> : {{$adm_question->relBatchAdmtestSubject->relBatch->relVDegree->dept_title}}
        </div>
        <div class="col-xs-4">
-           <b>Duration</b> : {{$data->relBatchAdmtestSubject->relBatch->relDegree->duration}} Years
+           <b>Duration</b> : {{$adm_question->relBatchAdmtestSubject->relBatch->relVDegree->duration}} Years
        </div>
        <div class="col-xs-4">
-           <b>Year</b> : {{$data->relBatchAdmtestSubject->relBatch->relYear->title}}
+           <b>Year</b> : {{$adm_question->relBatchAdmtestSubject->relBatch->relYear->title}}
        </div>
        <div class="col-xs-4">
-           <b>Semester</b> : {{$data->relBatchAdmtestSubject->relBatch->relSemester->title}}
+           <b>Semester</b> : {{$adm_question->relBatchAdmtestSubject->relBatch->relSemester->title}}
        </div>
        <div class="col-xs-4">
-          <b>Subject Name</b> : {{$data->relBatchAdmtestSubject->relAdmtestSubject->title}}
+          <b>Subject Name</b> : {{$adm_question->relBatchAdmtestSubject->relAdmtestSubject->title}}
       </div>
       <div class="col-xs-4">
-         <b>Total Marks</b> : {{$data->total_marks}}
-     </div>
+         <b>Total Marks</b> : {{$adm_question->total_marks}}
+      </div>
     </p>
     </div><!-- /.box-header -->
     <div class="box-body table-responsive">
@@ -51,8 +52,8 @@
             @foreach($adm_question_evaluation as $values)
               <tr>
                 <td> {{Applicant::ApplicantName($values->batch_applicant_id)}} </td>
-                <td> {{$values->progress_status}} </td>
-                <td> {{$values->marks}}</td>
+                <td> TBD </td>
+                <td> TBD </td>
                 <td>
                     <a href="{{ URL::route('admission.amw.view-details-of-qpe', ['ba_id'=> $values->batch_applicant_id, 'question_id'=> $values->adm_question_id, 'q_items_id'=> $values->adm_question_items_id ]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#modal"><span class="fa fa-eye"></span> view </a>
                 </td>

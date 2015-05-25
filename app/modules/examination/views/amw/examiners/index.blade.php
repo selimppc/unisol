@@ -1,4 +1,7 @@
 @extends('layouts.layout')
+@section('top_menu')
+    @include('layouts._top_menu')
+@stop
 @section('sidebar')
     @include('layouts._sidebar_amw')
 @stop
@@ -94,7 +97,6 @@
          </div>
      </div>
 
-@stop
 
 <script>
 $('#cancel-status').on('show.bs.modal', function (e) {
@@ -102,3 +104,7 @@ $('#cancel-status').on('show.bs.modal', function (e) {
     $('.debug-url').html('Status URL: <strong>' + $(this).find('.primary').attr('href') + '</strong>');
 });
 </script>
+
+@stop
+
+

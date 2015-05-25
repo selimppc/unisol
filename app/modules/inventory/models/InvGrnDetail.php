@@ -6,16 +6,15 @@ class InvGrnDetail extends \Eloquent
     //TODO :: model attributes and rules and validation
     protected $table = 'inv_grn_detail';
     protected $fillable = [
-        'inv_grn_head_id', 'inv_product_id', 'batch_number',
-        'expire_date', 'receive_quantity', 'cost_price',
+        'inv_grn_head_id', 'inv_product_id', 'batch_number','expire_date', 'receive_quantity', 'cost_price',
         'unit', 'unit_quantity', 'tax_rate', 'tax_amount',
         'row_amount'
     ];
 
     private $errors;
     private $rules = [
-        //'purchase_no' => 'required|integer',
-        //'acm_marks_distribution_id' => 'required|integer',
+        //'inv_grn_head_id' => 'required|integer',
+        //'inv_product_id' => 'required|integer',
         //'acm_class_schedule_id' => 'required|integer',
         //'status' => 'required|integer',
     ];

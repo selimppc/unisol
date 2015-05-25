@@ -555,47 +555,66 @@ class ExmFacultyController extends \BaseController {
      * @param bool $no_q
      * @return mixed
      */
-    public function evaluateExmQuestionsItems($e_q_id ,$evaluation_id, $no_q = false )
+    public function evaluateExmQuestionsItems($e_q_id ,$evaluation_id, $no_q = 0 )
     {
-        $all = ExmQuestionEvaluation::where('exm_question_id', $e_q_id)->get();
+        $q_evaluation = ExmQuestionEvaluation::with('relExmQuestion', 'relExmQuestion.relCourseConduct',
+            'relExmQuestion.relCourseConduct.relYear', 'relExmQuestion.relCourseConduct.relSemester',
+            'relExmQuestion.relCourseConduct.relCourse.relSubject',
+            'relExmQuestion.relCourseConduct.relVDegree',
+            'relExmQuestionAnsText','relExmQuestionItems')
+            ->where('exm_question_id', $e_q_id)
+            ->whereExists(function($query)
+            {
+                $query->from('exm_question_items')
+                    ->whereRaw('exm_question_items.id = exm_question_evaluation.exm_question_items_id')
+                    ->where('exm_question_items.question_type', 'text');
+            })
+            ->orderby('id','asc')
+            ->skip($no_q)
+            ->take(1)
+            ->first();
+        //print_r($q_evaluation);exit;
 
-        foreach ($all as $ev_itm) {
+        /*foreach ($all as $ev_itm) {
             $ev_id [] = $ev_itm->id;
             $ev_q_item_id [] = $ev_itm->exm_question_items_id;
             $ev_marks [] = $ev_itm->marks;
-        }
-        $no_q = !empty($no_q) ? $no_q : 0;
-        $eva_id = $ev_id[$no_q] ;
-        $desc_ans = ExmQuestionAnsText::where('exm_question_evaluation_id', $eva_id)->first();
-        $total_question = count($all);
-        $q_item_info = ExmQuestionItems::findOrFail($ev_q_item_id[$no_q]);
+        }*/
+        //$no_q = !empty($no_q) ? $no_q : 0;
+        //$eva_id = $q_evaluation->id;
+        //$desc_ans = ExmQuestionAnsText::where('exm_question_evaluation_id', $eva_id)->first();
+        //$total_question = count($all);
+        //$q_item_info = ExmQuestionItems::findOrFail($ev_q_item_id[$no_q]);
         //$evaluation_id = $ev_id[$no_q];
-        $evaluation_marks = $ev_marks[$no_q];
+        //$evaluation_marks = $ev_marks[$no_q];
 
-        $evaluate_exm_qp = ExmQuestionEvaluation::with('relExmQuestionItems','relExmQuestion',
+        /*$evaluate_exm_qp = ExmQuestionEvaluation::with('relExmQuestionItems','relExmQuestion',
             'relStudentUser','relStudentUser.relUserProfile')
             ->where('exm_question_id', '=', $e_q_id)
             ->latest('id')
-            ->first();
+            ->first();*/
 
-        $data_exm_question = ExmQuestion::with('relExmExamList','relExmExamList.relYear',
+        /*$data_exm_question = ExmQuestion::with('relExmExamList','relExmExamList.relYear',
             'relExmExamList.relSemester','relCourseConduct','relCourseConduct.relDegree',
             'relCourseConduct.relDegree.relDepartment',
             'relExmExamList.relAcmMarksDistItem',
             'relCourseConduct.relCourse.relSubject','relCourseConduct.relUser')
-            ->where('id', '=', $e_q_id)->first();
-
-        $total_marks = ExmQuestionEvaluation::where('exm_question_id','=', $e_q_id)
-            ->latest('id')->groupBy('exm_question_id')
-            ->select(DB::raw('SUM(marks) as ev_marks'))
+            ->where('id', '=', $e_q_id)->first();*/
+        $count = DB::table('exm_question_evaluation')
+            ->select(DB::raw('count(exm_question_evaluation.id) as total, sum(exm_question_evaluation.marks) as marks'))
+            ->join('exm_question_items', 'exm_question_items.id', '=', 'exm_question_evaluation.exm_question_items_id')
+            ->where('exm_question_items.question_type', '=','text')
+            ->where('exm_question_evaluation.exm_question_id', $e_q_id)
             ->first();
 
+        #print_r($count);exit;
+        /*$total_marks = ExmQuestionEvaluation::where('exm_question_id','=', $e_q_id)
+            ->latest('id')->groupBy('exm_question_id')
+            ->select(DB::raw('SUM(marks) as ev_marks'))
+            ->first();*/
+
         return View::make('examination::faculty.question_paper.evaluate-exm-questions-items',
-            compact('exm_q_stu_answer_text',
-                'evaluate_exm_qp', 'e_q_id', 'evaluation_id','evaluation_marks','desc_ans',
-                'eva_q_ans', 'b', 'total_question', 'no_q',
-                'total_answer','q_item_info_text','evaluation_text_id','data_exm_question',
-                'q_item_info', 'total_marks','q_item_evalu_info','evaluation_id','eva_id'));
+            compact('q_evaluation', 'count','no_q','e_q_id'));
     }
 
 

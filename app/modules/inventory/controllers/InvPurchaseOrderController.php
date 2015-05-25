@@ -136,6 +136,9 @@ class InvPurchaseOrderController extends \BaseController {
      */
     public function create_grn($req_id){
         echo $req_id;
+        DB::query('insert into inv_grn_head (username, email, password) values ("johndoe", "john@johndoe.com", "password")');
+
+
 
         /*$success = DB::select(
             'INSERT INTO inv_purchase_order_head SELECT * FROM inv_requisition_head WHERE inv_requisition_head.id = inv_purchase_order_head.inv_requisition_head_id'

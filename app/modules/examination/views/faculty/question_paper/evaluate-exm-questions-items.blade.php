@@ -1,4 +1,7 @@
 @extends('layouts.layout')
+@section('top_menu')
+    @include('layouts._top_menu')
+@stop
 @section('sidebar')
     @include('layouts._sidebar_faculty')
 @stop
@@ -25,39 +28,39 @@
                     <div class="tab-pane active" style="font-size: 15px" id="tab_1">
 
                          <p><strong> Degree: &nbsp;&nbsp; </strong>
-                                 {{ $data_exm_question->relCourseConduct->relDegree->relDegreeLevel->code.''
-                                     .$data_exm_question->relCourseConduct->relDegree->relDegreeGroup->code.' In '
-                                     .$data_exm_question->relCourseConduct->relDegree->relDegreeProgram->title.' , '
-                                     .$data_exm_question->relExmExamList->relSemester->title.' , '
-                                     .$data_exm_question->relExmExamList->relYear->title
+                                 {{ $q_evaluation->relExmQuestion->relCourseConduct->relDegree->relDegreeLevel->code.''
+                                     .$q_evaluation->relExmQuestion->relCourseConduct->relDegree->relDegreeGroup->code.' In '
+                                     .$q_evaluation->relExmQuestion->relCourseConduct->relDegree->relDegreeProgram->title.' , '
+                                     .$q_evaluation->relExmQuestion->relExmExamList->relSemester->title.' , '
+                                     .$q_evaluation->relExmQuestion->relExmExamList->relYear->title
                                  }}</p>
-                          <p><strong> Subject: &nbsp;&nbsp; </strong>{{ $data_exm_question->relCourseConduct->relCourse->relSubject->title }}</p>
-                          <p><strong> Total Marks: &nbsp;&nbsp; </strong> {{ $data_exm_question->total_marks }}</p>
-                          <p><strong> Marks Obtained So Far: &nbsp;&nbsp; </strong> {{ $total_marks->ev_marks }}</p>
+                          <p><strong> Subject: &nbsp;&nbsp; </strong>{{ $q_evaluation->relExmQuestion->relCourseConduct->relCourse->relSubject->title }}</p>
+                          <p><strong> Total Marks: &nbsp;&nbsp; </strong> {{ $q_evaluation->relExmQuestion->total_marks }}</p>
+                          <p><strong> Marks Obtained So Far: &nbsp;&nbsp; </strong> {{ $count->marks }}</p>
 
                         <div class="box-body">
 
                               {{ Form::open(array('url'=>'examination/faculty/exm-question-paper-to-store-evaluated-exm-questions', 'method' => 'POST' )) }}
-                                     {{ Form::hidden('id', $evaluate_exm_qp->id ) }}
+                                     {{ Form::hidden('id', $q_evaluation->id ) }}
                                      {{ Form::hidden('evaluator_user_id', Auth::user()->get()->id ) }}
-                                     {{ Form::hidden('student_user_id', $evaluate_exm_qp->student_user_id ) }}
-                                     {{ Form::hidden('exm_question_item_id', $evaluate_exm_qp->exm_question_items_id ) }}
-                                     {{ Form::hidden('exm_question_id', $e_q_id ) }}
+                                     {{ Form::hidden('student_user_id', $q_evaluation->student_user_id ) }}
+                                     {{ Form::hidden('exm_question_item_id', $q_evaluation->exm_question_items_id ) }}
+                                     {{ Form::hidden('exm_question_id', $q_evaluation->exm_question_id ) }}
 
                                      <strong>Question No: </strong>&nbsp;&nbsp;{{ $no_q+1 }}
                                       &nbsp;&nbsp;
-                                     <strong>Out of: &nbsp;&nbsp;</strong> {{ $total_question }}
+                                     <strong>Out of: &nbsp;&nbsp;</strong> {{ $count->total }}
                                      <br><br>
-                                     <strong>Question Title Here: &nbsp;&nbsp; </strong> {{ $q_item_info->title }}
+                                     <strong>Question Title : &nbsp;&nbsp; </strong> {{ $q_evaluation->relExmQuestionItems->title }}
                                      <br><br>
 
-                                     <strong>Question Answer Here: &nbsp;&nbsp; </strong> {{ $desc_ans->answer }}
+                                     <strong>Question Answer : &nbsp;&nbsp; </strong> {{ $q_evaluation->relExmQuestionAnsText->answer }}
                                      <br><br>
 
                                     <div class='form-group' style="margin-left: 4%;">
                                       {{ Form::label('marks', 'Marks') }}
-                                      {{ Form::text('marks',$evaluation_marks, Input::old('marks'),['required'=>'required']) }}
-                                       <strong>out of : </strong> {{  $q_item_info->marks}}
+                                      {{ Form::text('marks',$q_evaluation->marks, Input::old('marks'),['required'=>'required']) }}
+                                       <strong>out of : </strong> {{  $q_evaluation->relExmQuestionItems->marks}}
                                     </div>
 
                                    {{ Form::submit('Evaluate',array('id'=>'submit_if','class'=>'btn btn-primary btn-xs')) }}
@@ -65,13 +68,13 @@
                                    <a href="{{ URL::route('faculty.exm-question-paper.evaluate-exm-questions',['exm_question_id'=>$e_q_id]) }}" style="margin-right: .65%;" class="pull-left btn btn-success btn-xs">Back</a>
 
                                     @if( $no_q > 0 )
-                                        <a href="{{ URL::route('faculty.exm-question-paper.evaluate-exm-questions-items',['exm_question_id'=>$e_q_id, 'evaluation_id'=>$evaluation_id, 'no_q'=>$no_q-1 ]) }}" class="btn bg-red btn-xs " >Previous</a>
+                                        <a href="{{ URL::route('faculty.exm-question-paper.evaluate-exm-questions-items',['exm_question_id'=>$e_q_id, 'evaluation_id'=>$q_evaluation->id, 'no_q'=>$no_q-1 ]) }}" class="btn bg-red btn-xs " >Previous</a>
                                     @endif
 
                                    &nbsp;
 
-                                    @if(  ($no_q + 1) < $total_question )
-                                        <a href="{{ URL::route('faculty.exm-question-paper.evaluate-exm-questions-items',['exm_question_id'=>$e_q_id, 'evaluation_id'=>$evaluation_id, 'no_q'=>$no_q+1 ]) }}" class="btn bg-orange btn-xs " >Next</a>
+                                    @if(  ($no_q + 1) < $count->total )
+                                        <a href="{{ URL::route('faculty.exm-question-paper.evaluate-exm-questions-items',['exm_question_id'=>$e_q_id, 'evaluation_id'=>$q_evaluation->id, 'no_q'=>$no_q+1 ]) }}" class="btn bg-orange btn-xs " >Next</a>
                                     @else
                                             <a href="{{ URL::route('faculty.exm-question-paper.evaluate-exm-questions',['exm_question_id'=>$e_q_id]) }}" class="btn bg-purple btn-xs">Finish</a>
                                     @endif

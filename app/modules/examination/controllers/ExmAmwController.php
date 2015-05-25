@@ -11,8 +11,7 @@ class ExmAmwController extends \BaseController {
         return Input::server("REQUEST_METHOD") == "POST";
     }
 
-/*--------------------------------  Version 2 :Starts Here  -----------------------------------------------------------------------------------------*/
-
+//.................................................. Examination .......................................
     public function examList(){
 
         if($this->isPostRequest()){
@@ -206,6 +205,8 @@ class ExmAmwController extends \BaseController {
         return View::make('examination::amw.courses._exm_course_list',compact('course_data','year_title','semester_title'));
     }
 
+    //.................................................. Examiners .......................................
+
     public function indexExaminers($exm_exam_list_id,$year_id,$semester_id){
 
         $examiners_list = ExmExaminer::with('relExmExamList','relExmExamList.relCourseConduct', 'relExmExamList.relCourseConduct.relYear',
@@ -307,6 +308,8 @@ class ExmAmwController extends \BaseController {
 
     }
 
+    //.................................................. QuestionPapers .......................................
+
     public function indexQuestionPapers($exm_exam_list_id,$course_conduct_id){
 
         $exm_question = ExmQuestion::with('relExmExamList', 'relSUser.relUserProfile', 'relEUser.relUserProfile','relCourseConduct.relCourse.relSubject')
@@ -395,6 +398,8 @@ class ExmAmwController extends \BaseController {
         }
     }
 
+    //.................................................. Examiner:Question Setter .......................................
+
     public function assignSetter($q_id,$exm_exam_list_id)
     {
         $question_data = ExmQuestion::with('relCourseConduct.relCourse.relSubject')->where('id', $q_id)->first();
@@ -405,6 +410,8 @@ class ExmAmwController extends \BaseController {
             compact('question_data', 'examiner_faculty_lists','q_id','comments'));
     }
 
+    //.................................................. Examiner:Question Evaluator .......................................
+
     public function assignEvaluator($q_id,$exm_exam_list_id)
     {
         $question_data = ExmQuestion::with('relCourseConduct.relCourse.relSubject')->where('id', $q_id)->first();
@@ -414,6 +421,8 @@ class ExmAmwController extends \BaseController {
         return View::make('examination::amw.question_papers.assign_evaluator',
             compact('question_data', 'examiner_faculty_lists', 'comments','q_id'));
     }
+
+    //.................................................. Examiner Type Update With Comments .......................................
 
     public function assignExaminerWithComments($id)
     {
@@ -448,6 +457,8 @@ class ExmAmwController extends \BaseController {
         return Redirect::back();
     }
 
+    //.................................................. Question Types .......................................
+
     public function questionList($exm_question_id){
 
         $question_list = ExmQuestionItems::where('exm_question_id' ,'=', $exm_question_id)->get();
@@ -464,4 +475,65 @@ class ExmAmwController extends \BaseController {
         return View::make('examination::amw.questions.view',compact('question_item','q_details','answer'));
     }
 
+//.................................................. Evaluation .......................................
+
+    public function questionPaperEvaluation($exm_exam_list_id,$course_conduct_id)
+    {
+        $exm_question = ExmQuestion::with('relExmExamList', 'relSUser.relUserProfile', 'relEUser.relUserProfile','relCourseConduct.relCourse.relSubject')
+            ->whereExists(function($query) use($course_conduct_id)
+            {
+                $query->from('exm_exam_list')
+                    ->whereRaw('exm_exam_list.id = exm_question.exm_exam_list_id')
+                    ->where('exm_exam_list.course_conduct_id', $course_conduct_id);
+            })
+            ->where('status', 'selected')
+            ->latest('id')->get();
+
+        return View::make('examination::amw.qpe.index',compact('exm_question','exm_exam_list_id'));
+    }
+
+    public function studentListOfQpe($exm_question_id)
+    {
+        $exm_question_evaluation = ExmQuestionEvaluation::where('exm_question_id', $exm_question_id)
+            ->groupby('student_user_id')
+            ->get();
+
+        return View::make('examination::amw.qpe.student_qpe', compact('exm_question_evaluation'));
+    }
+
+    public function viewDetailsOfQpe($student_user_id, $question_id){
+
+        $data = ExmQuestion::with('relCourseConduct','relCourseConduct.relCourse.relSubject')->where('id', $question_id)->first();
+
+        $question_items = ExmVQuestionEvaluation::with('relExmQuestionItems', 'relExmQuestionOptionAnswer')
+            ->where('exm_question_id', $question_id)
+            ->where('student_user_id', $student_user_id)
+            ->get();
+
+        foreach($question_items as $qs){
+            $i = 0;
+            $qlist[$qs->exm_question_items_id]['question_title']       = $qs->relExmQuestionItems->title;
+            $qlist[$qs->exm_question_items_id]['marks']                 = $qs->marks;
+            $qlist[$qs->exm_question_items_id]['type']       = $qs->question_type;
+            foreach($qs->relExmQuestionOptionAnswer as $aqoa){
+                $qlist[$qs->exm_question_items_id]['options'][$i]['id']       = $aqoa->id;
+                $qlist[$qs->exm_question_items_id]['options'][$i]['title']    = $aqoa->title;
+                $qlist[$qs->exm_question_items_id]['options'][$i]['answer']   = $aqoa->answer;
+                $i++;
+            }
+            if($qs->question_type == 'checkbox')
+                $qlist[$qs->exm_question_items_id]['answer'][]          = $qs->canswer;
+            elseif($qs->question_type == 'radio')
+                $qlist[$qs->exm_question_items_id]['answer']            = $qs->ranswer;
+            if($qs->question_type == 'text')
+                $qlist[$qs->exm_question_items_id]['answer']            = $qs->tanswer;
+        }
+        $count = DB::table('exm_question_evaluation')
+            ->select(DB::raw('count(exm_question_evaluation.id) as total, sum(exm_question_evaluation.marks) as marks'))
+            ->join('exm_question_items', 'exm_question_items.id', '=', 'exm_question_evaluation.exm_question_items_id')
+            ->where('exm_question_evaluation.exm_question_id', $question_id)
+            ->first();
+
+        return View::make('examination::amw.qpe.details_qpe', compact('data', 'qlist', 'count'));
+    }
 }

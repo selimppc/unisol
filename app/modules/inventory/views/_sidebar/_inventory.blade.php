@@ -16,6 +16,8 @@
             <li><a href="{{URL::route('requisition')}}"><i class="fa fa-angle-double-right"></i> Requisition</a></li>
             <li><a href="{{URL::route('purchase-order')}}"><i class="fa fa-angle-double-right"></i> Purchase Order</a></li>
             <li><a href="{{URL::route('grn')}}"><i class="fa fa-angle-double-right"></i> GRN </a></li>
+            <li><a href="{{URL::route('stock-view')}}"><i class="fa fa-angle-double-right"></i> Stock View </a></li>
+            <li><a href="{{URL::route('stock-view')}}"><i class="fa fa-angle-double-right"></i> Stock Dispatch </a></li>
         </ul>
     </li>
 

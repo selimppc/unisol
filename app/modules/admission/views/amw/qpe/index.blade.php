@@ -1,4 +1,7 @@
 @extends('layouts.layout')
+@section('top_menu')
+    @include('layouts._top_menu')
+@stop
 @section('sidebar')
     @include('layouts._sidebar_amw')
 @stop
@@ -10,27 +13,26 @@
     <div class="box-header">
     <p>
         <div class="col-xs-4">
-            <b>Degree</b> :: {{$data->relBatch->relDegree->relDegreeLevel->code}}
-                    {{$data->relBatch->relDegree->relDegreeGroup->code}} in {{$data->relBatch->relDegree->relDegreeProgram->code}} -
-                    {{ $data->relBatch->relSemester->title }} - {{ $data->relBatch->relYear->title }}
+            <b>Degree</b> :: {{$batch->relVDegree->title }} - {{ $batch->batch_number }}
         </div>
         <div class="col-xs-4">
-            <b>Credit</b> : {{$data->relBatch->relDegree->total_credit}}
+            <b>Credit</b> : {{$batch->relVDegree->total_credit}}
         </div>
         <div class="col-xs-4">
-            <b>Department</b> : {{$data->relBatch->relDegree->relDepartment->title}}
+            <b>Department</b> : {{$batch->relVDegree->dept_title}}
         </div>
         <div class="col-xs-4">
-            <b>Duration</b> : {{$data->relBatch->relDegree->duration}} Years
+            <b>Duration</b> : {{$batch->relVDegree->duration}} Years
         </div>
         <div class="col-xs-4">
-            <b>Year</b> : {{$data->relBatch->relYear->title}}
+            <b>Year</b> : {{$batch->relYear->title}}
         </div>
         <div class="col-xs-4">
-            <b>Semester</b> : {{$data->relBatch->relSemester->title}}
+            <b>Semester</b> : {{$batch->relSemester->title}}
         </div>
     </p>
     </div><!-- /.box-header -->
+
     <div class="box-body table-responsive">
         <table id="example1" class="table table-bordered table-striped">
             <thead>
@@ -43,14 +45,14 @@
             </tr>
             </thead>
             <tbody>
-            @foreach($adm_question as $values)
+            @foreach($adm_question as $value)
             <tr>
-                <td> {{$values->relBatchAdmtestSubject->relAdmtestSubject->title}}</td>
-                <td> {{isset($values->s_faculty_user_id) ? User::Fullname($values->s_faculty_user_id):''}}</td>
-                <td> {{isset($values->e_faculty_user_id) ? User::Fullname($values->e_faculty_user_id):'' }}</td>
-                <td> {{$values->status}}</td>
+                <td> {{$value->relBatchAdmtestSubject->relAdmtestSubject->title}}</td>
+                <td> {{isset($value->s_faculty_user_id) ? $value->relSUser->relUserProfile->first_name.' '.$value->relSUser->relUserProfile->middle_name.' '.$value->relSUser->relUserProfile->last_name:''}}</td>
+                <td> {{isset($value->e_faculty_user_id) ? $value->relEUser->relUserProfile->first_name.' '.$value->relEUser->relUserProfile->middle_name.' '.$value->relEUser->relUserProfile->last_name : ''}}</td>
+                <td> {{$value->status}}</td>
                 <td>
-                    <a href="{{ URL::route('admission.amw.student-list-of-qpe', ['adm_question_id'=> $values->id ]) }}" class="btn btn-xs btn-info"><span class="fa fa-eye"></span> view</a>
+                    <a href="{{ URL::route('admission.amw.student-list-of-qpe', ['adm_question_id'=> $value->id ]) }}" class="btn btn-xs btn-info"><span class="fa fa-eye"></span> view</a>
                 </td>
             </tr>
             @endforeach

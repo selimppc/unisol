@@ -1,8 +1,12 @@
 @extends('layouts.layout')
+@section('top_menu')
+    @include('layouts._top_menu')
+@stop
 @section('sidebar')
     @include('layouts._sidebar_amw')
 @stop
 @section('content')
+
 <a class="pull-right btn btn-xs btn-success" href="{{ URL::route('admission.amw.admission-test-home')}}"> <i class="fa fa-arrow-circle-left"></i> Go Back</a>
 
     <h3> Question paper </h3>
