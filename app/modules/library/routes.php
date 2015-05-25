@@ -21,9 +21,6 @@ Route::group(['prefix' => 'library'], function() {
     Route::get('book/category',
         'LibraryController@index'
     );
-//    Route::post('category/save',
-//        'LibraryController@storeCategory'
-//    );
     Route::any('category/save',[
         'as' => 'category.save',
         'uses'=> 'LibraryController@storeCategory'
@@ -47,6 +44,37 @@ Route::group(['prefix' => 'library'], function() {
         'as' => 'category.batch.delete',
         'uses' => 'LibraryController@batchdeleteCategory'
     ]);
+
+    /**********Library Book Author Start****************/
+
+    Route::get('book/author',
+        'LibraryController@indexAuthor'
+    );
+    Route::any('author/save',[
+        'as' => 'author.save',
+        'uses'=> 'LibraryController@storeAuthor'
+    ]);
+    Route::any('author/view/{id}',[
+        'as' => 'author.view',
+        'uses'=> 'LibraryController@viewAuthor'
+    ]);
+    Route::any('author/edit/{id}',[
+        'as' => 'author.edit',
+        'uses'=> 'LibraryController@editAuthor'
+    ]);
+    Route::any('author/update/{id}', [
+        'as' => 'author.update',
+        'uses' => 'LibraryController@updateAuthor'
+    ]);
+    Route::get('author/delete/{id}',
+        'LibraryController@deleteAuthor'
+    );
+    Route::any('author/batch/delete/{id}', [
+        'as' => 'author.batch.delete',
+        'uses' => 'LibraryController@batchdeleteAuthor'
+    ]);
+
+
 });
 
 

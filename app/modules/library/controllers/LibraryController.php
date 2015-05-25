@@ -10,10 +10,12 @@ class LibraryController extends \BaseController {
 
 	public function index()
 	{
-        $data= LibBookCategory::orderBy('id', 'DESC')->paginate(5);
-		return View::Make('library::librarian.book_category.index',compact('data'));
+        $book_category = LibBookCategory::orderBy('id', 'DESC')->paginate(5);
+
+		return View::Make('library::librarian.category.index',compact('book_category'));
 	}
 
+    /**********************Library Book Category start***************************/
 	public function storeCategory()
 	{
         $data = Input::all();
@@ -51,7 +53,7 @@ class LibraryController extends \BaseController {
 	public function viewCategory($id)
 	{
         $view_category = LibBookCategory::find($id);
-        return View::make('library::librarian.book_category.view',compact('view_category'));
+        return View::make('library::librarian.category.view',compact('view_category'));
 	}
 
 
@@ -64,7 +66,7 @@ class LibraryController extends \BaseController {
 	public function editCategory($id)
 	{
         $edit_category = LibBookCategory::find($id);
-        return View::make('library::librarian.book_category.edit',compact('edit_category'));
+        return View::make('library::librarian.category.edit',compact('edit_category'));
 	}
 
 
@@ -143,6 +145,9 @@ class LibraryController extends \BaseController {
 	{
 		//
 	}
+
+    /**********************Library Book Author start***************************/
+
 
 
 }
