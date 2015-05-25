@@ -27,7 +27,12 @@
                      @if(isset($model))
                           <tr>
                               <td><input type="checkbox" name="id[]" class="myCheckbox" value=""></td>
-                              <td>{{$model->title}}</td>
+                              <td>@if(Session::get('title'))
+
+                                  @endif
+                              </td>
+
+
                               <td></td>
                               <td></td>
                           </tr>
