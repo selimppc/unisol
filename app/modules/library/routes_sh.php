@@ -16,15 +16,17 @@ Route::any('student/find-book',[
     'uses' => 'LibStudentController@findBooks'
 ]);
 
+Route::any('student/add-book-to-cart/{book_id}',[
+    'as' =>'student.add-book-to-cart',
+    'uses' => 'LibStudentController@addBookToStudentCart'
+]);
 
 
+Route::any('student/download-file',[
+    'as' =>'student.download-file',
+    'uses' => 'LibStudentController@addBookToCart'
+]);
 
-//
-//Route::any('faculty/add-book-to-cart/{book_id}',[
-//    'as' =>'faculty.add-book-to-cart',
-//    'uses' => 'LibStudentController@addBookToCart'
-//]);
-//
 //Route::any('faculty/book-transaction',[
 //    'as' =>'faculty.book-transaction',
 //    'uses' => 'LibStudentController@getBookTransaction'
