@@ -40,17 +40,32 @@ class LibFacultyController extends \BaseController {
 
 	public function addBookToCart($id)
 	{
-        $model = LibBook::with('relLibBookCategory', 'relLibBookAuthor', 'relLibBookPublisher')->where('id', '=', $id)->get();
-        //print_r($model);exit;
-        if($model) {
-            $cart[] = $model;
-            //print_r($cart);exit;
-            Session::push('cart', $id);
 
-            //Session::get('cart.items');
+        //$model = LibBook::with('relLibBookCategory', 'relLibBookAuthor', 'relLibBookPublisher')->where('id', '=', $id)->get();
+        //print_r((array)$model);exit;
+
+        if($id) {
+            $prev_added_book_id = Session::get('cartBooks');
+
+            $all_cart_book_ids = array_merge(array($id), (array)$prev_added_book_id);
+            array_unique($all_cart_book_ids);
+            Session::put('cartBooks', $all_cart_book_ids);
+        }else{
+            $all_cart_book_ids = (array)Session::get('cartBooks');
         }
-        return View::make('library::faculty.add_book',compact('model','number'));
+        //print_r($all_cart_book_ids);exit;
+        $all_cart_books = LibBook::with('relLibBookCategory', 'relLibBookAuthor', 'relLibBookPublisher')->whereIn('id', $all_cart_book_ids)->get();
+        //print_r($all_cart_books);exit;
+        return View::make('library::faculty.add_cart_book',compact('all_cart_books'));
 	}
+
+    public function viewBookToCart(){
+        $all_cart_books = Session::get('cartBooks');
+
+        //$all_cart_books = (object) $all_cart_books;
+        return View::make('library::faculty.view_cart_book',compact('all_cart_books'));
+    }
+
     public function getBookTransaction(){
 
         $data = Input::all();
