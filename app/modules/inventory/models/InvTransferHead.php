@@ -1,22 +1,20 @@
 <?php
-use Illuminate\Auth\UserTrait;
-use Illuminate\Auth\UserInterface;
-use Illuminate\Auth\Reminders\RemindableTrait;
-use Illuminate\Auth\Reminders\RemindableInterface;
-
-class Department extends Eloquent{
-
+class InvTransferHead extends \Eloquent
+{
     //TODO :: model attributes and rules and validation
-    protected $table='department';
+    protected $table = 'inv_transfer_head';
     protected $fillable = [
-        'title', 'description', 'dept_head_user_id',
+        'transfer_number', 'transfer_to', 'date', 'confirm_date','note', 'status'
     ];
+
     private $errors;
     private $rules = [
-        'title' => 'required',
-        'dept_head_user_id' => 'required|integer',
-        //'description' => 'alpha_dash',
+        //'course_conduct_id' => 'required|integer',
+        //'acm_marks_distribution_id' => 'required|integer',
+        //'acm_class_schedule_id' => 'required|integer',
+        //'status' => 'required|integer',
     ];
+
     public function validate($data)
     {
         $validate = Validator::make($data, $this->rules);
@@ -32,13 +30,12 @@ class Department extends Eloquent{
         return $this->errors;
     }
 
+
     //TODO : Model Relationship
-    public function relDegree(){
-        return $this->HasMany('Degree');
+    public function relDepartment(){
+        return $this->belongsTo('Department', 'transfer_to', 'id');
     }
-    public function relSubject(){
-        return $this->HasMany('Subject');
-    }
+
 
     // TODO : user info while saving data into table
     public static function boot(){
@@ -46,24 +43,19 @@ class Department extends Eloquent{
         static::creating(function($query){
             if(Auth::user()->check()){
                 $query->created_by = Auth::user()->get()->id;
-            }elseif(Auth::applicant()->check()){
-                $query->created_by = Auth::applicant()->get()->id;
             }
         });
         static::updating(function($query){
             if(Auth::user()->check()){
                 $query->updated_by = Auth::user()->get()->id;
-            }elseif(Auth::applicant()->check()){
-                $query->updated_by = Auth::applicant()->get()->id;
             }
         });
     }
 
 
     //TODO : Scope Area
-    public function scopeGetDepartmentLists(){
-        $query = $this::lists('title', 'id');
-        return $query;
-    }
 
-} 
+
+
+
+}

@@ -14,8 +14,6 @@ class LibStudentController extends \BaseController {
     public function findBooks()
     {
 
-        echo "Hi";exit;
-
         if($this->isPostRequest()) {
 
             $book_category_id = Input::get('lib_book_category_id');
@@ -40,5 +38,16 @@ class LibStudentController extends \BaseController {
 
         return View::make('library::student.index',compact('book_category_id','book_author_id','book_publisher_id','lib_book_id','model'));
     }
+
+
+    public function addBookToStudentCart($id)
+    {
+        if($id) {
+            $model = LibBook::with('relLibBookCategory', 'relLibBookAuthor', 'relLibBookPublisher')->where('id', '=', $id)->first();
+        }
+        return View::make('library::student.add_book',compact('model','number'));
+    }
+
+
 
 }
