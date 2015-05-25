@@ -32,12 +32,8 @@
                         @foreach($all_cart_books as $acb)
                           <tr>
                               <td><input type="checkbox" name="id[]" class="myCheckbox" value=""></td>
-                              <td>
-                                {{$acb->title}}
-                              </td>
-
-
-                              <td></td>
+                              <td>{{$acb->title}}</td>
+                              <td>{{$acb->title}}</td>
                               <td></td>
                           </tr>
                           @endforeach
