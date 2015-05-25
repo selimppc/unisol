@@ -9,20 +9,20 @@ class CreateInventory extends Migration {
 	{
         Schema::create('inv_supplier', function(Blueprint $table) {
             $table->increments('id');
-            $table->string('code', 8)->unique();
-            $table->string('company_name',32);
-            $table->text('address')->nullable();
+            $table->string('code', 8)->unique()->nullable();
+            $table->string('company_name',32)->nullable();
+            $table->text('address')->nullable()->nullable();
             $table->unsignedInteger('country_id')->nullable();
-            $table->decimal('zip_code', 5,0);
-            $table->string('contact_person',32);
-            $table->string('phone',16);
-            $table->string('cell_phone',16);
-            $table->string('fax',16);
-            $table->string('email',64);
-            $table->string('web',64);
-            $table->string('status',64);
-            $table->integer('created_by', false, 11);
-            $table->integer('updated_by', false, 11);
+            $table->decimal('zip_code', 5,0)->nullable();
+            $table->string('contact_person',32)->nullable();
+            $table->string('phone',16)->nullable();
+            $table->string('cell_phone',16)->nullable();
+            $table->string('fax',16)->nullable();
+            $table->string('email',64)->nullable();
+            $table->string('web',64)->nullable();
+            $table->string('status',64)->nullable();
+            $table->integer('created_by', false, 11)->nullable();
+            $table->integer('updated_by', false, 11)->nullable();
             $table->timestamps();
             $table->engine = 'InnoDB';
         });
@@ -32,11 +32,11 @@ class CreateInventory extends Migration {
 
         Schema::create('inv_product_category', function(Blueprint $table) {
             $table->increments('id');
-            $table->string('code', 8)->unique();
-            $table->string('title',32);
+            $table->string('code', 8)->unique()->nullable();
+            $table->string('title',32)->nullable();
             $table->text('description')->nullable();
-            $table->integer('created_by', false, 11);
-            $table->integer('updated_by', false, 11);
+            $table->integer('created_by', false, 11)->nullable();
+            $table->integer('updated_by', false, 11)->nullable();
             $table->timestamps();
             $table->engine = 'InnoDB';
         });
@@ -45,25 +45,25 @@ class CreateInventory extends Migration {
 
         Schema::create('inv_product', function(Blueprint $table) {
             $table->increments('id');
-            $table->string('code', 8)->unique();
-            $table->string('title',32);
+            $table->string('code', 8)->unique()->nullable();
+            $table->string('title',32)->nullable();
             $table->text('description')->nullable();
-            $table->string('image', 32);
+            $table->string('image', 32)->nullable();
             $table->enum('product_class', array(
                 'service', 'product',
             ));
             $table->unsignedInteger('inv_product_category_id')->nullable();
             $table->float('cost_price');
-            $table->decimal('purchase_unit');
-            $table->decimal('purchase_unit_quantity');
-            $table->decimal('stock_unit');
-            $table->decimal('stock_unit_quantity');
+            $table->decimal('purchase_unit')->nullable();
+            $table->decimal('purchase_unit_quantity')->nullable();
+            $table->decimal('stock_unit')->nullable();
+            $table->decimal('stock_unit_quantity')->nullable();
             $table->enum('stock_type', array(
                 'stock', 'non-stock'
             ));
 
-            $table->integer('created_by', false, 11);
-            $table->integer('updated_by', false, 11);
+            $table->integer('created_by', false, 11)->nullable();
+            $table->integer('updated_by', false, 11)->nullable();
             $table->timestamps();
             $table->engine = 'InnoDB';
         });
@@ -75,17 +75,17 @@ class CreateInventory extends Migration {
 
         Schema::create('inv_transfer_head', function(Blueprint $table) {
             $table->increments('id');
-            $table->string('transfer_number', 16)->unique();
-            $table->string('transfer_to', 16);
-            $table->dateTime('date');
-            $table->dateTime('confirm_date');
-            $table->text('note');
+            $table->string('transfer_number', 16)->unique()->nullable();
+            $table->string('transfer_to', 16)->nullable();
+            $table->dateTime('date')->nullable();
+            $table->dateTime('confirm_date')->nullable();
+            $table->text('note')->nullable();
             $table->enum('status', array(
                 'open', 'close', 'pending-approval', 'approved', 'transferred'
             ));
 
-            $table->integer('created_by', false, 11);
-            $table->integer('updated_by', false, 11);
+            $table->integer('created_by', false, 11)->nullable();
+            $table->integer('updated_by', false, 11)->nullable();
             $table->timestamps();
             $table->engine = 'InnoDB';
         });
@@ -96,11 +96,11 @@ class CreateInventory extends Migration {
             $table->unsignedInteger('inv_transfer_head_id')->nullable();
             $table->unsignedInteger('inv_product_id')->nullable();
             $table->unique(['inv_transfer_head_id', 'inv_product_id']);
-            $table->decimal('unit');
-            $table->decimal('quantity');
-            $table->float('rate');
-            $table->integer('created_by', false, 11);
-            $table->integer('updated_by', false, 11);
+            $table->decimal('unit')->nullable();
+            $table->decimal('quantity')->nullable();
+            $table->float('rate')->nullable();
+            $table->integer('created_by', false, 11)->nullable();
+            $table->integer('updated_by', false, 11)->nullable();
             $table->timestamps();
             $table->engine = 'InnoDB';
         });
@@ -112,18 +112,18 @@ class CreateInventory extends Migration {
 
         Schema::create('inv_requisition_head', function(Blueprint $table) {
             $table->increments('id');
-            $table->string('requisition_no',16)->unique();
+            $table->string('requisition_no',16)->unique()->nullable();
             $table->unsignedInteger('inv_supplier_id')->nullable();
-            $table->dateTime('date');
-            $table->text('note');
+            $table->dateTime('date')->nullable();
+            $table->text('note')->nullable();
             $table->enum('requisition_type', array(
                 'distribution', 'purchase'
             ));
             $table->enum('status', array(
                 'open', 'approved', 'close', 'cancel'
             ));
-            $table->integer('created_by', false, 11);
-            $table->integer('updated_by', false, 11);
+            $table->integer('created_by', false, 11)->nullable();
+            $table->integer('updated_by', false, 11)->nullable();
             $table->timestamps();
             $table->engine = 'InnoDB';
         });
@@ -140,11 +140,11 @@ class CreateInventory extends Migration {
             $table->unsignedInteger('inv_requisition_head_id')->nullable();
             $table->unsignedInteger('inv_product_id')->nullable();
             $table->unique(['inv_requisition_head_id', 'inv_product_id'], 'req_dt_unique');
-            $table->float('rate');
-            $table->decimal('unit');
-            $table->decimal('quantity');
-            $table->integer('created_by', false, 11);
-            $table->integer('updated_by', false, 11);
+            $table->float('rate')->nullable();
+            $table->decimal('unit')->nullable();
+            $table->decimal('quantity')->nullable();
+            $table->integer('created_by', false, 11)->nullable();
+            $table->integer('updated_by', false, 11)->nullable();
             $table->timestamps();
             $table->engine = 'InnoDB';
         });
@@ -158,23 +158,23 @@ class CreateInventory extends Migration {
 
         Schema::create('inv_purchase_order_head', function(Blueprint $table) {
             $table->increments('id');
-            $table->string('purchase_no', 16)->unique();
+            $table->string('purchase_no', 16)->unique()->nullable();
             $table->unsignedInteger('inv_requisition_head_id')->nullable();
             $table->unsignedInteger('inv_supplier_id')->nullable();
             $table->enum('pay_terms', array(
                 'cash', 'cheque'
             ));
-            $table->dateTime('delivery_date');
-            $table->decimal('tax');
-            $table->float('tax_amount');
-            $table->decimal('discount_rate');
-            $table->float('discount_amount');
-            $table->float('amount');
+            $table->dateTime('delivery_date')->nullable();
+            $table->decimal('tax')->nullable();
+            $table->float('tax_amount')->nullable();
+            $table->decimal('discount_rate')->nullable();
+            $table->float('discount_amount')->nullable();
+            $table->float('amount')->nullable();
             $table->enum('status', array(
                 'open', 'approved', 'close', 'cancel'
             ));
-            $table->integer('created_by', false, 11);
-            $table->integer('updated_by', false, 11);
+            $table->integer('created_by', false, 11)->nullable();
+            $table->integer('updated_by', false, 11)->nullable();
             $table->timestamps();
             $table->engine = 'InnoDB';
         });
@@ -189,17 +189,17 @@ class CreateInventory extends Migration {
             $table->unsignedInteger('inv_po_head_id')->nullable();
             $table->unsignedInteger('inv_product_id')->nullable();
             $table->unique(['inv_po_head_id', 'inv_product_id']);
-            $table->decimal('quantity');
-            $table->decimal('grn_quantity');
-            $table->decimal('tax_rate');
-            $table->float('tax_amount');
-            $table->decimal('unit');
-            $table->decimal('unit_quantity');
-            $table->float('purchase_rate');
-            $table->float('amount');
+            $table->decimal('quantity')->nullable();
+            $table->decimal('grn_quantity')->nullable();
+            $table->decimal('tax_rate')->nullable();
+            $table->float('tax_amount')->nullable();
+            $table->decimal('unit')->nullable();
+            $table->decimal('unit_quantity')->nullable();
+            $table->float('purchase_rate')->nullable();
+            $table->float('amount')->nullable();
 
-            $table->integer('created_by', false, 11);
-            $table->integer('updated_by', false, 11);
+            $table->integer('created_by', false, 11)->nullable();
+            $table->integer('updated_by', false, 11)->nullable();
             $table->timestamps();
             $table->engine = 'InnoDB';
         });
@@ -215,24 +215,24 @@ class CreateInventory extends Migration {
         Schema::create('inv_grn_head', function(Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('inv_po_head_id')->nullable();
-            $table->string('voucher_no', 16);
-            $table->dateTime('date');
+            $table->string('voucher_no', 16)->nullable();
+            $table->dateTime('date')->nullable();
             $table->unsignedInteger('inv_supplier_id')->nullable();
             $table->unsignedInteger('inv_requisition_head_id')->nullable();
             $table->enum('pay_terms', array(
                 'cash', 'cheque'
             ));
-            $table->decimal('tax_rate');
-            $table->float('tax_amount');
-            $table->decimal('discount_rate');
-            $table->float('discount_amount');
-            $table->float('amount');
-            $table->float('net_amount');
+            $table->decimal('tax_rate')->nullable();
+            $table->float('tax_amount')->nullable();
+            $table->decimal('discount_rate')->nullable();
+            $table->float('discount_amount')->nullable();
+            $table->float('amount')->nullable();
+            $table->float('net_amount')->nullable();
             $table->enum('status', array(
                 'open', 'approved', 'close', 'cancel'
             ));
-            $table->integer('created_by', false, 11);
-            $table->integer('updated_by', false, 11);
+            $table->integer('created_by', false, 11)->nullable();
+            $table->integer('updated_by', false, 11)->nullable();
             $table->timestamps();
             $table->engine = 'InnoDB';
         });
@@ -250,17 +250,17 @@ class CreateInventory extends Migration {
             $table->unsignedInteger('inv_grn_head_id')->nullable();
             $table->unsignedInteger('inv_product_id')->nullable();
             $table->unique(['inv_grn_head_id', 'inv_product_id']);
-            $table->string('batch_number');
-            $table->dateTime('expire_date');
-            $table->decimal('receive_quantity');
-            $table->float('cost_price');
-            $table->decimal('unit');
-            $table->decimal('unit_quantity');
-            $table->decimal('tax_rate');
-            $table->float('tax_amount');
-            $table->float('row_amount');
-            $table->integer('created_by', false, 11);
-            $table->integer('updated_by', false, 11);
+            $table->string('batch_number')->nullable();
+            $table->dateTime('expire_date')->nullable();
+            $table->decimal('receive_quantity')->nullable();
+            $table->float('cost_price')->nullable();
+            $table->decimal('unit')->nullable();
+            $table->decimal('unit_quantity')->nullable();
+            $table->decimal('tax_rate')->nullable();
+            $table->float('tax_amount')->nullable();
+            $table->float('row_amount')->nullable();
+            $table->integer('created_by', false, 11)->nullable();
+            $table->integer('updated_by', false, 11)->nullable();
             $table->timestamps();
             $table->engine = 'InnoDB';
         });

@@ -300,5 +300,10 @@ Route::group(['prefix' => 'inventory'], function() {
         "uses" => "InvStockController@stock_view"
     ]);
 
+    Route::any("stock-dispatch", [
+        "as"   => "stock-dispatch",
+        "uses" => "InvStockController@stock_dispatch"
+    ]);
+
 
 });
