@@ -27,14 +27,15 @@
                         </tr>
                  </thead>
                  <tbody>
-                     @if(isset($all_cart_st_books))
-                         @foreach($all_cart_st_books as $acsb)
+                     @if(isset($all_cart_books))
+                         @foreach($all_cart_books as $acsb)
                            <tr>
                                <td><input type="checkbox" name="id[]" class="myCheckbox" value=""></td>
                                <td>{{ $acsb->title }}</td>
                                <td>{{ $acsb->digital_sell_price }}</td>
                                <td>
                                     <a href="#" class="btn-link" title="Checkout" style="color:#02158b"><b><i class="fa fa-arrow-circle-o-right"></i></b></a>
+                                    <a href="{{ URL::route('student.remove-from-cart',['id'=>$acsb->id]) }}" class="btn btn-large btn-success pull-right" ><b><i class="fa fa-download"></i>Remove from Cart</b></a>
                                </td>
                            </tr>
                          @endforeach
