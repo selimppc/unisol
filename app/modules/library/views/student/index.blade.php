@@ -91,7 +91,7 @@
                                         {{--class="btn-link" title="download" style="color:#8b0835"><b><i class="fa fa-download"></i></b>--}}
                                         {{--</a>--}}
 
-                                        <a href="{{ URL::route('student.book.download') }}" class="btn btn-large btn-success pull-right" ><i class="fa fa-download"></i></a>
+                                        <a href="{{ URL::route('student.book.download',['book_id'=>$list->id]) }}" class="btn btn-large btn-success pull-right" ><i class="fa fa-download"></i></a>
 
                                       @else
                                         <a href="{{ URL::route('student.add-book-to-cart',['book_id'=>$list->id]) }}" class="btn btn-info btn-large" ><i class="fa fa-shopping-cart"></i></a>
