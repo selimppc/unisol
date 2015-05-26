@@ -147,8 +147,8 @@ Route::group(['prefix' => 'inventory'], function() {
         "as"   => "requisition-show",
         "uses" => "InvRequisitionHeadController@show_requisition"
     ]);
-    Route::get("requisition-edit/{req_id}", [
-        "as"   => "requisition-edit",
+    Route::any("requisition-edits/{req_id}", [
+        "as"   => "requisition-edits",
         "uses" => "InvRequisitionHeadController@edit_requisition"
     ]);
     Route::any("requisition-destroy/{req_id}", [
@@ -217,7 +217,7 @@ Route::group(['prefix' => 'inventory'], function() {
         "as"   => "purchase-order-edit",
         "uses" => "InvPurchaseOrderController@edit_purchase_order"
     ]);
-    Route::any("purchase-order-destroy", [
+    Route::any("purchase-order-destroy/{po_id}", [
         "as"   => "purchase-order-destroy",
         "uses" => "InvPurchaseOrderController@destroy_purchase_order"
     ]);
