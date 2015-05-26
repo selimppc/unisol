@@ -9,6 +9,11 @@ class ApplicantController extends \BaseController
 
 //**************************Applicant Sign Up Start(R)***********************
 
+    public  function index()
+    {
+        return View::make('applicant::index');
+    }
+
     public  function signup()
     {
 
@@ -948,9 +953,8 @@ class ApplicantController extends \BaseController
     }
 
    // $id refers to applicant_id in DB table : BatchApplicant
-    public function degreeOfferApplicantDetails($applicant_id){
-
-        $apt_id = $applicant_id;
+    public function applicantDetails(){
+        $apt_id = Auth::applicant()->get()->id;
         $batch_applicant = BatchApplicant::with('relBatch','relBatch.relDegree','relBatch.relDegree.relDegreeGroup','relBatch.relDegree.relDepartment')
             ->where('applicant_id', '=',$apt_id )
             ->get();
@@ -962,7 +966,7 @@ class ApplicantController extends \BaseController
 
         $applicant_meta_records = ApplicantMeta::where('applicant_id', '=',$apt_id )->first();
 
-        return View::make('admission::adm_public.admission.applicant_details',
+        return View::make('applicant::applicant.details',
             compact('batch_applicant','applicant_personal_info','applicant_acm_records',
                 'applicant_meta_records'));
     }

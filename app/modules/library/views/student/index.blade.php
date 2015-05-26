@@ -6,7 +6,7 @@
      @include('layouts._sidebar_student')
  @stop
  @section('content')
- @include('library::show_student_cart')
+ @include('library::show_cart')
 
  <h3>Library</h3>
 

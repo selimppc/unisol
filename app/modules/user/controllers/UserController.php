@@ -28,7 +28,8 @@ class UserController extends \BaseController {
                     Session::put('username', Auth::applicant()->get()->username);
                     $this->applicantLastVisit(Auth::applicant()->get()->id);
                     //return Redirect::to("user/profile");
-                    return Redirect::route('admission.applicant_details', [Auth::applicant()->get()->id]);
+                    //return Redirect::route('admission.applicant_details', [Auth::applicant()->get()->id]);
+                    return Redirect::to("user/user-access-to");
                 }
                 return Redirect::back()->withErrors([
                     "password" => ["Username / Password invalid."]
@@ -65,6 +66,8 @@ class UserController extends \BaseController {
             if($user_role=="librarian"){
                 return Redirect::to("user/librarian-dashboard");
             }
+        }elseif(Auth::applicant()->check()){
+            return Redirect::to("user/applicant-dashboard");
         }else{
             return View::make('user::user.login');
         }

@@ -18,19 +18,26 @@ class ExmAmwController extends \BaseController {
             $year_id  = Input::get('year_id');
             $semester_id = Input::get('semester_id');
 
-            $exam_data = ExmExamList::join('course_conduct', function ($query) use ($year_id, $semester_id) {
-                $query->on('course_conduct.id', '=', 'exm_exam_list.course_conduct_id');
-                $query->where('course_conduct.year_id', '=', $year_id);
-                $query->orWhere('course_conduct.semester_id', '=', $semester_id);
-            })->groupBy('course_conduct_id')->paginate(10);
-            Session::put('year', $year_id);
-
+            if(empty($semester_id)){
+                $exam_data = ExmExamList::join('course_conduct', function ($query) use ($year_id) {
+                    $query->on('course_conduct.id', '=', 'exm_exam_list.course_conduct_id');
+                    $query->where('course_conduct.year_id', '=', $year_id);
+                })->groupBy('course_conduct_id')->paginate(10);
+            }else {
+                $exam_data = ExmExamList::join('course_conduct', function ($query) use ($year_id, $semester_id) {
+                    $query->on('course_conduct.id', '=', 'exm_exam_list.course_conduct_id');
+                    $query->where('course_conduct.year_id', '=', $year_id);
+                    $query->Where('course_conduct.semester_id', '=', $semester_id);
+                })->groupBy('course_conduct_id')->paginate(10);
+            }
         }else{
             $exam_data = ExmExamList::with('relCourseConduct','relCourseConduct.relCourse','relYear','relSemester',
-                        'relCourseConduct.relCourse.relSubject.relDepartment','relAcmMarksDistItem')->whereExists(function ($query){
+                        'relCourseConduct.relCourse.relSubject.relDepartment','relAcmMarksDistItem')
+                ->whereExists(function ($query){
                   $query->from('acm_marks_dist_item')->whereRaw('acm_marks_dist_item.id = exm_exam_list.acm_marks_dist_item_id')
                         ->where('acm_marks_dist_item.is_exam', '=', 1);
-            }) ->latest('id')->get();
+                })
+                ->latest('id')->get();
         }
         $year_id = array('' => 'Select Year ') + Year::lists('title', 'id');
         $semester_id = array('' => 'Select Semester ') + Semester::lists('title', 'id');

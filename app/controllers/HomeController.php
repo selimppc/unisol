@@ -42,7 +42,11 @@ class HomeController extends BaseController {
         $date = date('Y-m-d H:i:s', time());
         $shortFormat = strtotime($date);
         $expireDate = date("Y-m-d H:i:s", ($shortFormat+(60*5)));
+
         if(isset(Auth::user()->get()->id) && Auth::user()->get()->id) {
+            return Redirect::to("user/user-access-to");
+        }
+        elseif(isset(Auth::applicant()->get()->id) && Auth::applicant()->get()->id){
             return Redirect::to("user/user-access-to");
         }
         else {

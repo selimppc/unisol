@@ -5,8 +5,17 @@
 //Route::get('applicant/registration',
 //    'ApplicantController@applicant_signup'
 //);
+Route::any("/applicant", [
+    "as"   => "applicant",
+    "uses" => "ApplicantController@index"
+]);
 
-Route::any("/applicant/signup", [
+
+Route::any('applicant/details',
+    ['as' => 'applicant.details',
+        'uses' => 'ApplicantController@applicantDetails']);
+
+Route::any("applicant/signup", [
     "as"   => "applicant.signup",
     "uses" => "ApplicantController@signup"
 ]);
