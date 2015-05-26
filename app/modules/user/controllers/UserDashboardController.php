@@ -22,5 +22,8 @@ class UserDashboardController extends \BaseController {
         return View::make('user::dashboard.librarian');
     }
 
-
+    public function applicantDashboard(){
+        Session::flash('message','Welcome to dashboard of "Applicant" !');
+        return View::make('user::dashboard.applicant');
+    }
 }
