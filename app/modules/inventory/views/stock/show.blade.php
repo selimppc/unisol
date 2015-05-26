@@ -11,7 +11,7 @@
     <table class="table table-striped  table-bordered">
         <tr>
             <td><strong> Transfer TO:</strong></td>
-            <td>{{ $data->transfer_to}}</td>
+            <td>{{ isset($data->transfer_to)? $data->relDepartment->title :''}}</td>
         </tr>
         <tr>
             <td><strong> Date:</strong></td>

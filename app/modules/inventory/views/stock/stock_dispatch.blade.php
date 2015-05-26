@@ -25,7 +25,7 @@
                 <tr>
                     <th><input type="checkbox" id="checkbox" class="checkbox" value=""></th>
                     <th> Transfer Number </th>
-                    <th> Transfer To </th>
+                    <th> Transfer To (Dept.) </th>
                     <th> Date </th>
                     <th> Confirm Date  </th>
                     <th> Note </th>
@@ -43,7 +43,7 @@
                     <td>
                     <b>{{ link_to_route($values->status!="approved" ?'add-product-dispatch' : 'show-dispatch',$values->transfer_number,['req_id'=>$values->id], ['data-toggle'=>"modal", 'data-target'=>"#modal-pc"]) }}</b>
                     </td>
-                    <td>{{$values->transfer_to }}</td>
+                    <td>{{isset($values->transfer_to)? $values->relDepartment->title :'' }}</td>
                     <td>{{$values->date }}</td>
                     <td>{{$values->confirm_date }}</td>
                     <td>{{$values->note }}</td>
