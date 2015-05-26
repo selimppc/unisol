@@ -11,7 +11,7 @@
         <div class="col-md-12">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#tab_1" data-toggle="tab">Book Publisher</a></li>
+                    <li class="active"><a href="#tab_1" data-toggle="tab">Books</a></li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                             Settings  <span class="caret"></span>
@@ -51,9 +51,8 @@
                                     <th>Self Number</th>
                                     <th>Book Type</th>
                                     <th>Commercial</th>
-                                    <th>File</th>
-                                    <th>Book Price</th>
-                                    <th>Digital Sell Price</th>
+                                    <th>Book Price(TK)</th>
+                                    <th>Digital Sell Price(TK)</th>
                                     <th>Is Rented</th>
                                     <th>Action</th>
                                 </tr>
@@ -73,7 +72,6 @@
                                         <td>{{isset($value->shelf_number) ? $value->shelf_number : ''}}</td>
                                         <td>{{isset($value->book_type) ? $value->book_type : ''}}</td>
                                         <td>{{isset($value->commercial) ? $value->commercial : ''}}</td>
-                                        <td></td>
                                         <td>{{isset($value->book_price) ? $value->book_price : ''}}</td>
                                         <td>{{isset($value->digital_sell_price) ? $value->digital_sell_price : ''}}</td>
                                         <td>{{isset($value->is_rented) ? $value->is_rented : ''}}</td>
@@ -108,9 +106,9 @@
                     <h4 class="modal-title" style="text-align: center;color: #800080;font-size: x-large">Create Books </h4>
                 </div>
                 <div class="modal-body">
-                  {{--  {{ Form::open(array('url' => 'library/book/save', 'method' =>'post', 'role'=>'form','files'=>'true')) }}
+                    {{ Form::open(array('url' => 'library/book/save', 'method' =>'post', 'role'=>'form','files'=>'true')) }}
                     @include('library::librarian.books._form')
-                    {{ Form::close() }}--}}
+                    {{ Form::close() }}
                 </div>
             </div>
         </div>

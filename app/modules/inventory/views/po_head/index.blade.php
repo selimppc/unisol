@@ -51,8 +51,8 @@
                     <td>{{ round($values->tax) }}</td>
                     <td>{{ $values->tax_amount }}</td>
                     <td>{{ round($values->discount_rate) }} </td>
-                    <td>{{ $values->discount_amount }}</td>
-                    <td>{{ $values->amount }}</td>
+                    <td>{{ round($values->discount_amount, 2) }}</td>
+                    <td>{{ round($values->amount, 2) }}</td>
                     <td>{{Str::title($values->status)}}</td>
 
                     <td>
@@ -66,7 +66,7 @@
                     </td>
                     <td>
                         @if($values->status != 'approved')
-                            <a data-href="{{ URL::route('create-grn', ['po_id'=>$values->id ]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa fa-adjust" style="color: darkslategray" data-toggle="tooltip" data-placement="bottom" title="Cancel"></i> PO</a>
+                            <a href="{{ URL::route('create-grn', ['po_id'=>$values->id, 'user_id'=> 1 ]) }}" class="btn btn-xs btn-default"  ><i class="fa fa-adjust" style="color: darkslategray" data-toggle="tooltip" data-placement="bottom" title="Create GRN"></i> + GRN</a>
                         @endif
                     </td>
 
