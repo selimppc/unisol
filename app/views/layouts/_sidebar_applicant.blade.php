@@ -1,11 +1,16 @@
 <ul class="sidebar-menu">
     <li class="active">
-        <a href="#">
+        <a href="/applicant">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
         </a>
     </li>
+    <li>
+        <a href="/applicant/details">
+            <i class="fa fa-dashboard"></i> <span>Details</span>
+        </a>
+    </li>
 
-    <li class="treeview">
+    <!--<li class="treeview">
         <a href="#">
             <i class="fa fa-edit" style="color: #2ecee7"></i>
             <span> Sign Up </span>
@@ -25,7 +30,7 @@
         <ul class="treeview-menu">
             <a href="{{URL::to('user/login') }}"  class="list-group-item" >Sign In</a>
         </ul>
-    </li>
+    </li>-->
 
     <li class="treeview">
         <a href="#">

@@ -67,15 +67,23 @@ class LibFacultyController extends \BaseController {
 
         count($all_cart_books);
 
-        return View::make('library::faculty.add_cart_book',compact('all_cart_books','cart_data'));
-//        return Redirect::back();
+        return Redirect::back();
 	}
 
     public function viewBookToCart(){
-        $all_cart_books = Session::get('cartBooks');
-//print_r($all_cart_books);exit;
-        $all_cart_books = (object) $all_cart_books;
-        return View::make('library::faculty.add_cart_book',compact('all_cart_books'));
+
+        $all_cart_book_ids = Session::get('cartBooks');
+        $all_cart_books = LibBook::with('relLibBookCategory', 'relLibBookAuthor', 'relLibBookPublisher')
+
+            ->whereIn('id', $all_cart_book_ids)->get();
+
+        $sum = $all_cart_books->sum('digital_sell_price');
+        $number = count($all_cart_books);
+        if($all_cart_books){
+            
+        }
+
+        return View::make('library::faculty.add_cart_book',compact('all_cart_books', 'number','id','sum'));
     }
 
     public function getBookTransaction(){

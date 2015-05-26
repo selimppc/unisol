@@ -6,7 +6,7 @@
 <div style="padding: 2%; width: 99%;">
 <div class="modal-body" >
 
-    {{Form::model($model, ['route'=> ['requisition-edit', $model->id], 'method' => 'patch', 'role' => 'form', 'files' => true,])}}
+    {{Form::model($model, ['route'=> ['requisition-edits', $model->id], 'method' => 'patch', 'role' => 'form', 'files' => true,])}}
             {{ Form::hidden('id', $model->id) }}
             @include('inventory::requisition_head._form')
     {{ Form::close() }}
