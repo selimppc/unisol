@@ -377,7 +377,7 @@ class LibraryController extends \BaseController {
 
             $files = Input::file('docs');
             $destinationPath = public_path() . '/lib_docs';
-            $filename = $files->getClientOriginalName();
+            $filename =  $files->getClientOriginalName();
             $hashname = date("d-m-Y") . "_" . $filename;
             $upload_success = $files->move($destinationPath, $hashname);
             $model->file = $hashname;

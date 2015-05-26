@@ -71,7 +71,7 @@
 
 <div class='form-group'>
     {{ Form::label('docs', 'Upload File') }}
-    {{ Form::file('docs[]', array('multiple'=>true)) }}
+    {{ Form::file('docs', array('multiple'=>true)) }}
 </div>
 <div class="modal-footer">
     {{ Form::submit('Submit', array('class'=>' btn btn-xs btn-success')) }}
