@@ -10,15 +10,17 @@
 
  <h3>Your Cart</h3>
 
+ <br>
+
+ <div class="pull-right"><b> Total price : {{ $sum }} </b></div>
+
  <div class="row">
     <div class="col-md-12 ">
        <div class="box box-solid">
-           {{ Form::open(array('url' => 'examination/amw/batchDelete')) }}
+
            <p>&nbsp;</p>
               <table id="" class="table table-striped  table-bordered"  >
                  <thead>
-                    {{ Form::submit('Delete Items', array('class'=>'btn btn-danger', 'id'=>'hide-button', 'style'=>'display:none'))}}
-                        <br>
                         <tr>
                            <th><input name="id" type="checkbox" id="checkbox" class="checkbox" value=""></th>
                            <th>Book Name</th>
@@ -42,7 +44,7 @@
                      @endif
                  </tbody>
               </table>
-           {{form::close() }}
+
 
            <p>&nbsp;</p>
        </div>

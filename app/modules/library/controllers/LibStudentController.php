@@ -67,7 +67,11 @@ class LibStudentController extends \BaseController {
 
         $number = count($all_cart_books);
 
-        return View::make('library::student.view_cart',compact('all_cart_books', 'number'));
+        $sum = $all_cart_books->sum('digital_sell_price');
+
+
+
+        return View::make('library::student.view_cart',compact('all_cart_books', 'number','sum'));
     }
 
     public function removeBookFromToCart($id)
