@@ -310,5 +310,42 @@ Route::group(['prefix' => 'inventory'], function() {
         "uses" => "InvStockController@store_stock_dispatch"
     ]);
 
+    Route::any("show-dispatch/{sd_id}", [
+        "as"   => "show-dispatch",
+        "uses" => "InvStockController@show_stock_dispatch"
+    ]);
+
+    Route::any("edit-dispatch/{sd_id}", [
+        "as"   => "edit-dispatch",
+        "uses" => "InvStockController@edit_stock_dispatch"
+    ]);
+
+    Route::any("cancel-dispatch/{sd_id}", [
+        "as"   => "cancel-dispatch",
+        "uses" => "InvStockController@cancel_stock_dispatch"
+    ]);
+
+    Route::any("batch-cancel-dispatch/{sd_id}", [
+        "as"   => "batch-cancel-dispatch",
+        "uses" => "InvStockController@batch_cancel_transfer"
+    ]);
+
+    Route::any("add-product-dispatch/{sd_id}", [
+        "as"   => "add-product-dispatch",
+        "uses" => "InvStockController@add_product_dispatch"
+    ]);
+
+    Route::any("store-sd-detail/{sd_id}", [
+        "as"   => "store-sd-detail",
+        "uses" => "InvStockController@store_sd_detail"
+    ]);
+
+    Route::any("sd-ajax-delete-dt/{sd_id}", [
+        "as"   => "sd-ajax-delete-dt",
+        "uses" => "InvStockController@ajax_delete_sd_detail"
+    ]);
+
+
+
 
 });

@@ -54,6 +54,13 @@ class InvTransferHead extends \Eloquent
 
 
     //TODO : Scope Area
+    public function getDateAttribute($date) {
+        return Carbon::parse($date)->format('d-M-Y'); //Change the format to whichever you desire
+    }
+
+    public function getConfirmDateAttribute($confirm_date) {
+        return Carbon::parse($confirm_date)->format('d-M-Y'); //Change the format to whichever you desire
+    }
 
 
 

@@ -71,13 +71,19 @@ class LibStudentController extends \BaseController {
     }
 
 
-    public function getDownload()
+    public function getDownload($book_id)
     {
-        $file= public_path(). "/img/pdf.pdf";
+        $download = LibBook::find($book_id);
+        $file = $download->file;
+        $path = public_path("img/" . $file);
+//        print_r($path);exit;
         $headers = array(
             'Content-Type: application/pdf',
         );
-        return Response::download($file, 'book.pdf', $headers);
+        return Response::download($path, $file , $headers);
+
+
+
 
     }
 

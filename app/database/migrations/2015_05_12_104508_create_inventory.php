@@ -271,6 +271,46 @@ class CreateInventory extends Migration {
 
 
 
+
+        Schema::create('inv_transaction', function(Blueprint $table) {
+            $table->increments('id');
+            $table->string('trn_number', 16)->nullable();
+            $table->string('grn_number', 16)->nullable();
+            $table->unique(['po_number', 'grn_number']);
+            $table->unsignedInteger('inv_product_id')->nullable();
+            $table->string('store', 16)->nullable();
+            $table->string('batch_number', 16)->nullable();
+            $table->dateTime('date')->nullable();
+            $table->dateTime('expire_date')->nullable();
+            $table->string('unit', 16)->nullable();
+            $table->integer('quantity', false, 11)->nullable();
+            $table->float('rate')->nullable();
+            $table->enum('sign', array(
+                '1', '-1'
+            ));
+            $table->float('total_price')->nullable();
+            $table->text('note')->nullable();
+            $table->unsignedInteger('inv_supplier_id')->nullable();
+            $table->unsignedInteger('currency_id')->nullable();
+            $table->string('voucher_number', 16)->
+            $table->dateTime('expire_date')->nullable();
+            $table->decimal('receive_quantity')->nullable();
+            $table->enum('status', array(
+                'open', 'approved', 'close'
+            ));
+
+            $table->integer('created_by', false, 11)->nullable();
+            $table->integer('updated_by', false, 11)->nullable();
+            $table->timestamps();
+            $table->engine = 'InnoDB';
+        });
+        Schema::table('inv_transaction', function($table) {
+            $table->foreign('inv_product_id')->references('id')->on('inv_product');
+            $table->foreign('inv_supplier_id')->references('id')->on('inv_supplier');
+            $table->foreign('currency_id')->references('id')->on('currency');
+        });
+
+
 	}
 
 
@@ -291,6 +331,7 @@ class CreateInventory extends Migration {
 
         Schema::drop('inv_grn_head');
         Schema::drop('inv_grn_detail');
+        Schema::drop('inv_transaction');
 
 
 
