@@ -45,7 +45,7 @@
                     <td><b>
                         {{ link_to_route($values->status!="approved" ?'purchase-order-detail' : 'purchase-order-show',$values->purchase_no,['po_id'=>$values->id], ['data-toggle'=>"modal", 'data-target'=>"#modal-pc"]) }}
                     </b></td>
-                    <td>{{isset($values->inv_requisition_head_id) ? Str::title($values->relRequisitionHear->requisition_no) : ''}}</td>
+                    <td>{{ isset($values->inv_requisition_head_id)? $values->relInvRequisitionHead->requisition_no : ''}}</td>
                     <td>{{ $values->pay_terms }}  </td>
                     <td>{{ $values->delivery_date }}</td>
                     <td>{{ round($values->tax) }}</td>

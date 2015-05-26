@@ -59,7 +59,7 @@
                     </td>
                     <td>
                         @if($values->status != 'approved')
-                            <a data-href="{{ URL::route('create/purchase-order', ['req_id'=>$values->id ]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa fa-adjust" style="color: darkslategray" data-toggle="tooltip" data-placement="bottom" title="Cancel"></i> PO</a>
+                            <a href="{{ URL::route('create/purchase-order', ['req_id'=>$values->id, 'user_id'=>1 ]) }}" class="btn btn-xs btn-default" ><i class="fa fa-adjust" style="color: darkslategray" data-toggle="tooltip" data-placement="bottom" title="Cancel"></i> + PO</a>
                         @endif
                     </td>
 
