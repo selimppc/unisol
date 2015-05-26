@@ -23,7 +23,7 @@
                         <tr>
                            <th><input name="id" type="checkbox" id="checkbox" class="checkbox" value=""></th>
                            <th>Book Name</th>
-                           <th>Price</th>
+                           <th>Digital Sell Price</th>
                         </tr>
                  </thead>
                  <tbody>
@@ -32,12 +32,15 @@
                           <tr>
                               <td><input type="checkbox" name="id[]" class="myCheckbox" value=""></td>
                               <td>{{$acb->title}}</td>
-                              <td>{{$acb->price}}</td>
+                              <td>{{$acb->digital_sell_price}}</td>
+
                           </tr>
                           @endforeach
                      @endif
                  </tbody>
               </table>
+              <br>
+              <strong>Total Amount : {{isset($sum) ? $sum : '0'}}</strong>
            {{form::close() }}
 
            <p>&nbsp;</p>
