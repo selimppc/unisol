@@ -33,7 +33,7 @@ class LibraryController extends \BaseController {
             catch ( Exception $e ){
                 //If there are any exceptions, rollback the transaction
                 DB::rollback();
-                Session::flash('danger', "$flash_msg Book Category not added.Invalid Request!");
+                Session::flash('danger', "$flash_msg Book Category Not Added.Invalid Request!");
             }
             return Redirect::back();
         }else{
@@ -76,7 +76,7 @@ class LibraryController extends \BaseController {
             catch ( Exception $e ){
                 //If there are any exceptions, rollback the transaction
                 DB::rollback();
-                Session::flash('danger', "$flash_msg Book Category not updates. Invalid Request !");
+                Session::flash('danger', "$flash_msg Book Category Not Updated. Invalid Request !");
             }
             return Redirect::back();
         }else{
@@ -89,13 +89,12 @@ class LibraryController extends \BaseController {
 
     public function deleteCategory($id)
     {
-
         try {
             $data= LibBookCategory::find($id);
             $name = $data->title;
             if($data->delete())
             {
-                Session::flash('message', "$name Deleted");
+                Session::flash('message', "Book Category $name Deleted");
                 return Redirect::back();
             }
         }
@@ -123,6 +122,7 @@ class LibraryController extends \BaseController {
 	}
 
     /**********************Library Book Author start***************************/
+
     public function indexAuthor()
     {
         $book_author = LibBookAuthor::orderBy('id', 'DESC')->paginate(5);
@@ -133,21 +133,21 @@ class LibraryController extends \BaseController {
     public function storeAuthor()
     {
         $data = Input::all();
-        $model = new LibBookCategory();
-        $model->title = Input::get('title');
-        $flash_msg = $model->title;
+        $model = new LibBookAuthor();
+        $model->name = Input::get('name');
+        $flash_msg = $model->name;
         if($model->validate($data))
         {
             DB::beginTransaction();
             try {
                 if ($model->create($data))
                     DB::commit();
-                Session::flash('message', "$flash_msg Book Category Successfully Added");
+                Session::flash('message', "Book Author $flash_msg Successfully Added");
             }
             catch ( Exception $e ){
                 //If there are any exceptions, rollback the transaction
                 DB::rollback();
-                Session::flash('danger', "$flash_msg Book Category not added.Invalid Request!");
+                Session::flash('danger', "Book Author $flash_msg Not Added.Invalid Request!");
             }
             return Redirect::back();
         }else{
@@ -161,36 +161,37 @@ class LibraryController extends \BaseController {
 
     public function viewAuthor($id)
     {
-        $view_category = LibBookCategory::find($id);
-        return View::make('library::librarian.category.view',compact('view_category'));
+        $view_author = LibBookAuthor::find($id);
+        return View::make('library::librarian.author.view',compact('view_author'));
     }
 
 
     public function editAuthor($id)
     {
-        $edit_category = LibBookCategory::find($id);
-        return View::make('library::librarian.category.edit',compact('edit_category'));
+        $edit_author = LibBookAuthor::find($id);
+        $country = array('' => 'Select Country ') + Country::lists('title', 'id');
+        return View::make('library::librarian.author.edit',compact('edit_author','country'));
     }
 
 
     public function updateAuthor($id)
     {
         $data = Input::all();
-        $model = LibBookCategory::find($id);
-        $model->title = Input::get('title');
-        $flash_msg = $model->title;
+        $model = LibBookAuthor::find($id);
+        $model->name = Input::get('name');
+        $flash_msg = $model->name;
         if($model->validate($data))
         {
             DB::beginTransaction();
             try {
                 $model->update($data);
                 DB::commit();
-                Session::flash('message', "$flash_msg Book Category Successfully Updated");
+                Session::flash('message', "Book Author $flash_msg Successfully Updated");
             }
             catch ( Exception $e ){
                 //If there are any exceptions, rollback the transaction
                 DB::rollback();
-                Session::flash('danger', "$flash_msg Book Category not updates. Invalid Request !");
+                Session::flash('danger', "Book Author $flash_msg  Not Updated. Invalid Request !");
             }
             return Redirect::back();
         }else{
@@ -205,11 +206,11 @@ class LibraryController extends \BaseController {
     {
 
         try {
-            $data= LibBookCategory::find($id);
-            $name = $data->title;
+            $data= LibBookAuthor::find($id);
+            $flash_msg = $data->name;
             if($data->delete())
             {
-                Session::flash('message', "$name Deleted");
+                Session::flash('message', "Book Author $flash_msg Deleted");
                 return Redirect::back();
             }
         }
@@ -222,7 +223,7 @@ class LibraryController extends \BaseController {
     public function batchdeleteAuthor($id)
     {
         try {
-            LibBookCategory::destroy(Request::get('id'));
+            LibBookAuthor::destroy(Request::get('id'));
             Session::flash('message', "Success: Selected items Deleted ");
             return Redirect::back();
         }

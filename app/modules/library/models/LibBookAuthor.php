@@ -13,17 +13,16 @@ class LibBookAuthor extends Eloquent{
     ];
     private $errors;
     private $rules = [
-       /* 'name' => 'required',*/
-        /* 'email' => 'required|email|unique:lib_book_author',*/
-     /*   'email' => 'required',
+        'name' => 'required',
+        'email' => 'required',
         'phone' => 'required',
         'address' => 'required',
         'country_id' => 'required|integer',
-        'note' => 'required',*/
+        'note' => 'required',
 
     ];
 
-
+    /* 'email' => 'required|email|unique:lib_book_author',*/
     public function validate($data)
     {
         $validate = Validator::make($data, $this->rules);

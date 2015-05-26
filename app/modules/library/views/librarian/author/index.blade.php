@@ -34,7 +34,7 @@
                             <button type="button" class=" btn btn-xs btn-success fa fa-plus " data-toggle="modal" data-target="#bookAuthor" >
                                 Add New
                             </button>
-                            {{Form::open(array('route'=> ['category.batch.delete'], 'class'=>'form-horizontal','files'=>true))}}
+                            {{Form::open(array('route'=> ['author.batch.delete'], 'class'=>'form-horizontal','files'=>true))}}
                             <table id="example" class="table table-bordered table-hover table-striped">
                                 <thead>
                                 <tr>
@@ -55,18 +55,18 @@
                                     <tr>
                                         <td><input type="checkbox" name="id[]"  class="myCheckbox" value="{{ $value->id }}">
                                         </td>
-                                        <td>{{$value->name}}</td>
-                                        <td>{{$value->email}}</td>
-                                        <td>{{$value->phone}}</td>
-                                        <td>{{$value->address}}</td>
-                                        <td>{{$value->country_id}}</td>
-                                        <td>{{$value->note}}</td>
+                                        <td>{{isset($value->name) ? $value->name :''}}</td>
+                                        <td>{{isset($value->email) ? $value->email : ''}}</td>
+                                        <td>{{isset($value->phone) ? $value->phone : ''}}</td>
+                                        <td>{{isset($value->address) ? $value->address : ''}}</td>
+                                        <td>{{isset($value->relCountry->title) ? $value->relCountry->title : ''}}</td>
+                                        <td>{{isset($value->note) ? $value->note : ''}}</td>
                                         <td>
-                                            <a href="{{ URL::route('category.view', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" href=""><i class="fa fa-eye" style="color: green"></i></a>
+                                            <a href="{{ URL::route('author.view', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" href=""><i class="fa fa-eye" style="color: green"></i></a>
 
-                                            <a href="{{ URL::route('category.edit', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#edit-modal" href="" ><i class="fa fa-pencil-square-o" style="color: #0044cc"></i></a>
+                                            <a href="{{ URL::route('author.edit', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#editModal" href="" ><i class="fa fa-pencil-square-o" style="color: #0044cc"></i></a>
 
-                                            <a data-href="{{ URL::to('library/category/delete/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa  fa-trash-o" style="color:red"></i></a>
+                                            <a data-href="{{ URL::to('library/author/delete/'.$value->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa  fa-trash-o" style="color:red"></i></a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -88,7 +88,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">{{HTML::image('assets/icon/media-close-btn.png')}}</button>
-                    <h4 class="modal-title" style="text-align: center;color: #800080;font-size: x-large">Create Book Category</h4>
+                    <h4 class="modal-title" style="text-align: center;color: #800080;font-size: x-large">Create Book Author</h4>
                 </div>
                 <div class="modal-body">
                     {{ Form::open(array('url' => 'library/author/save', 'method' =>'post', 'role'=>'form','files'=>'true')) }}
@@ -100,7 +100,8 @@
     </div>
 
     {{-- Modal for Edit --}}
-    <div class="modal fade" id="edit-modal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog">
             <div class="modal-content">
             </div>
@@ -108,7 +109,8 @@
     </div>
 
 
-    {{--<!-- Modal for show -->--}}
+    {{-- Modal for show --}}
+
     <div class="modal fade" id="showModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -116,7 +118,8 @@
         </div>
     </div>
 
-    {{--<!-- Modal for delete -->--}}
+    {{-- Modal for delete --}}
+
     <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog">
             <div class="modal-content">
