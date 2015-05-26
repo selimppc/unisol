@@ -343,4 +343,150 @@ class LibraryController extends \BaseController {
         }
     }
 
+    /**********************Library Book start***************************/
+
+    public function indexBook()
+    {
+        $books = LibBook::orderBy('id', 'DESC')->paginate(5);
+        return View::Make('library::librarian.books.index',compact('books'));
+    }
+
+    public function storeBook()
+    {
+        /*$data = Input::all();
+        $redirect_url = Input::get('redirect_url');
+        $datas = new AcmAcademic();
+        if ($datas->validate($data)) {
+            $datas->course_conduct_id = Input::get('course_conduct_id');
+            $datas->acm_marks_distribution_id = Input::get('marks_dist_id');
+            $datas->title = Input::get('title');
+            $flashmsg = $datas->title;
+            $datas->description = Input::get('description');
+            $datas->acm_class_schedule_id = Input::get('class_schedule');
+            $datas->status = 1;
+            $datas->save();
+            $academic_id = $datas->id;//to get last inserted id
+            //file upload starts here
+            $files = Input::file('images');
+            foreach ($files as $file) {
+                if ($file) {
+                    $destinationPath = public_path() . '/file/item_class_file';
+                    $filename = $file->getClientOriginalName();
+                    $hashname = date("d-m-Y") . "_" . $filename;
+                    $upload_success = $file->move($destinationPath, $hashname);
+                    $academic_details = new AcmAcademicDetails;
+                    $academic_details->file = $hashname;
+                    $academic_details->acm_academic_id = $academic_id;
+                    $academic_details->save();
+                }
+            }
+            //file upload ends
+            Session::flash('message', "Successfully Added $flashmsg !");
+            return Redirect::back();
+        } else {
+            // failure, get errors
+            $errors = $datas->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back();
+        }*/
+
+        $data = Input::all();
+        $model = new LibBook();
+        $model->title = Input::get('title');
+        $flash_msg = $model->title;
+        if($model->validate($data))
+        {
+            DB::beginTransaction();
+            try {
+                if ($model->create($data))
+                    DB::commit();
+                Session::flash('message', "Book Publisher $flash_msg Successfully Added");
+            }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', "Book Publisher $flash_msg Not Added.Invalid Request!");
+            }
+            return Redirect::back();
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()
+                ->with('errors', 'invalid');
+        }
+    }
+
+    public function viewBook($id)
+    {
+        $view_book = LibBook::find($id);
+        return View::make('library::librarian.books.view',compact('view_book'));
+    }
+
+    public function editBook($id)
+    {
+        $edit_publisher = LibBook::find($id);
+        $country = array('' => 'Select Country ') + Country::lists('title', 'id');
+        return View::make('library::librarian.books.edit',compact('edit_publisher','country'));
+    }
+
+
+    public function updateBook($id)
+    {
+        $data = Input::all();
+        $model = LibBook::find($id);
+        $model->name = Input::get('name');
+        $flash_msg = $model->name;
+        if($model->validate($data))
+        {
+            DB::beginTransaction();
+            try {
+                $model->update($data);
+                DB::commit();
+                Session::flash('message', "Book Author $flash_msg Successfully Updated");
+            }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', "Book Author $flash_msg  Not Updated. Invalid Request !");
+            }
+            return Redirect::back();
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()
+                ->with('errors', 'Input Data Not Valid');
+        }
+    }
+
+    public function deleteBook($id)
+    {
+
+        try {
+            $data= LibBook::find($id);
+            $flash_msg = $data->name;
+            if($data->delete())
+            {
+                Session::flash('message', "Book Publisher $flash_msg Deleted");
+                return Redirect::back();
+            }
+        }
+        catch
+        (exception $ex){
+            return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+
+        }
+    }
+    public function batchdeleteBook($id)
+    {
+        try {
+            LibBook::destroy(Request::get('id'));
+            Session::flash('message', "Success: Selected items Deleted ");
+            return Redirect::back();
+        }
+        catch
+        (exception $ex){
+            return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+        }
+    }
+
 }

@@ -103,6 +103,35 @@ Route::group(['prefix' => 'library'], function() {
         'uses' => 'LibraryController@batchdeletePublisher'
     ]);
 
+    /**********Library Book Start****************/
+
+    Route::get('book/',
+        'LibraryController@indexBook'
+    );
+    Route::any('book/save',[
+        'as' => 'book.save',
+        'uses'=> 'LibraryController@storeBook'
+    ]);
+    Route::any('book/view/{id}',[
+        'as' => 'book.view',
+        'uses'=> 'LibraryController@viewBook'
+    ]);
+    Route::any('book/edit/{id}',[
+        'as' => 'book.edit',
+        'uses'=> 'LibraryController@editBook'
+    ]);
+    Route::any('book/update/{id}', [
+        'as' => 'book.update',
+        'uses' => 'LibraryController@updateBook'
+    ]);
+    Route::get('book/delete/{id}',
+        'LibraryController@deleteBook'
+    );
+    Route::any('book/batch/delete/{id}', [
+        'as' => 'book.batch.delete',
+        'uses' => 'LibraryController@batchdeleteBook'
+    ]);
+
 });
 
 
