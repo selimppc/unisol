@@ -12,7 +12,6 @@
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="#tab_1" data-toggle="tab">Book Category</a></li>
-
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                             Settings  <span class="caret"></span>
@@ -22,7 +21,6 @@
                             </li>
                         </ul>
                     </li>
-
                     <li class="pull-right" class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-gear"></i>&nbsp;</a>
                         <ul class="dropdown-menu">
@@ -31,9 +29,6 @@
                     </li>
                 </ul>
                 <div class="tab-content">
-
-                {{--Tab_1 book category--}}
-
                     <div class="tab-pane active" id="tab_1">
                         <div class="box-body table-responsive ">
                             <button type="button" class=" btn btn-xs btn-success fa fa-plus " data-toggle="modal" data-target="#myModal" >
@@ -73,17 +68,13 @@
                             </table>
                             {{ Form::submit('Delete', array('class'=>'btn btn-xs btn-danger', 'id'=>'hide-button', 'style'=>'display:none'))}}
                             {{ Form::close() }}
-                             {{ $book_category->links() }}
+                            {{ $book_category->links() }}
                         </div>
                     </div>
-
-               {{--Tab_2 book author--}}
-                    
                 </div>
             </div>
         </div>
     </div>
-
 
     {{-- Modal add new  --}}
     <div id="myModal" class="modal fade">
@@ -103,7 +94,7 @@
         </div>
     </div>
 
-    {{--<!-- Modal for Edit -->--}}
+    {{-- Modal for Edit --}}
     <div class="modal fade" id="edit-modal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -112,7 +103,7 @@
         </div>
     </div>
 
-    {{--<!-- Modal for show -->--}}
+    {{-- Modal for show --}}
     <div class="modal fade" id="showModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -120,7 +111,7 @@
             </div>
         </div>
     </div>
-    {{--<!-- Modal for delete -->--}}
+    {{-- Modal for delete --}}
     <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -134,7 +125,6 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                     <a href="#" class="btn btn-danger danger">Delete</a>
-
                 </div>
             </div>
         </div>

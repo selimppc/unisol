@@ -8,32 +8,15 @@ class AdmissionController extends \BaseController {
     }
 
     public function back(){
-        return Redirect::back()->with('error_code', 5);;
+        return Redirect::back()->with('error_code', 5);
     }
 
 // ...............................Admission Test : Admission Test starts here...........................................
 //.................................................Desh-Board...........................................................
-
     public function admAmwDashboard()
     {
         return View::make('admission::amw.admission_test.dashboard');
     }
-
-//.................................................Index................................................................
-//    public function admissionTestIndex()
-//    {
-//        $admission_test = Batch::orderBy('id', 'DESC')->paginate(3);
-//
-//        $degree_id = Batch::with('relDegree','relDegree.relDepartment','relYear','relSemester')
-//            ->first();
-//
-//
-//        $year_id = array('' => 'Select Year ') + Year::lists('title', 'id');
-//        $semester_id = array('' => 'Select Semester ') + Semester::lists('title', 'id');
-//
-//        return View::make('admission::amw.admission_test.index',
-//            compact('degree_id','admission_test','year_id','semester_id'));
-//    }
 
     public function searchIndex(){
         $searchQuery = [
