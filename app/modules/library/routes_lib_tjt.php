@@ -31,8 +31,13 @@ Route::any('faculty/view-cart',[
     'uses' => 'LibFacultyController@viewBookToCart'
 ]);
 
-Route::any('faculty/checkout-by-faculty',[
+Route::any('faculty/checkout-by-faculty/{all_cart_book_ids}',[
     'as' =>'faculty.checkout-by-faculty',
     'uses' => 'LibFacultyController@checkoutByFaculty'
+]);
+
+Route::any('faculty/book/download/{book_id}',[
+    'as' =>'student.book.download',
+    'uses' => 'LibFacultyController@getBookDownload'
 ]);
 

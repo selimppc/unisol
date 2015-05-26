@@ -79,7 +79,7 @@
 
 
  <div class="box-tools pull-right">
-    <a class="pull-right btn btn-xs btn-success"  href="{{ URL::route('faculty.checkout-by-faculty')}}"><b style="color: #ffffff;">Proceed To Checkout </b> <i class="fa fa-arrow-circle-right"></i></a>
+    <a class="pull-right btn btn-xs btn-success"  href="{{ URL::route('faculty.checkout-by-faculty',$all_cart_book_ids)}}"><b style="color: #ffffff;">Proceed To Checkout </b> <i class="fa fa-arrow-circle-right"></i></a>
  </div>
 
  @stop
