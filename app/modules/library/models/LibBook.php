@@ -47,9 +47,6 @@ class LibBook extends Eloquent{
 
     //TODO : Model Relationship
 
-    public function relCountry(){
-        return $this->belongsTo('Country','country_id','id');
-    }
     public function relLibBookCategory(){
         return $this->belongsTo('LibBookCategory','lib_book_category_id','id');
     }

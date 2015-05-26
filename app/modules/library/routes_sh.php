@@ -30,9 +30,14 @@ Route::any('student/add-book-to-cart/{book_id}',[
 ]);
 
 
-Route::any('student/download-file',[
-    'as' =>'student.download-file',
-    'uses' => 'LibStudentController@addBookToCart'
+Route::any('student/remove-from-cart/{id}',[
+    'as' =>'student.remove-from-cart',
+    'uses' => 'LibStudentController@removeBookFromToCart'
+]);
+
+Route::any('student/view-cart',[
+    'as' =>'student.view-cart',
+    'uses' => 'LibStudentController@viewCart'
 ]);
 
 //Route::any('faculty/book-transaction',[
