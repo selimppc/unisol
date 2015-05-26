@@ -12,10 +12,10 @@
             <i class="fa fa-angle-left pull-right"></i>
         </a>
         <ul class="treeview-menu">
-            <li><a href="{{URL::to('library/book/category')}}"></i><i class="fa fa-stack-overflow text-blue"></i> Book Category</a></li>
-            <li><a href="{{URL::to('library/book/author')}}"></i><i class="fa fa-users text-green"></i> Book Author</a></li>
-            <li><a href="{{URL::to('library/book/publisher')}}"></i><i class="fa  fa-print text-purple"></i> Book Publisher</a></li>
-            <li><a href="{{URL::to('library/book/')}}"></i><i class="fa fa-book text-light-blue"></i> Library Book</a></li>
+            <li><a href="{{URL::to('library/book/category')}}"></i><i class="fa fa-stack-overflow text-blue"></i>  Category</a></li>
+            <li><a href="{{URL::to('library/book/author')}}"></i><i class="fa fa-users text-green"></i> Author</a></li>
+            <li><a href="{{URL::to('library/book/publisher')}}"></i><i class="fa  fa-print text-purple"></i> Publisher</a></li>
+            <li><a href="{{URL::to('library/book/')}}"></i><i class="fa fa-book text-light-blue"></i> Books</a></li>
         </ul>
     </li>
 

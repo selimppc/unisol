@@ -348,72 +348,51 @@ class LibraryController extends \BaseController {
     public function indexBook()
     {
         $books = LibBook::orderBy('id', 'DESC')->paginate(5);
-        return View::Make('library::librarian.books.index',compact('books'));
+        $category = array('' => 'Select Category ') + LibBookCategory::lists('title', 'id');
+        $author = array('' => 'Select author ') + LibBookAuthor::lists('name', 'id');
+        $publisher = array('' => 'Select Publisher') + LibBookPublisher::lists('name', 'id');
+        return View::Make('library::librarian.books.index',compact('books','category','author','publisher'));
     }
 
     public function storeBook()
     {
-        /*$data = Input::all();
-        $redirect_url = Input::get('redirect_url');
-        $datas = new AcmAcademic();
-        if ($datas->validate($data)) {
-            $datas->course_conduct_id = Input::get('course_conduct_id');
-            $datas->acm_marks_distribution_id = Input::get('marks_dist_id');
-            $datas->title = Input::get('title');
-            $flashmsg = $datas->title;
-            $datas->description = Input::get('description');
-            $datas->acm_class_schedule_id = Input::get('class_schedule');
-            $datas->status = 1;
-            $datas->save();
-            $academic_id = $datas->id;//to get last inserted id
-            //file upload starts here
-            $files = Input::file('images');
-            foreach ($files as $file) {
-                if ($file) {
-                    $destinationPath = public_path() . '/file/item_class_file';
-                    $filename = $file->getClientOriginalName();
-                    $hashname = date("d-m-Y") . "_" . $filename;
-                    $upload_success = $file->move($destinationPath, $hashname);
-                    $academic_details = new AcmAcademicDetails;
-                    $academic_details->file = $hashname;
-                    $academic_details->acm_academic_id = $academic_id;
-                    $academic_details->save();
-                }
-            }
-            //file upload ends
+
+        $data = Input::all();
+        $model = new LibBook();
+        if ($model->validate($data)) {
+            $model->title = Input::get('title');
+            $flashmsg = $model->title;
+            $model->isbn = Input::get('isbn');
+            $model->lib_book_category_id = Input::get('category');
+            $model->lib_book_author_id = Input::get('author');
+            $model->lib_book_publisher_id = Input::get('publisher');
+            $model->edition = Input::get('edition');
+            $model->stock_type = Input::get('stock_type');
+            $model->shelf_number = Input::get('self_number');
+            $model->book_type= Input::get('book_type');
+            $model->commercial = Input::get('commercial');
+            $model->book_price = Input::get('book_price');
+            $model->digital_sell_price = Input::get('digital_sell_price');
+            $model->is_rented = Input::get('is_rented');
+
+            $files = Input::file('docs');
+            $destinationPath = public_path() . '/lib_docs';
+            $filename = $files->getClientOriginalName();
+            $hashname = date("d-m-Y") . "_" . $filename;
+            $upload_success = $files->move($destinationPath, $hashname);
+            $model->file = $hashname;
+
+            $model->save();
+
             Session::flash('message', "Successfully Added $flashmsg !");
             return Redirect::back();
         } else {
             // failure, get errors
-            $errors = $datas->errors();
-            Session::flash('errors', $errors);
-            return Redirect::back();
-        }*/
-
-        $data = Input::all();
-        $model = new LibBook();
-        $model->title = Input::get('title');
-        $flash_msg = $model->title;
-        if($model->validate($data))
-        {
-            DB::beginTransaction();
-            try {
-                if ($model->create($data))
-                    DB::commit();
-                Session::flash('message', "Book Publisher $flash_msg Successfully Added");
-            }
-            catch ( Exception $e ){
-                //If there are any exceptions, rollback the transaction
-                DB::rollback();
-                Session::flash('danger', "Book Publisher $flash_msg Not Added.Invalid Request!");
-            }
-            return Redirect::back();
-        }else{
             $errors = $model->errors();
             Session::flash('errors', $errors);
-            return Redirect::back()
-                ->with('errors', 'invalid');
+            return Redirect::back();
         }
+
     }
 
     public function viewBook($id)
@@ -424,9 +403,8 @@ class LibraryController extends \BaseController {
 
     public function editBook($id)
     {
-        $edit_publisher = LibBook::find($id);
-        $country = array('' => 'Select Country ') + Country::lists('title', 'id');
-        return View::make('library::librarian.books.edit',compact('edit_publisher','country'));
+        $edit_book = LibBook::find($id);
+        return View::make('library::librarian.books.edit',compact('edit_book'));
     }
 
 
