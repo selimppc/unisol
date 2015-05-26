@@ -233,5 +233,114 @@ class LibraryController extends \BaseController {
         }
     }
 
+    /**********************Library Book Publisher start***************************/
+
+    public function indexPublisher()
+    {
+        $book_publisher = LibBookPublisher::orderBy('id', 'DESC')->paginate(5);
+        $country = array('' => 'Select Country ') + Country::lists('title', 'id');
+        return View::Make('library::librarian.publisher.index',compact('book_publisher','country'));
+    }
+
+    public function storePublisher()
+    {
+        $data = Input::all();
+        $model = new LibBookPublisher();
+        $model->name = Input::get('name');
+        $flash_msg = $model->name;
+        if($model->validate($data))
+        {
+            DB::beginTransaction();
+            try {
+                if ($model->create($data))
+                DB::commit();
+                Session::flash('message', "Book Publisher $flash_msg Successfully Added");
+            }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', "Book Publisher $flash_msg Not Added.Invalid Request!");
+            }
+            return Redirect::back();
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()
+                ->with('errors', 'invalid');
+        }
+    }
+
+    public function viewPublisher($id)
+    {
+        $view_publisher = LibBookPublisher::find($id);
+        return View::make('library::librarian.publisher.view',compact('view_publisher'));
+    }
+
+    public function editPublisher($id)
+    {
+        $edit_publisher = LibBookPublisher::find($id);
+        $country = array('' => 'Select Country ') + Country::lists('title', 'id');
+        return View::make('library::librarian.publisher.edit',compact('edit_publisher','country'));
+    }
+
+
+    public function updatePublisher($id)
+    {
+        $data = Input::all();
+        $model = LibBookPublisher::find($id);
+        $model->name = Input::get('name');
+        $flash_msg = $model->name;
+        if($model->validate($data))
+        {
+            DB::beginTransaction();
+            try {
+                $model->update($data);
+                DB::commit();
+                Session::flash('message', "Book Author $flash_msg Successfully Updated");
+            }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', "Book Author $flash_msg  Not Updated. Invalid Request !");
+            }
+            return Redirect::back();
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()
+                ->with('errors', 'Input Data Not Valid');
+        }
+    }
+
+    public function deletePublisher($id)
+    {
+
+        try {
+            $data= LibBookPublisher::find($id);
+            $flash_msg = $data->name;
+            if($data->delete())
+            {
+                Session::flash('message', "Book Publisher $flash_msg Deleted");
+                return Redirect::back();
+            }
+        }
+        catch
+        (exception $ex){
+            return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+
+        }
+    }
+    public function batchdeletePublisher($id)
+    {
+        try {
+            LibBookPublisher::destroy(Request::get('id'));
+            Session::flash('message', "Success: Selected items Deleted ");
+            return Redirect::back();
+        }
+        catch
+        (exception $ex){
+            return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+        }
+    }
 
 }

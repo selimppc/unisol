@@ -15,13 +15,12 @@ class LibBookPublisher extends Eloquent{
     private $rules = [
         'name' => 'required',
         'company_name' => 'required',
-     /* 'email' => 'required|email|unique:lib_book_author',*/
         'email' => 'required',
         'phone' => 'required',
         'address' => 'required',
         'country_id' => 'required|integer',
         'note' => 'required',
-
+        /* 'email' => 'required|email|unique:lib_book_author',*/
     ];
 
 
