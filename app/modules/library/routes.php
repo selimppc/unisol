@@ -74,33 +74,62 @@ Route::group(['prefix' => 'library'], function() {
         'uses' => 'LibraryController@batchdeleteAuthor'
     ]);
 
-    /**********Library Book Author Start****************/
+    /**********Library Book Publisher Start****************/
 
-    Route::get('book/author',
-        'LibraryController@indexAuthor'
+    Route::get('book/publisher',
+        'LibraryController@indexPublisher'
     );
-    Route::any('author/save',[
-        'as' => 'author.save',
-        'uses'=> 'LibraryController@storeAuthor'
+    Route::any('publisher/save',[
+        'as' => 'publisher.save',
+        'uses'=> 'LibraryController@storePublisher'
     ]);
-    Route::any('author/view/{id}',[
-        'as' => 'author.view',
-        'uses'=> 'LibraryController@viewAuthor'
+    Route::any('publisher/view/{id}',[
+        'as' => 'publisher.view',
+        'uses'=> 'LibraryController@viewPublisher'
     ]);
-    Route::any('author/edit/{id}',[
-        'as' => 'author.edit',
-        'uses'=> 'LibraryController@editAuthor'
+    Route::any('publisher/edit/{id}',[
+        'as' => 'publisher.edit',
+        'uses'=> 'LibraryController@editPublisher'
     ]);
-    Route::any('author/update/{id}', [
-        'as' => 'author.update',
-        'uses' => 'LibraryController@updateAuthor'
+    Route::any('publisher/update/{id}', [
+        'as' => 'publisher.update',
+        'uses' => 'LibraryController@updatePublisher'
     ]);
-    Route::get('author/delete/{id}',
-        'LibraryController@deleteAuthor'
+    Route::get('publisher/delete/{id}',
+        'LibraryController@deletePublisher'
     );
-    Route::any('author/batch/delete/{id}', [
-        'as' => 'author.batch.delete',
-        'uses' => 'LibraryController@batchdeleteAuthor'
+    Route::any('publisher/batch/delete/{id}', [
+        'as' => 'publisher.batch.delete',
+        'uses' => 'LibraryController@batchdeletePublisher'
+    ]);
+
+    /**********Library Book Start****************/
+
+    Route::get('book/',
+        'LibraryController@indexBook'
+    );
+    Route::any('book/save',[
+        'as' => 'book.save',
+        'uses'=> 'LibraryController@storeBook'
+    ]);
+    Route::any('book/view/{id}',[
+        'as' => 'book.view',
+        'uses'=> 'LibraryController@viewBook'
+    ]);
+    Route::any('book/edit/{id}',[
+        'as' => 'book.edit',
+        'uses'=> 'LibraryController@editBook'
+    ]);
+    Route::any('book/update/{id}', [
+        'as' => 'book.update',
+        'uses' => 'LibraryController@updateBook'
+    ]);
+    Route::get('book/delete/{id}',
+        'LibraryController@deleteBook'
+    );
+    Route::any('book/batch/delete/{id}', [
+        'as' => 'book.batch.delete',
+        'uses' => 'LibraryController@batchdeleteBook'
     ]);
 
 });
