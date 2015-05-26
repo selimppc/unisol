@@ -135,9 +135,15 @@ class InvRequisitionHeadController extends \BaseController {
      * Create Purchase Order
      */
     public function create_purchase_order($req_id, $user_id){
-        //Call Store Procedure
-        $result = DB::select('call sp_inv_requisition_to_po(?, ?)', array($req_id, $user_id) );
-        Session::flash('message', 'Purchase Order Created !');
+
+        $check = InvRequisitionDetail::where('inv_requisition_head_id', $req_id)->exists();
+        if($check){
+            //Call Store Procedure
+            DB::select('call sp_inv_requisition_to_po(?, ?)', array($req_id, $user_id) );
+            Session::flash('message', 'Purchase Order Created !');
+        }else{
+            Session::flash('info', 'Requisition Detail is empty. Please add product item. And try later!');
+        }
         return Redirect::back();
     }
 
