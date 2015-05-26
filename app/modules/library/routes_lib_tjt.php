@@ -30,3 +30,9 @@ Route::any('faculty/view-cart',[
     'as' =>'faculty.view-cart',
     'uses' => 'LibFacultyController@viewBookToCart'
 ]);
+
+Route::any('faculty/checkout-by-faculty',[
+    'as' =>'faculty.checkout-by-faculty',
+    'uses' => 'LibFacultyController@checkoutByFaculty'
+]);
+

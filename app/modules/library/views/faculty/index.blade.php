@@ -5,6 +5,7 @@
  @section('sidebar')
      @include('layouts._sidebar_faculty')
  @stop
+
  @section('content')
 @include('library::show_cart')
  <h3>Library</h3>
@@ -84,18 +85,15 @@
                                   <td>{{ucfirst($list->commercial)}}
                                   </td>
                                   <td>
-                                      {{--<a href="" class="btn btn-default btn-xs" data-toggle="modal" data-target="#book" title="Show" style="font-size: 11px;color: darkmagenta"><span class="fa fa-eye"></span></a>--}}
                                       @if($list->commercial == 'no')
-                                      <a href="{{ URL::route('student.book.download') }}"
-                                      class="btn-link" title="download" style="color:#8b0835"><b><i class="fa fa-download"></i> <ins>Download</ins></b>
-                                      </a>
-
+                                        <a href="{{ URL::route('student.book.download') }}"
+                                          class="btn-link" title="download" style="color:#8b0835"><b><i class="fa fa-download"></i> <ins>Download</ins></b>
+                                        </a>
                                       @else
-                                          <a href="{{ URL::route('faculty.add-book-to-cart',['book_id'=>$list->id]) }}" id="addCart" onclick="testAjax()"
+                                        <a href="{{ URL::route('faculty.add-book-to-cart',['book_id'=>$list->id]) }}" id="addCart" onclick="testAjax()"
                                           class="btn-link" title="Add Book" style="color:darkblue"><b><i class="fa fa-shopping-cart"></i> <ins>Add To Cart</ins></b>
-                                          </a>
+                                        </a>
                                       @endif
-                                      {{--<a data-href="{{URL::route('examination.amw.delete-exam-data', ['id'=>$exam_list->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" style="font-size: 12px;color: lightcoral"><span class="fa  fa-trash-o"></span></a>--}}
                                   </td>
                               </tr>
                          @endforeach
@@ -149,10 +147,7 @@
 
 
 
-<script>
 
-
-</script>
 
  @stop
 
