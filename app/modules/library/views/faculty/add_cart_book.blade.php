@@ -6,7 +6,7 @@
       @include('layouts._sidebar_faculty')
   @stop
   @section('content')
-<a class="pull-right btn btn-xs btn-info"  style="color: #ffffff" href="{{ URL::route('faculty.book') }}" title="Back to Exam List" id="addBook"><b>Back</b></a>
+<a class="pull-right btn btn-xs btn-info"  style="color: #ffffff" href="{{ URL::route('faculty.book') }}" title="Back to Exam List" id="addBook"><b>Add to Cart More</b></a>
 
  <h3>Your Cart</h3>
 
@@ -23,8 +23,7 @@
                         <tr>
                            <th><input name="id" type="checkbox" id="checkbox" class="checkbox" value=""></th>
                            <th>Book Name</th>
-                           <th></th>
-                           <th>Price</th>
+                           <th>Digital Sell Price</th>
                         </tr>
                  </thead>
                  <tbody>
@@ -33,13 +32,15 @@
                           <tr>
                               <td><input type="checkbox" name="id[]" class="myCheckbox" value=""></td>
                               <td>{{$acb->title}}</td>
-                              <td>{{$acb->title}}</td>
-                              <td></td>
+                              <td>{{$acb->digital_sell_price}}</td>
+
                           </tr>
                           @endforeach
                      @endif
                  </tbody>
               </table>
+              <br>
+              <strong>Total Amount : {{isset($sum) ? $sum : '0'}}</strong>
            {{form::close() }}
 
            <p>&nbsp;</p>
@@ -77,10 +78,8 @@
   </div>
 
 
-<script>
-  $('#addBook').change(function(){
-     $.get("{{ url('faculty/book')}}",
-  });
-</script>
+ <div class="box-tools pull-right">
+    <a class="pull-right btn btn-xs btn-success"  href="{{ URL::route('faculty.checkout-by-faculty')}}"><b style="color: #ffffff;">Proceed To Checkout </b> <i class="fa fa-arrow-circle-right"></i></a>
+ </div>
 
  @stop

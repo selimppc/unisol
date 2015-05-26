@@ -47,53 +47,60 @@ class LibStudentController extends \BaseController {
     }
 
 
-    public function addBookToStudentCart($id)
-    {
+    public function addBookToStudentCart($id){
         if($id) {
             $prev_added_st_book_id = Session::get('cartBooks');
 
             $all_cart_st_book_ids = array_merge(array($id), (array)$prev_added_st_book_id);
             array_unique($all_cart_st_book_ids);
+
             Session::put('cartBooks', $all_cart_st_book_ids);
-        }else{
-            $all_cart_st_book_ids = (array)Session::get('cartBooks');
         }
-        //print_r($all_cart_st_book_ids);exit;
+        //return Redirect::route('student.view-cart');
 
-        $all_cart_st_books = LibBook::with('relLibBookCategory', 'relLibBookAuthor', 'relLibBookPublisher')->whereIn('id', $all_cart_st_book_ids)->get();
-
-
-        $number = count($all_cart_st_books);
-
-        return View::make('library::student.add_student_cart_book',compact('all_cart_st_books','number'));
-
-
+        return Redirect::back();
     }
 
+    public function viewCart(){
+        $all_cart_book_ids = Session::get('cartBooks');
+        $all_cart_books = LibBook::with('relLibBookCategory', 'relLibBookAuthor', 'relLibBookPublisher')->whereIn('id', $all_cart_book_ids)->get();
+
+        $number = count($all_cart_books);
+
+        $sum = $all_cart_books->sum('digital_sell_price');
+
+
+
+        return View::make('library::student.view_cart',compact('all_cart_books', 'number','sum'));
+    }
+
+    public function removeBookFromToCart($id)
+    {
+        $all_cart_book_ids = Session::get('cartBooks');
+
+        // Remove array item by array_search
+        if(($key = array_search($id, $all_cart_book_ids)) !== false) {
+            unset($all_cart_book_ids[$key]);
+        }
+
+        Session::set('cartBooks', $all_cart_book_ids);
+
+        return Redirect::back();
+    }
 
     public function getDownload($book_id)
     {
         $download = LibBook::find($book_id);
         $file = $download->file;
         $path = public_path("img/" . $file);
-//        print_r($path);exit;
         $headers = array(
             'Content-Type: application/pdf',
         );
         return Response::download($path, $file , $headers);
-
-
-
-
     }
 
 
-    public function viewBookToCart(){
-        $all_cart_st_books = Session::get('cartBooks');
 
-        //$all_cart_books = (object) $all_cart_books;
-        return View::make('library::faculty.view_cart_book',compact('all_cart_st_books'));
-    }
 
 
 

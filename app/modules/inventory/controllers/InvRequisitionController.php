@@ -134,23 +134,17 @@ class InvRequisitionHeadController extends \BaseController {
     /*
      * Create Purchase Order
      */
-    public function create_purchase_order($req_id){
+    public function create_purchase_order($req_id, $user_id){
 
-        $sql = 'INSERT INTO inv_purchase_order_head (
-                inv_requisition_head_id, inv_supplier_id,status
-                )
-                SELECT (b.id,b.inv_supplier_id, "open" )
-                FROM inv_requisition_head as b
-                WHERE	b.id = 2 ' ;
-
-       DB::statement(DB::raw($sql));
-
-       // $queries = DB::getQueryLog();
-        //$last_query = end($query);
-        echo "OK";exit;
-        /*$success = DB::select(
-            'INSERT INTO inv_purchase_order_head SELECT * FROM inv_requisition_head WHERE inv_requisition_head.id = inv_purchase_order_head.inv_requisition_head_id'
-        );*/
+        $check = InvRequisitionDetail::where('inv_requisition_head_id', $req_id)->exists();
+        if($check){
+            //Call Store Procedure
+            DB::select('call sp_inv_requisition_to_po(?, ?)', array($req_id, $user_id) );
+            Session::flash('message', 'Purchase Order Created !');
+        }else{
+            Session::flash('info', 'Requisition Detail is empty. Please add product item. And try later!');
+        }
+        return Redirect::back();
     }
 
 

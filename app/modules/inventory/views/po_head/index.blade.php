@@ -45,14 +45,14 @@
                     <td><b>
                         {{ link_to_route($values->status!="approved" ?'purchase-order-detail' : 'purchase-order-show',$values->purchase_no,['po_id'=>$values->id], ['data-toggle'=>"modal", 'data-target'=>"#modal-pc"]) }}
                     </b></td>
-                    <td>{{isset($values->inv_requisition_head_id) ? Str::title($values->relRequisitionHear->requisition_no) : ''}}</td>
+                    <td>{{ isset($values->inv_requisition_head_id)? $values->relInvRequisitionHead->requisition_no : ''}}</td>
                     <td>{{ $values->pay_terms }}  </td>
                     <td>{{ $values->delivery_date }}</td>
                     <td>{{ round($values->tax) }}</td>
                     <td>{{ $values->tax_amount }}</td>
                     <td>{{ round($values->discount_rate) }} </td>
-                    <td>{{ $values->discount_amount }}</td>
-                    <td>{{ $values->amount }}</td>
+                    <td>{{ round($values->discount_amount, 2) }}</td>
+                    <td>{{ round($values->amount, 2) }}</td>
                     <td>{{Str::title($values->status)}}</td>
 
                     <td>
@@ -66,7 +66,7 @@
                     </td>
                     <td>
                         @if($values->status != 'approved')
-                            <a data-href="{{ URL::route('create-grn', ['po_id'=>$values->id ]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa fa-adjust" style="color: darkslategray" data-toggle="tooltip" data-placement="bottom" title="Cancel"></i> PO</a>
+                            <a href="{{ URL::route('create-grn', ['po_id'=>$values->id, 'user_id'=> 1 ]) }}" class="btn btn-xs btn-default"  ><i class="fa fa-adjust" style="color: darkslategray" data-toggle="tooltip" data-placement="bottom" title="Create GRN"></i> + GRN</a>
                         @endif
                     </td>
 

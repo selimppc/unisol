@@ -5,8 +5,17 @@
 //Route::get('applicant/registration',
 //    'ApplicantController@applicant_signup'
 //);
+Route::any("/applicant", [
+    "as"   => "applicant",
+    "uses" => "ApplicantController@index"
+]);
 
-Route::any("/applicant/signup", [
+
+Route::any('applicant/details',
+    ['as' => 'applicant.details',
+        'uses' => 'ApplicantController@applicantDetails']);
+
+Route::any("applicant/signup", [
     "as"   => "applicant.signup",
     "uses" => "ApplicantController@signup"
 ]);
@@ -190,22 +199,22 @@ Route::any('apt/misc_info/update/{id}',
 
 Route::any('applicant/admission-test',[
     'as' => 'applicant.admission-test',
-    'uses'=> 'ApplicantAdmissionController@admission_test'
+    'uses'=> 'ApplicantController@admission_test'
 ]);
 
 Route::any('applicant/admission-test-subject/{batch_id}',[
     'as' => 'applicant.admission-test-subject',
-    'uses'=> 'ApplicantAdmissionController@admission_test_subject'
+    'uses'=> 'ApplicantController@admission_test_subject'
 ]);
 
 Route::any('applicant/admission-exam-subject/{batch_id}/{admtest_subject_id}',[
     'as' => 'applicant.admission-exam-subject',
-    'uses'=> 'ApplicantAdmissionController@admission_test_subject_exam'
+    'uses'=> 'ApplicantController@admission_test_subject_exam'
 ]);
 
 Route::any('applicant/admission/start-admission-test',[
     'as' => 'applicant.admission.start-admission-test',
-    'uses'=> 'ApplicantAdmissionController@start_admission_test'
+    'uses'=> 'ApplicantController@start_admission_test'
 ]);
 
 

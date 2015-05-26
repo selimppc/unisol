@@ -147,8 +147,8 @@ Route::group(['prefix' => 'inventory'], function() {
         "as"   => "requisition-show",
         "uses" => "InvRequisitionHeadController@show_requisition"
     ]);
-    Route::get("requisition-edit/{req_id}", [
-        "as"   => "requisition-edit",
+    Route::any("requisition-edits/{req_id}", [
+        "as"   => "requisition-edits",
         "uses" => "InvRequisitionHeadController@edit_requisition"
     ]);
     Route::any("requisition-destroy/{req_id}", [
@@ -160,7 +160,7 @@ Route::group(['prefix' => 'inventory'], function() {
         "uses" => "InvRequisitionHeadController@batch_delete_requisition"
     ]);
 
-    Route::any("create/purchase-order/{req_id}", [
+    Route::any("create/purchase-order/{req_id}/{user_id}", [
         "as"   => "create/purchase-order",
         "uses" => "InvRequisitionHeadController@create_purchase_order"
     ]);
@@ -217,7 +217,7 @@ Route::group(['prefix' => 'inventory'], function() {
         "as"   => "purchase-order-edit",
         "uses" => "InvPurchaseOrderController@edit_purchase_order"
     ]);
-    Route::any("purchase-order-destroy", [
+    Route::any("purchase-order-destroy/{po_id}", [
         "as"   => "purchase-order-destroy",
         "uses" => "InvPurchaseOrderController@destroy_purchase_order"
     ]);
@@ -226,7 +226,7 @@ Route::group(['prefix' => 'inventory'], function() {
         "uses" => "InvPurchaseOrderController@batch_delete_purchase_order"
     ]);
 
-    Route::any("create-grn/{po_id}", [
+    Route::any("create-grn/{po_id}/{user_id}", [
         "as"   => "create-grn",
         "uses" => "InvPurchaseOrderController@create_grn"
     ]);
@@ -268,9 +268,9 @@ Route::group(['prefix' => 'inventory'], function() {
         "uses" => "InvGrnController@index_grn"
     ]);
 
-    Route::any("create-grn/{grn_id}/{po_id}", [
-        "as"   => "create-grn",
-        "uses" => "InvGrnController@create_grn"
+    Route::any("create-new-grn/{grn_id}/{po_id}", [
+        "as"   => "create-new-grn",
+        "uses" => "InvGrnController@create_new_grn"
     ]);
 
     Route::any("show-grn-detail/{grn_id}", [

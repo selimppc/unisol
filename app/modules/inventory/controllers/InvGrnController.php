@@ -27,7 +27,7 @@ class InvGrnController extends \BaseController {
         return View::make('inventory::grn.index', compact('pageTitle', 'data'));
     }
 
-    public function create_grn($grn_id, $po_id){
+    public function create_new_grn($grn_id, $po_id){
         $grn_head = InvGrnHead::find($grn_id);
         $po_head = InvPurchaseOrderHead::find($po_id);
         $po_dt = InvPurchaseOrderDetail::where('inv_po_head_id', $po_id)->get();
