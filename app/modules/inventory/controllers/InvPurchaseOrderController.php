@@ -87,7 +87,8 @@ class InvPurchaseOrderController extends \BaseController {
             return Redirect::back();
         }else{
             $model = InvPurchaseOrderHead::findOrFail($re_id);
-            return View::make('inventory::po_head.edit', compact('model'));
+            $supplier_lists = InvSupplier::lists('company_name', 'id');
+            return View::make('inventory::po_head.edit', compact('model', 'supplier_lists'));
         }
 
     }
@@ -134,15 +135,16 @@ class InvPurchaseOrderController extends \BaseController {
     /*
      * Create GRN Order
      */
-    public function create_grn($req_id){
-        echo $req_id;
-        DB::query('insert into inv_grn_head (username, email, password) values ("johndoe", "john@johndoe.com", "password")');
-
-
-
-        /*$success = DB::select(
-            'INSERT INTO inv_purchase_order_head SELECT * FROM inv_requisition_head WHERE inv_requisition_head.id = inv_purchase_order_head.inv_requisition_head_id'
-        );*/
+    public function create_grn($po_id, $user_id){
+        $check = InvPurchaseOrderDetail::where('inv_po_head_id', $po_id)->exists();
+        if($check){
+            //Call Store Procedure
+            DB::select('call sp_inv_po_to_grn(?, ?)', array($po_id, $user_id) );
+            Session::flash('message', 'Purchase Order Created !');
+        }else{
+            Session::flash('info', 'Requisition Detail is empty. Please add product item. And try later!');
+        }
+        return Redirect::back();
     }
 
 

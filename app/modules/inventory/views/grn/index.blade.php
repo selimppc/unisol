@@ -37,12 +37,12 @@
                 @foreach($data as $values)
                  <tr style="{{$values->status=='approved' ? 'background-color: burlywood' : '' }}">
                     <td width="80"><b>
-                        {{ link_to_route($values->status!="approved" ?'show-grn-detail' : 'create-grn', $values->relInvPurchaseOrderHead->purchase_no ,['po_id'=>isset($values->inv_po_head_id) ? $values->inv_po_head_id : ""], ['data-toggle'=>"modal", 'data-target'=>"#modal-pc"]) }}
+                        {{ link_to_route($values->status!="approved" ?'show-grn-detail' : 'create-new-grn', $values->relInvPurchaseOrderHead->purchase_no ,['po_id'=>isset($values->id) ? $values->id : ""], ['data-toggle'=>"modal", 'data-target'=>"#modal-pc"]) }}
                     </b></td>
                     <td>{{ $values->voucher_no}}</td>
                     <td>{{ $values->date }}  </td>
-                    <td>{{ $values->inv_supplier_id }}</td>
-                    <td>{{ $values->inv_requisition_head_id }}</td>
+                    <td>{{ isset($values->inv_supplier_id) ? $values->relInvSupplier->company_name :'' }}</td>
+                    <td>{{ isset($values->inv_requisition_head_id) ? $values->relInvRequisitionHead->requisition_no :'' }}</td>
                     <td>{{ $values->pay_terms }} </td>
                     <td>{{ round($values->tax_rate, 0) }}</td>
                     <td>{{ round($values->tax_amount, 2) }}</td>
@@ -54,8 +54,8 @@
 
                     <td>
                         @if($values->status != 'approved')
-                            <a href="{{ URL::route('create-grn', ['grn_id'=>$values->id,'po_id'=>$values->inv_po_head_id ]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#modal-pc" ><i class="fa fa-2x" style="color: darkslategray" data-toggle="tooltip" data-placement="bottom" title="Cancel"></i> + Create GRN</a>
-                            <a href="{{ URL::route('create-grn', ['po_id'=>$values->id ]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" ><i class="fa fa-2x" style="color: darkslategray" data-toggle="tooltip" data-placement="bottom" title="Cancel"></i> Confirm GRN</a>
+                            <a href="{{ URL::route('create-new-grn', ['grn_id'=>$values->id,'po_id'=>$values->inv_po_head_id ]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#modal-pc" ><i class="fa fa-2x" style="color: darkslategray" data-toggle="tooltip" data-placement="bottom" title="Cancel"></i> + Create GRN</a>
+                            <a href="{{ URL::route('create-new-grn', ['po_id'=>$values->id ]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" ><i class="fa fa-2x" style="color: darkslategray" data-toggle="tooltip" data-placement="bottom" title="Cancel"></i> Confirm GRN</a>
                         @endif
                     </td>
 

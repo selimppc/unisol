@@ -6,18 +6,12 @@
      @include('layouts._sidebar_student')
 @stop
 @section('content')
-<a class="pull-right btn btn-info btn-xs"  style="color: #ffffff" href="{{ URL::route('student.find-book') }}" title="Back to Exam List" id="addBook"><b>Back</b></a>
-
- <h3>View Cart</h3>
-
+ <h3>My Cart</h3>
  <br>
-
-
-
  <div class="row">
     <div class="col-md-12 ">
        <div class="box box-solid">
-        <div class="pull-right" style=" width: 300px; height: 100px; padding: 50px; border: 1px solid red; box-sizing: border-box;background-color: #006dcc"><b> Total price : {{ $sum }} </b></div>
+
 
            <p>&nbsp;</p>
               <table id="" class="table table-striped  table-bordered"  >
@@ -44,8 +38,6 @@
                      @endif
                  </tbody>
               </table>
-              <a href="{{ URL::route('student.my-cart',$all_cart_book_ids) }}" class="btn btn-info" style="margin-left: 50%"><i class="fa fa-mail-forward"></i> CHECKOUT</a>
-
 
            <p>&nbsp;</p>
        </div>
@@ -60,5 +52,13 @@
          </div>
        </div>
   </div>
+
+
+
+<script>
+  $('#addBook').change(function(){
+     $.get("{{ url('faculty/book')}}",
+  });
+</script>
 
  @stop

@@ -226,7 +226,7 @@ Route::group(['prefix' => 'inventory'], function() {
         "uses" => "InvPurchaseOrderController@batch_delete_purchase_order"
     ]);
 
-    Route::any("create-grn/{po_id}", [
+    Route::any("create-grn/{po_id}/{user_id}", [
         "as"   => "create-grn",
         "uses" => "InvPurchaseOrderController@create_grn"
     ]);
@@ -268,9 +268,9 @@ Route::group(['prefix' => 'inventory'], function() {
         "uses" => "InvGrnController@index_grn"
     ]);
 
-    Route::any("create-grn/{grn_id}/{po_id}", [
-        "as"   => "create-grn",
-        "uses" => "InvGrnController@create_grn"
+    Route::any("create-new-grn/{grn_id}/{po_id}", [
+        "as"   => "create-new-grn",
+        "uses" => "InvGrnController@create_new_grn"
     ]);
 
     Route::any("show-grn-detail/{grn_id}", [

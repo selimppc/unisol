@@ -11,7 +11,7 @@
     <table class="table table-striped  table-bordered">
         <tr>
             <td><strong> Purchase Order No:</strong></td>
-            <td>{{ isset($grn_head->inv_po_head_id) ? $grn_head->inv_po_head_id : ''}}</td>
+            <td>{{ isset($grn_head->inv_po_head_id) ? $grn_head->relInvPurchaseOrderHead->purchase_no : ''}}</td>
         </tr>
         <tr>
             <td><strong> Voucher Number:</strong></td>
@@ -25,16 +25,16 @@
 
         <tr>
             <td><strong> Supplier Name :</strong></td>
-            <td>{{ $grn_head->inv_supplier_id }}</td>
+            <td>{{ isset($grn_head->inv_supplier_id) ? $grn_head->relInvSupplier->company_name : '' }}</td>
         </tr>
         <tr>
             <td><strong> Requisition No:</strong></td>
-            <td>{{ $grn_head->inv_requisition_head_id }}</td>
+            <td>{{ isset($grn_head->inv_requisition_head_id) ? $grn_head->relInvRequisitionHead->requisition_no:'' }}</td>
         </tr>
 
         <tr>
             <td> <strong> Pay Terms :</strong> </td>
-            <td>{{ $grn_head->discount_rate }}</td>
+            <td>{{ $grn_head->pay_terms }}</td>
         </tr>
 
         <tr>
@@ -69,7 +69,7 @@
                 @if(isset($grn_dt))
                 @foreach($grn_dt as $values)
                  <tr>
-                    <td>{{Str::title($values->relInvProduct->title)}} -{{ $values->relInvProduct->code }}</td>
+{{--                    <td>{{Str::title($values->relInvProduct->title)}} -{{ $values->relInvProduct->code }}</td>--}}
                     <td>{{ $values->batch_number }}  </td>
                     <td>{{$values->expire_date}}</td>
                     <td>{{$values->receive_quantity}}</td>
