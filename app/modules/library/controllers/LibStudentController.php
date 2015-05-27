@@ -46,8 +46,8 @@ class LibStudentController extends \BaseController {
         return View::make('library::student.index',compact('all_cart_books','book_category_id','book_author_id','book_publisher_id','lib_book_id','model'));
     }
 
-
-    public function addBookToStudentCart($id){
+    public function addBookToStudentCart($id)
+    {
         if($id) {
             $prev_added_st_book_id = Session::get('cartBooks');
 
@@ -59,19 +59,6 @@ class LibStudentController extends \BaseController {
         //return Redirect::route('student.view-cart');
 
         return Redirect::back();
-    }
-
-    public function viewCart(){
-        $all_cart_book_ids = Session::get('cartBooks');
-        $all_cart_books = LibBook::with('relLibBookCategory', 'relLibBookAuthor', 'relLibBookPublisher')->whereIn('id', $all_cart_book_ids)->get();
-
-        $number = count($all_cart_books);
-
-        $sum = $all_cart_books->sum('digital_sell_price');
-
-
-
-        return View::make('library::student.view_cart',compact('all_cart_books', 'number','sum'));
     }
 
     public function removeBookFromToCart($id)
@@ -98,6 +85,41 @@ class LibStudentController extends \BaseController {
         );
         return Response::download($path, $file , $headers);
     }
+
+    public function viewCart()
+    {
+        $all_cart_book_ids = Session::get('cartBooks');
+
+        $all_cart_books = LibBook::with('relLibBookCategory', 'relLibBookAuthor', 'relLibBookPublisher')->whereIn('id', $all_cart_book_ids)->get();
+
+        $number = count($all_cart_books);
+
+        $sum = $all_cart_books->sum('digital_sell_price');
+
+        return View::make('library::student.view_cart',compact('all_cart_book_ids','all_cart_books', 'number','sum'));
+    }
+
+    public function myCart()
+    {
+        $all_cart_book_ids = Session::get('cartBooks');
+
+        print_r($all_cart_book_ids);exit;
+
+
+        $my_cart_books = LibBook::with('relLibBookCategory', 'relLibBookAuthor', 'relLibBookPublisher')->whereIn('id', $my_cart_book_ids)->get();
+
+
+
+        //$sum = $my_cart_books->sum('digital_sell_price');
+
+
+
+        return View::make('library::student.my_cart',compact('all_cart_books', 'number','sum'));
+    }
+
+
+
+
 
 
 

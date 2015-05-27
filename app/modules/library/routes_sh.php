@@ -40,6 +40,13 @@ Route::any('student/view-cart',[
     'uses' => 'LibStudentController@viewCart'
 ]);
 
+
+Route::any('student/my-cart',[
+    'as' =>'student.my-cart',
+    'uses' => 'LibStudentController@myCart'
+]);
+
+
 //Route::any('faculty/book-transaction',[
 //    'as' =>'faculty.book-transaction',
 //    'uses' => 'LibStudentController@getBookTransaction'
