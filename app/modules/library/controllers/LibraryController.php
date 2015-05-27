@@ -431,7 +431,7 @@ class LibraryController extends \BaseController {
             $model->digital_sell_price = Input::get('digital_sell_price');
             $model->is_rented = Input::get('is_rented');
 
-            $files = Input::file('docs');
+            $files = Input::get('docs');
             print_r($files);exit;
             $destinationPath = public_path() . '/docs';
             $filename =  $files->getClientOriginalExtension();
