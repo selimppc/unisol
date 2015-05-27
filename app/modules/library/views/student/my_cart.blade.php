@@ -18,20 +18,28 @@
                  <thead>
                         <tr>
                            <th><input name="id" type="checkbox" id="checkbox" class="checkbox" value=""></th>
+                           <th>Student Name</th>
                            <th>Book Name</th>
+                           <th>Issue Date</th>
+                           <th>transaction Type</th>
+                           <th>Status</th>
                            <th>Price</th>
                            <th>Action</th>
                         </tr>
                  </thead>
                  <tbody>
-                     @if(isset($all_cart_books))
-                         @foreach($all_cart_books as $acsb)
+                     @if(isset($my_cart_books))
+                         @foreach($my_cart_books as $mcsb)
                            <tr>
                                <td><input type="checkbox" name="id[]" class="myCheckbox" value=""></td>
-                               <td>{{ $acsb->title }}</td>
-                               <td>{{ $acsb->digital_sell_price }}</td>
+                               <td>{{ $mcsb->user_id }}</td>
+                               <td>{{ $mcsb->relLibBook->title }}</td>
+                               <td>{{ $mcsb->issue_date }}</td>
+                               <td>{{ $mcsb->relLibBookFinancialTransaction->trn_type }}</td>
+                               <td>{{ $mcsb->relLibBookFinancialTransaction->status }}</td>
+                               <td>{{ $mcsb->relLibBookFinancialTransaction->amount }}</td>
                                <td>
-                                    <a href="{{ URL::route('student.remove-from-cart',['id'=>$acsb->id]) }}" class="btn btn-large btn-success" ><b><i class="fa fa-download"></i>Remove from Cart</b></a>
+                                    <a href="{{ URL::route('student.remove-from-cart',['id'=>$mcsb->id]) }}" class="btn btn-large btn-success" ><b><i class="fa fa-download"></i>Remove from Cart</b></a>
                                </td>
                            </tr>
                          @endforeach
@@ -53,12 +61,5 @@
        </div>
   </div>
 
-
-
-<script>
-  $('#addBook').change(function(){
-     $.get("{{ url('faculty/book')}}",
-  });
-</script>
 
  @stop

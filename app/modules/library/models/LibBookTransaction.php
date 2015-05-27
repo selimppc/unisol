@@ -15,8 +15,8 @@ class LibBookTransaction extends Eloquent{
     private $rules = [
         'lib_books_id' => 'required|integer',
         'issue_date' => 'required',
-        'return_date' => 'required',
-        /*'status' => 'required',*/
+        /*'return_date' => 'required',
+        'status' => 'required',*/
 
     ];
 
@@ -44,6 +44,10 @@ class LibBookTransaction extends Eloquent{
 
     public function relUser(){
         return $this->belongsTo('User','user_id','id');
+    }
+
+    public function relLibBookFinancialTransaction(){
+        return $this->HasOne('LibBookFinancialTransaction');
     }
 
     // TODO : user info while saving data into table

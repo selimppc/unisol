@@ -81,7 +81,7 @@ class CreateInventory extends Migration {
             $table->dateTime('confirm_date')->nullable();
             $table->text('note')->nullable();
             $table->enum('status', array(
-                'open', 'close', 'pending-approval', 'approved', 'transferred'
+                'open', 'close', 'pending-approval', 'approved', 'transferred',
             ));
 
             $table->integer('created_by', false, 11)->nullable();
@@ -120,7 +120,7 @@ class CreateInventory extends Migration {
                 'distribution', 'purchase'
             ));
             $table->enum('status', array(
-                'open', 'approved', 'close', 'cancel'
+                'open', 'approved', 'close', 'cancel',  'PO Created'
             ));
             $table->integer('created_by', false, 11)->nullable();
             $table->integer('updated_by', false, 11)->nullable();
@@ -171,7 +171,7 @@ class CreateInventory extends Migration {
             $table->float('discount_amount')->nullable();
             $table->float('amount')->nullable();
             $table->enum('status', array(
-                'open', 'approved', 'close', 'cancel'
+                'open', 'approved', 'close', 'cancel', 'GRN Created'
             ));
             $table->integer('created_by', false, 11)->nullable();
             $table->integer('updated_by', false, 11)->nullable();
@@ -229,7 +229,7 @@ class CreateInventory extends Migration {
             $table->float('amount')->nullable();
             $table->float('net_amount')->nullable();
             $table->enum('status', array(
-                'open', 'approved', 'close', 'cancel'
+                'open', 'approved', 'close', 'cancel', 'GRN Confirmed'
             ));
             $table->integer('created_by', false, 11)->nullable();
             $table->integer('updated_by', false, 11)->nullable();
