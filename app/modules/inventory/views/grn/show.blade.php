@@ -69,7 +69,7 @@
                 @if(isset($grn_dt))
                 @foreach($grn_dt as $values)
                  <tr>
-{{--                    <td>{{Str::title($values->relInvProduct->title)}} -{{ $values->relInvProduct->code }}</td>--}}
+                    <td>{{Str::title($values->relInvProduct->title)}} -{{ $values->relInvProduct->code }}</td>
                     <td>{{ $values->batch_number }}  </td>
                     <td>{{$values->expire_date}}</td>
                     <td>{{$values->receive_quantity}}</td>
