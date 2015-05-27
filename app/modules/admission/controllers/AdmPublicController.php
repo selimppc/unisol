@@ -17,6 +17,7 @@ class AdmPublicController extends \BaseController {
         $degree_model = Batch::with('relDegree','relYear','relSemester',
             'relDegree.relDepartment','relDegree.relDegreeGroup','relBatchWaiver.relWaiver','relDegree.relDegreeLevel')
             ->where('id', '=', $degree_id)
+            ->where('status', 'admission-open')
             ->get();
 
         $major_courses = BatchCourse::with('relBatch','relCourse')

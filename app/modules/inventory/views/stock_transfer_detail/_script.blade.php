@@ -1,7 +1,7 @@
 <script type="text/javascript">
     $(function(){
          $( "#search_product" ).autocomplete({
-          source: "ajax/get-product-auto-complete",
+          source: "transfer-ajax-to",
           minLength: 3,
           select: function(event, ui) {
             $('#search_product').val(ui.item.label);
@@ -10,6 +10,7 @@
             $('#product-unit').val(ui.item.unit);
             $('#product-name').val(ui.item.name);
             $('#product-quantity').val(ui.item.po_unit_qty);
+            $('#available-qty').html(ui.item.available_qty);
           }
         });
     });
@@ -46,6 +47,8 @@
         $prate = $("#product-rate").val();
         $punit = $("#product-unit").val();
         $pqty = $("#product-quantity").val();
+        $avail_qty = $("#available-qty").html();
+
 
         if($pid == "" || $prate== "" || $punit == "" || $pqty == ""){
             alert("please add your product information and try Again!");
@@ -59,22 +62,27 @@
                     alert("You already added this product code in line #" + (index + 1));
                     return false;
                 } else {
-                    $product_name = $("#product-name").val();
-                    $product_id = $("#product-id").val();
-                    $invProductRate = $("#product-rate").val();
-                    $invProductUnit = $("#product-unit").val();
-                    $invProductQuantity = $("#product-quantity").val();
+                    if($avail_qty < $pqty){
+                        alert("Quantity can not be more than Available Quantity");
+                        return false;
+                    }else{
+                        $product_name = $("#product-name").val();
+                        $product_id = $("#product-id").val();
+                        $invProductRate = $("#product-rate").val();
+                        $invProductUnit = $("#product-unit").val();
+                        $invProductQuantity = $("#product-quantity").val();
 
-                    $('#test').append("<tr> <td><input value='"+$product_name+"' readonly> <input name='inv_product_id[]' type='hidden' value='"+$product_id+"'></td>  <td><input name='unit[]' value='"+$invProductUnit+"' readonly></td> <td><input name='quantity[]' value='"+$invProductQuantity+"' readonly></td> <td><input name='rate[]' value='"+$invProductRate+"' readonly></td> </tr>");
-                    $arrayProducts.push($td_productCode);
+                        $('#test').append("<tr> <td><input value='"+$product_name+"' readonly> <input name='inv_product_id[]' type='hidden' value='"+$product_id+"'></td>  <td><input name='unit[]' value='"+$invProductUnit+"' readonly></td> <td><input name='quantity[]' value='"+$invProductQuantity+"' readonly></td> <td><input name='rate[]' value='"+$invProductRate+"' readonly></td> </tr>");
+                        $arrayProducts.push($td_productCode);
 
-                    //flush the input fields
-                    $("#product-name").val("");
-                    $("#product-id").val("");
-                    $("#product-rate").val("");
-                    $("#product-unit").val("");
-                    $("#product-quantity").val("");
-                    $("#search_product").val("");
+                        //flush the input fields
+                        $("#product-name").val("");
+                        $("#product-id").val("");
+                        $("#product-rate").val("");
+                        $("#product-unit").val("");
+                        $("#product-quantity").val("");
+                        $("#search_product").val("");
+                    }
 
                 }
             }

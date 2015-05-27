@@ -3604,3 +3604,7 @@ fieldset[disabled] .btn-vk.active {
     -moz-border-radius: 0px;
     background-image: none;
 }
+.scrollit {
+    overflow:scroll;
+    width:100px;
+}

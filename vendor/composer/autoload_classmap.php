@@ -227,6 +227,7 @@ return array(
     'InvSupplierController' => $baseDir . '/app/modules/inventory/controllers/InvSupplierController.php',
     'InvTransferDetail' => $baseDir . '/app/modules/inventory/models/InvTransferDetail.php',
     'InvTransferHead' => $baseDir . '/app/modules/inventory/models/InvTransferHead.php',
+    'InvVStock' => $baseDir . '/app/modules/inventory/models/InvVStock.php',
     'LibBook' => $baseDir . '/app/modules/library/models/LibBook.php',
     'LibBookAuthor' => $baseDir . '/app/modules/library/models/LibBookAuthor.php',
     'LibBookCategory' => $baseDir . '/app/modules/library/models/LibBookCategory.php',

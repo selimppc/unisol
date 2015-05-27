@@ -47,7 +47,8 @@ class HomeController extends BaseController {
             return Redirect::to("user/user-access-to");
         }
         elseif(isset(Auth::applicant()->get()->id) && Auth::applicant()->get()->id){
-            return Redirect::to("user/user-access-to");
+            //return Redirect::to("user/user-access-to");
+            return View::make('applicant.index')->with('pageTitle', 'Welcome Applicant!');
         }
         else {
             return View::make('public.index')->with('pageTitle', 'Welcome!');
