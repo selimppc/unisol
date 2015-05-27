@@ -15,8 +15,8 @@ class LibBookTransaction extends Eloquent{
     private $rules = [
         'lib_books_id' => 'required|integer',
         'issue_date' => 'required',
-        'return_date' => 'required',
-        /*'status' => 'required',*/
+        /*'return_date' => 'required',
+        'status' => 'required',*/
 
     ];
 

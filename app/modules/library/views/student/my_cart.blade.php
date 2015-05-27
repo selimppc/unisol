@@ -18,24 +18,28 @@
                  <thead>
                         <tr>
                            <th><input name="id" type="checkbox" id="checkbox" class="checkbox" value=""></th>
+                           <th>Student Name</th>
                            <th>Book Name</th>
+                           <th>Issue Date</th>
+                           <th>transaction Type</th>
+                           <th>Status</th>
                            <th>Price</th>
                            <th>Action</th>
                         </tr>
                  </thead>
                  <tbody>
-                     @if(isset($all_cart_books))
-                         @foreach($all_cart_books as $acsb)
-                           <tr>
-                               <td><input type="checkbox" name="id[]" class="myCheckbox" value=""></td>
-                               <td>{{ $acsb->title }}</td>
-                               <td>{{ $acsb->digital_sell_price }}</td>
-                               <td>
-                                    <a href="{{ URL::route('student.remove-from-cart',['id'=>$acsb->id]) }}" class="btn btn-large btn-success" ><b><i class="fa fa-download"></i>Remove from Cart</b></a>
-                               </td>
-                           </tr>
-                         @endforeach
-                     @endif
+                     {{--@if(isset($my_cart_books))--}}
+                         {{--@foreach($my_cart_books as $mcsb)--}}
+                           {{--<tr>--}}
+                               {{--<td><input type="checkbox" name="id[]" class="myCheckbox" value=""></td>--}}
+                               {{--<td>{{ $mcsb->title }}</td>--}}
+                               {{--<td>{{ $mcsb->digital_sell_price }}</td>--}}
+                               {{--<td>--}}
+                                    {{--<a href="{{ URL::route('student.remove-from-cart',['id'=>$mcsb->id]) }}" class="btn btn-large btn-success" ><b><i class="fa fa-download"></i>Remove from Cart</b></a>--}}
+                               {{--</td>--}}
+                           {{--</tr>--}}
+                         {{--@endforeach--}}
+                     {{--@endif--}}
                  </tbody>
               </table>
 
@@ -53,12 +57,5 @@
        </div>
   </div>
 
-
-
-<script>
-  $('#addBook').change(function(){
-     $.get("{{ url('faculty/book')}}",
-  });
-</script>
 
  @stop
