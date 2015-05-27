@@ -45,6 +45,20 @@ class LibBook extends Eloquent{
         return $this->errors;
     }
 
+    public function validate2($data)
+    {
+        $validate2 = Validator::make($data, $this->rules);
+        if ($validate2->fails())
+        {
+            $this->errors = $validate2->errors();
+            return false;
+        }
+        return true;
+    }
+    public function errors2()
+    {
+        return $this->errors;
+    }
 
     //TODO : Model Relationship
 
@@ -58,9 +72,9 @@ class LibBook extends Eloquent{
         return $this->belongsTo('LibBookPublisher','lib_book_publisher_id','id');
     }
 
-    /* public function relBatchCourse(){
-         return $this->HasMany('BatchCourse');
-     }*/
+    public function relLibBookTransaction(){
+         return $this->HasMany('LibBookTransaction');
+    }
 
 
     // TODO : user info while saving data into table
