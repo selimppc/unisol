@@ -40,6 +40,11 @@ Route::any('student/view-cart',[
     'uses' => 'LibStudentController@viewCart'
 ]);
 
+Route::any('student/payment',[
+    'as' =>'student.payment',
+    'uses' => 'LibStudentController@paymentMethod'
+]);
+
 
 Route::any('student/send-info-to-transaction/{all_cart_book_ids}',[
     'as' =>'student.send-info-to-transaction',

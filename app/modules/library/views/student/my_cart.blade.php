@@ -39,7 +39,12 @@
                                <td>{{ $mcsb->relLibBookFinancialTransaction->status }}</td>
                                <td>{{ $mcsb->relLibBookFinancialTransaction->amount }}</td>
                                <td>
-                                    <a href="{{ URL::route('student.remove-from-cart',['id'=>$mcsb->id]) }}" class="btn btn-large btn-success" ><b><i class="fa fa-download"></i>Remove from Cart</b></a>
+                                        @if($mcsb->relLibBookFinancialTransaction->status == "paid")
+                                                <a href="{{ URL::route('student.book.download',['book_id'=>$mcsb->relLibBook->id]) }}" class="btn btn-large btn-success pull-right" ><i class="fa fa-download"></i>Download</a>
+                                        @else
+                                               <a href="{{ URL::route('student.payment') }}" class="btn btn-large btn-warning pull-right" ><i class="fa fa-mail-reply"></i>Payment Due</a>
+                                        @endif
+                                    {{--<a href="{{ URL::route('student.remove-from-cart',['id'=>$mcsb->id]) }}" class="btn btn-large btn-success" ><b><i class="fa fa-download"></i>Remove from Cart</b></a>--}}
                                </td>
                            </tr>
                          @endforeach
