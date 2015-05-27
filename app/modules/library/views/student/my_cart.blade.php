@@ -52,6 +52,8 @@
                  </tbody>
               </table>
 
+              Total price : {{ $sum }}
+
            <p>&nbsp;</p>
        </div>
     </div>

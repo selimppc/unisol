@@ -81,7 +81,7 @@ class LibStudentController extends \BaseController
     {
         $download = LibBook::find($book_id);
         $file = $download->file;
-        $path = public_path("img/" . $file);
+        $path = public_path("library/" . $file);
         $headers = array(
             'Content-Type: application/pdf',
         );
@@ -102,43 +102,55 @@ class LibStudentController extends \BaseController
         return View::make('library::student.view_cart', compact('all_cart_book_ids', 'all_cart_books', 'number', 'sum'));
     }
 
-    public function sendInfoToTransactionTable($all_cart_book_ids)
+    public function saveInfoToTransactionTable()
     {
-        //$all_cart_book_ids_tot = Session::get('cartBooks');
+        $all_cart_book_tot = Session::get('cartBooks');
+
+        //print_r($all_cart_book_ids_tot);exit;
 
         $all_cart_books = LibBook::with('relLibBookCategory', 'relLibBookAuthor', 'relLibBookPublisher')
-            ->where('id',$all_cart_book_ids)
+            ->where('id',$all_cart_book_tot)
             ->get();
-        $sum = $all_cart_books->sum('digital_sell_price');
-        //$info = Input::all();
+
         // save to lib_book_transaction table
-        $lib_book_trnsctn = new LibBookTransaction();
-        $lib_book_trnsctn->user_id = Auth::user()->get()->id;
-        $lib_book_trnsctn->lib_books_id = $all_cart_book_ids;
-        $date = date('d-m-y H:i:s');
-        $lib_book_trnsctn->issue_date = $date;
 
-        if ($lib_book_trnsctn->save())
+        foreach ($all_cart_books as $key => $value)
         {
-            $lib_book_trnsctn_id = $lib_book_trnsctn->id;
+            //print_r($value);exit;
+                $lib_book_trnsctn = new LibBookTransaction();
+                $lib_book_trnsctn->user_id = Auth::user()->get()->id;
+                $lib_book_trnsctn->lib_books_id = $value->id;
+                $date = date('d-m-y H:i:s');
+                $lib_book_trnsctn->issue_date = $date;
 
-            // save to lib_book_financial_transaction table
-            $lib_book_fncl_trnsctn = new LibBookFinancialTransaction();
-            $lib_book_fncl_trnsctn->lib_book_transaction_id = $lib_book_trnsctn_id;
-            $lib_book_fncl_trnsctn->amount = $sum;
-            $lib_book_fncl_trnsctn->trn_type = 'commercial';
-            $lib_book_fncl_trnsctn->status = 'paid';
-            if($lib_book_fncl_trnsctn->save())
-            {
-                return Redirect::route('student.my-cart');
-            }else{
-                Session::flash('errors', 'Data Not Sent to second table');
-                return Redirect::back();
-            }
-        }else{
-            Session::flash('errors', 'Data Not Sent ! Try Again');
-            return Redirect::route('student.view-cart');
+                $lib_book_trnsctn->save();
+
+                $lib_book_trnsctn_id = $lib_book_trnsctn->id;
+
+                // save to lib_book_financial_transaction table
+                $lib_book_fncl_trnsctn = new LibBookFinancialTransaction();
+                $lib_book_fncl_trnsctn->lib_book_transaction_id = $lib_book_trnsctn_id;
+                $lib_book_fncl_trnsctn->amount = $value->digital_sell_price;
+                $lib_book_fncl_trnsctn->trn_type = 'commercial';
+                $lib_book_fncl_trnsctn->status = 'paid';
+
+                if($lib_book_fncl_trnsctn->save())
+                {
+                    return Redirect::route('student.my-cart');
+
+                }else{
+                    Session::flash('errors', 'Data Not Sent to second table');
+
+                }
+
+//                }else{
+//                    Session::flash('errors', 'Data Not Sent ! Try Again');
+//                    return Redirect::route('student.view-cart');
+//                }
+
         }
+        Session::flash('errors', 'Data Not Sent table');
+        return Redirect::back();
 
 
     }
@@ -159,6 +171,13 @@ class LibStudentController extends \BaseController
     {
 
         $all_cart_book_ids = Session::get('cartBooks');
+
+        $all_cart_books = LibBook::with('relLibBookCategory', 'relLibBookAuthor', 'relLibBookPublisher')
+            ->whereIn('id', $all_cart_book_ids)->get();
+
+        $sum = $all_cart_books->sum('digital_sell_price');
+
+
 
         $my_cart_books = LibBookTransaction::with('relLibBook','relLibBookFinancialTransaction')
             ->get();

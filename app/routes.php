@@ -63,7 +63,7 @@ Route::get('/','HomeController@index');
 Route::get('admission/','HomeController@index');
 Route::get('academic/','HomeController@index');
 Route::get('examination/','HomeController@index');
-Route::get('applicant/','HomeController@index');
+Route::get('applicant/','ApplicantController@index');
 Route::get('cfo/','HomeController@index');
 Route::get('common/','HomeController@index');
 Route::get('fees/','HomeController@index');
