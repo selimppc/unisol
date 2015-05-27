@@ -58,12 +58,12 @@
                                     <th>Action</th>
                                 </tr>
                                 </thead>
-                                <tbody class="scrollit">
+                                <tbody>
                                 @foreach ($books as $value)
                                     <tr>
                                         <td><input type="checkbox" name="id[]"  class="myCheckbox" value="{{ $value->id }}">
                                         </td>
-                                        <td >{{isset($value->title) ? $value->title :''}}</td>
+                                        <td width="150">{{isset($value->title) ? $value->title :''}}</td>
                                         <td>{{isset($value->isbn) ? $value->isbn : ''}}</td>
                                         <td>{{isset($value->relLibBookCategory->title) ? $value->relLibBookCategory->title : ''}}</td>
                                         <td>{{isset($value->relLibBookAuthor->name) ? $value->relLibBookAuthor->name : ''}}</td>
