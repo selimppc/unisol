@@ -143,20 +143,29 @@ class LibStudentController extends \BaseController
 
     }
 
+    public function paymentMethod()
+    {
+        $all_cart_book_ids = Session::get('cartBooks');
+
+        return View::make('library::student.payment', compact('all_cart_book_ids'));
+    }
+
+
+
+
+
+
     public function myCart()
     {
-//        $all_cart_book_ids = Session::get('cartBooks');
-//        $all_cart_books = LibBook::with('relLibBookCategory', 'relLibBookAuthor', 'relLibBookPublisher')
-//            ->whereIn('id', $all_cart_book_ids)->get();
 
-
+        $all_cart_book_ids = Session::get('cartBooks');
 
         $my_cart_books = LibBookTransaction::with('relLibBook','relLibBookFinancialTransaction')
             ->get();
 
 //      print_r($my_cart_books);exit;
 
-        return View::make('library::student.my_cart',compact('my_cart_books','sum'));
+        return View::make('library::student.my_cart',compact('all_cart_book_ids','my_cart_books','sum'));
     }
 
 
