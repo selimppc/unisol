@@ -28,18 +28,22 @@
                         </tr>
                  </thead>
                  <tbody>
-                     {{--@if(isset($my_cart_books))--}}
-                         {{--@foreach($my_cart_books as $mcsb)--}}
-                           {{--<tr>--}}
-                               {{--<td><input type="checkbox" name="id[]" class="myCheckbox" value=""></td>--}}
-                               {{--<td>{{ $mcsb->title }}</td>--}}
-                               {{--<td>{{ $mcsb->digital_sell_price }}</td>--}}
-                               {{--<td>--}}
-                                    {{--<a href="{{ URL::route('student.remove-from-cart',['id'=>$mcsb->id]) }}" class="btn btn-large btn-success" ><b><i class="fa fa-download"></i>Remove from Cart</b></a>--}}
-                               {{--</td>--}}
-                           {{--</tr>--}}
-                         {{--@endforeach--}}
-                     {{--@endif--}}
+                     @if(isset($my_cart_books))
+                         @foreach($my_cart_books as $mcsb)
+                           <tr>
+                               <td><input type="checkbox" name="id[]" class="myCheckbox" value=""></td>
+                               <td>{{ $mcsb->user_id }}</td>
+                               <td>{{ $mcsb->relLibBook->title }}</td>
+                               <td>{{ $mcsb->issue_date }}</td>
+                               <td>{{ $mcsb->relLibBookFinancialTransaction->trn_type }}</td>
+                               <td>{{ $mcsb->relLibBookFinancialTransaction->status }}</td>
+                               <td>{{ $mcsb->relLibBookFinancialTransaction->amount }}</td>
+                               <td>
+                                    <a href="{{ URL::route('student.remove-from-cart',['id'=>$mcsb->id]) }}" class="btn btn-large btn-success" ><b><i class="fa fa-download"></i>Remove from Cart</b></a>
+                               </td>
+                           </tr>
+                         @endforeach
+                     @endif
                  </tbody>
               </table>
 

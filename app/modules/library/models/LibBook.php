@@ -58,9 +58,9 @@ class LibBook extends Eloquent{
         return $this->belongsTo('LibBookPublisher','lib_book_publisher_id','id');
     }
 
-    /* public function relBatchCourse(){
-         return $this->HasMany('BatchCourse');
-     }*/
+    public function relLibBookTransaction(){
+         return $this->HasMany('LibBookTransaction');
+    }
 
 
     // TODO : user info while saving data into table
