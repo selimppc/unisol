@@ -5,7 +5,7 @@
     </h4>
 </div>
 <div class="modal-body edit_modal_aca">
-    <div style="padding: 10px; width: 90%;">
+    <div style="padding: 10px">
 
         {{ Form::model($edit_data,array('route'=> array('class/update',$edit_data->id), 'method' => 'POST', 'files' => true)) }}
         <div class='form-group'>
