@@ -241,10 +241,10 @@ Route::group(['prefix' => 'inventory'], function() {
         "uses" => "InvPurchaseOrderController@detail_purchase_order"
     ]);
 
-    Route::any("ajax/get-product-auto-complete", [
+    /*Route::any("ajax/get-product-auto-complete", [
         "as"   => "ajax/get-product-auto-complete",
         "uses" => "InvPurchaseOrderController@ajaxGetProductAutoComplete"
-    ]);
+    ]);*/
 
     Route::any("store-purchase-order-detail", [
         "as"   => "store-purchase-order-detail",
@@ -348,6 +348,11 @@ Route::group(['prefix' => 'inventory'], function() {
     Route::any("sd-ajax-delete-dt/{sd_id}", [
         "as"   => "sd-ajax-delete-dt",
         "uses" => "InvStockController@ajax_delete_sd_detail"
+    ]);
+
+    Route::any("transfer-ajax-to", [
+        "as"   => "transfer-ajax-to",
+        "uses" => "InvStockController@ajaxTransferProductAutoComplete"
     ]);
 
 

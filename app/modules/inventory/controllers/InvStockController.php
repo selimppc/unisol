@@ -124,22 +124,22 @@ class InvStockController extends \BaseController {
     }
 
     // AJax Product Search
-    public function ajaxGetProductAutoComplete(){
-
+    public function ajaxTransferProductAutoComplete(){
         $term = Input::get('term');
         $results = array();
-        $queries = DB::table('inv_product')
+        $queries = DB::table('inv_v_stock')
             ->where('title', 'LIKE', '%'.$term.'%')
             ->orWhere('code', 'LIKE', '%'.$term.'%')
-            ->take(5)->get();
+            ->take(10)->get();
         foreach ($queries as $query)
         {
             $results[] = [
                 'label' => $query->title.' - '.$query->code ,
-                'id' => $query->id,
-                'rate'=>$query->cost_price ,
-                'unit' =>$query->purchase_unit,
-                'name' => $query->title
+                'id' => $query->inv_product_id,
+                'rate'=>$query->rate ,
+                'unit' =>$query->unit,
+                'name' => $query->title,
+                'available_qty' => $query->availableQty
             ];
         }
         return Response::json($results);
