@@ -53,11 +53,12 @@
     <li class="treeview">
         <a href="#">
             <i class="fa fa-edit" style="color: #2ecee7"></i>
-            <span> Admission Test </span>
+            <span> Admission</span>
             <i class="fa fa-angle-left pull-right"></i>
         </a>
         <ul class="treeview-menu">
-            <a href="{{URL::to('applicant/admission-test')}}"  class="list-group-item" >Admission Test </a>
+            <li><a href="{{URL::to('admission/public/degree-offer-list')}}"  class="list-group-item" >Admission Degree Offer</a></li>
+            <li><a href="{{URL::to('applicant/admission-test')}}"  class="list-group-item" >Admission Test </a></li>
         </ul>
     </li>
 
