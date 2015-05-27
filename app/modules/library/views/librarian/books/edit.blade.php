@@ -79,7 +79,7 @@
 
         <div class='form-group'>
             {{ Form::label('docs', 'Upload File') }}
-            <div>{{ Form::file('docs', Input::old('docs'),['class'=>'form-control ']) }}</div>
+            <div>{{ Form::file('docs', Input::old('docs'),['class'=>'form-control']) }}</div>
             </br>
            <p style="background:#b7d3e5;width: 50%;">{{$edit_book->file}}</p>
         </div>
