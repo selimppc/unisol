@@ -11,7 +11,12 @@ class ApplicantController extends \BaseController
 
     public  function index()
     {
-        return View::make('applicant::index');
+        if(isset(Auth::applicant()->get()->id) && Auth::applicant()->get()->id) {
+            return View::make('applicant::index');
+        }
+        else{
+            return Redirect::to('/');
+        }
     }
 
     public  function signup()

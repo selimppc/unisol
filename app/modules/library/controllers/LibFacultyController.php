@@ -22,7 +22,7 @@ class LibFacultyController extends \BaseController {
 
 
 
-            $model = LibBook::with('relLibBookCategory','relLibBookAuthor','relLibBookPublisher');
+            $model = LibBook::with('relLibBookCategory','relLibBookAuthor','relLibBookPublisher','relLibBookTransaction');
 
             if (isset($lib_book_category_id) && !empty($lib_book_category_id)) $model->where('lib_books.lib_book_category_id', '=', $lib_book_category_id);
             if (isset($lib_book_author_id) && !empty($lib_book_author_id)) $model ->where('lib_books.lib_book_author_id', '=', $lib_book_author_id);
@@ -42,12 +42,6 @@ class LibFacultyController extends \BaseController {
         }else{
             $all_cart_books = array();
         }
-
-//        $transaction_id = LibBookFinancialTransaction::with('relLibBookTransaction')->whereExists(function ($query){
-//            $query->from('lib_book_transaction')->whereRaw('lib_book_financial_transaction.lib_book_transaction_id = lib_book_financial_transaction.id');
-//            $query->where('lib_book_transaction.', '=', );
-//        });
-
 
         return View::make('library::faculty.index',compact('lib_book_category_id','lib_book_author_id','lib_book_publisher_id','lib_book_id','model', 'all_cart_books'));
 	}
@@ -80,34 +74,85 @@ class LibFacultyController extends \BaseController {
         $sum = $all_cart_books->sum('digital_sell_price');
         $number = count($all_cart_books);
 
-        return View::make('library::faculty.add_cart_book',compact('all_cart_books', 'number','id','sum','all_cart_book_ids'));
-    }
+        $remove_paid_book = LibBookFinancialTransaction::join('lib_book_transaction',function($query){
+            $query->on('lib_book_financial_transaction.lib_book_transaction_id', '=', 'lib_book_transaction.id');
+        })->join('lib_books', function($join){
+            $join->on('lib_books.id', '=', 'lib_book_transaction.lib_books_id');
 
-    public function getBookTransaction(){
+        })
+//            ->where('lib_book_financial_transaction.id','=', $all_cart_book_ids)
+           ->get();
+        //print_r($remove_paid_book);exit;
 
-        $data = Input::all();
-        $model = new LibBookTransaction();
-        $model->user_id = Input::get('user_id');
-        $model->lib_books_id = Input::get('lib_books_id');
 
-        if($model->validate($data)) {
-            DB::beginTransaction();
-            try {
-                $model->create($data);
-                DB::commit();
-                Session::flash('message', " Successfully Added  ");
-            }
-            catch ( Exception $e ){
-                DB::rollback();
-                Session::flash('danger', " not added.Invalid Request !");
-            }
-            return Redirect::back();
-        }else{
-            $errors = $model->errors();
-            Session::flash('errors', $errors);
-            return Redirect::back()
-                ->with('errors', 'invalid');
+
+//        $course_list = ExmExamList::join('course_conduct', function($query) {
+////            $query->on('exm_exam_list.course_conduct_id', '=', 'course_conduct.id');
+////        })->join('course', function($join){
+////            $join->on('course.id', '=', 'course_conduct.course_id');
+////        })
+////            ->where('exm_exam_list.id', $id)
+////            ->select(DB::raw('exm_exam_list.course_conduct_id as id, course.title as title'))
+////            ->lists('title','id');
+
+
+            return View::make('library::faculty.my_cart', compact('all_cart_books', 'number', 'id', 'sum', 'all_cart_book_ids'));
         }
+
+    public function storeBookTransaction(){
+        $all_cart_book_ids = Session::get('cartBooks');
+
+
+        $all_cart_books = LibBook::with('relLibBookCategory', 'relLibBookAuthor', 'relLibBookPublisher')
+            ->whereIn('id',$all_cart_book_ids)
+            ->get();
+        $tr_error = '';
+        $tr_info = '';
+        if($all_cart_book_ids){
+           foreach($all_cart_books as $key => $cb){
+               $transaction = new LibBookTransaction();
+               $transaction->user_id = Auth::user()->get()->id;
+               $transaction->lib_books_id = $cb->id;
+               $transaction->issue_date = date('d-m-y H:i:s');
+               $transaction->status = 'purchase';
+
+               if ($transaction->save())
+               {
+                   // save to lib_book_financial_transaction table
+                   $f_transaction = new LibBookFinancialTransaction();
+                   $f_transaction->lib_book_transaction_id = $transaction->id;
+                   $f_transaction->amount = $cb->digital_sell_price;
+                   $f_transaction->trn_type = 'commercial';
+                   $f_transaction->status = 'paid';
+                   $f_transaction->save();
+                   if($f_transaction->save())
+                   {
+                       $tr_info[] = 'Book "'.$cb->title.'" is paid. You can download it.';
+                       if (($key = array_search($cb->id, $all_cart_book_ids)) !== false) {
+                           unset($all_cart_book_ids[$key]);
+                       }
+
+                   }else{
+                       $tr_error[] = 'At transaction of Book "'.$cb->title.'" is done but payment is not done. So please try once again.';
+                   }
+               }else{
+                   $tr_error[] = 'Error at transaction of Book "'.$cb->title.'". So please try once again.';
+               }
+           }
+            // set if any item is not successfully added.
+            Session::set('cartBooks', $all_cart_book_ids);
+
+            if($tr_error){
+                Session::flash('errors', implode("<br />", $tr_error));
+                return Redirect::back();
+            }elseif($tr_info){
+                Session::flash('errors', implode("<br />", $tr_info));
+                return Redirect::back();
+            }else{
+                return Redirect::back();
+            }
+
+       }
     }
 
 	public function checkoutByFaculty($all_cart_book_ids)
@@ -117,7 +162,7 @@ class LibFacultyController extends \BaseController {
 
         $book_id = LibBook::where('id',$all_cart_book_ids)->get();
 
-        print_r($book_id);exit;
+        //print_r($book_id);exit;
     }
 
     public function getBookDownload($book_id)
@@ -131,13 +176,23 @@ class LibFacultyController extends \BaseController {
         return Response::download($path, $file , $headers);
     }
 
-    public function show($id)
-	{
-		//
-	}
+    public function removeBookFromCart($id)
+    {
+        $all_cart_book_ids = Session::get('cartBooks');
+
+        // Remove array item by array_search
+        if (($key = array_search($id, $all_cart_book_ids)) !== false) {
+            unset($all_cart_book_ids[$key]);
+        }
+
+        Session::set('cartBooks', $all_cart_book_ids);
+
+        return Redirect::back();
+    }
 
 
-	/**
+
+    /**
 	 * Show the form for editing the specified resource.
 	 *
 	 * @param  int  $id

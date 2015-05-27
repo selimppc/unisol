@@ -283,9 +283,14 @@ Route::group(['prefix' => 'inventory'], function() {
         "uses" => "InvGrnController@ajax_grn_detail_store"
     ]);
 
-    Route::any("ajax-delete-grn-detail/{g_id}", [
+    Route::any("ajax-delete-grn-detail/{grn_id}", [
         "as"   => "ajax-delete-grn-detail",
         "uses" => "InvGrnController@ajax_delete_grn_detail"
+    ]);
+
+    Route::any("confirm-grn/{grn_id}", [
+        "as"   => "confirm-grn",
+        "uses" => "InvGrnController@confirm_grn"
     ]);
 
 

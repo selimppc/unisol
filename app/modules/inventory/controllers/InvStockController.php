@@ -19,7 +19,7 @@ class InvStockController extends \BaseController {
 	public function stock_view()
 	{
         $pageTitle = "Stock History ";
-        $data = null;
+        $data = InvVStock::get();
         return View::make('inventory::stock.stock_view', compact('data','pageTitle'));
 	}
 

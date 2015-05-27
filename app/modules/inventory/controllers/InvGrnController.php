@@ -84,6 +84,21 @@ class InvGrnController extends \BaseController {
         }
     }
 
+    public function confirm_grn($grn_id){
+        $check = InvGrnDetail::where('inv_grn_head_id', $grn_id)->exists();
+        if($check){
+            //Call Store Procedure
+            DB::select('call sp_inv_confirm_grn(?, ?)', array($grn_id, Auth::user()->get()->id ) );
+            Session::flash('message', 'GRN Confirmed !');
+        }else{
+            Session::flash('info', 'GRN Detail is empty. Please add product item. And try later!');
+        }
+        return Redirect::back();
+    }
+
+
+
+
 
     //TODO :: modal + ajax + reload content
 

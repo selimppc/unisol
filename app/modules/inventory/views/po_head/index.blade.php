@@ -60,12 +60,12 @@
                             <a href="{{ URL::route('purchase-order-show', ['po_id'=>$values->id ])  }}" class="btn btn-default btn-xs" title="Manage Applicant" data-toggle="modal" data-target="#modal-pc"><span class="fa fa-eye"></span></a>
                             <a href="{{ URL::route('purchase-order-edit',['po_id'=>$values->id])  }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal-pc"> <i class="fa fa-edit"></i></a>
                             <a data-href="{{ URL::route('purchase-order-destroy', ['po_id'=>$values->id ]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa fa-circle-o-notch" style="color: red" data-toggle="tooltip" data-placement="bottom" title="Cancel"></i></a>
-                        @elseif($values->status=='approved')
+                        @elseif($values->status=='GRN Created')
                             <a href="{{ URL::route('purchase-order-show', ['po_id'=>$values->id ])  }}" class="btn btn-default btn-xs" title="Manage Applicant" data-toggle="modal" data-target="#modal-pc"><span class="fa fa-eye"></span></a>
                         @endif
                     </td>
                     <td>
-                        @if($values->status != 'approved')
+                        @if($values->status != 'GRN Created')
                             <a href="{{ URL::route('create-grn', ['po_id'=>$values->id, 'user_id'=> 1 ]) }}" class="btn btn-xs btn-default"  ><i class="fa fa-adjust" style="color: darkslategray" data-toggle="tooltip" data-placement="bottom" title="Create GRN"></i> + GRN</a>
                         @endif
                     </td>
