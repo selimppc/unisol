@@ -45,6 +45,20 @@ class LibBook extends Eloquent{
         return $this->errors;
     }
 
+    public function validate2($data)
+    {
+        $validate2 = Validator::make($data, $this->rules);
+        if ($validate2->fails())
+        {
+            $this->errors = $validate2->errors();
+            return false;
+        }
+        return true;
+    }
+    public function errors2()
+    {
+        return $this->errors;
+    }
 
     //TODO : Model Relationship
 

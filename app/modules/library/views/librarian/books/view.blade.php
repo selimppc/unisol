@@ -57,11 +57,6 @@
                 <td>Is Rented:</td>
                 <td>{{isset($view_book->is_rented) ? $view_book->is_rented : ''}}</td>
             </tr>
-            <tr>
-                <td>File:</td>
-                <td></td>
-            </tr>
-
         </table>
     </div>
 </div>
