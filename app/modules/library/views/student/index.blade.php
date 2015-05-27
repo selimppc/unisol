@@ -72,9 +72,7 @@
                               <tr>
                                   <td><input type="checkbox" name="id[]" class="myCheckbox" value=""></td>
                                   <td>
-                                      <a href="{{ URL::route('amw.view-exm-courses') }}"
-                                      class="btn-link" title="View Details" style="color:#800080">{{$list->title}}
-                                      </a>
+                                      <a class="btn-link" title="View Details" style="color:#800080">{{ $list->title }}</a>
                                   </td>
                                   <td>{{ $list->relLibBookCategory->title }}</td>
                                   <td>{{ $list->relLibBookAuthor->name }}</td>
@@ -85,18 +83,11 @@
                                   <td>{{ $list->book_price }}</td>
                                   <td>{{ $list->digital_sell_price }}</td>
                                   <td>
-                                      {{--<a href="" class="btn btn-default btn-xs" data-toggle="modal" data-target="#book" title="Show" style="font-size: 11px;color: darkmagenta"><span class="fa fa-eye"></span></a>--}}
                                       @if($list->commercial == 'no')
-                                        {{--<a href="{{ URL::route('student.download-file') }}"--}}
-                                        {{--class="btn-link" title="download" style="color:#8b0835"><b><i class="fa fa-download"></i></b>--}}
-                                        {{--</a>--}}
-
                                         <a href="{{ URL::route('student.book.download',['book_id'=>$list->id]) }}" class="btn btn-large btn-success pull-right" ><i class="fa fa-download"></i></a>
-
                                       @else
                                         <a href="{{ URL::route('student.add-book-to-cart',['book_id'=>$list->id]) }}" class="btn btn-info btn-large" ><i class="fa fa-shopping-cart"></i></a>
                                       @endif
-                                      {{--<a data-href="{{URL::route('examination.amw.delete-exam-data', ['id'=>$exam_list->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" style="font-size: 12px;color: lightcoral"><span class="fa  fa-trash-o"></span></a>--}}
                                   </td>
                               </tr>
                          @endforeach

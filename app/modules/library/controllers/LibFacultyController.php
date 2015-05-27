@@ -79,11 +79,8 @@ class LibFacultyController extends \BaseController {
 
         $sum = $all_cart_books->sum('digital_sell_price');
         $number = count($all_cart_books);
-        if($all_cart_books){
-            
-        }
 
-        return View::make('library::faculty.add_cart_book',compact('all_cart_books', 'number','id','sum'));
+        return View::make('library::faculty.add_cart_book',compact('all_cart_books', 'number','id','sum','all_cart_book_ids'));
     }
 
     public function getBookTransaction(){
@@ -113,30 +110,28 @@ class LibFacultyController extends \BaseController {
         }
     }
 
-	public function checkoutByFaculty(){
+	public function checkoutByFaculty($all_cart_book_ids)
+    {
+        $all_cart_book_ids = Session::get('cartBooks');
+        //print_r($all_cart_book_ids);exit;
 
-        $user_id = Auth::user()->get()->id;
-        //print_r($user_id);exit;
-        if(Auth::user()->check()) {
+        $book_id = LibBook::where('id',$all_cart_book_ids)->get();
 
-            return View::make('library::faculty.checkout');
-
-        }else {
-            Auth::logout();
-            Session::flush(); //delete the session
-            Session::flash('danger', "Please Login As Faculty!");
-            return Redirect::route('user/login');
-        }
-        //print_r($user_id);exit;
+        print_r($book_id);exit;
     }
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
+    public function getBookDownload($book_id)
+    {
+        $download = LibBook::find($book_id);
+        $file = $download->file;
+        $path = public_path("img/" . $file);
+        $headers = array(
+            'Content-Type: application/pdf',
+        );
+        return Response::download($path, $file , $headers);
+    }
+
+    public function show($id)
 	{
 		//
 	}
