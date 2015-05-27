@@ -4,8 +4,9 @@
 </div>
 <div class="modal-body">
     <div style="padding: 10px;">
-        {{Form::model($edit_book, array('route' => array('book.update', $edit_book->id)))}}
-         {{--@include('library::librarian.books._form')--}}
+        
+        {{Form::model($edit_book, array('route' => array('book.update', $edit_book->id), 'files' => true, 'class'=>'form-horizontal'))}}
+
         <div class='form-group'>
             <div>{{ Form::label('title', 'Title') }}</div>
             <div>{{ Form::text('title', Input::old('title'),['class'=>'form-control','spellcheck'=> 'true','required'=>'required']) }}

@@ -439,6 +439,15 @@ class LibraryController extends \BaseController {
             $files->move($destinationPath, $file);
             $model->file = $file;
 
+            if (Input::hasFile('filesToUpload'))
+            {
+                $file = Input::file('filesToUpload');
+                $destinationPath = 'uploads/portfolio';
+                $extension = $file->getClientOriginalExtension();
+                $filename = str_random(12).".{$extension}";
+                $upload_success = $file->move($destinationPath, $filename);
+            }
+
             $model->save();
             Session::flash('message', "Successfully Updated $flashmsg !");
             return Redirect::back();
