@@ -6,7 +6,7 @@
      @include('layouts._sidebar_student')
 @stop
 @section('content')
-<a class="pull-right btn btn-info btn-xs"  style="color: #ffffff" href="{{ URL::route('student.find-book') }}" title="Back to Exam List" id="addBook"><b>Back</b></a>
+<a class="pull-right btn btn-info btn-xs"  style="color: #ffffff" href="{{ URL::route('student.find-book') }}" id="addBook"><b>Back</b></a>
 
  <h3>View Cart</h3>
 
@@ -47,10 +47,12 @@
                      @endif
                  </tbody>
               </table>
-              <a href="{{ URL::route('student.send-info-to-transaction',$all_cart_book_ids ) }}" class="btn btn-info" style="margin-left: 50%"><i class="fa fa-mail-forward"></i> CHECKOUT</a>
-
-
+                 {{--<a href="{{ URL::route('student.send-info-to-transaction',$all_cart_book_ids) }}" class="btn btn-info" style="margin-left: 50%"><i class="fa fa-mail-forward"></i> CHECKOUT</a>--}}
            <p>&nbsp;</p>
+
+           <div class="box-tools pull-right" style="margin-left: 50%">
+               <a class="pull-right btn btn-large btn-info" href="{{ URL::route('student.payment')}}"><b style="color: #f4f5ff;">Payment Option</b> <i class="fa  fa-arrow-right"></i></a>
+           </div>
        </div>
     </div>
  </div>

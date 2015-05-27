@@ -104,16 +104,13 @@ class LibStudentController extends \BaseController
 
     public function sendInfoToTransactionTable($all_cart_book_ids)
     {
+        //$all_cart_book_ids_tot = Session::get('cartBooks');
 
-        // to get total amount
-        $all_cart_book_ids = Session::get('cartBooks');
         $all_cart_books = LibBook::with('relLibBookCategory', 'relLibBookAuthor', 'relLibBookPublisher')
-            ->whereIn('id', $all_cart_book_ids)->get();
+            ->where('id',$all_cart_book_ids)
+            ->get();
         $sum = $all_cart_books->sum('digital_sell_price');
-
-
-        $info = Input::all();
-
+        //$info = Input::all();
         // save to lib_book_transaction table
         $lib_book_trnsctn = new LibBookTransaction();
         $lib_book_trnsctn->user_id = Auth::user()->get()->id;
@@ -125,41 +122,50 @@ class LibStudentController extends \BaseController
         {
             $lib_book_trnsctn_id = $lib_book_trnsctn->id;
 
-            //print_r($lib_book_trnsctn_id);exit;
-
-
             // save to lib_book_financial_transaction table
             $lib_book_fncl_trnsctn = new LibBookFinancialTransaction();
             $lib_book_fncl_trnsctn->lib_book_transaction_id = $lib_book_trnsctn_id;
             $lib_book_fncl_trnsctn->amount = $sum;
             $lib_book_fncl_trnsctn->trn_type = 'commercial';
             $lib_book_fncl_trnsctn->status = 'paid';
-
+            if($lib_book_fncl_trnsctn->save())
+            {
+                return Redirect::route('student.my-cart');
+            }else{
+                Session::flash('errors', 'Data Not Sent to second table');
+                return Redirect::back();
+            }
         }else{
-
-            echo "second table don't get data ";
-            return Redirect::route('student.my-cart');
+            Session::flash('errors', 'Data Not Sent ! Try Again');
+            return Redirect::route('student.view-cart');
         }
 
-//        if ($lib_book_fncl_trnsctn->save()) {
-//            Session::flash('message', 'Faculty Assigned and Comments added');
-//            return Redirect::back();
-//        } else {
-//            $errors = $model->errors();
-//            Session::flash('errors', $errors);
-//            return Redirect::back()->with('errors', 'invalid');
-//        }
 
     }
 
+    public function paymentMethod()
+    {
+        $all_cart_book_ids = Session::get('cartBooks');
+
+        return View::make('library::student.payment', compact('all_cart_book_ids'));
+    }
+
+
+
+
+
+
     public function myCart()
     {
-        $my_cart_book_ids = Session::get('cartBooks');
-        $my_cart_books = LibBook::with('relLibBookCategory', 'relLibBookAuthor', 'relLibBookPublisher')
-            ->whereIn('id', $my_cart_book_ids)->get();
-        $sum = $my_cart_books->sum('digital_sell_price');
 
-        return View::make('library::student.my_cart',compact('my_cart_books','sum'));
+        $all_cart_book_ids = Session::get('cartBooks');
+
+        $my_cart_books = LibBookTransaction::with('relLibBook','relLibBookFinancialTransaction')
+            ->get();
+
+//      print_r($my_cart_books);exit;
+
+        return View::make('library::student.my_cart',compact('all_cart_book_ids','my_cart_books','sum'));
     }
 
 

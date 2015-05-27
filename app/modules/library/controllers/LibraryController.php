@@ -376,11 +376,11 @@ class LibraryController extends \BaseController {
             $model->is_rented = Input::get('is_rented');
 
             $files = Input::file('docs');
-            $destinationPath = public_path() . '/lib_docs';
-            $filename =  $files->getClientOriginalName();
-            $hashname = date("d-m-Y") . "_" . $filename;
-            $upload_success = $files->move($destinationPath, $hashname);
-            $model->file = $hashname;
+            $destinationPath = public_path() . '/library';
+            $filename =  $files->getClientOriginalExtension();
+            $file = date("d-m-Y-s")."." . $filename;
+            $files->move($destinationPath, $file);
+            $model->file = $file;
 
             $model->save();
 
@@ -404,7 +404,10 @@ class LibraryController extends \BaseController {
     public function editBook($id)
     {
         $edit_book = LibBook::find($id);
-        return View::make('library::librarian.books.edit',compact('edit_book'));
+        $category = array('' => 'Select Category ') + LibBookCategory::lists('title', 'id');
+        $author = array('' => 'Select author ') + LibBookAuthor::lists('name', 'id');
+        $publisher = array('' => 'Select Publisher') + LibBookPublisher::lists('name', 'id');
+        return View::make('library::librarian.books.edit',compact('edit_book','category','author','publisher'));
     }
 
 
@@ -412,27 +415,38 @@ class LibraryController extends \BaseController {
     {
         $data = Input::all();
         $model = LibBook::find($id);
-        $model->name = Input::get('name');
-        $flash_msg = $model->name;
-        if($model->validate($data))
-        {
-            DB::beginTransaction();
-            try {
-                $model->update($data);
-                DB::commit();
-                Session::flash('message', "Book Author $flash_msg Successfully Updated");
-            }
-            catch ( Exception $e ){
-                //If there are any exceptions, rollback the transaction
-                DB::rollback();
-                Session::flash('danger', "Book Author $flash_msg  Not Updated. Invalid Request !");
-            }
+        if ($model->validate($data)) {
+            $model->title = Input::get('title');
+            $flashmsg = $model->title;
+            $model->isbn = Input::get('isbn');
+            $model->lib_book_category_id = Input::get('category');
+            $model->lib_book_author_id = Input::get('author');
+            $model->lib_book_publisher_id = Input::get('publisher');
+            $model->edition = Input::get('edition');
+            $model->stock_type = Input::get('stock_type');
+            $model->shelf_number = Input::get('self_number');
+            $model->book_type= Input::get('book_type');
+            $model->commercial = Input::get('commercial');
+            $model->book_price = Input::get('book_price');
+            $model->digital_sell_price = Input::get('digital_sell_price');
+            $model->is_rented = Input::get('is_rented');
+
+         /* $files = Input::get('docs');*/
+            $files = Input::file('docs');
+            $destinationPath = public_path() . '/library';
+            $filename =  $files->getClientOriginalExtension();
+            $file = date("d-m-Y-s")."." . $filename;
+            $files->move($destinationPath, $file);
+            $model->file = $file;
+
+            $model->save();
+            Session::flash('message', "Successfully Updated $flashmsg !");
             return Redirect::back();
-        }else{
+        } else {
+            // failure, get errors
             $errors = $model->errors();
             Session::flash('errors', $errors);
-            return Redirect::back()
-                ->with('errors', 'Input Data Not Valid');
+            return Redirect::back();
         }
     }
 
