@@ -132,6 +132,15 @@ Route::group(['prefix' => 'library'], function() {
         'uses' => 'LibraryController@batchdeleteBook'
     ]);
 
+    Route::any('book/download/{book_id}',[
+        'as' =>'book.download',
+        'uses' => 'LibraryController@bookDownload'
+    ]);
+    Route::any('book/read/{book_id}',[
+        'as' =>'book.read',
+        'uses' => 'LibraryController@bookRead'
+    ]);
+
 });
 
 

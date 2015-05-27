@@ -54,6 +54,7 @@
                                     <th>Book Price(TK)</th>
                                     <th>Digital Sell Price(TK)</th>
                                     <th>Is Rented</th>
+                                    <th>File</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
@@ -62,7 +63,7 @@
                                     <tr>
                                         <td><input type="checkbox" name="id[]"  class="myCheckbox" value="{{ $value->id }}">
                                         </td>
-                                        <td>{{isset($value->title) ? $value->title :''}}</td>
+                                        <td width="150">{{isset($value->title) ? $value->title :''}}</td>
                                         <td>{{isset($value->isbn) ? $value->isbn : ''}}</td>
                                         <td>{{isset($value->relLibBookCategory->title) ? $value->relLibBookCategory->title : ''}}</td>
                                         <td>{{isset($value->relLibBookAuthor->name) ? $value->relLibBookAuthor->name : ''}}</td>
@@ -75,6 +76,9 @@
                                         <td>{{isset($value->book_price) ? $value->book_price : ''}}</td>
                                         <td>{{isset($value->digital_sell_price) ? $value->digital_sell_price : ''}}</td>
                                         <td>{{isset($value->is_rented) ? $value->is_rented : ''}}</td>
+                                        <td><a href="{{ URL::route('book.download',['book_id'=>$value->id]) }}" class="btn btn-xs btn-circle" style="background: aquamarine" ><i class="fa fa-download"></i></a>
+                                           </br>
+                                       <a href="{{ URL::route('book.read',['book_id'=>$value->id]) }}" class="btn btn-xs btn-circle" style="background:lavender" >Read</a></td>
                                         <td>
                                             <a href="{{ URL::route('book.view', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" href=""><i class="fa fa-eye" style="color: green"></i></a>
 
