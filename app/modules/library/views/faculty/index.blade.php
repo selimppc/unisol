@@ -7,7 +7,7 @@
  @stop
 
  @section('content')
-@include('library::show_cart')
+@include('library::faculty.cart_show')
  <h3>Library</h3>
 
  <div class="row">
@@ -86,12 +86,12 @@
                                   </td>
                                   <td>
                                       @if($list->commercial == 'no')
-                                        <a href="{{ URL::route('student.book.download') }}"
+                                        <a href="{{ URL::route('student.book.download')}}"
                                           class="btn-link" title="download" style="color:#8b0835"><b><i class="fa fa-download"></i> <ins></ins></b>
                                         </a>
                                       @else
                                         <a href="{{ URL::route('faculty.add-book-to-cart',['book_id'=>$list->id]) }}" id="addCart"
-                                          class="btn-link" title="Add Book" style="color:darkblue"><b><i class="fa fa-shopping-cart"></i> <ins></ins></b>
+                                          class="btn-link" title="Add To Cart" style="color:darkblue"><b><i class="fa fa-shopping-cart"></i> <ins></ins></b>
                                         </a>
                                       @endif
                                   </td>
