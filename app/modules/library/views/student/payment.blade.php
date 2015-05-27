@@ -3,7 +3,7 @@
       @include('layouts._top_menu')
   @stop
   @section('sidebar')
-      @include('layouts._sidebar_faculty')
+      @include('layouts._sidebar_student')
   @stop
   @section('content')
 {{--<a class="pull-right btn btn-xs btn-success" href="{{ URL::route('admission.applicant_details',['batch-applicant-id'=>Auth::applicant()->get()->id])}}"><b><i class="fa fa-arrow-circle-left"></i>Go Back</b></a>--}}
