@@ -112,7 +112,7 @@ class LibStudentController extends \BaseController
         $headers = array(
             'Content-Type: application/pdf',
         );
-        $file_name = $download->title;
+        $file_name = $download->title."." .'pdf';
         return Response::download($path, $file_name, $headers);
     }
 
