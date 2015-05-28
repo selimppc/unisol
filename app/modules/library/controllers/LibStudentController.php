@@ -15,6 +15,9 @@ class LibStudentController extends \BaseController
 
     public function findBooks()
     {
+        $user_id = Auth::user()->get()->id;
+        $model = new LibBook();
+
         if ($this->isPostRequest()) {
 
             $book_category_id = Input::get('lib_book_category_id');
@@ -27,13 +30,29 @@ class LibStudentController extends \BaseController
             if (isset($book_category_id) && !empty($book_category_id)) $model->where('lib_books.lib_book_category_id', '=', $book_category_id);
             if (isset($book_author_id) && !empty($book_author_id)) $model->where('lib_books.lib_book_author_id', '=', $book_author_id);
             if (isset($book_publisher_id) && !empty($book_publisher_id)) $model->where('lib_books.lib_book_publisher_id', '=', $book_publisher_id);
-            $model = $model->get();
+            //$model = $model->get();
             //print_r($model);exit;
         } else {
-            $model = LibBook::with('relLibBookCategory', 'relLibBookAuthor', 'relLibBookPublisher')
-                ->latest('id')->get();
-
+            $model = $model->with('relLibBookCategory','relLibBookAuthor','relLibBookPublisher')->latest('lib_books.id');
         }
+
+        $model = $model->leftJoin('lib_book_transaction as lbt', function($query)  use($user_id){
+            $query->on('lbt.lib_books_id', '=', 'lib_books.id');
+            $query->where('lbt.user_id',  '=', $user_id);
+        });
+        $model = $model->leftJoin('lib_book_financial_transaction as lbft', function($query)  use($user_id){
+            $query->on('lbft.lib_book_transaction_id', '=', 'lbt.id');
+        });
+
+        $model = $model->get(array('lib_books.id as id', 'lib_books.digital_sell_price as digital_sell_price',
+            'lib_books.title as title', 'lib_books.isbn as isbn', 'lib_books.lib_book_category_id',
+            'lib_books.lib_book_author_id', 'lib_books.lib_book_publisher_id', 'lib_books.edition', 'lib_books.book_type',
+            'lib_books.book_price', 'lib_books.is_rented', 'lib_books.commercial', 'lbt.user_id', 'lbt.lib_books_id',
+            'lbt.issue_date', 'lbt.status as lbtStatus', 'lbft.lib_book_transaction_id', 'lbft.amount', 'lbft.trn_type',
+            'lbft.status as tbftStatus'
+        ));
+
+        //print_r($model);exit;
         $book_category_id = array('' => 'Select Category ') + LibBookCategory::lists('title', 'id');
         $book_author_id = array('' => 'Select Author ') + LibBookAuthor::lists('name', 'id');
         $book_publisher_id = array('' => 'Select Publisher ') + LibBookPublisher::lists('name', 'id');

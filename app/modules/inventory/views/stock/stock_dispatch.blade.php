@@ -53,12 +53,14 @@
                         <a href="{{ URL::route('show-dispatch', ['sd_id'=>$values->id ])  }}" class="btn btn-default btn-xs" title="View Dispatch" data-toggle="modal" data-target="#modal-pc"><span class="fa fa-eye"></span></a>
                         <a href="{{ URL::route('edit-dispatch',['sd_id'=>$values->id])  }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal-pc"> <i class="fa fa-edit"></i></a>
                         <a data-href="{{ URL::route('cancel-dispatch', ['sd_id'=>$values->id ]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa fa-circle-o-notch" style="color: red" data-toggle="tooltip" data-placement="bottom" title="Cancel"></i></a>
-                    @elseif($values->status=='approved')
-                        <a href="{{ URL::route('show-dispatch', ['sd_id'=>$values->id ])  }}" class="btn btn-default btn-xs" title="View Dispatch" data-toggle="modal" data-target="#modal-pc"><span class="fa fa-eye"></span></a>s
+                    @elseif($values->status=="Confirmed Dispatch")
+                        <a href="{{ URL::route('show-dispatch', ['sd_id'=>$values->id ])  }}" class="btn btn-default btn-xs" title="View Dispatch" data-toggle="modal" data-target="#modal-pc"><span class="fa fa-eye"></span></a>
                     @endif
 
                     </td>
-                    <td>Confirm Dispatch</td>
+                    <td>
+                    <a href="{{ URL::route('sp-confirm-dispatch', ['transfer_head_id'=>$values->id ])  }}" class="btn btn-success btn-xs" title="Confirm Dispatch" > Confirm Dispatch</a>
+                    </td>
                  </tr>
                 @endforeach
             @endif
@@ -82,7 +84,7 @@
 {{-- Modal Area --}}
 <div class="modal fade" id="modal-pc" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
-    <div class="modal-content">
+    <div class="modal-content " style="z-index:1050">
     </div>
   </div>
 </div>

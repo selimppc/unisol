@@ -83,20 +83,12 @@
                                   <td>{{ $list->book_price }}</td>
                                   <td>{{ $list->digital_sell_price }}</td>
                                   <td>
-                                      @if($list->commercial == 'no')
-                                        <a href="{{ URL::route('student.book.download',['book_id'=>$list->id]) }}" class="btn btn-large btn-success pull-right" ><i class="fa fa-download"></i></a>
+                                      @if($list['tbftStatus'] == 'paid')
+                                          <a href="{{URL::route('student.book.download',['book_id'=>$list->id]) }}" class="btn-link" title="download" style="color:darkturquoise"><b><i class="fa fa-download"></i></b></a><em style="color: dodgerblue">Purchased</em>
+                                      @elseif($list['commercial'] == 'free')
+                                          <a href="{{ URL::route('student.book.download',['book_id'=>$list->id]) }}" class="btn btn-large btn-success pull-right" ><i class="fa fa-download"></i></a>
                                       @else
-
-                                            {{--@if( $list->relLibBookTransaction->relLibBookFinancialTransaction->status == "paid" )--}}
-
-                                                {{--<a href="{{ URL::route('student.book.download',['book_id'=>$list->id]) }}" class="btn btn-large btn-success pull-right" ><i class="fa fa-download"></i></a>--}}
-                                            {{--@els--}}
-                                                <a href="{{ URL::route('student.add-book-to-cart',['book_id'=>$list->id]) }}" class="btn btn-info btn-large" ><i class="fa fa-shopping-cart"></i></a>
-
-                                            {{--@endif--}}
-
-
-
+                                          <a href="{{ URL::route('student.add-book-to-cart',['book_id'=>$list->id]) }}" class="btn btn-info btn-large" ><i class="fa fa-shopping-cart"></i></a>
                                       @endif
                                   </td>
                               </tr>
