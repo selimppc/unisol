@@ -81,7 +81,7 @@
                                         @else
                                             <td>
 
-                                                <a href="{{ URL::route('book.read',['book_id'=>$value->id]) }}" class="btn btn-xs btn-circle" style="background:lavender" >Read</a>
+                                                <a href="{{ URL::route('book.read',['book_id'=>$value->id]) }}" target="_blank" class="btn btn-xs btn-circle" style="background:lavender" >Read</a>
                                                 <a href="{{ URL::route('book.download',['book_id'=>$value->id]) }}" class="btn btn-xs btn-circle" style="background: aquamarine" ><i class="fa fa-download"></i></a>
                                             </td>
                                         @endif
