@@ -330,7 +330,7 @@ Route::group(['prefix' => 'inventory'], function() {
         "uses" => "InvStockController@cancel_stock_dispatch"
     ]);
 
-    Route::any("batch-cancel-dispatch/{sd_id}", [
+    Route::any("batch-cancel-dispatch", [
         "as"   => "batch-cancel-dispatch",
         "uses" => "InvStockController@batch_cancel_transfer"
     ]);
@@ -375,6 +375,59 @@ Route::group(['prefix' => 'inventory'], function() {
         "as"   => "stock-adjustment",
         "uses" => "InvAdjustmentController@index_stock_adjustment"
     ]);
+
+    Route::any("store-stock-adjustment", [
+        "as"   => "store-stock-adjustment",
+        "uses" => "InvAdjustmentController@store_stock_adjustment"
+    ]);
+
+    Route::any("show-stock-adjustment/{adj_id}", [
+        "as"   => "show-stock-adjustment",
+        "uses" => "InvAdjustmentController@show_stock_adjustment"
+    ]);
+
+    Route::any("edit-stock-adjustment/{adj_id}", [
+        "as"   => "edit-stock-adjustment",
+        "uses" => "InvAdjustmentController@edit_stock_adjustment"
+    ]);
+
+    Route::any("cancel-stock-adjustment/{adj_id}", [
+        "as"   => "cancel-stock-adjustment",
+        "uses" => "InvAdjustmentController@cancel_stock_adjustment"
+    ]);
+
+    Route::any("batch-cancel-stock-adjustment", [
+        "as"   => "batch-cancel-stock-adjustment",
+        "uses" => "InvAdjustmentController@batch_cancel_stock_adjustment"
+    ]);
+
+
+    //TODO::
+    Route::any("add-product-dispatch/{sd_id}", [
+        "as"   => "add-product-dispatch",
+        "uses" => "InvStockController@add_product_dispatch"
+    ]);
+
+    Route::any("store-sd-detail/{sd_id}", [
+        "as"   => "store-sd-detail",
+        "uses" => "InvStockController@store_sd_detail"
+    ]);
+
+    Route::any("sd-ajax-delete-dt/{sd_id}", [
+        "as"   => "sd-ajax-delete-dt",
+        "uses" => "InvStockController@ajax_delete_sd_detail"
+    ]);
+
+    Route::any("transfer-ajax-to", [
+        "as"   => "transfer-ajax-to",
+        "uses" => "InvStockController@ajaxTransferProductAutoComplete"
+    ]);
+
+    Route::any("sp-confirm-dispatch/{transfer_head_id}", [
+        "as"   => "sp-confirm-dispatch",
+        "uses" => "InvStockController@sp_confirm_dispatch"
+    ]);
+
 
 
 

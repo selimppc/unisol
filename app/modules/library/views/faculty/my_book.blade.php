@@ -6,33 +6,29 @@
      @include('layouts._sidebar_faculty')
 @stop
 @section('content')
- <h3>My Cart</h3>
+ <h3>My Book</h3>
  <br>
  <div class="row">
     <div class="col-md-12 ">
        <div class="box box-solid">
-
-
            <p>&nbsp;</p>
               <table id="" class="table table-striped  table-bordered"  >
                  <thead>
-                        <tr>
-                           <th><input name="id" type="checkbox" id="checkbox" class="checkbox" value=""></th>
-
-                           <th>Book Name</th>
-                           <th>Issue Date</th>
-                           <th>transaction Type</th>
-                           <th>Status</th>
-                           <th>Price</th>
-                           <th>Action</th>
-                        </tr>
+                      <tr>
+                         <th><input name="id" type="checkbox" id="checkbox" class="checkbox" value=""></th>
+                         <th>Book Name</th>
+                         <th>Issue Date</th>
+                         <th>transaction Type</th>
+                         <th>Status</th>
+                         <th>Price</th>
+                         <th>Action</th>
+                      </tr>
                  </thead>
                  <tbody>
                      @if(isset($my_cart_books))
                          @foreach($my_cart_books as $value)
-                           <tr>
+                            <tr>
                                <td><input type="checkbox" name="id[]" class="myCheckbox" value=""></td>
-
                                <td>{{ $value->relLibBook->title }}</td>
                                <td>{{ $value->issue_date }}</td>
                                <td>{{ $value->relLibBookFinancialTransaction->trn_type }}</td>
@@ -46,7 +42,7 @@
                                     @else
                                     @endif
                                </td>
-                           </tr>
+                            </tr>
                          @endforeach
                      @endif
                  </tbody>
