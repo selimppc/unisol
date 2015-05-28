@@ -24,11 +24,12 @@
                   {{ Form::submit('Delete Items', ['class'=>'btn btn-danger btn-xs', 'id'=>'hide-button', 'style'=>'display:none', 'onclick'=> "return confirm('Are you sure you want to cancel?')"])}}
                 <tr>
                     <th><input type="checkbox" id="checkbox" class="checkbox" value=""></th>
-                    <th> Transfer Number </th>
-                    <th> Transfer To (Dept.) </th>
+                    <th> Stock Adjustment # </th>
                     <th> Date </th>
+                    <th> Store </th>
+                    <th> Stock Type </th>
                     <th> Confirm Date  </th>
-                    <th> Note </th>
+                    <th> Currency </th>
                     <th> Status </th>
                     <th> Action</th>
                     <th> Confirm </th>
