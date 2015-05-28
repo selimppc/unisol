@@ -34,10 +34,6 @@
                     {{ Form::select('lib_book_publisher_id', $book_publisher_id, Input::old('lib_book_publisher_id'), array('class' => 'form-control')) }}
                   </div>
 
-                  {{--<div class="col-sm-3">--}}
-                    {{--{{ Form::label('title', 'Book Title') }}--}}
-                    {{--{{ Form::select('title', $lib_book_id, Input::old('title'), array('class' => 'form-control')) }}--}}
-                  {{--</div>--}}
                   <br><br>
                   {{ Form::submit('Search', array('class'=>' pull-left btn btn-success btn-xs','id'=>'button'))}}
                </div>

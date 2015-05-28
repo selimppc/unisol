@@ -59,14 +59,12 @@ class LibStudentController extends \BaseController
         $book_author_id = array('' => 'Select Author ') + LibBookAuthor::lists('name', 'id');
         $book_publisher_id = array('' => 'Select Publisher ') + LibBookPublisher::lists('name', 'id');
 
-
         if (Session::get('cartBooks')) {
             $all_cart_book_ids = Session::get('cartBooks');
             $all_cart_books = LibBook::with('relLibBookCategory', 'relLibBookAuthor', 'relLibBookPublisher')->whereIn('id', $all_cart_book_ids)->get();
         } else {
             $all_cart_books = array();
         }
-
         return View::make('library::student.index', compact('all_cart_books', 'book_category_id', 'book_author_id', 'book_publisher_id', 'lib_book_id', 'model'));
     }
 
@@ -81,8 +79,17 @@ class LibStudentController extends \BaseController
             Session::put('cartBooks', $all_cart_book_ids);
         }
         //return Redirect::route('student.view-cart');
-
         return Redirect::back();
+    }
+
+    public function viewCart()
+    {
+        $all_cart_book_ids = Session::get('cartBooks');
+        $all_cart_books = LibBook::with('relLibBookCategory', 'relLibBookAuthor', 'relLibBookPublisher')
+            ->whereIn('id', $all_cart_book_ids)->get();
+        $number = count($all_cart_books);
+        $sum = $all_cart_books->sum('digital_sell_price');
+        return View::make('library::student.view_cart', compact('all_cart_book_ids', 'all_cart_books', 'number', 'sum'));
     }
 
     public function removeBookFromToCart($id)
@@ -93,9 +100,7 @@ class LibStudentController extends \BaseController
         if (($key = array_search($id, $all_cart_book_ids)) !== false) {
             unset($all_cart_book_ids[$key]);
         }
-
         Session::set('cartBooks', $all_cart_book_ids);
-
         return Redirect::back();
     }
 
@@ -107,30 +112,15 @@ class LibStudentController extends \BaseController
         $headers = array(
             'Content-Type: application/pdf',
         );
-       $file_name = $download->title;
-
-
+        $file_name = $download->title;
         return Response::download($path, $file_name, $headers);
     }
 
-    public function viewCart()
-    {
-        $all_cart_book_ids = Session::get('cartBooks');
 
-        $all_cart_books = LibBook::with('relLibBookCategory', 'relLibBookAuthor', 'relLibBookPublisher')
-            ->whereIn('id', $all_cart_book_ids)->get();
-
-        $number = count($all_cart_books);
-
-        $sum = $all_cart_books->sum('digital_sell_price');
-
-        return View::make('library::student.view_cart', compact('all_cart_book_ids', 'all_cart_books', 'number', 'sum'));
-    }
 
     public function saveInfoToTransactionTable()
     {
         $all_cart_book_ids = Session::get('cartBooks');
-
         $all_cart_books = LibBook::with('relLibBookCategory', 'relLibBookAuthor', 'relLibBookPublisher')
             ->whereIn('id',$all_cart_book_ids)
             ->get();
@@ -160,8 +150,6 @@ class LibStudentController extends \BaseController
                         if (($key = array_search($cb->id, $all_cart_book_ids)) !== false) {
                             unset($all_cart_book_ids[$key]);
                         }
-
-
                     }else{
                         $tr_error[] = 'At transaction of Book "'.$cb->title.'" is done but payment is not done. So please try once again.';
                     }
@@ -181,49 +169,28 @@ class LibStudentController extends \BaseController
             }else{
                 return Redirect::back();
             }
-
         }
-
-
     }
-
-    public function paymentMethod()
-    {
-        $all_cart_book_ids = Session::get('cartBooks');
-
-        return View::make('library::student.payment', compact('all_cart_book_ids'));
-    }
-
-
-
 
 
 
     public function myBook()
     {
-
         $all_cart_book_ids = Session::get('cartBooks');
-        $all_cart_books = LibBook::with('relLibBookCategory', 'relLibBookAuthor', 'relLibBookPublisher')
-            ->whereIn('id', $all_cart_book_ids)->get();
+        $all_cart_books = LibBook::with('relLibBookCategory', 'relLibBookAuthor',
+            'relLibBookPublisher')->whereIn('id', $all_cart_book_ids)->get();
+
         $sum = $all_cart_books->sum('digital_sell_price');
 
-
-
-        $my_cart_books = LibBookTransaction::with('relLibBook','relLibBookFinancialTransaction')
-            ->get();
-
-//      print_r($my_cart_books);exit;
+        $my_cart_books = LibBookTransaction::with('relLibBook','relLibBookFinancialTransaction')->get();
 
         return View::make('library::student.my_book',compact('all_cart_book_ids','my_cart_books','sum'));
     }
 
-
-
-
-
-
-
-
-
+    public function paymentMethod()
+    {
+        $all_cart_book_ids = Session::get('cartBooks');
+        return View::make('library::student.payment', compact('all_cart_book_ids'));
+    }
 
 }
