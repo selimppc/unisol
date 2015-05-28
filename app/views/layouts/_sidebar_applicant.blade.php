@@ -1,6 +1,6 @@
 <ul class="sidebar-menu">
     <li class="active">
-        <a href="/applicant">
+        <a href="/user/applicant-dashboard">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
         </a>
     </li>

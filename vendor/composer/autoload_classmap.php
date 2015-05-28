@@ -210,6 +210,8 @@ return array(
     'File_Iterator_Factory' => $vendorDir . '/phpunit/php-file-iterator/src/Factory.php',
     'HomeController' => $baseDir . '/app/controllers/HomeController.php',
     'IlluminateQueueClosure' => $vendorDir . '/laravel/framework/src/Illuminate/Queue/IlluminateQueueClosure.php',
+    'InvAdjustHead' => $baseDir . '/app/modules/inventory/models/InvAdjustHead.php',
+    'InvAdjustmentController' => $baseDir . '/app/modules/inventory/controllers/InvAdjustmentController.php',
     'InvGrnController' => $baseDir . '/app/modules/inventory/controllers/InvGrnController.php',
     'InvGrnDetail' => $baseDir . '/app/modules/inventory/models/InvGrnDetail.php',
     'InvGrnHead' => $baseDir . '/app/modules/inventory/models/InvGrnHead.php',

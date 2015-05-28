@@ -358,4 +358,26 @@ Route::group(['prefix' => 'inventory'], function() {
 
 
 
+    Route::any("sp-confirm-dispatch/{transfer_head_id}", [
+        "as"   => "sp-confirm-dispatch",
+        "uses" => "InvStockController@sp_confirm_dispatch"
+    ]);
+
+
+
+    /*
+     * ==================================================
+     *  Adjustment
+     * =================================================
+     */
+
+    Route::any("stock-adjustment", [
+        "as"   => "stock-adjustment",
+        "uses" => "InvAdjustmentController@index_stock_adjustment"
+    ]);
+
+
+
+
+
 });

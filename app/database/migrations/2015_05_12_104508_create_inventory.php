@@ -310,6 +310,51 @@ class CreateInventory extends Migration {
         });
 
 
+
+        Schema::create('inv_adjust_head', function(Blueprint $table) {
+            $table->increments('id');
+            $table->string('adjust_no', 16)->nullable();
+            $table->dateTime('date')->nullable();
+            $table->string('store', 16)->nullable();
+            $table->enum('type', array(
+                'positive', 'negative'
+            ));
+            $table->dateTime('confirm_date')->nullable();
+            $table->unsignedInteger('currency_id')->nullable();
+            $table->string('voucher_no', 16)->nullable();
+            $table->integer('created_by', false, 11)->nullable();
+            $table->integer('updated_by', false, 11)->nullable();
+            $table->timestamps();
+            $table->engine = 'InnoDB';
+        });
+        Schema::table('inv_adjust_head', function($table) {
+            $table->foreign('currency_id')->references('id')->on('currency');
+        });
+
+
+
+        Schema::create('inv_grn_detail', function(Blueprint $table) {
+            $table->increments('id');
+            $table->unsignedInteger('inv_adjust_head_id')->nullable();
+            $table->unsignedInteger('inv_product_id')->nullable();
+            $table->unique(['inv_adjust_head_id', 'inv_product_id']);
+            $table->string('batch_number')->nullable();
+            $table->dateTime('expire_date')->nullable();
+            $table->decimal('unit')->nullable();
+            $table->decimal('quantity')->nullable();
+            $table->float('stock_rate')->nullable();
+
+            $table->integer('created_by', false, 11)->nullable();
+            $table->integer('updated_by', false, 11)->nullable();
+            $table->timestamps();
+            $table->engine = 'InnoDB';
+        });
+        Schema::table('inv_grn_detail', function($table) {
+            $table->foreign('inv_adjust_head_id')->references('id')->on('inv_adjust_head');
+            $table->foreign('inv_product_id')->references('id')->on('inv_product');
+        });
+
+
 	}
 
 
@@ -332,8 +377,8 @@ class CreateInventory extends Migration {
         Schema::drop('inv_grn_detail');
         Schema::drop('inv_transaction');
 
-
-
+        Schema::drop('inv_adjust_head');
+        Schema::drop('inv_adjust_detail');
 	}
 
 }
