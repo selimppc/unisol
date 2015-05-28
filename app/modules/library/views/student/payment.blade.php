@@ -8,7 +8,6 @@
   @section('content')
 {{--<a class="pull-right btn btn-xs btn-success" href="{{ URL::route('admission.applicant_details',['batch-applicant-id'=>Auth::applicant()->get()->id])}}"><b><i class="fa fa-arrow-circle-left"></i>Go Back</b></a>--}}
 <h3 class="box-title">Payment</h3>
-
  <div class="box box-solid">
     <div class="box-header">
        <div class="box-tools pull-right">
@@ -39,7 +38,11 @@
           </div>
        </form>
 
-       <a href="{{ URL::route('student.send-info-to-transaction') }}" class="btn btn-info" style="margin-left: 50%"><b style="color: #f4f5ff;"><i class="fa fa-mail-forward"></i>  CHECKOUT</b></a>
+       <div style="margin-left: 40%">
+            <a href="{{ URL::route('student.find-book') }}" class="btn btn-info"><b>Home</b></a>
+            <a href="{{ URL::previous() }}" class="btn btn-primary"><b>Back</b></a>
+            <a href="{{ URL::route('student.send-info-to-transaction') }}" class="btn btn-success" ><b><i class="fa fa-mail-forward"></i>  CHECKOUT</b></a>
+       </div>
 
 
     </div>

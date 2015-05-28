@@ -71,9 +71,7 @@
                          @foreach($model as $list)
                               <tr>
                                   <td><input type="checkbox" name="id[]" class="myCheckbox" value=""></td>
-                                  <td>
-                                      <a class="btn-link" title="View Details" style="color:#800080">{{ $list->title }}</a>
-                                  </td>
+                                  <td>{{ $list->title }}</td>
                                   <td>{{ $list->relLibBookCategory->title }}</td>
                                   <td>{{ $list->relLibBookAuthor->name }}</td>
                                   <td>{{ $list->relLibBookPublisher->name }}</td>
@@ -84,11 +82,11 @@
                                   <td>{{ $list->digital_sell_price }}</td>
                                   <td>
                                       @if($list['tbftStatus'] == 'paid')
-                                          <a href="{{URL::route('student.book.download',['book_id'=>$list->id]) }}" class="btn-link" title="download" style="color:darkturquoise"><b><i class="fa fa-download"></i></b></a><em style="color: dodgerblue">Purchased</em>
+                                          <a href="{{URL::route('student.book.download',['book_id'=>$list->id]) }}" class="btn btn-large btn-primary" title="download"><b><i class="fa fa-cloud-download"> Purchased</i></b></a>
                                       @elseif($list['commercial'] == 'free')
-                                          <a href="{{ URL::route('student.book.download',['book_id'=>$list->id]) }}" class="btn btn-large btn-success pull-right" ><i class="fa fa-download"></i></a>
+                                          <a href="{{URL::route('student.book.download',['book_id'=>$list->id]) }}" class="btn btn-large btn-success" ><i class="fa fa-download">Download</i></a>
                                       @else
-                                          <a href="{{ URL::route('student.add-book-to-cart',['book_id'=>$list->id]) }}" class="btn btn-info btn-large" ><i class="fa fa-shopping-cart"></i></a>
+                                          <a href="{{URL::route('student.add-to-cart',['book_id'=>$list->id]) }}" class="btn btn-large btn-info " ><i class="fa fa-shopping-cart">Add To Cart</i></a>
                                       @endif
                                   </td>
                               </tr>
