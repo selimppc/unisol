@@ -1,7 +1,7 @@
    <ul class="dropdown user user-menu">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             {{--<i class=""></i>--}}
-            <b class="container">{{HTML::image('/img/cartss.gif')}}<span class="label label-success" style="margin-left: 1002px"> {{count($all_cart_books)}}</span></b>
+            <b class="container">{{HTML::image('/img/cartss.gif')}}<span class="label label-success" style="margin-left: 1012px"> {{count($all_cart_books)}}</span></b>
         </a>
         <ul class="dropdown-menu" style="margin-left: 850px;">
 
@@ -40,7 +40,7 @@
         width: 4%;
         height: 30px;
         position: absolute;
-        right: 70px;
+        right: 60px;
         border-radius: 38%;
     }
     </style>
