@@ -162,8 +162,8 @@ class LibFacultyController extends \BaseController {
         $headers = array(
             'Content-Type: application/pdf',
         );
-        //$file_name = $download->title;
-        return Response::download($path, $file, $headers);
+        $file_name = $download->title."." .'pdf';
+        return Response::download($path, $file_name, $headers);
 
     }
 

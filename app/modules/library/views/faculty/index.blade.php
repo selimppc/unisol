@@ -7,16 +7,9 @@
  @stop
 
  @section('content')
-<div id="cart">
+
     @include('library::faculty.my_carts')
-</div>
-<div id="cart-new">
-<p style="text-align: center">
-    @if(count($all_cart_books))
-       <b style="color: lightseagreen">{{count($all_cart_books)}} Book(s) Added In Your Cart.</b>
-    @endif
-</p>
-</div>
+
 
  <h3>Library</h3>
 
@@ -136,7 +129,7 @@
 
   <script>
     function showCart(){
-          $('#cart-new').html("we are on");
+          @include('library::faculty.my_carts')
          }
   </script>
  @stop
