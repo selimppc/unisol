@@ -86,7 +86,17 @@
                                       @if($list->commercial == 'no')
                                         <a href="{{ URL::route('student.book.download',['book_id'=>$list->id]) }}" class="btn btn-large btn-success pull-right" ><i class="fa fa-download"></i></a>
                                       @else
-                                        <a href="{{ URL::route('student.add-book-to-cart',['book_id'=>$list->id]) }}" class="btn btn-info btn-large" ><i class="fa fa-shopping-cart"></i></a>
+
+                                            {{--@if( $list->relLibBookTransaction->relLibBookFinancialTransaction->status == "paid" )--}}
+
+                                                {{--<a href="{{ URL::route('student.book.download',['book_id'=>$list->id]) }}" class="btn btn-large btn-success pull-right" ><i class="fa fa-download"></i></a>--}}
+                                            {{--@els--}}
+                                                <a href="{{ URL::route('student.add-book-to-cart',['book_id'=>$list->id]) }}" class="btn btn-info btn-large" ><i class="fa fa-shopping-cart"></i></a>
+
+                                            {{--@endif--}}
+
+
+
                                       @endif
                                   </td>
                               </tr>

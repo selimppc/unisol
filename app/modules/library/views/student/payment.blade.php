@@ -39,7 +39,7 @@
           </div>
        </form>
 
-       <a href="{{ URL::route('student.send-info-to-transaction',$all_cart_book_ids) }}" class="btn btn-info" style="margin-left: 50%"><b style="color: #f4f5ff;"><i class="fa fa-mail-forward"></i>  CHECKOUT</b></a>
+       <a href="{{ URL::route('student.send-info-to-transaction') }}" class="btn btn-info" style="margin-left: 50%"><b style="color: #f4f5ff;"><i class="fa fa-mail-forward"></i>  CHECKOUT</b></a>
 
 
     </div>
