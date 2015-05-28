@@ -24,8 +24,8 @@ Route::any('student/book/download/{book_id}',[
 ]);
 
 
-Route::any('student/add-book-to-cart/{book_id}',[
-    'as' =>'student.add-book-to-cart',
+Route::any('student/add-to-cart/{book_id}',[
+    'as' =>'student.add-to-cart',
     'uses' => 'LibStudentController@addBookToStudentCart'
 ]);
 

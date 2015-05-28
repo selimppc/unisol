@@ -105,7 +105,10 @@ class LibStudentController extends \BaseController
         $headers = array(
             'Content-Type: application/pdf',
         );
-        return Response::download($path, $file, $headers);
+       $file_name = $download->title;
+
+
+        return Response::download($path, $file_name, $headers);
     }
 
     public function viewCart()
