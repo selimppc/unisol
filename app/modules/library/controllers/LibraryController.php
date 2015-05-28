@@ -375,13 +375,16 @@ class LibraryController extends \BaseController {
             $model->digital_sell_price = Input::get('digital_sell_price');
             $model->is_rented = Input::get('is_rented');
 
-            $files = Input::file('docs');
-            $destinationPath = public_path() . '/library';
-            $filename =  $files->getClientOriginalExtension();
-            $file = date("d-m-Y-s")."." . $filename;
-            $files->move($destinationPath, $file);
-            $model->file = $file;
-
+            if (Input::hasFile('docs'))
+            {
+                $files = Input::file('docs');
+                $destinationPath = public_path() . '/library';
+                $filename =  $files->getClientOriginalExtension();
+                $file = date("d-m-Y-s")."." . $filename;
+                $files->move($destinationPath, $file);
+                $model->file = $file;
+            }
+            
             $model->save();
 
             Session::flash('message', "Successfully Added $flashmsg !");
@@ -432,20 +435,21 @@ class LibraryController extends \BaseController {
             $model->is_rented = Input::get('is_rented');
 
          /* $files = Input::get('docs');*/
-            $files = Input::file('docs');
+            /*$files = Input::file('docs');
             $destinationPath = public_path() . '/library';
             $filename =  $files->getClientOriginalExtension();
             $file = date("d-m-Y-s")."." . $filename;
             $files->move($destinationPath, $file);
-            $model->file = $file;
+            $model->file = $file;*/
 
-            if (Input::hasFile('filesToUpload'))
+            if (Input::hasFile('docs'))
             {
-                $file = Input::file('filesToUpload');
-                $destinationPath = 'uploads/portfolio';
-                $extension = $file->getClientOriginalExtension();
-                $filename = str_random(12).".{$extension}";
-                $upload_success = $file->move($destinationPath, $filename);
+                $files = Input::file('docs');
+                $destinationPath = public_path() . '/library';
+                $filename =  $files->getClientOriginalExtension();
+                $file = date("d-m-Y-s")."." . $filename;
+                $files->move($destinationPath, $file);
+                $model->file = $file;
             }
 
             $model->save();
