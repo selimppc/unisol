@@ -14,9 +14,8 @@ class LibFacultyController extends \BaseController {
     public function index()
 	{
         $user_id = Auth::user()->get()->id;
-
         $model = new LibBook();
-        //$model = $model->select(' ');
+
         if($this->isPostRequest()) {
 
             $lib_book_category_id = Input::get('lib_book_category_id');
@@ -47,7 +46,7 @@ class LibFacultyController extends \BaseController {
             'lbt.issue_date', 'lbt.status as lbtStatus', 'lbft.lib_book_transaction_id', 'lbft.amount', 'lbft.trn_type',
             'lbft.status as tbftStatus'
         ));
-        //print_r($model);exit;
+
         $lib_book_category_id = array('' => 'Select Category ') + LibBookCategory::lists('title', 'id');
         $lib_book_author_id = array('' => 'Select Author ') + LibBookAuthor::lists('name', 'id');
         $lib_book_publisher_id = array('' => 'Select Publisher ') + LibBookPublisher::lists('name', 'id');
@@ -59,12 +58,6 @@ class LibFacultyController extends \BaseController {
             $all_cart_books = array();
         }
 
-        /*$download_book = LibBookFinancialTransaction::with('relLibBookTransaction','relLibBookTransaction.relLibBook')
-            ->where('lib_book_transaction_id',)
-            ->get();
-        print_r($download_book);exit;*/
-
-
         return View::make('library::faculty.index',compact('lib_book_category_id','lib_book_author_id','lib_book_publisher_id','lib_book_id','model', 'all_cart_books'));
 	}
 
@@ -74,7 +67,7 @@ class LibFacultyController extends \BaseController {
             $prev_added_book_id = Session::get('cartBooks');
 
             $all_cart_book_ids = array_merge(array($id), (array)$prev_added_book_id);
-            //array_unique($all_cart_book_ids);
+
             Session::put('cartBooks',  array_unique($all_cart_book_ids));
         }else{
             $all_cart_book_ids = (array)Session::get('cartBooks');
@@ -100,8 +93,8 @@ class LibFacultyController extends \BaseController {
         }
 
     public function storeBookTransaction(){
-        $all_cart_book_ids = Session::get('cartBooks');
 
+        $all_cart_book_ids = Session::get('cartBooks');
 
         $all_cart_books = LibBook::with('relLibBookCategory', 'relLibBookAuthor', 'relLibBookPublisher')
             ->whereIn('id',$all_cart_book_ids)
@@ -161,7 +154,7 @@ class LibFacultyController extends \BaseController {
         return View::make('library::faculty.my_book',compact('my_cart_books'));
     }
 
-    public function downloadBook($book_id)
+        public function downloadBook($book_id)
     {
         $download = LibBook::find($book_id);
         $file = $download->file;
@@ -169,8 +162,9 @@ class LibFacultyController extends \BaseController {
         $headers = array(
             'Content-Type: application/pdf',
         );
-        $file_name = $download->title;
-        return Response::download($path, $file_name, $headers);
+        //$file_name = $download->title;
+        return Response::download($path, $file, $headers);
+
     }
 
     public function removeBookFromCart($id)
@@ -190,17 +184,28 @@ class LibFacultyController extends \BaseController {
     public function viewBook($book_id)
     {
         $download = LibBook::find($book_id);
+
+
         $file = $download->file;
-        $path = public_path("library/" . $file);
-        $headers = array(
-            'Content-Type: application/pdf',
-        );
-        /*To open and read and download pdf*/
-        return Response::make(file_get_contents($path), 200, [
-            'Content-Type' => 'application/pdf',
-            'Content-Disposition' => 'inline; '.$file,
-        ]);
+        if($file){
+            $path = public_path("library/" . $file);
+            $headers = array(
+                'Content-Type: application/pdf',
+            );
+            /*To open and read and download pdf*/
+            return Response::make(file_get_contents($path), 200, [
+                'Content-Type' => 'application/pdf',
+                'Content-Disposition' => 'inline; '.$file,
+            ]);
+        }else{
+            Session::flash('info', 'No File Found');
+            return Redirect::back();
+        }
+
     }
 
-	
+
+
+
+
 }
