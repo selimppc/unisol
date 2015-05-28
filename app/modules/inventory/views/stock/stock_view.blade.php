@@ -20,7 +20,6 @@
                     <th> Product Name </th>
                     <th> Batch Number </th>
                     <th> Expiry Date  </th>
-                    <th> Warehouse </th>
                     <th> Stock Rate </th>
                     <th> Unit</th>
                     <th> Transfer Quantity</th>
@@ -32,7 +31,15 @@
             @if(isset($data))
                 @foreach($data as $values)
                  <tr>
-
+                    <td>{{ isset($values->inv_product_id)? $values->relInvProduct->code :'' }}</td>
+                    <td>{{ isset($values->inv_product_id)? $values->relInvProduct->title :'' }}</td>
+                    <td> {{ isset($values->batch_number) ? $values->batch_number : '' }}</td>
+                    <td> {{ $values->expire_date }}</td>
+                    <td> {{ round($values->rate, 2) }}</td>
+                    <td> {{ $values->unit }}</td>
+                    <td> {{ $values->TransferableQty }}</td>
+                    <td> {{ $values->stockQty }}</td>
+                    <td> {{ $values->availableQty }}</td>
                  </tr>
                 @endforeach
             @endif
@@ -43,7 +50,6 @@
 
     </div>
 
-{{--    {{$data->links();}}--}}
 
 </div>
 

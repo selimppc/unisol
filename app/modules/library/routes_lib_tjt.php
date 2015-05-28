@@ -26,9 +26,14 @@ Route::any('faculty/book-transaction/',[
     'uses' => 'LibFacultyController@storeBookTransaction'
 ]);
 
-Route::any('faculty/view-cart',[
-    'as' =>'faculty.view-cart',
-    'uses' => 'LibFacultyController@viewBookToCart'
+Route::any('faculty/checkout',[
+    'as' =>'faculty.checkout',
+    'uses' => 'LibFacultyController@checkout'
+]);
+
+Route::any('faculty/my-cart',[
+    'as' =>'faculty.my-cart',
+    'uses' => 'LibFacultyController@viewMyCart'
 ]);
 
 Route::any('faculty/checkout-by-faculty/{all_cart_book_ids}',[
@@ -37,8 +42,8 @@ Route::any('faculty/checkout-by-faculty/{all_cart_book_ids}',[
 ]);
 
 Route::any('faculty/book/download/{book_id}',[
-    'as' =>'student.book.download',
-    'uses' => 'LibFacultyController@getBookDownload'
+    'as' =>'faculty.book.download',
+    'uses' => 'LibFacultyController@downloadBook'
 ]);
 
 Route::any('faculty/remove-from-cart/{id}',[

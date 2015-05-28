@@ -13,28 +13,44 @@ class LibFacultyController extends \BaseController {
 
     public function index()
 	{
+        $user_id = Auth::user()->get()->id;
+
+        $model = new LibBook();
+        //$model = $model->select(' ');
         if($this->isPostRequest()) {
 
             $lib_book_category_id = Input::get('lib_book_category_id');
             $lib_book_author_id = Input::get('lib_book_author_id');
             $lib_book_publisher_id = Input::get('lib_book_publisher_id');
-           /*$lib_book_id = Input::get('title');*/
 
-
-
-            $model = LibBook::with('relLibBookCategory','relLibBookAuthor','relLibBookPublisher','relLibBookTransaction');
-
+            $model = $model->with('relLibBookCategory','relLibBookAuthor','relLibBookPublisher');
             if (isset($lib_book_category_id) && !empty($lib_book_category_id)) $model->where('lib_books.lib_book_category_id', '=', $lib_book_category_id);
             if (isset($lib_book_author_id) && !empty($lib_book_author_id)) $model ->where('lib_books.lib_book_author_id', '=', $lib_book_author_id);
             if (isset($lib_book_publisher_id) && !empty($lib_book_publisher_id)) $model->where('lib_books.lib_book_publisher_id', '=', $lib_book_publisher_id);
-            $model = $model->get();
-           //print_r($model);exit;
+            //$model = $model->get();
         }else{
-            $model = LibBook::with('relLibBookCategory','relLibBookAuthor','relLibBookPublisher')->latest('id')->get();
+            $model = $model->with('relLibBookCategory','relLibBookAuthor','relLibBookPublisher')->latest('lib_books.id');
         }
-            $lib_book_category_id = array('' => 'Select Category ') + LibBookCategory::lists('title', 'id');
-            $lib_book_author_id = array('' => 'Select Author ') + LibBookAuthor::lists('name', 'id');
-            $lib_book_publisher_id = array('' => 'Select Publisher ') + LibBookPublisher::lists('name', 'id');
+
+        $model = $model->leftJoin('lib_book_transaction as lbt', function($query)  use($user_id){
+            $query->on('lbt.lib_books_id', '=', 'lib_books.id');
+            $query->where('lbt.user_id',  '=', $user_id);
+        });
+        $model = $model->leftJoin('lib_book_financial_transaction as lbft', function($query)  use($user_id){
+            $query->on('lbft.lib_book_transaction_id', '=', 'lbt.id');
+        });
+
+        $model = $model->get(array('lib_books.id as id', 'lib_books.digital_sell_price as digital_sell_price',
+            'lib_books.title as title', 'lib_books.isbn as isbn', 'lib_books.lib_book_category_id',
+            'lib_books.lib_book_author_id', 'lib_books.lib_book_publisher_id', 'lib_books.edition', 'lib_books.book_type',
+            'lib_books.book_price', 'lib_books.is_rented', 'lib_books.commercial', 'lbt.user_id', 'lbt.lib_books_id',
+            'lbt.issue_date', 'lbt.status as lbtStatus', 'lbft.lib_book_transaction_id', 'lbft.amount', 'lbft.trn_type',
+            'lbft.status as tbftStatus'
+        ));
+        //print_r($model);exit;
+        $lib_book_category_id = array('' => 'Select Category ') + LibBookCategory::lists('title', 'id');
+        $lib_book_author_id = array('' => 'Select Author ') + LibBookAuthor::lists('name', 'id');
+        $lib_book_publisher_id = array('' => 'Select Publisher ') + LibBookPublisher::lists('name', 'id');
 
         if(Session::get('cartBooks')){
             $all_cart_book_ids = Session::get('cartBooks');
@@ -42,6 +58,12 @@ class LibFacultyController extends \BaseController {
         }else{
             $all_cart_books = array();
         }
+
+        /*$download_book = LibBookFinancialTransaction::with('relLibBookTransaction','relLibBookTransaction.relLibBook')
+            ->where('lib_book_transaction_id',)
+            ->get();
+        print_r($download_book);exit;*/
+
 
         return View::make('library::faculty.index',compact('lib_book_category_id','lib_book_author_id','lib_book_publisher_id','lib_book_id','model', 'all_cart_books'));
 	}
@@ -64,7 +86,7 @@ class LibFacultyController extends \BaseController {
         return Redirect::back();
 	}
 
-    public function viewBookToCart(){
+    public function checkout(){
 
         $all_cart_book_ids = Session::get('cartBooks');
         $all_cart_books = LibBook::with('relLibBookCategory', 'relLibBookAuthor', 'relLibBookPublisher')
@@ -74,29 +96,7 @@ class LibFacultyController extends \BaseController {
         $sum = $all_cart_books->sum('digital_sell_price');
         $number = count($all_cart_books);
 
-        $remove_paid_book = LibBookFinancialTransaction::join('lib_book_transaction',function($query){
-            $query->on('lib_book_financial_transaction.lib_book_transaction_id', '=', 'lib_book_transaction.id');
-        })->join('lib_books', function($join){
-            $join->on('lib_books.id', '=', 'lib_book_transaction.lib_books_id');
-
-        })
-//            ->where('lib_book_financial_transaction.id','=', $all_cart_book_ids)
-           ->get();
-        //print_r($remove_paid_book);exit;
-
-
-
-//        $course_list = ExmExamList::join('course_conduct', function($query) {
-////            $query->on('exm_exam_list.course_conduct_id', '=', 'course_conduct.id');
-////        })->join('course', function($join){
-////            $join->on('course.id', '=', 'course_conduct.course_id');
-////        })
-////            ->where('exm_exam_list.id', $id)
-////            ->select(DB::raw('exm_exam_list.course_conduct_id as id, course.title as title'))
-////            ->lists('title','id');
-
-
-            return View::make('library::faculty.my_cart', compact('all_cart_books', 'number', 'id', 'sum', 'all_cart_book_ids'));
+            return View::make('library::faculty.checkouts', compact('all_cart_books', 'number', 'id', 'sum', 'all_cart_book_ids'));
         }
 
     public function storeBookTransaction(){
@@ -146,26 +146,22 @@ class LibFacultyController extends \BaseController {
                 Session::flash('errors', implode("<br />", $tr_error));
                 return Redirect::back();
             }elseif($tr_info){
-                Session::flash('errors', implode("<br />", $tr_info));
-                return Redirect::back();
+                Session::flash('info', implode("<br />", $tr_info));
+                return Redirect::route('faculty.my-cart');
             }else{
                 return Redirect::back();
             }
-
        }
     }
 
-	public function checkoutByFaculty($all_cart_book_ids)
+	public function viewMyCart()
     {
-        $all_cart_book_ids = Session::get('cartBooks');
-        //print_r($all_cart_book_ids);exit;
-
-        $book_id = LibBook::where('id',$all_cart_book_ids)->get();
-
-        //print_r($book_id);exit;
+        $my_cart_books = LibBookTransaction::with('relLibBook','relLibBookFinancialTransaction')
+            ->get();
+        return View::make('library::faculty.my_cart',compact('my_cart_books'));
     }
 
-    public function getBookDownload($book_id)
+    public function downloadBook($book_id)
     {
         $download = LibBook::find($book_id);
         $file = $download->file;

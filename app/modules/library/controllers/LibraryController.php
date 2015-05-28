@@ -490,4 +490,38 @@ class LibraryController extends \BaseController {
         }
     }
 
+    public function bookDownload($book_id)
+    {
+        $download = LibBook::find($book_id);
+        $file = $download->file;
+        $path = public_path("library/" . $file);
+        $headers = array(
+            'Content-Type: application/pdf',
+        );
+        /*To Direct Download*/
+         return Response::download($path, $file, $headers);
+
+        /*To open and read and download pdf
+        return Response::make(file_get_contents($path), 200, [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'inline; '.$file,
+        ]);*/
+    }
+
+    public function bookRead($book_id)
+    {
+        $download = LibBook::find($book_id);
+        $file = $download->file;
+        $path = public_path("library/" . $file);
+        $headers = array(
+            'Content-Type: application/pdf',
+        );
+        /*To open and read and download pdf*/
+        return Response::make(file_get_contents($path), 200, [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'inline; '.$file,
+        ]);
+    }
+
+
 }

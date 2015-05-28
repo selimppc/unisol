@@ -29,7 +29,7 @@
                     </tbody>
                </table>
                <div style="margin-left: 100px">
-                  <a href="{{URL::route('faculty.view-cart') }}" class="btn btn-info btn-xs">Checkout</a>
+                  <a href="{{URL::route('faculty.checkout') }}" class="btn btn-info btn-xs">Checkout</a>
                </div>
         </ul>
    </ul>

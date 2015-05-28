@@ -241,10 +241,10 @@ Route::group(['prefix' => 'inventory'], function() {
         "uses" => "InvPurchaseOrderController@detail_purchase_order"
     ]);
 
-    Route::any("ajax/get-product-auto-complete", [
+    /*Route::any("ajax/get-product-auto-complete", [
         "as"   => "ajax/get-product-auto-complete",
         "uses" => "InvPurchaseOrderController@ajaxGetProductAutoComplete"
-    ]);
+    ]);*/
 
     Route::any("store-purchase-order-detail", [
         "as"   => "store-purchase-order-detail",
@@ -283,9 +283,14 @@ Route::group(['prefix' => 'inventory'], function() {
         "uses" => "InvGrnController@ajax_grn_detail_store"
     ]);
 
-    Route::any("ajax-delete-grn-detail/{g_id}", [
+    Route::any("ajax-delete-grn-detail/{grn_id}", [
         "as"   => "ajax-delete-grn-detail",
         "uses" => "InvGrnController@ajax_delete_grn_detail"
+    ]);
+
+    Route::any("confirm-grn/{grn_id}", [
+        "as"   => "confirm-grn",
+        "uses" => "InvGrnController@confirm_grn"
     ]);
 
 
@@ -343,6 +348,11 @@ Route::group(['prefix' => 'inventory'], function() {
     Route::any("sd-ajax-delete-dt/{sd_id}", [
         "as"   => "sd-ajax-delete-dt",
         "uses" => "InvStockController@ajax_delete_sd_detail"
+    ]);
+
+    Route::any("transfer-ajax-to", [
+        "as"   => "transfer-ajax-to",
+        "uses" => "InvStockController@ajaxTransferProductAutoComplete"
     ]);
 
 
