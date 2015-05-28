@@ -7,7 +7,7 @@
         <h4 class="modal-title" id="myModalLabel">New Transfer  </h4>
       </div>
       <div class="modal-body">
-        @include('inventory::stock._form')
+        @include('inventory::adjust_head._form')
       </div>
     </div>
   </div>

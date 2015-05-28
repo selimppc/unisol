@@ -1,21 +1,22 @@
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-     <h3> Transfer Number: {{ $data->transfer_number }}</h3>
+     <h3> Stock Adjustment Number: {{ $data->adjust_no }}</h3>
 </div>
 
 <div style="padding: 2%; width: 99%;">
 <div class="modal-body">
 
     <div class="row">
-    <h5><strong> Dispatch Head :</strong></h5>
+    <h5><strong> Stock Adjustment Head :</strong></h5>
     <table class="table table-striped  table-bordered">
-        <tr>
-            <td><strong> Transfer TO:</strong></td>
-            <td>{{ isset($data->transfer_to)? $data->relDepartment->title :''}}</td>
-        </tr>
         <tr>
             <td><strong> Date:</strong></td>
             <td>{{ $data->date }}</td>
+        </tr>
+
+        <tr>
+            <td><strong> Type:</strong></td>
+            <td>{{ Str::title($data->type) }}</td>
         </tr>
 
         <tr>
@@ -44,22 +45,22 @@
         <table id="example" class="table table-striped  table-bordered" >
             <thead>
                 <tr>
-                    <th>Product Name</th>
-                    <th>Product Code</th>
+                    <th> Product Name </th>
+                    <th> Product Code </th>
                     <th> Rate </th>
                     <th> Unit </th>
                     <th> Quantity </th>
                 </tr>
             </thead>
             <tbody>
-                @if(isset($sd_dt))
-                @foreach($sd_dt as $values)
+                @if(isset($adj_dt))
+                @foreach($adj_dt as $values)
                  <tr>
                     <td>{{Str::title($values->relInvProduct->title)}}</td>
                     <td>{{ $values->relInvProduct->code }}  </td>
                     <td>{{ $values->rate }}  </td>
-                    <td>{{$values->unit}}</td>
-                    <td>{{$values->quantity}}</td>
+                    <td>{{ $values->unit }}</td>
+                    <td>{{ $values->quantity }}</td>
                  </tr>
                 @endforeach
                 @else

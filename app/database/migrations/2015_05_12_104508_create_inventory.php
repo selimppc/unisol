@@ -321,6 +321,7 @@ class CreateInventory extends Migration {
             ));
             $table->dateTime('confirm_date')->nullable();
             $table->unsignedInteger('currency_id')->nullable();
+            $table->text('note')->nullable();
             $table->string('voucher_no', 16)->nullable();
             $table->enum('status', array(
                 'open', 'approved', 'close',

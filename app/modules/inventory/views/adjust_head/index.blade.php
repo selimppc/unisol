@@ -17,7 +17,7 @@
            </div>
         </div>
 
-        {{Form::open([ 'route'=>'batch-cancel-dispatch' ])}}
+        {{Form::open([ 'route'=>'batch-cancel-stock-adjustment' ])}}
        <div class="box-body">
         <table id="example" class="table table-striped  table-bordered" >
             <thead>
@@ -26,13 +26,11 @@
                     <th><input type="checkbox" id="checkbox" class="checkbox" value=""></th>
                     <th> Stock Adjustment # </th>
                     <th> Date </th>
-                    <th> Store </th>
                     <th> Stock Type </th>
                     <th> Confirm Date  </th>
-                    <th> Currency </th>
                     <th> Status </th>
                     <th> Action</th>
-                    <th> Confirm </th>
+                    <th> Approve ADJ</th>
 
                 </tr>
             </thead>
@@ -42,25 +40,24 @@
                  <tr>
                     <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $values->id }}"></td>
                     <td>
-                    <b>{{ link_to_route($values->status!="approved" ?'add-product-dispatch' : 'show-dispatch',$values->transfer_number,['req_id'=>$values->id], ['data-toggle'=>"modal", 'data-target'=>"#modal-pc"]) }}</b>
+                    <b>{{ link_to_route($values->status!="approved" ?'add-product-dispatch' : 'show-dispatch',$values->adjust_no,['adj_id'=>$values->id], ['data-toggle'=>"modal", 'data-target'=>"#modal-pc"]) }}</b>
                     </td>
-                    <td>{{isset($values->transfer_to)? $values->relDepartment->title :'' }}</td>
                     <td>{{$values->date }}</td>
+                    <td>{{Str::title($values->type) }}</td>
                     <td>{{$values->confirm_date }}</td>
-                    <td>{{$values->note }}</td>
                     <td>{{$values->status }}</td>
                     <td>
                         @if($values->status=='open')
-                        <a href="{{ URL::route('show-dispatch', ['sd_id'=>$values->id ])  }}" class="btn btn-default btn-xs" title="View Dispatch" data-toggle="modal" data-target="#modal-pc"><span class="fa fa-eye"></span></a>
-                        <a href="{{ URL::route('edit-dispatch',['sd_id'=>$values->id])  }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal-pc"> <i class="fa fa-edit"></i></a>
-                        <a data-href="{{ URL::route('cancel-dispatch', ['sd_id'=>$values->id ]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa fa-circle-o-notch" style="color: red" data-toggle="tooltip" data-placement="bottom" title="Cancel"></i></a>
-                    @elseif($values->status=="Confirmed Dispatch")
-                        <a href="{{ URL::route('show-dispatch', ['sd_id'=>$values->id ])  }}" class="btn btn-default btn-xs" title="View Dispatch" data-toggle="modal" data-target="#modal-pc"><span class="fa fa-eye"></span></a>
+                        <a href="{{ URL::route('show-stock-adjustment', ['adj_id'=>$values->id ])  }}" class="btn btn-default btn-xs" title="View Dispatch" data-toggle="modal" data-target="#modal-pc"><span class="fa fa-eye"></span></a>
+                        <a href="{{ URL::route('edit-stock-adjustment',['adj_id'=>$values->id])  }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal-pc"> <i class="fa fa-edit"></i></a>
+                        <a data-href="{{ URL::route('cancel-stock-adjustment', ['adj_id'=>$values->id ]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa fa-circle-o-notch" style="color: red" data-toggle="tooltip" data-placement="bottom" title="Cancel"></i></a>
+                    @elseif($values->status=="approved")
+                        <a href="{{ URL::route('show-stock-adjustment', ['sd_id'=>$values->id ])  }}" class="btn btn-default btn-xs" title="View Dispatch" data-toggle="modal" data-target="#modal-pc"><span class="fa fa-eye"></span></a>
                     @endif
 
                     </td>
                     <td>
-                    <a href="{{ URL::route('sp-confirm-dispatch', ['transfer_head_id'=>$values->id ])  }}" class="btn btn-success btn-xs" title="Confirm Dispatch" > Confirm Dispatch</a>
+                    <a href="{{ URL::route('sp-confirm-dispatch', ['adj_head_id'=>$values->id ])  }}" class="btn btn-success btn-xs" title="Approve Stock Adjustment" > Approve ADJ</a>
                     </td>
                  </tr>
                 @endforeach
@@ -76,8 +73,8 @@
 {{--    {{$data->links();}}--}}
 
 </div>
-{{Form::open(['route'=>'store-stock-dispatch', 'files'=>true])}}
-        @include('inventory::stock._modal._modal')
+{{Form::open(['route'=>'store-stock-adjustment', 'files'=>true])}}
+        @include('inventory::adjust_head._modal._modal')
 {{ Form::close() }}
 
 
