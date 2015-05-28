@@ -47,8 +47,9 @@
                 <i class="fa fa-angle-left pull-right"></i>
             </a>
             <ul class="treeview-menu">
-                <li><a tabindex="-1" a href="{{ URL::to('library/student/find-book') }}"><i class="fa fa-book" style="color: #2327db"></i>Find Book</a></li>
-
+                <li><a tabindex="-1" a href="{{ URL::to('library/student/find-book') }}"><i class="fa fa-search-plus" style="color: #2327db"></i>Find Book</a></li>
+                <li><a tabindex="-1" a href="{{ URL::to('library/student/view-cart') }}"><i class="fa fa-shopping-cart" style="color: #9d07db"></i>View Cart</a></li>
+                <li><a tabindex="-1" a href="{{ URL::to('library/student/my-book') }}"><i class="fa fa-book" style="color: #6fdb06"></i>My Book</a></li>
             </ul>
      </li>
 

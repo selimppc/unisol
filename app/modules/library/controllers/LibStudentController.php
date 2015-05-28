@@ -15,6 +15,8 @@ class LibStudentController extends \BaseController
 
     public function findBooks()
     {
+        $user_id = Auth::user()->get()->id;
+        $model = new LibBook();
 
         if ($this->isPostRequest()) {
 
@@ -28,11 +30,29 @@ class LibStudentController extends \BaseController
             if (isset($book_category_id) && !empty($book_category_id)) $model->where('lib_books.lib_book_category_id', '=', $book_category_id);
             if (isset($book_author_id) && !empty($book_author_id)) $model->where('lib_books.lib_book_author_id', '=', $book_author_id);
             if (isset($book_publisher_id) && !empty($book_publisher_id)) $model->where('lib_books.lib_book_publisher_id', '=', $book_publisher_id);
-            $model = $model->get();
+            //$model = $model->get();
             //print_r($model);exit;
         } else {
-            $model = LibBook::with('relLibBookCategory', 'relLibBookAuthor', 'relLibBookPublisher')->latest('id')->get();
+            $model = $model->with('relLibBookCategory','relLibBookAuthor','relLibBookPublisher')->latest('lib_books.id');
         }
+
+        $model = $model->leftJoin('lib_book_transaction as lbt', function($query)  use($user_id){
+            $query->on('lbt.lib_books_id', '=', 'lib_books.id');
+            $query->where('lbt.user_id',  '=', $user_id);
+        });
+        $model = $model->leftJoin('lib_book_financial_transaction as lbft', function($query)  use($user_id){
+            $query->on('lbft.lib_book_transaction_id', '=', 'lbt.id');
+        });
+
+        $model = $model->get(array('lib_books.id as id', 'lib_books.digital_sell_price as digital_sell_price',
+            'lib_books.title as title', 'lib_books.isbn as isbn', 'lib_books.lib_book_category_id',
+            'lib_books.lib_book_author_id', 'lib_books.lib_book_publisher_id', 'lib_books.edition', 'lib_books.book_type',
+            'lib_books.book_price', 'lib_books.is_rented', 'lib_books.commercial', 'lbt.user_id', 'lbt.lib_books_id',
+            'lbt.issue_date', 'lbt.status as lbtStatus', 'lbft.lib_book_transaction_id', 'lbft.amount', 'lbft.trn_type',
+            'lbft.status as tbftStatus'
+        ));
+
+        //print_r($model);exit;
         $book_category_id = array('' => 'Select Category ') + LibBookCategory::lists('title', 'id');
         $book_author_id = array('' => 'Select Author ') + LibBookAuthor::lists('name', 'id');
         $book_publisher_id = array('' => 'Select Publisher ') + LibBookPublisher::lists('name', 'id');
@@ -104,53 +124,60 @@ class LibStudentController extends \BaseController
 
     public function saveInfoToTransactionTable()
     {
-        $all_cart_book_tot = Session::get('cartBooks');
-
-        //print_r($all_cart_book_ids_tot);exit;
+        $all_cart_book_ids = Session::get('cartBooks');
 
         $all_cart_books = LibBook::with('relLibBookCategory', 'relLibBookAuthor', 'relLibBookPublisher')
-            ->where('id',$all_cart_book_tot)
+            ->whereIn('id',$all_cart_book_ids)
             ->get();
 
-        // save to lib_book_transaction table
+        $tr_error = '';
+        $tr_info = '';
+        if($all_cart_book_ids){
+            foreach($all_cart_books as $key => $cb){
+                $transaction = new LibBookTransaction();
+                $transaction->user_id = Auth::user()->get()->id;
+                $transaction->lib_books_id = $cb->id;
+                $transaction->issue_date = date('d-m-y H:i:s');
+                $transaction->status = 'received';
 
-        foreach ($all_cart_books as $key => $value)
-        {
-            //print_r($value);exit;
-                $lib_book_trnsctn = new LibBookTransaction();
-                $lib_book_trnsctn->user_id = Auth::user()->get()->id;
-                $lib_book_trnsctn->lib_books_id = $value->id;
-                $date = date('d-m-y H:i:s');
-                $lib_book_trnsctn->issue_date = $date;
-
-                $lib_book_trnsctn->save();
-
-                $lib_book_trnsctn_id = $lib_book_trnsctn->id;
-
-                // save to lib_book_financial_transaction table
-                $lib_book_fncl_trnsctn = new LibBookFinancialTransaction();
-                $lib_book_fncl_trnsctn->lib_book_transaction_id = $lib_book_trnsctn_id;
-                $lib_book_fncl_trnsctn->amount = $value->digital_sell_price;
-                $lib_book_fncl_trnsctn->trn_type = 'commercial';
-                $lib_book_fncl_trnsctn->status = 'paid';
-
-                if($lib_book_fncl_trnsctn->save())
+                if ($transaction->save())
                 {
-                    return Redirect::route('student.my-cart');
+                    // save to lib_book_financial_transaction table
+                    $f_transaction = new LibBookFinancialTransaction();
+                    $f_transaction->lib_book_transaction_id = $transaction->id;
+                    $f_transaction->amount = $cb->digital_sell_price;
+                    $f_transaction->trn_type = 'commercial';
+                    $f_transaction->status = 'paid';
+                    $f_transaction->save();
+                    if($f_transaction->save())
+                    {
+                        $tr_info[] = 'Book "'.$cb->title.'" is paid. You can download it.';
+                        if (($key = array_search($cb->id, $all_cart_book_ids)) !== false) {
+                            unset($all_cart_book_ids[$key]);
+                        }
 
+
+                    }else{
+                        $tr_error[] = 'At transaction of Book "'.$cb->title.'" is done but payment is not done. So please try once again.';
+                    }
                 }else{
-                    Session::flash('errors', 'Data Not Sent to second table');
-
+                    $tr_error[] = 'Error at transaction of Book "'.$cb->title.'". So please try once again.';
                 }
+            }
+            // set if any item is not successfully added.
+            Session::set('cartBooks', $all_cart_book_ids);
 
-//                }else{
-//                    Session::flash('errors', 'Data Not Sent ! Try Again');
-//                    return Redirect::route('student.view-cart');
-//                }
+            if($tr_error){
+                Session::flash('errors', implode("<br />", $tr_error));
+                return Redirect::back();
+            }elseif($tr_info){
+                Session::flash('info', implode("<br />", $tr_info));
+                return Redirect::route('student.my-book');
+            }else{
+                return Redirect::back();
+            }
 
         }
-        Session::flash('errors', 'Data Not Sent table');
-        return Redirect::back();
 
 
     }
@@ -167,14 +194,12 @@ class LibStudentController extends \BaseController
 
 
 
-    public function myCart()
+    public function myBook()
     {
 
         $all_cart_book_ids = Session::get('cartBooks');
-
         $all_cart_books = LibBook::with('relLibBookCategory', 'relLibBookAuthor', 'relLibBookPublisher')
             ->whereIn('id', $all_cart_book_ids)->get();
-
         $sum = $all_cart_books->sum('digital_sell_price');
 
 
@@ -184,7 +209,7 @@ class LibStudentController extends \BaseController
 
 //      print_r($my_cart_books);exit;
 
-        return View::make('library::student.my_cart',compact('all_cart_book_ids','my_cart_books','sum'));
+        return View::make('library::student.my_book',compact('all_cart_book_ids','my_cart_books','sum'));
     }
 
 

@@ -90,7 +90,7 @@ class CreateLibrary extends Migration {
                 'books', 'journal', 'etc'
             ));
             $table->enum('commercial', array(
-                'student', 'both'
+                'student', 'both','free'
             ));
             $table->string('file', 128);
             $table->string('book_price', 128);

@@ -6,7 +6,7 @@
      @include('layouts._sidebar_student')
 @stop
 @section('content')
- <h3>My Cart</h3>
+ <h3>My Book</h3>
  <br>
  <div class="row">
     <div class="col-md-12 ">
@@ -32,7 +32,7 @@
                          @foreach($my_cart_books as $mcsb)
                            <tr>
                                <td><input type="checkbox" name="id[]" class="myCheckbox" value=""></td>
-                               <td>{{ $mcsb->user_id }}</td>
+                               <td>{{ isset($mcsb->user_id) ? User::FullName($mcsb->user_id) : '' }}</td>
                                <td>{{ $mcsb->relLibBook->title }}</td>
                                <td>{{ $mcsb->issue_date }}</td>
                                <td>{{ $mcsb->relLibBookFinancialTransaction->trn_type }}</td>

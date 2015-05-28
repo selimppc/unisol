@@ -46,16 +46,16 @@ Route::any('student/payment',[
 ]);
 
 
-Route::any('student/send-info-to-transaction/{all_cart_book_ids}',[
+Route::any('student/send-info-to-transaction',[
     'as' =>'student.send-info-to-transaction',
     'uses' => 'LibStudentController@saveInfoToTransactionTable'
 ]);
 
 
 
-Route::any('student/my-cart',[
-    'as' =>'student.my-cart',
-    'uses' => 'LibStudentController@myCart'
+Route::any('student/my-book',[
+    'as' =>'student.my-book',
+    'uses' => 'LibStudentController@myBook'
 ]);
 
 
