@@ -6,12 +6,12 @@
     @include('layouts._sidebar_amw')
 @stop
 @section('content')
-    <h2 class="page-header text-purple tab-text-margin text-center">Library Management</h2>
+    <h2 class="page-header text-purple tab-text-margin text-center">Fees</h2>
     <div class="row">
         <div class="col-md-12">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#tab_1" data-toggle="tab">Book Category</a></li>
+                    <li class="active"><a href="#tab_1" data-toggle="tab">Billing Setup</a></li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                             Settings  <span class="caret"></span>
