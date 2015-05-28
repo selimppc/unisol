@@ -384,7 +384,8 @@ class LibraryController extends \BaseController {
                 $files->move($destinationPath, $file);
                 $model->file = $file;
             }
-            
+
+
             $model->save();
 
             Session::flash('message', "Successfully Added $flashmsg !");

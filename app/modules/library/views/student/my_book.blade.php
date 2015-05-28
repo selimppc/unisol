@@ -11,6 +11,7 @@
  <div class="row">
     <div class="col-md-12 ">
        <div class="box box-solid">
+       <a href="{{ URL::route('student.find-book') }}" class="btn btn-info"  style="margin-left: 40%;color: #ffffff"  id="addBook"><b>Home</b></a>
 
 
            <p>&nbsp;</p>

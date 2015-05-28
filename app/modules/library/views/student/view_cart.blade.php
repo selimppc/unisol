@@ -6,7 +6,7 @@
      @include('layouts._sidebar_student')
 @stop
 @section('content')
-<a class="pull-right btn btn-info btn-xs"  style="color: #ffffff" href="{{ URL::route('student.find-book') }}" id="addBook"><b>Back</b></a>
+<a class="pull-right btn btn-info btn-xs"  style="color: #ffffff" href="{{ URL::route('student.find-book') }}" id="addBook"><b>Home</b></a>
 
  <h3>View Cart</h3>
 

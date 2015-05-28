@@ -1,5 +1,6 @@
 <ul class="nav navbar-nav">
-    @include('layouts._top_menu_layout')
+ {{--   @include('layouts._top_menu_layout')--}}
+    @include('layouts._top_menu_applicant')
     <!-- User Account: style can be found in dropdown.less -->
     <li class="dropdown user user-menu">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
