@@ -88,7 +88,7 @@
 
 
  <div class="box-tools pull-right">
-    <a class="pull-right btn btn-xs btn-success"  href="{{ URL::route('faculty.book-transaction')}}"><b style="color: #ffffff;">Send This Order </b> <i class="fa fa-arrow-circle-right"></i></a>
+    <a class="pull-right btn btn-xs btn-success"  href="{{ URL::route('faculty.book-transaction')}}"><b style="color: #ffffff;">Submit</b> <i class="fa fa-arrow-circle-right"></i></a>
  </div>
 
  @stop

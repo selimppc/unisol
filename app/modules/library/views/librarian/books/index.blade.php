@@ -42,17 +42,15 @@
                                         <input name="id" type="checkbox" id="checkbox" class="checkbox" value="">
                                     </th>
                                     <th>Title</th>
-                                    <th>ISBN</th>
                                     <th>Category</th>
+                                    <th>ISBN</th>
                                     <th>Author</th>
                                     <th>Publisher</th>
                                     <th>Edition</th>
-                                    <th>Stock Type</th>
-                                    <th>Self Number</th>
                                     <th>Book Type</th>
                                     <th>Commercial</th>
-                                    <th>Book Price(TK)</th>
-                                    <th>Digital Sell Price(TK)</th>
+                                    <th>Book Price</th>
+                                    <th>Sell Price</th>
                                     <th>Is Rented</th>
                                     <th>File</th>
                                     <th>Action</th>
@@ -64,22 +62,24 @@
                                         <td><input type="checkbox" name="id[]"  class="myCheckbox" value="{{ $value->id }}">
                                         </td>
                                         <td>{{isset($value->title) ? $value->title :''}}</td>
-                                        <td>{{isset($value->isbn) ? $value->isbn : ''}}</td>
                                         <td>{{isset($value->relLibBookCategory->title) ? $value->relLibBookCategory->title : ''}}</td>
+                                        <td>{{isset($value->isbn) ? $value->isbn : ''}}</td>
                                         <td>{{isset($value->relLibBookAuthor->name) ? $value->relLibBookAuthor->name : ''}}</td>
                                         <td>{{isset($value->relLibBookPublisher->name) ? $value->relLibBookPublisher->name : ''}}</td>
                                         <td>{{isset($value->edition) ? $value->edition : ''}}</td>
-                                        <td>{{isset($value->stock_type) ? $value->stock_type : ''}}</td>
-                                        <td>{{isset($value->shelf_number) ? $value->shelf_number : ''}}</td>
                                         <td>{{isset($value->book_type) ? $value->book_type : ''}}</td>
                                         <td>{{isset($value->commercial) ? $value->commercial : ''}}</td>
                                         <td>{{isset($value->book_price) ? $value->book_price : ''}}</td>
                                         <td>{{isset($value->digital_sell_price) ? $value->digital_sell_price : ''}}</td>
                                         <td>{{isset($value->is_rented) ? $value->is_rented : ''}}</td>
-                                        <td>
-                                            <a href="{{ URL::route('book.read',['book_id'=>$value->id]) }}" class="btn btn-xs btn-circle" style="background:lavender" >Read</a>
-                                            <a href="{{ URL::route('book.download',['book_id'=>$value->id]) }}" class="btn btn-xs btn-circle" style="background: aquamarine" ><i class="fa fa-download"></i></a>
-                                        </td>
+                                        @if($value->file==null)
+                                            <td style="color:magenta"><b>No File</b></td>
+                                        @else
+                                            <td>
+                                                <a href="{{ URL::route('book.read',['book_id'=>$value->id]) }}" target="_blank"><i class="fa fa-tablet" title="Read Book"></i></a>
+                                                <a href="{{ URL::route('book.download',['book_id'=>$value->id]) }}" style="color: blue" ><i class="fa fa-cloud-download" title="Download"></i></a>
+                                            </td>
+                                        @endif
                                         <td>
                                             <a href="{{ URL::route('book.view', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" href=""><i class="fa fa-eye" style="color: green"></i></a>
 
@@ -101,6 +101,8 @@
             </div>
         </div>
     </div>
+
+
 
     {{-- Modal add new  --}}
     <div id="bookAuthor" class="modal fade">
@@ -159,3 +161,4 @@
     </div>
 
 @stop
+

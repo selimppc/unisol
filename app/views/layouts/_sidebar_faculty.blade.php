@@ -48,7 +48,8 @@
             <i class="fa fa-angle-left pull-right"></i>
         </a>
         <ul class="treeview-menu">
-            <li><a tabindex="-1" a href="{{ URL::to('library/faculty/book') }}"><i class="fa fa-search-plus" style="color: #db8f18""></i>Search Book</a></li>
+            <li><a tabindex="-1" a href="{{ URL::to('library/faculty/book') }}"><i class="fa fa-search-plus" style="color: #db8f18"></i>Search Book</a></li>
+            <li><a tabindex="-1" a href="{{ URL::to('library/faculty/my-book') }}"><i class="fa fa-book" style="color:deepskyblue"></i>My Book</a></li>
 
         </ul>
     </li>

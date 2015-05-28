@@ -147,29 +147,30 @@ class LibFacultyController extends \BaseController {
                 return Redirect::back();
             }elseif($tr_info){
                 Session::flash('info', implode("<br />", $tr_info));
-                return Redirect::route('faculty.my-cart');
+                return Redirect::route('faculty.my-book');
             }else{
                 return Redirect::back();
             }
        }
     }
 
-	public function viewMyCart()
+	public function viewMyBook()
     {
         $my_cart_books = LibBookTransaction::with('relLibBook','relLibBookFinancialTransaction')
             ->get();
-        return View::make('library::faculty.my_cart',compact('my_cart_books'));
+        return View::make('library::faculty.my_book',compact('my_cart_books'));
     }
 
     public function downloadBook($book_id)
     {
         $download = LibBook::find($book_id);
         $file = $download->file;
-        $path = public_path("img/" . $file);
+        $path = public_path("library/" . $file);
         $headers = array(
             'Content-Type: application/pdf',
         );
-        return Response::download($path, $file , $headers);
+        $file_name = $download->title;
+        return Response::download($path, $file_name, $headers);
     }
 
     public function removeBookFromCart($id)
@@ -186,42 +187,20 @@ class LibFacultyController extends \BaseController {
         return Redirect::back();
     }
 
+    public function viewBook($book_id)
+    {
+        $download = LibBook::find($book_id);
+        $file = $download->file;
+        $path = public_path("library/" . $file);
+        $headers = array(
+            'Content-Type: application/pdf',
+        );
+        /*To open and read and download pdf*/
+        return Response::make(file_get_contents($path), 200, [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'inline; '.$file,
+        ]);
+    }
 
-
-    /**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
-	}
-
-
+	
 }

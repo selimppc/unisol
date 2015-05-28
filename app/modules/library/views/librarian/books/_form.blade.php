@@ -49,7 +49,7 @@
 
 <div class='form-group'>
     <div>{{ Form::label('commercial', 'commercial') }}</div>
-    <div>{{ Form::select('commercial',array('' => 'Select One','student' => 'Student', 'both' => 'Both'),'',['class'=>'form-control']) }}</div>
+    <div>{{ Form::select('commercial',array('' => 'Select One','student' => 'Student', 'both' => 'Both', 'free' => 'Free'),'',['class'=>'form-control']) }}</div>
 </div>
 
 <div class='form-group'>
