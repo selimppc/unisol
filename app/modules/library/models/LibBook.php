@@ -73,7 +73,7 @@ class LibBook extends Eloquent{
     }
 
     public function relLibBookTransaction(){
-         return $this->HasMany('LibBookTransaction');
+         return $this->HasOne('LibBookTransaction');
     }
 
 
