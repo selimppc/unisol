@@ -12,7 +12,7 @@
     <div class="col-md-12 ">
        <div class="box box-solid">
            <p>&nbsp;</p>
-              <table id="" class="table table-striped  table-bordered"  >
+              <table id="" class="table table-striped  table-bordered">
                  <thead>
                       <tr>
                          <th><input name="id" type="checkbox" id="checkbox" class="checkbox" value=""></th>
