@@ -84,9 +84,9 @@
                                       @if($list['tbftStatus'] == 'paid')
                                           <a href="{{URL::route('student.book.download',['book_id'=>$list->id]) }}" class="btn btn-large btn-primary" title="This Book is Purchased.You Can Download It"><b><i class="fa fa-cloud-download"> Purchased</i></b></a>
                                       @elseif($list['commercial'] == 'free')
-                                          <a href="{{URL::route('student.book.download',['book_id'=>$list->id]) }}" class="btn btn-large btn-success" ><i class="fa fa-download">Download</i></a>
+                                          <a href="{{URL::route('student.book.download',['book_id'=>$list->id]) }}" class="btn btn-large btn-success" ><i class="fa fa-download"> Download</i></a>
                                       @else
-                                          <a href="{{URL::route('student.add-to-cart',['book_id'=>$list->id]) }}" class="btn btn-large btn-info" title="Add To Cart"><i class="fa fa-shopping-cart">Add To Cart</i></a>
+                                          <a href="{{URL::route('student.add-to-cart',['book_id'=>$list->id]) }}" class="btn btn-large btn-info" title="Add To Cart"><i class="fa fa-shopping-cart"> Add To Cart</i></a>
                                       @endif
                                   </td>
                               </tr>

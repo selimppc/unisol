@@ -276,7 +276,7 @@ class CreateInventory extends Migration {
             $table->increments('id');
             $table->string('trn_number', 16)->nullable();
             $table->string('grn_number', 16)->nullable();
-            $table->unique(['po_number', 'grn_number']);
+            $table->unique(['trn_number', 'grn_number']);
             $table->unsignedInteger('inv_product_id')->nullable();
             $table->string('store', 16)->nullable();
             $table->string('batch_number', 16)->nullable();
@@ -292,8 +292,7 @@ class CreateInventory extends Migration {
             $table->text('note')->nullable();
             $table->unsignedInteger('inv_supplier_id')->nullable();
             $table->unsignedInteger('currency_id')->nullable();
-            $table->string('voucher_number', 16)->
-            $table->dateTime('expire_date')->nullable();
+            $table->string('voucher_number', 16)->nullable();
             $table->decimal('receive_quantity')->nullable();
             $table->enum('status', array(
                 'open', 'approved', 'close'
