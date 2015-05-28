@@ -10,5 +10,40 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
+ Route::group(['prefix' => 'fees'], function() {
+
+    Route::get('/', function() {
+        return 'Thank you so much!';
+    });
+
+    /**********Billing Setup Start****************/
+
+    Route::get('billing/setup',
+        'FeesController@indexBillingSetup'
+    );
+    Route::any('billing/setup/save', [
+        'as' => 'billing.setup.save',
+        'uses' => 'FeesController@storeBillingSetup'
+    ]);
+    Route::any('billing/setup/view/{id}', [
+        'as' => 'billing.setup.view',
+        'uses' => 'FeesController@viewBillingSetup'
+    ]);
+    Route::any('billing/setup/edit/{id}', [
+        'as' => 'billing.setup.edit',
+        'uses' => 'FeesController@editBillingSetup'
+    ]);
+    Route::any('billing/setup/update/{id}', [
+        'as' => 'billing.setup.update',
+        'uses' => 'FeesController@updateBillingSetup'
+    ]);
+    Route::get('billing/setup/delete/{id}',
+        'FeesController@deleteBillingSetup'
+    );
+    Route::any('billing/setup/batch/delete/{id}', [
+        'as' => 'billing.setup.batch.delete',
+        'uses' => 'FeesController@batchdeleteBillingSetup'
+    ]);
 
 
+});

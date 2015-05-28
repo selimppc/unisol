@@ -6,9 +6,9 @@
 <div style="padding: 2%; width: 99%;">
 <div class="modal-body" >
 
-    {{Form::model($model, ['route'=> ['edit-dispatch', $model->id], 'method' => 'patch', 'role' => 'form', 'files' => true,])}}
+    {{Form::model($model, ['route'=> ['edit-stock-adjustment', $model->id], 'method' => 'patch', 'role' => 'form', 'files' => true,])}}
             {{ Form::hidden('id', $model->id) }}
-            @include('inventory::stock._form')
+            @include('inventory::adjust_head._form')
     {{ Form::close() }}
 
 </div>
