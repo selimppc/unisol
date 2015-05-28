@@ -17,8 +17,8 @@ class CreateExmVQuestionEvaluation extends Migration {
             `aqe`.`marks`                 AS `marks`,
             `aqe`.`progress_status`       AS `progress_status`,
             `aqat`.`answer`               AS `tanswer`,
-            `aqar`.`answer`               AS `ranswer`,
-            `aqac`.`answer`               AS `canswer`
+            `aqar`.`opt_ans_id`           AS `ranswer`,
+            `aqac`.`opt_ans_id`           AS `canswer`
         FROM ((((`exm_question_items` `aqi`
             JOIN `exm_question_evaluation` `aqe`
                 ON ((`aqe`.`exm_question_items_id` = `aqi`.`id`)))

@@ -365,5 +365,19 @@ Route::group(['prefix' => 'inventory'], function() {
 
 
 
+    /*
+     * ==================================================
+     *  Adjustment
+     * =================================================
+     */
+
+    Route::any("stock-adjustment", [
+        "as"   => "stock-adjustment",
+        "uses" => "InvAdjustmentController@index_stock_adjustment"
+    ]);
+
+
+
+
 
 });

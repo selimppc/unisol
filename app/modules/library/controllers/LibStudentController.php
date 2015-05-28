@@ -47,8 +47,10 @@ class LibStudentController extends \BaseController
         $model = $model->get(array('lib_books.id as id', 'lib_books.digital_sell_price as digital_sell_price',
             'lib_books.title as title', 'lib_books.isbn as isbn', 'lib_books.lib_book_category_id',
             'lib_books.lib_book_author_id', 'lib_books.lib_book_publisher_id', 'lib_books.edition', 'lib_books.book_type',
-            'lib_books.book_price', 'lib_books.is_rented', 'lib_books.commercial', 'lbt.user_id', 'lbt.lib_books_id',
-            'lbt.issue_date', 'lbt.status as lbtStatus', 'lbft.lib_book_transaction_id', 'lbft.amount', 'lbft.trn_type',
+            'lib_books.book_price', 'lib_books.is_rented', 'lib_books.commercial',
+            'lbt.user_id', 'lbt.lib_books_id',
+            'lbt.issue_date', 'lbt.status as lbtStatus',
+            'lbft.lib_book_transaction_id', 'lbft.amount', 'lbft.trn_type',
             'lbft.status as tbftStatus'
         ));
 

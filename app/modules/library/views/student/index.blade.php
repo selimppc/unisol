@@ -82,11 +82,11 @@
                                   <td>{{ $list->digital_sell_price }}</td>
                                   <td>
                                       @if($list['tbftStatus'] == 'paid')
-                                          <a href="{{URL::route('student.book.download',['book_id'=>$list->id]) }}" class="btn btn-large btn-primary" title="download"><b><i class="fa fa-cloud-download"> Purchased</i></b></a>
+                                          <a href="{{URL::route('student.book.download',['book_id'=>$list->id]) }}" class="btn btn-large btn-primary" title="This Book is Purchased.You Can Download It"><b><i class="fa fa-cloud-download"> Purchased</i></b></a>
                                       @elseif($list['commercial'] == 'free')
-                                          <a href="{{URL::route('student.book.download',['book_id'=>$list->id]) }}" class="btn btn-large btn-success" ><i class="fa fa-download">Download</i></a>
+                                          <a href="{{URL::route('student.book.download',['book_id'=>$list->id]) }}" class="btn btn-large btn-success" ><i class="fa fa-download"> Download</i></a>
                                       @else
-                                          <a href="{{URL::route('student.add-to-cart',['book_id'=>$list->id]) }}" class="btn btn-large btn-info " ><i class="fa fa-shopping-cart">Add To Cart</i></a>
+                                          <a href="{{URL::route('student.add-to-cart',['book_id'=>$list->id]) }}" class="btn btn-large btn-info" title="Add To Cart"><i class="fa fa-shopping-cart"> Add To Cart</i></a>
                                       @endif
                                   </td>
                               </tr>
@@ -104,35 +104,6 @@
  </div>
 
  <!-- Modal  -->
-  <!-- View Details Modal -->
-  <div class="modal fade" id="downloadView" tabindex="-1" role="dialog" aria-labelledby="viewDetails" aria-hidden="true">
-      <div class="modal-dialog">
-          <div class="modal-content">
-              <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                  <h4 class="modal-title">Theory Class : Day 2</h4>
-              </div>
-              <div class="modal-body">
-                  <h2> Theory Class : Day 2 </h2>
-                  <p>
-                      <iframe width="560" height="315" src="//www.youtube.com/embed/qY173FCff_c" frameborder="0" allowfullscreen></iframe>
-                  </p>
-                  <p><b><a href="../video/class.zip">Download</a> </b></p>
-
-              </div>
-              <div class="modal-footer">
-                  <button type="button" class="btn btn-success" data-dismiss="modal">Back</button>
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-              </div>
-          </div><!-- /.modal-content -->
-      </div><!-- /.modal-dialog -->
-  </div><!-- /.modal -->
-
-
-
-
-
-
   <div class="modal fade" id="book" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
        <div class="modal-dialog">
          <div class="modal-content">
@@ -140,32 +111,6 @@
          </div>
        </div>
   </div>
-
-  <!-- Modal for delete -->
-  <div class="modal fade " id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-     <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>
-            </div>
-            <div class="modal-body">
-                  <strong>Are you sure to delete?</strong>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-              <a href="#" class="btn btn-danger danger">Delete</a>
-
-            </div>
-       </div>
-     </div>
-  </div>
-
-{{--<script>--}}
-  {{--$('#addBook').change(function(){--}}
-     {{--$.get("{{ url('faculty/store-book/{book_id}')}}",--}}
-  {{--});--}}
-{{--</script>--}}
 
  @stop
 
