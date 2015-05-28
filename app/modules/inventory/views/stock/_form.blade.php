@@ -35,3 +35,4 @@
 
 <p>&nbsp;</p>
 @include('inventory::requisition_head._script')
+{{ HTML::script('assets/js/custom.js')}}
