@@ -63,6 +63,16 @@
             </ul>
         </li>
 
+    <li class="treeview">
+        <a href="#">
+            <i class="fa fa-credit-card text-yellow" style="color:deepskyblue"></i>
+            <span>Fees</span>
+            <i class="fa fa-angle-left pull-right"></i>
+        </a>
+        <ul class="treeview-menu">
+            <li><a href="#"></i><i class="fa fa-bars text-red"></i> Billing Item</a></li>
+        </ul>
+    </li>
 
 </ul>
 
