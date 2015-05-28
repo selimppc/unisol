@@ -7,7 +7,11 @@
  @stop
 
  @section('content')
-@include('library::faculty.cart_show')
+<div id="cart">
+    @include('library::faculty.my_carts')
+</div>
+
+
  <h3>Library</h3>
 
  <div class="row">
@@ -70,7 +74,7 @@
                               <tr>
                                   <td><input type="checkbox" name="id[]" class="myCheckbox" value=""></td>
                                   <td>
-                                  <a href=""
+                                  <a href="{{URL::route('faculty.view.book',['book_id'=>$list->id])}}"
                                   class="btn-link" title="View Details" style="color:#800080">{{$list->title}}
                                   </a>
                                   </td>
@@ -86,26 +90,21 @@
                                   </td>
                                   <td>
                                   @if($list['tbftStatus'] == 'paid')
-                                      <a href="{{ URL::route('faculty.book.download')}}"
-                                          class="btn-link" title="download" style="color:darkturquoise"><b><i class="fa fa-download"></i></b>
-                                      </a><em style="color: dodgerblue">Purchased</em>
+                                      <a href="{{ URL::route('faculty.book.download',['book_id'=>$list->id])}}"
+                                          class="" title="download" style="color:darkturquoise"><b><i class="fa fa-download"></i></b>
+                                      </a>
+                                      <b><em style="color: dodgerblue">(Purchased)</em></b>
 
 
                                   @elseif($list['commercial'] == 'free')
-                                        <a href="{{ URL::route('student.book.download')}}"
-                                          class="btn-link" title="download" style="color:#8b0835"><b><i class="fa fa-download"></i> <ins></ins></b>
+                                        <a href="{{ URL::route('student.book.download',['book_id'=>$list->id])}}"
+                                          class="btn-link" title="Free download" style="color:#8b0835"><b><i class="fa fa-download"></i> <ins></ins></b>
                                         </a>
                                   @else
-                                        <a href="{{ URL::route('faculty.add-book-to-cart',['book_id'=>$list->id]) }}" id="addCart"
+                                        <a href="{{ URL::route('faculty.add-book-to-cart',['book_id'=>$list->id]) }}" id="addCart" onclick="showCart()"
                                           class="btn-link" title="Add To Cart" style="color:darkblue"><b><i class="fa fa-shopping-cart"></i> <ins></ins></b>
                                         </a>
                                   @endif
-
-                                          {{--@if($list->relLibBookTransaction->relLibBookFinancialTransaction->status == 'paid')--}}
-                                             {{--<a href="{{ URL::route('faculty.book.download')}}"--}}
-                                               {{--class="btn-link" title="download" style="color:#8b0835"><b><i class="fa fa-download"></i> <ins></ins></b>--}}
-                                             {{--</a>--}}
-                                          {{--@endif--}}
                                   </td>
                               </tr>
                          @endforeach
@@ -148,18 +147,13 @@
      </div>
   </div>
 
-{{--<script>--}}
-  {{--$('#addCart').change(function(handleData){--}}
-     {{--$.ajax("{{ url('faculty/add-book-to-cart/{book_id}')}}",--}}
-     {{--success:function(data) {--}}
-     {{--handleData data;--}}
-           {{--}--}}
-  {{--});--}}
-{{--</script>--}}
+<?php
+$items = count($all_cart_books)
+?>
+  <script>
+    function showCart(){
 
-
-
-
-
+         }
+  </script>
  @stop
 
