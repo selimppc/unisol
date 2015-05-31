@@ -61,14 +61,14 @@
     <th>Action</th>
     </thead>
 
-        {{Form::hidden('inv_transfer_head_id', $sd_head->id)}}
+        {{Form::hidden('inv_transfer_head_id', $adj_head->id)}}
     <tbody id="test">
     </tbody>
 
     <tbody>
     <?php $counter = 0;?>
 
-    @foreach($sd_dt as $key=>$value)
+    @foreach($adj_dt as $key=>$value)
         <tr>
             <td>{{isset($value->inv_product_id) ? $value->relInvProduct->title : ''}}</td>
             <td>{{round($value->unit)}}</td>

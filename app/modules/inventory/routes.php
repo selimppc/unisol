@@ -403,30 +403,37 @@ Route::group(['prefix' => 'inventory'], function() {
 
 
     //TODO::
-    Route::any("add-product-dispatch/{sd_id}", [
-        "as"   => "add-product-dispatch",
-        "uses" => "InvStockController@add_product_dispatch"
+    Route::any("approve-stock-adjustment", [
+        "as"   => "approve-stock-adjustment",
+        "uses" => "InvAdjustmentController@approve_stock_adjustment"
     ]);
 
-    Route::any("store-sd-detail/{sd_id}", [
-        "as"   => "store-sd-detail",
-        "uses" => "InvStockController@store_sd_detail"
+    Route::any("add-product-stock-adjustment/{adj_id}", [
+        "as"   => "add-product-stock-adjustment",
+        "uses" => "InvAdjustmentController@add_product_stock_adjustment"
     ]);
 
-    Route::any("sd-ajax-delete-dt/{sd_id}", [
-        "as"   => "sd-ajax-delete-dt",
-        "uses" => "InvStockController@ajax_delete_sd_detail"
+    Route::any("ajaxAdjustmentProductAutoComplete", [
+        "as"   => "ajaxAdjustmentProductAutoComplete",
+        "uses" => "InvAdjustmentController@ajaxAdjustmentProductAutoComplete"
     ]);
 
-    Route::any("transfer-ajax-to", [
-        "as"   => "transfer-ajax-to",
-        "uses" => "InvStockController@ajaxTransferProductAutoComplete"
+    Route::any("store-adj-detail", [
+        "as"   => "store-adj-detail",
+        "uses" => "InvAdjustmentController@store_adj_detail"
     ]);
 
-    Route::any("sp-confirm-dispatch/{transfer_head_id}", [
-        "as"   => "sp-confirm-dispatch",
-        "uses" => "InvStockController@sp_confirm_dispatch"
+    Route::any("ajax_delete_adj_detail", [
+        "as"   => "ajax_delete_adj_detail",
+        "uses" => "InvAdjustmentController@ajax_delete_adj_detail"
     ]);
+
+    Route::any("sp-confirm-stock-adjustment", [
+        "as"   => "sp-confirm-stock-adjustment",
+        "uses" => "InvAdjustmentController@sp_confirm_stock_adjustment"
+    ]);
+
+
 
 
 
