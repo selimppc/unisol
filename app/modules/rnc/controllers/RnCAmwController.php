@@ -9,44 +9,29 @@ class RnCAmwController extends \BaseController
     }
 
 
-	public function index()
+	public function indexCategory()
+	{
+        $model = RnCCategory::orderBy('id', 'DESC')->paginate(10);
+
+        return View::make('rnc::amw.category.index', compact('model'));
+
+	}
+
+
+
+	public function indexConfig()
 	{
 		//
 	}
 
 
-
-	public function create()
+	public function indexPublisher()
 	{
 		//
 	}
 
 
-	public function store()
-	{
-		//
-	}
-
-
-	public function show($id)
-	{
-		//
-	}
-
-
-	public function edit($id)
-	{
-		//
-	}
-
-
-	public function update($id)
-	{
-		//
-	}
-
-
-	public function destroy($id)
+	public function indexResearchPaper()
 	{
 		//
 	}
