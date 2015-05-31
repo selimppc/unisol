@@ -1,7 +1,7 @@
 <script type="text/javascript">
     $(function(){
          $( "#search_product" ).autocomplete({
-          source: "transfer-ajax-to",
+          source: "ajaxAdjustmentProductAutoComplete",
           minLength: 3,
           select: function(event, ui) {
             $('#search_product').val(ui.item.label);
@@ -20,7 +20,7 @@
         e.preventDefault();
         var $btn = $(this);
         $.ajax({
-            url: 'sd-ajax-delete-dt/{id}',
+            url: 'ajax_delete_adj_detail/{id}',
             type: 'POST',
             dataType: 'json',
             data: { id:  $(this).data("href") },

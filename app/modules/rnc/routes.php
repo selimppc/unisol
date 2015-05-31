@@ -16,6 +16,28 @@ Route::group(['prefix' => 'rnc'], function() {
         return 'Thank you so much!';
     });
 
+//Route for AMW User
+
+    Route::any('amw/category/index',[
+        'as' => 'amw.category.index',
+        'uses'=> 'RnCAmwController@indexCategory'
+    ]);
+
+    Route::any('amw/config/index',[
+        'as' => 'amw.config.index',
+        'uses'=> 'RnCAmwController@indexConfig'
+    ]);
+
+    Route::any('amw/publisher/index',[
+        'as' => 'amw.publisher.index',
+        'uses'=> 'RnCAmwController@indexPublisher'
+    ]);
+    Route::any('amw/research-paper/index',[
+        'as' => 'amw.research-paper.index',
+        'uses'=> 'RnCAmwController@indexResearchPaper'
+    ]);
+
+
 
 });
 

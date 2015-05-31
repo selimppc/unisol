@@ -191,7 +191,7 @@ class CreateCommon extends Migration {
 
         Schema::create('role', function(Blueprint $table) {
             $table->increments('id');
-            $table->string('code', 8)->unique();
+            $table->string('code', 16)->unique();
             $table->string('title', 128);
             $table->text('description');
             $table->tinyInteger('status', false, 1);
