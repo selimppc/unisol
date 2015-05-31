@@ -11,7 +11,9 @@
 |
 */
 
-Route::group(['prefix' => 'cfo'], function() {
+Route::group(['prefix' => ''], function() {
+
+    include("routes_tjt.php");
 
     Route::get('/', function() {
         return 'Thank you so much!';

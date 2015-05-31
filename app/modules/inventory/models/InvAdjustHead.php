@@ -6,9 +6,9 @@ class InvAdjustHead extends \Eloquent
     //TODO :: model attributes and rules and validation
     protected $table = 'inv_adjust_head';
     protected $fillable = [
-        'adjust_no', 'date', 'store',
-        'type', 'confirm_date', 'currency_id', 'voucher_number',
-        'status'
+        'adjust_no', 'date', 'store', 'type',
+        'confirm_date', 'currency_id', 'voucher_number',
+        'note', 'status'
     ];
 
     private $errors;

@@ -40,7 +40,7 @@
                  <tr>
                     <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $values->id }}"></td>
                     <td>
-                    <b>{{ link_to_route($values->status!="approved" ?'add-product-dispatch' : 'show-dispatch',$values->adjust_no,['adj_id'=>$values->id], ['data-toggle'=>"modal", 'data-target'=>"#modal-pc"]) }}</b>
+                    <b>{{ link_to_route($values->status!="approved" ?'add-product-stock-adjustment' : 'show-stock-adjustment',$values->adjust_no,['adj_id'=>$values->id], ['data-toggle'=>"modal", 'data-target'=>"#modal-pc"]) }}</b>
                     </td>
                     <td>{{$values->date }}</td>
                     <td>{{Str::title($values->type) }}</td>
@@ -57,7 +57,7 @@
 
                     </td>
                     <td>
-                    <a href="{{ URL::route('sp-confirm-dispatch', ['adj_head_id'=>$values->id ])  }}" class="btn btn-success btn-xs" title="Approve Stock Adjustment" > Approve ADJ</a>
+                    <a href="{{ URL::route('sp-confirm-stock-adjustment', ['adj_head_id'=>$values->id ])  }}" class="btn btn-success btn-xs" title="Approve Stock Adjustment" > Approve ADJ</a>
                     </td>
                  </tr>
                 @endforeach
