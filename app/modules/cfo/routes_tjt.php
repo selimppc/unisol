@@ -10,23 +10,55 @@
 |
 */
 //CFO
-Route::any('counselling/category',[
-    'as' =>'counselling.category',
+Route::any('category',[
+    'as' =>'category',
     'uses' => 'CfoController@index'
 ]);
 
-/*Route::any('examination/amw/create-exam',[
-    'as' =>'examination.amw.create-exam',
-    'uses' => 'ExmAmwController@createExamination'
+Route::any('category/store',[
+    'as' =>'category.store',
+    'uses' => 'CfoController@storeCategory'
 ]);
 
-Route::any('amw/store-exam',[
-    'as' =>'amw.store-exam',
-    'uses' => 'ExmAmwController@storeExamination'
+Route::any('category/show/{id}',[
+    'as' =>'category.show',
+    'uses' => 'CfoController@showCategory'
 ]);
 
-Route::any('amw/drop-down-courses',[
-    'as' =>'amw.drop-down-courses',
-    'uses' => 'ExmAmwController@createAjaxCourseList'
+Route::any('edit/category/{id}',
+    ['as'=>'edit.category',
+        'uses'=>'CfoController@editCategory']);
+
+
+Route::any('update/category/{id}',
+    ['as'=>'update.category',
+        'uses'=>'CfoController@updateCategory']);
+
+
+Route::any('delete/category{id}', [
+    'as' => 'delete.category',
+    'uses' => 'CfoController@deleteCategory'
 ]);
-*/
+
+//Knowledge
+
+Route::any('knowledge-base',[
+    'as' =>'knowledge-base',
+    'uses' => 'CfoController@indexKnowledgeBase'
+]);
+
+Route::any('store/knowledge-base',[
+    'as' =>'store.knowledge-base',
+    'uses' => 'CfoController@storeKnowledgeBase'
+]);
+
+Route::any('knowledge-base/show/{id}',[
+    'as' =>'knowledge-base.show',
+    'uses' => 'CfoController@showKnowledgeBase'
+]);
+
+Route::any('delete/knowledge-base/{id}',
+    ['as'=>'delete.knowledge-base',
+        'uses'=>'CfoController@deleteKnowledgeBase']);
+
+
