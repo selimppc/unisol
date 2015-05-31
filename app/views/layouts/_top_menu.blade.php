@@ -1,6 +1,7 @@
 <ul class="nav navbar-nav">
- {{--   @include('layouts._top_menu_layout')--}}
-    @include('layouts._top_menu_applicant')
+    @if(isset(Auth::user()->get()->id) OR isset(Auth::applicant()->get()->id))
+        @include('layouts._top_menu_notification')
+    @endif
     <!-- User Account: style can be found in dropdown.less -->
     <li class="dropdown user user-menu">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -17,14 +18,19 @@
                 </p>
             </li>
             <!-- Menu Footer-->
-            <li class="user-footer">
-                <div class="pull-left">
-                    <a href="{{URL::route('user/profile') }}" class="btn btn-default btn-flat">Profile</a>
-                </div>
-                <div class="pull-right">
-                    <a href="{{URL::route('user/logout') }}" class="btn btn-default btn-flat">Sign out</a>
-                </div>
-            </li>
+            @if(isset(Auth::user()->get()->id) OR isset(Auth::applicant()->get()->id))
+                <li class="user-footer">
+                    <div class="pull-left">
+                        <a href="{{URL::route('user/user-access-to') }}" class="btn btn-default btn-flat">Dashboard</a>
+                    </div>
+                    <div class="pull-left">
+                        <a href="{{URL::route('user/profile') }}" class="btn btn-default btn-flat">Profile</a>
+                    </div>
+                    <div class="pull-left">
+                        <a href="{{URL::route('user/logout') }}" class="btn btn-default btn-flat">Sign out</a>
+                    </div>
+                </li>
+            @endif
         </ul>
     </li>
 </ul>

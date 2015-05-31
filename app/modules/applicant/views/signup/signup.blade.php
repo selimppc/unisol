@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 @section('top_menu')
-    @include('layouts._top_menu_public')
+    @include('layouts._top_menu')
 @stop
 @section('sidebar')
     @include('layouts._sidebar_public')
