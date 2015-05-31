@@ -335,5 +335,192 @@ class RnCAmwController extends \BaseController
         }
     }
 
+//    //Research Paper
+//
+//
+//    public function indexBook()
+//    {
+//        $books = LibBook::orderBy('id', 'DESC')->paginate(5);
+//        $category = array('' => 'Select Category ') + LibBookCategory::lists('title', 'id');
+//        $author = array('' => 'Select author ') + LibBookAuthor::lists('name', 'id');
+//        $publisher = array('' => 'Select Publisher') + LibBookPublisher::lists('name', 'id');
+//        return View::Make('library::librarian.books.index',compact('books','category','author','publisher'));
+//    }
+//
+//    public function storeBook()
+//    {
+//
+//        $data = Input::all();
+//        $model = new LibBook();
+//        if ($model->validate($data)) {
+//            $model->title = Input::get('title');
+//            $flashmsg = $model->title;
+//            $model->isbn = Input::get('isbn');
+//            $model->lib_book_category_id = Input::get('category');
+//            $model->lib_book_author_id = Input::get('author');
+//            $model->lib_book_publisher_id = Input::get('publisher');
+//            $model->edition = Input::get('edition');
+//            $model->stock_type = Input::get('stock_type');
+//            $model->shelf_number = Input::get('self_number');
+//            $model->book_type= Input::get('book_type');
+//            $model->commercial = Input::get('commercial');
+//            $model->book_price = Input::get('book_price');
+//            $model->digital_sell_price = Input::get('digital_sell_price');
+//            $model->is_rented = Input::get('is_rented');
+//
+//            if (Input::hasFile('docs'))
+//            {
+//                $files = Input::file('docs');
+//                $destinationPath = public_path() . '/library';
+//                $filename =  $files->getClientOriginalExtension();
+//                $file = date("d-m-Y-s")."." . $filename;
+//                $files->move($destinationPath, $file);
+//                $model->file = $file;
+//            }
+//
+//
+//            $model->save();
+//
+//            Session::flash('message', "Successfully Added $flashmsg !");
+//            return Redirect::back();
+//        } else {
+//            // failure, get errors
+//            $errors = $model->errors();
+//            Session::flash('errors', $errors);
+//            return Redirect::back();
+//        }
+//
+//    }
+//
+//    public function viewBook($id)
+//    {
+//        $view_book = LibBook::find($id);
+//        return View::make('library::librarian.books.view',compact('view_book'));
+//    }
+//
+//    public function editBook($id)
+//    {
+//        $edit_book = LibBook::find($id);
+//        $category = array('' => 'Select Category ') + LibBookCategory::lists('title', 'id');
+//        $author = array('' => 'Select author ') + LibBookAuthor::lists('name', 'id');
+//        $publisher = array('' => 'Select Publisher') + LibBookPublisher::lists('name', 'id');
+//        return View::make('library::librarian.books.edit',compact('edit_book','category','author','publisher'));
+//    }
+//
+//
+//    public function updateBook($id)
+//    {
+//        $data = Input::all();
+//        $model = LibBook::find($id);
+//        if ($model->validate($data)) {
+//            $model->title = Input::get('title');
+//            $flashmsg = $model->title;
+//            $model->isbn = Input::get('isbn');
+//            $model->lib_book_category_id = Input::get('category');
+//            $model->lib_book_author_id = Input::get('author');
+//            $model->lib_book_publisher_id = Input::get('publisher');
+//            $model->edition = Input::get('edition');
+//            $model->stock_type = Input::get('stock_type');
+//            $model->shelf_number = Input::get('self_number');
+//            $model->book_type= Input::get('book_type');
+//            $model->commercial = Input::get('commercial');
+//            $model->book_price = Input::get('book_price');
+//            $model->digital_sell_price = Input::get('digital_sell_price');
+//            $model->is_rented = Input::get('is_rented');
+//
+//            /* $files = Input::get('docs');*/
+//            /*$files = Input::file('docs');
+//            $destinationPath = public_path() . '/library';
+//            $filename =  $files->getClientOriginalExtension();
+//            $file = date("d-m-Y-s")."." . $filename;
+//            $files->move($destinationPath, $file);
+//            $model->file = $file;*/
+//
+//            if (Input::hasFile('docs'))
+//            {
+//                $files = Input::file('docs');
+//                $destinationPath = public_path() . '/library';
+//                $filename =  $files->getClientOriginalExtension();
+//                $file = date("d-m-Y-s")."." . $filename;
+//                $files->move($destinationPath, $file);
+//                $model->file = $file;
+//            }
+//
+//            $model->save();
+//            Session::flash('message', "Successfully Updated $flashmsg !");
+//            return Redirect::back();
+//        } else {
+//            // failure, get errors
+//            $errors = $model->errors();
+//            Session::flash('errors', $errors);
+//            return Redirect::back();
+//        }
+//    }
+//
+//    public function deleteBook($id)
+//    {
+//
+//        try {
+//            $data= LibBook::find($id);
+//            $flash_msg = $data->name;
+//            if($data->delete())
+//            {
+//                Session::flash('message', "Book Publisher $flash_msg Deleted");
+//                return Redirect::back();
+//            }
+//        }
+//        catch
+//        (exception $ex){
+//            return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+//
+//        }
+//    }
+//    public function batchdeleteBook($id)
+//    {
+//        try {
+//            LibBook::destroy(Request::get('id'));
+//            Session::flash('message', "Success: Selected items Deleted ");
+//            return Redirect::back();
+//        }
+//        catch
+//        (exception $ex){
+//            return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+//        }
+//    }
+//
+//    public function bookDownload($book_id)
+//    {
+//        $download = LibBook::find($book_id);
+//        $file = $download->file;
+//        $path = public_path("library/" . $file);
+//        $headers = array(
+//            'Content-Type: application/pdf',
+//        );
+//        /*To Direct Download*/
+//        return Response::download($path, $file, $headers);
+//
+//        /*To open and read and download pdf
+//        return Response::make(file_get_contents($path), 200, [
+//            'Content-Type' => 'application/pdf',
+//            'Content-Disposition' => 'inline; '.$file,
+//        ]);*/
+//    }
+//
+//    public function bookRead($book_id)
+//    {
+//        $download = LibBook::find($book_id);
+//        $file = $download->file;
+//        $path = public_path("library/" . $file);
+//        $headers = array(
+//            'Content-Type: application/pdf',
+//        );
+//        /*To open and read and download pdf*/
+//        return Response::make(file_get_contents($path), 200, [
+//            'Content-Type' => 'application/pdf',
+//            'Content-Disposition' => 'inline; '.$file,
+//        ]);
+//    }
+
+
 
 }
