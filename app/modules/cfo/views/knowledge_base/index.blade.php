@@ -8,9 +8,9 @@
 
 @section('content')
 <button type="button" class="pull-right btn btn-sm btn-info" data-toggle="modal" data-target="#modal">
-  + New Category
+  + New Knowledge Base
 </button>
-<h3> Category </h3>
+<h3> Knowledge Base </h3>
 
 <div class="row">
 
@@ -19,7 +19,6 @@
         <div class="col-sm-12">
            <div class="pull-left col-sm-4">   </div>
            <div class="pull-right col-sm-4" style="padding-top: 1%;">
-
            </div>
         </div>
 
@@ -32,51 +31,46 @@
                     <th><input name="id" type="checkbox" id="checkbox" class="checkbox" value=""></th>
                     <th> Title</th>
                     <th> Description </th>
-                    <th> Support Name</th>
-                    <th> Support Email  </th>
+                    <th> Keywords</th>
                     <th> Action</th>
                 </tr>
             </thead>
             <tbody>
-            @if(isset($data))
-                @foreach($data as $values)
+            @if(isset($knb_data))
+                @foreach($knb_data as $values)
                  <tr>
                     <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $values->id }}"></td>
 
                     <td>{{$values->title}}</td>
                     <td>{{$values->description}}</td>
-                    <td>{{$values->support_name}}</td>
-                    <td>{{$values->support_email}}</td>
+                    <td>{{$values->keywords}}</td>
                     <td>
-                        <a href="{{ URL::route('category.show',['id'=>$values->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#category" style="font-size: 12px;color: darkmagenta"><span class="fa fa-eye"></span></a>
-                        <a class="btn btn-xs btn-default" href="{{ URL::route('edit.category',['id'=>$values->id]) }}" data-toggle="modal" data-target="#category" style="font-size: 12px;color: lightseagreen"><i class="fa fa-edit"></i></a>
-                        <a data-href="{{ URL::route('delete.category',$values->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" style="font-size: 12px;color: lightcoral"><span class="fa  fa-trash-o"></span></a>
+                        <a href="{{ URL::route('knowledge-base.show',['id'=>$values->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#knb" style="font-size: 12px;color: darkmagenta"><span class="fa fa-eye"></span></a>
+                        {{--<a class="btn btn-xs btn-default" href="{{ URL::route('edit.knowledge-base',['id'=>$values->id]) }}" data-toggle="modal" data-target="#category" style="font-size: 12px;color: lightseagreen"><i class="fa fa-edit"></i></a>--}}
+                        <a data-href="{{ URL::route('delete.knowledge-base',$values->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" style="font-size: 12px;color: lightcoral"><span class="fa  fa-trash-o"></span></a>
                     </td>
                  </tr>
                 @endforeach
             @endif
             </tbody>
-
         </table>
         </div>
         {{form::close() }}
-        {{ $data->links() }}
+        {{ $knb_data->links() }}
     </div>
-
 </div>
-{{Form::open(['route'=>'category.store', 'files'=>true])}}
-        @include('cfo::modal._modal')
+{{Form::open(['url'=>'cfo/store/knowledge-base', 'files'=>true])}}
+        @include('cfo::knowledge_base._modal')
 {{ Form::close() }}
 
 
 {{-- Modal Area --}}
-<div class="modal fade" id="category" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
+<div class="modal fade" id="knb" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        </div>
     </div>
-  </div>
 </div>
-
 
 
 @stop

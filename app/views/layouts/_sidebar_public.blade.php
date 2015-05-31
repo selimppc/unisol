@@ -6,26 +6,23 @@
     @else
         <li>
             <a href="/">
-                <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                <i class="fa fa-dashboard"></i> <span>Home</span>
             </a>
         </li>
 
         <li class="">
             <a href="{{ URL::to('user/sign') }}">
-                <i class="fa fa-angle-double-right"></i> <span>User login</span>
+                <i class="fa fa-angle-double-right"></i> <span>Login</span>
             </a>
         </li>
         <li class="">
             <a href="#">
-                <i class="fa fa-angle-double-right"></i> <span>User Sign Up</span>
+                <i class="fa fa-angle-double-right"></i> <span>User Registration</span>
             </a>
         </li>
         <li class="">
             <a href="{{ URL::to('applicant/signup') }}">
-                <i class="fa fa-angle-double-right"></i> <span>Applicant Sign Up</span>
-            </a>
-            <a href="{{ URL::to('user/sign') }}">
-                <i class="fa fa-angle-double-right"></i> <span>Applicant Login</span>
+                <i class="fa fa-angle-double-right"></i> <span>Applicant Registration</span>
             </a>
         </li>
     @endif

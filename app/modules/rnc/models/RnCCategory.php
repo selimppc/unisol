@@ -13,9 +13,7 @@ class RnCCategory extends Eloquent{
     ];
     private $errors;
     private $rules = [
-       'title' => 'required',
-       'description' => 'alpha_dash'
-
+       'title' => 'required'
     ];
 
     public function validate($data)

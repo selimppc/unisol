@@ -21,8 +21,8 @@ class CfoKnowledgeBase extends Eloquent{
 
     private $errors;
     private $rules = [
-        'cfo_category_id' => 'required',
-        'keywords' => 'required',
+        //'cfo_category_id' => 'required',
+       // 'keywords' => 'required',
     ];
     public function validate($data)
     {

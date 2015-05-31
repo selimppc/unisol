@@ -11,7 +11,7 @@
 |
 */
 
-Route::group(['prefix' => ''], function() {
+Route::group(['prefix' => 'cfo'], function() {
 
     include("routes_tjt.php");
 
