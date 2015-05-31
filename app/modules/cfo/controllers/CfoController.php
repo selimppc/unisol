@@ -146,16 +146,17 @@ class CfoController extends \BaseController {
         return View::make('cfo::knowledge_base.show',compact('model'));
     }
 
-    public function editCategory($id){
+    public function editKnowledgeBase($id){
 
-        $model = CfoCategory::find($id);
-        return View::make('cfo::category.edit',compact('model'));
+        $model = CfoKnowledgeBase::find($id);
+        $cfo_category_id = CfoCategory::lists('title','id');
+        return View::make('cfo::knowledge_base.edit',compact('model','cfo_category_id'));
     }
 
-    public function updateCateg($id){
+    public function updateKnowledgeBase($id){
 
         $data = Input::all();
-        $model = CfoCategory::find($id);
+        $model = CfoKnowledgeBase::find($id);
         $model->title = Input::get('title');
         $name = $model->title;
         if($model->validate($data))

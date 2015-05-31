@@ -61,4 +61,13 @@ Route::any('delete/knowledge-base/{id}',
     ['as'=>'delete.knowledge-base',
         'uses'=>'CfoController@deleteKnowledgeBase']);
 
+Route::any('edit/knowledge-base/{id}',
+    ['as'=>'edit.knowledge-base',
+        'uses'=>'CfoController@editKnowledgeBase']);
+
+Route::any('update/knowledge-base/{id}',
+    ['as'=>'update.knowledge-base',
+        'uses'=>'CfoController@updateKnowledgeBase']);
+
+
 
