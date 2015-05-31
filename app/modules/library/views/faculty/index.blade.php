@@ -7,9 +7,8 @@
  @stop
 
  @section('content')
-<div id="cart">
+
     @include('library::faculty.my_carts')
-</div>
 
 
  <h3>Library</h3>
@@ -47,6 +46,7 @@
            </div>
            <br><br>
             {{-------------- Filter :Ends -------------------------------------------}}
+
            {{ Form::open(array('url' => 'examination/amw/batchDelete')) }}
            <p>&nbsp;</p>
               <table id="" class="table table-striped  table-bordered"  >
@@ -74,7 +74,7 @@
                               <tr>
                                   <td><input type="checkbox" name="id[]" class="myCheckbox" value=""></td>
                                   <td>
-                                  <a href="{{URL::route('faculty.view.book',['book_id'=>$list->id])}}"
+                                  <a href="{{URL::route('faculty.view.book',['book_id'=>$list->id])}}" onclick="showCart()"
                                   class="btn-link" title="View Details" style="color:#800080">{{$list->title}}
                                   </a>
                                   </td>
@@ -95,9 +95,8 @@
                                       </a>
                                       <b><em style="color: dodgerblue">(Purchased)</em></b>
 
-
                                   @elseif($list['commercial'] == 'free')
-                                        <a href="{{ URL::route('student.book.download',['book_id'=>$list->id])}}"
+                                        <a href="{{ URL::route('faculty.book.download',['book_id'=>$list->id])}}"
                                           class="btn-link" title="Free download" style="color:#8b0835"><b><i class="fa fa-download"></i> <ins></ins></b>
                                         </a>
                                   @else
@@ -127,32 +126,10 @@
        </div>
   </div>
 
-  <!-- Modal for delete -->
-  <div class="modal fade " id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-     <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>
-            </div>
-            <div class="modal-body">
-                  <strong>Are you sure to delete?</strong>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-              <a href="#" class="btn btn-danger danger">Delete</a>
 
-            </div>
-       </div>
-     </div>
-  </div>
-
-<?php
-$items = count($all_cart_books)
-?>
   <script>
     function showCart(){
-
+          @include('library::faculty.my_carts')
          }
   </script>
  @stop

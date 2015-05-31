@@ -101,4 +101,7 @@ class InvAdjustmentController extends \BaseController {
     }
 
 
+
+    //TODO :: details
+
 }
