@@ -61,7 +61,7 @@
     <th>Action</th>
     </thead>
 
-        {{Form::hidden('inv_transfer_head_id', $adj_head->id)}}
+        {{Form::hidden('inv_adjust_head_id', $adj_head->id)}}
     <tbody id="test">
     </tbody>
 
