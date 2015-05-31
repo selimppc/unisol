@@ -109,7 +109,7 @@ class RnCAmwController extends \BaseController
     {
         try{
             RnCCategory::destroy(Request::get('id'));
-            return Redirect::back()->with('message', 'Category Deleted successfully!');
+            return Redirect::back()->with('message', 'Category Batch Deleted successfully!');
         }
         catch (exception $ex)
         {
@@ -218,7 +218,7 @@ class RnCAmwController extends \BaseController
     {
         try{
             RnCConfig::destroy(Request::get('id'));
-            return Redirect::back()->with('message', 'Config Deleted successfully!');
+            return Redirect::back()->with('message', 'Config Batch Deleted successfully!');
         }
         catch (exception $ex)
         {

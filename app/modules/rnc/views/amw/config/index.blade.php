@@ -27,7 +27,7 @@
                         <li class="pull-right" class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-gear"></i>&nbsp;</a>
                             <ul class="dropdown-menu">
-                                <li role="presentation" data-toggle="modal" data-target="#addCategory"><a role="menuitem" tabindex="-1" href="#"> Add Category </a></li>
+                                <li role="presentation" data-toggle="modal" data-target="#addConfig"><a role="menuitem" tabindex="-1" href="#"> Add Config </a></li>
                             </ul>
                         </li>
                     </ul>
