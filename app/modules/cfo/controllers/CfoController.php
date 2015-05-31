@@ -2,14 +2,19 @@
 
 class CfoController extends \BaseController {
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index()
+    function __construct() {
+        $this->beforeFilter('cfo', array('except' => array('index')));
+    }
+    protected function isPostRequest()
+    {
+        return Input::server("REQUEST_METHOD") == "POST";
+    }
+
+    public function index()
 	{
-		//
+        $pageTitle = 'Category';
+        $data = CfoCategory::all();
+        return View::make('cfo::category.index', compact('pageTitle', 'data'));
 	}
 
 
