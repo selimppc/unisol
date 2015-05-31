@@ -14,14 +14,13 @@ class InvAdjustmentController extends \BaseController {
 
 	public function index_stock_adjustment(){
         $pageTitle = "Stock Adjustment ";
-        $data = InvAdjustHead::where('status', '!=', 'cancel')->get();
+        $data = InvAdjustHead::where('status', '!=', 'cancel')->latest('id')->get();
         return View::make('inventory::adjust_head.index', compact('data','pageTitle'));
     }
 
 
     public function store_stock_adjustment(){
         if($this->isPostRequest()){
-
             $input_data = Input::all();
             $model = new InvAdjustHead();
             if($model->validate($input_data)) {
@@ -39,6 +38,7 @@ class InvAdjustmentController extends \BaseController {
         }
         return Redirect::back();
     }
+
 
     public function edit_stock_adjustment($adj_id){
         if($this->isPostRequest()){
@@ -103,5 +103,6 @@ class InvAdjustmentController extends \BaseController {
 
 
     //TODO :: details
+
 
 }
