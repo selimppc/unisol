@@ -4,16 +4,16 @@
 </div>
 <div class="modal-body">
 	<div style="padding: 10px; width: 90%;">
-        {{ Form::open(array('url'=>'rnc/amw/category/show','method' => '')) }}
+        {{ Form::open(array('url'=>'rnc/amw/config/show','method' => '')) }}
         <table id="" class="table table-bordered table-hover table-striped">
             <tr>
-                <td><b>Category Title : </b></td>
+                <td><b>Config Title : </b></td>
                 <td>
                     {{isset($config->title) ? $config->title : '' }}
                 </td>
             </tr>
             <tr>
-                <td><b>Category Description: </b></td>
+                <td><b>Value: </b></td>
                 <td>
                     {{isset($config->value) ? $config->value : '' }}
                 </td>
@@ -24,5 +24,5 @@
 </div>
 </div>
 <div class="modal-footer">
-  <a href="{{URL::to('rnc/amw/category/index')}}" class="btn btn-default">Close</a>
+  <a href="{{URL::to('rnc/amw/config/index')}}" class="btn btn-default">Close</a>
 </div>

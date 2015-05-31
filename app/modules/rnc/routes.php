@@ -100,7 +100,7 @@ Route::group(['prefix' => 'rnc'], function() {
 
     Route::any('amw/config/batch-delete',[
         'as' => 'amw.config.batch-delete',
-        'uses'=> 'RnCAmwController@batchDeleteConfig'
+        'uses'=> 'RnCAmwController@batchDeletConfig'
     ]);
 
 
