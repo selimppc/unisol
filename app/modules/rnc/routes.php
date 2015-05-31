@@ -113,6 +113,42 @@ Route::group(['prefix' => 'rnc'], function() {
         'uses'=> 'RnCAmwController@indexPublisher'
     ]);
 
+    Route::any('amw/publisher/add/{id}',[
+        'as' => 'amw.publisher.add',
+        'uses'=> 'RnCAmwController@addPublisher'
+    ]);
+
+    Route::any('amw/publisher/store',[
+        'as' => 'amw.publisher.store',
+        'uses'=> 'RnCAmwController@storePublisher'
+    ]);
+
+
+    Route::any('amw/publisher/show/{id}',[
+        'as' => 'amw.publisher.show',
+        'uses'=> 'RnCAmwController@showPublisher'
+    ]);
+
+    Route::any('amw/publisher/edit/{id}',[
+        'as' => 'amw.publisher.edit',
+        'uses'=> 'RnCAmwController@editPublisher'
+    ]);
+
+    Route::any('amw/publisher/update/{id}',[
+        'as' => 'amw.publisher.update',
+        'uses'=> 'RnCAmwController@updatePublisher'
+    ]);
+
+    Route::any('amw/publisher/delete/{id}',[
+        'as' => 'amw.publisher.delete',
+        'uses'=> 'RnCAmwController@deletePublisher'
+    ]);
+
+    Route::any('amw/publisher/batch-delete',[
+        'as' => 'amw.publisher.batch-delete',
+        'uses'=> 'RnCAmwController@batchDeletPublisher'
+    ]);
+
 
     // Research Paper
     Route::any('amw/research-paper/index',[

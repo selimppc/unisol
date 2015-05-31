@@ -7,7 +7,7 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 class RnCPublisher extends Eloquent{
 
     //TODO :: model attributes and rules and validation
-    protected $table='rnc_category';
+    protected $table='rnc_publisher';
     protected $fillable = [
         'title','code','description'
     ];

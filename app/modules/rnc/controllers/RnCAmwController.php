@@ -225,4 +225,115 @@ class RnCAmwController extends \BaseController
             return Redirect::back()->with('error', 'Invalid Delete Process ! Config has been using in other DB Table.At first Delete Data from there then come here again. Thank You !!!');
         }
     }
+
+    //Publisher
+    public function indexPublisher()
+    {
+        $publisher = RnCPublisher::orderBy('id', 'DESC')->paginate(5);
+        return View::make('rnc::amw.publisher.index', compact('publisher'));
+    }
+
+    public function storePublisher()
+    {
+        $data = Input::all();
+        $publisher = new RnCPublisher();
+        $publisher->title = Input::get('title');
+        $name = $publisher->title;
+        if($publisher->validate($data))
+        {
+            DB::beginTransaction();
+            try {
+                $publisher->create($data);
+                DB::commit();
+                Session::flash('message', "$name Publisher  Added");
+            }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', "$name Publisher not added.Invalid Request!");
+            }
+            return Redirect::back();
+        }else{
+            $errors = $publisher->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()
+                ->with('errors', 'invalid');
+        }
+
+    }
+
+    public function showPublisher($id)
+    {
+        $publisher = RnCPublisher::find($id);
+        if($publisher)
+        {
+            return View::make('rnc::amw.publisher.show',compact('publisher'));
+        }
+        App::abort(404);
+    }
+
+
+    public function editPublisher($id)
+    {
+        $publisher = RnCPublisher::find($id);
+        return View::make('rnc::amw.publisher.edit',compact('publisher'));
+    }
+
+
+    public function updatePublisher($id)
+    {
+        $data = Input::all();
+        $publisher = RnCPublisher::find($id);
+        $publisher->title = Input::get('title');
+        $name = $publisher->title;
+        if($publisher->validate($data))
+        {
+            DB::beginTransaction();
+            try {
+                $publisher->update($data);
+                DB::commit();
+                Session::flash('message', "$name Publisher Updates");
+            }
+            catch ( Exception $e ){
+                DB::rollback();
+                Session::flash('danger', "$name Publisher not updates. Invalid Request !");
+            }
+            return Redirect::back();
+        }else{
+            $errors = $publisher->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()
+                ->with('errors', 'Input Data Not Valid');
+        }
+    }
+
+    public function deletePublisher($id)
+    {
+        try {
+            $publisher= RnCPublisher::find($id);
+            $name = $publisher->title;
+            if($publisher->delete())
+            {
+                Session::flash('message', "$name Publisher Deleted");
+                return Redirect::back();
+            }
+        }
+        catch (exception $ex){
+            return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+        }
+    }
+
+    public function batchDeletPublisher()
+    {
+        try{
+            RnCPublisher::destroy(Request::get('id'));
+            return Redirect::back()->with('message', 'Publisher Batch Deleted successfully!');
+        }
+        catch (exception $ex)
+        {
+            return Redirect::back()->with('error', 'Invalid Delete Process ! Publisher has been using in other DB Table.At first Delete Data from there then come here again. Thank You !!!');
+        }
+    }
+
+
 }
