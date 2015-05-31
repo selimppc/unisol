@@ -40,7 +40,7 @@
                  <tr>
                     <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $values->id }}"></td>
                     <td>
-                    <b>{{ link_to_route($values->status!="approved" ?'add-product-stock-adjustment' : 'show-stock-adjustment',$values->adjust_no,['adj_id'=>$values->id], ['data-toggle'=>"modal", 'data-target'=>"#modal-pc"]) }}</b>
+                    <b>{{ link_to_route($values->status!="Confirmed Adjustment" ?'add-product-stock-adjustment' : 'show-stock-adjustment',$values->adjust_no,['adj_id'=>$values->id], ['data-toggle'=>"modal", 'data-target'=>"#modal-pc"]) }}</b>
                     </td>
                     <td>{{$values->date }}</td>
                     <td>{{Str::title($values->type) }}</td>
@@ -51,7 +51,7 @@
                         <a href="{{ URL::route('show-stock-adjustment', ['adj_id'=>$values->id ])  }}" class="btn btn-default btn-xs" title="View Dispatch" data-toggle="modal" data-target="#modal-pc"><span class="fa fa-eye"></span></a>
                         <a href="{{ URL::route('edit-stock-adjustment',['adj_id'=>$values->id])  }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal-pc"> <i class="fa fa-edit"></i></a>
                         <a data-href="{{ URL::route('cancel-stock-adjustment', ['adj_id'=>$values->id ]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa fa-circle-o-notch" style="color: red" data-toggle="tooltip" data-placement="bottom" title="Cancel"></i></a>
-                    @elseif($values->status=="approved")
+                    @elseif($values->status=="Confirmed Adjustment")
                         <a href="{{ URL::route('show-stock-adjustment', ['sd_id'=>$values->id ])  }}" class="btn btn-default btn-xs" title="View Dispatch" data-toggle="modal" data-target="#modal-pc"><span class="fa fa-eye"></span></a>
                     @endif
 
