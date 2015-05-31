@@ -70,6 +70,11 @@ class CreateResearchConsultancy extends Migration {
             ));
             $table->string('benefit_share', 2);
             $table->float('price');
+            $table->text('note');
+            $table->enum('status', array(
+                'open', 'close', 'approved', 'reviewed' , 'published'
+            ));
+            $table->integer('reviewed_by', false, 11);
 
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);

@@ -1,21 +1,21 @@
 <div class="modal-header">
   <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-  <h4 class="modal-title" style="text-align: center;color: #800080;font-size: x-large">Show Year</h4>
+  <h4 class="modal-title" style="text-align: center;color: blue;font-size: x-large">Show Category</h4>
 </div>
 <div class="modal-body">
 	<div style="padding: 10px; width: 90%;">
-        {{ Form::open(array('url'=>'year/show','method' => '')) }}
+        {{ Form::open(array('url'=>'rnc/amw/category/show','method' => '')) }}
         <table id="" class="table table-bordered table-hover table-striped">
             <tr>
-                <td>Year:</td>
+                <td><b>Category Title : </b></td>
                 <td>
-                    {{isset($years->title) ? $years->title : '' }}
+                    {{isset($model->title) ? $model->title : '' }}
                 </td>
             </tr>
             <tr>
-                <td>Description:</td>
+                <td><b>Category Description: </b></td>
                 <td>
-                    {{isset($years->description) ? $years->description : '' }}
+                    {{isset($model->description) ? $model->description : '' }}
                 </td>
             </tr>
 
@@ -24,5 +24,5 @@
 </div>
 </div>
 <div class="modal-footer">
-  <a href="{{URL::to('common/year/')}}" class="btn btn-default">Close </a>
+  <a href="{{URL::to('rnc/amw/category/index')}}" class="btn btn-default">Close</a>
 </div>
