@@ -100,7 +100,7 @@ Route::group(['prefix' => 'rnc'], function() {
 
     Route::any('amw/config/batch-delete',[
         'as' => 'amw.config.batch-delete',
-        'uses'=> 'RnCAmwController@batchDeleteConfig'
+        'uses'=> 'RnCAmwController@batchDeletConfig'
     ]);
 
 
@@ -113,11 +113,83 @@ Route::group(['prefix' => 'rnc'], function() {
         'uses'=> 'RnCAmwController@indexPublisher'
     ]);
 
+    Route::any('amw/publisher/add/{id}',[
+        'as' => 'amw.publisher.add',
+        'uses'=> 'RnCAmwController@addPublisher'
+    ]);
+
+    Route::any('amw/publisher/store',[
+        'as' => 'amw.publisher.store',
+        'uses'=> 'RnCAmwController@storePublisher'
+    ]);
+
+
+    Route::any('amw/publisher/show/{id}',[
+        'as' => 'amw.publisher.show',
+        'uses'=> 'RnCAmwController@showPublisher'
+    ]);
+
+    Route::any('amw/publisher/edit/{id}',[
+        'as' => 'amw.publisher.edit',
+        'uses'=> 'RnCAmwController@editPublisher'
+    ]);
+
+    Route::any('amw/publisher/update/{id}',[
+        'as' => 'amw.publisher.update',
+        'uses'=> 'RnCAmwController@updatePublisher'
+    ]);
+
+    Route::any('amw/publisher/delete/{id}',[
+        'as' => 'amw.publisher.delete',
+        'uses'=> 'RnCAmwController@deletePublisher'
+    ]);
+
+    Route::any('amw/publisher/batch-delete',[
+        'as' => 'amw.publisher.batch-delete',
+        'uses'=> 'RnCAmwController@batchDeletPublisher'
+    ]);
+
 
     // Research Paper
     Route::any('amw/research-paper/index',[
         'as' => 'amw.research-paper.index',
         'uses'=> 'RnCAmwController@indexResearchPaper'
+    ]);
+
+    Route::get('book/',
+        'LibraryController@indexBook'
+    );
+    Route::any('book/save',[
+        'as' => 'book.save',
+        'uses'=> 'LibraryController@storeBook'
+    ]);
+    Route::any('book/view/{id}',[
+        'as' => 'book.view',
+        'uses'=> 'LibraryController@viewBook'
+    ]);
+    Route::any('book/edit/{id}',[
+        'as' => 'book.edit',
+        'uses'=> 'LibraryController@editBook'
+    ]);
+    Route::any('book/update/{id}', [
+        'as' => 'book.update',
+        'uses' => 'LibraryController@updateBook'
+    ]);
+    Route::get('book/delete/{id}',
+        'LibraryController@deleteBook'
+    );
+    Route::any('book/batch/delete/{id}', [
+        'as' => 'book.batch.delete',
+        'uses' => 'LibraryController@batchdeleteBook'
+    ]);
+
+    Route::any('book/download/{book_id}',[
+        'as' =>'book.download',
+        'uses' => 'LibraryController@bookDownload'
+    ]);
+    Route::any('book/read/{book_id}',[
+        'as' =>'book.read',
+        'uses' => 'LibraryController@bookRead'
     ]);
 
 
