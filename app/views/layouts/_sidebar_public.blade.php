@@ -1,29 +1,31 @@
-
 <ul class="sidebar-menu">
-    <li class="active">
-        <a href="/">
-            <i class="fa fa-dashboard"></i> <span>Dashboard</span>
-        </a>
-    </li>
+    @if(isset(Auth::user()->get()->id) OR isset(Auth::applicant()->get()->id))
+        <li>
+            <a class="fa fa-dashboard" href="{{URL::route('user/user-access-to') }}" class="btn btn-default btn-flat">Dashboard</a>
+        </li>
+    @else
+        <li>
+            <a href="/">
+                <i class="fa fa-dashboard"></i> <span>Home</span>
+            </a>
+        </li>
 
-    <li class="">
-        <a href="{{ URL::to('user/sign') }}">
-            <i class="fa fa-angle-double-right"></i> <span>User login</span>
-        </a>
-    </li>
-    <li class="">
-        <a href="#">
-            <i class="fa fa-angle-double-right"></i> <span>User Sign Up</span>
-        </a>
-    </li>
-    <li class="">
-        <a href="{{ URL::to('applicant/signup') }}">
-            <i class="fa fa-angle-double-right"></i> <span>Applicant Sign Up</span>
-        </a>
-        <a href="{{ URL::to('user/sign') }}">
-            <i class="fa fa-angle-double-right"></i> <span>Applicant Login</span>
-        </a>
-    </li>
+        <li class="">
+            <a href="{{ URL::to('user/sign') }}">
+                <i class="fa fa-angle-double-right"></i> <span>Login</span>
+            </a>
+        </li>
+        <li class="">
+            <a href="#">
+                <i class="fa fa-angle-double-right"></i> <span>User Registration</span>
+            </a>
+        </li>
+        <li class="">
+            <a href="{{ URL::to('applicant/signup') }}">
+                <i class="fa fa-angle-double-right"></i> <span>Applicant Registration</span>
+            </a>
+        </li>
+    @endif
     <li class="treeview">
         <a href="#">
             <i class="fa fa-download" style="color: #803a0f"></i>

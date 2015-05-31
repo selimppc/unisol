@@ -423,12 +423,12 @@ Route::group(['prefix' => 'inventory'], function() {
         "uses" => "InvAdjustmentController@store_adj_detail"
     ]);
 
-    Route::any("ajax_delete_adj_detail/{adj_id}", [
-        "as"   => "ajax_delete_adj_detail",
+    Route::any("delete_adj_detail/{adj_id}", [
+        "as"   => "delete_adj_detail",
         "uses" => "InvAdjustmentController@ajax_delete_adj_detail"
     ]);
 
-    Route::any("sp-confirm-stock-adjustment", [
+    Route::any("sp-confirm-stock-adjustment/{adj_head_id}", [
         "as"   => "sp-confirm-stock-adjustment",
         "uses" => "InvAdjustmentController@sp_confirm_stock_adjustment"
     ]);
