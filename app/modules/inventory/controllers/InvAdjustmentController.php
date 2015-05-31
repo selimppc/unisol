@@ -122,6 +122,7 @@ class InvAdjustmentController extends \BaseController {
         $queries = DB::table('inv_v_stock')
             ->where('title', 'LIKE', '%'.$term.'%')
             ->orWhere('code', 'LIKE', '%'.$term.'%')
+            ->groupBy('code')
             ->take(10)->get();
         foreach ($queries as $query)
         {
