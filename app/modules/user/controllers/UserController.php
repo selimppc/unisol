@@ -66,6 +66,9 @@ class UserController extends \BaseController {
             if($user_role=="librarian"){
                 return Redirect::to("user/librarian-dashboard");
             }
+            if($user_role=="cfo"){
+                return Redirect::to("user/cfo-dashboard");
+            }
         }elseif(Auth::applicant()->check()){
             return Redirect::to("user/applicant-dashboard");
         }else{

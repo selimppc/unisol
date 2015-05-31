@@ -22,6 +22,11 @@ class UserDashboardController extends \BaseController {
         return View::make('user::dashboard.librarian');
     }
 
+    public function cfoDashboard(){
+        Session::flash('message','Welcome to dashboard of "CFO" !');
+        return View::make('user::dashboard.cfo');
+    }
+
     public function applicantDashboard(){
         Session::flash('message','Welcome to dashboard of "Applicant" !');
         return View::make('user::dashboard.applicant');
