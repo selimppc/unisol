@@ -46,7 +46,7 @@
 
 </div>
 
-@include('inventory::stock_transfer_detail._script')
+@include('inventory::adjust_detail._script')
 
 <p>
     <b> Product Detail(s)</b>
@@ -72,7 +72,7 @@
         <tr>
             <td>{{isset($value->inv_product_id) ? $value->relInvProduct->title : ''}}</td>
             <td>{{round($value->unit)}}</td>
-            <td>{{round($value->rate, 2)}}</td>
+            <td>{{round($value->stock_rate, 2)}}</td>
             <td>{{round($value->quantity)}}</td>
 
             <td>

@@ -147,9 +147,9 @@ class InvAdjustmentController extends \BaseController {
         $data = Input::all();
         for($i = 0; $i < count(Input::get('inv_product_id')) ; $i++){
             $dt[] = [
-                'inv_transfer_head_id' => Input::get('inv_transfer_head_id'),
+                'inv_adjust_head_id' => Input::get('inv_adjust_head_id'),
                 'inv_product_id'=> Input::get('inv_product_id')[$i],
-                'rate'=> Input::get('rate')[$i],
+                'stock_rate'=> Input::get('stock_rate')[$i],
                 'unit'=> Input::get('unit')[$i],
                 'quantity'=> Input::get('quantity')[$i],
             ];
@@ -193,10 +193,11 @@ class InvAdjustmentController extends \BaseController {
 
 
     public function sp_confirm_stock_adjustment($adj_head_id){
+
         $check = InvAdjustDetail::where('inv_adjust_head_id', $adj_head_id)->exists();
         if($check){
             //Call Store Procedure
-            DB::select('call sp_inv_confirm_dispatch(?, ?)', array($adj_head_id, Auth::user()->get()->id) );
+            DB::select('call sp_inv_confirm_adjustment(?, ?)', array($adj_head_id, Auth::user()->get()->id) );
             Session::flash('message', 'Success:: Stock Adjustment!');
         }else{
             Session::flash('info', 'Adjustment Detail is empty. Please add product item. And try later!');
