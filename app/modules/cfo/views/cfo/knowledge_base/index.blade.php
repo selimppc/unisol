@@ -60,7 +60,7 @@
     </div>
 </div>
 {{Form::open(['url'=>'cfo/store/knowledge-base', 'files'=>true])}}
-        @include('cfo::knowledge_base._modal')
+        @include('cfo::cfo.knowledge_base._modal')
 {{ Form::close() }}
 
 

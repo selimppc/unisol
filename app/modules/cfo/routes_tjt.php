@@ -69,5 +69,10 @@ Route::any('update/knowledge-base/{id}',
     ['as'=>'update.knowledge-base',
         'uses'=>'CfoController@updateKnowledgeBase']);
 
+Route::any('knowledge-base/list',[
+    'as' =>'knowledge-base.list',
+    'uses' => 'CfoController@listOfKnowledgeBase'
+]);
+
 
 
