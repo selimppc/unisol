@@ -1,3 +1,3 @@
 {{Form::open(['route'=>'knowledge-base.store', 'files'=>true])}}
-        @include('cfo::knowledge_base._form')
+        @include('cfo::._form')
 {{ Form::close() }}

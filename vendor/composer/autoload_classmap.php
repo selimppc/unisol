@@ -591,6 +591,7 @@ return array(
     'RnCCategory' => $baseDir . '/app/modules/rnc/models/RnCCategory.php',
     'RnCConfig' => $baseDir . '/app/modules/rnc/models/RnCConfig.php',
     'RnCPublisher' => $baseDir . '/app/modules/rnc/models/RnCPublisher.php',
+    'RnCResearchPaper' => $baseDir . '/app/modules/rnc/models/RnCResearchPaper.php',
     'Role' => $baseDir . '/app/modules/user/models/Role.php',
     'RoleTableSeeder' => $baseDir . '/app/database/seeds/RoleTableSeeder.php',
     'RoleTask' => $baseDir . '/app/modules/common/models/RoleTask.php',
