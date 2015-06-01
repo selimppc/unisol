@@ -44,7 +44,6 @@ class CfoController extends \BaseController {
         }
 	}
 
-
 	public function showCategory($id)
 	{
         $model = CfoCategory::find($id);
@@ -98,7 +97,6 @@ class CfoController extends \BaseController {
         } catch
         (exception $ex) {
             return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
-
         }
     }
 
@@ -143,6 +141,7 @@ class CfoController extends \BaseController {
     public function showKnowledgeBase($id)
     {
         $model = CfoKnowledgeBase::find($id);
+//        $a = User::CfoList();print_r($a);exit;
         return View::make('cfo::knowledge_base.show',compact('model'));
     }
 
@@ -198,7 +197,6 @@ class CfoController extends \BaseController {
 
         }
     }
-
 
     public function edit($id)
 	{
