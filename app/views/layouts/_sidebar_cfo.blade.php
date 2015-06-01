@@ -15,8 +15,8 @@
             {{--<i class="fa fa-angle-left pull-right"></i>--}}
         {{--</a>--}}
 
-            <li><a href="{{ URL::to('cfo/category') }}"></i><i class="fa fa-flask" style="color: #db4509"></i> Category</a></li>
-            <li><a href="{{ URL::to('cfo/knowledge-base') }}"></i><i class="fa fa-flask" style="color: #db4509"></i> Knowledge Base</a></li>
+            <li><a href="{{ URL::to('cfo/category') }}"></i><i class="fa fa-flask" style="color:forestgreen"></i> Category</a></li>
+            <li><a href="{{ URL::to('cfo/knowledge-base') }}"></i><i class="fa fa-lightbulb-o" style="color: darkmagenta"></i> Knowledge Base</a></li>
 
     {{--</li>--}}
 
