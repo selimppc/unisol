@@ -11,7 +11,7 @@
         <div class="col-md-12">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#tab_1" data-toggle="tab">Research Paper</a></li>
+                    <li class="active"><a href="#tab_1" data-toggle="tab">RnC Writer</a></li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                             Settings  <span class="caret"></span>
@@ -31,14 +31,11 @@
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab_1">
                         <div class="box-body table-responsive ">
-                            {{--<button type="button" class=" btn btn-xs btn-success fa fa-plus " data-toggle="modal" data-target="#add_r_n_c" >--}}
-                                {{--Add New RnC--}}
-                            {{--</button>--}}
 
                              <a class="pull-right btn btn-sm btn-info" style="margin-right: 5px"
-                                data-toggle="modal" data-target="#add"
-                                title="Add Research Paper">
-                                <b>+ Add Research Paper</b>
+                                data-toggle="modal" data-target="#addWriter"
+                                title="Add Writer">
+                                <b>+ Add Writer</b>
                              </a>
                             {{Form::open(array('route'=> ['amw.research-paper.batch-delete'], 'class'=>'form-horizontal','files'=>true))}}
                             <table id="example" class="table table-bordered table-hover table-striped scrollit">
@@ -85,10 +82,11 @@
                                             </td>
                                         @endif
                                         <td>
-                                            <a href="{{ URL::route('amw.research-paper.view', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" href=""><i class="fa fa-eye" style="color: green" title="View"></i></a>
-                                            <a href="{{ URL::route('amw.research-paper.edit', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#editModal" href="" ><i class="fa fa-pencil-square-o" style="color: #0044cc" title="Edit"></i></a>
-                                            <a href="{{ URL::route('amw.research-paper.writer', ['rnc_r_p_id'=>$value->id]) }}" class="btn btn-xs btn-default" ><i class="fa fa-sort-alpha-asc" style="color: #5107cc" title="Writter"></i></a>
-                                            <a data-href="{{ URL::route('amw.research-paper.delete', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa  fa-trash-o" style="color:red" title="Delete"></i></a>
+                                            <a href="{{ URL::route('amw.research-paper.view', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" href=""><i class="fa fa-eye" style="color: green"></i></a>
+                                            <a href="{{ URL::route('amw.research-paper.edit', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#editModal" href="" ><i class="fa fa-pencil-square-o" style="color: #0044cc"></i></a>
+                                            <a href="{{ URL::route('amw.research-paper.writer', ['rnc_r_p_id'=>$value->id]) }}" class="btn btn-xs btn-default" ><i class="fa fa-sort-alpha-asc" style="color: #5107cc"></i></a>
+
+                                            <a data-href="{{ URL::route('amw.research-paper.delete', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa  fa-trash-o" style="color:red"></i></a>
 
                                         </td>
                                     </tr>

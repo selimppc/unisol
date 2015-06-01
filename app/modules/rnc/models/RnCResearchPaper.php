@@ -9,7 +9,7 @@ class RnCResearchPaper extends Eloquent{
     //TODO :: model attributes and rules and validation
     protected $table='rnc_research_paper';
     protected $fillable = [
-        'title','abstract','rnc_category_id','where_publisher_id','publication_no','details',
+        'title','abstract','rnc_category_id','where_published_id','publication_no','details',
         'file','free_type_student','free_type_faculty','free_type_non_user','searching',
         'benefit_share','price','note','status','reviewed_by'
     ];
@@ -68,7 +68,7 @@ class RnCResearchPaper extends Eloquent{
         return $this->belongsTo('RnCCategory','rnc_category_id','id');
     }
     public function relRnCPublisher(){
-        return $this->belongsTo('RnCPublisher','where_publisher_id','id');
+        return $this->belongsTo('RnCPublisher','where_published_id','id');
     }
 
     // TODO : user info while saving data into table

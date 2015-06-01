@@ -156,40 +156,50 @@ Route::group(['prefix' => 'rnc'], function() {
         'uses'=> 'RnCAmwController@indexResearchPaper'
     ]);
 
-    Route::get('book/',
-        'LibraryController@indexBook'
-    );
-    Route::any('book/save',[
-        'as' => 'book.save',
-        'uses'=> 'LibraryController@storeBook'
-    ]);
-    Route::any('book/view/{id}',[
-        'as' => 'book.view',
-        'uses'=> 'LibraryController@viewBook'
-    ]);
-    Route::any('book/edit/{id}',[
-        'as' => 'book.edit',
-        'uses'=> 'LibraryController@editBook'
-    ]);
-    Route::any('book/update/{id}', [
-        'as' => 'book.update',
-        'uses' => 'LibraryController@updateBook'
-    ]);
-    Route::get('book/delete/{id}',
-        'LibraryController@deleteBook'
-    );
-    Route::any('book/batch/delete/{id}', [
-        'as' => 'book.batch.delete',
-        'uses' => 'LibraryController@batchdeleteBook'
+    Route::any('amw/research-paper/save',[
+        'as' => 'amw.research-paper.save',
+        'uses'=> 'RnCAmwController@storeResearchPaper'
     ]);
 
-    Route::any('book/download/{book_id}',[
-        'as' =>'book.download',
-        'uses' => 'LibraryController@bookDownload'
+    Route::any('amw/research-paper/view/{id}',[
+        'as' => 'amw.research-paper.view',
+        'uses'=> 'RnCAmwController@viewResearchPaper'
     ]);
-    Route::any('book/read/{book_id}',[
-        'as' =>'book.read',
-        'uses' => 'LibraryController@bookRead'
+
+    Route::any('amw/research-paper/edit/{id}',[
+        'as' => 'amw.research-paper.edit',
+        'uses'=> 'RnCAmwController@editResearchPaper'
+    ]);
+
+    Route::any('amw/research-paper/update/{id}', [
+        'as' => 'amw.research-paper.update',
+        'uses' => 'RnCAmwController@updateResearchPaper'
+    ]);
+
+    Route::any('amw/research-paper/delete/{id}',[
+        'as' => 'amw.research-paper.delete',
+        'uses' => 'RnCAmwController@deleteResearchPaper'
+    ]);
+
+    Route::any('amw/research-paper/batch-delete/{id}', [
+        'as' => 'amw.research-paper.batch-delete',
+        'uses' => 'RnCAmwController@batchdeleteResearchPaper'
+    ]);
+
+    Route::any('amw/research-paper/download/{rnc_id}',[
+        'as' =>'amw.research-paper.download',
+        'uses' => 'RnCAmwController@researchPaperDownload'
+    ]);
+
+    Route::any('amw/research-paper/read/{rnc_id}',[
+        'as' =>'amw.research-paper.read',
+        'uses' => 'RnCAmwController@researchPaperRead'
+    ]);
+
+    //Writer
+    Route::any('amw/research-paper/writer/{rnc_r_p_id}',[
+        'as' =>'amw.research-paper.writer',
+        'uses' => 'RnCAmwController@rncWriter'
     ]);
 
 
