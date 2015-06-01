@@ -24,7 +24,7 @@
             $("#product-name").val($.trim(tableData[2]));
             $("#unit-id").val($.trim(tableData[3]));
             $("#unit-qty").val($.trim(tableData[4]));
-            //$("#rec-qty").val($.trim(tableData[5]));
+            $("#max-qty").val($.trim(tableData[5]));
             $("#cost-price").val($.trim(tableData[6]));
             $("#row-amount").val($.trim(tableData[7]));
         });
@@ -79,7 +79,7 @@
 
     function setTarget(){
         var unit = $("#unit-id").val();
-        var unitQty = $("#unit-qty").val();
+        var unitQty = $("#max-qty").val();
         var recQty = $("#rec-qty").val();
         var costPrice = $("#cost-price").val();
         var data = (unit * recQty * costPrice);

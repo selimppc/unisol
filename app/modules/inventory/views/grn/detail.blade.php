@@ -39,8 +39,8 @@
         </div>
         <div class='form-group'>
            {{ Form::label('unit_quantity', 'Unit Qty') }}
-{{--           {{ Form::text('unit_quantity', Input::old('unit_quantity'),['id'=>'unit-qty','class'=>'form-control', 'required']) }}--}}
            <input name="unit_quantity" class="form-control" id="unit-qty" required="required" readonly="readonly">
+           <input type="hidden" value="" id="max-qty">
         </div>
         <div class='form-group'>
            {{ Form::label('receive_quantity', 'Receive Quantity') }}
