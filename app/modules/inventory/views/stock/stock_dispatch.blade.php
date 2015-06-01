@@ -41,7 +41,7 @@
                  <tr>
                     <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $values->id }}"></td>
                     <td>
-                    <b>{{ link_to_route($values->status!="approved" ?'add-product-dispatch' : 'show-dispatch',$values->transfer_number,['req_id'=>$values->id], ['data-toggle'=>"modal", 'data-target'=>"#modal-pc"]) }}</b>
+                    <b>{{ link_to_route($values->status!="Confirmed Dispatch" ?'add-product-dispatch' : 'show-dispatch',$values->transfer_number,['req_id'=>$values->id], ['data-toggle'=>"modal", 'data-target'=>"#modal-pc"]) }}</b>
                     </td>
                     <td>{{isset($values->transfer_to)? $values->relDepartment->title :'' }}</td>
                     <td>{{$values->date }}</td>
@@ -59,7 +59,9 @@
 
                     </td>
                     <td>
+                    @if($values->status!="Confirmed Dispatch")
                     <a href="{{ URL::route('sp-confirm-dispatch', ['transfer_head_id'=>$values->id ])  }}" class="btn btn-success btn-xs" title="Confirm Dispatch" > Confirm Dispatch</a>
+                    @endif
                     </td>
                  </tr>
                 @endforeach
