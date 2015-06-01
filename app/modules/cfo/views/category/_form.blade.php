@@ -22,12 +22,14 @@
 </div>
 
 <div class="form-group">
-   {{ Form::hidden('support_user_id', 'Support User') }}
-   {{ Form::hidden('support_user_id', Auth::user()->get()->id ,Input::old('support_user_id'), array('class' => 'form-control','required'=>'required') ) }}
+   {{ Form::label('support_user_id', 'Support User') }}
+   {{ Form::select('support_user_id', User::CfoList(),Input::old('support_user_id'), array('class' => 'form-control','required'=>'required') ) }}
 </div>
 
-
+<p>&nbsp;</p>
 {{ Form::submit('Save', array('class'=>'pull-right btn btn-info')) }}
 <a href="" class="pull-right btn btn-default" style="margin-right: 5px">Close</a>
 
+<p>&nbsp;</p>
+<p>&nbsp;</p>
 <p>&nbsp;</p>
