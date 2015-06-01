@@ -1,80 +1,71 @@
-{{--<div class='form-group'>--}}
-    {{--<div>{{ Form::label('title', 'Title') }}</div>--}}
-    {{--<div>{{ Form::text('title', Input::old('title'),['class'=>'form-control','spellcheck'=> 'true','required'=>'required']) }}--}}
-    {{--</div>--}}
-{{--</div>--}}
+<div class='form-group'>
+    <div>{{ Form::label('title', 'Title') }}</div>
+    <div>{{ Form::text('title', Input::old('title'),['class'=>'form-control','spellcheck'=> 'true','required'=>'required']) }}</div>
+</div>
 
-{{--<div class='form-group'>--}}
-    {{--<div>{{ Form::label('isbn', 'ISBN') }}</div>--}}
-    {{--<div>{{ Form::text('isbn', Input::old('isbn'),['class'=>'form-control']) }}--}}
-    {{--</div>--}}
-{{--</div>--}}
+<div class='form-group'>
+    <div>{{ Form::label('abstract', 'Abstract') }}</div>
+    <div>{{ Form::text('abstract', Input::old('abstract'),['class'=>'form-control']) }}</div>
+</div>
 
-{{--<div class='form-group'>--}}
-    {{--<div>{{ Form::label('category', 'Category') }}</div>--}}
-    {{--<div>{{ Form::select('category', [''=>'Select Category' ] + $category, Input::old('category'), array('class' => 'form-control') ) }}</div>--}}
-{{--</div>--}}
+<div class='form-group'>
+    <div>{{ Form::label('rnc_category_id', 'RnC Category') }}</div>
+    <div>{{ Form::select('rnc_category_id', [''=>'Select Category' ] + $rnc_category, Input::old('rnc_category_id'), array('class' => 'form-control') ) }}</div>
+</div>
 
-{{--<div class='form-group'>--}}
-    {{--<div>{{ Form::label('author', 'Author') }}</div>--}}
-    {{--<div>{{ Form::select('author', [''=>'Select Author' ] + $author, Input::old('author'), array('class' => 'form-control') ) }}</div>--}}
-{{--</div>--}}
+<div class='form-group'>
+    <div>{{ Form::label('where_published_id', 'RnC Publisher') }}</div>
+    <div>{{ Form::select('where_published_id', [''=>'Select Publisher' ] + $rnc_publisher, Input::old('where_published_id'), array('class' => 'form-control') ) }}</div>
+</div>
 
-{{--<div class='form-group'>--}}
-    {{--<div>{{ Form::label('publisher', 'Publisher') }}</div>--}}
-    {{--<div>{{ Form::select('publisher', [''=>'Select Publisher' ] + $publisher, Input::old('publisher'), array('class' => 'form-control') ) }}</div>--}}
-{{--</div>--}}
+<div class='form-group'>
+    <div>{{ Form::label('publication_no', 'Publication No') }}</div>
+    <div>{{ Form::text('publication_no',Input::old('publication_no') , array('class' => 'form-control') ) }}</div>
+</div>
 
-{{--<div class='form-group'>--}}
-    {{--<div>{{ Form::label('edition', 'Edition') }}</div>--}}
-    {{--<div>{{ Form::text('edition', Input::old('edition'),['class'=>'form-control','spellcheck'=> 'true']) }}--}}
-    {{--</div>--}}
-{{--</div>--}}
+<div class='form-group'>
+    <div>{{ Form::label('details', 'Details') }}</div>
+    <div>{{ Form::text('details', Input::old('details'),['class'=>'form-control','spellcheck'=> 'true']) }}</div>
+</div>
 
-{{--<div class='form-group'>--}}
-    {{--<div>{{ Form::label('stock_type', 'Stock Type') }}</div>--}}
-    {{--<div>{{ Form::select('stock_type',array('' => 'Select One','hard' => 'Hard', 'soft' => 'Soft','both'=>'Both'),'',['class'=>'form-control']) }}</div>--}}
-{{--</div>--}}
+{{--free type--}}
 
-{{--<div class='form-group'>--}}
-    {{--<div>{{ Form::label('self_number', 'Self Number') }}</div>--}}
-    {{--<div>{{ Form::text('self_number', Input::old('self_number'),['class'=>'form-control','spellcheck'=> 'true']) }}--}}
-    {{--</div>--}}
-{{--</div>--}}
+<div class='form-group'>
+    <div>{{ Form::label('searching', 'searching') }}</div>
+    <div>{{ Form::select('searching',array('' => 'Select One','yes' => 'Yes', 'no' => 'No'),'',['class'=>'form-control']) }}</div>
+</div>
 
-{{--<div class='form-group'>--}}
-    {{--<div>{{ Form::label('book_type', 'Book Type') }}</div>--}}
-    {{--<div>{{ Form::select('book_type',array('' => 'Select One','books' => 'Books', 'journal' => 'Journal','etc'=>'Etc'),'',['class'=>'form-control']) }}</div>--}}
-{{--</div>--}}
+<div class='form-group'>
+    <div>{{ Form::label('benefit_share', 'Benefit Share') }}</div>
+    <div>{{ Form::text('benefit_share', Input::old('benefit_share'),['class'=>'form-control','spellcheck'=> 'true']) }}</div>
+</div>
 
-{{--<div class='form-group'>--}}
-    {{--<div>{{ Form::label('commercial', 'commercial') }}</div>--}}
-    {{--<div>{{ Form::select('commercial',array('' => 'Select One','student' => 'Student', 'both' => 'Both', 'free' => 'Free'),'',['class'=>'form-control']) }}</div>--}}
-{{--</div>--}}
+<div class='form-group'>
+    <div>{{ Form::label('price', 'Price') }}</div>
+    <div>{{ Form::text('price', Input::old('price'),['class'=>'form-control','required'=>'required']) }}</div>
+</div>
 
-{{--<div class='form-group'>--}}
-    {{--<div>{{ Form::label('book_price', 'Book Price(TK)') }}</div>--}}
-    {{--<div>{{ Form::text('book_price', Input::old('book_price'),['class'=>'form-control','required'=>'required']) }}--}}
-    {{--</div>--}}
-{{--</div>--}}
+<div class='form-group'>
+    <div>{{ Form::label('note', 'Note') }}</div>
+    <div>{{ Form::text('note', Input::old('note'),['class'=>'form-control','required'=>'required']) }}</div>
+</div>
 
-{{--<div class='form-group'>--}}
-    {{--<div>{{ Form::label('digital_sell_price', 'Digital Sell Price(TK)') }}</div>--}}
-    {{--<div>{{ Form::text('digital_sell_price', Input::old('address'),['class'=>'form-control']) }}</div>--}}
+<div class='form-group'>
+    <div>{{ Form::label('status', 'Status') }}</div>
+    <div>{{ Form::select('status',array('' => 'Select One','open' => 'Open', 'close' => 'Close','approved' => 'Approved', 'reviewed' => 'Reviewed' ,  'published' => 'published'),'',['class'=>'form-control']) }}</div>
+</div>
 
-{{--</div>--}}
+<div class='form-group'>
+    <div>{{ Form::label('reviewed_by', 'Reviewed By') }}</div>
+    <div>{{ Form::text('reviewed_by', $reviewed_by , Input::old('reviewed_by'), array('class' => 'form-control') ) }}</div>
+</div>
 
-{{--<div class='form-group'>--}}
-    {{--<div>{{ Form::label('is_rented', 'commercial') }}</div>--}}
-    {{--<div>{{ Form::select('is_rented',array('' => 'Select One','yes' => 'Yes', 'no' => 'No'),'',['class'=>'form-control']) }}</div>--}}
-{{--</div>--}}
+<div class='form-group'>
+    {{ Form::label('file', 'Upload File') }}
+    <div>{{ Form::file('file', Input::old('file'),['class'=>'form-control ']) }}</div>
+</div>
 
-{{--<div class='form-group'>--}}
-    {{--{{ Form::label('docs', 'Upload File') }}--}}
-   {{-- {{ Form::file('docs') }}--}}
-    {{--<div>{{ Form::file('docs', Input::old('docs'),['class'=>'form-control ']) }}</div>--}}
-{{--</div>--}}
-{{--<div class="modal-footer">--}}
-    {{--{{ Form::submit('Submit', array('class'=>' btn btn-xs btn-success')) }}--}}
-    {{--<button class=" btn btn-default btn-xs" data-dismiss="modal" type="button">Close</button>--}}
-{{--</div>--}}
+<div class="modal-footer">
+    {{ Form::submit('Submit', array('class'=>' btn btn-xs btn-success')) }}
+    <button class=" btn btn-default btn-xs" data-dismiss="modal" type="button">Close</button>
+</div>
