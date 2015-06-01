@@ -196,5 +196,13 @@ Route::group(['prefix' => 'rnc'], function() {
         'uses' => 'RnCAmwController@researchPaperRead'
     ]);
 
+    //Writer
+    Route::any('amw/research-paper/writer/{rnc_r_p_id}',[
+        'as' =>'amw.research-paper.writer',
+        'uses' => 'RnCAmwController@rncWriter'
+    ]);
+
+
+
 });
 

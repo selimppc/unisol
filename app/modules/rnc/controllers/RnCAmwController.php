@@ -345,7 +345,7 @@ class RnCAmwController extends \BaseController
         $research_paper = RnCResearchPaper::orderBy('id', 'DESC')->paginate(5);
         $rnc_category = array('' => 'Select RnC Category ') + RnCCategory::lists('title', 'id');
         $rnc_publisher = array('' => 'Select RnC Publisher') + RnCPublisher::lists('title', 'id');
-        $reviewed_by = User::FullName(Auth::user()->get()->id);
+        $reviewed_by = array('' => 'Select Reviewer') + User::FacultyList();
         return View::Make('rnc::amw.research-paper.index',compact('research_paper','rnc_category','rnc_publisher','reviewed_by'));
     }
 
@@ -373,7 +373,7 @@ class RnCAmwController extends \BaseController
             {
                 $files = Input::file('file');
                 $destinationPath = public_path() . '/rnc_file';
-                $filename =  $files->getClientOriginalExtension();
+                $filename =  $files->getClientOriginalName();
                 $file = $filename;
                 $files->move($destinationPath, $file);
                 $model->file = $file;
@@ -405,7 +405,7 @@ class RnCAmwController extends \BaseController
         $edit_category = array('' => 'Select RnC Category ') + RnCCategory::lists('title', 'id');
         $edit_publisher = array('' => 'Select RnC Publisher') + RnCPublisher::lists('title', 'id');
 
-        $edit_reviewed_by = User::FullName(Auth::user()->get()->id);
+        $edit_reviewed_by = array('' => 'Select Reviewer') + User::FacultyList();
 
         return View::make('rnc::amw.research-paper.edit',compact('edit_r_c','edit_category','edit_publisher','edit_reviewed_by'));
     }
@@ -442,7 +442,7 @@ class RnCAmwController extends \BaseController
             {
                 $files = Input::file('file');
                 $destinationPath = public_path() . '/rnc_file';
-                $filename =  $files->getClientOriginalExtension();
+                $filename =  $files->getClientOriginalName();
                 $file = $filename;
                 $files->move($destinationPath, $file);
                 $model->file = $file;
@@ -462,32 +462,20 @@ class RnCAmwController extends \BaseController
     public function deleteResearchPaper($id)
     {
 
-//        try {
-//            $data= RnCResearchPaper::find($id);
-//            $flash_msg = $data->title;
-//            if($data->delete())
-//            {
-//                Session::flash('message', "Research Paper $flash_msg Deleted");
-//                return Redirect::back();
-//            }
-//        }
-//        catch
-//        (exception $ex){
-//            return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
-//
-//        }
-
-
         try {
-            RnCResearchPaper::find($id)->delete();
-            return Redirect::back()
-                ->with('message', 'Successfully deleted Information!');
+            $data= RnCResearchPaper::find($id);
+            $flash_msg = $data->title;
+            if($data->delete())
+            {
+                Session::flash('message', "Research Paper $flash_msg Deleted");
+                return Redirect::back();
+            }
         }
-        catch(exception $ex){
-            return Redirect::back()
-                ->with('message', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
-        }
+        catch
+        (exception $ex){
+            return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
 
+        }
 
 
     }
@@ -532,6 +520,17 @@ class RnCAmwController extends \BaseController
             'Content-Disposition' => 'inline; '.$file,
         ]);
     }
+
+    //Writer
+
+    public function rncWriter($rnc_r_p_id)
+    {
+        $rnc_r_p_writer = RnCResearchPaperWriter::where('rnc_research_paper_id' ,'=', $rnc_r_p_id)->get();
+        return View::make('rnc::amw.research-paper-writer.index', compact('rnc_r_p_writer'));
+
+    }
+
+
 
 
 

@@ -57,7 +57,7 @@
 
 <div class='form-group'>
     <div>{{ Form::label('reviewed_by', 'Reviewed By') }}</div>
-    <div>{{ Form::select('reviewed_by', $reviewed_by , Input::old('reviewed_by'), array('class' => 'form-control') ) }}</div>
+    <div>{{ Form::text('reviewed_by', $reviewed_by , Input::old('reviewed_by'), array('class' => 'form-control') ) }}</div>
 </div>
 
 <div class='form-group'>
