@@ -87,7 +87,7 @@
             $('#row-amount').val(data);
             return true;
         }else{
-            alert("Receive Quantity Must be less or equal to Unit Quantity! ")
+            alert("Receive Quantity Must be less or equal to Quantity! ")
             $("#rec-qty").val("");
             return false;
         }
