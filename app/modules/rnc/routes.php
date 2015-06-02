@@ -197,9 +197,41 @@ Route::group(['prefix' => 'rnc'], function() {
     ]);
 
     //Writer
-    Route::any('amw/research-paper/writer/{rnc_r_p_id}',[
-        'as' =>'amw.research-paper.writer',
-        'uses' => 'RnCAmwController@rncWriter'
+    Route::any('amw/research-paper-writer/index/{rnc_r_p_id}',[
+        'as' =>'amw.research-paper-writer.index',
+        'uses' => 'RnCAmwController@indexRnCWriter'
+    ]);
+
+
+    Route::any('amw/research-paper-writer/store',[
+        'as' => 'amw.research-paper-writer.store',
+        'uses'=> 'RnCAmwController@storeRnCWriter'
+    ]);
+
+
+    Route::any('amw/research-paper-writer/show/{id}',[
+        'as' => 'amw.research-paper-writer.show',
+        'uses'=> 'RnCAmwController@showRnCWriter'
+    ]);
+
+    Route::any('amw/research-paper-writer/edit/{id}',[
+        'as' => 'amw.research-paper-writer.edit',
+        'uses'=> 'RnCAmwController@editRnCWriter'
+    ]);
+
+    Route::any('amw/research-paper-writer/update/{id}',[
+        'as' => 'amw.research-paper-writer.update',
+        'uses'=> 'RnCAmwController@updateRnCWriter'
+    ]);
+
+    Route::any('amw/research-paper-writer/delete/{id}',[
+        'as' => 'amw.research-paper-writer.delete',
+        'uses'=> 'RnCAmwController@deleteRnCWriter'
+    ]);
+
+    Route::any('amw/research-paper-writer/batch-delete',[
+        'as' => 'amw.research-paper-writer.batch-delete',
+        'uses'=> 'RnCAmwController@batchDeleteRnCWriter'
     ]);
 
 

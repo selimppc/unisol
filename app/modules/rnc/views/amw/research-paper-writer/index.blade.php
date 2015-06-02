@@ -37,7 +37,7 @@
                                 title="Add Writer">
                                 <b>+ Add Writer</b>
                              </a>
-                            {{Form::open(array('route'=> ['amw.research-paper.batch-delete'], 'class'=>'form-horizontal','files'=>true))}}
+                            {{Form::open(array('route'=> ['amw.research-paper-writer.batch-delete'], 'class'=>'form-horizontal','files'=>true))}}
                             <table id="example" class="table table-bordered table-hover table-striped scrollit">
                                 <thead>
                                 <tr>
@@ -45,49 +45,26 @@
                                         <input name="id" type="checkbox" id="checkbox" class="checkbox" value="">
                                     </th>
                                     <th>Title</th>
-                                    <th>Abstract</th>
-                                    <th>Category</th>
-                                    <th>Publisher</th>
-                                    <th>Publication No</th>
-                                    <th>Searching</th>
-                                    <th>Benefit Share(%)</th>
-                                    <th>Price</th>
-                                    <th>Status</th>
-                                    <th>Reviewed By</th>
-                                    <th>File</th>
+                                    <th>Research Paper</th>
+                                    <th>Writter Name</th>
+                                    <th>Note</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach ($research_paper as $value)
+                                @foreach ($rnc_r_p_writer as $value)
                                     <tr>
                                         <td><input type="checkbox" name="id[]"  class="myCheckbox" value="{{ $value->id }}">
                                         </td>
                                         <td>{{isset($value->title) ? $value->title :'' }}</td>
-                                         <td>{{isset($value->abstract) ? $value->abstract : '' }}</td>
-                                        <td>{{isset($value->relRnCCategory->title) ? $value->relRnCCategory->title : '' }}</td>
-                                        <td>{{isset($value->relRnCPublisher->title) ? $value->relRnCPublisher->title : ''}}</td>
-                                        <td>{{isset($value->publication_no) ? $value->publication_no : ''}}</td>
-                                        <td>{{isset($value->searching) ? $value->searching : ''}}</td>
-                                        <td>{{isset($value->benefit_share) ? $value->benefit_share : ''}} %</td>
-                                        <td>{{isset($value->price) ? $value->price : ''}}</td>
-                                        <td>{{isset($value->status) ? $value->status : ''}}</td>
-                                        <td>{{isset($value->reviewed_by) ? $value->reviewed_by : ''}}</td>
-                                        @if($value->file==null)
-                                            <td style="color:magenta"><b>No File</b></td>
-                                        @else
-                                            <td>
-                                                <a href="{{ URL::route('amw.research-paper.read',['book_id'=>$value->id]) }}" target="_blank"><i class="fa fa-tablet" title="Read Book"></i></a>
-                                                <a href="{{ URL::route('amw.research-paper.download',['book_id'=>$value->id]) }}" style="color: blue" ><i class="fa fa-cloud-download" title="Download"></i></a>
-                                            </td>
-                                        @endif
+                                        <td>{{isset($value->rnc_research_paper_id) ? $value->rnc_research_paper_id :'' }}</td>
+                                        <td>{{isset($value->writer_user_id) ? $value->writer_user_id :'' }}</td>
+                                        <td>{{isset($value->note) ? $value->note :'' }}</td>
+
+
                                         <td>
-                                            <a href="{{ URL::route('amw.research-paper.view', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" href=""><i class="fa fa-eye" style="color: green"></i></a>
-                                            <a href="{{ URL::route('amw.research-paper.edit', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#editModal" href="" ><i class="fa fa-pencil-square-o" style="color: #0044cc"></i></a>
-                                            <a href="{{ URL::route('amw.research-paper.writer', ['rnc_r_p_id'=>$value->id]) }}" class="btn btn-xs btn-default" ><i class="fa fa-sort-alpha-asc" style="color: #5107cc"></i></a>
-
-                                            <a data-href="{{ URL::route('amw.research-paper.delete', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa  fa-trash-o" style="color:red"></i></a>
-
+                                            {{--<a href="{{ URL::route('amw.research-paper.writer', ['rnc_r_p_id'=>$value->id]) }}" class="btn btn-xs btn-default" ><i class="fa fa-sort-alpha-asc" style="color: #5107cc"></i></a>--}}
+                                            {{--<a data-href="{{ URL::route('amw.research-paper.delete', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa  fa-trash-o" style="color:red"></i></a>--}}
                                         </td>
                                     </tr>
                                 @endforeach
@@ -95,7 +72,7 @@
                             </table>
                             {{ Form::submit('Delete', array('class'=>'btn btn-xs btn-danger', 'id'=>'hide-button', 'style'=>'display:none'))}}
                             {{ Form::close() }}
-                            {{ $research_paper->links() }}
+                            {{--{{ $rnc_r_p_writer->links() }}--}}
 
                         </div>
                     </div>
@@ -107,16 +84,16 @@
 
 
      {{--Modal add new--}}
-    <div id="add" class="modal fade">
+    <div id="addWriter" class="modal fade">
         <div class="modal-dialog" aria-hidden="true" data-keyboard="false" data-backdrop="static">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">{{HTML::image('assets/icon/media-close-btn.png')}}</button>
-                    <h4 class="modal-title" style="text-align: center;color: #800080;font-size: x-large">Add Research Paper </h4>
+                    <h4 class="modal-title" style="text-align: center;color: #800080;font-size: x-large">Add Research Paper Writer</h4>
                 </div>
                 <div class="modal-body">
-                    {{ Form::open(array('url' => 'rnc/amw/research-paper/save', 'method' =>'post', 'role'=>'form','files'=>'true')) }}
-                        @include('rnc::amw.research-paper._form')
+                    {{ Form::open(array('url' => 'rnc/amw/research-paper-writer/save', 'method' =>'post', 'role'=>'form')) }}
+                        @include('rnc::amw.research-paper-writer._form')
                     {{ Form::close() }}
                 </div>
             </div>
