@@ -1,7 +1,7 @@
 <ul class="sidebar-menu">
     @if(isset(Auth::user()->get()->id) OR isset(Auth::applicant()->get()->id))
         <li>
-            <a class="fa fa-dashboard" href="{{URL::route('user/user-access-to') }}" class="btn btn-default btn-flat">Dashboard</a>
+            <a href="{{URL::route('user/user-access-to') }}"><i class="fa fa-dashboard"  style="color:#0089db"></i>Dashboard</a>
         </li>
     @else
         <li>
@@ -33,7 +33,7 @@
             <i class="fa fa-angle-left pull-right"></i>
         </a>
         <ul class="treeview-menu">
-            <li class="active"><a tabindex="-1" a href="{{ URL::route('admission.public.degree_offer_list') }}"></i><i class="fa fa-globe" style="color:#0089db"></i>Admission Degree Offer</a></li>
+            <li><a tabindex="-1" a href="{{ URL::route('admission.public.degree_offer_list') }}"><i class="fa fa-globe" style="color:#0089db"></i>Admission Degree Offer</a></li>
         </ul>
     </li>
 </ul>
