@@ -43,6 +43,12 @@
                 </tr>
             </thead>
             <tbody>
+                <tr>
+                    <td id="kb-title"></td>
+                    <td id="kb-description"></td>
+                </tr>
+            </tbody>
+            <tbody id="kb-knowledge-index">
             @if(isset($data))
                 @foreach($data as $values)
                  <tr>
@@ -73,15 +79,44 @@
 {{ HTML::script('assets/etsb/etsb_js/jquery/jquery.min.js')}}
 {{ HTML::script('assets/etsb/etsb_js/jquery-ui/jquery-ui.min.js')}}
 
+
+<input>
 <script>
 
-    $(function(){
-        $( "#search_knowledge_base" ).autocomplete({
+    /*$(function(){
+        $( "#search_knowledge_base" ).click({
+            source: "/cfo/ajax-search-kb",
+            minLength: 1,
+            *//*success: function(event, ui) {
+                $('#kb-title').html(ui.item.label);
+                $('#kb-description').html(ui.item.description);
+              }*//*
+              success: function(response)
+              {
+                  $('#kb-title').html(response.label);
+                  $('#kb-description').html(response.description);
+              }
 
-            source: "cfo/knowledge-base/list",
-            minLength: 3
       });
-    });
+    });*/
+     $(function(){
+          $('#search_knowledge_base').click(function(e) {
+            e.preventDefault();
+            var $btn = $(this);
+            $.ajax({
+                url: '/cfo/ajax-search-kb',
+                type: 'POST',
+                dataType: 'json',
+                data: { term:  $('#search_knowledge_base').val() },
+                success: function(response)
+                {
+                    $btn.closest("tr").remove();
+                    $('#something-delete').html(response);
+
+                }
+            });
+          });
+       });
 
 </script>
 @stop

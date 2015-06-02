@@ -74,5 +74,10 @@ Route::any('knowledge-base/list',[
     'uses' => 'CfoController@listOfKnowledgeBase'
 ]);
 
+Route::any('ajax-search-kb',[
+    'as' =>'ajax-search-kb',
+    'uses' => 'CfoController@ajaxSearchKb'
+]);
+
 
 

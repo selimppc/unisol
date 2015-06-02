@@ -223,6 +223,27 @@ class CfoController extends \BaseController {
         return View::make('cfo::public.knowledgebase',compact('data','model'));
 	}
 
+    /*
+     * Kb :: Knowledge Base
+     */
+    public function ajaxSearchKb(){
+    exit("OK");
+        $term = Input::get('term');
+        $results = array();
+        $queries = CfoKnowledgeBase::where('title', 'LIKE', '%'.$term.'%')
+            ->orWhere('description', 'LIKE', '%'.$term.'%')
+            ->orWhere('keywords', 'LIKE', '%'.$term.'%')
+            ->get();
+        foreach ($queries as $query)
+        {
+            $results[] = [
+                'label' => $query->title ,
+                'description' => $query->description,
+            ];
+        }
+        return Response::json($results);
+    }
+
 	public function update($id)
 	{
 
