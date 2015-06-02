@@ -12,20 +12,21 @@
 
 <div class="row">
 
-    <div class="box box-solid ">
+   <div class="box box-solid ">
       <br>
       {{-------------- Search :Starts -------------------------------------------}}
       <div>
           {{ Form::open(array('route'=>['knowledge-base.list'],'class'=>'form-horizontal')) }}
                 <div  class="col-lg-5 pull-left" >
                     <div class="input-group input-group-sm">
-                        {{ Form::text('keywords', Input::old('keywords'),[ 'class'=>'form-control','placeholder'=>'knowledgebase']) }}
+                        {{ Form::text('keywords', Input::old('keywords'),['id'=>'search_knowledge_base', 'class'=>'ui-autocomplete form-control', 'class'=>'form-control','placeholder'=>'knowledgebase']) }}
                         <span class="input-group-btn">
                             <button class="btn btn-info btn-flat" type="submit">Search</button>
                         </span>
                     </div>
                 </div>
           {{ Form::close() }}
+          @include('cfo::public._script')
       </div>
 
        {{-------------- Search :Ends -------------------------------------------}}
@@ -56,8 +57,7 @@
         </table>
         </div>
         {{--{{ $data->links() }}--}}
-
-    </div>
+   </div>
 </div>
 
 {{-- Modal Area --}}
@@ -69,4 +69,19 @@
 </div>
 
 
+
+{{ HTML::script('assets/etsb/etsb_js/jquery/jquery.min.js')}}
+{{ HTML::script('assets/etsb/etsb_js/jquery-ui/jquery-ui.min.js')}}
+
+<script>
+
+    $(function(){
+        $( "#search_knowledge_base" ).autocomplete({
+            source: "knowledge-base/list",
+            minLength: 3
+      });
+      });
+
+</script>
 @stop
+
