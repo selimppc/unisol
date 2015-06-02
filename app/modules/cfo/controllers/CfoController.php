@@ -205,12 +205,14 @@ class CfoController extends \BaseController {
 //            print_r($search_key);exit;
 
             if(($search_key)){
-                /*$data = CfoKnowledgeBase::where('title', 'LIKE', '%'.$search_key.'%')
+                $data = CfoKnowledgeBase::where('title', 'LIKE', '%'.$search_key.'%')
                     ->orWhere('description', 'LIKE', '%'.$search_key.'%')
                     ->orWhere('keywords', 'LIKE', '%'.$search_key.'%')
                     ->take(5)
-                    ->paginate(10);*/
-                $data = CfoKnowledgeBase::where('keywords', 'LIKE', '%'.$search_key.'%')->paginate(10);
+                    ->get();
+//                $data = CfoKnowledgeBase::where('keywords', 'LIKE', '%'.$search_key.'%')->paginate(10);
+//                print_r($data);exit;
+                return Response::json($data);
             }
 
         }else{

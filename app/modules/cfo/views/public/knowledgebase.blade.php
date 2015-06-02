@@ -19,7 +19,7 @@
           {{ Form::open(array('route'=>['knowledge-base.list'],'class'=>'form-horizontal')) }}
                 <div  class="col-lg-5 pull-left" >
                     <div class="input-group input-group-sm">
-                        {{ Form::text('keywords', Input::old('keywords'),['id'=>'search_knowledge_base', 'class'=>'ui-autocomplete form-control', 'class'=>'form-control','placeholder'=>'knowledgebase']) }}
+                        {{ Form::text('keywords', Input::old('keywords'),['id'=>'search_knowledge_base', 'class'=>'ui-autocomplete form-control', 'autofocus','placeholder'=>'knowledgebase']) }}
                         <span class="input-group-btn">
                             <button class="btn btn-info btn-flat" type="submit">Search</button>
                         </span>
@@ -77,10 +77,11 @@
 
     $(function(){
         $( "#search_knowledge_base" ).autocomplete({
-            source: "knowledge-base/list",
+
+            source: "cfo/knowledge-base/list",
             minLength: 3
       });
-      });
+    });
 
 </script>
 @stop
