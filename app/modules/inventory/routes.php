@@ -437,6 +437,25 @@ Route::group(['prefix' => 'inventory'], function() {
 
 
 
+    /*
+     * ===============================================================
+     * Transaction Number Setup
+     * ===============================================================
+     */
+
+
+    Route::any("index-setup", [
+        "as"   => "index-setup",
+        "uses" => "InvTrnNoSetupController@index_setup"
+    ]);
+    Route::any("trn-no-setup", [
+        "as"   => "trn-no-setup",
+        "uses" => "InvTrnNoSetupController@trn_no_setup"
+    ]);
+    Route::any("show-no-setup/{setup_id}", [
+        "as"   => "show-no-setup",
+        "uses" => "InvTrnNoSetupController@show_trn_no"
+    ]);
 
 
 

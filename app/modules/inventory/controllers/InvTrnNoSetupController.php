@@ -2,15 +2,25 @@
 
 class InvTrnNoSetupController extends \BaseController {
 
-	/**
+    /*
+     * POST REQUEST
+     */
+    protected function isPostRequest()
+    {
+        return Input::server("REQUEST_METHOD") == "POST";
+    }
+
+    /**
 	 * Display a listing of the resource.
 	 *
 	 * @return Response
 	 */
-	public function index()
-	{
-		//
-	}
+    public function index_setup()
+    {
+        $pageTitle = 'Transaction Number Setup';
+        $data = InvTrnNoSetup::all();
+        return View::make('inventory::setup.index', compact('pageTitle', 'data'));
+    }
 
 
 	/**
@@ -18,69 +28,33 @@ class InvTrnNoSetupController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function create()
-	{
-		//
-	}
+    public function trn_no_setup()
+    {
+        if($this->isPostRequest()){
+            $input_data = Input::all();
+            $model = new InvTrnNoSetup();
+            if($model->validate($input_data)) {
+                DB::beginTransaction();
+                try {
+                    $model->create($input_data);
+                    DB::commit();
+                    Session::flash('message', 'Success !');
+                }catch (Exception $e) {
+                    //If there are any exceptions, rollback the transaction`
+                    DB::rollback();
+                    Session::flash('danger', 'Failed !');
+                }
+            }
+        }
+        return Redirect::back();
+    }
 
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
-	}
 
-
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
-	}
+    public function show_trn_no($setup_id){
+        $data = InvTrnNoSetup::findOrFail($setup_id);
+        return View::make('inventory::setup.show', compact('pageTitle', 'data'));
+    }
 
 
 }
