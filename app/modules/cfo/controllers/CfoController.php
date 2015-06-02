@@ -227,7 +227,7 @@ class CfoController extends \BaseController {
      * Kb :: Knowledge Base
      */
     public function ajaxSearchKb(){
-
+    exit("OK");
         $term = Input::get('term');
         $results = array();
         $queries = CfoKnowledgeBase::where('title', 'LIKE', '%'.$term.'%')

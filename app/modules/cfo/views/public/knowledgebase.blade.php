@@ -79,16 +79,18 @@
 {{ HTML::script('assets/etsb/etsb_js/jquery/jquery.min.js')}}
 {{ HTML::script('assets/etsb/etsb_js/jquery-ui/jquery-ui.min.js')}}
 
+
+<input>
 <script>
 
-    $(function(){
+    /*$(function(){
         $( "#search_knowledge_base" ).click({
             source: "/cfo/ajax-search-kb",
             minLength: 1,
-            /*success: function(event, ui) {
+            *//*success: function(event, ui) {
                 $('#kb-title').html(ui.item.label);
                 $('#kb-description').html(ui.item.description);
-              }*/
+              }*//*
               success: function(response)
               {
                   $('#kb-title').html(response.label);
@@ -96,7 +98,25 @@
               }
 
       });
-    });
+    });*/
+     $(function(){
+          $('#search_knowledge_base').click(function(e) {
+            e.preventDefault();
+            var $btn = $(this);
+            $.ajax({
+                url: '/cfo/ajax-search-kb',
+                type: 'POST',
+                dataType: 'json',
+                data: { term:  $('#search_knowledge_base').val() },
+                success: function(response)
+                {
+                    $btn.closest("tr").remove();
+                    $('#something-delete').html(response);
+
+                }
+            });
+          });
+       });
 
 </script>
 @stop
