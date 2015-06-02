@@ -1,11 +1,11 @@
 <div class='form-group'>
-    <div>{{ Form::label('rnc_research_paper_id', 'RnC Category') }}</div>
-    <div>{{ Form::select('rnc_research_paper_id', [''=>'Select Research Paper' ] + $rnc_research_paper, Input::old('rnc_research_paper_id'), array('class' => 'form-control') ) }}</div>
+    <div>{{ Form::label('rnc_research_paper_id', 'RnC Research Paper') }}</div>
+    <div>{{ Form::text('rnc_research_paper_id', $rnc_r_p_id, Input::old('rnc_research_paper_id'), array('class' => 'form-control') ) }}</div>
 </div>
 
 <div class='form-group'>
-    <div>{{ Form::label('writer_user_id', 'RnC Publisher') }}</div>
-    <div>{{ Form::select('writer_user_id', [''=>'Select Writer' ] + $rnc_writer, Input::old('writer_user_id'), array('class' => 'form-control') ) }}</div>
+    <div>{{ Form::label('writer_user_id', 'RnC Writer Name') }}</div>
+    <div>{{ Form::text('writer_user_id', $rnc_r_p_writer_user, Input::old('writer_user_id'), array('class' => 'form-control') ) }}</div>
 </div>
 
 <div class='form-group'>

@@ -505,7 +505,8 @@ class RnCAmwController extends \BaseController
     public function indexRnCWriter($rnc_r_p_id)
     {
         $rnc_r_p_writer = RnCResearchPaperWriter::with('relRnCResearchPaper','relUser', 'relUser.relUserProfile')->latest('id')->where('rnc_research_paper_id' ,'=', $rnc_r_p_id)->get();
-        return View::make('rnc::amw.research-paper-writer.index', compact('rnc_r_p_writer'));
+        $rnc_r_p_writer_user = Auth::user()->get()->id;
+        return View::make('rnc::amw.research-paper-writer.index', compact('rnc_r_p_writer','rnc_r_p_id','rnc_r_p_writer_user'));
     }
 
 
