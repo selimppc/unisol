@@ -509,6 +509,34 @@ class RnCAmwController extends \BaseController
         return View::make('rnc::amw.research-paper-writer.index', compact('rnc_r_p_writer','rnc_r_p_id','rnc_r_p_writer_user'));
     }
 
+    public function storeRnCWriter()
+    {
+        $data = Input::all();
+        //print_r($data);exit;
+        $publisher = new RnCResearchPaperWriter();
+        if($publisher->validate($data))
+        {
+            DB::beginTransaction();
+            try {
+                $publisher->create($data);
+                DB::commit();
+                Session::flash('message', "Writer Added");
+            }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', "Writer not added.Invalid Request!");
+            }
+            return Redirect::back();
+        }else{
+            $errors = $publisher->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()
+                ->with('errors', 'invalid');
+        }
+
+    }
+
 
 
 }
