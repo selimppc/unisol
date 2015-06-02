@@ -54,6 +54,20 @@ Route::any("sortable", [
     "uses" => "HomeController@sortable"
 ]);
 
+/*
+ * Knowledge Base Search
+ */
+Route::any("kb", [
+    "as"   => "kb",
+    "uses" => "HomeController@kb"
+]);
+
+Route::any("kb-ajax-search", [
+    "as"   => "kb-ajax-search",
+    "uses" => "HomeController@ajaxSearchKb"
+]);
+
+
 Route::get('/upload', 'HomeController@getUploadForm');
 Route::post('/upload/image','HomeController@postUpload');
 

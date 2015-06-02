@@ -396,4 +396,32 @@ class HomeController extends BaseController {
 
     }
 
+
+
+    //Knowledge Base Search :
+
+    public function kb()
+    {
+        $data = CfoKnowledgeBase::latest('id')->paginate(10);
+        return View::make('cfo::public.kb',compact('data','model'));
+    }
+
+    public function ajaxSearchKb(){
+        if(Request::ajax()) {
+            $term = Input::get('keyword');
+            $results = array();
+            $queries = CfoKnowledgeBase::where('title', 'LIKE', '%' . $term . '%')
+                ->orWhere('description', 'LIKE', '%' . $term . '%')
+                ->orWhere('keywords', 'LIKE', '%' . $term . '%')
+                ->get();
+            foreach ($queries as $query) {
+                $results[] = [
+                    'label' => $query->title,
+                    'description' => $query->description,
+                ];
+            }
+            return Response::json($results);
+        }
+    }
+
 }
