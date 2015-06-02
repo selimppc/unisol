@@ -9,7 +9,7 @@ class RnCResearchPaperWriter extends Eloquent{
     //TODO :: model attributes and rules and validation
     protected $table='rnc_research_paper_writer';
     protected $fillable = [
-        'rnc_research_paper_id','writer_user_id'
+        'rnc_research_paper_id','writer_user_id','note'
     ];
     private $errors;
     private $rules = [
@@ -33,6 +33,15 @@ class RnCResearchPaperWriter extends Eloquent{
 
 
     //TODO : Model Relationship
+
+    public function relRnCResearchPaper(){
+        return $this->belongsTo('RnCResearchPaper','rnc_research_paper_id','id');
+    }
+
+    public function relUser(){
+        return $this->belongsTo('User', 'writer_user_id', 'id');
+    }
+
 
 
 

@@ -351,7 +351,6 @@ class RnCAmwController extends \BaseController
 
     public function storeResearchPaper()
     {
-
         $data = Input::all();
         $model = new RnCResearchPaper();
         if ($model->validate($data)) {
@@ -378,8 +377,6 @@ class RnCAmwController extends \BaseController
                 $files->move($destinationPath, $file);
                 $model->file = $file;
             }
-
-
             $model->save();
 
             Session::flash('message', "Successfully Added $flashmsg !");
@@ -390,7 +387,6 @@ class RnCAmwController extends \BaseController
             Session::flash('errors', $errors);
             return Redirect::back();
         }
-
     }
 
     public function viewResearchPaper($id)
@@ -404,9 +400,7 @@ class RnCAmwController extends \BaseController
         $edit_r_c = RnCResearchPaper::find($id);
         $edit_category = array('' => 'Select RnC Category ') + RnCCategory::lists('title', 'id');
         $edit_publisher = array('' => 'Select RnC Publisher') + RnCPublisher::lists('title', 'id');
-
         $edit_reviewed_by = array('' => 'Select Reviewer') + User::FacultyList();
-
         return View::make('rnc::amw.research-paper.edit',compact('edit_r_c','edit_category','edit_publisher','edit_reviewed_by'));
     }
 
@@ -430,14 +424,6 @@ class RnCAmwController extends \BaseController
             $model->status = Input::get('status');
             $model->reviewed_by = Input::get('reviewed_by');
 
-            /* $files = Input::get('docs');*/
-            /*$files = Input::file('docs');
-            $destinationPath = public_path() . '/library';
-            $filename =  $files->getClientOriginalExtension();
-            $file = date("d-m-Y-s")."." . $filename;
-            $files->move($destinationPath, $file);
-            $model->file = $file;*/
-
             if (Input::hasFile('file'))
             {
                 $files = Input::file('file');
@@ -447,7 +433,6 @@ class RnCAmwController extends \BaseController
                 $files->move($destinationPath, $file);
                 $model->file = $file;
             }
-
             $model->save();
             Session::flash('message', "Successfully Updated $flashmsg !");
             return Redirect::back();
@@ -461,7 +446,6 @@ class RnCAmwController extends \BaseController
 
     public function deleteResearchPaper($id)
     {
-
         try {
             $data= RnCResearchPaper::find($id);
             $flash_msg = $data->title;
@@ -474,12 +458,8 @@ class RnCAmwController extends \BaseController
         catch
         (exception $ex){
             return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
-
         }
-
-
     }
-
 
     public function batchdeleteResearchPaper($id)
     {
@@ -504,7 +484,6 @@ class RnCAmwController extends \BaseController
         );
         $file_name = $download->title.".".'pdf';
         return Response::download($path, $file_name, $headers);
-
     }
 
     public function researchPaperRead($rnc_id)
@@ -523,14 +502,11 @@ class RnCAmwController extends \BaseController
 
     //Writer
 
-    public function rncWriter($rnc_r_p_id)
+    public function indexRnCWriter($rnc_r_p_id)
     {
-        $rnc_r_p_writer = RnCResearchPaperWriter::where('rnc_research_paper_id' ,'=', $rnc_r_p_id)->get();
+        $rnc_r_p_writer = RnCResearchPaperWriter::with('relRnCResearchPaper','relUser', 'relUser.relUserProfile')->latest('id')->where('rnc_research_paper_id' ,'=', $rnc_r_p_id)->get();
         return View::make('rnc::amw.research-paper-writer.index', compact('rnc_r_p_writer'));
-
     }
-
-
 
 
 
