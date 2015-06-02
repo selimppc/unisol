@@ -212,7 +212,7 @@ class CfoController extends \BaseController {
                     ->get();
 //                $data = CfoKnowledgeBase::where('keywords', 'LIKE', '%'.$search_key.'%')->paginate(10);
 //                print_r($data);exit;
-                return Response::json($data);
+
             }
 
         }else{
@@ -223,11 +223,19 @@ class CfoController extends \BaseController {
         return View::make('cfo::public.knowledgebase',compact('data','model'));
 	}
 
+    public function detailsKb($kb_id){
+
+        $data = CfoKnowledgeBase::where('id','=',$kb_id)->first();
+        $title = CfoKnowledgeBase::findOrFail($data->id)->title;
+
+        return View::make('cfo::public.details_knb',compact('data','title'));
+    }
+
     /*
      * Kb :: Knowledge Base
      */
     public function ajaxSearchKb(){
-    exit("OK");
+
         $term = Input::get('term');
         $results = array();
         $queries = CfoKnowledgeBase::where('title', 'LIKE', '%'.$term.'%')
@@ -244,16 +252,10 @@ class CfoController extends \BaseController {
         return Response::json($results);
     }
 
-	public function update($id)
-	{
-
-	}
+	public function ajaxKbRating(){
 
 
-	public function destroy($id)
-	{
-
-	}
+    }
 
 
 }

@@ -79,5 +79,15 @@ Route::any('ajax-search-kb',[
     'uses' => 'CfoController@ajaxSearchKb'
 ]);
 
+Route::any('details/knowledge-base/{id}',[
+    'as' =>'details.knowledge-base',
+    'uses' => 'CfoController@detailsKb'
+]);
+
+Route::any('ajax/knowledgebase/rating',[
+    'as' =>'ajax.knowledgebase.rating',
+    'uses' => 'CfoController@ajaxKbRating'
+]);
+
 
 
