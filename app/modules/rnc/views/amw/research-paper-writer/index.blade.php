@@ -44,7 +44,6 @@
                                     <th>
                                         <input name="id" type="checkbox" id="checkbox" class="checkbox" value="">
                                     </th>
-                                    <th>Title</th>
                                     <th>Research Paper</th>
                                     <th>Writter Name</th>
                                     <th>Note</th>
@@ -56,7 +55,6 @@
                                     <tr>
                                         <td><input type="checkbox" name="id[]"  class="myCheckbox" value="{{ $value->id }}">
                                         </td>
-                                        <td>{{isset($value->title) ? $value->title :'' }}</td>
                                         <td>{{isset($value->rnc_research_paper_id) ? $value->rnc_research_paper_id :'' }}</td>
                                         <td>{{isset($value->writer_user_id) ? $value->writer_user_id :'' }}</td>
                                         <td>{{isset($value->note) ? $value->note :'' }}</td>
@@ -92,7 +90,7 @@
                     <h4 class="modal-title" style="text-align: center;color: #800080;font-size: x-large">Add Research Paper Writer</h4>
                 </div>
                 <div class="modal-body">
-                    {{ Form::open(array('url' => 'rnc/amw/research-paper-writer/save', 'method' =>'post', 'role'=>'form')) }}
+                    {{ Form::open(array('url' => 'rnc/amw/research-paper-writer/store', 'method' =>'post', 'role'=>'form')) }}
                         @include('rnc::amw.research-paper-writer._form')
                     {{ Form::close() }}
                 </div>
