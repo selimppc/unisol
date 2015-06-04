@@ -1,6 +1,6 @@
 <div class="modal-header" xmlns="http://www.w3.org/1999/html">
     <button type="button" class="close" data-dismiss="modal">{{HTML::image('assets/icon/media-close-btn.png')}}</button>
-    <h4 class="modal-title" style="text-align: center;color: #800080;">Edit Research Paper Writer</h4>
+    <h4 class="modal-title" style="text-align: center;color: #800080;">Edit Research Paper Beneficial</h4>
 </div>
 <div class="modal-body">
     {{--<div style="padding: 10px;">--}}

@@ -10,8 +10,8 @@
 
 
 <div class='form-group'>
-    <div>{{ Form::label('note', 'Note') }}</div>
-    <div>{{ Form::text('note', Input::old('note'),array('placeholder'=>'Write Note..','class'=>'form-control','required'=>'required')) }}</div>
+    <div>{{ Form::label('value', 'Value') }}</div>
+    <div>{{ Form::text('value', Input::old('value'),array('placeholder'=>'Writer Value..','class'=>'form-control','required'=>'required')) }}</div>
 </div>
 
 <div class="modal-footer">

@@ -238,6 +238,36 @@ Route::group(['prefix' => 'rnc'], function() {
         'uses' => 'RnCAmwController@indexRnCBeneficial'
     ]);
 
+    Route::any('amw/research-paper-beneficial/store',[
+        'as' => 'amw.research-paper-beneficial.store',
+        'uses'=> 'RnCAmwController@storeRnCBeneficial'
+    ]);
+
+    Route::any('amw/research-paper-beneficial/show/{id}',[
+        'as' => 'amw.research-paper-beneficial.show',
+        'uses'=> 'RnCAmwController@showRnCBeneficial'
+    ]);
+
+    Route::any('amw/research-paper-beneficial/edit/{id}',[
+        'as' => 'amw.research-paper-beneficial.edit',
+        'uses'=> 'RnCAmwController@editRnCBeneficial'
+    ]);
+
+    Route::any('amw/research-paper-beneficial/update/{id}',[
+        'as' => 'amw.research-paper-beneficial.update',
+        'uses'=> 'RnCAmwController@updateRnCBeneficial'
+    ]);
+
+    Route::any('amw/research-paper-beneficial/delete/{id}',[
+        'as' => 'amw.research-paper-beneficial.delete',
+        'uses'=> 'RnCAmwController@deleteRnCBeneficial'
+    ]);
+
+    Route::any('amw/research-paper-beneficial/batch-delete',[
+        'as' => 'amw.research-paper-beneficial.batch-delete',
+        'uses'=> 'RnCAmwController@batchDeleteRnCBeneficial'
+    ]);
+
 
 
 
