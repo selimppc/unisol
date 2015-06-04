@@ -346,7 +346,7 @@ class RnCAmwController extends \BaseController
         $rnc_category = array('' => 'Select RnC Category ') + RnCCategory::lists('title', 'id');
         $rnc_publisher = array('' => 'Select RnC Publisher') + RnCPublisher::lists('title', 'id');
         $reviewed_by = array('' => 'Select Reviewer') + User::FacultyList();
-        return View::Make('rnc::amw.research-paper.index',compact('research_paper','rnc_category','rnc_publisher','reviewed_by'));
+        return View::Make('rnc::amw.research_paper.index',compact('research_paper','rnc_category','rnc_publisher','reviewed_by'));
     }
 
     public function storeResearchPaper()
@@ -392,7 +392,7 @@ class RnCAmwController extends \BaseController
     public function viewResearchPaper($id)
     {
         $view_r_c = RnCResearchPaper::find($id);
-        return View::make('rnc::amw.research-paper.view',compact('view_r_c'));
+        return View::make('rnc::amw.research_paper.view',compact('view_r_c'));
     }
 
     public function editResearchPaper($id)
@@ -401,7 +401,7 @@ class RnCAmwController extends \BaseController
         $edit_category = array('' => 'Select RnC Category ') + RnCCategory::lists('title', 'id');
         $edit_publisher = array('' => 'Select RnC Publisher') + RnCPublisher::lists('title', 'id');
         $edit_reviewed_by = array('' => 'Select Reviewer') + User::FacultyList();
-        return View::make('rnc::amw.research-paper.edit',compact('edit_r_c','edit_category','edit_publisher','edit_reviewed_by'));
+        return View::make('rnc::amw.research_paper.edit',compact('edit_r_c','edit_category','edit_publisher','edit_reviewed_by'));
     }
 
 
@@ -506,21 +506,45 @@ class RnCAmwController extends \BaseController
     {
         $rnc_r_p_writer = RnCResearchPaperWriter::with('relRnCResearchPaper','relUser', 'relUser.relUserProfile')->latest('id')->where('rnc_research_paper_id' ,'=', $rnc_r_p_id)->get();
         $rnc_r_p_writer_user = Auth::user()->get()->id;
-        return View::make('rnc::amw.research-paper-writer.index', compact('rnc_r_p_writer','rnc_r_p_id','rnc_r_p_writer_user'));
+        return View::make('rnc::amw.research_paper_writer.index', compact('rnc_r_p_writer','rnc_r_p_id','rnc_r_p_writer_user'));
     }
+
+
+    // AJax Writer Name Search
+    // first one
+
+    public function ajaxGetWriterNameAutoComplete ()
+    {
+        $term = Input::get('term');
+        $results = array();
+        $queries = DB::table('user_profile')
+            ->where('first_name', 'LIKE', '%'.$term.'%')
+            ->orWhere('middle_name', 'LIKE', '%'.$term.'%')
+            ->orWhere('last_name', 'LIKE', '%'.$term.'%')
+            ->take(6)->get();
+        foreach ($queries as $query)
+        {
+            $results[] = [
+                'label' => $query->first_name.' '.$query->middle_name.' '.$query->last_name ,
+                'user_id' => $query->user_id ,
+            ];
+        }
+        return Response::json($results);
+    }
+
+
 
     public function storeRnCWriter()
     {
         $data = Input::all();
-        //print_r($data);exit;
-        $publisher = new RnCResearchPaperWriter();
-        if($publisher->validate($data))
+        $rnc_r_p_writer_store = new RnCResearchPaperWriter();
+        if($rnc_r_p_writer_store->validate($data))
         {
             DB::beginTransaction();
             try {
-                $publisher->create($data);
+                $rnc_r_p_writer_store->create($data);
                 DB::commit();
-                Session::flash('message', "Writer Added");
+                Session::flash('message', "Writers Name Added");
             }
             catch ( Exception $e ){
                 //If there are any exceptions, rollback the transaction
@@ -529,12 +553,95 @@ class RnCAmwController extends \BaseController
             }
             return Redirect::back();
         }else{
-            $errors = $publisher->errors();
+            $errors = $rnc_r_p_writer_store->errors();
             Session::flash('errors', $errors);
             return Redirect::back()
                 ->with('errors', 'invalid');
         }
 
+    }
+
+
+
+    public function showRnCWriter($id)
+    {
+        $rnc_r_p_writer_show = RnCResearchPaperWriter::find($id);
+        if($rnc_r_p_writer_show)
+        {
+            return View::make('rnc::amw.research_paper_writer.view',compact('rnc_r_p_writer_show'));
+        }
+        App::abort(404);
+    }
+
+
+    public function editRnCWriter($id)
+    {
+        $rnc_r_p_writer_edit = RnCResearchPaperWriter::find($id);
+        $list_writer_name = User::WriterNameList();
+        return View::make('rnc::amw.research_paper_writer.edit',compact('rnc_r_p_writer_edit','list_writer_name'));
+    }
+
+
+    public function updateRnCWriter($id)
+    {
+        $data = Input::all();
+        //print_r($data);exit;
+        $rnc_r_p_writer_update = RnCResearchPaperWriter::find($id);
+        if($rnc_r_p_writer_update->validate($data))
+        {
+            DB::beginTransaction();
+            try {
+                $rnc_r_p_writer_update->update($data);
+                DB::commit();
+                Session::flash('message', "Writers Name Updates");
+            }
+            catch ( Exception $e ){
+                DB::rollback();
+                Session::flash('danger', "Writers Name not updates. Invalid Request !");
+            }
+            return Redirect::back();
+        }else{
+            $errors = $rnc_r_p_writer_update->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()
+                ->with('errors', 'Input Data Not Valid');
+        }
+    }
+
+    public function deleteRnCWriter($id)
+    {
+        try {
+            $rnc_r_p_writer_delete = RnCResearchPaperWriter::find($id);
+            if($rnc_r_p_writer_delete->delete())
+            {
+                Session::flash('message', "Writers Name Deleted");
+                return Redirect::back();
+            }
+        }
+        catch (exception $ex){
+            return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+        }
+    }
+
+    public function batchDeleteRnCWriter()
+    {
+        try{
+            RnCResearchPaperWriter::destroy(Request::get('id'));
+            return Redirect::back()->with('message', 'Writers Name Batch Deleted successfully!');
+        }
+        catch (exception $ex)
+        {
+            return Redirect::back()->with('error', 'Invalid Delete Process ! Writers Name has been using in other DB Table.At first Delete Data from there then come here again. Thank You !!!');
+        }
+    }
+
+    // Writer Beneficial
+
+    public function indexRnCBeneficial($rnc_r_p_id)
+    {
+        $rnc_r_p_beneficial = RnCResearchPaperBeneficial::with('relRnCResearchPaper','relUser', 'relUser.relUserProfile')->latest('id')->where('rnc_research_paper_id' ,'=', $rnc_r_p_id)->get();
+        $rnc_r_p_beneficial_user = Auth::user()->get()->id;
+        return View::make('rnc::amw.research_paper_writer.index', compact('rnc_r_p_beneficial','rnc_r_p_id','rnc_r_p_beneficial_user'));
     }
 
 

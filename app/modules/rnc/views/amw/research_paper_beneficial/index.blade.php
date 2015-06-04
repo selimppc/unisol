@@ -11,7 +11,7 @@
         <div class="col-md-12">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#tab_1" data-toggle="tab">RnC Writer</a></li>
+                    <li class="active"><a href="#tab_1" data-toggle="tab">RnC Beneficial</a></li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                             Settings  <span class="caret"></span>
@@ -33,11 +33,11 @@
                         <div class="box-body table-responsive ">
 
                              <a class="pull-right btn btn-sm btn-info" style="margin-right: 5px"
-                                data-toggle="modal" data-target="#addWriter"
-                                title="Add Writer">
-                                <b>+ Add Writer</b>
+                                data-toggle="modal" data-target="#addBeneficial"
+                                title="Add Beneficial">
+                                <b>+ Add Beneficial</b>
                              </a>
-                            {{Form::open(array('route'=> ['amw.research-paper-writer.batch-delete'], 'class'=>'form-horizontal','files'=>true))}}
+                            {{Form::open(array('route'=> ['amw.research-paper-beneficial.batch-delete'], 'class'=>'form-horizontal','files'=>true))}}
                             <table id="example" class="table table-bordered table-hover table-striped scrollit">
                                 <thead>
                                 <tr>
@@ -46,23 +46,23 @@
                                     </th>
                                     <th>Research Paper</th>
                                     <th>Writter Name</th>
-                                    <th>Note</th>
+                                    <th>Value</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach ($rnc_r_p_writer as $value)
+                                @foreach ($rnc_r_p_beneficial as $value)
                                     <tr>
                                         <td><input type="checkbox" name="id[]"  class="myCheckbox" value="{{ $value->id }}">
                                         </td>
-                                        <td>{{isset($value->rnc_research_paper_id) ? $value->rnc_research_paper_id :'' }}</td>
-                                        <td>{{isset($value->writer_user_id) ? $value->writer_user_id :'' }}</td>
-                                        <td>{{isset($value->note) ? $value->note :'' }}</td>
-
+                                        <td>{{isset($value->rnc_research_paper_id) ? $value->relRnCResearchPaper->title :'' }}</td>
+                                        <td>{{isset($value->writer_user_id) ? User::FullName($value->writer_user_id) :'' }}</td>
+                                        <td>{{isset($value->value) ? $value->value :'' }}</td>
 
                                         <td>
-                                            {{--<a href="{{ URL::route('amw.research-paper.writer', ['rnc_r_p_id'=>$value->id]) }}" class="btn btn-xs btn-default" ><i class="fa fa-sort-alpha-asc" style="color: #5107cc"></i></a>--}}
-                                            {{--<a data-href="{{ URL::route('amw.research-paper.delete', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa  fa-trash-o" style="color:red"></i></a>--}}
+                                           <a href="{{ URL::route('amw.research-paper-beneficial.show', ['id'=>$value->id])  }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#show" href=""><i class="fa fa-eye" style="color: green"></i></a>
+                                           <a href="{{ URL::route('amw.research-paper-beneficial.edit', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#edit" href="" ><i class="fa fa-pencil-square-o" style="color: #0044cc"></i></a>
+                                           <a data-href="{{ URL::route('amw.research-paper-beneficial.delete', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa fa-trash-o" style="color: red"></i></a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -70,7 +70,7 @@
                             </table>
                             {{ Form::submit('Delete', array('class'=>'btn btn-xs btn-danger', 'id'=>'hide-button', 'style'=>'display:none'))}}
                             {{ Form::close() }}
-                            {{--{{ $rnc_r_p_writer->links() }}--}}
+                            {{--{{ $rnc_r_p_beneficial->links() }}--}}
 
                         </div>
                     </div>
@@ -82,16 +82,16 @@
 
 
      {{--Modal add new--}}
-    <div id="addWriter" class="modal fade">
+    <div id="addBeneficial" class="modal fade">
         <div class="modal-dialog" aria-hidden="true" data-keyboard="false" data-backdrop="static">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">{{HTML::image('assets/icon/media-close-btn.png')}}</button>
-                    <h4 class="modal-title" style="text-align: center;color: #800080;font-size: x-large">Add Research Paper Writer</h4>
+                    <h4 class="modal-title" style="text-align: center;color: #800080;font-size: x-large">Add Research Paper Beneficial</h4>
                 </div>
                 <div class="modal-body">
-                    {{ Form::open(array('url' => 'rnc/amw/research-paper-writer/store', 'method' =>'post', 'role'=>'form')) }}
-                        @include('rnc::amw.research-paper-writer._form')
+                    {{ Form::open(array('url' => 'rnc/amw/research-paper-beneficial/store', 'method' =>'post', 'role'=>'form')) }}
+                        @include('rnc::amw.research_paper_beneficial._form')
                     {{ Form::close() }}
                 </div>
             </div>
@@ -100,7 +100,7 @@
 
      {{--Modal for Edit--}}
 
-    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog">
             <div class="modal-content">
             </div>
@@ -110,7 +110,7 @@
 
      {{--Modal for show--}}
 
-    <div class="modal fade" id="showModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal fade" id="show" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
             </div>

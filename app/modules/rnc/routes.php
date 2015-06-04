@@ -17,7 +17,7 @@ Route::group(['prefix' => 'rnc'], function() {
     });
 
 //Route for AMW User
-    // Category
+    //Category. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 
     Route::any('amw/category/index',[
         'as' => 'amw.category.index',
@@ -33,7 +33,6 @@ Route::group(['prefix' => 'rnc'], function() {
         'as' => 'amw.category.store',
         'uses'=> 'RnCAmwController@storeCategory'
     ]);
-
 
     Route::any('amw/category/show/{id}',[
         'as' => 'amw.category.show',
@@ -60,8 +59,7 @@ Route::group(['prefix' => 'rnc'], function() {
         'uses'=> 'RnCAmwController@batchDeleteCategory'
     ]);
 
-
-    // Config
+    //Config. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
     Route::any('amw/config/index',[
         'as' => 'amw.config.index',
         'uses'=> 'RnCAmwController@indexConfig'
@@ -76,7 +74,6 @@ Route::group(['prefix' => 'rnc'], function() {
         'as' => 'amw.config.store',
         'uses'=> 'RnCAmwController@storeConfig'
     ]);
-
 
     Route::any('amw/config/show/{id}',[
         'as' => 'amw.config.show',
@@ -103,10 +100,7 @@ Route::group(['prefix' => 'rnc'], function() {
         'uses'=> 'RnCAmwController@batchDeletConfig'
     ]);
 
-
-
-
-    // Publisher
+    //Publisher. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 
     Route::any('amw/publisher/index',[
         'as' => 'amw.publisher.index',
@@ -122,7 +116,6 @@ Route::group(['prefix' => 'rnc'], function() {
         'as' => 'amw.publisher.store',
         'uses'=> 'RnCAmwController@storePublisher'
     ]);
-
 
     Route::any('amw/publisher/show/{id}',[
         'as' => 'amw.publisher.show',
@@ -149,8 +142,8 @@ Route::group(['prefix' => 'rnc'], function() {
         'uses'=> 'RnCAmwController@batchDeletPublisher'
     ]);
 
+    //Research Paper . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 
-    // Research Paper
     Route::any('amw/research-paper/index',[
         'as' => 'amw.research-paper.index',
         'uses'=> 'RnCAmwController@indexResearchPaper'
@@ -196,18 +189,22 @@ Route::group(['prefix' => 'rnc'], function() {
         'uses' => 'RnCAmwController@researchPaperRead'
     ]);
 
-    //Writer
+    //Writer . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
     Route::any('amw/research-paper-writer/index/{rnc_r_p_id}',[
         'as' =>'amw.research-paper-writer.index',
         'uses' => 'RnCAmwController@indexRnCWriter'
     ]);
 
+    Route::any("ajax/get-writer-name-auto-complete", [
+        "as"   => "ajax.get-writer-name-auto-complete",
+        "uses" => "RnCAmwController@ajaxGetWriterNameAutoComplete"
+    ]);
 
     Route::any('amw/research-paper-writer/store',[
         'as' => 'amw.research-paper-writer.store',
         'uses'=> 'RnCAmwController@storeRnCWriter'
     ]);
-
 
     Route::any('amw/research-paper-writer/show/{id}',[
         'as' => 'amw.research-paper-writer.show',
@@ -233,6 +230,15 @@ Route::group(['prefix' => 'rnc'], function() {
         'as' => 'amw.research-paper-writer.batch-delete',
         'uses'=> 'RnCAmwController@batchDeleteRnCWriter'
     ]);
+
+    // Beneficial
+
+    Route::any('amw/research-paper-beneficial/index/{rnc_r_p_id}',[
+        'as' =>'amw.research-paper-beneficial.index',
+        'uses' => 'RnCAmwController@indexRnCBeneficial'
+    ]);
+
+
 
 
 
