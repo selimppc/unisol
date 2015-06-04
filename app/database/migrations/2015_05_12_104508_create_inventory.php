@@ -374,6 +374,7 @@ class CreateInventory extends Migration {
 
         Schema::drop('inv_adjust_head');
         Schema::drop('inv_adjust_detail');
+        Schema::drop('inv_trn_no_setup');
 	}
 
 }
