@@ -645,15 +645,18 @@ class RnCAmwController extends \BaseController
             ->where('rnc_research_paper_writer_id' ,'=', $w_id)
             ->get();
 
+        //print_r($rnc_r_p_beneficial);exit;
+
         $rp_benefit_share = RnCWriterBeneficial::with('relRnCResearchPaper')
             ->where('rnc_research_paper_id' ,'=', $rnc_r_p_id)
             ->first()->relRnCResearchPaper->benefit_share;
 
-        //print_r($rp_benefit_share);exit;
+        $total = DB::table('rnc_writer_beneficial')->sum('value');
 
-        //$rnc_r_p_beneficial_user = Auth::user()->get()->id;
+        $cal_benefit_share = $rp_benefit_share + $total ;
+
         return View::make('rnc::amw.research_paper_beneficial.index',
-            compact('rnc_r_p_beneficial','rnc_r_p_id','w_id','rp_benefit_share'));
+            compact('rnc_r_p_beneficial','rnc_r_p_id','w_id','rp_benefit_share','cal_benefit_share'));
     }
 
     public function storeRnCBeneficial()

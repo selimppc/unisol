@@ -75,7 +75,7 @@ class RnCResearchPaper extends Eloquent{
         return $this->HasMany('RnCResearchPaperWriter');
     }
 
-    public function relWriterBeneficial(){
+    public function relRnCWriterBeneficial(){
         return $this->HasMany('RnCWriterBeneficial');
     }
 
