@@ -90,6 +90,8 @@
             </ul>
         </li>
 
+        @include('inventory::_sidebar._inventory')
+
 </ul>
 
 
