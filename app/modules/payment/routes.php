@@ -17,5 +17,10 @@ Route::group(['prefix' => 'payment'], function() {
         return 'Thank you so much!';
     });
 
+    Route::any("index-account-payable", [
+        "as"   => "index-account-payable",
+        "uses" => "AccountPayableController@index_account_payable"
+    ]);
+
 
 });

@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AccountPayableController' => $baseDir . '/app/modules/payment/controllers/AccountPayableController.php',
     'AcmAcademic' => $baseDir . '/app/modules/academic/models/AcmAcademic.php',
     'AcmAcademicAssignStudent' => $baseDir . '/app/modules/academic/models/AcmAcademicAssignStudent.php',
     'AcmAcademicAssignStudentComments' => $baseDir . '/app/modules/academic/models/AcmAcademicAssignStudentComments.php',
@@ -95,6 +96,9 @@ return array(
     'CfoController' => $baseDir . '/app/modules/cfo/controllers/CfoController.php',
     'CfoKnowledgeBase' => $baseDir . '/app/modules/cfo/models/CfoKnowledgeBase.php',
     'CfoKnowledgeBaseRating' => $baseDir . '/app/modules/cfo/models/CfoKnowledgeBaseRating.php',
+    'CfoOnsiteHelpDesk' => $baseDir . '/app/modules/cfo/models/CfoOnsiteHelpDesk.php',
+    'CfoSupportDetail' => $baseDir . '/app/modules/cfo/models/CfoSupportDetail.php',
+    'CfoSupportHead' => $baseDir . '/app/modules/cfo/models/CfoSupportHead.php',
     'CommonRl' => $baseDir . '/app/database/migrations/version-1/2015_02_00_create_common_rl.php',
     'Country' => $baseDir . '/app/modules/common/models/Country.php',
     'CountryTable' => $baseDir . '/app/database/seeds/CountryTable.php',
@@ -210,6 +214,9 @@ return array(
     'ExmStudentController' => $baseDir . '/app/modules/examination/controllers/ExmStudentController.php',
     'ExmVQuestionEvaluation' => $baseDir . '/app/modules/examination/models/ExmVQuestionEvaluation.php',
     'FeesController' => $baseDir . '/app/modules/fees/controllers/FeesController.php',
+    'File_Iterator' => $vendorDir . '/phpunit/php-file-iterator/src/Iterator.php',
+    'File_Iterator_Facade' => $vendorDir . '/phpunit/php-file-iterator/src/Facade.php',
+    'File_Iterator_Factory' => $vendorDir . '/phpunit/php-file-iterator/src/Factory.php',
     'HomeController' => $baseDir . '/app/controllers/HomeController.php',
     'IlluminateQueueClosure' => $vendorDir . '/laravel/framework/src/Illuminate/Queue/IlluminateQueueClosure.php',
     'InvAdjustDetail' => $baseDir . '/app/modules/inventory/models/InvAdjustDetail.php',
@@ -616,7 +623,7 @@ return array(
     'UserController' => $baseDir . '/app/modules/user/controllers/UserController.php',
     'UserDashboardController' => $baseDir . '/app/modules/user/controllers/UserDashboardController.php',
     'UserExtraCurricularActivity' => $baseDir . '/app/modules/user/models/UserExtraCurricularActivity.php',
-    'UserMeta' => $baseDir . '/app/modules/user/models/Usermeta.php',
+    'UserMeta' => $baseDir . '/app/modules/user/models/UserMeta.php',
     'UserMiscellaneousInfo' => $baseDir . '/app/modules/user/models/UserMiscellaneousInfo.php',
     'UserProfile' => $baseDir . '/app/modules/user/models/UserProfile.php',
     'UserProfileController' => $baseDir . '/app/modules/user/controllers/UserProfileController.php',
