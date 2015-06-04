@@ -32,7 +32,7 @@ class UpdateResearchConsultancyTable extends Migration {
             $table->increments('id', true);
             $table->unsignedInteger('rnc_research_paper_id')->nullable();
             $table->unsignedInteger('writer_user_id')->nullable();
-            $table->text('value');
+            $table->string('value',5);
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
@@ -50,8 +50,7 @@ class UpdateResearchConsultancyTable extends Migration {
 	 */
 	public function down()
 	{
-        Schema::drop('rnc_research_paper_comment');
-        Schema::drop('rnc_research_paper_beneficial');
+        Schema::drop('rnc_research_paper_comment');Schema::drop('rnc_research_paper_beneficial');
 
 	}
 
