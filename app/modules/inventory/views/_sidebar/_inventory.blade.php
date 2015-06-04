@@ -28,7 +28,7 @@
                 <li><a href="{{URL::route('stock-view')}}"><i class="fa fa-angle-double-right"></i> Stock View </a></li>
                 <li><a href="{{URL::route('stock-dispatch')}}"><i class="fa fa-angle-double-right"></i> Stock Dispatch </a></li>
                 <li><a href="{{URL::route('stock-adjustment')}}"><i class="fa fa-angle-double-right"></i> Stock Adjustment </a></li>
-                <li><a href="{{URL::route('stock-dispatch')}}"><i class="fa fa-angle-double-right"></i> Settings </a></li>
+                <li><a href="{{URL::route('index-setup')}}"><i class="fa fa-angle-double-right"></i> Settings </a></li>
             </ul>
         </li>
 </ul>

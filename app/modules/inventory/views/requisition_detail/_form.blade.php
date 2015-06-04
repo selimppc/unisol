@@ -10,7 +10,7 @@
 </style>
 <div class='form-group'>
    {{ Form::label('invProductId', 'Product Name') }} ( <small>Search Product by Typing Product Name or Product Code</small> )
-   {{ Form::text('invProductId',  '', ['id'=>'search_product', 'class'=>'ui-autocomplete form-control','placeholder'=>'search product ..', 'autofocus', ]) }}
+   {{ Form::text('invProductId',  '', ['id'=>'search_product', 'class'=>'ui-autocomplete form-control', 'placeholder'=>'search product ..', 'autofocus', ]) }}
 </div>
 {{Form::hidden('invProductId', null,['id'=>'product-id'])}}
 {{Form::hidden('invProductName', null,['id'=>'product-name'])}}
