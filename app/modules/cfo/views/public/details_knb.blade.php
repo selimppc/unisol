@@ -11,19 +11,19 @@
 <h4><b>Knowledge Base : <em style="font-size: medium;color: #0490a6">{{$title}}</em></b> </h4>
 
 <div class="row">
-   <div class="box box-solid ">
+   <div class="box box-solid">
        <div class="box-body">
 
-          <div class="pull-left">rating(1-5)
-           {{ Form::open(array('route'=>['ajax.knowledgebase.rating'],'id'=>'knowledge-base-rating')) }}
-                 <div class="rating" style="font-size: x-large;color:crimson">
-                     <span id="rating_5" title="vote 5">☆</span>
-                     <span id="rating_4" title="vote 4">☆</span>
-                     <span id="rating_3" title="vote 3">☆</span>
-                     <span id="rating_2" title="vote 2">☆</span>
-                     <span id="rating_1" title="vote 1">☆</span>
-                 </div>
-           {{ Form::close() }}
+          <div class='kb_choice'>
+
+              <div id="r1" class="rate_widget">
+                  <div class="star_1 ratings_stars"></div>
+                  <div class="star_2 ratings_stars"></div>
+                  <div class="star_3 ratings_stars"></div>
+                  <div class="star_4 ratings_stars"></div>
+                  <div class="star_5 ratings_stars"></div>
+                  <div class="total_votes">vote data</div>
+              </div>
           </div>
 
           <p>&nbsp;</p>
@@ -44,34 +44,31 @@
 </div>
 
 <style>
-    .rating span:hover:before {
-       content: "\2605";
-       position: absolute;
-    }
-    .rating span {
-      display: inline-block;
-      position: relative;
-      width: 1.1em;
-    }
-    .rating span:hover:before,
-    .rating span:hover ~ span:before {
-       content: "\2605";
-       position: absolute;
-    }
+.rate_widget {
+    border:     1px solid #CCC;
+    overflow:   visible;
+    padding:    10px;
+    position:   relative;
+    width:      180px;
+    height:     32px;
+}
+.ratings_stars {
+     background-image: url("/public/img/star_empty.png")no-repeat;
+    float:      left;
+    height:     28px;
+    padding:    2px;
+    width:      32px;
+}
+
+.kb_choice {
+    font: 10px verdana, sans-serif;
+    margin: 0 auto 40px auto;
+    width: 180px;
+}
 </style>
 
 
-<script>
 
-    $(function(){
-          $('').click(function() {
-              var star = $(this);
-              alert(star);
-          }
-    });
-
-
-</script>
 
 @stop
 
