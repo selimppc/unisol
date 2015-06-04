@@ -75,8 +75,8 @@ class RnCResearchPaper extends Eloquent{
         return $this->HasMany('RnCResearchPaperWriter');
     }
 
-    public function relRnCResearchPaperBeneficial(){
-        return $this->HasMany('RnCResearchPaperBeneficial');
+    public function relWriterBeneficial(){
+        return $this->HasMany('RnCWriterBeneficial');
     }
 
     // TODO : user info while saving data into table

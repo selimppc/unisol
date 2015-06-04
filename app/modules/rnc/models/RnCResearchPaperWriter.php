@@ -42,6 +42,10 @@ class RnCResearchPaperWriter extends Eloquent{
         return $this->belongsTo('User', 'writer_user_id', 'id');
     }
 
+    public function relRnCWriterBeneficial(){
+        return $this->HasMany('RnCWriterBeneficial');
+    }
+
 
 
 
