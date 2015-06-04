@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 @section('sidebar')
-    @include('inventory::_sidebar._inventory')
+    @include('layouts._sidebar_amw')
 @stop
 @section('content')
 
