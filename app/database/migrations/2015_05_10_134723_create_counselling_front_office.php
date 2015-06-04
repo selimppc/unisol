@@ -77,8 +77,6 @@ class CreateCounsellingFrontOffice extends Migration {
             $table->foreign('cfo_category_id')->references('id')->on('cfo_category');
         });
 
-
-
         Schema::create('cfo_support_detail', function(Blueprint $table)
         {
             $table->increments('id', true);
@@ -98,6 +96,31 @@ class CreateCounsellingFrontOffice extends Migration {
             $table->foreign('support_user_id')->references('id')->on('user');
         });
 
+        //cfo_onsite_help_desk
+        Schema::create('cfo_onsite_help_desk', function(Blueprint $table)
+        {
+            $table->increments('id', true);
+            $table->unsignedInteger('cfo_category_id')->nullable();
+            $table->unsignedInteger('section_dept_id')->nullable();
+            $table->unsignedInteger('specific_user_id')->nullable();
+            $table->decimal('token_number',8,0)->nullable();
+            $table->string('name', 64)->nullable();
+            $table->string('email', 32)->nullable();
+            $table->text('purpose')->nullable();
+
+            $table->enum('status', array(
+                'served', 'waiting','serving','closed','re-open'
+            ));
+            $table->unsignedInteger('served_by')->nullable();
+            $table->integer('created_by', false, 11)->nullable();
+            $table->integer('updated_by', false, 11)->nullable();
+            $table->timestamps();
+        });
+        Schema::table('cfo_onsite_help_desk', function($table) {
+            $table->foreign('cfo_category_id')->references('id')->on('cfo_category');
+            $table->foreign('section_dept_id')->references('id')->on('department');
+            $table->foreign('specific_user_id')->references('id')->on('user');
+        });
 
 	}
 
@@ -108,6 +131,7 @@ class CreateCounsellingFrontOffice extends Migration {
         Schema::drop('cfo_knowledge_base_rating');
         Schema::drop('cfo_support_head');
         Schema::drop('cfo_support_detail');
+        Schema::drop('cfo_onsite_help_desk');
 	}
 
 }

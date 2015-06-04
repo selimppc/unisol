@@ -252,10 +252,12 @@ class CfoController extends \BaseController {
         return Response::json($results);
     }
 
-	public function ajaxKbRating(){
-
-
+    public function supportHead(){
+        $data = CfoCategory::all();
+        return View::make('cfo::support_head.index',compact('data'));
     }
+
+//CFO Onsite Help-Desk
 
 
 }

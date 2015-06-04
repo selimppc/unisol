@@ -29,7 +29,7 @@
        {{-------------- Search :Ends -------------------------------------------}}
        <div class="box-body">
        <p>&nbsp;</p><p>&nbsp;</p>
-        <table id="" class="table table-striped  table-bordered" >
+        <table id="" class="table table-striped  table-bordered">
             <tbody>
             @if(isset($data))
                  @foreach( $data as $values)
