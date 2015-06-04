@@ -3569,8 +3569,10 @@ fieldset[disabled] .btn-vk.active {
   margin-left: 5px;
 }
 .icheckbox_minimal, .iradio_minimal{
-    border: 1px solid #aaa;
-    opacity: 1;
+    /*border: 1px solid #aaa;*/
+    /*background-color: grey;*/
+   opacity: 1;
+
 }
 
 
