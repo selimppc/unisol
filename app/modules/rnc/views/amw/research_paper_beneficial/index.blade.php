@@ -51,21 +51,23 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach ($rnc_r_p_beneficial as $value)
-                                    <tr>
-                                        <td><input type="checkbox" name="id[]"  class="myCheckbox" value="{{ $value->id }}">
-                                        </td>
-                                        <td>{{isset($value->rnc_research_paper_id) ? $value->relRnCResearchPaper->title :'' }}</td>
-                                        <td>{{isset($value->rnc_research_paper_writer_id) ? User::FullName($value->relRnCResearchPaperWriter->writer_user_id) :'' }}</td>
-                                        <td>{{isset($value->value) ? $value->value :'' }} %</td>
+                                @if(isset($rnc_r_p_beneficial))
+                                    @foreach ($rnc_r_p_beneficial as $value)
+                                        <tr>
+                                            <td><input type="checkbox" name="id[]"  class="myCheckbox" value="{{ $value->id }}">
+                                            </td>
+                                            <td>{{isset($value->rnc_research_paper_id) ? $value->relRnCResearchPaper->title :'' }}</td>
+                                            <td>{{isset($value->rnc_research_paper_writer_id) ? User::FullName($value->relRnCResearchPaperWriter->writer_user_id) :'' }}</td>
+                                            <td>{{isset($value->value) ? $value->value :'' }} %</td>
 
-                                        <td>
-                                           <a href="{{ URL::route('amw.research-paper-beneficial.show', ['id'=>$value->id])  }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#show" href=""><i class="fa fa-eye" style="color: green"></i></a>
-                                           <a href="{{ URL::route('amw.research-paper-beneficial.edit', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#edit" href="" ><i class="fa fa-pencil-square-o" style="color: #0044cc"></i></a>
-                                           <a data-href="{{ URL::route('amw.research-paper-beneficial.delete', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa fa-trash-o" style="color: red"></i></a>
-                                        </td>
-                                    </tr>
-                                @endforeach
+                                            <td>
+                                               <a href="{{ URL::route('amw.research-paper-beneficial.show', ['id'=>$value->id])  }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#show" href=""><i class="fa fa-eye" style="color: green"></i></a>
+                                               <a href="{{ URL::route('amw.research-paper-beneficial.edit', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#edit" href="" ><i class="fa fa-pencil-square-o" style="color: #0044cc"></i></a>
+                                               <a data-href="{{ URL::route('amw.research-paper-beneficial.delete', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa fa-trash-o" style="color: red"></i></a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                @endif
                                 </tbody>
                             </table>
                             {{ Form::submit('Delete', array('class'=>'btn btn-xs btn-danger', 'id'=>'hide-button', 'style'=>'display:none'))}}
