@@ -1,9 +1,9 @@
-<ul class="sidebar-menu">
+{{--<ul class="sidebar-menu">
     <li class="active">
         <a href="index.html">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
         </a>
-    </li>
+    </li>--}}
 
     <li class="treeview">
         <a href="#">
@@ -31,5 +31,5 @@
                 <li><a href="{{URL::route('index-setup')}}"><i class="fa fa-angle-double-right"></i> Settings </a></li>
             </ul>
         </li>
-</ul>
+{{--</ul>--}}
 

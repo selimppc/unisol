@@ -157,6 +157,40 @@ class CreateResearchConsultancy extends Migration {
             $table->foreign('rnc_transaction_id')->references('id')->on('rnc_transaction');
         });
 
+
+
+        Schema::create('rnc_research_paper_comment', function(Blueprint $table) {
+            $table->increments('id');
+            $table->unsignedInteger('rnc_research_paper_id')->nullable();
+            $table->text('comments');
+            $table->integer('commented_to', false, 11);
+            $table->integer('commented_by', false, 11);
+            $table->integer('created_by', false, 11);
+            $table->integer('updated_by', false, 11);
+            $table->timestamps();
+            $table->engine = 'InnoDB';
+        });
+        Schema::table('rnc_research_paper_comment', function($table) {
+            $table->foreign('rnc_research_paper_id')->references('id')->on('rnc_research_paper');
+        });
+
+
+
+        Schema::create('rnc_writer_beneficial', function(Blueprint $table)
+        {
+            $table->increments('id', true);
+            $table->unsignedInteger('rnc_research_paper_id')->nullable();
+            $table->unsignedInteger('rnc_research_paper_writer_id')->nullable();
+            $table->string('value',5);
+            $table->integer('created_by', false, 11);
+            $table->integer('updated_by', false, 11);
+            $table->timestamps();
+        });
+        Schema::table('rnc_writer_beneficial', function($table) {
+            $table->foreign('rnc_research_paper_id')->references('id')->on('rnc_research_paper');
+            $table->foreign('rnc_research_paper_writer_id')->references('id')->on('rnc_research_paper_writer');
+        });
+
 	}
 
 	public function down()
@@ -169,6 +203,9 @@ class CreateResearchConsultancy extends Migration {
         Schema::drop('rnc_research_paper_writer');
         Schema::drop('rnc_transaction');
         Schema::drop('rnc_financial_transaction');
+
+        Schema::drop('rnc_research_paper_comment');
+        Schema::drop('rnc_writer_beneficial');
 	}
 
 }

@@ -641,7 +641,110 @@ class RnCAmwController extends \BaseController
     {
         $rnc_r_p_beneficial = RnCResearchPaperBeneficial::with('relRnCResearchPaper','relUser', 'relUser.relUserProfile')->latest('id')->where('rnc_research_paper_id' ,'=', $rnc_r_p_id)->get();
         $rnc_r_p_beneficial_user = Auth::user()->get()->id;
-        return View::make('rnc::amw.research_paper_writer.index', compact('rnc_r_p_beneficial','rnc_r_p_id','rnc_r_p_beneficial_user'));
+        return View::make('rnc::amw.research_paper_beneficial.index', compact('rnc_r_p_beneficial','rnc_r_p_id','rnc_r_p_beneficial_user'));
+    }
+
+
+
+    public function storeRnCBeneficial()
+    {
+        $data = Input::all();
+        $rnc_r_p_writer_store = new RnCResearchPaperBeneficial();
+        if($rnc_r_p_writer_store->validate($data))
+        {
+            DB::beginTransaction();
+            try {
+                $rnc_r_p_writer_store->create($data);
+                DB::commit();
+                Session::flash('message', "Writers Name Added");
+            }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', "Writer not added.Invalid Request!");
+            }
+            return Redirect::back();
+        }else{
+            $errors = $rnc_r_p_writer_store->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()
+                ->with('errors', 'invalid');
+        }
+
+    }
+
+
+
+    public function showRnCBeneficial($id)
+    {
+        $rnc_r_p_writer_show = RnCResearchPaperBeneficial::find($id);
+        if($rnc_r_p_writer_show)
+        {
+            return View::make('rnc::amw.research_paper_writer.view',compact('rnc_r_p_writer_show'));
+        }
+        App::abort(404);
+    }
+
+
+    public function editRnCBeneficial($id)
+    {
+        $rnc_r_p_writer_edit = RnCResearchPaperBeneficial::find($id);
+        $list_writer_name = User::WriterNameList();
+        return View::make('rnc::amw.research_paper_writer.edit',compact('rnc_r_p_writer_edit','list_writer_name'));
+    }
+
+
+    public function updateRnCBeneficial($id)
+    {
+        $data = Input::all();
+        //print_r($data);exit;
+        $rnc_r_p_writer_update = RnCResearchPaperBeneficial::find($id);
+        if($rnc_r_p_writer_update->validate($data))
+        {
+            DB::beginTransaction();
+            try {
+                $rnc_r_p_writer_update->update($data);
+                DB::commit();
+                Session::flash('message', "Writers Name Updates");
+            }
+            catch ( Exception $e ){
+                DB::rollback();
+                Session::flash('danger', "Writers Name not updates. Invalid Request !");
+            }
+            return Redirect::back();
+        }else{
+            $errors = $rnc_r_p_writer_update->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()
+                ->with('errors', 'Input Data Not Valid');
+        }
+    }
+
+    public function deleteRnCBeneficial($id)
+    {
+        try {
+            $rnc_r_p_writer_delete = RnCResearchPaperBeneficial::find($id);
+            if($rnc_r_p_writer_delete->delete())
+            {
+                Session::flash('message', "Writers Name Deleted");
+                return Redirect::back();
+            }
+        }
+        catch (exception $ex){
+            return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+        }
+    }
+
+    public function batchDeleteRnCBeneficial()
+    {
+        try{
+            RnCResearchPaperBeneficial::destroy(Request::get('id'));
+            return Redirect::back()->with('message', 'Writers Name Batch Deleted successfully!');
+        }
+        catch (exception $ex)
+        {
+            return Redirect::back()->with('error', 'Invalid Delete Process ! Writers Name has been using in other DB Table.At first Delete Data from there then come here again. Thank You !!!');
+        }
     }
 
 

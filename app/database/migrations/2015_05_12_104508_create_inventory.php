@@ -340,7 +340,7 @@ class CreateInventory extends Migration {
 
         Schema::create('inv_trn_no_setup', function(Blueprint $table) {
             $table->increments('id');
-            $table->string('code', 4)->nullable();
+            $table->string('code', 4)->unique();
             $table->string('title', 32)->nullable();
             $table->integer('last_number', false, 10)->nullable();
             $table->integer('increment', false, 1)->nullable();
@@ -374,6 +374,7 @@ class CreateInventory extends Migration {
 
         Schema::drop('inv_adjust_head');
         Schema::drop('inv_adjust_detail');
+        Schema::drop('inv_trn_no_setup');
 	}
 
 }
