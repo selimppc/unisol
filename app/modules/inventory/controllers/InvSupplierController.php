@@ -2,6 +2,10 @@
 
 class InvSupplierController extends \BaseController {
 
+    function __construct() {
+        $this->beforeFilter('amw', array('except' => array('')));
+    }
+
     /*
      * POST REQUEST
      */
