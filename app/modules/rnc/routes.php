@@ -233,7 +233,7 @@ Route::group(['prefix' => 'rnc'], function() {
 
     // Beneficial
 
-    Route::any('amw/research-paper-beneficial/index/{rnc_r_p_id}',[
+    Route::any('amw/research-paper-beneficial/index/{rnc_r_p_id}/{w_id}',[
         'as' =>'amw.research-paper-beneficial.index',
         'uses' => 'RnCAmwController@indexRnCBeneficial'
     ]);

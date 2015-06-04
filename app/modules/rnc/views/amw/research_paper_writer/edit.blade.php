@@ -10,7 +10,7 @@
 
         <div class='form-group'>
             <div>{{ Form::label('rnc_research_paper_id', 'Research Paper') }}</div>
-            <div>{{ Form::text('rnc_research_paper_id', $rnc_r_p_writer_edit->relRnCResearchPaper->title, Input::old('rnc_research_paper_id'),['class'=>'form-control','readonly']) }}</div>
+            <div>{{ Form::text('rnc_research_paper_id', $rnc_r_p_writer_edit->relRnCResearchPaper->title, Input::old('rnc_research_paper_id'),['class'=>'form-control','readonly']]) }}</div>
         </div>
 
 

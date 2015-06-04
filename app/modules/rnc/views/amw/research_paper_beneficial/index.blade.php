@@ -56,8 +56,8 @@
                                         <td><input type="checkbox" name="id[]"  class="myCheckbox" value="{{ $value->id }}">
                                         </td>
                                         <td>{{isset($value->rnc_research_paper_id) ? $value->relRnCResearchPaper->title :'' }}</td>
-                                        <td>{{isset($value->writer_user_id) ? User::FullName($value->writer_user_id) :'' }}</td>
-                                        <td>{{isset($value->value) ? $value->value :'' }}</td>
+                                        <td>{{isset($value->rnc_research_paper_writer_id) ? User::FullName($value->relRnCResearchPaperWriter->writer_user_id) :'' }}</td>
+                                        <td>{{isset($value->value) ? $value->value :'' }} %</td>
 
                                         <td>
                                            <a href="{{ URL::route('amw.research-paper-beneficial.show', ['id'=>$value->id])  }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#show" href=""><i class="fa fa-eye" style="color: green"></i></a>

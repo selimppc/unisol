@@ -4,12 +4,12 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class RnCResearchPaperBeneficial extends Eloquent{
+class RnCWriterBeneficial extends Eloquent{
 
     //TODO :: model attributes and rules and validation
-    protected $table='rnc_research_paper_beneficial';
+    protected $table='rnc_writer_beneficial';
     protected $fillable = [
-        'rnc_research_paper_id','writer_user_id','value'
+        'rnc_research_paper_id','rnc_research_paper_writer_id','value'
     ];
     private $errors;
     private $rules = [
@@ -38,8 +38,8 @@ class RnCResearchPaperBeneficial extends Eloquent{
         return $this->belongsTo('RnCResearchPaper','rnc_research_paper_id','id');
     }
 
-    public function relUser(){
-        return $this->belongsTo('User', 'writer_user_id', 'id');
+    public function relRnCResearchPaperWriter(){
+        return $this->belongsTo('RnCResearchPaperWriter', 'rnc_research_paper_writer_id', 'id');
     }
 
 
