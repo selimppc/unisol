@@ -118,7 +118,7 @@ class CreateCounsellingFrontOffice extends Migration {
         });
         Schema::table('cfo_onsite_help_desk', function($table) {
             $table->foreign('cfo_category_id')->references('id')->on('cfo_category');
-            $table->foreign('section_dept_id')->references('id')->on('user');
+            $table->foreign('section_dept_id')->references('id')->on('department');
             $table->foreign('specific_user_id')->references('id')->on('user');
         });
 
