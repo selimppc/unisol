@@ -71,7 +71,7 @@
         <tr>
             <td>{{isset($value->inv_product_id) ? $value->relInvProduct->title : ''}}</td>
             <td>{{round($value->unit)}}</td>
-            <td>{{round($value->unit_quantity)}}</td>
+            <td>{{round($value->quantity)}}</td>
             <td>{{round($value->purchase_rate, 2)}}</td>
             <td>
                 <a data-href="{{ $value->id }}" class="btn btn-default btn-sm delete-dt" id="delete-dt{{ $value->id }}" ><i class="fa  fa-trash-o" style="font-size: 15px;color: red"></i></a>

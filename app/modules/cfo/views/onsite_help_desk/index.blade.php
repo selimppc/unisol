@@ -16,9 +16,9 @@
        <p>&nbsp;</p><p>&nbsp;</p>
         <table id="" class="table table-striped  table-bordered">
             <thead>
-            {{ Form::submit('Delete Items', ['class'=>'btn btn-danger btn-xs', 'id'=>'hide-button', 'style'=>'display:none', 'onclick'=> "return confirm('Are you sure you want to delete?')"])}}
+            {{--{{ Form::submit('Delete Items', ['class'=>'btn btn-danger btn-xs', 'id'=>'hide-button', 'style'=>'display:none', 'onclick'=> "return confirm('Are you sure you want to delete?')"])}}--}}
                <tr>
-                  <th><input name="id" type="checkbox" id="checkbox" class="checkbox" value=""></th>
+                  {{--<th><input name="id" type="checkbox" id="checkbox" class="checkbox" value=""></th>--}}
                   <th> Name</th>
                   <th> Email </th>
                   <th> Token Number </th>
@@ -33,7 +33,7 @@
                 @if(isset($data))
                    @foreach($data as $values)
                       <tr>
-                         <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $values->id }}"></td>
+                         {{--<td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $values->id }}"></td>--}}
                          <td>
                             <a href="{{URL::route('help-desk.show',['id'=>$values->id])}}" data-toggle="modal" data-target="#help-desk"
                             class="btn-link" title="View Details" style="color:#800080">{{$values->name}}
@@ -44,7 +44,7 @@
                          <td>{{$values->relCfoCategory->title}}</td>
                          <td>{{$values->relDepartment->title}}</td>
                          <td>{{$values->relUser->relUserProfile->first_name.' '.$values->relUser->relUserProfile->middle_name.' '.$values->relUser->relUserProfile->last_name}}</td>
-                         <td></td>
+                         <td>{{strtoupper($values->status)}}</td>
                          <td>
                             <a href="{{ URL::route('help-desk.show',['id'=>$values->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#help-desk" style="font-size: 12px;color: darkmagenta"><span class="fa fa-eye"></span></a>
                             <a class="btn btn-xs btn-default" href="{{ URL::route('help-desk.edit',['id'=>$values->id]) }}" data-toggle="modal" data-target="#help-desk" style="font-size: 12px;color: lightseagreen"><i class="fa fa-edit"></i></a>
