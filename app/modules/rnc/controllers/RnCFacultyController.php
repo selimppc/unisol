@@ -1,6 +1,6 @@
 <?php
 
-class RnCAmwController extends \BaseController
+class RnCFacultyController extends \BaseController
 {
 
     function __construct()
@@ -9,11 +9,11 @@ class RnCAmwController extends \BaseController
     }
 
     // Category
-	public function indexCategory()
-	{
+    public function indexCategory()
+    {
         $model = RnCCategory::orderBy('id', 'DESC')->paginate(5);
-        return View::make('rnc::amw.category.index', compact('model'));
-	}
+        return View::make('rnc::faculty.category.index', compact('model'));
+    }
 
     public function storeCategory()
     {
@@ -49,7 +49,7 @@ class RnCAmwController extends \BaseController
         $model = RnCCategory::find($id);
         if($model)
         {
-            return View::make('rnc::amw.category.show',compact('model'));
+            return View::make('rnc::faculty.category.show',compact('model'));
         }
         App::abort(404);
     }
@@ -58,7 +58,7 @@ class RnCAmwController extends \BaseController
     public function editCategory($id)
     {
         $model = RnCCategory::find($id);
-        return View::make('rnc::amw.category.edit',compact('model'));
+        return View::make('rnc::faculty.category.edit',compact('model'));
     }
 
 
@@ -121,7 +121,7 @@ class RnCAmwController extends \BaseController
     public function indexConfig()
     {
         $config = RnCConfig::orderBy('id', 'DESC')->paginate(5);
-        return View::make('rnc::amw.config.index', compact('config'));
+        return View::make('rnc::faculty.config.index', compact('config'));
     }
 
     public function storeConfig()
@@ -158,7 +158,7 @@ class RnCAmwController extends \BaseController
         $config = RnCConfig::find($id);
         if($config)
         {
-            return View::make('rnc::amw.config.show',compact('config'));
+            return View::make('rnc::faculty.config.show',compact('config'));
         }
         App::abort(404);
     }
@@ -167,7 +167,7 @@ class RnCAmwController extends \BaseController
     public function editConfig($id)
     {
         $config = RnCConfig::find($id);
-        return View::make('rnc::amw.config.edit',compact('config'));
+        return View::make('rnc::faculty.config.edit',compact('config'));
     }
 
 
@@ -230,7 +230,7 @@ class RnCAmwController extends \BaseController
     public function indexPublisher()
     {
         $publisher = RnCPublisher::orderBy('id', 'DESC')->paginate(5);
-        return View::make('rnc::amw.publisher.index', compact('publisher'));
+        return View::make('rnc::faculty.publisher.index', compact('publisher'));
     }
 
     public function storePublisher()
@@ -267,7 +267,7 @@ class RnCAmwController extends \BaseController
         $publisher = RnCPublisher::find($id);
         if($publisher)
         {
-            return View::make('rnc::amw.publisher.show',compact('publisher'));
+            return View::make('rnc::faculty.publisher.show',compact('publisher'));
         }
         App::abort(404);
     }
@@ -276,7 +276,7 @@ class RnCAmwController extends \BaseController
     public function editPublisher($id)
     {
         $publisher = RnCPublisher::find($id);
-        return View::make('rnc::amw.publisher.edit',compact('publisher'));
+        return View::make('rnc::faculty.publisher.edit',compact('publisher'));
     }
 
 
@@ -346,7 +346,7 @@ class RnCAmwController extends \BaseController
         $rnc_category = array('' => 'Select RnC Category ') + RnCCategory::lists('title', 'id');
         $rnc_publisher = array('' => 'Select RnC Publisher') + RnCPublisher::lists('title', 'id');
         $reviewed_by = array('' => 'Select Reviewer') + User::FacultyList();
-        return View::Make('rnc::amw.research_paper.index',compact('research_paper','rnc_category','rnc_publisher','reviewed_by'));
+        return View::Make('rnc::faculty.research_paper.index',compact('research_paper','rnc_category','rnc_publisher','reviewed_by'));
     }
 
     public function storeResearchPaper()
@@ -392,7 +392,7 @@ class RnCAmwController extends \BaseController
     public function viewResearchPaper($id)
     {
         $view_r_c = RnCResearchPaper::find($id);
-        return View::make('rnc::amw.research_paper.view',compact('view_r_c'));
+        return View::make('rnc::faculty.research_paper.view',compact('view_r_c'));
     }
 
     public function editResearchPaper($id)
@@ -401,7 +401,7 @@ class RnCAmwController extends \BaseController
         $edit_category = array('' => 'Select RnC Category ') + RnCCategory::lists('title', 'id');
         $edit_publisher = array('' => 'Select RnC Publisher') + RnCPublisher::lists('title', 'id');
         $edit_reviewed_by = array('' => 'Select Reviewer') + User::FacultyList();
-        return View::make('rnc::amw.research_paper.edit',compact('edit_r_c','edit_category','edit_publisher','edit_reviewed_by'));
+        return View::make('rnc::faculty.research_paper.edit',compact('edit_r_c','edit_category','edit_publisher','edit_reviewed_by'));
     }
 
 
@@ -506,7 +506,7 @@ class RnCAmwController extends \BaseController
     {
         $rnc_r_p_writer = RnCResearchPaperWriter::with('relRnCResearchPaper','relUser', 'relUser.relUserProfile')->latest('id')->where('rnc_research_paper_id' ,'=', $rnc_r_p_id)->get();
         //$rnc_r_p_writer_user = Auth::user()->get()->id;
-        return View::make('rnc::amw.research_paper_writer.index', compact('rnc_r_p_writer','rnc_r_p_id','rnc_r_p_writer_user'));
+        return View::make('rnc::faculty.research_paper_writer.index', compact('rnc_r_p_writer','rnc_r_p_id','rnc_r_p_writer_user'));
     }
 
 
@@ -568,7 +568,7 @@ class RnCAmwController extends \BaseController
         $rnc_r_p_writer_show = RnCResearchPaperWriter::find($id);
         if($rnc_r_p_writer_show)
         {
-            return View::make('rnc::amw.research_paper_writer.view',compact('rnc_r_p_writer_show'));
+            return View::make('rnc::faculty.research_paper_writer.view',compact('rnc_r_p_writer_show'));
         }
         App::abort(404);
     }
@@ -578,7 +578,7 @@ class RnCAmwController extends \BaseController
     {
         $rnc_r_p_writer_edit = RnCResearchPaperWriter::find($id);
         $list_writer_name = User::WriterNameList();
-        return View::make('rnc::amw.research_paper_writer.edit',compact('rnc_r_p_writer_edit','list_writer_name'));
+        return View::make('rnc::faculty.research_paper_writer.edit',compact('rnc_r_p_writer_edit','list_writer_name'));
     }
 
 
@@ -655,7 +655,7 @@ class RnCAmwController extends \BaseController
 
         $cal_benefit_share = $rp_benefit_share + $total ;
 
-        return View::make('rnc::amw.research_paper_beneficial.index',
+        return View::make('rnc::faculty.research_paper_beneficial.index',
             compact('rnc_r_p_beneficial','rnc_r_p_id','w_id','rp_benefit_share','cal_benefit_share'));
     }
 
@@ -693,7 +693,7 @@ class RnCAmwController extends \BaseController
         $rnc_r_p_beneficial_show = RnCWriterBeneficial::find($id);
         if($rnc_r_p_beneficial_show)
         {
-            return View::make('rnc::amw.research_paper_beneficial.view',compact('rnc_r_p_beneficial_show'));
+            return View::make('rnc::faculty.research_paper_beneficial.view',compact('rnc_r_p_beneficial_show'));
         }
         App::abort(404);
     }
@@ -702,7 +702,7 @@ class RnCAmwController extends \BaseController
     {
         $rnc_r_p_beneficial_edit = RnCWriterBeneficial::find($id);
         $list_writer_name = User::WriterNameList();
-        return View::make('rnc::amw.research_paper_beneficial.edit',compact('rnc_r_p_beneficial_edit','list_writer_name','rnc_r_p_id'));
+        return View::make('rnc::faculty.research_paper_beneficial.edit',compact('rnc_r_p_beneficial_edit','list_writer_name','rnc_r_p_id'));
     }
 
     public function updateRnCBeneficial($id)
