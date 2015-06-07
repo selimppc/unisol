@@ -31,5 +31,15 @@
                 <li><a href="{{URL::route('index-setup')}}"><i class="fa fa-angle-double-right"></i> Settings </a></li>
             </ul>
         </li>
+
+    <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-bar-chart-o"></i><span> Account Payable </span><i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{URL::route('index-account-payable')}}"><i class="fa fa-angle-double-right"></i> Invoice </a></li>
+
+                </ul>
+            </li>
 {{--</ul>--}}
 
