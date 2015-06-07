@@ -52,6 +52,21 @@
             </ul>
      </li>
 
+     <li class="treeview">
+         <a href="#">
+             <i class="fa fa-credit-card" style="color: rgba(2, 128, 125, 0.85)"></i>
+             <span>Research & Consultancy</span>
+             <i class="fa fa-angle-left pull-right"></i>
+         </a>
+         <ul class="treeview-menu">
+             <li><a href="{{ URL::to('rnc/student/category/index') }}"></i><i class="fa fa-puzzle-piece" style="color: #0effae"></i>Category</a></li>
+             <li><a href="{{ URL::to('rnc/student/config/index') }}"></i><i class="fa fa-cogs" style="color: #c69bff"></i>Config</a></li>
+             <li><a href="{{ URL::to('rnc/student/publisher/index') }}"></i><i class="fa fa-print" style="color: #ff1465"></i>Publisher</a></li>
+             <li><a href="{{ URL::to('rnc/student/research-paper/index') }}"></i><i class="fa fa-fire-extinguisher" style="color: rgb(219, 94, 17)"></i>Research Paper</a></li>
+
+         </ul>
+     </li>
+
 
 
 </ul>

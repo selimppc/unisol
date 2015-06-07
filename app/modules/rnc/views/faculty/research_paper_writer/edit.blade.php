@@ -5,7 +5,7 @@
 <div class="modal-body">
     {{--<div style="padding: 10px;">--}}
 
-        {{Form::model($rnc_r_p_writer_edit, array('route' => array('amw.research-paper-writer.update', $rnc_r_p_writer_edit->id), 'method' => 'POST'))}}
+        {{Form::model($rnc_r_p_writer_edit, array('route' => array('faculty.research-paper-writer.update', $rnc_r_p_writer_edit->id), 'method' => 'POST'))}}
         {{Form::hidden('id', $rnc_r_p_writer_edit->id )}}
 
         <div class='form-group'>

@@ -6,7 +6,7 @@
 <div class="modal-body">
     <div style="padding: 10px;">
 
-        {{Form::model($rnc_r_p_beneficial_edit, array('route' => array('amw.research-paper-beneficial.update', $rnc_r_p_beneficial_edit->id), 'method' => 'POST'))}}
+        {{Form::model($rnc_r_p_beneficial_edit, array('route' => array('faculty.research-paper-beneficial.update', $rnc_r_p_beneficial_edit->id), 'method' => 'POST'))}}
         {{Form::hidden('id', $rnc_r_p_beneficial_edit->id )}}
 
         <div class='form-group'>
