@@ -88,7 +88,7 @@
                                             <a href="{{ URL::route('faculty.research-paper.view', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" href=""><i class="fa fa-eye" style="color: green" title="View"></i></a>
                                             <a href="{{ URL::route('faculty.research-paper.edit', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#editModal" href="" ><i class="fa fa-pencil-square-o" style="color: #0044cc" title="Edit"></i></a>
                                             <a href="{{ URL::route('faculty.research-paper-writer.index', ['rnc_r_p_id'=>$value->id]) }}" class="btn btn-xs btn-success" >Writter</a>
-                                            {{--<a href="{{ URL::route('faculty.research-paper-beneficial.index', ['rnc_r_p_id'=>$value->id]) }}" class="btn btn-xs btn-primary" ></i>Beneficial</a>--}}
+                                            <a href="{{ URL::route('faculty.research-paper.comment', ['rnc_r_p_id'=>$value->id]) }}" class="btn btn-xs btn-primary" data-toggle="modal" data-target="#commentModal" href="" >Comment</a>
                                             <a data-href="{{ URL::route('faculty.research-paper.delete', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa  fa-trash-o" style="color:red" title="Delete"></i></a>
 
                                         </td>
@@ -134,6 +134,16 @@
             </div>
         </div>
     </div>
+
+
+    {{--Modal for Comment--}}
+
+            <div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                    </div>
+                </div>
+            </div>
 
 
      {{--Modal for show--}}

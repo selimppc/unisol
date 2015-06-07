@@ -101,6 +101,16 @@
         'uses' => 'RnCFacultyController@researchPaperRead'
     ]);
 
+    Route::any('faculty/research-paper/comment/{rnc_r_p_id}',[
+        'as' =>'faculty.research-paper.comment',
+        'uses' => 'RnCFacultyController@researchPaperComment'
+    ]);
+
+    Route::any('faculty/research-paper/save-comment',[
+        'as' =>'faculty.research-paper.save-comment',
+        'uses' => 'RnCFacultyController@saveComment'
+    ]);
+
     //Writer . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 
     Route::any('faculty/research-paper-writer/index/{rnc_r_p_id}',[

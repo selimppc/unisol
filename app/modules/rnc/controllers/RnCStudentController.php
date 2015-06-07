@@ -278,6 +278,37 @@ class RnCStudentController extends \BaseController {
         ]);
     }
 
+    public function researchPaperComment($rnc_id)
+    {
+        $rnc_r_p = RnCResearchPaper::findOrFail($rnc_id);
+        $rnc_r_p_cmnt = RnCResearchPaperComment::where('rnc_research_paper_id', $rnc_id)->get();
+        $commented_to = array('' => 'Commented To') + User::WriterNameList();
+        return View::make('rnc::student.research_paper.rnc_research_paper_comment',
+            compact('rnc_r_p','rnc_r_p_cmnt','rnc_id','commented_to'));
+
+    }
+
+    public function saveComment()
+    {
+        $info = Input::all();
+
+        $model = new RnCResearchPaperComment();
+        $model->rnc_research_paper_id = $info['rnc_research_paper_id'];
+        $model->comments = $info['comments'];
+        $model->commented_to = $info['commented_to'];
+        $model->commented_by = Auth::user()->get()->id;
+
+        $user_name = User::FullName($model->commented_to);
+        if($model->save()){
+            Session::flash('message', 'Comments added To: ' . $user_name );
+            return Redirect::back();
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()->with('errors', 'invalid');
+        }
+    }
+
     //Writer
 
     public function indexRnCWriter($rnc_r_p_id)

@@ -102,6 +102,16 @@
         'uses' => 'RnCStudentController@researchPaperRead'
     ]);
 
+    Route::any('student/research-paper/comment/{rnc_r_p_id}',[
+        'as' =>'student.research-paper.comment',
+        'uses' => 'RnCStudentController@researchPaperComment'
+    ]);
+
+    Route::any('student/research-paper/save-comment',[
+        'as' =>'student.research-paper.save-comment',
+        'uses' => 'RnCStudentController@saveComment'
+    ]);
+
     //Writer . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 
     Route::any('student/research-paper-writer/index/{rnc_r_p_id}',[
