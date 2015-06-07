@@ -97,35 +97,36 @@ Route::any('support-head',[
 //Onsite-help-desk
 Route::any('help-desk',[
     'as' =>'help-desk',
-    'uses' => 'CfoController@indexHelpDesk'
+    'uses' => 'CfoAmwController@indexHelpDesk'
 ]);
 
 Route::any('help-desk/create',[
     'as' =>'help-desk.create',
-    'uses' => 'CfoController@createHelpDesk'
+    'uses' => 'CfoAmwController@createHelpDesk'
 ]);
 
 Route::any('store/help-desk',[
     'as' =>'store.help-desk',
-    'uses' => 'CfoController@storeHelpDesk'
+    'uses' => 'CfoAmwController@storeHelpDesk'
 ]);
 
 Route::any('help-desk/show/{id}',[
     'as' =>'help-desk.show',
-    'uses' => 'CfoController@showHelpDesk'
+    'uses' => 'CfoAmwController@showHelpDesk'
 ]);
 
 Route::any('help-desk/edit/{id}',
     ['as'=>'help-desk.edit',
-        'uses'=>'CfoController@editHelpDesk']);
+        'uses'=>'CfoAmwController@editHelpDesk']);
 
 Route::any('help-desk/update/{id}',
     ['as'=>'help-desk.update',
-        'uses'=>'CfoController@updateHelpDesk']);
+        'uses'=>'CfoAmwController@updateHelpDesk']);
 
 Route::any('help-desk/delete/{id}',
     ['as'=>'help-desk.delete',
-        'uses'=>'CfoController@deleteHelpDesk']);
+        'uses'=>'CfoAmwController@deleteHelpDesk']);
 
-
-
+Route::any('help-desk/assigned_user/{id}',
+    ['as'=>'help-desk.assigned_user',
+        'uses'=>'CfoAmwController@assignedUserIndex']);
