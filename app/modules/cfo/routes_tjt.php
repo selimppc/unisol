@@ -115,5 +115,17 @@ Route::any('help-desk/show/{id}',[
     'uses' => 'CfoController@showHelpDesk'
 ]);
 
+Route::any('help-desk/edit/{id}',
+    ['as'=>'help-desk.edit',
+        'uses'=>'CfoController@editHelpDesk']);
+
+Route::any('help-desk/update/{id}',
+    ['as'=>'help-desk.update',
+        'uses'=>'CfoController@updateHelpDesk']);
+
+Route::any('help-desk/delete/{id}',
+    ['as'=>'help-desk.delete',
+        'uses'=>'CfoController@deleteHelpDesk']);
+
 
 
