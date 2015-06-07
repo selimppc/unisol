@@ -4,31 +4,16 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class RnCResearchPaper extends Eloquent{
+class RnCResearchPaperComment extends Eloquent{
 
     //TODO :: model attributes and rules and validation
-    protected $table='rnc_research_paper';
+    protected $table='rnc_research_paper_comment';
     protected $fillable = [
-        'title','abstract','rnc_category_id','where_published_id','publication_no','details',
-        'file','free_type_student','free_type_faculty','free_type_non_user','searching',
-        'benefit_share','price','note','status','reviewed_by'
+        'rnc_research_paper_id','commented_to','commented_by','comments'
     ];
     private $errors;
     private $rules = [
-      /*  'title' => 'required',
-        'isbn' => 'required',
-        'lib_book_category_id' => 'required',
-        'lib_book_author_id' => 'required',
-        'lib_book_publisher_id' => 'required',
-        'edition' => 'required',
-        'stock_type' => 'required',
-        'shelf_number' => 'required',
-        'book_type' => 'required',
-        'commercial' => 'required',
-        'book_price' => 'required',
-        'digital_sell_price' => 'required',
-        'is_rented' => 'required',
-        'file' => 'required|mimes:pdf|max:2000',   //2MB file can be uploaded*/
+     'rnc_research_paper_id' => 'required'
     ];
 
 
@@ -64,23 +49,8 @@ class RnCResearchPaper extends Eloquent{
 
     //TODO : Model Relationship
 
-    public function relRnCCategory(){
-        return $this->belongsTo('RnCCategory','rnc_category_id','id');
-    }
-    public function relRnCPublisher(){
-        return $this->belongsTo('RnCPublisher','where_published_id','id');
-    }
-
-    public function relRnCResearchPaperWriter(){
-        return $this->HasMany('RnCResearchPaperWriter');
-    }
-
-    public function relRnCResearchPaperComment(){
-        return $this->HasMany('RnCResearchPaperComment');
-    }
-
-    public function relRnCWriterBeneficial(){
-        return $this->HasMany('RnCWriterBeneficial');
+    public function relRnCResearchPaper(){
+        return $this->belongsTo('RnCResearchPaper','rnc_research_paper_id','id');
     }
 
     // TODO : user info while saving data into table

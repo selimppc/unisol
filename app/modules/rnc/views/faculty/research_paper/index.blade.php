@@ -3,7 +3,7 @@
     @include('layouts._top_menu')
 @stop
 @section('sidebar')
-    @include('layouts._sidebar_amw')
+    @include('layouts._sidebar_faculty')
 @stop
 @section('content')
     <h2 class="page-header text-purple tab-text-margin text-center">Research and Consultancy Management</h2>
@@ -40,7 +40,7 @@
                                 title="Add Research Paper">
                                 <b>+ Add Research Paper</b>
                              </a>
-                            {{Form::open(array('route'=> ['amw.research-paper.batch-delete'], 'class'=>'form-horizontal','files'=>true))}}
+                            {{Form::open(array('route'=> ['faculty.research-paper.batch-delete'], 'class'=>'form-horizontal','files'=>true))}}
                             <table id="example" class="table table-bordered table-hover table-striped scrollit">
                                 <thead>
                                 <tr>
@@ -80,16 +80,16 @@
                                             <td style="color:magenta"><b>No File</b></td>
                                         @else
                                             <td>
-                                                <a href="{{ URL::route('amw.research-paper.read',['book_id'=>$value->id]) }}" target="_blank"><i class="fa fa-tablet" title="Read Book"></i></a>
-                                                <a href="{{ URL::route('amw.research-paper.download',['book_id'=>$value->id]) }}" style="color: blue" ><i class="fa fa-cloud-download" title="Download"></i></a>
+                                                <a href="{{ URL::route('faculty.research-paper.read',['book_id'=>$value->id]) }}" target="_blank"><i class="fa fa-tablet" title="Read Book"></i></a>
+                                                <a href="{{ URL::route('faculty.research-paper.download',['book_id'=>$value->id]) }}" style="color: blue" ><i class="fa fa-cloud-download" title="Download"></i></a>
                                             </td>
                                         @endif
                                         <td>
-                                            <a href="{{ URL::route('amw.research-paper.view', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" href=""><i class="fa fa-eye" style="color: green" title="View"></i></a>
-                                            <a href="{{ URL::route('amw.research-paper.edit', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#editModal" href="" ><i class="fa fa-pencil-square-o" style="color: #0044cc" title="Edit"></i></a>
-                                            <a href="{{ URL::route('amw.research-paper-writer.index', ['rnc_r_p_id'=>$value->id]) }}" class="btn btn-xs btn-success" >Writter</a>
-                                            <a href="{{ URL::route('amw.research-paper.comment', ['rnc_r_p_id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#commentModal" href="" ><i class="fa fa-comment" style="color: mediumpurple" title="Comemnt"></i></a>
-                                            <a data-href="{{ URL::route('amw.research-paper.delete', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa  fa-trash-o" style="color:red" title="Delete"></i></a>
+                                            <a href="{{ URL::route('faculty.research-paper.view', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" href=""><i class="fa fa-eye" style="color: green" title="View"></i></a>
+                                            <a href="{{ URL::route('faculty.research-paper.edit', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#editModal" href="" ><i class="fa fa-pencil-square-o" style="color: #0044cc" title="Edit"></i></a>
+                                            <a href="{{ URL::route('faculty.research-paper-writer.index', ['rnc_r_p_id'=>$value->id]) }}" class="btn btn-xs btn-success" >Writter</a>
+                                            <a href="{{ URL::route('faculty.research-paper.comment', ['rnc_r_p_id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#commentModal" href="" ><i class="fa fa-comment" style="color: mediumpurple" title="Comemnt"></i></a>
+                                            <a data-href="{{ URL::route('faculty.research-paper.delete', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa  fa-trash-o" style="color:red" title="Delete"></i></a>
 
                                         </td>
                                     </tr>
@@ -118,8 +118,8 @@
                     <h4 class="modal-title" style="text-align: center;color: #800080;font-size: x-large">Add Research Paper </h4>
                 </div>
                 <div class="modal-body">
-                    {{ Form::open(array('url' => 'rnc/amw/research-paper/save', 'method' =>'post', 'role'=>'form','files'=>'true')) }}
-                        @include('rnc::amw.research_paper._form')
+                    {{ Form::open(array('url' => 'rnc/faculty/research-paper/save', 'method' =>'post', 'role'=>'form','files'=>'true')) }}
+                        @include('rnc::faculty.research_paper._form')
                     {{ Form::close() }}
                 </div>
             </div>
@@ -138,12 +138,12 @@
 
     {{--Modal for Comment--}}
 
-        <div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-            <div class="modal-dialog">
-                <div class="modal-content">
+            <div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                    </div>
                 </div>
             </div>
-        </div>
 
 
      {{--Modal for show--}}

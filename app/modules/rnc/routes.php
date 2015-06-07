@@ -12,9 +12,14 @@
 */
 Route::group(['prefix' => 'rnc'], function() {
 
+    include("routes_sh_fac.php");
+    include("routes_sh_std.php");
+
     Route::get('/', function() {
         return 'Thank you so much!';
     });
+
+
 
 //Route for AMW User
     //Category. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
@@ -188,6 +193,20 @@ Route::group(['prefix' => 'rnc'], function() {
         'as' =>'amw.research-paper.read',
         'uses' => 'RnCAmwController@researchPaperRead'
     ]);
+
+    Route::any('amw/research-paper/comment/{rnc_r_p_id}',[
+        'as' =>'amw.research-paper.comment',
+        'uses' => 'RnCAmwController@researchPaperComment'
+    ]);
+
+    Route::any('amw/research-paper/save-comment',[
+        'as' =>'amw.research-paper.save-comment',
+        'uses' => 'RnCAmwController@saveComment'
+    ]);
+
+
+
+
 
     //Writer . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 
