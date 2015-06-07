@@ -94,5 +94,26 @@ Route::any('support-head',[
     'uses' => 'CfoController@supportHead'
 ]);
 
+//Onsite-help-desk
+Route::any('help-desk',[
+    'as' =>'help-desk',
+    'uses' => 'CfoController@indexHelpDesk'
+]);
+
+Route::any('help-desk/create',[
+    'as' =>'help-desk.create',
+    'uses' => 'CfoController@createHelpDesk'
+]);
+
+Route::any('store/help-desk',[
+    'as' =>'store.help-desk',
+    'uses' => 'CfoController@storeHelpDesk'
+]);
+
+Route::any('help-desk/show/{id}',[
+    'as' =>'help-desk.show',
+    'uses' => 'CfoController@showHelpDesk'
+]);
+
 
 

@@ -259,5 +259,50 @@ class CfoController extends \BaseController {
 
 //CFO Onsite Help-Desk
 
+    public function indexHelpDesk(){
 
+        $data = CfoOnsiteHelpDesk::with('relDepartment','relUser')->latest('id')->paginate(10);
+        return View::make('cfo::onsite_help_desk.index',compact('data'));
+    }
+
+    public function createHelpDesk(){
+
+        $dept_id = Department::lists('title','id');
+        $user_id = User::CfoList();
+        $cfo_category_id = CfoCategory::lists('title','id');
+        return View::make('cfo::onsite_help_desk.create',compact('data','cfo_category_id','dept_id','user_id'));
+    }
+    public function storeHelpDesk(){
+
+        $data = Input::all();
+
+        $model = new CfoOnsiteHelpDesk();
+
+        if($model->validate($data))
+        {
+            DB::beginTransaction();
+            try {
+                $model->create($data);
+                DB::commit();
+                Session::flash('message', "Successfully  Added");
+            }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', " not added.Invalid Request!");
+            }
+            return Redirect::back();
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()
+                ->with('errors', 'invalid');
+        }
+    }
+
+    public function showHelpDesk($id){
+
+        $data = CfoOnsiteHelpDesk::with('relDepartment','relUser')->find($id);
+        return View::make('cfo::onsite_help_desk.show',compact('data'));
+    }
 }
