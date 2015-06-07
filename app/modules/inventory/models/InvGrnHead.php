@@ -6,7 +6,7 @@ class InvGrnHead extends \Eloquent
     //TODO :: model attributes and rules and validation
     protected $table = 'inv_grn_head';
     protected $fillable = [
-        'inv_po_head_id', 'voucher_no', 'date',
+        'grn_no', 'inv_po_head_id', 'voucher_no', 'date',
         'inv_supplier_id', 'inv_requisition_head_id', 'tax_amount',
         'tax_rate', 'tax_amount', 'discount_rate', 'discount_amount',
         'amount', 'net_amount', 'status'

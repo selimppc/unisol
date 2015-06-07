@@ -26,74 +26,25 @@ class AccountPayableController extends \BaseController {
 	}
 
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
-	}
+    /*
+     * $grn_id ::
+     */
+    public function show_detail_grn($grn_id){
+        $grn_head = InvGrnHead::find($grn_id);
+        $grn_dt = InvGrnDetail::where('inv_grn_head_id', $grn_id)->get();
+        return View::make('payment::account_payable.show', compact('grn_id', 'grn_head', 'grn_dt'));
+    }
 
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
-	}
+    public function ap_create_invoice($grn_id){
+        $sql = sprintf("call sp_im_invoice(%s,'%s')",
+            $id,
+            $insertuser = Yii::app()->user->name
+        );
+        $command  = Yii::app()->db->createCommand($sql);
+        $command->execute();
 
-
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
-	}
-
+        return Redirect::back();
+    }
 
 }

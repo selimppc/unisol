@@ -23,4 +23,15 @@ Route::group(['prefix' => 'payment'], function() {
     ]);
 
 
+    Route::any("details-of-grn/{grn_id}", [
+        "as"   => "details-of-grn",
+        "uses" => "AccountPayableController@show_detail_grn"
+    ]);
+
+    Route::any("details-of-grn/{grn_id}", [
+        "as"   => "details-of-grn",
+        "uses" => "AccountPayableController@ap_create_invoice"
+    ]);
+
+
 });

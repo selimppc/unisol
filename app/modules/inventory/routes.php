@@ -364,6 +364,12 @@ Route::group(['prefix' => 'inventory'], function() {
     ]);
 
 
+    Route::any("deliver-stock/{transfer_head_id}", [
+        "as"   => "deliver-stock",
+        "uses" => "InvStockController@deliver_stock"
+    ]);
+
+
 
     /*
      * ==================================================
