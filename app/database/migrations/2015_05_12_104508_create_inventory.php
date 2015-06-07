@@ -214,6 +214,7 @@ class CreateInventory extends Migration {
 
         Schema::create('inv_grn_head', function(Blueprint $table) {
             $table->increments('id');
+            $table->string('grn_no', 16)->nullable();
             $table->unsignedInteger('inv_po_head_id')->nullable();
             $table->string('voucher_no', 16)->nullable();
             $table->dateTime('date')->nullable();
