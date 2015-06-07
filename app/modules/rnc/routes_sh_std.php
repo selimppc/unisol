@@ -12,47 +12,6 @@
 */
 
 //Route for Student User
-    //Category. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-
-    Route::any('student/category/index',[
-        'as' => 'student.category.index',
-        'uses'=> 'RnCStudentController@indexCategory'
-    ]);
-
-    Route::any('student/category/add/{id}',[
-        'as' => 'student.category.add',
-        'uses'=> 'RnCStudentController@addCategory'
-    ]);
-
-    Route::any('student/category/store',[
-        'as' => 'student.category.store',
-        'uses'=> 'RnCStudentController@storeCategory'
-    ]);
-
-    Route::any('student/category/show/{id}',[
-        'as' => 'student.category.show',
-        'uses'=> 'RnCStudentController@showCategory'
-    ]);
-
-    Route::any('student/category/edit/{id}',[
-        'as' => 'student.category.edit',
-        'uses'=> 'RnCStudentController@editCategory'
-    ]);
-
-    Route::any('student/category/update/{id}',[
-        'as' => 'student.category.update',
-        'uses'=> 'RnCStudentController@updateCategory'
-    ]);
-
-    Route::any('student/category/delete/{id}',[
-        'as' => 'student.category.delete',
-        'uses'=> 'RnCStudentController@deleteCategory'
-    ]);
-
-    Route::any('student/category/batch-delete',[
-        'as' => 'student.category.batch-delete',
-        'uses'=> 'RnCStudentController@batchDeleteCategory'
-    ]);
 
     //Config. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
     Route::any('student/config/index',[
@@ -95,47 +54,6 @@
         'uses'=> 'RnCStudentController@batchDeletConfig'
     ]);
 
-    //Publisher. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-
-    Route::any('student/publisher/index',[
-        'as' => 'student.publisher.index',
-        'uses'=> 'RnCStudentController@indexPublisher'
-    ]);
-
-    Route::any('student/publisher/add/{id}',[
-        'as' => 'student.publisher.add',
-        'uses'=> 'RnCStudentController@addPublisher'
-    ]);
-
-    Route::any('student/publisher/store',[
-        'as' => 'student.publisher.store',
-        'uses'=> 'RnCStudentController@storePublisher'
-    ]);
-
-    Route::any('student/publisher/show/{id}',[
-        'as' => 'student.publisher.show',
-        'uses'=> 'RnCStudentController@showPublisher'
-    ]);
-
-    Route::any('student/publisher/edit/{id}',[
-        'as' => 'student.publisher.edit',
-        'uses'=> 'RnCStudentController@editPublisher'
-    ]);
-
-    Route::any('student/publisher/update/{id}',[
-        'as' => 'student.publisher.update',
-        'uses'=> 'RnCStudentController@updatePublisher'
-    ]);
-
-    Route::any('student/publisher/delete/{id}',[
-        'as' => 'student.publisher.delete',
-        'uses'=> 'RnCStudentController@deletePublisher'
-    ]);
-
-    Route::any('student/publisher/batch-delete',[
-        'as' => 'student.publisher.batch-delete',
-        'uses'=> 'RnCStudentController@batchDeletPublisher'
-    ]);
 
     //Research Paper . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 

@@ -194,6 +194,20 @@ Route::group(['prefix' => 'rnc'], function() {
         'uses' => 'RnCAmwController@researchPaperRead'
     ]);
 
+    Route::any('amw/research-paper/comment/{rnc_r_p_id}',[
+        'as' =>'amw.research-paper.comment',
+        'uses' => 'RnCAmwController@researchPaperComment'
+    ]);
+
+    Route::any('amw/research-paper/save-comment',[
+        'as' =>'amw.research-paper.save-comment',
+        'uses' => 'RnCAmwController@saveComment'
+    ]);
+
+
+
+
+
     //Writer . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 
     Route::any('amw/research-paper-writer/index/{rnc_r_p_id}',[

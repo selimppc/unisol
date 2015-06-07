@@ -12,47 +12,6 @@
 */
 
 //Route for Faculty User
-    //Category. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-
-    Route::any('faculty/category/index',[
-        'as' => 'faculty.category.index',
-        'uses'=> 'RnCFacultyController@indexCategory'
-    ]);
-
-    Route::any('faculty/category/add/{id}',[
-        'as' => 'faculty.category.add',
-        'uses'=> 'RnCFacultyController@addCategory'
-    ]);
-
-    Route::any('faculty/category/store',[
-        'as' => 'faculty.category.store',
-        'uses'=> 'RnCFacultyController@storeCategory'
-    ]);
-
-    Route::any('faculty/category/show/{id}',[
-        'as' => 'faculty.category.show',
-        'uses'=> 'RnCFacultyController@showCategory'
-    ]);
-
-    Route::any('faculty/category/edit/{id}',[
-        'as' => 'faculty.category.edit',
-        'uses'=> 'RnCFacultyController@editCategory'
-    ]);
-
-    Route::any('faculty/category/update/{id}',[
-        'as' => 'faculty.category.update',
-        'uses'=> 'RnCFacultyController@updateCategory'
-    ]);
-
-    Route::any('faculty/category/delete/{id}',[
-        'as' => 'faculty.category.delete',
-        'uses'=> 'RnCFacultyController@deleteCategory'
-    ]);
-
-    Route::any('faculty/category/batch-delete',[
-        'as' => 'faculty.category.batch-delete',
-        'uses'=> 'RnCFacultyController@batchDeleteCategory'
-    ]);
 
     //Config. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
     Route::any('faculty/config/index',[
@@ -93,48 +52,6 @@
     Route::any('faculty/config/batch-delete',[
         'as' => 'faculty.config.batch-delete',
         'uses'=> 'RnCFacultyController@batchDeletConfig'
-    ]);
-
-    //Publisher. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-
-    Route::any('faculty/publisher/index',[
-        'as' => 'faculty.publisher.index',
-        'uses'=> 'RnCFacultyController@indexPublisher'
-    ]);
-
-    Route::any('faculty/publisher/add/{id}',[
-        'as' => 'faculty.publisher.add',
-        'uses'=> 'RnCFacultyController@addPublisher'
-    ]);
-
-    Route::any('faculty/publisher/store',[
-        'as' => 'faculty.publisher.store',
-        'uses'=> 'RnCFacultyController@storePublisher'
-    ]);
-
-    Route::any('faculty/publisher/show/{id}',[
-        'as' => 'faculty.publisher.show',
-        'uses'=> 'RnCFacultyController@showPublisher'
-    ]);
-
-    Route::any('faculty/publisher/edit/{id}',[
-        'as' => 'faculty.publisher.edit',
-        'uses'=> 'RnCFacultyController@editPublisher'
-    ]);
-
-    Route::any('faculty/publisher/update/{id}',[
-        'as' => 'faculty.publisher.update',
-        'uses'=> 'RnCFacultyController@updatePublisher'
-    ]);
-
-    Route::any('faculty/publisher/delete/{id}',[
-        'as' => 'faculty.publisher.delete',
-        'uses'=> 'RnCFacultyController@deletePublisher'
-    ]);
-
-    Route::any('faculty/publisher/batch-delete',[
-        'as' => 'faculty.publisher.batch-delete',
-        'uses'=> 'RnCFacultyController@batchDeletPublisher'
     ]);
 
     //Research Paper . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
