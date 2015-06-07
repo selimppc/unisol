@@ -22,7 +22,7 @@
 
                    <tr>
                        <th class="col-lg-6">Category :</th>
-                       <td>{{ $data->cfo_category_id }}</td>
+                       <td>{{ $data->relCfoCategory->title }}</td>
                    </tr>
 
 

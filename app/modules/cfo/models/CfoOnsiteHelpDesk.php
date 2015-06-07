@@ -49,4 +49,20 @@ class CfoOnsiteHelpDesk extends Eloquent{
     public function relUser(){
         return $this->belongsTo('User','specific_user_id','id');
     }
+
+
+
+    public static function boot(){
+        parent::boot();
+        if(Auth::user()->check()){
+            static::creating(function($query){
+                $query->created_by = Auth::user()->get()->id;
+                $query->updated_by = Auth::user()->get()->id;
+            });
+            static::updating(function($query){
+                $query->updated_by = Auth::user()->get()->id;
+            });
+        }
+
+    }
 } 
