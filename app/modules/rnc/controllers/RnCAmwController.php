@@ -505,7 +505,7 @@ class RnCAmwController extends \BaseController
     public function indexRnCWriter($rnc_r_p_id)
     {
         $rnc_r_p_writer = RnCResearchPaperWriter::with('relRnCResearchPaper','relUser', 'relUser.relUserProfile')->latest('id')->where('rnc_research_paper_id' ,'=', $rnc_r_p_id)->get();
-        $rnc_r_p_writer_user = Auth::user()->get()->id;
+        //$rnc_r_p_writer_user = Auth::user()->get()->id;
         return View::make('rnc::amw.research_paper_writer.index', compact('rnc_r_p_writer','rnc_r_p_id','rnc_r_p_writer_user'));
     }
 
@@ -698,29 +698,31 @@ class RnCAmwController extends \BaseController
         App::abort(404);
     }
 
-    public function editRnCBeneficial($id)
+    public function editRnCBeneficial($id )
     {
         $rnc_r_p_beneficial_edit = RnCWriterBeneficial::find($id);
         $list_writer_name = User::WriterNameList();
-        return View::make('rnc::amw.research_paper_beneficial.edit',compact('rnc_r_p_beneficial_edit','list_writer_name'));
+        return View::make('rnc::amw.research_paper_beneficial.edit',compact('rnc_r_p_beneficial_edit','list_writer_name','rnc_r_p_id'));
     }
 
     public function updateRnCBeneficial($id)
     {
         $data = Input::all();
+
+        //print_r($data);exit;
         $rnc_r_p_beneficial_update = RnCWriterBeneficial::find($id);
         if($rnc_r_p_beneficial_update->validate($data))
         {
-            DB::beginTransaction();
-            try {
+            //DB::beginTransaction();
+            //try {
                 $rnc_r_p_beneficial_update->update($data);
                 DB::commit();
-                Session::flash('message', "Writers Name Updates");
-            }
-            catch ( Exception $e ){
-                DB::rollback();
-                Session::flash('danger', "Writers Name not updates. Invalid Request !");
-            }
+                Session::flash('message', "Writers Name Updated");
+           // }
+           // catch ( Exception $e ){
+           //     DB::rollback();
+                Session::flash('danger', "Writers Name not updated. Invalid Request !");
+           // }
             return Redirect::back();
         }else{
             $errors = $rnc_r_p_beneficial_update->errors();
