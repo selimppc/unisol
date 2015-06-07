@@ -36,7 +36,7 @@
 </div>
 
 <div class='form-group'>
-    <div>{{ Form::label('benefit_share', 'Benefit Share') }}</div>
+    <div>{{ Form::label('benefit_share', 'Benefit Share') }}</div> Minimum share is 30%
     <div>{{ Form::text('benefit_share', Input::old('benefit_share'),['class'=>'form-control','spellcheck'=> 'true']) }}</div>
 </div>
 

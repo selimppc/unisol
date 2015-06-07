@@ -203,7 +203,7 @@ class InvPurchaseOrderController extends \BaseController {
                 'inv_po_head_id' => Input::get('inv_po_head_id'),
                 'inv_product_id'=> Input::get('inv_product_id')[$i],
                 'unit'=> Input::get('unit')[$i],
-                'unit_quantity'=> Input::get('quantity')[$i],
+                'quantity'=> Input::get('quantity')[$i],
                 'purchase_rate'=> Input::get('rate')[$i],
             ];
         }

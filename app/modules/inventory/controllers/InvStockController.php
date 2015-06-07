@@ -217,6 +217,30 @@ class InvStockController extends \BaseController {
     }
 
 
+    /*
+     * Deliver Stock and Balanced
+     *
+     */
+
+    public function deliver_stock(){
+        $data = InvTransferHead::where('status', '=', 'Confirmed Dispatch')->get();
+        $pageTitle = "Deliver Stock ";
+
+        return View::make('inventory::stock.deliver', compact('data','pageTitle'));
+    }
+
+    public function confirm_deliver_stock($transfer_head_id){
+        $check = InvTransferDetail::where('inv_transfer_head_id', $transfer_head_id)->exists();
+        if($check){
+            //Call Store Procedure
+            DB::select('call sp_inv_confirm_dispatch(?, ?)', array($transfer_head_id, Auth::user()->get()->id) );
+            Session::flash('message', 'Stock Transferred Successfully !');
+        }else{
+            Session::flash('info', 'Transfer Detail is empty. Please add product item. And try later!');
+        }
+        return Redirect::back();
+    }
+
 
 
 
