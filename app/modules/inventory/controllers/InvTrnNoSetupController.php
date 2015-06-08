@@ -61,4 +61,14 @@ class InvTrnNoSetupController extends \BaseController {
     }
 
 
+
+    /*
+     * master setup for inventory onyl
+     *
+     */
+    public function master_setup(){
+        $pageTitle = "Master Setup for Inventory";
+        return View::make('inventory::master_setup.index', compact('pageTitle'));
+    }
+
 }

@@ -465,4 +465,16 @@ Route::group(['prefix' => 'inventory'], function() {
 
 
 
+
+    /*
+     * master setup for Inventory Only
+     *
+     */
+    Route::any("master-setup", [
+        "as"   => "master-setup",
+        "uses" => "InvTrnNoSetupController@master_setup"
+    ]);
+
+
+
 });
