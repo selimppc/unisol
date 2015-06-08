@@ -138,7 +138,7 @@ Route::group(['prefix' => 'inventory'], function() {
     ]);
 
 
-    Route::post("requisition-store", [
+    Route::any("requisition-store", [
         "as"   => "requisition-store",
         "uses" => "InvRequisitionHeadController@store_requisition"
     ]);
@@ -461,6 +461,18 @@ Route::group(['prefix' => 'inventory'], function() {
     Route::any("show-no-setup/{setup_id}", [
         "as"   => "show-no-setup",
         "uses" => "InvTrnNoSetupController@show_trn_no"
+    ]);
+
+
+
+
+    /*
+     * master setup for Inventory Only
+     *
+     */
+    Route::any("master-setup", [
+        "as"   => "master-setup",
+        "uses" => "InvTrnNoSetupController@master_setup"
     ]);
 
 

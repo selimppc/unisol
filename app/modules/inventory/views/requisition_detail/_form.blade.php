@@ -25,7 +25,7 @@
     <div class="col-sm-3">
         <div class='form-group'>
            {{ Form::label('invProductUnit', 'Unit') }}
-           {{ Form::text('invProductUnit', Input::old('invProductUnit'),['id'=>'product-unit']) }}
+           <input type="text" name="invProductUnit" id="product-unit" readonly style="background-color: lavender">
         </div>
     </div>
     <div class="col-sm-3">
@@ -64,8 +64,8 @@
     @foreach($req_dt as $key=>$value)
         <tr>
             <td>{{isset($value->inv_product_id) ? $value->relInvProduct->title : ''}}</td>
-            <td>{{$value->rate}}</td>
-            <td>{{$value->unit}}</td>
+            <td>{{round($value->rate, 2)}}</td>
+            <td>{{round($value->unit)}}</td>
             <td>{{round($value->quantity)}}</td>
             <td>
                 <a data-href="{{ $value->id }}" class="btn btn-default btn-sm delete-dt" id="delete-dt{{ $value->id }}" ><i class="fa  fa-trash-o" style="font-size: 15px;color: red"></i></a>

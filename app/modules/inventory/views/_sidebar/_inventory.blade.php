@@ -13,6 +13,7 @@
             <li><a href="{{URL::route('product')}}"><i class="fa fa-angle-double-right"></i> Product Master</a></li>
             <li><a href="{{URL::route('product/category')}}"><i class="fa fa-angle-double-right"></i> Product Category</a></li>
             <li><a href="{{URL::route('supplier')}}"><i class="fa fa-angle-double-right"></i> Supplier Master</a></li>
+            <li><a href="{{URL::route('master-setup')}}"><i class="fa fa-angle-double-right"></i> Settings </a></li>
 
         </ul>
     </li>
