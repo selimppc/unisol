@@ -39,12 +39,25 @@ class InvRequisitionHeadController extends \BaseController {
     public function store_requisition()
     {
         if($this->isPostRequest()){
+            $req_no = InvTrnNoSetup::where('title', '=', "Requisition")
+                ->select(DB::raw('CONCAT (code, LPAD(last_number + 1, 8, 0)) as number'))
+                ->first()->number;
             $input_data = Input::all();
+            $inp_data = [
+                'requisition_no' => $req_no,
+                'inv_supplier_id' => $input_data['inv_supplier_id'],
+                'date' => $input_data['date'],
+                'note' => $input_data['note'],
+                'requisition_type' => $input_data['requisition_type'],
+                'status'=> "open",
+            ];
             $model = new InvRequisitionHead();
-            if($model->validate($input_data)) {
+            if($model->validate($inp_data)) {
                 DB::beginTransaction();
                 try {
-                    $model->create($input_data);
+                    $model->create($inp_data);
+                    DB::table('inv_trn_no_setup')->where('title', '=', "Requisition")
+                        ->update(array('last_number' => substr($req_no,4)));
                     DB::commit();
                     Session::flash('message', 'Success !');
                 }catch (Exception $e) {
@@ -53,9 +66,11 @@ class InvRequisitionHeadController extends \BaseController {
                     Session::flash('danger', 'Failed !');
                 }
             }
+            return Redirect::back();
+        }else{
+            #$model = InvRequisitionHead::findOrFail($re_id);
+            return View::make('inventory::requisition_head.create', compact('model'));
         }
-        return Redirect::back();
-
     }
 
     /*

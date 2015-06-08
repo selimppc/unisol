@@ -92,12 +92,12 @@
         'uses' => 'RnCStudentController@batchdeleteResearchPaper'
     ]);
 
-    Route::any('student/research-paper/download/{rnc_id}',[
+    Route::any('student/research-paper/download/{rnc_rp_id}',[
         'as' =>'student.research-paper.download',
         'uses' => 'RnCStudentController@researchPaperDownload'
     ]);
 
-    Route::any('student/research-paper/read/{rnc_id}',[
+    Route::any('student/research-paper/read/{rnc_rp_id}',[
         'as' =>'student.research-paper.read',
         'uses' => 'RnCStudentController@researchPaperRead'
     ]);
@@ -111,6 +111,43 @@
         'as' =>'student.research-paper.save-comment',
         'uses' => 'RnCStudentController@saveComment'
     ]);
+
+/////////////////////////////////new routes
+
+Route::any('student/research-paper/add-to-cart/{rnc_rp_id}',[
+    'as' =>'student.research-paper.add-to-cart',
+    'uses' => 'RnCStudentController@addRPToStudentCart'
+]);
+
+Route::any('student/research-paper/remove-from-cart/{id}',[
+    'as' =>'student.research-paper.remove-from-cart',
+    'uses' => 'RnCStudentController@removeRPFromCart'
+]);
+
+Route::any('student/research-paper/view-cart',[
+    'as' =>'student.research-paper.view-cart',
+    'uses' => 'RnCStudentController@viewRPCart'
+]);
+
+Route::any('student/research-paper/payment',[
+    'as' =>'student.research-paper.payment',
+    'uses' => 'RnCStudentController@paymentMethodRP'
+]);
+
+Route::any('student/research-paper/send-info-to-transaction',[
+    'as' =>'student.research-paper.send-info-to-transaction',
+    'uses' => 'RnCStudentController@saveInfoToTransactionTable'
+]);
+
+Route::any('student/research-paper/my-book',[
+    'as' =>'student.research-paper.my-book',
+    'uses' => 'RnCStudentController@myRP'
+]);
+
+///////////////////////////////////////// new route ei porjnto
+
+
+
 
     //Writer . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 

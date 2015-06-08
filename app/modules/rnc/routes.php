@@ -204,6 +204,40 @@ Route::group(['prefix' => 'rnc'], function() {
         'uses' => 'RnCAmwController@saveComment'
     ]);
 
+//    /////////////////////////////////new routes
+//
+//    Route::any('student/research-paper/add-to-cart/{rnc_id}',[
+//        'as' =>'student.research-paper.add-to-cart',
+//        'uses' => 'RnCAmwController@addRPToStudentCart'
+//    ]);
+//
+//    Route::any('student/research-paper/remove-from-cart/{id}',[
+//        'as' =>'student.research-paper.remove-from-cart',
+//        'uses' => 'RnCAmwController@removeRPFromCart'
+//    ]);
+//
+//    Route::any('student/research-paper/view-cart',[
+//        'as' =>'student.research-paper.view-cart',
+//        'uses' => 'RnCAmwController@viewRPCart'
+//    ]);
+//
+//    Route::any('student/research-paper/payment',[
+//        'as' =>'student.research-paper.payment',
+//        'uses' => 'RnCAmwController@paymentMethodRP'
+//    ]);
+//
+//    Route::any('student/research-paper/send-info-to-transaction',[
+//        'as' =>'student.research-paper.send-info-to-transaction',
+//        'uses' => 'RnCAmwController@saveInfoToTransactionTable'
+//    ]);
+//
+//    Route::any('student/research-paper/my-book',[
+//        'as' =>'student.research-paper.my-book',
+//        'uses' => 'RnCAmwController@myRP'
+//    ]);
+//
+//    ///////////////////////////////////////// new route ei porjnto
+
 
 
 
