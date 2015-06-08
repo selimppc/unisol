@@ -15,7 +15,25 @@ class CfoAmwController extends \BaseController {
     public function indexHelpDesk(){
 
         $data = CfoOnsiteHelpDesk::with('relDepartment','relUser','relCfoCategory')->latest('id')->paginate(10);
-        return View::make('cfo::onsite_help_desk.index',compact('data'));
+
+        $status_open = CfoOnsiteHelpDesk::where('status','=','open')->get();
+        $status_wt = CfoOnsiteHelpDesk::where('status','=','waiting')->get();
+        $status_srvd = CfoOnsiteHelpDesk::where('status','=','served')->get();
+        $srving = CfoOnsiteHelpDesk::where('status','=','serving')->get();
+        $closed_status = CfoOnsiteHelpDesk::where('status','=','closed')->get();
+        //my desk
+        $self_desk = CfoOnsiteHelpDesk::with('relDepartment','relUser','relCfoCategory')->where('specific_user_id','=', Auth::user()->get()->id)->paginate(10);
+        $assigned_user = User::with('relUserProfile')->where('id','=', Auth::user()->get()->id)->first();
+
+        /*
+        $query = array('' => 'Select CFO ') + $this::join('user_profile', function($query){
+                $query->on('user_profile.user_id', '=', 'user.id');
+            })
+                ->select(DB::raw('CONCAT(user_profile.first_name, " ", user_profile.last_name) as full_name'), 'user.id as user_id')
+                ->where('user.created_by', '=', $role_id)
+                ->get();*/
+
+        return View::make('cfo::onsite_help_desk.index',compact('data','status_open','status_wt','status_srvd','srving','closed_status','self_desk','assigned_user'));
     }
 
     public function createHelpDesk(){
@@ -69,10 +87,10 @@ class CfoAmwController extends \BaseController {
 
         $model = CfoOnsiteHelpDesk::find($id);
         $dept_id = Department::lists('title','id');
-        $user_id = User::CfoList();
+        $users = User::ExceptLoggedUser($id);
         $cfo_category_id = CfoCategory::lists('title','id');
 
-        return View::make('cfo::onsite_help_desk.edit',compact('model','dept_id','user_id','cfo_category_id'));
+        return View::make('cfo::onsite_help_desk.edit',compact('model','dept_id','users','cfo_category_id'));
     }
 
     public function updateHelpDesk($id){
@@ -116,23 +134,35 @@ class CfoAmwController extends \BaseController {
         }
     }
 
+    public function batchDelete()
+    {
+        try {
+            CfoOnsiteHelpDesk::destroy(Request::get('ids'));
+            return Redirect::back()->with('message', 'Successfully deleted Information!');
+        } catch (exception $ex) {
+            return Redirect::back()->with('danger', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+
+        }
+    }
+
     public function assignedUserIndex(){
 
         $user_id = Auth::user()->get()->id;
 
         if(Auth::user()->check()){
 
-            $data = CfoOnsiteHelpDesk::with('relDepartment','relUser','relCfoCategory')->where('specific_user_id','=', $user_id)->paginate(10);
+            $self_desk = CfoOnsiteHelpDesk::with('relDepartment','relUser','relCfoCategory')->where('specific_user_id','=', $user_id)->paginate(10);
             $assigned_user = User::with('relUserProfile')->where('id','=',$user_id)->first();
             $assigned_by = CfoOnsiteHelpDesk::with('relUser','relUser.relUserProfile')->first();
 
+//            return View::make('cfo::onsite_help_desk.assigned_user',compact('self_desk','assigned_user','assigned_by'));
         }else {
             Auth::logout();
             Session::flush(); //delete the session
             Session::flash('danger', "Please Login As cfo!");
             return Redirect::route('user/login');
         }
-        return View::make('cfo::onsite_help_desk.assigned_user',compact('data','assigned_user','assigned_by'));
+        return View::make('cfo::onsite_help_desk.assigned_user',compact('self_desk','assigned_user','assigned_by'));
     }
 
 }

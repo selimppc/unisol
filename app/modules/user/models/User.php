@@ -216,7 +216,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     /**
      * @author Tanin
      */
-    public function scopeExceptLoggedUser(){
+    public function scopeExceptLoggedUser($id){
 
         $user_id = Auth::user()->get()->id;
         $role_id = Role::where('code', '=', 'cfo')->first()->id;

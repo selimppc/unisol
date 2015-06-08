@@ -213,7 +213,22 @@ Route::filter('exmStudent', function()
     }
 
 });
+/*======================================================================
+//For CFO Module
+========================================================================*/
 
+Route::filter('cfo', function()
+{
+    if (Auth::user()->check()){
+        $role_id = Auth::user()->get()->role_id;
+        $role = User::hasRole($role_id);
+        if($role != 'cfo')
+            return Redirect::guest('user-access');
+    }else{
+        return Redirect::guest('user/login');
+    }
+
+});
 
 
 
