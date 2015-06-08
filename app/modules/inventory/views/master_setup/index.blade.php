@@ -20,7 +20,7 @@
                         <div style="text-align: center; padding-top: 5px;">
                             <h4>  Supplier Group </h4>
                         </div>
-                        <a href="{{ URL::route('edit-stock-adjustment')}}" class="small-box-footer" data-toggle="modal" data-target="#modal-pc">
+                        <a href="{{ URL::route('create-supplier-group')}}" class="small-box-footer" data-toggle="modal" data-target="#modal-pc">
                             Click Here <i class="fa fa-arrow-circle-right"></i>
                         </a>
                     </div>

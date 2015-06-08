@@ -55,6 +55,15 @@ Route::any("sortable", [
 ]);
 
 /*
+ * Upload CSV data into mysql
+ */
+Route::any("upload-csv-data", [
+    "as"   => "upload-csv-data",
+    "uses" => "HomeController@uploadCsvData"
+]);
+
+
+/*
  * Knowledge Base Search
  */
 Route::any("kb", [

@@ -71,4 +71,35 @@ class InvTrnNoSetupController extends \BaseController {
         return View::make('inventory::master_setup.index', compact('pageTitle'));
     }
 
+
+    public function create_supplier_group(){
+        if($this->isPostRequest()){
+            $input_data = Input::all();
+            $model = new AccCodesParam();
+            if($model->validate($input_data)) {
+                DB::beginTransaction();
+                try {
+                    $model->create($input_data);
+                    DB::commit();
+                    Session::flash('message', 'Success !');
+                }catch (Exception $e) {
+                    //If there are any exceptions, rollback the transaction`
+                    print_r($e->getMessage());exit;
+                    DB::rollback();
+                    Session::flash('danger', 'Failed !');
+                }
+            }
+            return Redirect::back();
+        }else{
+            $pageTitle = "Settings: Supplier Group";
+            $data = AccCodesParam::where('type', '=', 'Supplier Group')->get();
+            return View::make('inventory::master_setup.supplier_group', compact('pageTitle', 'data'));
+        }
+
+    }
+
+
+
+
+
 }

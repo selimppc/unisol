@@ -144,7 +144,7 @@ class CreateAccounts extends Migration {
             $table->timestamps();
             $table->engine = 'InnoDB';
         });
-        
+
 
 	}
 
