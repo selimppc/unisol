@@ -37,6 +37,14 @@
           {{ Form::select('specific_user_id', $user_id, Input::old('specific_user_id'), array('class' => 'form-control','required'=>'required')) }}
         </div>
 
+        <div class="form-group">
+          {{ Form::label('status', 'Status') }}<span class="text-danger">*</span>
+          {{ Form::select('status', array('' => 'Select one',
+           'open' => 'Open', 'waiting' => 'Waiting', 'serving'=>'Serving','closed'=>'Closed','re-open'=>'Re-Open'),
+           Input::old('board_university'),
+           array('class' => 'form-control')) }}
+        </div>
+
         {{ Form::submit('Save', array('class'=>'pull-right btn btn-info')) }}
         <a href="" class="pull-right btn btn-default" style="margin-right: 5px">Close</a>
 

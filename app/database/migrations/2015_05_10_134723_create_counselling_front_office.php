@@ -103,13 +103,13 @@ class CreateCounsellingFrontOffice extends Migration {
             $table->unsignedInteger('cfo_category_id')->nullable();
             $table->unsignedInteger('section_dept_id')->nullable();
             $table->unsignedInteger('specific_user_id')->nullable();
-            $table->decimal('token_number',8,0)->nullable();
+            $table->string('token_number',8)->nullable();
             $table->string('name', 64)->nullable();
             $table->string('email', 32)->nullable();
             $table->text('purpose')->nullable();
 
             $table->enum('status', array(
-                'served', 'waiting','serving','closed','re-open'
+                'open','served', 'waiting','serving','closed','re-open'
             ));
             $table->unsignedInteger('served_by')->nullable();
             $table->integer('created_by', false, 11)->nullable();

@@ -2,12 +2,13 @@
 
 class CfoAmwController extends \BaseController {
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-
+    function __construct() {
+        $this->beforeFilter('cfo', array('except' => array('indexHelpDesk')));
+    }
+    protected function isPostRequest()
+    {
+        return Input::server("REQUEST_METHOD") == "POST";
+    }
 
 //CFO Onsite Help-Desk
 
@@ -23,16 +24,13 @@ class CfoAmwController extends \BaseController {
         $user_id = User::CfoList();
         $cfo_category_id = CfoCategory::lists('title','id');
         $count_token = CfoOnsiteHelpDesk::count();
+        $token_number = sprintf('%08s',$count_token+1);
 
-        $token_number = sprintf('%08d',$count_token);
-        //print $token_number;exit;
-        return View::make('cfo::onsite_help_desk.create',compact('data','cfo_category_id','dept_id','user_id','token_number','count_token'));
+        return View::make('cfo::onsite_help_desk.create',compact('data','cfo_category_id','dept_id','user_id','token_number'));
     }
     public function storeHelpDesk(){
 
         $data = Input::all();
-
-        //print_r($data);exit;
 
         $model = new CfoOnsiteHelpDesk();
 
@@ -117,6 +115,21 @@ class CfoAmwController extends \BaseController {
 
     public function assignedUserIndex(){
 
+        $user_id = Auth::user()->get()->id;
+
+        if(Auth::user()->check()){
+
+            $data = CfoOnsiteHelpDesk::with('relDepartment','relUser','relCfoCategory')->where('specific_user_id','=', $user_id)->get();
+            $assigned_user = User::with('relUserProfile')->where('id','=',$user_id)->first();
+            $assigned_by = CfoOnsiteHelpDesk::with('relUser','relUser.relUserProfile')->first();
+
+        }else {
+            Auth::logout();
+            Session::flush(); //delete the session
+            Session::flash('danger', "Please Login As cfo!");
+            return Redirect::route('user/login');
+        }
+        return View::make('cfo::onsite_help_desk.assigned_user',compact('data','assigned_user','assigned_by'));
     }
 
 }
