@@ -7,13 +7,13 @@
 @stop
 
 @section('content')
-<h3>My Desk</h3>
+<h3>{{isset($assigned_user)?$assigned_user->relUserProfile->first_name.' '.$assigned_user->relUserProfile->middle_name.' '.$assigned_user->relUserProfile->last_name:''}}'s Desk</h3>
 
 {{--<div class="row">--}}
 
    <div class="box box-solid"><br>
       {{--<b style="margin-left: 30px;color: #005580">Assigned By : {{$assigned_user->relUserProfile->first_name.' '.$assigned_user->relUserProfile->middle_name.' '.$assigned_user->relUserProfile->last_name}}</b><br>--}}
-      <b style="margin-left: 30px;color: #005580">Assigned To : {{$assigned_user->relUserProfile->first_name.' '.$assigned_user->relUserProfile->middle_name.' '.$assigned_user->relUserProfile->last_name}}</b>
+      <b style="margin-left: 30px;color: #005580;font-size: medium">Assigned By : <ins>{{isset($assigned_by) ? $assigned_by->relUser->relUserProfile->first_name.' '.$assigned_by->relUser->relUserProfile->middle_name.' '.$assigned_by->relUser->relUserProfile->last_name :''}}</ins></b>
        <div class="box-body">
 
         <table id="" class="table table-striped table-bordered">

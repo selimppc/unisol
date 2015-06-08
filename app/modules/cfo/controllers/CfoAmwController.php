@@ -26,7 +26,7 @@ class CfoAmwController extends \BaseController {
         $count_token = CfoOnsiteHelpDesk::count();
         $token_number = sprintf('%08s',$count_token+1);
 
-        return View::make('cfo::onsite_help_desk.create',compact('data','cfo_category_id','dept_id','user_id','token_number','count_token'));
+        return View::make('cfo::onsite_help_desk.create',compact('data','cfo_category_id','dept_id','user_id','token_number'));
     }
     public function storeHelpDesk(){
 
@@ -121,6 +121,7 @@ class CfoAmwController extends \BaseController {
 
             $data = CfoOnsiteHelpDesk::with('relDepartment','relUser','relCfoCategory')->where('specific_user_id','=', $user_id)->get();
             $assigned_user = User::with('relUserProfile')->where('id','=',$user_id)->first();
+            $assigned_by = CfoOnsiteHelpDesk::with('relUser','relUser.relUserProfile')->first();
 
         }else {
             Auth::logout();
@@ -128,7 +129,7 @@ class CfoAmwController extends \BaseController {
             Session::flash('danger', "Please Login As cfo!");
             return Redirect::route('user/login');
         }
-        return View::make('cfo::onsite_help_desk.assigned_user',compact('data','assigned_user'));
+        return View::make('cfo::onsite_help_desk.assigned_user',compact('data','assigned_user','assigned_by'));
     }
 
 }
