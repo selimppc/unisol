@@ -7,7 +7,7 @@
 <div class="modal-content">
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-     <h4> Upload CSV Data into Mysql Table </h4>
+     <h4> Upload CSV Data into Mysql Table (Chart of Accounts) </h4>
 </div>
 
 <div style="padding: 2%; width: 99%;">
