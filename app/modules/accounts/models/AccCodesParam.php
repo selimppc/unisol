@@ -36,6 +36,9 @@ class AccCodesParam extends \Eloquent
 
     //TODO : Model Relationship
 
+    public function relAccChartOfAccounts(){
+        return $this->belongsTo('AccChartOfAccounts', 'account_code', 'account_code');
+    }
 
 
     // TODO : user info while saving data into table

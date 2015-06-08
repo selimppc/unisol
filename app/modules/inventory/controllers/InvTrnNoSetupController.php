@@ -92,8 +92,9 @@ class InvTrnNoSetupController extends \BaseController {
             return Redirect::back();
         }else{
             $pageTitle = "Settings: Supplier Group";
+            $chart_of_acc = AccChartOfAccounts::lists('description', 'account_code');
             $data = AccCodesParam::where('type', '=', 'Supplier Group')->get();
-            return View::make('inventory::master_setup.supplier_group', compact('pageTitle', 'data'));
+            return View::make('inventory::master_setup.supplier_group', compact('pageTitle', 'data', 'chart_of_acc'));
         }
 
     }

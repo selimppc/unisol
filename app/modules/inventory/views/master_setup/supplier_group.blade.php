@@ -9,7 +9,7 @@
 <div class="row">
 
     <div class="box box-solid ">
-        <div class="col-sm-6">
+        <div class="col-sm-5">
             {{Form::open(['route'=> ['create-supplier-group'], 'method' => 'patch', 'role' => 'form', 'files' => true,])}}
             {{ Form::hidden('id', 1) }}
 
@@ -27,11 +27,11 @@
             </div>
             <div class='form-group'>
                {{ Form::label('account_code', 'Account Code') }}
-               {{ Form::text('account_code', Input::old('account_code'),['class'=>'form-control', 'required']) }}
+               {{ Form::select('account_code', $chart_of_acc, Input::old('account_code'),['class'=>'form-control', 'required']) }}
             </div>
             <div class='form-group'>
                {{ Form::label('account_disc', 'Account DISC') }}
-               {{ Form::text('account_disc', Input::old('account_disc'),['class'=>'form-control', 'required']) }}
+               {{ Form::select('account_disc', $chart_of_acc, Input::old('account_disc'),['class'=>'form-control', 'required']) }}
             </div>
 
             {{ Form::hidden('status', 'active') }}
@@ -58,9 +58,9 @@
             <tbody>
                 @foreach($data as $values)
                     <td>{{ $values->type }}  </td>
-                    <td>{{$values->code}}</td>
-                    <td>{{$values->account_code}}</td>
-                    <td>{{$values->status}}</td>
+                    <td>{{ $values->code }}</td>
+                    <td>{{ isset($values->account_code)? $values->relAccChartOfAccounts->description: '' }}</td>
+                    <td>{{ $values->status }}</td>
                  </tr>
                 @endforeach
             </tbody>
