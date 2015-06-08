@@ -34,7 +34,7 @@
 
         <div class="form-group">
           {{ Form::label('specific_user_id', 'Assigned To') }}<span class="text-danger">*</span>
-          {{ Form::select('specific_user_id', $user_id, Input::old('specific_user_id'), array('class' => 'form-control','required'=>'required')) }}
+          {{ Form::select('specific_user_id', $users, Input::old('specific_user_id'), array('class' => 'form-control','required'=>'required')) }}
         </div>
 
         <div class="form-group">

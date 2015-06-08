@@ -20,14 +20,17 @@ class CfoAmwController extends \BaseController {
 
     public function createHelpDesk(){
 
+        $users = User::ExceptLoggedUser();
+
         $dept_id = Department::lists('title','id');
-        $user_id = User::CfoList();
         $cfo_category_id = CfoCategory::lists('title','id');
+
         $count_token = CfoOnsiteHelpDesk::count();
         $token_number = sprintf('%08s',$count_token+1);
 
-        return View::make('cfo::onsite_help_desk.create',compact('data','cfo_category_id','dept_id','user_id','token_number'));
+        return View::make('cfo::onsite_help_desk.create',compact('data','cfo_category_id','dept_id','user_id','token_number','users'));
     }
+
     public function storeHelpDesk(){
 
         $data = Input::all();
@@ -119,7 +122,7 @@ class CfoAmwController extends \BaseController {
 
         if(Auth::user()->check()){
 
-            $data = CfoOnsiteHelpDesk::with('relDepartment','relUser','relCfoCategory')->where('specific_user_id','=', $user_id)->get();
+            $data = CfoOnsiteHelpDesk::with('relDepartment','relUser','relCfoCategory')->where('specific_user_id','=', $user_id)->paginate(10);
             $assigned_user = User::with('relUserProfile')->where('id','=',$user_id)->first();
             $assigned_by = CfoOnsiteHelpDesk::with('relUser','relUser.relUserProfile')->first();
 
