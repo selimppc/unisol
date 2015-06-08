@@ -11,9 +11,7 @@
         <div class="col-sm-12">
            <div class="pull-left col-sm-4"> <h3> {{$pageTitle}} </h3>  </div>
            <div class="pull-right col-sm-4" style="padding-top: 1%;">
-                <button type="button" class="pull-right btn btn-sm btn-info" data-toggle="modal" data-target="#modal">
-                  + New Requisition
-                </button>
+                <a href="{{ URL::route('requisition-store')  }}" class="pull-right btn btn-sm btn-info" data-toggle="modal" data-target="#modal-pc"> + New Requisition</a>
            </div>
         </div>
 
@@ -81,10 +79,9 @@
 {{ Form::close() }}
 
 
-
 {{-- Modal Area --}}
 <div class="modal fade" id="modal-pc" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog" style="z-index:1050">
     <div class="modal-content">
     </div>
   </div>

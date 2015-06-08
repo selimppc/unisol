@@ -138,7 +138,7 @@ Route::group(['prefix' => 'inventory'], function() {
     ]);
 
 
-    Route::post("requisition-store", [
+    Route::any("requisition-store", [
         "as"   => "requisition-store",
         "uses" => "InvRequisitionHeadController@store_requisition"
     ]);

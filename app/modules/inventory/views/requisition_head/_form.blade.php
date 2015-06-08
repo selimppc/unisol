@@ -1,8 +1,8 @@
 
-<div class='form-group'>
+{{--<div class='form-group'>
    {{ Form::label('requisition_no', 'Requisition No ') }}
    {{ Form::text('requisition_no', Input::old('requisition_no'),['class'=>'form-control', 'style'=>'text-transform: uppercase;', 'required']) }}
-</div>
+</div>--}}
 
 <div class='form-group'>
    {{ Form::label('inv_supplier_id', 'Supplier') }}
@@ -24,14 +24,17 @@
    {{ Form::select('requisition_type', InvRequisitionHead::getRequisitionType(), Input::old('requisition_type'),['class'=>'form-control',  'required']) }}
 </div>
 
-<div class='form-group'>
+{{--<div class='form-group'>
    {{ Form::label('status', 'status') }}
    {{ Form::select('status', InvRequisitionHead::getStatus(), Input::old('status'),['class'=>'form-control',  'required']) }}
-</div>
+</div>--}}
 
 
 {{ Form::submit('Save', array('class'=>'pull-right btn btn-info')) }}
 <a href="" class="pull-right btn btn-default" style="margin-right: 5px">Close</a>
 
 <p>&nbsp;</p>
-@include('inventory::requisition_head._script')
+{{--@include('inventory::requisition_head._script')--}}
+
+{{ HTML::script('assets/js/custom.js')}}
+
