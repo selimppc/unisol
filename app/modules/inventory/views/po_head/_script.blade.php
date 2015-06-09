@@ -12,4 +12,16 @@ $(function() {
          });
     });
 });
+
+
+$(function(){
+    $('#discount-rate').change(function(e) {
+        e.preventDefault();
+        var $disc_rate = $('#discount-rate').val();
+        var $amount = $('#amount').val();
+        var $disc_amount = ($disc_rate * $amount) / 100;
+        $('#discount-amount').val($disc_amount);
+      });
+})
+
 </script>

@@ -23,11 +23,10 @@
                 <tr>
                     <th><input type="checkbox" id="checkbox" class="checkbox" value=""></th>
                     <th> PO NO: </th>
+                    <th> Supplier </th>
                     <th> Req NO: </th>
                     <th> Pay Terms </th>
                     <th> Delivery Date  </th>
-                    <th> Tax (%)</th>
-                    <th> Tax Amount </th>
                     <th> Dis.t Rate (%) </th>
                     <th> Disc. Amount</th>
                     <th> Amount </th>
@@ -43,11 +42,10 @@
                     <td><b>
                         {{ link_to_route($values->status!="approved" ? 'purchase-order-detail' : 'purchase-order-show', $values->purchase_no,['po_id'=>$values->id], ['data-toggle'=>"modal", 'data-target'=>"#modal-pc"]) }}
                     </b></td>
+                    <td>{{ isset($values->inv_supplier_id)? $values->relInvSupplier->company_name : ''}}</td>
                     <td>{{ isset($values->inv_requisition_head_id)? $values->relInvRequisitionHead->requisition_no : ''}}</td>
                     <td>{{ $values->pay_terms }}  </td>
                     <td>{{ $values->delivery_date }}</td>
-                    <td>{{ round($values->tax) }}</td>
-                    <td>{{ $values->tax_amount }}</td>
                     <td>{{ round($values->discount_rate) }} </td>
                     <td>{{ round($values->discount_amount, 2) }}</td>
                     <td>{{ round($values->amount, 2) }}</td>

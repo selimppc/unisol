@@ -39,8 +39,11 @@
 
 <div class='form-group'>
    {{ Form::label('discount_rate', 'Discount Rate (%)') }}
-   {{ Form::text('discount_rate', Input::old('discount_rate'),['class'=>'form-control', 'required']) }}
+   {{ Form::text('discount_rate', isset($model) ? Input::old('discount_rate'):'0',['class'=>'form-control', 'required', 'id'=>'discount-rate']) }}
 </div>
+
+{{ Form::hidden('discount_amount', Input::old('discount_amount'), ['id'=>'discount-amount']) }}
+<input type="hidden" value="{{ isset($model->amount) ? $model->amount: '0'}}" id="amount">
 
 
 {{--<div class='form-group'>
@@ -68,3 +71,4 @@
 <p>&nbsp;</p>
 @include('inventory::po_head._script')
 {{ HTML::script('assets/js/custom.js')}}
+
