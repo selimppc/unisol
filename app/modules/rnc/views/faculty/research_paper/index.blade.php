@@ -71,11 +71,11 @@
                                         <td>{{isset($value->relRnCCategory->title) ? $value->relRnCCategory->title : '' }}</td>
                                         <td>{{isset($value->relRnCPublisher->title) ? $value->relRnCPublisher->title : ''}}</td>
                                         <td>{{isset($value->publication_no) ? $value->publication_no : ''}}</td>
-                                        <td>{{isset($value->searching) ? $value->searching : ''}}</td>
+                                        <td>{{isset($value->searching) ? ucfirst($value->searching) : ''}}</td>
                                         <td>{{isset($value->benefit_share) ? $value->benefit_share : ''}} %</td>
+                                        <td>{{isset($value->free_type_faculty) ? $value->free_type_faculty : 0 }} %</td>
                                         <td>{{isset($value->price) ? $value->price : ''}}</td>
-                                        <td>{{isset($value->free_type_student) ? $value->free_type_student : 0 }} %</td>
-                                        <td>{{isset($value->status) ? $value->status : ''}}</td>
+                                        <td>{{isset($value->status) ? ucfirst($value->status) : ''}}</td>
                                         <td>{{isset($value->reviewed_by) ? $value->reviewed_by : ''}}</td>
                                         <td>{{isset($value->rnc_tCount) ? $value->rnc_tCount : 0 }} Times</td>
                                         <td>
