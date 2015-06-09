@@ -50,20 +50,25 @@
             data: { inv_grn_head_id:  inv_grn_head_id, inv_product_id: inv_product_id, batch_number: batch_number, expire_date: expire_date, unit: unit, unit_quantity: unit_quantity, receive_quantity: receive_quantity, cost_price: cost_price, row_amount: row_amount },
             success: function(response)
             {
+             if(response.msg == "Invalid"){
                 $("#grn-sub-grn-data").trigger('reset');
-                $("#response-msg").html("Saved Successfully!");
+                $("#response-msg-failed").html("Failed! Product Item already added !");
+                return false;
+             }else{
+                $("#grn-sub-grn-data").trigger('reset');
+                $("#response-msg").html("Saved Successfully! ");
 
                 var tr = "<tr>";
-                var td1 = "<td>"+response["inv_product_id"]+"</td>";
-                var td2 = "<td>"+response["inv_product_id"]+"</td>";
+                var td1 = "<td>"+response["product_code"]+"</td>";
+                var td2 = "<td>"+response["product_name"]+"</td>";
                 var td3 = "<td>"+response["expire_date"]+"</td>";
                 var td4 = "<td>"+response["receive_quantity"]+"</td>";
                 var td5 = "<td>"+response["cost_price"]+"</td>";
                 var td6 = "<td>"+response["unit"]+"</td>";
-                var td7 = "<td>"+response["row_amount"]+"</td></tr>";
-               $("#new-data").append(tr + td1 + td2 + td3 + td4 + td5 + td6 + td7);
-
-                
+                var td7 = "<td>"+response["row_amount"]+"</td>";
+                var td8 = "<td><a data-href="+response["id"]+" class='btn btn-default btn-xs delete-dt' id='delete-dt"+response["id"]+"' ><i class='fa  fa-trash-o' style='font-size: 15px;color: red'></i></a></td></tr>" ;
+               $("#new-data").append(tr + td1 + td2 + td3 + td4 + td5 + td6 + td7 + td8);
+             }
             }
         });
       });
