@@ -349,7 +349,7 @@
                                                  <td style="color:#800080">{{$values->token_number}}</td>
                                                  <td>{{$values->relCfoCategory->title}}</td>
                                                  <td>{{$values->relDepartment->title}}</td>
-                                                 <td>{{$values->created_by}}</td>
+                                                 <td>{{User::FullName(['assigned_by_user'=>$values->created_by])}}</td>
                                                  <td>{{strtoupper($values->status)}}</td>
                                                  <td>
                                                     <a href="{{ URL::route('help-desk.show',['id'=>$values->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#help-desk" style="font-size: 12px;color: darkmagenta"><span class="fa fa-eye"></span></a>
