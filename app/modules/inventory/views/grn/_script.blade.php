@@ -52,13 +52,7 @@
                 $("#grn-sub-grn-data").trigger('reset');
                 $("#response-msg").html(response);
 
-                location.reload(true);
-                response.preventDefault();
-                //window.location.reload(true);
-
-                /*var currentURL = 'create-grn' + '/' + 1 + '/' + 1;
-                window.location.href = currentURL;
-                response.preventDefault();*/
+                
             }
         });
       });
