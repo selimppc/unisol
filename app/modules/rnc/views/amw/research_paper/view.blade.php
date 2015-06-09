@@ -27,23 +27,41 @@
             </tr>
             <tr>
                 <td><b>Details:</b></td>
-                <td>{{isset($view_r_c->details) ? $view_r_c->details : ''}}</td>
+                <td>{{isset($view_r_c->details) ? ucfirst($view_r_c->details) : ''}}</td>
             </tr>
             <tr>
                 <td><b>Searching:</b></td>
-                <td>{{isset($view_r_c->searching) ? $view_r_c->searching : ''}}</td>
+                <td>{{isset($view_r_c->searching) ? ucfirst($view_r_c->searching) : ''}}</td>
             </tr>
             <tr>
-                <td><b>Benefit Share(%):</b></td>
-                <td>{{isset($view_r_c->benefit_share) ? $view_r_c->benefit_share : ''}}</td>
+                <td><b>Benefit Share:</b></td>
+                <td>{{isset($view_r_c->benefit_share) ? $view_r_c->benefit_share : ''}} %</td>
             </tr>
+
+
+            <tr>
+                <td><b>Free Type Student:</b></td>
+                <td>{{isset($view_r_c->free_type_student) ? $view_r_c->free_type_student : ''}} %</td>
+            </tr>
+
+            <tr>
+                <td><b>Free Type Faculty:</b></td>
+                <td>{{isset($view_r_c->free_type_faculty) ? $view_r_c->free_type_faculty : ''}} %</td>
+            </tr>
+
+            <tr>
+                <td><b>Free Type Non User:</b></td>
+                <td>{{isset($view_r_c->free_type_non_user) ? $view_r_c->free_type_non_user : ''}} %</td>
+            </tr>
+
+
             <tr>
                 <td><b>Price:</b></td>
                 <td>{{isset($view_r_c->price) ? $view_r_c->price : ''}}</td>
             </tr>
             <tr>
                 <td><b>Status:</b></td>
-                <td>{{isset($view_r_c->status) ? $view_r_c->status : ''}}</td>
+                <td>{{isset($view_r_c->status) ? ucfirst($view_r_c->status) : ''}}</td>
             </tr>
             <tr>
                 <td><b>Reviewed By:</b></td>

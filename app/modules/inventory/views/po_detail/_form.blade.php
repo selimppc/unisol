@@ -23,19 +23,19 @@
     <div class="col-sm-3">
         <div class='form-group'>
            {{ Form::label('invProductUnit', 'Unit Quantity') }}
-           {{ Form::text('invProductUnit', Input::old('invProductUnit'),['id'=>'product-unit']) }}
+           <input type="text" name="invProductUnit" id="product-unit" readonly class="form-control">
         </div>
     </div>
     <div class="col-sm-3">
         <div class='form-group'>
            {{ Form::label('invProductQuantity', 'P.O. Quantity') }}
-           {{ Form::text('invProductQuantity', Input::old('invProductQuantity'),['id'=>'product-quantity']) }}
+           {{ Form::text('invProductQuantity', Input::old('invProductQuantity'),['id'=>'product-quantity', 'class'=>'form-control']) }}
         </div>
     </div>
     <div class="col-sm-3">
         <div class='form-group'>
             {{ Form::label('invProductRate', 'Purchase Rate') }}
-               {{ Form::text('invProductRate', Input::old('invProductRate'),['id'=>'product-rate']) }}
+               {{ Form::text('invProductRate', Input::old('invProductRate'),['id'=>'product-rate',  'class'=>'form-control']) }}
         </div>
     </div>
 
@@ -57,6 +57,7 @@
     <th>Unit Quantity </th>
     <th>Purchase Order Quantity</th>
     <th>Purchase Rate </th>
+    <th>Amount </th>
     <th>Action</th>
     </thead>
 
@@ -73,6 +74,7 @@
             <td>{{round($value->unit)}}</td>
             <td>{{round($value->quantity)}}</td>
             <td>{{round($value->purchase_rate, 2)}}</td>
+            <td>{{round($value->amount, 2)}}</td>
             <td>
                 <a data-href="{{ $value->id }}" class="btn btn-default btn-sm delete-dt" id="delete-dt{{ $value->id }}" ><i class="fa  fa-trash-o" style="font-size: 15px;color: red"></i></a>
 

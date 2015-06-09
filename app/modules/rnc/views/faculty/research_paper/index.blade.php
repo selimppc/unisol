@@ -52,7 +52,7 @@
                                     <th>Publication No</th>
                                     <th>Searching</th>
                                     <th>Benefit Share(%)</th>
-                                    <th>Free Type Faculty %</th>
+                                    <th>Free For Faculty %</th>
                                     <th>Price</th>
                                     <th>Status</th>
                                     <th>Reviewed By</th>
@@ -67,15 +67,15 @@
                                         <td><input type="checkbox" name="id[]"  class="myCheckbox" value="{{ $value->id }}">
                                         </td>
                                         <td>{{isset($value->title) ? $value->title :'' }}</td>
-                                         <td>{{isset($value->abstract) ? $value->abstract : '' }}</td>
+                                        <td>{{isset($value->abstract) ? $value->abstract : '' }}</td>
                                         <td>{{isset($value->relRnCCategory->title) ? $value->relRnCCategory->title : '' }}</td>
                                         <td>{{isset($value->relRnCPublisher->title) ? $value->relRnCPublisher->title : ''}}</td>
                                         <td>{{isset($value->publication_no) ? $value->publication_no : ''}}</td>
-                                        <td>{{isset($value->searching) ? $value->searching : ''}}</td>
+                                        <td>{{isset($value->searching) ? ucfirst($value->searching) : ''}}</td>
                                         <td>{{isset($value->benefit_share) ? $value->benefit_share : ''}} %</td>
                                         <td>{{isset($value->free_type_faculty) ? $value->free_type_faculty : 0 }} %</td>
                                         <td>{{isset($value->price) ? $value->price : ''}}</td>
-                                        <td>{{isset($value->status) ? $value->status : ''}}</td>
+                                        <td>{{isset($value->status) ? ucfirst($value->status) : ''}}</td>
                                         <td>{{isset($value->reviewed_by) ? $value->reviewed_by : ''}}</td>
                                         <td>{{isset($value->rnc_tCount) ? $value->rnc_tCount : 0 }} Times</td>
                                         <td>
