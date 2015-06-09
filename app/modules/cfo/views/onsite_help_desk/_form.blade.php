@@ -40,7 +40,7 @@
         <div class="form-group">
           {{ Form::label('status', 'Status') }}<span class="text-danger">*</span>
           {{ Form::select('status', array('' => 'Select one',
-           'open' => 'Open', 'waiting' => 'Waiting', 'serving'=>'Serving','closed'=>'Closed','re-open'=>'Re-Open'),
+           'open' => 'Open', 'waiting' => 'Waiting', 'serving'=>'Serving','served'=>'Served','closed'=>'Closed','re-open'=>'Re-Open'),
            Input::old('board_university'),
            array('class' => 'form-control')) }}
         </div>

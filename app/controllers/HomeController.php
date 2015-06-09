@@ -6,6 +6,14 @@ use Illuminate\Support\Facades\Auth;
 class HomeController extends BaseController {
 
 
+    /*
+     * POST REQUEST
+     */
+    protected function isPostRequest()
+    {
+        return Input::server("REQUEST_METHOD") == "POST";
+    }
+
 	/*
 	|--------------------------------------------------------------------------
 	| Default Home Controller
@@ -423,5 +431,46 @@ class HomeController extends BaseController {
             return Response::json($results);
         }
     }
+
+
+
+    /*
+     * ===============================================
+     * START ::: Upload CSV data to mysql
+     * ===============================================
+     */
+
+    private function _import_csv($path, $filename)
+    {
+        $csv = $path . $filename;
+        $query = sprintf("LOAD DATA local INFILE '%s' INTO TABLE acc_chart_of_accounts FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' ESCAPED BY '\"' LINES TERMINATED BY '\\n' IGNORE 0 LINES (`account_code`, `description`, `account_type`, `account_usage`, `group_one`, `group_two`, `analytical_code` )", addslashes($csv));
+        return DB::connection()->getpdo()->exec($query);
+    }
+
+    public function uploadCsvData ()
+    {
+        if($this->isPostRequest()) {
+            if (Input::hasFile('file')) {
+                $file = Input::file('file');
+                $name = time() . '-' . $file->getClientOriginalName();
+                //check out the edit content on bottom of my answer for details on $storage
+                $storage = '/docs/';
+                $path = $storage . 'uploads/csv/';
+                // Moves file to folder on server
+                $file->move($path, $name);
+
+                // Import the moved file to DB and return OK if there were rows affected
+                return ($this->_import_csv($path, $name) ? 'Successfully uploaded !' : 'No rows affected');
+            }
+        }else{
+            return View::make('upload.upload_csv_data');
+        }
+    }
+
+     /*
+     * ===============================================
+     * CLOSE ::: Upload CSV data to mysql
+     * ===============================================
+     */
 
 }

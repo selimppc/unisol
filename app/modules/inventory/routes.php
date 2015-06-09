@@ -475,6 +475,13 @@ Route::group(['prefix' => 'inventory'], function() {
         "uses" => "InvTrnNoSetupController@master_setup"
     ]);
 
+    Route::any("create-supplier-group", [
+        "as"   => "create-supplier-group",
+        "uses" => "InvTrnNoSetupController@create_supplier_group"
+    ]);
+
+
+
 
 
 });
