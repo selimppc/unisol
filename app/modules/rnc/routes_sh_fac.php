@@ -91,12 +91,17 @@
         'uses' => 'RnCFacultyController@batchdeleteResearchPaper'
     ]);
 
-    Route::any('faculty/research-paper/download/{rnc_id}',[
+    Route::any('faculty/research-paper/download/{rnc_rp_id}',[
         'as' =>'faculty.research-paper.download',
         'uses' => 'RnCFacultyController@researchPaperDownload'
     ]);
 
-    Route::any('faculty/research-paper/read/{rnc_id}',[
+    Route::any('faculty/research-paper/purchased-download/{rnc_rp_id}',[
+        'as' =>'faculty.research-paper.purchased-download',
+        'uses' => 'RnCFacultyController@purchasedResearchPaperDownload'
+    ]);
+
+    Route::any('faculty/research-paper/read/{rnc_rp_id}',[
         'as' =>'faculty.research-paper.read',
         'uses' => 'RnCFacultyController@researchPaperRead'
     ]);
@@ -109,6 +114,36 @@
     Route::any('faculty/research-paper/save-comment',[
         'as' =>'faculty.research-paper.save-comment',
         'uses' => 'RnCFacultyController@saveComment'
+    ]);
+
+    Route::any('faculty/research-paper/add-to-cart/{rnc_rp_id}',[
+        'as' =>'faculty.research-paper.add-to-cart',
+        'uses' => 'RnCFacultyController@addRPToFacultyCart'
+    ]);
+
+    Route::any('faculty/research-paper/remove-from-cart/{id}',[
+        'as' =>'faculty.research-paper.remove-from-cart',
+        'uses' => 'RnCFacultyController@removeRPFromCart'
+    ]);
+
+    Route::any('faculty/research-paper/view-cart',[
+        'as' =>'faculty.research-paper.view-cart',
+        'uses' => 'RnCFacultyController@viewRPCart'
+    ]);
+
+    Route::any('faculty/research-paper/payment',[
+        'as' =>'faculty.research-paper.payment',
+        'uses' => 'RnCFacultyController@paymentMethodRP'
+    ]);
+
+    Route::any('faculty/research-paper/send-info-to-transaction',[
+        'as' =>'faculty.research-paper.send-info-to-transaction',
+        'uses' => 'RnCFacultyController@saveInfoToTransactionTable'
+    ]);
+
+    Route::any('faculty/research-paper/my-item',[
+        'as' =>'faculty.research-paper.my-item',
+        'uses' => 'RnCFacultyController@myRP'
     ]);
 
     //Writer . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .

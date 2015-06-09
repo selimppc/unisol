@@ -193,6 +193,13 @@ class RnCStudentController extends \BaseController {
 
     public function researchPaperDownload($rnc_rp_id)
     {
+        $model = RnCResearchPaper::find($rnc_rp_id);
+        $sample = DB::table('rnc_transaction')->where('rnc_research_paper_id', $model->id)->first()->count;
+
+        DB::table('rnc_transaction')->where('rnc_research_paper_id', $rnc_rp_id)
+            ->update(array('count' => $sample + 1));
+
+
         $download = RnCResearchPaper::find($rnc_rp_id);
         $file = $download->file;
         $path = public_path("rnc_file/" . $file);
@@ -246,7 +253,8 @@ class RnCStudentController extends \BaseController {
                     // save to lib_book_financial_transaction table
                     $f_transaction = new RnCFinancialTransaction();
                     $f_transaction->rnc_transaction_id = $transaction->id;
-                    $f_transaction->amount = $cb->price;
+                    $ultimate_price = $cb->price - ($cb->price * $cb->free_type_student)/100;
+                    $f_transaction->amount = $ultimate_price;
                     $f_transaction->transaction_type = 'full';
                     $f_transaction->status = 'paid';
                     $f_transaction->save();
@@ -267,7 +275,6 @@ class RnCStudentController extends \BaseController {
             // set if any item is not successfully added.
 
             Session::set('cartResearchPaper', $all_cart_r_p_ids);
-
             if($tr_error){
                 Session::flash('errors', implode("<br />", $tr_error));
                 return Redirect::back();
@@ -385,6 +392,11 @@ class RnCStudentController extends \BaseController {
             $model->details = Input::get('details');
             $model->searching = Input::get('searching');
             $model->benefit_share= Input::get('benefit_share');
+
+            $model->free_type_student= Input::get('free_type_student');
+            $model->free_type_faculty= Input::get('free_type_faculty');
+            $model->free_type_non_user= Input::get('free_type_non_user');
+
             $model->price = Input::get('price');
             $model->note = Input::get('note');
             $model->status = Input::get('status');
