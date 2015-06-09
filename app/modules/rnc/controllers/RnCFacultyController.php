@@ -257,7 +257,8 @@ class RnCFacultyController extends \BaseController
                     // save to lib_book_financial_transaction table
                     $f_transaction = new RnCFinancialTransaction();
                     $f_transaction->rnc_transaction_id = $transaction->id;
-                    $f_transaction->amount = $cb->price;
+                    $ultimate_price = $cb->price - ($cb->price * $cb->free_type_student)/100;
+                    $f_transaction->amount = $ultimate_price;
                     $f_transaction->transaction_type = 'full';
                     $f_transaction->status = 'paid';
                     $f_transaction->save();

@@ -253,7 +253,8 @@ class RnCStudentController extends \BaseController {
                     // save to lib_book_financial_transaction table
                     $f_transaction = new RnCFinancialTransaction();
                     $f_transaction->rnc_transaction_id = $transaction->id;
-                    $f_transaction->amount = $cb->price;
+                    $ultimate_price = $cb->price - ($cb->price * $cb->free_type_student)/100;
+                    $f_transaction->amount = $ultimate_price;
                     $f_transaction->transaction_type = 'full';
                     $f_transaction->status = 'paid';
                     $f_transaction->save();
@@ -274,7 +275,6 @@ class RnCStudentController extends \BaseController {
             // set if any item is not successfully added.
 
             Session::set('cartResearchPaper', $all_cart_r_p_ids);
-
             if($tr_error){
                 Session::flash('errors', implode("<br />", $tr_error));
                 return Redirect::back();

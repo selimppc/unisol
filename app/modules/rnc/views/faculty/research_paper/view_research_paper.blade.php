@@ -28,7 +28,9 @@
                         <tr>
                            <th><input name="id" type="checkbox" id="checkbox" class="checkbox" value=""></th>
                            <th>Research Paper Name</th>
-                           <th>Price</th>
+                           <th>Actual Price</th>
+                           <th>Discount For Faculty</th>
+                           <th>Offered Price</th>
                            <th>Action</th>
                         </tr>
                  </thead>
@@ -39,6 +41,8 @@
                                <td><input type="checkbox" name="id[]" class="myCheckbox" value=""></td>
                                <td>{{ $acrps->title }}</td>
                                <td>{{ $acrps->price }}</td>
+                               <td>{{ $acrps->free_type_faculty }} %</td>
+                               <td>{{ ($acrps->price * $acrps->free_type_faculty)/100 }}</td>
                                <td>
                                     <a href="{{ URL::route('faculty.research-paper.remove-from-cart',['id'=>$acrps->id]) }}" class="btn btn-xs btn-default"><b><i style="color: red" class="fa fa-trash-o"></i></b></a>
                                </td>
