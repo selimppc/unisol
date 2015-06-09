@@ -43,7 +43,6 @@
                                     </th>
                                     <th>Schedule</th>
                                     <th>Item</th>
-                                    <th>Batch</th>
                                     <th>Cost</th>
                                     <th>Deadline</th>
                                     <th>Fined Cost</th>
@@ -51,11 +50,33 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach($billing_setup as $value)
+                                        <tr>
+                                            <td><input type="checkbox" name="id[]"  class="myCheckbox" value="{{ $value->id }}">
+                                            </td>
+                                            <td>{{isset($value->relBillingSchedule->title) ? $value->relBillingSchedule->title :''}}</td>
 
+                                            <td>{{isset($value->relBillingItem->title) ? $value->relBillingItem->title : ''}}</td>
+
+                                            <td>{{isset($value->cost) ? $value->cost : ''}}</td>
+
+                                            <td>{{date("d-m-Y", strtotime((isset($value->deadline)) ? $value->deadline : '') ) }}</td>
+
+                                            <td>{{isset($value->fined_cost) ? $value->fined_cost : ''}}</td>
+
+                                             <td>
+                                                <a href="" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" href=""><i class="fa fa-eye" style="color: green"></i></a>
+
+                                                <a href="" class="btn btn-xs btn-default" data-toggle="modal" data-target="#editModal" href="" ><i class="fa fa-pencil-square-o" style="color: #0044cc"></i></a>
+
+                                                <a data-href="" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa  fa-trash-o" style="color:red"></i></a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
-                            {{--{{ Form::submit('Delete', array('class'=>'btn btn-xs btn-danger', 'id'=>'hide-button', 'style'=>'display:none'))}}
-                            {{ Form::close() }}--}}
+                            {{ Form::submit('Delete', array('class'=>'btn btn-xs btn-danger', 'id'=>'hide-button', 'style'=>'display:none'))}}
+                            {{ Form::close() }}
 
                         </div>
                     </div>
@@ -73,9 +94,9 @@
                     <h4 class="modal-title" style="text-align: center;color: #800080;font-size: x-large">Create Book Category</h4>
                 </div>
                 <div class="modal-body">
-                    {{ Form::open(array('url' => 'library/category/save', 'method' =>'post', 'role'=>'form','files'=>'true')) }}
+                   {{-- {{ Form::open(array('url' => 'library/category/save', 'method' =>'post', 'role'=>'form','files'=>'true')) }}
                     @include('library::librarian.category._form')
-                    {{ Form::close() }}
+                    {{ Form::close() }}--}}
                 </div>
 
             </div>

@@ -25,6 +25,7 @@
             $("#unit-id").val($.trim(tableData[3]));
             $("#unit-qty").val($.trim(tableData[4]));
             $("#max-qty").val($.trim(tableData[5]));
+            $("#available-qtys").html($.trim(tableData[5]));
             $("#cost-price").val($.trim(tableData[6]));
             $("#row-amount").val($.trim(tableData[7]));
         });
@@ -50,15 +51,19 @@
             success: function(response)
             {
                 $("#grn-sub-grn-data").trigger('reset');
-                $("#response-msg").html(response);
+                $("#response-msg").html("Saved Successfully!");
 
-                location.reload(true);
-                response.preventDefault();
-                //window.location.reload(true);
+                var tr = "<tr>";
+                var td1 = "<td>"+response["inv_product_id"]+"</td>";
+                var td2 = "<td>"+response["inv_product_id"]+"</td>";
+                var td3 = "<td>"+response["expire_date"]+"</td>";
+                var td4 = "<td>"+response["receive_quantity"]+"</td>";
+                var td5 = "<td>"+response["cost_price"]+"</td>";
+                var td6 = "<td>"+response["unit"]+"</td>";
+                var td7 = "<td>"+response["row_amount"]+"</td></tr>";
+               $("#new-data").append(tr + td1 + td2 + td3 + td4 + td5 + td6 + td7);
 
-                /*var currentURL = 'create-grn' + '/' + 1 + '/' + 1;
-                window.location.href = currentURL;
-                response.preventDefault();*/
+                
             }
         });
       });
@@ -87,7 +92,7 @@
             $('#row-amount').val(data);
             return true;
         }else{
-            alert("Receive Quantity Must be less or equal to Quantity! ")
+            alert("Receive Quantity Must be less or equal to Available Quantity! ")
             $("#rec-qty").val("");
             return false;
         }

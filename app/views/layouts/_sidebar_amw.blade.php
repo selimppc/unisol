@@ -70,7 +70,8 @@
             <i class="fa fa-angle-left pull-right"></i>
         </a>
         <ul class="treeview-menu">
-            <li><a href="{{ URL::to('fees/billing/setup') }}"></i><i class="fa  fa-bars text-red"></i> Billing Item</a></li>
+            <li><a href="{{ URL::to('fees/billing/setup') }}"></i><i class="fa  fa-bars text-red"></i> Billing Setup</a></li>
+            <li><a href="#"></i><i class="fa  fa-bars text-purple"></i> Billing History</a></li>
         </ul>
     </li>
 
