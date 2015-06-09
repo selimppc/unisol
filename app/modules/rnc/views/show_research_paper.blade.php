@@ -22,13 +22,3 @@
 
 @endif
 
-<style>
-.container img {
-    width: 4%;
-    height: 30px;
-    position: absolute;
-    right: 40px;
-    border-radius: 38%;
-}
-</style>
-

@@ -125,7 +125,205 @@ class RnCFacultyController extends \BaseController
         $rnc_category = array('' => 'Select RnC Category ') + RnCCategory::lists('title', 'id');
         $rnc_publisher = array('' => 'Select RnC Publisher') + RnCPublisher::lists('title', 'id');
         $reviewed_by = array('' => 'Select Reviewer') + User::FacultyList();
-        return View::Make('rnc::faculty.research_paper.index',compact('research_paper','rnc_category','rnc_publisher','reviewed_by'));
+
+        // new code for transaction
+        $user_id = Auth::user()->get()->id;
+        $model = new RnCResearchPaper();
+
+        $model = $model->leftJoin('rnc_transaction as rnc_t', function($query)  use($user_id){
+            $query->on('rnc_t.rnc_research_paper_id', '=', 'rnc_research_paper.id');
+            $query->where('rnc_t.user_id',  '=', $user_id);
+        });
+        $model = $model->leftJoin('rnc_financial_transaction as rnc_ft', function($query)  use($user_id){
+            $query->on('rnc_ft.rnc_transaction_id', '=', 'rnc_t.id');
+        });
+
+        $model = $model->get(array('rnc_research_paper.id as id', 'rnc_research_paper.title as title',
+            'rnc_research_paper.abstract as abstract', 'rnc_research_paper.rnc_category_id',
+            'rnc_research_paper.where_published_id', 'rnc_research_paper.publication_no',
+            'rnc_research_paper.free_type_student', 'rnc_research_paper.free_type_faculty', 'rnc_research_paper.free_type_non_user',
+            'rnc_research_paper.details','rnc_research_paper.file', 'rnc_research_paper.searching',
+            'rnc_research_paper.benefit_share', 'rnc_research_paper.price', 'rnc_research_paper.note',
+            'rnc_research_paper.status', 'rnc_research_paper.reviewed_by',
+
+            'rnc_t.user_id', 'rnc_t.rnc_research_paper_id','rnc_t.count as rnc_tCount',
+            'rnc_t.issue_date', 'rnc_t.status as rnc_tStatus',
+
+            'rnc_ft.rnc_transaction_id', 'rnc_ft.amount', 'rnc_ft.transaction_type',
+            'rnc_ft.status as rnc_ft_status'
+        ));
+
+        if (Session::get('cartResearchPaper')) {
+            $all_rnc_research_paper_ids = Session::get('cartResearchPaper');
+            $rnc_research_papers = RnCResearchPaper::with('relRnCCategory', 'relRnCPublisher')->whereIn('id', $all_rnc_research_paper_ids)->get();
+        } else {
+            $rnc_research_papers = array();
+        }
+        return View::Make('rnc::faculty.research_paper.index',
+            compact('research_paper','rnc_category','rnc_publisher','reviewed_by','rnc_research_papers','model'));
+    }
+
+    public function addRPToFacultyCart($rnc_rp_id)
+    {
+        if ($rnc_rp_id) {
+            $prev_added_r_p_id = Session::get('cartResearchPaper');
+            $all_cart_r_p_ids = array_merge(array($rnc_rp_id), (array)$prev_added_r_p_id);
+            array_unique($all_cart_r_p_ids);
+            Session::put('cartResearchPaper', $all_cart_r_p_ids);
+        }
+        return Redirect::back();
+    }
+
+    public function viewRPCart()
+    {
+        $all_cart_r_p_ids = Session::get('cartResearchPaper');
+        $all_cart_r_ps = RnCResearchPaper::with('relRnCCategory', 'relRnCPublisher')
+            ->whereIn('id', $all_cart_r_p_ids)->get();
+        $number = count($all_cart_r_ps);
+        $sum = $all_cart_r_ps->sum('price');
+        return View::make('rnc::faculty.research_paper.view_research_paper', compact('all_cart_r_p_ids', 'all_cart_r_ps', 'number', 'sum'));
+    }
+
+    public function removeRPFromCart($id)
+    {
+        $all_cart_r_p_ids = Session::get('cartResearchPaper');
+        // Remove array item by array_search
+        if (($key = array_search($id, $all_cart_r_p_ids)) !== false) {
+            unset($all_cart_r_p_ids[$key]);
+        }
+        Session::set('cartResearchPaper', $all_cart_r_p_ids);
+        return Redirect::back();
+    }
+
+    public function researchPaperDownload($rnc_rp_id)
+    {
+        $model = RnCResearchPaper::find($rnc_rp_id);
+        $sample = DB::table('rnc_transaction')->where('rnc_research_paper_id', $model->id)->first()->count;
+
+        DB::table('rnc_transaction')->where('rnc_research_paper_id', $rnc_rp_id)
+            ->update(array('count' => $sample + 1));
+
+
+        $download = RnCResearchPaper::find($rnc_rp_id);
+        $file = $download->file;
+        $path = public_path("rnc_file/" . $file);
+        $headers = array(
+            'Content-Type: application/pdf',
+        );
+        $file_name = $download->title.".".'pdf';
+        return Response::download($path, $file_name, $headers);
+    }
+
+    public function purchasedResearchPaperDownload($rnc_rp_id)
+    {
+        $model = RnCResearchPaper::find($rnc_rp_id);
+        $sample = DB::table('rnc_transaction')->where('rnc_research_paper_id', $model->id)->first()->count;
+
+        DB::table('rnc_transaction')->where('rnc_research_paper_id', $rnc_rp_id)
+            ->update(array('count' => $sample + 1));
+
+
+        $download = RnCResearchPaper::find($rnc_rp_id);
+        $file = $download->file;
+        $path = public_path("rnc_file/" . $file);
+        $headers = array(
+            'Content-Type: application/pdf',
+        );
+        $file_name = $download->title.".".'pdf';
+        return Response::download($path, $file_name, $headers);
+    }
+
+    public function saveInfoToTransactionTable()
+    {
+        $all_cart_r_p_ids = Session::get('cartResearchPaper');
+
+        $all_cart_r_ps = RnCResearchPaper::with('relRnCCategory', 'relRnCPublisher')
+            ->whereIn('id',$all_cart_r_p_ids)
+            ->get();
+
+        $tr_error = '';
+        $tr_info = '';
+        if($all_cart_r_p_ids){
+            foreach($all_cart_r_ps as $key => $cb){
+                $transaction = new RnCTransaction();
+                $transaction->user_id = Auth::user()->get()->id;
+                $transaction->rnc_research_paper_id = $cb->id;
+                $transaction->issue_date = date('d-m-y H:i:s');
+                $transaction->count = 0;
+                $transaction->status = 'received';
+
+                if ($transaction->save())
+                {
+                    // save to lib_book_financial_transaction table
+                    $f_transaction = new RnCFinancialTransaction();
+                    $f_transaction->rnc_transaction_id = $transaction->id;
+                    $f_transaction->amount = $cb->price;
+                    $f_transaction->transaction_type = 'full';
+                    $f_transaction->status = 'paid';
+                    $f_transaction->save();
+
+                    if($f_transaction->save())
+                    {
+                        $tr_info[] = 'Research Paper "'.$cb->title.'" is paid. You can download it.';
+                        if (($key = array_search($cb->id, $all_cart_r_p_ids)) !== false) {
+                            unset($all_cart_r_p_ids[$key]);
+                        }
+                    }else{
+                        $tr_error[] = 'At transaction of Research Paper "'.$cb->title.'" is done but payment is not done. So please try once again.';
+                    }
+                }else{
+                    $tr_error[] = 'Error at transaction of Research Paper "'.$cb->title.'". So please try once again.';
+                }
+            }
+            // set if any item is not successfully added.
+
+            Session::set('cartResearchPaper', $all_cart_r_p_ids);
+
+            if($tr_error){
+                Session::flash('errors', implode("<br />", $tr_error));
+                return Redirect::back();
+            }elseif($tr_info){
+                Session::flash('info', implode("<br />", $tr_info));
+                return Redirect::route('faculty.research-paper.my-item');
+            }else{
+                return Redirect::back();
+            }
+        }
+    }
+
+    public function myRP()
+    {
+        $all_cart_book_ids = Session::get('cartResearchPaper');
+
+        $all_cart_books = RnCResearchPaper::with('relRnCCategory', 'relRnCPublisher')
+            ->whereIn('id', $all_cart_book_ids)
+            ->get();
+
+        $sum = $all_cart_books->sum('price');
+
+        $my_cart_books = RnCTransaction::with('relRnCResearchPaper','relRnCFinancialTransaction')->get();
+        return View::make('rnc::faculty.research_paper.my_item',compact('all_cart_book_ids','my_cart_books','sum'));
+    }
+
+    public function paymentMethodRP()
+    {
+        $all_cart_r_p_ids = Session::get('cartResearchPaper');
+        //print_r($all_cart_r_p_ids);exit;
+        return View::make('rnc::faculty.research_paper.payment', compact('all_cart_r_p_ids'));
+    }
+
+    public function researchPaperRead($rnc_rp_id)
+    {
+        $download = RnCResearchPaper::find($rnc_rp_id);
+        $file = $download->file;
+        $path = public_path("rnc_file/" . $file);
+        $headers = array(
+            'Content-Type: application/pdf',
+        );
+        return Response::make(file_get_contents($path), 200, [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'inline; '.$file,
+        ]);
     }
 
     public function storeResearchPaper()
@@ -142,6 +340,11 @@ class RnCFacultyController extends \BaseController
             $model->details = Input::get('details');
             $model->searching = Input::get('searching');
             $model->benefit_share= Input::get('benefit_share');
+
+            $model->free_type_student= Input::get('free_type_student');
+            $model->free_type_faculty= Input::get('free_type_faculty');
+            $model->free_type_non_user= Input::get('free_type_non_user');
+
             $model->price = Input::get('price');
             $model->note = Input::get('note');
             $model->status = Input::get('status');
@@ -253,39 +456,13 @@ class RnCFacultyController extends \BaseController
         }
     }
 
-    public function researchPaperDownload($rnc_id)
+    public function researchPaperComment($rnc_r_p_id)
     {
-        $download = RnCResearchPaper::find($rnc_id);
-        $file = $download->file;
-        $path = public_path("rnc_file/" . $file);
-        $headers = array(
-            'Content-Type: application/pdf',
-        );
-        $file_name = $download->title.".".'pdf';
-        return Response::download($path, $file_name, $headers);
-    }
-
-    public function researchPaperRead($rnc_id)
-    {
-        $download = RnCResearchPaper::find($rnc_id);
-        $file = $download->file;
-        $path = public_path("rnc_file/" . $file);
-        $headers = array(
-            'Content-Type: application/pdf',
-        );
-        return Response::make(file_get_contents($path), 200, [
-            'Content-Type' => 'application/pdf',
-            'Content-Disposition' => 'inline; '.$file,
-        ]);
-    }
-
-    public function researchPaperComment($rnc_id)
-    {
-        $rnc_r_p = RnCResearchPaper::findOrFail($rnc_id);
-        $rnc_r_p_cmnt = RnCResearchPaperComment::where('rnc_research_paper_id', $rnc_id)->get();
+        $rnc_r_p = RnCResearchPaper::findOrFail($rnc_r_p_id);
+        $rnc_r_p_cmnt = RnCResearchPaperComment::where('rnc_research_paper_id', $rnc_r_p_id)->get();
         $commented_to = array('' => 'Commented To') + User::WriterNameList();
         return View::make('rnc::faculty.research_paper.rnc_research_paper_comment',
-            compact('rnc_r_p','rnc_r_p_cmnt','rnc_id','commented_to'));
+            compact('rnc_r_p','rnc_r_p_cmnt','rnc_r_p_id','commented_to'));
 
     }
 

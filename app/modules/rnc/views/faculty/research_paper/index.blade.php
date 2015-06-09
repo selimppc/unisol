@@ -6,6 +6,8 @@
     @include('layouts._sidebar_faculty')
 @stop
 @section('content')
+ @include('rnc::show_research_paper')
+
     <h2 class="page-header text-purple tab-text-margin text-center">Research and Consultancy Management</h2>
     <div class="row">
         <div class="col-md-12">
@@ -31,10 +33,6 @@
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab_1">
                         <div class="box-body table-responsive ">
-                            {{--<button type="button" class=" btn btn-xs btn-success fa fa-plus " data-toggle="modal" data-target="#add_r_n_c" >--}}
-                                {{--Add New RnC--}}
-                            {{--</button>--}}
-
                              <a class="pull-right btn btn-sm btn-info" style="margin-right: 5px"
                                 data-toggle="modal" data-target="#add"
                                 title="Add Research Paper">
@@ -54,15 +52,17 @@
                                     <th>Publication No</th>
                                     <th>Searching</th>
                                     <th>Benefit Share(%)</th>
+                                    <th>Free Type Faculty %</th>
                                     <th>Price</th>
                                     <th>Status</th>
                                     <th>Reviewed By</th>
-                                    <th>File</th>
+                                    <th>Downloaded</th>
+                                    <th>Trnsctn</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach ($research_paper as $value)
+                                @foreach ($model as $value)
                                     <tr>
                                         <td><input type="checkbox" name="id[]"  class="myCheckbox" value="{{ $value->id }}">
                                         </td>
@@ -73,23 +73,27 @@
                                         <td>{{isset($value->publication_no) ? $value->publication_no : ''}}</td>
                                         <td>{{isset($value->searching) ? $value->searching : ''}}</td>
                                         <td>{{isset($value->benefit_share) ? $value->benefit_share : ''}} %</td>
+                                        <td>{{isset($value->free_type_faculty) ? $value->free_type_faculty : 0 }} %</td>
                                         <td>{{isset($value->price) ? $value->price : ''}}</td>
                                         <td>{{isset($value->status) ? $value->status : ''}}</td>
                                         <td>{{isset($value->reviewed_by) ? $value->reviewed_by : ''}}</td>
-                                        @if($value->file==null)
-                                            <td style="color:magenta"><b>No File</b></td>
-                                        @else
-                                            <td>
-                                                <a href="{{ URL::route('faculty.research-paper.read',['book_id'=>$value->id]) }}" target="_blank"><i class="fa fa-tablet" title="Read Book"></i></a>
-                                                <a href="{{ URL::route('faculty.research-paper.download',['book_id'=>$value->id]) }}" style="color: blue" ><i class="fa fa-cloud-download" title="Download"></i></a>
-                                            </td>
-                                        @endif
+                                        <td>{{isset($value->rnc_tCount) ? $value->rnc_tCount : 0 }} Times</td>
+                                        <td>
+                                          @if($value['rnc_ft_status'] == 'paid')
+                                              <a href="{{ URL::route('faculty.research-paper.purchased-download',['rnc_rp_id'=>$value->id]) }}" class="btn btn-xs btn-default"><i class="fa fa-cloud-download " style="color: blue" title="Purchased"></i> Paid</a>
+                                              <a href="{{ URL::route('faculty.research-paper.read',['rnc_rp_id'=>$value->id]) }}" target="_blank" class="btn btn-xs btn-default"><i class="fa fa-tablet" style="color: green" title="Read Book"></i> Read</a>
+                                          @elseif($value['free_type_faculty'] == 100 )
+                                              <a href="{{ URL::route('faculty.research-paper.download',['rnc_rp_id'=>$value->id]) }}" class="btn btn-xs btn-default"><i class="fa fa-download" style="color: darkmagenta" title="Download"></i> Free</a>
+                                          @else
+                                              <a href="{{URL::route('faculty.research-paper.add-to-cart',['rnc_rp_id'=>$value->id]) }}" class="btn btn-xs btn-default" title="Add To Cart"><i class="fa fa-shopping-cart" style="color: peru" ></i></a>
+                                          @endif
+                                        </td>
                                         <td>
                                             <a href="{{ URL::route('faculty.research-paper.view', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" href=""><i class="fa fa-eye" style="color: green" title="View"></i></a>
                                             <a href="{{ URL::route('faculty.research-paper.edit', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#editModal" href="" ><i class="fa fa-pencil-square-o" style="color: #0044cc" title="Edit"></i></a>
                                             <a href="{{ URL::route('faculty.research-paper-writer.index', ['rnc_r_p_id'=>$value->id]) }}" class="btn btn-xs btn-success" >Writter</a>
                                             <a href="{{ URL::route('faculty.research-paper.comment', ['rnc_r_p_id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#commentModal" href="" ><i class="fa fa-comments" style="color: mediumpurple" title="Comemnt"></i></a>
-                                            <a data-href="{{ URL::route('faculty.research-paper.delete', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa  fa-trash-o" style="color:red" title="Delete"></i></a>
+                                            <a data-href="{{ URL::route('faculty.research-paper.delete', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa fa-trash-o" style="color:red" title="Delete"></i></a>
 
                                         </td>
                                     </tr>
@@ -106,8 +110,6 @@
             </div>
         </div>
     </div>
-
-
 
      {{--Modal add new--}}
     <div id="add" class="modal fade">
@@ -126,38 +128,43 @@
         </div>
     </div>
 
-     {{--Modal for Edit--}}
+  {{--common--}}
+  <div class="modal fade" id="book" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+          </div>
+        </div>
+  </div>
 
-    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+  {{--Modal for Edit--}}
+
+  <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog">
             <div class="modal-content">
             </div>
         </div>
-    </div>
+  </div>
 
+  {{--Modal for Comment--}}
 
-    {{--Modal for Comment--}}
-
-            <div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                    </div>
-                </div>
+  <div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
             </div>
+        </div>
+  </div>
 
+  {{--Modal for show--}}
 
-     {{--Modal for show--}}
-
-    <div class="modal fade" id="showModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+  <div class="modal fade" id="showModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
             </div>
         </div>
-    </div>
+  </div>
 
-     {{--Modal for delete--}}
-
-    <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+  {{--Modal for delete--}}
+  <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -173,7 +180,7 @@
                 </div>
             </div>
         </div>
-    </div>
+  </div>
 
 @stop
 

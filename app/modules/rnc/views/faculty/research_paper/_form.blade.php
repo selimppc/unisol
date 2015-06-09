@@ -29,6 +29,21 @@
 </div>
 
 {{--free type--}}
+<div class='form-group'>
+    <div>{{ Form::label('free_type_student', 'Free Type Student') }}</div>
+    <div>{{ Form::text('free_type_student', Input::old('free_type_student'),['class'=>'form-control','spellcheck'=> 'true']) }}</div>
+</div>
+
+<div class='form-group'>
+    <div>{{ Form::label('free_type_faculty', 'Free Type Faculty') }}</div>
+    <div>{{ Form::text('free_type_faculty', Input::old('free_type_faculty'),['class'=>'form-control','spellcheck'=> 'true']) }}</div>
+</div>
+
+<div class='form-group'>
+    <div>{{ Form::label('free_type_non_user', 'Free Type Non User ') }}</div>
+    <div>{{ Form::text('free_type_non_user', Input::old('free_type_non_user'),['class'=>'form-control','spellcheck'=> 'true']) }}</div>
+</div>
+{{-- free type--}}
 
 <div class='form-group'>
     <div>{{ Form::label('searching', 'searching') }}</div>
