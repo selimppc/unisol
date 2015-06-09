@@ -28,8 +28,8 @@ Route::group(['prefix' => 'payment'], function() {
         "uses" => "AccountPayableController@show_detail_grn"
     ]);
 
-    Route::any("details-of-grn/{grn_id}", [
-        "as"   => "details-of-grn",
+    Route::any("ap-create-invoice/{grn_id}", [
+        "as"   => "ap-create-invoice",
         "uses" => "AccountPayableController@ap_create_invoice"
     ]);
 

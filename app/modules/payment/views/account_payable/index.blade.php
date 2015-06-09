@@ -40,7 +40,7 @@
                 @foreach($data as $values)
                  <tr style="{{$values->status=='invoiced' ? 'background-color: burlywood' : '' }}">
                     <td><b>
-                        {{ link_to_route($values->status!="invoiced" ?'details-of-grn' : 'details-of-grn',$values->id,['req_id'=>$values->id], ['data-toggle'=>"modal", 'data-target'=>"#modal-pc"]) }}
+                        {{ link_to_route($values->status!="invoiced" ?'details-of-grn' : 'details-of-grn',$values->grn_no,['req_id'=>$values->id], ['data-toggle'=>"modal", 'data-target'=>"#modal-pc"]) }}
                     </b></td>
                     <td> {{ $values->date }}</td>
                     <td>{{isset($values->inv_supplier_id) ? Str::title($values->relInvSupplier->company_name) : ''}}</td>
@@ -51,13 +51,13 @@
                     <td>{{ $values->net_amount }}  </td>
                     <td>{{Str::title($values->status)}}</td>
 
-                    <td>@if($values->status != 'invoiced')
-                            <a href="{{ URL::route('details-of-grn', ['grn_id'=>$values->id ])  }}" class="btn btn-default btn-xs" title="Manage Applicant" data-toggle="modal" data-target="#modal-pc"><span class="fa fa-pencil"></span> + Invoice</a>
+                    <td>@if($values->status != 'Invoiced')
+                            <a href="{{ URL::route('ap-create-invoice', ['grn_id'=>$values->id ])  }}" class="btn btn-default btn-xs" title="Create Invoice"><span class="fa fa-pencil"></span> + Invoice</a>
                             @endif
                     </td>
                     <td>
-                        @if($values->status != 'invoiced')
-                            <a href="{{ URL::route('create/purchase-order', ['req_id'=>$values->id, 'user_id'=>1 ]) }}" class="btn btn-xs btn-default" ><i class="fa fa-adjust" style="color: darkslategray" data-toggle="tooltip" data-placement="bottom" title="Create PO"></i> + VAT</a>
+                        @if($values->status != 'Invoiced')
+                            <a href="{{ URL::route('create/purchase-order', ['req_id'=>$values->id, 'user_id'=>1 ]) }}" class="btn btn-xs btn-default" ><i class="fa fa-adjust" style="color: darkslategray" data-toggle="tooltip" data-placement="bottom" title="Add VAT"></i> + VAT</a>
                         @endif
                     </td>
 
