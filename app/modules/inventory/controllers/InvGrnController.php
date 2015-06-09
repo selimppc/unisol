@@ -56,9 +56,18 @@ class InvGrnController extends \BaseController {
             if ($model->validate($data)) {
                 DB::beginTransaction();
                 try {
-                    $model->create($data);
+                    $data = $model->create($data);
                     DB::commit();
-                    return Response::json("<span style='font-size: 18px; color: green'> GRN saved Successfully ! </span> ");
+                    /*return Response::json("<span style='font-size: 18px; color: green'> GRN saved Successfully ! </span> ");*/
+                    $results = [
+                        'inv_product_id' => $data->inv_product_id,
+                        'expire_date' => $data->expire_date,
+                        'receive_quantity' => $data->receive_quantity,
+                        'cost_price' => $data->cost_price,
+                        'unit' => $data->unit,
+                        'row_amount' => $data->row_amount,
+                    ];
+                    return Response::json($results);
                 } catch (Exception $e) {
                     print_r($e->getMessage());exit;
                     //If there are any exceptions, rollback the transaction`
