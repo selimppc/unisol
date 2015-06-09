@@ -6,7 +6,7 @@
      @include('layouts._sidebar_student')
 @stop
 @section('content')
- <h3>My R P</h3>
+ <h3>My Purchased Item</h3>
  <br>
  <div class="row">
     <div class="col-md-12 ">
@@ -24,6 +24,7 @@
                            <th>Issue Date</th>
                            <th>Transaction Type</th>
                            <th>Status</th>
+                           <th>Number of Download</th>
                            <th>Price</th>
                            <th>Action</th>
                         </tr>
@@ -38,22 +39,20 @@
                                <td>{{ $mcrps->issue_date }}</td>
                                <td>{{ $mcrps->relRnCFinancialTransaction->transaction_type }}</td>
                                <td>{{ $mcrps->relRnCFinancialTransaction->status }}</td>
+                               <td>{{ $mcrps->count }}</td>
                                <td>{{ $mcrps->relRnCFinancialTransaction->amount }}</td>
                                <td>
-                                        @if($mcrps->relRnCFinancialTransaction->status == "paid")
-                                            <a href="{{ URL::route('student.research-paper.purchased-download',['rnc_rp_id'=>$mcrps->relRnCResearchPaper->id]) }}" class="btn btn-xs btn-default"><i class="fa fa-cloud-download " style="color: blue" title="Purchased"></i> Download</a>
-                                        @else
-                                            <a href="{{ URL::route('student.research-paper.payment') }}" class="btn btn-large btn-warning pull-right" ><i class="fa fa-mail-reply"></i>Payment Due</a>
-                                        @endif
+                                    @if($mcrps->relRnCFinancialTransaction->status == "paid")
+                                        <a href="{{ URL::route('student.research-paper.purchased-download',['rnc_rp_id'=>$mcrps->relRnCResearchPaper->id]) }}" class="btn btn-xs btn-default" id="myForm"><i class="fa fa-cloud-download" style="color: blue" title="Purchased"></i> Paid</a>
+                                    @else
+                                        <a href="{{ URL::route('student.research-paper.payment') }}" class="btn btn-large btn-warning pull-right" ><i class="fa fa-mail-reply"></i>Payment Due</a>
+                                    @endif
                                </td>
                            </tr>
                          @endforeach
                      @endif
                  </tbody>
               </table>
-
-              Total price : {{ $sum }}
-
            <p>&nbsp;</p>
        </div>
     </div>
@@ -67,6 +66,12 @@
          </div>
        </div>
   </div>
+
+  <script>
+      $('#myForm').submit(function() {
+          location.reload(true);
+      });
+  </script>
 
 
  @stop

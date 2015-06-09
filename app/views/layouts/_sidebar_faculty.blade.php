@@ -63,6 +63,7 @@
         <ul class="treeview-menu">
             <li><a href="{{ URL::to('rnc/faculty/config/index') }}"></i><i class="fa fa-cogs" style="color: #c69bff"></i>Config</a></li>
             <li><a href="{{ URL::to('rnc/faculty/research-paper/index') }}"></i><i class="fa fa-fire-extinguisher" style="color: rgb(219, 94, 17)"></i>Research Paper</a></li>
+            <li><a href="{{ URL::to('rnc/faculty/research-paper/my-item') }}"></i><i class="fa fa-check-square" style="color: rgb(7, 219, 205)"></i>My Item</a></li>
 
         </ul>
     </li>
