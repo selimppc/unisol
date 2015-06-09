@@ -42,7 +42,7 @@
                                <td>{{ $acrps->title }}</td>
                                <td>{{ $acrps->price }}</td>
                                <td>{{ $acrps->free_type_faculty }} %</td>
-                               <td>{{ ($acrps->price * $acrps->free_type_faculty)/100 }}</td>
+                               <td>{{ $acrps->price - (($acrps->price * $acrps->free_type_student)/100) }}</td>
                                <td>
                                     <a href="{{ URL::route('faculty.research-paper.remove-from-cart',['id'=>$acrps->id]) }}" class="btn btn-xs btn-default"><b><i style="color: red" class="fa fa-trash-o"></i></b></a>
                                </td>

@@ -363,6 +363,11 @@ class RnCAmwController extends \BaseController
             $model->details = Input::get('details');
             $model->searching = Input::get('searching');
             $model->benefit_share= Input::get('benefit_share');
+
+            $model->free_type_student= Input::get('free_type_student');
+            $model->free_type_faculty= Input::get('free_type_faculty');
+            $model->free_type_non_user= Input::get('free_type_non_user');
+
             $model->price = Input::get('price');
             $model->note = Input::get('note');
             $model->status = Input::get('status');

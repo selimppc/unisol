@@ -16,7 +16,7 @@
                     </tr>
                     <tr>
                         <td>Status :</td>
-                        <td>{{$rnc_r_p->status}}</td>
+                         <td>{{ ucfirst($rnc_r_p->status) }}</td>
                     </tr>
 
                 </table>
