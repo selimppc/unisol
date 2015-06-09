@@ -27,9 +27,16 @@ class UserController extends \BaseController {
                     Session::put('user_id', Auth::applicant()->get()->id);
                     Session::put('username', Auth::applicant()->get()->username);
                     $this->applicantLastVisit(Auth::applicant()->get()->id);
-                    //return Redirect::to("user/profile");
-                    //return Redirect::route('admission.applicant_details', [Auth::applicant()->get()->id]);
-                    return Redirect::to("user/user-access-to");
+                    if(Session::has('applicantRedirect')){
+                        $redirect_url = Session::get('applicantRedirect');
+
+                        // Now forget these data as applicant is logged in.
+                        Session::forget('applicantRedirect');
+                        Session::forget('applicantDegIds');
+                        return Redirect::to($redirect_url);
+                    }else{
+                        return Redirect::to("user/user-access-to");
+                    }
                 }
                 return Redirect::back()->withErrors([
                     "password" => ["Username / Password invalid."]
@@ -43,7 +50,7 @@ class UserController extends \BaseController {
             if(Auth::user()->check()){
                 return Redirect::to("user/user-access-to");
             }elseif(Auth::applicant()->check()){
-                return Redirect::route('admission.applicant_details', [Auth::applicant()->get()->id]);
+                return Redirect::route('applicant.details', [Auth::applicant()->get()->id]);
             }
             return View::make('user::user.login');
         }
