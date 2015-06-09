@@ -33,10 +33,6 @@
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab_1">
                         <div class="box-body table-responsive ">
-                            {{--<button type="button" class=" btn btn-xs btn-success fa fa-plus " data-toggle="modal" data-target="#add_r_n_c" >--}}
-                                {{--Add New RnC--}}
-                            {{--</button>--}}
-
                              <a class="pull-right btn btn-sm btn-info" style="margin-right: 5px"
                                 data-toggle="modal" data-target="#add"
                                 title="Add Research Paper">
@@ -80,10 +76,7 @@
                                         <td>{{isset($value->status) ? $value->status : ''}}</td>
                                         <td>{{isset($value->reviewed_by) ? $value->reviewed_by : ''}}</td>
                                         <td>{{isset($value->rnc_tCount) ? $value->rnc_tCount : 0 }} Times</td>
-
-                                        {{--trnsctn  --}}
                                         <td>
-
                                           @if($value['rnc_ft_status'] == 'paid')
                                               <a href="{{ URL::route('student.research-paper.purchased-download',['rnc_rp_id'=>$value->id]) }}" class="btn btn-xs btn-default"><i class="fa fa-cloud-download " style="color: blue" title="Purchased"></i> Purchased</a>
                                               <a href="{{ URL::route('student.research-paper.read',['rnc_rp_id'=>$value->id]) }}" target="_blank" class="btn btn-xs btn-default"><i class="fa fa-tablet" style="color: darkslategray" title="Read Book"></i> Read</a>
@@ -92,11 +85,7 @@
                                           @else
                                               <a href="{{URL::route('student.research-paper.add-to-cart',['rnc_rp_id'=>$value->id]) }}" class="btn btn-xs btn-default" title="Add To Cart"><i class="fa fa-shopping-cart" style="color: peru" ></i></a>
                                           @endif
-
                                         </td>
-
-                                          {{--action--}}
-
                                         <td>
                                             <a href="{{ URL::route('student.research-paper.view', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" href=""><i class="fa fa-eye" style="color: green" title="View"></i></a>
                                             <a href="{{ URL::route('student.research-paper.edit', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#editModal" href="" ><i class="fa fa-pencil-square-o" style="color: #0044cc" title="Edit"></i></a>
@@ -120,8 +109,6 @@
         </div>
     </div>
 
-
-
      {{--Modal add new--}}
     <div id="add" class="modal fade">
         <div class="modal-dialog" aria-hidden="true" data-keyboard="false" data-backdrop="static">
@@ -139,12 +126,10 @@
         </div>
     </div>
 
-
   {{--common--}}
   <div class="modal fade" id="book" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
-
           </div>
         </div>
   </div>
@@ -167,7 +152,6 @@
         </div>
   </div>
 
-
   {{--Modal for show--}}
 
   <div class="modal fade" id="showModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
@@ -177,8 +161,7 @@
         </div>
   </div>
 
-     {{--Modal for delete--}}
-
+  {{--Modal for delete--}}
   <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog">
             <div class="modal-content">

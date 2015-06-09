@@ -41,12 +41,10 @@
                                <td>{{ $mcrps->relRnCFinancialTransaction->amount }}</td>
                                <td>
                                         @if($mcrps->relRnCFinancialTransaction->status == "paid")
-                                                <a href="{{ URL::route('student.research-paper.download',['rnc_rp_id'=>$mcrps->relRnCResearchPaper->id]) }}" class="btn btn-large btn-success pull-right" ><i class="fa fa-download"></i>Download</a>
-                                                {{--<a href="{{ URL::route('student.research-paper.purchased-download',['rnc_rp_id'=>$mcrps->relRnCResearchPaper->id]) }}" class="btn btn-xs btn-default"><i class="fa fa-cloud-download " style="color: blue" title="Purchased"></i>Download</a>--}}
+                                            <a href="{{ URL::route('student.research-paper.purchased-download',['rnc_rp_id'=>$mcrps->relRnCResearchPaper->id]) }}" class="btn btn-xs btn-default"><i class="fa fa-cloud-download " style="color: blue" title="Purchased"></i> Download</a>
                                         @else
-                                               <a href="{{ URL::route('student.research-paper.payment') }}" class="btn btn-large btn-warning pull-right" ><i class="fa fa-mail-reply"></i>Payment Due</a>
+                                            <a href="{{ URL::route('student.research-paper.payment') }}" class="btn btn-large btn-warning pull-right" ><i class="fa fa-mail-reply"></i>Payment Due</a>
                                         @endif
-                                    <a href="{{ URL::route('student.remove-from-cart',['id'=>$mcrps->id]) }}" class="btn btn-large btn-success" ><b><i class="fa fa-download"></i>Remove from Cart</b></a>
                                </td>
                            </tr>
                          @endforeach
