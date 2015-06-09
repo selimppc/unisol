@@ -43,7 +43,7 @@
            <input type="hidden" value="" id="max-qty">
         </div>
         <div class='form-group'>
-           {{ Form::label('receive_quantity', 'Receive Quantity') }}
+           {{ Form::label('receive_quantity', 'Receive Quantity') }} (Available Quantity : <b><span id="available-qtys" style="color: orangered"></span></b>)
            {{ Form::text('receive_quantity', Input::old('receive_quantity'),['id'=>'rec-qty','class'=>'form-control', 'required']) }}
         </div>
         <div class='form-group'>
@@ -106,6 +106,7 @@
                         <th> Row Amt </th>
                         <th> Action </th>
                     </thead>
+                    <tbody id="new-data"></tbody>
                     <tbody>
                     @foreach($grn_dt as $key => $value)
                         <tr id="new_area_id">
