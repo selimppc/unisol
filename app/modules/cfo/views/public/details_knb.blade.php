@@ -11,22 +11,6 @@
 {{ HTML::script('assets/etsb/etsb_js/jquery/jquery.min.js')}}
 {{ HTML::script('assets/etsb/etsb_js/jquery-ui/jquery-ui.min.js')}}
 
-<script>
-    $(function() {
-        $('.ratings_stars').hover(
-                // Handles the mouseover
-                function (e) {
-                    $(this).prevAll().andSelf().addClass('ratings_over');
-                    $(this).nextAll().removeClass('ratings_vote');
-                },
-                // Handles the mouseout
-                function (e) {
-                    $(this).prevAll().andSelf().removeClass('ratings_over');
-                    set_votes($(this).parent());
-                }
-        );
-    });
-</script>
 <h4><b>Knowledge Base : <em style="font-size: medium;color: #0490a6">{{$title}}</em></b> </h4>
 
 <div class="row">
@@ -61,7 +45,65 @@
    </div>
 </div>
 
+<script>
+    $(function() {
+        $('.ratings_stars').hover(
+                // Handles the mouseover
+                function (e) {
+                    $(this).prevAll().andSelf().addClass('ratings_over');
+                    $(this).nextAll().removeClass('ratings_vote');
+                },
+                // Handles the mouseout
+                function (e) {
+                    $(this).prevAll().andSelf().removeClass('ratings_over');
+                    //set_votes($(this).parent());
+                }
+        );
 
+        $( '.rate_kb').click(function(e) {
+            e.preventDefault();
+            //var keyword = $('#search_knowledge_base').val();
+            $.ajax({
+                url: '/cfo/ajax/knowledgebase/rating',
+                type: 'POST',
+                dataType: 'json',
+                //data: { keyword:  keyword },
+                success: function(response)
+                {
+                    alert('PPP');
+                }
+            });
+        });
+
+        /*$('.rate_kb').each(function(i) {
+            var widget = this;
+            var out_data = {
+                widget_id : $(widget).attr('id'),
+                fetch: 1
+            };
+            $.post( alert('fsdsdf'),
+                    'ajax.knowledgebase.rating',
+                    out_data,
+                    function(INFO) {
+                        $(widget).data( 'fsr', INFO );
+                        //set_votes(widget);
+                    },
+                    'json'
+            );
+        });*/
+
+        function set_votes(widget) {
+
+            var avg = $(widget).data('fsr').whole_avg;
+            var votes = $(widget).data('fsr').number_votes;
+            var exact = $(widget).data('fsr').dec_avg;
+
+            $(widget).find('.star_' + avg).prevAll().andSelf().addClass('ratings_vote');
+            $(widget).find('.star_' + avg).nextAll().removeClass('ratings_vote');
+            $(widget).find('.total_votes').text( votes + ' votes recorded (' + exact + ' rating)' );
+        }
+    });
+</script>
 
 <style>
     .rate_kb {
