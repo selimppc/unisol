@@ -218,7 +218,6 @@ class RnCStudentController extends \BaseController {
         DB::table('rnc_transaction')->where('rnc_research_paper_id', $rnc_rp_id)
             ->update(array('count' => $sample + 1));
 
-
         $download = RnCResearchPaper::find($rnc_rp_id);
         $file = $download->file;
         $path = public_path("rnc_file/" . $file);
@@ -273,7 +272,6 @@ class RnCStudentController extends \BaseController {
                 }
             }
             // set if any item is not successfully added.
-
             Session::set('cartResearchPaper', $all_cart_r_p_ids);
             if($tr_error){
                 Session::flash('errors', implode("<br />", $tr_error));
@@ -289,22 +287,16 @@ class RnCStudentController extends \BaseController {
 
     public function myRP()
     {
-        $all_cart_book_ids = Session::get('cartResearchPaper');
-
-        $all_cart_books = RnCResearchPaper::with('relRnCCategory', 'relRnCPublisher')
-            ->whereIn('id', $all_cart_book_ids)
+        $my_cart_books = RnCTransaction::with('relRnCResearchPaper','relRnCFinancialTransaction')
+            ->where('user_id', Auth::user()->get()->id)
             ->get();
 
-        $sum = $all_cart_books->sum('price');
-
-        $my_cart_books = RnCTransaction::with('relRnCResearchPaper','relRnCFinancialTransaction')->get();
         return View::make('rnc::student.research_paper.my_item',compact('all_cart_book_ids','my_cart_books','sum'));
     }
 
     public function paymentMethodRP()
     {
         $all_cart_r_p_ids = Session::get('cartResearchPaper');
-        //print_r($all_cart_r_p_ids);exit;
         return View::make('rnc::student.research_paper.payment', compact('all_cart_r_p_ids'));
     }
 
@@ -459,7 +451,6 @@ class RnCStudentController extends \BaseController {
         $commented_to = array('' => 'Commented To') + User::WriterNameList();
         return View::make('rnc::student.research_paper.rnc_research_paper_comment',
             compact('rnc_r_p','rnc_r_p_cmnt','rnc_r_p_id','commented_to'));
-
     }
 
     public function saveComment()
@@ -491,7 +482,6 @@ class RnCStudentController extends \BaseController {
         //$rnc_r_p_writer_user = Auth::user()->get()->id;
         return View::make('rnc::student.research_paper_writer.index', compact('rnc_r_p_writer','rnc_r_p_id','rnc_r_p_writer_user'));
     }
-
 
     // AJax Writer Name Search
     // first one
@@ -561,7 +551,6 @@ class RnCStudentController extends \BaseController {
     public function updateRnCWriter($id)
     {
         $data = Input::all();
-        //print_r($data);exit;
         $rnc_r_p_writer_update = RnCResearchPaperWriter::find($id);
         if($rnc_r_p_writer_update->validate($data))
         {
@@ -622,7 +611,6 @@ class RnCStudentController extends \BaseController {
             ->get();
 
         $rp_benefit_share = RnCResearchPaper::where('id' ,'=', $rnc_r_p_id)->first()->benefit_share;
-        //$total = DB::table('rnc_writer_beneficial')->where('rnc_research_paper_id' ,'=', $rnc_r_p_id)->sum('value');
         $total = DB::table('rnc_writer_beneficial')->where('rnc_research_paper_writer_id' ,'=', $w_id)->sum('value');
         $cal_benefit_share = $rp_benefit_share + $total ;
 
@@ -633,6 +621,7 @@ class RnCStudentController extends \BaseController {
     public function storeRnCBeneficial()
     {
         $data = Input::all();
+
         $rnc_r_p_beneficial_store = new RnCWriterBeneficial();
         if($rnc_r_p_beneficial_store->validate($data))
         {
@@ -676,6 +665,7 @@ class RnCStudentController extends \BaseController {
     public function updateRnCBeneficial($id)
     {
         $data = Input::all();
+
         $rnc_r_p_beneficial_update = RnCWriterBeneficial::find($id);
         if($rnc_r_p_beneficial_update->validate($data))
         {
@@ -724,5 +714,4 @@ class RnCStudentController extends \BaseController {
             return Redirect::back()->with('error', 'Invalid Delete Process ! Beneficial Name has been using in other DB Table.At first Delete Data from there then come here again. Thank You !!!');
         }
     }
-
 }

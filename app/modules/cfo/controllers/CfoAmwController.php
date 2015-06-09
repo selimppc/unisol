@@ -2,15 +2,17 @@
 
 class CfoAmwController extends \BaseController {
 
-    function __construct() {
-        $this->beforeFilter('cfo', array('except' => array('indexHelpDesk')));
-    }
+//    function __construct() {
+//        $this->beforeFilter('cfo', array('except' => array('indexHelpDesk')));
+//    }
     protected function isPostRequest()
     {
         return Input::server("REQUEST_METHOD") == "POST";
     }
 
-//CFO Onsite Help-Desk
+    /*
+    ** Onsite-Help-Desk.............
+    */
 
     public function indexHelpDesk(){
 
@@ -21,7 +23,7 @@ class CfoAmwController extends \BaseController {
         $status_srvd = CfoOnsiteHelpDesk::where('status','=','served')->get();
         $srving = CfoOnsiteHelpDesk::where('status','=','serving')->get();
         $closed_status = CfoOnsiteHelpDesk::where('status','=','closed')->get();
-        //my desk...
+        /*my desk...*/
         $self_desk = CfoOnsiteHelpDesk::with('relDepartment','relUser','relCfoCategory')->where('specific_user_id','=', Auth::user()->get()->id)->paginate(10);
         $assigned_user = User::with('relUserProfile')->where('id','=', Auth::user()->get()->id)->first();
 
@@ -135,4 +137,5 @@ class CfoAmwController extends \BaseController {
             return Redirect::back()->with('danger', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
         }
     }
+
 }
