@@ -204,7 +204,7 @@ Route::group(['prefix' => 'inventory'], function() {
         "uses" => "InvPurchaseOrderController@index_purchase_order"
     ]);
 
-    Route::post("purchase-order-store", [
+    Route::any("purchase-order-store", [
         "as"   => "purchase-order-store",
         "uses" => "InvPurchaseOrderController@store_purchase_order"
     ]);

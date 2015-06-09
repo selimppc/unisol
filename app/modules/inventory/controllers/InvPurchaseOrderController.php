@@ -39,12 +39,25 @@ class InvPurchaseOrderController extends \BaseController {
     public function store_purchase_order()
     {
         if($this->isPostRequest()){
+            $po_no = InvTrnNoSetup::where('title', '=', "Purchase Order")
+                ->select(DB::raw('CONCAT (code, LPAD(last_number + 1, 8, 0)) as number'))
+                ->first()->number;
             $input_data = Input::all();
+            $inp_data = [
+                'purchase_no' => $po_no,
+                'inv_supplier_id' => $input_data['inv_supplier_id'],
+                'pay_terms' => $input_data['pay_terms'],
+                'delivery_date' => $input_data['delivery_date'],
+                'discount_rate' => $input_data['discount_rate'],
+                'status'=> "open",
+            ];
             $model = new InvPurchaseOrderHead();
-            if($model->validate($input_data)) {
+            if($model->validate($inp_data)) {
                 DB::beginTransaction();
                 try {
-                    $model->create($input_data);
+                    $model->create($inp_data);
+                    DB::table('inv_trn_no_setup')->where('title', '=', "Purchase Order")
+                        ->update(array('last_number' => substr($po_no,4)));
                     DB::commit();
                     Session::flash('message', 'Success !');
                 }catch (Exception $e) {
@@ -53,8 +66,12 @@ class InvPurchaseOrderController extends \BaseController {
                     Session::flash('danger', 'Failed !');
                 }
             }
+            return Redirect::back();
+        }else{
+            $supplier_lists = InvSupplier::lists('company_name', 'id');
+            return View::make('inventory::po_head.create', compact('supplier_lists'));
         }
-        return Redirect::back();
+
 
     }
 
