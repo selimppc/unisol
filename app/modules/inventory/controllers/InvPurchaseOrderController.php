@@ -222,6 +222,7 @@ class InvPurchaseOrderController extends \BaseController {
                 'unit'=> Input::get('unit')[$i],
                 'quantity'=> Input::get('quantity')[$i],
                 'purchase_rate'=> Input::get('rate')[$i],
+                'amount' => Input::get('quantity')[$i] * Input::get('rate')[$i],
             ];
         }
         $model = new InvPurchaseOrderDetail();
