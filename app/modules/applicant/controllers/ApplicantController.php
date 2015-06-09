@@ -121,7 +121,7 @@ class ApplicantController extends \BaseController
             }
         }
         else {
-            Session::flash('danger', "Please Login As Applicant!");
+            Session::flash('danger', "Please Login As Applicant!  Or if not registered applicant then go <a href='/applicant/signup'>signup from here</a>");
             return Redirect::route('user/login');
         }
     }
@@ -137,7 +137,7 @@ class ApplicantController extends \BaseController
             return View::make('applicant::applicant.user_account_index', compact('account','applicant'));
         }
         else {
-            Session::flash('danger', "Please Login As Applicant!");
+            Session::flash('danger', "Please Login As Applicant!  Or if not registered applicant then go <a href='/applicant/signup'>signup from here</a>");
             return Redirect::route('user/login');
         }
     }
@@ -187,7 +187,7 @@ class ApplicantController extends \BaseController
             }
             }
         else {
-            Session::flash('danger', "Please Login As Applicant!");
+            Session::flash('danger', "Please Login As Applicant!  Or if not registered applicant then go <a href='/applicant/signup'>signup from here</a>");
             return Redirect::route('user/login');
         }
     }
@@ -204,7 +204,7 @@ class ApplicantController extends \BaseController
             return View::make('applicant::applicant_profile.index', compact('profile', 'countryList'));
         }
         else {
-            Session::flash('danger', "Please Login As Applicant!");
+            Session::flash('danger', "Please Login As Applicant!  Or if not registered applicant then go <a href='/applicant/signup'>signup from here</a>");
             return Redirect::route('user/login');
         }
 
@@ -253,7 +253,7 @@ class ApplicantController extends \BaseController
             }
         }
         else {
-            Session::flash('danger', "Please Login As Applicant!");
+            Session::flash('danger', "Please Login As Applicant!  Or if not registered applicant then go <a href='/applicant/signup'>signup from here</a>");
             return Redirect::route('user/login');
         }
     }
@@ -310,7 +310,7 @@ class ApplicantController extends \BaseController
             }
         }
         else {
-            Session::flash('danger', "Please Login As Applicant!");
+            Session::flash('danger', "Please Login As Applicant!  Or if not registered applicant then go <a href='/applicant/signup'>signup from here</a>");
             return Redirect::route('user/login');
         }
     }
@@ -364,7 +364,7 @@ class ApplicantController extends \BaseController
             return View::make('applicant::apt_academic_records.index', compact('model','applicant'));
         }
         else {
-            Session::flash('danger', "Please Login As Applicant!");
+            Session::flash('danger', "Please Login As Applicant!  Or if not registered applicant then go <a href='/applicant/signup'>signup from here</a>");
             return Redirect::route('user/login');
         }
     }
@@ -490,7 +490,7 @@ class ApplicantController extends \BaseController
             return View::make('applicant::applicant_personal_info.index',compact('applicant_personal_info','applicant'));
         }
         else {
-            Session::flash('danger', "Please Login As Applicant!");
+            Session::flash('danger', "Please Login As Applicant!  Or if not registered applicant then go <a href='/applicant/signup'>signup from here</a>");
             return Redirect::route('user/login');
         }
 
@@ -661,7 +661,7 @@ class ApplicantController extends \BaseController
             return View::make('applicant::applicant_supporting_docs.index', compact('supporting_docs', 'doc_type'));
         }
         else {
-            Session::flash('danger', "Please Login As Applicant!");
+            Session::flash('danger', "Please Login As Applicant!  Or if not registered applicant then go <a href='/applicant/signup'>signup from here</a>");
             return Redirect::route('user/login');
         }
 
@@ -709,7 +709,7 @@ class ApplicantController extends \BaseController
             return View::make('applicant::extra_curricular.index', compact('data','datas'));
         }
         else {
-            Session::flash('danger', "Please Login As Applicant!");
+            Session::flash('danger', "Please Login As Applicant!  Or if not registered applicant then go <a href='/applicant/signup'>signup from here</a>");
             return Redirect::route('user/login');
         }
 
@@ -838,7 +838,7 @@ class ApplicantController extends \BaseController
             return View::make('applicant::applicant_miscellaneous_info.index',compact('data','applicant'));
         }
         else {
-            Session::flash('danger', "Please Login As Applicant!");
+            Session::flash('danger', "Please Login As Applicant!  Or if not registered applicant then go <a href='/applicant/signup'>signup from here</a>");
             return Redirect::route('user/login');
         }
 
@@ -952,7 +952,7 @@ class ApplicantController extends \BaseController
         } else {
             Auth::logout();
             Session::flush(); //delete the session
-            Session::flash('danger', "Please Login As Applicant!");
+            Session::flash('danger', "Please Login As Applicant!  Or if not registered applicant then go <a href='/applicant/signup'>signup from here</a>");
             return Redirect::route('user/login');
         }
     }
@@ -1072,7 +1072,7 @@ class ApplicantController extends \BaseController
             return View::make('applicant::admission_test.index',compact('data','applicant'));
         }
         else {
-            Session::flash('danger', "Please Login As Applicant!");
+            Session::flash('danger', "Please Login As Applicant!  Or if not registered applicant then go <a href='/applicant/signup'>signup from here</a>");
             return Redirect::route('user/login');
         }
 
