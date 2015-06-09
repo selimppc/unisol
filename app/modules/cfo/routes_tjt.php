@@ -100,6 +100,11 @@ Route::any('support-head/create',[
     'uses' => 'CfoController@createSupportHead'
 ]);
 
+Route::any('support-head/store',[
+    'as' =>'support-head.store',
+    'uses' => 'CfoController@storeSupportHead'
+]);
+
 //Onsite-help-desk
 Route::any('help-desk',[
     'as' =>'help-desk',

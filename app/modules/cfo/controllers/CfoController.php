@@ -256,8 +256,37 @@ class CfoController extends \BaseController {
 
     public function createSupportHead(){
         $check_radio = Input::get('radio');
-        print_r($check_radio);exit;
-        return View::make('cfo::support_head._form');
+        print_r($check_radio);
+        return View::make('cfo::support_head._form',compact('check_radio'));
+    }
+
+    public function storeSupportHead(){
+
+        $data = Input::all();
+        print_r($data);exit;
+        $model = new CfoSupportHead();
+//        $model->cfo_category_id =  Input::get('cfo_category_id');
+
+        if($model->validate($data))
+        {
+            DB::beginTransaction();
+            try {
+                $model->create($data);
+                DB::commit();
+                Session::flash('message', "  Added");
+            }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', " not added.Invalid Request!");
+            }
+            return Redirect::back();
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()
+                ->with('errors', 'invalid');
+        }
     }
 
 }
