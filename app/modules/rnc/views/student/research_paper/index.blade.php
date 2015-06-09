@@ -53,6 +53,7 @@
                                     <th>Searching</th>
                                     <th>Benefit Share(%)</th>
                                     <th>Price</th>
+                                    <th>Discount</th>
                                     <th>Status</th>
                                     <th>Reviewed By</th>
                                     <th>Downloaded</th>
@@ -66,22 +67,23 @@
                                         <td><input type="checkbox" name="id[]"  class="myCheckbox" value="{{ $value->id }}">
                                         </td>
                                         <td>{{isset($value->title) ? $value->title :'' }}</td>
-                                         <td>{{isset($value->abstract) ? $value->abstract : '' }}</td>
+                                        <td>{{isset($value->abstract) ? $value->abstract : '' }}</td>
                                         <td>{{isset($value->relRnCCategory->title) ? $value->relRnCCategory->title : '' }}</td>
                                         <td>{{isset($value->relRnCPublisher->title) ? $value->relRnCPublisher->title : ''}}</td>
                                         <td>{{isset($value->publication_no) ? $value->publication_no : ''}}</td>
                                         <td>{{isset($value->searching) ? $value->searching : ''}}</td>
                                         <td>{{isset($value->benefit_share) ? $value->benefit_share : ''}} %</td>
                                         <td>{{isset($value->price) ? $value->price : ''}}</td>
+                                        <td>{{isset($value->free_type_student) ? $value->free_type_student : 0 }} %</td>
                                         <td>{{isset($value->status) ? $value->status : ''}}</td>
                                         <td>{{isset($value->reviewed_by) ? $value->reviewed_by : ''}}</td>
                                         <td>{{isset($value->rnc_tCount) ? $value->rnc_tCount : 0 }} Times</td>
                                         <td>
                                           @if($value['rnc_ft_status'] == 'paid')
-                                              <a href="{{ URL::route('student.research-paper.purchased-download',['rnc_rp_id'=>$value->id]) }}" class="btn btn-xs btn-default"><i class="fa fa-cloud-download " style="color: blue" title="Purchased"></i> Purchased</a>
-                                              <a href="{{ URL::route('student.research-paper.read',['rnc_rp_id'=>$value->id]) }}" target="_blank" class="btn btn-xs btn-default"><i class="fa fa-tablet" style="color: darkslategray" title="Read Book"></i> Read</a>
+                                              <a href="{{ URL::route('student.research-paper.purchased-download',['rnc_rp_id'=>$value->id]) }}" class="btn btn-xs btn-default"><i class="fa fa-cloud-download " style="color: blue" title="Purchased"></i> Paid</a>
+                                              <a href="{{ URL::route('student.research-paper.read',['rnc_rp_id'=>$value->id]) }}" target="_blank" class="btn btn-xs btn-default"><i class="fa fa-tablet" style="color: green" title="Read Book"></i> Read</a>
                                           @elseif($value['free_type_student'] == 100 )
-                                              <a href="{{ URL::route('student.research-paper.download',['rnc_rp_id'=>$value->id]) }}" class="btn btn-xs btn-default"><i class="fa fa-download" style="color: green" title="Download"></i> Free</a>
+                                              <a href="{{ URL::route('student.research-paper.download',['rnc_rp_id'=>$value->id]) }}" class="btn btn-xs btn-default"><i class="fa fa-download" style="color: darkmagenta" title="Download"></i> Free</a>
                                           @else
                                               <a href="{{URL::route('student.research-paper.add-to-cart',['rnc_rp_id'=>$value->id]) }}" class="btn btn-xs btn-default" title="Add To Cart"><i class="fa fa-shopping-cart" style="color: peru" ></i></a>
                                           @endif

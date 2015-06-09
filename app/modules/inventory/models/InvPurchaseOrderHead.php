@@ -6,7 +6,7 @@ class InvPurchaseOrderHead extends \Eloquent
     //TODO :: model attributes and rules and validation
     protected $table = 'inv_purchase_order_head';
     protected $fillable = [
-        'purchase_no', 'inv_requisition_head_id', 'pay_terms',
+        'purchase_no', 'inv_requisition_head_id','inv_supplier_id', 'pay_terms',
         'delivery_date', 'tax', 'tax_amount', 'discount_rate',
         'discount_amount', 'amount', 'status'
     ];
@@ -38,6 +38,10 @@ class InvPurchaseOrderHead extends \Eloquent
     //TODO : Model Relationship
     public function relInvRequisitionHead(){
         return $this->belongsTo('InvRequisitionHead', 'inv_requisition_head_id', 'id');
+    }
+
+    public function relInvSupplier(){
+        return $this->belongsTo('InvSupplier', 'inv_supplier_id', 'id');
     }
 
 
