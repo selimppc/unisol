@@ -13,9 +13,9 @@ class RnCFinancialTransaction extends Eloquent{
     ];
     private $errors;
     private $rules = [
-        'rnc_transaction_id' => 'required|integer',
-        'amount' => 'required',
-        'transaction_type' => 'required',
+//        'rnc_transaction_id' => 'required|integer',
+//        'amount' => 'required',
+//        'transaction_type' => 'required',
         /*'status' => 'required',*/
 
     ];
@@ -38,7 +38,7 @@ class RnCFinancialTransaction extends Eloquent{
 
     //TODO : Model Relationship
     public function relRnCTransaction(){
-        return $this->belongsTo('RnCTransaction','lib_book_transaction_id','id');
+        return $this->belongsTo('RnCTransaction','rnc_transaction_id','id');
     }
 
 

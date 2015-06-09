@@ -59,13 +59,13 @@
                                     <th>Price</th>
                                     <th>Status</th>
                                     <th>Reviewed By</th>
-                                    {{--<th>File</th>--}}
+                                    <th>Downloaded</th>
                                     <th>Trnsctn</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach ($research_paper as $value)
+                                @foreach ($model as $value)
                                     <tr>
                                         <td><input type="checkbox" name="id[]"  class="myCheckbox" value="{{ $value->id }}">
                                         </td>
@@ -79,25 +79,16 @@
                                         <td>{{isset($value->price) ? $value->price : ''}}</td>
                                         <td>{{isset($value->status) ? $value->status : ''}}</td>
                                         <td>{{isset($value->reviewed_by) ? $value->reviewed_by : ''}}</td>
+                                        <td>{{isset($value->rnc_tCount) ? $value->rnc_tCount : 0 }} Times</td>
 
-                                        {{--file--}}
-                                            {{--@if($value->file==null)--}}
-                                                {{--<td style="color:magenta"><b>No File</b></td>--}}
-                                            {{--@else--}}
-                                                {{--<td>--}}
-
-                                                    {{--<a href="{{ URL::route('student.research-paper.download',['book_id'=>$value->id]) }}" style="color: blue" ><i class="fa fa-cloud-download" title="Download"></i></a>--}}
-                                                {{--</td>--}}
-                                            {{--@endif--}}
-
-                                        {{--trnsctn    --}}
+                                        {{--trnsctn  --}}
                                         <td>
 
-                                          @if($value['rnc_ftStatus'] == 'paid')
-                                              <a href="{{ URL::route('student.research-paper.download',['rnc_rp_id'=>$value->id]) }}" class="btn btn-xs btn-default"><i class="fa fa-cloud-download " style="color: blue" title="Purchased"></i>Purchased</a>
-                                              <a href="{{ URL::route('student.research-paper.read',['rnc_rp_id'=>$value->id]) }}" target="_blank"><i class="fa fa-tablet" title="Read Book"></i></a>
+                                          @if($value['rnc_ft_status'] == 'paid')
+                                              <a href="{{ URL::route('student.research-paper.purchased-download',['rnc_rp_id'=>$value->id]) }}" class="btn btn-xs btn-default"><i class="fa fa-cloud-download " style="color: blue" title="Purchased"></i> Purchased</a>
+                                              <a href="{{ URL::route('student.research-paper.read',['rnc_rp_id'=>$value->id]) }}" target="_blank" class="btn btn-xs btn-default"><i class="fa fa-tablet" style="color: darkslategray" title="Read Book"></i> Read</a>
                                           @elseif($value['free_type_student'] == 100 )
-                                              <a href="{{ URL::route('student.research-paper.download',['rnc_rp_id'=>$value->id]) }}" class="btn btn-xs btn-default"><i class="fa fa-download" style="color: green" title="Download"></i></a>
+                                              <a href="{{ URL::route('student.research-paper.download',['rnc_rp_id'=>$value->id]) }}" class="btn btn-xs btn-default"><i class="fa fa-download" style="color: green" title="Download"></i> Free</a>
                                           @else
                                               <a href="{{URL::route('student.research-paper.add-to-cart',['rnc_rp_id'=>$value->id]) }}" class="btn btn-xs btn-default" title="Add To Cart"><i class="fa fa-shopping-cart" style="color: peru" ></i></a>
                                           @endif
