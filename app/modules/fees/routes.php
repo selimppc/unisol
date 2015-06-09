@@ -21,6 +21,10 @@
     Route::get('billing/setup',
         'FeesController@indexBillingSetup'
     );
+    Route::any('billing/drop-down-batch',[
+     'as' =>'amw.drop-down-batch',
+     'uses' => 'FeesController@createAjaxBatchList'
+    ]);
     Route::any('billing/setup/save', [
         'as' => 'billing.setup.save',
         'uses' => 'FeesController@storeBillingSetup'
