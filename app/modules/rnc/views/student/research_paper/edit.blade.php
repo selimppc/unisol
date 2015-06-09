@@ -51,6 +51,26 @@
             </div>
         </div>
 
+
+        {{--free type--}}
+        <div class='form-group'>
+            <div>{{ Form::label('free_type_student', 'Free Type Student') }}</div>
+            <div>{{ Form::text('free_type_student', ($edit_r_c->free_type_student	) ? $edit_r_c->free_type_student :'',['class'=>'form-control']) }}</div>
+        </div>
+
+        <div class='form-group'>
+            <div>{{ Form::label('free_type_faculty', 'Free Type Faculty') }}</div>
+            <div>{{ Form::text('free_type_faculty', ($edit_r_c->free_type_faculty	) ? $edit_r_c->free_type_faculty :'',['class'=>'form-control']) }}</div>
+        </div>
+
+        <div class='form-group'>
+            <div>{{ Form::label('free_type_non_user', 'Free Type Non User ') }}</div>
+            <div>{{ Form::text('free_type_non_user', ($edit_r_c->free_type_non_user	) ? $edit_r_c->free_type_non_user :'',['class'=>'form-control']) }}</div>
+        </div>
+        {{-- free type--}}
+
+
+
         <div class='form-group'>
             <div>{{ Form::label('price', 'Price') }}</div>
             <div>{{ Form::text('price', Input::old('price'),['class'=>'form-control','required'=>'required']) }}

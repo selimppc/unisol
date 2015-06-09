@@ -41,7 +41,6 @@ class RnCFacultyController extends \BaseController
             return Redirect::back()
                 ->with('errors', 'invalid');
         }
-
     }
 
     public function showConfig($id)
@@ -60,7 +59,6 @@ class RnCFacultyController extends \BaseController
         $config = RnCConfig::find($id);
         return View::make('rnc::faculty.config.edit',compact('config'));
     }
-
 
     public function updateConfig($id)
     {
@@ -277,7 +275,6 @@ class RnCFacultyController extends \BaseController
                 }
             }
             // set if any item is not successfully added.
-
             Session::set('cartResearchPaper', $all_cart_r_p_ids);
 
             if($tr_error){
@@ -294,22 +291,16 @@ class RnCFacultyController extends \BaseController
 
     public function myRP()
     {
-        $all_cart_book_ids = Session::get('cartResearchPaper');
-
-        $all_cart_books = RnCResearchPaper::with('relRnCCategory', 'relRnCPublisher')
-            ->whereIn('id', $all_cart_book_ids)
+        $my_cart_books = RnCTransaction::with('relRnCResearchPaper','relRnCFinancialTransaction')
+            ->where('user_id', Auth::user()->get()->id)
             ->get();
 
-        $sum = $all_cart_books->sum('price');
-
-        $my_cart_books = RnCTransaction::with('relRnCResearchPaper','relRnCFinancialTransaction')->get();
         return View::make('rnc::faculty.research_paper.my_item',compact('all_cart_book_ids','my_cart_books','sum'));
     }
 
     public function paymentMethodRP()
     {
         $all_cart_r_p_ids = Session::get('cartResearchPaper');
-        //print_r($all_cart_r_p_ids);exit;
         return View::make('rnc::faculty.research_paper.payment', compact('all_cart_r_p_ids'));
     }
 
@@ -387,7 +378,6 @@ class RnCFacultyController extends \BaseController
         return View::make('rnc::faculty.research_paper.edit',compact('edit_r_c','edit_category','edit_publisher','edit_reviewed_by'));
     }
 
-
     public function updateResearchPaper($id)
     {
         $data = Input::all();
@@ -464,7 +454,6 @@ class RnCFacultyController extends \BaseController
         $commented_to = array('' => 'Commented To') + User::WriterNameList();
         return View::make('rnc::faculty.research_paper.rnc_research_paper_comment',
             compact('rnc_r_p','rnc_r_p_cmnt','rnc_r_p_id','commented_to'));
-
     }
 
     public function saveComment()
@@ -493,7 +482,6 @@ class RnCFacultyController extends \BaseController
     public function indexRnCWriter($rnc_r_p_id)
     {
         $rnc_r_p_writer = RnCResearchPaperWriter::with('relRnCResearchPaper','relUser', 'relUser.relUserProfile')->latest('id')->where('rnc_research_paper_id' ,'=', $rnc_r_p_id)->get();
-        //$rnc_r_p_writer_user = Auth::user()->get()->id;
         return View::make('rnc::faculty.research_paper_writer.index', compact('rnc_r_p_writer','rnc_r_p_id','rnc_r_p_writer_user'));
     }
 
@@ -573,7 +561,6 @@ class RnCFacultyController extends \BaseController
     public function updateRnCWriter($id)
     {
         $data = Input::all();
-        //print_r($data);exit;
         $rnc_r_p_writer_update = RnCResearchPaperWriter::find($id);
         if($rnc_r_p_writer_update->validate($data))
         {
@@ -633,14 +620,8 @@ class RnCFacultyController extends \BaseController
             ->where('rnc_research_paper_writer_id' ,'=', $w_id)
             ->get();
 
-        //print_r($rnc_r_p_beneficial);exit;
-
         $rp_benefit_share = RnCResearchPaper::where('id' ,'=', $rnc_r_p_id)->first()->benefit_share;
-
-        //$total = DB::table('rnc_writer_beneficial')->where('rnc_research_paper_id' ,'=', $rnc_r_p_id)->sum('value');
-
         $total = DB::table('rnc_writer_beneficial')->where('rnc_research_paper_writer_id' ,'=', $w_id)->sum('value');
-
         $cal_benefit_share = $rp_benefit_share + $total ;
 
         return View::make('rnc::faculty.research_paper_beneficial.index',
@@ -650,7 +631,6 @@ class RnCFacultyController extends \BaseController
     public function storeRnCBeneficial()
     {
         $data = Input::all();
-        //print_r($data);exit;
 
         $rnc_r_p_beneficial_store = new RnCWriterBeneficial();
         if($rnc_r_p_beneficial_store->validate($data))
@@ -673,7 +653,6 @@ class RnCFacultyController extends \BaseController
             return Redirect::back()
                 ->with('errors', 'invalid');
         }
-
     }
 
     public function showRnCBeneficial($id)
@@ -697,7 +676,6 @@ class RnCFacultyController extends \BaseController
     {
         $data = Input::all();
 
-        //print_r($data);exit;
         $rnc_r_p_beneficial_update = RnCWriterBeneficial::find($id);
         if($rnc_r_p_beneficial_update->validate($data))
         {
@@ -746,6 +724,4 @@ class RnCFacultyController extends \BaseController
             return Redirect::back()->with('error', 'Invalid Delete Process ! Beneficial Name has been using in other DB Table.At first Delete Data from there then come here again. Thank You !!!');
         }
     }
-
-
 }

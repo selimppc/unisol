@@ -10,7 +10,8 @@
 <div style="padding: 2%; width: 99%;">
 <div class="modal-body " >
 
-<div id="response-msg"></div>
+<div id="response-msg" style="color: green; font-size: 16px;"></div>
+<div id="response-msg-failed" style="color: red; font-size: 16px;"></div>
 <div class='row' id="refresh_area">
     <div class="col-sm-5" style="line-height: 10px; border: 1px solid #003bb3;  ">
         <h4> GRN Information:  </h4>
@@ -43,7 +44,7 @@
            <input type="hidden" value="" id="max-qty">
         </div>
         <div class='form-group'>
-           {{ Form::label('receive_quantity', 'Receive Quantity') }}
+           {{ Form::label('receive_quantity', 'Receive Quantity') }} (Available Quantity : <b><span id="available-qtys" style="color: orangered"></span></b>)
            {{ Form::text('receive_quantity', Input::old('receive_quantity'),['id'=>'rec-qty','class'=>'form-control', 'required']) }}
         </div>
         <div class='form-group'>
@@ -106,6 +107,7 @@
                         <th> Row Amt </th>
                         <th> Action </th>
                     </thead>
+                    <tbody id="new-data"></tbody>
                     <tbody>
                     @foreach($grn_dt as $key => $value)
                         <tr id="new_area_id">

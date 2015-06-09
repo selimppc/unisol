@@ -89,9 +89,15 @@ Route::any('ajax/knowledgebase/rating',[
     'uses' => 'CfoController@ajaxKbRating'
 ]);
 
+//Support Head
 Route::any('support-head',[
     'as' =>'support-head',
     'uses' => 'CfoController@supportHead'
+]);
+
+Route::any('support-head/create',[
+    'as' =>'support-head.create',
+    'uses' => 'CfoController@createSupportHead'
 ]);
 
 //Onsite-help-desk
