@@ -11,9 +11,7 @@
         <div class="col-sm-12">
            <div class="pull-left col-sm-4"> <h3> {{$pageTitle}} </h3>  </div>
            <div class="pull-right col-sm-4" style="padding-top: 1%;">
-                <button type="button" class="pull-right btn btn-sm btn-info" data-toggle="modal" data-target="#modal">
-                  + New Purchase Order
-                </button>
+                <a href="{{ URL::route('purchase-order-store')  }}" class="pull-right btn btn-sm btn-info" data-toggle="modal" data-target="#modal-pc"> <i class="fa fa-plus"> </i> New Purchase Order</a>
            </div>
         </div>
 
@@ -83,9 +81,7 @@
     {{$data->links();}}
 
 </div>
-{{Form::open(['route'=>'purchase-order-store', 'files'=>true])}}
-        @include('inventory::po_head._modal._modal')
-{{ Form::close() }}
+
 
 
 
