@@ -40,7 +40,6 @@ class RnCStudentController extends \BaseController {
             return Redirect::back()
                 ->with('errors', 'invalid');
         }
-
     }
 
     public function showConfig($id)
@@ -53,13 +52,11 @@ class RnCStudentController extends \BaseController {
         App::abort(404);
     }
 
-
     public function editConfig($id)
     {
         $config = RnCConfig::find($id);
         return View::make('rnc::student.config.edit',compact('config'));
     }
-
 
     public function updateConfig($id)
     {
@@ -149,7 +146,7 @@ class RnCStudentController extends \BaseController {
             'rnc_t.issue_date', 'rnc_t.status as rnc_tStatus',
 
             'rnc_ft.rnc_transaction_id', 'rnc_ft.amount', 'rnc_ft.transaction_type',
-            'rnc_ft.status as rnc_ftStatus'
+            'rnc_ft.status as rnc_ft_status'
         ));
 
         if (Session::get('cartResearchPaper')) {
@@ -158,24 +155,18 @@ class RnCStudentController extends \BaseController {
         } else {
             $rnc_research_papers = array();
         }
-
         return View::Make('rnc::student.research_paper.index',
             compact('research_paper','rnc_category','rnc_publisher','reviewed_by','rnc_research_papers','model'));
     }
 
-
-    //ekhan theke start
     public function addRPToStudentCart($rnc_rp_id)
     {
         if ($rnc_rp_id) {
             $prev_added_r_p_id = Session::get('cartResearchPaper');
-
             $all_cart_r_p_ids = array_merge(array($rnc_rp_id), (array)$prev_added_r_p_id);
             array_unique($all_cart_r_p_ids);
-
             Session::put('cartResearchPaper', $all_cart_r_p_ids);
         }
-        //return Redirect::route('student.view-cart');
         return Redirect::back();
     }
 
@@ -192,7 +183,6 @@ class RnCStudentController extends \BaseController {
     public function removeRPFromCart($id)
     {
         $all_cart_r_p_ids = Session::get('cartResearchPaper');
-
         // Remove array item by array_search
         if (($key = array_search($id, $all_cart_r_p_ids)) !== false) {
             unset($all_cart_r_p_ids[$key]);
@@ -200,7 +190,6 @@ class RnCStudentController extends \BaseController {
         Session::set('cartResearchPaper', $all_cart_r_p_ids);
         return Redirect::back();
     }
-
 
     public function researchPaperDownload($rnc_rp_id)
     {
@@ -214,11 +203,29 @@ class RnCStudentController extends \BaseController {
         return Response::download($path, $file_name, $headers);
     }
 
+    public function purchasedResearchPaperDownload($rnc_rp_id)
+    {
+        $model = RnCResearchPaper::find($rnc_rp_id);
+        $sample = DB::table('rnc_transaction')->where('rnc_research_paper_id', $model->id)->first()->count;
 
+        DB::table('rnc_transaction')->where('rnc_research_paper_id', $rnc_rp_id)
+            ->update(array('count' => $sample + 1));
+
+
+        $download = RnCResearchPaper::find($rnc_rp_id);
+        $file = $download->file;
+        $path = public_path("rnc_file/" . $file);
+        $headers = array(
+            'Content-Type: application/pdf',
+        );
+        $file_name = $download->title.".".'pdf';
+        return Response::download($path, $file_name, $headers);
+    }
 
     public function saveInfoToTransactionTable()
     {
         $all_cart_r_p_ids = Session::get('cartResearchPaper');
+
         $all_cart_r_ps = RnCResearchPaper::with('relRnCCategory', 'relRnCPublisher')
             ->whereIn('id',$all_cart_r_p_ids)
             ->get();
@@ -231,6 +238,7 @@ class RnCStudentController extends \BaseController {
                 $transaction->user_id = Auth::user()->get()->id;
                 $transaction->rnc_research_paper_id = $cb->id;
                 $transaction->issue_date = date('d-m-y H:i:s');
+                $transaction->count = 0;
                 $transaction->status = 'received';
 
                 if ($transaction->save())
@@ -242,6 +250,7 @@ class RnCStudentController extends \BaseController {
                     $f_transaction->transaction_type = 'full';
                     $f_transaction->status = 'paid';
                     $f_transaction->save();
+
                     if($f_transaction->save())
                     {
                         $tr_info[] = 'Research Paper "'.$cb->title.'" is paid. You can download it.';
@@ -256,6 +265,7 @@ class RnCStudentController extends \BaseController {
                 }
             }
             // set if any item is not successfully added.
+
             Session::set('cartResearchPaper', $all_cart_r_p_ids);
 
             if($tr_error){
@@ -263,7 +273,7 @@ class RnCStudentController extends \BaseController {
                 return Redirect::back();
             }elseif($tr_info){
                 Session::flash('info', implode("<br />", $tr_info));
-                return Redirect::route('student.research-paper.my-book');
+                return Redirect::route('student.research-paper.my-item');
             }else{
                 return Redirect::back();
             }
@@ -272,17 +282,16 @@ class RnCStudentController extends \BaseController {
 
     public function myRP()
     {
-        $all_cart_r_p_ids = Session::get('cartResearchPaper');
-        //print_r($all_cart_r_p_ids);exit;
+        $all_cart_book_ids = Session::get('cartResearchPaper');
 
-        $all_cart_r_ps = RnCResearchPaper::with('relRnCCategory',
-            'relRnCPublisher')->whereIn('id', $all_cart_r_p_ids)->get();
+        $all_cart_books = RnCResearchPaper::with('relRnCCategory', 'relRnCPublisher')
+            ->whereIn('id', $all_cart_book_ids)
+            ->get();
 
-        $sum = $all_cart_r_ps->sum('price');
+        $sum = $all_cart_books->sum('price');
 
-        $my_cart_r_ps = RnCTransaction::with('relRnCResearchPaper','relRnCFinancialTransaction')->get();
-
-        return View::make('rnc::student.research_paper.my_research_paper',compact('all_cart_r_p_ids','my_cart_r_ps','sum'));
+        $my_cart_books = RnCTransaction::with('relRnCResearchPaper','relRnCFinancialTransaction')->get();
+        return View::make('rnc::student.research_paper.my_item',compact('all_cart_book_ids','my_cart_books','sum'));
     }
 
     public function paymentMethodRP()
@@ -291,9 +300,6 @@ class RnCStudentController extends \BaseController {
         //print_r($all_cart_r_p_ids);exit;
         return View::make('rnc::student.research_paper.payment', compact('all_cart_r_p_ids'));
     }
-
-    // ekhane porjnto
-
 
     public function researchPaperRead($rnc_rp_id)
     {
@@ -308,8 +314,6 @@ class RnCStudentController extends \BaseController {
             'Content-Disposition' => 'inline; '.$file,
         ]);
     }
-
-
 
     public function storeResearchPaper()
     {
@@ -436,13 +440,13 @@ class RnCStudentController extends \BaseController {
         }
     }
 
-    public function researchPaperComment($rnc_rp_id)
+    public function researchPaperComment($rnc_r_p_id)
     {
-        $rnc_r_p = RnCResearchPaper::findOrFail($rnc_rp_id);
-        $rnc_r_p_cmnt = RnCResearchPaperComment::where('rnc_research_paper_id', $rnc_rp_id)->get();
+        $rnc_r_p = RnCResearchPaper::findOrFail($rnc_r_p_id);
+        $rnc_r_p_cmnt = RnCResearchPaperComment::where('rnc_research_paper_id', $rnc_r_p_id)->get();
         $commented_to = array('' => 'Commented To') + User::WriterNameList();
         return View::make('rnc::student.research_paper.rnc_research_paper_comment',
-            compact('rnc_r_p','rnc_r_p_cmnt','rnc_id','commented_to'));
+            compact('rnc_r_p','rnc_r_p_cmnt','rnc_r_p_id','commented_to'));
 
     }
 
@@ -499,8 +503,6 @@ class RnCStudentController extends \BaseController {
         return Response::json($results);
     }
 
-
-
     public function storeRnCWriter()
     {
         $data = Input::all();
@@ -525,10 +527,7 @@ class RnCStudentController extends \BaseController {
             return Redirect::back()
                 ->with('errors', 'invalid');
         }
-
     }
-
-
 
     public function showRnCWriter($id)
     {
@@ -540,14 +539,12 @@ class RnCStudentController extends \BaseController {
         App::abort(404);
     }
 
-
     public function editRnCWriter($id)
     {
         $rnc_r_p_writer_edit = RnCResearchPaperWriter::find($id);
         $list_writer_name = User::WriterNameList();
         return View::make('rnc::student.research_paper_writer.edit',compact('rnc_r_p_writer_edit','list_writer_name'));
     }
-
 
     public function updateRnCWriter($id)
     {
@@ -621,15 +618,9 @@ class RnCStudentController extends \BaseController {
             compact('rnc_r_p_beneficial','rnc_r_p_id','w_id','rp_benefit_share','cal_benefit_share'));
     }
 
-
-
-
-
     public function storeRnCBeneficial()
     {
         $data = Input::all();
-        //print_r($data);exit;
-
         $rnc_r_p_beneficial_store = new RnCWriterBeneficial();
         if($rnc_r_p_beneficial_store->validate($data))
         {
@@ -651,7 +642,6 @@ class RnCStudentController extends \BaseController {
             return Redirect::back()
                 ->with('errors', 'invalid');
         }
-
     }
 
     public function showRnCBeneficial($id)
@@ -674,8 +664,6 @@ class RnCStudentController extends \BaseController {
     public function updateRnCBeneficial($id)
     {
         $data = Input::all();
-
-        //print_r($data);exit;
         $rnc_r_p_beneficial_update = RnCWriterBeneficial::find($id);
         if($rnc_r_p_beneficial_update->validate($data))
         {
@@ -724,6 +712,5 @@ class RnCStudentController extends \BaseController {
             return Redirect::back()->with('error', 'Invalid Delete Process ! Beneficial Name has been using in other DB Table.At first Delete Data from there then come here again. Thank You !!!');
         }
     }
-
 
 }

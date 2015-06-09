@@ -47,7 +47,7 @@ class RnCTransaction extends Eloquent{
     }
 
     public function relRnCFinancialTransaction(){
-        return $this->HasOne('RnCFinancialTransaction');
+        return $this->HasOne('RnCFinancialTransaction', 'rnc_transaction_id', 'id');
     }
 
     // TODO : user info while saving data into table

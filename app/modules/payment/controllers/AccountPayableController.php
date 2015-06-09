@@ -21,7 +21,7 @@ class AccountPayableController extends \BaseController {
 	public function index_account_payable()
 	{
         $pageTitle = "Manage Account Payable ";
-        $data = InvGrnHead::where('status', '=', 'GRN Confirmed')->latest('id')->get();
+        $data = InvGrnHead::whereIN('status', ['GRN Confirmed', 'Invoiced'])->latest('id')->get();
         return View::make('payment::account_payable.index', compact('data','pageTitle'));
 	}
 
@@ -37,13 +37,14 @@ class AccountPayableController extends \BaseController {
 
 
     public function ap_create_invoice($grn_id){
-        $sql = sprintf("call sp_im_invoice(%s,'%s')",
-            $id,
-            $insertuser = Yii::app()->user->name
-        );
-        $command  = Yii::app()->db->createCommand($sql);
-        $command->execute();
-
+        $check = InvGrnDetail::where('inv_grn_head_id', $grn_id)->exists();
+        if($check){
+            //Call Store Procedure
+            DB::select('call sp_inv_to_invoice(?, ?)', array($grn_id, Auth::user()->get()->id ) );
+            Session::flash('message', 'Invoiced Successfully !');
+        }else{
+            Session::flash('info', 'Failed!');
+        }
         return Redirect::back();
     }
 

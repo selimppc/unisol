@@ -20,6 +20,7 @@ class CreateInventory extends Migration {
             $table->string('fax',16)->nullable();
             $table->string('email',64)->nullable();
             $table->string('web',64)->nullable();
+            $table->string('group_code',16)->nullable();
             $table->string('status',64)->nullable();
             $table->integer('created_by', false, 11)->nullable();
             $table->integer('updated_by', false, 11)->nullable();
@@ -230,7 +231,7 @@ class CreateInventory extends Migration {
             $table->float('amount')->nullable();
             $table->float('net_amount')->nullable();
             $table->enum('status', array(
-                'open', 'approved', 'close', 'cancel', 'GRN Confirmed'
+                'open', 'approved', 'close', 'cancel', 'GRN Confirmed', 'Invoiced'
             ));
             $table->integer('created_by', false, 11)->nullable();
             $table->integer('updated_by', false, 11)->nullable();
