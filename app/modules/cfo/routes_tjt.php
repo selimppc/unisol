@@ -132,6 +132,4 @@ Route::any('help-desk/batch-delete',[
     'uses' => 'CfoAmwController@batchDelete'
 ]);
 
-Route::any('help-desk/assigned_user',
-    ['as'=>'help-desk.assigned_user',
-        'uses'=>'CfoAmwController@assignedUserIndex']);
+
