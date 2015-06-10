@@ -62,7 +62,7 @@
                     alert("You already added this product code in line #" + (index + 1));
                     return false;
                 } else {
-                    if($avail_qty < $pqty){
+                    if(parseInt($avail_qty) < parseInt($pqty)){
                         alert("Quantity can not be more than Available Quantity");
                         return false;
                     }else{
@@ -72,7 +72,7 @@
                         $invProductUnit = $("#product-unit").val();
                         $invProductQuantity = $("#product-quantity").val();
 
-                        $('#test').append("<tr> <td><input value='"+$product_name+"' readonly> <input name='inv_product_id[]' type='hidden' value='"+$product_id+"'></td>  <td><input name='unit[]' value='"+$invProductUnit+"' readonly></td> <td><input name='quantity[]' value='"+$invProductQuantity+"' readonly></td> <td><input name='rate[]' value='"+$invProductRate+"' readonly></td> </tr>");
+                        $('#test').append("<tr> <td><input value='"+$product_name+"' readonly> <input name='inv_product_id[]' type='hidden' value='"+$product_id+"'></td>  <td><input name='unit[]' value='"+$invProductUnit+"' readonly></td>  <td><input name='rate[]' value='"+$invProductRate+"' readonly></td> <td><input name='quantity[]' value='"+$invProductQuantity+"' readonly></td> </tr>");
                         $arrayProducts.push($td_productCode);
 
                         //flush the input fields

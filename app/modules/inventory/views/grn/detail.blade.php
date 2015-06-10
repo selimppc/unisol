@@ -41,7 +41,7 @@
         <div class='form-group'>
            {{ Form::label('unit_quantity', 'Unit Qty') }}
            <input name="unit_quantity" class="form-control" id="unit-qty" required="required" readonly="readonly">
-           <input type="hidden" value="" id="max-qty">
+           <input type="hidden" value="" id="max-qty" readonly>
         </div>
         <div class='form-group'>
            {{ Form::label('receive_quantity', 'Receive Quantity') }} (Available Quantity : <b><span id="available-qtys" style="color: orangered"></span></b>)
@@ -134,6 +134,6 @@
 </div>
 </div>
 @include('inventory::grn._script')
-{{ HTML::script('assets/js/custom.js')}}
+{{ HTML::script('assets/etsb/etsb_js/etsb_custom.js')}}
 {{ HTML::script('assets/etsb/etsb_js/jquery/jquery.min.js')}}
 {{ HTML::script('assets/etsb/etsb_js/jquery-ui/jquery-ui.min.js')}}
