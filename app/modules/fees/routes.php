@@ -21,6 +21,10 @@
     Route::get('billing/setup',
         'FeesController@indexBillingSetup'
     );
+    Route::any('billing/create', [
+         'as' => 'billing.create',
+         'uses' => 'FeesController@createBillingSetup'
+     ]);
     Route::any('billing/drop-down-batch',[
      'as' =>'amw.drop-down-batch',
      'uses' => 'FeesController@createAjaxBatchList'
@@ -41,9 +45,10 @@
         'as' => 'billing.setup.update',
         'uses' => 'FeesController@updateBillingSetup'
     ]);
-    Route::get('billing/setup/delete/{id}',
-        'FeesController@deleteBillingSetup'
-    );
+    Route::any('billing/setup/delete/{id}', [
+         'as' => 'billing.setup.delete',
+         'uses' => 'FeesController@deleteBillingSetup'
+     ]);
     Route::any('billing/setup/batch/delete/{id}', [
         'as' => 'billing.setup.batch.delete',
         'uses' => 'FeesController@batchdeleteBillingSetup'

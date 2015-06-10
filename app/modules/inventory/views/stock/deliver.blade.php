@@ -42,8 +42,8 @@
                     <td>{{$values->note }}</td>
                     <td>{{$values->status }}</td>
                     <td>
-                    @if($values->status!="delivered")
-                    <a href="{{ URL::route('sp-confirm-dispatch', ['transfer_head_id'=>$values->id ])  }}" class="btn btn-success btn-xs" title="Confirm Dispatch" > Confirm Deliver</a>
+                    @if($values->status!="Delivered")
+                    <a href="{{ URL::route('confirm-deliver-stock', ['transfer_head_id'=>$values->id ])  }}" class="btn btn-success btn-xs" title="Confirm Deliver" > Confirm Deliver</a>
                     @endif
                     </td>
                  </tr>

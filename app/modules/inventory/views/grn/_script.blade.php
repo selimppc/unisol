@@ -52,10 +52,12 @@
             {
              if(response.msg == "Invalid"){
                 $("#grn-sub-grn-data").trigger('reset');
+                $("#response-msg").html("");
                 $("#response-msg-failed").html("Failed! Product Item already added !");
                 return false;
              }else{
                 $("#grn-sub-grn-data").trigger('reset');
+                $("#response-msg-failed").html("");
                 $("#response-msg").html("Saved Successfully! ");
 
                 var tr = "<tr>";
@@ -93,7 +95,8 @@
         var recQty = $("#rec-qty").val();
         var costPrice = $("#cost-price").val();
         var data = (unit * recQty * costPrice);
-        if( recQty <= unitQty ){
+
+        if( parseInt(recQty) <= parseInt(unitQty) ){
             $('#row-amount').val(data);
             return true;
         }else{

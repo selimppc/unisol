@@ -6,7 +6,16 @@
     @include('layouts._sidebar_amw')
 @stop
 @section('content')
-    <h2 class="page-header text-purple tab-text-margin text-center">Fees</h2>
+    <div class="row">
+        <div class="col-md-12">
+            <h3 class="text-purple ">Fees</h3>
+            <div class="help-text-top">
+                You can view all lists of Billing Setup Lists. Also this panel will allow you to perform some actions to <b>Add Billing Setup</b>, <b>Edit</b>, <b>Delete</b>,under the column <b>Action</b>.
+
+                {{--<small>Someone famous in <cite title="Source Title">Source Title</cite></small>--}}
+            </div><!-- /.box-body -->
+        </div><!-- ./col -->
+    </div><!-- /.row -->
     <div class="row">
         <div class="col-md-12">
             <div class="nav-tabs-custom">
@@ -31,11 +40,8 @@
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab_1">
                         <div class="box-body table-responsive ">
-                           {{-- <button type="button" class=" btn btn-xs btn-success fa fa-plus " data-toggle="modal" data-target="#myModal" >
-                                Add New
-                            </button>--}}
-                            <a href="{{ URL::route('billing.setup.save')  }}" class=" btn btn-xs btn-success fa fa-plus " data-toggle="modal" data-target="#myModal">Add New</a>
-                          {{--  {{Form::open(array('route'=> ['category.batch.delete'], 'class'=>'form-horizontal','files'=>true))}}--}}
+                            <a href="{{ URL::route('billing.create')}}" class=" btn btn-xs btn-success fa fa-plus " data-toggle="modal" data-target="#myModal">Add New</a>
+                              {{Form::open(array('route'=> ['billing.setup.batch.delete'], 'class'=>'form-horizontal','files'=>true))}}
                             <table id="example" class="table table-bordered table-hover table-striped">
                                 <thead>
                                 <tr>
@@ -51,61 +57,50 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($billing_setup as $value)
-                                        <tr>
-                                            <td><input type="checkbox" name="id[]"  class="myCheckbox" value="{{ $value->id }}">
-                                            </td>
-                                            <td>{{isset($value->relBillingSchedule->title) ? $value->relBillingSchedule->title :''}}</td>
+                                @foreach($billing_setup as $value)
+                                    <tr>
+                                        <td><input type="checkbox" name="id[]"  class="myCheckbox" value="{{ $value->id }}">
+                                        </td>
+                                        <td>{{isset($value->relBillingSchedule->title) ? $value->relBillingSchedule->title :''}}</td>
 
-                                            <td>{{isset($value->relBillingItem->title) ? $value->relBillingItem->title : ''}}</td>
+                                        <td>{{isset($value->relBillingItem->title) ? $value->relBillingItem->title : ''}}</td>
 
-                                            <td>{{isset($value->cost) ? $value->cost : ''}}</td>
+                                        <td>{{isset($value->cost) ? $value->cost : ''}}</td>
 
-                                            <td>{{date("d-m-Y", strtotime((isset($value->deadline)) ? $value->deadline : '') ) }}</td>
+                                        <td>{{date("d-m-Y", strtotime((isset($value->deadline)) ? $value->deadline : '') ) }}</td>
 
-                                            <td>{{isset($value->fined_cost) ? $value->fined_cost : ''}}</td>
+                                        <td>{{isset($value->fined_cost) ? $value->fined_cost : ''}}</td>
 
-                                             <td>
-                                                <a href="" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" href=""><i class="fa fa-eye" style="color: green"></i></a>
+                                        <td>
+                                            <a href="" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" href=""><i class="fa fa-eye" style="color: green"></i></a>
 
-                                                <a href="" class="btn btn-xs btn-default" data-toggle="modal" data-target="#editModal" href="" ><i class="fa fa-pencil-square-o" style="color: #0044cc"></i></a>
+                                            <a href="{{ URL::route('billing.setup.edit',['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#editModal" href="" ><i class="fa fa-pencil-square-o" style="color: #0044cc"></i></a>
 
-                                                <a data-href="" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa  fa-trash-o" style="color:red"></i></a>
-                                            </td>
-                                        </tr>
-                                    @endforeach
+                                            <a data-href="{{URL::route('billing.setup.delete', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" style="font-size: 12px;color: lightcoral"><span class="fa  fa-trash-o"></span></a>
+                                        </td>
+                                    </tr>
+                                @endforeach
                                 </tbody>
                             </table>
                             {{ Form::submit('Delete', array('class'=>'btn btn-xs btn-danger', 'id'=>'hide-button', 'style'=>'display:none'))}}
                             {{ Form::close() }}
-
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
     {{-- Modal add new  --}}
-    <div id="myModal" class="modal fade">
-        <div class="modal-dialog" aria-hidden="true" data-keyboard="false" data-backdrop="static" style="z-index:1050">
+    <div id="myModal" class="modal fade" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+        <div class="modal-dialog" style="z-index:1050">
             <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">{{HTML::image('assets/icon/media-close-btn.png')}}</button>
-                    <h4 class="modal-title" style="text-align: center;color: #800080;">Billing SetUp</h4>
-                </div>
-                <div class="modal-body">
-                    {{ Form::open(array('url' => 'fees/billing/setup/save', 'method' =>'post', 'role'=>'form','files'=>'true')) }}
-                    @include('fees::billing_setup._form')
-                    {{ Form::close() }}
-                </div>
 
             </div>
         </div>
     </div>
 
     {{-- Modal for Edit --}}
-    <div class="modal fade" id="edit-modal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog">
             <div class="modal-content">
 

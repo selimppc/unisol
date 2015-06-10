@@ -62,7 +62,7 @@
                     alert("You already added this product code in line #" + (index + 1));
                     return false;
                 } else {
-                    if($avail_qty < $pqty){
+                    if(parseInt($avail_qty) < parseInt($pqty)){
                         alert("Quantity can not be more than Available Quantity");
                         return false;
                     }else{

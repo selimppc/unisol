@@ -27,7 +27,7 @@ class InvGrnController extends \BaseController {
     public function index_grn()
     {
         $pageTitle = 'GRN History';
-        $data = InvGrnHead::all();
+        $data = InvGrnHead::latest('id')->get();
         return View::make('inventory::grn.index', compact('pageTitle', 'data'));
     }
 

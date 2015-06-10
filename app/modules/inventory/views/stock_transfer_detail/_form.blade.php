@@ -56,8 +56,8 @@
     <thead>
     <th>Product Name</th>
     <th>Unit </th>
-    <th>Quantity</th>
     <th>Rate </th>
+    <th>Quantity</th>
     <th>Action</th>
     </thead>
 
