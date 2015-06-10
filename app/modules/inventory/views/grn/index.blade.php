@@ -39,7 +39,7 @@
 
                  <tr style="{{$values->status=='approved' ? 'background-color: burlywood' : '' }}">
                     <td width="80"><b>
-                        {{ link_to_route( $values->status=="GRN Confirmed" ? 'show-grn-detail' : 'create-new-grn', $values->grn_no ,['grn_id'=>isset($values->id) ? $values->id : ""], ['data-toggle'=>"modal", 'data-target'=>"#modal-pc"] ) }}
+                        {{ link_to_route('show-grn-detail', $values->grn_no ,['grn_id'=>$values->id], ['data-toggle'=>"modal", 'data-target'=>"#modal-pc"] ) }}
                     </b></td>
                     <td>{{ $values->relInvPurchaseOrderHead->purchase_no}}</td>
                     <td>{{ $values->voucher_no}}</td>

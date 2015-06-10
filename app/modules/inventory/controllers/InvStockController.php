@@ -30,7 +30,7 @@ class InvStockController extends \BaseController {
 
 
     public function stock_dispatch(){
-        $data = InvTransferHead::where('status', '!=', 'cancel')->get();
+        $data = InvTransferHead::where('status', '!=', 'cancel')->latest('id')->get();
         $pageTitle = "Stock Dispatch(s) ";
 
         return View::make('inventory::stock.stock_dispatch', compact('data','pageTitle'));
@@ -38,12 +38,25 @@ class InvStockController extends \BaseController {
 
     public function store_stock_dispatch(){
         if($this->isPostRequest()){
+            $transfer_no = InvTrnNoSetup::where('title', '=', "Stock Transfer")
+                ->select(DB::raw('CONCAT (code, LPAD(last_number + 1, 8, 0)) as number'))
+                ->first()->number;
             $input_data = Input::all();
+            $inp_data = [
+                'transfer_number' => $transfer_no,
+                'transfer_to' => $input_data['transfer_to'],
+                'date' => $input_data['date'],
+                'confirm_date' => $input_data['confirm_date'],
+                'note' => $input_data['note'],
+                'status'=> "open",
+            ];
             $model = new InvTransferHead();
-            if($model->validate($input_data)) {
+            if($model->validate($inp_data)) {
                 DB::beginTransaction();
                 try {
-                    $model->create($input_data);
+                    $model->create($inp_data);
+                    DB::table('inv_trn_no_setup')->where('title', '=', "Stock Transfer")
+                        ->update(array('last_number' => substr($transfer_no,4)));
                     DB::commit();
                     Session::flash('message', 'Success !');
                 }catch (Exception $e) {
@@ -124,7 +137,7 @@ class InvStockController extends \BaseController {
 
     public function add_product_dispatch($sd_id){
         $sd_head = InvTransferHead::find($sd_id);
-        $sd_dt = InvTransferDetail::where('inv_transfer_head_id', $sd_id)->get();
+        $sd_dt = InvTransferDetail::where('inv_transfer_head_id', $sd_id)->latest('id')->get();
         return View::make('inventory::stock_transfer_detail.add_edit', compact('sd_id', 'sd_head', 'sd_dt'));
     }
 
@@ -223,20 +236,21 @@ class InvStockController extends \BaseController {
      */
 
     public function deliver_stock(){
-        $data = InvTransferHead::where('status', '=', 'Confirmed Dispatch')->get();
+        $data = InvTransferHead::whereIn('status', ['Confirmed Dispatch', 'Delivered'])->get();
         $pageTitle = "Deliver Stock ";
-
         return View::make('inventory::stock.deliver', compact('data','pageTitle'));
     }
 
+
+    //TODO ::: a new sp need to create
     public function confirm_deliver_stock($transfer_head_id){
         $check = InvTransferDetail::where('inv_transfer_head_id', $transfer_head_id)->exists();
         if($check){
             //Call Store Procedure
-            DB::select('call sp_inv_confirm_dispatch(?, ?)', array($transfer_head_id, Auth::user()->get()->id) );
-            Session::flash('message', 'Stock Transferred Successfully !');
+            DB::select('call sp_inv_confirm_deliver(?, ?)', array($transfer_head_id, Auth::user()->get()->id) );
+            Session::flash('message', 'Delivered !');
         }else{
-            Session::flash('info', 'Transfer Detail is empty. Please add product item. And try later!');
+            Session::flash('info', 'Detail is empty. Please add product item. And try later!');
         }
         return Redirect::back();
     }

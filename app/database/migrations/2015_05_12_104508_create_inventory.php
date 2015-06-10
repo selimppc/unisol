@@ -82,7 +82,7 @@ class CreateInventory extends Migration {
             $table->dateTime('confirm_date')->nullable();
             $table->text('note')->nullable();
             $table->enum('status', array(
-                'open', 'close', 'pending-approval', 'approved', 'transferred',
+                'open', 'close', 'pending-approval', 'approved', 'transferred', 'Delivered'
             ));
 
             $table->integer('created_by', false, 11)->nullable();

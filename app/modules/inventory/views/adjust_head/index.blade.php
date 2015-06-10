@@ -57,7 +57,9 @@
 
                     </td>
                     <td>
+                    @if($values->status!="Confirmed Adjustment")
                     <a href="{{ URL::route('sp-confirm-stock-adjustment', ['adj_head_id'=>$values->id ])  }}" class="btn btn-success btn-xs" title="Approve Stock Adjustment" > Approve ADJ</a>
+                    @endif
                     </td>
                  </tr>
                 @endforeach
