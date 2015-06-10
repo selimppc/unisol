@@ -30,7 +30,7 @@ class InvStockController extends \BaseController {
 
 
     public function stock_dispatch(){
-        $data = InvTransferHead::where('status', '!=', 'cancel')->get();
+        $data = InvTransferHead::where('status', '!=', 'cancel')->latest('id')->get();
         $pageTitle = "Stock Dispatch(s) ";
 
         return View::make('inventory::stock.stock_dispatch', compact('data','pageTitle'));
@@ -38,12 +38,25 @@ class InvStockController extends \BaseController {
 
     public function store_stock_dispatch(){
         if($this->isPostRequest()){
+            $transfer_no = InvTrnNoSetup::where('title', '=', "Stock Transfer")
+                ->select(DB::raw('CONCAT (code, LPAD(last_number + 1, 8, 0)) as number'))
+                ->first()->number;
             $input_data = Input::all();
+            $inp_data = [
+                'transfer_number' => $transfer_no,
+                'transfer_to' => $input_data['transfer_to'],
+                'date' => $input_data['date'],
+                'confirm_date' => $input_data['confirm_date'],
+                'note' => $input_data['note'],
+                'status'=> "open",
+            ];
             $model = new InvTransferHead();
-            if($model->validate($input_data)) {
+            if($model->validate($inp_data)) {
                 DB::beginTransaction();
                 try {
-                    $model->create($input_data);
+                    $model->create($inp_data);
+                    DB::table('inv_trn_no_setup')->where('title', '=', "Stock Transfer")
+                        ->update(array('last_number' => substr($transfer_no,4)));
                     DB::commit();
                     Session::flash('message', 'Success !');
                 }catch (Exception $e) {
