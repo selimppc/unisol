@@ -76,7 +76,7 @@
 
                                             <a href="{{ URL::route('billing.setup.edit',['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#editModal" href="" ><i class="fa fa-pencil-square-o" style="color: #0044cc"></i></a>
 
-                                            <a data-href="{{ URL::to('data/delete/'.$value->id)}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirmDelete" href="" ><i class="fa  fa-trash-o" style="color:red"></i></a>
+                                            <a data-href="{{URL::route('billing.setup.delete', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" style="font-size: 12px;color: lightcoral"><span class="fa  fa-trash-o"></span></a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -117,7 +117,7 @@
         </div>
     </div>
     {{-- Modal for delete --}}
-    <div class="modal fade" id="confirmDelete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
