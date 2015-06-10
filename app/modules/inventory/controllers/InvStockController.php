@@ -244,15 +244,15 @@ class InvStockController extends \BaseController {
 
     //TODO ::: a new sp need to create
     public function confirm_deliver_stock($transfer_head_id){
-        /*$check = InvTransferDetail::where('inv_transfer_head_id', $transfer_head_id)->exists();
+        $check = InvTransferDetail::where('inv_transfer_head_id', $transfer_head_id)->exists();
         if($check){
             //Call Store Procedure
-            DB::select('call sp_inv_confirm_dispatch(?, ?)', array($transfer_head_id, Auth::user()->get()->id) );
-            Session::flash('message', 'Stock Transferred Successfully !');
+            DB::select('call sp_inv_confirm_deliver(?, ?)', array($transfer_head_id, Auth::user()->get()->id) );
+            Session::flash('message', 'Delivered !');
         }else{
-            Session::flash('info', 'Transfer Detail is empty. Please add product item. And try later!');
+            Session::flash('info', 'Detail is empty. Please add product item. And try later!');
         }
-        return Redirect::back();*/
+        return Redirect::back();
     }
 
 
