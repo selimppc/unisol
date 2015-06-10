@@ -60,7 +60,6 @@
     </div>
     </div>
 
-{{ HTML::script('assets/js/custom.js')}}
     {{----------------Ajax operation: depandable dropdown  ----------------------------------}}
 <script>
     $(function(){
@@ -76,6 +75,7 @@
                     });
         });
     });
+
 
 </script>
 

@@ -31,10 +31,7 @@
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab_1">
                         <div class="box-body table-responsive ">
-                           {{-- <button type="button" class=" btn btn-xs btn-success fa fa-plus " data-toggle="modal" data-target="#myModal" >
-                                Add New
-                            </button>--}}
-                            <a href="{{ URL::route('billing.setup.save')  }}" class=" btn btn-xs btn-success fa fa-plus " data-toggle="modal" data-target="#myModal">Add New</a>
+                            <a href="{{ URL::route('billing.create')}}" class=" btn btn-xs btn-success fa fa-plus " data-toggle="modal" data-target="#myModal">Add New</a>
                           {{--  {{Form::open(array('route'=> ['category.batch.delete'], 'class'=>'form-horizontal','files'=>true))}}--}}
                             <table id="example" class="table table-bordered table-hover table-striped">
                                 <thead>
@@ -87,18 +84,10 @@
     </div>
 
     {{-- Modal add new  --}}
-    <div id="myModal" class="modal fade">
-        <div class="modal-dialog" aria-hidden="true" data-keyboard="false" data-backdrop="static" style="z-index:1050">
+    <div id="myModal" class="modal fade" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+        <div class="modal-dialog" style="z-index:1050">
             <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">{{HTML::image('assets/icon/media-close-btn.png')}}</button>
-                    <h4 class="modal-title" style="text-align: center;color: #800080;">Billing SetUp</h4>
-                </div>
-                <div class="modal-body">
-                    {{ Form::open(array('url' => 'fees/billing/setup/save', 'method' =>'post', 'role'=>'form','files'=>'true')) }}
-                    @include('fees::billing_setup._form')
-                    {{ Form::close() }}
-                </div>
+
 
             </div>
         </div>

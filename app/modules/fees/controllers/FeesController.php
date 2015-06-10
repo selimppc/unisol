@@ -12,14 +12,18 @@ class FeesController extends \BaseController {
     public function indexBillingSetup()
     {
         $billing_setup = BillingSetup::orderBy('id', 'DESC')->get();
+        return View::Make('fees::billing_setup.index',compact('billing_setup'));
+    }
+    public function createBillingSetup()
+    {
+
         $degree_id = ['' => 'Select Degree'] + DegreeProgram::lists('title', 'id');
         $batch_id = ['' => 'Select Batch']+ Batch::lists('batch_number', 'id');
         $schedule_id = ['' => 'Select Batch']+ BillingSchedule::lists('title', 'id');
         $item_id = ['' => 'Select Batch']+ BillingItem::lists('title', 'id');
-        return View::Make('fees::billing_setup.index',compact('billing_setup','degree_id','batch_id','schedule_id','item_id'));
+        return View::Make('fees::billing_setup.create',compact('billing_setup','degree_id','batch_id','schedule_id','item_id'));
+
     }
-
-
     public function createAjaxBatchList(){
 
         $degree = Input::get('degree');
@@ -31,7 +35,6 @@ class FeesController extends \BaseController {
         }
 
     }
-
 
     public function storeBillingSetup()
     {
