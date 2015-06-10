@@ -7,7 +7,7 @@ class FeesController extends \BaseController {
 //		$this->beforeFilter('academicAmw', array('except' => array('index')));
     }
 
-    /**********************Billing Item Start***************************/
+    /**********************Billing Setup Start***************************/
 
     public function indexBillingSetup()
     {
@@ -18,8 +18,8 @@ class FeesController extends \BaseController {
     {
         $degree = ['' => 'Select Degree'] + DegreeProgram::lists('title', 'id');
         $batch_id = ['' => 'Select Batch']+ Batch::lists('batch_number', 'id');
-        $schedule_id = ['' => 'Select Batch']+ BillingSchedule::lists('title', 'id');
-        $item_id = ['' => 'Select Batch']+ BillingItem::lists('title', 'id');
+        $schedule_id = ['' => 'Select Billing Schedule']+ BillingSchedule::lists('title', 'id');
+        $item_id = ['' => 'Select Billing Item']+ BillingItem::lists('title', 'id');
         return View::Make('fees::billing_setup.create',compact('billing_setup','degree','batch_id','schedule_id','item_id'));
 
     }
@@ -30,9 +30,9 @@ class FeesController extends \BaseController {
         $deg_id = $degree->id;
         $Batch = Batch::where('degree_id', '=', $deg_id)->lists('batch_number', 'id');
         if($Batch){
-            return Response::make(['please select one']+ $Batch);
+            return Response::make(['Please select one']+ $Batch);
         }else{
-            return Response::make(['no data found']);
+            return Response::make(['No data found']);
         }
 
     }
@@ -40,31 +40,24 @@ class FeesController extends \BaseController {
     public function storeBillingSetup()
     {
         $data = Input::all();
-        $model = new LibBookCategory();
-        $model->title = Input::get('title');
-        $flash_msg = $model->title;
-        if($model->validate($data))
-        {
-            DB::beginTransaction();
-            try {
-                if ($model->create($data))
-                    DB::commit();
-                Session::flash('message', "$flash_msg Book Category Successfully Added");
-            }
-            catch ( Exception $e ){
-                //If there are any exceptions, rollback the transaction
-                DB::rollback();
-                Session::flash('danger', "$flash_msg Book Category Not Added.Invalid Request!");
-            }
+        $model = new BillingSetup();
+        $model->billing_schedule_id = Input::get('schedule_id');
+        $model->billing_item_id = Input::get('item_id');
+        $model->batch_id = Input::get('batch_id');
+        $model->cost = Input::get('cost');
+        $model->deadline = Input::get('deadline');
+        $model->fined_cost = Input::get('fined');
+
+        if($model->save()){
+            Session::flash('message', "Billing is Setup Successfully");
             return Redirect::back();
         }else{
             $errors = $model->errors();
             Session::flash('errors', $errors);
-            return Redirect::back()
-                ->with('errors', 'invalid');
+            return Redirect::back()->with('errors', 'Invalid Request');
         }
-    }
 
+    }
 
     public function viewBillingSetup($id)
     {
@@ -75,29 +68,34 @@ class FeesController extends \BaseController {
 
     public function editBillingSetup($id)
     {
-        $edit_category = LibBookCategory::find($id);
-        return View::make('library::librarian.category.edit',compact('edit_category'));
+
+        $degree = ['' => 'Select Degree to Edit'] + DegreeProgram::lists('title', 'id');
+        $batch_id = ['' => 'Select Batch']+ Batch::lists('batch_number', 'id');
+        $schedule_id = ['' => 'Select Billing Schedule']+ BillingSchedule::lists('title', 'id');
+        $item_id = ['' => 'Select Billing Item']+ BillingItem::lists('title', 'id');
+        $edit_billing_setup = BillingSetup::find($id);
+        return View::make('fees::billing_setup.edit',compact('edit_billing_setup','degree','batch_id','schedule_id','item_id'));
     }
 
 
     public function updateBillingSetup($id)
     {
         $data = Input::all();
-        $model = LibBookCategory::find($id);
-        $model->title = Input::get('title');
-        $flash_msg = $model->title;
+        $model = BillingSetup::find($id);
+    /*    $model->title = Input::get('title');
+        $flash_msg = $model->title;*/
         if($model->validate($data))
         {
             DB::beginTransaction();
             try {
                 $model->update($data);
                 DB::commit();
-                Session::flash('message', "$flash_msg Book Category Successfully Updated");
+                Session::flash('message', "Billing is Setup Successfully");
             }
             catch ( Exception $e ){
                 //If there are any exceptions, rollback the transaction
                 DB::rollback();
-                Session::flash('danger', "$flash_msg Book Category Not Updated. Invalid Request !");
+                Session::flash('danger', "Billing is Setup Not Updated. Invalid Request !");
             }
             return Redirect::back();
         }else{
@@ -111,11 +109,10 @@ class FeesController extends \BaseController {
     public function deleteBillingSetup($id)
     {
         try {
-            $data= LibBookCategory::find($id);
-            $name = $data->title;
+            $data= BillingSetup::find($id);
             if($data->delete())
             {
-                Session::flash('message', "Book Category $name Deleted");
+                Session::flash('message', "Billing setup Item Deleted");
                 return Redirect::back();
             }
         }
@@ -125,10 +122,16 @@ class FeesController extends \BaseController {
 
         }
     }
+
+    /***
+     * @author Ratna
+     * @param $id
+     *
+    */
     public function batchdeleteBillingSetup($id)
     {
         try {
-            LibBookCategory::destroy(Request::get('id'));
+            BillingSetup::destroy(Request::get('id'));
             Session::flash('message', "Success: Selected items Deleted ");
             return Redirect::back();
         }

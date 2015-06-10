@@ -18,7 +18,7 @@
 
     /**********Billing Setup Start****************/
 
-    Route::get('billing/setup',
+    Route::get('/setup',
         'FeesController@indexBillingSetup'
     );
     Route::any('billing/create', [
@@ -45,7 +45,7 @@
         'as' => 'billing.setup.update',
         'uses' => 'FeesController@updateBillingSetup'
     ]);
-    Route::get('billing/setup/delete/{id}',
+    Route::get('data/delete/{id}',
         'FeesController@deleteBillingSetup'
     );
     Route::any('billing/setup/batch/delete/{id}', [

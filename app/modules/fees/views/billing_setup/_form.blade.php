@@ -1,4 +1,3 @@
-
 {{ HTML::script('assets/etsb/etsb_js/jquery/jquery.min.js')}}
 {{ HTML::script('assets/etsb/etsb_js/jquery-ui/jquery-ui.min.js')}}
 
@@ -7,34 +6,28 @@
         <div class="row">
             <div class="help-text-top">
                 <span class="text-danger">  (*) </span>Indicates are required field. Please do not skip these fields.
-
             </div>
         </div>
-
         <div class="form-group">
             {{ Form::label('degprog_id', 'Degree Name') }}<span class="text-danger">*</span>
             {{ Form::select('degprog_id',$degree, Input::old('degprog_id'), ['id'=>'batch_name','class'=>'form-control','required'=>'required'] ) }}
         </div>
-            <div class="form-group">
-                {{ Form::label('batch_id', 'Batch') }}<span class="text-danger">*</span>
-                {{ Form::select('batch_id', $batch_id, Input::old('batch_id'), ['id'=>'dependable-list', 'class'=>'form-control','placeholder'=>'','required'=>'required']) }}
-            </div>
-
+        <div class="form-group">
+            {{ Form::label('batch_id', 'Batch') }}<span class="text-danger">*</span><span>{{HTML::image('assets/icon/ajax-loader.gif')}}</span>
+            {{ Form::select('batch_id', $batch_id, Input::old('batch_id'), ['id'=>'dependable-list', 'class'=>'form-control','placeholder'=>'','required'=>'required']) }}
+        </div>
         <div class="form-group">
             {{ Form::label('schedule_id', 'Schedule') }}<span class="text-danger">*</span>
             {{ Form::select('schedule_id', $schedule_id, Input::old('schedule_id'), ['class' => 'form-control','required'=>'required']) }}
         </div>
-
         <div class="form-group">
             {{ Form::label('item_id', 'Item') }}<span class="text-danger">*</span>
             {{ Form::select('item_id', $item_id, Input::old('item_id'), ['class' => 'form-control','required'=>'required']) }}
         </div>
-
         <div class="form-group">
-            {{ Form::label('amount', 'Amount') }}<span class="text-danger">*</span>
-            {{ Form::text('amount', Input::old('amount'), array('class' => 'form-control','required'=>'required')) }}
+            {{ Form::label('cost', 'Amount') }}<span class="text-danger">*</span>
+            {{ Form::text('cost', Input::old('cost'), array('class' => 'form-control','required'=>'required')) }}
         </div>
-
         <div class="form-group">
             {{ Form::label('fined', 'Fined') }}<span class="text-danger">*</span>
             {{ Form::text('fined', Input::old('fined'), array('class' => 'form-control','required'=>'required')) }}
@@ -48,9 +41,12 @@
             <button class=" btn btn-default btn-xs" data-dismiss="modal" type="button">Close</button>
         </div>
     </div>
-    </div>
+</div>
 
-    {{----------------Ajax operation: depandable dropdown  ----------------------------------}}
+
+
+
+{{----------------Ajax operation: depandable dropdown  ----------------------------------}}
 <script>
     $(function(){
         $('#batch_name').change(function(){
