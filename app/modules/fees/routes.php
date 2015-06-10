@@ -37,7 +37,7 @@
         'as' => 'billing.setup.view',
         'uses' => 'FeesController@viewBillingSetup'
     ]);
-    Route::any('billing/edit/{id}', [
+    Route::any('billing/setup/edit/{id}', [
         'as' => 'billing.setup.edit',
         'uses' => 'FeesController@editBillingSetup'
     ]);
