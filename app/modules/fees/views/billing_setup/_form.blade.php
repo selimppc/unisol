@@ -12,23 +12,13 @@
         </div>
 
         <div class="form-group">
-            {{ Form::label('degree_id', 'Degree Name') }}<span class="text-danger">*</span>
-            {{ Form::select('degree_id',$degree_id, Input::old('degree_id'), ['id'=>'batch_name','class'=>'form-control','required'=>'required'] ) }}
+            {{ Form::label('degprog_id', 'Degree Name') }}<span class="text-danger">*</span>
+            {{ Form::select('degprog_id',$degree, Input::old('degprog_id'), ['id'=>'batch_name','class'=>'form-control','required'=>'required'] ) }}
         </div>
-        <div style="color:firebrick" id ="errors">
-        </div>
-
-        @if($batch_id)
-            <div class="form-group">
-                {{ Form::label('batch_id', 'Batch') }}<span class="text-danger">*</span>
-                {{ Form::select('batch_id',$batch_id, Input::old('batch_id'),['id'=>'dependable-list', 'class'=>'form-control','placeholder'=>'']) }}
-            </div>
-        @else
             <div class="form-group">
                 {{ Form::label('batch_id', 'Batch') }}<span class="text-danger">*</span>
                 {{ Form::select('batch_id', $batch_id, Input::old('batch_id'), ['id'=>'dependable-list', 'class'=>'form-control','placeholder'=>'','required'=>'required']) }}
             </div>
-        @endif
 
         <div class="form-group">
             {{ Form::label('schedule_id', 'Schedule') }}<span class="text-danger">*</span>
@@ -75,7 +65,6 @@
                     });
         });
     });
-
 
 </script>
 
