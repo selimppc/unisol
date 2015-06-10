@@ -105,6 +105,16 @@ Route::any('support-head/store',[
     'uses' => 'CfoController@storeSupportHead'
 ]);
 
+/*Route::any('support-detail/{id}',[
+    'as' =>'support-detail',
+    'uses' => 'CfoController@cfoSupportDetail'
+]);*/
+
+Route::any('support-head/mail-notification/{support_code}',[
+    'as' =>'support-head.mail-notification',
+    'uses' => 'CfoController@mailNotification'
+]);
+
 //Onsite-help-desk
 Route::any('help-desk',[
     'as' =>'help-desk',

@@ -250,37 +250,49 @@ class CfoController extends \BaseController {
      ** Support Head.............
      */
     public function supportHead(){
+
         $data = CfoCategory::latest('id')->paginate(10);
-        return View::make('cfo::support_head.index',compact('data'));
+        return View::make('cfo::support_head.index',compact('data','cfo_category_id','support_code'));
     }
 
     public function createSupportHead(){
-        $check_radio = Input::get('radio');
-        print_r($check_radio);
-        return View::make('cfo::support_head._form',compact('check_radio'));
+        $cfo_category_id = CfoCategory::lists('title','id');
+
+        return View::make('cfo::support_head.create',compact('cfo_category_id'));
     }
 
     public function storeSupportHead(){
 
         $data = Input::all();
-        print_r($data);exit;
-        $model = new CfoSupportHead();
-//        $model->cfo_category_id =  Input::get('cfo_category_id');
 
-        if($model->validate($data))
-        {
-            DB::beginTransaction();
-            try {
-                $model->create($data);
-                DB::commit();
-                Session::flash('message', "  Added");
+        $model = new CfoSupportHead();
+        $email = Input::get('email');
+        $model->support_code = uniqid();
+
+        if($model->validate($data)) {
+            if ($iSupport = $model->save($data)) {
+
+                $model1 = new CfoSupportDetail();
+                $model1->cfo_support_head_id = $iSupport->id;
+                $model1->message = Input::get('message');
+                $model1->replied_by = 'user';
+
+                if($iSupportDetail = $model1->save($data)){
+                    $cat = CfoCategory::first($data['cfo_category']);
+                }
+                print_r($cat);exit;
+               // $cat->eamil
+                //$email = $model->email;
+                Mail::send('cfo::support_head.mail_notification', array('link' => $support_code), function ($message) use ($email) {
+                    $message->from('test@edutechsolutionsbd.com', 'Email Notification For Support Code');
+                    $message->to($email);
+                    $message->cc('tanintjt@gmail.com');
+                    $message->subject('Notification');
+                });
+                //Session::flash('message', 'Thanks! Please check your email.');
+exit;
+              return Redirect::back();
             }
-            catch ( Exception $e ){
-                //If there are any exceptions, rollback the transaction
-                DB::rollback();
-                Session::flash('danger', " not added.Invalid Request!");
-            }
-            return Redirect::back();
         }else{
             $errors = $model->errors();
             Session::flash('errors', $errors);
@@ -288,5 +300,11 @@ class CfoController extends \BaseController {
                 ->with('errors', 'invalid');
         }
     }
+
+    /*public function cfoSupportDetail($id){
+
+        $category_id = CfoSupportHead::where('id','=',$id);
+        print_r($category_id);exit;
+    }*/
 
 }
