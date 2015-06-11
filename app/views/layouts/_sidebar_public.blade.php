@@ -36,19 +36,14 @@
             <li><a tabindex="-1" a href="{{ URL::route('admission.public.degree_offer_list') }}"><i class="fa fa-globe" style="color:#0089db"></i>Admission Degree Offer</a></li>
         </ul>
     </li>
+     <li class="">
+         <a href="{{ URL::route('support-head.create') }}">
+            <i class="fa fa-angle-double-right"></i> <span>User Support </span>
+         </a>
+     </li>
 
-    <li class="">
-        <a href="{{ URL::route('support-head.create') }}" data-toggle="modal" data-target="#support">
-            <i class="fa fa-rss" style="color: darkmagenta"></i> <span>Support</span>
-        </a>
-    </li>
+
 
 
 </ul>
 
-<div class="modal fade" id="support" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-        </div>
-    </div>
-</div>
