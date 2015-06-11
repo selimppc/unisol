@@ -1,8 +1,8 @@
 
-<div class='form-group'>
+{{--<div class='form-group'>
    {{ Form::label('transfer_number', 'Transfer Number ') }}
    {{ Form::text('transfer_number', Input::old('transfer_number'),['class'=>'form-control', 'style'=>'text-transform: uppercase;', 'required']) }}
-</div>
+</div>--}}
 
 <div class='form-group'>
    {{ Form::label('transfer_to', 'Transfer TO') }}
@@ -35,4 +35,3 @@
 
 <p>&nbsp;</p>
 @include('inventory::requisition_head._script')
-{{ HTML::script('assets/js/custom.js')}}

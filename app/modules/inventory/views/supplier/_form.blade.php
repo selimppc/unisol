@@ -5,6 +5,11 @@
 </div>
 
 <div class='form-group'>
+   {{ Form::label('group_code', 'Supplier Group') }}
+   {{ Form::select('group_code', $supplier_code, Input::old('group_code'),['class'=>'form-control', 'required']) }}
+</div>
+
+<div class='form-group'>
    {{ Form::label('company_name', 'Company Name') }}
    {{ Form::text('company_name', Input::old('company_name'),['class'=>'form-control', 'required']) }}
 </div>

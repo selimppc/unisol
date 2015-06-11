@@ -16,12 +16,6 @@
 })();
 
 
-
-/**
- * Tanin
- */
-
-
 //date_picker
 $('.date_picker').each(function() {
 

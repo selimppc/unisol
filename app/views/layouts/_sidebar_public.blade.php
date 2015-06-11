@@ -36,6 +36,14 @@
             <li><a tabindex="-1" a href="{{ URL::route('admission.public.degree_offer_list') }}"><i class="fa fa-globe" style="color:#0089db"></i>Admission Degree Offer</a></li>
         </ul>
     </li>
-    <li><a href="{{ URL::to('cfo/support-head') }}"></i><i class="fa  fa-rss" style="color: darkmagenta"></i> Support</a></li>
+     <li class="">
+         <a href="{{ URL::route('support-head.create') }}">
+            <i class="fa fa-angle-double-right"></i> <span>User Support </span>
+         </a>
+     </li>
+
+
+
 
 </ul>
+

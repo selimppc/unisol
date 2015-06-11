@@ -28,7 +28,8 @@ class InvSupplierController extends \BaseController {
     {
         $pageTitle = 'Supplier Lists';
         $data = InvSupplier::all();
-        return View::make('inventory::supplier.index', compact('pageTitle', 'data'));
+        $supplier_code = AccCodesParam::where('type', '=', "Supplier Group")->lists('description', 'code');
+        return View::make('inventory::supplier.index', compact('pageTitle', 'data', 'supplier_code'));
     }
 
     /*
@@ -89,7 +90,8 @@ class InvSupplierController extends \BaseController {
             return Redirect::back();
         }else{
             $model = InvSupplier::findOrFail($s_id);
-            return View::make('inventory::supplier.edit', compact('model'));
+            $supplier_code = AccCodesParam::where('type', '=', "Supplier Group")->lists('description', 'code');
+            return View::make('inventory::supplier.edit', compact('model', 'supplier_code'));
         }
 
     }

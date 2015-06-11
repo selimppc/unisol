@@ -11,7 +11,7 @@ class CfoSupportHead extends Eloquent{
     protected $table = 'cfo_support_head';
 
     protected $fillable = [
-        'cfo_category_id', 'name', 'email', 'phone', 'subject','priority','support_code','status'
+        'cfo_category_id', 'name', 'email', 'phone', 'subject','priority','status'
     ];
 
     private $errors;
@@ -19,8 +19,6 @@ class CfoSupportHead extends Eloquent{
         'cfo_category_id' => 'required',
         'name' => 'required',
         'email' => 'required',
-        'support_code' => 'required',
-
     ];
     public function validate($data)
     {

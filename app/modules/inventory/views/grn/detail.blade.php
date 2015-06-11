@@ -10,7 +10,8 @@
 <div style="padding: 2%; width: 99%;">
 <div class="modal-body " >
 
-<div id="response-msg"></div>
+<div id="response-msg" style="color: green; font-size: 16px;"></div>
+<div id="response-msg-failed" style="color: red; font-size: 16px;"></div>
 <div class='row' id="refresh_area">
     <div class="col-sm-5" style="line-height: 10px; border: 1px solid #003bb3;  ">
         <h4> GRN Information:  </h4>
@@ -40,7 +41,7 @@
         <div class='form-group'>
            {{ Form::label('unit_quantity', 'Unit Qty') }}
            <input name="unit_quantity" class="form-control" id="unit-qty" required="required" readonly="readonly">
-           <input type="hidden" value="" id="max-qty">
+           <input type="hidden" value="" id="max-qty" readonly>
         </div>
         <div class='form-group'>
            {{ Form::label('receive_quantity', 'Receive Quantity') }} (Available Quantity : <b><span id="available-qtys" style="color: orangered"></span></b>)
@@ -133,6 +134,6 @@
 </div>
 </div>
 @include('inventory::grn._script')
-{{ HTML::script('assets/js/custom.js')}}
+{{ HTML::script('assets/etsb/etsb_js/etsb_custom.js')}}
 {{ HTML::script('assets/etsb/etsb_js/jquery/jquery.min.js')}}
 {{ HTML::script('assets/etsb/etsb_js/jquery-ui/jquery-ui.min.js')}}

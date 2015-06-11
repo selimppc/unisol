@@ -250,14 +250,71 @@ class CfoController extends \BaseController {
      ** Support Head.............
      */
     public function supportHead(){
+
         $data = CfoCategory::latest('id')->paginate(10);
-        return View::make('cfo::support_head.index',compact('data'));
+        return View::make('cfo::support_head.index',compact('data','cfo_category_id','support_code'));
     }
 
     public function createSupportHead(){
-        $check_radio = Input::get('radio');
-        print_r($check_radio);exit;
-        return View::make('cfo::support_head._form');
+        $cfo_category_id = CfoCategory::lists('title','id');
+
+        return View::make('cfo::support_head._form',compact('cfo_category_id'));
     }
+
+    public function storeSupportHead(){
+
+        $rules = array(
+            'name' => 'required|min:2',
+            'email' => 'required|email',
+        );
+        $validator = Validator::make(Input::all(), $rules);
+        if ($validator->Fails()) {
+            //Session::flash('message', 'Data Not saved');
+            return Redirect::to('cfo/support-head/create')->withErrors($validator)->withInput();
+        } else {
+            $support_code = uniqid();
+            $model1 = new CfoSupportHead();
+            $model1->cfo_category_id = Input::get('cfo_category_id');
+            $model1->name = Input::get('name');
+            $model1->email = Input::get('email');
+            $model1->phone = Input::get('phone');
+            $model1->subject = Input::get('subject');
+            $model1->priority = Input::get('priority');
+            $model1->status = Input::get('status');
+            $model1->support_code = $support_code;
+
+            /*CfoSupportDetail*/
+            if ($model1->save()) {
+                $model2 = new CfoSupportDetail();
+                $model2->cfo_support_head_id = $model1->id;
+                $model2->message = Input::get('message');
+
+                if($model2->save()){
+                    /*get 'support_email' using cfo_category from $model1 */
+                    $category_cfo = CfoCategory::find($model1->cfo_category_id);
+
+                     Mail::send('cfo::support_head.user_notification', array('link' => $support_code), function ($message) use ($model1) {
+                         $message->from('test@edutechsolutionsbd.com', 'Email Notification For Support Code');
+                         $message->to($model1->email);
+                         $message->cc('tanintjt@gmail.com');
+                         $message->subject('Email Notification For Support Code');
+                     });
+
+                    Mail::send('cfo::support_head.cfo_notification', array('link' => $support_code), function ($message) use ($category_cfo) {
+                        $message->from('test@edutechsolutionsbd.com', 'Email Notification For Support User');
+                        $message->to($category_cfo->support_email);
+                        $message->cc('tanintjt@gmail.com');
+                        $message->subject('Email Notification For Support User');
+                    });
+                }
+                Session::flash('message', 'Successfully Proceeded Your Support Request. Please Check Your Email.');
+                return Redirect::back();
+            } else {
+                Session::flash('danger', 'Please try again');
+                return Redirect::back();
+            }
+        }
+    }
+
 
 }

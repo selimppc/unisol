@@ -29,10 +29,8 @@
                     <th> Country </th>
                     <th> Zip Code  </th>
                     <th> Contact Person </th>
-                    <th> Phone </th>
+                    <th> Group  </th>
                     <th> Cell Phone </th>
-                    <th> Email </th>
-                    <th> Web </th>
                     <th> Status </th>
                     <th> Action</th>
                 </tr>
@@ -46,10 +44,8 @@
                     <td>{{Str::title($values->relCountry->title)}}</td>
                     <td>{{$values->zip_code}}</td>
                     <td>{{Str::title($values->contact_person)}}</td>
-                    <td>{{$values->phone}}</td>
+                    <td>{{$values->group_code}}</td>
                     <td>{{$values->cell_phone}}</td>
-                    <td>{{$values->email}}</td>
-                    <td>{{$values->web}}</td>
                     <td>{{$values->status}}</td>
                     <td>
                         <a href="{{ URL::route('supplier/show', ['s_id'=>$values->id ])  }}" class="btn btn-default btn-xs" title="Manage Applicant" data-toggle="modal" data-target="#modal-pc"><span class="fa fa-eye"></span></a>

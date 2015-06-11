@@ -17,9 +17,8 @@
     <div class="box box-solid ">
 
         <div class="col-sm-12">
-           <div class="pull-left col-sm-4">   </div>
+           <div class="pull-left col-sm-4"></div>
            <div class="pull-right col-sm-4" style="padding-top: 1%;">
-
            </div>
         </div>
 

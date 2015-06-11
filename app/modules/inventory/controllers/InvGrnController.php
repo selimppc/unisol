@@ -27,7 +27,7 @@ class InvGrnController extends \BaseController {
     public function index_grn()
     {
         $pageTitle = 'GRN History';
-        $data = InvGrnHead::all();
+        $data = InvGrnHead::latest('id')->get();
         return View::make('inventory::grn.index', compact('pageTitle', 'data'));
     }
 
@@ -51,28 +51,31 @@ class InvGrnController extends \BaseController {
     public function ajax_grn_detail_store(){
         if(Request::ajax()) {
             $data = Input::all();
-            #print_r($data);exit;
             $model = new InvGrnDetail();
             if ($model->validate($data)) {
                 DB::beginTransaction();
                 try {
-                    $data = $model->create($data);
+                    if($data = $model->create($data)){
+                        $product = InvProduct::findOrFail($data->inv_product_id);
+                        $results = [
+                            'id' => $data->id,
+                            'product_code' => $product->code,
+                            'product_name' => $product->title,
+                            'expire_date' => $data->expire_date,
+                            'receive_quantity' => $data->receive_quantity,
+                            'cost_price' => $data->cost_price,
+                            'unit' => $data->unit,
+                            'row_amount' => $data->row_amount,
+                        ];
+                    }
                     DB::commit();
-                    /*return Response::json("<span style='font-size: 18px; color: green'> GRN saved Successfully ! </span> ");*/
-                    $results = [
-                        'inv_product_id' => $data->inv_product_id,
-                        'expire_date' => $data->expire_date,
-                        'receive_quantity' => $data->receive_quantity,
-                        'cost_price' => $data->cost_price,
-                        'unit' => $data->unit,
-                        'row_amount' => $data->row_amount,
-                    ];
                     return Response::json($results);
                 } catch (Exception $e) {
-                    print_r($e->getMessage());exit;
                     //If there are any exceptions, rollback the transaction`
                     DB::rollback();
-                    return Response::json("<span style='font-size: 18px; color: orangered'>Invalid Request ! </span> ");
+                    #$mes = "<span style='font-size: 18px; color: orangered'>Invalid Request ! </span> ";
+                    $mes = ['msg' => "Invalid"];
+                    return Response::json($mes);
                 }
             }
         }

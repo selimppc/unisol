@@ -24,12 +24,25 @@ class InvAdjustmentController extends \BaseController {
 
     public function store_stock_adjustment(){
         if($this->isPostRequest()){
+            $adjust_no = InvTrnNoSetup::where('title', '=', "Stock Adjustment")
+                ->select(DB::raw('CONCAT (code, LPAD(last_number + 1, 8, 0)) as number'))
+                ->first()->number;
             $input_data = Input::all();
+            $inp_data = [
+                'adjust_no' => $adjust_no,
+                'date' => $input_data['date'],
+                'type' => $input_data['type'],
+                'note' => $input_data['note'],
+                'status'=> "open",
+            ];
+
             $model = new InvAdjustHead();
-            if($model->validate($input_data)) {
+            if($model->validate($inp_data)) {
                 DB::beginTransaction();
                 try {
-                    $model->create($input_data);
+                    $model->create($inp_data);
+                    DB::table('inv_trn_no_setup')->where('title', '=', "Stock Adjustment")
+                        ->update(array('last_number' => substr($adjust_no,4)));
                     DB::commit();
                     Session::flash('message', 'Success !');
                 }catch (Exception $e) {

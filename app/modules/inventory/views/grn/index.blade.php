@@ -39,7 +39,7 @@
 
                  <tr style="{{$values->status=='approved' ? 'background-color: burlywood' : '' }}">
                     <td width="80"><b>
-                        {{ link_to_route( $values->status=="GRN Confirmed" ? 'show-grn-detail' : 'create-new-grn', $values->grn_no ,['grn_id'=>isset($values->id) ? $values->id : ""], ['data-toggle'=>"modal", 'data-target'=>"#modal-pc"] ) }}
+                        {{ link_to_route('show-grn-detail', $values->grn_no ,['grn_id'=>$values->id], ['data-toggle'=>"modal", 'data-target'=>"#modal-pc"] ) }}
                     </b></td>
                     <td>{{ $values->relInvPurchaseOrderHead->purchase_no}}</td>
                     <td>{{ $values->voucher_no}}</td>
@@ -54,10 +54,9 @@
                     <td>{{ round($values->amount, 2) }}</td>
                     <td>{{ round($values->net_amount, 2) }}</td>
                     <td>{{ Str::title($values->status) }}</td>
-
                     <td>
                         @if($values->status != 'GRN Confirmed')
-                            <a href="{{ URL::route('create-new-grn', ['grn_id'=>$values->id,'po_id'=>$values->inv_po_head_id ]) }}" class="btn btn-xs btn-info" data-toggle="modal" data-target="#modal-pc" ><i class="fa fa-2x" style="color: darkslategray" data-toggle="tooltip" data-placement="bottom" title="Create GRN"></i> + GRN</a>
+                            <a href="{{ URL::route('create-new-grn', ['grn_id'=>$values->id,'po_id'=>$values->inv_po_head_id ]) }}" class="btn btn-xs btn-info" data-toggle="modal" data-target="#modal-pc" ><i class="fa fa-2x" style="color: darkslategray" data-toggle="tooltip" data-placement="bottom" title="Create GRN"></i> + Create GRN</a>
                             <a href="{{ URL::route('confirm-grn', ['grn_id'=>$values->id ]) }}" class="btn btn-xs btn-success"><i class="fa fa-2x" style="color: darkslategray" data-toggle="tooltip" data-placement="bottom" title="Confirm GRN"></i> Confirm GRN</a>
                         @endif
                     </td>

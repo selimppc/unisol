@@ -119,6 +119,7 @@
                            @endif
                        </table>
                        <p>&nbsp;</p>
+                    {{Form::hidden('ids[]', $values->id)}}
                    {{ Form::submit('Apply', array('class'=>'pull-right btn btn-xs btn-info'))}}
                    {{ Form::close() }}
                 </div>

@@ -161,9 +161,9 @@ class InvPurchaseOrderController extends \BaseController {
         if($check){
             //Call Store Procedure
             DB::select('call sp_inv_po_to_grn(?, ?)', array($po_id, $user_id) );
-            Session::flash('message', 'Purchase Order Created !');
+            Session::flash('message', 'GRN Created !');
         }else{
-            Session::flash('info', 'Requisition Detail is empty. Please add product item. And try later!');
+            Session::flash('info', 'PO Detail is empty. Please add product item. And try later!');
         }
         return Redirect::back();
     }
@@ -220,6 +220,7 @@ class InvPurchaseOrderController extends \BaseController {
                 'inv_po_head_id' => Input::get('inv_po_head_id'),
                 'inv_product_id'=> Input::get('inv_product_id')[$i],
                 'unit'=> Input::get('unit')[$i],
+                'unit_quantity'=> Input::get('unit')[$i],
                 'quantity'=> Input::get('quantity')[$i],
                 'purchase_rate'=> Input::get('rate')[$i],
                 'amount' => Input::get('quantity')[$i] * Input::get('rate')[$i],

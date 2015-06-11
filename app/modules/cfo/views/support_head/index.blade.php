@@ -15,20 +15,26 @@
            <b><em><ins>Please Select Category For Any Support.....</ins></em></b>
        </div>
        <div class="box-body">
-           <table id="example" class="table table-striped table-bordered">
-               <tbody>
-               @if(isset($data))
-                   @foreach($data as $values)
-                       <div class="col-lg-6" >
-                            <label class="radio-inline"><input type="radio" name="radio"  value="{{ $values->id }}" data-toggle="modal" data-target="#support"></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$values->title}}<br><br>
-                       </div>
-                   @endforeach
-               @endif
-               </tbody>
-               <div style="margin-right: 30px">
-                    <a class="pull-right btn btn-sm btn-info" href="{{ URL::route('support-head.create') }}" data-toggle="modal" data-target="#support" style="color: #ffffff"><b>Next</b></a>
-               </div>
-           </table>
+           {{ Form::open(['route' => ['support-head.store']]) }}
+           {{Form::hidden('support_code', $support_code)}}
+               <table id="example" class="table table-striped table-bordered">
+                   <tbody>
+                       @if(isset($data))
+                           @foreach($data as $values)
+                               <div class="col-lg-6">
+                                    <label class="radio-inline"><input type="radio" name="cfo_category_id"  value="{{ $values->id }}"></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$values->title}}<br><br>
+                               </div>
+                           @endforeach
+                       @endif
+                   </tbody>
+                   <div style="margin-right: 30px">
+                       <button type="button" class="pull-right btn btn-sm btn-info" data-toggle="modal" data-target="#modal">
+                            Next
+                       </button>
+                   @include('cfo::support_head._modal')
+                   </div>
+               </table>
+           {{ Form::close() }}
        </div>
    </div>
 </div>

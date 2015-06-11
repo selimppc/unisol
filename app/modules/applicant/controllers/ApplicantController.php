@@ -925,7 +925,10 @@ class ApplicantController extends \BaseController
     public function degreeApply(){
 
         if(Auth::applicant()->check()){
-            $batch_ids = Input::get('ids');
+            if(Session::has('applicantDegIds'))
+                $batch_ids = Session::get('applicantDegIds');
+            else
+                $batch_ids = Input::get('ids');
             if($batch_ids){
                 foreach($batch_ids as $key => $value){
                     $data = new BatchApplicant();
@@ -948,10 +951,19 @@ class ApplicantController extends \BaseController
                 Session::flash('info', "Please Select Degree From Degree List!");
                 return Redirect::back();
             }
-            return Redirect::route('admission.applicant_details', ['id' => Auth::applicant()->get()->id]);
+            return Redirect::route('applicant.details', ['id' => Auth::applicant()->get()->id]);
         } else {
+            // Remember this link to redirect after applicant login.
+            // If single degree is selected then it should redirect to degree details page.
+            $degreeIds = Input::get('ids');
+            if(count($degreeIds) == 1)
+                Session::put('applicantRedirect', 'admission/public/degree-offer-details/'.$degreeIds[0]);
+            else
+                Session::put('applicantRedirect', 'admission/public/degree-offer-list');
+            Session::put('applicantDegIds', $degreeIds);
+
             Auth::logout();
-            Session::flush(); //delete the session
+            //Session::flush(); //delete the session
             Session::flash('danger', "Please Login As Applicant!  Or if not registered applicant then go <a href='/applicant/signup'>signup from here</a>");
             return Redirect::route('user/login');
         }
