@@ -249,27 +249,21 @@ class CfoController extends \BaseController {
     /*
      ** Support Head.............
      */
-    public function supportHead(){
-
-        $data = CfoCategory::latest('id')->paginate(10);
-        return View::make('cfo::support_head.index',compact('data','cfo_category_id','support_code'));
-    }
 
     public function createSupportHead(){
         $cfo_category_id = CfoCategory::lists('title','id');
-
         return View::make('cfo::support_head._form',compact('cfo_category_id'));
     }
 
     public function storeSupportHead(){
 
         $rules = array(
-            'name' => 'required|min:2',
+            'name' => 'required',
             'email' => 'required|email',
         );
         $validator = Validator::make(Input::all(), $rules);
         if ($validator->Fails()) {
-            //Session::flash('message', 'Data Not saved');
+            Session::flash('danger', 'Your Support Request Do Not Proceeded Successfully,Please Try Again!!!');
             return Redirect::to('cfo/support-head/create')->withErrors($validator)->withInput();
         } else {
             $support_code = uniqid();
@@ -292,19 +286,19 @@ class CfoController extends \BaseController {
                 if($model2->save()){
                     /*get 'support_email' using cfo_category from $model1 */
                     $category_cfo = CfoCategory::find($model1->cfo_category_id);
-
-                     Mail::send('cfo::support_head.user_notification', array('link' => $support_code), function ($message) use ($model1) {
+                   /*send mail to user*/
+                    Mail::send('cfo::support_head.user_notification', array('link' => $support_code), function ($message) use ($model1) {
                          $message->from('test@edutechsolutionsbd.com', 'Email Notification For Support Code');
                          $message->to($model1->email);
                          $message->cc('tanintjt@gmail.com');
                          $message->subject('Email Notification For Support Code');
-                     });
-
+                    });
+                    /*send mail to cfo-staff*/
                     Mail::send('cfo::support_head.cfo_notification', array('link' => $support_code), function ($message) use ($category_cfo) {
-                        $message->from('test@edutechsolutionsbd.com', 'Email Notification For Support User');
-                        $message->to($category_cfo->support_email);
-                        $message->cc('tanintjt@gmail.com');
-                        $message->subject('Email Notification For Support User');
+                         $message->from('test@edutechsolutionsbd.com', 'Email Notification For Support User');
+                         $message->to($category_cfo->support_email);
+                         $message->cc('tanintjt@gmail.com');
+                         $message->subject('Email Notification For Support User');
                     });
                 }
                 Session::flash('message', 'Successfully Proceeded Your Support Request. Please Check Your Email.');
@@ -315,6 +309,8 @@ class CfoController extends \BaseController {
             }
         }
     }
+
+
 
 
 }

@@ -21,11 +21,6 @@
 
                 {{Form::hidden('status','new')}}
 
-                {{--<div class="form-group">--}}
-                  {{--{{ Form::label('cfo_category_id', 'Cfo Category') }}<span class="text-danger">*</span>--}}
-                  {{--{{ Form::select('cfo_category_id', $cfo_category_id, Input::old('cfo_category_id'), [ 'class'=>'form-control', ]) }}--}}
-                {{--</div>--}}
-
                 <div class="form-group">
                     <div class='col-lg-6' style="padding-left: 0;">
                        {{ Form::label('name', 'Name') }}<span class="text-danger">*</span>

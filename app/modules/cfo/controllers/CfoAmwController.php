@@ -137,5 +137,14 @@ class CfoAmwController extends \BaseController {
             return Redirect::back()->with('danger', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
         }
     }
+/*Support Desk*/
 
+    public function cfoSupportIndex(){
+        $cfo_id = Auth::user()->get()->id;
+        $category_id = CfoCategory::where('support_user_id','=',$cfo_id)->first()->id;
+//        print_r($category_id);exit;
+        $support_data = CfoSupportHead::where('cfo_category_id','=',$category_id)->get();
+//        print_r($support_data);exit;
+        return View::make('cfo::support_head.staff.index',compact('support_data'));
+    }
 }

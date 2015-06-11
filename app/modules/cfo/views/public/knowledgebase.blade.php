@@ -1,11 +1,10 @@
 @extends('layouts.layout')
-  @section('top_menu')
+@section('top_menu')
+    @include('layouts._top_menu')
 @stop
-
 @section('sidebar')
- @include('cfo::public._sidebar')
+    @include('layouts._sidebar_public')
 @stop
-
 @section('content')
 
 <h3> Knowledge Base </h3>

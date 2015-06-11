@@ -221,7 +221,10 @@ class InvStockController extends \BaseController {
         $check = InvTransferDetail::where('inv_transfer_head_id', $transfer_head_id)->exists();
         if($check){
             //Call Store Procedure
-            DB::select('call sp_inv_confirm_dispatch(?, ?)', array($transfer_head_id, Auth::user()->get()->id) );
+            //DB::select('call sp_inv_confirm_dispatch(?, ?)', array($transfer_head_id, Auth::user()->get()->id) );
+            //updated confirm dispatch
+            DB::table('inv_transfer_head')->where('id', $transfer_head_id)
+                ->update(array('status' => "Confirmed Dispatch"));
             Session::flash('message', 'Stock Transferred Successfully !');
         }else{
             Session::flash('info', 'Transfer Detail is empty. Please add product item. And try later!');

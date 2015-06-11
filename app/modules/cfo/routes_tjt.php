@@ -90,10 +90,6 @@ Route::any('ajax/knowledgebase/rating',[
 ]);
 
 //Support Head
-Route::any('support-head',[
-    'as' =>'support-head',
-    'uses' => 'CfoController@supportHead'
-]);
 
 Route::any('support-head/create',[
     'as' =>'support-head.create',
@@ -105,15 +101,16 @@ Route::any('support-head/store',[
     'uses' => 'CfoController@storeSupportHead'
 ]);
 
-/*Route::any('support-detail/{id}',[
-    'as' =>'support-detail',
-    'uses' => 'CfoController@cfoSupportDetail'
-]);*/
-
 Route::any('support-head/mail-notification/{support_code}',[
     'as' =>'support-head.mail-notification',
     'uses' => 'CfoController@mailNotification'
 ]);
+
+Route::any('support-head',[
+    'as' =>'support-head.index',
+    'uses' => 'CfoAmwController@cfoSupportIndex'
+]);
+
 
 //Onsite-help-desk
 Route::any('help-desk',[
