@@ -73,16 +73,18 @@ class FeesController extends \BaseController {
     public function viewBillingSetup($id)
     {
         $view_billing_setup = BillingSetup::find($id);
-        return View::make('fees::billing_setup.view',compact('view_billing_setup'));
+        $view_details = BillingSetup::with('relBatch', 'relBatch.relDegree','relBatch.relDegree.relDegreeProgram')
+            ->where('id', '=', $id)
+            ->first();
+        return View::make('fees::billing_setup.view',compact('view_billing_setup','view_details'));
     }
-
 
     public function editBillingSetup($id)
     {
         $edit_billing_setup = BillingSetup::find($id);
         $degree_program_name= BillingSetup::with('relBatch', 'relBatch.relDegree','relBatch.relDegree.relDegreeProgram')
             ->where('id', '=', $id)
-            ->first();//Execute the query and get the first result.
+            ->first();
 
         $degree = ['' => 'Select Degree to Edit'] + DegreeProgram::lists('title', 'id');
         $batch_id = ['' => 'Select Batch']+ Batch::lists('batch_number', 'id');
