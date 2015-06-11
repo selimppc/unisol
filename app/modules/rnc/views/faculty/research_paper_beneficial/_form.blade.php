@@ -5,7 +5,7 @@
 
 <div class='form-group'>
    {{ Form::label('rnc_research_paper_writer_id', 'RnC Writer Name') }} ( <small>Writer Name</small> )
-   {{ Form::text('rnc_research_paper_writer_id',$w_id , ['class'=>'orm-control','autofocus' ]) }}
+   {{ Form::text('rnc_research_paper_writer_id',$id , ['class'=>'orm-control','autofocus' ]) }}
 </div>
 
 <div class='form-group'>
