@@ -7,7 +7,7 @@
 @stop
 @section('content')
 
-<h3> Support Desk </h3>
+<h3>Support Desk</h3>
 
 <div class="row">
 
@@ -33,25 +33,30 @@
                     <th> Priority</th>
                     <th> Support Code</th>
                     <th> Status</th>
+                    <th> Action</th>
                 </tr>
             </thead>
             <tbody>
-            {{--@if(isset($knb_data))--}}
-                {{--@foreach($knb_data as $values)--}}
-                 {{--<tr>--}}
-                    {{--<td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $values->id }}"></td>--}}
+            @if(isset($support_data))
+                @foreach($support_data as $values)
+                 <tr>
+                    <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $values->id }}"></td>
 
-                    {{--<td>{{$values->title}}</td>--}}
-                    {{--<td>{{$values->description}}</td>--}}
-                    {{--<td>{{$values->keywords}}</td>--}}
-                    {{--<td>--}}
+                    <td>{{$values->name}}</td>
+                    <td>{{$values->email}}</td>
+                    <td>{{$values->phone}}</td>
+                    <td>{{$values->subject}}</td>
+                    <td>{{$values->priority}}</td>
+                    <td>{{$values->support_code}}</td>
+                     <td>{{$values->status}}</td>
+                    <td>
                         {{--<a href="{{ URL::route('knowledge-base.show',['id'=>$values->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#knb" style="font-size: 12px;color: darkmagenta"><span class="fa fa-eye"></span></a>--}}
                         {{--<a class="btn btn-xs btn-default" href="{{ URL::route('edit.knowledge-base',['id'=>$values->id]) }}" data-toggle="modal" data-target="#knb" style="font-size: 12px;color: lightseagreen"><i class="fa fa-edit"></i></a>--}}
                         {{--<a data-href="{{ URL::route('delete.knowledge-base',$values->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" style="font-size: 12px;color: lightcoral"><span class="fa  fa-trash-o"></span></a>--}}
-                    {{--</td>--}}
-                 {{--</tr>--}}
-                {{--@endforeach--}}
-            {{--@endif--}}
+                    </td>
+                 </tr>
+                @endforeach
+            @endif
             </tbody>
         </table>
         </div>

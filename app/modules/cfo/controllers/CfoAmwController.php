@@ -140,7 +140,11 @@ class CfoAmwController extends \BaseController {
 /*Support Desk*/
 
     public function cfoSupportIndex(){
-//        $support_data =
-        return View::make('cfo::support_head.staff.index',compact('cfo_category_id'));
+        $cfo_id = Auth::user()->get()->id;
+        $category_id = CfoCategory::where('support_user_id','=',$cfo_id)->first()->id;
+//        print_r($category_id);exit;
+        $support_data = CfoSupportHead::where('cfo_category_id','=',$category_id)->get();
+//        print_r($support_data);exit;
+        return View::make('cfo::support_head.staff.index',compact('support_data'));
     }
 }
