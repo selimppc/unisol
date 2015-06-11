@@ -1,6 +1,7 @@
-<div class="modal-header">
+{{ HTML::script('assets/js/custom.js')}}
+<div class="modal-header" xmlns="http://www.w3.org/1999/html">
     <button type="button" class="close" data-dismiss="modal">{{HTML::image('assets/icon/media-close-btn.png')}}</button>
-    <h4 class="modal-title" style="text-align: center;color: #800080;">Edit Billing setup :: </h4>
+    <h4 class="modal-title" style="text-align: center;color: #800080;">Edit Billing setup</h4>
 </div>
 <div class="modal-body">
     <div style="padding: 10px;">
@@ -13,6 +14,7 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <span class="text-red" >Previous Added Degree</span> : <span class="text-purple">{{isset($degree_program_name->relBatch->relDegree->relDegreeProgram->title) ? $degree_program_name->relBatch->relDegree->relDegreeProgram->title :''}}</span></br>
                     {{ Form::label('degprog_id', 'Degree Name') }}<span class="text-danger">*</span>
                     {{ Form::select('degprog_id',$degree, Input::old('degprog_id'), ['id'=>'batch_name','class'=>'form-control'] ) }}
                 </div>

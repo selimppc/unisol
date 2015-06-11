@@ -178,7 +178,6 @@ class InvProductController extends \BaseController {
             }
         }
         return Redirect::back();
-
     }
 
     /*
