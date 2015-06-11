@@ -35,10 +35,33 @@
                         </ul>
                     </li>
                 </ul>
+
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab_1">
+
+                      {{--****************** Filter :Starts ***********************--}}
+                        <div>
+
+                            <div class="col-sm-8">
+                                <div class="col-sm-3">
+                                    {{ Form::label('degree_id', 'Degree') }}
+                                    {{ Form::select('degree_id',$degree,Input::old('degree_id'), array('class' => 'form-control') ) }}
+                                </div>
+                                <div class="col-sm-3">
+                                    {{ Form::label('batch_id', 'Batch') }}
+                                    {{ Form::select('batch_id',$batch, Input::old('batch_id'), array('class' => 'form-control')) }}
+                                </div>
+                                <div class="col-sm-2" style="padding-top: 1%">
+                                    </br>
+                                    {{ Form::submit('Filter', array('class'=>'btn btn-success btn-xs','id'=>'button'))}}
+                                </div>
+                            </div>
+
+                        </div>
+                        {{--*****************Filter :Ends ****************************--}}
+
                         <div class="box-body table-responsive ">
-                            <a href="{{ URL::route('billing.create')}}" class=" btn btn-xs btn-success fa fa-plus " data-toggle="modal" data-target="#myModal">Add New</a>
+                            <a href="{{ URL::route('billing.create')}}" class=" btn btn-xs btn-success fa fa-plus pull-right" data-toggle="modal" data-target="#myModal">Add New</a>
                               {{Form::open(array('route'=> ['billing.setup.batch.delete'], 'class'=>'form-horizontal','files'=>true))}}
                             <table id="example" class="table table-bordered table-hover table-striped">
                                 <thead>
