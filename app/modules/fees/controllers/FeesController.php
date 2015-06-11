@@ -26,7 +26,7 @@ class FeesController extends \BaseController {
             $degree_id = Input::get('degree_id');
             $batch_id = Input::get('batch_id');
           }
-            return View::Make('fees::billing_setup.index', compact('billing_setup', 'degree', 'batch'));
+        return View::Make('fees::billing_setup.index', compact('billing_setup', 'degree', 'batch'));
     }
     public function createBillingSetup()
     {
