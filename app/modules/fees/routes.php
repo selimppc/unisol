@@ -12,6 +12,7 @@
 */
  Route::group(['prefix' => 'fees'], function() {
 
+
     Route::get('/', function() {
         return 'Thank you so much!';
     });

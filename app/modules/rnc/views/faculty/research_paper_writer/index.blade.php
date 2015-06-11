@@ -63,7 +63,7 @@
                                            <a href="{{ URL::route('faculty.research-paper-writer.show', ['id'=>$value->id])  }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#show" href=""><i class="fa fa-eye" style="color: green"></i></a>
                                            <a href="{{ URL::route('faculty.research-paper-writer.edit', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#edit" href="" ><i class="fa fa-pencil-square-o" style="color: #0044cc"></i></a>
                                            <a data-href="{{ URL::route('faculty.research-paper-writer.delete', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa fa-trash-o" style="color: red"></i></a>
-                                           <a href="{{ URL::route('faculty.research-paper-beneficial.index', [ 'rnc_r_p_id'=>$value->rnc_research_paper_id , 'w_id'=>$value->id ]) }}" class="btn btn-xs btn-primary" ></i>Beneficial</a>
+                                           <a href="{{ URL::route('faculty.research-paper-beneficial.index', [ 'id'=>$value->id ,'rnc_r_p_id'=>$value->rnc_research_paper_id , 'w_id'=>$value->writer_user_id ]) }}" class="btn btn-xs btn-primary" ></i>Beneficial</a>
                                         </td>
                                     </tr>
                                 @endforeach

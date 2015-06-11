@@ -5,7 +5,7 @@
 
 <div style="padding-left: 10px; width: 90%;">
     {{Form::open(array('route'=>'faculty.research-paper.save-comment','method' => 'POST')) }}
-    {{Form::hidden('rnc_research_paper_id',$rnc_id )}}
+    {{Form::hidden('rnc_research_paper_id',$rnc_r_p_id )}}
 {{--    {{Form::hidden('commented_to', $rnc_r_p->s_faculty_user_id)}}--}}
         <div  style="padding-left: 8%">
             <p>

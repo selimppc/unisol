@@ -4,7 +4,14 @@ class FeesController extends \BaseController {
 
     function __construct() {
         $this->beforeFilter('feesAmw', array('except' => array('')));
-//		$this->beforeFilter('academicAmw', array('except' => array('index')));
+    }
+
+    /*
+    * POST REQUEST To save data
+    */
+    protected function isPostRequest()
+    {
+        return Input::server("REQUEST_METHOD") == "POST";
     }
 
     /**********************Billing Setup Start***************************/
@@ -39,71 +46,76 @@ class FeesController extends \BaseController {
 
     public function storeBillingSetup()
     {
-        $data = Input::all();
-        $model = new BillingSetup();
-        $model->billing_schedule_id = Input::get('schedule_id');
-        $model->billing_item_id = Input::get('item_id');
-        $model->batch_id = Input::get('batch_id');
-        $model->cost = Input::get('cost');
-        $model->deadline = Input::get('deadline');
-        $model->fined_cost = Input::get('fined');
+        if($this->isPostRequest()) {
+            $data = Input::all();
+            $model = new BillingSetup();
+            $model->billing_schedule_id = Input::get('schedule_id');
+            $model->billing_item_id = Input::get('item_id');
+            $model->batch_id = Input::get('batch_id');
+            $model->cost = Input::get('cost');
+            $model->deadline = Input::get('deadline');
+            $model->fined_cost = Input::get('fined');
+            if ($model->validate($data)) {
+                if ($model->save($data)) {
+                    Session::flash('message', "Billing is Setup Successfully");
+                    return Redirect::back();
+                } else {
+                    $errors = $model->errors();
+                    Session::flash('errors', $errors);
+                    return Redirect::back()->with('errors', 'Invalid Request');
+                }
 
-        if($model->save()){
-            Session::flash('message', "Billing is Setup Successfully");
-            return Redirect::back();
-        }else{
-            $errors = $model->errors();
-            Session::flash('errors', $errors);
-            return Redirect::back()->with('errors', 'Invalid Request');
+            }
         }
-
+        return Redirect::back();
     }
 
     public function viewBillingSetup($id)
     {
-        $view_category = LibBookCategory::find($id);
-        return View::make('library::librarian.category.view',compact('view_category'));
+        $view_billing_setup = BillingSetup::find($id);
+        $view_details = BillingSetup::with('relBatch', 'relBatch.relDegree','relBatch.relDegree.relDegreeProgram')
+            ->where('id', '=', $id)
+            ->first();
+        return View::make('fees::billing_setup.view',compact('view_billing_setup','view_details'));
     }
-
 
     public function editBillingSetup($id)
     {
+        $edit_billing_setup = BillingSetup::find($id);
+        $degree_program_name= BillingSetup::with('relBatch', 'relBatch.relDegree','relBatch.relDegree.relDegreeProgram')
+            ->where('id', '=', $id)
+            ->first();
 
         $degree = ['' => 'Select Degree to Edit'] + DegreeProgram::lists('title', 'id');
         $batch_id = ['' => 'Select Batch']+ Batch::lists('batch_number', 'id');
         $schedule_id = ['' => 'Select Billing Schedule']+ BillingSchedule::lists('title', 'id');
         $item_id = ['' => 'Select Billing Item']+ BillingItem::lists('title', 'id');
-        $edit_billing_setup = BillingSetup::find($id);
-        return View::make('fees::billing_setup.edit',compact('edit_billing_setup','degree','batch_id','schedule_id','item_id'));
+
+        return View::make('fees::billing_setup.edit',compact('edit_billing_setup','degree','batch_id','schedule_id','item_id','degree_program_name'));
     }
 
 
     public function updateBillingSetup($id)
     {
-        $data = Input::all();
-        $model = BillingSetup::find($id);
-    /*    $model->title = Input::get('title');
-        $flash_msg = $model->title;*/
-        if($model->validate($data))
-        {
-            DB::beginTransaction();
-            try {
-                $model->update($data);
-                DB::commit();
+        if($this->isPostRequest()) {
+            $data = Input::all();
+            $model = BillingSetup::find($id);
+            $model->billing_schedule_id = Input::get('schedule_id');
+            $model->billing_item_id = Input::get('item_id');
+            $model->batch_id = Input::get('batch_id');
+            $model->cost = Input::get('cost');
+            $model->deadline = Input::get('deadline');
+            $model->fined_cost = Input::get('fined');
+            if ($model->save($data)) {
                 Session::flash('message', "Billing is Setup Successfully");
+                return Redirect::back();
+            } else {
+                $errors = $model->errors();
+                Session::flash('errors', $errors);
+                return Redirect::back()->with('errors', 'Invalid Request');
             }
-            catch ( Exception $e ){
-                //If there are any exceptions, rollback the transaction
-                DB::rollback();
-                Session::flash('danger', "Billing is Setup Not Updated. Invalid Request !");
-            }
-            return Redirect::back();
-        }else{
-            $errors = $model->errors();
-            Session::flash('errors', $errors);
-            return Redirect::back()
-                ->with('errors', 'Input Data Not Valid');
         }
+        return Redirect::back();
     }
 
     public function deleteBillingSetup($id)
