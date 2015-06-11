@@ -26,19 +26,19 @@ class InvProductController extends \BaseController {
     /*
      * All data list(s)
      */
-	public function index_product_category()
-	{
+    public function index_product_category()
+    {
         $pageTitle = 'Product Category';
         $data = InvProductCategory::all();
         return View::make('inventory::product_category.index', compact('pageTitle', 'data'));
-	}
+    }
 
     /*
      * Store input data into  product category table
      *
      */
-	public function store_product_category()
-	{
+    public function store_product_category()
+    {
         if($this->isPostRequest()){
             $input_data = Input::all();
             $model = new InvProductCategory();
@@ -57,7 +57,7 @@ class InvProductController extends \BaseController {
         }
         return Redirect::back();
 
-	}
+    }
 
     /*
      * Show specific model data only
