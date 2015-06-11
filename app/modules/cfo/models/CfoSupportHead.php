@@ -35,5 +35,10 @@ class CfoSupportHead extends Eloquent{
         return $this->errors;
     }
 
+    public function relCfoCategory(){
+        return $this->belongsTo('CfoCategory', 'cfo_category_id', 'id');
+    }
+
+
 
 } 

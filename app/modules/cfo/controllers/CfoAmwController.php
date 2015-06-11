@@ -140,11 +140,47 @@ class CfoAmwController extends \BaseController {
 /*Support Desk*/
 
     public function cfoSupportIndex(){
-        $cfo_id = Auth::user()->get()->id;
-        $category_id = CfoCategory::where('support_user_id','=',$cfo_id)->first()->id;
-//        print_r($category_id);exit;
-        $support_data = CfoSupportHead::where('cfo_category_id','=',$category_id)->get();
-//        print_r($support_data);exit;
+        $cfo_user_id = Auth::user()->get()->id;
+        $support_data = CfoSupportHead::with('relCfoCategory')
+            ->whereExists(function($query) use($cfo_user_id)
+            {
+                $query->from('cfo_category')
+                    ->whereRaw('cfo_category.id = cfo_support_head.cfo_category_id')
+                    ->where('cfo_category.support_user_id', $cfo_user_id);
+            })
+            ->orderBy('status')
+            ->get();
+
         return View::make('cfo::support_head.staff.index',compact('support_data'));
+    }
+
+    public function reply($id){
+//        print_r($id);exit;
+        $model = CfoSupportDetail::with('relCfoSupportHead')->find($id);
+
+        return View::make('cfo::support_head.staff.reply',compact('model'));
+    }
+
+    public function replyToUser(){
+        $data = Input::all();
+
+        $reply_data = CfoSupportHead::find($data['id']);
+        $reply_data->update($data);
+
+        $model = new CfoSupportDetail();
+        $model->cfo_support_head_id = $data['id'];
+        $model->message = $data['message'];
+        $model->replied_by = Auth::user()->get()->id;
+//        $user_name = User::FullName($model->commented_to);
+
+        if($model->save()){
+            Session::flash('message', '');
+            return Redirect::back();
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()->with('errors', 'invalid');
+        }
+
     }
 }
