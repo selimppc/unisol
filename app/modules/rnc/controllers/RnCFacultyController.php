@@ -480,108 +480,60 @@ class RnCFacultyController extends \BaseController
 
     public function listWriterBeneficial($rnc_r_p_id)
     {
-//        $list_w_f = RnCResearchPaperWriter::with('relRnCResearchPaper','relUser', 'relUser.relUserProfile')
-//            ->latest('id')
-//            ->where('rnc_research_paper_id' ,'=', $rnc_r_p_id)
-//            ->get();
-
-
-
-//        $term = Input::get('term');
-//        $queries = RnCResearchPaper::join('rnc_research_paper_writer', function($qs) {
-//                $qs->on('rnc_research_paper.id', '=', 'rnc_research_paper_writer.rnc_research_paper_id');
-//            })->join('rnc_writer_beneficial', function($join){
-//                $join->on('rnc_writer_beneficial.rnc_research_paper_writer_id', '=', 'rnc_research_paper_writer.id');
-//            })->join('user', function($join){
-//                $join->on('user.id', '=', 'rnc_research_paper_writer.writer_user_id');
-//            })
-//                ->select(DB::table('user_profile')
-//                    ->where('first_name', 'LIKE', '%'.$term.'%')
-//                    ->orWhere('middle_name', 'LIKE', '%'.$term.'%')
-//                    ->orWhere('last_name', 'LIKE', '%'.$term.'%')
-//                    ->take(6))
-//                ->get();
-//
-//            print_r($queries);exit;
-
-
-        $writer_info = RnCResearchPaperWriter::with('relRnCResearchPaper','relUser', 'relUser.relUserProfile')
+        $writer_info = RnCResearchPaperWriter::with('relRnCResearchPaper','relRnCWriterBeneficial' ,'relUser', 'relUser.relUserProfile')
             ->where('rnc_research_paper_id', $rnc_r_p_id)->get();
 
-        $beneficial_info = RnCWriterBeneficial::where('rnc_research_paper_id', $rnc_r_p_id)
-            ->get();
-
         return View::make('rnc::faculty.research_paper.r_p_w_f.add_edit_writer_beneficial',
-            compact('list_w_f','rnc_r_p_id','writer_info','beneficial_info'));
+            compact('rnc_r_p_id','writer_info'));
 
 
     }
 
-    // AJax Writer Name Search
-    // first one
+    // AJax : Writer Name Search and Get
 
-    public function ajaxGetWriterNameAutoComplete ()
+    public function ajaxFacGetWriterNameAutoComplete ()
     {
         $term = Input::get('term');
         $results = array();
+        $queries = DB::table('user_profile')
+            ->where('first_name', 'LIKE', '%'.$term.'%')
+            ->orWhere('middle_name', 'LIKE', '%'.$term.'%')
+            ->orWhere('last_name', 'LIKE', '%'.$term.'%')
+            ->take(9)->get();
 
-
-
-        $queries = RnCResearchPaper::join('rnc_research_paper_writer', function($qs) {
-                $qs->on('rnc_research_paper.id', '=', 'rnc_research_paper_writer.rnc_research_paper_id');
-            })->join('rnc_writer_beneficial', function($join){
-                $join->on('rnc_writer_beneficial.rnc_research_paper_writer_id', '=', 'rnc_research_paper_writer.id');
-            })->join('user', function($join){
-                $join->on('user.id', '=', 'rnc_research_paper_writer.writer_user_id');
-            })->join('user_profile', function($join){
-                $join->on('user_profile.user_id', '=', 'user.id');
-            })
-
-
-//not done yet
-                ->select(DB::table('user_profile')
-                    ->where('first_name', 'LIKE', '%'.$term.'%')
-                    ->orWhere('middle_name', 'LIKE', '%'.$term.'%')
-                    ->orWhere('last_name', 'LIKE', '%'.$term.'%')
-                    ->where('rnc_research_paper_writer.writer_user_id','=', Auth::user()->get()->id)
-                    ->take(6))
-                ->get();
-
-
-//ok >
-//        $queries = DB::table('user_profile')
-//            ->where('first_name', 'LIKE', '%'.$term.'%')
-//            ->orWhere('middle_name', 'LIKE', '%'.$term.'%')
-//            ->orWhere('last_name', 'LIKE', '%'.$term.'%')
-//            ->take(6)->get();
-//        foreach ($queries as $query)
-//        {
-//            $results[] = [
-//                'label' => $query->first_name.' '.$query->middle_name.' '.$query->last_name ,
-//                'user_id' => $query->user_id ,
-//                //'rsrch_ppr'=>$query->relUser_Profile->relUser->relRnCResearchPaperWriter->relRnCResearchPaper->title ,
-//            ];
-//        }
+        foreach ($queries as $query)
+        {
+            $results[] = [
+                'label' => $query->first_name.' '.$query->middle_name.' '.$query->last_name ,
+                'writer_user_id' => $query->user_id ,
+            ];
+        }
         return Response::json($results);
     }
 
     public function store_writer_beneficial()
     {
-        $data = Input::all();
-        for($i = 0; $i < count(Input::get('inv_product_id')) ; $i++){
+        #$data = Input::all();
+        for($i = 0; $i < count(Input::get('writer_user_id')) ; $i++){
             $dt[] = [
-                'inv_requisition_head_id' => Input::get('inv_requisition_head_id'),
-                'inv_product_id'=> Input::get('inv_product_id')[$i],
-                'rate'=> Input::get('rate')[$i],
-                'unit'=> Input::get('unit')[$i],
-                'quantity'=> Input::get('quantity')[$i],
+                'rnc_research_paper_id' => Input::get('rnc_research_paper_id'),
+                'writer_user_id'=> Input::get('writer_user_id')[$i],
+                'value'=> Input::get('value')[$i],
             ];
         }
-        $model = new InvRequisitionDetail();
         DB::beginTransaction();
         try{
-            foreach($dt as $values){
-                $model->create($values);
+            foreach($dt as $key => $values){
+                $model = new RnCResearchPaperWriter();
+                $model->rnc_research_paper_id = $values['rnc_research_paper_id'];
+                $model->writer_user_id = $values['writer_user_id'];
+                if($model->save()){
+                    $model2 = new RnCWriterBeneficial();
+                    $model2->rnc_research_paper_writer_id = $model->id;
+                    $model2->rnc_research_paper_id = $values['rnc_research_paper_id'];
+                    $model2->value = $values['value'];
+                    $model2->save();
+                }
             }
             DB::commit();
             Session::flash('message', 'Success !');
@@ -591,7 +543,6 @@ class RnCFacultyController extends \BaseController
             Session::flash('danger', 'Failed !');
         }
         return Redirect::back();
-
 
     }
 
