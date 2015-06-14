@@ -1,11 +1,6 @@
 <style>
-    input{
-        border-color: 1px solid #efefef;
-    }
-    #test input {
-        border: none;
-        width: 99%;
-    }
+    input{ border-color: 1px solid #efefef; }
+    #test input { border: none; width: 99%; }
 
 </style>
 
@@ -15,14 +10,14 @@
 </div>
 
 
-{{Form::text('rnc_research_paper_id', $rnc_r_p_id,['id'=>'research-paper-id'])}}
+{{Form::hidden('rnc_research_paper_id', $rnc_r_p_id,['id'=>'research-paper-id'])}}
 
 <div class='row'>
        <div class="col-sm-3">
         <div class='form-group'>
            {{ Form::label('writer_user_id', 'Writer Name') }}
            <input type="text" id="writer-name" readonly style="background-color: lavender">
-           {{Form::text('writer_user_id', Input::old('writer_user_id'),['id'=>'wr-name-id'])}}
+           {{Form::hidden('writer_user_id', Input::old('writer_user_id'),['id'=>'wr-name-id'])}}
         </div>
     </div>
 
@@ -60,7 +55,7 @@
             <td>{{isset($value->writer_user_id) ? $value->relUser->relUserProfile->last_name : ''}}</td>
             <td>{{isset($value->relRnCWriterBeneficial->value )}}</td>
             <td>
-                <a data-href="{{ $value->id }}" class="btn btn-default btn-sm delete-dt" id="delete-dt{{ $value->id }}" ><i class="fa  fa-trash-o" style="font-size: 15px;color: red"></i></a>
+                {{--<a data-href="{{ $value->id }}" class="btn btn-default btn-sm delete-dt-2" id="delete-dt-2{{ $value->id }}" ><i class="fa fa-trash-o" style="font-size: 15px;color: red"></i></a>--}}
             </td>
         </tr>
         <?php $counter++;?>
@@ -100,7 +95,7 @@
 
 
 
- //Product Add(s)
+    //Product Add(s)
      $tableItemCounter = 0; //To stop additem if exist
      var $arrayRnc = []; //To stop additem if exist
 
@@ -140,6 +135,27 @@
          }
 
  	});
+
+
+// 	//delete
+// 	$(function(){
+//          $('.delete-dt-2').click(function(e) {
+//            e.preventDefault();
+//            var $btn = $(this);
+//            $.ajax({
+//                url: 'faculty/research-paper-writer-beneficial/ajax-delete-req-detail/{id}',
+//                type: 'POST',
+//                dataType: 'json',
+//                data: { id:  $(this).data("href") },
+//                success: function(response)
+//                {
+//                    $btn.closest("tr").remove();
+//                    $('#something-delete').html(response);
+//
+//                }
+//            });
+//          });
+//       });
 
 });
 
