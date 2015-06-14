@@ -5,16 +5,10 @@
 @section('content')
 
 <div class="row">
-
     <div class="box box-solid ">
-
         <div class="col-sm-12">
            <div class="pull-left col-sm-4"> <h3> {{$pageTitle}} </h3>  </div>
-           <div class="pull-right col-sm-4" style="padding-top: 1%;">
-                <button type="button" class="pull-right btn btn-sm btn-info" data-toggle="modal" data-target="#modal">
-                  + Action
-                </button>
-           </div>
+
         </div>
 
        <div class="box-body">
@@ -28,29 +22,24 @@
                     <th> Account Name  </th>
                     <th> Contact Person </th>
                     <th> Payable Amount </th>
-
-
                 </tr>
             </thead>
             <tbody>
                 @foreach($data as $values)
                  <tr>
-                    <td> {{ $values->supplier_code }}</td>
+                    <td><b>
+                    {{ link_to_route('ap-payment-voucher', $values->supplier_code, ['data-toggle'=>"modal", 'data-target'=>"#modal-pc"]) }}
+                    </b></td>
                     <td>{{ $values->company_name }}</td>
                     <td>{{ $values->relAccChartOfAccounts->account_code }}</td>
                     <td>{{ $values->relAccChartOfAccounts->description }}</td>
-                    <td>{{ $values->description }}  </td>
                     <td>{{ $values->contact_person }}  </td>
                     <td>{{ $values->prime_amount }}  </td>
-
-
                  </tr>
                 @endforeach
             </tbody>
-
         </table>
         </div>
-
     </div>
 
 {{--    {{$data->links();}}--}}
