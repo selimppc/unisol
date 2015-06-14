@@ -39,14 +39,13 @@ class FeesController extends \BaseController {
             ->join('degree AS d','b.degree_id', '=', 'd.id');
 
         if(!empty($batch_id))
-            $query->where("b.id", "=", $batch_id);
+            $query->where('bs.batch_id', '=', $batch_id);
 
         if(!empty($degree_id))
-            $query->where("d.id", "=", $degree_id);
+            $query->where('d.id', '=', $degree_id);
 
         $data = $query->paginate(10);
         Input::flash();
-
         return View::Make('fees::billing_setup.index', compact('degree', 'batch','data'));
     }
 
