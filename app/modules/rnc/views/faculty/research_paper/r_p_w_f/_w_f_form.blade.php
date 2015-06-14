@@ -119,7 +119,7 @@
                  $("#wr-name-id").val("");
                  $("#beneficial-value").val("");
                  $("#writer-name").val("");
-                 //$("#search_writer_name").val("");
+                 $("#search_writer_name").val("");
 
                  return false;
              } else {
@@ -134,7 +134,7 @@
                  $("#writer-name").val("");
                  $("#beneficial-value").val("");
                  $("#writer-name").val("");
-                 //$("#search_writer_name").val("");
+                 $("#search_writer_name").val("");
              }
          }
 

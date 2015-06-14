@@ -483,10 +483,12 @@ class RnCFacultyController extends \BaseController
         $writer_info = RnCResearchPaperWriter::with('relRnCResearchPaper','relRnCWriterBeneficial' ,'relUser', 'relUser.relUserProfile')
             ->where('rnc_research_paper_id', $rnc_r_p_id)->get();
 
-       #print_r($writer_info);exit;
+        $r_p = RnCResearchPaper::where('id', $rnc_r_p_id)->first()->title;
+
+       #sprint_r($r_p);exit;
 
         return View::make('rnc::faculty.research_paper.r_p_w_f.add_edit_writer_beneficial',
-            compact('rnc_r_p_id','writer_info'));
+            compact('rnc_r_p_id','writer_info','r_p'));
 
 
     }
