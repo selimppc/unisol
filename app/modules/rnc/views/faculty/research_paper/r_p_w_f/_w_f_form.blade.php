@@ -51,11 +51,13 @@
     <?php $counter = 0;?>
 
     @foreach($writer_info as $key=>$model_value)
-        <tr>
-            <td>{{isset($model_value->writer_user_id) ? $model_value->relUser->relUserProfile->first_name.' '.$model_value->relUser->relUserProfile->middle_name.' '.$model_value->relUser->relUserProfile->last_name : ''}}</td>
-            <td>{{isset($model_value->relRnCWriterBeneficial->value )}}</td>
+        <tr id="new-row-rnc-{{ $model_value->id }}">
+            <td id="new-column-name-{{ $model_value->id }}"> {{isset($model_value->writer_user_id) ? $model_value->relUser->relUserProfile->first_name.' '.$model_value->relUser->relUserProfile->middle_name.' '.$model_value->relUser->relUserProfile->last_name : ''}}
+            </td>
+            <td id="new-column-value-{{ $model_value->id }}">{{ $model_value->relRnCWriterBeneficial->value }}</td>
             <td>
                 <a data-href="{{ $model_value->id }}" class="btn btn-default btn-sm delete-dt-2" id="delete-dt-2{{ $model_value->id }}" ><i class="fa fa-trash-o" style="font-size: 15px;color: red"></i></a>
+                <a data-href="{{ $model_value->id }}" class="btn btn-default btn-sm edit-dt-rnc" id="delete-dt-2{{ $model_value->id }}" ><i class="fa fa-pencil" style="font-size: 15px;color: dodgerblue"></i></a>
             </td>
         </tr>
         <?php $counter++;?>
@@ -140,24 +142,43 @@
 
 
 // 	//delete
-// 	$(function(){
-//          $('.delete-dt-2').click(function(e) {
-//            e.preventDefault();
-//            var $btn = $(this);
-//            $.ajax({
-//                url: 'faculty/research-paper-writer-beneficial/ajax-delete-req-detail/{id}',
-//                type: 'POST',
-//                dataType: 'json',
-//                data: { id:  $(this).data("href") },
-//                success: function(response)
-//                {
-//                    $btn.closest("tr").remove();
-//                    $('#something-delete').html(response);
-//
-//                }
-//            });
-//          });
-//       });
+	$(function(){
+          $('.delete-dt-2').click(function(e) {
+            e.preventDefault();
+            var $btn = $(this);
+            $.ajax({
+                url: '/rnc/faculty/research-paper-writer-beneficial/ajax-delete-req-detail/{id}',
+                type: 'POST',
+                dataType: 'json',
+                data: { id:  $(this).data("href") },
+                success: function(response)
+                {
+                    $btn.closest("tr").remove();
+                    $('#something-delete').html(response);
+
+                }
+            });
+          });
+       });
+
+       //edit
+       $(function(){
+         $('.edit-dt-rnc').click(function(e) {
+            e.preventDefault();
+            var $row = $(this);
+            var $id = $row.data("href");
+            var $ben_name = $("#new-column-name-"+$id).html();
+            var $ben_value = $("#new-column-value-"+$id).html();
+            $("#new-row-rnc-"+$id).hide();
+
+            $('#test').append("<tr> " +
+              "<td><input value='"+ $ben_name +"' readonly> <input type='hidden' name='id' value='"+ $id +"'> </td>" +
+              "<td><input name='value' value="+ $ben_value +" style='background: #efefef ;border'></td>" +
+              "<td> <a href='' class='btn btn-default btn-sm'><i class='fa fa-check' ></i></a></td>" +
+          " </tr>");
+
+         });
+      });
 
 });
 
