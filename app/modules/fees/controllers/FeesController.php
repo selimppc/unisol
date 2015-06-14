@@ -18,17 +18,37 @@ class FeesController extends \BaseController {
 
     public function indexBillingSetup()
     {
-        $billing_setup = BillingSetup::orderBy('id', 'DESC')->get();
         $degree = ['' => 'Select Degree'] + DegreeProgram::lists('title', 'id');
         $batch = ['' => 'Select Batch'] + Batch::lists('batch_number', 'id');
 
-        if ($this->isPostRequest()) {
-            $degree_id = Input::get('degree_id');
-            $batch_id = Input::get('batch_id');
+        $degree_id = Input::get("degree_id");
+        $batch_id = Input::get("batch_id");
 
-          }
-        return View::Make('fees::billing_setup.index', compact('billing_setup', 'degree', 'batch'));
+        $query = DB::table('billing_setup AS bs')
+            ->select(
+                'bs.id as id',
+                'bs.cost as cost',
+                'bsc.title as scheduleTitle',
+                'bi.title as billingTitle',
+                'bs.deadline as deadline',
+                'bs.fined_cost as fined_cost'
+            )
+            ->join('billing_schedule as bsc', 'bsc.id', '=', 'bs.billing_schedule_id')
+            ->join('billing_item AS bi', 'bi.id', '=', 'bs.billing_item_id')
+            ->join('batch AS b', 'bs.batch_id','=', 'b.id')
+            ->join('degree AS d','b.degree_id', '=', 'd.id');
+
+        if(!empty($batch_id))
+            $query->where('bs.batch_id', '=', $batch_id);
+
+        if(!empty($degree_id))
+            $query->where('d.id', '=', $degree_id);
+
+        $data = $query->paginate(10);
+        Input::flash();
+        return View::Make('fees::billing_setup.index', compact('degree', 'batch','data'));
     }
+
     public function createBillingSetup()
     {
         $degree = ['' => 'Select Degree'] + DegreeProgram::lists('title', 'id');

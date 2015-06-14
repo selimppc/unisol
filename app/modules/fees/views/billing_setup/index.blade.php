@@ -6,7 +6,7 @@
     @include('layouts._sidebar_amw')
 @stop
 @section('content')
-    <div class="row">
+    <div class="row" xmlns="http://www.w3.org/1999/html">
         <div class="col-md-12">
             <h2 class="text-purple ">Fees</h2>
             <div class="help-text-top">
@@ -41,7 +41,7 @@
 
                       {{--****************** Filter :Starts ***********************--}}
                         <div>
-
+                            {{Form::open(array('route'=> ['billing.setup']))}}
                             <div class="col-sm-8">
                                 <div class="col-sm-3">
                                     {{ Form::label('degree_id', 'Degree') }}
@@ -56,7 +56,7 @@
                                     {{ Form::submit('Filter', array('class'=>'btn btn-success btn-xs','id'=>'button'))}}
                                 </div>
                             </div>
-
+                            {{Form::close()}}
                         </div>
                         {{--*****************Filter :Ends ****************************--}}
 
@@ -78,13 +78,14 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($billing_setup as $value)
+                                @if(isset($data))
+                                @foreach($data as $value)
                                     <tr>
                                         <td><input type="checkbox" name="id[]"  class="myCheckbox" value="{{ $value->id }}">
                                         </td>
-                                        <td>{{isset($value->relBillingSchedule->title) ? $value->relBillingSchedule->title :''}}</td>
+                                        <td>{{isset($value->scheduleTitle) ? $value->scheduleTitle:''}}</td>
 
-                                        <td>{{isset($value->relBillingItem->title) ? $value->relBillingItem->title : ''}}</td>
+                                        <td>{{isset($value->billingTitle) ? $value->billingTitle: ''}}</td>
 
                                         <td>{{isset($value->cost) ? $value->cost : ''}}</td>
 
@@ -101,10 +102,16 @@
                                         </td>
                                     </tr>
                                 @endforeach
+                                @endif
                                 </tbody>
                             </table>
                             {{ Form::submit('Delete', array('class'=>'btn btn-xs btn-danger', 'id'=>'hide-button', 'style'=>'display:none'))}}
                             {{ Form::close() }}
+                            {{ $data->links() }}
+                            </br>
+                            <p><b>Admission Related Cost:</b></p>
+                            <p><b>Academic Cost:</b></p>
+                            <p><b>After Courses Completed Cost:</b></p>
                         </div>
                     </div>
                 </div>
