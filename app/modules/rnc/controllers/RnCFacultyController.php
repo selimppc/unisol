@@ -483,7 +483,7 @@ class RnCFacultyController extends \BaseController
         $writer_info = RnCResearchPaperWriter::with('relRnCResearchPaper','relRnCWriterBeneficial' ,'relUser', 'relUser.relUserProfile')
             ->where('rnc_research_paper_id', $rnc_r_p_id)->get();
 
-//        print_r($writer_info);exit;
+       #print_r($writer_info);exit;
 
         return View::make('rnc::faculty.research_paper.r_p_w_f.add_edit_writer_beneficial',
             compact('rnc_r_p_id','writer_info'));
@@ -517,7 +517,7 @@ class RnCFacultyController extends \BaseController
 
     public function fac_ajax_delete_req_detail($id)
     {
-        echo "processsing to delete";exit;
+        echo "processing to delete";exit;
 
 //        $id = Input::get('id');
 //        DB::beginTransaction();
