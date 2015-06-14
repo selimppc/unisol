@@ -3614,3 +3614,10 @@ fieldset[disabled] .btn-vk.active {
   /*  border:1px solid #f00;*/
     word-wrap:break-word;
 }
+.radio-inline{
+    margin-top: 15px;
+
+}
+.radio-style{
+    margin-right: 20px;
+}
