@@ -48,12 +48,21 @@ class AccountPayableController extends \BaseController {
         return Redirect::back();
     }
 
-
+    // manage ap
     public function  manage_account_payable(){
         //
         $pageTitle = "Manage Account Payable";
         $data = AccVAppayable::get();
-        print_r($data);exit;
+        //print_r($data);exit;
+        return View::make('payment::account_payable.manage_ap', compact('pageTitle', 'data'));
+    }
+
+    // Account Payment Voucher
+    public function  ap_payment_voucher(){
+        //
+        $pageTitle = "Manage Account Payable";
+        $data = AccVAppayable::get();
+        //print_r($data);exit;
         return View::make('payment::account_payable.manage_ap', compact('pageTitle', 'data'));
     }
 

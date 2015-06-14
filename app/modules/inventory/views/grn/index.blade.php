@@ -55,7 +55,7 @@
                     <td>{{ round($values->net_amount, 2) }}</td>
                     <td>{{ Str::title($values->status) }}</td>
                     <td>
-                        @if($values->status != 'GRN Confirmed')
+                        @if($values->status=="open")
                             <a href="{{ URL::route('create-new-grn', ['grn_id'=>$values->id,'po_id'=>$values->inv_po_head_id ]) }}" class="btn btn-xs btn-info" data-toggle="modal" data-target="#modal-pc" ><i class="fa fa-2x" style="color: darkslategray" data-toggle="tooltip" data-placement="bottom" title="Create GRN"></i> + Create GRN</a>
                             <a href="{{ URL::route('confirm-grn', ['grn_id'=>$values->id ]) }}" class="btn btn-xs btn-success"><i class="fa fa-2x" style="color: darkslategray" data-toggle="tooltip" data-placement="bottom" title="Confirm GRN"></i> Confirm GRN</a>
                         @endif
