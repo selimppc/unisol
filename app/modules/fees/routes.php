@@ -19,9 +19,13 @@
 
     /**********Billing Setup Start****************/
 
-    Route::get('billing/setup',
+   /* Route::get('billing/setup',
         'FeesController@indexBillingSetup'
-    );
+    );*/
+     Route::any('billing/setup', [
+         'as' => 'billing.setup',
+         'uses' => 'FeesController@indexBillingSetup'
+     ]);
     Route::any('billing/create', [
          'as' => 'billing.create',
          'uses' => 'FeesController@createBillingSetup'
