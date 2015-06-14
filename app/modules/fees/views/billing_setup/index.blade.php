@@ -10,7 +10,7 @@
         <div class="col-md-12">
             <h2 class="text-purple ">Fees</h2>
             <div class="help-text-top">
-                You can view all lists of Billing Setup Lists. Also this panel will allow you to perform some actions to <b>Add Billing Setup</b>, <b>Edit</b>, <b>Delete</b>,and <b>View</b> under the column <b>Action</b>.
+                You can view all lists of Billing Setup and search. Also this panel will allow you to perform some actions to <b>Add Billing Setup</b>, <b>Edit</b>, <b>Delete</b>,and <b>View</b> under the column <b>Action</b>.
             </div><!-- /.box-body -->
         </div><!-- ./col -->
     </div><!-- /.row -->

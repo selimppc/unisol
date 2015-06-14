@@ -19,7 +19,7 @@
 
             <div class="form-group">
                 {{ Form::label('batch_id', 'Batch') }}<span class="text-danger">*</span>
-                <span>{{HTML::image('assets/icon/ajax-loader.gif')}}</span>
+                <span class="loaderClass">{{HTML::image('assets/icon/ajax-loader.gif')}}</span>
                 {{ Form::select('batch_id', $batch_id, Input::old('batch_id'), ['id'=>'dependable-list', 'class'=>'form-control','placeholder'=>'','required'=>'required']) }}
             </div>
 
@@ -49,26 +49,27 @@
             </div>
         </div>
     </div>
-
     {{ Form::close() }}
-
-
-    {{----------------Ajax operation: depandable dropdown  ----------------------------------}}
-    <script>
-        $(function(){
-            $('#batch_name').change(function(){
-                $.get("{{ url('fees/billing/drop-down-batch')}}",
-                        { degree: $(this).val() },
-                        function(data) {
-                            var model = $('#dependable-list');
-                            model.empty();
-                            $.each(data, function(key, element) {
-                                model.append("<option value='"+ key +"'>" + element + "</option>");
-                            });
-                        });
-            });
-        });
-
-    </script>
-
 </div>
+
+
+{{----------------Ajax operation: depandable dropdown  ----------------------------------}}
+<script>
+    $(function(){
+        $('.loaderClass').hide();
+        $('#batch_name').change(function(){
+            $('.loaderClass').show();
+            $.get("{{ url('fees/billing/drop-down-batch')}}",
+                    { degree: $(this).val() },
+                    function(data) {
+                        $('.loaderClass').hide();
+                        var model = $('#dependable-list');
+                        model.empty();
+                        $.each(data, function(key, element) {
+                            model.append("<option value='"+ key +"'>" + element + "</option>");
+                        });
+                    });
+        });
+    });
+
+</script>
