@@ -515,23 +515,31 @@ class RnCFacultyController extends \BaseController
     }
 
 
-    public function fac_ajax_delete_req_detail($id)
+    public function fac_ajax_delete_req_detail($id )
     {
-        echo "processing to delete";exit;
+        $id = Input::get('id');
+        $ben_id = Input::get('ben_id');
+        DB::beginTransaction();
+        try {
 
-//        $id = Input::get('id');
-//        DB::beginTransaction();
-//        try{
-//            RnCResearchPaperWriter::destroy($id); //Batch::destroy(Request::get('id'));
-//            RnCWriterBeneficial::where('rnc_research_paper_writer_id','=',$id); //Batch::destroy(Request::get('id'));
-//
-//            DB::commit();
-//            return Response::json("Successfully Deleted");
-//        }catch ( Exception $e ){
-//            //If there are any exceptions, rollback the transaction`
-//            DB::rollback();
-//            return Response::json("Can not delete !");
-//        }
+            $a = RnCWriterBeneficial::where('rnc_research_paper_writer_id', Request::get('id'));
+            if($a = delete())
+            {
+                RnCResearchPaperWriter::delete();
+                DB::commit();
+                return Response::json("Successfully Deleted");
+            }
+            else
+            {
+                return Response::json("Deleting stop");
+
+            }
+
+        }
+        catch(exception $ex){
+            DB::rollback();
+            return Response::json("Can not delete !");
+        }
 
     }
 
