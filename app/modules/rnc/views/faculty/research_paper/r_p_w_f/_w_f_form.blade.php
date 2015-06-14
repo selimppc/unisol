@@ -173,7 +173,7 @@
 
             $('#test').append("<tr> " +
               "<td><input value='"+ $ben_name +"' readonly> <input type='hidden' name='id' value='"+ $id +"'> </td>" +
-              "<td><input name='value' value='"+ $ben_value +"' style='background: #efefef'></td>" +
+              "<td><input name='value' value="+ $ben_value +" style='background: #efefef; border-color: black;border:2px'></td>" +
               "<td> <a href='' class='btn btn-default btn-sm'><i class='fa fa-check' ></i></a></td>" +
           " </tr>");
 
