@@ -56,7 +56,7 @@
             </td>
             <td id="new-column-value-{{ $model_value->id }}">{{ $model_value->relRnCWriterBeneficial->value }}</td>
             <td>
-                <a data-href="{{ $model_value->id }}" class="btn btn-default btn-sm delete-dt-2" id="delete-dt-2{{ $model_value->id }}" ><i class="fa fa-trash-o" style="font-size: 15px;color: red"></i></a>
+                <a data-href="{{ $model_value->id }}" data-benf="{{$model_value->relRnCWriterBeneficial->id}}" class="btn btn-default btn-sm delete-dt-2" id="delete-dt-2{{ $model_value->id }}" ><i class="fa fa-trash-o" style="font-size: 15px;color: red"></i></a>
                 <a data-href="{{ $model_value->id }}" class="btn btn-default btn-sm edit-dt-rnc" id="delete-dt-2{{ $model_value->id }}" ><i class="fa fa-pencil" style="font-size: 15px;color: dodgerblue"></i></a>
             </td>
         </tr>
@@ -147,10 +147,10 @@
             e.preventDefault();
             var $btn = $(this);
             $.ajax({
-                url: '/rnc/faculty/research-paper-writer-beneficial/ajax-delete-req-detail/{id}',
+                url: '/rnc/faculty/research-paper-writer-beneficial/ajax-delete-req-detail',
                 type: 'POST',
                 dataType: 'json',
-                data: { id:  $(this).data("href") },
+                data: { id:  $(this).data("href"), ben_id: $(this).data("benf") },
                 success: function(response)
                 {
                     $btn.closest("tr").remove();
