@@ -159,6 +159,11 @@
         'uses' => 'RnCFacultyController@store_writer_beneficial'
     ]);
 
+//    Route::any('faculty/research-paper-writer-beneficial/ajax-delete-req-detail/{id}', [
+//        'as'   => 'faculty.research-paper-writer-beneficial.ajax-delete-req-detail',
+//        'uses' => 'RnCFacultyController@fac_ajax_delete_req_detail'
+//    ]);
+
 
     //Writer . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 
