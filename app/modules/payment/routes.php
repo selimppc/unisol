@@ -34,4 +34,11 @@ Route::group(['prefix' => 'payment'], function() {
     ]);
 
 
+    //manage account payable
+    Route::any("manage-ap", [
+        "as"   => "manage-ap",
+        "uses" => "AccountPayableController@manage_account_payable"
+    ]);
+
+
 });

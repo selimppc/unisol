@@ -90,6 +90,7 @@ class CreateAccounts extends Migration {
             $table->unsignedInteger('acc_voucher_head_id')->nullable();
             $table->unsignedInteger('acc_chart_of_accounts_id')->nullable();
             $table->string('sub_account_code',32);
+            $table->unsignedInteger('inv_supplier_id')->nullable();
             $table->unsignedInteger('currency_id')->nullable();
             $table->float('exchange_rate');
             $table->float('prime_amount');
@@ -104,6 +105,7 @@ class CreateAccounts extends Migration {
         Schema::table('acc_voucher_detail', function($table) {
             $table->foreign('acc_voucher_head_id')->references('id')->on('acc_voucher_head');
             $table->foreign('acc_chart_of_accounts_id')->references('id')->on('acc_chart_of_accounts');
+            $table->foreign('inv_supplier_id')->references('id')->on('inv_supplier');
             $table->foreign('currency_id')->references('id')->on('currency');
         });
 
