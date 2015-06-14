@@ -19,9 +19,6 @@
 
     /**********Billing Setup Start****************/
 
-   /* Route::get('billing/setup',
-        'FeesController@indexBillingSetup'
-    );*/
      Route::any('billing/setup', [
          'as' => 'billing.setup',
          'uses' => 'FeesController@indexBillingSetup'
@@ -59,5 +56,12 @@
         'uses' => 'FeesController@batchdeleteBillingSetup'
     ]);
 
+
+     /**********Billing History Start****************/
+
+     Route::any('billing/history', [
+         'as' => 'billing.history',
+         'uses' => 'FeesController@index_billing_history'
+     ]);
 
 });

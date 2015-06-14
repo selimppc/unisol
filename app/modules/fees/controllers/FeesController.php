@@ -58,6 +58,7 @@ class FeesController extends \BaseController {
         return View::Make('fees::billing_setup.create',compact('billing_setup','degree','batch_id','schedule_id','item_id'));
 
     }
+
     public function createAjaxBatchList()
     {
         $degree_prog_id = Input::get('degree');
@@ -181,9 +182,14 @@ class FeesController extends \BaseController {
         }
     }
 
-	public function index()
+    /**********************Billing History Start***************************/
+
+	public function index_billing_history()
 	{
-		//
+        $degree = ['' => 'Select Degree'] + DegreeProgram::lists('title', 'id');
+        $batch = ['' => 'Select Batch']+ Batch::lists('batch_number', 'id');
+        $department = ['' => 'Select Department']+ Department::lists('title', 'id');
+        return View::make('fees::billing_history.index',compact('degree','batch','department'));
 	}
 
 
