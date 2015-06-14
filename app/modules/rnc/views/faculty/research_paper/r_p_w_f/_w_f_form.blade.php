@@ -1,11 +1,6 @@
 <style>
-    input{
-        border-color: 1px solid #efefef;
-    }
-    #test input {
-        border: none;
-        width: 99%;
-    }
+    input{ border-color: 1px solid #efefef; }
+    #test input { border: none; width: 99%; }
 
 </style>
 
@@ -15,24 +10,24 @@
 </div>
 
 
-{{Form::text('rnc_research_paper_id', $rnc_r_p_id,['id'=>'research-paper-id'])}}
+{{Form::hidden('rnc_research_paper_id', $rnc_r_p_id,['id'=>'research-paper-id'])}}
 
 <div class='row'>
-       <div class="col-sm-3">
+       <div class="col-sm-4">
         <div class='form-group'>
            {{ Form::label('writer_user_id', 'Writer Name') }}
-           <input type="text" id="writer-name" readonly style="background-color: lavender">
-           {{Form::text('writer_user_id', Input::old('writer_user_id'),['id'=>'wr-name-id'])}}
+           <input type="text" id="writer-name" readonly style="background-color: lavender;padding-right: 20px">
+           {{Form::hidden('writer_user_id', Input::old('writer_user_id'),['id'=>'wr-name-id'])}}
         </div>
     </div>
 
-    <div class="col-sm-3">
+    <div class="col-sm-4">
         <div class='form-group'>
            {{ Form::label('value', 'Beneficiary Value') }}
            {{ Form::text('value', Input::old('value'),['id'=>'beneficial-value']) }}
         </div>
     </div>
-    <div class="col-sm-3" style="padding: 4%">
+    <div class="col-sm-4" style="padding: 4%">
         <input type="button" class="pull-right btn-xs btn-linkedin" id="add-writer-and-beneficial" value="+Add">
     </div>
 </div>
@@ -55,28 +50,29 @@
    <tbody>
     <?php $counter = 0;?>
 
-    @foreach($writer_info as $key=>$value)
-        <tr>
-            <td>{{isset($value->writer_user_id) ? $value->relUser->relUserProfile->last_name : ''}}</td>
-            <td>{{isset($value->relRnCWriterBeneficial->value )}}</td>
+    @foreach($writer_info as $key=>$model_value)
+        <tr id="new-row-rnc-{{ $model_value->id }}">
+            <td id="new-column-name-{{ $model_value->id }}"> {{isset($model_value->writer_user_id) ? $model_value->relUser->relUserProfile->first_name.' '.$model_value->relUser->relUserProfile->middle_name.' '.$model_value->relUser->relUserProfile->last_name : ''}}
+            </td>
+            <td id="new-column-value-{{ $model_value->id }}">{{ $model_value->relRnCWriterBeneficial->value }}</td>
             <td>
-                <a data-href="{{ $value->id }}" class="btn btn-default btn-sm delete-dt" id="delete-dt{{ $value->id }}" ><i class="fa  fa-trash-o" style="font-size: 15px;color: red"></i></a>
+                <a data-href="{{ $model_value->id }}" data-benf="{{$model_value->relRnCWriterBeneficial->id}}" class="btn btn-default btn-sm delete-dt-2" id="delete-dt-2{{ $model_value->id }}" ><i class="fa fa-trash-o" style="font-size: 15px;color: red"></i></a>
+                <a data-href="{{ $model_value->id }}" class="btn btn-default btn-sm edit-dt-rnc" id="delete-dt-2{{ $model_value->id }}" ><i class="fa fa-pencil" style="font-size: 15px;color: dodgerblue"></i></a>
             </td>
         </tr>
         <?php $counter++;?>
-        <script>
-            // Add item is to arrayList at edit time.
-            $( document ).ready(function() {
-                var productsId = {{ $value->inv_product_id }}
-                pushListItem(productsId);
-            });
-        </script>
+        {{--<script>--}}
+            {{--// Add item is to arrayList at edit time.--}}
+            {{--$( document ).ready(function() {--}}
+                {{--var productsId = {{ $value->inv_product_id }}--}}
+                {{--pushListItem(productsId);--}}
+            {{--});--}}
+        {{--</script>--}}
    @endforeach
 
 </table>
 
 {{ Form::submit('Submit', ['class'=>'pull-right btn btn-xs btn-success', 'style'=>'padding: 1%;'] ) }}
-
 
 
 <p>&nbsp;</p>
@@ -92,7 +88,7 @@
       source: "/rnc/ajax/fac-get-writer-name-auto-complete",
       minLength: 1,
       select: function(event, ui) {
-        $('#search_writer_name').val(ui.item.label);
+        $('#select_writer_name').val(ui.item.label);
         $('#wr-name-id').val(ui.item.writer_user_id);
         $('#writer-name').val(ui.item.label);
       }
@@ -100,7 +96,7 @@
 
 
 
- //Product Add(s)
+    //Product Add(s)
      $tableItemCounter = 0; //To stop additem if exist
      var $arrayRnc = []; //To stop additem if exist
 
@@ -108,7 +104,7 @@
          $res_pap_id = $("#research-paper-id").val();
          $writer_id = $("#wr-name-id").val();
          $benfcl_val = $("#beneficial-value").val();
-         $wr_name = $("#search_writer_name").val();
+         $wr_name = $("#writer-name").val();
 
          if($writer_id == null || $benfcl_val == null ){
              alert("please add Writer Name and Beneficial then try Again!");
@@ -122,7 +118,9 @@
                  $("#writer-name").val("");
                  $("#wr-name-id").val("");
                  $("#beneficial-value").val("");
+                 $("#writer-name").val("");
                  $("#search_writer_name").val("");
+
                  return false;
              } else {
                  $('#test').append("<tr> " +
@@ -135,11 +133,52 @@
                  //flush the input fields
                  $("#writer-name").val("");
                  $("#beneficial-value").val("");
+                 $("#writer-name").val("");
                  $("#search_writer_name").val("");
              }
          }
 
  	});
+
+
+// 	//delete
+	$(function(){
+          $('.delete-dt-2').click(function(e) {
+            e.preventDefault();
+            var $btn = $(this);
+            $.ajax({
+                url: '/rnc/faculty/research-paper-writer-beneficial/ajax-delete-req-detail',
+                type: 'POST',
+                dataType: 'json',
+                data: { id:  $(this).data("href"), ben_id: $(this).data("benf") },
+                success: function(response)
+                {
+                    $btn.closest("tr").remove();
+                    $('#something-delete').html(response);
+
+                }
+            });
+          });
+       });
+
+       //edit
+       $(function(){
+         $('.edit-dt-rnc').click(function(e) {
+            e.preventDefault();
+            var $row = $(this);
+            var $id = $row.data("href");
+            var $ben_name = $("#new-column-name-"+$id).html();
+            var $ben_value = $("#new-column-value-"+$id).html();
+            $("#new-row-rnc-"+$id).hide();
+
+            $('#test').append("<tr> " +
+              "<td><input value='"+ $ben_name +"' readonly> <input type='hidden' name='id' value='"+ $id +"'> </td>" +
+              "<td><input name='value' value="+ $ben_value +" style='background: #efefef ;border'></td>" +
+              "<td> <a href='' class='btn btn-default btn-sm'><i class='fa fa-check' ></i></a></td>" +
+          " </tr>");
+
+         });
+      });
 
 });
 

@@ -483,8 +483,12 @@ class RnCFacultyController extends \BaseController
         $writer_info = RnCResearchPaperWriter::with('relRnCResearchPaper','relRnCWriterBeneficial' ,'relUser', 'relUser.relUserProfile')
             ->where('rnc_research_paper_id', $rnc_r_p_id)->get();
 
+        $r_p = RnCResearchPaper::where('id', $rnc_r_p_id)->first()->title;
+
+       #sprint_r($r_p);exit;
+
         return View::make('rnc::faculty.research_paper.r_p_w_f.add_edit_writer_beneficial',
-            compact('rnc_r_p_id','writer_info'));
+            compact('rnc_r_p_id','writer_info','r_p'));
 
 
     }
@@ -499,16 +503,38 @@ class RnCFacultyController extends \BaseController
             ->where('first_name', 'LIKE', '%'.$term.'%')
             ->orWhere('middle_name', 'LIKE', '%'.$term.'%')
             ->orWhere('last_name', 'LIKE', '%'.$term.'%')
-            ->take(9)->get();
+            ->take(12)->get();
 
         foreach ($queries as $query)
         {
             $results[] = [
                 'label' => $query->first_name.' '.$query->middle_name.' '.$query->last_name ,
                 'writer_user_id' => $query->user_id ,
+                'name' => $query->first_name.' '.$query->middle_name.' '.$query->last_name ,
             ];
         }
         return Response::json($results);
+    }
+
+
+    public function fac_ajax_delete_req_detail()
+    {
+        $id = Input::get('id');
+        $ben_id = Input::get('ben_id');
+
+        DB::beginTransaction();
+        try {
+            if(RnCWriterBeneficial::destroy($ben_id)){
+                RnCResearchPaperWriter::destroy($id);
+            }
+            DB::commit();
+            return Response::json("Successfully Deleted");
+        }
+        catch(exception $ex){
+            DB::rollback();
+            return Response::json("Can not delete !");
+        }
+
     }
 
     public function store_writer_beneficial()
