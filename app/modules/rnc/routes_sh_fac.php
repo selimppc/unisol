@@ -147,6 +147,7 @@
     ]);
 
 
+
 //new
 
     Route::any('faculty/research-paper-writer-beneficial/list/{rnc_r_p_id}',[

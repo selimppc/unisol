@@ -483,6 +483,8 @@ class RnCFacultyController extends \BaseController
         $writer_info = RnCResearchPaperWriter::with('relRnCResearchPaper','relRnCWriterBeneficial' ,'relUser', 'relUser.relUserProfile')
             ->where('rnc_research_paper_id', $rnc_r_p_id)->get();
 
+//        print_r($writer_info);exit;
+
         return View::make('rnc::faculty.research_paper.r_p_w_f.add_edit_writer_beneficial',
             compact('rnc_r_p_id','writer_info'));
 
@@ -499,7 +501,7 @@ class RnCFacultyController extends \BaseController
             ->where('first_name', 'LIKE', '%'.$term.'%')
             ->orWhere('middle_name', 'LIKE', '%'.$term.'%')
             ->orWhere('last_name', 'LIKE', '%'.$term.'%')
-            ->take(9)->get();
+            ->take(12)->get();
 
         foreach ($queries as $query)
         {
@@ -511,6 +513,7 @@ class RnCFacultyController extends \BaseController
         }
         return Response::json($results);
     }
+
 
     public function fac_ajax_delete_req_detail($id)
     {

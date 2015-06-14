@@ -13,21 +13,21 @@
 {{Form::hidden('rnc_research_paper_id', $rnc_r_p_id,['id'=>'research-paper-id'])}}
 
 <div class='row'>
-       <div class="col-sm-3">
+       <div class="col-sm-4">
         <div class='form-group'>
            {{ Form::label('writer_user_id', 'Writer Name') }}
-           <input type="text" id="writer-name" readonly style="background-color: lavender">
+           <input type="text" id="writer-name" readonly style="background-color: lavender;padding-right: 20px">
            {{Form::hidden('writer_user_id', Input::old('writer_user_id'),['id'=>'wr-name-id'])}}
         </div>
     </div>
 
-    <div class="col-sm-3">
+    <div class="col-sm-4">
         <div class='form-group'>
            {{ Form::label('value', 'Beneficiary Value') }}
            {{ Form::text('value', Input::old('value'),['id'=>'beneficial-value']) }}
         </div>
     </div>
-    <div class="col-sm-3" style="padding: 4%">
+    <div class="col-sm-4" style="padding: 4%">
         <input type="button" class="pull-right btn-xs btn-linkedin" id="add-writer-and-beneficial" value="+Add">
     </div>
 </div>
@@ -50,28 +50,27 @@
    <tbody>
     <?php $counter = 0;?>
 
-    @foreach($writer_info as $key=>$value)
+    @foreach($writer_info as $key=>$model_value)
         <tr>
-            <td>{{isset($value->writer_user_id) ? $value->relUser->relUserProfile->last_name : ''}}</td>
-            <td>{{isset($value->relRnCWriterBeneficial->value )}}</td>
+            <td>{{isset($model_value->writer_user_id) ? $model_value->relUser->relUserProfile->first_name.' '.$model_value->relUser->relUserProfile->middle_name.' '.$model_value->relUser->relUserProfile->last_name : ''}}</td>
+            <td>{{isset($model_value->relRnCWriterBeneficial->value )}}</td>
             <td>
-                {{--<a data-href="{{ $value->id }}" class="btn btn-default btn-sm delete-dt-2" id="delete-dt-2{{ $value->id }}" ><i class="fa fa-trash-o" style="font-size: 15px;color: red"></i></a>--}}
+                <a data-href="{{ $model_value->id }}" class="btn btn-default btn-sm delete-dt-2" id="delete-dt-2{{ $model_value->id }}" ><i class="fa fa-trash-o" style="font-size: 15px;color: red"></i></a>
             </td>
         </tr>
         <?php $counter++;?>
-        <script>
-            // Add item is to arrayList at edit time.
-            $( document ).ready(function() {
-                var productsId = {{ $value->inv_product_id }}
-                pushListItem(productsId);
-            });
-        </script>
+        {{--<script>--}}
+            {{--// Add item is to arrayList at edit time.--}}
+            {{--$( document ).ready(function() {--}}
+                {{--var productsId = {{ $value->inv_product_id }}--}}
+                {{--pushListItem(productsId);--}}
+            {{--});--}}
+        {{--</script>--}}
    @endforeach
 
 </table>
 
 {{ Form::submit('Submit', ['class'=>'pull-right btn btn-xs btn-success', 'style'=>'padding: 1%;'] ) }}
-
 
 
 <p>&nbsp;</p>
@@ -87,7 +86,7 @@
       source: "/rnc/ajax/fac-get-writer-name-auto-complete",
       minLength: 1,
       select: function(event, ui) {
-        $('#search_writer_name').val(ui.item.label);
+        $('#select_writer_name').val(ui.item.label);
         $('#wr-name-id').val(ui.item.writer_user_id);
         $('#writer-name').val(ui.item.label);
       }
@@ -103,7 +102,7 @@
          $res_pap_id = $("#research-paper-id").val();
          $writer_id = $("#wr-name-id").val();
          $benfcl_val = $("#beneficial-value").val();
-         $wr_name = $("#search_writer_name").val();
+         $wr_name = $("#writer-name").val();
 
          if($writer_id == null || $benfcl_val == null ){
              alert("please add Writer Name and Beneficial then try Again!");
@@ -117,7 +116,9 @@
                  $("#writer-name").val("");
                  $("#wr-name-id").val("");
                  $("#beneficial-value").val("");
-                 $("#search_writer_name").val("");
+                 $("#writer-name").val("");
+                 //$("#search_writer_name").val("");
+
                  return false;
              } else {
                  $('#test').append("<tr> " +
@@ -130,7 +131,8 @@
                  //flush the input fields
                  $("#writer-name").val("");
                  $("#beneficial-value").val("");
-                 $("#search_writer_name").val("");
+                 $("#writer-name").val("");
+                 //$("#search_writer_name").val("");
              }
          }
 
