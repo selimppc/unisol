@@ -35,5 +35,9 @@ class CfoSupportDetail extends Eloquent{
         return $this->errors;
     }
 
+    public function relCfoSupportHead(){
+        return $this->belongsTo('CfoSupportHead', 'cfo_support_head_id', 'id');
+    }
+
 
 } 

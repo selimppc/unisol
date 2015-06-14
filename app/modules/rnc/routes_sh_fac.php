@@ -146,6 +146,7 @@
         'uses' => 'RnCFacultyController@myRP'
     ]);
 
+
 //new
 
     Route::any('faculty/research-paper-writer-beneficial/list/{rnc_r_p_id}',[
@@ -166,9 +167,9 @@
         'uses' => 'RnCFacultyController@indexRnCWriter'
     ]);
 
-    Route::any("ajax/get-writer-name-auto-complete", [
-        "as"   => "ajax.get-writer-name-auto-complete",
-        "uses" => "RnCFacultyController@ajaxGetWriterNameAutoComplete"
+    Route::any("ajax/fac-get-writer-name-auto-complete", [
+        "as"   => "ajax.fac-get-writer-name-auto-complete",
+        "uses" => "RnCFacultyController@ajaxFacGetWriterNameAutoComplete"
     ]);
 
     Route::any('faculty/research-paper-writer/store',[

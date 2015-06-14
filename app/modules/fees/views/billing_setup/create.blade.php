@@ -5,7 +5,6 @@
 </div>
 <div class="modal-body">
     {{ Form::open(array('url' => 'fees/billing/setup/save', 'method' =>'post', 'role'=>'form','files'=>'true')) }}
-    {{--@include('fees::billing_setup._form')--}}
     <div class="modal-body">
         <div style="padding: 0px 20px 20px 20px;">
             <div class="row">
@@ -17,10 +16,13 @@
                 {{ Form::label('degprog_id', 'Degree Name') }}<span class="text-danger">*</span>
                 {{ Form::select('degprog_id',$degree, Input::old('degprog_id'), ['id'=>'batch_name','class'=>'form-control','required'=>'required'] ) }}
             </div>
+
             <div class="form-group">
-                {{ Form::label('batch_id', 'Batch') }}<span class="text-danger">*</span><span>{{HTML::image('assets/icon/ajax-loader.gif')}}</span>
+                {{ Form::label('batch_id', 'Batch') }}<span class="text-danger">*</span>
+                <span class="loaderClass">{{HTML::image('assets/icon/ajax-loader.gif')}}</span>
                 {{ Form::select('batch_id', $batch_id, Input::old('batch_id'), ['id'=>'dependable-list', 'class'=>'form-control','placeholder'=>'','required'=>'required']) }}
             </div>
+
             <div class="form-group">
                 {{ Form::label('schedule_id', 'Schedule') }}<span class="text-danger">*</span>
                 {{ Form::select('schedule_id', $schedule_id, Input::old('schedule_id'), ['class' => 'form-control','required'=>'required']) }}
@@ -47,26 +49,27 @@
             </div>
         </div>
     </div>
-
     {{ Form::close() }}
-
-
-    {{----------------Ajax operation: depandable dropdown  ----------------------------------}}
-    <script>
-        $(function(){
-            $('#batch_name').change(function(){
-                $.get("{{ url('fees/billing/drop-down-batch')}}",
-                        { degree: $(this).val() },
-                        function(data) {
-                            var model = $('#dependable-list');
-                            model.empty();
-                            $.each(data, function(key, element) {
-                                model.append("<option value='"+ key +"'>" + element + "</option>");
-                            });
-                        });
-            });
-        });
-
-    </script>
-
 </div>
+
+
+{{----------------Ajax operation: depandable dropdown  ----------------------------------}}
+<script>
+    $(function(){
+        $('.loaderClass').hide();
+        $('#batch_name').change(function(){
+            $('.loaderClass').show();
+            $.get("{{ url('fees/billing/drop-down-batch')}}",
+                    { degree: $(this).val() },
+                    function(data) {
+                        $('.loaderClass').hide();
+                        var model = $('#dependable-list');
+                        model.empty();
+                        $.each(data, function(key, element) {
+                            model.append("<option value='"+ key +"'>" + element + "</option>");
+                        });
+                    });
+        });
+    });
+
+</script>

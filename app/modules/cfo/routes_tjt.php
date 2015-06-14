@@ -111,6 +111,16 @@ Route::any('support-head',[
     'uses' => 'CfoAmwController@cfoSupportIndex'
 ]);
 
+Route::any('support-head/reply/{id}',[
+    'as' =>'support-head.reply',
+    'uses' => 'CfoAmwController@reply'
+]);
+
+Route::any('support-head/reply-to-user',[
+    'as' =>'support-head.reply-to-user',
+    'uses' => 'CfoAmwController@replyToUser'
+]);
+
 
 //Onsite-help-desk
 Route::any('help-desk',[

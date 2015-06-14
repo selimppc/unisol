@@ -13,7 +13,7 @@ class RnCResearchPaperWriter extends Eloquent{
     ];
     private $errors;
     private $rules = [
-       'rnc_research_paper_id' => 'required'
+       //'rnc_research_paper_id' => 'required'
     ];
 
     public function validate($data)
@@ -43,7 +43,8 @@ class RnCResearchPaperWriter extends Eloquent{
     }
 
     public function relRnCWriterBeneficial(){
-        return $this->HasMany('RnCWriterBeneficial');
+        return $this->HasOne('RnCWriterBeneficial', 'rnc_research_paper_writer_id', 'id');
+
     }
 
 

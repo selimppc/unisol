@@ -19,7 +19,15 @@ class FeesController extends \BaseController {
     public function indexBillingSetup()
     {
         $billing_setup = BillingSetup::orderBy('id', 'DESC')->get();
-        return View::Make('fees::billing_setup.index',compact('billing_setup'));
+        $degree = ['' => 'Select Degree'] + DegreeProgram::lists('title', 'id');
+        $batch = ['' => 'Select Batch'] + Batch::lists('batch_number', 'id');
+
+        if ($this->isPostRequest()) {
+            $degree_id = Input::get('degree_id');
+            $batch_id = Input::get('batch_id');
+
+          }
+        return View::Make('fees::billing_setup.index', compact('billing_setup', 'degree', 'batch'));
     }
     public function createBillingSetup()
     {
@@ -86,7 +94,7 @@ class FeesController extends \BaseController {
             ->where('id', '=', $id)
             ->first();
 
-        $degree = ['' => 'Select Degree to Edit'] + DegreeProgram::lists('title', 'id');
+        $degree = ['' => 'Please Select Degree to Edit'] + DegreeProgram::lists('title', 'id');
         $batch_id = ['' => 'Select Batch']+ Batch::lists('batch_number', 'id');
         $schedule_id = ['' => 'Select Billing Schedule']+ BillingSchedule::lists('title', 'id');
         $item_id = ['' => 'Select Billing Item']+ BillingItem::lists('title', 'id');
