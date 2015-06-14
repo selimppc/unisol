@@ -146,41 +146,53 @@ class CfoAmwController extends \BaseController {
             {
                 $query->from('cfo_category')
                     ->whereRaw('cfo_category.id = cfo_support_head.cfo_category_id')
-                    ->where('cfo_category.support_user_id', $cfo_user_id);
+                    ->where('cfo_category.support_user_id', $cfo_user_id)
+                    ->whereIn('status', array('new', 'open', 'replied'));
             })
-            ->orderBy('status')
+//            ->orderBy('status')
             ->get();
 
         return View::make('cfo::support_head.staff.index',compact('support_data'));
     }
 
     public function reply($id){
-//        print_r($id);exit;
-        $model = CfoSupportDetail::with('relCfoSupportHead')->find($id);
 
-        return View::make('cfo::support_head.staff.reply',compact('model'));
+        $data = CfoSupportHead::find($id);
+        $reply_data = CfoSupportDetail::with('relCfoSupportHead')->where('cfo_support_head_id','=',$id)->get();
+
+        return View::make('cfo::support_head.staff.reply',compact('data','reply_data'));
     }
 
     public function replyToUser(){
-        $data = Input::all();
 
-        $reply_data = CfoSupportHead::find($data['id']);
-        $reply_data->update($data);
+        $data = Input::all();
+        $support_head = CfoSupportHead::find($data['id']);
+
+        $support_head->status = 'replied';
+        $support_head->update($data);
 
         $model = new CfoSupportDetail();
         $model->cfo_support_head_id = $data['id'];
-        $model->message = $data['message'];
-        $model->replied_by = Auth::user()->get()->id;
-//        $user_name = User::FullName($model->commented_to);
+        $model->message = Input::get('message');
+        $model->replied_by = 'staff';
+
+        $model->support_user_id = Auth::user()->get()->id;
 
         if($model->save()){
-            Session::flash('message', '');
+        $support_code = $support_head->support_code;
+            Mail::send('cfo::support_head.staff.support_mail', array('link' => $model->message,'username'=>$support_head->name,'support_code'=>$support_code), function ($message) use ($support_head) {
+                $message->from('test@edutechsolutionsbd.com', 'Email Notification For Support');
+                $message->to($support_head->email);
+                $message->cc('tanintjt@gmail.com');
+                $message->subject('Email Notification For Support');
+            });
+            Session::flash('message', 'Successfully Send This Message.');
             return Redirect::back();
-        }else{
-            $errors = $model->errors();
-            Session::flash('errors', $errors);
-            return Redirect::back()->with('errors', 'invalid');
+        }else {
+            Session::flash('danger', 'Please try again');
+            return Redirect::back();
         }
-
     }
+
+
 }

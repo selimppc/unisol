@@ -121,6 +121,21 @@ Route::any('support-head/reply-to-user',[
     'uses' => 'CfoAmwController@replyToUser'
 ]);
 
+Route::any('support-head/support-data',[
+    'as' =>'support-head.support-data',
+    'uses' => 'CfoController@commentsToCfo'
+]);
+
+Route::any('support-head/response-by-user',[
+    'as' =>'support-head.response-by-user',
+    'uses' => 'CfoController@responseByUser'
+]);
+
+Route::any('support-head/change-status/{id}/{value}',[
+    'as' =>'support-head.change-status',
+    'uses' => 'CfoController@changeStatus'
+]);
+
 
 //Onsite-help-desk
 Route::any('help-desk',[
