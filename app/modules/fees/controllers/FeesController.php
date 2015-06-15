@@ -30,18 +30,16 @@ class FeesController extends \BaseController {
         if (!empty($degree_id)) {
             $q->whereExists(function($query) use ($degree_id)
             {
-                $query->from('degree')
-                    ->whereRaw('batch_id = degree.id')
-                    ->where('degree.id', $degree_id);
+                $query->from('batch')
+                    ->whereRaw('batch.id = billing_setup.batch_id')
+                    ->where('batch.degree_id', $degree_id);
             });
         }
-
         if (!empty($batch_id)) {
             $q->where(function($query) use ($batch_id) {
                 $query->where('batch_id', '=', $batch_id);
             });
         }
-
         $data = $q->orderBy('id', 'DESC')->paginate(10);
 
 

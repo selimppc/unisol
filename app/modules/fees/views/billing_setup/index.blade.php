@@ -52,7 +52,7 @@
                                 </div>
                                 <div class="col-sm-2" style="padding-top: 1%">
                                     </br>
-                                    {{ Form::submit('Filter', array('class'=>'btn btn-success btn-xs','id'=>'button'))}}
+                                    {{ Form::submit('Filter', array('class'=>'btn btn-primary  btn-xs','id'=>'button'))}}
                                 </div>
                             </div>
                             {{Form::close()}}
