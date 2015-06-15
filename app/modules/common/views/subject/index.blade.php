@@ -24,7 +24,7 @@
                     <div class="clearfix"></div>
                 </div>
                 {{--filter ends--}}
-                {{ Form::open(array('url' =>'subject/list', 'class'=>'form-inline', 'role' => 'form')) }}
+                {{ Form::open(array('url' =>'common/subject/', 'class'=>'form-inline', 'role' => 'form')) }}
                 <div class="form-group">
                     {{ Form::label('search_text', 'Search Text:',array('class'=>'sr-only')) }}
                     {{ Form::text('search_text', Input::old('search_text'), array('class' => 'form-control','placeholder' => 'Search All')) }}
