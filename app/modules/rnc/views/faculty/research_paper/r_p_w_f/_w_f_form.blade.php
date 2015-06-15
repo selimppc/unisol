@@ -72,9 +72,10 @@
 
 </table>
 
-{{ Form::submit('Submit', ['class'=>'pull-right btn btn-xs btn-success', 'style'=>'padding: 1%;'] ) }}
-
-
+<div class="modal-footer">
+    {{ Form::submit('Submit', ['class'=>'btn btn-xs btn-success', 'style'=>'padding: 1.5%;'] ) }}
+    <button class="btn btn-primary btn-large" data-dismiss="modal" type="button">Close</button>
+</div>
 <p>&nbsp;</p>
 
 
@@ -171,15 +172,15 @@
             var $ben_value = $("#new-column-value-"+$id).html();
             $("#new-row-rnc-"+$id).hide();
 
-            $('#test').append("<tr> " +
+            // ei url die duita ID pas skorte hobe : $id, $ben_id   like     , ['id'=>$writer_info->id ,'ben_id'=>$writer_info->relRnCWriterBeneficial->id ]
+            $('#test').append("<form action='{{ url('faculty/research-paper-writer-beneficial/update') }}' method='POST'><tr> " +
               "<td><input value='"+ $ben_name +"' readonly> <input type='hidden' name='id' value='"+ $id +"'> </td>" +
               "<td><input name='value' value="+ $ben_value +" style='background: #efefef ;border'></td>" +
               "<td> <a href='' class='btn btn-default btn-sm'><i class='fa fa-check' ></i></a></td>" +
-          " </tr>");
+          " </tr></form>");
 
          });
       });
-
 });
 
 
