@@ -548,6 +548,8 @@ class RnCFacultyController extends \BaseController
 
     public function updateWriterBeneficial()
     {
+
+        echo "ok";exit;
         $id = Input::get('id');
         $ben_id = Input::get('ben_id');
 

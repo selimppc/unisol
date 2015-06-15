@@ -25,7 +25,7 @@
         <div class='form-group'>
            {{ Form::label('value', 'Beneficiary Value') }}
            {{ Form::text('value', Input::old('value'),['id'=>'beneficial-value']) }}
-        </div> &nbsp; {{ $cal_benefit_share }} % is already divided. Now this is for writer's share 
+        </div> &nbsp; {{ $cal_benefit_share }} % is already divided. Now this is for writer's share
     </div>
 
 
@@ -116,6 +116,8 @@
          $writer_id = $("#wr-name-id").val();
          $benfcl_val = $("#beneficial-value").val();
          $wr_name = $("#writer-name").val();
+         var total_count_share = "<?php echo $cal_benefit_share; ?>";
+         var compare = parseInt(total_count_share) + parseInt(total_share);
 
          if($writer_id == null || $benfcl_val == null ){
              alert("please add Writer Name and Beneficial then try Again!");
@@ -134,18 +136,28 @@
 
                  return false;
              } else {
-                 $('#test').append("<tr> " +
-                      "<td><input value='"+ $wr_name +"' readonly> <input type='hidden' name='writer_user_id[]' value='"+ $writer_id +"'> </td>" +
-                      "<td><input name='value[]' value='"+ $benfcl_val +"' readonly></td>" +
-                  " </tr>");
+                 var $total_ben = parseInt(total_count_share) + parseInt($benfcl_val);
+                 if($total_ben > 100){
+                    $("#beneficial-value").val("");
+                        alert(compare +'  ,'+ 'Exceeded the Total share 100%. Please decrease your share percentage');
+                    $("#beneficial-value").focus();
+                    return false;
+                 }else{
+                    $('#test').append("<tr> " +
+                          "<td><input value='"+ $wr_name +"' readonly> <input type='hidden' name='writer_user_id[]' value='"+ $writer_id +"'> </td>" +
+                          "<td><input name='value[]' value='"+ $benfcl_val +"' readonly></td>" +
+                      " </tr>");
 
-                 $arrayRnc.push($wrtr_u_id);
+                     $arrayRnc.push($wrtr_u_id);
 
-                 //flush the input fields
-                 $("#writer-name").val("");
-                 $("#beneficial-value").val("");
-                 $("#writer-name").val("");
-                 $("#search_writer_name").val("");
+                     //flush the input fields
+                     $("#writer-name").val("");
+                     $("#beneficial-value").val("");
+                     $("#writer-name").val("");
+                     $("#search_writer_name").val("");
+                 }
+
+
              }
          }
 
@@ -183,12 +195,20 @@
             $("#new-row-rnc-"+$id).hide();
 
             // ei url die duita ID pas skorte hobe : $id, $ben_id   like     , ['id'=>$writer_info->id ,'ben_id'=>$writer_info->relRnCWriterBeneficial->id ]
-{{--            <form action='{{ url('faculty/research-paper-writer-beneficial/update') }}' method='POST'> </form>--}}
-            $('#test').append("<tr> " +
-              "<td><input value='"+ $ben_name +"' readonly> <input type='hidden' name='id' value='"+ $id +"'> </td>" +
-              "<td><input name='value' value="+ $ben_value +" style='background: #efefef ;border'></td>" +
+            var $form_start =    "<form action='{{ url("rnc/faculty/research-paper-writer-beneficial/update") }}' method='POST'>";
+            var $form_end = "</form>";
+
+            $('#test').append($form_start +
+              "<input value='"+ $ben_name +"' readonly style='width: 270px; '> <input type='hidden' value='"+ $id +"' name='id'>" +
+              "<input name='value' value="+ $ben_value +" style='background: #efefef ; width: 120px '>" +
+              "<input type='submit' value='Submit' class='btn btn-default btn-sm'>" +
+              $form_end);
+              //Back up
+              /*$('#test').append("<tr>" +
+              "<td><input value='"+ $ben_name +"' readonly> <input type='hidden' value='"+ $id +"' name='id'></td>" +
+              "<td><input name='value' value="+ $ben_value +" style='background: #efefef ; width: 50%; '></td>" +
               "<td> <a href='' class='btn btn-default btn-sm'><i class='fa fa-check' ></i></a></td>" +
-          " </tr>");
+              " </tr>");*/
 
          });
       });
@@ -198,19 +218,19 @@
 </script>
 
 
-{{--<script>--}}
- {{--function getShareBenefit(){--}}
-                 {{--var total_count_share = "<?php echo $cal_benefit_share; ?>";--}}
+<script>
+                  function getShareBenefit(){
+                                  var total_count_share = "<?php echo $cal_benefit_share; ?>";
 
-                 {{--var total_share = parseInt(document.getElementById("given_share").value);--}}
-                 {{--var compare = parseInt(total_count_share) + parseInt(total_share);--}}
-                 {{--//alert(compare +'  ,'+ 'Exceed the Total share 100%. Please decrease your share percentage');--}}
+                                  var total_share = parseInt(document.getElementById("given_share").value);
+                                  var compare = parseInt(total_count_share) + parseInt(total_share);
+                                  //alert(compare +'  ,'+ 'Exceed the Total share 100%. Please decrease your share percentage');
 
-                    {{--if( compare > 100 ){--}}
-                        {{--alert(compare +'  ,'+ 'Exceed the Total share 100%. Please decrease your share percentage');--}}
-                        {{--return false;--}}
-                    {{--}else{--}}
-                        {{--return true;--}}
-                    {{--}--}}
- {{--}--}}
-{{--</script>--}}
+                                     if( compare > 100 ){
+                                         alert(compare +'  ,'+ 'Exceed the Total share 100%. Please decrease your share percentage');
+                                         return false;
+                                     }else{
+                                         return true;
+                                     }
+                  }
+                 </script>
