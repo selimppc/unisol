@@ -25,7 +25,7 @@
         <div class='form-group'>
            {{ Form::label('value', 'Beneficiary Value') }}
            {{ Form::text('value', Input::old('value'),['id'=>'beneficial-value']) }}
-        </div>
+        </div> &nbsp; {{ $cal_benefit_share }} % is already divided. Now this is for writer's share 
     </div>
 
 
