@@ -165,6 +165,7 @@
         'uses' => 'RnCFacultyController@fac_ajax_delete_req_detail'
     ]);
 
+
     Route::any('faculty/research-paper-writer-beneficial/update',[
         'as' => 'faculty.research-paper-writer-beneficial.update',
         'uses'=> 'RnCFacultyController@updateWriterBeneficial'

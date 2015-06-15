@@ -92,6 +92,7 @@
         </li>
 
         @include('inventory::_sidebar._inventory')
+        @include('accounts::_sidebar._accounts')
 
 </ul>
 
