@@ -485,11 +485,15 @@ class RnCFacultyController extends \BaseController
 
         $r_p = RnCResearchPaper::where('id', $rnc_r_p_id)->first();
 
-        #print_r($r_p);exit;
+        #print_r($writer_info);exit;
 
         $rp_benefit_share = RnCResearchPaper::where('id' ,'=', $rnc_r_p_id)->first()->benefit_share;
-        $total = DB::table('rnc_writer_beneficial')->where('rnc_research_paper_writer_id' ,'=', $r_p->id)->sum('value');
+        $total = DB::table('rnc_writer_beneficial')->where('rnc_research_paper_id' ,'=', $rnc_r_p_id)->sum('value');
         $cal_benefit_share = $rp_benefit_share + $total ;
+
+        #print_r($total);exit;
+
+
 
         return View::make('rnc::faculty.research_paper.r_p_w_f.add_edit_writer_beneficial',
             compact('rnc_r_p_id','writer_info','r_p','rp_benefit_share','cal_benefit_share'));

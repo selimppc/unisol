@@ -40,9 +40,9 @@
                     <div class="tab-pane active" id="tab_1">
 
                         {{--****************** Filter :Starts ***********************--}}
-                        <div>
+
                             {{Form::open(array('route'=> ['billing.history']))}}
-                            <div class="col-sm-8">
+                            <div class="col-sm-8 ">
                                 <div class="col-sm-4">
                                     {{ Form::label('department_id', 'Department') }}
                                     {{ Form::select('department_id',$department,Input::old('department_id'), array('class' => 'form-control') ) }}
@@ -59,24 +59,42 @@
                                 <div class="col-sm-4">
                                     <div class="form-inline radio-inline">
                                         <div class="radio radio-style">
-                                            {{ Form::radio('studentOrApplicant', 'student', true) }}
+                                            {{ Form::radio('studentOrApplicant','student', true) }}
                                             {{ Form::label('student', 'Student') }}
                                         </div>
                                         <div class="radio">
-                                            {{ Form::radio('studentOrApplicant', 'applicant') }}
-                                            {{ Form::label('applicant', 'applicant') }}
+                                            {{ Form::radio('studentOrApplicant','applicant') }}
+                                            {{ Form::label('applicant', 'Applicant') }}
                                         </div>
                                      </div>
-                                    <div>{{ Form::text('student_id',Input::old('student_id'), array('placeholder'=>'Enter id')) }}</div></br>OR
-                                    <div>{{ Form::text('student_name',Input::old('student_name'), array('placeholder'=>'Enter name')) }}</div></br>
-
-                                {{ Form::submit('Filter', array('class'=>'btn btn-success','id'=>'button'))}}
-                                </div>
+                                    </div>
                             </div>
+
+                                <div class="col-lg-9 inline-textbox">
+                                    <div class="form-inline">
+                                        <div class="form-group ">
+                                            <div class="col-lg-12">
+                                                {{ Form::text('student_id',Input::old('student_id'), array('class'=>'textbox-style','placeholder'=>'Enter id')) }} OR
+                                            </div>
+                                        </div>
+                                        <div class="form-group ">
+                                            <div class="col-lg-12">
+                                                {{ Form::text('student_name',Input::old('student_name'), array('class'=>'textbox-style','placeholder'=>'Enter name')) }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-8 btn-style">
+                                {{ Form::submit('Filter', array('class'=>'btn btn-success btn-sm','id'=>'button'))}}
+                                </div>
+
                             {{Form::close()}}
-                        </div>
+
                         {{--*****************Filter :Ends ****************************--}}
-                   {{-- For student--}}
+
+                   {{-- Student Index--}}
+                        @if($studentOrApplicant=='student')
                         <div class="box-body table-responsive ">
                             <table id="example" class="table table-bordered table-hover table-striped">
                                 <thead>
@@ -91,11 +109,11 @@
 
                                 </tbody>
                             </table>
-                            {{ Form::close() }}
                         </div>
+                        @else
 
+                        {{--Applicant Index--}}
 
-                        {{-- For Applicant--}}
                         <div class="box-body table-responsive ">
                             <table id="example" class="table table-bordered table-hover table-striped">
                                 <thead>
@@ -110,8 +128,8 @@
 
                                 </tbody>
                             </table>
-                            {{ Form::close() }}
                         </div>
+                            @endif
                     </div>
                 </div>
             </div>
