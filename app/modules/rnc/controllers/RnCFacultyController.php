@@ -532,8 +532,30 @@ class RnCFacultyController extends \BaseController
         }
         catch(exception $ex){
             DB::rollback();
-            return Response::json("Can not delete !");
+            return Response::json("Can not be Deleted !");
         }
+
+    }
+
+    public function updateWriterBeneficial()
+    {
+        $id = Input::get('id');
+        $ben_id = Input::get('ben_id');
+
+        DB::beginTransaction();
+        try {
+            if(RnCWriterBeneficial::update($ben_id)){
+                RnCResearchPaperWriter::update($id);
+            }
+            DB::commit();
+            return Response::json("Successfully Updated");
+        }
+        catch(exception $ex){
+            DB::rollback();
+            return Response::json("Can not be Updated !");
+        }
+
+
 
     }
 
