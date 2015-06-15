@@ -9,7 +9,7 @@
         <h4 class="modal-title" id="myModalLabel">New Knowledge Base</h4>
       </div>
       <div class="modal-body">
-        @include('cfo::cfo.knowledge_base._form')
+        @include('cfo::.cfo.knowledge_base._form')
       </div>
     </div>
   </div>

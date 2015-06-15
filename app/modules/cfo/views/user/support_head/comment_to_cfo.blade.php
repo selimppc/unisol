@@ -40,40 +40,46 @@
                        </td>
                    </tr>
                </table>
+               <br>
                <small>Comments as below: </small>
 
                @foreach($reply_data as $v)
-                    <p style="padding: 1%; background: #efefef;">
                          @if($v->replied_by =='user')
-                            <b style="font-size: medium">Your Query/Response :</b><br>{{ isset($v->message)?$v->message:'' }}<br>
-                        @endif
+                             <p style="padding: 1%; background: #efefef;">
+                                <b style="font-size: medium">Your Query/Response :</b><br>{{ isset($v->message)?$v->message:'' }}<br>
+                             </p>
+                         @endif
                         @if($v->replied_by =='staff')
-                            <b style="font-size: medium">Replied By : </b><em style="color:#a52a2a" style="font-size: medium">{{User::FullName($v->support_user_id)}}</em> <br>{{ isset($v->message)?$v->message:'' }}<br>
+                            <p style="padding: 1%; background: #efefef;">
+                                <b style="font-size: medium">Replied By : </b><em style="color:#a52a2a" style="font-size: medium">{{User::FullName($v->support_user_id)}}</em> <br>{{ isset($v->message)?$v->message:'' }}<br>
+                            </p>
                         @endif
-                   </p>
                @endforeach
-
-               <div class="form-group">
-                     {{ Form::textarea('message', Null, ['class' => 'form-control', 'placeholder'=>'Your Comments Here', 'style'=>'height: 100px;']) }}
-               </div>
-
-                <p>&nbsp;</p>
-                {{ Form::submit('Submit', array('class'=>'pull-right btn btn-info')) }}
-                <a href="/" class="pull-right btn btn-default" style="margin-right: 5px">Close</a>
-                <p>&nbsp;</p>
+               <p>&nbsp;</p>
+               @if($data->status == 'new')
+                   <div class="form-group">
+                      {{ Form::textarea('message', Null, ['class' => 'form-control', 'placeholder'=>'Your Comments Here', 'style'=>'height: 100px;']) }}
+                   </div>
+               @endif
+               @if($data->status == 'open')
+                   <div class="form-group">
+                      {{ Form::textarea('message', Null, ['class' => 'form-control', 'placeholder'=>'Your Comments Here', 'style'=>'height: 100px;']) }}
+                   </div>
+               @endif
+               @if($data->status == 'replied')
+                   <div class="form-group">
+                       {{ Form::textarea('message', Null, ['class' => 'form-control', 'placeholder'=>'Your Comments Here', 'style'=>'height: 100px;']) }}
+                   </div>
+               @endif
+               <p>&nbsp;</p>
+                <a href="{{ URL::route('support-head.create')}}" class="pull-right btn btn-xs btn-success" style="margin-left: 5px">Cancel</a>
+                 @if(!($data->status == 'closed'))
+                    {{ Form::submit('Submit', array('class'=>'pull-right btn btn-xs btn-info')) }}
+                    <a data-href="{{ URL::route('support-head.change-status',['id'=>$data->id, 'value'=>'closed'])}}" class="pull-left btn btn-xs btn-bitbucket" data-toggle="modal" data-target="#confirm-status-one" href="" id="hide-btn">Close This Issue</a>
+                 @endif
             </div><!-- /.box -->
+
             {{ Form::close() }}
-            <td>
-                @if($data->status == 'open')
-                    <a data-href="{{ URL::route('support-head.change-status',['id'=>$data->id, 'value'=>'closed'])}}" class="btn btn-xs btn-info" data-toggle="modal" data-target="#confirm-status-one" href="" >Close This</a>
-                @endif
-                @if($data->status == 'replied')
-                    <a data-href="{{ URL::route('support-head.change-status',['id'=>$data->id, 'value'=>'closed'])}}" class="btn btn-xs btn-info" data-toggle="modal" data-target="#confirm-status-one" href="" >Close This</a>
-                @endif
-                @if($data->status == 'new')
-                    <a data-href="{{ URL::route('support-head.change-status',['id'=>$data->id, 'value'=>'closed'])}}" class="btn btn-xs btn-info" data-toggle="modal" data-target="#confirm-status-one" href="" >Close This</a>
-                @endif
-            </td>
             <p>&nbsp;</p>
         </div>
     </div>
@@ -93,18 +99,19 @@
              <div class="modal-content">
                  <div class="modal-header">
                      <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-                     <h4 class="modal-title" id="myModalLabel">Confirm to change status</h4>
+                     <h4 class="modal-title" id="myModalLabel">Confirmation to close the issue</h4>
                  </div>
                  <div class="modal-body">
-                     <strong>Are you sure to change status?</strong>
+                     <strong>Are you sure to close this support issue?</strong>
                  </div>
                  <div class="modal-footer">
                      <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                     <a href="#" class="btn btn-primary primary">Change</a>
+                     <a href="#" class="btn btn-primary primary">Submit</a>
                  </div>
              </div>
          </div>
      </div>
+
 
 @stop
 

@@ -2,12 +2,202 @@
 
 class CfoAmwController extends \BaseController {
 
-//    function __construct() {
-//        $this->beforeFilter('cfo', array('except' => array('indexHelpDesk')));
-//    }
+    function __construct() {
+        $this->beforeFilter('cfo', array('except' => array('index')));
+    }
     protected function isPostRequest()
     {
         return Input::server("REQUEST_METHOD") == "POST";
+    }
+    /*
+    * Cfo Category
+    * */
+
+    public function index()
+    {
+        $data = CfoCategory::latest('id')->paginate(10);
+        return View::make('cfo::cfo.category.index', compact('pageTitle', 'data'));
+    }
+
+    public function storeCategory()
+    {
+        $data = Input::all();
+        $model = new CfoCategory();
+        $model->title = Input::get('title');
+        $name = $model->title;
+        if($model->validate($data))
+        {
+            DB::beginTransaction();
+            try {
+                $model->create($data);
+                DB::commit();
+                Session::flash('message', "$name  Added");
+            }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', "$name not added.Invalid Request!");
+            }
+            return Redirect::back();
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()
+                ->with('errors', 'invalid');
+        }
+    }
+
+    public function showCategory($id)
+    {
+        $model = CfoCategory::find($id);
+        return View::make('cfo::cfo.category.show',compact('model'));
+    }
+
+    public function editCategory($id){
+
+        $model = CfoCategory::find($id);
+        return View::make('cfo::cfo.category.edit',compact('model'));
+    }
+
+    public function updateCategory($id){
+
+        $data = Input::all();
+        $model = CfoCategory::find($id);
+        $model->title = Input::get('title');
+        $name = $model->title;
+        if($model->validate($data))
+        {
+            DB::beginTransaction();
+            try {
+                $model->update($data);
+                DB::commit();
+                Session::flash('message', "$name Updates");
+            }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', "$name not updates. Invalid Request !");
+            }
+            return Redirect::back();
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()
+                ->with('errors', 'Input Data Not Valid');
+        }
+    }
+
+    public function deleteCategory($id)
+    {
+        try {
+            $data = CfoCategory::find($id);
+
+            $name = $data->title;
+            if ($data->delete()) {
+                Session::flash('message', "$name  Deleted");
+                return Redirect::back();
+            }
+        } catch
+        (exception $ex) {
+            return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+        }
+    }
+
+    /*
+    ** KnowledgeBase.............
+    */
+
+    public function indexKnowledgeBase(){
+
+        $cfo_category_id = CfoCategory::lists('title','id');
+        $knb_data = CfoKnowledgeBase::latest('id')->paginate(10);
+        return View::make('cfo::cfo.knowledge_base.index', compact('cfo_category_id', 'knb_data'));
+
+    }
+    public function storeKnowledgeBase()
+    {
+        $data = Input::all();
+
+        $model = new CfoKnowledgeBase();
+        $model->cfo_category_id =  Input::get('cfo_category_id');
+
+        if($model->validate($data))
+        {
+            DB::beginTransaction();
+            try {
+                $model->create($data);
+                DB::commit();
+                Session::flash('message', "  Added");
+            }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', " not added.Invalid Request!");
+            }
+            return Redirect::back();
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()
+                ->with('errors', 'invalid');
+        }
+    }
+
+    public function showKnowledgeBase($id)
+    {
+        $model = CfoKnowledgeBase::find($id);
+        return View::make('cfo::cfo.knowledge_base.show',compact('model'));
+    }
+
+    public function editKnowledgeBase($id){
+
+        $model = CfoKnowledgeBase::find($id);
+        $cfo_category_id = CfoCategory::lists('title','id');
+        return View::make('cfo::cfo.knowledge_base.edit',compact('model','cfo_category_id'));
+    }
+
+    public function updateKnowledgeBase($id){
+
+        $data = Input::all();
+        $model = CfoKnowledgeBase::find($id);
+        $model->title = Input::get('title');
+        $name = $model->title;
+        if($model->validate($data))
+        {
+            DB::beginTransaction();
+            try {
+                $model->update($data);
+                DB::commit();
+                Session::flash('message', "$name Updates");
+            }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', "$name not updates. Invalid Request !");
+            }
+            return Redirect::back();
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()
+                ->with('errors', 'Input Data Not Valid');
+        }
+    }
+
+    public function deleteKnowledgeBase($id)
+    {
+        try {
+            $data = CfoKnowledgeBase::find($id);
+
+            $name = $data->title;
+            if ($data->delete()) {
+                Session::flash('message', "$name  Deleted");
+                return Redirect::back();
+            }
+        } catch
+        (exception $ex) {
+            return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+        }
     }
 
     /*
@@ -27,7 +217,7 @@ class CfoAmwController extends \BaseController {
         $self_desk = CfoOnsiteHelpDesk::with('relDepartment','relUser','relCfoCategory')->where('specific_user_id','=', Auth::user()->get()->id)->paginate(10);
         $assigned_user = User::with('relUserProfile')->where('id','=', Auth::user()->get()->id)->first();
 
-        return View::make('cfo::onsite_help_desk.index',compact('data','status_open','status_wt','status_srvd','srving','closed_status','self_desk','assigned_user'));
+        return View::make('cfo::cfo.onsite_help_desk.index',compact('data','status_open','status_wt','status_srvd','srving','closed_status','self_desk','assigned_user'));
     }
 
     public function createHelpDesk(){
@@ -40,7 +230,7 @@ class CfoAmwController extends \BaseController {
         $count_token = CfoOnsiteHelpDesk::count();
         $token_number = sprintf('%08s',$count_token+1);
 
-        return View::make('cfo::onsite_help_desk.create',compact('data','cfo_category_id','dept_id','user_id','token_number','users'));
+        return View::make('cfo::cfo.onsite_help_desk.create',compact('data','cfo_category_id','dept_id','user_id','token_number','users'));
     }
 
     public function storeHelpDesk(){
@@ -74,7 +264,7 @@ class CfoAmwController extends \BaseController {
     public function showHelpDesk($id){
 
         $data = CfoOnsiteHelpDesk::with('relDepartment','relUser','relCfoCategory')->find($id);
-        return View::make('cfo::onsite_help_desk.show',compact('data'));
+        return View::make('cfo::cfo.onsite_help_desk.show',compact('data'));
     }
 
     public function editHelpDesk($id){
@@ -84,7 +274,7 @@ class CfoAmwController extends \BaseController {
         $users = User::ExceptLoggedUser($id);
         $cfo_category_id = CfoCategory::lists('title','id');
 
-        return View::make('cfo::onsite_help_desk.edit',compact('model','dept_id','users','cfo_category_id'));
+        return View::make('cfo::cfo.onsite_help_desk.edit',compact('model','dept_id','users','cfo_category_id'));
     }
 
     public function updateHelpDesk($id){
@@ -152,7 +342,7 @@ class CfoAmwController extends \BaseController {
 //            ->orderBy('status')
             ->get();
 
-        return View::make('cfo::support_head.staff.index',compact('support_data'));
+        return View::make('cfo::cfo.support_head.index',compact('support_data'));
     }
 
     public function reply($id){
@@ -160,7 +350,7 @@ class CfoAmwController extends \BaseController {
         $data = CfoSupportHead::find($id);
         $reply_data = CfoSupportDetail::with('relCfoSupportHead')->where('cfo_support_head_id','=',$id)->get();
 
-        return View::make('cfo::support_head.staff.reply',compact('data','reply_data'));
+        return View::make('cfo::cfo.support_head.reply',compact('data','reply_data'));
     }
 
     public function replyToUser(){
@@ -180,7 +370,7 @@ class CfoAmwController extends \BaseController {
 
         if($model->save()){
         $support_code = $support_head->support_code;
-            Mail::send('cfo::support_head.staff.support_mail', array('link' => $model->message,'username'=>$support_head->name,'support_code'=>$support_code), function ($message) use ($support_head) {
+            Mail::send('cfo::cfo.support_head.support_mail_notification', array('link' => $model->message,'username'=>$support_head->name,'support_code'=>$support_code), function ($message) use ($support_head) {
                 $message->from('test@edutechsolutionsbd.com', 'Email Notification For Support');
                 $message->to($support_head->email);
                 $message->cc('tanintjt@gmail.com');

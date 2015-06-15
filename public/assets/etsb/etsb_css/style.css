@@ -3614,10 +3614,29 @@ fieldset[disabled] .btn-vk.active {
   /*  border:1px solid #f00;*/
     word-wrap:break-word;
 }
+
+/*fees Module billing history index style*/
+
 .radio-inline{
     margin-top: 15px;
 
 }
 .radio-style{
-    margin-right: 20px;
+    margin-right: 10px;
+}
+.search{
+    background: #c3dfef;
+}
+.inline-textbox{
+    margin-top: 8px;
+}
+.textbox-style
+{
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+    border:solid 1px #56caf0;
+    padding:2px;
+}
+.btn-style{
+ margin-top: 2%;
 }
