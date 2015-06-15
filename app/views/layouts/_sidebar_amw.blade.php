@@ -70,8 +70,8 @@
             <i class="fa fa-angle-left pull-right"></i>
         </a>
         <ul class="treeview-menu">
-            <li><a href="{{ URL::to('fees/billing/setup') }}"></i><i class="fa  fa-bars text-red"></i> Billing Setup</a></li>
-            <li><a href="#"></i><i class="fa  fa-bars text-purple"></i> Billing History</a></li>
+            <li><a href="{{ URL::to('fees/billing/setup') }}"><i class="fa  fa-bars text-red"></i> Billing Setup</a>
+            <li><a href="{{ URL::to('fees/billing/history') }}"><i class="fa  fa-bars text-purple"></i> Billing History</a>
         </ul>
     </li>
 
@@ -92,6 +92,7 @@
         </li>
 
         @include('inventory::_sidebar._inventory')
+        @include('accounts::_sidebar._accounts')
 
 </ul>
 

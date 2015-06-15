@@ -483,12 +483,20 @@ class RnCFacultyController extends \BaseController
         $writer_info = RnCResearchPaperWriter::with('relRnCResearchPaper','relRnCWriterBeneficial' ,'relUser', 'relUser.relUserProfile')
             ->where('rnc_research_paper_id', $rnc_r_p_id)->get();
 
-        $r_p = RnCResearchPaper::where('id', $rnc_r_p_id)->first()->title;
+        $r_p = RnCResearchPaper::where('id', $rnc_r_p_id)->first();
 
-       #sprint_r($r_p);exit;
+        #print_r($writer_info);exit;
+
+        $rp_benefit_share = RnCResearchPaper::where('id' ,'=', $rnc_r_p_id)->first()->benefit_share;
+        $total = DB::table('rnc_writer_beneficial')->where('rnc_research_paper_id' ,'=', $rnc_r_p_id)->sum('value');
+        $cal_benefit_share = $rp_benefit_share + $total ;
+
+        #print_r($total);exit;
+
+
 
         return View::make('rnc::faculty.research_paper.r_p_w_f.add_edit_writer_beneficial',
-            compact('rnc_r_p_id','writer_info','r_p'));
+            compact('rnc_r_p_id','writer_info','r_p','rp_benefit_share','cal_benefit_share'));
 
 
     }
@@ -532,8 +540,31 @@ class RnCFacultyController extends \BaseController
         }
         catch(exception $ex){
             DB::rollback();
-            return Response::json("Can not delete !");
+            return Response::json("Can not be Deleted !");
         }
+
+    }
+
+
+    public function updateWriterBeneficial()
+    {
+        $id = Input::get('id');
+        $ben_id = Input::get('ben_id');
+
+        DB::beginTransaction();
+        try {
+            if(RnCWriterBeneficial::update($ben_id)){
+                RnCResearchPaperWriter::update($id);
+            }
+            DB::commit();
+            return Response::json("Successfully Updated");
+        }
+        catch(exception $ex){
+            DB::rollback();
+            return Response::json("Can not be Updated !");
+        }
+
+
 
     }
 

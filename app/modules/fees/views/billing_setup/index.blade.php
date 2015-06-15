@@ -8,7 +8,7 @@
 @section('content')
     <div class="row" xmlns="http://www.w3.org/1999/html">
         <div class="col-md-12">
-            <h2 class="text-purple ">Fees</h2>
+            <h3 class="text-purple ">Fees::Billing Setup</h3>
             <div class="help-text-top">
                 You can view all lists of Billing Setup and search. Also this panel will allow you to perform some actions to <b>Add Billing Setup</b>, <b>Edit</b>, <b>Delete</b>,and <b>View</b> under the column <b>Action</b>.
             </div><!-- /.box-body -->
@@ -40,7 +40,6 @@
                     <div class="tab-pane active" id="tab_1">
 
                       {{--****************** Filter :Starts ***********************--}}
-                        <div>
                             {{Form::open(array('route'=> ['billing.setup']))}}
                             <div class="col-sm-8">
                                 <div class="col-sm-3">
@@ -53,11 +52,12 @@
                                 </div>
                                 <div class="col-sm-2" style="padding-top: 1%">
                                     </br>
-                                    {{ Form::submit('Filter', array('class'=>'btn btn-success btn-xs','id'=>'button'))}}
+                                    {{ Form::submit('Filter', array('class'=>'btn btn-primary  btn-xs','id'=>'button'))}}
                                 </div>
                             </div>
                             {{Form::close()}}
-                        </div>
+
+
                         {{--*****************Filter :Ends ****************************--}}
 
                         <div class="box-body table-responsive ">
@@ -83,9 +83,9 @@
                                     <tr>
                                         <td><input type="checkbox" name="id[]"  class="myCheckbox" value="{{ $value->id }}">
                                         </td>
-                                        <td>{{isset($value->scheduleTitle) ? $value->scheduleTitle:''}}</td>
+                                        <td>{{isset($value->relBillingSchedule->title) ? $value->relBillingSchedule->title:''}}</td>
 
-                                        <td>{{isset($value->billingTitle) ? $value->billingTitle: ''}}</td>
+                                        <td>{{isset($value->relBillingItem->title) ? $value->relBillingItem->title: ''}}</td>
 
                                         <td>{{isset($value->cost) ? $value->cost : ''}}</td>
 
@@ -108,13 +108,16 @@
                             {{ Form::submit('Delete', array('class'=>'btn btn-xs btn-danger', 'id'=>'hide-button', 'style'=>'display:none'))}}
                             {{ Form::close() }}
                             {{ $data->links() }}
+                            <a href="{{ URL::route('billing.setup')}}" class="btn-link pull-right"><i class="fa fa-backward text-red"></i> Back to All List</a>
                             </br>
                             <p><b>Admission Related Cost:</b></p>
                             <p><b>Academic Cost:</b></p>
                             <p><b>After Courses Completed Cost:</b></p>
                         </div>
+
                     </div>
                 </div>
+
             </div>
         </div>
     </div>

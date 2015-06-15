@@ -166,6 +166,12 @@
     ]);
 
 
+    Route::any('faculty/research-paper-writer-beneficial/update',[
+        'as' => 'faculty.research-paper-writer-beneficial.update',
+        'uses'=> 'RnCFacultyController@updateWriterBeneficial'
+    ]);
+
+
     //Writer . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 
     Route::any('faculty/research-paper-writer/index/{rnc_r_p_id}',[
