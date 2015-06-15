@@ -8,7 +8,7 @@
         <h4 class="modal-title" id="myModalLabel">New Category</h4>
       </div>
       <div class="modal-body">
-        @include('cfo::...cfo.category._form')
+        @include('cfo::cfo.category._form')
       </div>
     </div>
   </div>

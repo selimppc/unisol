@@ -12,62 +12,62 @@
 //CFO
 Route::any('category',[
     'as' =>'category',
-    'uses' => 'CfoController@index'
+    'uses' => 'CfoAmwController@index'
 ]);
 
 Route::any('category/store',[
     'as' =>'category.store',
-    'uses' => 'CfoController@storeCategory'
+    'uses' => 'CfoAmwController@storeCategory'
 ]);
 
 Route::any('category/show/{id}',[
     'as' =>'category.show',
-    'uses' => 'CfoController@showCategory'
+    'uses' => 'CfoAmwController@showCategory'
 ]);
 
 Route::any('edit/category/{id}',
     ['as'=>'edit.category',
-        'uses'=>'CfoController@editCategory']);
+        'uses'=>'CfoAmwController@editCategory']);
 
 
 Route::any('update/category/{id}',
     ['as'=>'update.category',
-        'uses'=>'CfoController@updateCategory']);
+        'uses'=>'CfoAmwController@updateCategory']);
 
 
 Route::any('delete/category{id}', [
     'as' => 'delete.category',
-    'uses' => 'CfoController@deleteCategory'
+    'uses' => 'CfoAmwController@deleteCategory'
 ]);
 
-//Knowledge
+//KnowledgeBase
 
 Route::any('knowledge-base',[
     'as' =>'knowledge-base',
-    'uses' => 'CfoController@indexKnowledgeBase'
+    'uses' => 'CfoAmwController@indexKnowledgeBase'
 ]);
 
 Route::any('store/knowledge-base',[
     'as' =>'store.knowledge-base',
-    'uses' => 'CfoController@storeKnowledgeBase'
+    'uses' => 'CfoAmwController@storeKnowledgeBase'
 ]);
 
 Route::any('knowledge-base/show/{id}',[
     'as' =>'knowledge-base.show',
-    'uses' => 'CfoController@showKnowledgeBase'
+    'uses' => 'CfoAmwController@showKnowledgeBase'
 ]);
 
 Route::any('delete/knowledge-base/{id}',
     ['as'=>'delete.knowledge-base',
-        'uses'=>'CfoController@deleteKnowledgeBase']);
+        'uses'=>'CfoAmwController@deleteKnowledgeBase']);
 
 Route::any('edit/knowledge-base/{id}',
     ['as'=>'edit.knowledge-base',
-        'uses'=>'CfoController@editKnowledgeBase']);
+        'uses'=>'CfoAmwController@editKnowledgeBase']);
 
 Route::any('update/knowledge-base/{id}',
     ['as'=>'update.knowledge-base',
-        'uses'=>'CfoController@updateKnowledgeBase']);
+        'uses'=>'CfoAmwController@updateKnowledgeBase']);
 
 Route::any('knowledge-base/list',[
     'as' =>'knowledge-base.list',
@@ -101,10 +101,10 @@ Route::any('support-head/store',[
     'uses' => 'CfoController@storeSupportHead'
 ]);
 
-Route::any('support-head/mail-notification/{support_code}',[
+/*Route::any('support-head/mail-notification/{support_code}',[
     'as' =>'support-head.mail-notification',
     'uses' => 'CfoController@mailNotification'
-]);
+]);*/
 
 Route::any('support-head',[
     'as' =>'support-head.index',

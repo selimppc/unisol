@@ -64,7 +64,7 @@
 
 </div>
 {{Form::open(['route'=>'category.store', 'files'=>true])}}
-        @include('cfo::modal._modal')
+        @include('cfo::...modal._modal')
 {{ Form::close() }}
 
 

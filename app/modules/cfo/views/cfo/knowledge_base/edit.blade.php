@@ -6,7 +6,7 @@
 <div class="modal-body">
 
  {{Form::model($model, array('route'=>['update.knowledge-base',$model->id,'class'=>'form-control','files'=>true]))}}
-      @include('cfo::cfo.knowledge_base._form')
+      @include('cfo::.cfo.knowledge_base._form')
  {{ Form::close() }}
 
 </div>

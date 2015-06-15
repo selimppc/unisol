@@ -1,16 +1,17 @@
 @extends('layouts.layout')
-  @section('top_menu')
+@section('top_menu')
+    @include('layouts._top_menu')
 @stop
-
 @section('sidebar')
- @include('cfo::public._sidebar')
+    @include('layouts._sidebar_public')
 @stop
-
 @section('content')
 
 {{ HTML::script('assets/etsb/etsb_js/jquery/jquery.min.js')}}
 {{ HTML::script('assets/etsb/etsb_js/jquery-ui/jquery-ui.min.js')}}
-
+<div>
+   <a class="pull-right btn btn-xs btn-success" href="{{ action('CfoController@listOfKnowledgeBase')}}"> <i class="fa fa-arrow-circle-left"></i> Go Back</a>
+</div>
 <h4><b>Knowledge Base : <em style="font-size: medium;color: #0490a6">{{$title}}</em></b> </h4>
 
 <div class="row">

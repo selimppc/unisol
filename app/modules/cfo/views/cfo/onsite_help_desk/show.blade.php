@@ -8,7 +8,7 @@
 <div class="modal-body">
      <div style="padding: 20px;">
            <div class="span9 well">
-                 <table style="font-size: large">
+                 <table style="font-size: large" class="table table-striped  table-bordered">
 
                    <tr>
                        <th class="col-lg-6">Name :</th>

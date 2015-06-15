@@ -7,7 +7,7 @@
 <div class="modal-body">
 
  {{Form::model($model, array('route'=>['update.category',$model->id,'class'=>'form-control','files'=>true]))}}
-      @include('cfo::cfo.category._form')
+      @include('cfo::.cfo.category._form')
  {{ Form::close() }}
 
 </div>

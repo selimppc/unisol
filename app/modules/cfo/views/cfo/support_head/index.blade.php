@@ -50,7 +50,7 @@
                     <td>{{$values->support_code}}</td>
                      <td>{{$values->status}}</td>
                     <td>
-                        <a href="{{URL::route('support-head.reply',['id'=>$values->id])}}" class="btn btn-info btn-xs" data-toggle="modal" data-target="#support-user">Reply</a>
+                        <a href="{{URL::route('support-head.reply',['id'=>$values->id])}}" class="btn btn-info btn-xs" >Reply</a>
                         {{--<a class="btn btn-xs btn-default" href="{{ URL::route('edit.knowledge-base',['id'=>$values->id]) }}" data-toggle="modal" data-target="#knb" style="font-size: 12px;color: lightseagreen"><i class="fa fa-edit"></i></a>--}}
                         {{--<a data-href="{{ URL::route('delete.knowledge-base',$values->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" style="font-size: 12px;color: lightcoral"><span class="fa  fa-trash-o"></span></a>--}}
                     </td>
