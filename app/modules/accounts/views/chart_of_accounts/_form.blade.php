@@ -5,29 +5,40 @@
 </div>--}}
 
 <div class='form-group'>
-   {{ Form::label('inv_supplier_id', 'Supplier') }}
-   {{ Form::select('inv_supplier_id', InvSupplier::GetSupplier(), Input::old('inv_supplier_id'),['class'=>'form-control', 'required']) }}
+   {{ Form::label('account_code', 'Account Code') }}
+   {{ Form::text('account_code',  Input::old('account_code'),['class'=>'form-control', 'required']) }}
 </div>
 
 <div class='form-group'>
-   {{ Form::label('date', 'Date') }}
-   {{ Form::text('date', Input::old('date'),['class'=>'form-control date_picker', 'required']) }}
+   {{ Form::label('description', 'Account Title') }}
+   {{ Form::text('description', Input::old('description'),['class'=>'form-control', 'required']) }}
 </div>
 
 <div class='form-group'>
-   {{ Form::label('note', 'Note') }}
-   {{ Form::textarea('note', Input::old('note'),['onkeyup'=>"javascript:this.value=this.value.replace(/[<,>]/g,'');", 'size' => '30x5', 'class'=>'form-control']) }}
+   {{ Form::label('account_type', 'Account Type') }}
+   {{ Form::select('account_type', [''=>'Select Account Type', 'asset'=>'Asset','liability'=>'Liability', 'income'=>'Income', 'expense'=>'Expense'], Input::old('account_type'),['class'=>'form-control',  'required']) }}
 </div>
 
 <div class='form-group'>
-   {{ Form::label('requisition_type', 'Requisition Type') }}
-   {{ Form::select('requisition_type', InvRequisitionHead::getRequisitionType(), Input::old('requisition_type'),['class'=>'form-control',  'required']) }}
+   {{ Form::label('account_usage', 'Account Usage') }}
+   {{ Form::select('account_usage', [''=>'Select Account Usage', 'ledger'=>'Ledger','ap'=>'AP', 'ar'=>'AR'], Input::old('account_usage'),['class'=>'form-control',  'required']) }}
 </div>
 
-{{--<div class='form-group'>
-   {{ Form::label('status', 'status') }}
-   {{ Form::select('status', InvRequisitionHead::getStatus(), Input::old('status'),['class'=>'form-control',  'required']) }}
-</div>--}}
+<div class='form-group'>
+   {{ Form::label('group_one', 'Group One') }}
+   {{ Form::text('group_one', Input::old('group_one'),[ 'class'=>'form-control', 'required']) }}
+</div>
+
+<div class='form-group'>
+   {{ Form::label('group_two', 'Group Two') }}
+   {{ Form::text('group_two', Input::old('group_two'),[ 'class'=>'form-control', 'required']) }}
+</div>
+
+<div class='form-group'>
+   {{ Form::label('analytical_code', 'Analytical Code') }}
+   {{ Form::select('analytical_code', [''=>'Select', 'non-cash'=>'non-cash','cash'=>'cash'], Input::old('analytical_code'),['class'=>'form-control',  'required']) }}
+</div>
+
 
 
 {{ Form::submit('Save', array('class'=>'pull-right btn btn-info')) }}
@@ -36,5 +47,7 @@
 <p>&nbsp;</p>
 {{--@include('inventory::requisition_head._script')--}}
 
+{{--
 {{ HTML::script('assets/js/custom.js')}}
+--}}
 

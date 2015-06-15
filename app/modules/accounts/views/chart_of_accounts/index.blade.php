@@ -11,7 +11,9 @@
         <div class="col-sm-12">
            <div class="pull-left col-sm-4"> <h3> {{$pageTitle}} </h3>  </div>
            <div class="pull-right col-sm-4" style="padding-top: 1%;">
-                <a href="{{ URL::route('requisition-store')  }}" class="pull-right btn btn-sm btn-info" data-toggle="modal" data-target="#modal-pc"> + New Requisition</a>
+                <button type="button" class="pull-right btn btn-sm btn-info" data-toggle="modal" data-target="#modal">
+                  + New COA
+                </button>
            </div>
         </div>
 
@@ -21,50 +23,30 @@
             <thead>
                   {{ Form::submit('Delete Items', ['class'=>'btn btn-danger btn-xs', 'id'=>'hide-button', 'style'=>'display:none', 'onclick'=> "return confirm('Are you sure you want to cancel?')"])}}
                 <tr>
-                    <th><input type="checkbox" id="checkbox" class="checkbox" value=""></th>
-                    <th> Requisition NO: </th>
-                    <th> Supplier </th>
-                    <th> Date </th>
-                    <th> Note  </th>
-                    <th> Req: Type </th>
-                    <th> Status </th>
+                    <th> Account Code </th>
+                    <th> Description </th>
+                    <th> Account Type </th>
+                    <th> Account Usage  </th>
+                    <th> Group One </th>
                     <th> Action</th>
-                    <th> Create PO</th>
-
                 </tr>
             </thead>
             <tbody>
                 @foreach($data as $values)
-                 <tr style="{{$values->status=='approved' ? 'background-color: burlywood' : '' }}">
-                    <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $values->id }}"></td>
                     <td><b>
-                        {{ link_to_route($values->status=="open" ?'requisition-detail' : 'requisition-show',$values->requisition_no,['req_id'=>$values->id], ['data-toggle'=>"modal", 'data-target'=>"#modal-pc"]) }}
+                        {{ link_to_route('show-chart-of-accounts',$values->account_code,['coa_id'=>$values->id], ['data-toggle'=>"modal", 'data-target'=>"#modal-pc"]) }}
                     </b></td>
-                    <td>{{isset($values->inv_supplier_id) ? Str::title($values->relInvSupplier->company_name) : ''}}</td>
-                    <td>{{ $values->date }}  </td>
-                    <td>{{$values->note}}</td>
-                    <td>{{Str::title($values->requisition_type)}}</td>
-                    <td>{{Str::title($values->status)}}</td>
+                    <td>{{ $values->description }}  </td>
+                    <td>{{$values->account_type}}</td>
+                    <td>{{$values->account_usage}}</td>
+                    <td>{{$values->group_one}}</td>
 
                     <td>
-                        @if($values->status=='open')
-                            <a href="{{ URL::route('requisition-show', ['req_id'=>$values->id ])  }}" class="btn btn-default btn-xs" title="Manage Applicant" data-toggle="modal" data-target="#modal-pc"><span class="fa fa-eye"></span></a>
-                            <a href="{{ URL::route('requisition-edits',['req_id'=>$values->id])  }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal-pc"> <i class="fa fa-edit"></i></a>
-                            <a data-href="{{ URL::route('requisition-destroy', ['req_id'=>$values->id ]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa fa-circle-o-notch" style="color: red" data-toggle="tooltip" data-placement="bottom" title="Cancel"></i></a>
-                        @elseif($values->status=='PO Created')
-                            <a href="{{ URL::route('requisition-show', ['req_id'=>$values->id ])  }}" class="btn btn-default btn-xs" title="Manage Applicant" data-toggle="modal" data-target="#modal-pc"><span class="fa fa-eye"></span></a>
-                        @endif
+                    <a href="{{ URL::route('show-chart-of-accounts', ['coa_id'=>$values->id ])  }}" class="btn btn-default btn-xs" title="View COA Details" data-toggle="modal" data-target="#modal-pc"><span class="fa fa-eye"></span></a>
                     </td>
-                    <td>
-                        @if($values->status != 'PO Created')
-                            <a href="{{ URL::route('create/purchase-order', ['req_id'=>$values->id, 'user_id'=>1 ]) }}" class="btn btn-xs btn-default" ><i class="fa fa-adjust" style="color: darkslategray" data-toggle="tooltip" data-placement="bottom" title="Create PO"></i> + PO</a>
-                        @endif
-                    </td>
-
                  </tr>
                 @endforeach
             </tbody>
-
         </table>
         </div>
         {{form::close() }}
@@ -74,10 +56,9 @@
     {{$data->links();}}
 
 </div>
-{{Form::open(['route'=>'requisition-store', 'files'=>true])}}
-        @include('inventory::requisition_head._modal._modal')
+{{Form::open(['route'=>'store-of-accounts', 'files'=>true])}}
+        @include('accounts::chart_of_accounts._modal._modal')
 {{ Form::close() }}
-
 
 {{-- Modal Area --}}
 <div class="modal fade" id="modal-pc" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -86,7 +67,5 @@
     </div>
   </div>
 </div>
-
-
 
 @stop

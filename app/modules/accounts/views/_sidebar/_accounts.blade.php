@@ -10,7 +10,7 @@
             <i class="fa fa-usd"></i><span> General Ledger </span><i class="fa fa-angle-left pull-right"></i>
         </a>
         <ul class="treeview-menu">
-            <li><a href=""><i class="fa fa-angle-double-right"></i> Chart Of Accounts</a></li>
+            <li><a href="{{ Route('char-of-accounts') }}"><i class="fa fa-angle-double-right"></i> Chart Of Accounts</a></li>
             <li><a href=""><i class="fa fa-angle-double-right"></i> Journal Voucher</a></li>
             <li><a href=""><i class="fa fa-angle-double-right"></i> Payment Voucher</a></li>
             <li><a href=""><i class="fa fa-angle-double-right"></i> Receipt Voucher</a></li>
