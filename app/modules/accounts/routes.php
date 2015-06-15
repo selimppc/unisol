@@ -17,5 +17,22 @@ Route::group(['prefix' => 'accounts'], function() {
     });
 
 
+    Route::any("char-of-accounts", [
+        "as"   => "char-of-accounts",
+        "uses" => "AccChartOfAccountsController@index_chart_of_accounts"
+    ]);
+
+    Route::any("store-of-accounts", [
+        "as"   => "store-of-accounts",
+        "uses" => "AccChartOfAccountsController@store_chart_of_accounts"
+    ]);
+
+    Route::any("show-chart-of-accounts/{coa_id}", [
+        "as"   => "show-chart-of-accounts",
+        "uses" => "AccChartOfAccountsController@show_chart_of_accounts"
+    ]);
+
+
+
 });
 
