@@ -23,9 +23,16 @@
 
     <div class="col-sm-4">
         <div class='form-group'>
-           {{ Form::label('value', 'Beneficiary Value') }}
-           {{ Form::text('value', Input::old('value'),['id'=>'beneficial-value']) }}
-        </div>
+           {{ Form::label('value', 'Beneficiary Value') }} &nbsp;
+           {{ Form::text('value', Input::old('value'),['onchange'=>'getShareBenefit()','id'=>'beneficial-value given_share','placeholder'=>'Writer Value..']) }}
+        </div> {{ $cal_benefit_share }} % is already divided. Now this is for writer's share
+
+        {{--<div class='form-group'>--}}
+            {{--<div>{{ Form::label('value', 'Value') }} &nbsp; {{ $cal_benefit_share }} % is already divided. Now this is for writer's share </div>--}}
+            {{--<div>{{ Form::text('value', Input::old('value'),array('onchange'=>"getShareBenefit()", 'placeholder'=>'Writer Value..','id'=>'given_share','class'=>'form-control','required'=>'required')) }}</div>--}}
+        {{--</div>--}}
+
+
     </div>
     <div class="col-sm-4" style="padding: 4%">
         <input type="button" class="pull-right btn-xs btn-linkedin" id="add-writer-and-beneficial" value="+Add">
@@ -84,16 +91,17 @@
 
 <script type="text/javascript">
 
- $(function(){
-     $( "#search_writer_name" ).autocomplete({
-      source: "/rnc/ajax/fac-get-writer-name-auto-complete",
-      minLength: 1,
-      select: function(event, ui) {
-        $('#select_writer_name').val(ui.item.label);
-        $('#wr-name-id').val(ui.item.writer_user_id);
-        $('#writer-name').val(ui.item.label);
-      }
-});
+     $(function(){
+         $( "#search_writer_name" ).autocomplete({
+              source: "/rnc/ajax/fac-get-writer-name-auto-complete",
+              minLength: 1,
+              select: function(event, ui) {
+                $('#select_writer_name').val(ui.item.label);
+                $('#wr-name-id').val(ui.item.writer_user_id);
+                $('#writer-name').val(ui.item.label);
+              }
+         });
+     });
 
 
 
@@ -142,7 +150,7 @@
  	});
 
 
-// 	//delete
+	//delete
 	$(function(){
           $('.delete-dt-2').click(function(e) {
             e.preventDefault();
@@ -160,7 +168,8 @@
                 }
             });
           });
-       });
+    });
+
 
        //edit
        $(function(){
@@ -181,7 +190,21 @@
 
          });
       });
-});
 
+
+ function getShareBenefit(){
+                 var total_count_share = "<?php echo $cal_benefit_share; ?>";
+
+                 var total_share = parseInt(document.getElementById("given_share").value);
+                 var compare = parseInt(total_count_share) + parseInt(total_share);
+                 //alert(compare +'  ,'+ 'Exceed the Total share 100%. Please decrease your share percentage');
+
+                    if( compare > 100 ){
+                        alert(compare +'  ,'+ 'Exceed the Total share 100%. Please decrease your share percentage');
+                        return false;
+                    }else{
+                        return true;
+                    }
+ }
 
 </script>

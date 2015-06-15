@@ -1,7 +1,7 @@
 
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-     <h4> Writer and Beneficial list of "<b>{{ $r_p }}</b>" Research Paper </h4>
+     <h4> Writer and Beneficial list of "<b>{{ $r_p->title }}</b>" Research Paper </h4>
 </div>
 {{--:  <b>{{$req_head->requisition_no}}</b>--}}
 
