@@ -58,6 +58,7 @@ class FeesController extends \BaseController {
         return View::Make('fees::billing_setup.create',compact('billing_setup','degree','batch_id','schedule_id','item_id'));
 
     }
+
     public function createAjaxBatchList()
     {
         $degree_prog_id = Input::get('degree');
@@ -181,9 +182,65 @@ class FeesController extends \BaseController {
         }
     }
 
-	public function index()
+    /**********************Billing History Start***************************/
+
+	public function index_billing_history()
 	{
-		//
+        //TODO:: This query will be transferred to VIEW or with() eloquent
+
+        $degree = ['' => 'Select Degree'] + DegreeProgram::lists('title', 'id');
+        $batch = ['' => 'Select Batch']+ Batch::lists('batch_number', 'id');
+        $department = ['' => 'Select Department']+ Department::lists('title', 'id');
+
+        $department_id      = Input::get('department_id');
+        $degree_id          = Input::get('degree_id');
+        $batch_id           = Input::get('batch_id');
+        $studentOrApplicant = Input::get('studentOrApplicant');
+        $student_id         = Input::get('student_id');
+        $name               = Input::get('student_name');
+
+        //print_r($studentOrApplicant);exit;
+        if($studentOrApplicant == 'student'){
+            // If name is provided
+            $query = DB::table('billing_summary_student as bss')
+                ->select('bss.*')
+                ->join('user as u', 'u.id', '=', 'bss.student_user_id')
+                ->join('user_profile as uf', 'uf.user_id', '=', 'u.id')
+
+                ->where('u.role_id', '=', 4)
+                ->where('uf.first_name', '%like%', $name)
+                ->orWhere('uf.last_name', '%like%', $name)
+            ;
+        }else{
+            $query = DB::table('billing_summary_applicant as bsa')
+                ->select('bsa.*')
+                ->join('applicant as a', 'a.id', '=', 'bsa.applicant_id')
+
+                ->where('a.first_name', '%like%', $name)
+                ->orWhere('a.last_name', '%like%', $name)
+            ;
+        }
+
+        $data = $query->get();
+
+        print_r($data);exit;
+
+        /*$query = DB::table('billing_setup AS bs')
+            ->select(
+                'bs.id as id',
+                'bs.cost as cost',
+                'bsc.title as scheduleTitle',
+                'bi.title as billingTitle',
+                'bs.deadline as deadline',
+                'bs.fined_cost as fined_cost'
+            )
+            ->join('billing_schedule as bsc', 'bsc.id', '=', 'bs.billing_schedule_id')
+            ->join('billing_item AS bi', 'bi.id', '=', 'bs.billing_item_id')
+            ->join('batch AS b', 'bs.batch_id','=', 'b.id')
+            ->join('degree AS d','b.degree_id', '=', 'd.id');*/
+
+
+        return View::make('fees::billing_history.index',compact('degree','batch','department'));
 	}
 
 

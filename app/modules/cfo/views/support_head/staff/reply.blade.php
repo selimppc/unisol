@@ -4,54 +4,50 @@
      <h3 style="text-align: center;"></h3>
 </div>
 
-<div style="padding-left: 10px; width: 90%;">
+<div style="padding-left: 1px; width: 90%;">
 
-    {{ Form::open(array('route'=>'support-head.reply-to-user','method' => 'POST')) }}
-    {{--{{Form::hidden('id', $data->id)}}--}}
-    {{--{{Form::hidden('exm_exam_list_id', $data->exm_exam_list_id)}}--}}
-    {{--{{Form::hidden('commented_to', $data->user_id)}}--}}
+    {{Form::open(array('route'=>'support-head.reply-to-user','method' => 'POST')) }}
+    {{Form::hidden('id', $data->id)}}
+    {{Form::hidden('cfo_support_head_id', $data->cfo_support_head_id)}}
+
+
         <div  style="padding-left: 8%">
             <p>&nbsp;</p>
             <p>
                 <table class="table table-striped  table-bordered">
-                     <tr>
-                        <td>Subject:</td>
-                        <td>{{ isset($model->relCfoSupportHead->subject)?$model->relCfoSupportHead->subject:''}}</td>
-                     </tr>
                     <tr>
-                        <td>User Message:</td>
-                        <td>{{ isset($model->message)?$model->message:''}}</td>
+                        <td class="width1">User Name:</td>
+                        <td class="width2">{{ isset($data->name)?$data->name:''}}</td>
                     </tr>
-                    {{--<tr>--}}
-                        {{--<td>Name of Faculty :</td>--}}
-                        {{--<td>{{User::FullName($data->user_id)}}</td>--}}
-                    {{--</tr>--}}
-                    {{--<tr>--}}
-                        {{--<td>{{ Form::label('type', 'Examiner Type') }}</td>--}}
-                        {{--<td>{{ Form::select('type',--}}
-                    {{--array('question-setter' => 'Question Setter','question-evaluator' => 'Question Evaluator','both' => 'Both'),--}}
-                    {{--$data->type,['class'=>'form-control','required'=>'required']) }}</td>--}}
-                    {{--</tr>--}}
-                    {{--<tr>--}}
-                        <td>Status :</td>
-                        <td>
-                            {{isset($model->status)?ucfirst($model->status):''}}
+                    <tr>
+                        <td class="width1">User Email:</td>
+                        <td class="width2">{{ isset($data->email)?$data->email:''}}</td>
+                    </tr>
+                    <tr>
+                        <td class="width1">Subject:</td>
+                        <td class="width2">{{ isset($data->subject)?$data->subject:''}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="width1">Status :</td>
+                        <td  class="width2">
+                            {{isset($data->status)?ucfirst($data->status):''}}
                         </td>
                     </tr>
                 </table>
                 <small>Comments as below: </small>
 
-                {{--@foreach($model as $v)--}}
-                     {{--<p style="padding: 1%; background: #efefef;">--}}
-                          {{--Comments To User  <b>{{ User::FullName([Auth::user()->get()->id]) }}</b>--}}
-                          {{--From <b>{{ User::FullName($values->commented_by) }}</b>&nbsp; As &nbsp;--}}
-                          {{--<b><small>{{  strtoupper(Role::RoleName($comment->commented_by)) }} : </small></b><br>--}}
-                         {{--{{ isset($v->message)?$v->message:'' }}--}}
-                    {{--</p>--}}
-                {{--@endforeach--}}
+                @foreach($reply_data as $v)
+                     <p style="padding: 1%; background: #efefef;">
+                          {{--Reply To User  <b>{{ isset($v->relCfoSupportHead->name) ? User::FullName($v->relCfoSupportHead->name):'' }}</b>--}}
+                          {{--From <b>{{ User::FullName($v->commented_by) }}</b>&nbsp; As &nbsp;--}}
+                          {{--<b><small>{{  strtoupper(Role::RoleName($v->commented_by)) }} : </small></b><br>--}}
+                         {{ isset($v->message)?$v->message:'' }}<br>
+                    </p>
+                @endforeach
 
                 <div class="form-group">
-                      {{ Form::textarea('comment', Null, ['class' => 'form-control', 'placeholder'=>'Your Comments Here', 'style'=>'height: 100px;']) }}
+                      {{ Form::textarea('message', Null, ['class' => 'form-control', 'placeholder'=>'Your Comments Here', 'style'=>'height: 100px;']) }}
                 </div>
             </p>
         </div>
@@ -62,3 +58,13 @@
     &nbsp;
     {{ Form::close() }}
 </div>
+
+<style>
+.width1{
+width: 10px;
+}
+.width2{
+width: 90px;
+
+}
+</style>

@@ -310,7 +310,57 @@ class CfoController extends \BaseController {
         }
     }
 
+    public function commentsToCfo(){
 
+        $input_sc = Input::get('support_code');
+        $data = CfoSupportHead::where('support_code','=', $input_sc)->first();
+        $reply_data = CfoSupportDetail::with('relCfoSupportHead')->whereExists(function($query) use($input_sc)
+        {
+            $query->from('cfo_support_head')
+                ->whereRaw('cfo_support_detail.cfo_support_head_id = cfo_support_head.id')
+                ->where('cfo_support_head.support_code', $input_sc);
+        })->get();
 
+        return View::make('cfo::support_head.public_user.comment_to_cfo',compact('data','reply_data'));
+    }
+
+    public function responseByUser(){
+
+        $data = Input::all();
+        $support_head = CfoSupportHead::find($data['id']);
+
+        $support_head->status = 'open';
+        $support_head->update($data);
+
+        $model = new CfoSupportDetail();
+        $model->cfo_support_head_id = $data['id'];
+        $model->message = Input::get('message');
+        $model->replied_by = 'user';
+
+        if($model->save()){
+            $support_code = $support_head->support_code;
+            Mail::send('cfo::support_head.staff.support_mail', array('link' => $model->message,'username'=>$support_head->name,'support_code'=>$support_code), function ($message) use ($support_head) {
+                $message->from('test@edutechsolutionsbd.com', 'Email Notification For Support');
+                $message->to($support_head->email);
+                $message->cc('tanintjt@gmail.com');
+                $message->subject('Email Notification For Support');
+            });
+            Session::flash('message', 'Successfully Send This Message.If You Want To See This Please Enter Your Support Code.Also You Can Checkout Your Email');
+            return Redirect::route('support-head.create');
+        }else {
+            Session::flash('danger', 'Please try again');
+            return Redirect::back();
+        }
+    }
+
+    public function changeStatus($id, $value){
+
+        if($value=='closed'){
+            $model =  CfoSupportHead::find($id);
+            $model->status = $value;
+            $model->save();
+        }
+        return Redirect::route('support-head.create');
+    }
 
 }
