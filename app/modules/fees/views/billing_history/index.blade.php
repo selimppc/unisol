@@ -86,15 +86,14 @@
                                 </div>
 
                                 <div class="col-sm-8 btn-style">
-                                {{ Form::submit('Filter', array('class'=>'btn btn-success btn-sm','id'=>'button'))}}
+                                {{ Form::submit('Filter', array('class'=>'btn','id'=>'button'))}}
                                 </div>
 
                             {{Form::close()}}
+                                          {{-- End Filter--}}
 
-                        {{--*****************Filter :Ends ****************************--}}
-
-                   {{-- Student Index--}}
-                        @if($studentOrApplicant=='student')
+                        {{--****************Student*******************--}}
+                        @if($studentOrApplicant == 'student')
                         <div class="box-body table-responsive ">
                             <table id="example" class="table table-bordered table-hover table-striped">
                                 <thead>
@@ -106,16 +105,30 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+                                @if(isset($data))
+                                    @foreach($data as $value)
+                                        <tr>
+                                            <td>{{isset($value->first_name) ? $value->first_name:''}} {{isset($value->last_name) ? $value->last_name:''}}</td>
 
+                                            <td>{{isset($value->schedule_title) ? $value->schedule_title:''}}</td>
+
+                                            <td>{{isset($value->amount) ? $value->amount : ''}}</td>
+
+                                            <td>
+                                                <a href="" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" href=""><i class="fa fa-eye" style="color: green"></i></a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                @endif
                                 </tbody>
                             </table>
+                            <a href="{{ URL::route('billing.history')}}" class="btn-link pull-right"><i class="fa fa-backward text-red"></i> Back to All List</a>
+                            </br>
                         </div>
+
                         @else
-
-                        {{--Applicant Index--}}
-
                         <div class="box-body table-responsive ">
-                            <table id="example" class="table table-bordered table-hover table-striped">
+                            <table id="example1" class="table table-bordered table-hover table-striped">
                                 <thead>
                                 <tr>
                                     <th>Name of Applicant</th>
@@ -125,11 +138,28 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+                                @if(isset($data))
+                                    @foreach($data as $value)
+                                        <tr>
+                                            <td>{{isset($value->first_name) ? $value->first_name:''}}
+                                                 {{isset($value->last_name) ? $value->last_name:''}}</td>
 
+                                            <td>{{isset($value->schedule_title) ? $value->schedule_title:''}}</td>
+
+                                            <td>{{isset($value->amount) ? $value->amount : ''}}</td>
+
+                                            <td>
+                                                <a href="" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" href=""><i class="fa fa-eye" style="color: green"></i></a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                @endif
                                 </tbody>
                             </table>
+                            <a href="{{ URL::route('billing.history')}}" class="btn-link pull-right"><i class="fa fa-backward text-red"></i> Back to All List</a>
+                            </br>
                         </div>
-                            @endif
+                    @endif
                     </div>
                 </div>
             </div>

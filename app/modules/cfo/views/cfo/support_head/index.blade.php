@@ -3,75 +3,70 @@
     @include('layouts._top_menu')
 @stop
 @section('sidebar')
-    @include('layouts._sidebar_cfo')
+ @include('layouts._sidebar_cfo')
 @stop
 @section('content')
 
-<h3>Support Desk</h3>
+<div class="wrapper row-offcanvas row-offcanvas-left">
 
-<div class="row">
-
-    <div class="box box-solid ">
-
-        <div class="col-sm-12">
-           <div class="pull-left col-sm-4">   </div>
-           <div class="pull-right col-sm-4" style="padding-top: 1%;">
-           </div>
-        </div>
-
-        {{Form::open([ 'route'=>'product-batch-delete' ])}}
-       <div class="box-body">
-        <table id="example" class="table table-striped  table-bordered" >
-            <thead>
-                  {{ Form::submit('Delete Items', ['class'=>'btn btn-danger btn-xs', 'id'=>'hide-button', 'style'=>'display:none', 'onclick'=> "return confirm('Are you sure you want to delete?')"])}}
-                <tr>
-                    <th><input name="id" type="checkbox" id="checkbox" class="checkbox" value=""></th>
-                    <th> Name</th>
-                    <th> Email </th>
-                    <th> Phone</th>
-                    <th> Subject</th>
-                    <th> Priority</th>
-                    <th> Support Code</th>
-                    <th> Status</th>
-                    <th> Action</th>
-                </tr>
-            </thead>
-            <tbody>
-            @if(isset($support_data))
-                @foreach($support_data as $values)
-                 <tr>
-                    <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $values->id }}"></td>
-
-                    <td>{{$values->name}}</td>
-                    <td>{{$values->email}}</td>
-                    <td>{{$values->phone}}</td>
-                    <td>{{$values->subject}}</td>
-                    <td>{{$values->priority}}</td>
-                    <td>{{$values->support_code}}</td>
-                     <td>{{$values->status}}</td>
-                    <td>
-                        <a href="{{URL::route('support-head.reply',['id'=>$values->id])}}" class="btn btn-info btn-xs" >Reply</a>
-                        {{--<a class="btn btn-xs btn-default" href="{{ URL::route('edit.knowledge-base',['id'=>$values->id]) }}" data-toggle="modal" data-target="#knb" style="font-size: 12px;color: lightseagreen"><i class="fa fa-edit"></i></a>--}}
-                        {{--<a data-href="{{ URL::route('delete.knowledge-base',$values->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" style="font-size: 12px;color: lightcoral"><span class="fa  fa-trash-o"></span></a>--}}
-                    </td>
-                 </tr>
-                @endforeach
-            @endif
-            </tbody>
-        </table>
-        </div>
-        {{form::close() }}
-        {{--{{ $knb_data->links() }}--}}
-    </div>
-</div>
+    <h3 class="page-header">Support Desk</h3>
+    <div class="row">
+        <div class="col-md-12">
+            <!-- Custom Tabs -->
+            <div class="nav-tabs-custom">
+               <ul class="nav nav-tabs tabs-up" id="status_tab">
+                     <li><a href="#" data-target="#contacts" class="media_node active span" id="contacts_tab" data-toggle="tabajax" rel="tooltip"> ALL </a></li>
+                     <li><a href="/gh/gist/response.html/3843301/" data-target="#friends_list" class="media_node span" id="friends_list_tab" data-toggle="tabajax" rel="tooltip"> NEW</a></li>
+                     <li><a href="/gh/gist/response.html/3843306/" data-target="#awaiting_request" class="media_node span" id="awaiting_request_tab" data-toggle="tabajax" rel="tooltip">OPEN</a></li>
+               </ul>
+               <div class="tab-content">
+                   <div class="tab-pane active" id="contacts">
+                       contacts
+                   </div>
+                   <div class="tab-pane" id="friends_list">
+                       friends_list
+                   </div>
+                   <div class="tab-pane" id="awaiting_request">
+                       awaiting_request
+                   </div>
+               </div><!-- /.tab-content -->
+            </div><!-- nav-tabs-custom -->
+        </div><!-- /.col -->
+    </div> <!-- /.row -->
+    <!-- END CUSTOM TABS -->
+</div><!-- ./wrapper -->
 
 {{-- Modal Area --}}
-<div class="modal fade" id="support-user" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-        </div>
+<div class="modal fade" id="support" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
     </div>
+  </div>
 </div>
+
+
+<script>
+$(function(){
+    $('[data-toggle="tabajax"]').click(function(e) {
+    return false;
+        e.preventDefault();
+        alert('fsdfsdfsdfsdfsdfsdfsdfsdf');
+        var $this = $(this),
+
+            loadurl = $this.attr('href'),
+            targ = $this.attr('data-target');
+
+        $.get(loadurl, function(data) {
+        alert('fsdfsdfsd');
+            $(targ).html(data);
+        });
+
+        $this.tab('show');
+        return false;
+    });
+});
+
+</script>
 
 
 @stop

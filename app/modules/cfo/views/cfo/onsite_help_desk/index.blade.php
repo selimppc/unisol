@@ -72,6 +72,9 @@
                                 </tbody>
                             </table>
                         </div><!-- /.box -->
+                        <div style="margin-left:2%">
+                           {{ $data->links() }}
+                        </div>
                     </div><!-- /.tab-pane -->
 {{------------------Starts :STATUS -> OPEN -----------------------------------------------------}}
                     <div class="tab-pane" id="tab_2">
