@@ -58,7 +58,7 @@
                             {{Form::close()}}
 
 
-                        {{--*****************Filter :Ends ****************************--}}
+                        {{--*****************Filter :Ends **************************--}}
 
                         <div class="box-body table-responsive ">
                             <a href="{{ URL::route('billing.create')}}" class=" btn btn-xs btn-success fa fa-plus pull-right" data-toggle="modal" data-target="#myModal">Add New</a>

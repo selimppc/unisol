@@ -25,7 +25,7 @@ class FeesController extends \BaseController {
         $batch_id = Input::get("batch_id");
         Input::flash();
 
-        $q = BillingSetup::query('relBillingSchedule','relBillingSchedule','relBatch','relBatch.relDegree.relDegreeProgram');
+        $q = BillingSetup::with('relBillingSchedule','relBillingSchedule','relBatch','relBatch.relDegree.relDegreeProgram');
 
         if (!empty($degree_id)) {
             $q->whereExists(function($query) use ($degree_id)
@@ -205,62 +205,71 @@ class FeesController extends \BaseController {
 
 	public function index_billing_history()
 	{
-        //TODO:: This query will be transferred to VIEW or with() eloquent
-
         $degree = ['' => 'Select Degree'] + DegreeProgram::lists('title', 'id');
         $batch = ['' => 'Select Batch']+ Batch::lists('batch_number', 'id');
         $department = ['' => 'Select Department']+ Department::lists('title', 'id');
 
-        $department_id      = Input::get('department_id');
-        $degree_id          = Input::get('degree_id');
-        $batch_id           = Input::get('batch_id');
+        $department_id = Input::get('department_id');
+        $degree_id = Input::get('degree_id');
+        $batch_id = Input::get('batch_id');
         $studentOrApplicant = Input::get('studentOrApplicant');
-        $student_id         = Input::get('student_id');
-        $name               = Input::get('student_name');
+        $student_id  = Input::get('student_id');
+        $name  = Input::get('student_name');
+
         Input::flash();
 
-        //print_r($studentOrApplicant);exit;
-       /* if($studentOrApplicant == 'student'){
-            // If name is provided
-            $query = DB::table('billing_summary_student as bss')
-                ->select('bss.*')
-                ->join('user as u', 'u.id', '=', 'bss.student_user_id')
-                ->join('user_profile as uf', 'uf.user_id', '=', 'u.id')
+        if($studentOrApplicant == 'student'){
 
-                ->where('u.role_id', '=', 4)
-                ->where('uf.first_name', '%like%', $name)
-                ->orWhere('uf.last_name', '%like%', $name)
-            ;
-        }else{
-            $query = DB::table('billing_summary_applicant as bsa')
-                ->select('bsa.*')
-                ->join('applicant as a', 'a.id', '=', 'bsa.applicant_id')
+            $q = new BillingVStudentHistory();
 
-                ->where('a.first_name', '%like%', $name)
-                ->orWhere('a.last_name', '%like%', $name)
-            ;
+            if (!empty($department_id)) {
+                $q = $q->where('department_id', '=', $department_id);
+            }
+
+            if (!empty($degree_id)) {
+                $q = $q->where('degree_id', '=', $degree_id);
+            }
+
+            if (!empty($batch_id)) {
+                $q = $q->where('batch_id', '=', $batch_id);
+            }
+
+            if (!empty($name)) {
+                $q = $q->where('first_name', 'like', "%$name%");
+                $q = $q->orWhere('last_name', 'like', "%$name%");
+            }
+            if (!empty($student_id)) {
+                $q->where('student_id', '=', $student_id);
+            }
+
+        }else {
+            $q = new BillingVApplicantHistory();
+
+            if (!empty($department_id)) {
+                $q = $q->where('department_id', '=', $department_id);
+            }
+
+            if (!empty($degree_id)) {
+                $q = $q->where('degree_id', '=', $degree_id);
+            }
+
+            if (!empty($batch_id)) {
+                $q = $q->where('batch_id', '=', $batch_id);
+            }
+
+            if (!empty($name)) {
+                $q = $q->where('first_name', 'like', "%$name%");
+                $q = $q->orWhere('last_name', 'like', "%$name%");
+            }
         }
+        $data = $q->get();
+        //$queries = DB::getQueryLog();
+        //$last_query = end($queries);
+        //dd(DB::getQueryLog());
+        //print_r($data);exit;
 
-        $data = $query->get();
+        return View::make('fees::billing_history.index',compact('degree','batch','department','applicant','student','studentOrApplicant','data'));
 
-         print_r($data);exit;
-
-        /*$query = DB::table('billing_setup AS bs')
-            ->select(
-                'bs.id as id',
-                'bs.cost as cost',
-                'bsc.title as scheduleTitle',
-                'bi.title as billingTitle',
-                'bs.deadline as deadline',
-                'bs.fined_cost as fined_cost'
-            )
-            ->join('billing_schedule as bsc', 'bsc.id', '=', 'bs.billing_schedule_id')
-            ->join('billing_item AS bi', 'bi.id', '=', 'bs.billing_item_id')
-            ->join('batch AS b', 'bs.batch_id','=', 'b.id')
-            ->join('degree AS d','b.degree_id', '=', 'd.id');*/
-
-
-        return View::make('fees::billing_history.index',compact('degree','batch','department','studentOrApplicant'));
 	}
 
 
