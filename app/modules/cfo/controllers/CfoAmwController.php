@@ -342,44 +342,15 @@ class CfoAmwController extends \BaseController {
             })
             ->get();
         /*view data according to status*/
-        $new_data = CfoSupportHead::with('relCfoCategory')
-            ->whereExists(function($query) use($cfo_user_id)
-            {
-                $query->from('cfo_category')
-                    ->whereRaw('cfo_category.id = cfo_support_head.cfo_category_id')
-                    ->where('cfo_category.support_user_id', $cfo_user_id)
-                    ->where('status','=','new');
-            })->get();
-
-        $open_data = CfoSupportHead::with('relCfoCategory')
-            ->whereExists(function($query) use($cfo_user_id)
-            {
-                $query->from('cfo_category')
-                    ->whereRaw('cfo_category.id = cfo_support_head.cfo_category_id')
-                    ->where('cfo_category.support_user_id', $cfo_user_id)
-                    ->where('status','=','open');
-            })->get();
-
-        $replied_data = CfoSupportHead::with('relCfoCategory')
-            ->whereExists(function($query) use($cfo_user_id)
-            {
-                $query->from('cfo_category')
-                    ->whereRaw('cfo_category.id = cfo_support_head.cfo_category_id')
-                    ->where('cfo_category.support_user_id', $cfo_user_id)
-                    ->where('status','=','replied');
-            })->get();
-
-        $closed_data = CfoSupportHead::with('relCfoCategory')
-            ->whereExists(function($query) use($cfo_user_id)
-            {
-                $query->from('cfo_category')
-                    ->whereRaw('cfo_category.id = cfo_support_head.cfo_category_id')
-                    ->where('cfo_category.support_user_id', $cfo_user_id)
-                    ->where('status','=','closed');
-            })->get();
-
 
         return View::make('cfo::cfo.support_head.index',compact('support_data','all_data','new_data','open_data','replied_data','closed_data'));
+    }
+
+    public function Test(){
+
+        $cfo_user_id = Auth::user()->get()->id;
+
+        return View::make('cfo::cfo.support_head.test');
     }
 
     public function showSupportHead($id){
