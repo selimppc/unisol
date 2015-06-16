@@ -14,250 +14,29 @@
         <div class="col-md-12">
             <!-- Custom Tabs -->
             <div class="nav-tabs-custom">
-                <ul class="nav nav-tabs">
-                    <li class="active"><a href="#tab_1" data-toggle="tab" style="color:#800080">All</a></li>
-                    <li><a href="#tab_2" data-toggle="tab"  style="color:darkgreen">New</a></li>
-                    <li><a href="#tab_3" data-toggle="tab"  style="color:firebrick">OPEN</a></li>
-                    <li><a href="#tab_4" data-toggle="tab"  style="color:dodgerblue">REPLIED</a></li>
-                    <li><a href="#tab_5" data-toggle="tab"  style="color:#000000">CLOSED</a></li>
+                <ul class="nav nav-tabs tabs-up">
+                     <li><a href="{{URL::route('support-head.index')}}" data-target="#all" class="media_node active span" id="all_tab" data-toggle="tabajax" rel="tooltip"> ALL </a></li>
+                     <li><a href="{{URL::route('support-head.index')}}" data-target="#new" class="media_node span" id="new_tab" data-toggle="tabajax" rel="tooltip"> NEW</a></li>
+                     <li><a href="" data-target="#open" class="media_node span" id="open_tab" data-toggle="tabajax" rel="tooltip">OPEN</a></li>
+                     <li><a href="" data-target="#replied" class="media_node span" id="replied_tab" data-toggle="tabajax" rel="tooltip"> REPLIED </a></li>
+                     <li><a href="" data-target="#closed" class="media_node span" id="closed_tab" data-toggle="tabajax" rel="tooltip"> CLOSED </a></li>
                 </ul>
                 <div class="tab-content">
-                   {{------------------Starts :STATUS -> ALL -----------------------------------------------------}}
-                       <div class="tab-pane active" id="tab_1">
-                           <div class="box-body table-responsive"><p>&nbsp;</p>
-                               <table id="" class="table table-bordered table-striped">
-                                   <thead>
-                                       <tr>
-                                           <tr>
-                                               <th> Name</th>
-                                               <th> Email </th>
-                                               <th> Phone</th>
-                                               <th> Subject</th>
-                                               <th> Priority</th>
-                                               <th> Support Code</th>
-                                               <th> Status</th>
-                                               <th> Action</th>
-                                           </tr>
-                                       </tr>
-                                   </thead>
-                                   <tbody>
-                                      @if(isset($support_data))
-                                          @foreach($support_data as $values)
-                                              <tr>
-                                                  <td>{{$values->name}}</td>
-                                                  <td>{{$values->email}}</td>
-                                                  <td>{{$values->phone}}</td>
-                                                  <td>{{$values->subject}}</td>
-                                                  <td>{{$values->priority}}</td>
-                                                  <td>{{$values->support_code}}</td>
-                                                   <td>{{ucfirst($values->status)}}</td>
-                                                  <td>
-                                                  @if(($values->status =='closed'))
-                                                      <a href="{{ URL::route('support-head.show',['id'=>$values->id]) }}" class="btn btn-xs btn-bitbucket" data-toggle="modal" data-target="#support" style="font-size: 12px">View</a>
-                                                  @else
-                                                      <a href="{{ URL::route('support-head.show',['id'=>$values->id]) }}" class="btn btn-xs btn-bitbucket" data-toggle="modal" data-target="#support" style="font-size: 12px">View</a>
-                                                      <a href="{{URL::route('support-head.reply',['id'=>$values->id])}}" class="btn btn-info btn-xs" >Reply</a>
-                                                  @endif
-                                                  </td>
-                                              </tr>
-                                          @endforeach
-                                      @endif
-                                   </tbody>
-                               </table>
-                               <a class="pull-right btn btn-xs btn-circle" href="{{ URL::route('help-desk')}}" title="Back To Courses"><b style="color: #000000;font-size: medium"><i class="fa fa-arrow-circle-left"></i></b></a>
-                               <p>&nbsp;</p>
-                           </div><!-- /.box -->
-                       </div><!-- /.tab-pane -->
-                   {{------------------Starts :Status ->new -----------------------------------------------------}}
-
-                       <div class="tab-pane" id="tab_2">
-                          <div class="box-body table-responsive"><p>&nbsp;</p>
-                              <table id="" class="table table-bordered table-striped">
-                                  <thead>
-                                      <tr>
-                                          <tr>
-                                              <th> Name</th>
-                                              <th> Email </th>
-                                              <th> Phone</th>
-                                              <th> Subject</th>
-                                              <th> Priority</th>
-                                              <th> Support Code</th>
-                                              <th> Status</th>
-                                              <th> Action</th>
-                                          </tr>
-                                      </tr>
-                                  </thead>
-                                  <tbody>
-                                     @if(isset($new_data))
-                                         @foreach($new_data as $values)
-                                             <tr>
-                                                 <td>{{$values->name}}</td>
-                                                 <td>{{$values->email}}</td>
-                                                 <td>{{$values->phone}}</td>
-                                                 <td>{{$values->subject}}</td>
-                                                 <td>{{$values->priority}}</td>
-                                                 <td>{{$values->support_code}}</td>
-                                                  <td>{{ucfirst($values->status)}}</td>
-                                                 <td>
-                                                 @if(($values->status =='closed'))
-                                                     <a href="{{ URL::route('support-head.show',['id'=>$values->id]) }}" class="btn btn-xs btn-bitbucket" data-toggle="modal" data-target="#support" style="font-size: 12px">View</a>
-                                                 @else
-                                                     <a href="{{ URL::route('support-head.show',['id'=>$values->id]) }}" class="btn btn-xs btn-bitbucket" data-toggle="modal" data-target="#support" style="font-size: 12px">View</a>
-                                                     <a href="{{URL::route('support-head.reply',['id'=>$values->id])}}" class="btn btn-info btn-xs" >Reply</a>
-                                                 @endif
-                                                 </td>
-                                             </tr>
-                                         @endforeach
-                                     @endif
-                                  </tbody>
-                              </table>
-                              <a class="pull-right btn btn-xs btn-circle" href="{{ URL::route('support-head.index')}}" title="Back To support-head"><b style="color: #000000;font-size: medium"><i class="fa fa-arrow-circle-left"></i></b></a>
-                              <p>&nbsp;</p>
-                          </div><!-- /.box -->
-                       </div><!-- /.tab-pane -->
-                   {{------------------Starts :  Open -----------------------------------------------------}}
-                      <div class="tab-pane" id="tab_3">
-                         <div class="box-body table-responsive"><p>&nbsp;</p>
-                             <table id="" class="table table-bordered table-striped">
-                                 <thead>
-                                     <tr>
-                                         <tr>
-                                             <th> Name</th>
-                                             <th> Email </th>
-                                             <th> Phone</th>
-                                             <th> Subject</th>
-                                             <th> Priority</th>
-                                             <th> Support Code</th>
-                                             <th> Status</th>
-                                             <th> Action</th>
-                                         </tr>
-                                     </tr>
-                                 </thead>
-                                 <tbody>
-                                    @if(isset($open_data))
-                                        @foreach($open_data as $values)
-                                            <tr>
-                                                <td>{{$values->name}}</td>
-                                                <td>{{$values->email}}</td>
-                                                <td>{{$values->phone}}</td>
-                                                <td>{{$values->subject}}</td>
-                                                <td>{{$values->priority}}</td>
-                                                <td>{{$values->support_code}}</td>
-                                                 <td>{{ucfirst($values->status)}}</td>
-                                                <td>
-                                                @if(($values->status =='closed'))
-                                                    <a href="{{ URL::route('support-head.show',['id'=>$values->id]) }}" class="btn btn-xs btn-bitbucket" data-toggle="modal" data-target="#support" style="font-size: 12px">View</a>
-                                                @else
-                                                    <a href="{{ URL::route('support-head.show',['id'=>$values->id]) }}" class="btn btn-xs btn-bitbucket" data-toggle="modal" data-target="#support" style="font-size: 12px">View</a>
-                                                    <a href="{{URL::route('support-head.reply',['id'=>$values->id])}}" class="btn btn-info btn-xs" >Reply</a>
-                                                @endif
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    @endif
-                                 </tbody>
-                             </table>
-                             <a class="pull-right btn btn-xs btn-circle" href="{{ URL::route('support-head.index')}}" title="Back To support-head"><b style="color: #000000;font-size: medium"><i class="fa fa-arrow-circle-left"></i></b></a>
-                             <p>&nbsp;</p>
-                         </div><!-- /.box -->
-                      </div><!-- /.tab-pane -->
-                   {{------------------Starts : Replied -----------------------------------------------------}}
-
-                      <div class="tab-pane" id="tab_4">
-                           <div class="box-body table-responsive"><p>&nbsp;</p>
-                               <table id="" class="table table-bordered table-striped">
-                                   <thead>
-                                       <tr>
-                                           <tr>
-                                               <th> Name</th>
-                                               <th> Email </th>
-                                               <th> Phone</th>
-                                               <th> Subject</th>
-                                               <th> Priority</th>
-                                               <th> Support Code</th>
-                                               <th> Status</th>
-                                               <th> Action</th>
-                                           </tr>
-                                       </tr>
-                                   </thead>
-                                   <tbody>
-                                      @if(isset($replied_data))
-                                          @foreach($replied_data as $values)
-                                              <tr>
-                                                  <td>{{$values->name}}</td>
-                                                  <td>{{$values->email}}</td>
-                                                  <td>{{$values->phone}}</td>
-                                                  <td>{{$values->subject}}</td>
-                                                  <td>{{$values->priority}}</td>
-                                                  <td>{{$values->support_code}}</td>
-                                                   <td>{{ucfirst($values->status)}}</td>
-                                                  <td>
-                                                  @if(($values->status =='closed'))
-                                                      <a href="{{ URL::route('support-head.show',['id'=>$values->id]) }}" class="btn btn-xs btn-bitbucket" data-toggle="modal" data-target="#support" style="font-size: 12px">View</a>
-                                                  @else
-                                                      <a href="{{ URL::route('support-head.show',['id'=>$values->id]) }}" class="btn btn-xs btn-bitbucket" data-toggle="modal" data-target="#support" style="font-size: 12px">View</a>
-                                                      <a href="{{URL::route('support-head.reply',['id'=>$values->id])}}" class="btn btn-info btn-xs" >Reply</a>
-                                                  @endif
-                                                  </td>
-                                              </tr>
-                                          @endforeach
-                                      @endif
-                                   </tbody>
-                               </table>
-                               <a class="pull-right btn btn-xs btn-circle" href="{{ URL::route('support-head.index')}}" title="Back To support-head"><b style="color: #000000;font-size: medium"><i class="fa fa-arrow-circle-left"></i></b></a>
-                               <p>&nbsp;</p>
-                           </div><!-- /.box -->
-
-                      </div><!-- /.tab-pane -->
-
-                   {{------------------Starts :  Closed -----------------------------------------------------}}
-                      <div class="tab-pane" id="tab_5">
-                         <div class="box-body table-responsive"><p>&nbsp;</p>
-                             <table id="" class="table table-bordered table-striped">
-                                 <thead>
-                                     <tr>
-                                         <tr>
-                                             <th> Name</th>
-                                             <th> Email </th>
-                                             <th> Phone</th>
-                                             <th> Subject</th>
-                                             <th> Priority</th>
-                                             <th> Support Code</th>
-                                             <th> Status</th>
-                                             <th> Action</th>
-                                         </tr>
-                                     </tr>
-                                 </thead>
-                                 <tbody>
-                                    @if(isset($closed_data))
-                                        @foreach($closed_data as $values)
-                                            <tr>
-                                                <td>{{$values->name}}</td>
-                                                <td>{{$values->email}}</td>
-                                                <td>{{$values->phone}}</td>
-                                                <td>{{$values->subject}}</td>
-                                                <td>{{$values->priority}}</td>
-                                                <td>{{$values->support_code}}</td>
-                                                 <td>{{ucfirst($values->status)}}</td>
-                                                <td>
-                                                @if(($values->status =='closed'))
-                                                    <a href="{{ URL::route('support-head.show',['id'=>$values->id]) }}" class="btn btn-xs btn-bitbucket" data-toggle="modal" data-target="#support" style="font-size: 12px">View</a>
-                                                @else
-                                                    <a href="{{ URL::route('support-head.show',['id'=>$values->id]) }}" class="btn btn-xs btn-bitbucket" data-toggle="modal" data-target="#support" style="font-size: 12px">View</a>
-                                                    <a href="{{URL::route('support-head.reply',['id'=>$values->id])}}" class="btn btn-info btn-xs" >Reply</a>
-                                                @endif
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    @endif
-                                 </tbody>
-                             </table>
-                             <a class="pull-right btn btn-xs btn-circle" href="{{ URL::route('support-head.index')}}" title="Back To support-head"><b style="color: #000000;font-size: medium"><i class="fa fa-arrow-circle-left"></i></b></a>
-                             <p>&nbsp;</p>
-                         </div><!-- /.box -->
-
-                      </div><!-- /.tab-pane -->
-                   {{------------------------End :tabs----------------------------------------------------------------}}
+                    <div class="tab-pane active" id="all">
+                       contents all
+                    </div>
+                    <div class="tab-pane" id="new">
+                       new
+                    </div>
+                    <div class="tab-pane  urlbox span8" id="open">
+                        open
+                    </div>
+                    <div class="tab-pane" id="replied">
+                       replied
+                    </div>
+                    <div class="tab-pane" id="closed">
+                       closed
+                    </div>
                 </div><!-- /.tab-content -->
             </div><!-- nav-tabs-custom -->
         </div><!-- /.col -->
