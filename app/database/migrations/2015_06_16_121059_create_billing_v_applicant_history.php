@@ -12,7 +12,7 @@ class CreateBillingVApplicantHistory extends Migration {
 	 */
 	public function up()
 	{
-        DB::statement( 'CREATE VIEW billing_v_student_history AS (
+        DB::statement( 'CREATE VIEW billing_v_applicant_history AS (
             SELECT
               `bsa`.`id`         AS `id`,
               `bs`.`code`        AS `schedule_code`,
