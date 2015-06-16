@@ -86,34 +86,12 @@
                                 </div>
 
                                 <div class="col-sm-8 btn-style">
-                                {{ Form::submit('Filter', array('class'=>'btn btn-success btn-sm','id'=>'button'))}}
+                                {{ Form::submit('Filter', array('class'=>'btn btn-primary  btn-xs','id'=>'button'))}}
                                 </div>
 
                             {{Form::close()}}
 
                         {{--*****************Filter :Ends ****************************--}}
-
-                   {{-- Student Index--}}
-                        @if($studentOrApplicant=='student')
-                        <div class="box-body table-responsive ">
-                            <table id="example" class="table table-bordered table-hover table-striped">
-                                <thead>
-                                <tr>
-                                    <th>Student</th>
-                                    <th>Schedule</th>
-                                    <th>Amount</th>
-                                    <th>Action</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-
-                                </tbody>
-                            </table>
-                        </div>
-                        @else
-
-                        {{--Applicant Index--}}
-
                         <div class="box-body table-responsive ">
                             <table id="example" class="table table-bordered table-hover table-striped">
                                 <thead>
@@ -125,11 +103,26 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+                                @if(isset($applicant))
+                                    @foreach($applicant as $value)
+                                        <tr>
+                                            <td>{{Applicant::ApplicantName($value->applicant_id)}}</td>
 
+                                            <td>{{isset($value->relBillingSchedule->title) ? $value->relBillingSchedule->title: ''}}</td>
+
+                                            <td>{{isset($value->total_cost) ? $value->total_cost : ''}}</td>
+
+                                            <td>
+                                                <a href="" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" href=""><i class="fa fa-eye" style="color: green"></i></a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                @endif
                                 </tbody>
                             </table>
+                            <a href="{{ URL::route('billing.history')}}" class="btn-link pull-right"><i class="fa fa-backward text-red"></i> Back to All List</a>
+                            </br>
                         </div>
-                            @endif
                     </div>
                 </div>
             </div>

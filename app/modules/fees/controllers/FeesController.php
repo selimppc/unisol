@@ -25,7 +25,7 @@ class FeesController extends \BaseController {
         $batch_id = Input::get("batch_id");
         Input::flash();
 
-        $q = BillingSetup::query('relBillingSchedule','relBillingSchedule','relBatch','relBatch.relDegree.relDegreeProgram');
+        $q = BillingSetup::with('relBillingSchedule','relBillingSchedule','relBatch','relBatch.relDegree.relDegreeProgram');
 
         if (!empty($degree_id)) {
             $q->whereExists(function($query) use ($degree_id)
@@ -211,13 +211,17 @@ class FeesController extends \BaseController {
         $batch = ['' => 'Select Batch']+ Batch::lists('batch_number', 'id');
         $department = ['' => 'Select Department']+ Department::lists('title', 'id');
 
+        $applicant = BillingSummaryApplicant::with('relApplicant','relBillingSchedule')->get();
+        $student = BillingSummaryStudent::latest('id')->with('relUser','relBillingSchedule')->get();
+
+
+
         $department_id      = Input::get('department_id');
         $degree_id          = Input::get('degree_id');
         $batch_id           = Input::get('batch_id');
         $studentOrApplicant = Input::get('studentOrApplicant');
         $student_id         = Input::get('student_id');
         $name               = Input::get('student_name');
-        Input::flash();
 
         //print_r($studentOrApplicant);exit;
        /* if($studentOrApplicant == 'student'){
@@ -243,24 +247,9 @@ class FeesController extends \BaseController {
 
         $data = $query->get();
 
-         print_r($data);exit;
+         print_r($data);exit;*/
 
-        /*$query = DB::table('billing_setup AS bs')
-            ->select(
-                'bs.id as id',
-                'bs.cost as cost',
-                'bsc.title as scheduleTitle',
-                'bi.title as billingTitle',
-                'bs.deadline as deadline',
-                'bs.fined_cost as fined_cost'
-            )
-            ->join('billing_schedule as bsc', 'bsc.id', '=', 'bs.billing_schedule_id')
-            ->join('billing_item AS bi', 'bi.id', '=', 'bs.billing_item_id')
-            ->join('batch AS b', 'bs.batch_id','=', 'b.id')
-            ->join('degree AS d','b.degree_id', '=', 'd.id');*/
-
-
-        return View::make('fees::billing_history.index',compact('degree','batch','department','studentOrApplicant'));
+        return View::make('fees::billing_history.index',compact('degree','batch','department','applicant','student'));
 	}
 
 
