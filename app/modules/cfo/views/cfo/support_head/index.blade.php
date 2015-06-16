@@ -15,26 +15,26 @@
             <!-- Custom Tabs -->
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs tabs-up">
-                     <li><a href="{{URL::route('support-head.index')}}" data-target="#all" class="media_node active span" id="all_tab" data-toggle="tabajax" rel="tooltip"> ALL </a></li>
-                     <li><a href="{{URL::route('support-head.index')}}" data-target="#new" class="media_node span" id="new_tab" data-toggle="tabajax" rel="tooltip"> NEW</a></li>
+                     <li><a href="" data-target="#all" class="media_node active span" id="all_tab" data-toggle="tabajax" rel="tooltip"> ALL </a></li>
+                     <li><a href="" data-target="#new" class="media_node span" id="new_tab" data-toggle="tabajax" rel="tooltip"> NEW</a></li>
                      <li><a href="" data-target="#open" class="media_node span" id="open_tab" data-toggle="tabajax" rel="tooltip">OPEN</a></li>
                      <li><a href="" data-target="#replied" class="media_node span" id="replied_tab" data-toggle="tabajax" rel="tooltip"> REPLIED </a></li>
                      <li><a href="" data-target="#closed" class="media_node span" id="closed_tab" data-toggle="tabajax" rel="tooltip"> CLOSED </a></li>
                 </ul>
                 <div class="tab-content">
-                    <div class="tab-pane active" id="all">
+                    <div class="tab-pane active" id="all_tab">
                        contents all
                     </div>
-                    <div class="tab-pane" id="new">
+                    <div class="tab-pane" id="new_tab">
                        new
                     </div>
-                    <div class="tab-pane  urlbox span8" id="open">
+                    <div class="tab-pane  urlbox span8" id="open_tab">
                         open
                     </div>
-                    <div class="tab-pane" id="replied">
+                    <div class="tab-pane" id="replied_tab">
                        replied
                     </div>
-                    <div class="tab-pane" id="closed">
+                    <div class="tab-pane" id="closed_tab">
                        closed
                     </div>
                 </div><!-- /.tab-content -->
