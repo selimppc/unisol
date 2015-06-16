@@ -111,6 +111,11 @@ Route::any('support-head',[
     'uses' => 'CfoAmwController@cfoSupportIndex'
 ]);
 
+Route::any('support-head/show/{id}',[
+    'as' =>'support-head.show',
+    'uses' => 'CfoAmwController@showSupportHead'
+]);
+
 Route::any('support-head/reply/{id}',[
     'as' =>'support-head.reply',
     'uses' => 'CfoAmwController@reply'
