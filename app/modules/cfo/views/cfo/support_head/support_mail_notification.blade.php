@@ -8,7 +8,7 @@
     <div class="span6 well">
         @if(isset(Auth::user()->get()->id))
             <div>
-               Thanks, <b>{{$username}}</b><br>
+               {{--Thanks, <b>{{$username}}</b><br>--}}
                 <div style="background-color: blanchedalmond">
                     <p>&nbsp;</p>
                         &nbsp;&nbsp;{{$link}}
@@ -25,7 +25,7 @@
             </div>
         @else
             <div>
-               Thanks For Your Support.<br>
+               {{--Thanks For Your Support.<br>--}}
                 <div style="background-color: blanchedalmond">
                     <p>&nbsp;</p>
                         &nbsp;&nbsp;{{$link}}

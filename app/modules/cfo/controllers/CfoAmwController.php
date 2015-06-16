@@ -370,10 +370,10 @@ class CfoAmwController extends \BaseController {
 
         if($model->save()){
         $support_code = $support_head->support_code;
-            Mail::send('cfo::cfo.support_head.support_mail_notification', array('link' => $model->message,'username'=>$support_head->name,'support_code'=>$support_code), function ($message) use ($support_head) {
+            Mail::send('cfo::cfo.support_head.support_mail_notification', array('link' => $model->message,'support_code'=>$support_code), function ($message) use ($support_head) {
                 $message->from('test@edutechsolutionsbd.com', 'Email Notification For Support');
                 $message->to($support_head->email);
-                $message->cc('tanintjt@gmail.com');
+//                $message->cc('tanintjt@gmail.com');
                 $message->subject('Email Notification For Support');
             });
             Session::flash('message', 'Successfully Send This Message.');
