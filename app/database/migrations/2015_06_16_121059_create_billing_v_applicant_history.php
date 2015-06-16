@@ -31,7 +31,7 @@ class CreateBillingVApplicantHistory extends Migration {
                 JOIN `degree` `d` ON `d`.`id` = `b`.`degree_id`
                 JOIN `department` `dpt` ON `dpt`.`id` = `d`.`department_id`
 
-                GROUP BY `bsa`.`id`$$
+                GROUP BY `bsa`.`id`
 
         )' );
 	}
