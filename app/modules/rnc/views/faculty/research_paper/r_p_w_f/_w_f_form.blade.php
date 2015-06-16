@@ -68,6 +68,7 @@
             <td>
                 <a data-href="{{ $model_value->id }}" data-benf="{{$model_value->relRnCWriterBeneficial->id}}" class="btn btn-default btn-sm delete-dt-2" id="delete-dt-2{{ $model_value->id }}" ><i class="fa fa-trash-o" style="font-size: 15px;color: red"></i></a>
                 <a data-href="{{ $model_value->id }}" class="btn btn-default btn-sm edit-dt-rnc" id="delete-dt-2{{ $model_value->id }}" ><i class="fa fa-pencil" style="font-size: 15px;color: dodgerblue"></i></a>
+                {{--<a href="{{ URL::route('faculty.research-paper-writer-beneficial.edit', ['id'=>$model_value->id , 'ben_id'=>$model_value->relRnCWriterBeneficial->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#modal" href="" ><i class="fa fa-pencil-square-o" style="color: #0044cc" title="Edit"></i></a>--}}
             </td>
         </tr>
         <?php $counter++;?>
@@ -107,17 +108,17 @@
 
 
 
-    //Product Add(s)
+    //Product Add(s) : ok
      $tableItemCounter = 0; //To stop additem if exist
      var $arrayRnc = []; //To stop additem if exist
 
      $("#add-writer-and-beneficial").click(function(event){
          $res_pap_id = $("#research-paper-id").val();
          $writer_id = $("#wr-name-id").val();
+         //$writer_name_val = $("#writer_name").val();
          $benfcl_val = $("#beneficial-value").val();
          $wr_name = $("#writer-name").val();
          var total_count_share = "<?php echo $cal_benefit_share; ?>";
-         var compare = parseInt(total_count_share) + parseInt(total_share);
 
          if($writer_id == null || $benfcl_val == null ){
              alert("please add Writer Name and Beneficial then try Again!");
@@ -136,10 +137,12 @@
 
                  return false;
              } else {
+
                  var $total_ben = parseInt(total_count_share) + parseInt($benfcl_val);
+
                  if($total_ben > 100){
                     $("#beneficial-value").val("");
-                        alert(compare +'  ,'+ 'Exceeded the Total share 100%. Please decrease your share percentage');
+                        alert( $total_ben +'  ,'+ 'Exceeded the Total share 100%. Please decrease your share percentage');
                     $("#beneficial-value").focus();
                     return false;
                  }else{
@@ -164,7 +167,7 @@
  	});
 
 
-// 	//delete
+// 	//delete : ok
 	$(function(){
           $('.delete-dt-2').click(function(e) {
             e.preventDefault();
@@ -195,14 +198,15 @@
             $("#new-row-rnc-"+$id).hide();
 
             // ei url die duita ID pas skorte hobe : $id, $ben_id   like     , ['id'=>$writer_info->id ,'ben_id'=>$writer_info->relRnCWriterBeneficial->id ]
-            var $form_start =    "<form action='{{ url("rnc/faculty/research-paper-writer-beneficial/update") }}' method='POST'>";
-            var $form_end = "</form>";
+            var $form_start =    "<form action='{{ url("rnc/faculty/research-paper-writer-beneficial/update") }}' method='POST'><tr>";
+            var $form_end = "</tr></form>";
 
             $('#test').append($form_start +
               "<input value='"+ $ben_name +"' readonly style='width: 270px; '> <input type='hidden' value='"+ $id +"' name='id'>" +
               "<input name='value' value="+ $ben_value +" style='background: #efefef ; width: 120px '>" +
               "<input type='submit' value='Submit' class='btn btn-default btn-sm'>" +
               $form_end);
+
               //Back up
               /*$('#test').append("<tr>" +
               "<td><input value='"+ $ben_name +"' readonly> <input type='hidden' value='"+ $id +"' name='id'></td>" +
@@ -217,20 +221,9 @@
 
 </script>
 
-
-<script>
-                  function getShareBenefit(){
-                                  var total_count_share = "<?php echo $cal_benefit_share; ?>";
-
-                                  var total_share = parseInt(document.getElementById("given_share").value);
-                                  var compare = parseInt(total_count_share) + parseInt(total_share);
-                                  //alert(compare +'  ,'+ 'Exceed the Total share 100%. Please decrease your share percentage');
-
-                                     if( compare > 100 ){
-                                         alert(compare +'  ,'+ 'Exceed the Total share 100%. Please decrease your share percentage');
-                                         return false;
-                                     }else{
-                                         return true;
-                                     }
-                  }
-                 </script>
+ <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true"  data-keyboard="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            </div>
+        </div>
+  </div>
