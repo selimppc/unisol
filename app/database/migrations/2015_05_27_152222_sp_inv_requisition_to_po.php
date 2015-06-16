@@ -12,7 +12,7 @@ class SpInvRequisitionToPo extends Migration {
 	 */
 	public function up()
 	{
-        /*DB::unprepared('CREATE PROCEDURE sp_inv_requisition_to_po(
+        DB::unprepared('CREATE PROCEDURE sp_inv_requisition_to_po(
             param_requisition_id INT(11),
             param_user_id INT(11)
             )
@@ -38,7 +38,7 @@ class SpInvRequisitionToPo extends Migration {
 
         END
 
-             ');*/
+             ');
 	}
 
 	/**
