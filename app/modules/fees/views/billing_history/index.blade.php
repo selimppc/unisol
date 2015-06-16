@@ -92,6 +92,7 @@
                             {{Form::close()}}
 
                         {{--*****************Filter :Ends ****************************--}}
+
                         <div class="box-body table-responsive ">
                             <table id="example" class="table table-bordered table-hover table-striped">
                                 <thead>
@@ -103,21 +104,25 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @if(isset($applicant))
-                                    @foreach($applicant as $value)
-                                        <tr>
-                                            <td>{{Applicant::ApplicantName($value->applicant_id)}}</td>
 
-                                            <td>{{isset($value->relBillingSchedule->title) ? $value->relBillingSchedule->title: ''}}</td>
+                                </tbody>
+                            </table>
+                            <a href="{{ URL::route('billing.history')}}" class="btn-link pull-right"><i class="fa fa-backward text-red"></i> Back to All List</a>
+                            </br>
+                        </div>
+                  {{--  ************--}}
+                        <div class="box-body table-responsive ">
+                            <table id="example" class="table table-bordered table-hover table-striped">
+                                <thead>
+                                <tr>
+                                    <th>Name of Applicant</th>
+                                    <th>Schedule</th>
+                                    <th>Amount</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
 
-                                            <td>{{isset($value->total_cost) ? $value->total_cost : ''}}</td>
-
-                                            <td>
-                                                <a href="" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" href=""><i class="fa fa-eye" style="color: green"></i></a>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                @endif
                                 </tbody>
                             </table>
                             <a href="{{ URL::route('billing.history')}}" class="btn-link pull-right"><i class="fa fa-backward text-red"></i> Back to All List</a>

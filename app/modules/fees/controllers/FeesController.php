@@ -211,10 +211,6 @@ class FeesController extends \BaseController {
         $batch = ['' => 'Select Batch']+ Batch::lists('batch_number', 'id');
         $department = ['' => 'Select Department']+ Department::lists('title', 'id');
 
-        $applicant = BillingSummaryApplicant::with('relApplicant','relBillingSchedule')->get();
-        $student = BillingSummaryStudent::latest('id')->with('relUser','relBillingSchedule')->get();
-
-
 
         $department_id      = Input::get('department_id');
         $degree_id          = Input::get('degree_id');
@@ -223,6 +219,26 @@ class FeesController extends \BaseController {
         $student_id         = Input::get('student_id');
         $name               = Input::get('student_name');
 
+        if($studentOrApplicant == 'student'){
+          /*  $student = BillingVStudentHistory::with()
+                ->where('department_id', '=', $department_id)
+                ->where('degree_id', '=', $degree_id)
+                ->where('batch_id', '=', $batch_id)
+                ->get();*/
+
+            $student = DB::table('billing_v_student_history')
+                ->where('department_id', '=', $department_id)
+                ->where('degree_id', '=', $degree_id)
+                ->where('batch_id', '=', $batch_id)
+                ->get();
+
+           // print_r($student);exit;
+
+        }else {
+          /*  $applicant = BillingVApplicantHistory::with()
+                ->get();*/
+
+        }
         //print_r($studentOrApplicant);exit;
        /* if($studentOrApplicant == 'student'){
             // If name is provided
@@ -249,7 +265,7 @@ class FeesController extends \BaseController {
 
          print_r($data);exit;*/
 
-        return View::make('fees::billing_history.index',compact('degree','batch','department','applicant','student'));
+        return View::make('fees::billing_history.index',compact('degree','batch','department','applicant','student','studentOrApplicant'));
 	}
 
 
