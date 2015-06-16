@@ -16,21 +16,18 @@ class CfoController extends \BaseController {
         if($this->isPostRequest()) {
             $search_key = Input::get('keywords');
 
-            if(($search_key)) {
-                $data = CfoKnowledgeBase::where('title', 'LIKE', '%' . $search_key . '%')
-                    ->orWhere('description', 'LIKE', '%' . $search_key . '%')
-                    ->orWhere('keywords', 'LIKE', '%' . $search_key . '%')
-//                    ->take(5)
+            if(($search_key)){
+                $data = CfoKnowledgeBase::where('title', 'LIKE', '%'.$search_key.'%')
+                    ->orWhere('description', 'LIKE', '%'.$search_key.'%')
+                    ->orWhere('keywords', 'LIKE', '%'.$search_key.'%')
+                    ->take(5)
                     ->get();
-            } else{
-                Session::flash('info', 'No Data Found!');
-                return Redirect::back();
             }
         }else{
             $data = CfoKnowledgeBase::latest('id')->paginate(10);
         }
         Input::flash();
-        return View::make('cfo::user.knowledge_base.knb_list',compact('data','model'));
+        return View::make('cfo::public.knowledgebase',compact('data','model'));
 	}
 
     public function detailsKb($kb_id){
@@ -72,37 +69,47 @@ class CfoController extends \BaseController {
             $model1->status = Input::get('status');
             $model1->support_code = $support_code;
 
-            /*CfoSupportDetail*/
-            if ($model1->save()) {
-                $model2 = new CfoSupportDetail();
-                $model2->cfo_support_head_id = $model1->id;
-                $model2->message = Input::get('message');
-                $model2->replied_by = 'user';
+            DB::beginTransaction();
+            try {
+                /*CfoSupportDetail*/
+                if ($model1->save()) {
+                    $model2 = new CfoSupportDetail();
+                    $model2->cfo_support_head_id = $model1->id;
+                    $model2->message = Input::get('message');
+                    $model2->replied_by = 'user';
 
-                if($model2->save()){
-                    /*get 'support_email' using cfo_category from $model1 */
-                    $category_cfo = CfoCategory::find($model1->cfo_category_id);
-                   /*send mail to user*/
-                    Mail::send('cfo::user.support_head.user_notification', array('link' => $support_code), function ($message) use ($model1) {
-                         $message->from('test@edutechsolutionsbd.com', 'Email Notification For Support Code');
-                         $message->to($model1->email);
-                         $message->cc('tanintjt@gmail.com');
-                         $message->subject('Email Notification For Support Code');
-                    });
-                    /*send mail to cfo-staff*/
-                    Mail::send('cfo::cfo.support_head.cfo_notification', array('link' => $support_code), function ($message) use ($category_cfo) {
-                         $message->from('test@edutechsolutionsbd.com', 'Email Notification For Support User');
-                         $message->to($category_cfo->support_email);
-                         $message->cc('tanintjt@gmail.com');
-                         $message->subject('Email Notification For Support User');
-                    });
+                    if($model2->save()){
+                        /*get 'support_email' using cfo_category from $model1 */
+                        $category_cfo = CfoCategory::find($model1->cfo_category_id);
+                        /*send mail to user*/
+                        Mail::send('cfo::user.support_head.user_notification', array('link' => $support_code), function ($message) use ($model1) {
+                            $message->from('test@edutechsolutionsbd.com', 'Email Notification For Support Code');
+                            $message->to($model1->email);
+//                            $message->cc('tanintjt@gmail.com');
+                            $message->subject('Email Notification For Support Code');
+                        });
+                        /*send mail to cfo-staff*/
+                        Mail::send('cfo::cfo.support_head.cfo_notification', array('link' => $support_code), function ($message) use ($category_cfo) {
+                            $message->from('test@edutechsolutionsbd.com', 'Email Notification For Support User');
+                            $message->to($category_cfo->support_email);
+//                            $message->cc('tanintjt@gmail.com');
+                            $message->subject('Email Notification For Support User');
+                        });
+                    }
+                    DB::commit();
+                    Session::flash('message', 'Successfully Proceeded Your Support Request. Please Check Your Email.');
+                    return Redirect::back();
+                } else {
+                    Session::flash('danger', 'Please try again');
+                    return Redirect::back();
                 }
-                Session::flash('message', 'Successfully Proceeded Your Support Request. Please Check Your Email.');
-                return Redirect::back();
-            } else {
-                Session::flash('danger', 'Please try again');
-                return Redirect::back();
             }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', "Invalid Request! Your message do not send .Please try again.");
+            }
+            return Redirect::back();
         }
     }
 
@@ -143,7 +150,7 @@ class CfoController extends \BaseController {
             Mail::send('cfo::cfo.support_head.support_mail_notification', array('link' => $model->message), function ($message) use ($category_cfo) {
                 $message->from('test@edutechsolutionsbd.com', 'Email Notification For Support');
                 $message->to($category_cfo->support_email);
-                $message->cc('tanintjt@gmail.com');
+//                $message->cc('tanintjt@gmail.com');
                 $message->subject('Email Notification For Support');
             });
             Session::flash('message', 'Successfully Send This Message.');

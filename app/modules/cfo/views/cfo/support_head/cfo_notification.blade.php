@@ -7,7 +7,7 @@
  <body>
        <div class="span6 well">
            <div>
-               A New User Is Added By generating A Support Code.
+                A Support Code is added in your support list.You can view details from your support desk.
            </div>
           User Support Code is : <b>{{$link}}</b>.
        </div>
