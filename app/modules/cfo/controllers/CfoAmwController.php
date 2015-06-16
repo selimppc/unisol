@@ -330,19 +330,62 @@ class CfoAmwController extends \BaseController {
 /*Support Desk*/
 
     public function cfoSupportIndex(){
+
         $cfo_user_id = Auth::user()->get()->id;
+
         $support_data = CfoSupportHead::with('relCfoCategory')
             ->whereExists(function($query) use($cfo_user_id)
             {
                 $query->from('cfo_category')
                     ->whereRaw('cfo_category.id = cfo_support_head.cfo_category_id')
-                    ->where('cfo_category.support_user_id', $cfo_user_id)
-                    ->whereIn('status', array('new', 'open', 'replied'));
+                    ->where('cfo_category.support_user_id', $cfo_user_id);
             })
-//            ->orderBy('status')
             ->get();
+        /*view data according to status*/
+        $new_data = CfoSupportHead::with('relCfoCategory')
+            ->whereExists(function($query) use($cfo_user_id)
+            {
+                $query->from('cfo_category')
+                    ->whereRaw('cfo_category.id = cfo_support_head.cfo_category_id')
+                    ->where('cfo_category.support_user_id', $cfo_user_id)
+                    ->where('status','=','new');
+            })->get();
 
-        return View::make('cfo::cfo.support_head.index',compact('support_data'));
+        $open_data = CfoSupportHead::with('relCfoCategory')
+            ->whereExists(function($query) use($cfo_user_id)
+            {
+                $query->from('cfo_category')
+                    ->whereRaw('cfo_category.id = cfo_support_head.cfo_category_id')
+                    ->where('cfo_category.support_user_id', $cfo_user_id)
+                    ->where('status','=','open');
+            })->get();
+
+        $replied_data = CfoSupportHead::with('relCfoCategory')
+            ->whereExists(function($query) use($cfo_user_id)
+            {
+                $query->from('cfo_category')
+                    ->whereRaw('cfo_category.id = cfo_support_head.cfo_category_id')
+                    ->where('cfo_category.support_user_id', $cfo_user_id)
+                    ->where('status','=','replied');
+            })->get();
+
+        $closed_data = CfoSupportHead::with('relCfoCategory')
+            ->whereExists(function($query) use($cfo_user_id)
+            {
+                $query->from('cfo_category')
+                    ->whereRaw('cfo_category.id = cfo_support_head.cfo_category_id')
+                    ->where('cfo_category.support_user_id', $cfo_user_id)
+                    ->where('status','=','closed');
+            })->get();
+
+
+        return View::make('cfo::cfo.support_head.index',compact('support_data','all_data','new_data','open_data','replied_data','closed_data'));
+    }
+
+    public function showSupportHead($id){
+
+        $data = CfoSupportHead::with('relCfoCategory')->find($id);
+        return View::make('cfo::cfo.support_head.show',compact('data'));
     }
 
     public function reply($id){
