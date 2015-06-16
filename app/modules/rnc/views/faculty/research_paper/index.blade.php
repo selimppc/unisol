@@ -92,7 +92,8 @@
                                             <a href="{{ URL::route('faculty.research-paper.view', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#modal" href=""><i class="fa fa-eye" style="color: darkolivegreen" title="View"></i></a>
                                             <a href="{{ URL::route('faculty.research-paper.edit', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#modal" href="" ><i class="fa fa-pencil-square-o" style="color: #0044cc" title="Edit"></i></a>
                                             {{--<a href="{{ URL::route('faculty.research-paper-writer.index', ['rnc_r_p_id'=>$value->id]) }}" class="btn btn-xs btn-success" >Writter</a>--}}
-                                            <a href="{{ URL::route('faculty.research-paper-writer-beneficial.list', ['rnc_r_p_id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#modal" href=""><i class="fa fa-rocket" style="color: green" title="Writer and Beneficial"></i></a>
+                                            <a href="{{ URL::route('faculty.research-paper-writer-beneficial.list', ['rnc_r_p_id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#myModal"><i class="fa fa-rocket" style="color: green" title="Writer and Beneficial"></i></a>
+
                                             <a href="{{ URL::route('faculty.research-paper.comment', ['rnc_r_p_id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#modal" href=""><i class="fa fa-comments" style="color: mediumpurple" title="Comemnt"></i></a>
                                             <a data-href="{{ URL::route('faculty.research-paper.delete', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa fa-trash-o" style="color:red" title="Delete"></i></a>
 
@@ -113,7 +114,7 @@
     </div>
 
      {{--Modal add new--}}
-    <div id="add" class="modal fade">
+    <div id="add" class="modal fade rotate">
         <div class="modal-dialog" aria-hidden="true" data-keyboard="false" >
             <div class="modal-content">
                 <div class="modal-header">
@@ -139,6 +140,28 @@
         </div>
   </div>
 
+   {{--MyModal--}}
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true"  data-keyboard="false">
+          <div class="modal-dialog">
+              <div class="modal-content">
+
+              </div>
+          </div>
+    </div>
+
+
+{{--MyModal--}}
+        <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true"  data-keyboard="false">
+              <div class="modal-dialog">
+                  <div class="modal-content">
+
+                  </div>
+              </div>
+        </div>
+
+
+
+
   {{--Modal for delete--}}
   <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"  data-keyboard="false">
         <div class="modal-dialog">
@@ -160,3 +183,21 @@
 
 @stop
 
+<script type="text/javascript">
+	$(document).ready(function () {
+    $('#openBtn').click(function () {
+        $('#myModal').modal({
+            show: true
+        })
+    });
+
+    $(document).on('show.bs.modal', '.modal', function (event) {
+        var zIndex = 1040 + (10 * $('.modal:visible').length);
+        $(this).css('z-index', zIndex);
+        setTimeout(function() {
+            $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
+        }, 0);
+    });
+});
+
+</script>

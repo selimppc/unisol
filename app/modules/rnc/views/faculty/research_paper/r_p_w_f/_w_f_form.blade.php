@@ -1,14 +1,12 @@
 <style>
     input{ border-color: 1px solid #efefef; }
     #test input { border: none; width: 99%; }
-
 </style>
 
 <div class='form-group'>
    {{ Form::label('searchName', 'Writer Name') }} ( <small>Search Writer by Typing Name</small> )
    {{ Form::text('searchName',  '', ['id'=>'search_writer_name', 'class'=>'ui-autocomplete form-control','placeholder'=>'Search Writer Name..', 'autofocus', ]) }}
 </div>
-
 
 {{Form::hidden('rnc_research_paper_id', $rnc_r_p_id,['id'=>'research-paper-id'])}}
 
@@ -28,15 +26,6 @@
         </div> &nbsp; {{ $cal_benefit_share }} % is already divided. Now this is for writer's share
     </div>
 
-
-    {{--<div class='form-group'>--}}
-        {{--<div>{{ Form::label('value', 'Value') }} &nbsp; {{ $cal_benefit_share }} % is already divided. Now this is for writer's share </div>--}}
-        {{--<div>{{ Form::text('value', Input::old('value'),array('onchange'=>"getShareBenefit()", 'placeholder'=>'Writer Value..','id'=>'given_share','class'=>'form-control','required'=>'required')) }}</div>--}}
-    {{--</div>--}}
-
-
-
-
     <div class="col-sm-4" style="padding: 4%">
         <input type="button" class="pull-right btn-xs btn-linkedin" id="add-writer-and-beneficial" value="+Add">
     </div>
@@ -48,39 +37,32 @@
 </p>
 <table class="table table-bordered small-header-table" id="amwCourseConfig">
     <thead>
-    <th>Writer Name </th>
-    <th>Beneficial Value </th>
-    <th>Action</th>
+        <th>Writer Name </th>
+        <th>Beneficial Value </th>
+        <th>Action</th>
     </thead>
-    <tbody id="test">
-    </tbody>
 
-    {{--{{Form::hidden('rnc_research_paper_writer_id', $writer_info->id)}}--}}
+    <tbody id="test"></tbody>
 
    <tbody>
     <?php $counter = 0;?>
-
     @foreach($writer_info as $key=>$model_value)
         <tr id="new-row-rnc-{{ $model_value->id }}">
-            <td id="new-column-name-{{ $model_value->id }}"> {{isset($model_value->writer_user_id) ? $model_value->relUser->relUserProfile->first_name.' '.$model_value->relUser->relUserProfile->middle_name.' '.$model_value->relUser->relUserProfile->last_name : ''}}
+            <td id="new-column-name-{{ $model_value->id }}">
+             {{ isset($model_value->writer_user_id) ?
+                 $model_value->relUser->relUserProfile->first_name.' '.
+                 $model_value->relUser->relUserProfile->middle_name.' '.
+                 $model_value->relUser->relUserProfile->last_name : ''
+             }}
             </td>
             <td id="new-column-value-{{ $model_value->id }}">{{ $model_value->relRnCWriterBeneficial->value }}</td>
             <td>
                 <a data-href="{{ $model_value->id }}" data-benf="{{$model_value->relRnCWriterBeneficial->id}}" class="btn btn-default btn-sm delete-dt-2" id="delete-dt-2{{ $model_value->id }}" ><i class="fa fa-trash-o" style="font-size: 15px;color: red"></i></a>
-                <a data-href="{{ $model_value->id }}" class="btn btn-default btn-sm edit-dt-rnc" id="delete-dt-2{{ $model_value->id }}" ><i class="fa fa-pencil" style="font-size: 15px;color: dodgerblue"></i></a>
-                {{--<a href="{{ URL::route('faculty.research-paper-writer-beneficial.edit', ['id'=>$model_value->id , 'ben_id'=>$model_value->relRnCWriterBeneficial->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#modal" href="" ><i class="fa fa-pencil-square-o" style="color: #0044cc" title="Edit"></i></a>--}}
+                <a href="{{ URL::route('faculty.research-paper-writer-beneficial.edit', ['rnc_r_p_id'=>$rnc_r_p_id ,'id'=>$model_value->id , 'ben_id'=>$model_value->relRnCWriterBeneficial->id]) }}" class="btn btn-sm btn-default" data-toggle="modal" data-target="#myModal2" href="" ><i class="fa fa-pencil-square-o" style="color: #0044cc" title="Edit"></i></a>
             </td>
         </tr>
-        <?php $counter++;?>
-        {{--<script>--}}
-            {{--// Add item is to arrayList at edit time.--}}
-            {{--$( document ).ready(function() {--}}
-                {{--var productsId = {{ $value->inv_product_id }}--}}
-                {{--pushListItem(productsId);--}}
-            {{--});--}}
-        {{--</script>--}}
+      <?php $counter++;?>
    @endforeach
-
 </table>
 
 <div class="modal-footer">
@@ -89,12 +71,10 @@
 </div>
 <p>&nbsp;</p>
 
-
 {{ HTML::script('assets/etsb/etsb_js/jquery/jquery.min.js')}}
 {{ HTML::script('assets/etsb/etsb_js/jquery-ui/jquery-ui.min.js')}}
 
 <script type="text/javascript">
-
  $(function(){
      $( "#search_writer_name" ).autocomplete({
       source: "/rnc/ajax/fac-get-writer-name-auto-complete",
@@ -104,11 +84,9 @@
         $('#wr-name-id').val(ui.item.writer_user_id);
         $('#writer-name').val(ui.item.label);
       }
-});
+ });
 
-
-
-    //Product Add(s) : ok
+//Product Add(s) : ok
      $tableItemCounter = 0; //To stop additem if exist
      var $arrayRnc = []; //To stop additem if exist
 
@@ -159,15 +137,12 @@
                      $("#writer-name").val("");
                      $("#search_writer_name").val("");
                  }
-
-
              }
          }
-
  	});
 
 
-// 	//delete : ok
+//delete : ok
 	$(function(){
           $('.delete-dt-2').click(function(e) {
             e.preventDefault();
@@ -181,49 +156,10 @@
                 {
                     $btn.closest("tr").remove();
                     $('#something-delete').html(response);
-
                 }
             });
           });
        });
-
-       //edit
-       $(function(){
-         $('.edit-dt-rnc').click(function(e) {
-            e.preventDefault();
-            var $row = $(this);
-            var $id = $row.data("href");
-            var $ben_name = $("#new-column-name-"+$id).html();
-            var $ben_value = $("#new-column-value-"+$id).html();
-            $("#new-row-rnc-"+$id).hide();
-
-            // ei url die duita ID pas skorte hobe : $id, $ben_id   like     , ['id'=>$writer_info->id ,'ben_id'=>$writer_info->relRnCWriterBeneficial->id ]
-            var $form_start =    "<form action='{{ url("rnc/faculty/research-paper-writer-beneficial/update") }}' method='POST'><tr>";
-            var $form_end = "</tr></form>";
-
-            $('#test').append($form_start +
-              "<input value='"+ $ben_name +"' readonly style='width: 270px; '> <input type='hidden' value='"+ $id +"' name='id'>" +
-              "<input name='value' value="+ $ben_value +" style='background: #efefef ; width: 120px '>" +
-              "<input type='submit' value='Submit' class='btn btn-default btn-sm'>" +
-              $form_end);
-
-              //Back up
-              /*$('#test').append("<tr>" +
-              "<td><input value='"+ $ben_name +"' readonly> <input type='hidden' value='"+ $id +"' name='id'></td>" +
-              "<td><input name='value' value="+ $ben_value +" style='background: #efefef ; width: 50%; '></td>" +
-              "<td> <a href='' class='btn btn-default btn-sm'><i class='fa fa-check' ></i></a></td>" +
-              " </tr>");*/
-
-         });
-      });
 });
 
-
 </script>
-
- <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true"  data-keyboard="false">
-        <div class="modal-dialog">
-            <div class="modal-content">
-            </div>
-        </div>
-  </div>

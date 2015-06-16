@@ -489,7 +489,7 @@ class RnCFacultyController extends \BaseController
         $total = DB::table('rnc_writer_beneficial')->where('rnc_research_paper_id' ,'=', $rnc_r_p_id)->sum('value');
         $cal_benefit_share = $rp_benefit_share + $total ;
 
-        return View::make('rnc::faculty.research_paper.r_p_w_f.add_edit_writer_beneficial',
+        return View::make('rnc::faculty.research_paper.r_p_w_f.add_writer_beneficial',
             compact('rnc_r_p_id','writer_info','r_p','rp_benefit_share','cal_benefit_share'));
 
     }
@@ -538,32 +538,71 @@ class RnCFacultyController extends \BaseController
 
     }
 
-    public function editWriterBeneficial( $id, $ben_id)
+    public function editWriterBeneficial( $rnc_r_p_id, $id, $ben_id)
     {
-        echo "ok $id , $ben_id";exit;
+        $r_p = RnCResearchPaper::where('id', $rnc_r_p_id)->first();
 
+        $edit_info = RnCResearchPaperWriter::with('relRnCResearchPaper','relRnCWriterBeneficial' ,'relUser', 'relUser.relUserProfile')
+            ->where('rnc_research_paper_id', $rnc_r_p_id)
+            ->where('id', $id)
+            ->find($id);
+
+        #print_r($edit_info);exit;
+
+        return View::make('rnc::faculty.research_paper.r_p_w_f.edit_writer_beneficial',
+            compact('rnc_r_p_id','edit_info','r_p','id','ben_id'));
     }
 
-    public function updateWriterBeneficial()
+    public function updateWriterBeneficial($id, $ben_id)
     {
-        echo "update";exit;
-        $id = Input::get('id');
-        $ben_id = Input::get('ben_id');
 
         DB::beginTransaction();
-        try {
-            if(RnCWriterBeneficial::update($ben_id)){
-                RnCResearchPaperWriter::update($id);
-            }
+        try{
+
+                $model = RnCResearchPaperWriter::find($id);
+                $model->rnc_research_paper_id = Input::get('rnc_research_paper_id');
+                $model->writer_user_id = Input::get('writer_user_id');
+                if($model->update()){
+                    $model2 = RnCWriterBeneficial::find($ben_id);
+                    $model2->rnc_research_paper_writer_id = $model->id;
+                    $model2->rnc_research_paper_id = Input::get('rnc_research_paper_id');
+                    $model2->value = Input::get('value');
+                    $model2->update();
+                }
+
             DB::commit();
-            return Response::json("Successfully Updated");
-        }
-        catch(exception $ex){
+            Session::flash('message', 'Success !');
+        }catch ( Exception $e ){
+            //If there are any exceptions, rollback the transaction`
             DB::rollback();
-            return Response::json("Can not be Updated !");
+            Session::flash('danger', 'Failed !');
         }
+        return Redirect::back();
 
 
+
+//
+//        DB::beginTransaction();
+//        try{
+//            $model = new RnCResearchPaperWriter();
+//            $model->rnc_research_paper_id = Input::get('rnc_research_paper_id');
+//            $model->writer_user_id = Input::get('writer_user_id');
+//            if($model->update()){
+//                echo "dhukce";exit;
+//                $model2 = new RnCWriterBeneficial();
+//                $model2->rnc_research_paper_writer_id = $model->id;
+//                $model2->rnc_research_paper_id = Input::get('rnc_research_paper_id');
+//                $model2->value = Input::get('value');
+//                $model2->update();
+//            }
+//            DB::commit();
+//            Session::flash('message', 'Success !');
+//        }catch ( Exception $e ){
+//            //If there are any exceptions, rollback the transaction`
+//            DB::rollback();
+//            Session::flash('danger', 'Failed !');
+//        }
+//        return Redirect::back();
 
     }
 
@@ -805,8 +844,6 @@ class RnCFacultyController extends \BaseController
     public function updateRnCBeneficial($id)
     {
         $data = Input::all();
-
-        print_r($data);exit;
 
         $rnc_r_p_beneficial_update = RnCWriterBeneficial::find($id);
         if($rnc_r_p_beneficial_update->validate($data))

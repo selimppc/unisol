@@ -167,12 +167,12 @@
 
 
 
-    Route::any('faculty/research-paper-writer-beneficial/edit/{id}/{ben_id}',[
+    Route::any('faculty/research-paper-writer-beneficial/edit/{rnc_r_p_id}/{id}/{ben_id}',[
         'as' => 'faculty.research-paper-writer-beneficial.edit',
         'uses'=> 'RnCFacultyController@editWriterBeneficial'
     ]);
 
-    Route::any('faculty/research-paper-writer-beneficial/update',[
+    Route::any('faculty/research-paper-writer-beneficial/update/{id}/{ben_id}',[
         'as' => 'faculty.research-paper-writer-beneficial.update',
         'uses'=> 'RnCFacultyController@updateWriterBeneficial'
     ]);
