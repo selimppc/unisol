@@ -71,7 +71,9 @@
         </a>
         <ul class="treeview-menu">
             <li><a href="{{ URL::to('fees/billing/setup') }}"><i class="fa  fa-bars text-red"></i> Billing Setup</a>
+
             <li><a href="{{ URL::to('fees/billing/history') }}"><i class="fa  fa-bars text-purple"></i> Billing History</a>
+
         </ul>
     </li>
 
