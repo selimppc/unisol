@@ -517,6 +517,41 @@ class RnCFacultyController extends \BaseController
         return Response::json($results);
     }
 
+    public function store_writer_beneficial()
+    {
+        #$data = Input::all();
+        for($i = 0; $i < count(Input::get('writer_user_id')) ; $i++){
+            $dt[] = [
+                'rnc_research_paper_id' => Input::get('rnc_research_paper_id'),
+                'writer_user_id'=> Input::get('writer_user_id')[$i],
+                'value'=> Input::get('value')[$i],
+            ];
+        }
+        DB::beginTransaction();
+        try{
+            foreach($dt as $key => $values){
+                $model = new RnCResearchPaperWriter();
+                $model->rnc_research_paper_id = $values['rnc_research_paper_id'];
+                $model->writer_user_id = $values['writer_user_id'];
+                if($model->save()){
+                    $model2 = new RnCWriterBeneficial();
+                    $model2->rnc_research_paper_writer_id = $model->id;
+                    $model2->rnc_research_paper_id = $values['rnc_research_paper_id'];
+                    $model2->value = $values['value'];
+                    $model2->save();
+                }
+            }
+            DB::commit();
+            Session::flash('message', 'Success !');
+        }catch ( Exception $e ){
+            //If there are any exceptions, rollback the transaction`
+            DB::rollback();
+            Session::flash('danger', 'Failed !');
+        }
+        return Redirect::back();
+
+    }
+
 
     public function fac_ajax_delete_req_detail()
     {
@@ -578,68 +613,9 @@ class RnCFacultyController extends \BaseController
             Session::flash('danger', 'Failed !');
         }
         return Redirect::back();
-
-
-
-//
-//        DB::beginTransaction();
-//        try{
-//            $model = new RnCResearchPaperWriter();
-//            $model->rnc_research_paper_id = Input::get('rnc_research_paper_id');
-//            $model->writer_user_id = Input::get('writer_user_id');
-//            if($model->update()){
-//                echo "dhukce";exit;
-//                $model2 = new RnCWriterBeneficial();
-//                $model2->rnc_research_paper_writer_id = $model->id;
-//                $model2->rnc_research_paper_id = Input::get('rnc_research_paper_id');
-//                $model2->value = Input::get('value');
-//                $model2->update();
-//            }
-//            DB::commit();
-//            Session::flash('message', 'Success !');
-//        }catch ( Exception $e ){
-//            //If there are any exceptions, rollback the transaction`
-//            DB::rollback();
-//            Session::flash('danger', 'Failed !');
-//        }
-//        return Redirect::back();
-
     }
 
-    public function store_writer_beneficial()
-    {
-        #$data = Input::all();
-        for($i = 0; $i < count(Input::get('writer_user_id')) ; $i++){
-            $dt[] = [
-                'rnc_research_paper_id' => Input::get('rnc_research_paper_id'),
-                'writer_user_id'=> Input::get('writer_user_id')[$i],
-                'value'=> Input::get('value')[$i],
-            ];
-        }
-        DB::beginTransaction();
-        try{
-            foreach($dt as $key => $values){
-                $model = new RnCResearchPaperWriter();
-                $model->rnc_research_paper_id = $values['rnc_research_paper_id'];
-                $model->writer_user_id = $values['writer_user_id'];
-                if($model->save()){
-                    $model2 = new RnCWriterBeneficial();
-                    $model2->rnc_research_paper_writer_id = $model->id;
-                    $model2->rnc_research_paper_id = $values['rnc_research_paper_id'];
-                    $model2->value = $values['value'];
-                    $model2->save();
-                }
-            }
-            DB::commit();
-            Session::flash('message', 'Success !');
-        }catch ( Exception $e ){
-            //If there are any exceptions, rollback the transaction`
-            DB::rollback();
-            Session::flash('danger', 'Failed !');
-        }
-        return Redirect::back();
 
-    }
 
 
 

@@ -54,6 +54,11 @@ Route::any("sortable", [
     "uses" => "HomeController@sortable"
 ]);
 
+///Json Data
+Route::any("json_data", [
+    "as"   => "json-data",
+    "uses" => "HomeController@json_data"
+]);
 /*
  * Upload CSV data into mysql
  */
