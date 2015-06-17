@@ -100,13 +100,8 @@ Route::any('support-head/store',[
     'as' =>'support-head.store',
     'uses' => 'CfoController@storeSupportHead'
 ]);
-
-/*Route::any('support-head/mail-notification/{support_code}',[
-    'as' =>'support-head.mail-notification',
-    'uses' => 'CfoController@mailNotification'
-]);*/
-
-Route::any('support-head',[
+//cfo Support Head..
+Route::any('support-head/{status}',[
     'as' =>'support-head.index',
     'uses' => 'CfoAmwController@cfoSupportIndex'
 ]);
@@ -115,7 +110,6 @@ Route::any('support-head/test',[
     'as' =>'support-head.test',
     'uses' => 'CfoAmwController@Test'
 ]);
-
 
 Route::any('support-head/show/{id}',[
     'as' =>'support-head.show',
