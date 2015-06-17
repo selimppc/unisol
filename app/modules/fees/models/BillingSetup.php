@@ -13,8 +13,8 @@ class BillingSetup extends Eloquent{
     ];
     private $errors;
     private $rules = [
-        'billing_item_id' => 'required|integer',
-        'billing_schedule_id' => 'required|integer',
+       // 'billing_item_id' => 'required|integer',
+        //'billing_schedule_id' => 'required|integer',
         'batch_id' => 'required|integer',
         'cost' => 'numeric',
         'deadline' => 'date',

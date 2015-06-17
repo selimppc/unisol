@@ -473,4 +473,13 @@ class HomeController extends BaseController {
      * ===============================================
      */
 
+
+
+    public function json_data(){
+        $data = [
+            'Tanin', 'Shafi', 'Ratna'
+        ];
+        return Response::json($data);
+    }
+
 }
