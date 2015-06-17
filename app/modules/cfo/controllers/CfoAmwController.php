@@ -3,7 +3,7 @@
 class CfoAmwController extends \BaseController {
 
     function __construct() {
-        $this->beforeFilter('cfo', array('except' => array('index')));
+       # $this->beforeFilter('cfo', array('except' => array('index')));
     }
     protected function isPostRequest()
     {

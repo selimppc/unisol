@@ -8,9 +8,6 @@
 @stop
 @section('content')
 
-{{ HTML::script('assets/etsb/etsb_js/jquery/jquery.min.js')}}
-{{ HTML::script('assets/etsb/etsb_js/jquery-ui/jquery-ui.min.js')}}
-
 <div class="wrapper row-offcanvas row-offcanvas-left">
 
     <h3 class="page-header">Support Desk ...</h3>
@@ -19,9 +16,9 @@
             <!-- Custom Tabs -->
             <div class="nav-tabs-custom">
                <ul class="nav nav-tabs tabs-up" id="status_tab">
-                     <li><a href="" data-target="#contacts" class="media_node active span" id="contacts_tab" data-toggle="tabajax" rel="tooltip"> ALL </a></li>
-                     <li><a href="" data-target="#friends_list" class="media_node span" id="friends_list_tab" data-toggle="tabajax" rel="tooltip"> NEW</a></li>
-                     <li><a href="" data-target="#awaiting_request" class="media_node span" id="awaiting_request_tab" data-toggle="tabajax" rel="tooltip">OPEN</a></li>
+                     <li><a href="{{ Route('json-data', ['status'=>'escaped']) }}" data-target="#contacts" class="media_node active span" id="contacts_tab" data-toggle="tabajax" rel="tooltip"> ALL </a></li>
+                     <li><a href="{{ Route('json-data') }}" data-target="#friends_list" class="media_node span" id="friends_list_tab" data-toggle="tabajax" rel="tooltip"> NEW</a></li>
+                     <li><a href="{{ Route('json-data') }}" data-target="#awaiting_request" class="media_node span" id="awaiting_request_tab" data-toggle="tabajax" rel="tooltip">OPEN</a></li>
                </ul>
                <div class="tab-content">
                    <div class="tab-pane active" id="contacts">
@@ -52,18 +49,13 @@
 <script>
 $(function(){
     $('[data-toggle="tabajax"]').click(function(e) {
-
         e.preventDefault();
-//        alert('fsdfsdfsdfsdfsdfsdfsdfsdf');
         var $this = $(this),
-
             loadurl = $this.attr('href'),
             targ = $this.attr('data-target');
-
         $.get(loadurl, function(data) {
             $(targ).html(data);
         });
-
         $this.tab('show');
         return false;
     });
