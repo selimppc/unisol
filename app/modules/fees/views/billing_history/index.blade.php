@@ -58,9 +58,9 @@
                                 <div class="form-inline radio-inline">
                                     <div class="radio radio-style">
                                         {{ Form::radio('studentOrApplicant','student' ) }}
-                                        {{ Form::label('student', 'Student') }}
+                                        {{ Form::label('student','Student') }}
                                     </div>
-                                    <div class="radio">
+                                    <div class="radio radio-style">
                                         {{ Form::radio('studentOrApplicant','applicant',true) }}
                                         {{ Form::label('applicant', 'Applicant') }}
                                     </div>
@@ -70,13 +70,13 @@
                         <div class="col-lg-9 inline-textbox">
                             <div class="form-inline">
                                 <div class="form-group ">
-                                    <div class="col-lg-12" >
-                                        {{ Form::text('student_name',Input::old('student_name'), array('class'=>'textbox-style','placeholder'=>'Enter Name')) }} OR
+                                    <div class="col-lg-12">
+                                        {{ Form::text('student_id',Input::old('student_id'), array('class'=>'textbox-style','placeholder'=>'Enter id')) }} OR
                                     </div>
                                 </div>
                                 <div class="form-group ">
-                                    <div class="col-lg-12" >
-                                        {{ Form::text('student_id',Input::old('student_id'), array('class'=>'textbox-style','placeholder'=>'Enter id')) }}
+                                    <div class="col-lg-12">
+                                        {{ Form::text('student_name',Input::old('student_name'), array('class'=>'textbox-style','placeholder'=>'Enter name')) }}
                                     </div>
                                 </div>
                             </div>
@@ -154,22 +154,5 @@
         </div>
     </div>
 
-    <script>
-        $(document).ready(function(){
-
-            $("#send_to_one").show();
-
-            $("input:radio[name='applicant']").change(function(){
-
-                if(this.value == 'one' && this.checked){
-                    $("#send_to_one").hide();
-                }else{
-                    $("#send_to_one").show();
-                }
-
-            });
-
-        });
-    </script>
 
 @stop
