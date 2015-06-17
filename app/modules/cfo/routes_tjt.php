@@ -101,9 +101,14 @@ Route::any('support-head/store',[
     'uses' => 'CfoController@storeSupportHead'
 ]);
 //cfo Support Head..
-Route::any('support-head/{status}',[
+Route::any('support-head',[
     'as' =>'support-head.index',
     'uses' => 'CfoAmwController@cfoSupportIndex'
+]);
+
+Route::any('support-head/status/{status}',[
+    'as' =>'support-head.status',
+    'uses' => 'CfoAmwController@ajaxSupportDataByStatus'
 ]);
 
 Route::any('support-head/test',[
