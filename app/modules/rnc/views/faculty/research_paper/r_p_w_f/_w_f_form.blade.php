@@ -1,6 +1,7 @@
 <style>
     input{ border-color: 1px solid #efefef; }
     #test input { border: none; width: 99%; }
+
 </style>
 
 <div class='form-group'>
@@ -8,17 +9,18 @@
    {{ Form::text('searchName',  '', ['id'=>'search_writer_name', 'class'=>'ui-autocomplete form-control','placeholder'=>'Search Writer Name..', 'autofocus', ]) }}
 </div>
 
-{{Form::hidden('rnc_research_paper_id', $rnc_r_p_id,['id'=>'research-paper-id'])}}
+{{ Form::hidden('rnc_research_paper_id', $rnc_r_p_id,['id'=>'research-paper-id'])}}
 
-<div id="test-edit"></div>
+<div id="test-edit">
+    {{--the update form will load here--}}
+</div>
 
-
-<div class='row'>
+<div class='row toggleMydiv' id="talk">
        <div class="col-sm-4">
         <div class='form-group'>
            {{ Form::label('writer_user_id', 'Writer Name') }}
            <input type="text" id="writer-name" readonly style="background-color: lavender;padding-right: 20px">
-           {{Form::hidden('writer_user_id', Input::old('writer_user_id'),['id'=>'wr-name-id'])}}
+           {{ Form::hidden('writer_user_id', Input::old('writer_user_id'),['id'=>'wr-name-id']) }}
         </div>
     </div>
 
@@ -61,7 +63,7 @@
             <td id="new-column-value-{{ $model_value->id }}">{{ $model_value->relRnCWriterBeneficial->value }}</td>
             <td>
                 <a data-href="{{ $model_value->id }}" data-benf="{{$model_value->relRnCWriterBeneficial->id}}" class="btn btn-default btn-sm delete-dt-2" id="delete-dt-2{{ $model_value->id }}" ><i class="fa fa-trash-o" style="font-size: 15px;color: red"></i></a>
-                <a class="btn btn-sm btn-default" id="edit-writer-and-beneficial"><i class="fa fa-pencil-square-o" style="color: #0044cc" title="Edit"></i></a>
+                <a class="btn btn-sm btn-default edit-writer-and-beneficial" ><i class="fa fa-pencil-square-o" style="color: #0044cc" title="Edit"></i></a>
             </td>
         </tr>
       <?php $counter++;?>
@@ -144,9 +146,7 @@ $(function(){
          }
  	 });
 
-
     //delete : ok
-
      $('.delete-dt-2').click(function(e) {
         e.preventDefault();
         var $btn = $(this);
@@ -163,65 +163,25 @@ $(function(){
         });
      });
 
+    $(".edit-writer-and-beneficial").click(function(event){
+        $('#test-edit').append("<div class='form-group'> " +
+           "<label for='label-name' style='padding-right: 30px'>Writer Name: </label>" +
+           "<input value='' id='label-name' style='background-color : lavender' readonly> <input type='hidden' name='writer_user_id[]' value='' >" +
+           "</br> " +
+           "<label for='label-val' style='padding-right: 10px'>Beneficial Value: </label>" +
+           "<input type='text' id='label-val' name='value[]' value=''>" +
+           "<input type='button' style='margin-left: 160px' class='btn-xs btn-linkedin' value='Update'>" +
+           "<input type='button' class='pull-right btn-xs btn-info toggleShowADD' value='Back'>" +
+        " </div>");
+
+        $("#talk").hide();
+    });
 
 
-
-     //Beneficial Edit(s)
-          $tableItemCounter = 0; //To stop additem if exist
-          var $arrayRnc = []; //To stop additem if exist
-
-          $("#edit-writer-and-beneficial").click(function(event){
-              $res_pap_id = $("#research-paper-id").val();
-              $writer_id = $("#wr-name-id").val();
-              //$writer_name_val = $("#writer_name").val();
-              $benfcl_val = $("#beneficial-value").val();
-              $wr_name = $("#writer-name").val();
-              var total_count_share = "<?php echo $cal_benefit_share; ?>";
-
-              if($writer_id == null || $benfcl_val == null ){
-                  alert("please add Writer Name and Beneficial then try Again!");
-                  return false;
-              }else{
-                  $wrtr_u_id = $("#wr-name-id").val(); // writer user ID
-                  var index = $.inArray($wrtr_u_id, $arrayRnc);
-                  if (index>=0) {
-                      alert("You already added this Writer in the below table");
-                      //also flash the existing text field
-                      $("#writer-name").val("");
-                      $("#wr-name-id").val("");
-                      $("#beneficial-value").val("");
-                      $("#writer-name").val("");
-                      $("#search_writer_name").val("");
-
-                      return false;
-                  } else {
-
-                      var $total_ben = parseInt(total_count_share) + parseInt($benfcl_val);
-
-                      if($total_ben > 100){
-                         $("#beneficial-value").val("");
-                             alert( $total_ben +'  ,'+ 'Exceeded the Total share 100%. Please decrease your share percentage');
-                         $("#beneficial-value").focus();
-                         return false;
-                      }else{
-                         $('#test-edit').append("<div> " +
-                               "<input value='"+ $wr_name +"' style='background-color : lavender' readonly> <input type='hidden' name='writer_user_id[]' value='"+ $writer_id +"' >" +
-                               "<input name='value[]' value='"+ $benfcl_val +"'>" +
-                               "<input type='button' class='pull-right btn-xs btn-linkedin' value='Update'>" +
-                           " </div>");
-
-                         $arrayRnc.push($wrtr_u_id);
-
-                         //flush the input fields
-                         $("#writer-name").val("");
-                         $("#beneficial-value").val("");
-                         $("#writer-name").val("");
-                         $("#search_writer_name").val("");
-                      }
-                  }
-              }
-      	 });
-
+     $(".toggleShowADD").click(function(event){
+        $(".toggleMydiv").show();
+        $(".edit-writer-and-beneficial").hide();
+     });
 
 });
 
