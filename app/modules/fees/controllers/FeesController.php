@@ -97,22 +97,31 @@ class FeesController extends \BaseController {
         if($this->isPostRequest()) {
             $data = Input::all();
             $model = new BillingSetup();
-            $model->billing_schedule_id = Input::get('schedule_id');
-            $model->billing_item_id = Input::get('item_id');
-            $model->batch_id = Input::get('batch_id');
-            $model->cost = Input::get('cost');
-            $model->deadline = Input::get('deadline');
-            $model->fined_cost = Input::get('fined');
             if ($model->validate($data)) {
-                if ($model->save($data)) {
+                DB::beginTransaction();
+                try {
+                    $model->billing_schedule_id = Input::get('schedule_id');
+                    $model->billing_item_id = Input::get('item_id');
+                    $model->batch_id = Input::get('batch_id');
+                    $model->cost = Input::get('cost');
+                    $model->deadline = Input::get('deadline');
+                    $model->fined_cost = Input::get('fined');
+                    $model->save();
+                    DB::commit();
                     Session::flash('message', "Billing is Setup Successfully");
                     return Redirect::back();
-                } else {
-                    $errors = $model->errors();
-                    Session::flash('errors', $errors);
-                    return Redirect::back()->with('errors', 'Invalid Request');
                 }
-
+                catch ( Exception $e ){
+                        //If there are any exceptions, rollback the transaction
+                        DB::rollback();
+                        Session::flash('danger', "not added.Invalid Request!");
+                    }
+                    return Redirect::back();
+            } else {
+                $errors = $model->errors();
+                Session::flash('errors', $errors);
+                return Redirect::back()
+                    ->with('errors', 'invalid');
             }
         }
         return Redirect::back();
@@ -148,21 +157,34 @@ class FeesController extends \BaseController {
         if($this->isPostRequest()) {
             $data = Input::all();
             $model = BillingSetup::find($id);
-            $model->billing_schedule_id = Input::get('schedule_id');
-            $model->billing_item_id = Input::get('item_id');
-            $model->batch_id = Input::get('batch_id');
-            $model->cost = Input::get('cost');
-            $model->deadline = Input::get('deadline');
-            $model->fined_cost = Input::get('fined');
-            if ($model->save($data)) {
-                Session::flash('message', "Billing is Setup Successfully");
+            if ($model->validate($data)) {
+                DB::beginTransaction();
+                try {
+                    $model->billing_schedule_id = Input::get('schedule_id');
+                    $model->billing_item_id = Input::get('item_id');
+                    $model->batch_id = Input::get('batch_id');
+                    $model->cost = Input::get('cost');
+                    $model->deadline = Input::get('deadline');
+                    $model->fined_cost = Input::get('fined');
+                    $model->save();
+                    DB::commit();
+                    Session::flash('message', "Billing is Setup Successfully");
+                    return Redirect::back();
+                }
+                catch ( Exception $e ){
+                    //If there are any exceptions, rollback the transaction
+                    DB::rollback();
+                    Session::flash('danger', "not added.Invalid Request!");
+                }
                 return Redirect::back();
             } else {
                 $errors = $model->errors();
                 Session::flash('errors', $errors);
-                return Redirect::back()->with('errors', 'Invalid Request');
+                return Redirect::back()
+                    ->with('errors', 'invalid');
             }
         }
+
         return Redirect::back();
     }
 

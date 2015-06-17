@@ -3,7 +3,7 @@
 class CfoAmwController extends \BaseController {
 
     function __construct() {
-        $this->beforeFilter('cfo', array('except' => array('index')));
+       # $this->beforeFilter('cfo', array('except' => array('index')));
     }
     protected function isPostRequest()
     {
@@ -341,9 +341,8 @@ class CfoAmwController extends \BaseController {
                     ->where('cfo_category.support_user_id', $cfo_user_id);
             })
             ->get();
-        /*view data according to status*/
 
-        return View::make('cfo::cfo.support_head.index',compact('support_data','all_data','new_data','open_data','replied_data','closed_data'));
+        return View::make('cfo::cfo.support_head.test',compact('support_data','all_data','new_data','open_data','replied_data','closed_data'));
     }
 
     public function Test(){
