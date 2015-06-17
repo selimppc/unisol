@@ -1,6 +1,7 @@
 <style>
     input{ border-color: 1px solid #efefef; }
     #test input { border: none; width: 99%; }
+
 </style>
 
 <div class='form-group'>
@@ -8,14 +9,18 @@
    {{ Form::text('searchName',  '', ['id'=>'search_writer_name', 'class'=>'ui-autocomplete form-control','placeholder'=>'Search Writer Name..', 'autofocus', ]) }}
 </div>
 
-{{Form::hidden('rnc_research_paper_id', $rnc_r_p_id,['id'=>'research-paper-id'])}}
+{{ Form::hidden('rnc_research_paper_id', $rnc_r_p_id,['id'=>'research-paper-id'])}}
 
-<div class='row'>
+<div id="test-edit">
+    {{--the update form will load here--}}
+</div>
+
+<div class='row toggleMydiv' id="talk">
        <div class="col-sm-4">
         <div class='form-group'>
            {{ Form::label('writer_user_id', 'Writer Name') }}
            <input type="text" id="writer-name" readonly style="background-color: lavender;padding-right: 20px">
-           {{Form::hidden('writer_user_id', Input::old('writer_user_id'),['id'=>'wr-name-id'])}}
+           {{ Form::hidden('writer_user_id', Input::old('writer_user_id'),['id'=>'wr-name-id']) }}
         </div>
     </div>
 
@@ -58,7 +63,7 @@
             <td id="new-column-value-{{ $model_value->id }}">{{ $model_value->relRnCWriterBeneficial->value }}</td>
             <td>
                 <a data-href="{{ $model_value->id }}" data-benf="{{$model_value->relRnCWriterBeneficial->id}}" class="btn btn-default btn-sm delete-dt-2" id="delete-dt-2{{ $model_value->id }}" ><i class="fa fa-trash-o" style="font-size: 15px;color: red"></i></a>
-                <a href="{{ URL::route('faculty.research-paper-writer-beneficial.edit', ['rnc_r_p_id'=>$rnc_r_p_id ,'id'=>$model_value->id , 'ben_id'=>$model_value->relRnCWriterBeneficial->id]) }}" class="btn btn-sm btn-default" data-toggle="modal" data-target="#myModal2" href="" ><i class="fa fa-pencil-square-o" style="color: #0044cc" title="Edit"></i></a>
+                <a class="btn btn-sm btn-default edit-writer-and-beneficial" ><i class="fa fa-pencil-square-o" style="color: #0044cc" title="Edit"></i></a>
             </td>
         </tr>
       <?php $counter++;?>
@@ -75,18 +80,18 @@
 {{ HTML::script('assets/etsb/etsb_js/jquery-ui/jquery-ui.min.js')}}
 
 <script type="text/javascript">
- $(function(){
-     $( "#search_writer_name" ).autocomplete({
-      source: "/rnc/ajax/fac-get-writer-name-auto-complete",
-      minLength: 1,
-      select: function(event, ui) {
-        $('#select_writer_name').val(ui.item.label);
-        $('#wr-name-id').val(ui.item.writer_user_id);
-        $('#writer-name').val(ui.item.label);
-      }
- });
+$(function(){
+         $( "#search_writer_name" ).autocomplete({
+              source: "/rnc/ajax/fac-get-writer-name-auto-complete",
+              minLength: 1,
+              select: function(event, ui) {
+                $('#select_writer_name').val(ui.item.label);
+                $('#wr-name-id').val(ui.item.writer_user_id);
+                $('#writer-name').val(ui.item.label);
+              }
+         });
 
-//Product Add(s) : ok
+    //Beneficial Add(s) : ok
      $tableItemCounter = 0; //To stop additem if exist
      var $arrayRnc = []; //To stop additem if exist
 
@@ -139,27 +144,45 @@
                  }
              }
          }
- 	});
+ 	 });
+
+    //delete : ok
+     $('.delete-dt-2').click(function(e) {
+        e.preventDefault();
+        var $btn = $(this);
+        $.ajax({
+            url: '/rnc/faculty/research-paper-writer-beneficial/ajax-delete-req-detail',
+            type: 'POST',
+            dataType: 'json',
+            data: { id:  $(this).data("href"), ben_id: $(this).data("benf") },
+            success: function(response)
+            {
+                $btn.closest("tr").remove();
+                $('#something-delete').html(response);
+            }
+        });
+     });
+
+    $(".edit-writer-and-beneficial").click(function(event){
+        $('#test-edit').append("<div class='form-group'> " +
+           "<label for='label-name' style='padding-right: 30px'>Writer Name: </label>" +
+           "<input value='' id='label-name' style='background-color : lavender' readonly> <input type='hidden' name='writer_user_id[]' value='' >" +
+           "</br> " +
+           "<label for='label-val' style='padding-right: 10px'>Beneficial Value: </label>" +
+           "<input type='text' id='label-val' name='value[]' value=''>" +
+           "<input type='button' style='margin-left: 160px' class='btn-xs btn-linkedin' value='Update'>" +
+           "<input type='button' class='pull-right btn-xs btn-info toggleShowADD' value='Back'>" +
+        " </div>");
+
+        $("#talk").hide();
+    });
 
 
-//delete : ok
-	$(function(){
-          $('.delete-dt-2').click(function(e) {
-            e.preventDefault();
-            var $btn = $(this);
-            $.ajax({
-                url: '/rnc/faculty/research-paper-writer-beneficial/ajax-delete-req-detail',
-                type: 'POST',
-                dataType: 'json',
-                data: { id:  $(this).data("href"), ben_id: $(this).data("benf") },
-                success: function(response)
-                {
-                    $btn.closest("tr").remove();
-                    $('#something-delete').html(response);
-                }
-            });
-          });
-       });
+     $(".toggleShowADD").click(function(event){
+        $(".toggleMydiv").show();
+        $(".edit-writer-and-beneficial").hide();
+     });
+
 });
 
 </script>

@@ -149,19 +149,6 @@
           </div>
     </div>
 
-
-{{--MyModal--}}
-        <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true"  data-keyboard="false">
-              <div class="modal-dialog">
-                  <div class="modal-content">
-
-                  </div>
-              </div>
-        </div>
-
-
-
-
   {{--Modal for delete--}}
   <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"  data-keyboard="false">
         <div class="modal-dialog">
@@ -183,21 +170,21 @@
 
 @stop
 
-<script type="text/javascript">
-	$(document).ready(function () {
-    $('#openBtn').click(function () {
-        $('#myModal').modal({
-            show: true
-        })
-    });
+{{--<script type="text/javascript">--}}
+	{{--$(document).ready(function () {--}}
+    {{--$('#openBtn').click(function () {--}}
+        {{--$('#myModal').modal({--}}
+            {{--show: true--}}
+        {{--})--}}
+    {{--});--}}
 
-    $(document).on('show.bs.modal', '.modal', function (event) {
-        var zIndex = 1040 + (10 * $('.modal:visible').length);
-        $(this).css('z-index', zIndex);
-        setTimeout(function() {
-            $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
-        }, 0);
-    });
-});
+    {{--$(document).on('show.bs.modal', '.modal', function (event) {--}}
+        {{--var zIndex = 1040 + (10 * $('.modal:visible').length);--}}
+        {{--$(this).css('z-index', zIndex);--}}
+        {{--setTimeout(function() {--}}
+            {{--$('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');--}}
+        {{--}, 0);--}}
+    {{--});--}}
+{{--});--}}
 
-</script>
+{{--</script>--}}
