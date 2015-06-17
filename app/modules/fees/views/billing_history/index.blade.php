@@ -35,131 +35,119 @@
                         </ul>
                     </li>
                 </ul>
-
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab_1">
 
                         {{--****************** Filter :Starts ***********************--}}
 
-                            {{Form::open(array('route'=> ['billing.history']))}}
-                            <div class="col-sm-8 ">
-                                <div class="col-sm-4">
-                                    {{ Form::label('department_id', 'Department') }}
-                                    {{ Form::select('department_id',$department,Input::old('department_id'), array('class' => 'form-control') ) }}
-                                </div>
-                                <div class="col-sm-4">
-                                    {{ Form::label('degree_id', 'Degree') }}
-                                    {{ Form::select('degree_id',$degree,Input::old('degree_id'), array('class' => 'form-control') ) }}
-                                </div>
-                                <div class="col-sm-4">
-                                    {{ Form::label('batch_id', 'Batch') }}
-                                    {{ Form::select('batch_id',$batch, Input::old('batch_id'), array('class' => 'form-control')) }}
-                                </div>
-
-                                <div class="col-sm-4">
-                                    <div class="form-inline radio-inline">
-                                        <div class="radio radio-style">
-                                            {{ Form::radio('studentOrApplicant','student', true) }}
-                                            {{ Form::label('student', 'Student') }}
-                                        </div>
-                                        <div class="radio">
-                                            {{ Form::radio('studentOrApplicant','applicant') }}
-                                            {{ Form::label('applicant', 'Applicant') }}
-                                        </div>
-                                     </div>
-                                    </div>
+                        {{Form::open(array('route'=> ['billing.history']))}}
+                        <div class="col-sm-8 ">
+                            <div class="col-sm-4">
+                                {{ Form::label('department_id', 'Department') }}
+                                {{ Form::select('department_id',$department,Input::old('department_id'), array('class' => 'form-control') ) }}
                             </div>
-
-                                <div class="col-lg-9 inline-textbox">
-                                    <div class="form-inline">
-                                        <div class="form-group ">
-                                            <div class="col-lg-12">
-                                                {{ Form::text('student_id',Input::old('student_id'), array('class'=>'textbox-style','placeholder'=>'Enter id')) }} OR
-                                            </div>
-                                        </div>
-                                        <div class="form-group ">
-                                            <div class="col-lg-12">
-                                                {{ Form::text('student_name',Input::old('student_name'), array('class'=>'textbox-style','placeholder'=>'Enter name')) }}
-                                            </div>
-                                        </div>
+                            <div class="col-sm-4">
+                                {{ Form::label('degree_id', 'Degree') }}
+                                {{ Form::select('degree_id',$degree,Input::old('degree_id'), array('class' => 'form-control') ) }}
+                            </div>
+                            <div class="col-sm-4">
+                                {{ Form::label('batch_id', 'Batch') }}
+                                {{ Form::select('batch_id',$batch, Input::old('batch_id'), array('class' => 'form-control')) }}
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-inline radio-inline">
+                                    <div class="radio radio-style">
+                                        {{ Form::radio('studentOrApplicant','student' ) }}
+                                        {{ Form::label('student', 'Student') }}
+                                    </div>
+                                    <div class="radio">
+                                        {{ Form::radio('studentOrApplicant','applicant',true) }}
+                                        {{ Form::label('applicant', 'Applicant') }}
                                     </div>
                                 </div>
-
-                                <div class="col-sm-8 btn-style">
-                                {{ Form::submit('Filter', array('class'=>'btn','id'=>'button'))}}
+                            </div>
+                        </div>
+                        <div class="col-lg-9 inline-textbox">
+                            <div class="form-inline">
+                                <div class="form-group ">
+                                    <div class="col-lg-12">
+                                        {{ Form::text('student_id',Input::old('student_id'), array('class'=>'textbox-style','placeholder'=>'Enter id')) }} OR
+                                    </div>
                                 </div>
-
-                            {{Form::close()}}
-                                          {{-- End Filter--}}
+                                <div class="form-group ">
+                                    <div class="col-lg-12">
+                                        {{ Form::text('student_name',Input::old('student_name'), array('class'=>'textbox-style','placeholder'=>'Enter name')) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-8 btn-style">
+                            {{ Form::submit('Filter', array('class'=>'btn','id'=>'button'))}}
+                        </div>
+                        {{Form::close()}}
+                        {{-- End Filter--}}
 
                         {{--****************Student*******************--}}
                         @if($studentOrApplicant == 'student')
-                        <div class="box-body table-responsive ">
-                            <table id="example" class="table table-bordered table-hover table-striped">
-                                <thead>
-                                <tr>
-                                    <th>Student</th>
-                                    <th>Schedule</th>
-                                    <th>Amount</th>
-                                    <th>Action</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @if(isset($data))
-                                    @foreach($data as $value)
-                                        <tr>
-                                            <td>{{isset($value->first_name) ? $value->first_name:''}} {{isset($value->last_name) ? $value->last_name:''}}</td>
-
-                                            <td>{{isset($value->schedule_title) ? $value->schedule_title:''}}</td>
-
-                                            <td>{{isset($value->amount) ? $value->amount : ''}}</td>
-
-                                            <td>
-                                                <a href="" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" href=""><i class="fa fa-eye" style="color: green"></i></a>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                @endif
-                                </tbody>
-                            </table>
-                            <a href="{{ URL::route('billing.history')}}" class="btn-link pull-right"><i class="fa fa-backward text-red"></i> Back to All List</a>
-                            </br>
-                        </div>
-
+                            <div class="box-body table-responsive ">
+                                <table id="example" class="table table-bordered table-hover table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>Student</th>
+                                        <th>Schedule</th>
+                                        <th>Amount</th>
+                                        <th>Action</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @if(isset($data))
+                                        @foreach($data as $value)
+                                            <tr>
+                                                <td>{{isset($value->first_name) ? $value->first_name:''}} {{isset($value->last_name) ? $value->last_name:''}}</td>
+                                                <td>{{isset($value->schedule_title) ? $value->schedule_title:''}}</td>
+                                                <td>{{isset($value->amount) ? $value->amount : ''}}</td>
+                                                <td>
+                                                    <a href="" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" href=""><i class="fa fa-eye" style="color: green"></i></a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    @endif
+                                    </tbody>
+                                </table>
+                                <a href="{{ URL::route('billing.history')}}" class="btn-link pull-right"><i class="fa fa-backward text-red"></i> Back to All List</a>
+                                </br>
+                            </div>
                         @else
-                        <div class="box-body table-responsive ">
-                            <table id="example1" class="table table-bordered table-hover table-striped">
-                                <thead>
-                                <tr>
-                                    <th>Name of Applicant</th>
-                                    <th>Schedule</th>
-                                    <th>Amount</th>
-                                    <th>Action</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @if(isset($data))
-                                    @foreach($data as $value)
-                                        <tr>
-                                            <td>{{isset($value->first_name) ? $value->first_name:''}}
-                                                 {{isset($value->last_name) ? $value->last_name:''}}</td>
-
-                                            <td>{{isset($value->schedule_title) ? $value->schedule_title:''}}</td>
-
-                                            <td>{{isset($value->amount) ? $value->amount : ''}}</td>
-
-                                            <td>
-                                                <a href="" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" href=""><i class="fa fa-eye" style="color: green"></i></a>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                @endif
-                                </tbody>
-                            </table>
-                            <a href="{{ URL::route('billing.history')}}" class="btn-link pull-right"><i class="fa fa-backward text-red"></i> Back to All List</a>
-                            </br>
-                        </div>
-                    @endif
+                            <div class="box-body table-responsive ">
+                                <table id="example1" class="table table-bordered table-hover table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>Name of Applicant</th>
+                                        <th>Schedule</th>
+                                        <th>Amount</th>
+                                        <th>Action</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @if(isset($data))
+                                        @foreach($data as $value)
+                                            <tr>
+                                                <td>{{isset($value->first_name) ? $value->first_name:''}}
+                                                    {{isset($value->last_name) ? $value->last_name:''}}</td>
+                                                <td>{{isset($value->schedule_title) ? $value->schedule_title:''}}</td>
+                                                <td>{{isset($value->amount) ? $value->amount : ''}}</td>
+                                                <td>
+                                                    <a href="" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" href=""><i class="fa fa-eye" style="color: green"></i></a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    @endif
+                                    </tbody>
+                                </table>
+                                <a href="{{ URL::route('billing.history')}}" class="btn-link pull-right"><i class="fa fa-backward text-red"></i> Back to All List</a>
+                                <br>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
