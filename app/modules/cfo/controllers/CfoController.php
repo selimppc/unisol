@@ -30,6 +30,8 @@ class CfoController extends \BaseController {
         return View::make('cfo::public.knowledgebase',compact('data','model'));
 	}
 
+      //TODO :User Rating On KnowledgeBase  .........................
+
     public function detailsKb($kb_id){
 
         $data = CfoKnowledgeBase::where('id','=',$kb_id)->first();
