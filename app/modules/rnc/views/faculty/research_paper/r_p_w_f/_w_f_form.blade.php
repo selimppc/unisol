@@ -15,7 +15,7 @@
     {{--the update form will load here--}}
 </div>
 
-<div class='row toggleMydiv' id="talk">
+<div class='row toggleMydiv' id="hide-add-option">
        <div class="col-sm-4">
         <div class='form-group'>
            {{ Form::label('writer_user_id', 'Writer Name') }}
@@ -36,6 +36,7 @@
     </div>
 </div>
 
+<div class="table-hide">
 <p>
     <b> RP Detail(s) with Writer and Beneficial</b>
     <span class="pull-right" id="something-delete" style="color: orangered; font-weight: bold"></span>
@@ -53,12 +54,7 @@
     <?php $counter = 0;?>
     @foreach($writer_info as $key=>$model_value)
         <tr id="new-row-rnc-{{ $model_value->id }}">
-            <td id="new-column-name-{{ $model_value->id }}">
-             {{ isset($model_value->writer_user_id) ?
-                 $model_value->relUser->relUserProfile->first_name.' '.
-                 $model_value->relUser->relUserProfile->middle_name.' '.
-                 $model_value->relUser->relUserProfile->last_name : ''
-             }}
+            <td id="new-column-name-{{ $model_value->id }}">{{ isset($model_value->writer_user_id) ? $model_value->relUser->relUserProfile->first_name.' '.$model_value->relUser->relUserProfile->middle_name.' '.$model_value->relUser->relUserProfile->last_name : '' }}
             </td>
             <span id="writer-user-id-{{$model_value->writer_user_id }}" style="display: none"></span>
             <span id="ben-id-{{$model_value->relRnCWriterBeneficial->id }}" style="display: none"> </span>
@@ -68,8 +64,8 @@
             <td>
                 <a data-href="{{ $model_value->id }}" data-benf="{{ $model_value->relRnCWriterBeneficial->id }}" class="btn btn-default btn-sm delete-dt-2" id="delete-dt-2{{ $model_value->id }}" ><i class="fa fa-trash-o" style="font-size: 15px;color: red"></i></a>
                 <a data-href="{{ $model_value->id }}"
-                    data-wrtUserId="{{ $model_value->writer_user_id }}"
-                    data-benId="{{ $model_value->relRnCWriterBeneficial->id }}"
+                    data-wrtuserid="{{ $model_value->writer_user_id }}"
+                    data-benid="{{ $model_value->relRnCWriterBeneficial->id }}"
                     class="btn btn-sm btn-default edit-writer-and-beneficial" >
                     <i class="fa fa-pencil-square-o" style="color: #0044cc" title="Edit"></i>
                 </a>
@@ -82,6 +78,7 @@
 <div class="modal-footer">
     {{ Form::submit('Submit', ['class'=>'btn btn-xs btn-success', 'style'=>'padding: 1.5%;'] ) }}
     <button class="btn btn-primary btn-large" data-dismiss="modal" type="button">Close</button>
+</div>
 </div>
 <p>&nbsp;</p>
 
@@ -178,37 +175,34 @@ $(function(){
     $(".edit-writer-and-beneficial").click(function(event){
         event.preventDefault();
         var $id = $(this).data("href");
-        var $writer_user_id = $(this).data("wrtUserId");
-        var $ben_table_id = $(this).data("benId");
+        var $writer_user_id = $(this).data("wrtuserid");
+        var $ben_table_id = $(this).data("benid");
 
         $name = $("#new-column-name-"+$id).html();
         $value = $("#new-column-value-"+$id).html();
         var $research_paper_id = "<?php echo $rnc_r_p_id; ?>";
-
-        $rnc_writer_user_id = $("#writer-user-"+$writer_user_id).html();
-        $rnc_ben_id = $("#ben-"+$ben_table_id).html();
-        $rnc_writer_id = $("#rnc-writer-"+$id).html();
-
-
+     
         var $form_start = "<form action='{{ route('faculty.research-paper-writer-beneficial.update') }}' method='POST'>";
         var $form_end = "</form>";
 
         $('#test-edit').append($form_start + "<div class='form-group'> " +
            "<input type='hidden' name='rnc_research_paper_id' value='" + $research_paper_id + "'>" +
            "<label for='label-name' style='padding-right: 30px'>Writer Name: </label>" +
-           "<input id='label-name' style='background-color : lavender' readonly value='"+ $name +"'>" +
-           "<input type='text' name='writer_user_id' value='" + $rnc_writer_user_id + "' >" +
-           "<input type='text' name='id' value='" + $rnc_ben_id + "' >" +
-           "<input type='text' name='id' value='" + $rnc_writer_id + "' >" +
+           "<input id='label-name' style='background-color : lavender; padding-right: 10px;' readonly value='"+ $name +"'>" +
+           "<input type='hidden' name='writer_user_id' value='" + $writer_user_id + "' >" +
+           "<input type='hidden' name='writer_id' value='" + $id + "' >" +
+           "<input type='hidden' name='beneficial_id' value='" + $ben_table_id + "' >" +
            "</br> " +
            "<label for='label-val' style='padding-right: 10px'>Beneficial Value: </label>" +
-           "<input type='text' id='label-val' name='value' value='"+ $value +"'>" +
+           "<input type='text' id='label-val' style='padding-right: 10px;' name='value' value='"+ $value +"'>" +
            "<input type='submit' style='margin-left: 160px' class='btn-xs btn-linkedin' value='Update'>" +
         " </div>" + $form_end);
 
-        $("#talk").hide();
+        $("#hide-add-option").hide();
+        $(".table-hide").hide();
     });
 
+$wr_name = $("#writer-name").val();
 
 //     $(".toggleShowADD").click(function(event){
 //        $(".toggleMydiv").show();
