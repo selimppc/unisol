@@ -8,7 +8,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            <h3 class="text-purple ">Billing Details</h3>
+            <h3 class="text-purple ">User Information</h3>
         </div><!-- ./col -->
     </div><!-- /.row -->
     <div class="row">
@@ -48,8 +48,7 @@
                 </table>
             </div>
             <div>&nbsp;</div>
-            <div>&nbsp;</div>
-            <div>&nbsp;</div>
+            <h3 class="text-purple ">Billing Details</h3>
             <div class="box-body table-responsive ">
                 <table class="table table-bordered table-hover table-striped">
                     <thead>
@@ -62,14 +61,17 @@
                     @foreach($relation_data as $value)
                         <tr>
                             <td>{{isset($value->relBillingSchedule->relBillingItem->title) ? $value->relBillingSchedule->relBillingItem->title:''}}</td>
+
                             <td>{{isset($value->relBillingSchedule->title) ? $value->relBillingSchedule->title:''}}</td>
+
                             <td>{{isset($value->relBillingDetailsApplicant->waiver_amount) ? $value->relBillingDetailsApplicant->waiver_amount:''}}</td>
+
                             <td>{{isset($value->total_amount) ? $value->total_amount : ''}}</td>
                         </tr>
                     @endforeach
-
                     </tbody>
                 </table>
+                <a href="{{ URL::route('billing.history')}}" class="btn-link pull-right"><i class="fa fa-backward text-red"></i> Back to All List</a>
             </div>
         </div>
     </div>
