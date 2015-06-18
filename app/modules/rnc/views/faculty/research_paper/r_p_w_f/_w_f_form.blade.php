@@ -172,17 +172,17 @@ $(function(){
 
 //        $writer_user_id = $("#wr-name-id").html();
 //        $research_paper_id = $("#research_paper_id").html;
-          {{--var $var = "<?php echo $var; ?>"; //to get php $var value in js $var--}}
+
 
         $name = $("#new-column-name-"+$id).html()
         $value = $("#new-column-value-"+$id).html();
 
-        var $form_start =    "<form action='{{ route('faculty.research-paper-writer-beneficial.update') }}' method='POST'>";
+        var $form_start = "<form action='{{ route('faculty.research-paper-writer-beneficial.update') }}' method='POST'>";
         var $form_end = "</form>";
 
         $('#test-edit').append($form_start + "<div class='form-group'> " +
            "<label for='label-name' style='padding-right: 30px'>Writer Name: </label>" +
-           "<input id='label-name' style='background-color : lavender' readonly value='"+ $name +"'> <input type='hidden' name='writer_user_id' value='"+ $writer_user_id +"' >" +
+           "<input id='label-name' style='background-color : lavender' readonly value='"+ $name +"'> <input type='hidden' name='writer_user_id' value=' ' >" +
            "</br> " +
            "<label for='label-val' style='padding-right: 10px'>Beneficial Value: </label>" +
            "<input type='text' id='label-val' name='value' value='"+ $value +"'>" +
@@ -201,4 +201,3 @@ $(function(){
 });
 
 </script>
-
