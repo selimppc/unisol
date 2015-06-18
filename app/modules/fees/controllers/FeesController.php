@@ -327,16 +327,16 @@ class FeesController extends \BaseController {
         if($studentOrApplicant == 'student')
         {
             $data = BillingVStudentHistory::where('id', $id)->first();
-            $student_id = $data->student_id;
-            $relation_data = BillingSummaryStudent::with('relBillingDetailsStudent')->where('student_user_id', $student_id)->get();
+           // $student_id = $data->student_id;
+            $relation_data = BillingSummaryStudent::with('relBillingDetailsStudent.relBillingItem', 'relBillingSchedule')->where('id', $id)->get();
         }else{
             $data = BillingVApplicantHistory::where('id', $id)->first();
-            $applicant_id = $data->applicant_id;
-            $relation_data = BillingSummaryApplicant::with('relBillingDetailsApplicant.relBillingItem', 'relBillingSchedule')->where('applicant_id', $applicant_id)->get();
+           // $applicant_id = $data->applicant_id;
+            $relation_data = BillingSummaryApplicant::with('relBillingDetailsApplicant.relBillingItem', 'relBillingSchedule')->where('id', $id)->get();
         }
 
-       // print_r($relation_data);exit;
-        return View::make('fees::billing_history.view',compact('data', 'relation_data'));
+        #print_r($relation_data[0]['relBillingDetailsApplicant'][0]['relBillingItem']['title']);exit;
+        return View::make('fees::billing_history.view',compact('data', 'relation_data','studentOrApplicant'));
 
 
     }
