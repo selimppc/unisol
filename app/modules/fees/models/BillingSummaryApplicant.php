@@ -43,7 +43,7 @@ class BillingSummaryApplicant extends Eloquent{
         return $this->belongsTo('BillingSchedule', 'billing_schedule_id', 'id');
     }
     public function relBillingDetailsApplicant(){
-        return $this->HasMany('BillingDetailsApplicant','billing_summary_applicant_id', 'id');
+        return $this->HasMany('BillingDetailsApplicant');
     }
 
 
