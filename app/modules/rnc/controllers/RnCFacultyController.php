@@ -53,7 +53,6 @@ class RnCFacultyController extends \BaseController
         App::abort(404);
     }
 
-
     public function editConfig($id)
     {
         $config = RnCConfig::find($id);
@@ -114,7 +113,6 @@ class RnCFacultyController extends \BaseController
             return Redirect::back()->with('error', 'Invalid Delete Process ! Config has been using in other DB Table.At first Delete Data from there then come here again. Thank You !!!');
         }
     }
-
     //Research Paper
 
     public function indexResearchPaper()
@@ -220,7 +218,6 @@ class RnCFacultyController extends \BaseController
         DB::table('rnc_transaction')->where('rnc_research_paper_id', $rnc_rp_id)
             ->update(array('count' => $sample + 1));
 
-
         $download = RnCResearchPaper::find($rnc_rp_id);
         $file = $download->file;
         $path = public_path("rnc_file/" . $file);
@@ -249,7 +246,6 @@ class RnCFacultyController extends \BaseController
                 $transaction->issue_date = date('d-m-y H:i:s');
                 $transaction->count = 0;
                 $transaction->status = 'received';
-
                 if ($transaction->save())
                 {
                     // save to lib_book_financial_transaction table
@@ -292,9 +288,7 @@ class RnCFacultyController extends \BaseController
     public function myRP()
     {
         $my_cart_books = RnCTransaction::with('relRnCResearchPaper','relRnCFinancialTransaction')
-            ->where('user_id', Auth::user()->get()->id)
-            ->get();
-
+            ->where('user_id', Auth::user()->get()->id)->get();
         return View::make('rnc::faculty.research_paper.my_item',compact('all_cart_book_ids','my_cart_books','sum'));
     }
 
@@ -477,7 +471,6 @@ class RnCFacultyController extends \BaseController
         }
     }
 
-
     public function listWriterBeneficial($rnc_r_p_id)
     {
         $writer_info = RnCResearchPaperWriter::with('relRnCResearchPaper','relRnCWriterBeneficial' ,'relUser', 'relUser.relUserProfile')
@@ -591,16 +584,14 @@ class RnCFacultyController extends \BaseController
     {
         $ben_id = Input::all();
 
-        print_r($ben_id);exit;
-
         DB::beginTransaction();
         try{
-                $model = RnCResearchPaperWriter::find($id);
+                $model = RnCResearchPaperWriter::find(Input::get('writer_id'));
                 $model->rnc_research_paper_id = Input::get('rnc_research_paper_id');
                 $model->writer_user_id = Input::get('writer_user_id');
                 if($model->update()){
-                    $model2 = RnCWriterBeneficial::find($ben_id);
-                    $model2->rnc_research_paper_writer_id = $model->id;
+                    $model2 = RnCWriterBeneficial::find(Input::get('beneficial_id'));
+                    $model2->rnc_research_paper_writer_id = Input::get('writer_id');
                     $model2->rnc_research_paper_id = Input::get('rnc_research_paper_id');
                     $model2->value = Input::get('value');
                     $model2->update();
@@ -616,12 +607,7 @@ class RnCFacultyController extends \BaseController
         return Redirect::back();
     }
 
-
-
-
-
     //Writer
-
     public function indexRnCWriter($rnc_r_p_id)
     {
         $rnc_r_p_writer = RnCResearchPaperWriter::with('relRnCResearchPaper','relUser', 'relUser.relUserProfile')->latest('id')->where('rnc_research_paper_id' ,'=', $rnc_r_p_id)->get();
@@ -677,8 +663,6 @@ class RnCFacultyController extends \BaseController
 
     }
 
-
-
     public function showRnCWriter($id)
     {
         $rnc_r_p_writer_show = RnCResearchPaperWriter::find($id);
@@ -689,7 +673,6 @@ class RnCFacultyController extends \BaseController
         App::abort(404);
     }
 
-
     public function editRnCWriter($id)
     {
         $rnc_r_p_writer_edit = RnCResearchPaperWriter::with('relRnCResearchPaper')->find($id);
@@ -698,7 +681,6 @@ class RnCFacultyController extends \BaseController
         return View::make('rnc::faculty.research_paper_writer.edit',
             compact('rnc_r_p_writer_edit','list_writer_name'));
     }
-
 
     public function updateRnCWriter($id)
     {
