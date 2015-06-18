@@ -62,15 +62,15 @@
                     <tbody>
                     <?php $i=0; ?>
                     @if(isset($relation_data))
-                    @foreach($relation_data as $value)
+                    @foreach($relation_data[$i]->relBillingDetailsApplicant as $value)
                         <tr>
-                            <td>{{$value['relBillingDetailsApplicant'][$i]['relBillingItem']['title']}}</td>
+                            <td>{{$value['relBillingItem']['title']}}</td>
 
-                            <td>{{isset($value->relBillingSchedule->title) ? $value->relBillingSchedule->title:''}}</td>
+                            <td>{{$relation_data[$i]->relBillingSchedule->title}}</td>
 
-                            <td>{{$value['relBillingDetailsApplicant'][$i]['waiver_amount']}}</td>
+                            <td>{{$value['waiver_amount']}}</td>
 
-                            <td>{{$value['relBillingDetailsApplicant'][$i]['total_amount']-('waiver_amount')}}</td>
+                            <td>{{$value['total_amount']-$value['waiver_amount']}}</td>
 
                         </tr>
                     @endforeach
@@ -92,15 +92,15 @@
                     <tbody>
                     <?php $i=0; ?>
                     @if(isset($relation_data))
-                        @foreach($relation_data as $value)
+                        @foreach($relation_data[0]->relBillingDetailsStudent as $value)
                             <tr>
-                                <td>{{$value['relBillingDetailsStudent'][$i]['relBillingItem']['title']}}</td>
+                                <td>{{$value['relBillingItem']['title']}}</td>
 
-                                <td>{{isset($value->relBillingSchedule->title) ? $value->relBillingSchedule->title:''}}</td>
+                                <td>{{$relation_data[$i]->relBillingSchedule->title}}</td>
 
-                                <td>{{$value['relBillingDetailsStudent'][$i]['waiver_amount']}}</td>
+                                <td>{{$value['waiver_amount']}}</td>
 
-                                <td>{{$value['relBillingDetailsStudent'][$i]['total_amount']-('waiver_amount')}}</td>
+                                <td>{{$value['total_amount']-$value['waiver_amount']}}</td>
 
                             </tr>
                         @endforeach
