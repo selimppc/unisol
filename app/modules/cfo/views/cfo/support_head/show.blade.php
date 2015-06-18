@@ -52,7 +52,7 @@
                </table>
            </div>
            <p>&nbsp;</p>
-       <a href="" class="pull-right btn btn-default" span class="glyphicon-refresh">Close</a>
+       <a href="" class="pull-right btn btn-default" >Close</a>
        <p>&nbsp;</p>
      </div>
 </div>

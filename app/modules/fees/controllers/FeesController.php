@@ -151,7 +151,6 @@ class FeesController extends \BaseController {
         return View::make('fees::billing_setup.edit',compact('edit_billing_setup','degree','batch_id','schedule_id','item_id','degree_program_name'));
     }
 
-
     public function updateBillingSetup($id)
     {
         if($this->isPostRequest()) {
@@ -293,76 +292,23 @@ class FeesController extends \BaseController {
         return View::make('fees::billing_history.index',compact('degree','batch','department','applicant','student','studentOrApplicant','data'));
 
 	}
-
-
 	/**
 	 * Show the form for creating a new resource.
 	 *
 	 * @return Response
 	 */
-	public function create()
+	public function billing_history_show($id)
 	{
-		//
+
+            $student_info = BillingVStudentHistory::where('id', $id)->first();
+            // print_r($student_info);exit;
+            $student_details = BillingVStudentHistory::find($id);
+
+            $applicant_info = BillingVApplicantHistory::where('id', $id)->first();
+            $applicant_details = BillingVApplicantHistory::find($id);
+
+
+            return View::make('fees::billing_history.view',compact('student_info','student_details','applicant_info','applicant_details'));
 	}
-
-
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
-	}
-
-
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
-	}
-
 
 }
