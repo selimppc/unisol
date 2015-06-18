@@ -330,25 +330,17 @@ class CfoAmwController extends \BaseController {
 /*Support Desk*/
 
     public function cfoSupportIndex(){
-        $cfo_user_id = Auth::user()->get()->id;
-        $support_data = CfoSupportHead::with('relCfoCategory')
-            ->whereExists(function($query) use($cfo_user_id)
-            {
-                $query->from('cfo_category')
-                    ->whereRaw('cfo_category.id = cfo_support_head.cfo_category_id')
-                    ->where('cfo_category.support_user_id', $cfo_user_id)
-                    ->where('cfo_support_head.status','=','new');
-            })
-            ->paginate(3);
-        return View::make('cfo::cfo.support_head.index',compact('support_data'));
+
+        return View::make('cfo::cfo.support_head.index');
     }
 
-    public function ajaxSupportDataByStatus($status){
+    //TODO :Stop Repeated call in ajax pagination......
 
+    public function ajaxSupportDataByStatus($status){
         $cfo_user_id = Auth::user()->get()->id;
-        $offset = Input::get('page');
+        /*$offset = Input::get('page');
         if(!isset($offset))
-            $offset = 1;
+            $offset = 1;*/
 
         $support_data = CfoSupportHead::with('relCfoCategory')
             ->whereExists(function($query) use($cfo_user_id,$status)
@@ -363,6 +355,7 @@ class CfoAmwController extends \BaseController {
         if (Request::ajax()) {
             return Response::json(View::make('cfo::cfo.support_head._ajax_list', array('support_data' => $support_data))->render());
         }
+
         return Redirect::route('support-head.index');
     }
 
