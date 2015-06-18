@@ -552,7 +552,6 @@ class RnCFacultyController extends \BaseController
 
     }
 
-
     public function fac_ajax_delete_req_detail()
     {
         $id = Input::get('id');
@@ -594,11 +593,8 @@ class RnCFacultyController extends \BaseController
 
         print_r($ben_id);exit;
 
-        $ben_id = Input::get('ben_id');
-
         DB::beginTransaction();
         try{
-
                 $model = RnCResearchPaperWriter::find($id);
                 $model->rnc_research_paper_id = Input::get('rnc_research_paper_id');
                 $model->writer_user_id = Input::get('writer_user_id');
