@@ -15,7 +15,7 @@
             <!-- Custom Tabs -->
             <div class="nav-tabs-custom">
                <ul class="nav nav-tabs tabs-up" id="status_tab">
-                     <li class="active"><a href="{{Route('support-head.status',['value'=>'new'])}}" data-target="#new" class="media_node span" id="new_tab" data-toggle="tabajax" rel="tooltip">New</a></li>
+                     <li class="active"><a href="{{Route('support-head.status',['value'=>'new'])}}" data-target="#new" class="media_node span" id="new_tab" data-toggle="tabajax" rel="tooltip">NEW</a></li>
                      <li><a href="{{Route('support-head.status',['value'=>'open'])}}" data-target="#open" class="media_node span" id="open_tab" data-toggle="tabajax" rel="tooltip"> OPEN</a></li>
                      <li><a href="{{Route('support-head.status',['value'=>'replied'])}}" data-target="#replied" class="media_node span" id="replied_tab" data-toggle="tabajax" rel="tooltip">REPLIED</a></li>
                      <li><a href="{{Route('support-head.status',['value'=>'closed'])}}" data-target="#closed" class="media_node span" id="closed_tab" data-toggle="tabajax" rel="tooltip"> CLOSED </a></li>
