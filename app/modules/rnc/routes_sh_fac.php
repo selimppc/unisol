@@ -187,7 +187,7 @@
 
     Route::any("ajax/fac-get-writer-name-auto-complete", [
         "as"   => "ajax.fac-get-writer-name-auto-complete",
-        "uses" => "RnCFacultyController@ajaxFacGetWriterNameAutoComplete"
+        "uses" => "RnCFacultyController@ajaxGetWriterNameAutoComplete"
     ]);
 
     Route::any('faculty/research-paper-writer/store',[

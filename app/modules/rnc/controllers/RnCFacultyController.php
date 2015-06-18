@@ -496,7 +496,7 @@ class RnCFacultyController extends \BaseController
 
     // AJax : Writer Name Search and Get
 
-    public function ajaxFacGetWriterNameAutoComplete ()
+    public function ajaxGetWriterNameAutoComplete ()
     {
         $term = Input::get('term');
         $results = array();
