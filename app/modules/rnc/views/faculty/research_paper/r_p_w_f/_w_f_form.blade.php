@@ -181,7 +181,7 @@ $(function(){
         $name = $("#new-column-name-"+$id).html();
         $value = $("#new-column-value-"+$id).html();
         var $research_paper_id = "<?php echo $rnc_r_p_id; ?>";
-     
+
         var $form_start = "<form action='{{ route('faculty.research-paper-writer-beneficial.update') }}' method='POST'>";
         var $form_end = "</form>";
 
@@ -201,14 +201,23 @@ $(function(){
         $("#hide-add-option").hide();
         $(".table-hide").hide();
     });
-
-$wr_name = $("#writer-name").val();
-
-//     $(".toggleShowADD").click(function(event){
-//        $(".toggleMydiv").show();
-//        $(".edit-writer-and-beneficial").hide();
-//     });
-
 });
 
 </script>
+
+{{--     $(".toggleShowADD").click(function(event){--}}
+{{--        $(".toggleMydiv").show();--}}
+{{--        $(".edit-writer-and-beneficial").hide();--}}
+{{--     });--}}
+
+{{--var total_count_share = "<?php echo $cal_benefit_share; ?>";--}}
+{{--var $total_ben = parseInt(total_count_share) + parseInt($value);--}}
+
+{{--if($total_ben > 100){--}}
+	{{--$("#new-column-value-"+$id).val("");--}}
+		{{--alert( $total_ben +'  ,'+ 'Exceeded the Total share 100%. Please decrease your share percentage');--}}
+	{{--$("#new-column-value-"+$id).focus();--}}
+	{{--return false;--}}
+{{--}else{--}}
+
+{{--}--}}
