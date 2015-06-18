@@ -3,7 +3,7 @@
 class CfoAmwController extends \BaseController {
 
     function __construct() {
-       # $this->beforeFilter('cfo', array('except' => array('index')));
+        $this->beforeFilter('cfo', array('except' => array('index')));
     }
     protected function isPostRequest()
     {
@@ -330,26 +330,40 @@ class CfoAmwController extends \BaseController {
 /*Support Desk*/
 
     public function cfoSupportIndex(){
-
         $cfo_user_id = Auth::user()->get()->id;
-
         $support_data = CfoSupportHead::with('relCfoCategory')
             ->whereExists(function($query) use($cfo_user_id)
             {
                 $query->from('cfo_category')
                     ->whereRaw('cfo_category.id = cfo_support_head.cfo_category_id')
-                    ->where('cfo_category.support_user_id', $cfo_user_id);
+                    ->where('cfo_category.support_user_id', $cfo_user_id)
+                    ->where('cfo_support_head.status','=','new');
             })
-            ->get();
-
-        return View::make('cfo::cfo.support_head.test',compact('support_data','all_data','new_data','open_data','replied_data','closed_data'));
+            ->paginate(3);
+        return View::make('cfo::cfo.support_head.index',compact('support_data'));
     }
 
-    public function Test(){
+    public function ajaxSupportDataByStatus($status){
 
         $cfo_user_id = Auth::user()->get()->id;
+        $offset = Input::get('page');
+        if(!isset($offset))
+            $offset = 1;
 
-        return View::make('cfo::cfo.support_head.test');
+        $support_data = CfoSupportHead::with('relCfoCategory')
+            ->whereExists(function($query) use($cfo_user_id,$status)
+            {
+                $query->from('cfo_category')
+                    ->whereRaw('cfo_category.id = cfo_support_head.cfo_category_id')
+                    ->where('cfo_category.support_user_id', $cfo_user_id)
+                    ->where('cfo_support_head.status',$status);
+            })
+            ->paginate(3);
+
+        if (Request::ajax()) {
+            return Response::json(View::make('cfo::cfo.support_head._ajax_list', array('support_data' => $support_data))->render());
+        }
+        return Redirect::route('support-head.index');
     }
 
     public function showSupportHead($id){
