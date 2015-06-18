@@ -297,18 +297,48 @@ class FeesController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function billing_history_show($id)
-	{
+   /* public function billing_history_show($id, $app_stu_id)
+    {
 
-            $student_info = BillingVStudentHistory::where('id', $id)->first();
-            // print_r($student_info);exit;
-            $student_details = BillingVStudentHistory::find($id);
+        $studentOrApplicant = $app_stu_id;
+        if($studentOrApplicant == 'student')
+        {
+            $data = BillingVStudentHistory::where('id', $id)->first();
+            $student_id = $data[0]->student_id;
+            $relation_data = BillingSummaryStudent::with('relBillingDetailsStudent')->where('student_user_id', $student_id)->get();
+        }
+        else
+        {
+            $data = BillingVApplicantHistory::where('id', $id)->get();
+            $applicant_id = $data[0]->applicant_id;
+            $relation_data = BillingSummaryApplicant::with('relBillingDetailsApplicant.relBillingItem','relBillingSchedule')->where('applicant_id', $applicant_id)->get();
 
-            $applicant_info = BillingVApplicantHistory::where('id', $id)->first();
-            $applicant_details = BillingVApplicantHistory::find($id);
+        }
+
+         //print_r($relation_data);exit;
+        return View::make('fees::billing_history.view',compact('data', 'relation_data'));
 
 
-            return View::make('fees::billing_history.view',compact('student_info','student_details','applicant_info','applicant_details'));
-	}
+    }*/
+
+    public function billing_history_show($id, $app_stu_id)
+    {
+        $studentOrApplicant = $app_stu_id;
+        if($studentOrApplicant == 'student')
+        {
+            $data = BillingVStudentHistory::where('id', $id)->first();
+            $student_id = $data->student_id;
+            $relation_data = BillingSummaryStudent::with('relBillingDetailsStudent')->where('student_user_id', $student_id)->get();
+        }else{
+            $data = BillingVApplicantHistory::where('id', $id)->first();
+            $applicant_id = $data->applicant_id;
+            $relation_data = BillingSummaryApplicant::with('relBillingDetailsApplicant.relBillingItem', 'relBillingSchedule')->where('applicant_id', $applicant_id)->get();
+        }
+
+       // print_r($relation_data);exit;
+        return View::make('fees::billing_history.view',compact('data', 'relation_data'));
+
+
+    }
 
 }
