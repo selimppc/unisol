@@ -326,21 +326,13 @@ class FeesController extends \BaseController {
         $studentOrApplicant = $app_stu_id;
         if($studentOrApplicant == 'student')
         {
-            /*$data = BillingVStudentHistory::where('id', $id)->first();
-            $student_id = $data[0]->student_id;*/
-
-            $student_id = BillingVStudentHistory::findOrFail($id)->student_id;
-            $relation_data = BillingSummaryStudent::with('relBillingDetailsStudent')
-                ->where('student_user_id', $student_id)
-                ->get();
+            $data = BillingVStudentHistory::where('id', $id)->first();
+            $student_id = $data->student_id;
+            $relation_data = BillingSummaryStudent::with('relBillingDetailsStudent')->where('student_user_id', $student_id)->get();
         }else{
-            /*$data = BillingVApplicantHistory::where('id', $id)->first();
-            $applicant_id = $data->applicant_id;*/
-
-            $applicant_id = BillingVApplicantHistory::findOrFail($id)->applicant_id;
-            $relation_data = BillingSummaryApplicant::with('relBillingDetailsApplicant.relBillingItem', 'relBillingSchedule')
-                ->where('applicant_id', $applicant_id)
-                ->get();
+            $data = BillingVApplicantHistory::where('id', $id)->first();
+            $applicant_id = $data->applicant_id;
+            $relation_data = BillingSummaryApplicant::with('relBillingDetailsApplicant.relBillingItem', 'relBillingSchedule')->where('applicant_id', $applicant_id)->get();
         }
 
        // print_r($relation_data);exit;
