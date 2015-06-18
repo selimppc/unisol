@@ -91,10 +91,10 @@
                                           @endif
                                         </td>
                                         <td>
-                                            <a href="{{ URL::route('student.research-paper.view', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" href=""><i class="fa fa-eye" style="color: green" title="View"></i></a>
-                                            <a href="{{ URL::route('student.research-paper.edit', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#editModal" href="" ><i class="fa fa-pencil-square-o" style="color: #0044cc" title="Edit"></i></a>
-                                            <a href="{{ URL::route('student.research-paper-writer.index', ['rnc_r_p_id'=>$value->id]) }}" class="btn btn-xs btn-success" >Writter</a>
-                                            <a href="{{ URL::route('student.research-paper.comment', ['rnc_r_p_id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#commentModal" href="" ><i class="fa fa-comments" style="color: mediumpurple" title="Comemnt"></i></a>
+                                            <a href="{{ URL::route('student.research-paper.view', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#modal" href=""><i class="fa fa-eye" style="color: green" title="View"></i></a>
+                                            <a href="{{ URL::route('student.research-paper.edit', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#modal" href="" ><i class="fa fa-pencil-square-o" style="color: #0044cc" title="Edit"></i></a>
+                                            <a href="{{ URL::route('faculty.research-paper-writer-beneficial.list', ['rnc_r_p_id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#myModal"><i class="fa fa-rocket" style="color: green" title="Writer and Beneficial"></i></a>
+                                            <a href="{{ URL::route('student.research-paper.comment', ['rnc_r_p_id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#modal" href="" ><i class="fa fa-comments" style="color: mediumpurple" title="Comemnt"></i></a>
                                             <a data-href="{{ URL::route('student.research-paper.delete', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa fa-trash-o" style="color:red" title="Delete"></i></a>
 
                                         </td>
@@ -130,33 +130,26 @@
         </div>
     </div>
 
-  {{--common--}}
-  <div class="modal fade" id="book" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
+  {{--Modal--}}
+
+    <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true"  data-keyboard="false">
+          <div class="modal-dialog">
+              <div class="modal-content">
+              </div>
           </div>
-        </div>
-  </div>
+    </div>
 
-  {{--Modal for Edit--}}
+     {{--MyModal--}}
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true"  data-keyboard="false">
+            <div class="modal-dialog">
+                <div class="modal-content">
 
-  <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-        <div class="modal-dialog">
-            <div class="modal-content">
+                </div>
             </div>
-        </div>
-  </div>
+      </div>
 
-  {{--Modal for Comment--}}
 
-  <div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-        <div class="modal-dialog">
-            <div class="modal-content">
-            </div>
-        </div>
-  </div>
-
-  {{--Modal for show--}}
+ {{--Modal for show--}}
 
   <div class="modal fade" id="showModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog modal-lg">
