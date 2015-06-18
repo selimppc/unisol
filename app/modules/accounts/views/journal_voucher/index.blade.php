@@ -64,8 +64,8 @@
     {{$data->links();}}
 
 </div>
-{{Form::open(['route'=>'store-of-accounts', 'files'=>true])}}
-        @include('accounts::chart_of_accounts._modal._modal')
+{{Form::open(['route'=>'store-journal-voucher', 'files'=>true])}}
+        @include('accounts::journal_voucher._modal._modal')
 {{ Form::close() }}
 
 {{-- Modal Area --}}

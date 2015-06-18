@@ -148,6 +148,19 @@ class CreateAccounts extends Migration {
         });
 
 
+        Schema::create('acc_trn_no_setup', function(Blueprint $table) {
+            $table->increments('id');
+            $table->string('code', 4)->unique();
+            $table->string('title', 32)->nullable();
+            $table->integer('last_number', false, 10)->nullable();
+            $table->integer('increment', false, 1)->nullable();
+            $table->integer('created_by', false, 11)->nullable();
+            $table->integer('updated_by', false, 11)->nullable();
+            $table->timestamps();
+            $table->engine = 'InnoDB';
+        });
+
+
 	}
 
 
@@ -161,6 +174,7 @@ class CreateAccounts extends Migration {
         Schema::drop('acc_voucher_detail');
         Schema::drop('acc_ap_allocation');
         Schema::drop('acc_codesparam');
+        Schema::drop('acc_trn_no_setup');
 
 	}
 
