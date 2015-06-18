@@ -6,7 +6,7 @@
 
 <div class='form-group'>
    {{ Form::label('searchName', 'Writer Name') }} ( <small>Search Writer by Typing Name</small> )
-   {{ Form::text('searchName',  '', ['id'=>'search_writer_name', 'class'=>'ui-autocomplete form-control','placeholder'=>'Search Writer Name..', 'autofocus', ]) }}
+   {{ Form::text('searchName',  '', ['id'=>'search_writer_name', 'class'=>'ui-autocomplete form-control','placeholder'=>'Writer Name', 'autofocus', ]) }}
 </div>
 
 {{ Form::hidden('rnc_research_paper_id', $rnc_r_p_id,['id'=>'research-paper-id'])}}
@@ -182,14 +182,29 @@ $(function(){
         $value = $("#new-column-value-"+$id).html();
         var $research_paper_id = "<?php echo $rnc_r_p_id; ?>";
 
+
+        {{--// check either the value exceeded the 100--}}
+        {{--var total_count_share = "<?php echo $cal_benefit_share; ?>";--}}
+        {{--var $total_ben = parseInt(total_count_share) + parseInt($value);--}}
+
+        {{--if($total_ben > 100){--}}
+        	{{--$("#label-val").val("");--}}
+        		{{--alert( $total_ben +'  ,'+ 'Exceeded the Total share 100%. Please decrease your share percentage');--}}
+        	{{--$("#label-val").focus();--}}
+        	{{--return false;--}}
+        {{--}else{--}}
+
+        {{--}--}}
+        {{--// end check--}}
+        
         var $form_start = "<form action='{{ route('faculty.research-paper-writer-beneficial.update') }}' method='POST'>";
         var $form_end = "</form>";
 
         $('#test-edit').append($form_start + "<div class='form-group'> " +
            "<input type='hidden' name='rnc_research_paper_id' value='" + $research_paper_id + "'>" +
            "<label for='label-name' style='padding-right: 30px'>Writer Name: </label>" +
-           "<input id='label-name' style='background-color : lavender; padding-right: 10px;' readonly value='"+ $name +"'>" +
-           "<input type='hidden' name='writer_user_id' value='" + $writer_user_id + "' >" +
+           "<input id='writer-name' style='background-color : lavender; padding-right: 10px;' readonly value='"+ $name +"'>" +
+           "<input id='wr-name-id' type='hidden' name='writer_user_id' value='" + $writer_user_id + "' >" +
            "<input type='hidden' name='writer_id' value='" + $id + "' >" +
            "<input type='hidden' name='beneficial_id' value='" + $ben_table_id + "' >" +
            "</br> " +
@@ -200,6 +215,7 @@ $(function(){
 
         $("#hide-add-option").hide();
         $(".table-hide").hide();
+
     });
 });
 
@@ -210,14 +226,4 @@ $(function(){
 {{--        $(".edit-writer-and-beneficial").hide();--}}
 {{--     });--}}
 
-{{--var total_count_share = "<?php echo $cal_benefit_share; ?>";--}}
-{{--var $total_ben = parseInt(total_count_share) + parseInt($value);--}}
 
-{{--if($total_ben > 100){--}}
-	{{--$("#new-column-value-"+$id).val("");--}}
-		{{--alert( $total_ben +'  ,'+ 'Exceeded the Total share 100%. Please decrease your share percentage');--}}
-	{{--$("#new-column-value-"+$id).focus();--}}
-	{{--return false;--}}
-{{--}else{--}}
-
-{{--}--}}
