@@ -474,17 +474,25 @@ class RnCStudentController extends \BaseController {
         }
     }
 
-    //Writer
+    //new
 
-    public function indexRnCWriter($rnc_r_p_id)
+    public function listWriterBeneficial($rnc_r_p_id)
     {
-        $rnc_r_p_writer = RnCResearchPaperWriter::with('relRnCResearchPaper','relUser', 'relUser.relUserProfile')->latest('id')->where('rnc_research_paper_id' ,'=', $rnc_r_p_id)->get();
-        //$rnc_r_p_writer_user = Auth::user()->get()->id;
-        return View::make('rnc::student.research_paper_writer.index', compact('rnc_r_p_writer','rnc_r_p_id','rnc_r_p_writer_user'));
+        $writer_info = RnCResearchPaperWriter::with('relRnCResearchPaper','relRnCWriterBeneficial' ,'relUser', 'relUser.relUserProfile')
+            ->where('rnc_research_paper_id', $rnc_r_p_id)->get();
+
+        $r_p = RnCResearchPaper::where('id', $rnc_r_p_id)->first();
+
+        $rp_benefit_share = RnCResearchPaper::where('id' ,'=', $rnc_r_p_id)->first()->benefit_share;
+        $total = DB::table('rnc_writer_beneficial')->where('rnc_research_paper_id' ,'=', $rnc_r_p_id)->sum('value');
+        $cal_benefit_share = $rp_benefit_share + $total ;
+
+        return View::make('rnc::student.research_paper.r_p_w_f.add_writer_beneficial',
+            compact('rnc_r_p_id','writer_info','r_p','rp_benefit_share','cal_benefit_share'));
+
     }
 
-    // AJax Writer Name Search
-    // first one
+    // AJax : Writer Name Search and Get
 
     public function ajaxGetWriterNameAutoComplete ()
     {
@@ -494,224 +502,101 @@ class RnCStudentController extends \BaseController {
             ->where('first_name', 'LIKE', '%'.$term.'%')
             ->orWhere('middle_name', 'LIKE', '%'.$term.'%')
             ->orWhere('last_name', 'LIKE', '%'.$term.'%')
-            ->take(6)->get();
+            ->take(12)->get();
+
         foreach ($queries as $query)
         {
             $results[] = [
                 'label' => $query->first_name.' '.$query->middle_name.' '.$query->last_name ,
-                'user_id' => $query->user_id ,
+                'writer_user_id' => $query->user_id ,
+                'name' => $query->first_name.' '.$query->middle_name.' '.$query->last_name ,
             ];
         }
         return Response::json($results);
     }
 
-    public function storeRnCWriter()
+    public function store_writer_beneficial()
     {
-        $data = Input::all();
-        $rnc_r_p_writer_store = new RnCResearchPaperWriter();
-        if($rnc_r_p_writer_store->validate($data))
-        {
-            DB::beginTransaction();
-            try {
-                $rnc_r_p_writer_store->create($data);
-                DB::commit();
-                Session::flash('message', "Writers Name Added");
-            }
-            catch ( Exception $e ){
-                //If there are any exceptions, rollback the transaction
-                DB::rollback();
-                Session::flash('danger', "Writer not added.Invalid Request!");
-            }
-            return Redirect::back();
-        }else{
-            $errors = $rnc_r_p_writer_store->errors();
-            Session::flash('errors', $errors);
-            return Redirect::back()
-                ->with('errors', 'invalid');
+        #$data = Input::all();
+        for($i = 0; $i < count(Input::get('writer_user_id')) ; $i++){
+            $dt[] = [
+                'rnc_research_paper_id' => Input::get('rnc_research_paper_id'),
+                'writer_user_id'=> Input::get('writer_user_id')[$i],
+                'value'=> Input::get('value')[$i],
+            ];
         }
-    }
-
-    public function showRnCWriter($id)
-    {
-        $rnc_r_p_writer_show = RnCResearchPaperWriter::find($id);
-        if($rnc_r_p_writer_show)
-        {
-            return View::make('rnc::student.research_paper_writer.view',compact('rnc_r_p_writer_show'));
-        }
-        App::abort(404);
-    }
-
-    public function editRnCWriter($id)
-    {
-        $rnc_r_p_writer_edit = RnCResearchPaperWriter::find($id);
-        $list_writer_name = User::WriterNameList();
-        return View::make('rnc::student.research_paper_writer.edit',compact('rnc_r_p_writer_edit','list_writer_name'));
-    }
-
-    public function updateRnCWriter($id)
-    {
-        $data = Input::all();
-        $rnc_r_p_writer_update = RnCResearchPaperWriter::find($id);
-        if($rnc_r_p_writer_update->validate($data))
-        {
-            DB::beginTransaction();
-            try {
-                $rnc_r_p_writer_update->update($data);
-                DB::commit();
-                Session::flash('message', "Writers Name Updates");
-            }
-            catch ( Exception $e ){
-                DB::rollback();
-                Session::flash('danger', "Writers Name not updates. Invalid Request !");
-            }
-            return Redirect::back();
-        }else{
-            $errors = $rnc_r_p_writer_update->errors();
-            Session::flash('errors', $errors);
-            return Redirect::back()
-                ->with('errors', 'Input Data Not Valid');
-        }
-    }
-
-    public function deleteRnCWriter($id)
-    {
-        try {
-            $rnc_r_p_writer_delete = RnCResearchPaperWriter::find($id);
-            if($rnc_r_p_writer_delete->delete())
-            {
-                Session::flash('message', "Writers Name Deleted");
-                return Redirect::back();
-            }
-        }
-        catch (exception $ex){
-            return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
-        }
-    }
-
-    public function batchDeleteRnCWriter()
-    {
+        DB::beginTransaction();
         try{
-            RnCResearchPaperWriter::destroy(Request::get('id'));
-            return Redirect::back()->with('message', 'Writers Name Batch Deleted successfully!');
-        }
-        catch (exception $ex)
-        {
-            return Redirect::back()->with('error', 'Invalid Delete Process ! Writers Name has been using in other DB Table.At first Delete Data from there then come here again. Thank You !!!');
-        }
-    }
-
-    // Writer's Beneficial
-
-    public function indexRnCBeneficial($rnc_r_p_id, $w_id)
-    {
-        $rnc_r_p_beneficial = RnCWriterBeneficial::with('relRnCResearchPaper','relRnCResearchPaperWriter')
-            ->latest('id')
-            ->where('rnc_research_paper_id' ,'=', $rnc_r_p_id)
-            ->where('rnc_research_paper_writer_id' ,'=', $w_id)
-            ->get();
-
-        $rp_benefit_share = RnCResearchPaper::where('id' ,'=', $rnc_r_p_id)->first()->benefit_share;
-        $total = DB::table('rnc_writer_beneficial')->where('rnc_research_paper_writer_id' ,'=', $w_id)->sum('value');
-        $cal_benefit_share = $rp_benefit_share + $total ;
-
-        return View::make('rnc::student.research_paper_beneficial.index',
-            compact('rnc_r_p_beneficial','rnc_r_p_id','w_id','rp_benefit_share','cal_benefit_share'));
-    }
-
-    public function storeRnCBeneficial()
-    {
-        $data = Input::all();
-
-        $rnc_r_p_beneficial_store = new RnCWriterBeneficial();
-        if($rnc_r_p_beneficial_store->validate($data))
-        {
-            DB::beginTransaction();
-            try {
-                $rnc_r_p_beneficial_store->create($data);
-                DB::commit();
-                Session::flash('message', "Writers Name Added");
+            foreach($dt as $key => $values){
+                $model = new RnCResearchPaperWriter();
+                $model->rnc_research_paper_id = $values['rnc_research_paper_id'];
+                $model->writer_user_id = $values['writer_user_id'];
+                if($model->save()){
+                    $model2 = new RnCWriterBeneficial();
+                    $model2->rnc_research_paper_writer_id = $model->id;
+                    $model2->rnc_research_paper_id = $values['rnc_research_paper_id'];
+                    $model2->value = $values['value'];
+                    $model2->save();
+                }
             }
-            catch ( Exception $e ){
-                //If there are any exceptions, rollback the transaction
-                DB::rollback();
-                Session::flash('danger', "Writer not added.Invalid Request!");
-            }
-            return Redirect::back();
-        }else{
-            $errors = $rnc_r_p_beneficial_store->errors();
-            Session::flash('errors', $errors);
-            return Redirect::back()
-                ->with('errors', 'invalid');
+            DB::commit();
+            Session::flash('message', 'Success !');
+        }catch ( Exception $e ){
+            //If there are any exceptions, rollback the transaction`
+            DB::rollback();
+            Session::flash('danger', 'Failed !');
         }
+        return Redirect::back();
+
     }
 
-    public function showRnCBeneficial($id)
+    public function std_ajax_delete_req_detail()
     {
-        $rnc_r_p_beneficial_show = RnCWriterBeneficial::find($id);
-        if($rnc_r_p_beneficial_show)
-        {
-            return View::make('rnc::student.research_paper_beneficial.view',compact('rnc_r_p_beneficial_show'));
-        }
-        App::abort(404);
-    }
+        $id = Input::get('id');
+        $ben_id = Input::get('ben_id');
 
-    public function editRnCBeneficial($id )
-    {
-        $rnc_r_p_beneficial_edit = RnCWriterBeneficial::find($id);
-        $list_writer_name = User::WriterNameList();
-        return View::make('rnc::student.research_paper_beneficial.edit',compact('rnc_r_p_beneficial_edit','list_writer_name','rnc_r_p_id'));
-    }
-
-    public function updateRnCBeneficial($id)
-    {
-        $data = Input::all();
-
-        $rnc_r_p_beneficial_update = RnCWriterBeneficial::find($id);
-        if($rnc_r_p_beneficial_update->validate($data))
-        {
-            DB::beginTransaction();
-            try {
-                $rnc_r_p_beneficial_update->update($data);
-                DB::commit();
-                Session::flash('message', "Writers Name Updated");
-            }
-            catch ( Exception $e ){
-                DB::rollback();
-                Session::flash('danger', "Writers Name not updated. Invalid Request !");
-            }
-            return Redirect::back();
-        }else{
-            $errors = $rnc_r_p_beneficial_update->errors();
-            Session::flash('errors', $errors);
-            return Redirect::back()
-                ->with('errors', 'Input Data Not Valid');
-        }
-    }
-
-    public function deleteRnCBeneficial($id)
-    {
+        DB::beginTransaction();
         try {
-            $rnc_r_p_beneficial_delete = RnCWriterBeneficial::find($id);
-            if($rnc_r_p_beneficial_delete->delete())
-            {
-                Session::flash('message', "Beneficial Name Deleted");
-                return Redirect::back();
+            if(RnCWriterBeneficial::destroy($ben_id)){
+                RnCResearchPaperWriter::destroy($id);
             }
+            DB::commit();
+            return Response::json("Successfully Deleted");
         }
-        catch (exception $ex){
-            return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+        catch(exception $ex){
+            DB::rollback();
+            return Response::json("Can not be Deleted !");
         }
+
     }
 
-    public function batchDeleteRnCBeneficial()
+    public function updateWriterBeneficial( )
     {
+        $ben_id = Input::all();
+
+        DB::beginTransaction();
         try{
-            RnCWriterBeneficial::destroy(Request::get('id'));
-            return Redirect::back()->with('message', 'Beneficial Name Deleted successfully!');
+            $model = RnCResearchPaperWriter::find(Input::get('writer_id'));
+            $model->rnc_research_paper_id = Input::get('rnc_research_paper_id');
+            $model->writer_user_id = Input::get('writer_user_id');
+            if($model->update()){
+                $model2 = RnCWriterBeneficial::find(Input::get('beneficial_id'));
+                $model2->rnc_research_paper_writer_id = Input::get('writer_id');
+                $model2->rnc_research_paper_id = Input::get('rnc_research_paper_id');
+                $model2->value = Input::get('value');
+                $model2->update();
+            }
+
+            DB::commit();
+            Session::flash('message', 'Success !');
+        }catch ( Exception $e ){
+            //If there are any exceptions, rollback the transaction`
+            DB::rollback();
+            Session::flash('danger', 'Failed !');
         }
-        catch (exception $ex)
-        {
-            return Redirect::back()->with('error', 'Invalid Delete Process ! Beneficial Name has been using in other DB Table.At first Delete Data from there then come here again. Thank You !!!');
-        }
+        return Redirect::back();
     }
+
+
+
 }

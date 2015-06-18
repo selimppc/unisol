@@ -48,6 +48,8 @@
                 </table>
             </div>
             <div>&nbsp;</div>
+            @if($studentOrApplicant == 'applicant')
+
             <h3 class="text-purple ">Billing Details</h3>
             <div class="box-body table-responsive ">
                 <table class="table table-bordered table-hover table-striped">
@@ -58,22 +60,57 @@
                     <th>Amount</th>
                     </thead>
                     <tbody>
-                    @foreach($relation_data as $value)
+                    <?php $i=0; ?>
+                    @if(isset($relation_data))
+                    @foreach($relation_data[$i]->relBillingDetailsApplicant as $value)
                         <tr>
-                            <td>{{isset($value->relBillingSchedule->relBillingItem->title) ? $value->relBillingSchedule->relBillingItem->title:''}}</td>
+                            <td>{{$value['relBillingItem']['title']}}</td>
 
-                            <td>{{isset($value->relBillingSchedule->title) ? $value->relBillingSchedule->title:''}}</td>
+                            <td>{{$relation_data[$i]->relBillingSchedule->title}}</td>
 
-                            <td>{{isset($value->relBillingDetailsApplicant->waiver_amount) ? $value->relBillingDetailsApplicant->waiver_amount:''}}</td>
+                            <td>{{$value['waiver_amount']}}</td>
 
-                            <td>{{isset($value->total_amount) ? $value->total_amount : ''}}</td>
+                            <td>{{$value['total_amount']-$value['waiver_amount']}}</td>
+
                         </tr>
                     @endforeach
+                        @endif
+                    </tbody>
+                </table>
+                <a href="{{ URL::route('billing.history')}}" class="btn-link pull-right"><i class="fa fa-backward text-red"></i> Back to All List</a>
+            </div>
+            @else
+            <h3 class="text-purple ">Billing Details</h3>
+            <div class="box-body table-responsive ">
+                <table class="table table-bordered table-hover table-striped">
+                    <thead>
+                    <th>Item</th>
+                    <th>Schedule</th>
+                    <th>Waiver Amount</th>
+                    <th>Amount</th>
+                    </thead>
+                    <tbody>
+                    <?php $i=0; ?>
+                    @if(isset($relation_data))
+                        @foreach($relation_data[0]->relBillingDetailsStudent as $value)
+                            <tr>
+                                <td>{{$value['relBillingItem']['title']}}</td>
+
+                                <td>{{$relation_data[$i]->relBillingSchedule->title}}</td>
+
+                                <td>{{$value['waiver_amount']}}</td>
+
+                                <td>{{$value['total_amount']-$value['waiver_amount']}}</td>
+
+                            </tr>
+                        @endforeach
+                    @endif
                     </tbody>
                 </table>
                 <a href="{{ URL::route('billing.history')}}" class="btn-link pull-right"><i class="fa fa-backward text-red"></i> Back to All List</a>
             </div>
         </div>
+        @endif
     </div>
 @stop
 

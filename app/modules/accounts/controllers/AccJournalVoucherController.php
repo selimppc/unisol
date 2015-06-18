@@ -21,8 +21,12 @@ class AccJournalVoucherController extends \BaseController {
     public function index_journal_voucher()
     {
         $pageTitle = 'Journal Voucher Lists';
+        $year = ['' => 'Select Year'] + Year::lists('title', 'id');
+        $period = AccChartOfAccounts::list_period();
         $data = AccVoucherHead::where('status', '!=','cancel')->latest('id')->paginate('10');
-        return View::make('accounts::journal_voucher.index', compact('pageTitle', 'data'));
+        return View::make('accounts::journal_voucher.index', compact(
+            'pageTitle', 'data', 'year', 'period'
+        ));
     }
 
     /*
@@ -31,38 +35,36 @@ class AccJournalVoucherController extends \BaseController {
      */
     public function store_journal_voucher()
     {
-        if($this->isPostRequest()){
-            $req_no = InvTrnNoSetup::where('title', '=', "Requisition")
+        if($this->isPostRequest()) {
+            $jv_no = AccTrnNoSetup::where('title', '=', "Journal Voucher")
                 ->select(DB::raw('CONCAT (code, LPAD(last_number + 1, 8, 0)) as number'))
                 ->first()->number;
             $input_data = Input::all();
             $inp_data = [
-                'requisition_no' => $req_no,
-                'inv_supplier_id' => $input_data['inv_supplier_id'],
+                'voucher_number' => $jv_no,
                 'date' => $input_data['date'],
+                'reference' => $input_data['reference'],
+                'year_id' => $input_data['year_id'],
+                'period' => $input_data['period'],
                 'note' => $input_data['note'],
-                'requisition_type' => $input_data['requisition_type'],
-                'status'=> "open",
+                'status' => "open",
             ];
-            $model = new InvRequisitionHead();
-            if($model->validate($inp_data)) {
+            $model = new AccVoucherHead();
+            if ($model->validate($inp_data)) {
                 DB::beginTransaction();
                 try {
                     $model->create($inp_data);
-                    DB::table('inv_trn_no_setup')->where('title', '=', "Requisition")
-                        ->update(array('last_number' => substr($req_no,4)));
+                    DB::table('acc_trn_no_setup')->where('title', '=', "Journal Voucher")
+                        ->update(array('last_number' => substr($jv_no, 4)));
                     DB::commit();
                     Session::flash('message', 'Success !');
-                }catch (Exception $e) {
+                } catch (Exception $e) {
                     //If there are any exceptions, rollback the transaction`
                     DB::rollback();
                     Session::flash('danger', 'Failed !');
                 }
             }
             return Redirect::back();
-        }else{
-            #$model = InvRequisitionHead::findOrFail($re_id);
-            return View::make('inventory::requisition_head.create', compact('model'));
         }
     }
 

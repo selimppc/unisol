@@ -204,125 +204,34 @@ Route::group(['prefix' => 'rnc'], function() {
         'uses' => 'RnCAmwController@saveComment'
     ]);
 
-//    /////////////////////////////////new routes
-//
-//    Route::any('student/research-paper/add-to-cart/{rnc_id}',[
-//        'as' =>'student.research-paper.add-to-cart',
-//        'uses' => 'RnCAmwController@addRPToStudentCart'
-//    ]);
-//
-//    Route::any('student/research-paper/remove-from-cart/{id}',[
-//        'as' =>'student.research-paper.remove-from-cart',
-//        'uses' => 'RnCAmwController@removeRPFromCart'
-//    ]);
-//
-//    Route::any('student/research-paper/view-cart',[
-//        'as' =>'student.research-paper.view-cart',
-//        'uses' => 'RnCAmwController@viewRPCart'
-//    ]);
-//
-//    Route::any('student/research-paper/payment',[
-//        'as' =>'student.research-paper.payment',
-//        'uses' => 'RnCAmwController@paymentMethodRP'
-//    ]);
-//
-//    Route::any('student/research-paper/send-info-to-transaction',[
-//        'as' =>'student.research-paper.send-info-to-transaction',
-//        'uses' => 'RnCAmwController@saveInfoToTransactionTable'
-//    ]);
-//
-//    Route::any('student/research-paper/my-book',[
-//        'as' =>'student.research-paper.my-book',
-//        'uses' => 'RnCAmwController@myRP'
-//    ]);
-//
-//    ///////////////////////////////////////// new route ei porjnto
 
 
+//new
 
-
-
-    //Writer . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-
-    Route::any('amw/research-paper-writer/index/{rnc_r_p_id}',[
-        'as' =>'amw.research-paper-writer.index',
-        'uses' => 'RnCAmwController@indexRnCWriter'
+    Route::any('amw/research-paper-writer-beneficial/list/{rnc_r_p_id}',[
+        'as' =>'amw.research-paper-writer-beneficial.list',
+        'uses' => 'RnCAmwController@listWriterBeneficial'
     ]);
 
-    Route::any("ajax/get-writer-name-auto-complete", [
-        "as"   => "ajax.get-writer-name-auto-complete",
+    Route::any('amw/research-paper-writer-beneficial/store-writer-beneficial', [
+        'as'   => 'amw.research-paper-writer-beneficial.store-writer-beneficial',
+        'uses' => 'RnCAmwController@store_writer_beneficial'
+    ]);
+
+    Route::any('amw/research-paper-writer-beneficial/ajax-delete-req-detail', [
+        'as'   => 'amw.research-paper-writer-beneficial.ajax-delete-req-detail',
+        'uses' => 'RnCAmwController@fac_ajax_delete_req_detail'
+    ]);
+
+    Route::any('amw/research-paper-writer-beneficial/update',[
+        'as' => 'amw.research-paper-writer-beneficial.update',
+        'uses'=> 'RnCAmwController@updateWriterBeneficial'
+    ]);
+
+    Route::any("ajax/amw-get-writer-name-auto-complete", [
+        "as"   => "ajax.amw-get-writer-name-auto-complete",
         "uses" => "RnCAmwController@ajaxGetWriterNameAutoComplete"
     ]);
-
-    Route::any('amw/research-paper-writer/store',[
-        'as' => 'amw.research-paper-writer.store',
-        'uses'=> 'RnCAmwController@storeRnCWriter'
-    ]);
-
-    Route::any('amw/research-paper-writer/show/{id}',[
-        'as' => 'amw.research-paper-writer.show',
-        'uses'=> 'RnCAmwController@showRnCWriter'
-    ]);
-
-    Route::any('amw/research-paper-writer/edit/{id}',[
-        'as' => 'amw.research-paper-writer.edit',
-        'uses'=> 'RnCAmwController@editRnCWriter'
-    ]);
-
-    Route::any('amw/research-paper-writer/update/{id}',[
-        'as' => 'amw.research-paper-writer.update',
-        'uses'=> 'RnCAmwController@updateRnCWriter'
-    ]);
-
-    Route::any('amw/research-paper-writer/delete/{id}',[
-        'as' => 'amw.research-paper-writer.delete',
-        'uses'=> 'RnCAmwController@deleteRnCWriter'
-    ]);
-
-    Route::any('amw/research-paper-writer/batch-delete',[
-        'as' => 'amw.research-paper-writer.batch-delete',
-        'uses'=> 'RnCAmwController@batchDeleteRnCWriter'
-    ]);
-
-    // Beneficial
-
-    Route::any('amw/research-paper-beneficial/index/{id}/{rnc_r_p_id}/{w_id}',[
-        'as' =>'amw.research-paper-beneficial.index',
-        'uses' => 'RnCAmwController@indexRnCBeneficial'
-    ]);
-
-    Route::any('amw/research-paper-beneficial/store',[
-        'as' => 'amw.research-paper-beneficial.store',
-        'uses'=> 'RnCAmwController@storeRnCBeneficial'
-    ]);
-
-    Route::any('amw/research-paper-beneficial/show/{id}',[
-        'as' => 'amw.research-paper-beneficial.show',
-        'uses'=> 'RnCAmwController@showRnCBeneficial'
-    ]);
-
-    Route::any('amw/research-paper-beneficial/edit/{id}',[
-        'as' => 'amw.research-paper-beneficial.edit',
-        'uses'=> 'RnCAmwController@editRnCBeneficial'
-    ]);
-
-    Route::any('amw/research-paper-beneficial/update/{id}',[
-        'as' => 'amw.research-paper-beneficial.update',
-        'uses'=> 'RnCAmwController@updateRnCBeneficial'
-    ]);
-
-    Route::any('amw/research-paper-beneficial/delete/{id}',[
-        'as' => 'amw.research-paper-beneficial.delete',
-        'uses'=> 'RnCAmwController@deleteRnCBeneficial'
-    ]);
-
-    Route::any('amw/research-paper-beneficial/batch-delete',[
-        'as' => 'amw.research-paper-beneficial.batch-delete',
-        'uses'=> 'RnCAmwController@batchDeleteRnCBeneficial'
-    ]);
-
-
-
 
 
 });

@@ -89,7 +89,7 @@
 $(function(){
 
          $( "#search_writer_name" ).autocomplete({
-              source: "/rnc/ajax/fac-get-writer-name-auto-complete",
+              source: "/rnc/ajax/std-get-writer-name-auto-complete",
               minLength: 1,
               select: function(event, ui) {
                 $('#select_writer_name').val(ui.item.label);
@@ -158,7 +158,7 @@ $(function(){
         e.preventDefault();
         var $btn = $(this);
         $.ajax({
-            url: '/rnc/faculty/research-paper-writer-beneficial/ajax-delete-req-detail',
+            url: '/rnc/student/research-paper-writer-beneficial/ajax-delete-req-detail',
             type: 'POST',
             dataType: 'json',
             data: { id:  $(this).data("href"), ben_id: $(this).data("benf") },
@@ -182,7 +182,7 @@ $(function(){
         $value = $("#new-column-value-"+$id).html();
         var $research_paper_id = "<?php echo $rnc_r_p_id; ?>";
 
-        var $form_start = "<form action='{{ route('faculty.research-paper-writer-beneficial.update') }}' method='POST'>";
+        var $form_start = "<form action='{{ route('student.research-paper-writer-beneficial.update') }}' method='POST'>";
         var $form_end = "</form>";
 
         $('#test-edit').append($form_start + "<div class='form-group'> " +

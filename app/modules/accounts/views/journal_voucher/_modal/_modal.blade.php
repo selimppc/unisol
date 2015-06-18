@@ -4,10 +4,10 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">New Chart Of Accounts </h4>
+        <h4 class="modal-title" id="myModalLabel">New Journal Voucher </h4>
       </div>
       <div class="modal-body">
-        @include('accounts::chart_of_accounts._form')
+        @include('accounts::journal_voucher._form')
       </div>
     </div>
   </div>
