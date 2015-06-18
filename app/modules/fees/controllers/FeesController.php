@@ -332,9 +332,11 @@ class FeesController extends \BaseController {
         }else{
             $data = BillingVApplicantHistory::where('id', $id)->first();
            // $applicant_id = $data->applicant_id;
-            $relation_data = BillingSummaryApplicant::with('relBillingDetailsApplicant.relBillingItem', 'relBillingSchedule')->where('id', $id)->get();
+            $relation_data = BillingSummaryApplicant::with('relBillingDetailsApplicant',  'relBillingSchedule')->where('id', $id)->get();
         }
-
+        //print_r($relation_data);exit;
+        /*$last_query = end($relation_data);
+        dd(DB::getQueryLog());*/
         #print_r($relation_data[0]['relBillingDetailsApplicant'][0]['relBillingItem']['title']);exit;
         return View::make('fees::billing_history.view',compact('data', 'relation_data','studentOrApplicant'));
 
