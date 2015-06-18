@@ -172,7 +172,7 @@
         'uses'=> 'RnCFacultyController@editWriterBeneficial'
     ]);
 
-    Route::any('faculty/research-paper-writer-beneficial/update/{id}/{ben_id}',[
+    Route::any('faculty/research-paper-writer-beneficial/update',[
         'as' => 'faculty.research-paper-writer-beneficial.update',
         'uses'=> 'RnCFacultyController@updateWriterBeneficial'
     ]);
@@ -187,7 +187,7 @@
 
     Route::any("ajax/fac-get-writer-name-auto-complete", [
         "as"   => "ajax.fac-get-writer-name-auto-complete",
-        "uses" => "RnCFacultyController@ajaxFacGetWriterNameAutoComplete"
+        "uses" => "RnCFacultyController@ajaxGetWriterNameAutoComplete"
     ]);
 
     Route::any('faculty/research-paper-writer/store',[

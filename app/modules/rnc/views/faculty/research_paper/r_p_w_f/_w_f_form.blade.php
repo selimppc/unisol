@@ -62,8 +62,8 @@
             </td>
             <td id="new-column-value-{{ $model_value->id }}">{{ $model_value->relRnCWriterBeneficial->value }}</td>
             <td>
-                <a data-href="{{ $model_value->id }}" data-benf="{{$model_value->relRnCWriterBeneficial->id}}" class="btn btn-default btn-sm delete-dt-2" id="delete-dt-2{{ $model_value->id }}" ><i class="fa fa-trash-o" style="font-size: 15px;color: red"></i></a>
-                <a class="btn btn-sm btn-default edit-writer-and-beneficial" ><i class="fa fa-pencil-square-o" style="color: #0044cc" title="Edit"></i></a>
+                <a data-href="{{ $model_value->id }}" data-benf="{{ $model_value->relRnCWriterBeneficial->id }}" class="btn btn-default btn-sm delete-dt-2" id="delete-dt-2{{ $model_value->id }}" ><i class="fa fa-trash-o" style="font-size: 15px;color: red"></i></a>
+                <a data-href="{{ $model_value->id }}" data-benf="{{ $model_value->relRnCWriterBeneficial->id }}" class="btn btn-sm btn-default edit-writer-and-beneficial" ><i class="fa fa-pencil-square-o" style="color: #0044cc" title="Edit"></i></a>
             </td>
         </tr>
       <?php $counter++;?>
@@ -81,6 +81,7 @@
 
 <script type="text/javascript">
 $(function(){
+
          $( "#search_writer_name" ).autocomplete({
               source: "/rnc/ajax/fac-get-writer-name-auto-complete",
               minLength: 1,
@@ -163,25 +164,40 @@ $(function(){
         });
      });
 
+
+//  Beneficial Edit
     $(".edit-writer-and-beneficial").click(function(event){
-        $('#test-edit').append("<div class='form-group'> " +
+        event.preventDefault();
+        var $id = $(this).data("href");
+
+//        $writer_user_id = $("#wr-name-id").html();
+//        $research_paper_id = $("#research_paper_id").html;
+
+        $name = $("#new-column-name-"+$id).html();
+        $value = $("#new-column-value-"+$id).html();
+        var $research_paper_id = "<?php echo $rnc_r_p_id; ?>";
+
+        var $form_start = "<form action='{{ route('faculty.research-paper-writer-beneficial.update') }}' method='POST'>";
+        var $form_end = "</form>";
+
+        $('#test-edit').append($form_start + "<div class='form-group'> " +
+           "<input type='hidden' name='rnc_research_paper_id' value='" + $research_paper_id + "'>" +
            "<label for='label-name' style='padding-right: 30px'>Writer Name: </label>" +
-           "<input value='' id='label-name' style='background-color : lavender' readonly> <input type='hidden' name='writer_user_id[]' value='' >" +
+           "<input id='label-name' style='background-color : lavender' readonly value='"+ $name +"'> <input type='hidden' name='writer_user_id' value=' ' >" +
            "</br> " +
            "<label for='label-val' style='padding-right: 10px'>Beneficial Value: </label>" +
-           "<input type='text' id='label-val' name='value[]' value=''>" +
-           "<input type='button' style='margin-left: 160px' class='btn-xs btn-linkedin' value='Update'>" +
-           "<input type='button' class='pull-right btn-xs btn-info toggleShowADD' value='Back'>" +
-        " </div>");
+           "<input type='text' id='label-val' name='value' value='"+ $value +"'>" +
+           "<input type='submit' style='margin-left: 160px' class='btn-xs btn-linkedin' value='Update'>" +
+        " </div>" + $form_end);
 
         $("#talk").hide();
     });
 
 
-     $(".toggleShowADD").click(function(event){
-        $(".toggleMydiv").show();
-        $(".edit-writer-and-beneficial").hide();
-     });
+//     $(".toggleShowADD").click(function(event){
+//        $(".toggleMydiv").show();
+//        $(".edit-writer-and-beneficial").hide();
+//     });
 
 });
 
