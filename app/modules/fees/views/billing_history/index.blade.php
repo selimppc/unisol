@@ -57,12 +57,12 @@
                             <div class="col-sm-4">
                                 <div class="form-inline radio-inline">
                                     <div class="radio radio-style">
-                                        {{ Form::radio('studentOrApplicant','student' ) }}
-                                        {{ Form::label('student','Student') }}
-                                    </div>
-                                    <div class="radio radio-style">
                                         {{ Form::radio('studentOrApplicant','applicant',true) }}
                                         {{ Form::label('applicant', 'Applicant') }}
+                                    </div>
+                                    <div class="radio radio-style">
+                                        {{ Form::radio('studentOrApplicant','student' ) }}
+                                        {{ Form::label('student','Student') }}
                                     </div>
                                 </div>
                             </div>
@@ -107,7 +107,7 @@
                                                 <td>{{isset($value->schedule_title) ? $value->schedule_title:''}}</td>
                                                 <td>{{isset($value->amount) ? $value->amount : ''}}</td>
                                                 <td>
-                                                    <a href="{{URL::route('billing.history.show',['id'=>$value->id])}}" class="btn btn-xs btn-default" href=""><i class="fa fa-eye" style="color: green"></i></a>
+                                                    <a href="{{URL::route('billing.history.show',['id'=>$value->id,'app_stu_id'=> $studentOrApplicant])}}" class="btn btn-xs btn-default" href=""><i class="fa fa-eye" style="color: green"></i></a>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -137,7 +137,7 @@
                                                 <td>{{isset($value->schedule_title) ? $value->schedule_title:''}}</td>
                                                 <td>{{isset($value->amount) ? $value->amount : ''}}</td>
                                                 <td>
-                                                    <a href="{{URL::route('billing.history.show',['id'=>$value->id])}}" class="btn btn-xs btn-default" href=""><i class="fa fa-eye" style="color: green"></i></a>
+                                                    <a href="{{URL::route('billing.history.show',['id'=>$value->id,'app_stu_id'=> $studentOrApplicant])}}" class="btn btn-xs btn-default" href=""><i class="fa fa-eye" style="color: green"></i></a>
                                                 </td>
                                             </tr>
                                         @endforeach

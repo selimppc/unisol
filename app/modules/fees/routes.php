@@ -64,7 +64,7 @@
          'uses' => 'FeesController@index_billing_history'
      ]);
 
-     Route::any('billing/history/show/{id}', [
+     Route::any('billing/history/show/{id}/{app_stu_id}', [
          'as' => 'billing.history.show',
          'uses' => 'FeesController@billing_history_show'
      ]);
