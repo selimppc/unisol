@@ -18,25 +18,25 @@
                 <table class="table table-bordered table-hover table-striped">
                     <tr>
                         <td>Name:</td>
-                        <td>{{isset($data[0]->first_name) ? $data[0]->first_name:''}} {{isset($data[0]->last_name) ? $data[0]->last_name:''}}
+                        <td>{{isset($data->first_name) ? $data->first_name:''}} {{isset($data->last_name) ? $data->last_name:''}}
                         </td>
                     </tr>
                     <tr>
                         <td>Department:</td>
                         <td>
-                            {{isset($data[0]->relDepartment->title) ? $data[0]->relDepartment->title :''}}
+                            {{isset($data->relDepartment->title) ? $data->relDepartment->title :''}}
                         </td>
                     </tr>
                     <tr>
                         <td>Degree:</td>
                         <td>
-                            {{isset($data[0]->relDegree->relDegreeProgram->title) ? $data[0]->relDegree->relDegreeProgram->title :''}}
+                            {{isset($data->relDegree->relDegreeProgram->title) ? $data->relDegree->relDegreeProgram->title :''}}
                         </td>
                     </tr>
                     <tr>
                         <td>Batch:</td>
                         <td>
-                            {{isset($data[0]->relBatch->batch_number) ? $data[0]->relBatch->batch_number :''}}
+                            {{isset($data->relBatch->batch_number) ? $data->relBatch->batch_number :''}}
                         </td>
                     </tr>
                     <tr>
@@ -59,22 +59,15 @@
                     <th>Amount</th>
                     </thead>
                     <tbody>
-                    @if(isset($relation_data))
-                        @foreach($relation_data as $value)
-                            <tr>
-                                <td>{{isset($value->relBillingDetailsApplicant->relBillingItem->title) ? $value->relBillingDetailsApplicant->relBillingItem->title:''}}</td>
+                    @foreach($relation_data as $value)
+                        <tr>
+                            <td>{{isset($value->relBillingSchedule->relBillingItem->title) ? $value->relBillingSchedule->relBillingItem->title:''}}</td>
+                            <td>{{isset($value->relBillingSchedule->title) ? $value->relBillingSchedule->title:''}}</td>
+                            <td>{{isset($value->relBillingDetailsApplicant->waiver_amount) ? $value->relBillingDetailsApplicant->waiver_amount:''}}</td>
+                            <td>{{isset($value->total_amount) ? $value->total_amount : ''}}</td>
+                        </tr>
+                    @endforeach
 
-                                <td>{{isset($value->relBillingSchedule->title) ? $value->relBillingSchedule->title:''}}
-                                </td>
-                                <td>{{isset($value->waiver_amount) ? $value->waiver_amount : ''}}
-                                </td>
-
-                                <td>
-                                    {{isset($value->total_amount) ? $value->total_amount : ''}}
-                                </td>
-                            </tr>
-                        @endforeach
-                    @endif
                     </tbody>
                 </table>
             </div>

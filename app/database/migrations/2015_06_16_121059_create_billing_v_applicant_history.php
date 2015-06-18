@@ -18,6 +18,7 @@ class CreateBillingVApplicantHistory extends Migration {
               `bs`.`code`        AS `schedule_code`,
               `bs`.`title`       AS `schedule_title`,
               `bsa`.`total_cost` AS `amount`,
+              `bsa`.`applicant_id` AS `applicant_id`,
               `app`.`first_name` AS `first_name`,
               `app`.`last_name`  AS `last_name`,
               `b`.`id`           AS `batch_id`,
