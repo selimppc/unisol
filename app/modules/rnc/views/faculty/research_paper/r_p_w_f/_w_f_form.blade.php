@@ -60,6 +60,10 @@
                  $model_value->relUser->relUserProfile->last_name : ''
              }}
             </td>
+            <span id="writer-user-id" style="display: none"> {{$model_value->writer_user_id }}</span>
+            <span id="ben-id" style="display: none"> {{$model_value->relRnCWriterBeneficial->id }}</span>
+            <span id="rnc_writer_id" style="display: none"> {{$model_value->relRnCWriterBeneficial->rnc_research_paper_writer_id }}</span>
+            
             <td id="new-column-value-{{ $model_value->id }}">{{ $model_value->relRnCWriterBeneficial->value }}</td>
             <td>
                 <a data-href="{{ $model_value->id }}" data-benf="{{ $model_value->relRnCWriterBeneficial->id }}" class="btn btn-default btn-sm delete-dt-2" id="delete-dt-2{{ $model_value->id }}" ><i class="fa fa-trash-o" style="font-size: 15px;color: red"></i></a>
@@ -176,6 +180,10 @@ $(function(){
         $name = $("#new-column-name-"+$id).html();
         $value = $("#new-column-value-"+$id).html();
         var $research_paper_id = "<?php echo $rnc_r_p_id; ?>";
+        $writer_user_id = $("#writer-user-id").html();
+        $ben_id = $("#ben-id").html();
+        $rnc_writer_id = $("#rnc_writer_id").html();
+
 
         var $form_start = "<form action='{{ route('faculty.research-paper-writer-beneficial.update') }}' method='POST'>";
         var $form_end = "</form>";
@@ -183,7 +191,10 @@ $(function(){
         $('#test-edit').append($form_start + "<div class='form-group'> " +
            "<input type='hidden' name='rnc_research_paper_id' value='" + $research_paper_id + "'>" +
            "<label for='label-name' style='padding-right: 30px'>Writer Name: </label>" +
-           "<input id='label-name' style='background-color : lavender' readonly value='"+ $name +"'> <input type='hidden' name='writer_user_id' value=' ' >" +
+           "<input id='label-name' style='background-color : lavender' readonly value='"+ $name +"'>" +
+           "<input type='text' name='writer_user_id' value='" + $writer_user_id + "' >" +
+           "<input type='text' name='id' value='" + $ben_id + "' >" +
+           "<input type='text' name='id' value='" + $rnc_writer_id + "' >" +
            "</br> " +
            "<label for='label-val' style='padding-right: 10px'>Beneficial Value: </label>" +
            "<input type='text' id='label-val' name='value' value='"+ $value +"'>" +
