@@ -573,23 +573,28 @@ class RnCFacultyController extends \BaseController
 
     }
 
-    public function editWriterBeneficial( $rnc_r_p_id, $id, $ben_id)
+//    public function editWriterBeneficial( $rnc_r_p_id, $id, $ben_id)
+//    {
+//        $r_p = RnCResearchPaper::where('id', $rnc_r_p_id)->first();
+//
+//        $edit_info = RnCResearchPaperWriter::with('relRnCResearchPaper','relRnCWriterBeneficial' ,'relUser', 'relUser.relUserProfile')
+//            ->where('rnc_research_paper_id', $rnc_r_p_id)
+//            ->where('id', $id)
+//            ->find($id);
+//
+//        #print_r($edit_info);exit;
+//
+//        return View::make('rnc::faculty.research_paper.r_p_w_f.edit_writer_beneficial',
+//            compact('rnc_r_p_id','edit_info','r_p','id','ben_id'));
+//    }
+
+    public function updateWriterBeneficial( )
     {
-        $r_p = RnCResearchPaper::where('id', $rnc_r_p_id)->first();
+        $ben_id = Input::all();
 
-        $edit_info = RnCResearchPaperWriter::with('relRnCResearchPaper','relRnCWriterBeneficial' ,'relUser', 'relUser.relUserProfile')
-            ->where('rnc_research_paper_id', $rnc_r_p_id)
-            ->where('id', $id)
-            ->find($id);
+        print_r($ben_id);exit;
 
-        #print_r($edit_info);exit;
-
-        return View::make('rnc::faculty.research_paper.r_p_w_f.edit_writer_beneficial',
-            compact('rnc_r_p_id','edit_info','r_p','id','ben_id'));
-    }
-
-    public function updateWriterBeneficial($id, $ben_id)
-    {
+        $ben_id = Input::get('ben_id');
 
         DB::beginTransaction();
         try{
