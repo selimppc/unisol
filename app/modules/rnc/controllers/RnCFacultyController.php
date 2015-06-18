@@ -591,16 +591,14 @@ class RnCFacultyController extends \BaseController
     {
         $ben_id = Input::all();
 
-        print_r($ben_id);exit;
-
         DB::beginTransaction();
         try{
-                $model = RnCResearchPaperWriter::find($id);
+                $model = RnCResearchPaperWriter::find(Input::get('writer_id'));
                 $model->rnc_research_paper_id = Input::get('rnc_research_paper_id');
                 $model->writer_user_id = Input::get('writer_user_id');
                 if($model->update()){
-                    $model2 = RnCWriterBeneficial::find($ben_id);
-                    $model2->rnc_research_paper_writer_id = $model->id;
+                    $model2 = RnCWriterBeneficial::find(Input::get('beneficial_id'));
+                    $model2->rnc_research_paper_writer_id = Input::get('writer_id');
                     $model2->rnc_research_paper_id = Input::get('rnc_research_paper_id');
                     $model2->value = Input::get('value');
                     $model2->update();
