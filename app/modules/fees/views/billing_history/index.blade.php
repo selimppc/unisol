@@ -70,13 +70,13 @@
                         <div class="col-lg-9 inline-textbox">
                             <div class="form-inline">
                                 <div class="form-group ">
-                                    <div class="col-lg-12">
-                                        {{ Form::text('student_id',Input::old('student_id'), array('class'=>'textbox-style','placeholder'=>'Enter id')) }} OR
+                                    <div class="col-lg-12" >
+                                        {{ Form::text('student_name',Input::old('student_name'), array('class'=>'textbox-style','placeholder'=>'Enter Name')) }} OR
                                     </div>
                                 </div>
                                 <div class="form-group ">
-                                    <div class="col-lg-12">
-                                        {{ Form::text('student_name',Input::old('student_name'), array('class'=>'textbox-style','placeholder'=>'Enter name')) }}
+                                    <div class="col-lg-12" >
+                                        {{ Form::text('student_id',Input::old('student_id'), array('class'=>'textbox-style','placeholder'=>'Enter id')) }}
                                     </div>
                                 </div>
                             </div>
@@ -107,7 +107,7 @@
                                                 <td>{{isset($value->schedule_title) ? $value->schedule_title:''}}</td>
                                                 <td>{{isset($value->amount) ? $value->amount : ''}}</td>
                                                 <td>
-                                                    <a href="" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" href=""><i class="fa fa-eye" style="color: green"></i></a>
+                                                    <a href="{{URL::route('billing.history.show',['id'=>$value->id])}}" class="btn btn-xs btn-default" href=""><i class="fa fa-eye" style="color: green"></i></a>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -137,7 +137,7 @@
                                                 <td>{{isset($value->schedule_title) ? $value->schedule_title:''}}</td>
                                                 <td>{{isset($value->amount) ? $value->amount : ''}}</td>
                                                 <td>
-                                                    <a href="" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" href=""><i class="fa fa-eye" style="color: green"></i></a>
+                                                    <a href="{{URL::route('billing.history.show',['id'=>$value->id])}}" class="btn btn-xs btn-default" href=""><i class="fa fa-eye" style="color: green"></i></a>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -153,5 +153,23 @@
             </div>
         </div>
     </div>
+
+    <script>
+        $(document).ready(function(){
+
+            $("#send_to_one").show();
+
+            $("input:radio[name='applicant']").change(function(){
+
+                if(this.value == 'one' && this.checked){
+                    $("#send_to_one").hide();
+                }else{
+                    $("#send_to_one").show();
+                }
+
+            });
+
+        });
+    </script>
 
 @stop
