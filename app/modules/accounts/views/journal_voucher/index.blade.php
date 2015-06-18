@@ -49,16 +49,9 @@
                         <a href="{{ URL::route('show-stock-adjustment', ['adj_id'=>$values->id ])  }}" class="btn btn-default btn-xs" title="View Dispatch" data-toggle="modal" data-target="#modal-pc"><span class="fa fa-eye"></span></a>
                         <a href="{{ URL::route('edit-stock-adjustment',['adj_id'=>$values->id])  }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal-pc"> <i class="fa fa-edit"></i></a>
                         <a data-href="{{ URL::route('cancel-stock-adjustment', ['adj_id'=>$values->id ]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa fa-circle-o-notch" style="color: red" data-toggle="tooltip" data-placement="bottom" title="Cancel"></i></a>
-                    @elseif($values->status=="Confirmed Adjustment")
-                        <a href="{{ URL::route('show-stock-adjustment', ['sd_id'=>$values->id ])  }}" class="btn btn-default btn-xs" title="View Dispatch" data-toggle="modal" data-target="#modal-pc"><span class="fa fa-eye"></span></a>
                     @endif
+                    </td>
 
-                    </td>
-                    <td>
-                    @if($values->status!="Confirmed Adjustment")
-                    <a href="{{ URL::route('sp-confirm-stock-adjustment', ['adj_head_id'=>$values->id ])  }}" class="btn btn-success btn-xs" title="Approve Stock Adjustment" > Approve ADJ</a>
-                    @endif
-                    </td>
                  </tr>
                 @endforeach
             </tbody>
@@ -71,8 +64,8 @@
     {{$data->links();}}
 
 </div>
-{{Form::open(['route'=>'store-of-accounts', 'files'=>true])}}
-        @include('accounts::chart_of_accounts._modal._modal')
+{{Form::open(['route'=>'store-journal-voucher', 'files'=>true])}}
+        @include('accounts::journal_voucher._modal._modal')
 {{ Form::close() }}
 
 {{-- Modal Area --}}

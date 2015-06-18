@@ -1,20 +1,15 @@
 <?php
-//use Carbon\Carbon;
-
-class AccChartOfAccounts extends \Eloquent
+class AccTrnNoSetup extends \Eloquent
 {
     //TODO :: model attributes and rules and validation
-    protected $table = 'acc_chart_of_accounts';
+    protected $table = 'acc_trn_no_setup';
     protected $fillable = [
-        'account_code', 'description', 'account_type',
-        'account_usage', 'group_one', 'group_two',
-        'analytical_code'
+        'code', 'title', 'last_number', 'increment'
     ];
 
     private $errors;
     private $rules = [
-        //'acc_voucher_head_id' => 'required|integer',
-        //'currency_id' => 'required|integer',
+        //'course_conduct_id' => 'required|integer',
         //'acm_marks_distribution_id' => 'required|integer',
         //'acm_class_schedule_id' => 'required|integer',
         //'status' => 'required|integer',
@@ -57,24 +52,6 @@ class AccChartOfAccounts extends \Eloquent
 
 
     //TODO : Scope Area
-    public static function list_period(){
-        $array = [
-            '' => 'Select Period',
-            '1' => 'January',
-            '2' => 'February',
-            '3' => 'March',
-            '4' => 'April',
-            '5' => 'May',
-            '6' => 'June',
-            '7' => 'July',
-            '8' => 'August',
-            '9' => 'September',
-            '10' => 'October',
-            '11' => 'November',
-            '12' => 'December',
-        ];
-        return $array;
-    }
 
 
 

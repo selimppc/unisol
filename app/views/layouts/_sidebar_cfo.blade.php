@@ -1,7 +1,7 @@
 
 <ul class="sidebar-menu">
-    <li>
-        <a href="/admission">
+    <li class="active">
+        <a href="#">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
         </a>
     </li>
