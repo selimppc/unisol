@@ -173,14 +173,15 @@ $(function(){
 //        $writer_user_id = $("#wr-name-id").html();
 //        $research_paper_id = $("#research_paper_id").html;
 
-
-        $name = $("#new-column-name-"+$id).html()
+        $name = $("#new-column-name-"+$id).html();
         $value = $("#new-column-value-"+$id).html();
+        var $research_paper_id = "<?php echo $rnc_r_p_id; ?>";
 
         var $form_start = "<form action='{{ route('faculty.research-paper-writer-beneficial.update') }}' method='POST'>";
         var $form_end = "</form>";
 
         $('#test-edit').append($form_start + "<div class='form-group'> " +
+           "<input type='hidden' name='rnc_research_paper_id' value='" + $research_paper_id + "'>" +
            "<label for='label-name' style='padding-right: 30px'>Writer Name: </label>" +
            "<input id='label-name' style='background-color : lavender' readonly value='"+ $name +"'> <input type='hidden' name='writer_user_id' value=' ' >" +
            "</br> " +
