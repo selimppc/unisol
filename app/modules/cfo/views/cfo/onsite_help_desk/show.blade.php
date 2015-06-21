@@ -22,7 +22,7 @@
 
                    <tr>
                        <th class="col-lg-6">Category :</th>
-                       <td>{{  isset($data->relCfoCategory->title)?$data->relCfoCategory->title:''}}</td>
+                       <td>{{  isset($data->cfo_category_id)?$data->relCfoCategory->title:''}}</td>
                    </tr>
 
 
