@@ -10,7 +10,8 @@ class HrController extends \BaseController {
    //hr_bank
 	public function indexHrBank()
 	{
-		echo "Hi";
+        $model = HrBank::orderBy('id', 'DESC')->paginate(5);
+        return View::make('hr::hr.hr_bank.index', compact('model'));
 	}
 
 

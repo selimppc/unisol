@@ -22,75 +22,75 @@ Route::group(['prefix' => 'hr'], function() {
 
     //hr_bank
 
-    Route::any('hr/hr_bank/index',[
-        'as' => 'hr.hr_bank.index',
+    Route::any('human_resource/hr_bank/index',[
+        'as' => 'human_resource.hr_bank.index',
         'uses'=> 'HrController@indexHrBank'
     ]);
 
-    Route::any('hr/hr_bank/create',[
-        'as' => 'hr.hr_bank.create',
+    Route::any('human_resource/hr_bank/create',[
+        'as' => 'human_resource.hr_bank.create',
         'uses'=> 'HrController@createHrBank'
     ]);
 
-    Route::any('hr/hr_bank/store',[
-        'as' => 'hr.hr_bank.store',
+    Route::any('human_resource/hr_bank/store',[
+        'as' => 'human_resource.hr_bank.store',
         'uses'=> 'HrController@storeHrBank'
     ]);
 
-    Route::any('hr/hr_bank/show',[
-        'as' => 'hr.hr_bank.show',
+    Route::any('human_resource/hr_bank/show',[
+        'as' => 'human_resource.hr_bank.show',
         'uses'=> 'HrController@showHrBank'
     ]);
 
-    Route::any('hr/hr_bank/edit',[
-        'as' => 'hr.hr_bank.edit',
+    Route::any('human_resource/hr_bank/edit',[
+        'as' => 'human_resource.hr_bank.edit',
         'uses'=> 'HrController@editHrBank'
     ]);
 
-    Route::any('hr/hr_bank/update',[
-        'as' => 'hr.hr_bank.update',
+    Route::any('human_resource/hr_bank/update',[
+        'as' => 'human_resource.hr_bank.update',
         'uses'=> 'HrController@updateHrBank'
     ]);
 
-    Route::any('hr/hr_bank/delete',[
-        'as' => 'hr.hr_bank.delete',
+    Route::any('human_resource/hr_bank/delete',[
+        'as' => 'human_resource.hr_bank.delete',
         'uses'=> 'HrController@deleteHrBank'
     ]);
 
     //hr_salary_grade
 
-    Route::any('hr/hr_salary_grade/index',[
-        'as' => 'hr.hr_salary_grade.index',
+    Route::any('human_resource/hr_salary_grade/index',[
+        'as' => 'human_resource.hr_salary_grade.index',
         'uses'=> 'HrController@indexHrBank'
     ]);
 
-    Route::any('hr/hr_salary_grade/create',[
-        'as' => 'hr.hr_salary_grade.create',
+    Route::any('human_resource/hr_salary_grade/create',[
+        'as' => 'human_resource.hr_salary_grade.create',
         'uses'=> 'HrController@createHrBank'
     ]);
 
-    Route::any('hr/hr_salary_grade/store',[
-        'as' => 'hr.hr_salary_grade.store',
+    Route::any('human_resource/hr_salary_grade/store',[
+        'as' => 'human_resource.hr_salary_grade.store',
         'uses'=> 'HrController@storeHrBank'
     ]);
 
-    Route::any('hr/hr_salary_grade/show',[
-        'as' => 'hr.hr_salary_grade.show',
+    Route::any('human_resource/hr_salary_grade/show',[
+        'as' => 'human_resource.hr_salary_grade.show',
         'uses'=> 'HrController@showHrBank'
     ]);
 
-    Route::any('hr/hr_salary_grade/edit',[
-        'as' => 'hr.hr_salary_grade.edit',
+    Route::any('human_resource/hr_salary_grade/edit',[
+        'as' => 'human_resource.hr_salary_grade.edit',
         'uses'=> 'HrController@editHrBank'
     ]);
 
-    Route::any('hr/hr_salary_grade/update',[
-        'as' => 'hr.hr_salary_grade.update',
+    Route::any('human_resource/hr_salary_grade/update',[
+        'as' => 'human_resource.hr_salary_grade.update',
         'uses'=> 'HrController@updateHrBank'
     ]);
 
-    Route::any('hr/hr_salary_grade/delete',[
-        'as' => 'hr.hr_salary_grade.delete',
+    Route::any('human_resource/hr_salary_grade/delete',[
+        'as' => 'human_resource.hr_salary_grade.delete',
         'uses'=> 'HrController@deleteHrBank'
     ]);
 
