@@ -15,6 +15,7 @@ class CreateUser extends Migration {
             $table->string('password', 64);
             $table->string('email')->unique();
             $table->string('student_id', 10);
+            $table->string('billing_type');
             $table->unsignedInteger('role_id')->nullable();
             $table->unsignedInteger('department_id')->nullable();
             $table->date('join_date');

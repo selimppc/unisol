@@ -210,6 +210,8 @@ class CfoAmwController extends \BaseController {
         return View::make('cfo::cfo.onsite_help_desk.index',compact('assigned_user'));
     }
 
+    //TODO :Stop Repeated call in ajax pagination......
+
     public function ajaxHelpDeskList($status){
         if (Request::ajax()) {
             if($status == "my_desk"){

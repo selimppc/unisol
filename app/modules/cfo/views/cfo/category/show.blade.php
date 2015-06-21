@@ -10,22 +10,22 @@
                  <table style="font-size: large" class="table table-striped  table-bordered">
                        <tr>
                          <th class="col-lg-8">Title:</th>
-                         <td>{{ $model->title }}</td>
+                         <td>{{ isset($model->title)?$model->title:'' }}</td>
                        </tr>
 
                        <tr>
                          <th class="col-lg-8">Description:</th>
-                         <td>{{ $model->description }}</td>
+                         <td>{{isset($model->description)?$model->description:''}}</td>
                        </tr>
 
                        <tr>
                          <th class="col-lg-8">support Name:</th>
-                         <td>{{ $model->support_name }}</td>
+                         <td>{{ isset( $model->support_name)? $model->support_name:''}}</td>
                        </tr>
 
                       <tr>
                          <th class="col-lg-8">Support Email:</th>
-                         <td>{{ $model->support_email }}</td>
+                         <td>{{isset($model->support_email)? $model->support_email:''}}</td>
                       </tr>
                  </table>
            </div>
