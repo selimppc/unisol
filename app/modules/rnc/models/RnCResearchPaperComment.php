@@ -13,7 +13,7 @@ class RncResearchPaperComment extends Eloquent{
     ];
     private $errors;
     private $rules = [
-     'rnc_research_paper_id' => 'required'
+        'rnc_research_paper_id' => 'required'
     ];
 
 

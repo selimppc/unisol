@@ -8,11 +8,11 @@ class RncAmwController extends \BaseController
     }
 
     // Category
-	public function indexCategory()
-	{
+    public function indexCategory()
+    {
         $model = RncCategory::orderBy('id', 'DESC')->paginate(5);
         return View::make('rnc::amw.category.index', compact('model'));
-	}
+    }
 
     public function storeCategory()
     {

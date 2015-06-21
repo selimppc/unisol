@@ -15,20 +15,20 @@ class RncResearchPaper extends Eloquent{
     ];
     private $errors;
     private $rules = [
-      /*  'title' => 'required',
-        'isbn' => 'required',
-        'lib_book_category_id' => 'required',
-        'lib_book_author_id' => 'required',
-        'lib_book_publisher_id' => 'required',
-        'edition' => 'required',
-        'stock_type' => 'required',
-        'shelf_number' => 'required',
-        'book_type' => 'required',
-        'commercial' => 'required',
-        'book_price' => 'required',
-        'digital_sell_price' => 'required',
-        'is_rented' => 'required',
-        'file' => 'required|mimes:pdf|max:2000',   //2MB file can be uploaded*/
+        /*  'title' => 'required',
+          'isbn' => 'required',
+          'lib_book_category_id' => 'required',
+          'lib_book_author_id' => 'required',
+          'lib_book_publisher_id' => 'required',
+          'edition' => 'required',
+          'stock_type' => 'required',
+          'shelf_number' => 'required',
+          'book_type' => 'required',
+          'commercial' => 'required',
+          'book_price' => 'required',
+          'digital_sell_price' => 'required',
+          'is_rented' => 'required',
+          'file' => 'required|mimes:pdf|max:2000',   //2MB file can be uploaded*/
     ];
 
 
