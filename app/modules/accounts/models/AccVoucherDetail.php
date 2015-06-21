@@ -37,7 +37,21 @@ class AccVoucherDetail extends \Eloquent
 
 
     //TODO : Model Relationship
+    public function relAccVoucherHead(){
+        return $this->belongsTo('AccVoucherHead', 'acc_voucher_head_id', 'id');
+    }
 
+    public function relAccChartOfAccounts(){
+        return $this->belongsTo('AccChartOfAccounts', 'acc_chart_of_accounts_id', 'id');
+    }
+
+    public function relInvSupplier(){
+        return $this->belongsTo('InvSupplier', 'inv_supplier_id', 'id');
+    }
+
+    public function relCurrency(){
+        return $this->belongsTo('Currency', 'currency_id', 'id');
+    }
 
 
     // TODO : user info while saving data into table

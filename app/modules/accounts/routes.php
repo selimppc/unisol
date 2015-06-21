@@ -77,19 +77,25 @@ Route::group(['prefix' => 'accounts'], function() {
         "uses" => "AccJournalVoucherController@batch_delete_journal_voucher"
     ]);
 
+    // Journal Voucher Details
     Route::any("detail-journal-voucher/{jv_id}", [
         "as"   => "detail-journal-voucher",
         "uses" => "AccJournalVoucherController@detail_journal_voucher"
     ]);
 
+    Route::any("coa-auto-complete", [
+        "as"   => "coa-auto-complete",
+        "uses" => "AccJournalVoucherController@ajaxGetCoaAutoComplete"
+    ]);
 
-    Route::any("detail-jv-store", [
-        "as"   => "detail-jv-store",
+
+    Route::any("store-detail-jv", [
+        "as"   => "store-detail-jv",
         "uses" => "AccJournalVoucherController@store_journal_voucher_detail"
     ]);
 
-    Route::any("ajax-delete-jv-detail", [
-        "as"   => "ajax-delete-jv-detail",
+    Route::any("jv-ajax-delete-detail", [
+        "as"   => "jv-ajax-delete-detail",
         "uses" => "AccJournalVoucherController@ajax_delete_journal_voucher_detail"
     ]);
 

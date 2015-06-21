@@ -1,16 +1,14 @@
+
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-     <h4> Update:  <b>{{$model->voucher_number}}</b> </h4>
+     <h4> Journal Voucher:  <b>{{$jv_head->voucher_number}}</b> </h4>
 </div>
 
 <div style="padding: 2%; width: 99%;">
-<div class="modal-body" >
-
-    {{Form::model($model, ['route'=> ['edit-journal-voucher', $model->id], 'method' => 'patch', 'role' => 'form', 'files' => true,])}}
-            {{ Form::hidden('id', $model->id) }}
-            @include('accounts::journal_voucher._form')
-    {{ Form::close() }}
-
+<div class="modal-body " >
+{{Form::open(['route'=>'store-detail-jv'])}}
+  @include('accounts::journal_voucher_detail._form')
+{{ Form::close() }}
 </div>
 </div>
 
@@ -18,3 +16,4 @@
 <div class="modal-footer">
     <a href="" class="pull-right btn btn-info" span class="glyphicon-refresh">Close</a>
 </div>--}}
+
