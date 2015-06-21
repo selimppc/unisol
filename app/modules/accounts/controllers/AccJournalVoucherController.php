@@ -228,7 +228,7 @@ class AccJournalVoucherController extends \BaseController {
         $id = Input::get('id');
         DB::beginTransaction();
         try{
-            InvRequisitionDetail::destroy($id); //Batch::destroy(Request::get('id'));
+            AccVoucherDetail::destroy($id); //Batch::destroy(Request::get('id'));
             DB::commit();
             return Response::json("Successfully Deleted");
         }catch ( Exception $e ){
