@@ -1,6 +1,6 @@
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-     <h3> Chart of Accounts</h3>
+     <h3> Journal Voucher </h3>
 </div>
 
 <div style="padding: 2%; width: 99%;">
@@ -9,37 +9,69 @@
     <div class="row">
     <table class="table table-striped  table-bordered">
         <tr>
-            <td><strong> Account Code </strong></td>
-            <td>{{ $data->account_code}}</td>
+            <td><strong> Voucher Number </strong></td>
+            <td>{{ $data->voucher_number}}</td>
         </tr>
         <tr>
-            <td><strong> Description </strong></td>
-            <td>{{ $data->description }}</td>
-        </tr>
-
-        <tr>
-            <td><strong> Account Type </strong></td>
-            <td>{{ $data->account_type }}</td>
+            <td><strong> Date </strong></td>
+            <td>{{ $data->date }}</td>
         </tr>
 
         <tr>
-            <td><strong> Account Usage </strong></td>
-            <td>{{ $data->account_usage }}</td>
+            <td><strong> Reference </strong></td>
+            <td>{{ $data->reference }}</td>
+        </tr>
+
+        <tr>
+            <td><strong> Year </strong></td>
+            <td>{{ $data->year_id }}</td>
         </tr>
         <tr>
-            <td><strong> Group One </strong></td>
-            <td>{{ $data->group_one }}</td>
+            <td><strong> Period </strong></td>
+            <td>{{ $data->period }}</td>
         </tr>
         <tr>
-            <td><strong> Group Two </strong></td>
-            <td>{{ $data->group_two }}</td>
+            <td><strong> Note </strong></td>
+            <td>{{ $data->note }}</td>
         </tr>
         <tr>
-            <td><strong> Analytical Code </strong></td>
-            <td>{{ $data->analytical_code }}</td>
+            <td><strong> Status </strong></td>
+            <td>{{ $data->status }}</td>
         </tr>
     </table>
     </div>
+
+
+    <p>
+        <b> Journal Detail(s)</b>
+    </p>
+        <div class="row">
+            <table id="example" class="table table-striped  table-bordered" >
+                <thead>
+                    <tr>
+                        <th> Account Code (COA) </th>
+                        <th> Supplier </th>
+                        <th> Prime Amount </th>
+                        <th> Note </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if(isset($jv_dt))
+                    @foreach($jv_dt as $values)
+                     <tr>
+                        <td>{{ $values->relAccChartOfAccounts->account_code }}  </td>
+                        <td>{{ Str::title( $values->relInvSupplier->company_name ) }}  </td>
+                        <td>{{ $values->prime_amount }}</td>
+                        <td>{{ $values->note }}</td>
+                     </tr>
+                    @endforeach
+                    @else
+                        {{ "No Data Found !" }}
+                    @endif
+                </tbody>
+
+            </table>
+        </div>
 
 </div>
 </div>

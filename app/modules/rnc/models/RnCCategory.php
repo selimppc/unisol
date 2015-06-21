@@ -13,7 +13,7 @@ class RncCategory extends Eloquent{
     ];
     private $errors;
     private $rules = [
-       'title' => 'required'
+        'title' => 'required'
     ];
 
     public function validate($data)
@@ -30,7 +30,6 @@ class RncCategory extends Eloquent{
     {
         return $this->errors;
     }
-
 
     //TODO : Model Relationship
 

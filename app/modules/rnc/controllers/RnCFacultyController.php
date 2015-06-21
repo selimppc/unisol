@@ -8,7 +8,7 @@ class RncFacultyController extends \BaseController
         $this->beforeFilter('', array('except' => array('')));
     }
 
-     // Config
+    // Config
     public function indexConfig()
     {
         $config = RncConfig::orderBy('id', 'DESC')->paginate(5);
@@ -573,16 +573,16 @@ class RncFacultyController extends \BaseController
 
         DB::beginTransaction();
         try{
-                $model = RncResearchPaperWriter::find(Input::get('writer_id'));
-                $model->rnc_research_paper_id = Input::get('rnc_research_paper_id');
-                $model->writer_user_id = Input::get('writer_user_id');
-                if($model->update()){
-                    $model2 = RncWriterBeneficial::find(Input::get('beneficial_id'));
-                    $model2->rnc_research_paper_writer_id = Input::get('writer_id');
-                    $model2->rnc_research_paper_id = Input::get('rnc_research_paper_id');
-                    $model2->value = Input::get('value');
-                    $model2->update();
-                }
+            $model = RncResearchPaperWriter::find(Input::get('writer_id'));
+            $model->rnc_research_paper_id = Input::get('rnc_research_paper_id');
+            $model->writer_user_id = Input::get('writer_user_id');
+            if($model->update()){
+                $model2 = RncWriterBeneficial::find(Input::get('beneficial_id'));
+                $model2->rnc_research_paper_writer_id = Input::get('writer_id');
+                $model2->rnc_research_paper_id = Input::get('rnc_research_paper_id');
+                $model2->value = Input::get('value');
+                $model2->update();
+            }
 
             DB::commit();
             Session::flash('message', 'Success !');

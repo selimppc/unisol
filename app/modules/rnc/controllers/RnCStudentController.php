@@ -2,6 +2,7 @@
 
 class RncStudentController extends \BaseController {
 
+
     function __construct()
     {
         $this->beforeFilter('', array('except' => array('')));

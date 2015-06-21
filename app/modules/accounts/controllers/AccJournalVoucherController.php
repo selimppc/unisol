@@ -73,19 +73,19 @@ class AccJournalVoucherController extends \BaseController {
      * $re_id => Requisition head ID
      */
     public function show_journal_voucher($jv_id){
-        $data = InvRequisitionHead::where('status', '!=','cancel')->find($jv_id);
-        $req_dt = InvRequisitionDetail::where('inv_requisition_head_id', $data->id)->get();
-        return View::make('inventory::requisition_head.show', compact('pageTitle', 'data', 'req_dt'));
+        $data = AccVoucherHead::where('status', '!=','cancel')->find($jv_id);
+        $jv_dt = AccVoucherDetail::where('acc_voucher_head_id', $data->id)->get();
+        return View::make('accounts::journal_voucher.show', compact('pageTitle', 'data', 'jv_dt'));
     }
 
     /*
      * edit and update specific model data only
      * $re_id => Requisition ID
      */
-    public function edit_journal_voucher($re_id){
+    public function edit_journal_voucher($jv_id){
         if($this->isPostRequest()){
             $input_data = Input::all();
-            $model = InvRequisitionHead::findOrFail($re_id);
+            $model = AccVoucherHead::findOrFail($jv_id);
             if($model->validate($input_data)){
                 DB::beginTransaction();
                 try{
@@ -100,8 +100,10 @@ class AccJournalVoucherController extends \BaseController {
             }
             return Redirect::back();
         }else{
-            $model = InvRequisitionHead::findOrFail($re_id);
-            return View::make('inventory::requisition_head.edit', compact('model'));
+            $year = ['' => 'Select Year'] + Year::lists('title', 'id');
+            $period = AccChartOfAccounts::list_period();
+            $model = AccVoucherHead::findOrFail($jv_id);
+            return View::make('accounts::journal_voucher.edit', compact('model', 'year', 'period'));
         }
 
     }
@@ -110,8 +112,8 @@ class AccJournalVoucherController extends \BaseController {
      * Delete specific model data only
      * $re_id => Requisition ID
      */
-    public function destroy_journal_voucher($re_id){
-        $model = InvRequisitionHead::findOrFail($re_id);
+    public function destroy_journal_voucher($jv_id){
+        $model = AccVoucherHead::findOrFail($jv_id);
         $model->status = 'cancel';
         DB::beginTransaction();
         try{
@@ -134,7 +136,7 @@ class AccJournalVoucherController extends \BaseController {
     {
         DB::beginTransaction();
         try{
-            InvRequisitionHead::whereIn('id', Request::get('id'))->update(['status'=> 'cancel']);
+            AccVoucherHead::whereIn('id', Request::get('id'))->update(['status'=> 'cancel']);
             DB::commit();
             Session::flash('message', 'Success !');
         }catch( Exception $e ){
@@ -158,10 +160,31 @@ class AccJournalVoucherController extends \BaseController {
     /*
      * detail of requisition item(s)
      */
-    public function detail_journal_voucher($req_id){
-        $req_head = InvRequisitionHead::find($req_id);
-        $req_dt = InvRequisitionDetail::where('inv_requisition_head_id', $req_id)->get();
-        return View::make('inventory::requisition_detail.add_edit', compact('req_id', 'req_head', 'req_dt'));
+    public function detail_journal_voucher($jv_id){
+        $jv_head = AccVoucherHead::find($jv_id);
+        $jv_dt = AccVoucherDetail::where('acc_voucher_head_id', $jv_id)->get();
+        return View::make('accounts::journal_voucher_detail.add_edit', compact('jv_id', 'jv_head', 'jv_dt'));
+    }
+
+    // AJax Product Search
+    public function ajaxGetCoaAutoComplete(){
+
+        $term = Input::get('term');
+        $results = array();
+        $queries = DB::table('acc_chart_of_accounts')
+            ->where('description', 'LIKE', '%'.$term.'%')
+            ->orWhere('account_code', 'LIKE', '%'.$term.'%')
+            ->take(10)->get();
+        foreach ($queries as $query)
+        {
+            $results[] = [
+                'label' => $query->description.' - '.$query->account_code ,
+                'id' => $query->id,
+                'code'=>$query->account_code ,
+                'name' =>$query->description,
+            ];
+        }
+        return Response::json($results);
     }
 
 
@@ -172,16 +195,15 @@ class AccJournalVoucherController extends \BaseController {
      */
     public function store_journal_voucher_detail(){
         $data = Input::all();
-        for($i = 0; $i < count(Input::get('inv_product_id')) ; $i++){
+        for($i = 0; $i < count(Input::get('acc_chart_of_accounts_id')) ; $i++){
             $dt[] = [
-                'inv_requisition_head_id' => Input::get('inv_requisition_head_id'),
-                'inv_product_id'=> Input::get('inv_product_id')[$i],
-                'rate'=> Input::get('rate')[$i],
-                'unit'=> Input::get('unit')[$i],
-                'quantity'=> Input::get('quantity')[$i],
+                'acc_voucher_head_id' => Input::get('acc_voucher_head_id'),
+                'acc_chart_of_accounts_id'=> Input::get('acc_chart_of_accounts_id')[$i],
+                'prime_amount'=> Input::get('prime_amount')[$i],
+                'note'=> Input::get('note')[$i],
             ];
         }
-        $model = new InvRequisitionDetail();
+        $model = new AccVoucherDetail();
         DB::beginTransaction();
         try{
             foreach($dt as $values){
@@ -202,11 +224,11 @@ class AccJournalVoucherController extends \BaseController {
      * $id = Requisition Detail ID
      *
      */
-    public function ajax_delete_journal_voucher_detail($id){
+    public function ajax_delete_journal_voucher_detail(){
         $id = Input::get('id');
         DB::beginTransaction();
         try{
-            InvRequisitionDetail::destroy($id); //Batch::destroy(Request::get('id'));
+            AccVoucherDetail::destroy($id); //Batch::destroy(Request::get('id'));
             DB::commit();
             return Response::json("Successfully Deleted");
         }catch ( Exception $e ){

@@ -2,18 +2,17 @@
 
 class RncAmwController extends \BaseController
 {
-
     function __construct()
     {
         $this->beforeFilter('', array('except' => array('')));
     }
 
     // Category
-	public function indexCategory()
-	{
+    public function indexCategory()
+    {
         $model = RncCategory::orderBy('id', 'DESC')->paginate(5);
         return View::make('rnc::amw.category.index', compact('model'));
-	}
+    }
 
     public function storeCategory()
     {

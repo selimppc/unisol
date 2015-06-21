@@ -71,5 +71,4 @@ class RncTransaction extends Eloquent{
 
 
     //TODO : Scope Area
-
 }

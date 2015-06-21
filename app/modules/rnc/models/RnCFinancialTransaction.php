@@ -6,6 +6,7 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 
 class RncFinancialTransaction extends Eloquent{
 
+
     //TODO :: model attributes and rules and validation
     protected $table='rnc_financial_transaction';
     protected $fillable = [

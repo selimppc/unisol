@@ -13,8 +13,8 @@ class RncPublisher extends Eloquent{
     ];
     private $errors;
     private $rules = [
-       'title' => 'required',
-       'code' => 'required'
+        'title' => 'required',
+        'code' => 'required'
 //       'description' => 'required'
 
     ];
