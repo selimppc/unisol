@@ -4,7 +4,7 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class RnCResearchPaperComment extends Eloquent{
+class RncResearchPaperComment extends Eloquent{
 
     //TODO :: model attributes and rules and validation
     protected $table='rnc_research_paper_comment';
@@ -49,8 +49,8 @@ class RnCResearchPaperComment extends Eloquent{
 
     //TODO : Model Relationship
 
-    public function relRnCResearchPaper(){
-        return $this->belongsTo('RnCResearchPaper','rnc_research_paper_id','id');
+    public function relRncResearchPaper(){
+        return $this->belongsTo('RncResearchPaper','rnc_research_paper_id','id');
     }
 
     // TODO : user info while saving data into table

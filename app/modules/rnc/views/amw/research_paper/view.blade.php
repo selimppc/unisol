@@ -15,11 +15,11 @@
             </tr>
             <tr>
                 <td><b>Category:</b></td>
-                <td>{{isset($view_r_c->relRnCCategory->title) ? $view_r_c->relRnCCategory->title : ''}}</td>
+                <td>{{isset($view_r_c->relRncCategory->title) ? $view_r_c->relRncCategory->title : ''}}</td>
             </tr>
             <tr>
                 <td><b>Publisher:</b></td>
-                <td>{{isset($view_r_c->relRnCPublisher->title) ? $view_r_c->relRnCPublisher->title : ''}}</td>
+                <td>{{isset($view_r_c->relRncPublisher->title) ? $view_r_c->relRncPublisher->title : ''}}</td>
             </tr>
             <tr>
                 <td><b>Publication No:</b></td>

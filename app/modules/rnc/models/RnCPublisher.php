@@ -4,7 +4,7 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class RnCPublisher extends Eloquent{
+class RncPublisher extends Eloquent{
 
     //TODO :: model attributes and rules and validation
     protected $table='rnc_publisher';

@@ -1,6 +1,6 @@
 <?php
 
-class RnCAmwController extends \BaseController
+class RncAmwController extends \BaseController
 {
 
     function __construct()
@@ -11,14 +11,14 @@ class RnCAmwController extends \BaseController
     // Category
 	public function indexCategory()
 	{
-        $model = RnCCategory::orderBy('id', 'DESC')->paginate(5);
+        $model = RncCategory::orderBy('id', 'DESC')->paginate(5);
         return View::make('rnc::amw.category.index', compact('model'));
 	}
 
     public function storeCategory()
     {
         $data = Input::all();
-        $model = new RnCCategory();
+        $model = new RncCategory();
         $model->title = Input::get('title');
         $name = $model->title;
         if($model->validate($data))
@@ -46,7 +46,7 @@ class RnCAmwController extends \BaseController
 
     public function showCategory($id)
     {
-        $model = RnCCategory::find($id);
+        $model = RncCategory::find($id);
         if($model)
         {
             return View::make('rnc::amw.category.show',compact('model'));
@@ -57,7 +57,7 @@ class RnCAmwController extends \BaseController
 
     public function editCategory($id)
     {
-        $model = RnCCategory::find($id);
+        $model = RncCategory::find($id);
         return View::make('rnc::amw.category.edit',compact('model'));
     }
 
@@ -65,7 +65,7 @@ class RnCAmwController extends \BaseController
     public function updateCategory($id)
     {
         $data = Input::all();
-        $model = RnCCategory::find($id);
+        $model = RncCategory::find($id);
         $model->title = Input::get('title');
         $name = $model->title;
         if($model->validate($data))
@@ -92,7 +92,7 @@ class RnCAmwController extends \BaseController
     public function deleteCategory($id)
     {
         try {
-            $model= RnCCategory::find($id);
+            $model= RncCategory::find($id);
             $name = $model->title;
             if($model->delete())
             {
@@ -108,7 +108,7 @@ class RnCAmwController extends \BaseController
     public function batchDeleteCategory()
     {
         try{
-            RnCCategory::destroy(Request::get('id'));
+            RncCategory::destroy(Request::get('id'));
             return Redirect::back()->with('message', 'Category Batch Deleted successfully!');
         }
         catch (exception $ex)
@@ -120,14 +120,14 @@ class RnCAmwController extends \BaseController
     // Config
     public function indexConfig()
     {
-        $config = RnCConfig::orderBy('id', 'DESC')->paginate(5);
+        $config = RncConfig::orderBy('id', 'DESC')->paginate(5);
         return View::make('rnc::amw.config.index', compact('config'));
     }
 
     public function storeConfig()
     {
         $data = Input::all();
-        $config = new RnCConfig();
+        $config = new RncConfig();
         $config->title = Input::get('title');
         $name = $config->title;
         if($config->validate($data))
@@ -155,7 +155,7 @@ class RnCAmwController extends \BaseController
 
     public function showConfig($id)
     {
-        $config = RnCConfig::find($id);
+        $config = RncConfig::find($id);
         if($config)
         {
             return View::make('rnc::amw.config.show',compact('config'));
@@ -166,7 +166,7 @@ class RnCAmwController extends \BaseController
 
     public function editConfig($id)
     {
-        $config = RnCConfig::find($id);
+        $config = RncConfig::find($id);
         return View::make('rnc::amw.config.edit',compact('config'));
     }
 
@@ -174,7 +174,7 @@ class RnCAmwController extends \BaseController
     public function updateConfig($id)
     {
         $data = Input::all();
-        $config = RnCConfig::find($id);
+        $config = RncConfig::find($id);
         $config->title = Input::get('title');
         $name = $config->title;
         if($config->validate($data))
@@ -201,7 +201,7 @@ class RnCAmwController extends \BaseController
     public function deleteConfig($id)
     {
         try {
-            $config= RnCConfig::find($id);
+            $config= RncConfig::find($id);
             $name = $config->title;
             if($config->delete())
             {
@@ -217,7 +217,7 @@ class RnCAmwController extends \BaseController
     public function batchDeletConfig()
     {
         try{
-            RnCConfig::destroy(Request::get('id'));
+            RncConfig::destroy(Request::get('id'));
             return Redirect::back()->with('message', 'Config Batch Deleted successfully!');
         }
         catch (exception $ex)
@@ -229,14 +229,14 @@ class RnCAmwController extends \BaseController
     //Publisher
     public function indexPublisher()
     {
-        $publisher = RnCPublisher::orderBy('id', 'DESC')->paginate(5);
+        $publisher = RncPublisher::orderBy('id', 'DESC')->paginate(5);
         return View::make('rnc::amw.publisher.index', compact('publisher'));
     }
 
     public function storePublisher()
     {
         $data = Input::all();
-        $publisher = new RnCPublisher();
+        $publisher = new RncPublisher();
         $publisher->title = Input::get('title');
         $name = $publisher->title;
         if($publisher->validate($data))
@@ -264,7 +264,7 @@ class RnCAmwController extends \BaseController
 
     public function showPublisher($id)
     {
-        $publisher = RnCPublisher::find($id);
+        $publisher = RncPublisher::find($id);
         if($publisher)
         {
             return View::make('rnc::amw.publisher.show',compact('publisher'));
@@ -275,7 +275,7 @@ class RnCAmwController extends \BaseController
 
     public function editPublisher($id)
     {
-        $publisher = RnCPublisher::find($id);
+        $publisher = RncPublisher::find($id);
         return View::make('rnc::amw.publisher.edit',compact('publisher'));
     }
 
@@ -283,7 +283,7 @@ class RnCAmwController extends \BaseController
     public function updatePublisher($id)
     {
         $data = Input::all();
-        $publisher = RnCPublisher::find($id);
+        $publisher = RncPublisher::find($id);
         $publisher->title = Input::get('title');
         $name = $publisher->title;
         if($publisher->validate($data))
@@ -310,7 +310,7 @@ class RnCAmwController extends \BaseController
     public function deletePublisher($id)
     {
         try {
-            $publisher= RnCPublisher::find($id);
+            $publisher= RncPublisher::find($id);
             $name = $publisher->title;
             if($publisher->delete())
             {
@@ -326,7 +326,7 @@ class RnCAmwController extends \BaseController
     public function batchDeletPublisher()
     {
         try{
-            RnCPublisher::destroy(Request::get('id'));
+            RncPublisher::destroy(Request::get('id'));
             return Redirect::back()->with('message', 'Publisher Batch Deleted successfully!');
         }
         catch (exception $ex)
@@ -342,9 +342,9 @@ class RnCAmwController extends \BaseController
 
     public function indexResearchPaper()
     {
-        $research_paper = RnCResearchPaper::orderBy('id', 'DESC')->paginate(5);
-        $rnc_category = array('' => 'Select RnC Category ') + RnCCategory::lists('title', 'id');
-        $rnc_publisher = array('' => 'Select RnC Publisher') + RnCPublisher::lists('title', 'id');
+        $research_paper = RncResearchPaper::orderBy('id', 'DESC')->paginate(5);
+        $rnc_category = array('' => 'Select RnC Category ') + RncCategory::lists('title', 'id');
+        $rnc_publisher = array('' => 'Select RnC Publisher') + RncPublisher::lists('title', 'id');
         $reviewed_by = array('' => 'Select Reviewer') + User::FacultyList();
         return View::Make('rnc::amw.research_paper.index',compact('research_paper','rnc_category','rnc_publisher','reviewed_by'));
     }
@@ -352,7 +352,7 @@ class RnCAmwController extends \BaseController
     public function storeResearchPaper()
     {
         $data = Input::all();
-        $model = new RnCResearchPaper();
+        $model = new RncResearchPaper();
         if ($model->validate($data)) {
             $model->title = Input::get('title');
             $flashmsg = $model->title;
@@ -396,15 +396,15 @@ class RnCAmwController extends \BaseController
 
     public function viewResearchPaper($id)
     {
-        $view_r_c = RnCResearchPaper::find($id);
+        $view_r_c = RncResearchPaper::find($id);
         return View::make('rnc::amw.research_paper.view',compact('view_r_c'));
     }
 
     public function editResearchPaper($id)
     {
-        $edit_r_c = RnCResearchPaper::find($id);
-        $edit_category = array('' => 'Select RnC Category ') + RnCCategory::lists('title', 'id');
-        $edit_publisher = array('' => 'Select RnC Publisher') + RnCPublisher::lists('title', 'id');
+        $edit_r_c = RncResearchPaper::find($id);
+        $edit_category = array('' => 'Select RnC Category ') + RncCategory::lists('title', 'id');
+        $edit_publisher = array('' => 'Select RnC Publisher') + RncPublisher::lists('title', 'id');
         $edit_reviewed_by = array('' => 'Select Reviewer') + User::FacultyList();
         return View::make('rnc::amw.research_paper.edit',compact('edit_r_c','edit_category','edit_publisher','edit_reviewed_by'));
     }
@@ -413,7 +413,7 @@ class RnCAmwController extends \BaseController
     public function updateResearchPaper($id)
     {
         $data = Input::all();
-        $model = RnCResearchPaper::find($id);
+        $model = RncResearchPaper::find($id);
         if ($model->validate($data)) {
             $model->title = Input::get('title');
             $flashmsg = $model->title;
@@ -452,7 +452,7 @@ class RnCAmwController extends \BaseController
     public function deleteResearchPaper($id)
     {
         try {
-            $data= RnCResearchPaper::find($id);
+            $data= RncResearchPaper::find($id);
             $flash_msg = $data->title;
             if($data->delete())
             {
@@ -469,7 +469,7 @@ class RnCAmwController extends \BaseController
     public function batchdeleteResearchPaper($id)
     {
         try {
-            RnCResearchPaper::destroy(Request::get('id'));
+            RncResearchPaper::destroy(Request::get('id'));
             Session::flash('message', "Success: Selected items Deleted ");
             return Redirect::back();
         }
@@ -481,7 +481,7 @@ class RnCAmwController extends \BaseController
 
     public function researchPaperDownload($rnc_id)
     {
-        $download = RnCResearchPaper::find($rnc_id);
+        $download = RncResearchPaper::find($rnc_id);
         $file = $download->file;
         $path = public_path("rnc_file/" . $file);
         $headers = array(
@@ -493,7 +493,7 @@ class RnCAmwController extends \BaseController
 
     public function researchPaperRead($rnc_id)
     {
-        $download = RnCResearchPaper::find($rnc_id);
+        $download = RncResearchPaper::find($rnc_id);
         $file = $download->file;
         $path = public_path("rnc_file/" . $file);
         $headers = array(
@@ -505,21 +505,20 @@ class RnCAmwController extends \BaseController
         ]);
     }
 
-    public function researchPaperComment($rnc_id)
+    public function researchPaperComment($rnc_r_p_id)
     {
-        $rnc_r_p = RnCResearchPaper::findOrFail($rnc_id);
-        $rnc_r_p_cmnt = RnCResearchPaperComment::where('rnc_research_paper_id', $rnc_id)->get();
+        $rnc_r_p = RncResearchPaper::findOrFail($rnc_r_p_id);
+        $rnc_r_p_cmnt = RncResearchPaperComment::where('rnc_research_paper_id', $rnc_r_p_id)->get();
         $commented_to = array('' => 'Commented To') + User::WriterNameList();
         return View::make('rnc::amw.research_paper.rnc_research_paper_comment',
-            compact('rnc_r_p','rnc_r_p_cmnt','rnc_id','commented_to'));
-
+            compact('rnc_r_p','rnc_r_p_cmnt','rnc_r_p_id','commented_to'));
     }
 
     public function saveComment()
     {
         $info = Input::all();
 
-        $model = new RnCResearchPaperComment();
+        $model = new RncResearchPaperComment();
         $model->rnc_research_paper_id = $info['rnc_research_paper_id'];
         $model->comments = $info['comments'];
         $model->commented_to = $info['commented_to'];
@@ -539,12 +538,12 @@ class RnCAmwController extends \BaseController
     //new
     public function listWriterBeneficial($rnc_r_p_id)
     {
-        $writer_info = RnCResearchPaperWriter::with('relRnCResearchPaper','relRnCWriterBeneficial' ,'relUser', 'relUser.relUserProfile')
+        $writer_info = RncResearchPaperWriter::with('relRncResearchPaper','relRncWriterBeneficial' ,'relUser', 'relUser.relUserProfile')
             ->where('rnc_research_paper_id', $rnc_r_p_id)->get();
 
-        $r_p = RnCResearchPaper::where('id', $rnc_r_p_id)->first();
+        $r_p = RncResearchPaper::where('id', $rnc_r_p_id)->first();
 
-        $rp_benefit_share = RnCResearchPaper::where('id' ,'=', $rnc_r_p_id)->first()->benefit_share;
+        $rp_benefit_share = RncResearchPaper::where('id' ,'=', $rnc_r_p_id)->first()->benefit_share;
         $total = DB::table('rnc_writer_beneficial')->where('rnc_research_paper_id' ,'=', $rnc_r_p_id)->sum('value');
         $cal_benefit_share = $rp_benefit_share + $total ;
 
@@ -589,11 +588,11 @@ class RnCAmwController extends \BaseController
         DB::beginTransaction();
         try{
             foreach($dt as $key => $values){
-                $model = new RnCResearchPaperWriter();
+                $model = new RncResearchPaperWriter();
                 $model->rnc_research_paper_id = $values['rnc_research_paper_id'];
                 $model->writer_user_id = $values['writer_user_id'];
                 if($model->save()){
-                    $model2 = new RnCWriterBeneficial();
+                    $model2 = new RncWriterBeneficial();
                     $model2->rnc_research_paper_writer_id = $model->id;
                     $model2->rnc_research_paper_id = $values['rnc_research_paper_id'];
                     $model2->value = $values['value'];
@@ -618,8 +617,8 @@ class RnCAmwController extends \BaseController
 
         DB::beginTransaction();
         try {
-            if(RnCWriterBeneficial::destroy($ben_id)){
-                RnCResearchPaperWriter::destroy($id);
+            if(RncWriterBeneficial::destroy($ben_id)){
+                RncResearchPaperWriter::destroy($id);
             }
             DB::commit();
             return Response::json("Successfully Deleted");
@@ -637,11 +636,11 @@ class RnCAmwController extends \BaseController
 
         DB::beginTransaction();
         try{
-            $model = RnCResearchPaperWriter::find(Input::get('writer_id'));
+            $model = RncResearchPaperWriter::find(Input::get('writer_id'));
             $model->rnc_research_paper_id = Input::get('rnc_research_paper_id');
             $model->writer_user_id = Input::get('writer_user_id');
             if($model->update()){
-                $model2 = RnCWriterBeneficial::find(Input::get('beneficial_id'));
+                $model2 = RncWriterBeneficial::find(Input::get('beneficial_id'));
                 $model2->rnc_research_paper_writer_id = Input::get('writer_id');
                 $model2->rnc_research_paper_id = Input::get('rnc_research_paper_id');
                 $model2->value = Input::get('value');

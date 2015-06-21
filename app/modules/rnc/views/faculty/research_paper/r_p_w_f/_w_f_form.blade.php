@@ -57,15 +57,15 @@
             <td id="new-column-name-{{ $model_value->id }}">{{ isset($model_value->writer_user_id) ? $model_value->relUser->relUserProfile->first_name.' '.$model_value->relUser->relUserProfile->middle_name.' '.$model_value->relUser->relUserProfile->last_name : '' }}
             </td>
             <span id="writer-user-id-{{$model_value->writer_user_id }}" style="display: none"></span>
-            <span id="ben-id-{{$model_value->relRnCWriterBeneficial->id }}" style="display: none"> </span>
-            <span id="rnc-writer-id-{{$model_value->relRnCWriterBeneficial->rnc_research_paper_writer_id }}" style="display: none"> </span>
+            <span id="ben-id-{{$model_value->relRncWriterBeneficial->id }}" style="display: none"> </span>
+            <span id="rnc-writer-id-{{$model_value->relRncWriterBeneficial->rnc_research_paper_writer_id }}" style="display: none"> </span>
 
-            <td id="new-column-value-{{ $model_value->id }}">{{ $model_value->relRnCWriterBeneficial->value }}</td>
+            <td id="new-column-value-{{ $model_value->id }}">{{ $model_value->relRncWriterBeneficial->value }}</td>
             <td>
-                <a data-href="{{ $model_value->id }}" data-benf="{{ $model_value->relRnCWriterBeneficial->id }}" class="btn btn-default btn-sm delete-dt-2" id="delete-dt-2{{ $model_value->id }}" ><i class="fa fa-trash-o" style="font-size: 15px;color: red"></i></a>
+                <a data-href="{{ $model_value->id }}" data-benf="{{ $model_value->relRncWriterBeneficial->id }}" class="btn btn-default btn-sm delete-dt-2" id="delete-dt-2{{ $model_value->id }}" ><i class="fa fa-trash-o" style="font-size: 15px;color: red"></i></a>
                 <a data-href="{{ $model_value->id }}"
                     data-wrtuserid="{{ $model_value->writer_user_id }}"
-                    data-benid="{{ $model_value->relRnCWriterBeneficial->id }}"
+                    data-benid="{{ $model_value->relRncWriterBeneficial->id }}"
                     class="btn btn-sm btn-default edit-writer-and-beneficial" >
                     <i class="fa fa-pencil-square-o" style="color: #0044cc" title="Edit"></i>
                 </a>
