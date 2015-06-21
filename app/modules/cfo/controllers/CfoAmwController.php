@@ -206,23 +206,29 @@ class CfoAmwController extends \BaseController {
 
     public function indexHelpDesk(){
 
-        $data = CfoOnsiteHelpDesk::with('relDepartment','relUser','relCfoCategory')->latest('id')->paginate(10);
-
-        $status_open = CfoOnsiteHelpDesk::where('status','=','open')->get();
-        $status_wt = CfoOnsiteHelpDesk::where('status','=','waiting')->get();
-        $status_srvd = CfoOnsiteHelpDesk::where('status','=','served')->get();
-        $srving = CfoOnsiteHelpDesk::where('status','=','serving')->get();
-        $closed_status = CfoOnsiteHelpDesk::where('status','=','closed')->get();
-        /*my desk...*/
-        $self_desk = CfoOnsiteHelpDesk::with('relDepartment','relUser','relCfoCategory')->where('specific_user_id','=', Auth::user()->get()->id)->paginate(10);
         $assigned_user = User::with('relUserProfile')->where('id','=', Auth::user()->get()->id)->first();
+        return View::make('cfo::cfo.onsite_help_desk.index',compact('assigned_user'));
+    }
 
-        return View::make('cfo::cfo.onsite_help_desk.index',compact('data','status_open','status_wt','status_srvd','srving','closed_status','self_desk','assigned_user'));
+    //TODO :Stop Repeated call in ajax pagination......
+
+    public function ajaxHelpDeskList($status){
+        if (Request::ajax()) {
+            if($status == "my_desk"){
+                $data = CfoOnsiteHelpDesk::with('relDepartment','relUser','relCfoCategory')->where('specific_user_id','=', Auth::user()->get()->id)->paginate(2);
+                return Response::json(View::make('cfo::cfo.onsite_help_desk._ajax_data_list', array('data' => $data))->render());
+            }else{
+                $data = CfoOnsiteHelpDesk::with('relDepartment','relUser','relCfoCategory')->where('status','=',$status)->paginate(2);
+                return Response::json(View::make('cfo::cfo.onsite_help_desk._ajax_data_list', array('data' => $data))->render());
+            }
+        }else{
+            return Response::json('only for ajax request!');
+        }
     }
 
     public function createHelpDesk(){
 
-        $users = User::ExceptLoggedUser();
+        $users = User::CfoList();
 
         $dept_id = Department::lists('title','id');
         $cfo_category_id = CfoCategory::lists('title','id');
@@ -271,7 +277,7 @@ class CfoAmwController extends \BaseController {
 
         $model = CfoOnsiteHelpDesk::find($id);
         $dept_id = Department::lists('title','id');
-        $users = User::ExceptLoggedUser($id);
+        $users = User::CfoList($id);
         $cfo_category_id = CfoCategory::lists('title','id');
 
         return View::make('cfo::cfo.onsite_help_desk.edit',compact('model','dept_id','users','cfo_category_id'));
@@ -337,26 +343,23 @@ class CfoAmwController extends \BaseController {
     //TODO :Stop Repeated call in ajax pagination......
 
     public function ajaxSupportDataByStatus($status){
-        $cfo_user_id = Auth::user()->get()->id;
-        /*$offset = Input::get('page');
-        if(!isset($offset))
-            $offset = 1;*/
 
-        $support_data = CfoSupportHead::with('relCfoCategory')
-            ->whereExists(function($query) use($cfo_user_id,$status)
-            {
-                $query->from('cfo_category')
-                    ->whereRaw('cfo_category.id = cfo_support_head.cfo_category_id')
-                    ->where('cfo_category.support_user_id', $cfo_user_id)
-                    ->where('cfo_support_head.status',$status);
-            })
-            ->paginate(3);
+        $cfo_user_id = Auth::user()->get()->id;
 
         if (Request::ajax()) {
+            $support_data = CfoSupportHead::with('relCfoCategory')
+                ->whereExists(function($query) use($cfo_user_id,$status)
+                {
+                    $query->from('cfo_category')
+                        ->whereRaw('cfo_category.id = cfo_support_head.cfo_category_id')
+                        ->where('cfo_category.support_user_id', $cfo_user_id)
+                        ->where('cfo_support_head.status',$status);
+                })
+                ->paginate(3);
             return Response::json(View::make('cfo::cfo.support_head._ajax_list', array('support_data' => $support_data))->render());
+        }else{
+            return Response::json('only for ajax request!');
         }
-
-        return Redirect::route('support-head.index');
     }
 
     public function showSupportHead($id){

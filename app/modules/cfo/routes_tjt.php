@@ -185,4 +185,9 @@ Route::any('help-desk/batch-delete',[
     'uses' => 'CfoAmwController@batchDelete'
 ]);
 
+Route::any('help-desk/status/{status}',[
+    'as' =>'help-desk.status',
+    'uses' => 'CfoAmwController@ajaxHelpDeskList'
+]);
+
 
