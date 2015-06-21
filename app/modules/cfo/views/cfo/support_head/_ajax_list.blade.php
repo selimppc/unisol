@@ -16,23 +16,21 @@
    </thead>
    <tbody>
       @if(isset($support_data))
-          <div>
-               @foreach($support_data as $values)
-                     <tr>
-                         <td>{{$values->name}}</td>
-                         <td>{{$values->email}}</td>
-                         <td>{{$values->phone}}</td>
-                         <td>{{$values->subject}}</td>
-                         <td>{{$values->priority}}</td>
-                         <td>{{$values->support_code}}</td>
-                          <td>{{ucfirst($values->status)}}</td>
-                         <td>
-                             <a href="{{ URL::route('support-head.show',['id'=>$values->id]) }}" class="btn btn-xs btn-bitbucket" data-toggle="modal" data-target="#support" style="font-size: 12px" >View</a>
-                             <a href="{{ URL::route('support-head.reply',['id'=>$values->id])}}" class="btn btn-info btn-xs" >Reply</a>
-                         </td>
-                     </tr>
-                 @endforeach
-          </div>
+         @foreach($support_data as $values)
+             <tr>
+                 <td>{{$values->name}}</td>
+                 <td>{{$values->email}}</td>
+                 <td>{{$values->phone}}</td>
+                 <td>{{$values->subject}}</td>
+                 <td>{{$values->priority}}</td>
+                 <td>{{$values->support_code}}</td>
+                  <td>{{ucfirst($values->status)}}</td>
+                 <td>
+                     <a href="{{ URL::route('support-head.show',['id'=>$values->id]) }}" class="btn btn-xs btn-bitbucket" data-toggle="modal" data-target="#support" style="font-size: 12px" >View</a>
+                     <a href="{{ URL::route('support-head.reply',['id'=>$values->id])}}" class="btn btn-info btn-xs" >Reply</a>
+                 </td>
+             </tr>
+         @endforeach
       @endif
    </tbody>
   </table>

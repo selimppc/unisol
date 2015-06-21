@@ -165,8 +165,6 @@
         'uses' => 'RnCStudentController@fac_ajax_delete_req_detail'
     ]);
 
-
-
     Route::any('student/research-paper-writer-beneficial/edit/{rnc_r_p_id}/{id}/{ben_id}',[
         'as' => 'student.research-paper-writer-beneficial.edit',
         'uses'=> 'RnCStudentController@editWriterBeneficial'
@@ -177,81 +175,7 @@
         'uses'=> 'RnCStudentController@updateWriterBeneficial'
     ]);
 
-    //Writer . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-
-    Route::any('student/research-paper-writer/index/{rnc_r_p_id}',[
-        'as' =>'student.research-paper-writer.index',
-        'uses' => 'RnCStudentController@indexRnCWriter'
-    ]);
-
-    Route::any("ajax/get-writer-name-auto-complete", [
-        "as"   => "ajax.get-writer-name-auto-complete",
+    Route::any("ajax/std-get-writer-name-auto-complete", [
+        "as"   => "ajax.std-get-writer-name-auto-complete",
         "uses" => "RnCStudentController@ajaxGetWriterNameAutoComplete"
-    ]);
-
-    Route::any('student/research-paper-writer/store',[
-        'as' => 'student.research-paper-writer.store',
-        'uses'=> 'RnCStudentController@storeRnCWriter'
-    ]);
-
-    Route::any('student/research-paper-writer/show/{id}',[
-        'as' => 'student.research-paper-writer.show',
-        'uses'=> 'RnCStudentController@showRnCWriter'
-    ]);
-
-    Route::any('student/research-paper-writer/edit/{id}',[
-        'as' => 'student.research-paper-writer.edit',
-        'uses'=> 'RnCStudentController@editRnCWriter'
-    ]);
-
-    Route::any('student/research-paper-writer/update/{id}',[
-        'as' => 'student.research-paper-writer.update',
-        'uses'=> 'RnCStudentController@updateRnCWriter'
-    ]);
-
-    Route::any('student/research-paper-writer/delete/{id}',[
-        'as' => 'student.research-paper-writer.delete',
-        'uses'=> 'RnCStudentController@deleteRnCWriter'
-    ]);
-
-    Route::any('student/research-paper-writer/batch-delete',[
-        'as' => 'student.research-paper-writer.batch-delete',
-        'uses'=> 'RnCStudentController@batchDeleteRnCWriter'
-    ]);
-
-    // Beneficial
-
-    Route::any('student/research-paper-beneficial/index/{id}/{rnc_r_p_id}/{w_id}',[
-        'as' =>'student.research-paper-beneficial.index',
-        'uses' => 'RnCStudentController@indexRnCBeneficial'
-    ]);
-
-    Route::any('student/research-paper-beneficial/store',[
-        'as' => 'student.research-paper-beneficial.store',
-        'uses'=> 'RnCStudentController@storeRnCBeneficial'
-    ]);
-
-    Route::any('student/research-paper-beneficial/show/{id}',[
-        'as' => 'student.research-paper-beneficial.show',
-        'uses'=> 'RnCStudentController@showRnCBeneficial'
-    ]);
-
-    Route::any('student/research-paper-beneficial/edit/{id}',[
-        'as' => 'student.research-paper-beneficial.edit',
-        'uses'=> 'RnCStudentController@editRnCBeneficial'
-    ]);
-
-    Route::any('student/research-paper-beneficial/update/{id}',[
-        'as' => 'student.research-paper-beneficial.update',
-        'uses'=> 'RnCStudentController@updateRnCBeneficial'
-    ]);
-
-    Route::any('student/research-paper-beneficial/delete/{id}',[
-        'as' => 'student.research-paper-beneficial.delete',
-        'uses'=> 'RnCStudentController@deleteRnCBeneficial'
-    ]);
-
-    Route::any('student/research-paper-beneficial/batch-delete',[
-        'as' => 'student.research-paper-beneficial.batch-delete',
-        'uses'=> 'RnCStudentController@batchDeleteRnCBeneficial'
     ]);

@@ -1,7 +1,7 @@
 <div class="modal-header">
 
     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-    <h4 class="modal-title" id="myModalLabel"><b>User :</b> {{$data->name}},&nbsp;&nbsp;<b>Support Code : </b>{{$data->support_code}}</h4>
+    <h4 class="modal-title" id="myModalLabel"><b>User :</b> {{isset($data->name)?$data->name:''}},&nbsp;&nbsp;<b>Support Code : </b>{{isset($data->support_code)?$data->support_code:''}}</h4>
 </div>
 
 <div class="modal-body">
@@ -11,42 +11,42 @@
 
                    <tr>
                        <th class="col-lg-6">Name :</th>
-                       <td>{{ $data->name }}</td>
+                       <td>{{ isset($data->name)?$data->name:'' }}</td>
                    </tr>
 
                    <tr>
                        <th class="col-lg-6">Email :</th>
-                       <td>{{ $data->email }}</td>
+                       <td>{{ isset($data->email)?$data->email:''}}</td>
                    </tr>
 
                    <tr>
                       <th class="col-lg-6">Phone:</th>
-                      <td>{{ $data->phone }}</td>
+                      <td>{{  isset($data->phone)?$data->phone:''}}</td>
                    </tr>
 
                    <tr>
                       <th class="col-lg-6">Subject:</th>
-                      <td>{{ $data->subject }}</td>
+                      <td>{{ isset( $data->subject)? $data->subject:''}}</td>
                    </tr>
 
                    <tr>
                       <th class="col-lg-6">Priority:</th>
-                      <td>{{ $data->priority }}</td>
+                      <td>{{  isset($data->priority)?$data->priority:''}}</td>
                    </tr>
 
                     <tr>
                        <th class="col-lg-6">Support Code:</th>
-                       <td>{{ $data->support_code }}</td>
+                       <td>{{  isset($data->support_code)?$data->support_code:''}}</td>
                     </tr>
 
                    <tr>
                        <th class="col-lg-6">Category :</th>
-                       <td>{{ $data->relCfoCategory->title }}</td>
+                       <td>{{  isset($data->cfo_category_id)?$data->relCfoCategory->title:''}}</td>
                    </tr>
 
                    <tr>
                       <th class="col-lg-6">Status :</th>
-                      <td>{{ $data->status }}</td>
+                      <td>{{  isset($data->status)?$data->status:''}}</td>
                    </tr>
 
                </table>

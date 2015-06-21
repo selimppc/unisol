@@ -89,7 +89,7 @@
 $(function(){
 
          $( "#search_writer_name" ).autocomplete({
-              source: "/rnc/ajax/fac-get-writer-name-auto-complete",
+              source: "/rnc/ajax/std-get-writer-name-auto-complete",
               minLength: 1,
               select: function(event, ui) {
                 $('#select_writer_name').val(ui.item.label);
@@ -158,7 +158,7 @@ $(function(){
         e.preventDefault();
         var $btn = $(this);
         $.ajax({
-            url: '/rnc/faculty/research-paper-writer-beneficial/ajax-delete-req-detail',
+            url: '/rnc/student/research-paper-writer-beneficial/ajax-delete-req-detail',
             type: 'POST',
             dataType: 'json',
             data: { id:  $(this).data("href"), ben_id: $(this).data("benf") },
@@ -182,10 +182,8 @@ $(function(){
         $value = $("#new-column-value-"+$id).html();
         var $research_paper_id = "<?php echo $rnc_r_p_id; ?>";
 
-        var $form_start = "<form action='{{ route('faculty.research-paper-writer-beneficial.update') }}' method='POST'>";
+        var $form_start = "<form action='{{ route('student.research-paper-writer-beneficial.update') }}' method='POST'>";
         var $form_end = "</form>";
-
-        var total_count_share = "<?php echo $cal_benefit_share; ?>";
 
         $('#test-edit').append($form_start + "<div class='form-group'> " +
            "<input type='hidden' name='rnc_research_paper_id' value='" + $research_paper_id + "'>" +
@@ -196,8 +194,7 @@ $(function(){
            "<input type='hidden' name='beneficial_id' value='" + $ben_table_id + "' >" +
            "</br> " +
            "<label for='label-val' style='padding-right: 10px'>Beneficial Value: </label>" +
-           "<input type='text' id='label-val' onchange='calShafi' style='padding-right: 10px;' name='value' value='"+ $value +"'><p style='color : red'>You can Extended to Maximum '" + (100 - total_count_share) + "' </p>"+
-
+           "<input type='text' id='label-val' onchange='calShafi' style='padding-right: 10px;' name='value' value='"+ $value +"'>" +
            "<input type='submit' style='margin-left: 160px' class='btn-xs btn-linkedin' value='Update'>" +
         " </div>" + $form_end);
 
@@ -206,7 +203,26 @@ $(function(){
 
     });
 
+    function calShafi()
+    {
+            alert("ok");
+            var total_count_share = "<?php echo $cal_benefit_share; ?>";
+            $value = $("#label-val").val();
+            alert($value);
+            var $total_ben = parseInt(total_count_share) + parseInt($value);
 
+            if($total_ben > 100){
+            	$("#label-val").val("");
+            		alert( $total_ben +'  ,'+ 'Exceeded the Total share 100%. Please decrease your share percentage');
+            	$("#label-val").focus();
+            	return false;
+            }else{
+
+            }
+
+
+
+    }
 });
 
 </script>

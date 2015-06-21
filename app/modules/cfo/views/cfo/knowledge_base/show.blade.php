@@ -12,17 +12,17 @@
                  <table style="font-size: large" class="table table-striped  table-bordered">
                    <tr>
                      <th class="col-lg-8">Title:</th>
-                     <td>{{ $model->title }}</td>
+                     <td>{{ isset($model->title)?$model->title:''}}</td>
                    </tr>
 
                    <tr>
                      <th class="col-lg-8">Description:</th>
-                     <td>{{ $model->description }}</td>
+                     <td>{{ isset($model->description)?$model->description:''}}</td>
                    </tr>
 
                    <tr>
                      <th class="col-lg-8">Keywords:</th>
-                     <td>{{ $model->keywords }}</td>
+                     <td>{{ isset($model->keywords)?$model->keywords:''}}</td>
                    </tr>
                  </table>
            </div>
