@@ -36,7 +36,9 @@ class AccVoucherHead extends \Eloquent
 
 
     //TODO : Model Relationship
-
+    public function relAccVoucherDetail(){
+        return $this->HasMany('AccVoucherDetail');
+    }
 
 
     // TODO : user info while saving data into table

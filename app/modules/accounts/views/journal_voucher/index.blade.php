@@ -23,13 +23,13 @@
             <thead>
                   {{ Form::submit('Delete Items', ['class'=>'btn btn-danger btn-xs', 'id'=>'hide-button', 'style'=>'display:none', 'onclick'=> "return confirm('Are you sure you want to cancel?')"])}}
                 <tr>
-                    <th> voucher_number </th>
-                    <th> date </th>
-                    <th> reference </th>
-                    <th> year_id  </th>
-                    <th> period </th>
-                    <th> note</th>
-                    <th> status</th>
+                    <th> Voucher Number </th>
+                    <th> Date </th>
+                    <th> Reference </th>
+                    <th> Year  </th>
+                    <th> Period </th>
+                    <th> Note</th>
+                    <th> Status</th>
                     <th> Action</th>
                 </tr>
             </thead>
@@ -46,9 +46,9 @@
                     <td>{{$values->status}}</td>
                     <td>
                         @if($values->status=='open')
-                        <a href="{{ URL::route('show-stock-adjustment', ['adj_id'=>$values->id ])  }}" class="btn btn-default btn-xs" title="View Dispatch" data-toggle="modal" data-target="#modal-pc"><span class="fa fa-eye"></span></a>
-                        <a href="{{ URL::route('edit-stock-adjustment',['adj_id'=>$values->id])  }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal-pc"> <i class="fa fa-edit"></i></a>
-                        <a data-href="{{ URL::route('cancel-stock-adjustment', ['adj_id'=>$values->id ]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa fa-circle-o-notch" style="color: red" data-toggle="tooltip" data-placement="bottom" title="Cancel"></i></a>
+                        <a href="{{ URL::route('show-journal-voucher', ['jv_id'=>$values->id ])  }}" class="btn btn-default btn-xs" title="View Dispatch" data-toggle="modal" data-target="#modal-pc"><span class="fa fa-eye"></span></a>
+                        <a href="{{ URL::route('edit-journal-voucher',['jv_id'=>$values->id])  }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal-pc"> <i class="fa fa-edit"></i></a>
+                        <a data-href="{{ URL::route('destroy-journal-voucher', ['jv_id'=>$values->id ]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa fa-circle-o-notch" style="color: red" data-toggle="tooltip" data-placement="bottom" title="Cancel"></i></a>
                     @endif
                     </td>
 
