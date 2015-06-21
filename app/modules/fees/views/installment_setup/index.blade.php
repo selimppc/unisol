@@ -39,6 +39,9 @@
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab_1">
 
+
+
+
                             <p><b>Admission Related Cost:</b></p>
                             <p><b>Academic Cost:</b></p>
                             <p><b>After Courses Completed Cost:</b></p>
