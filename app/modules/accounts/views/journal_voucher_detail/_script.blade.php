@@ -1,14 +1,13 @@
 <script type="text/javascript">
     $(function(){
-         $( "#search_product" ).autocomplete({
-          source: "ajax/get-product-auto-complete",
-          minLength: 3,
+         $( "#search-coa" ).autocomplete({
+          source: "coa-auto-complete",
+          minLength: 1,
           select: function(event, ui) {
-            $('#search_product').val(ui.item.label);
-            $('#product-id').val(ui.item.id);
-            $('#product-rate').val(ui.item.rate);
-            $('#product-unit').val(ui.item.unit);
-            $('#product-name').val(ui.item.name);
+            $('#search-coa').val(ui.item.label);
+            $('#coa-id').val(ui.item.id);
+            $('#coa-code').val(ui.item.code);
+            $('#coa-name').val(ui.item.name);
           }
         });
     });
@@ -18,7 +17,7 @@
         e.preventDefault();
         var $btn = $(this);
         $.ajax({
-            url: 'ajax-delete-req-detail/{id}',
+            url: 'jv-ajax-delete-detail',
             type: 'POST',
             dataType: 'json',
             data: { id:  $(this).data("href") },
@@ -41,40 +40,33 @@
     };
 
     $("#add-new-product").click(function(event){
-        $pid = $("#product-id").val();
-        $prate = $("#product-rate").val();
-        $punit = $("#product-unit").val();
-        $pqty = $("#product-quantity").val();
+        $coa_id = $("#coa-id").val();
+        $coa_code = $("#coa-code").val();
+        $coa_name = $("#coa-name").val();
+        $db_cr_amt = $("#debit-credit-amount").val();
+        $note = $("#coa-note").val();
 
-        if($pid == "" || $prate== "" || $punit == "" || $pqty == ""){
-            alert("please add your product information and try Again!");
+        if($coa_id == "" || $coa_code== "" || $db_cr_amt == "" || $note == "" ){
+            alert("please add your accounts information and try Again!");
             return false;
         }else{
             $ele = $(event.target);
             if($ele.is("input[type=button]")){
-                $td_productCode = $("#product-id").val();
+                $td_productCode = $("#coa-id").val();
                 var index = $.inArray($td_productCode, $arrayProducts);
                 if (index>=0) {
-                    alert("You already added this product code in line #" + (index + 1));
+                    alert("You already added this account code !");
                     return false;
                 } else {
-                    $product_name = $("#product-name").val();
-                    $product_id = $("#product-id").val();
-                    $invProductRate = $("#product-rate").val();
-                    $invProductUnit = $("#product-unit").val();
-                    $invProductQuantity = $("#product-quantity").val();
-
-                    $('#test').append("<tr> <td><input value='"+$product_name+"' readonly> <input name='inv_product_id[]' type='hidden' value='"+$product_id+"'></td> <td><input name='rate[]' value='"+$invProductRate+"' readonly></td>  <td><input name='unit[]' value='"+$invProductUnit+"' readonly></td> <td><input name='quantity[]' value='"+$invProductQuantity+"' readonly></td> </tr>");
+                    $('#test').append("<tr> <td><input value='"+$coa_name+"' readonly> <input name='acc_chart_of_accounts_id[]' type='hidden' value='"+$coa_id+"'></td> <td><input name='prime_amount[]' value='"+$db_cr_amt+"' readonly></td>  <td><input name='note[]' value='"+$note+"' readonly></td></tr>");
                     $arrayProducts.push($td_productCode);
-
                     //flush the input fields
-                    $("#product-name").val("");
-                    $("#product-id").val("");
-                    $("#product-rate").val("");
-                    $("#product-unit").val("");
-                    $("#product-quantity").val("");
-                    $("#search_product").val("");
-
+                    $("#search-coa").val("");
+                    $("#coa-id").val("");
+                    $("#coa-code").val("");
+                    $("#coa-name").val("");
+                    $("#debit-credit-amount").val("");
+                    $("#coa-note").val("");
                 }
             }
         }

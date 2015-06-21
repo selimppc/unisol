@@ -36,7 +36,7 @@
             <tbody>
                 @foreach($data as $values)
                     <td><b>
-                        {{ link_to_route('show-chart-of-accounts',$values->voucher_number,['coa_id'=>$values->id], ['data-toggle'=>"modal", 'data-target'=>"#modal-pc"]) }}
+                        {{ link_to_route( $values->status=="open" ? 'detail-journal-voucher' : 'show-journal-voucher', $values->voucher_number, ['jv_id'=>$values->id], ['data-toggle'=>"modal", 'data-target'=>"#modal-pc"]) }}
                     </b></td>
                     <td>{{ $values->date }}  </td>
                     <td>{{$values->reference}}</td>

@@ -166,6 +166,27 @@ class AccJournalVoucherController extends \BaseController {
         return View::make('accounts::journal_voucher_detail.add_edit', compact('jv_id', 'jv_head', 'jv_dt'));
     }
 
+    // AJax Product Search
+    public function ajaxGetCoaAutoComplete(){
+
+        $term = Input::get('term');
+        $results = array();
+        $queries = DB::table('acc_chart_of_accounts')
+            ->where('description', 'LIKE', '%'.$term.'%')
+            ->orWhere('account_code', 'LIKE', '%'.$term.'%')
+            ->take(10)->get();
+        foreach ($queries as $query)
+        {
+            $results[] = [
+                'label' => $query->description.' - '.$query->account_code ,
+                'id' => $query->id,
+                'code'=>$query->account_code ,
+                'name' =>$query->description,
+            ];
+        }
+        return Response::json($results);
+    }
+
 
 
     /*
@@ -174,16 +195,15 @@ class AccJournalVoucherController extends \BaseController {
      */
     public function store_journal_voucher_detail(){
         $data = Input::all();
-        for($i = 0; $i < count(Input::get('inv_product_id')) ; $i++){
+        for($i = 0; $i < count(Input::get('acc_chart_of_accounts_id')) ; $i++){
             $dt[] = [
-                'inv_requisition_head_id' => Input::get('inv_requisition_head_id'),
-                'inv_product_id'=> Input::get('inv_product_id')[$i],
-                'rate'=> Input::get('rate')[$i],
-                'unit'=> Input::get('unit')[$i],
-                'quantity'=> Input::get('quantity')[$i],
+                'acc_voucher_head_id' => Input::get('acc_voucher_head_id'),
+                'acc_chart_of_accounts_id'=> Input::get('acc_chart_of_accounts_id')[$i],
+                'prime_amount'=> Input::get('prime_amount')[$i],
+                'note'=> Input::get('note')[$i],
             ];
         }
-        $model = new InvRequisitionDetail();
+        $model = new AccVoucherDetail();
         DB::beginTransaction();
         try{
             foreach($dt as $values){
@@ -204,7 +224,7 @@ class AccJournalVoucherController extends \BaseController {
      * $id = Requisition Detail ID
      *
      */
-    public function ajax_delete_journal_voucher_detail($id){
+    public function ajax_delete_journal_voucher_detail(){
         $id = Input::get('id');
         DB::beginTransaction();
         try{
