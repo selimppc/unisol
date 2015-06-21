@@ -33,12 +33,12 @@
 
                    <tr>
                        <th class="col-lg-6">Department:</th>
-                       <td>{{  isset($data->relDepartment->title)?$data->relDepartment->title:''}}</td>
+                       <td>{{isset($data->section_dept_id)?$data->relDepartment->title:''}}</td>
                    </tr>
 
                    <tr>
                       <th class="col-lg-6">Assigned To:</th>
-                      <td>{{ $data->relUser->relUserProfile->first_name.' '.$data->relUser->relUserProfile->middle_name.' '.$data->relUser->relUserProfile->last_name }}</td>
+                      <td>{{ isset($data->specific_user_id)? $data->relUser->relUserProfile->first_name.' '.$data->relUser->relUserProfile->middle_name.' '.$data->relUser->relUserProfile->last_name:'' }}</td>
                    </tr>
 
                  </table>
