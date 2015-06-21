@@ -39,12 +39,12 @@
                             {{isset($data->relBatch->batch_number) ? $data->relBatch->batch_number :''}}
                         </td>
                     </tr>
-                    <tr>
+                   {{-- <tr>
                         <td>User Type:</td>
                         <td>
                             Student
                         </td>
-                    </tr>
+                    </tr>--}}
                 </table>
             </div>
             <div>&nbsp;</div>

@@ -10,7 +10,7 @@
         <div class="col-md-12">
             <h3 class="text-purple ">Fees::Installment Setup</h3>
             <div class="help-text-top">
-                You can view all lists of Billing Setup and search. Also this panel will allow you to perform some actions to <b>Add Billing Setup</b>, <b>Edit</b>, <b>Delete</b>,and <b>View</b> under the column <b>Action</b>.
+                You can view all lists of Installment Setup and search. Also this panel will allow you to perform some actions to <b>Add Billing Setup</b>, <b>Edit</b>, <b>Delete</b>,and <b>View</b> under the column <b>Action</b>.
             </div><!-- /.box-body -->
         </div><!-- ./col -->
     </div><!-- /.row -->
@@ -31,7 +31,7 @@
                     <li class="pull-right" class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-gear"></i>&nbsp;</a>
                         <ul class="dropdown-menu">
-                            <li role="presentation" data-toggle="modal" data-target="#addCategory"><a role="menuitem" tabindex="-1" href="#"> Add Category </a></li>
+                            <li role="presentation" data-toggle="modal" data-target="#addCategory"><a role="menuitem" tabindex="-1" href="#">Add Category </a></li>
                         </ul>
                     </li>
                 </ul>
@@ -41,10 +41,6 @@
 
 
 
-
-                            <p><b>Admission Related Cost:</b></p>
-                            <p><b>Academic Cost:</b></p>
-                            <p><b>After Courses Completed Cost:</b></p>
                         </div>
 
                     </div>
