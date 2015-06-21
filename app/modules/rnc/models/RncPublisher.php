@@ -4,16 +4,19 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class RncCategory extends Eloquent{
+class RncPublisher extends Eloquent{
 
     //TODO :: model attributes and rules and validation
-    protected $table='rnc_category';
+    protected $table='rnc_publisher';
     protected $fillable = [
-        'title','description'
+        'title','code','description'
     ];
     private $errors;
     private $rules = [
-        'title' => 'required'
+       'title' => 'required',
+       'code' => 'required'
+//       'description' => 'required'
+
     ];
 
     public function validate($data)
@@ -30,6 +33,7 @@ class RncCategory extends Eloquent{
     {
         return $this->errors;
     }
+
 
     //TODO : Model Relationship
 

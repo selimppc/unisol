@@ -4,18 +4,16 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class RncConfig extends Eloquent{
+class RncWriterBeneficial extends Eloquent{
 
     //TODO :: model attributes and rules and validation
-    protected $table='rnc_config';
+    protected $table='rnc_writer_beneficial';
     protected $fillable = [
-        'title','value'
+        'rnc_research_paper_id','rnc_research_paper_writer_id','value'
     ];
     private $errors;
     private $rules = [
-        'title' => 'required',
-        'value' => 'required'
-
+       'rnc_research_paper_id' => 'required'
     ];
 
     public function validate($data)
@@ -35,6 +33,15 @@ class RncConfig extends Eloquent{
 
 
     //TODO : Model Relationship
+
+    public function relRncResearchPaper(){
+        return $this->belongsTo('RncResearchPaper','rnc_research_paper_id','id');
+    }
+
+    public function relRncResearchPaperWriter(){
+        return $this->belongsTo('RncResearchPaperWriter', 'rnc_research_paper_writer_id', 'id');
+    }
+
 
 
 
