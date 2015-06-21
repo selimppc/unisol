@@ -3,10 +3,10 @@
     @include('layouts._top_menu')
 @stop
 @section('sidebar')
-    @include('layouts._sidebar_public')
+    @include('layouts._sidebar_applicant')
 @stop
 @section('content')
-<a class="pull-right btn btn-xs btn-success" href="{{ URL::route('admission.applicant_details',['batch-applicant-id'=>Auth::applicant()->get()->id])}}"><b><i class="fa fa-arrow-circle-left"></i>Go Back</b></a>
+<a class="pull-right btn btn-xs btn-success" href="{{ URL::route('applicant.details',['batch-applicant-id'=>Auth::applicant()->get()->id])}}"><b><i class="fa fa-arrow-circle-left"></i>Go Back</b></a>
  <h3>Admission Test Details On</h3>
      <div class="col-lg-12">
         <table class="table table-bordered">
