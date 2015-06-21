@@ -74,7 +74,7 @@
 
             <li><a href="{{ URL::to('fees/billing/history') }}"><i class="fa  fa-bars text-purple"></i> Billing History</a>
 
-            <li><a href="#"><i class="fa  fa-bars text-blue"></i> Billing Installment</a>
+            <li><a href="{{ URL::to('fees/installment/setup') }}"><i class="fa  fa-bars text-blue"></i> Billing Installment</a>
 
         </ul>
     </li>
