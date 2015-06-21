@@ -3636,9 +3636,9 @@ fieldset[disabled] .btn-vk.active {
     /*border-radius: 10px;*/
     /*border:solid 1px #56caf0;*/
     padding:2px;
-    -moz-box-shadow:   3px 3px 1px 0px #ccc;
+   /* -moz-box-shadow:   3px 3px 1px 0px #ccc;
     -webkit-box-shadow: 3px 3px 1px 0px #ccc;
-    box-shadow:  3px 3px 1px 0px #ccc;
+    box-shadow:  3px 3px 1px 0px #ccc;*/
 }
 .btn-style{
  margin-top: 2%;
