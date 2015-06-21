@@ -4,16 +4,18 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class RncCategory extends Eloquent{
+class HrBank extends Eloquent{
 
     //TODO :: model attributes and rules and validation
-    protected $table='rnc_category';
+    protected $table='hr_bank';
     protected $fillable = [
-        'title','description'
+        'bank_name','branch','address'
     ];
     private $errors;
     private $rules = [
-        'title' => 'required'
+        'bank_name' => 'required',
+        'branch' => 'required',
+        'address' => 'required'
     ];
 
     public function validate($data)

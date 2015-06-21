@@ -13,8 +13,8 @@ class RncConfig extends Eloquent{
     ];
     private $errors;
     private $rules = [
-        'title' => 'required',
-        'value' => 'required'
+       'title' => 'required',
+       'value' => 'required'
 
     ];
 

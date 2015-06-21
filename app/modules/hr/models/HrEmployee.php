@@ -4,22 +4,26 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class RncTransaction extends Eloquent{
+class HrEmployee extends Eloquent{
 
     //TODO :: model attributes and rules and validation
-    protected $table='rnc_transaction';
+    protected $table='hr_employee';
     protected $fillable = [
-        'user_id', 'rnc_research_paper_id','issue_date','count','status'
+        'user_id','employee_id','date_of_joining','date_of_confirmation',
+        'hr_salary_grade_id','department_id','designation_id','hr_bank_id',
+        'bank_account_no','currency','exchange_rate','employee_type',
+        'employee_category','work_shift','emergency_contact_person',
+        'emergency_contact_number','emergency_contact_relation','note','status'
     ];
     private $errors;
     private $rules = [
-        'rnc_research_paper_id' => 'required|integer',
-        'issue_date' => 'required',
-        /*'return_date' => 'required',
-        'status' => 'required',*/
-
+        'user_id' => 'required',
+        'employee_id' => 'required',
+        'hr_salary_grade_id' => 'required',
+        'hr_bank_id' => 'required',
+        'department_id' => 'required',
+        'designation_id' => 'required'
     ];
-
 
     public function validate($data)
     {
@@ -36,19 +40,9 @@ class RncTransaction extends Eloquent{
         return $this->errors;
     }
 
-
     //TODO : Model Relationship
-    public function relRncResearchPaper(){
-        return $this->belongsTo('RncResearchPaper','rnc_research_paper_id','id');
-    }
 
-    public function relUser(){
-        return $this->belongsTo('User','user_id','id');
-    }
 
-    public function relRncFinancialTransaction(){
-        return $this->HasOne('RncFinancialTransaction', 'rnc_transaction_id', 'id');
-    }
 
     // TODO : user info while saving data into table
     public static function boot(){
@@ -71,4 +65,5 @@ class RncTransaction extends Eloquent{
 
 
     //TODO : Scope Area
+
 }

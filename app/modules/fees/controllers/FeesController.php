@@ -303,11 +303,9 @@ class FeesController extends \BaseController {
         if($studentOrApplicant == 'student')
         {
             $data = BillingVStudentHistory::where('id', $id)->first();
-           // $student_id = $data->student_id;
             $relation_data = BillingSummaryStudent::with('relBillingDetailsStudent.relBillingItem', 'relBillingSchedule')->where('id', $id)->get();
         }else{
             $data = BillingVApplicantHistory::where('id', $id)->first();
-           // $applicant_id = $data->applicant_id;
             $relation_data = BillingSummaryApplicant::with('relBillingDetailsApplicant',  'relBillingSchedule')->where('id', $id)->get();
         }
         //print_r($relation_data);exit;
@@ -316,7 +314,16 @@ class FeesController extends \BaseController {
         #print_r($relation_data[0]['relBillingDetailsApplicant'][0]['relBillingItem']['title']);exit;
         return View::make('fees::billing_history.view',compact('data', 'relation_data','studentOrApplicant'));
 
+    }
+
+    /**********************Installment Setup Start***************************/
+
+    public function index_installment_setup()
+    {
+
+        return View::Make('fees::installment_setup.index');
 
     }
+
 
 }

@@ -76,6 +76,9 @@ class UserController extends \BaseController {
             if($user_role=="cfo"){
                 return Redirect::to("user/cfo-dashboard");
             }
+            if($user_role=="hr"){
+                return Redirect::to("user/hr-dashboard");
+            }
         }elseif(Auth::applicant()->check()){
             return Redirect::to("user/applicant-dashboard");
         }else{

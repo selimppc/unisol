@@ -60,7 +60,7 @@ class CreateFees extends Migration {
             $table->foreign('billing_schedule_id')->references('id')->on('billing_schedule');
             $table->foreign('batch_id')->references('id')->on('batch');
         });
-        
+
 
         //TODO :: Student's Billing Summary and Details with Tuition Fees
 
