@@ -1,6 +1,6 @@
 <?php
 
-class RnCStudentController extends \BaseController {
+class RncStudentController extends \BaseController {
 
     function __construct()
     {
@@ -10,14 +10,14 @@ class RnCStudentController extends \BaseController {
     // Config
     public function indexConfig()
     {
-        $config = RnCConfig::orderBy('id', 'DESC')->paginate(5);
+        $config = RncConfig::orderBy('id', 'DESC')->paginate(5);
         return View::make('rnc::student.config.index', compact('config'));
     }
 
     public function storeConfig()
     {
         $data = Input::all();
-        $config = new RnCConfig();
+        $config = new RncConfig();
         $config->title = Input::get('title');
         $name = $config->title;
         if($config->validate($data))
@@ -44,7 +44,7 @@ class RnCStudentController extends \BaseController {
 
     public function showConfig($id)
     {
-        $config = RnCConfig::find($id);
+        $config = RncConfig::find($id);
         if($config)
         {
             return View::make('rnc::student.config.show',compact('config'));
@@ -54,14 +54,14 @@ class RnCStudentController extends \BaseController {
 
     public function editConfig($id)
     {
-        $config = RnCConfig::find($id);
+        $config = RncConfig::find($id);
         return View::make('rnc::student.config.edit',compact('config'));
     }
 
     public function updateConfig($id)
     {
         $data = Input::all();
-        $config = RnCConfig::find($id);
+        $config = RncConfig::find($id);
         $config->title = Input::get('title');
         $name = $config->title;
         if($config->validate($data))
@@ -88,7 +88,7 @@ class RnCStudentController extends \BaseController {
     public function deleteConfig($id)
     {
         try {
-            $config= RnCConfig::find($id);
+            $config= RncConfig::find($id);
             $name = $config->title;
             if($config->delete())
             {
@@ -104,7 +104,7 @@ class RnCStudentController extends \BaseController {
     public function batchDeletConfig()
     {
         try{
-            RnCConfig::destroy(Request::get('id'));
+            RncConfig::destroy(Request::get('id'));
             return Redirect::back()->with('message', 'Config Batch Deleted successfully!');
         }
         catch (exception $ex)
@@ -117,14 +117,14 @@ class RnCStudentController extends \BaseController {
 
     public function indexResearchPaper()
     {
-        $research_paper = RnCResearchPaper::orderBy('id', 'DESC')->paginate(5);
-        $rnc_category = array('' => 'Select RnC Category ') + RnCCategory::lists('title', 'id');
-        $rnc_publisher = array('' => 'Select RnC Publisher') + RnCPublisher::lists('title', 'id');
+        $research_paper = RncResearchPaper::orderBy('id', 'DESC')->paginate(5);
+        $rnc_category = array('' => 'Select RnC Category ') + RncCategory::lists('title', 'id');
+        $rnc_publisher = array('' => 'Select RnC Publisher') + RncPublisher::lists('title', 'id');
         $reviewed_by = array('' => 'Select Reviewer') + User::FacultyList();
 
         // new code for transaction
         $user_id = Auth::user()->get()->id;
-        $model = new RnCResearchPaper();
+        $model = new RncResearchPaper();
 
         $model = $model->leftJoin('rnc_transaction as rnc_t', function($query)  use($user_id){
             $query->on('rnc_t.rnc_research_paper_id', '=', 'rnc_research_paper.id');
@@ -151,7 +151,7 @@ class RnCStudentController extends \BaseController {
 
         if (Session::get('cartResearchPaper')) {
             $all_rnc_research_paper_ids = Session::get('cartResearchPaper');
-            $rnc_research_papers = RnCResearchPaper::with('relRnCCategory', 'relRnCPublisher')->whereIn('id', $all_rnc_research_paper_ids)->get();
+            $rnc_research_papers = RncResearchPaper::with('relRncCategory', 'relRncPublisher')->whereIn('id', $all_rnc_research_paper_ids)->get();
         } else {
             $rnc_research_papers = array();
         }
@@ -173,7 +173,7 @@ class RnCStudentController extends \BaseController {
     public function viewRPCart()
     {
         $all_cart_r_p_ids = Session::get('cartResearchPaper');
-        $all_cart_r_ps = RnCResearchPaper::with('relRnCCategory', 'relRnCPublisher')
+        $all_cart_r_ps = RncResearchPaper::with('relRncCategory', 'relRncPublisher')
             ->whereIn('id', $all_cart_r_p_ids)->get();
         $number = count($all_cart_r_ps);
         $sum = $all_cart_r_ps->sum('price');
@@ -193,14 +193,14 @@ class RnCStudentController extends \BaseController {
 
     public function researchPaperDownload($rnc_rp_id)
     {
-        $model = RnCResearchPaper::find($rnc_rp_id);
+        $model = RncResearchPaper::find($rnc_rp_id);
         $sample = DB::table('rnc_transaction')->where('rnc_research_paper_id', $model->id)->first()->count;
 
         DB::table('rnc_transaction')->where('rnc_research_paper_id', $rnc_rp_id)
             ->update(array('count' => $sample + 1));
 
 
-        $download = RnCResearchPaper::find($rnc_rp_id);
+        $download = RncResearchPaper::find($rnc_rp_id);
         $file = $download->file;
         $path = public_path("rnc_file/" . $file);
         $headers = array(
@@ -212,13 +212,13 @@ class RnCStudentController extends \BaseController {
 
     public function purchasedResearchPaperDownload($rnc_rp_id)
     {
-        $model = RnCResearchPaper::find($rnc_rp_id);
+        $model = RncResearchPaper::find($rnc_rp_id);
         $sample = DB::table('rnc_transaction')->where('rnc_research_paper_id', $model->id)->first()->count;
 
         DB::table('rnc_transaction')->where('rnc_research_paper_id', $rnc_rp_id)
             ->update(array('count' => $sample + 1));
 
-        $download = RnCResearchPaper::find($rnc_rp_id);
+        $download = RncResearchPaper::find($rnc_rp_id);
         $file = $download->file;
         $path = public_path("rnc_file/" . $file);
         $headers = array(
@@ -232,7 +232,7 @@ class RnCStudentController extends \BaseController {
     {
         $all_cart_r_p_ids = Session::get('cartResearchPaper');
 
-        $all_cart_r_ps = RnCResearchPaper::with('relRnCCategory', 'relRnCPublisher')
+        $all_cart_r_ps = RncResearchPaper::with('relRncCategory', 'relRncPublisher')
             ->whereIn('id',$all_cart_r_p_ids)
             ->get();
 
@@ -240,7 +240,7 @@ class RnCStudentController extends \BaseController {
         $tr_info = '';
         if($all_cart_r_p_ids){
             foreach($all_cart_r_ps as $key => $cb){
-                $transaction = new RnCTransaction();
+                $transaction = new RncTransaction();
                 $transaction->user_id = Auth::user()->get()->id;
                 $transaction->rnc_research_paper_id = $cb->id;
                 $transaction->issue_date = date('d-m-y H:i:s');
@@ -250,7 +250,7 @@ class RnCStudentController extends \BaseController {
                 if ($transaction->save())
                 {
                     // save to lib_book_financial_transaction table
-                    $f_transaction = new RnCFinancialTransaction();
+                    $f_transaction = new RncFinancialTransaction();
                     $f_transaction->rnc_transaction_id = $transaction->id;
                     $ultimate_price = $cb->price - ($cb->price * $cb->free_type_student)/100;
                     $f_transaction->amount = $ultimate_price;
@@ -287,7 +287,7 @@ class RnCStudentController extends \BaseController {
 
     public function myRP()
     {
-        $my_cart_books = RnCTransaction::with('relRnCResearchPaper','relRnCFinancialTransaction')
+        $my_cart_books = RncTransaction::with('relRncResearchPaper','relRncFinancialTransaction')
             ->where('user_id', Auth::user()->get()->id)
             ->get();
 
@@ -302,7 +302,7 @@ class RnCStudentController extends \BaseController {
 
     public function researchPaperRead($rnc_rp_id)
     {
-        $download = RnCResearchPaper::find($rnc_rp_id);
+        $download = RncResearchPaper::find($rnc_rp_id);
         $file = $download->file;
         $path = public_path("rnc_file/" . $file);
         $headers = array(
@@ -317,7 +317,7 @@ class RnCStudentController extends \BaseController {
     public function storeResearchPaper()
     {
         $data = Input::all();
-        $model = new RnCResearchPaper();
+        $model = new RncResearchPaper();
         if ($model->validate($data)) {
             $model->title = Input::get('title');
             $flashmsg = $model->title;
@@ -356,15 +356,15 @@ class RnCStudentController extends \BaseController {
 
     public function viewResearchPaper($id)
     {
-        $view_r_c = RnCResearchPaper::find($id);
+        $view_r_c = RncResearchPaper::find($id);
         return View::make('rnc::student.research_paper.view',compact('view_r_c'));
     }
 
     public function editResearchPaper($id)
     {
-        $edit_r_c = RnCResearchPaper::find($id);
-        $edit_category = array('' => 'Select RnC Category ') + RnCCategory::lists('title', 'id');
-        $edit_publisher = array('' => 'Select RnC Publisher') + RnCPublisher::lists('title', 'id');
+        $edit_r_c = RncResearchPaper::find($id);
+        $edit_category = array('' => 'Select RnC Category ') + RncCategory::lists('title', 'id');
+        $edit_publisher = array('' => 'Select RnC Publisher') + RncPublisher::lists('title', 'id');
         $edit_reviewed_by = array('' => 'Select Reviewer') + User::FacultyList();
         return View::make('rnc::student.research_paper.edit',compact('edit_r_c','edit_category','edit_publisher','edit_reviewed_by'));
     }
@@ -373,7 +373,7 @@ class RnCStudentController extends \BaseController {
     public function updateResearchPaper($id)
     {
         $data = Input::all();
-        $model = RnCResearchPaper::find($id);
+        $model = RncResearchPaper::find($id);
         if ($model->validate($data)) {
             $model->title = Input::get('title');
             $flashmsg = $model->title;
@@ -417,7 +417,7 @@ class RnCStudentController extends \BaseController {
     public function deleteResearchPaper($id)
     {
         try {
-            $data= RnCResearchPaper::find($id);
+            $data= RncResearchPaper::find($id);
             $flash_msg = $data->title;
             if($data->delete())
             {
@@ -434,7 +434,7 @@ class RnCStudentController extends \BaseController {
     public function batchdeleteResearchPaper($id)
     {
         try {
-            RnCResearchPaper::destroy(Request::get('id'));
+            RncResearchPaper::destroy(Request::get('id'));
             Session::flash('message', "Success: Selected items Deleted ");
             return Redirect::back();
         }
@@ -446,8 +446,8 @@ class RnCStudentController extends \BaseController {
 
     public function researchPaperComment($rnc_r_p_id)
     {
-        $rnc_r_p = RnCResearchPaper::findOrFail($rnc_r_p_id);
-        $rnc_r_p_cmnt = RnCResearchPaperComment::where('rnc_research_paper_id', $rnc_r_p_id)->get();
+        $rnc_r_p = RncResearchPaper::findOrFail($rnc_r_p_id);
+        $rnc_r_p_cmnt = RncResearchPaperComment::where('rnc_research_paper_id', $rnc_r_p_id)->get();
         $commented_to = array('' => 'Commented To') + User::WriterNameList();
         return View::make('rnc::student.research_paper.rnc_research_paper_comment',
             compact('rnc_r_p','rnc_r_p_cmnt','rnc_r_p_id','commented_to'));
@@ -457,7 +457,7 @@ class RnCStudentController extends \BaseController {
     {
         $info = Input::all();
 
-        $model = new RnCResearchPaperComment();
+        $model = new RncResearchPaperComment();
         $model->rnc_research_paper_id = $info['rnc_research_paper_id'];
         $model->comments = $info['comments'];
         $model->commented_to = $info['commented_to'];
@@ -478,12 +478,12 @@ class RnCStudentController extends \BaseController {
 
     public function listWriterBeneficial($rnc_r_p_id)
     {
-        $writer_info = RnCResearchPaperWriter::with('relRnCResearchPaper','relRnCWriterBeneficial' ,'relUser', 'relUser.relUserProfile')
+        $writer_info = RncResearchPaperWriter::with('relRncResearchPaper','relRncWriterBeneficial' ,'relUser', 'relUser.relUserProfile')
             ->where('rnc_research_paper_id', $rnc_r_p_id)->get();
 
-        $r_p = RnCResearchPaper::where('id', $rnc_r_p_id)->first();
+        $r_p = RncResearchPaper::where('id', $rnc_r_p_id)->first();
 
-        $rp_benefit_share = RnCResearchPaper::where('id' ,'=', $rnc_r_p_id)->first()->benefit_share;
+        $rp_benefit_share = RncResearchPaper::where('id' ,'=', $rnc_r_p_id)->first()->benefit_share;
         $total = DB::table('rnc_writer_beneficial')->where('rnc_research_paper_id' ,'=', $rnc_r_p_id)->sum('value');
         $cal_benefit_share = $rp_benefit_share + $total ;
 
@@ -528,11 +528,11 @@ class RnCStudentController extends \BaseController {
         DB::beginTransaction();
         try{
             foreach($dt as $key => $values){
-                $model = new RnCResearchPaperWriter();
+                $model = new RncResearchPaperWriter();
                 $model->rnc_research_paper_id = $values['rnc_research_paper_id'];
                 $model->writer_user_id = $values['writer_user_id'];
                 if($model->save()){
-                    $model2 = new RnCWriterBeneficial();
+                    $model2 = new RncWriterBeneficial();
                     $model2->rnc_research_paper_writer_id = $model->id;
                     $model2->rnc_research_paper_id = $values['rnc_research_paper_id'];
                     $model2->value = $values['value'];
@@ -557,8 +557,8 @@ class RnCStudentController extends \BaseController {
 
         DB::beginTransaction();
         try {
-            if(RnCWriterBeneficial::destroy($ben_id)){
-                RnCResearchPaperWriter::destroy($id);
+            if(RncWriterBeneficial::destroy($ben_id)){
+                RncResearchPaperWriter::destroy($id);
             }
             DB::commit();
             return Response::json("Successfully Deleted");
@@ -576,11 +576,11 @@ class RnCStudentController extends \BaseController {
 
         DB::beginTransaction();
         try{
-            $model = RnCResearchPaperWriter::find(Input::get('writer_id'));
+            $model = RncResearchPaperWriter::find(Input::get('writer_id'));
             $model->rnc_research_paper_id = Input::get('rnc_research_paper_id');
             $model->writer_user_id = Input::get('writer_user_id');
             if($model->update()){
-                $model2 = RnCWriterBeneficial::find(Input::get('beneficial_id'));
+                $model2 = RncWriterBeneficial::find(Input::get('beneficial_id'));
                 $model2->rnc_research_paper_writer_id = Input::get('writer_id');
                 $model2->rnc_research_paper_id = Input::get('rnc_research_paper_id');
                 $model2->value = Input::get('value');
