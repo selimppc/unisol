@@ -31,7 +31,6 @@ class RncCategory extends Eloquent{
         return $this->errors;
     }
 
-
     //TODO : Model Relationship
 
 
