@@ -4,7 +4,7 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class RnCFinancialTransaction extends Eloquent{
+class RncFinancialTransaction extends Eloquent{
 
     //TODO :: model attributes and rules and validation
     protected $table='rnc_financial_transaction';
@@ -37,8 +37,8 @@ class RnCFinancialTransaction extends Eloquent{
     }
 
     //TODO : Model Relationship
-    public function relRnCTransaction(){
-        return $this->belongsTo('RnCTransaction','rnc_transaction_id','id');
+    public function relRncTransaction(){
+        return $this->belongsTo('RncTransaction','rnc_transaction_id','id');
     }
 
 

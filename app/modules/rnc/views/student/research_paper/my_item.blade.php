@@ -35,15 +35,15 @@
                            <tr>
                                <td><input type="checkbox" name="id[]" class="myCheckbox" value=""></td>
                                <td>{{ isset($mcrps->user_id) ? User::FullName($mcrps->user_id) : '' }}</td>
-                               <td>{{ $mcrps->relRnCResearchPaper->title }}</td>
+                               <td>{{ $mcrps->relRncResearchPaper->title }}</td>
                                <td>{{ $mcrps->issue_date }}</td>
-                               <td>{{ $mcrps->relRnCFinancialTransaction->transaction_type }}</td>
-                               <td>{{ $mcrps->relRnCFinancialTransaction->status }}</td>
+                               <td>{{ $mcrps->relRncFinancialTransaction->transaction_type }}</td>
+                               <td>{{ $mcrps->relRncFinancialTransaction->status }}</td>
                                <td>{{ $mcrps->count }}</td>
-                               <td>{{ $mcrps->relRnCFinancialTransaction->amount }}</td>
+                               <td>{{ round($mcrps->relRncFinancialTransaction->amount) }}</td>
                                <td>
-                                    @if($mcrps->relRnCFinancialTransaction->status == "paid")
-                                        <a href="{{ URL::route('student.research-paper.purchased-download',['rnc_rp_id'=>$mcrps->relRnCResearchPaper->id]) }}" class="btn btn-xs btn-default" id="myForm"><i class="fa fa-cloud-download" style="color: blue" title="Purchased"></i> Paid</a>
+                                    @if($mcrps->relRncFinancialTransaction->status == "paid")
+                                        <a href="{{ URL::route('student.research-paper.purchased-download',['rnc_rp_id'=>$mcrps->relRncResearchPaper->id]) }}" class="btn btn-xs btn-default" id="myForm"><i class="fa fa-cloud-download" style="color: blue" title="Purchased"></i> Paid</a>
                                     @else
                                         <a href="{{ URL::route('student.research-paper.payment') }}" class="btn btn-large btn-warning pull-right" ><i class="fa fa-mail-reply"></i>Payment Due</a>
                                     @endif

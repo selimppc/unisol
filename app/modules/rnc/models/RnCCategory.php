@@ -4,7 +4,7 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class RnCCategory extends Eloquent{
+class RncCategory extends Eloquent{
 
     //TODO :: model attributes and rules and validation
     protected $table='rnc_category';

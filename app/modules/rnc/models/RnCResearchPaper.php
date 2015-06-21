@@ -4,7 +4,7 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class RnCResearchPaper extends Eloquent{
+class RncResearchPaper extends Eloquent{
 
     //TODO :: model attributes and rules and validation
     protected $table='rnc_research_paper';
@@ -64,27 +64,27 @@ class RnCResearchPaper extends Eloquent{
 
     //TODO : Model Relationship
 
-    public function relRnCCategory(){
-        return $this->belongsTo('RnCCategory','rnc_category_id','id');
+    public function relRncCategory(){
+        return $this->belongsTo('RncCategory','rnc_category_id','id');
     }
-    public function relRnCPublisher(){
-        return $this->belongsTo('RnCPublisher','where_published_id','id');
-    }
-
-    public function relRnCResearchPaperWriter(){
-        return $this->HasMany('RnCResearchPaperWriter');
+    public function relRncPublisher(){
+        return $this->belongsTo('RncPublisher','where_published_id','id');
     }
 
-    public function relRnCResearchPaperComment(){
-        return $this->HasMany('RnCResearchPaperComment');
+    public function relRncResearchPaperWriter(){
+        return $this->HasMany('RncResearchPaperWriter');
     }
 
-    public function relRnCWriterBeneficial(){
-        return $this->HasMany('RnCWriterBeneficial');
+    public function relRncResearchPaperComment(){
+        return $this->HasMany('RncResearchPaperComment');
     }
 
-    public function relRnCTransaction(){
-        return $this->HasOne('RnCTransaction');
+    public function relRncWriterBeneficial(){
+        return $this->HasMany('RncWriterBeneficial');
+    }
+
+    public function relRncTransaction(){
+        return $this->HasOne('RncTransaction');
     }
 
     // TODO : user info while saving data into table

@@ -17,159 +17,159 @@
     //Config. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
     Route::any('faculty/config/index',[
         'as' => 'faculty.config.index',
-        'uses'=> 'RnCFacultyController@indexConfig'
+        'uses'=> 'RncFacultyController@indexConfig'
     ]);
 
     Route::any('faculty/config/add/{id}',[
         'as' => 'faculty.config.add',
-        'uses'=> 'RnCFacultyController@addConfig'
+        'uses'=> 'RncFacultyController@addConfig'
     ]);
 
     Route::any('faculty/config/store',[
         'as' => 'faculty.config.store',
-        'uses'=> 'RnCFacultyController@storeConfig'
+        'uses'=> 'RncFacultyController@storeConfig'
     ]);
 
     Route::any('faculty/config/show/{id}',[
         'as' => 'faculty.config.show',
-        'uses'=> 'RnCFacultyController@showConfig'
+        'uses'=> 'RncFacultyController@showConfig'
     ]);
 
     Route::any('faculty/config/edit/{id}',[
         'as' => 'faculty.config.edit',
-        'uses'=> 'RnCFacultyController@editConfig'
+        'uses'=> 'RncFacultyController@editConfig'
     ]);
 
     Route::any('faculty/config/update/{id}',[
         'as' => 'faculty.config.update',
-        'uses'=> 'RnCFacultyController@updateConfig'
+        'uses'=> 'RncFacultyController@updateConfig'
     ]);
 
     Route::any('faculty/config/delete/{id}',[
         'as' => 'faculty.config.delete',
-        'uses'=> 'RnCFacultyController@deleteConfig'
+        'uses'=> 'RncFacultyController@deleteConfig'
     ]);
 
     Route::any('faculty/config/batch-delete',[
         'as' => 'faculty.config.batch-delete',
-        'uses'=> 'RnCFacultyController@batchDeletConfig'
+        'uses'=> 'RncFacultyController@batchDeletConfig'
     ]);
 
     //Research Paper . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 
     Route::any('faculty/research-paper/index',[
         'as' => 'faculty.research-paper.index',
-        'uses'=> 'RnCFacultyController@indexResearchPaper'
+        'uses'=> 'RncFacultyController@indexResearchPaper'
     ]);
 
     Route::any('faculty/research-paper/save',[
         'as' => 'faculty.research-paper.save',
-        'uses'=> 'RnCFacultyController@storeResearchPaper'
+        'uses'=> 'RncFacultyController@storeResearchPaper'
     ]);
 
     Route::any('faculty/research-paper/view/{id}',[
         'as' => 'faculty.research-paper.view',
-        'uses'=> 'RnCFacultyController@viewResearchPaper'
+        'uses'=> 'RncFacultyController@viewResearchPaper'
     ]);
 
     Route::any('faculty/research-paper/edit/{id}',[
         'as' => 'faculty.research-paper.edit',
-        'uses'=> 'RnCFacultyController@editResearchPaper'
+        'uses'=> 'RncFacultyController@editResearchPaper'
     ]);
 
     Route::any('faculty/research-paper/update/{id}', [
         'as' => 'faculty.research-paper.update',
-        'uses' => 'RnCFacultyController@updateResearchPaper'
+        'uses' => 'RncFacultyController@updateResearchPaper'
     ]);
 
     Route::any('faculty/research-paper/delete/{id}',[
         'as' => 'faculty.research-paper.delete',
-        'uses' => 'RnCFacultyController@deleteResearchPaper'
+        'uses' => 'RncFacultyController@deleteResearchPaper'
     ]);
 
     Route::any('faculty/research-paper/batch-delete/{id}', [
         'as' => 'faculty.research-paper.batch-delete',
-        'uses' => 'RnCFacultyController@batchdeleteResearchPaper'
+        'uses' => 'RncFacultyController@batchdeleteResearchPaper'
     ]);
 
     Route::any('faculty/research-paper/download/{rnc_rp_id}',[
         'as' =>'faculty.research-paper.download',
-        'uses' => 'RnCFacultyController@researchPaperDownload'
+        'uses' => 'RncFacultyController@researchPaperDownload'
     ]);
 
     Route::any('faculty/research-paper/purchased-download/{rnc_rp_id}',[
         'as' =>'faculty.research-paper.purchased-download',
-        'uses' => 'RnCFacultyController@purchasedResearchPaperDownload'
+        'uses' => 'RncFacultyController@purchasedResearchPaperDownload'
     ]);
 
     Route::any('faculty/research-paper/read/{rnc_rp_id}',[
         'as' =>'faculty.research-paper.read',
-        'uses' => 'RnCFacultyController@researchPaperRead'
+        'uses' => 'RncFacultyController@researchPaperRead'
     ]);
 
     Route::any('faculty/research-paper/comment/{rnc_r_p_id}',[
         'as' =>'faculty.research-paper.comment',
-        'uses' => 'RnCFacultyController@researchPaperComment'
+        'uses' => 'RncFacultyController@researchPaperComment'
     ]);
 
     Route::any('faculty/research-paper/save-comment',[
         'as' =>'faculty.research-paper.save-comment',
-        'uses' => 'RnCFacultyController@saveComment'
+        'uses' => 'RncFacultyController@saveComment'
     ]);
 
     Route::any('faculty/research-paper/add-to-cart/{rnc_rp_id}',[
         'as' =>'faculty.research-paper.add-to-cart',
-        'uses' => 'RnCFacultyController@addRPToFacultyCart'
+        'uses' => 'RncFacultyController@addRPToFacultyCart'
     ]);
 
     Route::any('faculty/research-paper/remove-from-cart/{id}',[
         'as' =>'faculty.research-paper.remove-from-cart',
-        'uses' => 'RnCFacultyController@removeRPFromCart'
+        'uses' => 'RncFacultyController@removeRPFromCart'
     ]);
 
     Route::any('faculty/research-paper/view-cart',[
         'as' =>'faculty.research-paper.view-cart',
-        'uses' => 'RnCFacultyController@viewRPCart'
+        'uses' => 'RncFacultyController@viewRPCart'
     ]);
 
     Route::any('faculty/research-paper/payment',[
         'as' =>'faculty.research-paper.payment',
-        'uses' => 'RnCFacultyController@paymentMethodRP'
+        'uses' => 'RncFacultyController@paymentMethodRP'
     ]);
 
     Route::any('faculty/research-paper/send-info-to-transaction',[
         'as' =>'faculty.research-paper.send-info-to-transaction',
-        'uses' => 'RnCFacultyController@saveInfoToTransactionTable'
+        'uses' => 'RncFacultyController@saveInfoToTransactionTable'
     ]);
 
     Route::any('faculty/research-paper/my-item',[
         'as' =>'faculty.research-paper.my-item',
-        'uses' => 'RnCFacultyController@myRP'
+        'uses' => 'RncFacultyController@myRP'
     ]);
 
 //new
 
     Route::any('faculty/research-paper-writer-beneficial/list/{rnc_r_p_id}',[
         'as' =>'faculty.research-paper-writer-beneficial.list',
-        'uses' => 'RnCFacultyController@listWriterBeneficial'
+        'uses' => 'RncFacultyController@listWriterBeneficial'
     ]);
 
     Route::any('faculty/research-paper-writer-beneficial/store-writer-beneficial', [
         'as'   => 'faculty.research-paper-writer-beneficial.store-writer-beneficial',
-        'uses' => 'RnCFacultyController@store_writer_beneficial'
+        'uses' => 'RncFacultyController@store_writer_beneficial'
     ]);
 
     Route::any('faculty/research-paper-writer-beneficial/ajax-delete-req-detail', [
         'as'   => 'faculty.research-paper-writer-beneficial.ajax-delete-req-detail',
-        'uses' => 'RnCFacultyController@fac_ajax_delete_req_detail'
+        'uses' => 'RncFacultyController@fac_ajax_delete_req_detail'
     ]);
 
     Route::any('faculty/research-paper-writer-beneficial/update',[
         'as' => 'faculty.research-paper-writer-beneficial.update',
-        'uses'=> 'RnCFacultyController@updateWriterBeneficial'
+        'uses'=> 'RncFacultyController@updateWriterBeneficial'
     ]);
 
     Route::any("ajax/fac-get-writer-name-auto-complete", [
         "as"   => "ajax.fac-get-writer-name-auto-complete",
-        "uses" => "RnCFacultyController@ajaxGetWriterNameAutoComplete"
+        "uses" => "RncFacultyController@ajaxGetWriterNameAutoComplete"
     ]);

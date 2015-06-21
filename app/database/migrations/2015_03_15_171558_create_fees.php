@@ -42,6 +42,26 @@ class CreateFees extends Migration {
         });
 
 
+        Schema::create('installment_setup', function(Blueprint $table) {
+            $table->increments('id');
+            $table->unsignedInteger('billing_item_id')->nullable();
+            $table->unsignedInteger('billing_schedule_id')->nullable();
+            $table->unsignedInteger('batch_id')->nullable();
+            $table->decimal('cost', 10);
+            $table->dateTime('deadline');
+            $table->decimal('fined_cost', 10);
+            $table->integer('created_by', false, 11);
+            $table->integer('updated_by', false, 11);
+            $table->timestamps();
+            $table->engine = 'InnoDB';
+        });
+        Schema::table('installment_setup', function($table) {
+            $table->foreign('billing_item_id')->references('id')->on('billing_item');
+            $table->foreign('billing_schedule_id')->references('id')->on('billing_schedule');
+            $table->foreign('batch_id')->references('id')->on('batch');
+        });
+        
+
         //TODO :: Student's Billing Summary and Details with Tuition Fees
 
         Schema::create('billing_summary_student', function(Blueprint $table) {

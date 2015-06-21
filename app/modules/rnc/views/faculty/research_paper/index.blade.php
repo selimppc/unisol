@@ -68,8 +68,8 @@
                                         </td>
                                         <td>{{isset($value->title) ? $value->title :'' }}</td>
                                         <td>{{isset($value->abstract) ? $value->abstract : '' }}</td>
-                                        <td>{{isset($value->relRnCCategory->title) ? $value->relRnCCategory->title : '' }}</td>
-                                        <td>{{isset($value->relRnCPublisher->title) ? $value->relRnCPublisher->title : ''}}</td>
+                                        <td>{{isset($value->relRncCategory->title) ? $value->relRncCategory->title : '' }}</td>
+                                        <td>{{isset($value->relRncPublisher->title) ? $value->relRncPublisher->title : ''}}</td>
                                         <td>{{isset($value->publication_no) ? $value->publication_no : ''}}</td>
                                         <td>{{isset($value->searching) ? ucfirst($value->searching) : ''}}</td>
                                         <td>{{isset($value->benefit_share) ? $value->benefit_share : ''}} %</td>

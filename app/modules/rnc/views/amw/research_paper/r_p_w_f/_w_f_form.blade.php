@@ -57,15 +57,15 @@
             <td id="new-column-name-{{ $model_value->id }}">{{ isset($model_value->writer_user_id) ? $model_value->relUser->relUserProfile->first_name.' '.$model_value->relUser->relUserProfile->middle_name.' '.$model_value->relUser->relUserProfile->last_name : '' }}
             </td>
             <span id="writer-user-id-{{$model_value->writer_user_id }}" style="display: none"></span>
-            <span id="ben-id-{{$model_value->relRnCWriterBeneficial->id }}" style="display: none"> </span>
-            <span id="rnc-writer-id-{{$model_value->relRnCWriterBeneficial->rnc_research_paper_writer_id }}" style="display: none"> </span>
+            <span id="ben-id-{{$model_value->relRncWriterBeneficial->id }}" style="display: none"> </span>
+            <span id="rnc-writer-id-{{$model_value->relRncWriterBeneficial->rnc_research_paper_writer_id }}" style="display: none"> </span>
 
-            <td id="new-column-value-{{ $model_value->id }}">{{ $model_value->relRnCWriterBeneficial->value }}</td>
+            <td id="new-column-value-{{ $model_value->id }}">{{ $model_value->relRncWriterBeneficial->value }}</td>
             <td>
-                <a data-href="{{ $model_value->id }}" data-benf="{{ $model_value->relRnCWriterBeneficial->id }}" class="btn btn-default btn-sm delete-dt-2" id="delete-dt-2{{ $model_value->id }}" ><i class="fa fa-trash-o" style="font-size: 15px;color: red"></i></a>
+                <a data-href="{{ $model_value->id }}" data-benf="{{ $model_value->relRncWriterBeneficial->id }}" class="btn btn-default btn-sm delete-dt-2" id="delete-dt-2{{ $model_value->id }}" ><i class="fa fa-trash-o" style="font-size: 15px;color: red"></i></a>
                 <a data-href="{{ $model_value->id }}"
                     data-wrtuserid="{{ $model_value->writer_user_id }}"
-                    data-benid="{{ $model_value->relRnCWriterBeneficial->id }}"
+                    data-benid="{{ $model_value->relRncWriterBeneficial->id }}"
                     class="btn btn-sm btn-default edit-writer-and-beneficial" >
                     <i class="fa fa-pencil-square-o" style="color: #0044cc" title="Edit"></i>
                 </a>
@@ -185,6 +185,8 @@ $(function(){
         var $form_start = "<form action='{{ route('amw.research-paper-writer-beneficial.update') }}' method='POST'>";
         var $form_end = "</form>";
 
+        var total_count_share = "<?php echo $cal_benefit_share; ?>";
+
         $('#test-edit').append($form_start + "<div class='form-group'> " +
            "<input type='hidden' name='rnc_research_paper_id' value='" + $research_paper_id + "'>" +
            "<label for='label-name' style='padding-right: 30px'>Writer Name: </label>" +
@@ -194,7 +196,8 @@ $(function(){
            "<input type='hidden' name='beneficial_id' value='" + $ben_table_id + "' >" +
            "</br> " +
            "<label for='label-val' style='padding-right: 10px'>Beneficial Value: </label>" +
-           "<input type='text' id='label-val' onchange='calShafi' style='padding-right: 10px;' name='value' value='"+ $value +"'>" +
+           "<input type='text' id='label-val' onchange='calShafi' style='padding-right: 10px;' name='value' value='"+ $value +"'><p style='color : red'>You can Extended to Maximum '" + (100 - total_count_share) + "' </p>"+
+
            "<input type='submit' style='margin-left: 160px' class='btn-xs btn-linkedin' value='Update'>" +
         " </div>" + $form_end);
 
@@ -203,26 +206,7 @@ $(function(){
 
     });
 
-    function calShafi()
-    {
-            alert("ok");
-            var total_count_share = "<?php echo $cal_benefit_share; ?>";
-            $value = $("#label-val").val();
-            alert($value);
-            var $total_ben = parseInt(total_count_share) + parseInt($value);
 
-            if($total_ben > 100){
-            	$("#label-val").val("");
-            		alert( $total_ben +'  ,'+ 'Exceeded the Total share 100%. Please decrease your share percentage');
-            	$("#label-val").focus();
-            	return false;
-            }else{
-
-            }
-
-
-
-    }
 });
 
 </script>

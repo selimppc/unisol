@@ -1,6 +1,6 @@
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal">{{HTML::image('assets/icon/media-close-btn.png')}}</button>
-    <h4 class="modal-title" style="text-align: center;color: #800080;">View RnC :: {{isset($view_r_c->title) ? $view_r_c->title :''}} Information</h4>
+    <h4 class="modal-title" style="text-align: center;color: #800080;">View Rnc :: {{isset($view_r_c->title) ? $view_r_c->title :''}} Information</h4>
 </div>
 <div class="modal-body">
     <div style="padding: 10px;">
@@ -15,11 +15,11 @@
             </tr>
             <tr>
                 <td><b>Category:</b></td>
-                <td>{{isset($view_r_c->relRnCCategory->title) ? $view_r_c->relRnCCategory->title : ''}}</td>
+                <td>{{isset($view_r_c->relRncCategory->title) ? $view_r_c->relRncCategory->title : ''}}</td>
             </tr>
             <tr>
                 <td><b>Publisher:</b></td>
-                <td>{{isset($view_r_c->relRnCPublisher->title) ? $view_r_c->relRnCPublisher->title : ''}}</td>
+                <td>{{isset($view_r_c->relRncPublisher->title) ? $view_r_c->relRncPublisher->title : ''}}</td>
             </tr>
             <tr>
                 <td><b>Publication No:</b></td>
