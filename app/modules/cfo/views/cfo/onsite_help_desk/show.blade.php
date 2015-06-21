@@ -12,28 +12,28 @@
 
                    <tr>
                        <th class="col-lg-6">Name :</th>
-                       <td>{{ $data->name }}</td>
+                       <td>{{isset($data->name)?$data->name:''}}</td>
                    </tr>
 
                    <tr>
                        <th class="col-lg-6">Email :</th>
-                       <td>{{ $data->email }}</td>
+                       <td>{{isset( $data->email )? $data->email :''}}</td>
                    </tr>
 
                    <tr>
                        <th class="col-lg-6">Category :</th>
-                       <td>{{ $data->relCfoCategory->title }}</td>
+                       <td>{{  isset($data->relCfoCategory->title)?$data->relCfoCategory->title:''}}</td>
                    </tr>
 
 
                    <tr>
                        <th class="col-lg-6">Purpose:</th>
-                       <td>{{ $data->purpose }}</td>
+                       <td>{{  isset($data->purpose)?$data->purpose:''}}</td>
                    </tr>
 
                    <tr>
                        <th class="col-lg-6">Department:</th>
-                       <td>{{ $data->relDepartment->title }}</td>
+                       <td>{{  isset($data->relDepartment->title)?$data->relDepartment->title:''}}</td>
                    </tr>
 
                    <tr>
