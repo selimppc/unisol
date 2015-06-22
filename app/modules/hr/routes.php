@@ -20,78 +20,100 @@ Route::group(['prefix' => 'hr'], function() {
         return 'Thank you so much!';
     });
 
-    //hr_bank
+//hr_bank
 
-    Route::any('human_resource/hr_bank/index',[
-        'as' => 'human_resource.hr_bank.index',
-        'uses'=> 'HrController@indexHrBank'
+    Route::any('bank',[
+        'as' => 'bank',
+        'uses'=> 'HrBankController@index_hr_bank'
     ]);
 
-    Route::any('human_resource/hr_bank/create',[
-        'as' => 'human_resource.hr_bank.create',
-        'uses'=> 'HrController@createHrBank'
+    Route::any('bank/store',[
+        'as' => 'bank.store',
+        'uses'=> 'HrBankController@store_hr_bank'
     ]);
 
-    Route::any('human_resource/hr_bank/store',[
-        'as' => 'human_resource.hr_bank.store',
-        'uses'=> 'HrController@storeHrBank'
+    Route::any('bank/show/{b_id}',[
+        'as' => 'bank.show',
+        'uses'=> 'HrBankController@show_hr_bank'
     ]);
 
-    Route::any('human_resource/hr_bank/show',[
-        'as' => 'human_resource.hr_bank.show',
-        'uses'=> 'HrController@showHrBank'
+    Route::any('bank/edit/{b_id}',[
+        'as' => 'bank.edit',
+        'uses'=> 'HrBankController@edit_hr_bank'
     ]);
 
-    Route::any('human_resource/hr_bank/edit',[
-        'as' => 'human_resource.hr_bank.edit',
-        'uses'=> 'HrController@editHrBank'
+    Route::any('bank/destroy/{b_id}',[
+        'as' => 'bank.destroy',
+        'uses'=> 'HrBankController@destroy_hr_bank'
     ]);
 
-    Route::any('human_resource/hr_bank/update',[
-        'as' => 'human_resource.hr_bank.update',
-        'uses'=> 'HrController@updateHrBank'
+    Route::any('bank/batch_delete',[
+        'as' => 'bank.batch_delete',
+        'uses'=> 'HrBankController@batch_delete_hr_bank'
     ]);
 
-    Route::any('human_resource/hr_bank/delete',[
-        'as' => 'human_resource.hr_bank.delete',
-        'uses'=> 'HrController@deleteHrBank'
+//hr_salary_grade
+
+    Route::any('salary_grade',[
+        'as' => 'salary_grade',
+        'uses'=> 'HrSalaryGradeController@index_hr_salary_grade'
     ]);
 
-    //hr_salary_grade
-
-    Route::any('human_resource/hr_salary_grade/index',[
-        'as' => 'human_resource.hr_salary_grade.index',
-        'uses'=> 'HrController@indexHrBank'
+    Route::any('salary_grade/store',[
+        'as' => 'salary_grade.store',
+        'uses'=> 'HrSalaryGradeController@store_hr_salary_grade'
     ]);
 
-    Route::any('human_resource/hr_salary_grade/create',[
-        'as' => 'human_resource.hr_salary_grade.create',
-        'uses'=> 'HrController@createHrBank'
+    Route::any('salary_grade/show/{s_g_id}',[
+        'as' => 'salary_grade.show',
+        'uses'=> 'HrSalaryGradeController@show_hr_salary_grade'
     ]);
 
-    Route::any('human_resource/hr_salary_grade/store',[
-        'as' => 'human_resource.hr_salary_grade.store',
-        'uses'=> 'HrController@storeHrBank'
+    Route::any('salary_grade/edit/{s_g_id}',[
+        'as' => 'salary_grade.edit',
+        'uses'=> 'HrSalaryGradeController@edit_hr_salary_grade'
     ]);
 
-    Route::any('human_resource/hr_salary_grade/show',[
-        'as' => 'human_resource.hr_salary_grade.show',
-        'uses'=> 'HrController@showHrBank'
+    Route::any('salary_grade/destroy/{s_g_id}',[
+        'as' => 'salary_grade.destroy',
+        'uses'=> 'HrSalaryGradeController@destroy_hr_salary_grade'
     ]);
 
-    Route::any('human_resource/hr_salary_grade/edit',[
-        'as' => 'human_resource.hr_salary_grade.edit',
-        'uses'=> 'HrController@editHrBank'
+    Route::any('salary_grade/batch_delete',[
+        'as' => 'salary_grade.batch_delete',
+        'uses'=> 'HrSalaryGradeController@batch_delete_hr_salary_grade'
     ]);
 
-    Route::any('human_resource/hr_salary_grade/update',[
-        'as' => 'human_resource.hr_salary_grade.update',
-        'uses'=> 'HrController@updateHrBank'
+//hr_tax_rule
+
+    Route::any('tax_rule',[
+        'as' => 'tax_rule',
+        'uses'=> 'HrTaxRuleController@index_hr_tax_rule'
     ]);
 
-    Route::any('human_resource/hr_salary_grade/delete',[
-        'as' => 'human_resource.hr_salary_grade.delete',
-        'uses'=> 'HrController@deleteHrBank'
+    Route::any('tax_rule/store',[
+        'as' => 'tax_rule.store',
+        'uses'=> 'HrTaxRuleController@store_hr_tax_rule'
+    ]);
+
+    Route::any('tax_rule/show/{t_r_id}',[
+        'as' => 'tax_rule.show',
+        'uses'=> 'HrTaxRuleController@show_hr_tax_rule'
+    ]);
+
+    Route::any('tax_rule/edit/{t_r_id}',[
+        'as' => 'tax_rule.edit',
+        'uses'=> 'HrTaxRuleController@edit_hr_tax_rule'
+    ]);
+
+    Route::any('tax_rule/destroy/{t_r_id}',[
+        'as' => 'tax_rule.destroy',
+        'uses'=> 'HrTaxRuleController@destroy_hr_tax_rule'
+    ]);
+
+    Route::any('tax_rule/batch_delete',[
+        'as' => 'tax_rule.batch_delete',
+        'uses'=> 'HrTaxRuleController@batch_delete_hr_tax_rule'
     ]);
 
 
