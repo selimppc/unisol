@@ -77,11 +77,11 @@
          'uses' => 'FeesController@index_installment_setup'
      ]);
 
-     /*Route::any('billing/create', [
-         'as' => 'billing.create',
-         'uses' => 'FeesController@createBillingSetup'
+     Route::any('installment/setup/create', [
+         'as' => 'installment.setup.create',
+         'uses' => 'FeesController@create_installment_setup'
      ]);
-     Route::any('billing/drop-down-batch',[
+     /*Route::any('billing/drop-down-batch',[
          'as' =>'amw.drop-down-batch',
          'uses' => 'FeesController@createAjaxBatchList'
      ]);
