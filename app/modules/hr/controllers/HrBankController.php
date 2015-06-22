@@ -44,18 +44,18 @@ class HrBankController extends \BaseController {
 
 
 
-    public function show_hr_bank($id)
+    public function show_hr_bank($b_id)
     {
-        $data = HrBank::findOrFail($id);
+        $data = HrBank::findOrFail($b_id);
         return View::make('hr::hr.hr_bank.view', compact('pageTitle', 'data'));
     }
 
 
-    public function edit_hr_bank($id)
+    public function edit_hr_bank($b_id)
     {
         if($this->isPostRequest()){
             $input_data = Input::all();
-            $model = HrBank::findOrFail($id);
+            $model = HrBank::findOrFail($b_id);
             if($model->validate($input_data)){
                 DB::beginTransaction();
                 try{
@@ -70,17 +70,17 @@ class HrBankController extends \BaseController {
             }
             return Redirect::back();
         }else{
-            $model = HrBank::findOrFail($id);
+            $model = HrBank::findOrFail($b_id);
             return View::make('hr::hr.hr_bank.edit', compact('model'));
         }
     }
 
 
-    public function delete_hr_bank($id)
+    public function destroy_hr_bank($b_id)
     {
         DB::beginTransaction();
         try{
-            HrBank::destroy($id);
+            HrBank::destroy($b_id);
             DB::commit();
             Session::flash('message', 'Success !');
         }catch ( Exception $e ){

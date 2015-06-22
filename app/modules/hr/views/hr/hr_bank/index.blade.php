@@ -17,16 +17,15 @@
            </div>
         </div>
 
-        {{Form::open([ 'route'=>'product/category/batch-delete' ])}}
+        {{ Form::open([ 'route'=>'bank.batch_delete' ])}}
        <div class="box-body">
         <table id="example" class="table table-striped  table-bordered" >
             <thead>
                   {{ Form::submit('Delete Items', ['class'=>'btn btn-danger btn-xs', 'id'=>'hide-button', 'style'=>'display:none', 'onclick'=> "return confirm('Are you sure you want to delete?')"])}}
                 <tr>
                     <th><input name="id" type="checkbox" id="checkbox" class="checkbox" value=""></th>
-                    <th>Code</th>
-                    <th>Title</th>
-                    <th>Description</th>
+                    <th>Bank Name</th>
+                    <th>Branch</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -34,13 +33,12 @@
                 @foreach($model as $values)
                  <tr>
                     <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $values->id }}"></td>
-                    <td>{{$values->code}}</td>
-                    <td>{{$values->title}}</td>
-                    <td>{{$values->description}}</td>
+                    <td>{{ $values->bank_name }}</td>
+                    <td>{{ $values->branch }}</td>
                     <td>
-                        <a href="{{ URL::route('product/category/show', ['pc_id'=>$values->id ])  }}" class="btn btn-default btn-xs" title="Manage Applicant" data-toggle="modal" data-target="#modal-pc"><span class="fa fa-eye"></span></a>
-                        <a href="{{ URL::route('product/category/edit',['pc_id'=>$values->id])  }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal-pc"> <i class="fa fa-edit"></i></a>
-                        <a data-href="{{ URL::route('product/category/destroy', ['pc_id'=>$values->id ]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa fa-trash-o" ></i></a>
+                        <a href="{{ URL::route('bank.show', ['b_id'=>$values->id ])  }}" class="btn btn-default btn-xs" title="Manage Applicant" data-toggle="modal" data-target="#modal-pc"><i style="color: #149bdf" class="fa fa-eye"></i></a>
+                        <a href="{{ URL::route('bank.edit',['b_id'=>$values->id])  }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal-pc"> <i style="color: #7b24dd" class="fa fa-edit"></i></a>
+                        <a data-href="{{ URL::route('bank.destroy', ['b_id'=>$values->id ]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i style="color: red" class="fa fa-trash-o" ></i></a>
 
                     </td>
 
@@ -55,7 +53,7 @@
     </div>
 
 </div>
-{{Form::open(['route'=>'hr.hr_bank.store', 'files'=>true])}}
+{{Form::open(['route'=>'bank.store', 'files'=>true])}}
         @include('hr::hr.hr_bank._modal._modal')
 {{ Form::close() }}
 

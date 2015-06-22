@@ -43,18 +43,18 @@ class HrSalaryGradeController extends \BaseController {
 
 
 
-    public function show_hr_salary_grade($id)
+    public function show_hr_salary_grade($s_g_id)
     {
-        $data = InvProductCategory::findOrFail($pc_id);
+        $data = InvProductCategory::findOrFail($s_g_id);
         return View::make('inventory::product_category.show', compact('pageTitle', 'data'));
     }
 
 
-    public function edit_hr_salary_grade($id)
+    public function edit_hr_salary_grade($s_g_id)
     {
         if($this->isPostRequest()){
             $input_data = Input::all();
-            $model = InvProduct::findOrFail($p_id);
+            $model = InvProduct::findOrFail($s_g_id);
             if($model->validate($input_data)){
                 DB::beginTransaction();
                 try{
@@ -69,18 +69,18 @@ class HrSalaryGradeController extends \BaseController {
             }
             return Redirect::back();
         }else{
-            $model = InvProduct::findOrFail($p_id);
+            $model = InvProduct::findOrFail($s_g_id);
             return View::make('inventory::product.edit', compact('model'));
         }
     }
 
 
 
-    public function delete_hr_salary_grade($id)
+    public function delete_hr_salary_grade($s_g_id)
     {
         DB::beginTransaction();
         try{
-            InvProduct::destroy($p_id);
+            InvProduct::destroy($s_g_id);
             DB::commit();
             Session::flash('message', 'Success !');
         }catch ( Exception $e ){

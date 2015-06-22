@@ -13,8 +13,8 @@
              <i class="fa fa-angle-left pull-right"></i>
          </a>
          <ul class="treeview-menu">
-             <li><a href="{{ URL::to('hr/hr/hr_bank') }}"></i><i class="fa fa-briefcase" style="color: #0effae"></i>HR Bank</a></li>
-             <li><a href="{{ URL::to('hr/hr/hr_salary_grade') }}"></i><i class="fa fa-dollar" style="color: #1806ff"></i>HR Salary Grade</a></li>
+             <li><a href="{{ URL::to('hr/bank') }}"></i><i class="fa fa-briefcase" style="color: #0effae"></i>HR Bank</a></li>
+             <li><a href="{{ URL::to('hr/salary_grade') }}"></i><i class="fa fa-dollar" style="color: #1806ff"></i>HR Salary Grade</a></li>
          </ul>
     </li>
 

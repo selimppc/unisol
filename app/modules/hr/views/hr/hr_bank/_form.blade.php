@@ -1,17 +1,17 @@
 
 <div class='form-group'>
-   {{ Form::label('code', 'Category Code') }}
-   {{ Form::text('code', Input::old('code'),['class'=>'form-control', 'style'=>'text-transform: uppercase;', 'required']) }}
+   {{ Form::label('bank_name', 'Bank Name') }}
+   {{ Form::text('bank_name', Input::old('bank_name'),['class'=>'form-control', 'required']) }}
 </div>
 
 <div class='form-group'>
-   {{ Form::label('title', 'Title') }}
-   {{ Form::text('title', Input::old('title'),['class'=>'form-control', 'required']) }}
+   {{ Form::label('branch', 'Branch') }}
+   {{ Form::text('branch', Input::old('branch'),['class'=>'form-control', 'required']) }}
 </div>
 
 <div class='form-group'>
-   {{ Form::label('description', 'Description') }}
-   {{ Form::textarea('description',  Input::old('description'),['onkeyup'=>"javascript:this.value=this.value.replace(/[<,>]/g,'');", 'size' => '30x5', 'class'=>'form-control']) }}
+   {{ Form::label('address', 'Address') }}
+   {{ Form::textarea('address',  Input::old('address'),['size' => '30x5', 'class'=>'form-control']) }}
 </div>
 
 {{ Form::submit('Save', array('class'=>'pull-right btn btn-info')) }}
