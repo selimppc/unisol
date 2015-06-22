@@ -320,8 +320,18 @@ class FeesController extends \BaseController {
 
     public function index_installment_setup()
     {
+        $degree = ['' => 'Select Degree'] + DegreeProgram::lists('title', 'id');
+        $batch = ['' => 'Select Batch']+ Batch::lists('batch_number', 'id');
+        $schedule = ['' => 'Select Billing Schedule']+ BillingSchedule::lists('title', 'id');
+        $item = ['' => 'Select Billing Item']+ BillingItem::lists('title', 'id');
+        return View::Make('fees::installment_setup.index',compact('degree','batch','schedule','item'));
 
-        return View::Make('fees::installment_setup.index');
+    }
+
+    public function create_installment_setup($batch_id)
+    {
+
+        return View::Make('fees::installment_setup.create');
 
     }
 

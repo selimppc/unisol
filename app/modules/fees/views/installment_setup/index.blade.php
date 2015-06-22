@@ -6,93 +6,79 @@
     @include('layouts._sidebar_amw')
 @stop
 @section('content')
-    <div class="row" xmlns="http://www.w3.org/1999/html">
+    <div class="row">
         <div class="col-md-12">
-            <h3 class="text-purple ">Fees::Installment Setup</h3>
-            <div class="help-text-top">
-                You can view all lists of Installment Setup and search. Also this panel will allow you to perform some actions to <b>Add Billing Setup</b>, <b>Edit</b>, <b>Delete</b>,and <b>View</b> under the column <b>Action</b>.
-            </div><!-- /.box-body -->
+            <h3 class="text-purple ">Fees::Billing Installment</h3>
         </div><!-- ./col -->
     </div><!-- /.row -->
     <div class="row">
         <div class="col-md-12">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#tab_1" data-toggle="tab">Billing Setup</a></li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            Settings  <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li role="presentation" data-toggle="modal" data-target="#addCategory"><a role="menuitem" tabindex="-1" href="#"> </a>
-                            </li>
-                        </ul>
-                    </li>
                     <li class="pull-right" class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-gear"></i>&nbsp;</a>
                         <ul class="dropdown-menu">
-                            <li role="presentation" data-toggle="modal" data-target="#addCategory"><a role="menuitem" tabindex="-1" href="#">Add Category </a></li>
+                            <li role="presentation" data-toggle="modal" data-target="#addCategory"><a role="menuitem" tabindex="-1" href="#"> Add Category </a></li>
                         </ul>
                     </li>
                 </ul>
+                {{Form::open(array('route' => array('installment.setup.create')))}}
 
-                <div class="tab-content">
-                    <div class="tab-pane active" id="tab_1">
+               {{-- {{Form::open(array('class' => 'form-horizontal', 'method' => 'put', 'action' => array('FeesController@create_installment_setup', $batch, $schedule,$item)))}}--}}
 
+                <div class="col-sm-12" style="background: #EEEEEE">
+                    <div class="col-sm-2">
+                        {{ Form::label('degprog_id', 'Degree Name') }}<span class="text-danger">*</span>
+                        {{ Form::select('degprog_id',$degree, Input::old('degprog_id'), ['id'=>'batch_name','class'=>'form-control','required'=>'required'] ) }}
+                    </div>
+                    <div class="col-sm-2">
+                        {{ Form::label('batch_id', 'Batch') }}<span class="text-danger">*</span>
+                        <span class="loaderClass">{{HTML::image('assets/icon/ajax-loader.gif')}}</span>
+                        {{ Form::select('batch_id', $batch, Input::old('batch_id'), ['id'=>'dependable-list', 'class'=>'form-control','required'=>'required']) }}
+                    </div>
 
-
-                        </div>
-
+                    <div class="col-sm-3">
+                        {{ Form::label('schedule_id','Schedule') }}
+                        <span class="text-danger">*</span>
+                        {{ Form::select('schedule_id', $schedule, Input::old('schedule_id'), ['class' => 'form-control','required'=>'required']) }}
+                    </div>
+                    <div class="col-sm-3">
+                        {{ Form::label('item_id', 'Item') }}<span class="text-danger">*</span>
+                        {{ Form::select('item_id', $item, Input::old('item_id'), ['class' => 'form-control','required'=>'required']) }}
+                    </div>
+                    <div class="col-sm-2">
+                        {{ Form::label('no_installment', 'No of Installment') }}
+                        {{Form::selectRange('no_installment', 0, 50,['class' => 'form-control','required'=>'required'])}}
+                    </div>
+                    <div class="col-sm-2 btn-style2">
+                        {{ Form::submit('Proceed',['class'=>'btn btn-xs btn-success']) }}
                     </div>
                 </div>
-
+                {{ Form::close() }}
             </div>
         </div>
     </div>
 
-    {{-- Modal add new  --}}
-    <div id="myModal" class="modal fade">
-        <div class="modal-dialog" style="z-index:1050">
-            <div class="modal-content">
+    {{--Ajax operation: depandable dropdown with loading gif--}}
 
-            </div>
-        </div>
-    </div>
+    <script>
+        $(function(){
+            $('.loaderClass').hide();
+            $('#batch_name').change(function(){
+                $('.loaderClass').show();
+                $.get("{{ url('fees/billing/drop-down-batch')}}",
+                        { degree: $(this).val() },
+                        function(data) {
+                            $('.loaderClass').hide();
+                            var model = $('#dependable-list');
+                            model.empty();
+                            $.each(data, function(key, element) {
+                                model.append("<option value='"+ key +"'>" + element + "</option>");
+                            });
+                        });
+            });
+        });
 
-    {{-- Modal for Edit --}}
-    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="showingModal">
-        <div class="modal-dialog" style="z-index:1050">
-            <div class="modal-content">
-
-            </div>
-        </div>
-    </div>
-
-    {{-- Modal for show --}}
-    <div class="modal fade" id="showModal" tabindex="-1" role="dialog" aria-labelledby="showingModal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-
-            </div>
-        </div>
-    </div>
-    {{-- Modal for delete --}}
-    <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>
-                </div>
-                <div class="modal-body">
-                    <strong>Are you sure to delete?</strong>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    <a href="#" class="btn btn-danger danger">Delete</a>
-                </div>
-            </div>
-        </div>
-    </div>
+    </script>
 
 @stop

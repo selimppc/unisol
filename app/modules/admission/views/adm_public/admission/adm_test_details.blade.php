@@ -1,115 +1,33 @@
-@extends('layouts.layout')
-@section('top_menu')
-    @include('layouts._top_menu')
-@stop
-@section('sidebar')
-    @include('layouts._sidebar_applicant')
-@stop
-@section('content')
-<a class="pull-right btn btn-xs btn-success" href="{{ URL::route('applicant.details',['batch-applicant-id'=>Auth::applicant()->get()->id])}}"><b><i class="fa fa-arrow-circle-left"></i>Go Back</b></a>
- <h3>Admission Test Details On</h3>
-     <div class="col-lg-12">
-        <table class="table table-bordered">
-              <tr>
-                 <th>Degree Name :</th>
-                 <td>
-                    {{$adm_test_details->relBatch->relDegree->relDegreeLevel->code.'  '.$adm_test_details->relBatch->relDegree->relDegreeGroup->code.' In '.$adm_test_details->relBatch->relDegree->relDegreeProgram->code}} ,{{$adm_test_details->relBatch->relSemester->title}} ,{{$adm_test_details->relBatch->relYear->title}} .
-                 </td>
-              </tr>
 
-              <tr>
-                 <th>Batch Number: </th>
-                 <td>{{$adm_test_details->relBatch->batch_number}}</td>
-              </tr>
-        </table>
-     </div>
-<p>&nbsp;</p>
- {{--------------- Admission Test Subjects  ----------------------------------------------------------}}
-<h5><b>Admission Test will be taken On </b></h5>
-  <div class="box box-solid">
-     <div class="box-header">
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+    <h4 class="modal-title" style="text-align: center;color: #800080;font-size: x-large">Admission Test Details On</h4>
+    <h6 style="font-size: medium;color:steelblue;text-align: center"> {{$data->relDegree->relDegreeLevel->code.'  '.$data->relDegree->relDegreeGroup->code.' On '.$data->relDegree->relDegreeProgram->code}}-{{$data->relSemester->title}},{{$data->relYear->title}}</h6>
+    <h5 style="text-align: center;font-size: medium">Batch # {{$data->batch_number}}</h5>
+</div>
+<div class="modal-body">
 
-     </div>
-     <div class="box box-info">
-         <div class="box-body">
-              <div class="row">
-                  <div class="col-lg-12">
-                      <table class="table table-bordered table-striped">
-                          <thead>
-                               <tr>
-                                      <th>Subject Name</th>
-                                      <th>Marks</th>
-                                      <th>Test Time Duration(in Minutes)</th>
-                               </tr>
-                          </thead>
-                          <tbody>
-                              @if(isset($adm_test_subject))
-                                 @foreach($adm_test_subject as $value)
-                                      <tr>
-                                             <td>{{$value->relAdmtestSubject->title}}</td>
-                                             <td>{{$value->marks}}</td>
-                                             <td>{{$value->duration}}</td>
-                                      </tr>
-                                 @endforeach
-                                 @endif
-                          </tbody>
-                        </table>
-                  </div>
-              </div>
-         </div>
-     </div>
-  </div>
-
-  {{-------- Exam Center Choice -----------------------------------------------------------------------}}
-  <h5><b>Exam Center Choice Sequence</b></h5>
-    <div class="box box-solid">
-       <div class="box-header">
-
-       </div>
-       <div class="box box-info">
-           <div class="box-body">
-                <div class="row">
-                    <div class="col-lg-12">
-                    You can view your exam center choice sequence from this list. This panel will allow you to choice exam center sequence to <b>Exam Center Choice</b> button.
-                        <table class="table table-striped table-bordered">
-                          @if($exm_center_choice_lists != null)
-                             <a class="pull-right btn btn-sm btn-info" data-toggle="modal" data-target="#exmCenterModal"   href="{{URL::route('admission.applicant.exm-center',['batch_applicant_id'=>$batch_applicant_id])}}">Choose Exam Center Sequence</a>
-                          @else
-                             <a class="pull-right btn btn-sm btn-info"  href="{{URL::route('admission.applicant.exm-center',['batch_applicant_id'=>$batch_applicant_id])}}" data-toggle="modal" data-target="#exmCenterModal"><b></b> Exam Center Choice </a>
-                          @endif
-
-                          @if (isset($exm_center_choice_lists))
-                          <tbody>
-                                 <tr>
-                                    <th rowspan="100%" style="vertical-align: middle"><b style="font-size: medium">Sequence Name Of Exam Center </b></th>
-                                 </tr>
-                                 @foreach(($exm_center_choice_lists) as $value)
-                                      <tr>
-                                         <td class="col-lg-10">
-                                            {{ $value->relExmCenter->title }}
-                                         </td>
-                                      </tr>
-                                 @endforeach
-                          </tbody>
-                          @else
-                            <div class="col-xs-12" style="text-align: center;">
-                                 <span class="btn btn-xs btn btn-info" style="color:#ffffff;">Exam Center List Not Added !</span>
-                            </div>
-                          @endif
-                        </table>
-                    </div>
-                </div>
-           </div>
-       </div>
+    <div style="padding: 10px; width: 100%;">
+        <table class="table table-bordered table-striped">
+           <thead>
+                <tr>
+                   <th col width="200">Subject Name</th>
+                   <th col width="150">Marks</th>
+                   <th>Test Time Duration(in Minutes)</th>
+                </tr>
+           </thead>
+           <tbody>
+               @if(isset($adm_test_subject))
+                  @foreach($adm_test_subject as $value)
+                       <tr>
+                              <td>{{$value->relAdmtestSubject->title}}</td>
+                              <td>{{$value->marks}}</td>
+                              <td>{{$value->duration}}</td>
+                       </tr>
+                  @endforeach
+                  @endif
+           </tbody>
+         </table>
     </div>
-{{----------------------------------------------Modal --------------------------------------------------------------------------}}
-
-    <div class="modal fade" id="exmCenterModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-        </div>
-      </div>
-    </div>
-
-@stop
-
+    @include('admission::adm_public.admission.exm_center')
+</div>
