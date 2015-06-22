@@ -1,0 +1,106 @@
+<?php
+
+class HrEmployeeController extends \BaseController {
+
+    function __construct()
+    {
+        $this->beforeFilter('', array('except' => array('')));
+    }
+
+    protected function isPostRequest()
+    {
+        return Input::server("REQUEST_METHOD") == "POST";
+    }
+
+//hr_employee
+    public function index_hr_employee()
+    {
+        $pageTitle = 'HR Employee List';
+        $model = HrEmployee::with('relUser','relHrBank','relHrSalaryGrade',
+            'relDesignation','relDepartment','relCurrency')->get();
+
+        print_r($model);exit;
+        return View::make('hr::hr.employee.index', compact('model','pageTitle'));
+    }
+
+    public function store_hr_employee()
+    {
+        if($this->isPostRequest()){
+            $input_data = Input::all();
+            $model = new HrEmployee();
+            if($model->validate($input_data)) {
+                DB::beginTransaction();
+                try {
+                    $model->create($input_data);
+                    DB::commit();
+                    Session::flash('message', 'Success !');
+                } catch (Exception $e) {
+                    //If there are any exceptions, rollback the transaction`
+                    DB::rollback();
+                    Session::flash('danger', 'Failed !');
+                }
+            }
+        }
+        return Redirect::back();
+    }
+
+    public function show_hr_employee($emp_id)
+    {
+        $data = HrEmployee::findOrFail($emp_id);
+        return View::make('hr::hr.employee.view', compact('pageTitle', 'data'));
+    }
+
+    public function edit_hr_employee($emp_id)
+    {
+        if($this->isPostRequest()){
+            $input_data = Input::all();
+            $model = HrEmployee::findOrFail($emp_id);
+            if($model->validate($input_data)){
+                DB::beginTransaction();
+                try{
+                    $model->update($input_data);
+                    DB::commit();
+                    Session::flash('message', 'Success !');
+                }catch ( Exception $e ){
+                    //If there are any exceptions, rollback the transaction`
+                    DB::rollback();
+                    Session::flash('danger', 'Failed !');
+                }
+            }
+            return Redirect::back();
+        }else{
+            $model = HrEmployee::findOrFail($emp_id);
+            return View::make('hr::hr.employee.edit', compact('model'));
+        }
+    }
+
+    public function destroy_hr_employee($emp_id)
+    {
+        DB::beginTransaction();
+        try{
+            HrEmployee::destroy($emp_id);
+            DB::commit();
+            Session::flash('message', 'Success !');
+        }catch ( Exception $e ){
+            //If there are any exceptions, rollback the transaction`
+            DB::rollback();
+            Session::flash('danger', 'Failed !');
+        }
+        return Redirect::back();
+    }
+
+    public function batch_delete_hr_employee()
+    {
+        DB::beginTransaction();
+        try{
+            HrEmployee::destroy(Request::get('id'));
+            DB::commit();
+            Session::flash('message', 'Success !');
+        }catch( Exception $e ){
+            //If there are any exceptions, rollback the transaction`
+            DB::rollback();
+            Session::flash('danger', 'Failed !');
+        }
+        return Redirect::back();
+    }
+}

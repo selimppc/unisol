@@ -3643,6 +3643,8 @@ fieldset[disabled] .btn-vk.active {
 .btn-style{
  margin-top: 2%;
 }
-#send_to_one{
-    display:none;
+
+.btn-style2{
+    margin-left: 90%;
+    margin-bottom: 8px;
 }

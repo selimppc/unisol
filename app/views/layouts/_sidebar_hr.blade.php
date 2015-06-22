@@ -1,11 +1,9 @@
-
 <ul class="sidebar-menu">
     <li class="active">
         <a href="#">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
         </a>
     </li>
-
     <li class="treeview">
          <a href="#">
              <i class="fa fa-credit-card" style="color: rgba(12, 128, 27, 0.85)"></i>
@@ -14,11 +12,11 @@
          </a>
          <ul class="treeview-menu">
              <li><a href="{{ URL::to('hr/bank') }}"></i><i class="fa fa-briefcase" style="color: #0effae"></i>HR Bank</a></li>
-             <li><a href="{{ URL::to('hr/salary_grade') }}"></i><i class="fa fa-dollar" style="color: #1806ff"></i>HR Salary Grade</a></li>
+             <li><a href="{{ URL::to('hr/salary_grade') }}"></i><i class="fa fa-dollar" style="color: #ffa108"></i>HR Salary Grade</a></li>
              <li><a href="{{ URL::to('hr/tax_rule') }}"></i><i class="fa fa-rub" style="color: #ff828a"></i>HR Tax Rule</a></li>
+             <li><a href="{{ URL::to('hr/employee') }}"></i><i class="fa fa-user" style="color: #0707cc"></i>HR Employee</a></li>
          </ul>
     </li>
-
 </ul>
 
 
