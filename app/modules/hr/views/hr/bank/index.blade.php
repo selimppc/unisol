@@ -54,7 +54,7 @@
 
 </div>
 {{Form::open(['route'=>'bank.store', 'files'=>true])}}
-        @include('hr::hr.hr_bank._modal._modal')
+        @include('hr::hr.bank._modal._modal')
 {{ Form::close() }}
 
 
