@@ -21,11 +21,11 @@
                 </tr>
                 <tr>
                     <td><strong>Gender: </strong></td>
-                    <td>{{ $data->gender }}</td>
+                    <td>{{ ucfirst($data->gender) }}</td>
                 </tr>
                 <tr>
                     <td><strong>Nationality: </strong></td>
-                    <td>{{ $data->nationality }}</td>
+                    <td>{{ ucfirst($data->nationality) }}</td>
                 </tr>
                 <tr>
                     <td><strong>Additional Tax Amount: </strong></td>

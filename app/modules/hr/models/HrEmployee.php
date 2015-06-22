@@ -11,7 +11,7 @@ class HrEmployee extends Eloquent{
     protected $fillable = [
         'user_id','employee_id','date_of_joining','date_of_confirmation',
         'hr_salary_grade_id','department_id','designation_id','hr_bank_id',
-        'bank_account_no','currency','exchange_rate','employee_type',
+        'bank_account_no','currency_id','exchange_rate','employee_type',
         'employee_category','work_shift','emergency_contact_person',
         'emergency_contact_number','emergency_contact_relation','note','status'
     ];
@@ -21,6 +21,7 @@ class HrEmployee extends Eloquent{
         'employee_id' => 'required',
         'hr_salary_grade_id' => 'required',
         'hr_bank_id' => 'required',
+        'currency_id' => 'required',
         'department_id' => 'required',
         'designation_id' => 'required'
     ];
@@ -41,6 +42,38 @@ class HrEmployee extends Eloquent{
     }
 
     //TODO : Model Relationship
+
+    public function relHrSalaryGrade(){
+        return $this->belongsTo('HrSalaryGrade','hr_salary_grade_id','id');
+    }
+
+    public function relUser(){
+        return $this->belongsTo('User','user_id','id');
+    }
+
+    public function relDepartment(){
+        return $this->belongsTo('Department','department_id','id');
+    }
+
+    public function relDesignation(){
+        return $this->belongsTo('Designation','designation_id','id');
+    }
+
+    public function relHrBank(){
+        return $this->belongsTo('HrBank','hr_bank_id','id');
+    }
+
+    public function relCurrency(){
+        return $this->belongsTo('Currency','currency_id','id');
+    }
+
+//    public function relRncFinancialTransaction(){
+//        return $this->HasOne('RncFinancialTransaction', 'rnc_transaction_id', 'id');
+//    }
+
+//    public function relRncFinancialTransaction(){
+//        return $this->HasMany('RncFinancialTransaction', 'rnc_transaction_id', 'id');
+//    }
 
 
 

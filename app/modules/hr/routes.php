@@ -13,7 +13,6 @@
 
 Route::group(['prefix' => 'hr'], function() {
 
-
 //    include("routes_sh_fac.php");
 
     Route::get('/', function() {
@@ -116,5 +115,36 @@ Route::group(['prefix' => 'hr'], function() {
         'uses'=> 'HrTaxRuleController@batch_delete_hr_tax_rule'
     ]);
 
+//hr_employee
+
+    Route::any('employee',[
+        'as' => 'employee',
+        'uses'=> 'HrEmployeeController@index_hr_employee'
+    ]);
+
+    Route::any('employee/store',[
+        'as' => 'employee.store',
+        'uses'=> 'HrEmployeeController@store_hr_employee'
+    ]);
+
+    Route::any('employee/show/{emp_id}',[
+        'as' => 'employee.show',
+        'uses'=> 'HrEmployeeController@show_hr_employee'
+    ]);
+
+    Route::any('employee/edit/{emp_id}',[
+        'as' => 'employee.edit',
+        'uses'=> 'HrEmployeeController@edit_hr_employee'
+    ]);
+
+    Route::any('employee/destroy/{emp_id}',[
+        'as' => 'employee.destroy',
+        'uses'=> 'HrEmployeeController@destroy_hr_employee'
+    ]);
+
+    Route::any('employee/batch_delete',[
+        'as' => 'employee.batch_delete',
+        'uses'=> 'HrEmployeeController@batch_delete_hr_employee'
+    ]);
 
 });
