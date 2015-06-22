@@ -233,7 +233,7 @@ Route::any('admission/applicant/admission-test-details/{id}',
     ['as' => 'admission.applicant.admission.test_details',
         'uses' => 'ApplicantController@admTestDetails']);
 
-Route::any('admission/applicant/admission/exm-center/{batch_applicant_id}',
+Route::any('admission/applicant/admission/exm-center',
     ['as' => 'admission.applicant.exm-center',
         'uses' => 'ApplicantController@admExmCenter']);
 

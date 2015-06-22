@@ -6,7 +6,6 @@
     <h5 style="text-align: center;font-size: medium">Batch # {{$data->batch_number}}</h5>
 </div>
 <div class="modal-body">
-
     <div style="padding: 10px; width: 100%;">
         <table class="table table-bordered table-striped">
            <thead>
