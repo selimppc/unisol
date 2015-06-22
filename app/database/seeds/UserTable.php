@@ -17,6 +17,7 @@ class UserTable extends Seeder {
         $amw_role_id = DB::table('role')->select('id')->where('title', 'amw')->first()->id;
         $student_role_id = DB::table('role')->select('id')->where('title', 'student')->first()->id;
         $applicant_role_id = DB::table('role')->select('id')->where('title', 'applicant')->first()->id;
+        $hr_role_id = DB::table('role')->select('id')->where('title', 'hr')->first()->id;
 
         $cse_dept_id = DB::table('department')->select('id')->where('title', 'CSE')->first()->id;
         $eee_dept_id = DB::table('department')->select('id')->where('title', 'EEE')->first()->id;
@@ -28,6 +29,7 @@ class UserTable extends Seeder {
             array('faculty', Hash::make('faculty'), 'faculty@faculty.com', $faculty_role_id, $cse_dept_id, '2000-12-12', '2000-12-12', '192.168.1.1', '9875656457890867869778', 'fioyugpuiesiorgjhprauehrigpi'),
             array('student', Hash::make('student'), 'student@student.com', $student_role_id, $eee_dept_id, '2000-12-12', '2000-12-12', '192.168.1.1', '9875656457890867869778', 'fioyugpuiesiorgjhprauehrigpi'),
             array('applicant', Hash::make('applicant'), 'applicant@applicant.com', $applicant_role_id, $eee_dept_id, '2000-12-12', '2000-12-12', '192.168.1.1', '9875656457890867869778', 'fioyugpuiesiorgjhprauehrigpi'),
+            array('hr', Hash::make('hr'), 'hr@hr.com', $hr_role_id, $eee_dept_id, '2000-12-12', '2000-12-12', '192.168.1.1', '9875656457890867869778', 'fioyugpuiesiorgjhprauehrigpi'),
         );
 
         foreach($users as $user) {
