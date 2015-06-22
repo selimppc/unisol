@@ -18,7 +18,7 @@
           <div class="box-body">
              <div class="row">
                 <div class="col-lg-12">
-                   {{ Form::open(['route' => ['admission.applicant.degree_apply']]) }}
+                   {{ Form::open(['route' => ['admission.applicant.apply-degree',$degree_id]]) }}
                        <table class= "table table-striped table-bordered">
                            @foreach($degree_model as $values)
                                 <tbody>
@@ -119,7 +119,7 @@
                            @endif
                        </table>
                        <p>&nbsp;</p>
-                    {{Form::hidden('ids[]', $values->id)}}
+                   {{Form::hidden('ids[]', $values->id)}}
                    {{ Form::submit('Apply', array('class'=>'pull-right btn btn-xs btn-info'))}}
                    {{ Form::close() }}
                 </div>

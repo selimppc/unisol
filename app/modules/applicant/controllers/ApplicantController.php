@@ -922,6 +922,26 @@ class ApplicantController extends \BaseController
 
 //{*********Admission :Starts Degree Apply By Applicant (Tanin)  ****************}
 
+    public function applyDegreeByApplicant($degree_id)
+    {
+
+        $deg_id = Batch::where('id','=',$degree_id)->first()->degree_id;
+//        print_r($deg_id);exit;
+        if ($degree_id) {
+            $applied_degree_id = Session::get('applicantDegIds');
+
+            $applied_degree_ids = array_merge(array($deg_id), (array)$applied_degree_id);
+
+            Session::put('applicantDegIds',$applied_degree_ids);
+        }else{
+            $applied_degree_ids = (array)Session::get('applicantDegIds');
+        }
+//       print_r($applied_degree_ids);exit;
+            $data = Batch::with('relDegree', 'relDegree.relDegreeGroup', 'relDegree.relDegreeProgram','relDegree.relDegreeLevel')->where('degree_id','=', $applied_degree_ids)->get();
+//        print_r($data);exit;
+            return Redirect::route('applicant.details', ['id' => Auth::applicant()->get()->id]);
+    }
+
     public function degreeApply(){
 
         if(Auth::applicant()->check()){
@@ -971,10 +991,12 @@ class ApplicantController extends \BaseController
 
    // $id refers to applicant_id in DB table : BatchApplicant
     public function applicantDetails(){
+
         $apt_id = Auth::applicant()->get()->id;
-        $batch_applicant = BatchApplicant::with('relBatch','relBatch.relDegree','relBatch.relDegree.relDegreeGroup','relBatch.relDegree.relDepartment')
-            ->where('applicant_id', '=',$apt_id )
-            ->get();
+
+        $applied_degree_ids = Session::get('applicantDegIds');
+
+        $data = Batch::with('relDegree','relDegree.relDegreeGroup','relDegree.relDegreeProgram','relDegree.relDegreeLevel')->whereIn('degree_id',$applied_degree_ids)->get();
 
         $applicant_personal_info = ApplicantProfile::with('relCountry')
             ->where('applicant_id', '=',$apt_id )
@@ -985,7 +1007,7 @@ class ApplicantController extends \BaseController
 
         return View::make('applicant::applicant.details',
             compact('batch_applicant','applicant_personal_info','applicant_acm_records',
-                'applicant_meta_records'));
+                'applicant_meta_records','applied_degree_ids','data'));
     }
 
     public function addMoreDegree(){
@@ -994,25 +1016,19 @@ class ApplicantController extends \BaseController
         return View::make('admission::adm_public.admission.add_more_degree',compact('degreeList'));
     }
 
-    // $id refers to batch_applicant_id
+    // $id refers to batch_id
     public function admTestDetails($id){
-        $batch_applicant_id = $id;
-        //get batch_id
-        $batch_id = BatchApplicant::where('id','=',$id)->first()->batch_id;
 
-        $adm_test_details = BatchApplicant::with('relBatch','relBatch.relDegree','relBatch.relDegree.relDegreeGroup',
-            'relBatch.relDegree.relDepartment',
-            'relBatch.relSemester','relBatch.relYear')
-            ->where('batch_id', '=', $batch_id)
-            ->first();
-        //get adm_test_subject according to degree_id
+        $data = Batch::with('relDegree','relDegree.relDegreeGroup','relDegree.relDegreeProgram','relDegree.relDegreeLevel','relYear',       'relSemester')->where('id',$id)->first();
+
         $adm_test_subject = BatchAdmtestSubject::with('relBatch','relAdmtestSubject')
-            ->where('batch_id','=',$batch_id)->get();
-        //exam center choice list
-        $exm_center_choice_lists = ExmCenterApplicantChoice::with('relExmCenter')->where('batch_applicant_id','=',$batch_applicant_id)->get();
-
+            ->where('batch_id','=',$id)->get();
+        $exm_centers_all = ExmCenter::all();
+//        print_r($exm_centers_all);exit;
+        $exm_centers = Session::get('applicantExmCentersIds');
+        
         return View::make('admission::adm_public.admission.adm_test_details',
-            compact('batch_applicant_id', 'adm_test_details','adm_test_subject','exm_center_choice_lists'));
+            compact('data','adm_test_subject','exm_centers_all'));
     }
 
     public function admExmCenter($batch_applicant_id){

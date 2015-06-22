@@ -11,6 +11,7 @@ class AdmPublicController extends \BaseController {
         $degreeList = Batch::with('relDegree','relYear','relSemester','relDegree.relDegreeGroup','relDegree.relDepartment','relDegree.relDegreeLevel')
             ->where('status', 'admission-open')
             ->paginate(10);
+
         return View::make('admission::adm_public.admission.degree_list',compact('degreeList'));
     }
 
@@ -42,7 +43,7 @@ class AdmPublicController extends \BaseController {
 
         return View::make('admission::adm_public.admission.degree_detail',
             compact('degree_model','major_courses', 'minor_courses',
-                'edu_gpa_model','batch_adm_subject','exm_centers'));
+                'edu_gpa_model','batch_adm_subject','exm_centers','degree_id'));
     }
 
 

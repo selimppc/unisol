@@ -109,7 +109,56 @@ Route::group(['prefix' => 'accounts'], function() {
      * ========================================================================
      */
 
+    Route::any("payment-voucher", [
+        "as"   => "payment-voucher",
+        "uses" => "AccPaymentVoucherController@index_payment_voucher"
+    ]);
+    Route::any("payment-store-journal-voucher", [
+        "as"   => "store-journal-voucher",
+        "uses" => "AccJournalVoucherController@store_journal_voucher"
+    ]);
 
+    Route::any("show-journal-voucher/{jv_id}", [
+        "as"   => "show-journal-voucher",
+        "uses" => "AccJournalVoucherController@show_journal_voucher"
+    ]);
+
+    Route::any("edit-journal-voucher/{jv_id}", [
+        "as"   => "edit-journal-voucher",
+        "uses" => "AccJournalVoucherController@edit_journal_voucher"
+    ]);
+
+    Route::any("destroy-journal-voucher/{jv_id}", [
+        "as"   => "destroy-journal-voucher",
+        "uses" => "AccJournalVoucherController@destroy_journal_voucher"
+    ]);
+
+    Route::any("batch-delete-journal-voucher", [
+        "as"   => "batch-delete-journal-voucher",
+        "uses" => "AccJournalVoucherController@batch_delete_journal_voucher"
+    ]);
+
+    // Journal Voucher Details
+    Route::any("detail-journal-voucher/{jv_id}", [
+        "as"   => "detail-journal-voucher",
+        "uses" => "AccJournalVoucherController@detail_journal_voucher"
+    ]);
+
+    Route::any("coa-auto-complete", [
+        "as"   => "coa-auto-complete",
+        "uses" => "AccJournalVoucherController@ajaxGetCoaAutoComplete"
+    ]);
+
+
+    Route::any("store-detail-jv", [
+        "as"   => "store-detail-jv",
+        "uses" => "AccJournalVoucherController@store_journal_voucher_detail"
+    ]);
+
+    Route::any("jv-ajax-delete-detail", [
+        "as"   => "jv-ajax-delete-detail",
+        "uses" => "AccJournalVoucherController@ajax_delete_journal_voucher_detail"
+    ]);
 
 
 
@@ -118,7 +167,10 @@ Route::group(['prefix' => 'accounts'], function() {
      * Receipt Voucher
      * ========================================================================
      */
-
+    Route::any("receipt-voucher", [
+        "as"   => "receipt-voucher",
+        "uses" => "AccReceiptVoucherController@index_receipt_voucher"
+    ]);
 
 
 
@@ -128,7 +180,21 @@ Route::group(['prefix' => 'accounts'], function() {
      * Reverse Entry
      * ========================================================================
      */
+    Route::any("reverse-voucher", [
+        "as"   => "reverse-voucher",
+        "uses" => "AccReverseEntryController@index_reverse_voucher"
+    ]);
 
+
+    /*
+     * =======================================================================
+     * Accounts Transaction Setup
+     * ======================================================================
+     */
+    Route::any("setup-transaction", [
+        "as"   => "setup-transaction",
+        "uses" => "AccTrnNoSetupController@index_journal_voucher"
+    ]);
 
 
 });
