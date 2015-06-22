@@ -84,7 +84,7 @@ Route::group(['prefix' => 'hr'], function() {
         'uses'=> 'HrSalaryGradeController@batch_delete_hr_salary_grade'
     ]);
 
-    //hr_tax_rule
+//hr_tax_rule
 
     Route::any('tax_rule',[
         'as' => 'tax_rule',
@@ -106,8 +106,8 @@ Route::group(['prefix' => 'hr'], function() {
         'uses'=> 'HrTaxRuleController@edit_hr_tax_rule'
     ]);
 
-    Route::any('tax_rule/delete/{t_r_id}',[
-        'as' => 'tax_rule.delete',
+    Route::any('tax_rule/destroy/{t_r_id}',[
+        'as' => 'tax_rule.destroy',
         'uses'=> 'HrTaxRuleController@destroy_hr_tax_rule'
     ]);
 

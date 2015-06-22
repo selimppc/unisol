@@ -1,6 +1,6 @@
 <?php
 
-class HrSalaryGradeController extends \BaseController {
+class HrTaxRuleController extends \BaseController {
 
     function __construct()
     {
@@ -12,19 +12,19 @@ class HrSalaryGradeController extends \BaseController {
         return Input::server("REQUEST_METHOD") == "POST";
     }
 
-//hr_salary_grade
-    public function index_hr_salary_grade()
+//hr_tax_rule
+    public function index_hr_tax_rule()
     {
-        $pageTitle = 'Salary Grade List';
-        $model = HrSalaryGrade::orderBy('id', 'DESC')->paginate(5);
-        return View::make('hr::hr.salary_grade.index', compact('model','pageTitle'));
+        $pageTitle = 'Tax Rule List';
+        $model = HrTaxRule::orderBy('id', 'DESC')->paginate(5);
+        return View::make('hr::hr.tax_rule.index', compact('model','pageTitle'));
     }
 
-    public function store_hr_salary_grade()
+    public function store_hr_tax_rule()
     {
         if($this->isPostRequest()){
             $input_data = Input::all();
-            $model = new HrSalaryGrade();
+            $model = new HrTaxRule();
             if($model->validate($input_data)) {
                 DB::beginTransaction();
                 try {
@@ -42,17 +42,17 @@ class HrSalaryGradeController extends \BaseController {
 
     }
 
-    public function show_hr_salary_grade($s_g_id)
+    public function show_hr_tax_rule($t_r_id)
     {
-        $data = HrSalaryGrade::findOrFail($s_g_id);
-        return View::make('hr::hr.salary_grade.view', compact('pageTitle', 'data'));
+        $data = HrTaxRule::findOrFail($t_r_id);
+        return View::make('hr::hr.tax_rule.view', compact('pageTitle', 'data'));
     }
 
-    public function edit_hr_salary_grade($s_g_id)
+    public function edit_hr_tax_rule($t_r_id)
     {
         if($this->isPostRequest()){
             $input_data = Input::all();
-            $model = HrSalaryGrade::findOrFail($s_g_id);
+            $model = HrTaxRule::findOrFail($t_r_id);
             if($model->validate($input_data)){
                 DB::beginTransaction();
                 try{
@@ -67,16 +67,16 @@ class HrSalaryGradeController extends \BaseController {
             }
             return Redirect::back();
         }else{
-            $model = HrSalaryGrade::findOrFail($s_g_id);
-            return View::make('hr::hr.salary_grade.edit', compact('model'));
+            $model = HrTaxRule::findOrFail($t_r_id);
+            return View::make('hr::hr.tax_rule.edit', compact('model'));
         }
     }
 
-    public function destroy_hr_salary_grade($s_g_id)
+    public function destroy_hr_tax_rule($t_r_id)
     {
         DB::beginTransaction();
         try{
-            HrSalaryGrade::destroy($s_g_id);
+            HrTaxRule::destroy($t_r_id);
             DB::commit();
             Session::flash('message', 'Success !');
         }catch ( Exception $e ){
@@ -87,11 +87,11 @@ class HrSalaryGradeController extends \BaseController {
         return Redirect::back();
     }
 
-    public function batch_delete_hr_salary_grade()
+    public function batch_delete_hr_tax_rule()
     {
         DB::beginTransaction();
         try{
-            HrSalaryGrade::destroy(Request::get('id'));
+            HrTaxRule::destroy(Request::get('id'));
             DB::commit();
             Session::flash('message', 'Success !');
         }catch( Exception $e ){

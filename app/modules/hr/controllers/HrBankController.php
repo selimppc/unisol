@@ -42,14 +42,11 @@ class HrBankController extends \BaseController {
 
     }
 
-
-
     public function show_hr_bank($b_id)
     {
         $data = HrBank::findOrFail($b_id);
         return View::make('hr::hr.bank.view', compact('pageTitle', 'data'));
     }
-
 
     public function edit_hr_bank($b_id)
     {
@@ -74,7 +71,6 @@ class HrBankController extends \BaseController {
             return View::make('hr::hr.bank.edit', compact('model'));
         }
     }
-
 
     public function destroy_hr_bank($b_id)
     {
@@ -105,6 +101,4 @@ class HrBankController extends \BaseController {
         }
         return Redirect::back();
     }
-
-
 }
