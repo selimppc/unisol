@@ -74,14 +74,46 @@ Route::group(['prefix' => 'hr'], function() {
         'uses'=> 'HrSalaryGradeController@edit_hr_salary_grade'
     ]);
 
-    Route::any('salary_grade/delete/{s_g_id}',[
-        'as' => 'salary_grade.delete',
+    Route::any('salary_grade/destroy/{s_g_id}',[
+        'as' => 'salary_grade.destroy',
         'uses'=> 'HrSalaryGradeController@destroy_hr_salary_grade'
     ]);
 
     Route::any('salary_grade/batch_delete',[
         'as' => 'salary_grade.batch_delete',
         'uses'=> 'HrSalaryGradeController@batch_delete_hr_salary_grade'
+    ]);
+
+    //hr_tax_rule
+
+    Route::any('tax_rule',[
+        'as' => 'tax_rule',
+        'uses'=> 'HrTaxRuleController@index_hr_tax_rule'
+    ]);
+
+    Route::any('tax_rule/store',[
+        'as' => 'tax_rule.store',
+        'uses'=> 'HrTaxRuleController@store_hr_tax_rule'
+    ]);
+
+    Route::any('tax_rule/show/{t_r_id}',[
+        'as' => 'tax_rule.show',
+        'uses'=> 'HrTaxRuleController@show_hr_tax_rule'
+    ]);
+
+    Route::any('tax_rule/edit/{t_r_id}',[
+        'as' => 'tax_rule.edit',
+        'uses'=> 'HrTaxRuleController@edit_hr_tax_rule'
+    ]);
+
+    Route::any('tax_rule/delete/{t_r_id}',[
+        'as' => 'tax_rule.delete',
+        'uses'=> 'HrTaxRuleController@destroy_hr_tax_rule'
+    ]);
+
+    Route::any('tax_rule/batch_delete',[
+        'as' => 'tax_rule.batch_delete',
+        'uses'=> 'HrTaxRuleController@batch_delete_hr_tax_rule'
     ]);
 
 

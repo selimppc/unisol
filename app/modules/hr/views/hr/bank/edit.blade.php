@@ -8,7 +8,7 @@
 
     {{Form::model($model, ['route'=> ['bank.edit', $model->id], 'method' => 'patch', 'role' => 'form', 'files' => true,])}}
             {{ Form::hidden('id', $model->id) }}
-            @include('hr::hr.hr_bank._form')
+            @include('hr::hr.bank._form')
     {{ Form::close() }}
 
 </div>

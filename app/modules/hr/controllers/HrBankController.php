@@ -17,7 +17,7 @@ class HrBankController extends \BaseController {
     {
         $pageTitle = 'Bank Lists';
         $model = HrBank::orderBy('id', 'DESC')->paginate(5);
-        return View::make('hr::hr.hr_bank.index', compact('model','pageTitle'));
+        return View::make('hr::hr.bank.index', compact('model','pageTitle'));
     }
 
     public function store_hr_bank()
@@ -47,7 +47,7 @@ class HrBankController extends \BaseController {
     public function show_hr_bank($b_id)
     {
         $data = HrBank::findOrFail($b_id);
-        return View::make('hr::hr.hr_bank.view', compact('pageTitle', 'data'));
+        return View::make('hr::hr.bank.view', compact('pageTitle', 'data'));
     }
 
 
@@ -71,7 +71,7 @@ class HrBankController extends \BaseController {
             return Redirect::back();
         }else{
             $model = HrBank::findOrFail($b_id);
-            return View::make('hr::hr.hr_bank.edit', compact('model'));
+            return View::make('hr::hr.bank.edit', compact('model'));
         }
     }
 

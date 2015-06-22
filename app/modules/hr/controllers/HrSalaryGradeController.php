@@ -12,19 +12,19 @@ class HrSalaryGradeController extends \BaseController {
         return Input::server("REQUEST_METHOD") == "POST";
     }
 
-
-// hr_Salary_grade
+//hr_bank
     public function index_hr_salary_grade()
     {
-        $model = HrBank::orderBy('id', 'DESC')->paginate(5);
-        return View::make('hr::hr.hr_bank.index', compact('model'));
+        $pageTitle = 'Salary Grade List';
+        $model = HrSalaryGrade::orderBy('id', 'DESC')->paginate(5);
+        return View::make('hr::hr.salary_grade.index', compact('model','pageTitle'));
     }
 
     public function store_hr_salary_grade()
     {
         if($this->isPostRequest()){
             $input_data = Input::all();
-            $model = new InvProductCategory();
+            $model = new HrSalaryGrade();
             if($model->validate($input_data)) {
                 DB::beginTransaction();
                 try {
@@ -39,14 +39,15 @@ class HrSalaryGradeController extends \BaseController {
             }
         }
         return Redirect::back();
+
     }
 
 
 
     public function show_hr_salary_grade($s_g_id)
     {
-        $data = InvProductCategory::findOrFail($s_g_id);
-        return View::make('inventory::product_category.show', compact('pageTitle', 'data'));
+        $data = HrSalaryGrade::findOrFail($s_g_id);
+        return View::make('hr::hr.salary_grade.view', compact('pageTitle', 'data'));
     }
 
 
@@ -54,7 +55,7 @@ class HrSalaryGradeController extends \BaseController {
     {
         if($this->isPostRequest()){
             $input_data = Input::all();
-            $model = InvProduct::findOrFail($s_g_id);
+            $model = HrSalaryGrade::findOrFail($s_g_id);
             if($model->validate($input_data)){
                 DB::beginTransaction();
                 try{
@@ -69,18 +70,17 @@ class HrSalaryGradeController extends \BaseController {
             }
             return Redirect::back();
         }else{
-            $model = InvProduct::findOrFail($s_g_id);
-            return View::make('inventory::product.edit', compact('model'));
+            $model = HrSalaryGrade::findOrFail($s_g_id);
+            return View::make('hr::hr.salary_grade.edit', compact('model'));
         }
     }
 
 
-
-    public function delete_hr_salary_grade($s_g_id)
+    public function destroy_hr_salary_grade($s_g_id)
     {
         DB::beginTransaction();
         try{
-            InvProduct::destroy($s_g_id);
+            HrSalaryGrade::destroy($s_g_id);
             DB::commit();
             Session::flash('message', 'Success !');
         }catch ( Exception $e ){
@@ -91,12 +91,11 @@ class HrSalaryGradeController extends \BaseController {
         return Redirect::back();
     }
 
-
     public function batch_delete_hr_salary_grade()
     {
         DB::beginTransaction();
         try{
-            InvProduct::destroy(Request::get('id'));
+            HrSalaryGrade::destroy(Request::get('id'));
             DB::commit();
             Session::flash('message', 'Success !');
         }catch( Exception $e ){

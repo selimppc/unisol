@@ -61,6 +61,7 @@ class CreateHr extends Migration {
             $table->increments('id', true);
             $table->string('code', 8);
             $table->string('title', 32);
+            $table->string('type', 32);
             $table->text('description');
             $table->float('min_amount');
             $table->float('max_amount');
