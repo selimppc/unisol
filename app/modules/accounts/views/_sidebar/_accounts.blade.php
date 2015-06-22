@@ -12,10 +12,10 @@
         <ul class="treeview-menu">
             <li><a href="{{ Route('char-of-accounts') }}"><i class="fa fa-angle-double-right"></i> Chart Of Accounts</a></li>
             <li><a href="{{Route('journal-voucher')}}"><i class="fa fa-angle-double-right"></i> Journal Voucher</a></li>
-            <li><a href=""><i class="fa fa-angle-double-right"></i> Payment Voucher</a></li>
-            <li><a href=""><i class="fa fa-angle-double-right"></i> Receipt Voucher</a></li>
-            <li><a href=""><i class="fa fa-angle-double-right"></i> Reverse Entry </a></li>
-            <li><a href=""><i class="fa fa-angle-double-right"></i> Settings </a></li>
+            <li><a href="{{Route('payment-voucher')}}"><i class="fa fa-angle-double-right"></i> Payment Voucher</a></li>
+            <li><a href="{{Route('receipt-voucher')}}"><i class="fa fa-angle-double-right"></i> Receipt Voucher</a></li>
+            <li><a href="{{Route('reverse-voucher')}}"><i class="fa fa-angle-double-right"></i> Reverse Entry </a></li>
+            <li><a href="{{Route('setup-transaction')}}"><i class="fa fa-angle-double-right"></i> Settings </a></li>
 
         </ul>
     </li>
