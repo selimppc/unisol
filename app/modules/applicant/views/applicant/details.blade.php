@@ -31,17 +31,17 @@
                          <p>This panel allow to view degree list that you have been applied and can apply for more degree to <b>Add More Degree</b> button. This panel will redirect you to admission test details where you can choose exam center sequence for admission test.</p>
                      </div>
                      <table class="table table-striped table-bordered">
-                          @if (isset($batch_applicant))
+                          @if (isset($data))
                             <tbody>
                                 <tr>
                                     <th rowspan="100%" style="vertical-align: middle"><b style="font-size: medium">Degree Name</b></th>
                                 </tr>
-                                @foreach($batch_applicant as $value)
+                                @foreach($data as $value)
                                      <tr>
                                          <td class="col-lg-10">
                                                <a href="{{ URL::route('admission.applicant.admission.test_details',
                                                    ['id' => $value->id]) }}" class="btn-link" title="Degree,Subject & Exam Center Info For Admission">
-                                                    {{$value->relBatch->relDegree->relDegreeLevel->code.''.$value->relBatch->relDegree->relDegreeGroup->code.' In '.$value->relBatch->relDegree->relDegreeProgram->code}}
+                                                    {{$value->relDegree->relDegreeLevel->code.''.$value->relDegree->relDegreeGroup->code.' In '.$value->relDegree->relDegreeProgram->code}}
                                                </a>
                                          </td>
                                      </tr>
