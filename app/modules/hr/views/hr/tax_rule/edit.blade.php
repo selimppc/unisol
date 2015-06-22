@@ -1,6 +1,6 @@
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-     <h4> Update: <b>{{$model->title}}</b> </h4>
+     <h4> Update Tax Rule</b> </h4>
 </div>
 
 <div style="padding: 2%; width: 99%;">

@@ -5,12 +5,12 @@
 
 <div class='form-group'>
    {{ Form::label('salary_to', 'Salary To') }}
-   {{ Form::text('salary_to', Input::old('salary_tov'),['class'=>'form-control', 'required']) }}
+   {{ Form::text('salary_to', Input::old('salary_to'),['class'=>'form-control', 'required']) }}
 </div>
 
 <div class='form-group'>
-   {{ Form::label('tax', 'Tax') }}
-   {{ Form::textarea('tax',  Input::old('tax'),['size' => '30x5', 'class'=>'form-control']) }}
+   {{ Form::label('tax', 'Tax') }} (%)
+   {{ Form::text('tax', Input::old('tax'),['class'=>'form-control', 'required']) }}
 </div>
 
 <div class='form-group'>
