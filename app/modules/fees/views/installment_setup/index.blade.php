@@ -22,7 +22,10 @@
                         </ul>
                     </li>
                 </ul>
-                {{Form::open(array('route'=> ['billing.setup.batch.delete'], 'class'=>'form-horizontal','files'=>true))}}
+                {{Form::open(array('route' => array('installment.setup.create')))}}
+
+               {{-- {{Form::open(array('class' => 'form-horizontal', 'method' => 'put', 'action' => array('FeesController@create_installment_setup', $batch, $schedule,$item)))}}--}}
+
                 <div class="col-sm-12" style="background: #EEEEEE">
                     <div class="col-sm-2">
                         {{ Form::label('degprog_id', 'Degree Name') }}<span class="text-danger">*</span>

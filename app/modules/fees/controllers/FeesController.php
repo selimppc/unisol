@@ -328,8 +328,10 @@ class FeesController extends \BaseController {
 
     }
 
-    public function create_installment_setup()
+    public function create_installment_setup($batch_id)
     {
+
+        return View::Make('fees::installment_setup.create');
 
     }
 
