@@ -40,7 +40,7 @@
                                      <tr>
                                          <td class="col-lg-10">
                                                <a href="{{ URL::route('admission.applicant.admission.test_details',
-                                                   ['id' => $value->id]) }}" class="btn-link" title="Degree,Subject & Exam Center Info For Admission">
+                                                   ['id' => $value->id]) }}" class="btn-link" title="Degree,Subject & Exam Center Info For Admission" data-toggle="modal" data-target="#ATDModal">
                                                     {{$value->relDegree->relDegreeLevel->code.''.$value->relDegree->relDegreeGroup->code.' In '.$value->relDegree->relDegreeProgram->code}}
                                                </a>
                                          </td>
@@ -334,5 +334,14 @@
 
  <p>&nbsp;</p>
  <p>&nbsp;</p>
+
+ {{----------------------------------------------Modal --------------------------------------------------------------------------}}
+
+     <div class="modal fade" id="ATDModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+       <div class="modal-dialog">
+         <div class="modal-content">
+         </div>
+       </div>
+     </div>
 @stop
 

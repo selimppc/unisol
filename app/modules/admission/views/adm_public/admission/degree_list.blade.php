@@ -21,15 +21,15 @@
                       <div class="help-text-top">
                               <p>You can view all degree from this list and can select degree(s) to apply.Also you can see corresponding degree details information by individual link above degree name.</p>
                       </div>
-                      {{ Form::open(['route' => ['admission.applicant.degree_apply']]) }}
+                      {{ Form::open(['route' => ['admission.applicant.apply-degree']])}}
                            <table class="table table-bordered table-striped">
                                <thead>
-                                     <tr>
-                                          <td class="col-lg-1"><input type="checkbox" id="checkbox" class="checkbox" value=""></td>
-                                          <th class="col-lg-4" style="font-size: medium">Degree Name</th>
-                                          <th style="font-size: medium">Batch Number</th>
-                                          <th style="font-size: medium">Description</th>
-                                     </tr>
+                                   <tr>
+                                      <td class="col-lg-1"><input type="checkbox" id="checkbox" class="checkbox" value=""></td>
+                                      <th class="col-lg-4" style="font-size: medium">Degree Name</th>
+                                      <th style="font-size: medium">Batch Number</th>
+                                      <th style="font-size: medium">Description</th>
+                                   </tr>
                                </thead>
                                <tbody>
                                     @foreach($degreeList as $value)
