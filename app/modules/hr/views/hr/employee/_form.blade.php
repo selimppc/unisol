@@ -1,37 +1,42 @@
 <div style="min-height: 400px;overflow: hidden;">
 <div class='form-group'>
+   {{ Form::label('user_id', 'User Name') }}
+   {{ Form::select('user_id', User::FullNameWithRoleNameList() ,Input::old('user_id'),['class'=>'form-control', 'required']) }}
+</div>
+
+<div class='form-group'>
    {{ Form::label('employee_id', 'Employee Id') }}
    {{ Form::text('employee_id', Input::old('employee_id'),['class'=>'form-control', 'required']) }}
 </div>
 
 <div class='form-group'>
    {{ Form::label('date_of_joining', 'Date of Joining') }}
-   {{ Form::text('date_of_joining', Input::old('date_of_joining'),['class'=>'form-control', 'required']) }}
+   {{ Form::text('date_of_joining', Input::old('date_of_joining'),['class'=>'form-control date_picker', 'required']) }}
 </div>
 
 <div class='form-group'>
    {{ Form::label('date_of_confirmation', 'Date of Confirmation') }}
-   {{ Form::text('date_of_confirmation', Input::old('date_of_confirmation'),['class'=>'form-control', 'required']) }}
+   {{ Form::text('date_of_confirmation', Input::old('date_of_confirmation'),['class'=>'form-control date_picker', 'required']) }}
 </div>
 
 <div class='form-group'>
    {{ Form::label('hr_salary_grade_id', 'Salary Grade') }}
-   {{ Form::text('hr_salary_grade_id', Input::old('hr_salary_grade_id'),['class'=>'form-control', 'required']) }}
+   {{ Form::select('hr_salary_grade_id',array('' => 'Select Salary Grade ') + HrSalaryGrade::SalaryGradeLists() ,Input::old('hr_salary_grade_id'),['class'=>'form-control', 'required']) }}
 </div>
 
 <div class='form-group'>
    {{ Form::label('department_id', 'Departmnet') }}
-   {{ Form::text('department_id', Input::old('department_id'),['class'=>'form-control', 'required']) }}
+   {{ Form::select('department_id',array('' => 'Select Departmnet ') + Department::GetDepartmentLists() ,Input::old('department_id'),['class'=>'form-control', 'required']) }}
 </div>
 
 <div class='form-group'>
    {{ Form::label('designation_id', 'Designation') }}
-   {{ Form::text('designation_id', Input::old('designation_id'),['class'=>'form-control', 'required']) }}
+   {{ Form::select('designation_id',array('' => 'Select Designation ') + Designation::GetDesignationLists() ,Input::old('designation_id'),['class'=>'form-control', 'required']) }}
 </div>
 
 <div class='form-group'>
    {{ Form::label('hr_bank_id', 'Bank') }}
-   {{ Form::text('hr_bank_id', Input::old('hr_bank_id'),['class'=>'form-control', 'required']) }}
+   {{ Form::select('hr_bank_id',array('' => 'Select Bank ') + HrBank::HrBankLists() ,Input::old('hr_bank_id'),['class'=>'form-control', 'required']) }}
 </div>
 
 <div class='form-group'>
@@ -41,7 +46,7 @@
 
 <div class='form-group'>
    {{ Form::label('currency_id', 'Currency') }}
-   {{ Form::text('currency_id', Input::old('currency_id'),['class'=>'form-control', 'required']) }}
+   {{ Form::select('currency_id',array('' => 'Select Currency ') + Currency::CurrencyLists() ,Input::old('currency_id'),['class'=>'form-control', 'required']) }}
 </div>
 
 <div class='form-group'>
@@ -51,17 +56,21 @@
 
 <div class='form-group'>
    {{ Form::label('employee_type', 'Employee Type') }}
-   {{ Form::text('employee_type', Input::old('employee_type'),['class'=>'form-control', 'required']) }}
+   {{ Form::select('employee_type', [''=>'Select Employee Type','permanent'=>'permanent', 'full-time'=>'full-time',
+            'contractual'=>'contractual', 'part-time'=>'part-time','one-time'=>'one-time',
+            'project'=>'project', 'support'=>'support'], Input::old('employee_type'),
+            ['class'=>'form-control', 'required']) }}
 </div>
 
 <div class='form-group'>
    {{ Form::label('employee_category', 'Employee Category') }}
-   {{ Form::text('employee_category', Input::old('employee_category'),['class'=>'form-control', 'required']) }}
+   {{ Form::select('employee_category',[''=>'Select Employee Category','professional'=>'professional','auxiliary'=>'auxiliary',
+        'technical'=>'technical'], Input::old('employee_category'),['class'=>'form-control', 'required']) }}
 </div>
 
 <div class='form-group'>
    {{ Form::label('work_shift', 'Work Shift') }}
-   {{ Form::text('work_shift', Input::old('work_shift'),['class'=>'form-control', 'required']) }}
+   {{ Form::select('work_shift',[''=>'Select Employee Work Shift','day'=>'day','evening'=>'evening','night'=>'night'] ,Input::old('work_shift'),['class'=>'form-control', 'required']) }}
 </div>
 
 <div class='form-group'>
@@ -75,8 +84,8 @@
 </div>
 
 <div class='form-group'>
-   {{ Form::label('emergency_contact_relation', 'Emergency Contact Relation') }}
-   {{ Form::text('emergency_contact_relation', Input::old('emergency_contact_relation'),['class'=>'form-control', 'required']) }}
+   {{ Form::label('emergency_contact_relationship', 'Emergency Contact Relation') }}
+   {{ Form::text('emergency_contact_relationship', Input::old('emergency_contact_relationship'),['class'=>'form-control', 'required']) }}
 </div>
 
 <div class='form-group'>

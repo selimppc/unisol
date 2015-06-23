@@ -29,7 +29,7 @@
                     <th>Employee Id</th>
                     <th>Join Date</th>
                     <th>Designation</th>
-                    <th>Bank</th>
+                    <th style="text-align: center">Bank</th>
                     <th>Bank Acc. No</th>
                     <th>Employee Type</th>
                     <th>Employee Category</th>
@@ -43,8 +43,8 @@
                     <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $values->id }}"></td>
                     <td>{{ $values->employee_id }}</td>
                     <td>{{ $values->date_of_joining }}</td>
-                    <td>{{ ucfirst($values->designation_id) }}</td>
-                    <td>{{ ucfirst($values->hr_bank_id) }}</td>
+                    <td>{{ ucfirst($values->relDesignation->title) }}</td>
+                    <td>{{ ucfirst($values->relHrBank->bank_name) }}</td>
                     <td>{{ $values->bank_account_no }}</td>
                     <td>{{ ucfirst($values->employee_type) }}</td>
                     <td>{{ ucfirst($values->employee_category) }}</td>
@@ -68,7 +68,7 @@
 
 {{-- Modal Area --}}
 <div class="modal fade" id="modal-pc" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog" style="z-index:1050">
     <div class="modal-content">
     </div>
   </div>

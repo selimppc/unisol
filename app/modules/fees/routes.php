@@ -81,34 +81,11 @@
          'as' => 'installment.setup.create',
          'uses' => 'FeesController@create_installment_setup'
      ]);
-     /*Route::any('billing/drop-down-batch',[
-         'as' =>'amw.drop-down-batch',
-         'uses' => 'FeesController@createAjaxBatchList'
+
+     Route::any('installment/setup/save', [
+         'as' => 'installment.setup.save',
+         'uses' => 'FeesController@store_installment_setup'
      ]);
-     Route::any('billing/setup/save', [
-         'as' => 'billing.setup.save',
-         'uses' => 'FeesController@storeBillingSetup'
-     ]);
-     Route::any('billing/setup/view/{id}', [
-         'as' => 'billing.setup.view',
-         'uses' => 'FeesController@viewBillingSetup'
-     ]);
-     Route::any('billing/setup/edit/{id}', [
-         'as' => 'billing.setup.edit',
-         'uses' => 'FeesController@editBillingSetup'
-     ]);
-     Route::any('billing/setup/update/{id}', [
-         'as' => 'billing.setup.update',
-         'uses' => 'FeesController@updateBillingSetup'
-     ]);
-     Route::any('billing/setup/delete/{id}', [
-         'as' => 'billing.setup.delete',
-         'uses' => 'FeesController@deleteBillingSetup'
-     ]);
-     Route::any('billing/setup/batch/delete/{id}', [
-         'as' => 'billing.setup.batch.delete',
-         'uses' => 'FeesController@batchdeleteBillingSetup'
-     ]);*/
 
 
  });
