@@ -9,7 +9,7 @@
 
 <div class="row">
     <div class="col-md-12">
-       <a class="pull-right btn btn-xs btn-success" href="{{ URL::route('admission.public.degree_offer_list' )}}"> <i class="fa fa-arrow-circle-left"></i> Back To Admission Degree List</a>
+       <a class="pull-right btn btn-xs btn-success" href="{{ URL::route('admission.public.degree_offer_list')}}"> <i class="fa fa-arrow-circle-left"></i> Back To Admission Degree List</a>
     </div><!-- ./col -->
 </div><!-- /.row -->
 {{---------------------------------------------Data Table:admission on degree :Starts-----------------------------------------------------------------}}
@@ -56,9 +56,9 @@
                   </div>
               </div>
           </div>
-          <div class="box-footer clearfix">
+          {{--<div class="box-footer clearfix">
               <a class="pull-right btn btn-xs btn-info" href="{{ URL::route('admission.applicant.add-degree' )}}" data-toggle="modal" data-target="#addDegreeModal"> Add more degree</a>
-          </div>
+          </div>--}}
      </div>
  </div>
 {{-----------------------------------Data Table : admission on  degree Starts Ends---------------------------------------------------------------------------}}
