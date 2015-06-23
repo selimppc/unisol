@@ -72,9 +72,11 @@ class LibFacultyController extends \BaseController {
         }else{
             $all_cart_book_ids = (array)Session::get('cartBooks');
         }
+
         $all_cart_books = LibBook::with('relLibBookCategory', 'relLibBookAuthor', 'relLibBookPublisher')->whereIn('id', $all_cart_book_ids)->get();
 
         count($all_cart_books);
+        print_r($all_cart_book_ids);exit;
 
         return Redirect::back();
 	}

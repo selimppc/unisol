@@ -1029,15 +1029,21 @@ class ApplicantController extends \BaseController
         $adm_test_subject = BatchAdmtestSubject::with('relBatch','relAdmtestSubject')
             ->where('batch_id','=',$id)->get();
 
-        if(Session::has('ExmCenterIds')){
-           $exm_center_all = ExmCenter::get()
-                ->orderBy(Session::get('ExmCenterIds'));
-//print_r($exm_center_all);exit;
+        $exm_center_id = Session::get('ExmCenterIds');
+
+        if($exm_center_id){
+            $exm_center_all = DB::table('exm_center');
+            //$i = 0;
+            /*foreach ($exm_center_id as $key => $value) {
+                $exm_center_all->orderBy('id', $value);
+            }*/
+            $exm_center_id = implode(',', $exm_center_id);
+            $exm_center_all = $exm_center_all->orderBy('id', $exm_center_id);
+            $exm_center_all = $exm_center_all->get();
         }else{
             $exm_center_all = ExmCenter::all();
-        }
-//        print_r($exm_center_all);exit;
 
+        }
         return View::make('admission::adm_public.admission.adm_test_details',
             compact('data','adm_test_subject','exm_center_all','id'));
     }
@@ -1046,38 +1052,15 @@ class ApplicantController extends \BaseController
 
         $center_id = Input::get('exm_center_id');
 
-            if ($center_id) {
-                $exm_center_id = Session::get('ExmCenterIds');
-
-                $exm_center_all = array_merge(array($center_id), (array)$exm_center_id);
-
-                Session::put('ExmCenterIds',$exm_center_all);
-            }else{
-                $exm_center_all = (array)Session::get('ExmCenterIds');
-            }
-
-
-        /*if ($center_id) {
-            $exm_center_id = Session::get('ExmCenterIds');
-
-            $exm_center_ids = array_merge(array($center_id), (array)$exm_center_id);
-//            print_r($exm_center_ids);exit;
-            Session::put('ExmCenterIds',$exm_center_ids);
+        if ($center_id) {
+            Session::put('ExmCenterIds', $center_id);
+            $exm_center_all = $center_id;
         }else{
-            $exm_center_ids = (array)Session::get('ExmCenterIds');
-        }*/
-//        print_r($exm_center_ids);exit;
+            $exm_center_all = Session::get('ExmCenterIds');
+        }
 
-       /* $batch_applicant_id = ['batch_applicant_id' => $batch_applicant_id];
-        $rules = ['batch_applicant_id' => 'exists:exm_center_applicant_choice'];
-        $validator = Validator::make($batch_applicant_id, $rules);
-
-        if ($validator->Fails()) {
-            $exm_centers_all = ExmCenter::all();
-        }else{
-            $exm_center_choice = ExmCenterApplicantChoice::with('relExmCenter')->where('batch_applicant_id','=',$id)->get();
-        }*/
-        return Redirect::back();
+        return View::make('admission::adm_public.admission.adm_test_details',
+            compact('exm_center_all'));
 
     }
 
