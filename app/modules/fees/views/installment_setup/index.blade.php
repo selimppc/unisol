@@ -52,9 +52,10 @@
                             </div>
                         </div>
                 <div class="col-sm-12" style="background: #daebee">
-                    <p>Academic Cost: {{$data}}</p>
+                    <p><b>Academic Cost: {{$data}}</b></p>
                     </div>
                 {{ Form::close() }}
+
                 {{Form::open(array('route'=>['installment.setup.save'], 'class'=>'form-horizontal','files'=>true))}}
                     <div class="box-body table-responsive ">
                         <div id="viewTable" style="visibility: hidden;">
@@ -87,9 +88,8 @@
     <script>
 
         $(function(){
-            //$('.loaderClass').hide();
+            $('.loaderClass').hide();
             $('#batch_name999').change(function(){
-                alert("OK");
                 $('.loaderClass').show();
                 $.get("{{ url('fees/billing/drop-down-batch')}}",
                         { degree: $(this).val() },
@@ -105,8 +105,6 @@
         });
 
 
-
-        /*console.log('hi');*/
         /*To show form when click on proceed button*/
 
         function showForm(){

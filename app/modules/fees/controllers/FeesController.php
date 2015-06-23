@@ -327,24 +327,16 @@ class FeesController extends \BaseController {
 
         $data = DB::table('billing_setup')
             ->join('billing_item','billing_setup.billing_item_id','=','billing_item.id')
-           // ->group_by('billing_setup.batch_id')
-            ->select(array(
-                    'billing_setup.*',
-                    'billing_item.cost as totaladvantage')
-            )
+            ->groupBy('billing_setup.batch_id')
+            ->where('billing_item.initial', '=', 'acm' )
             ->sum('billing_setup.cost');
-
-       /* $data = BillingSetup::leftJoin(
-            DB::raw('(SELECT billing_item_id, SUM(cost) AS votes FROM votes GROUP BY post_id) as v'),
-            'v.post_id', '=', 'posts.id'
-        )->orderBy('votes', 'desc')->take(10)->get();*/
-        //print_r($data);exit;
-
 
         return View::Make('fees::installment_setup.index',compact('degree','batch','schedule','item','data'));
 
     }
 
+    public function store_installment_setup()
+    {
 
-
+    }
 }
