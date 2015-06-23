@@ -26,7 +26,7 @@
                         <div class="col-sm-12" style="background: #EEEEEE">
                             <div class="col-sm-2">
                                 {{ Form::label('degprog_id', 'Degree Name') }}<span class="text-danger">*</span>
-                                {{ Form::select('degprog_id',$degree, Input::old('degprog_id'), ['id'=>'batch_name','class'=>'form-control','required'=>'required'] ) }}
+                                {{ Form::select('degprog_id', $degree, Input::old('degprog_id'), ['id'=>'batch_name999','class'=>'form-control','required'=>'required'] ) }}
                             </div>
                             <div class="col-sm-2">
                                 {{ Form::label('batch_id', 'Batch') }}<span class="text-danger">*</span>
@@ -87,8 +87,9 @@
     <script>
 
         $(function(){
-            $('.loaderClass').hide();
-            $('#batch_name').change(function(){
+            //$('.loaderClass').hide();
+            $('#batch_name999').change(function(){
+                alert("OK");
                 $('.loaderClass').show();
                 $.get("{{ url('fees/billing/drop-down-batch')}}",
                         { degree: $(this).val() },
@@ -113,5 +114,6 @@
         }
 
     </script>
+
 
 @stop
