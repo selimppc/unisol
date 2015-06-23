@@ -32,7 +32,6 @@ class AccChartOfAccountsController extends \BaseController {
     public function store_chart_of_accounts()
     {
         $input_data = Input::all();
-        print_r($input_data);exit;
         $model = new AccChartOfAccounts();
         if($model->validate($input_data)) {
             DB::beginTransaction();

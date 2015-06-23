@@ -1,13 +1,13 @@
 <!-- Add Modal -->
 <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog" style="z-index:1050">
+  <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">HR Employee</h4>
+        <h4 class="modal-title" id="myModalLabel">Currency</h4>
       </div>
       <div class="modal-body">
-        @include('hr::hr.employee._form')
+        @include('hr::currency._form')
       </div>
     </div>
   </div>

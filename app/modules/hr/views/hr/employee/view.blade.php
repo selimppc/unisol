@@ -7,6 +7,10 @@
         <div class="row">
             <table class="table table-striped  table-bordered">
                 <tr>
+                    <td><strong>User Name: </strong></td>
+                    <td>{{ $data->user_id}}</td>
+                </tr>
+                <tr>
                     <td><strong>Employee Id: </strong></td>
                     <td>{{ $data->employee_id}}</td>
                 </tr>
@@ -20,19 +24,19 @@
                 </tr>
                 <tr>
                     <td><strong>Grade: </strong></td>
-                    <td>{{ $data->hr_salary_grade_id }}</td>
+                    <td>{{ $data->relHrSalaryGrade->title }}</td>
                 </tr>
                 <tr>
                     <td><strong>Department: </strong></td>
-                    <td>{{ $data->department_id }}</td>
+                    <td>{{ $data->relDepartment->title }}</td>
                 </tr>
                 <tr>
                     <td><strong>Designation: </strong></td>
-                    <td>{{ $data->designation_id }}</td>
+                    <td>{{ $data->relDesignation->title }}</td>
                 </tr>
                 <tr>
                     <td><strong>Bank: </strong></td>
-                    <td>{{ $data->hr_bank_id}}</td>
+                    <td>{{ ucfirst($data->relHrBank->bank_name) }}</td>
                 </tr>
                 <tr>
                     <td><strong>Bank Account Number: </strong></td>
@@ -40,7 +44,7 @@
                 </tr>
                 <tr>
                     <td><strong>Currency: </strong></td>
-                    <td>{{ $data->currency_id }}</td>
+                    <td>{{ $data->relCurrency->title }}</td>
                 </tr>
                 <tr>
                     <td><strong>Exchange Rate: </strong></td>
@@ -48,15 +52,15 @@
                 </tr>
                 <tr>
                     <td><strong>Employee Type: </strong></td>
-                    <td>{{ $data->employee_type }}</td>
+                    <td>{{ ucfirst($data->employee_type) }}</td>
                 </tr>
                 <tr>
                     <td><strong>Employee Category: </strong></td>
-                    <td>{{ $data->employee_category }}</td>
+                    <td>{{ ucfirst($data->employee_category) }}</td>
                 </tr>
                 <tr>
                     <td><strong>Work Shift: </strong></td>
-                    <td>{{ $data->work_shift }}</td>
+                    <td>{{ ucfirst($data->work_shift) }}</td>
                 </tr>
                 <tr>
                     <td><strong>Emergency Contact Person: </strong></td>
@@ -68,7 +72,7 @@
                 </tr>
                 <tr>
                     <td><strong>Emergency Contact Relation: </strong></td>
-                    <td>{{ $data->emergency_contact_relation }}</td>
+                    <td>{{ $data->emergency_contact_relationship }}</td>
                 </tr>
                 <tr>
                     <td><strong>Status: </strong></td>

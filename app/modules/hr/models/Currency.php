@@ -4,18 +4,18 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class Designation extends Eloquent {
+class Currency extends Eloquent{
 
-    protected $table = 'designation';
+    //TODO :: model attributes and rules and validation
+    protected $table='currency';
     protected $fillable = [
-        'title','code', 'description', 'status',
+        'title','code','exchange_rate'
     ];
-
     private $errors;
     private $rules = [
         'title' => 'required',
         'code' => 'required',
-        //'description' => 'alpha_dash',
+        'exchange_rate' => 'required'
     ];
 
     public function validate($data)
@@ -28,16 +28,13 @@ class Designation extends Eloquent {
         }
         return true;
     }
-
     public function errors()
     {
         return $this->errors;
     }
 
     //TODO : Model Relationship
-//    public function relUser(){
-//        return $this->belongsToMany('User');
-//    }
+
 
 
     // TODO : user info while saving data into table
@@ -61,9 +58,11 @@ class Designation extends Eloquent {
 
 
     //TODO : Scope Area
-    public function scopeGetDesignationLists(){
-        $query = $this::lists('title', 'id');
+    public function scopeCurrencyLists($query){
+        $query = Currency::lists('title', 'id');
         return $query;
+
     }
 
-} 
+
+}
