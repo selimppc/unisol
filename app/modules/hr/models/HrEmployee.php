@@ -13,7 +13,7 @@ class HrEmployee extends Eloquent{
         'hr_salary_grade_id','department_id','designation_id','hr_bank_id',
         'bank_account_no','currency_id','exchange_rate','employee_type',
         'employee_category','work_shift','emergency_contact_person',
-        'emergency_contact_number','emergency_contact_relation','note','status'
+        'emergency_contact_number','emergency_contact_relationship','note','status'
     ];
     private $errors;
     private $rules = [
