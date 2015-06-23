@@ -115,6 +115,37 @@ Route::group(['prefix' => 'hr'], function() {
         'uses'=> 'HrTaxRuleController@batch_delete_hr_tax_rule'
     ]);
 
+    //Currency
+    Route::any('currency',[
+        'as' => 'currency',
+        'uses'=> 'CurrencyController@index_currency'
+    ]);
+
+    Route::any('currency/store',[
+        'as' => 'currency.store',
+        'uses'=> 'CurrencyController@store_currency'
+    ]);
+
+    Route::any('currency/show/{c_id}',[
+        'as' => 'currency.show',
+        'uses'=> 'CurrencyController@show_currency'
+    ]);
+
+    Route::any('currency/edit/{c_id}',[
+        'as' => 'currency.edit',
+        'uses'=> 'CurrencyController@edit_currency'
+    ]);
+
+    Route::any('currency/destroy/{c_id}',[
+        'as' => 'currency.destroy',
+        'uses'=> 'CurrencyController@destroy_currency'
+    ]);
+
+    Route::any('currency/batch_delete',[
+        'as' => 'currency.batch_delete',
+        'uses'=> 'CurrencyController@batch_delete_currency'
+    ]);
+
 //hr_employee
 
     Route::any('employee',[
@@ -146,5 +177,7 @@ Route::group(['prefix' => 'hr'], function() {
         'as' => 'employee.batch_delete',
         'uses'=> 'HrEmployeeController@batch_delete_hr_employee'
     ]);
+
+
 
 });
