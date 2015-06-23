@@ -324,7 +324,25 @@ class FeesController extends \BaseController {
         $batch = ['' => 'Select Batch']+ Batch::lists('batch_number', 'id');
         $schedule = ['' => 'Select Billing Schedule']+ BillingSchedule::lists('title', 'id');
         $item = ['' => 'Select Billing Item']+ BillingItem::lists('title', 'id');
-        return View::Make('fees::installment_setup.index',compact('degree','batch','schedule','item'));
+
+        $data = DB::table('billing_setup')
+            ->join('billing_item', function($join)
+            {
+                $join->on('billing_setup.billing_item_id', '=', 'billing_item.id')
+                ->select(DB::raw('sum(cost) AS Cost'));
+            })
+            ->get();
+
+        print_r($data);exit;
+
+
+        $users = DB::table('users')
+            ->select(DB::raw('count(*) as user_count, status'))
+            ->where('status', '<>', 1)
+            ->groupBy('status')
+            ->get();
+
+        return View::Make('fees::installment_setup.index1',compact('degree','batch','schedule','item'));
 
     }
 
