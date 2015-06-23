@@ -1029,25 +1029,43 @@ class ApplicantController extends \BaseController
         $adm_test_subject = BatchAdmtestSubject::with('relBatch','relAdmtestSubject')
             ->where('batch_id','=',$id)->get();
 
-        $exm_centers_all = ExmCenter::all();
+        if(Session::has('ExmCenterIds')){
+           $exm_center_all = ExmCenter::get()
+                ->orderBy(Session::get('ExmCenterIds'));
+//print_r($exm_center_all);exit;
+        }else{
+            $exm_center_all = ExmCenter::all();
+        }
+//        print_r($exm_center_all);exit;
 
         return View::make('admission::adm_public.admission.adm_test_details',
-            compact('data','adm_test_subject','exm_centers_all','id'));
+            compact('data','adm_test_subject','exm_center_all','id'));
     }
 
     public function admExmCenter(){
 
-        $center_id = Input::get('id');
+        $center_id = Input::get('exm_center_id');
 
-        if ($center_id) {
+            if ($center_id) {
+                $exm_center_id = Session::get('ExmCenterIds');
+
+                $exm_center_all = array_merge(array($center_id), (array)$exm_center_id);
+
+                Session::put('ExmCenterIds',$exm_center_all);
+            }else{
+                $exm_center_all = (array)Session::get('ExmCenterIds');
+            }
+
+
+        /*if ($center_id) {
             $exm_center_id = Session::get('ExmCenterIds');
 
             $exm_center_ids = array_merge(array($center_id), (array)$exm_center_id);
-            print_r($exm_center_ids);exit;
+//            print_r($exm_center_ids);exit;
             Session::put('ExmCenterIds',$exm_center_ids);
         }else{
             $exm_center_ids = (array)Session::get('ExmCenterIds');
-        }
+        }*/
 //        print_r($exm_center_ids);exit;
 
        /* $batch_applicant_id = ['batch_applicant_id' => $batch_applicant_id];
@@ -1059,9 +1077,33 @@ class ApplicantController extends \BaseController
         }else{
             $exm_center_choice = ExmCenterApplicantChoice::with('relExmCenter')->where('batch_applicant_id','=',$id)->get();
         }*/
+        return Redirect::back();
 
-        return View::make('admission::adm_public.admission.exm_center',
-            compact('exm_centers_all','exm_center_choice','id'));
+    }
+
+    public function admPaymentCheckoutByApplicant(){
+
+        $applied_degree_ids = Session::get('applicantDegIds');
+//        print_r($applied_degree_ids);exit;
+
+        $data = Batch::with('relDegree','relDegree.relDegreeGroup','relDegree.relDegreeProgram','relDegree.relDegreeLevel')->whereIn('degree_id',$applied_degree_ids)->get();
+//        print_r($data);exit;
+        $applicant_id = Auth::applicant()->get()->id;
+        /*$batch_applicant = BatchApplicant::with('relBatch','relBatch.relDegree','relBatch.relDegree.relDegreeGroup','relBatch.relDegree.relDepartment')
+            ->where('applicant_id', '=',$applicant_id )
+            ->get();*/
+        $applicant_personal_info = ApplicantProfile::with('relCountry')
+            ->where('applicant_id', '=',$applicant_id )
+            ->first();
+        $applicant_meta_records = ApplicantMeta::where('applicant_id', '=',$applicant_id )->first();
+        $applicant_acm_records = ApplicantAcademicRecords::where('applicant_id', '=',$applicant_id )->get();
+
+        if(empty($applicant_personal_info) || empty($applicant_meta_records) ||  count($applicant_acm_records)< 2 ){
+            return Redirect::back()->with('danger', 'Profile or Academic information is Missing! Complete Your profile to checkout!');
+        }else{
+            return View::make('admission::adm_public.admission.adm_checkouts',
+                compact('batch_applicant','data'));
+        }
     }
 
     public function admExmCenterSave(){
@@ -1079,31 +1121,6 @@ class ApplicantController extends \BaseController
         }
         Session::flash('message',  ' Successfully performed This Request!');
         return Redirect::back();
-    }
-
-    public function admPaymentCheckoutByApplicant(){
-
-        $applied_degree_ids = Session::get('applicantDegIds');
-//        print_r($applied_degree_ids);exit;
-
-        $data = Batch::with('relDegree','relDegree.relDegreeGroup','relDegree.relDegreeProgram','relDegree.relDegreeLevel')->whereIn('degree_id',$applied_degree_ids)->get();
-//        print_r($data);exit;
-        $applicant_id = Auth::applicant()->get()->id;
-        $batch_applicant = BatchApplicant::with('relBatch','relBatch.relDegree','relBatch.relDegree.relDegreeGroup','relBatch.relDegree.relDepartment')
-            ->where('applicant_id', '=',$applicant_id )
-            ->get();
-        $applicant_personal_info = ApplicantProfile::with('relCountry')
-            ->where('applicant_id', '=',$applicant_id )
-            ->first();
-        $applicant_meta_records = ApplicantMeta::where('applicant_id', '=',$applicant_id )->first();
-        $applicant_acm_records = ApplicantAcademicRecords::where('applicant_id', '=',$applicant_id )->get();
-
-        if(empty($applicant_personal_info) || empty($applicant_meta_records) ||  count($applicant_acm_records)< 2 ){
-            return Redirect::back()->with('danger', 'Profile or Academic information is Missing! Complete Your profile to checkout!');
-        }else{
-            return View::make('admission::adm_public.admission.adm_checkouts',
-                compact('batch_applicant','data'));
-        }
     }
 //{*********Admission :Ends Degree Apply By Applicant (Tanin)  ****************}
 

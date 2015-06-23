@@ -3,7 +3,7 @@
    @include('layouts._sidebar_applicant')
  @stop
 @section('content')
-{{--<a class="pull-right btn btn-xs btn-success" href="{{ URL::route('admission.applicant_details',['batch-applicant-id'=>Auth::applicant()->get()->id])}}"><b><i class="fa fa-arrow-circle-left"></i>Go Back</b></a>--}}
+<a class="pull-right btn btn-xs btn-success" href="{{ URL::route('applicant.details')}}"><b><i class="fa fa-arrow-circle-left"></i>Go Back</b></a>
 <h3 class="box-title">Degree List</h3>
 <div class="box box-solid ">
      <div class="box-tools pull-right">
