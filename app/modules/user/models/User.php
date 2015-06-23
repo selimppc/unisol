@@ -231,7 +231,28 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         return $query;
     }
 
+    /**
+     * @author shafi
+     */
+    public function scopeFullNameWithRoleNameList($query)
+    {
+        $query = array('' => 'Select Writer Name ') + $this::join('user_profile', function($query){
+                $query->on('user_profile.user_id', '=', 'user.id');
+            })
+                ->join('role', function($query){
+                    $query->on('user.role_id', '=', 'role.id');
+                })
+                ->select(DB::raw('CONCAT(user_profile.first_name, " ", user_profile.middle_name, " ", user_profile.last_name, " ( ", role.title, " )" ) as full_name'), 'user.id as user_id')
+                //->where('user.role_id', '=', $role_id)
+                ->lists('full_name', 'user_id');
+        if($query){
+            return $query;
+        }else{
+            return $query = [' ' => 'Profile data missing !'];
+        }
+    }
 
+    // TODO :: boot
     public static function boot(){
         parent::boot();
         if(Auth::user()->check()){

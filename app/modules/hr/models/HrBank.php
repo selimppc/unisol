@@ -58,5 +58,10 @@ class HrBank extends Eloquent{
 
 
     //TODO : Scope Area
+    public function scopeHrBankLists($query){
+        $query = HrBank::lists('bank_name', 'id');
+        return $query;
+
+    }
 
 }

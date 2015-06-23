@@ -60,5 +60,10 @@ class HrSalaryGrade extends Eloquent{
 
 
     //TODO : Scope Area
+    public function scopeSalaryGradeLists($query){
+        $query = HrSalaryGrade::lists('title', 'id');
+        return $query;
+
+    }
 
 }

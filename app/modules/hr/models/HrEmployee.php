@@ -98,5 +98,12 @@ class HrEmployee extends Eloquent{
 
 
     //TODO : Scope Area
+    public function getDateOfJoiningAttribute($date) {
+        return Carbon::parse($date)->format('d-M-Y'); //Change the format to whichever you desire
+    }
+
+    public function getDateOfConfirmationAttribute($date) {
+        return Carbon::parse($date)->format('d-M-Y'); //Change the format to whichever you desire
+    }
 
 }
