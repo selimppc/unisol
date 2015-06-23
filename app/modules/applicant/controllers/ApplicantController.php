@@ -1025,25 +1025,33 @@ class ApplicantController extends \BaseController
             ->where('batch_id','=',$id)->get();
         $exm_centers_all = ExmCenter::all();
 //        print_r($exm_centers_all);exit;
-        $exm_centers = Session::get('applicantExmCentersIds');
-        
+
         return View::make('admission::adm_public.admission.adm_test_details',
-            compact('data','adm_test_subject','exm_centers_all'));
+            compact('data','adm_test_subject','exm_centers_all','id'));
     }
 
-    public function admExmCenter($batch_applicant_id){
+    public function admExmCenter(){
 
-        $id = $batch_applicant_id;
+        $id = Input::get('exm_center_id');
+        $exm_center_id = ExmCenter::get();
+        print_r($exm_center_id);exit;
+      /*$exm_center_id = Session::get('ExmCenterDegIds');
 
-        $batch_applicant_id = ['batch_applicant_id' => $batch_applicant_id];
-        $rules = ['batch_applicant_id' => 'exists:exm_center_applicant_choice' ];
+        $applied_center_ids = array_merge(array($exm_center_id), (array)$exm_center_id);
+
+        Session::put('ExmCenterDegIds',$applied_center_ids);
+
+        print_r($applied_center_ids);exit;*/
+
+       /* $batch_applicant_id = ['batch_applicant_id' => $batch_applicant_id];
+        $rules = ['batch_applicant_id' => 'exists:exm_center_applicant_choice'];
         $validator = Validator::make($batch_applicant_id, $rules);
 
         if ($validator->Fails()) {
             $exm_centers_all = ExmCenter::all();
         }else{
             $exm_center_choice = ExmCenterApplicantChoice::with('relExmCenter')->where('batch_applicant_id','=',$id)->get();
-        }
+        }*/
 
         return View::make('admission::adm_public.admission.exm_center',
             compact('exm_centers_all','exm_center_choice','id'));
