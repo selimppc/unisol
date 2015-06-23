@@ -34,17 +34,17 @@
                     <div class="col-sm-2">
                         {{ Form::label('batch_id', 'Batch') }}<span class="text-danger">*</span>
                         <span class="loaderClass">{{HTML::image('assets/icon/ajax-loader.gif')}}</span>
-                        {{ Form::select('batch_id', $batch, Input::old('batch_id'), ['id'=>'dependable-list', 'class'=>'form-control','required'=>'required']) }}
+                        {{ Form::select('batch_id',$batch, Input::old('batch_id'), ['id'=>'dependable-list', 'class'=>'form-control','required'=>'required']) }}
                     </div>
 
                     <div class="col-sm-3">
                         {{ Form::label('schedule_id','Schedule') }}
                         <span class="text-danger">*</span>
-                        {{ Form::select('schedule_id', $schedule, Input::old('schedule_id'), ['class' => 'form-control','required'=>'required']) }}
+                        {{ Form::select('schedule_id',$schedule, Input::old('schedule_id'), ['class' => 'form-control','required'=>'required']) }}
                     </div>
                     <div class="col-sm-3">
                         {{ Form::label('item_id', 'Item') }}<span class="text-danger">*</span>
-                        {{ Form::select('item_id', $item, Input::old('item_id'), ['class' => 'form-control','required'=>'required']) }}
+                        {{ Form::select('item_id',$item, Input::old('item_id'), ['class' => 'form-control','required'=>'required']) }}
                     </div>
                     <div class="col-sm-2">
                         {{ Form::label('no_installment', 'No of Installment') }}
