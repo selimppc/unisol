@@ -178,6 +178,39 @@ Route::group(['prefix' => 'hr'], function() {
         'uses'=> 'HrEmployeeController@batch_delete_hr_employee'
     ]);
 
+    //hr_allowance
+
+    Route::any('allowance',[
+        'as' => 'allowance',
+        'uses'=> 'HrAllowanceController@index_hr_allowance'
+    ]);
+
+    Route::any('allowance/store',[
+        'as' => 'allowance.store',
+        'uses'=> 'HrAllowanceController@store_hr_allowance'
+    ]);
+
+    Route::any('allowance/show/{a_id}',[
+        'as' => 'allowance.show',
+        'uses'=> 'HrAllowanceController@show_hr_allowance'
+    ]);
+
+    Route::any('allowance/edit/{a_id}',[
+        'as' => 'allowance.edit',
+        'uses'=> 'HrAllowanceController@edit_hr_allowance'
+    ]);
+
+    Route::any('allowance/destroy/{a_id}',[
+        'as' => 'allowance.destroy',
+        'uses'=> 'HrAllowanceController@destroy_hr_allowance'
+    ]);
+
+    Route::any('allowance/batch_delete',[
+        'as' => 'allowance.batch_delete',
+        'uses'=> 'HrAllowanceController@batch_delete_hr_allowance'
+    ]);
+
+
 
 
 });
