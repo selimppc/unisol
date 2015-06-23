@@ -58,5 +58,11 @@ class Currency extends Eloquent{
 
 
     //TODO : Scope Area
+    public function scopeCurrencyLists($query){
+        $query = Currency::lists('title', 'id');
+        return $query;
+
+    }
+
 
 }

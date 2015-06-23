@@ -19,7 +19,8 @@ class HrEmployeeController extends \BaseController {
         $model = HrEmployee::with('relUser','relHrBank','relHrSalaryGrade',
             'relDesignation','relDepartment','relCurrency')->get();
 
-        print_r($model);exit;
+        #print_r($model);exit;
+        #$a = User::
         return View::make('hr::hr.employee.index', compact('model','pageTitle'));
     }
 
@@ -27,6 +28,7 @@ class HrEmployeeController extends \BaseController {
     {
         if($this->isPostRequest()){
             $input_data = Input::all();
+            #print_r($input_data);exit;
             $model = new HrEmployee();
             if($model->validate($input_data)) {
                 DB::beginTransaction();
