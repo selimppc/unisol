@@ -3,7 +3,7 @@
    @include('layouts._sidebar_applicant')
  @stop
 @section('content')
-<a class="pull-right btn btn-xs btn-success" href="{{ URL::route('admission.applicant_details',['batch-applicant-id'=>Auth::applicant()->get()->id])}}"><b><i class="fa fa-arrow-circle-left"></i>Go Back</b></a>
+{{--<a class="pull-right btn btn-xs btn-success" href="{{ URL::route('admission.applicant_details',['batch-applicant-id'=>Auth::applicant()->get()->id])}}"><b><i class="fa fa-arrow-circle-left"></i>Go Back</b></a>--}}
 <h3 class="box-title">Degree List</h3>
 <div class="box box-solid ">
      <div class="box-tools pull-right">
@@ -24,17 +24,18 @@
                                  <tr>
                                      <th rowspan="70%" style="vertical-align: middle"><b style="font-size: medium">Degree Name</b></th>
                                  </tr>
-                                 @foreach($batch_applicant as $value)
-                                     <tr>
-                                          <td class="col-lg-10">
-                                                <a href="{{ URL::route('admission.applicant.admission.test_details',
-                                                    ['id' => $value->id]) }}">
-                                                    {{ $value->relBatch->relDegree->relDegreeLevel->code.'  '.$value->relBatch->relDegree->relDegreeGroup->code.' in '.$value->relBatch->relDegree->relDegreeProgram->code }}
-
-                                                </a>, Batch :{{ $value->relBatch->batch_number }}
-                                          </td>
-                                     </tr>
-                                 @endforeach
+                                 @if(isset($data))
+                                     @foreach($data as $value)
+                                         <tr>
+                                              <td class="col-lg-10">
+                                                    <a href="{{ URL::route('admission.applicant.admission.test_details',
+                                                       ['id' => $value->id]) }}" class="btn-link" title="Degree,Subject & Exam Center Info For Admission" data-toggle="modal" data-target="#ATDModal">
+                                                        {{$value->relDegree->relDegreeLevel->code.''.$value->relDegree->relDegreeGroup->code.' In '.$value->relDegree->relDegreeProgram->code}}
+                                                    </a>&nbsp;&nbsp;  Batch #:{{ $value->batch_number }}
+                                              </td>
+                                         </tr>
+                                     @endforeach
+                                 @endif
                              </tbody>
                        </table>
                     </div>
@@ -117,11 +118,18 @@
 
 {{------------------------------------ Modal --------------------------------------------------------------------------}}
  <div class="modal fade" id="addDegreeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-       <div class="modal-dialog">
-         <div class="modal-content">
+   <div class="modal-dialog">
+     <div class="modal-content">
 
-        </div>
-       </div>
+    </div>
+   </div>
+ </div>
+
+ <div class="modal fade" id="ATDModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      </div>
+    </div>
  </div>
 
 @stop
