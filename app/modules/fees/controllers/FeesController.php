@@ -326,32 +326,25 @@ class FeesController extends \BaseController {
         $item = ['' => 'Select Billing Item']+ BillingItem::lists('title', 'id');
 
         $data = DB::table('billing_setup')
-            ->join('billing_item', function($join)
-            {
-                $join->on('billing_setup.billing_item_id', '=', 'billing_item.id')
-                ->select(DB::raw('sum(cost) AS Cost'));
-            })
-            ->get();
+            ->join('billing_item','billing_setup.billing_item_id','=','billing_item.id')
+           // ->group_by('billing_setup.batch_id')
+            ->select(array(
+                    'billing_setup.*',
+                    'billing_item.cost as totaladvantage')
+            )
+            ->sum('billing_setup.cost');
 
-        print_r($data);exit;
+       /* $data = BillingSetup::leftJoin(
+            DB::raw('(SELECT billing_item_id, SUM(cost) AS votes FROM votes GROUP BY post_id) as v'),
+            'v.post_id', '=', 'posts.id'
+        )->orderBy('votes', 'desc')->take(10)->get();*/
+        //print_r($data);exit;
 
 
-        $users = DB::table('users')
-            ->select(DB::raw('count(*) as user_count, status'))
-            ->where('status', '<>', 1)
-            ->groupBy('status')
-            ->get();
-
-        return View::Make('fees::installment_setup.index1',compact('degree','batch','schedule','item'));
-
-    }
-
-    public function create_installment_setup($batch_id)
-    {
-
-        return View::Make('fees::installment_setup.create');
+        return View::Make('fees::installment_setup.index',compact('degree','batch','schedule','item','data'));
 
     }
+
 
 
 }
