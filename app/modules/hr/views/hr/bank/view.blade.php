@@ -11,7 +11,7 @@
     <table class="table table-striped  table-bordered">
         <tr>
             <td><strong> Branch:</strong></td>
-            <td>{{ $data->branch}}</td>
+            <td>{{ ucfirst($data->branch) }}</td>
         </tr>
         <tr>
             <td><strong> Address:</strong></td>
