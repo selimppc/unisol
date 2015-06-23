@@ -1,6 +1,6 @@
 <?php
 
-class CurrencyController extends \BaseController {
+class HrAllowanceController extends \BaseController {
 
     function __construct()
     {
@@ -12,19 +12,19 @@ class CurrencyController extends \BaseController {
         return Input::server("REQUEST_METHOD") == "POST";
     }
 
-//Currency
-    public function index_currency()
+//hr_allowance
+    public function index_hr_allowance()
     {
-        $pageTitle = 'Currency Lists';
-        $model = Currency::orderBy('id', 'DESC')->paginate(5);
-        return View::make('hr::currency.index', compact('model','pageTitle'));
+        $pageTitle = 'Allowance Lists';
+        $model = HrAllowance::orderBy('id', 'DESC')->paginate(5);
+        return View::make('hr::hr.allowance.index', compact('model','pageTitle'));
     }
 
-    public function store_currency()
+    public function store_hr_allowance()
     {
         if($this->isPostRequest()){
             $input_data = Input::all();
-            $model = new Currency();
+            $model = new HrAllowance();
             if($model->validate($input_data)) {
                 DB::beginTransaction();
                 try {
@@ -42,17 +42,17 @@ class CurrencyController extends \BaseController {
 
     }
 
-    public function show_currency($c_id)
+    public function show_hr_allowance($b_id)
     {
-        $data = Currency::findOrFail($c_id);
-        return View::make('hr::currency.view', compact('pageTitle', 'data'));
+        $data = HrAllowance::findOrFail($b_id);
+        return View::make('hr::hr.allowance.view', compact('pageTitle', 'data'));
     }
 
-    public function edit_currency($c_id)
+    public function edit_hr_allowance($b_id)
     {
         if($this->isPostRequest()){
             $input_data = Input::all();
-            $model = Currency::findOrFail($c_id);
+            $model = HrAllowance::findOrFail($b_id);
             if($model->validate($input_data)){
                 DB::beginTransaction();
                 try{
@@ -67,16 +67,16 @@ class CurrencyController extends \BaseController {
             }
             return Redirect::back();
         }else{
-            $model = Currency::findOrFail($c_id);
-            return View::make('hr::currency.edit', compact('model'));
+            $model = HrAllowance::findOrFail($b_id);
+            return View::make('hr::hr.allowance.edit', compact('model'));
         }
     }
 
-    public function destroy_currency($c_id)
+    public function destroy_hr_allowance($b_id)
     {
         DB::beginTransaction();
         try{
-            Currency::destroy($c_id);
+            HrAllowance::destroy($b_id);
             DB::commit();
             Session::flash('message', 'Success !');
         }catch ( Exception $e ){
@@ -87,11 +87,11 @@ class CurrencyController extends \BaseController {
         return Redirect::back();
     }
 
-    public function batch_delete_currency()
+    public function batch_delete_hr_allowance()
     {
         DB::beginTransaction();
         try{
-            Currency::destroy(Request::get('id'));
+            HrAllowance::destroy(Request::get('id'));
             DB::commit();
             Session::flash('message', 'Success !');
         }catch( Exception $e ){
