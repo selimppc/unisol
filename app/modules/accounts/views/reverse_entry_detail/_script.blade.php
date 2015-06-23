@@ -17,7 +17,7 @@
         e.preventDefault();
         var $btn = $(this);
         $.ajax({
-            url: 'jv-ajax-delete-detail',
+            url: 'reverse-detail-ajax-delete',
             type: 'POST',
             dataType: 'json',
             data: { id:  $(this).data("href") },

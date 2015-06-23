@@ -287,7 +287,12 @@ Route::group(['prefix' => 'accounts'], function() {
      */
     Route::any("setup-transaction", [
         "as"   => "setup-transaction",
-        "uses" => "AccTrnNoSetupController@index_journal_voucher"
+        "uses" => "AccTrnNoSetupController@index_setup"
+    ]);
+
+    Route::any("create-accounts-transaction", [
+        "as"   => "create-accounts-transaction",
+        "uses" => "AccTrnNoSetupController@create_transaction_Number"
     ]);
 
 

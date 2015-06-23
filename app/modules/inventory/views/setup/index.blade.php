@@ -59,7 +59,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">New Transaction NUmber Setup</h4>
+        <h4 class="modal-title" id="myModalLabel">New Transaction Number Setup</h4>
       </div>
       <div class="modal-body">
         {{Form::open(['route'=>'trn-no-setup', 'files'=>true])}}
