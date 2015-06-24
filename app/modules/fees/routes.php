@@ -77,14 +77,14 @@
          'uses' => 'FeesController@index_installment_setup'
      ]);
 
-     Route::any('installment/setup/create/{batch_id}', [
+     Route::any('installment/setup/create', [
          'as' => 'installment.setup.create',
          'uses' => 'FeesController@create_installment_setup'
      ]);
 
      Route::any('installment/setup/save', [
          'as' => 'installment.setup.save',
-         'uses' => 'FeesController@store_installment_setup'
+         'uses' => 'FeesController@save_installment_setup'
      ]);
 
 

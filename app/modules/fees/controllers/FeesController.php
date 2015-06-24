@@ -325,18 +325,87 @@ class FeesController extends \BaseController {
         $schedule = ['' => 'Select Billing Schedule']+ BillingSchedule::lists('title', 'id');
         $item = ['' => 'Select Billing Item']+ BillingItem::lists('title', 'id');
 
-        $data = DB::table('billing_setup')
+      /*  $data = DB::table('billing_setup')
             ->join('billing_item','billing_setup.billing_item_id','=','billing_item.id')
             ->groupBy('billing_setup.batch_id')
             ->where('billing_item.initial', '=', 'acm' )
-            ->sum('billing_setup.cost');
+            ->sum('billing_setup.cost');*/
 
         return View::Make('fees::installment_setup.index',compact('degree','batch','schedule','item','data'));
+    }
+
+    public function create_installment_setup()
+    {
+        $degprog_id = Input::get('degprog_id');
+        $batch_id = Input::get('batch_id');
+        $schedule_id = Input::get('schedule_id');
+        $item_id = Input::get('item_id');
+        $no_installment = Input::get('no_installment');
+
+        $data = DB::table('billing_setup')
+            ->join('billing_item','billing_setup.billing_item_id','=','billing_item.id')
+            ->groupBy('billing_item.initial')
+            ->where('billing_item.initial', '=', 'acm' )
+            ->where('billing_setup.batch_id', '=', $batch_id )
+            ->sum('billing_setup.cost');
+
+        $no_installment_price = ($data !=0) ? $data/$no_installment : '';
+
+        return View::Make('fees::installment_setup.create', compact('data', 'no_installment', 'no_installment_price','batch_id','schedule_id','item_id','degprog_id'));
 
     }
 
-    public function store_installment_setup()
+    public function save_installment_setup()
     {
 
+        /*$data = Input::all();
+        //dd($data);
+       foreach ($data as $key => $value)
+        {
+            $data = new InstallmentSetup();
+            $data->batch_id = Input::get('batch_id');
+            $data->billing_schedule_id = Input::get('billing_schedule_id');
+            $data->billing_item_id = Input::get('billing_item_id');
+            $data->cost = Input::get('amount');
+            $data->deadline = Input::get('deadline');
+             $data->fined_cost = Input::get('fined_cost');
+            $data->save();
+
+        }
+
+       Session::flash('message', "Billing is Setup Successfully");
+          return Redirect::back();*/
+
+        if($this->isPostRequest()) {
+            $data = Input::all();
+            $amount = Input::get('amount');
+            $deadline = Input::get('deadline');
+            $fined_cost = Input::get('fined_cost');
+            DB::beginTransaction();
+            try {
+                for($k = 0; $k < count($amount); $k++){
+                    $model = new InstallmentSetup();
+                    $model->billing_schedule_id = Input::get('billing_schedule_id');
+                    $model->billing_item_id = Input::get('billing_item_id');
+                    $model->batch_id = Input::get('batch_id');
+                    $model->cost = $amount[$k];
+                    $model->deadline = $deadline[$k];
+                    $model->fined_cost = $fined_cost[$k];
+                    $model->save();
+                    DB::commit();
+                }
+                Session::flash('message', "Billing is Setup Successfully");
+                return Redirect::to('fees/installment/setup');
+            }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', "not added.Invalid Request!");
+            }
+            return Redirect::to('fees/installment/setup');
+
+        }
+        return Redirect::to('fees/installment/setup');
     }
+
 }
