@@ -322,10 +322,23 @@ class FeesController extends \BaseController {
     {
         $degree = ['' => 'Select Degree'] + DegreeProgram::lists('title', 'id');
         $batch = ['' => 'Select Batch']+ Batch::lists('batch_number', 'id');
-        $schedule = ['' => 'Select Billing Schedule']+ BillingSchedule::lists('title', 'id');
-        $item = ['' => 'Select Billing Item']+ BillingItem::lists('title', 'id');
+        $schedule = DB::table('billing_schedule')->orderBy('id', 'DESC')->lists('title','id');
+        $item = DB::table('billing_item')->orderBy('id', 'DESC')->lists('title','id');
 
-        $installment_setup = InstallmentSetup::latest('id')->with('relBillingItem','relBillingSchedule','relBatch')->paginate(10);
+        $degree_id = Input::get("degree_id");
+        Input::flash();
+
+        $q = InstallmentSetup::with('relBillingSchedule','relBillingSchedule','relBatch','relBatch.relDegree.relDegreeProgram');
+
+        if (!empty($degree_id)) {
+            $q->whereExists(function($query) use ($degree_id)
+            {
+                $query->from('batch')
+                    ->whereRaw('batch.id = installment_setup.batch_id')
+                    ->where('batch.degree_id', $degree_id);
+            });
+        }
+        $data = $q->orderBy('id', 'DESC')->get();
 
         return View::Make('fees::installment_setup.index',compact('degree','batch','schedule','item','data','installment_setup'));
     }
