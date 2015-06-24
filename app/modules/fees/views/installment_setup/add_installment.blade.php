@@ -1,9 +1,3 @@
-<div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal">{{HTML::image('assets/icon/media-close-btn.png')}}</button>
-    <h4 class="modal-title" style="text-align: center;color: #800080;">View Installment Setup Information</h4>
-</div>
-<div class="modal-body">
-    <div style="padding: 10px;">
         {{Form::open(array('route' => array('installment.setup.create')))}}
         <div class="col-sm-12" style="background: #EEEEEE">
             <div class="col-sm-2">
@@ -33,12 +27,8 @@
             <div class="col-sm-2 btn-style2">
                 {{ Form::submit('Proceed',['class'=>'btn btn-xs btn-success']) }}
             </div>
+            {{ Form::close() }}
         </div>
-        <div class="col-sm-12 panel-style">
-        </div>
-        {{ Form::close() }}
-    </div>
-</div>
 <div class="modal-footer">
     <button class="btn btn-default btn-xs" data-dismiss="modal" type="button">Close</button>
 </div>

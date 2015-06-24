@@ -84,16 +84,14 @@
 
     {{-- Modal add Installment --}}
     <div id="addInstallment" class="modal fade">
-        <div class="modal-dialog" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">{{HTML::image('assets/icon/media-close-btn.png')}}</button>
-                    <h4 class="modal-title" style="text-align: center;color: #800080;font-size: x-large">Create Book Author</h4>
+                    <h4 class="modal-title" style="text-align: center;color: #800080;font-size: x-large">Add New Installment</h4>
                 </div>
                 <div class="modal-body">
-                    {{Form::open(array('route' => array('installment.setup.create')))}}
                     @include('fees::installment_setup.add_installment')
-                    {{ Form::close() }}
                 </div>
             </div>
         </div>
