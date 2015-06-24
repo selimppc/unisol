@@ -396,4 +396,15 @@ class FeesController extends \BaseController {
         return Redirect::to('fees/installment/setup');
     }
 
+    public function view_installment_setup($id)
+    {
+        $view_installment_setup = InstallmentSetup::find($id);
+        $view_details = InstallmentSetup::with('relBatch', 'relBatch.relDegree','relBatch.relDegree.relDegreeProgram')
+            ->where('id', '=', $id)
+            ->first();
+
+
+       // print_r($view_installment_setup);exit;
+        return View::make('fees::installment_setup.view',compact('view_installment_setup','view_details'));
+    }
 }

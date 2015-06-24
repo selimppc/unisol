@@ -85,7 +85,7 @@
                         <td>{{isset($value->fined_cost) ? $value->fined_cost : ''}}</td>
 
                         <td>
-                            <a href="{{ URL::route('billing.setup.view',['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" href=""><i class="fa fa-eye" style="color: green"></i></a>
+                            <a href="{{ URL::route('installment.setup.view',['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" href=""><i class="fa fa-eye" style="color: green"></i></a>
                         </td>
                     </tr>
                 @endforeach
@@ -95,6 +95,15 @@
         {{ $installment_setup->links() }}
     </div>
 
+
+    {{-- Modal for show --}}
+    <div class="modal fade" id="showModal" tabindex="-1" role="dialog" aria-labelledby="showingModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+            </div>
+        </div>
+    </div>
 
     {{--Ajax operation: depandable dropdown with loading gif--}}
 
