@@ -3648,3 +3648,11 @@ fieldset[disabled] .btn-vk.active {
     margin-left: 90%;
     margin-bottom: 8px;
 }
+.aca-cost-panel{
+    background: #C5D1E9;
+    margin-top: 30px;
+    height: 30px;
+}
+.aca-style{
+    margin-top: 5px;
+}

@@ -4,21 +4,21 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class BillingSetup extends Eloquent{
+class InstallmentSetup extends Eloquent{
 
     //TODO :: model attributes and rules and validation
-    protected $table = 'billing_setup';
+    protected $table = 'installment_setup';
     protected $fillable = [
         'billing_item_id', 'billing_schedule_id', 'batch_id','cost','deadline','fined_cost'
     ];
     private $errors;
     private $rules = [
-        'item_id' => 'required|integer',
-        'schedule_id' => 'required|integer',
+        'billing_item_id' => 'required|integer',
+        'billing_schedule_id' => 'required|integer',
         'batch_id' => 'required|integer',
-        'cost' => 'numeric',
+        'amount' => 'numeric',
         'deadline' => 'date',
-        'fined' => 'numeric',
+        'fined_cost' => 'numeric',
     ];
     public function validate($data)
     {
