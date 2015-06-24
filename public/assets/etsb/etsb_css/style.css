@@ -3615,7 +3615,7 @@ fieldset[disabled] .btn-vk.active {
     word-wrap:break-word;
 }
 
-/*fees Module billing history index style*/
+/*********fees Module style***********/
 
 .radio-inline{
     margin-top: 15px;
@@ -3633,12 +3633,7 @@ fieldset[disabled] .btn-vk.active {
 .textbox-style
 {
     -moz-border-radius: 10px;
-    /*border-radius: 10px;*/
-    /*border:solid 1px #56caf0;*/
     padding:2px;
-   /* -moz-box-shadow:   3px 3px 1px 0px #ccc;
-    -webkit-box-shadow: 3px 3px 1px 0px #ccc;
-    box-shadow:  3px 3px 1px 0px #ccc;*/
 }
 .btn-style{
  margin-top: 2%;
@@ -3656,3 +3651,8 @@ fieldset[disabled] .btn-vk.active {
 .aca-style{
     margin-top: 5px;
 }
+.panel-style{
+    background: skyblue;
+    height: 10px;
+}
+

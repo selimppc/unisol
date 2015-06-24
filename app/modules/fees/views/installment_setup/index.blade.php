@@ -36,7 +36,8 @@
                     <div class="col-sm-3">
                         {{ Form::label('schedule_id','Schedule') }}
                         <span class="text-danger">*</span>
-                        {{ Form::select('schedule_id', $schedule, Input::old('schedule_id'), ['class' => 'form-control','required'=>'required']) }}
+                        {{ Form::select('schedule_id',$schedule, Input::old('schedule_id'), ['class' => 'form-control','required'=>'required']) }}
+
                     </div>
                     <div class="col-sm-3">
                         {{ Form::label('item_id', 'Item') }}<span class="text-danger">*</span>
@@ -44,16 +45,56 @@
                     </div>
                     <div class="col-sm-2">
                         {{ Form::label('no_installment', 'No of Installment') }}
-                        {{Form::selectRange('no_installment', 0, 48,'', ['class' => 'form-control','required'=>'required'])}}
+                        {{Form::selectRange('no_installment', 1, 48,'', ['class' => 'form-control','required'=>'required'])}}
                     </div>
+                    <div>&nbsp;</div>
                     <div class="col-sm-2 btn-style2">
                         {{ Form::submit('Proceed',['class'=>'btn btn-xs btn-success']) }}
                     </div>
+                </div>
+                <div class="col-sm-12 panel-style">
                 </div>
                 {{ Form::close() }}
             </div>
         </div>
     </div>
+    <br>
+    <br>
+    <div class="box-body table-responsive ">
+        <table id="example" class="table table-bordered table-hover table-striped">
+            <thead>
+            <th>Schedule</th>
+            <th>Item</th>
+            <th>Cost</th>
+            <th>Deadline</th>
+            <th>Fined Cost</th>
+            <th>Action</th>
+            </thead>
+            <tbody>
+            @if(isset($installment_setup))
+                @foreach($installment_setup as $value)
+                    <tr>
+                        <td>{{isset($value->relBillingSchedule->title) ? $value->relBillingSchedule->title:''}}</td>
+
+                        <td>{{isset($value->relBillingItem->title) ? $value->relBillingItem->title: ''}}</td>
+
+                        <td>{{isset($value->cost) ? $value->cost : ''}}</td>
+
+                        <td>{{date("d-m-Y", strtotime((isset($value->deadline)) ? $value->deadline : '') ) }}</td>
+
+                        <td>{{isset($value->fined_cost) ? $value->fined_cost : ''}}</td>
+
+                        <td>
+                            <a href="{{ URL::route('billing.setup.view',['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" href=""><i class="fa fa-eye" style="color: green"></i></a>
+                        </td>
+                    </tr>
+                @endforeach
+            @endif
+            </tbody>
+        </table>
+        {{ $installment_setup->links() }}
+    </div>
+
 
     {{--Ajax operation: depandable dropdown with loading gif--}}
 
