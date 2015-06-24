@@ -86,6 +86,10 @@
          'as' => 'installment.setup.save',
          'uses' => 'FeesController@save_installment_setup'
      ]);
+     Route::any('installment/setup/view/{id}', [
+         'as' => 'installment.setup.view',
+         'uses' => 'FeesController@view_installment_setup'
+     ]);
 
 
  });
