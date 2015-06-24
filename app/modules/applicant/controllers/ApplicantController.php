@@ -1022,14 +1022,15 @@ class ApplicantController extends \BaseController
     }
 
     // $id refers to batch_id
-    public function admTestDetails($id){
+    public function admTestDetails($batch_id){
+        $session_key = 'ExmCenterIds'.'-'.Auth::applicant()->get()->id.'-'.$batch_id;
 
-        $data = Batch::with('relDegree','relDegree.relDegreeGroup','relDegree.relDegreeProgram','relDegree.relDegreeLevel','relYear','relSemester')->where('id',$id)->first();
+        $data = Batch::with('relDegree','relDegree.relDegreeGroup','relDegree.relDegreeProgram','relDegree.relDegreeLevel','relYear','relSemester')->where('id',$batch_id)->first();
 
         $adm_test_subject = BatchAdmtestSubject::with('relBatch','relAdmtestSubject')
-            ->where('batch_id','=',$id)->get();
+            ->where('batch_id','=',$batch_id)->get();
 
-        $exm_center_id = Session::get('ExmCenterIds');
+        $exm_center_id = Session::get($session_key);
 
         if($exm_center_id){
             $exm_center_all = DB::table('exm_center');
@@ -1045,33 +1046,32 @@ class ApplicantController extends \BaseController
 
         }
         return View::make('admission::adm_public.admission.adm_test_details',
-            compact('data','adm_test_subject','exm_center_all','id'));
+            compact('data','adm_test_subject','exm_center_all','batch_id'));
     }
 
-    public function admExmCenter(){
+    public function admExmCenter($batch_id){
 
+        $session_key = 'ExmCenterIds'.'-'.Auth::applicant()->get()->id.'-'.$batch_id;
         $center_id = Input::get('exm_center_id');
 
         if ($center_id) {
-            Session::put('ExmCenterIds', $center_id);
+            Session::put($session_key, $center_id);
             $exm_center_all = $center_id;
         }else{
-            $exm_center_all = Session::get('ExmCenterIds');
+            $exm_center_all = Session::get($session_key);
         }
-
-        return View::make('admission::adm_public.admission.adm_test_details',
-            compact('exm_center_all'));
+//        print_r($exm_center_all);exit;
+        return Redirect ::back();
 
     }
 
     public function admPaymentCheckoutByApplicant(){
 
+        $applicant_id = Auth::applicant()->get()->id;
         $applied_degree_ids = Session::get('applicantDegIds');
-//        print_r($applied_degree_ids);exit;
 
         $data = Batch::with('relDegree','relDegree.relDegreeGroup','relDegree.relDegreeProgram','relDegree.relDegreeLevel')->whereIn('degree_id',$applied_degree_ids)->get();
-//        print_r($data);exit;
-        $applicant_id = Auth::applicant()->get()->id;
+
         /*$batch_applicant = BatchApplicant::with('relBatch','relBatch.relDegree','relBatch.relDegree.relDegreeGroup','relBatch.relDegree.relDepartment')
             ->where('applicant_id', '=',$applicant_id )
             ->get();*/
