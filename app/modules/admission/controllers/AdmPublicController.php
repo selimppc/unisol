@@ -40,10 +40,12 @@ class AdmPublicController extends \BaseController {
             ->where('batch_id','=',$degree_id)->get();
 
         $exm_centers = ExmCenter::get();
-
+//        date_default_timezone_set("Asia/Dacca");
+        $time = date('Y-m-d H:i:s', time());
+//        print($time);exit;
         return View::make('admission::adm_public.admission.degree_detail',
             compact('degree_model','major_courses', 'minor_courses',
-                'edu_gpa_model','batch_adm_subject','exm_centers','degree_id'));
+                'edu_gpa_model','batch_adm_subject','exm_centers','degree_id','time'));
     }
 
 

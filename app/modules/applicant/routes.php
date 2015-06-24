@@ -11,7 +11,7 @@ Route::any("/applicant", [
 ]);
 
 
-Route::any('applicant/details',
+Route::any('applicant/details/{batch_id}',
     ['as' => 'applicant.details',
         'uses' => 'ApplicantController@applicantDetails']);
 
@@ -194,7 +194,17 @@ Route::any('apt/misc_info/edit/{id}',
 Route::any('apt/misc_info/update/{id}',
     'ApplicantController@miscInfoUpdate'
 );
+//**********************Payment option for Applicant ************************************
 
+Route::any('applicant/payment/checkout-bank/{batch_id}',[
+    'as' => 'applicant.payment.checkout-bank',
+    'uses'=> 'ApplicantController@checkoutBank'
+]);
+
+Route::any('applicant/payment/checkout/credit-card',[
+    'as' => 'applicant.payment.checkout-cc',
+    'uses'=> 'ApplicantController@checkoutCC'
+]);
 //**********************Admission Test for Applicant ************************************
 
 Route::any('applicant/admission-test',[
@@ -216,6 +226,8 @@ Route::any('applicant/admission/start-admission-test',[
     'as' => 'applicant.admission.start-admission-test',
     'uses'=> 'ApplicantController@start_admission_test'
 ]);
+
+
 
 
 

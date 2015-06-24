@@ -39,10 +39,9 @@
                                 @foreach($data as $value)
                                      <tr>
                                          <td class="col-lg-10">
+                                         {{$value->relDegree->relDegreeLevel->code.''.$value->relDegree->relDegreeGroup->code.' In '.$value->relDegree->relDegreeProgram->code}}
                                                <a href="{{ URL::route('admission.applicant.admission.test_details',
-                                                   ['batch_id' => $value->id]) }}" class="btn-link" title="Degree,Subject & Exam Center Info For Admission" data-toggle="modal" data-target="#ATDModal">
-                                                    {{$value->relDegree->relDegreeLevel->code.''.$value->relDegree->relDegreeGroup->code.' In '.$value->relDegree->relDegreeProgram->code}}
-                                               </a>
+                                               ['batch_id' => $value->id]) }}" class="btn-link" title="Degree,Subject & Exam Center Info For Admission" data-toggle="modal" data-target="#ATDModal">ATD</a>
                                          </td>
                                      </tr>
                                 @endforeach
@@ -69,7 +68,7 @@
     <div class="box-header">
         <h5 class="box-title" style="color: orangered; font-size: 14px;">Before proceeding to checkout please complete your Profile and Academic Record :: To checkout click on the button >> "Next"</h5>
         <div class="box-tools pull-right">
-            <a class="pull-right btn btn-xs btn-success"  href="{{ URL::route('admission.applicant.adm_checkout')}}"><b style="color: #ffffff;"> Next </b> <i class="fa fa-arrow-circle-right"></i></a>
+            <a class="pull-right btn btn-xs btn-success"  href="{{ URL::route('admission.applicant.adm_checkout',$batch_id)}}"><b style="color: #ffffff;"> Next </b> <i class="fa fa-arrow-circle-right"></i></a>
         </div>
     </div>
     <section class="col-lg-6 connectedSortable">
