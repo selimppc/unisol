@@ -229,11 +229,11 @@ Route::any('admission/applicant/add-more-degree',
         'uses' => 'ApplicantController@addMoreDegree']);
 
 //Admission test details
-Route::any('admission/applicant/admission-test-details/{id}',
+Route::any('admission/applicant/admission-test-details/{batch_id}',
     ['as' => 'admission.applicant.admission.test_details',
         'uses' => 'ApplicantController@admTestDetails']);
 
-Route::any('admission/applicant/admission/exm-center',
+Route::any('admission/applicant/admission/exm-center/{batch_id}',
     ['as' => 'admission.applicant.exm-center',
         'uses' => 'ApplicantController@admExmCenter']);
 

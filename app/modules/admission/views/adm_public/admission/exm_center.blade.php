@@ -9,7 +9,7 @@
         </div>
     </div>
 {{-----------------------------------------Help Text ends ----------------------------------------------------------------------}}
- {{ Form::open(['route' => ['admission.applicant.exm-center'], 'class'=>'form-horizontal','files' => true,])}}
+ {{ Form::open(['route' => ['admission.applicant.exm-center',$batch_id], 'class'=>'form-horizontal','files' => true,])}}
  <section class="col-lg-12 connectedSortable">
      @if(isset($exm_center_all))
           @foreach(($exm_center_all) as $value)
