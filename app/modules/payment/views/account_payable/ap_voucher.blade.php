@@ -28,7 +28,7 @@
                 @foreach($data as $values)
                  <tr>
                     <td><b>
-                    {{ link_to_route('ap-payment-voucher', $values->relInvSupplier->code, ['data-toggle'=>"modal", 'data-target'=>"#modal-pc"]) }}
+                    {{ link_to_route('ap-payment-voucher', $values->supplier_code, ['data-toggle'=>"modal", 'data-target'=>"#modal-pc"]) }}
                     </b></td>
                     <td>{{ $values->company_name }}</td>
                     <td>{{ $values->relAccChartOfAccounts->account_code }}</td>

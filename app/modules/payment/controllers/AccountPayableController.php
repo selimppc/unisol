@@ -63,7 +63,7 @@ class AccountPayableController extends \BaseController {
         $pageTitle = "Manage Account Payable";
         $data = AccVAppayable::get();
         //print_r($data);exit;
-        return View::make('payment::account_payable.manage_ap', compact('pageTitle', 'data'));
+        return View::make('payment::account_payable.ap_voucher', compact('pageTitle', 'data'));
     }
 
 }

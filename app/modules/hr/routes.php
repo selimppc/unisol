@@ -210,6 +210,38 @@ Route::group(['prefix' => 'hr'], function() {
         'uses'=> 'HrAllowanceController@batch_delete_hr_allowance'
     ]);
 
+    //hr_salary
+
+    Route::any('salary/{emp_id}',[
+        'as' => 'salary',
+        'uses'=> 'HrSalaryController@index_hr_salary'
+    ]);
+
+    Route::any('salary/store',[
+        'as' => 'salary.store',
+        'uses'=> 'HrSalaryController@store_hr_salary'
+    ]);
+
+    Route::any('salary/show/{s_id}',[
+        'as' => 'salary.show',
+        'uses'=> 'HrSalaryController@show_hr_salary'
+    ]);
+
+    Route::any('salary/edit/{s_id}',[
+        'as' => 'salary.edit',
+        'uses'=> 'HrSalaryController@edit_hr_salary'
+    ]);
+
+    Route::any('salary/destroy/{s_id}',[
+        'as' => 'salary.destroy',
+        'uses'=> 'HrSalaryController@destroy_hr_salary'
+    ]);
+
+    Route::any('salary/batch_delete',[
+        'as' => 'salary.batch_delete',
+        'uses'=> 'HrSalaryController@batch_delete_hr_salary'
+    ]);
+
 
 
 

@@ -4,18 +4,20 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class HrBank extends Eloquent{
+class HrSalaryDeduction extends Eloquent{
 
     //TODO :: model attributes and rules and validation
-    protected $table='hr_bank';
+    protected $table='hr_salary_deduction';
     protected $fillable = [
-        'bank_name','branch','address'
+        'hr_employee_id','title','type','hr_loan_head_id','hr_salary_advance_id','amount','date','status'
     ];
+
     private $errors;
     private $rules = [
-        'bank_name' => 'required',
-        'branch' => 'required',
-        'address' => 'required'
+        'hr_employee_id' => 'required',
+        'hr_loan_head_id' => 'required',
+        'hr_salary_advance_id' => 'required',
+
     ];
 
     public function validate($data)
@@ -35,7 +37,18 @@ class HrBank extends Eloquent{
 
     //TODO : Model Relationship
 
+    //is this relation ok ?
+    public function relHrEmployee(){
+        return $this->belongsTo('HrEmployee','hr_employee_id','id');
+    }
 
+    public function relHrLoanHead(){
+        return $this->belongsTo('HrLoanHead','hr_loan_head_id','id');
+    }
+
+    public function relHrSalaryAdvance(){
+        return $this->belongsTo('HrSalaryAdvance','hr_salary_advance_id','id');
+    }
 
     // TODO : user info while saving data into table
     public static function boot(){
@@ -58,9 +71,4 @@ class HrBank extends Eloquent{
 
 
     //TODO : Scope Area
-    public function scopeHrBankLists($query){
-        $query = HrBank::lists('bank_name', 'id');
-        return $query;
-    }
-
 }

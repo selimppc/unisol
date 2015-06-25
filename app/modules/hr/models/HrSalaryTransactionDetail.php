@@ -4,18 +4,18 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class HrBank extends Eloquent{
+class HrSalaryTransactionDetail extends Eloquent{
 
     //TODO :: model attributes and rules and validation
-    protected $table='hr_bank';
+    protected $table='hr_salary_transaction_detail';
     protected $fillable = [
-        'bank_name','branch','address'
+        'hr_salary_transaction_id','type','hr_salary_allowance_id','hr_salary_deduction_id','hr_over_time_id','hr_bonus_id','percentage','amount'
     ];
+
     private $errors;
     private $rules = [
-        'bank_name' => 'required',
-        'branch' => 'required',
-        'address' => 'required'
+        'hr_employee_id' => 'required',
+
     ];
 
     public function validate($data)
@@ -35,7 +35,26 @@ class HrBank extends Eloquent{
 
     //TODO : Model Relationship
 
+    //is this relation ok ?
+    public function relHrSalaryTransaction(){
+        return $this->belongsTo('HrSalaryTransaction','hr_salary_transaction_id','id');
+    }
 
+    public function relHrSalaryAllowance(){
+        return $this->belongsTo('HrSalaryAllowance','hr_salary_allowance_id','id');
+    }
+
+    public function relHrSalaryDeduction(){
+        return $this->belongsTo('HrSalaryDeduction','hr_salary_deduction_id','id');
+    }
+
+    public function relHrOverTime(){
+        return $this->belongsTo('HrOverTime','hr_over_time_id','id');
+    }
+
+    public function relHrBonus(){
+        return $this->belongsTo('HrBonus','hr_bonus_id','id');
+    }
 
     // TODO : user info while saving data into table
     public static function boot(){
@@ -58,9 +77,4 @@ class HrBank extends Eloquent{
 
 
     //TODO : Scope Area
-    public function scopeHrBankLists($query){
-        $query = HrBank::lists('bank_name', 'id');
-        return $query;
-    }
-
 }

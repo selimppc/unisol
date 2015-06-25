@@ -4,18 +4,18 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class HrBank extends Eloquent{
+class HrLoanDetail extends Eloquent{
 
     //TODO :: model attributes and rules and validation
-    protected $table='hr_bank';
+    protected $table='hr_loan_detail';
     protected $fillable = [
-        'bank_name','branch','address'
+        'hr_loan_head_id','amount','date'
     ];
+//'currency_id','exchange_rate',
     private $errors;
     private $rules = [
-        'bank_name' => 'required',
-        'branch' => 'required',
-        'address' => 'required'
+        'hr_loan_head_id' => 'required',
+//        'currency_id' => 'required'
     ];
 
     public function validate($data)
@@ -35,6 +35,10 @@ class HrBank extends Eloquent{
 
     //TODO : Model Relationship
 
+    //is this relation ok ?
+    public function relHrLoanHead(){
+        return $this->belongsTo('HrLoanHead','hr_loan_head_id','id');
+    }
 
 
     // TODO : user info while saving data into table
@@ -58,9 +62,4 @@ class HrBank extends Eloquent{
 
 
     //TODO : Scope Area
-    public function scopeHrBankLists($query){
-        $query = HrBank::lists('bank_name', 'id');
-        return $query;
-    }
-
 }

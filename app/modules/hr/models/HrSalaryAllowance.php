@@ -4,18 +4,17 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class HrBank extends Eloquent{
+class HrSalaryAllowance extends Eloquent{
 
     //TODO :: model attributes and rules and validation
-    protected $table='hr_bank';
+    protected $table='hr_salary_allowance';
     protected $fillable = [
-        'bank_name','branch','address'
+        'hr_salary_id','hr_allowance_id','is_percentage','percentage','allowance_type','amount','status'
     ];
     private $errors;
     private $rules = [
-        'bank_name' => 'required',
-        'branch' => 'required',
-        'address' => 'required'
+        'hr_salary_id' => 'required',
+        'hr_allowance_id' => 'required',
     ];
 
     public function validate($data)
@@ -34,8 +33,12 @@ class HrBank extends Eloquent{
     }
 
     //TODO : Model Relationship
-
-
+    public function relHrSalary(){
+        return $this->belongsTo('HrSalary','hr_salary_id','id');
+    }
+    public function relHrAllowance(){
+        return $this->belongsTo('HrAllowance','hr_allowance_id','id');
+    }
 
     // TODO : user info while saving data into table
     public static function boot(){
@@ -58,9 +61,10 @@ class HrBank extends Eloquent{
 
 
     //TODO : Scope Area
-    public function scopeHrBankLists($query){
-        $query = HrBank::lists('bank_name', 'id');
+    public function scopeHrAllowanceLists($query){
+        $query = HrBank::lists('title', 'id');
         return $query;
+
     }
 
 }
