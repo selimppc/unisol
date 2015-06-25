@@ -58,12 +58,21 @@ class AccountPayableController extends \BaseController {
     }
 
     // Account Payment Voucher
-    public function  ap_payment_voucher(){
-        //
-        $pageTitle = "Manage Account Payable";
-        $data = AccVAppayable::get();
-        //print_r($data);exit;
-        return View::make('payment::account_payable.manage_ap', compact('pageTitle', 'data'));
+    public function  ap_payment_voucher($supplier_id, $coa_id){
+        $data = AccChartOfAccounts::paginate(3);
+        #$data = AccVUnpaidInvoice::get();
+        $year_lists = Year::lists('title', 'id');
+        $period_lists = AccChartOfAccounts::list_period();
+        $coa_lists = AccChartOfAccounts::lists('description', 'id');
+        return View::make('payment::account_payable.ap_voucher', compact(
+            'supplier_id', 'coa_id',
+            'data','year_lists', 'period_lists', 'coa_lists'
+        ));
+    }
+
+    public function store_ap_payment_voucher(){
+        echo "OK";
+        exit;
     }
 
 }

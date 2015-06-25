@@ -61,7 +61,6 @@ class HrBank extends Eloquent{
     public function scopeHrBankLists($query){
         $query = HrBank::lists('bank_name', 'id');
         return $query;
-
     }
 
 }

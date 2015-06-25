@@ -67,15 +67,32 @@ class HrEmployee extends Eloquent{
         return $this->belongsTo('Currency','currency_id','id');
     }
 
-//    public function relRncFinancialTransaction(){
-//        return $this->HasOne('RncFinancialTransaction', 'rnc_transaction_id', 'id');
-//    }
+    // many
+    // is this relation ok ?
 
-//    public function relRncFinancialTransaction(){
-//        return $this->HasMany('RncFinancialTransaction', 'rnc_transaction_id', 'id');
-//    }
+    public function relHrSalary(){
+        return $this->HasMany('HrSalary','hr_employee_id','id');
+    }
 
+    public function relHrOverTime(){
+        return $this->HasMany('HrOverTime','hr_employee_id','id');
+    }
 
+    public function relHrBonus(){
+        return $this->HasMany('HrBonus','hr_employee_id','id');
+    }
+
+    public function relHrLoanHead(){
+        return $this->HasMany('HrLoanHead','hr_employee_id','id');
+    }
+
+    public function relHrSalaryAdvance(){
+        return $this->HasMany('HrSalaryAdvance','hr_employee_id','id');
+    }
+
+    public function relHrSalaryTransaction(){
+        return $this->HasMany('HrSalaryTransaction','hr_employee_id','id');
+    }
 
     // TODO : user info while saving data into table
     public static function boot(){
@@ -105,5 +122,6 @@ class HrEmployee extends Eloquent{
     public function getDateOfConfirmationAttribute($date) {
         return Carbon::parse($date)->format('d-M-Y'); //Change the format to whichever you desire
     }
+
 
 }

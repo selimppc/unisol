@@ -15,7 +15,7 @@
            <div class="pull-left col-sm-4"> <h3> {{$pageTitle}} </h3>  </div>
            <div class="pull-right col-sm-4" style="padding-top: 1%;">
                 <button type="button" class="pull-right btn btn-sm btn-info" data-toggle="modal" data-target="#modal">
-                  Add HR Bank
+                  Add HR Salary Grade
                 </button>
            </div>
         </div>

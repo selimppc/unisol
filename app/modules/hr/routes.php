@@ -210,7 +210,94 @@ Route::group(['prefix' => 'hr'], function() {
         'uses'=> 'HrAllowanceController@batch_delete_hr_allowance'
     ]);
 
+    //hr_salary
+
+    Route::any('salary/{emp_id}',[
+        'as' => 'salary',
+        'uses'=> 'HrSalaryController@index_hr_salary'
+    ]);
+
+    Route::any('salary/store',[
+        'as' => 'salary.store',
+        'uses'=> 'HrSalaryController@store_hr_salary'
+    ]);
+
+    Route::any('salary/show/{s_id}',[
+        'as' => 'salary.show',
+        'uses'=> 'HrSalaryController@show_hr_salary'
+    ]);
+
+    Route::any('salary/edit/{s_id}',[
+        'as' => 'salary.edit',
+        'uses'=> 'HrSalaryController@edit_hr_salary'
+    ]);
+
+    Route::any('salary/destroy/{s_id}',[
+        'as' => 'salary.destroy',
+        'uses'=> 'HrSalaryController@destroy_hr_salary'
+    ]);
+
+    Route::any('salary/batch_delete',[
+        'as' => 'salary.batch_delete',
+        'uses'=> 'HrSalaryController@batch_delete_hr_salary'
+    ]);
 
 
+
+    //------->
+    //hr_bonus
+    Route::any('bonus/{}',[
+        'as' => 'bonus',
+        'uses'=> 'HrBonusController@index_hr_bonus'
+    ]);
+
+    //hr_loan_head
+    Route::any('loan_head/{emp_id}',[
+        'as' => 'loan_head',
+        'uses'=> 'HrLoanHeadController@index_hr_loan_head'
+    ]);
+
+    //hr_loan_detail
+    Route::any('loan_detail/{}',[
+        'as' => 'loan_detail',
+        'uses'=> 'HrLoanDetailController@index_hr_loan_detail'
+    ]);
+
+
+    //hr_over_time
+    Route::any('over_time/{}',[
+        'as' => 'over_time',
+        'uses'=> 'HrOverTimeController@index_hr_over_time'
+    ]);
+
+    //hr_salary_advance
+    Route::any('salary_advance/{}',[
+        'as' => 'salary_advance',
+        'uses'=> 'HrSalaryAdvanceController@index_hr_salary_advance'
+    ]);
+
+    //hr_salary_allowance
+    Route::any('salary_allowance/{}',[
+        'as' => 'salary_allowance',
+        'uses'=> 'HrSalaryAllowanceController@index_hr_salary_allowance'
+    ]);
+
+    //hr_salary_deduction
+    Route::any('salary_deduction/{}',[
+        'as' => 'salary_deduction',
+        'uses'=> 'HrSalaryDeductionController@index_hr_salary_deduction'
+    ]);
+
+    //hr_salary_transaction
+    Route::any('salary_transaction/{}',[
+        'as' => 'salary_transaction',
+        'uses'=> 'HrSalaryTransactionController@index_hr_salary_transaction'
+    ]);
+
+    //hr_salary_transaction_detail
+    Route::any('salary_transaction_detail/{emp_id}',[
+        'as' => 'salary_transaction_detail',
+        'uses'=> 'HrSalaryTransactionDetailController@index_hr_salary_transaction_detail'
+    ]);
 
 });
