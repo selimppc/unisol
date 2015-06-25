@@ -1,4 +1,7 @@
 @extends('layouts.layout')
+@section('top_menu')
+    @include('layouts._top_menu')
+@stop
  @section('sidebar')
    @include('layouts._sidebar_applicant')
  @stop
@@ -28,10 +31,10 @@
                                      @foreach($data as $value)
                                          <tr>
                                               <td class="col-lg-10">
+                                              {{$value->relDegree->relDegreeLevel->code.''.$value->relDegree->relDegreeGroup->code.' In '.$value->relDegree->relDegreeProgram->code}}&nbsp;&nbsp;  Batch #:{{ $value->batch_number }}
                                                     <a href="{{ URL::route('admission.applicant.admission.test_details',
-                                                       ['id' => $value->id]) }}" class="btn-link" title="Degree,Subject & Exam Center Info For Admission" data-toggle="modal" data-target="#ATDModal">
-                                                        {{$value->relDegree->relDegreeLevel->code.''.$value->relDegree->relDegreeGroup->code.' In '.$value->relDegree->relDegreeProgram->code}}
-                                                    </a>&nbsp;&nbsp;  Batch #:{{ $value->batch_number }}
+                                                       ['batch_id' => $value->id]) }}" class="btn-link" title="Degree,Subject & Exam Center Info For Admission" data-toggle="modal" data-target="#ATDModal">
+                                                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ATD</a>
                                               </td>
                                          </tr>
                                      @endforeach
@@ -40,10 +43,6 @@
                        </table>
                     </div>
                 </div>
-           </div>
-
-           <div class="box-footer clearfix">
-               <a class="pull-right btn btn-xs btn-info" href="{{ URL::route('admission.applicant.add-degree' )}}" data-toggle="modal" data-target="#addDegreeModal"> Add more degree</a>
            </div>
      </div>
 </div>
@@ -81,10 +80,9 @@
             <button class="pull-right btn btn-default" id="sendEmail">Edit <i class="fa fa-arrow-circle-right"></i></button>
         </div>
     </div>
-
 </div>
-
- <div class="box box-solid">
+{{------------------------------------Payment Option --------------------------------------------------------------------------}}
+<div class="box box-solid">
     <div class="box-header">
        <div class="box-tools pull-right">
            <button class="btn btn-info btn-xs" data-widget="collapse"><i class="fa fa-minus"></i></button>
@@ -99,14 +97,12 @@
              <label class="col-lg-12 control-label">Please Select Any One :</label>
              <br>
              <div class="col-xs-12">
-                  <label class="radio-inline"><input type="radio" name="radio" id="bank" value="bank"><b>Bank</b></label>
-                  <label class="radio-inline"><input type="radio" name="radio" id="bkash" value="bkash"> <b>Bkash</b></label>
+                  <label class="radio-inline"></label>
+                  <label class="radio-inline"><input type="radio" name="radio" id="bank" value="bank"> <b>Bank</b></label>
                   <label class="radio-inline"><input type="radio" name="radio" id="credt_card" value="credtcard"> <b>Credit Card</b> </label>
-
                     <br><br>
-                  <a class="pull-right btn btn-sm btn-default" id="ch_bank" style="display: none;"  href=""><b>Checkout With Bank</b></a>
-                  <a class="pull-right btn btn-sm btn-default"  id="ch_bkash" style="display:none" href=""><b>Checkout With Bkash</b></a>
-                  <a class="pull-right btn btn-sm btn-default" id="ch_credt_card" style="display:none" href=""><b>Checkout With CC</b></a>
+                  <a class="pull-right btn btn-sm btn-default"  id="ch_bank" style="display:none" href="{{Route('applicant.payment.checkout-bank',$batch_id)}}"><b>Checkout With Bank</b></a>
+                  <a class="pull-right btn btn-sm btn-default" id="ch_credt_card" style="display:none" href="{{Route('applicant.payment.checkout-cc')}}"><b>Checkout With CC</b></a>
                   <p>&nbsp;</p>
                   <p>&nbsp;</p>
              </div>
@@ -115,7 +111,6 @@
        </form>
     </div>
  </div>
-
 {{------------------------------------ Modal --------------------------------------------------------------------------}}
  <div class="modal fade" id="addDegreeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
    <div class="modal-dialog">

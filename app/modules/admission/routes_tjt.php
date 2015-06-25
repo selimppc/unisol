@@ -229,11 +229,11 @@ Route::any('admission/applicant/add-more-degree',
         'uses' => 'ApplicantController@addMoreDegree']);
 
 //Admission test details
-Route::any('admission/applicant/admission-test-details/{id}',
+Route::any('admission/applicant/admission-test-details/{batch_id}',
     ['as' => 'admission.applicant.admission.test_details',
         'uses' => 'ApplicantController@admTestDetails']);
 
-Route::any('admission/applicant/admission/exm-center',
+Route::any('admission/applicant/admission/exm-center/{batch_id}',
     ['as' => 'admission.applicant.exm-center',
         'uses' => 'ApplicantController@admExmCenter']);
 
@@ -242,14 +242,9 @@ Route::any('admission/applicant/admission/save-exm-center',
         'uses' => 'ApplicantController@admExmCenterSave']);
 
 //Adm_applicant checkout view
-Route::any('admission/applicant/payment-checkout',
+Route::any('admission/applicant/payment-checkout/{batch_id}',
     ['as' => 'admission.applicant.adm_checkout',
         'uses' => 'ApplicantController@admPaymentCheckoutByApplicant']);
-
-
-//{---------------------------------------  Version : 2 Starts Here  ---------------------------------------------------------}
-
-
 
 //{--------------------------------------- Degree -------------------------------------------------------------}
 /*

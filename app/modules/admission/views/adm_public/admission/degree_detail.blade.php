@@ -120,7 +120,12 @@
                        </table>
                        <p>&nbsp;</p>
                    {{Form::hidden('ids[]', $values->id)}}
+                   @if($values->admission_deadline)
                    {{ Form::submit('Apply', array('class'=>'pull-right btn btn-xs btn-info'))}}
+                   @else
+                   <a class="pull-right btn btn-xs btn-success" href="{{ URL::route('admission.public.degree_offer_list')}}"><b><i class="fa fa-arrow-circle-left"></i>Go Back</b></a>
+
+                   @endif
                    {{ Form::close() }}
                 </div>
              </div>

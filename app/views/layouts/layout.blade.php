@@ -18,7 +18,7 @@
         {{ HTML::style('assets/etsb/etsb_css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}
         {{ HTML::style('assets/etsb/etsb_css/style.css') }}
         {{ HTML::script('assets/etsb/etsb_js/jquery/jquery-2.1.1.min.js')}}
-        {{--{{ HTML::script('assets/etsb/etsb_js/jquery/jquery.min.js')}}--}}
+        {{ HTML::script('assets/etsb/etsb_js/jquery/jquery.min.js')}}
         {{ HTML::script('assets/etsb/etsb_js/icheck/icheck.js')}}
         {{ HTML::script('assets/etsb/etsb_js/etsb_scripts.js')}}
 

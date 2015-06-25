@@ -322,29 +322,102 @@ class FeesController extends \BaseController {
     {
         $degree = ['' => 'Select Degree'] + DegreeProgram::lists('title', 'id');
         $batch = ['' => 'Select Batch']+ Batch::lists('batch_number', 'id');
-        $schedule = ['' => 'Select Billing Schedule']+ BillingSchedule::lists('title', 'id');
-        $item = ['' => 'Select Billing Item']+ BillingItem::lists('title', 'id');
+        $schedule = DB::table('billing_schedule')->orderBy('id', 'DESC')->lists('title','id');
+        $item = DB::table('billing_item')->orderBy('id', 'DESC')->lists('title','id');
+
+        $degree_id = Input::get("degree_id");
+        Input::flash();
+
+        $q = InstallmentSetup::with('relBillingSchedule','relBillingSchedule','relBatch','relBatch.relDegree.relDegreeProgram');
+
+        if (!empty($degree_id)) {
+            $q->whereExists(function($query) use ($degree_id)
+            {
+                $query->from('batch')
+                    ->whereRaw('batch.id = installment_setup.batch_id')
+                    ->where('batch.degree_id', $degree_id);
+            });
+        }
+        $data = $q->orderBy('id', 'DESC')->get();
+
+        return View::Make('fees::installment_setup.index',compact('degree','batch','schedule','item','data','installment_setup'));
+    }
+
+    public function create_installment_setup()
+    {
+        $degprog_id = Input::get('degprog_id');
+        $batch_id = Input::get('batch_id');
+        $schedule_id = Input::get('schedule_id');
+        $item_id = Input::get('item_id');
+        $no_installment = Input::get('no_installment');
 
         $data = DB::table('billing_setup')
             ->join('billing_item','billing_setup.billing_item_id','=','billing_item.id')
-           // ->group_by('billing_setup.batch_id')
-            ->select(array(
-                    'billing_setup.*',
-                    'billing_item.cost as totaladvantage')
-            )
+            ->groupBy('billing_item.initial')
+            ->where('billing_item.initial', '=', 'acm' )
+            ->where('billing_setup.batch_id', '=', $batch_id )
             ->sum('billing_setup.cost');
 
-       /* $data = BillingSetup::leftJoin(
-            DB::raw('(SELECT billing_item_id, SUM(cost) AS votes FROM votes GROUP BY post_id) as v'),
-            'v.post_id', '=', 'posts.id'
-        )->orderBy('votes', 'desc')->take(10)->get();*/
-        //print_r($data);exit;
+        $no_installment_price = ($data !=0) ? $data/$no_installment : '';
 
+        // Calcuation of installment dealines
+        $batch = Batch::find($batch_id)->select('start_date', 'end_date')->first();
+        $end_date = strtotime($batch['end_date']);
+        $start_date = strtotime($batch['start_date']);
+        $duration = floor(( $end_date - $start_date ) / (3600 * 24 * 30) / $no_installment);
+        $deadlines = array();
+        for($i = 0; $i < $no_installment ; $i++){
+            $deadlines[$i] = date("Y-m-d", strtotime("+".$i*$duration." months +15 days", strtotime($batch['start_date'])));
+        }
+        //print_r($deadlines);exit;
 
-        return View::Make('fees::installment_setup.index',compact('degree','batch','schedule','item','data'));
+        return View::Make('fees::installment_setup.create', compact('data', 'no_installment', 'no_installment_price','batch_id','schedule_id','item_id','degprog_id', 'deadlines'));
 
     }
 
+    public function save_installment_setup()
+    {
+        if($this->isPostRequest()) {
+            $data = Input::all();
+            $amount = Input::get('amount');
+            $deadline = Input::get('deadline');
+            $fined_cost = Input::get('fined_cost');
+            DB::beginTransaction();
+            try {
+                for($k = 0; $k < count($amount); $k++){
+                    $model = new InstallmentSetup();
+                    $model->billing_schedule_id = Input::get('billing_schedule_id');
+                    $model->billing_item_id = Input::get('billing_item_id');
+                    $model->batch_id = Input::get('batch_id');
+                    $model->cost = $amount[$k];
+                    $model->deadline = $deadline[$k];
+                    $model->fined_cost = $fined_cost[$k];
+                    $model->save();
+                    DB::commit();
+                }
+                Session::flash('message', "Billing is Setup Successfully");
+                return Redirect::to('fees/installment/setup');
+            }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', "not added.Invalid Request!");
+            }
+            return Redirect::to('fees/installment/setup');
+
+        }
+        return Redirect::to('fees/installment/setup');
+    }
+
+    public function view_installment_setup($id)
+    {
+        $view_installment_setup = InstallmentSetup::find($id);
+        $view_details = InstallmentSetup::with('relBatch', 'relBatch.relDegree','relBatch.relDegree.relDegreeProgram')
+            ->where('id', '=', $id)
+            ->first();
 
 
+       // print_r($view_installment_setup);exit;
+        return View::make('fees::installment_setup.view',compact('view_installment_setup','view_details'));
+    }
 }

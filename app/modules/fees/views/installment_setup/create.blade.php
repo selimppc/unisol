@@ -22,27 +22,38 @@
                         </ul>
                     </li>
                 </ul>
-                <div class="box-body table-responsive ">
-                        <table class="table table-bordered small-header-table" >
-                            <thead>
-                            <th>Amount</th>
-                            <th>Fined Cost</th>
-                            <th>Deadline</th>
-                            </thead>
-                            <tbody>
-                            <td><input type="text" name="amount" class="amount"/></td>
-                            <td><input type="text" name="fined_cost" class="fined_cost"/></td>
-                            <td>{{ Form::text('deadline', Input::old('deadline'),['class'=>'form-control date_picker','required'=>'required']) }}</td>
-                            </tbody>
-                        </table>
-                        <div class="btn-style2">
-                            {{ Form::submit('Submit', array('class'=>' btn btn-xs btn-success')) }}
-                        </div>
+                <div class="col-sm-12 aca-cost-panel">
+                    <div class="aca-style"><b>Academic Cost: {{$data}} ; Per Installment Cost: {{$no_installment_price}}</b></div>
+                </div>‏
+                <table class="table table-bordered small-header-table" >
+                    {{ Form::open(['route'=>'installment.setup.save', 'method'=>'post', 'class'=>'form-horizontal']) }}
+                    <thead>
+                    <th>Amount</th>
+                    <th>Fined Cost</th>
+                    <th>Deadline</th>
+                    </thead>
+                    <tbody>
+                    {{ Form::hidden('batch_id', ($batch_id)? $batch_id: '','') }}
+                    {{ Form::hidden('billing_schedule_id', ($schedule_id)? $schedule_id: '','') }}
+                    {{ Form::hidden('billing_item_id', ($item_id)? $item_id: '','') }}
 
-                </div>
+                    @for($i = 0; $i < $no_installment; $i++)
+                        <tr>
+                            <td>{{ Form::text('amount[]', ($no_installment_price) ? $no_installment_price : Input::old('amount'), ['class'=>'form-control', 'required'=>'required']) }}</td>
+
+                            <td>{{ Form::text('fined_cost[]', $no_installment_price * 0.05, Input::old('fined_cost'), ['class'=>'form-control', 'required'=>'required']) }}</td>
+
+                            <td>{{ Form::text('deadline[]', $deadlines[$i] ,Input::old('deadline'),['class'=>'form-control date_picker','required'=>'required']) }}</td>
+                        </tr>
+                    @endfor
+                    </tbody>
+                    <tr>
+                        <td class="btn-style2" colspan="3">{{ Form::submit('Submit', array('class'=>' btn btn-success')) }}
+                        <a href="{{ URL::route('installment.setup')}}" class="btn-link pull-right"><i class="fa fa-backward text-red"></i> Back </a></td>
+                    </tr>
+                    {{ Form::close() }}
+                </table>
             </div>
         </div>
     </div>
-
-
 @stop
