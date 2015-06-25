@@ -73,11 +73,25 @@ class HrEmployee extends Eloquent{
         return $this->HasMany('HrSalary','hr_employee_id','id');
     }
 
-//    public function relHrSalary(){
-//        return $this->HasOne('HrSalary','hr_employee_id','id');
-//    }
+    public function relHrOverTime(){
+        return $this->HasMany('HrOverTime','hr_employee_id','id');
+    }
 
+    public function relHrBonus(){
+        return $this->HasMany('HrBonus','hr_employee_id','id');
+    }
 
+    public function relHrLoanHead(){
+        return $this->HasMany('HrLoanHead','hr_employee_id','id');
+    }
+
+    public function relHrSalaryAdvance(){
+        return $this->HasMany('HrSalaryAdvance','hr_employee_id','id');
+    }
+
+    public function relHrSalaryTransaction(){
+        return $this->HasMany('HrSalaryTransaction','hr_employee_id','id');
+    }
 
     // TODO : user info while saving data into table
     public static function boot(){

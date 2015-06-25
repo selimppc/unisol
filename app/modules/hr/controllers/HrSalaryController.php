@@ -23,7 +23,7 @@ class HrSalaryController extends \BaseController {
             $user_ids [] = [ $values->user_id ];
         }
         $lists = User::with('relUserProfile')->whereIn('id', $user_ids)->get();
-        print_r($lists);exit;
+        #print_r($lists);exit;
 
 //        $list_w = User::with('relUserProfile')->whereIn('id', $user_ids)->first()->lists('first_name','id')
 //        ->select(DB::raw('CONCAT(user_profile.first_name, " ", user_profile.middle_name, " ", user_profile.last_name ) as full_name'), 'user.id as user_id')->lists('full_name', 'user_id');
