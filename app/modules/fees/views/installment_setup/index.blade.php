@@ -73,7 +73,7 @@
                                             <td>
                                                 <a href="{{ URL::route('installment.setup.view',['id'=>$value->batch_id])}}" class="btn btn-xs btn-default"><i class="fa fa-eye" style="color: green"></i></a>
 
-                                               {{-- <a href="" class="btn btn-xs btn-default" data-toggle="modal" data-target="#editModal" href="" ><i class="fa fa-pencil-square-o" style="color: #0044cc"></i></a>--}}
+                                                <a href="" class="btn btn-xs btn-default" data-toggle="modal" data-target="#editModal" href="" ><i class="fa fa-pencil-square-o" style="color: #0044cc"></i></a>
 
                                             </td>
                                         </tr>
