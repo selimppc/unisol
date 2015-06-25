@@ -14,7 +14,10 @@ class HrSalaryTransactionController extends \BaseController {
 
     public function index_hr_salary_transaction()
     {
+        $pageTitle = 'Salary Transaction Lists';
 
+
+        return View::make('hr::hr.salary_transaction.index', compact('model','pageTitle'));
     }
 
     public function store_hr_salary_transaction()
@@ -24,12 +27,12 @@ class HrSalaryTransactionController extends \BaseController {
 
     public function show_hr_salary_transaction()
     {
-
+        return View::make('hr::hr.salary_transaction.view', compact('model'));
     }
 
     public function edit_hr_salary_transaction()
     {
-
+        return View::make('hr::hr.salary_transaction.edit', compact('model'));
     }
 
     public function destroy_hr_salary_transaction()

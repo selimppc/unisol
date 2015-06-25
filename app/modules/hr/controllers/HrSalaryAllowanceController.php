@@ -13,9 +13,12 @@ class HrSalaryAllowanceController extends \BaseController
         return Input::server("REQUEST_METHOD") == "POST";
     }
 
-    public function index_hr_salary_allowance_allowance()
+    public function index_hr_salary_allowance()
     {
+        $pageTitle = 'Salary Allowance Lists';
 
+
+        return View::make('hr::hr.salary_allowance.index', compact('model','pageTitle'));
     }
 
     public function store_hr_salary_allowance()
@@ -25,11 +28,12 @@ class HrSalaryAllowanceController extends \BaseController
 
     public function show_hr_salary_allowance()
     {
-
+        return View::make('hr::hr.salary_allowance.view', compact('model'));
     }
 
     public function edit_hr_salary_allowance()
     {
+        return View::make('hr::hr.salary_allowance.edit', compact('model'));
 
     }
 

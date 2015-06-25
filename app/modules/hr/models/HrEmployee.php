@@ -67,6 +67,7 @@ class HrEmployee extends Eloquent{
         return $this->belongsTo('Currency','currency_id','id');
     }
 
+    // many
     // is this relation ok ?
 
     public function relHrSalary(){

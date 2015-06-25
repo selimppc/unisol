@@ -15,7 +15,10 @@ class HrSalaryAdvanceController extends \BaseController
 
     public function index_hr_salary_advance()
     {
+        $pageTitle = 'Salary Advance Lists';
 
+
+        return View::make('hr::hr.salary_advance.index', compact('model','pageTitle'));
     }
 
     public function store_hr_salary_advance()
@@ -25,12 +28,12 @@ class HrSalaryAdvanceController extends \BaseController
 
     public function show_hr_salary_advance()
     {
-
+        return View::make('hr::hr.salary_advance.view', compact('model'));
     }
 
     public function edit_hr_salary_advance()
     {
-
+        return View::make('hr::hr.salary_advance.edit', compact('model'));
     }
 
     public function destroy_hr_salary_advance()

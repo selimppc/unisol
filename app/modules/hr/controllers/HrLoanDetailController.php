@@ -13,9 +13,11 @@ class HrLoanDetailController extends \BaseController
         return Input::server("REQUEST_METHOD") == "POST";
     }
 
-    public function index_hr_loan_detail($emp_id)
+    public function index_hr_loan_detail()
     {
+        $pageTitle = 'Loan Detail Lists';
 
+        return View::make('hr::hr.loan_detail.index', compact('model','pageTitle'));
     }
 
     public function store_hr_loan_detail()
@@ -23,17 +25,18 @@ class HrLoanDetailController extends \BaseController
 
     }
 
-    public function show_hr_loan_detail($s_g_id)
+    public function show_hr_loan_detail()
     {
 
+        return View::make('hr::hr.loan_detail.view', compact('model'));
     }
 
-    public function edit_hr_loan_detail($s_g_id)
+    public function edit_hr_loan_detail()
     {
-
+        return View::make('hr::hr.loan_detail.edit', compact('model'));
     }
 
-    public function destroy_hr_loan_detail($s_g_id)
+    public function destroy_hr_loan_detail()
     {
 
     }

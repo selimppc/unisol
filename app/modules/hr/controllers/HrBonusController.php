@@ -16,7 +16,9 @@ class HrBonusController extends \BaseController
 
     public function index_hr_bonus()
     {
+        $pageTitle = 'Bonus Lists';
 
+        return View::make('hr::hr.bonus.index', compact('model','pageTitle'));
     }
 
     public function store_hr_bonus()
@@ -26,12 +28,13 @@ class HrBonusController extends \BaseController
 
     public function show_hr_bonus()
     {
-
+        return View::make('hr::hr.bonus.view', compact('model'));
     }
 
     public function edit_hr_bonus()
     {
 
+        return View::make('hr::hr.bonus.edit', compact('model'));
     }
 
     public function destroy_hr_bonus()

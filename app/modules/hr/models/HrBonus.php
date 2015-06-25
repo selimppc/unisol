@@ -61,4 +61,5 @@ class HrBonus extends Eloquent{
 
 
     //TODO : Scope Area
+
 }
