@@ -48,7 +48,7 @@
                                 {{ Form::submit('Filter', array('class'=>'btn btn-primary  btn-xs','id'=>'button'))}}
                             </div>
                             {{Form::close()}}
-                            <div class="col-sm-2 add-install">
+                            <div class="col-sm-2" style="margin-top: 7px;">
                                 </br>
                                 <button type="button" class=" btn btn-xs btn-success fa fa-plus " data-toggle="modal" data-target="#addInstallment" >Add Installment</button>
                             </div>
@@ -59,6 +59,7 @@
                         <div class="box-body table-responsive ">
                             <table id="example" class="table table-bordered table-hover table-striped">
                                 <thead>
+                                <th>Degree</th>
                                 <th>Batch</th>
                                 <th>Action</th>
                                 </thead>
@@ -66,9 +67,14 @@
                                 @if(isset($data))
                                     @foreach($data as $value)
                                         <tr>
+                                            <td>{{isset($value->relBatch->relDegree->relDegreeProgram->title) ? $value->relBatch->relDegree->relDegreeProgram->title :''}}
+                                            </td>
                                             <td>{{isset($value->relBatch->batch_number) ? $value->relBatch->batch_number : ''}}</td>
                                             <td>
                                                 <a href="{{ URL::route('installment.setup.view',['id'=>$value->batch_id])}}" class="btn btn-xs btn-default"><i class="fa fa-eye" style="color: green"></i></a>
+
+                                                <a href="" class="btn btn-xs btn-default" data-toggle="modal" data-target="#editModal" href="" ><i class="fa fa-pencil-square-o" style="color: #0044cc"></i></a>
+
                                             </td>
                                         </tr>
                                     @endforeach
