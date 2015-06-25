@@ -336,10 +336,11 @@ class FeesController extends \BaseController {
                 $query->from('batch')
                     ->whereRaw('batch.id = installment_setup.batch_id')
                     ->where('batch.degree_id', $degree_id);
+
             });
         }
-        $data = $q->orderBy('id', 'DESC')->get();
-
+        $data = $q->groupBy('batch_id');
+        $data = $q->orderBy('id', 'DESC')->paginate(10);
         return View::Make('fees::installment_setup.index',compact('degree','batch','schedule','item','data','installment_setup'));
     }
 
@@ -351,28 +352,53 @@ class FeesController extends \BaseController {
         $item_id = Input::get('item_id');
         $no_installment = Input::get('no_installment');
 
-        $data = DB::table('billing_setup')
-            ->join('billing_item','billing_setup.billing_item_id','=','billing_item.id')
-            ->groupBy('billing_item.initial')
-            ->where('billing_item.initial', '=', 'acm' )
-            ->where('billing_setup.batch_id', '=', $batch_id )
-            ->sum('billing_setup.cost');
+        /*  For View installment*/
+        $setup = DB::table('installment_setup')
+            ->where('installment_setup.batch_id', '=' ,$batch_id)
+            ->get();
 
-        $no_installment_price = ($data !=0) ? $data/$no_installment : '';
+        if($setup){
+            $view_details = InstallmentSetup::with('relBatch', 'relBatch.relDegree','relBatch.relDegree.relDegreeProgram')
+                ->where('batch_id', '=', $batch_id)
+                ->first();
 
-        // Calcuation of installment dealines
-        $batch = Batch::find($batch_id)->select('start_date', 'end_date')->first();
-        $end_date = strtotime($batch['end_date']);
-        $start_date = strtotime($batch['start_date']);
-        $duration = floor(( $end_date - $start_date ) / (3600 * 24 * 30) / $no_installment);
-        $deadlines = array();
-        for($i = 0; $i < $no_installment ; $i++){
-            $deadlines[$i] = date("Y-m-d", strtotime("+".$i*$duration." months +15 days", strtotime($batch['start_date'])));
+            $view_installment_setup = InstallmentSetup::with('relBatch')
+                ->where('batch_id', '=', $batch_id)
+                ->get();
+
+            $total_cost = DB::table('installment_setup')
+                ->where('installment_setup.batch_id', '=', $batch_id )
+                ->sum('installment_setup.cost');
+
+            $total_fined_cost = DB::table('installment_setup')
+                ->where('installment_setup.batch_id', '=', $batch_id )
+                ->sum('installment_setup.fined_cost');
+
+            return View::make('fees::installment_setup.view',compact('view_installment_setup','view_details','total_cost','total_fined_cost'));
+
+        }else{
+            /*  For create installment*/
+            $data = DB::table('billing_setup')
+                ->join('billing_item','billing_setup.billing_item_id','=','billing_item.id')
+                ->groupBy('billing_item.initial')
+                ->where('billing_item.initial', '=', 'acm' )
+                ->where('billing_setup.batch_id', '=', $batch_id )
+                ->sum('billing_setup.cost');
+
+            $no_installment_price = ($data !=0) ? $data/$no_installment : '';
+
+            // Calcuation of installment dealines
+            $batch = Batch::find($batch_id)->select('start_date', 'end_date')->first();
+            $end_date = strtotime($batch['end_date']);
+            $start_date = strtotime($batch['start_date']);
+            $duration = floor(( $end_date - $start_date ) / (3600 * 24 * 30) / $no_installment);
+            $deadlines = array();
+            for($i = 0; $i < $no_installment ; $i++){
+                $deadlines[$i] = date("Y-m-d", strtotime("+".$i*$duration." months +15 days", strtotime($batch['start_date'])));
+            }
+            //print_r($deadlines);exit;
+            return View::Make('fees::installment_setup.create', compact('data', 'no_installment', 'no_installment_price','batch_id','schedule_id','item_id','degprog_id', 'deadlines'));
         }
-        //print_r($deadlines);exit;
-
-        return View::Make('fees::installment_setup.create', compact('data', 'no_installment', 'no_installment_price','batch_id','schedule_id','item_id','degprog_id', 'deadlines'));
-
     }
 
     public function save_installment_setup()
@@ -409,15 +435,24 @@ class FeesController extends \BaseController {
         return Redirect::to('fees/installment/setup');
     }
 
-    public function view_installment_setup($id)
+    public function view_installment_setup($batch_id)
     {
-        $view_installment_setup = InstallmentSetup::find($id);
         $view_details = InstallmentSetup::with('relBatch', 'relBatch.relDegree','relBatch.relDegree.relDegreeProgram')
-            ->where('id', '=', $id)
+            ->where('batch_id', '=', $batch_id)
             ->first();
 
+        $view_installment_setup = InstallmentSetup::with('relBatch')
+            ->where('batch_id', '=', $batch_id)
+            ->get();
 
-       // print_r($view_installment_setup);exit;
-        return View::make('fees::installment_setup.view',compact('view_installment_setup','view_details'));
+        $total_cost = DB::table('installment_setup')
+            ->where('installment_setup.batch_id', '=', $batch_id )
+            ->sum('installment_setup.cost');
+
+        $total_fined_cost = DB::table('installment_setup')
+            ->where('installment_setup.batch_id', '=', $batch_id )
+            ->sum('installment_setup.fined_cost');
+
+        return View::make('fees::installment_setup.view',compact('view_installment_setup','view_details','total_cost','total_fined_cost'));
     }
 }

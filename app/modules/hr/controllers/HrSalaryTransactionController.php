@@ -2,85 +2,46 @@
 
 class HrSalaryTransactionController extends \BaseController {
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		//
-	}
+    function __construct()
+    {
+        $this->beforeFilter('', array('except' => array('')));
+    }
+
+    protected function isPostRequest()
+    {
+        return Input::server("REQUEST_METHOD") == "POST";
+    }
+
+    public function index_hr_salary_transaction()
+    {
+        $pageTitle = 'Salary Transaction Lists';
 
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
-	}
+        return View::make('hr::hr.salary_transaction.index', compact('model','pageTitle'));
+    }
 
+    public function store_hr_salary_transaction()
+    {
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
-	}
+    }
 
+    public function show_hr_salary_transaction()
+    {
+        return View::make('hr::hr.salary_transaction.view', compact('model'));
+    }
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
+    public function edit_hr_salary_transaction()
+    {
+        return View::make('hr::hr.salary_transaction.edit', compact('model'));
+    }
 
+    public function destroy_hr_salary_transaction()
+    {
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
+    }
 
+    public function batch_delete_hr_salary_transaction()
+    {
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
-	}
-
-
+    }
 }
