@@ -11,11 +11,11 @@ class HrBonus extends Eloquent{
     protected $fillable = [
         'hr_employee_id','title','amount','date','note','status'
     ];
-//'currency_id','exchange_rate',
+
     private $errors;
     private $rules = [
         'hr_employee_id' => 'required',
-//        'currency_id' => 'required'
+
     ];
 
     public function validate($data)
