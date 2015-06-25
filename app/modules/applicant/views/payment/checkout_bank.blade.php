@@ -31,10 +31,9 @@
                         @foreach($data as $value)
                         <tr>
                             <td class="col-lg-10">
-                                <a href="{{ URL::route('admission.applicant.admission.test_details',
-                                                       ['batch_id' => $value->id]) }}" class="btn-link" title="Degree,Subject & Exam Center Info For Admission" data-toggle="modal" data-target="#ATDModal">
-                                    {{$value->relDegree->relDegreeLevel->code.''.$value->relDegree->relDegreeGroup->code.' In '.$value->relDegree->relDegreeProgram->code}}
-                                </a>&nbsp;&nbsp;  Batch #:{{ $value->batch_number }}
+                            {{$value->relDegree->relDegreeLevel->code.''.$value->relDegree->relDegreeGroup->code.' In '.$value->relDegree->relDegreeProgram->code}}
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="{{ URL::route('admission.applicant.admission.test_details',
+                                ['batch_id' => $value->id]) }}" class="btn-link" title="Degree,Subject & Exam Center Info For Admission" data-toggle="modal" data-target="#ATDModal">ATD</a>
                             </td>
                         </tr>
                         @endforeach
@@ -44,10 +43,6 @@
                 </div>
             </div>
         </div>
-
-        {{--<div class="box-footer clearfix">
-            <a class="pull-right btn btn-xs btn-info" href="{{ URL::route('admission.applicant.add-degree' )}}" data-toggle="modal" data-target="#addDegreeModal"> Add more degree</a>
-        </div>--}}
     </div>
 </div>
 
@@ -96,7 +91,8 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div  class="col-lg-6">
-                    {{Form::open(array('url'=>'', 'class'=>'form-horizontal','files'=>true))}}
+                     {{Form::open(array('url'=> ['applicant/degree-apply'], 'class'=>'form-horizontal','files'=>true))}}
+
                         <div class='form-group'>
                              <div>{{ Form::label('name', 'Bank Name') }}<span class="text-danger">*</span>
                              {{ Form::text('name',Input::old('name') ,['class'=>'form-control input-sm','required'])}}</div>
@@ -120,4 +116,12 @@
         </div>
    </div>
 </div><p>&nbsp;</p><p>&nbsp;</p>
+
+
+<div class="modal fade" id="ATDModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      </div>
+    </div>
+ </div>
 @stop

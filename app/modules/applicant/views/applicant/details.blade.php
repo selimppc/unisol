@@ -68,7 +68,7 @@
     <div class="box-header">
         <h5 class="box-title" style="color: orangered; font-size: 14px;">Before proceeding to checkout please complete your Profile and Academic Record :: To checkout click on the button >> "Next"</h5>
         <div class="box-tools pull-right">
-            <a class="pull-right btn btn-xs btn-success"  href="{{ URL::route('admission.applicant.adm_checkout',$batch_id)}}"><b style="color: #ffffff;"> Next </b> <i class="fa fa-arrow-circle-right"></i></a>
+            <a class="pull-right btn btn-xs btn-success"  href="{{ URL::route('admission.applicant.adm_checkout')}}"><b style="color: #ffffff;"> Next </b> <i class="fa fa-arrow-circle-right"></i></a>
         </div>
     </div>
     <section class="col-lg-6 connectedSortable">

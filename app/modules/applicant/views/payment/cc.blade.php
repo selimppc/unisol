@@ -97,7 +97,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div  class="col-lg-6">
-                    {{Form::open(array('url'=>'', 'class'=>'form-horizontal','files'=>true))}}
+                    {{Form::open(array('url'=> ['applicant/degree-apply',$batch_id], 'class'=>'form-horizontal','files'=>true))}}
                         <div class='form-group'>
                              <div>{{ Form::label('name', 'Name Of CC') }}<span class="text-danger">*</span>
                              {{ Form::text('name',Input::old('name') ,['class'=>'form-control input-sm','required'])}}</div>

@@ -11,7 +11,7 @@ Route::any("/applicant", [
 ]);
 
 
-Route::any('applicant/details/{batch_id}',
+Route::any('applicant/details',
     ['as' => 'applicant.details',
         'uses' => 'ApplicantController@applicantDetails']);
 
@@ -201,10 +201,15 @@ Route::any('applicant/payment/checkout-bank/{batch_id}',[
     'uses'=> 'ApplicantController@checkoutBank'
 ]);
 
-Route::any('applicant/payment/checkout/credit-card',[
+Route::any('applicant/payment/checkout/credit-card/{batch_id}',[
     'as' => 'applicant.payment.checkout-cc',
     'uses'=> 'ApplicantController@checkoutCC'
 ]);
+
+    Route::any('applicant/degree-apply',[
+        'as' => 'applicant.degree-apply',
+        'uses'=> 'ApplicantController@admDegreeApply'
+    ]);
 //**********************Admission Test for Applicant ************************************
 
 Route::any('applicant/admission-test',[

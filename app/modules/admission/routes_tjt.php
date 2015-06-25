@@ -242,7 +242,7 @@ Route::any('admission/applicant/admission/save-exm-center',
         'uses' => 'ApplicantController@admExmCenterSave']);
 
 //Adm_applicant checkout view
-Route::any('admission/applicant/payment-checkout/{batch_id}',
+Route::any('admission/applicant/payment-checkout',
     ['as' => 'admission.applicant.adm_checkout',
         'uses' => 'ApplicantController@admPaymentCheckoutByApplicant']);
 
