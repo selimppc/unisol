@@ -67,12 +67,14 @@ class HrEmployee extends Eloquent{
         return $this->belongsTo('Currency','currency_id','id');
     }
 
-//    public function relRncFinancialTransaction(){
-//        return $this->HasOne('RncFinancialTransaction', 'rnc_transaction_id', 'id');
-//    }
+    // is this relation ok ?
 
-//    public function relRncFinancialTransaction(){
-//        return $this->HasMany('RncFinancialTransaction', 'rnc_transaction_id', 'id');
+    public function relHrSalary(){
+        return $this->HasMany('HrSalary','hr_employee_id','id');
+    }
+
+//    public function relHrSalary(){
+//        return $this->HasOne('HrSalary','hr_employee_id','id');
 //    }
 
 
@@ -105,5 +107,6 @@ class HrEmployee extends Eloquent{
     public function getDateOfConfirmationAttribute($date) {
         return Carbon::parse($date)->format('d-M-Y'); //Change the format to whichever you desire
     }
+
 
 }
