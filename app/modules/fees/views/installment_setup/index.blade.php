@@ -45,12 +45,12 @@
                             </div>
                             <div class="col-sm-2 install-filter">
                                 </br>
-                                {{ Form::submit('Filter', array('class'=>'btn btn-primary  btn-xs','id'=>'button'))}}
+                                {{ Form::submit('Filter', array('class'=>'btn btn-primary','id'=>'button'))}}
                             </div>
                             {{Form::close()}}
-                            <div class="col-sm-2" style="margin-top: 7px;">
+                            <div class="col-sm-2" style="margin-top: 10px;">
                                 </br>
-                                <button type="button" class=" btn btn-xs btn-success fa fa-plus " data-toggle="modal" data-target="#addInstallment" >Add Installment</button>
+                                <button type="button" class=" btn btn-success fa fa-plus " data-toggle="modal" data-target="#addInstallment" >Add Installment</button>
                             </div>
                         </div>
 
