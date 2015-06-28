@@ -1,22 +1,24 @@
 <div class='form-group'>
    {{ Form::label('hr_employee_id', 'Employee Name') }}
-   {{ Form::select('hr_employee_id', $lists ,Input::old('hr_employee_id'),['class'=>'form-control', 'required']) }}
+   {{ Form::text('hr_employee_id', $selected_employee_id , Input::old('hr_employee_id'),['class'=>'form-control', 'required']) }}
 </div>
+
+{{--Employee Id : {{ Form::text('hr_employee_id', $selected_employee_id) }}--}}
 
 <div class='form-group'>
    {{ Form::label('salary_type', ' Salary Type') }}
    {{ Form::select('salary_type',[''=>'Select Your Salary Type','monthly'=>'monthly','weekly'=>'weekly','yearly'=>'yearly','hourly'=>'hourly'] ,Input::old('salary_type'),['class'=>'form-control', 'required']) }}
 </div>
 
-{{--<div class='form-group'>--}}
-   {{--{{ Form::label('currency', 'Code') }}--}}
-   {{--{{ Form::text('code', Input::old('code'),['class'=>'form-control', 'required']) }}--}}
-{{--</div>--}}
+<div class='form-group'>
+   {{ Form::label('currency_id', 'Currency') }}
+   {{ Form::select('currency_id', $lists_currency,Input::old('currency_id'),['class'=>'form-control', 'required']) }}
+</div>
 
-{{--<div class='form-group'>--}}
-   {{--{{ Form::label('exchange_rate', 'Exchange Rate') }}--}}
-   {{--{{ Form::textarea('exchange_rate',  Input::old('exchange_rate'),['size' => '30x5', 'class'=>'form-control']) }}--}}
-{{--</div>--}}
+<div class='form-group'>
+   {{ Form::label('exchange_rate', 'Exchange Rate') }}
+   {{ Form::text('exchange_rate',  Input::old('exchange_rate'),['class'=>'form-control']) }}
+</div>
 
 <div class='form-group'>
    {{ Form::label('gross', 'Gross') }}

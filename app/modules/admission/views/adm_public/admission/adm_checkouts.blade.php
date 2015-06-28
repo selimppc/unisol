@@ -101,8 +101,8 @@
                   <label class="radio-inline"><input type="radio" name="radio" id="bank" value="bank"> <b>Bank</b></label>
                   <label class="radio-inline"><input type="radio" name="radio" id="credt_card" value="credtcard"> <b>Credit Card</b> </label>
 
-                  &nbsp;&nbsp;&nbsp;&nbsp;<a class="pull-right btn btn-sm btn-default"  id="ch_bank" style="display:none" href="{{Route('applicant.payment.checkout-bank',$batch_id)}}"><b>Checkout With Bank</b></a>
-                  &nbsp;&nbsp;&nbsp;&nbsp;<a class="pull-right btn btn-sm btn-default" id="ch_credt_card" style="display:none" href="{{Route('applicant.payment.checkout-cc',$batch_id)}}"><b>Checkout With Credit Card</b></a>
+                  &nbsp;&nbsp;&nbsp;&nbsp;<a class="pull-right btn btn-sm btn-default"  id="ch_bank" style="display:none" href="{{Route('applicant.payment.checkout-bank')}}"><b>Checkout With Bank</b></a>
+                  &nbsp;&nbsp;&nbsp;&nbsp;<a class="pull-right btn btn-sm btn-default" id="ch_credt_card" style="display:none" href="{{Route('applicant.payment.checkout-cc')}}"><b>Checkout With Credit Card</b></a>
 
                   <p>&nbsp;</p>
                   <b style="color: lightcoral">It is convey that to pay application charge you have two options. For bank you need to pay 1000BDT first.<br> Bank Information :<br>Bank Name :XXX Bank Ltd.<br>Account Name: Mr. Karim<br>Account :#34534543654645.<br><br>**And If You Have Credit Card Then You Can Pay That Instantly.

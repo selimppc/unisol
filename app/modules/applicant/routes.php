@@ -194,22 +194,46 @@ Route::any('apt/misc_info/edit/{id}',
 Route::any('apt/misc_info/update/{id}',
     'ApplicantController@miscInfoUpdate'
 );
+
+//**********************Degree Apply By Applicant ************************************
+Route::any('admission/applicant/apply-degree',
+    ['as' => 'admission.applicant.apply-degree',
+        'uses' => 'ApplicantController@applyDegreeByApplicant']);
+
+//Admission test details
+Route::any('admission/applicant/admission-test-details/{batch_id}',
+    ['as' => 'admission.applicant.admission.test_details',
+        'uses' => 'ApplicantController@admTestDetails']);
+//Exam Center
+Route::any('admission/applicant/admission/exm-center/{batch_id}',
+    ['as' => 'admission.applicant.exm-center',
+        'uses' => 'ApplicantController@admExmCenter']);
+
+Route::any('admission/applicant/admission/save-exm-center',
+    ['as' => 'admission.applicant.save-exm-center',
+        'uses' => 'ApplicantController@admExmCenterSave']);
+
+//Adm_applicant checkout view
+Route::any('admission/applicant/payment-checkout',
+    ['as' => 'admission.applicant.adm_checkout',
+        'uses' => 'ApplicantController@admPaymentCheckoutByApplicant']);
+
 //**********************Payment option for Applicant ************************************
 
-Route::any('applicant/payment/checkout-bank/{batch_id}',[
+Route::any('applicant/payment/checkout-bank',[
     'as' => 'applicant.payment.checkout-bank',
     'uses'=> 'ApplicantController@checkoutBank'
 ]);
 
-Route::any('applicant/payment/checkout/credit-card/{batch_id}',[
+Route::any('applicant/payment/checkout/credit-card',[
     'as' => 'applicant.payment.checkout-cc',
     'uses'=> 'ApplicantController@checkoutCC'
 ]);
 
-    Route::any('applicant/degree-apply',[
-        'as' => 'applicant.degree-apply',
-        'uses'=> 'ApplicantController@admDegreeApply'
-    ]);
+Route::any('applicant/degree-apply',[
+    'as' => 'applicant.degree-apply',
+    'uses'=> 'ApplicantController@admDegreeApply'
+]);
 //**********************Admission Test for Applicant ************************************
 
 Route::any('applicant/admission-test',[

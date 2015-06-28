@@ -29,8 +29,8 @@
                     <th><input name="id" type="checkbox" id="checkbox" class="checkbox" value=""></th>
                     <th>Employee Name</th>
                     <th>Salary Type</th>
-                    {{--<th>Currency</th>--}}
-                    {{--<th>Exchange Rate</th>--}}
+                    <th>Currency</th>
+                    <th>Exchange Rate</th>
                     <th>Gross</th>
                     <th>Basic</th>
                     <th>Status</th>
@@ -41,13 +41,17 @@
                 @foreach($model as $values)
                  <tr>
                     <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $values->id }}"></td>
-                    <td>{{ isset($values->hr_empoloyee_id) ? $values->relHrEmployee->relUser->relUserProfile->first_name : '' }}</td>
-                    <td>{{ $values->salary_type }}</td>
-                    {{--<td>{{ $values->currency_id }}</td>--}}
-                    {{--<td>{{ $values->exchange_rate }}</td>--}}
+                    <td>{{ $values->relHrEmployee->relUser->relUserProfile->first_name.' '.
+                           $values->relHrEmployee->relUser->relUserProfile->middle_name.' '.
+                           $values->relHrEmployee->relUser->relUserProfile->last_name
+                        }}
+                    </td>
+                    <td>{{ ucfirst($values->salary_type) }}</td>
+                    <td>{{ $values->currency_id }}</td>
+                    <td>{{ $values->exchange_rate }}</td>
                     <td>{{ $values->gross }}</td>
                     <td>{{ $values->basic }}</td>
-                    <td>{{ $values->status }}</td>
+                    <td>{{ ucfirst($values->status) }}</td>
                     <td>
                         <a href="{{ URL::route('salary.show', ['s_id'=>$values->id ])  }}" class="btn btn-default btn-xs" title="Manage Applicant" data-toggle="modal" data-target="#modal-pc"><i style="color: #149bdf" class="fa fa-eye"></i></a>
                         <a href="{{ URL::route('salary.edit',['s_id'=>$values->id])  }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal-pc"> <i style="color: #7b24dd" class="fa fa-edit"></i></a>

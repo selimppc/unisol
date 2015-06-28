@@ -638,6 +638,11 @@ Route::any('admission/amw/batch-applicant/view-applicant/{id}/{batch_id}/{applic
     ['as'=>'admission.amw.batch-applicant.view-applicant',
         'uses'=>'AdmAmwController@batchApplicantView']);
 
+//Exam Seat
+Route::any('admission/amw/exam-seat/{batch_id}',
+    ['as'=>'admission.amw.exam-seat',
+        'uses'=>'AdmAmwController@examSeat']);
+
 
 
 

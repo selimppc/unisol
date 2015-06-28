@@ -155,10 +155,6 @@ Route::any('admission/applicant/degree-apply',
     ['as' => 'admission.applicant.degree_apply',
         'uses' => 'ApplicantController@degreeApply']);
 
-Route::any('admission/applicant/apply-degree/{degree_id}',
-    ['as' => 'admission.applicant.apply-degree',
-        'uses' => 'ApplicantController@applyDegreeByApplicant']);
-
 //Add acm records_modal
 Route::any('admission/public/admission/add-applicant-acm-docs',
     ['as' => 'admission.public.add-applicant-acm-docs',
@@ -228,23 +224,6 @@ Route::any('admission/applicant/add-more-degree',
     ['as' => 'admission.applicant.add-degree',
         'uses' => 'ApplicantController@addMoreDegree']);
 
-//Admission test details
-Route::any('admission/applicant/admission-test-details/{batch_id}',
-    ['as' => 'admission.applicant.admission.test_details',
-        'uses' => 'ApplicantController@admTestDetails']);
-
-Route::any('admission/applicant/admission/exm-center/{batch_id}',
-    ['as' => 'admission.applicant.exm-center',
-        'uses' => 'ApplicantController@admExmCenter']);
-
-Route::any('admission/applicant/admission/save-exm-center',
-    ['as' => 'admission.applicant.save-exm-center',
-        'uses' => 'ApplicantController@admExmCenterSave']);
-
-//Adm_applicant checkout view
-Route::any('admission/applicant/payment-checkout',
-    ['as' => 'admission.applicant.adm_checkout',
-        'uses' => 'ApplicantController@admPaymentCheckoutByApplicant']);
 
 //{--------------------------------------- Degree -------------------------------------------------------------}
 /*
