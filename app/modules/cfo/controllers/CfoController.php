@@ -27,7 +27,7 @@ class CfoController extends \BaseController {
             $data = CfoKnowledgeBase::latest('id')->paginate(10);
         }
         Input::flash();
-        return View::make('cfo::public.knowledgebase',compact('data','model'));
+        return View::make('cfo::user.knowledge_base.knb_list',compact('data','model'));
 	}
 
       //TODO :User Rating On KnowledgeBase  .........................

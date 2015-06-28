@@ -1021,10 +1021,10 @@ class ApplicantController extends \BaseController
         $applicant_id = Auth::applicant()->get()->id;
         $applied_degree_ids = Session::get('applicantDegIds');
 
-        $data = Batch::with('relDegree','relDegree.relDegreeGroup','relDegree.relDegreeProgram','relDegree.relDegreeLevel')->whereIn('degree_id',$applied_degree_ids)->get();
-        $batch_id = Batch::whereIn('degree_id',$applied_degree_ids)->first()->id;
-//        print_r($batch_id);exit;
-
+        if($applied_degree_ids){
+            $data = Batch::with('relDegree', 'relDegree.relDegreeGroup', 'relDegree.relDegreeProgram', 'relDegree.relDegreeLevel')->whereIn('degree_id', $applied_degree_ids)->get();
+            $batch_id = Batch::whereIn('degree_id', $applied_degree_ids)->first()->id;
+        }
         $applicant_personal_info = ApplicantProfile::with('relCountry')
             ->where('applicant_id', '=',$applicant_id )
             ->first();
@@ -1097,14 +1097,13 @@ class ApplicantController extends \BaseController
         if(empty($applicant_personal_info) || empty($applicant_meta_records) ||  count($applicant_acm_records)< 2 ){
             $error_message .= 'Profile or Academic information is Missing! Complete Your profile to checkout!';
         }
-
         if($error_message)
             return Redirect::back()->with('danger', $error_message);
         else
             return Redirect::back()->with('message', $message);
     }
 
-    public function degreeApply(){
+    /*public function degreeApply(){
 
         if(Auth::applicant()->check()){
             if(Session::has('applicantDegIds'))
@@ -1172,12 +1171,8 @@ class ApplicantController extends \BaseController
         }
         Session::flash('message',  ' Successfully performed This Request!');
         return Redirect::back();
-    }
+    }*/
 //{*********Admission :Ends Degree Apply By Applicant (Tanin)  ****************}
-
-
-
-
 
     public function admission_test()
     {
@@ -1192,7 +1187,6 @@ class ApplicantController extends \BaseController
             Session::flash('danger', "Please Login As Applicant!  Or if not registered applicant then go <a href='/applicant/signup'>signup from here</a>");
             return Redirect::route('user/login');
         }
-
     }
 
     public function admission_test_subject($batch_id)

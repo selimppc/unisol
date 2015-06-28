@@ -69,6 +69,7 @@
                               <a href="{{ URL::to('admission/amw/admission-test-examiner', [ 'batch_id'=>$values->batch_id ]) }}" class="btn btn-success btn-xs" data-toggle="tooltip" data-placement="bottom" title="Examiner">EX</a>
                               <a href="{{ URL::to('admission/amw/admission-test-question', [ 'batch_id'=>$values->batch_id ]) }}" class="btn btn-info btn-xs" data-toggle="tooltip" data-placement="bottom" title="Question Paper">QP</a>
                               <a href="{{ URL::route('admission.amw.question-paper-evaluation', [ 'bats_id'=>$values->batch_id ] ) }}" class="btn btn-success btn-xs" data-toggle="tooltip" data-placement="bottom" title="Question Paper Evaluation">QPE</a>
+                              <a href="{{ URL::route('admission.amw.question-paper-evaluation', [ 'bats_id'=>$values->batch_id ] ) }}" class="btn btn-info btn-xs" data-toggle="tooltip" data-placement="bottom" title="Question Paper Evaluation">Exam Sit</a>
                            </td>
                        </tr>
                      @endif
