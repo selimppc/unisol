@@ -12,8 +12,8 @@
 
 <div id="response-msg" style="color: green; font-size: 16px;"></div>
 <div id="response-msg-failed" style="color: red; font-size: 16px;"></div>
-<div class='row' id="refresh_area">
-    <div class="col-sm-5" style="line-height: 10px; border: 1px solid #003bb3;  ">
+<div class='row' id="refresh_area" >
+    <div class="col-sm-5" style="border: 1px solid #003bb3;  ">
         <h4> Payment Information #  </h4>
 
         <div class='form-group'>
@@ -43,7 +43,8 @@
 
         <div class='form-group'>
            {{ Form::label('amount', 'Amount for PAY') }}
-           {{ Form::text('amount', Input::old('amount'),['class'=>'form-control', 'required', 'placeholder'=>'0.00']) }}
+           {{ Form::text('amount', Input::old('amount'),['class'=>'form-control', 'required', 'id'=>'amount-for-pay', 'placeholder'=>'0.00']) }}
+           {{Form::hidden('pay_amount', null, ['id'=>'pay-for-amount'])}}
         </div>
 
         <div class='form-group'>
@@ -117,6 +118,7 @@
 </div>
 </div>
 {{ Form::close() }}
+
 
 @include('payment::account_payable._script')
 
