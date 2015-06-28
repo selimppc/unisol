@@ -120,12 +120,14 @@
                        </table>
                        <p>&nbsp;</p>
                    {{Form::hidden('ids[]', $values->id)}}
-                   @if($values->admission_deadline)
+                   @if($values->admission_deadline > date('Y-m-d'))
                    {{ Form::submit('Apply', array('class'=>'pull-right btn btn-xs btn-info'))}}
                    @else
                    <a class="pull-right btn btn-xs btn-success" href="{{ URL::route('admission.public.degree_offer_list')}}"><b><i class="fa fa-arrow-circle-left"></i>Go Back</b></a>
-
+                   <h4 style="color: red;text-align: center">Admission Deadline Is Over For This Degree.</h4>
                    @endif
+                   <b style="color: lightcoral">It is convey that to pay application charge you have two options. For bank you need to pay 1000BDT first.<br> Bank Information :<br>Bank Name :XXX Bank Ltd.<br>Account Name: Mr. Karim<br>Account :#34534543654645.<br><br>**And If You Have Credit Card Then You Can Pay That Instantly.
+                   </b>
                    {{ Form::close() }}
                 </div>
              </div>

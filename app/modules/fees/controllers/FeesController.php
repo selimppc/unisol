@@ -437,7 +437,7 @@ class FeesController extends \BaseController {
 
     public function view_installment_setup($batch_id)
     {
-        $view_details = InstallmentSetup::with('relBatch', 'relBatch.relDegree','relBatch.relDegree.relDegreeProgram')
+        $view_details = InstallmentSetup::with('relBatch','relBatch.relDegree','relBatch.relDegree.relDegreeProgram')
             ->where('batch_id', '=', $batch_id)
             ->first();
 

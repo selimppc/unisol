@@ -41,9 +41,14 @@ Route::group(['prefix' => 'payment'], function() {
     ]);
 
     //manage account payable
-    Route::any("ap-payment-voucher", [
+    Route::any("ap-payment-voucher/{supplier_id}/{coa_id}", [
         "as"   => "ap-payment-voucher",
         "uses" => "AccountPayableController@ap_payment_voucher"
+    ]);
+
+    Route::any("store-ap-payment-voucher", [
+        "as"   => "store-ap-payment-voucher",
+        "uses" => "AccountPayableController@store_ap_payment_voucher"
     ]);
 
 

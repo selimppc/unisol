@@ -68,7 +68,7 @@
     <div class="box-header">
         <h5 class="box-title" style="color: orangered; font-size: 14px;">Before proceeding to checkout please complete your Profile and Academic Record :: To checkout click on the button >> "Next"</h5>
         <div class="box-tools pull-right">
-            <a class="pull-right btn btn-xs btn-success"  href="{{ URL::route('admission.applicant.adm_checkout',$batch_id)}}"><b style="color: #ffffff;"> Next </b> <i class="fa fa-arrow-circle-right"></i></a>
+            <a class="pull-right btn btn-xs btn-success"  href="{{ URL::route('admission.applicant.adm_checkout')}}"><b style="color: #ffffff;"> Next </b> <i class="fa fa-arrow-circle-right"></i></a>
         </div>
     </div>
     <section class="col-lg-6 connectedSortable">
@@ -94,7 +94,7 @@
                             @if($applicant_personal_info != null)
                                 <a style="margin-left:-21%" class="pull-right btn btn-default" href="{{ URL::route('admission.public.applicant-profile-edit', ['id'=>$applicant_personal_info->id]  ) }}" data-toggle="modal" data-target="#addDegreeModal" >Edit</a>
                             @else
-                                <a style="margin-left:-21%" class="pull-right btn btn-default" href="{{ URL::route('admission.public.add-applicant-profile')}}" data-toggle="modal" data-target="#addDegreeModal" >Add Profile Information</a>
+                                <a style="margin-left:-21%" class="pull-right btn btn-default" href="{{ URL::to('applicant/personal_info/')}}" >Add Profile Information</a>
                             @endif
                             @if(isset($applicant_personal_info))
                                  <tr>
@@ -201,7 +201,7 @@
                </div>
             </div>
           <div class="box-footer clearfix">
-             <a class="pull-right btn btn-default"  href="{{url::to('admission/public/admission/add-applicant-acm-docs')}}" data-toggle="modal" data-target="#addDegreeModal"><b></b> Add Academic Records </a>
+             <a class="pull-right btn btn-default"  href="{{URL::to('applicant/acm_records/')}}" ><b></b> Add Academic Records </a>
           </div>
         </div>
         <p>&nbsp;</p>

@@ -1,59 +1,126 @@
-@extends('layouts.layout')
-@section('sidebar')
-    @include('layouts._sidebar_amw')
-@stop
-@section('content')
+{{ HTML::script('assets/etsb/etsb_js/jquery-ui/jquery-ui.min.js')}}
 
-<div class="row">
-    <div class="box box-solid ">
-        <div class="col-sm-12">
-           <div class="pull-left col-sm-4"> <h3> {{$pageTitle}} </h3>  </div>
+{{Form::open(['route'=>'store-ap-payment-voucher', 'files'=>true, 'id'=>'grn-sub-grn-data'])}}
 
-        </div>
-
-       <div class="box-body">
-        <table id="example" class="table table-striped  table-bordered" >
-            <thead>
-
-                <tr>
-                    <th> Supplier Code </th>
-                    <th> Supplier Name </th>
-                    <th> Account Code </th>
-                    <th> Account Name  </th>
-                    <th> Contact Person </th>
-                    <th> Payable Amount </th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($data as $values)
-                 <tr>
-                    <td><b>
-                    {{ link_to_route('ap-payment-voucher', $values->supplier_code, ['data-toggle'=>"modal", 'data-target'=>"#modal-pc"]) }}
-                    </b></td>
-                    <td>{{ $values->company_name }}</td>
-                    <td>{{ $values->relAccChartOfAccounts->account_code }}</td>
-                    <td>{{ $values->relAccChartOfAccounts->description }}</td>
-                    <td>{{ $values->contact_person }}  </td>
-                    <td>{{ $values->prime_amount }}  </td>
-                 </tr>
-                @endforeach
-            </tbody>
-        </table>
-        </div>
-    </div>
-
-{{--    {{$data->links();}}--}}
-
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+     <h4> Payment for the Supplier #  </h4>
 </div>
 
-{{-- Modal Area --}}
-<div class="modal fade" id="modal-pc" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
+<div style="padding: 2%; width: 99%;">
+<div class="modal-body " >
+
+<div id="response-msg" style="color: green; font-size: 16px;"></div>
+<div id="response-msg-failed" style="color: red; font-size: 16px;"></div>
+<div class='row' id="refresh_area">
+    <div class="col-sm-5" style="line-height: 10px; border: 1px solid #003bb3;  ">
+        <h4> Payment Information #  </h4>
+
+        <div class='form-group'>
+           {{ Form::hidden('voucher_number', Input::old('voucher_number'), ['class'=>'form-control' , 'required']) }}
+        </div>
+        <div class='form-group'>
+           {{ Form::label('date', 'Date') }}
+           {{ Form::text('date', Input::old('date'),['class'=>'form-control date_picker', 'required']) }}
+        </div>
+        <div class='form-group'>
+           {{ Form::label('year_id', 'Year') }}
+           {{ Form::select('year_id', $year_lists, Input::old('year_id'),['class'=>'form-control', 'required']) }}
+        </div>
+
+        <div class='form-group'>
+           {{ Form::label('period', 'Period') }}
+           {{ Form::select('period', $period_lists, Input::old('period'),['class'=>'form-control', 'required']) }}
+        </div>
+
+        <div class='form-group'>
+           {{ Form::label('acc_chart_of_accounts_id', 'acc_chart_of_accounts_id') }}
+           {{ Form::select('acc_chart_of_accounts_id', $coa_lists, Input::old('acc_chart_of_accounts_id'),['class'=>'form-control', 'required']) }}
+        </div>
+        <div class='form-group'>
+           {{ Form::hidden('inv_supplier_id', $supplier_id) }}
+        </div>
+
+        <div class='form-group'>
+           {{ Form::label('amount', 'Amount for PAY') }}
+           {{ Form::text('amount', Input::old('amount'),['class'=>'form-control', 'required', 'placeholder'=>'0.00']) }}
+        </div>
+
+        <div class='form-group'>
+           {{ Form::label('expense_account', 'Expense Account') }}
+           {{ Form::text('expense_account', Input::old('expense_account'),['class'=>'form-control', 'required']) }}
+        </div>
+
+        <div class='form-group'>
+           {{ Form::label('note', 'Note') }}
+           {{ Form::textarea('note', Input::old('note'),['class'=>'form-control', 'size' => '30x5', 'required']) }}
+        </div>
+
     </div>
-  </div>
+
+    <div class="col-sm-1">
+        &nbsp;
+    </div>
+
+    <div class="col-sm-6">
+        <div class='row'>
+            <div class="col-sm-12" style="background-color: #f9f9f9">
+                <h4> Unpaid Invoice of the supplier#  </h4>
+                <table class="table table-bordered small-header-table" id="amwCourseConfig">
+                    <thead>
+                        <th>Invoice No#</th>
+                        <th>Amount Payable</th>
+                        <th>Date </th>
+                    </thead>
+                    <tbody class="items">
+                    @foreach($data as $key => $value)
+                        <tr>
+                            <td> {{ "OK" }} </td>
+                            <td><b>{{"OK"}}</b></td>
+                            <td>{{"OK"}}</td>
+
+                        </tr>
+                   @endforeach
+                </table>
+            </div>
+
+            <p> &nbsp; </p>
+
+            <div class="col-sm-12" style="background-color: #f9f9f9">
+                <h4> Allocated Invoice </h4> <span class="pull-right" id="something-delete" style="color: orangered; font-weight: bold"></span>
+                <table class="table table-bordered small-header-table" id="amwCourseConfig">
+                    <thead>
+                        <th> Invoice NO# </th>
+                        <th> Amount </th>
+                        <th> Currency </th>
+                    </thead>
+                    <tbody id="new-data"></tbody>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class='form-group'>
+           {{ Form::label('total_amount', 'Total') }}
+           {{ Form::text('total_amount', Input::old('total_amount'),['class'=>'form-control', 'required']) }}
+        </div>
+
+        <div class="form-group">
+            {{ Form::submit('Submit', ['class'=>'pull-right btn btn-xs btn-success', 'id'=>'submit-button-form', 'style'=>'padding: 1%;'] ) }}
+        </div>
+
+    </div>
 </div>
+<p>&nbsp;</p>
+
+</div>
+</div>
+{{ Form::close() }}
+
+@include('payment::account_payable._script')
+
+{{ HTML::script('assets/etsb/etsb_js/etsb_custom.js')}}
+{{ HTML::script('assets/etsb/etsb_js/jquery/jquery.min.js')}}
 
 
-
-@stop
