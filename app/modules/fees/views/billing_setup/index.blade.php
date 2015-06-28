@@ -52,7 +52,7 @@
                                 </div>
                                 <div class="col-sm-2" style="padding-top: 1%">
                                     </br>
-                                    {{ Form::submit('Filter', array('class'=>'btn btn-primary  btn-xs','id'=>'button'))}}
+                                    {{ Form::submit('Filter', array('class'=>'btn btn-primary','id'=>'button'))}}
                                 </div>
                             </div>
                             {{Form::close()}}
@@ -61,7 +61,7 @@
                         {{--*****************Filter :Ends **************************--}}
 
                         <div class="box-body table-responsive ">
-                            <a href="{{ URL::route('billing.create')}}" class=" btn btn-xs btn-success fa fa-plus pull-right" data-toggle="modal" data-target="#myModal">Add New</a>
+                            <a href="{{ URL::route('billing.create')}}" class=" btn btn-success fa fa-plus pull-right" data-toggle="modal" data-target="#myModal">Add New</a>
                               {{Form::open(array('route'=> ['billing.setup.batch.delete'], 'class'=>'form-horizontal','files'=>true))}}
                             <table id="example" class="table table-bordered table-hover table-striped">
                                 <thead>
