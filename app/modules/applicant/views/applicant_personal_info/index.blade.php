@@ -60,7 +60,7 @@
                                 <tr>
                                     <td>Is Freedom Fighter?</td>
                                     <td>
-                                        {{ $applicant_personal_info['freedom_fighter']==1 ? 'Yes' : ''}}
+                                        {{ $applicant_personal_info['freedom_fighter']==1 ? 'Yes' : 'No'}}
                                     </td>
                                 </tr>
                                 <tr>

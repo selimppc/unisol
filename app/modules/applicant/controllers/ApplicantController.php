@@ -213,43 +213,44 @@ class ApplicantController extends \BaseController
     {
         if(Auth::applicant()->check()) {
             $data = Input::all();
+            $imagefile = $data['profile_image'];
             $applicant_model = new ApplicantProfile();
             if ($applicant_model->validate($data)) {
                 DB::beginTransaction();
-                try{
-                $applicant_model->applicant_id = Auth::applicant()->get()->id;
-                $FlashMsg= Auth::applicant()->get()->username ;
-                $applicant_model->date_of_birth = Input::get('date_of_birth');
-                $applicant_model->place_of_birth = Input::get('place_of_birth');
-                $applicant_model->gender = Input::get('gender');
-
-                $imagefile = Input::file('profile_image');
-                $extension = $imagefile->getClientOriginalExtension();
-                $filename = str_random(12) . '.' . $extension;
-                $file = strtolower($filename);
-                $path = public_path("/applicant_images/profile/" . $file);
-                Image::make($imagefile->getRealPath())->resize(100, 100)->save($path);
-                $applicant_model->profile_image = $file;
-
-                $applicant_model->city = Input::get('city');
-                $applicant_model->state = Input::get('state');
-                $applicant_model->country_id = Input::get('country_id');
-                $applicant_model->zip_code = Input::get('zip_code');
-                $applicant_model->phone = Input::get('phone');
-                $applicant_model->save();
-                DB::commit();
-                return Redirect::back()->with('message', "Successfully Added Infomation to
-                 $FlashMsg Profile !");
-                }
-                catch ( Exception $e ){
-                //If there are any exceptions, rollback the transaction
-                DB::rollback();
-                Session::flash('danger', " Information is not added.Invalid Request !");
+                if($data){
+                    try{
+                        $applicant_model->applicant_id = Auth::applicant()->get()->id;
+                        $applicant_model->date_of_birth = Input::get('date_of_birth');
+                        $applicant_model->place_of_birth = Input::get('place_of_birth');
+                        $applicant_model->gender = Input::get('gender');
+                        $applicant_model->city = Input::get('city');
+                        $applicant_model->state = Input::get('state');
+                        $applicant_model->country_id = Input::get('country_id');
+                        $applicant_model->zip_code = Input::get('zip_code');
+                        $applicant_model->phone = Input::get('phone');
+                        if($imagefile){
+                            $imagefile = Input::file('profile_image');
+                            $extension = $imagefile->getClientOriginalExtension();
+                            $filename = str_random(12) . '.' . $extension;
+                            $file = strtolower($filename);
+                            $path = public_path("/applicant_images/profile/" . $file);
+                            Image::make($imagefile->getRealPath())->resize(100, 100)->save($path);
+                            $applicant_model->profile_image = $file;
+                        }
+                        $applicant_model->save();
+                        DB::commit();
+                        return Redirect::back()->with('message', "Successfully Added Information Profile !");
+                    }
+                    catch ( Exception $e ){
+                        //If there are any exceptions, rollback the transaction
+                        DB::rollback();
+                        Session::flash('danger', " Information is not added.Invalid Request !");
+                    }
                 }
                 return Redirect::back();
             }
             else {
-                return Redirect::back()->with('error', "Data Not Saved !");
+                Session::flash('danger', " Data Not Saved !");
             }
         }
         else {
@@ -273,37 +274,39 @@ class ApplicantController extends \BaseController
             );
             $validator = Validator::make(Input::all(), $rules);
             if ($validator->passes()) {
+                $data = Input::all();
+                $imagefile = $data['profile_image'];
                 DB::beginTransaction();
-                try {
-                    $applicant_model = ApplicantProfile::find($id);
-                    $applicant_model->applicant_id = Auth::applicant()->get()->id;
-                    $FlashMsg= Auth::applicant()->get()->username ;
-                    $applicant_model->date_of_birth = Input::get('date_of_birth');
-                    $applicant_model->place_of_birth = Input::get('place_of_birth');
-                    $applicant_model->gender = Input::get('gender');
-
-                    $imagefile = Input::file('profile_image');
-                    $extension = $imagefile->getClientOriginalExtension();
-                    $filename = str_random(12) . '.' . $extension;
-                    $file = strtolower($filename);
-                    $path = public_path("/applicant_images/profile/" . $file);
-                    Image::make($imagefile->getRealPath())->resize(100, 100)->save($path);
-
-                    $applicant_model->profile_image = $file;
-                    $applicant_model->city = Input::get('city');
-                    $applicant_model->state = Input::get('state');
-                    $applicant_model->country_id = Input::get('country_id');
-                    $applicant_model->zip_code = Input::get('zip_code');
-                    $applicant_model->phone = Input::get('phone');
-                    $applicant_model->save();
-                    DB::commit();
-                    return Redirect::back()->with('message', "Successfully Updated Infomation to $FlashMsg Profile !");
-                } catch (Exception $e) {
-                    //If there are any exceptions, rollback the transaction
-                    DB::rollback();
-                    Session::flash('danger', "$FlashMsg Profile Information is not added.Invalid Request !");
+                if($data){
+                    try {
+                        $applicant_model = ApplicantProfile::find($id);
+                        $applicant_model->applicant_id = Auth::applicant()->get()->id;
+                        $applicant_model->date_of_birth = Input::get('date_of_birth');
+                        $applicant_model->place_of_birth = Input::get('place_of_birth');
+                        $applicant_model->gender = Input::get('gender');
+                        $applicant_model->city = Input::get('city');
+                        $applicant_model->state = Input::get('state');
+                        $applicant_model->country_id = Input::get('country_id');
+                        $applicant_model->zip_code = Input::get('zip_code');
+                        $applicant_model->phone = Input::get('phone');
+                if($imagefile){
+                      $imagefile = Input::file('profile_image');
+                      $extension = $imagefile->getClientOriginalExtension();
+                      $filename = str_random(12) . '.' . $extension;
+                      $file = strtolower($filename);
+                      $path = public_path("/applicant_images/profile/" . $file);
+                      Image::make($imagefile->getRealPath())->resize(100, 100)->save($path);
+                      $applicant_model->profile_image = $file;
                 }
-                return Redirect::back();
+                        $applicant_model->save();
+                        DB::commit();
+                        return Redirect::back()->with('message', "Successfully Updated Profile Information!");
+                    } catch (Exception $e) {
+                        //If there are any exceptions, rollback the transaction
+                        DB::rollback();
+                        Session::flash('danger', " Profile Information is not added.Invalid Request !");
+                    }
+                } return Redirect::back();
             }
             else {
                 return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
@@ -511,7 +514,7 @@ class ApplicantController extends \BaseController
             try{
             $applicant_personal_info =new ApplicantMeta();
             $applicant_personal_info->applicant_id = Auth::applicant()->get()->id;
-            $FlashMsg= Auth::applicant()->get()->username ;
+
             $applicant_personal_info->fathers_name = Input::get('fathers_name');
             $applicant_personal_info->mothers_name = Input::get('mothers_name');
             $applicant_personal_info->fathers_occupation = Input::get('fathers_occupation');
@@ -538,18 +541,17 @@ class ApplicantController extends \BaseController
             $applicant_personal_info->permanent_address = Input::get('permanent_address');
             $applicant_personal_info->save();
             DB::commit();
-            return Redirect::back()->with('message', "Successfully Added $FlashMsg Personal Information !");
+            return Redirect::back()->with('message', "Successfully Added Personal Information !");
             }
             catch ( Exception $e ){
                 //If there are any exceptions, rollback the transaction
                 DB::rollback();
-                Session::flash('danger', " $FlashMsg Personal Information  is not added.Invalid Request !");
+                Session::flash('danger', " Personal Information  is not added.Invalid Request !");
             }
             return Redirect::back();
         } else {
             return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
         }
-
     }
 
     public function personalInfoEdit($id){
@@ -562,25 +564,30 @@ class ApplicantController extends \BaseController
         );
         $validator = Validator::make(Input::all(), $rules);
         if ($validator->passes()) {
+            $data = Input::all();
+            $imagefile = $data['signature'];
             DB::beginTransaction();
-            try {
-                $applicant_personal_info = ApplicantMeta::find($id);
-                $applicant_personal_info->applicant_id = Auth::applicant()->get()->id;
-                $FlashMsg= Auth::applicant()->get()->username ;
-                $applicant_personal_info->fathers_name = Input::get('fathers_name');
-                $applicant_personal_info->mothers_name = Input::get('mothers_name');
-                $applicant_personal_info->fathers_occupation = Input::get('fathers_occupation');
-                $applicant_personal_info->fathers_phone = Input::get('fathers_phone');
-                $applicant_personal_info->freedom_fighter = Input::get('freedom_fighter');
-                $applicant_personal_info->mothers_occupation = Input::get('mothers_occupation');
-                $applicant_personal_info->mothers_phone = Input::get('mothers_phone');
-                $applicant_personal_info->national_id = Input::get('national_id');
-                $applicant_personal_info->driving_licence = Input::get('driving_licence');
-                $applicant_personal_info->passport = Input::get('passport');
-                $applicant_personal_info->national_id = Input::get('national_id');
-                $applicant_personal_info->marital_status = Input::get('marital_status');
-                $applicant_personal_info->religion = Input::get('religion');
-
+            if($data){
+                try {
+                    $applicant_personal_info = ApplicantMeta::find($id);
+                    $applicant_personal_info->applicant_id = Auth::applicant()->get()->id;
+                    $FlashMsg= Auth::applicant()->get()->username ;
+                    $applicant_personal_info->fathers_name = Input::get('fathers_name');
+                    $applicant_personal_info->mothers_name = Input::get('mothers_name');
+                    $applicant_personal_info->fathers_occupation = Input::get('fathers_occupation');
+                    $applicant_personal_info->fathers_phone = Input::get('fathers_phone');
+                    $applicant_personal_info->freedom_fighter = Input::get('freedom_fighter');
+                    $applicant_personal_info->mothers_occupation = Input::get('mothers_occupation');
+                    $applicant_personal_info->mothers_phone = Input::get('mothers_phone');
+                    $applicant_personal_info->national_id = Input::get('national_id');
+                    $applicant_personal_info->driving_licence = Input::get('driving_licence');
+                    $applicant_personal_info->passport = Input::get('passport');
+                    $applicant_personal_info->national_id = Input::get('national_id');
+                    $applicant_personal_info->marital_status = Input::get('marital_status');
+                    $applicant_personal_info->religion = Input::get('religion');
+                    $applicant_personal_info->present_address = Input::get('present_address');
+                    $applicant_personal_info->permanent_address = Input::get('permanent_address');
+            if($imagefile)  {
                 $imagefile = Input::file('signature');
                 $extension = $imagefile->getClientOriginalExtension();
                 $filename = str_random(12) . '.' . $extension;
@@ -588,16 +595,15 @@ class ApplicantController extends \BaseController
                 $path = public_path("/applicant_images/app_meta/" . $file);
                 Image::make($imagefile->getRealPath())->resize(100, 100)->save($path);
                 $applicant_personal_info->signature = $file;
-
-                $applicant_personal_info->present_address = Input::get('present_address');
-                $applicant_personal_info->permanent_address = Input::get('permanent_address');
+            }
                 $applicant_personal_info->save();
                 DB::commit();
                 return Redirect::back()->with('message', "Successfully Updated $FlashMsg Personal Information !");
-            } catch (Exception $e) {
-                //If there are any exceptions, rollback the transaction
-                DB::rollback();
-                Session::flash('danger', " $FlashMsg Personal Information  is not Updated.Invalid Request !");
+                } catch (Exception $e) {
+                    //If there are any exceptions, rollback the transaction
+                    DB::rollback();
+                    Session::flash('danger', " $FlashMsg Personal Information  is not Updated.Invalid Request !");
+                }
             }
             return Redirect::back();
         }
@@ -1025,6 +1031,8 @@ class ApplicantController extends \BaseController
 
     public function admPaymentCheckoutByApplicant(){
 
+        $message = '';
+        $error_message = '';
         $applicant_id = Auth::applicant()->get()->id;
         $applied_degree_ids = Session::get('applicantDegIds');
 
@@ -1037,16 +1045,25 @@ class ApplicantController extends \BaseController
             ->first();
         $applicant_meta_records = ApplicantMeta::where('applicant_id', '=',$applicant_id )->first();
         $applicant_acm_records = ApplicantAcademicRecords::where('applicant_id', '=',$applicant_id )->get();
-//        $level_of_edu = ApplicantAcademicRecords::where('applicant_id', '=',$applicant_id )->get()->level_of_education;
-//        print_r($level_of_edu);exit;
-//        $result = ApplicantAcademicRecords::where('applicant_id', '=',$applicant_id );
+
+        $psc_result = ApplicantAcademicRecords::where('applicant_id', '=',$applicant_id )->where('level_of_education','=','psc')->first()->gpa;
+        $jsc_result = ApplicantAcademicRecords::where('applicant_id', '=',$applicant_id )->where('level_of_education','=','jsc')->first()->gpa;
+
+        if($psc_result<3.50){
+            $error_message .= 'Sorry!!!  You Cannot Apply This Degree. To Apply, The Minimum GPA Of PSC Is 3.50.'.'<br>';
+        }
+        if($jsc_result<3.00){
+            $error_message .= 'Sorry!!!  You Cannot Apply This Degree. To Apply, The Minimum GPA Of JSC Is 3.00.';
+        }
 
         if(empty($applicant_personal_info) || empty($applicant_meta_records) ||  count($applicant_acm_records)< 2){
             return Redirect::back()->with('danger', 'Profile or Academic information is Missing! Complete Your profile to checkout!');
-        }else{
+        }
+        if($error_message)
+            return Redirect::back()->with('danger', $error_message);
+        else
             return View::make('admission::adm_public.admission.adm_checkouts',
                 compact('batch_applicant','data','batch_id'));
-        }
     }
 
     public function checkoutBank($batch_id){
@@ -1073,12 +1090,15 @@ class ApplicantController extends \BaseController
         foreach($batch_ids as $bid){
             $session_key = 'ExmCenterIds'.'-'. $applicant_id .'-'.$bid;
             $exm_center_ids = Session::get($session_key);
+
+            $degree_id = Batch::where('id','=',$bid)->first()->degree_id;
+            $deg_title = AdmVDegree::where('id','=',$degree_id)->first()->title;
+
             if($exm_center_ids == Null) {
                 // get title of that degree by $bid
-                $error_message .= 'ATD Information is missing! Please Add ATD Information At Degree'. $bid .'<br>';
+                $error_message .= 'ATD Information is missing! Please Add ATD Information At Degree'. $deg_title .'<br>';
             }
-            // Prepare success message by degree title
-            $message .= 'Sucessfully applied to .'.$bid;
+            $message .= 'Sucessfully applied to .'.$deg_title.'<br>';
         }
         //Profile Data
         $applicant_personal_info = ApplicantProfile::with('relCountry')
@@ -1090,10 +1110,11 @@ class ApplicantController extends \BaseController
         if(empty($applicant_personal_info) || empty($applicant_meta_records) ||  count($applicant_acm_records)< 2 ){
             $error_message .= 'Profile or Academic information is Missing! Complete Your profile to checkout!';
         }
+
         if($error_message)
             return Redirect::back()->with('danger', $error_message);
         else
-            return Redirect::back()->with('message', $message);;
+            return Redirect::back()->with('message', $message);
     }
 
     public function degreeApply(){
