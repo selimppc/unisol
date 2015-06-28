@@ -31,5 +31,4 @@
             {{ Form::close() }}
         </div>
 <div class="modal-footer">
-
 </div>

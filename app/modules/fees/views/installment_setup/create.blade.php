@@ -36,6 +36,7 @@
                     {{ Form::hidden('batch_id', ($batch_id)? $batch_id: '','') }}
                     {{ Form::hidden('billing_schedule_id', ($schedule_id)? $schedule_id: '','') }}
                     {{ Form::hidden('billing_item_id', ($item_id)? $item_id: '','') }}
+                    {{ Form::hidden('status', ($status)? $status: 'create','') }}
 
                     @for($i = 0; $i < $no_installment; $i++)
                         <tr>

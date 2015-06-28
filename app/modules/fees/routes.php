@@ -76,12 +76,10 @@
          'as' => 'installment.setup',
          'uses' => 'FeesController@index_installment_setup'
      ]);
-
      Route::any('installment/setup/create', [
          'as' => 'installment.setup.create',
          'uses' => 'FeesController@create_installment_setup'
      ]);
-
      Route::any('installment/setup/save', [
          'as' => 'installment.setup.save',
          'uses' => 'FeesController@save_installment_setup'
@@ -91,5 +89,19 @@
          'uses' => 'FeesController@view_installment_setup'
      ]);
 
+     Route::any('installment/setup/edit/{batch_id}/{sch_id}/{item_id}', [
+         'as' => 'installment.setup.edit',
+         'uses' => 'FeesController@edit_installment_setup'
+     ]);
 
+     Route::any('installment/setup/re-create/{batch_id}', [
+         'as' => 'installment.setup.add.again',
+         'uses' => 'FeesController@recreate_installment_setup'
+     ]);
+
+
+     Route::any('installment/setup/update', [
+         'as' => 'installment.setup.update',
+         'uses' => 'FeesController@update_installment_setup'
+     ]);
  });

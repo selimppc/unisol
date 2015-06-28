@@ -3662,6 +3662,12 @@ fieldset[disabled] .btn-vk.active {
 .install-filter{
     padding-top: 1%;
 }
+.recreate-btn{
+    margin-top: 27px;
+}
+.no-of-installment{
+    margin-bottom: 20px;
+}
 
 
 
