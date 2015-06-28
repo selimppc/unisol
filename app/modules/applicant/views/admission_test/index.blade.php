@@ -45,6 +45,7 @@
                                         <td>{{date("d-m-Y", strtotime((isset($value->relBatch->admtest_date)) ? $value->relBatch->admtest_date : '') ) }}</td>
 
                                         <td>{{ date("d-m-Y", strtotime((isset($value->relBatch->admtest_start_time) ? $value->relBatch->admtest_start_time : ''))) }}</td>
+
                                     </tr>
                                     @endforeach
                                 @endif

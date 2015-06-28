@@ -18,18 +18,12 @@ class HrSalaryController extends \BaseController {
         $pageTitle = 'Salary List';
         $model = HrSalary::with('relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')
             ->where('hr_employee_id', $emp_id)->get();
+
 //        $employee_user = HrEmployee::get();
 //        foreach($employee_user as $values){
 //            $user_ids [] = [ $values->user_id ];
 //        }
 //        $lists = User::with('relUserProfile')->whereIn('id', $user_ids)->get();
-
-
-//        $list_w = User::with('relUserProfile')->whereIn('id', $user_ids)
-//            ->select(DB::raw('CONCAT(user_profile.first_name, " ",
-//             user_profile.middle_name, " ", user_profile.last_name ) as full_name'), 'user.id as user_id')->lists('full_name', 'user_id');
-//
-//        print_r($list_w);exit;
 
         $selected_employee_id = $emp_id;
 
@@ -41,7 +35,8 @@ class HrSalaryController extends \BaseController {
 
     public function store_hr_salary()
     {
-        if($this->isPostRequest()){
+        echo "ok";exit;
+//        if($this->isPostRequest()){
             $input_data = Input::all();
             print_r($input_data);exit;
             $model = new HrSalary();
@@ -57,21 +52,21 @@ class HrSalaryController extends \BaseController {
                     Session::flash('danger', 'Failed !');
                 }
             }
-        }
+//        }
         return Redirect::back();
     }
 
     public function show_hr_salary($s_g_id)
     {
-        $data = HrSalary::with('relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')->findOrFail($s_g_id);
+        $data = HrSalary::with('relHrEmployee','relHrEmployee.relCurrency','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')->findOrFail($s_g_id);
         return View::make('hr::hr.salary.view', compact('pageTitle', 'data'));
     }
 
-    public function edit_hr_salary($s_g_id)
+    public function edit_hr_salary($s_id)
     {
         if($this->isPostRequest()){
             $input_data = Input::all();
-            $model = HrSalary::findOrFail($s_g_id);
+            $model = HrSalary::findOrFail($s_id);
             if($model->validate($input_data)){
                 DB::beginTransaction();
                 try{
@@ -86,10 +81,10 @@ class HrSalaryController extends \BaseController {
             }
             return Redirect::back();
         }else{
-            $model = HrSalary::findOrFail($s_g_id);
-            $lists = HrEmployee::lists('id','id');
+            $model = HrSalary::findOrFail($s_id);
+            $selected_employee_id = HrSalary::first()->hr_employee_id;
             $lists_currency = Currency::lists('title','id');
-            return View::make('hr::hr.salary.edit', compact('model','lists','lists_currency'));
+            return View::make('hr::hr.salary.edit', compact('model','selected_employee_id','lists_currency'));
         }
     }
 
