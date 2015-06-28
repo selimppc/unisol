@@ -1046,6 +1046,10 @@ class ApplicantController extends \BaseController
         $applicant_meta_records = ApplicantMeta::where('applicant_id', '=',$applicant_id )->first();
         $applicant_acm_records = ApplicantAcademicRecords::where('applicant_id', '=',$applicant_id )->get();
 
+        if(empty($applicant_personal_info) || empty($applicant_meta_records) ||  count($applicant_acm_records)< 2){
+            return Redirect::back()->with('danger', 'Profile or Academic information is Missing! Complete Your profile to checkout!');
+        }
+
         $psc_result = ApplicantAcademicRecords::where('applicant_id', '=',$applicant_id )->where('level_of_education','=','psc')->first()->gpa;
         $jsc_result = ApplicantAcademicRecords::where('applicant_id', '=',$applicant_id )->where('level_of_education','=','jsc')->first()->gpa;
 
@@ -1054,10 +1058,6 @@ class ApplicantController extends \BaseController
         }
         if($jsc_result<3.00){
             $error_message .= 'Sorry!!!  You Cannot Apply This Degree. To Apply, The Minimum GPA Of JSC Is 3.00.';
-        }
-
-        if(empty($applicant_personal_info) || empty($applicant_meta_records) ||  count($applicant_acm_records)< 2){
-            return Redirect::back()->with('danger', 'Profile or Academic information is Missing! Complete Your profile to checkout!');
         }
         if($error_message)
             return Redirect::back()->with('danger', $error_message);
