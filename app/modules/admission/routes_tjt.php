@@ -225,9 +225,6 @@ Route::any('admission/applicant/add-more-degree',
         'uses' => 'ApplicantController@addMoreDegree']);
 
 
-
-
-
 //{--------------------------------------- Degree -------------------------------------------------------------}
 /*
 Route::any('admission/amw/degree',

@@ -2395,4 +2395,18 @@ class AdmAmwController extends \BaseController
                 'supporting_docs','miscellaneous_info','status','model'));
     }
 
+    public function examSeat($batch_id){
+
+        $apt_id = BatchApplicant::where('batch_id','=',$batch_id)->first()->applicant_id;
+
+        $batch_apt = BatchApplicant::where('batch_id','=',$batch_id)
+            ->where('applicant_id','=',$apt_id)
+            ->first()->id;
+
+//        $c_list = ExmCenterApplicantChoice::
+
+       print_r($batch_apt); exit;
+        return View::make('');
+    }
+
 }
