@@ -204,7 +204,7 @@ Route::any('admission/applicant/apply-degree/{degree_id}',
 Route::any('admission/applicant/admission-test-details/{batch_id}',
     ['as' => 'admission.applicant.admission.test_details',
         'uses' => 'ApplicantController@admTestDetails']);
-
+//Exam Center
 Route::any('admission/applicant/admission/exm-center/{batch_id}',
     ['as' => 'admission.applicant.exm-center',
         'uses' => 'ApplicantController@admExmCenter']);
