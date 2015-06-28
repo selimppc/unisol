@@ -242,14 +242,40 @@ Route::group(['prefix' => 'hr'], function() {
         'uses'=> 'HrSalaryController@batch_delete_hr_salary'
     ]);
 
-
-
     //------->
     //hr_bonus
+
     Route::any('bonus/{}',[
         'as' => 'bonus',
         'uses'=> 'HrBonusController@index_hr_bonus'
     ]);
+
+    Route::any('bonus/store',[
+        'as' => 'bonus.store',
+        'uses'=> 'HrBonusController@store_hr_bonus'
+    ]);
+
+    Route::any('bonus/show/{bn_id}',[
+        'as' => 'bonus.show',
+        'uses'=> 'HrBonusController@show_hr_bonus'
+    ]);
+
+    Route::any('bonus/edit/{bn_id}',[
+        'as' => 'bonus.edit',
+        'uses'=> 'HrBonusController@edit_hr_bonus'
+    ]);
+
+    Route::any('bonus/destroy/{bn_id}',[
+        'as' => 'bonus.destroy',
+        'uses'=> 'HrBonusController@destroy_hr_bonus'
+    ]);
+
+    Route::any('bonus/batch_delete',[
+        'as' => 'bonus.batch_delete',
+        'uses'=> 'HrBonusController@batch_delete_hr_bonus'
+    ]);
+
+
 
     //hr_loan_head
     Route::any('loan_head/{emp_id}',[
@@ -262,7 +288,6 @@ Route::group(['prefix' => 'hr'], function() {
         'as' => 'loan_detail',
         'uses'=> 'HrLoanDetailController@index_hr_loan_detail'
     ]);
-
 
     //hr_over_time
     Route::any('over_time/{}',[
