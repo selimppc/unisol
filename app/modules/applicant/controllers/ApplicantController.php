@@ -1031,7 +1031,6 @@ class ApplicantController extends \BaseController
 
     public function admPaymentCheckoutByApplicant(){
 
-        $message = '';
         $error_message = '';
         $applicant_id = Auth::applicant()->get()->id;
         $applied_degree_ids = Session::get('applicantDegIds');
@@ -1066,16 +1065,18 @@ class ApplicantController extends \BaseController
                 compact('batch_applicant','data','batch_id'));
     }
 
-    public function checkoutBank($batch_id){
+    public function checkoutBank(){
 
         $applied_degree_ids = Session::get('applicantDegIds');
-
         $data = Batch::with('relDegree','relDegree.relDegreeGroup','relDegree.relDegreeProgram','relDegree.relDegreeLevel')->whereIn('degree_id',$applied_degree_ids)->get();
-//        $data = Batch::with('relDegree','relDegree.relDegreeGroup','relDegree.relDegreeProgram','relDegree.relDegreeLevel','relYear','relSemester')->where('id',$batch_id)->get();
-        return View::make('applicant::payment.checkout_bank', compact('data','batch_id'));
+
+        return View::make('applicant::payment.checkout_bank', compact('data'));
     }
 
-    public function checkoutCC($batch_id){
+    public function checkoutCC(){
+
+        $applied_degree_ids = Session::get('applicantDegIds');
+        $data = Batch::with('relDegree','relDegree.relDegreeGroup','relDegree.relDegreeProgram','relDegree.relDegreeLevel')->whereIn('degree_id',$applied_degree_ids)->get();
 
         return View::make('applicant::payment.cc', compact('data','batch_id'));
     }

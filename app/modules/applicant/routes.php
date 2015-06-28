@@ -196,12 +196,12 @@ Route::any('apt/misc_info/update/{id}',
 );
 //**********************Payment option for Applicant ************************************
 
-Route::any('applicant/payment/checkout-bank/{batch_id}',[
+Route::any('applicant/payment/checkout-bank',[
     'as' => 'applicant.payment.checkout-bank',
     'uses'=> 'ApplicantController@checkoutBank'
 ]);
 
-Route::any('applicant/payment/checkout/credit-card/{batch_id}',[
+Route::any('applicant/payment/checkout/credit-card',[
     'as' => 'applicant.payment.checkout-cc',
     'uses'=> 'ApplicantController@checkoutCC'
 ]);

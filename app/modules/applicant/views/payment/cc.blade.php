@@ -44,10 +44,6 @@
                 </div>
             </div>
         </div>
-
-        {{--<div class="box-footer clearfix">
-            <a class="pull-right btn btn-xs btn-info" href="{{ URL::route('admission.applicant.add-degree' )}}" data-toggle="modal" data-target="#addDegreeModal"> Add more degree</a>
-        </div>--}}
     </div>
 </div>
 
@@ -97,7 +93,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div  class="col-lg-6">
-                    {{Form::open(array('url'=> ['applicant/degree-apply',$batch_id], 'class'=>'form-horizontal','files'=>true))}}
+                     {{Form::open(array('url'=> ['applicant/degree-apply'], 'class'=>'form-horizontal','files'=>true))}}
                         <div class='form-group'>
                              <div>{{ Form::label('name', 'Name Of CC') }}<span class="text-danger">*</span>
                              {{ Form::text('name',Input::old('name') ,['class'=>'form-control input-sm','required'])}}</div>
