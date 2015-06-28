@@ -18,19 +18,25 @@ class HrSalaryController extends \BaseController {
         $pageTitle = 'Salary List';
         $model = HrSalary::with('relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')
             ->where('hr_employee_id', $emp_id)->get();
-        $employee_user = HrEmployee::get();
-        foreach($employee_user as $values){
-            $user_ids [] = [ $values->user_id ];
-        }
-        $lists = User::with('relUserProfile')->whereIn('id', $user_ids)->get();
-        print_r($lists);exit;
+//        $employee_user = HrEmployee::get();
+//        foreach($employee_user as $values){
+//            $user_ids [] = [ $values->user_id ];
+//        }
+//        $lists = User::with('relUserProfile')->whereIn('id', $user_ids)->get();
 
-//        $list_w = User::with('relUserProfile')->whereIn('id', $user_ids)->first()->lists('first_name','id')
-//        ->select(DB::raw('CONCAT(user_profile.first_name, " ", user_profile.middle_name, " ", user_profile.last_name ) as full_name'), 'user.id as user_id')->lists('full_name', 'user_id');
+
+//        $list_w = User::with('relUserProfile')->whereIn('id', $user_ids)
+//            ->select(DB::raw('CONCAT(user_profile.first_name, " ",
+//             user_profile.middle_name, " ", user_profile.last_name ) as full_name'), 'user.id as user_id')->lists('full_name', 'user_id');
 //
 //        print_r($list_w);exit;
 
-        return View::make('hr::hr.salary.index', compact('model','pageTitle','lists'));
+        $selected_employee_id = $emp_id;
+
+        $lists_currency = Currency::lists('title','id');
+
+        return View::make('hr::hr.salary.index',
+            compact('model','pageTitle','selected_employee_id','lists_currency'));
     }
 
     public function store_hr_salary()
@@ -53,7 +59,6 @@ class HrSalaryController extends \BaseController {
             }
         }
         return Redirect::back();
-
     }
 
     public function show_hr_salary($s_g_id)
@@ -82,7 +87,9 @@ class HrSalaryController extends \BaseController {
             return Redirect::back();
         }else{
             $model = HrSalary::findOrFail($s_g_id);
-            return View::make('hr::hr.salary.edit', compact('model'));
+            $lists = HrEmployee::lists('id','id');
+            $lists_currency = Currency::lists('title','id');
+            return View::make('hr::hr.salary.edit', compact('model','lists','lists_currency'));
         }
     }
 

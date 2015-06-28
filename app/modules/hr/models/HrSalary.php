@@ -9,13 +9,13 @@ class HrSalary extends Eloquent{
     //TODO :: model attributes and rules and validation
     protected $table='hr_salary';
     protected $fillable = [
-        'hr_employee_id','salary_type','gross','basic','status'
+        'hr_employee_id','salary_type','gross','basic','status','currency_id','exchange_rate'
     ];
-//'currency_id','exchange_rate',
+
     private $errors;
     private $rules = [
-        'hr_employee_id' => 'required',
-//        'currency_id' => 'required'
+        //'hr_employee_id' => 'required',
+
     ];
 
     public function validate($data)
