@@ -928,38 +928,25 @@ class ApplicantController extends \BaseController
 
 //{*********Admission :Starts Degree Apply By Applicant (Tanin)  ****************}
 
-    public function applyDegreeByApplicant($degree_id)
+    public function applyDegreeByApplicant()
     {
         if(Auth::applicant()->check()) {
-            $deg_id = Batch::where('id', '=', $degree_id)->first()->degree_id;
-            $batch_id = Batch::where('id', '=', $degree_id)->first()->id;
 
-            if ($deg_id) {
-                $applied_degree_id = Session::get('applicantDegIds');
+            $batch_ids = Input::get('ids');
+            if(count($batch_ids) == 1)
+                Session::put('applicantRedirect', 'admission/public/degree-offer-details/'.$batch_ids[0]);
 
-                $applied_degree_ids = array_merge(array($deg_id), (array)$applied_degree_id);
-
-                Session::put('applicantDegIds', $applied_degree_ids);
-            } else {
-                $applied_degree_ids = (array)Session::get('applicantDegIds');
+            if($batch_ids){
+                foreach($batch_ids as  $value){
+                    $batch_ids = Session::get('applicantBatchIds');
+                    $applied_batch_ids = array_merge(array($value), (array)$batch_ids);
+                    Session::put('applicantBatchIds', $applied_batch_ids);
+                }
+            }else{
+                Session::flash('info', "Please Select Degree From Degree List!");
+                return Redirect::back();
             }
-            if ($batch_id) {
-                $batch_ids = Session::get('applicantBatchIds');
-
-                $applied_batch_ids = array_merge(array($batch_id), (array)$batch_ids);
-
-                Session::put('applicantBatchIds', $applied_batch_ids);
-            }else {
-                $applied_batch_ids = (array)Session::get('applicantBatchIds');
-            }
-
-//            print_r($applied_batch_ids);exit;
-
-            $data = Batch::with('relDegree', 'relDegree.relDegreeGroup', 'relDegree.relDegreeProgram', 'relDegree.relDegreeLevel')->where('degree_id', '=', $applied_degree_ids)->first();
-            $batch_id = Batch::where('id', '=', $degree_id)->first()->id;
-//            print_r($batch_id);exit;
             return Redirect::route('applicant.details');
-//            return Redirect::route('applicant.details')->with('batch_id', $batch_id);
         }else{
             Auth::logout();
             //Session::flush(); //delete the session
@@ -970,12 +957,11 @@ class ApplicantController extends \BaseController
 
    // $id refers to applicant_id in DB table : BatchApplicant
     public function applicantDetails(){
-//print_r($batch_id);exit;
+
         $apt_id = Auth::applicant()->get()->id;
+        $batch_ids = Session::get('applicantBatchIds');
 
-        $applied_degree_ids = Session::get('applicantDegIds');
-
-        $data = Batch::with('relDegree','relDegree.relDegreeGroup','relDegree.relDegreeProgram','relDegree.relDegreeLevel')->whereIn('degree_id',$applied_degree_ids)->get();
+        $data = Batch::with('relDegree','relDegree.relDegreeGroup','relDegree.relDegreeProgram','relDegree.relDegreeLevel')->whereIn('id',$batch_ids)->get();
 
         $applicant_personal_info = ApplicantProfile::with('relCountry')
             ->where('applicant_id', '=',$apt_id )

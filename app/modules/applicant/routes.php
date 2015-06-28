@@ -196,7 +196,7 @@ Route::any('apt/misc_info/update/{id}',
 );
 
 //**********************Degree Apply By Applicant ************************************
-Route::any('admission/applicant/apply-degree/{degree_id}',
+Route::any('admission/applicant/apply-degree',
     ['as' => 'admission.applicant.apply-degree',
         'uses' => 'ApplicantController@applyDegreeByApplicant']);
 
