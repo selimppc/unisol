@@ -1,7 +1,12 @@
 {{ HTML::script('assets/etsb/etsb_js/jquery-ui/jquery-ui.min.js')}}
 
 {{Form::open(['route'=>'store-ap-payment-voucher', 'files'=>true, 'id'=>'grn-sub-grn-data'])}}
-
+<style type="text/css">
+    .unpaid-items tr:hover{
+        cursor: pointer;
+        background-color: #2f96b4;
+    }
+</style>
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
      <h4> Payment for the Supplier #  </h4>
@@ -69,16 +74,16 @@
                 <h4> Unpaid Invoice of the supplier#  </h4>
                 <table class="table table-bordered small-header-table" id="amwCourseConfig">
                     <thead>
-                        <th>Invoice No#</th>
+                        <th>Invoice No</th>
                         <th>Amount Payable</th>
                         <th>Date </th>
                     </thead>
-                    <tbody class="items">
+                    <tbody class="unpaid-items">
                     @foreach($data as $key => $value)
                         <tr>
-                            <td> {{ "OK" }} </td>
-                            <td><b>{{"OK"}}</b></td>
-                            <td>{{"OK"}}</td>
+                            <td> {{ "INV-001" }} </td>
+                            <td><b>{{"500"}}</b></td>
+                            <td>{{"2012-12-12"}}</td>
 
                         </tr>
                    @endforeach
@@ -91,9 +96,8 @@
                 <h4> Allocated Invoice </h4> <span class="pull-right" id="something-delete" style="color: orangered; font-weight: bold"></span>
                 <table class="table table-bordered small-header-table" id="amwCourseConfig">
                     <thead>
-                        <th> Invoice NO# </th>
+                        <th> Invoice NO  </th>
                         <th> Amount </th>
-                        <th> Currency </th>
                     </thead>
                     <tbody id="new-data"></tbody>
                     <tbody>
