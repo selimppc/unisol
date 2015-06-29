@@ -340,13 +340,36 @@ Route::group(['prefix' => 'hr'], function() {
     ]);
 
 
-
     //hr_loan_detail
-    Route::any('loan_detail/{}',[
+    Route::any('loan_detail/{loan_head_id}',[
         'as' => 'loan_detail',
         'uses'=> 'HrLoanDetailController@index_hr_loan_detail'
     ]);
 
+    Route::any('save-loan-detail',[
+        'as' => 'save-loan-detail',
+        'uses'=> 'HrLoanDetailController@store_hr_loan_detail'
+    ]);
+
+    Route::any('loan_detail/show/{ld_id}',[
+        'as' => 'loan_detail.show',
+        'uses'=> 'HrLoanDetailController@show_hr_loan_detail'
+    ]);
+
+    Route::any('loan_detail/edit/{ld_id}',[
+        'as' => 'loan_detail.edit',
+        'uses'=> 'HrLoanDetailController@edit_hr_loan_detail'
+    ]);
+
+    Route::any('loan_detail/destroy/{ld_id}',[
+        'as' => 'loan_detail.destroy',
+        'uses'=> 'HrLoanDetailController@destroy_hr_loan_detail'
+    ]);
+
+    Route::any('loan_detail/batch_delete',[
+        'as' => 'loan_detail.batch_delete',
+        'uses'=> 'HrLoanDetailController@batch_delete_hr_loan_detail'
+    ]);
 
 
     //hr_salary_advance
