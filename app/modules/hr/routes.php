@@ -308,17 +308,46 @@ Route::group(['prefix' => 'hr'], function() {
         'uses'=> 'HrLoanHeadController@batch_delete_hr_loan_head'
     ]);
 
+    //hr_over_time
+    Route::any('over_time/{emp_id}',[
+        'as' => 'over_time',
+        'uses'=> 'HrOverTimeController@index_hr_over_time'
+    ]);
+
+    Route::any('save-over-time',[
+        'as' => 'save-over-time',
+        'uses'=> 'HrOverTimeController@store_hr_over_time'
+    ]);
+
+    Route::any('over_time/show/{lh_id}',[
+        'as' => 'over_time.show',
+        'uses'=> 'HrOverTimeController@show_hr_over_time'
+    ]);
+
+    Route::any('over_time/edit/{lh_id}',[
+        'as' => 'over_time.edit',
+        'uses'=> 'HrOverTimeController@edit_hr_over_time'
+    ]);
+
+    Route::any('over_time/destroy/{lh_id}',[
+        'as' => 'over_time.destroy',
+        'uses'=> 'HrOverTimeController@destroy_hr_over_time'
+    ]);
+
+    Route::any('over_time/batch_delete',[
+        'as' => 'over_time.batch_delete',
+        'uses'=> 'HrOverTimeController@batch_delete_hr_over_time'
+    ]);
+
+
+
     //hr_loan_detail
     Route::any('loan_detail/{}',[
         'as' => 'loan_detail',
         'uses'=> 'HrLoanDetailController@index_hr_loan_detail'
     ]);
 
-    //hr_over_time
-    Route::any('over_time/{emp_id}',[
-        'as' => 'over_time',
-        'uses'=> 'HrOverTimeController@index_hr_over_time'
-    ]);
+
 
     //hr_salary_advance
     Route::any('salary_advance/{emp_id}',[
