@@ -19,9 +19,12 @@ class HrBonusController extends \BaseController
         $model = HrBonus::with('relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')
             ->where('hr_employee_id', $emp_id)->get();
 
+        $emp_name = HrBonus::with('relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')
+            ->where('hr_employee_id', $emp_id)->first();
+
         $selected_employee_id = $emp_id;
 
-        return View::make('hr::hr.bonus.index', compact('model','pageTitle','selected_employee_id'));
+        return View::make('hr::hr.bonus.index', compact('model','pageTitle','selected_employee_id','emp_name'));
     }
 
     public function store_hr_bonus()

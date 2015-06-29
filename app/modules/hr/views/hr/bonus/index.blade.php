@@ -44,10 +44,10 @@
                            $values->relHrEmployee->relUser->relUserProfile->last_name
                         }}
                     </td>
-                    <td>{{ $values->title }}</td>
+                    <td>{{ ucfirst($values->title) }}</td>
                     <td>{{ $values->amount }}</td>
                     <td>{{ $values->date }}</td>
-                    <td>{{ $values->status }}</td>
+                    <td>{{ ucfirst($values->status) }}</td>
                     <td>
                         <a href="{{ URL::route('bonus.show', ['bn_id'=>$values->id ])  }}" class="btn btn-default btn-xs" title="Manage Applicant" data-toggle="modal" data-target="#modal-pc"><i style="color: #149bdf" class="fa fa-eye"></i></a>
                         <a href="{{ URL::route('bonus.edit',['bn_id'=>$values->id])  }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal-pc"> <i style="color: #7b24dd" class="fa fa-edit"></i></a>

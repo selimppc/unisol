@@ -21,10 +21,13 @@ class HrSalaryController extends \BaseController {
 
         $selected_employee_id = $emp_id;
 
+        $emp_name = HrBonus::with('relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')
+            ->where('hr_employee_id', $emp_id)->first();
+
         $lists_currency = array('' => 'Select Currency ') + Currency::lists('title','id');
 
         return View::make('hr::hr.salary.index',
-            compact('model','pageTitle','selected_employee_id','lists_currency'));
+            compact('model','pageTitle','selected_employee_id','lists_currency','emp_name'));
     }
 
     public function store_hr_salary()

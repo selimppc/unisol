@@ -1,6 +1,6 @@
 <div class='form-group'>
    {{--{{ Form::label('hr_employee_id', 'Employee Name') }}--}}
-   {{ Form::text('hr_employee_id', $selected_employee_id , Input::old('hr_employee_id'),['class'=>'form-control', 'required']) }}
+   {{ Form::hidden('hr_employee_id', $selected_employee_id , Input::old('hr_employee_id'),['class'=>'form-control', 'required']) }}
 </div>
 
 <div class='form-group'>
