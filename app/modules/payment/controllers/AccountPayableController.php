@@ -64,8 +64,15 @@ class AccountPayableController extends \BaseController {
         $year_lists = Year::lists('title', 'id');
         $period_lists = AccChartOfAccounts::list_period();
         $coa_lists = AccChartOfAccounts::lists('description', 'id');
+
+        //Unpaid Invoice Lists
+        $unpaid_invoice = AccVUnpaidInvoice::where('supplier_code', 5)
+                        //->where('acc_voucher_head_id', $coa_id)->get();
+                        ->get();
+        #print_r($unpaid_invoice);exit;
+
         return View::make('payment::account_payable.ap_voucher', compact(
-            'supplier_id', 'coa_id',
+            'supplier_id', 'coa_id', 'unpaid_invoice',
             'data','year_lists', 'period_lists', 'coa_lists'
         ));
     }

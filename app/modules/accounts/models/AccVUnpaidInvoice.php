@@ -4,7 +4,7 @@
 class AccVUnpaidInvoice extends \Eloquent
 {
     //TODO :: model attributes and rules and validation
-    protected $table = 'acc_v_unpaid_inv';
+    protected $table = 'acc_v_unpaidinv';
     protected $fillable = [
 
     ];
@@ -55,7 +55,9 @@ class AccVUnpaidInvoice extends \Eloquent
 
 
     //TODO : Scope Area
-
+    public function getDateAttribute($date) {
+        return Carbon::parse($date)->format('d-M-Y'); //Change the format to whichever you desire
+    }
 
 
 

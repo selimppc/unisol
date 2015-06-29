@@ -39,7 +39,7 @@
         </div>
 
         <div class='form-group'>
-           {{ Form::label('acc_chart_of_accounts_id', 'acc_chart_of_accounts_id') }}
+           {{ Form::label('acc_chart_of_accounts_id', 'Account Name') }}
            {{ Form::select('acc_chart_of_accounts_id', $coa_lists, Input::old('acc_chart_of_accounts_id'),['class'=>'form-control', 'required']) }}
         </div>
         <div class='form-group'>
@@ -48,18 +48,18 @@
 
         <div class='form-group'>
            {{ Form::label('amount', 'Amount for PAY') }}
+           <br>(Remaining Balance is:  <input name="pay_amount" id="pay-for-amount" readonly style="border: none; color: orangered; width: 100px; font-weight: bold;"> )
            {{ Form::text('amount', Input::old('amount'),['class'=>'form-control', 'required', 'id'=>'amount-for-pay', 'placeholder'=>'0.00']) }}
-           {{Form::hidden('pay_amount', null, ['id'=>'pay-for-amount'])}}
         </div>
 
         <div class='form-group'>
            {{ Form::label('expense_account', 'Expense Account') }}
-           {{ Form::text('expense_account', Input::old('expense_account'),['class'=>'form-control', 'required']) }}
+           {{ Form::select('expense_account',$coa_lists, Input::old('expense_account'),['class'=>'form-control', 'required']) }}
         </div>
 
         <div class='form-group'>
            {{ Form::label('note', 'Note') }}
-           {{ Form::textarea('note', Input::old('note'),['class'=>'form-control', 'size' => '30x5', 'required']) }}
+           {{ Form::textarea('note', Input::old('note'),['class'=>'form-control', 'size' => '30x2', 'required']) }}
         </div>
 
     </div>
@@ -79,12 +79,11 @@
                         <th>Date </th>
                     </thead>
                     <tbody class="unpaid-items">
-                    @foreach($data as $key => $value)
+                    @foreach($unpaid_invoice as $key => $value)
                         <tr>
-                            <td> {{ "INV-001" }} </td>
-                            <td><b>{{"500"}}</b></td>
-                            <td>{{"2012-12-12"}}</td>
-
+                            <td> {{ $value->acc_voucher_head_id }} </td>
+                            <td><b>{{ $value->prime_amount }}</b></td>
+                            <td>{{ $value->date }}</td>
                         </tr>
                    @endforeach
                 </table>
@@ -108,7 +107,7 @@
 
         <div class='form-group'>
            {{ Form::label('total_amount', 'Total') }}
-           {{ Form::text('total_amount', Input::old('total_amount'),['class'=>'form-control', 'required']) }}
+           <input name="total_amount" class="form-control" id="allocation-total-amount" value="0.00" readonly >
         </div>
 
         <div class="form-group">
