@@ -22,8 +22,9 @@ $(function() {
 
          //Get Table Data
          $invoice_code = $.trim(tableData[0]);
-         $amount = Math.round($.trim(tableData[1]));
-         $date = $.trim(tableData[2]);
+         $voucher_head_id = $.trim(tableData[1]);
+         $amount = Math.round($.trim(tableData[2]));
+         $date = $.trim(tableData[3]);
 
          var index = $.inArray($invoice_code, $arrayItems);
          if (index>=0) {
@@ -41,7 +42,7 @@ $(function() {
                     $('#pay-for-amount').val($least_pay_amount);
                     $pr_amount = Math.round($amount);
 
-                    $('#new-data').append("<tr> <td><input name='invoice[]' value='"+$invoice_code+"' readonly> <input name='inv_product_id[]' type='hidden' value='"+$invoice_code+"'></td>  <td><input name='amount[]' value='"+$pr_amount+"' readonly></td> </tr>");
+                    $('#new-data').append("<tr> <td><input value='"+$invoice_code+"' readonly> <input name='voucher_head_id[]' type='hidden' value='"+$voucher_head_id+"'></td>  <td><input name='amount[]' value='"+$pr_amount+"' readonly></td> </tr>");
                     $arrayItems.push($invoice_code);
 
                 }else if($pay_amount < $amount){
@@ -50,7 +51,7 @@ $(function() {
                     $('#pay-for-amount').val('0');
                     $pr_amount = Math.round($pay_amount);
 
-                    $('#new-data').append("<tr> <td><input name='invoice[]' value='"+$invoice_code+"' readonly> <input name='inv_product_id[]' type='hidden' value='"+$invoice_code+"'></td>  <td><input name='amount[]' value='"+$pr_amount+"' readonly></td> </tr>");
+                    $('#new-data').append("<tr> <td><input value='"+$invoice_code+"' readonly> <input name='voucher_head_id[]' type='hidden' value='"+$voucher_head_id+"'></td>  <td><input name='prime_amount[]' value='"+$pr_amount+"' readonly></td> </tr>");
                     $arrayItems.push($invoice_code);
 
                 }
