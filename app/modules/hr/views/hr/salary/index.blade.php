@@ -70,7 +70,7 @@
     </div>
 
 </div>
-{{Form::open(['route'=>'salary.store', 'files'=>true])}}
+{{Form::open(['route'=>'store-salary', 'files'=>true])}}
         @include('hr::hr.salary._modal._modal')
 {{ Form::close() }}
 

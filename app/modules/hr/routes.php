@@ -217,8 +217,8 @@ Route::group(['prefix' => 'hr'], function() {
         'uses'=> 'HrSalaryController@index_hr_salary'
     ]);
 
-    Route::any('salary/store',[
-        'as' => 'salary.store',
+    Route::any('store-salary',[
+        'as' => 'store-salary',
         'uses'=> 'HrSalaryController@store_hr_salary'
     ]);
 
