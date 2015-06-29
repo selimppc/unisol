@@ -290,13 +290,13 @@ Route::group(['prefix' => 'hr'], function() {
     ]);
 
     //hr_over_time
-    Route::any('over_time/{}',[
+    Route::any('over_time/{emp_id}',[
         'as' => 'over_time',
         'uses'=> 'HrOverTimeController@index_hr_over_time'
     ]);
 
     //hr_salary_advance
-    Route::any('salary_advance/{}',[
+    Route::any('salary_advance/{emp_id}',[
         'as' => 'salary_advance',
         'uses'=> 'HrSalaryAdvanceController@index_hr_salary_advance'
     ]);
