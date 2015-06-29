@@ -44,7 +44,7 @@ class BatchApplicant extends Eloquent{
     }
 
     public function relExmCenterApplicantChoice(){
-        return $this->HasMany('ExmCenterApplicantChoice');
+        return $this->HasMany('ExmCenterApplicantChoice', 'batch_applicant_id', 'id');
     }
 
 
