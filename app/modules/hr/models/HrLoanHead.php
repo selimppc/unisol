@@ -15,7 +15,7 @@ class HrLoanHead extends Eloquent{
     private $errors;
     private $rules = [
         'hr_employee_id' => 'required',
-//        'currency_id' => 'required'
+
     ];
 
     public function validate($data)
@@ -62,4 +62,10 @@ class HrLoanHead extends Eloquent{
 
 
     //TODO : Scope Area
+    public function getLoanDateAttribute($date) {
+        return Carbon::parse($date)->format('Y-m-d'); //Change the format to whichever you desire
+    }
+    public function getRepaymentStartDateAttribute($date) {
+        return Carbon::parse($date)->format('Y-m-d'); //Change the format to whichever you desire
+    }
 }

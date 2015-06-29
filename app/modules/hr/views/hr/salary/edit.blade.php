@@ -1,6 +1,6 @@
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-     <h4><b> Update of Salary</b> </h4>
+     <h3>Salary of : <strong style="color: #002a80">{{ $model->relHrEmployee->relUser->relUserProfile->first_name .' '.$model->relHrEmployee->relUser->relUserProfile->middle_name.' '.$model->relHrEmployee->relUser->relUserProfile->last_name }}</strong> </h3>
 </div>
 
 <div style="padding: 2%; width: 99%;">

@@ -4,7 +4,7 @@
 class AccVUnpaidInvoice extends \Eloquent
 {
     //TODO :: model attributes and rules and validation
-    protected $table = 'acc_v_unpaid_inv';
+    protected $table = 'acc_v_unpaidinv';
     protected $fillable = [
 
     ];
@@ -34,7 +34,13 @@ class AccVUnpaidInvoice extends \Eloquent
 
 
     //TODO : Model Relationship
+    public function relAccChartOfAccounts(){
+        return $this->belongsTo('AccChartOfAccounts', 'acc_chart_of_accounts_id', 'id');
+    }
 
+    public function relAccVoucherHead(){
+        return $this->belongsTo('AccVoucherHead', 'acc_voucher_head_id', 'id');
+    }
 
 
 
@@ -55,7 +61,9 @@ class AccVUnpaidInvoice extends \Eloquent
 
 
     //TODO : Scope Area
-
+    public function getDateAttribute($date) {
+        return Carbon::parse($date)->format('d-M-Y'); //Change the format to whichever you desire
+    }
 
 
 

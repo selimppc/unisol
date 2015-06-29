@@ -14,8 +14,7 @@ class HrBonus extends Eloquent{
 
     private $errors;
     private $rules = [
-        'hr_employee_id' => 'required',
-
+       // 'hr_employee_id' => 'required',
     ];
 
     public function validate($data)
@@ -59,7 +58,9 @@ class HrBonus extends Eloquent{
         });
     }
 
-
     //TODO : Scope Area
+    public function getDateAttribute($date) {
+        return Carbon::parse($date)->format('Y-m-d'); //Change the format to whichever you desire
+    }
 
 }

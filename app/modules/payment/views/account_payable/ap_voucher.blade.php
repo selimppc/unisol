@@ -1,7 +1,12 @@
 {{ HTML::script('assets/etsb/etsb_js/jquery-ui/jquery-ui.min.js')}}
 
 {{Form::open(['route'=>'store-ap-payment-voucher', 'files'=>true, 'id'=>'grn-sub-grn-data'])}}
-
+<style type="text/css">
+    .unpaid-items tr:hover{
+        cursor: pointer;
+        background-color: #2f96b4;
+    }
+</style>
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
      <h4> Payment for the Supplier #  </h4>
@@ -34,7 +39,7 @@
         </div>
 
         <div class='form-group'>
-           {{ Form::label('acc_chart_of_accounts_id', 'acc_chart_of_accounts_id') }}
+           {{ Form::label('acc_chart_of_accounts_id', 'Account Name') }}
            {{ Form::select('acc_chart_of_accounts_id', $coa_lists, Input::old('acc_chart_of_accounts_id'),['class'=>'form-control', 'required']) }}
         </div>
         <div class='form-group'>
@@ -43,18 +48,18 @@
 
         <div class='form-group'>
            {{ Form::label('amount', 'Amount for PAY') }}
+           <br>(Remaining Balance is:  <input name="pay_amount" id="pay-for-amount" readonly style="border: none; color: orangered; width: 100px; font-weight: bold;"> )
            {{ Form::text('amount', Input::old('amount'),['class'=>'form-control', 'required', 'id'=>'amount-for-pay', 'placeholder'=>'0.00']) }}
-           {{Form::hidden('pay_amount', null, ['id'=>'pay-for-amount'])}}
         </div>
 
         <div class='form-group'>
            {{ Form::label('expense_account', 'Expense Account') }}
-           {{ Form::text('expense_account', Input::old('expense_account'),['class'=>'form-control', 'required']) }}
+           {{ Form::select('expense_account',$coa_lists, Input::old('expense_account'),['class'=>'form-control', 'required']) }}
         </div>
 
         <div class='form-group'>
            {{ Form::label('note', 'Note') }}
-           {{ Form::textarea('note', Input::old('note'),['class'=>'form-control', 'size' => '30x5', 'required']) }}
+           {{ Form::textarea('note', Input::old('note'),['class'=>'form-control', 'size' => '30x2', 'required']) }}
         </div>
 
     </div>
@@ -69,17 +74,18 @@
                 <h4> Unpaid Invoice of the supplier#  </h4>
                 <table class="table table-bordered small-header-table" id="amwCourseConfig">
                     <thead>
-                        <th>Invoice No#</th>
+                        <th>Invoice No</th>
+                        <th style="display: none"> Voucher Head ID</th>
                         <th>Amount Payable</th>
                         <th>Date </th>
                     </thead>
-                    <tbody class="items">
-                    @foreach($data as $key => $value)
+                    <tbody class="unpaid-items">
+                    @foreach($unpaid_invoice as $key => $value)
                         <tr>
-                            <td> {{ "OK" }} </td>
-                            <td><b>{{"OK"}}</b></td>
-                            <td>{{"OK"}}</td>
-
+                            <td> {{ $value->relAccVoucherHead->voucher_number }} </td>
+                            <td style="display: none"> {{ $value->acc_voucher_head_id }} </td>
+                            <td><b>{{ $value->prime_amount }}</b></td>
+                            <td>{{ $value->date }}</td>
                         </tr>
                    @endforeach
                 </table>
@@ -91,9 +97,8 @@
                 <h4> Allocated Invoice </h4> <span class="pull-right" id="something-delete" style="color: orangered; font-weight: bold"></span>
                 <table class="table table-bordered small-header-table" id="amwCourseConfig">
                     <thead>
-                        <th> Invoice NO# </th>
+                        <th> Invoice NO  </th>
                         <th> Amount </th>
-                        <th> Currency </th>
                     </thead>
                     <tbody id="new-data"></tbody>
                     <tbody>
@@ -104,7 +109,7 @@
 
         <div class='form-group'>
            {{ Form::label('total_amount', 'Total') }}
-           {{ Form::text('total_amount', Input::old('total_amount'),['class'=>'form-control', 'required']) }}
+           <input name="total_amount" class="form-control" id="allocation-total-amount" value="0.00" readonly >
         </div>
 
         <div class="form-group">

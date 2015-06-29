@@ -13,17 +13,25 @@ class HrBonusController extends \BaseController
         return Input::server("REQUEST_METHOD") == "POST";
     }
 
-    public function index_hr_bonus()
+    public function index_hr_bonus($emp_id)
     {
         $pageTitle = 'Bonus Lists';
-        $model = HrBonus::orderBy('id', 'DESC')->paginate(5);
-        return View::make('hr::hr.bonus.index', compact('model','pageTitle'));
+        $model = HrBonus::with('relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')
+            ->where('hr_employee_id', $emp_id)->get();
+
+        $emp_name = HrBonus::with('relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')
+            ->where('hr_employee_id', $emp_id)->first();
+
+        $selected_employee_id = $emp_id;
+
+        return View::make('hr::hr.bonus.index', compact('model','pageTitle','selected_employee_id','emp_name'));
     }
 
     public function store_hr_bonus()
     {
         if($this->isPostRequest()){
             $input_data = Input::all();
+            #print_r($input_data);exit;
             $model = new HrBonus();
             if($model->validate($input_data)) {
                 DB::beginTransaction();
@@ -39,7 +47,6 @@ class HrBonusController extends \BaseController
             }
         }
         return Redirect::back();
-
     }
 
     public function show_hr_bonus($bn_id)
@@ -68,7 +75,9 @@ class HrBonusController extends \BaseController
             return Redirect::back();
         }else{
             $model = HrBonus::findOrFail($bn_id);
-            return View::make('hr::hr.bonus.edit', compact('model'));
+            $selected_employee_id = HrBonus::first()->hr_employee_id;
+            $lists_currency = Currency::lists('title','id');
+            return View::make('hr::hr.bonus.edit', compact('model','selected_employee_id','lists_currency'));
         }
 
     }

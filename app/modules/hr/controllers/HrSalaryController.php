@@ -19,26 +19,22 @@ class HrSalaryController extends \BaseController {
         $model = HrSalary::with('relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')
             ->where('hr_employee_id', $emp_id)->get();
 
-//        $employee_user = HrEmployee::get();
-//        foreach($employee_user as $values){
-//            $user_ids [] = [ $values->user_id ];
-//        }
-//        $lists = User::with('relUserProfile')->whereIn('id', $user_ids)->get();
-
         $selected_employee_id = $emp_id;
 
-        $lists_currency = Currency::lists('title','id');
+        $emp_name = HrBonus::with('relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')
+            ->where('hr_employee_id', $emp_id)->first();
+
+        $lists_currency = array('' => 'Select Currency ') + Currency::lists('title','id');
 
         return View::make('hr::hr.salary.index',
-            compact('model','pageTitle','selected_employee_id','lists_currency'));
+            compact('model','pageTitle','selected_employee_id','lists_currency','emp_name'));
     }
 
     public function store_hr_salary()
     {
-        echo "ok";exit;
-//        if($this->isPostRequest()){
+        if($this->isPostRequest()){
             $input_data = Input::all();
-            print_r($input_data);exit;
+           # print_r($input_data);exit;
             $model = new HrSalary();
             if($model->validate($input_data)) {
                 DB::beginTransaction();
@@ -52,7 +48,7 @@ class HrSalaryController extends \BaseController {
                     Session::flash('danger', 'Failed !');
                 }
             }
-//        }
+       }
         return Redirect::back();
     }
 
