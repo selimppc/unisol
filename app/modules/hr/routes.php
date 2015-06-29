@@ -378,6 +378,33 @@ Route::group(['prefix' => 'hr'], function() {
         'uses'=> 'HrSalaryAdvanceController@index_hr_salary_advance'
     ]);
 
+    Route::any('store-salary-advance',[
+        'as' => 'store-salary-advance',
+        'uses'=> 'HrSalaryAdvanceController@store_hr_salary_advance'
+    ]);
+
+    Route::any('salary_advance/show/{s_a_id}',[
+        'as' => 'salary_advance.show',
+        'uses'=> 'HrSalaryAdvanceController@show_hr_salary_advance'
+    ]);
+
+    Route::any('salary_advance/edit/{s_a_id}',[
+        'as' => 'salary_advance.edit',
+        'uses'=> 'HrSalaryAdvanceController@edit_hr_salary_advance'
+    ]);
+
+    Route::any('salary_advance/destroy/{s_a_id}',[
+        'as' => 'salary_advance.destroy',
+        'uses'=> 'HrSalaryAdvanceController@destroy_hr_salary_advance'
+    ]);
+
+    Route::any('salary_advance/batch_delete',[
+        'as' => 'salary_advance.batch_delete',
+        'uses'=> 'HrSalaryAdvanceController@batch_delete_hr_salary_advance'
+    ]);
+
+
+
     //hr_salary_allowance
     Route::any('salary_allowance/{}',[
         'as' => 'salary_allowance',
