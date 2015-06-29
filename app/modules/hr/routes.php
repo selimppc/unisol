@@ -340,13 +340,36 @@ Route::group(['prefix' => 'hr'], function() {
     ]);
 
 
-
     //hr_loan_detail
-    Route::any('loan_detail/{}',[
+    Route::any('loan_detail/{loan_head_id}',[
         'as' => 'loan_detail',
         'uses'=> 'HrLoanDetailController@index_hr_loan_detail'
     ]);
 
+    Route::any('save-loan-detail',[
+        'as' => 'save-loan-detail',
+        'uses'=> 'HrLoanDetailController@store_hr_loan_detail'
+    ]);
+
+    Route::any('loan_detail/show/{ld_id}',[
+        'as' => 'loan_detail.show',
+        'uses'=> 'HrLoanDetailController@show_hr_loan_detail'
+    ]);
+
+    Route::any('loan_detail/edit/{ld_id}',[
+        'as' => 'loan_detail.edit',
+        'uses'=> 'HrLoanDetailController@edit_hr_loan_detail'
+    ]);
+
+    Route::any('loan_detail/destroy/{ld_id}',[
+        'as' => 'loan_detail.destroy',
+        'uses'=> 'HrLoanDetailController@destroy_hr_loan_detail'
+    ]);
+
+    Route::any('loan_detail/batch_delete',[
+        'as' => 'loan_detail.batch_delete',
+        'uses'=> 'HrLoanDetailController@batch_delete_hr_loan_detail'
+    ]);
 
 
     //hr_salary_advance
@@ -354,6 +377,33 @@ Route::group(['prefix' => 'hr'], function() {
         'as' => 'salary_advance',
         'uses'=> 'HrSalaryAdvanceController@index_hr_salary_advance'
     ]);
+
+    Route::any('store-salary-advance',[
+        'as' => 'store-salary-advance',
+        'uses'=> 'HrSalaryAdvanceController@store_hr_salary_advance'
+    ]);
+
+    Route::any('salary_advance/show/{s_a_id}',[
+        'as' => 'salary_advance.show',
+        'uses'=> 'HrSalaryAdvanceController@show_hr_salary_advance'
+    ]);
+
+    Route::any('salary_advance/edit/{s_a_id}',[
+        'as' => 'salary_advance.edit',
+        'uses'=> 'HrSalaryAdvanceController@edit_hr_salary_advance'
+    ]);
+
+    Route::any('salary_advance/destroy/{s_a_id}',[
+        'as' => 'salary_advance.destroy',
+        'uses'=> 'HrSalaryAdvanceController@destroy_hr_salary_advance'
+    ]);
+
+    Route::any('salary_advance/batch_delete',[
+        'as' => 'salary_advance.batch_delete',
+        'uses'=> 'HrSalaryAdvanceController@batch_delete_hr_salary_advance'
+    ]);
+
+
 
     //hr_salary_allowance
     Route::any('salary_allowance/{}',[

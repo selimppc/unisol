@@ -15,12 +15,12 @@
            <div class="pull-left col-sm-4"> <h3> {{$pageTitle}} </h3>  </div>
            <div class="pull-right col-sm-4" style="padding-top: 1%;">
                 <button type="button" class="pull-right btn btn-sm btn-info" data-toggle="modal" data-target="#modal">
-                  Add Loan Head
+                  Add HR Salary Advance
                 </button>
            </div>
         </div>
 
-        {{ Form::open([ 'route'=>'loan_head.batch_delete' ])}}
+        {{ Form::open([ 'route'=>'salary_advance.batch_delete' ])}}
        <div class="box-body">
         <table id="example" class="table table-striped  table-bordered" >
             <thead>
@@ -29,13 +29,9 @@
                     <th><input name="id" type="checkbox" id="checkbox" class="checkbox" value=""></th>
                     <th>Employee Name</th>
                     <th>Title</th>
-                    <th>Loan Amount</th>
-                    <th>Loan Date</th>
-                    <th>Monthly Repayment Amount</th>
-                    <th>Repayment Start Date</th>
+                    <th>Amount</th>
+                    <th>Date</th>
                     <th>Description</th>
-                    <th>Number of Installment</th>
-                    <th>Status</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -49,18 +45,13 @@
                         }}
                     </td>
                     <td>{{ ucfirst($values->title) }}</td>
-                    <td>{{ $values->loan_amount }}</td>
-                    <td>{{ $values->loan_date }}</td>
-                    <td>{{ $values->monthly_repayment_amount }}</td>
-                    <td>{{ $values->repayment_start_date }}</td>
-                    <td>{{ $values->description }}</td>
-                    <td>{{ $values->number_of_installment }}</td>
-                    <td>{{ ucfirst($values->status) }}</td>
+                    <td>{{ $values->amount }}</td>
+                    <td>{{ $values->date }}</td>
+                    <td>{{ ucfirst($values->description) }}</td>
                     <td>
-                        <a href="{{ URL::route('loan_head.show', ['lh_id'=>$values->id ])  }}" class="btn btn-default btn-xs" title="Manage Applicant" data-toggle="modal" data-target="#modal-pc"><i style="color: #149bdf" class="fa fa-eye"></i></a>
-                        <a href="{{ URL::route('loan_head.edit',['lh_id'=>$values->id])  }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal-pc"> <i style="color: #7b24dd" class="fa fa-edit"></i></a>
-                        <a data-href="{{ URL::route('loan_head.destroy', ['lh_id'=>$values->id ]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i style="color: red" class="fa fa-trash-o" ></i></a>
-                        <a href="{{ URL::route('loan_detail',['loan_head_id'=>$values->id])  }}" class="btn btn-default btn-xs" style="color: #802420">Loan Detail</a>
+                        <a href="{{ URL::route('salary_advance.show', ['s_a_id'=>$values->id ])  }}" class="btn btn-default btn-xs" title="Manage Applicant" data-toggle="modal" data-target="#modal-pc"><i style="color: #149bdf" class="fa fa-eye"></i></a>
+                        <a href="{{ URL::route('salary_advance.edit',['s_a_id'=>$values->id])  }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal-pc"> <i style="color: #7b24dd" class="fa fa-edit"></i></a>
+                        <a data-href="{{ URL::route('salary_advance.destroy', ['s_a_id'=>$values->id ]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i style="color: red" class="fa fa-trash-o" ></i></a>
 
                     </td>
 
@@ -75,8 +66,8 @@
     </div>
 
 </div>
-{{Form::open(['route'=>'save-loan-head', 'files'=>true])}}
-        @include('hr::hr.loan_head._modal._modal')
+{{Form::open(['route'=>'store-salary-advance', 'files'=>true])}}
+        @include('hr::hr.salary_advance._modal._modal')
 {{ Form::close() }}
 
 
