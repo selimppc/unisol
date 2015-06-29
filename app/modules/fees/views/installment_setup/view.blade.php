@@ -16,7 +16,28 @@
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab_1">
                         <div class="box-body table-responsive ">
-                            <h4 class="text-purple text-center">View Installment Set Up Information for :: {{isset($view_details->relBatch->batch_number) ? $view_details->relBatch->batch_number :''}} </h4>
+                            <div class="col-sm-12">
+                            <div class="col-sm-6">
+                                <h4 class="text-purple">View Installment Set Up Information for :: {{isset($view_details->relBatch->batch_number) ? $view_details->relBatch->batch_number :''}} </h4>
+                            </div>
+
+                            <div class="col-sm-6">
+                                {{Form::open(array('route' => array('installment.setup.create',)))}}
+                                <label>Do you want to change # of installment? Then recreate this.</label>
+                                {{Form::selectRange('no_installment', 1, 48,'', ['class' => 'l','required'=>'required'])}}
+                                {{ Form::hidden('batch_id', ($batch_id)? $batch_id: '','') }}
+                                {{ Form::hidden('billing_schedule_id', ($schedule_id)? $schedule_id: '','') }}
+                                {{ Form::hidden('billing_item_id', ($item_id)? $item_id: '','') }}
+                                {{ Form::hidden('status', 'recreate','') }}
+
+                                {{--<a href="{{ URL::route('installment.setup.create',['batch_id'=>$view_details->batch_id,'sch_id'=>$view_details->billing_schedule_id,'item_id'=>$view_details->billing_item_id,
+                                    'status' => 'recreate'
+                                        ])}}" class="btn btn-xs btn-success">Recreate</a>--}}
+                                {{ Form::submit('Recreate', array('class'=>' btn btn-success')) }}
+                                {{Form::close()}}
+                            </div>
+
+                            </div>
                             <table class="table table-bordered table-hover table-striped">
                                 <tr>
                                     <td>Degree Name:</td>
@@ -41,7 +62,6 @@
                                 @if(isset($view_installment_setup))
                                     @foreach($view_installment_setup as $value)
                                         <tr>
-
                                             <td>{{isset($value->cost) ? $value->cost : ''}}</td>
                                             <td>{{isset($value->fined_cost) ? $value->fined_cost : ''}}</td>
                                             <td>{{date("d-m-Y", strtotime((isset($value->deadline)) ? $value->deadline : '') ) }}</td>
@@ -59,4 +79,5 @@
             </div>
         </div>
     </div>
+
 @stop

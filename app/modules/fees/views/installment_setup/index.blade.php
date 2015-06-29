@@ -25,12 +25,6 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="pull-right" class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-gear"></i>&nbsp;</a>
-                        <ul class="dropdown-menu">
-                            <li role="presentation" data-toggle="modal" data-target="#addCategory"><a role="menuitem" tabindex="-1" href="#"> Add Category </a></li>
-                        </ul>
-                    </li>
                 </ul>
 
                 <div class="tab-content">
@@ -71,17 +65,14 @@
                                             </td>
                                             <td>{{isset($value->relBatch->batch_number) ? $value->relBatch->batch_number : ''}}</td>
                                             <td>
-                                                <a href="{{ URL::route('installment.setup.view',['id'=>$value->batch_id])}}" class="btn btn-xs btn-default"><i class="fa fa-eye" style="color: green"></i></a>
-
-                                                <a href="" class="btn btn-xs btn-default" data-toggle="modal" data-target="#editModal" href="" ><i class="fa fa-pencil-square-o" style="color: #0044cc"></i></a>
-
+                                                <a href="{{ URL::route('installment.setup.view',['batch_id'=>$value->batch_id])}}" class="btn btn-xs btn-default"><i class="fa fa-eye" style="color: green"></i></a>
                                             </td>
                                         </tr>
                                     @endforeach
                                 @endif
                                 </tbody>
                             </table>
-                            <a href="{{ URL::route('installment.setup')}}" class="btn-link pull-right"><i class="fa fa-backward text-red"></i> Back to All List</a>
+                            <a href="{{ URL::route('installment.setup')}}" class="btn-link pull-right" style="margin-top: 6px"><i class="fa fa-backward text-red"></i> Back to All List</a>
                             {{ $data->links() }}
                         </div>
                     </div>
@@ -112,6 +103,9 @@
             </div>
         </div>
     </div>
+
+
+
 
     {{--Ajax operation: depandable dropdown with loading gif--}}
 
