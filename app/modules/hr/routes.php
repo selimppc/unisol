@@ -245,13 +245,13 @@ Route::group(['prefix' => 'hr'], function() {
     //------->
     //hr_bonus
 
-    Route::any('bonus/{}',[
+    Route::any('bonus/{emp_id}',[
         'as' => 'bonus',
         'uses'=> 'HrBonusController@index_hr_bonus'
     ]);
 
-    Route::any('bonus/store',[
-        'as' => 'bonus.store',
+    Route::any('store-bonus',[
+        'as' => 'store-bonus',
         'uses'=> 'HrBonusController@store_hr_bonus'
     ]);
 

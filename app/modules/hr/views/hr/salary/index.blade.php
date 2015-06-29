@@ -48,7 +48,7 @@
                     </td>
                     <td>{{ ucfirst($values->salary_type) }}</td>
                     <td>{{ $values->currency_id }}</td>
-                    <td>{{ $values->exchange_rate }}</td>
+                    <td>{{ round($values->exchange_rate,2) }}</td>
                     <td>{{ $values->gross }}</td>
                     <td>{{ $values->basic }}</td>
                     <td>{{ ucfirst($values->status) }}</td>

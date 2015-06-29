@@ -29,7 +29,6 @@ class HrSalaryController extends \BaseController {
 
     public function store_hr_salary()
     {
-
         if($this->isPostRequest()){
             $input_data = Input::all();
            # print_r($input_data);exit;
