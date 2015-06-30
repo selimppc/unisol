@@ -79,7 +79,9 @@ class AccountPayableController extends \BaseController {
     }
 
     public function store_ap_payment_voucher(){
+        //Get ALl input Data
         $input_data = Input::all();
+
         // Generate Voucher Number
         $apv_no = AccTrnNoSetup::where('title', '=', "Account Payable Voucher")
             ->select(DB::raw('CONCAT (code, LPAD(last_number + 1, 8, 0)) as number'))
