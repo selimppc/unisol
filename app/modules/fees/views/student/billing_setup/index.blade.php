@@ -87,7 +87,6 @@
                                 {{ Form::submit('Submit', array('class'=>'btn btn-success'))}}
                                 {{Form::close()}}
 
-
                                 <a href="{{ URL::route('student.billing.setup')}}" class="btn-link pull-right"><i class="fa fa-backward text-red"></i> Back to All List</a>
 
                             </div>
