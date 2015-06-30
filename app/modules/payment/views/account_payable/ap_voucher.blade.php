@@ -39,7 +39,7 @@
         </div>
 
         <div class='form-group'>
-           {{ Form::label('acc_chart_of_accounts_id', 'Account Name') }}
+           {{ Form::label('acc_chart_of_accounts_id', 'Account Name (Credit)') }}
            {{ Form::select('acc_chart_of_accounts_id', $coa_lists, Input::old('acc_chart_of_accounts_id'),['class'=>'form-control', 'required']) }}
         </div>
         <div class='form-group'>
@@ -53,7 +53,7 @@
         </div>
 
         <div class='form-group'>
-           {{ Form::label('expense_account', 'Expense Account') }}
+           {{ Form::label('expense_account', 'Expense Account (Debit)') }}
            {{ Form::select('expense_account',$coa_lists, Input::old('expense_account'),['class'=>'form-control', 'required']) }}
         </div>
 
