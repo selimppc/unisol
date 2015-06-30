@@ -2398,6 +2398,8 @@ class AdmAmwController extends \BaseController
     public function examSeat($batch_id){
 
         $apt_id = BatchApplicant::where('batch_id','=',$batch_id)->first()->applicant_id;
+        $ba_id = BatchApplicant::where('batch_id','=',$batch_id)->where('applicant_id','=',$apt_id)->first()->id;
+
         $data_of_applicant = BatchApplicant::with('relExmCenterApplicantChoice')
             ->where('status', 'CFAT')
             ->where('batch_id', $batch_id)
@@ -2412,24 +2414,24 @@ class AdmAmwController extends \BaseController
             }
             $selectedApplicantListWithChoiceList[$doa->id]['personChoiceList'] = $cnt;
         }
-
         $data_of_center = ExmCenter::get(array('exm_center.id','exm_center.capacity as capacity'));
 
         $CenterListWithCurrentCapacity = '';
+
         foreach($data_of_center as $doc){
             $CenterListWithCurrentCapacity[$doc->id]['capacity'] = $doc->capacity;
         }
-
         foreach( $selectedApplicantListWithChoiceList as $salwcl){
             foreach($salwcl['personChoiceList'] as $pcl){
                 if( $CenterListWithCurrentCapacity[$pcl]['capacity'] > 0 ){
-//                    $CenterListWithCurrentCapacity[$pcl]['capacity']--;
                     $capacity_list [] = $pcl;
-                    // Update batch_applicant
-                    $model = BatchApplicant::where('batch_id','=',$batch_id)->where('applicant_id','=',$apt_id)->first();
-//                    return $pcl;
+                    // Update batch_applicant ->exam center
+                    $model = BatchApplicant::find($ba_id);
+                    $model->exam_center_id = $capacity_list [0] ;
+                    $model->save();
                 }
-            } return $capacity_list;
+            }
         }
+        return View::make('admission::amw.adm_test_home.exam_seat',compact('model'));
     }
 }

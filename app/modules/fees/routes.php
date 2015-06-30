@@ -17,9 +17,10 @@
         return 'Thank you so much!';
     });
 
+     /********************AMW*********************
     /**********Billing Setup Start****************/
 
-     Route::any('billing/setup', [
+    Route::any('billing/setup', [
          'as' => 'billing.setup',
          'uses' => 'FeesController@indexBillingSetup'
      ]);
@@ -89,19 +90,10 @@
          'uses' => 'FeesController@view_installment_setup'
      ]);
 
-     Route::any('installment/setup/edit/{batch_id}/{sch_id}/{item_id}', [
-         'as' => 'installment.setup.edit',
-         'uses' => 'FeesController@edit_installment_setup'
+   /********************Student*********************/
+     Route::any('student/billing/setup', [
+         'as' => 'student.billing.setup',
+         'uses' => 'FeesStudentController@index_student_billing'
      ]);
 
-     Route::any('installment/setup/re-create/{batch_id}', [
-         'as' => 'installment.setup.add.again',
-         'uses' => 'FeesController@recreate_installment_setup'
-     ]);
-
-
-     Route::any('installment/setup/update', [
-         'as' => 'installment.setup.update',
-         'uses' => 'FeesController@update_installment_setup'
-     ]);
  });

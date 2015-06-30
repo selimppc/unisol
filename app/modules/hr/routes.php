@@ -436,17 +436,66 @@ Route::group(['prefix' => 'hr'], function() {
 
 
     //hr_salary_allowance
-    Route::any('salary_allowance/{}',[
+    Route::any('salary_allowance/{s_id}',[
         'as' => 'salary_allowance',
         'uses'=> 'HrSalaryAllowanceController@index_hr_salary_allowance'
     ]);
 
+    Route::any('store-salary-allowance',[
+        'as' => 'store-salary-allowance',
+        'uses'=> 'HrSalaryAllowanceController@store_hr_salary_allowance'
+    ]);
+
+    Route::any('salary_allowance/show/{s_a_id}',[
+        'as' => 'salary_allowance.show',
+        'uses'=> 'HrSalaryAllowanceController@show_hr_salary_allowance'
+    ]);
+
+    Route::any('salary_allowance/edit/{s_a_id}',[
+        'as' => 'salary_allowance.edit',
+        'uses'=> 'HrSalaryAllowanceController@edit_hr_salary_allowance'
+    ]);
+
+    Route::any('salary_allowance/destroy/{s_a_id}',[
+        'as' => 'salary_allowance.destroy',
+        'uses'=> 'HrSalaryAllowanceController@destroy_hr_salary_allowance'
+    ]);
+
+    Route::any('salary_allowance/batch_delete',[
+        'as' => 'salary_allowance.batch_delete',
+        'uses'=> 'HrSalaryAllowanceController@batch_delete_hr_salary_allowance'
+    ]);
+
     //hr_salary_deduction
-    Route::any('salary_deduction/{}',[
+    Route::any('salary_deduction/{loan_head_id}/{employee_id}',[
         'as' => 'salary_deduction',
         'uses'=> 'HrSalaryDeductionController@index_hr_salary_deduction'
     ]);
 
+    Route::any('store-salary-deduction',[
+        'as' => 'store-salary-deduction',
+        'uses'=> 'HrSalaryDeductionController@store_hr_salary_deduction'
+    ]);
+
+    Route::any('show-salary-deduction/{s_d_id}',[
+        'as' => 'show-salary-deduction',
+        'uses'=> 'HrSalaryDeductionController@show_hr_salary_deduction'
+    ]);
+
+    Route::any('edit-salary-deduction/{s_d_id}',[
+        'as' => 'edit-salary-deduction',
+        'uses'=> 'HrSalaryDeductionController@edit_hr_salary_deduction'
+    ]);
+
+    Route::any('destroy-salary-deduction/{s_d_id}',[
+        'as' => 'destroy-salary-deduction',
+        'uses'=> 'HrSalaryDeductionController@destroy_hr_salary_deduction'
+    ]);
+
+    Route::any('salary_deduction/batch_delete',[
+        'as' => 'salary_deduction.batch_delete',
+        'uses'=> 'HrSalaryDeductionController@batch_delete_hr_salary_deduction'
+    ]);
 
 
     //hr_salary_transaction_detail

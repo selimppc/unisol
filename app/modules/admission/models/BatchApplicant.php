@@ -47,6 +47,10 @@ class BatchApplicant extends Eloquent{
         return $this->HasMany('ExmCenterApplicantChoice', 'batch_applicant_id', 'id');
     }
 
+    public function relExmCenter(){
+        return $this->belongsTo('ExmCenter', 'exam_center_id', 'id');
+    }
+
 
 
     // TODO : user info while saving data into table

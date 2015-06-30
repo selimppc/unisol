@@ -27,69 +27,6 @@ Route::group(['prefix' => 'examination'], function() {
         'uses' => 'ExmAmwController@deshboard'
     ]);
 
-//    Route::any('amw/examination',[
-//        'as' =>'examination/amw/examination',
-//        'uses' => 'ExmAmwController@examination'
-//    ]);
-
-    //Route::any('amw/createExamination',[
-    //    'as' =>'examination/amw/createExamination',
-    //    'uses' => 'ExmAmwController@createExamination'
-    //]);
-
-    //Route::any('amw/storeExamination',[
-    //    'as' =>'examination/amw/storeExamination',
-    //    'uses' => 'ExmAmwController@storeExamination'
-    //]);
-
-    //Route::any('amw/viewExamination/{id}', [
-    //    'as' => 'examination.amw.viewExamination',
-    //    'uses' => 'ExmAmwController@viewExamination'
-    //]);
-//    Route::any('amw/editExamination/{exam_list_id}', [
-//        'as' => 'examination.amw.editExamination',
-//        'uses' => 'ExmAmwController@editExamination'
-//    ]);
-//    Route::any('amw/updateExamination/{exam_list_id}', [
-//        'as' => 'examination.amw.updateExamination',
-//        'uses' => 'ExmAmwController@updateExamination'
-//    ]);
-
-//    Route::any('amw/store',[
-//        'as' =>'examination/amw/store',
-//        'uses' => 'ExmAmwController@storeQuestionPaper'
-//    ]);
-
-//    Route::any('amw/editQuestionPaper/{id}', [
-//        'as' => 'examination.amw.editQuestionPaper',
-//        'uses' => 'ExmAmwController@editQuestionPaper'
-//    ]);
-//
-//    Route::any('amw/updateQuestionPaper/{id}', [
-//        'as' => 'examination.amw.updateQuestionPaper',
-//        'uses' => 'ExmAmwController@updateQuestionPaper'
-//    ]);
-//
-//    Route::any('amw/courses/{acm_marks_dist_item_id}/{year_id}/{semester_id}/{c_m_id}',[
-//        'as' =>'examination/amw/courses',
-//        'uses' => 'ExmAmwController@courses'
-//    ]);
-
-//    Route::any('amw/questionItemsList/{exm_question_id}',[
-//        'as' =>'examination/amw/questionItemsList',
-//        'uses' => 'ExmAmwController@questionsItemShow'
-//    ]);
-//
-//    Route::any('amw/index/{exam_list_id}/{course_man_id}',[
-//        'as' => 'examination/amw/index',
-//        'uses' => 'ExmAmwController@index'
-//    ]);
-
-//    Route::any('amw/viewExaminers/{id}', [
-//        'as' => 'examination.amw.viewExaminers',
-//        'uses' => 'ExmAmwController@viewExaminers'
-//    ]);
-
     Route::any('amw/search', [
         'as' => 'examination.amw.search',
         'uses' => 'ExmAmwController@search'
