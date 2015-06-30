@@ -974,31 +974,6 @@ class ApplicantController extends \BaseController
                 'applicant_meta_records','applied_degree_ids','data','batch_id'));
     }
 
-    // $id refers to batch_id
-    public function admTestDetails($batch_id){
-        $session_key = 'ExmCenterIds'.'-'.Auth::applicant()->get()->id.'-'.$batch_id;
-
-        $data = Batch::with('relDegree','relDegree.relDegreeGroup','relDegree.relDegreeProgram','relDegree.relDegreeLevel','relYear','relSemester')->where('id',$batch_id)->first();
-
-        $adm_test_subject = BatchAdmtestSubject::with('relBatch','relAdmtestSubject')
-            ->where('batch_id','=',$batch_id)->get();
-
-        $exm_center_id = Session::get($session_key);
-
-        if($exm_center_id){
-            $exm_center_all = DB::table('exm_center');
-            $exm_center_id = implode(',', $exm_center_id);
-
-            $exm_center_all = $exm_center_all->orderByRaw(DB::raw("FIELD(id, $exm_center_id)"));
-            $exm_center_all = $exm_center_all->get();
-        }else{
-            $exm_center_all = ExmCenter::all();
-        }
-
-        return View::make('admission::adm_public.admission.adm_test_details',
-            compact('data','adm_test_subject','exm_center_all','batch_id'));
-    }
-
     public function admExmCenter($batch_id){
 
         $session_key = 'ExmCenterIds'.'-'.Auth::applicant()->get()->id.'-'.$batch_id;
@@ -1011,7 +986,6 @@ class ApplicantController extends \BaseController
             $exm_center_all = Session::get($session_key);
         }
         return Redirect ::back();
-
     }
 
     public function admPaymentCheckoutByApplicant(){
@@ -1050,8 +1024,32 @@ class ApplicantController extends \BaseController
         if($error_message)
             return Redirect::back()->with('danger', $error_message);
         else
-            return View::make('admission::adm_public.admission.adm_checkouts',
+            return View::make('applicant::payment.checkouts',
                 compact('batch_applicant','data','batch_id'));
+    }
+
+    // $id refers to batch_id
+    public function admTestDetails($batch_id){
+        $session_key = 'ExmCenterIds'.'-'.Auth::applicant()->get()->id.'-'.$batch_id;
+
+        $data = Batch::with('relDegree','relDegree.relDegreeGroup','relDegree.relDegreeProgram','relDegree.relDegreeLevel','relYear','relSemester')->where('id',$batch_id)->first();
+
+        $adm_test_subject = BatchAdmtestSubject::with('relBatch','relAdmtestSubject')
+            ->where('batch_id','=',$batch_id)->get();
+
+        $exm_center_id = Session::get($session_key);
+
+        if($exm_center_id){
+            $exm_center_all = DB::table('exm_center');
+            $exm_center_id = implode(',', $exm_center_id);
+
+            $exm_center_all = $exm_center_all->orderByRaw(DB::raw("FIELD(id, $exm_center_id)"));
+            $exm_center_all = $exm_center_all->get();
+        }else{
+            $exm_center_all = ExmCenter::all();
+        }
+        return View::make('applicant::admission_test.adm_test_details',
+            compact('data','adm_test_subject','exm_center_all','batch_id'));
     }
 
     public function checkoutBank(){
@@ -1090,7 +1088,7 @@ class ApplicantController extends \BaseController
             }
             $message .= 'Sucessfully applied to .'.$deg_title.'<br>';
         }
-        //Profile Data
+        //Applicant Profile Data check
         $applicant_personal_info = ApplicantProfile::with('relCountry')
             ->where('applicant_id', '=',$applicant_id )
             ->first();
@@ -1100,8 +1098,10 @@ class ApplicantController extends \BaseController
         if(empty($applicant_personal_info) || empty($applicant_meta_records) ||  count($applicant_acm_records)< 2 ){
             $error_message .= 'Profile or Academic information is Missing! Complete Your profile to checkout!';
         }
-        if($error_message)
+        if($error_message){
+            Input::flash();
             return Redirect::back()->with('danger', $error_message);
+        }
         else
             return Redirect::back()->with('message', $message);
     }

@@ -499,9 +499,34 @@ Route::group(['prefix' => 'hr'], function() {
 
 
     //hr_salary_transaction_detail
-    Route::any('salary_transaction_detail/{emp_id}',[
+    Route::any('salary_transaction_detail/{s_t_id}',[
         'as' => 'salary_transaction_detail',
         'uses'=> 'HrSalaryTransactionDetailController@index_hr_salary_transaction_detail'
+    ]);
+
+    Route::any('store-salary-transaction-detail',[
+        'as' => 'store-salary-transaction-detail',
+        'uses'=> 'HrSalaryTransactionDetailController@store_hr_salary_transaction_detail'
+    ]);
+
+    Route::any('show-salary-transaction-detail/{s_t_d_id}',[
+        'as' => 'show-salary-transaction-detail',
+        'uses'=> 'HrSalaryTransactionDetailController@show_hr_salary_transaction_detail'
+    ]);
+
+    Route::any('edit-salary-transaction-detail/{s_t_d_id}',[
+        'as' => 'edit-salary-transaction-detail',
+        'uses'=> 'HrSalaryTransactionDetailController@edit_hr_salary_transaction_detail'
+    ]);
+
+    Route::any('destroy-salary-transaction-detail/{s_t_d_id}',[
+        'as' => 'destroy-salary-transaction-detail',
+        'uses'=> 'HrSalaryTransactionDetailController@destroy_hr_salary_transaction_detail'
+    ]);
+
+    Route::any('salary_transaction_detail/batch_delete',[
+        'as' => 'salary_transaction_detail.batch_delete',
+        'uses'=> 'HrSalaryTransactionDetailController@batch_delete_hr_salary_transaction_detail'
     ]);
 
 });
