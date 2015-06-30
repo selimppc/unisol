@@ -75,13 +75,15 @@
                 <table class="table table-bordered small-header-table" id="amwCourseConfig">
                     <thead>
                         <th>Invoice No</th>
+                        <th style="display: none"> Voucher Head ID</th>
                         <th>Amount Payable</th>
                         <th>Date </th>
                     </thead>
                     <tbody class="unpaid-items">
                     @foreach($unpaid_invoice as $key => $value)
                         <tr>
-                            <td> {{ $value->acc_voucher_head_id }} </td>
+                            <td> {{ $value->relAccVoucherHead->voucher_number }} </td>
+                            <td style="display: none"> {{ $value->acc_voucher_head_id }} </td>
                             <td><b>{{ $value->prime_amount }}</b></td>
                             <td>{{ $value->date }}</td>
                         </tr>

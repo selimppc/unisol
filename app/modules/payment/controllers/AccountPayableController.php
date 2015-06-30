@@ -66,10 +66,9 @@ class AccountPayableController extends \BaseController {
         $coa_lists = AccChartOfAccounts::lists('description', 'id');
 
         //Unpaid Invoice Lists
-        $unpaid_invoice = AccVUnpaidInvoice::where('supplier_code', 5)
+        $unpaid_invoice = AccVUnpaidInvoice::where('supplier_code', $supplier_id)
                         //->where('acc_voucher_head_id', $coa_id)->get();
                         ->get();
-        #print_r($unpaid_invoice);exit;
 
         return View::make('payment::account_payable.ap_voucher', compact(
             'supplier_id', 'coa_id', 'unpaid_invoice',
@@ -78,8 +77,23 @@ class AccountPayableController extends \BaseController {
     }
 
     public function store_ap_payment_voucher(){
-        echo "OK";
-        exit;
+        $input_data = Input::all();
+        print_r($input_data);exit;
+
+        $model = new AccChartOfAccounts();
+        if($model->validate($input_data)) {
+            DB::beginTransaction();
+            try {
+                $model->create($input_data);
+                DB::commit();
+                Session::flash('message', 'Success !');
+            }catch (Exception $e) {
+                //If there are any exceptions, rollback the transaction`
+                DB::rollback();
+                Session::flash('danger', 'Failed !');
+            }
+        }
+        return Redirect::back();
     }
 
 }

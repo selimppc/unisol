@@ -30,9 +30,6 @@
                                 {{ Form::hidden('billing_item_id', ($item_id)? $item_id: '','') }}
                                 {{ Form::hidden('status', 'recreate','') }}
 
-                                {{--<a href="{{ URL::route('installment.setup.create',['batch_id'=>$view_details->batch_id,'sch_id'=>$view_details->billing_schedule_id,'item_id'=>$view_details->billing_item_id,
-                                    'status' => 'recreate'
-                                        ])}}" class="btn btn-xs btn-success">Recreate</a>--}}
                                 {{ Form::submit('Recreate', array('class'=>' btn btn-success')) }}
                                 {{Form::close()}}
                             </div>
