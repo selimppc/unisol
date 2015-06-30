@@ -415,6 +415,7 @@ class FeesController extends \BaseController {
 
             if($data['status'] == 'recreate'){
                 // Delete previous items with this batch id
+                //$users = User::where_in('id', $ids)->delete();
                 InstallmentSetup::where('batch_id', $data['batch_id'])->delete();
             }
             try {
@@ -448,12 +449,9 @@ class FeesController extends \BaseController {
         $view_details = InstallmentSetup::with('relBatch','relBatch.relDegree','relBatch.relDegree.relDegreeProgram')
             ->where('batch_id', '=', $batch_id)
             ->first();
+
         $schedule_id = $view_details['billing_schedule_id'];
         $item_id = $view_details['billing_item_id'];
-
-        $view_installment_setup = InstallmentSetup::with('relBatch')
-            ->where('batch_id', '=', $batch_id)
-            ->get();
 
         $total_cost = DB::table('installment_setup')
             ->where('installment_setup.batch_id', '=', $batch_id )
@@ -463,8 +461,47 @@ class FeesController extends \BaseController {
             ->where('installment_setup.batch_id', '=', $batch_id )
             ->sum('installment_setup.fined_cost');
 
+        $view_installment_setup = InstallmentSetup::with('relBatch')
+            ->where('batch_id', '=', $batch_id)
+            ->get();
+
         return View::make('fees::installment_setup.view',compact('view_installment_setup','view_details','total_cost','total_fined_cost', 'batch_id', 'schedule_id', 'item_id'));
     }
 
+    public function edit_installment_setup($batch_id,$sch_id,$item_id)
+    {
+        $batch = $batch_id;
+        $schedule = $sch_id;
+        $item = $item_id;
+        $view_installment_setup = InstallmentSetup::with('relBatch')
+            ->where('batch_id', '=', $batch_id)
+            ->get();
 
+        $no_installment = Input::get('no_installment');
+
+        $data = DB::table('billing_setup')
+            ->join('billing_item','billing_setup.billing_item_id','=','billing_item.id')
+            ->groupBy('billing_item.initial')
+            ->where('billing_item.initial', '=', 'acm' )
+            ->where('billing_setup.batch_id', '=', $batch_id )
+            ->sum('billing_setup.cost');
+
+        //$no_installment_price = ($data !=0) ? $data/$no_installment : '';
+        // print_r($no_installment_price);exit;
+
+        // Calcuation of installment dealines
+     /*  $batch = Batch::find($batch_id)
+            ->select('start_date', 'end_date')
+            ->first();
+        $end_date = strtotime($batch['end_date']);
+        $start_date = strtotime($batch['start_date']);
+        $duration = floor(( $end_date - $start_date ) / (3600 * 24 * 30) / $no_installment);
+        $deadlines = array();
+        for($i = 0; $i < $no_installment ; $i++){
+            $deadlines[$i] = date("Y-m-d", strtotime("+".$i*$duration." months +15 days", strtotime($batch['start_date'])));
+        }*/
+        //print_r($deadlines);exit;
+
+       return View::Make('fees::installment_setup.edit', compact('data', 'no_installment', 'no_installment_price','batch','schedule','item','view_installment_setup','deadlines'));
+    }
 }
