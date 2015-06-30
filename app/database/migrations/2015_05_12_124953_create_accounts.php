@@ -72,7 +72,7 @@ class CreateAccounts extends Migration {
             $table->decimal('period', 2, 0);
             $table->text('note');
             $table->enum('status', array(
-                'open', 'close', 'approved', 'confirmed', 'cancel'
+                'open', 'close', 'approved', 'confirmed', 'cancel', 'balanced'
             ));
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
