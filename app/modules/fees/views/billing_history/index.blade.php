@@ -39,7 +39,6 @@
                     <div class="tab-pane active" id="tab_1">
 
                         {{--****************** Filter :Starts ***********************--}}
-                        <div>
                         {{Form::open(array('route'=> ['billing.history']))}}
                         <div class="col-sm-8 ">
                             <div class="col-sm-4">

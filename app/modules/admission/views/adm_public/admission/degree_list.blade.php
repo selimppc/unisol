@@ -3,7 +3,11 @@
     @include('layouts._top_menu')
 @stop
 @section('sidebar')
+ @if(Auth::applicant()->check())
+     @include('layouts._sidebar_applicant')
+ @else
     @include('layouts._sidebar_public')
+ @endif
 @stop
 @section('content')
 

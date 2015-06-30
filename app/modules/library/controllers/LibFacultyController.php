@@ -76,7 +76,6 @@ class LibFacultyController extends \BaseController {
         $all_cart_books = LibBook::with('relLibBookCategory', 'relLibBookAuthor', 'relLibBookPublisher')->whereIn('id', $all_cart_book_ids)->get();
 
         count($all_cart_books);
-        print_r($all_cart_book_ids);exit;
 
         return Redirect::back();
 	}
@@ -160,13 +159,17 @@ class LibFacultyController extends \BaseController {
     {
         $download = LibBook::find($book_id);
         $file = $download->file;
-        $path = public_path("library/" . $file);
-        $headers = array(
-            'Content-Type: application/pdf',
-        );
-        $file_name = $download->title."." .'pdf';
-        return Response::download($path, $file_name, $headers);
-
+        if($file){
+            $path = public_path("library/" . $file);
+            $headers = array(
+                'Content-Type: application/pdf',
+            );
+            $file_name = $download->title."." .'pdf';
+            return Response::download($path, $file_name, $headers);
+        }else{
+            Session::flash('info', 'No File Found');
+            return Redirect::back();
+        }
     }
 
     public function removeBookFromCart($id)

@@ -647,3 +647,4 @@ Route::any('admission/amw/exam-seat/{batch_id}',
 
 
 
+
