@@ -986,7 +986,6 @@ class ApplicantController extends \BaseController
             $exm_center_all = Session::get($session_key);
         }
         return Redirect ::back();
-
     }
 
     public function admPaymentCheckoutByApplicant(){
@@ -1049,7 +1048,6 @@ class ApplicantController extends \BaseController
         }else{
             $exm_center_all = ExmCenter::all();
         }
-
         return View::make('applicant::admission_test.adm_test_details',
             compact('data','adm_test_subject','exm_center_all','batch_id'));
     }
@@ -1090,7 +1088,7 @@ class ApplicantController extends \BaseController
             }
             $message .= 'Sucessfully applied to .'.$deg_title.'<br>';
         }
-        //Profile Data
+        //Applicant Profile Data check
         $applicant_personal_info = ApplicantProfile::with('relCountry')
             ->where('applicant_id', '=',$applicant_id )
             ->first();
@@ -1100,8 +1098,10 @@ class ApplicantController extends \BaseController
         if(empty($applicant_personal_info) || empty($applicant_meta_records) ||  count($applicant_acm_records)< 2 ){
             $error_message .= 'Profile or Academic information is Missing! Complete Your profile to checkout!';
         }
-        if($error_message)
+        if($error_message){
+            Input::flash();
             return Redirect::back()->with('danger', $error_message);
+        }
         else
             return Redirect::back()->with('message', $message);
     }

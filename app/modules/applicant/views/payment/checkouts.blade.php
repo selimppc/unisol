@@ -9,18 +9,11 @@
 <a class="pull-right btn btn-xs btn-success" href="{{ URL::route('applicant.details')}}"><b><i class="fa fa-arrow-circle-left"></i>Go Back</b></a>
 <h3 class="box-title">Degree List</h3>
 <div class="box box-solid ">
-     <div class="box-tools pull-right">
-         <button class="btn btn-info btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
-         <button class="btn btn-info btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
-     </div>
-
      <div class="box box-info">
            <div class="box-header">
-
            </div>
            <div class="box-body">
                 <div class="row">
-
                     <div class="col-lg-12">
                        <table class="table  table-bordered">
                              <tbody>
@@ -32,7 +25,7 @@
                                          <tr>
                                               <td class="col-lg-10">
                                               {{$value->relDegree->relDegreeLevel->code.''.$value->relDegree->relDegreeGroup->code.' In '.$value->relDegree->relDegreeProgram->code}}&nbsp;&nbsp;  Batch #:{{ $value->batch_number }}
-                                                    <a href="{{ URL::route('admission.applicant.admission.test_details',
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="{{ URL::route('admission.applicant.admission.test_details',
                                                        ['batch_id' => $value->id]) }}" class="btn-link" title="Degree,Subject & Exam Center Info For Admission" data-toggle="modal" data-target="#ATDModal">ATD</a>
                                               </td>
                                          </tr>
