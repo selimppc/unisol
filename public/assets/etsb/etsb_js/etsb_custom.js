@@ -15,17 +15,22 @@
     }
 })();
 
-
-//date_picker
-$('.date_picker').each(function() {
-
-    var $picker = $(this);
-    $picker.datepicker({
-        format:'yyyy-mm-dd'
+$(function() {
+    //date_picker
+    $('.date_picker').each(function() {
+        var $picker = $(this);
+        $picker.datepicker({
+            format:'yyyy-mm-dd'
+        });
+        var pickerObject = $picker.data('date_picker');
+        $picker.on('changeDate', function(ev){
+            $picker.datepicker('hide');
+        });
     });
-    var pickerObject = $picker.data('date_picker');
 
-    $picker.on('changeDate', function(ev){
-        $picker.datepicker('hide');
+    $('#event_period').datepicker({
+        inputs: $('.actual_range').toArray()
     });
+
 });
+
