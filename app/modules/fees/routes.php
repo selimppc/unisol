@@ -96,4 +96,8 @@
          'uses' => 'FeesStudentController@index_student_billing'
      ]);
 
+     Route::any('student/billing/setup/save', [
+         'as' => 'student.billing.setup.save',
+         'uses' => 'FeesStudentController@save_billing_type'
+     ]);
  });

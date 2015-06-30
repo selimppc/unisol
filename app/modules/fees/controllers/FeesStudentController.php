@@ -33,9 +33,18 @@ class FeesStudentController extends \BaseController
        // dd(DB::getQueryLog());
        // print_r($data);exit;
 
-        return View::make('fees::student.billing_setup.index',compact('data','regularOrInstallment'));
+        return View::make('fees::student.billing_setup.index',compact('data','regularOrInstallment','applicant_id'));
     }
 
+    public  function save_billing_type()
+    {
+        $applicant_id = Input::get('applicant_id');
+        $billing_type = Input::get('installment');
+        $update = DB::table('user')
+            ->where('applicant_id', $applicant_id)
+            ->where('billing_type', "")
+            ->update(array('billing_type' => $billing_type));
+    }
 
 
 }
