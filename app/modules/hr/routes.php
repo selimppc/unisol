@@ -403,12 +403,67 @@ Route::group(['prefix' => 'hr'], function() {
         'uses'=> 'HrSalaryAdvanceController@batch_delete_hr_salary_advance'
     ]);
 
+    //hr_salary_transaction
+    Route::any('salary_transaction/{emp_id}',[
+        'as' => 'salary_transaction',
+        'uses'=> 'HrSalaryTransactionController@index_hr_salary_transaction'
+    ]);
+
+    Route::any('store-salary-transaction',[
+        'as' => 'store-salary-transaction',
+        'uses'=> 'HrSalaryTransactionController@store_hr_salary_transaction'
+    ]);
+
+    Route::any('salary_transaction/show/{s_t_id}',[
+        'as' => 'salary_transaction.show',
+        'uses'=> 'HrSalaryTransactionController@show_hr_salary_transaction'
+    ]);
+
+    Route::any('salary_transaction/edit/{s_t_id}',[
+        'as' => 'salary_transaction.edit',
+        'uses'=> 'HrSalaryTransactionController@edit_hr_salary_transaction'
+    ]);
+
+    Route::any('salary_transaction/destroy/{s_t_id}',[
+        'as' => 'salary_transaction.destroy',
+        'uses'=> 'HrSalaryTransactionController@destroy_hr_salary_transaction'
+    ]);
+
+    Route::any('salary_transaction/batch_delete',[
+        'as' => 'salary_transaction.batch_delete',
+        'uses'=> 'HrSalaryTransactionController@batch_delete_hr_salary_transaction'
+    ]);
 
 
     //hr_salary_allowance
-    Route::any('salary_allowance/{}',[
+    Route::any('salary_allowance/{s_id}',[
         'as' => 'salary_allowance',
         'uses'=> 'HrSalaryAllowanceController@index_hr_salary_allowance'
+    ]);
+
+    Route::any('store-salary-allowance',[
+        'as' => 'store-salary-allowance',
+        'uses'=> 'HrSalaryAllowanceController@store_hr_salary_allowance'
+    ]);
+
+    Route::any('salary_allowance/show/{s_a_id}',[
+        'as' => 'salary_allowance.show',
+        'uses'=> 'HrSalaryAllowanceController@show_hr_salary_allowance'
+    ]);
+
+    Route::any('salary_allowance/edit/{s_a_id}',[
+        'as' => 'salary_allowance.edit',
+        'uses'=> 'HrSalaryAllowanceController@edit_hr_salary_allowance'
+    ]);
+
+    Route::any('salary_allowance/destroy/{s_a_id}',[
+        'as' => 'salary_allowance.destroy',
+        'uses'=> 'HrSalaryAllowanceController@destroy_hr_salary_allowance'
+    ]);
+
+    Route::any('salary_allowance/batch_delete',[
+        'as' => 'salary_allowance.batch_delete',
+        'uses'=> 'HrSalaryAllowanceController@batch_delete_hr_salary_allowance'
     ]);
 
     //hr_salary_deduction
@@ -417,11 +472,7 @@ Route::group(['prefix' => 'hr'], function() {
         'uses'=> 'HrSalaryDeductionController@index_hr_salary_deduction'
     ]);
 
-    //hr_salary_transaction
-    Route::any('salary_transaction/{}',[
-        'as' => 'salary_transaction',
-        'uses'=> 'HrSalaryTransactionController@index_hr_salary_transaction'
-    ]);
+
 
     //hr_salary_transaction_detail
     Route::any('salary_transaction_detail/{emp_id}',[

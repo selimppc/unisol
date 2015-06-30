@@ -64,4 +64,7 @@ class HrSalaryTransaction extends Eloquent{
 
 
     //TODO : Scope Area
+    public function getDateAttribute($date) {
+        return Carbon::parse($date)->format('Y-m-d'); //Change the format to whichever you desire
+    }
 }
