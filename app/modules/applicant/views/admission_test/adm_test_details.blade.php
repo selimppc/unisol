@@ -28,5 +28,5 @@
            </tbody>
          </table>
     </div>
-    @include('admission::adm_public.admission.exm_center')
+    @include('applicant::admission_test.exm_center')
 </div>
