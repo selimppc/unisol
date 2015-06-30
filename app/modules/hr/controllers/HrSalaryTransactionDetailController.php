@@ -11,7 +11,9 @@ class HrSalaryTransactionDetailController extends \BaseController {
     {
         return Input::server("REQUEST_METHOD") == "POST";
     }
-
+   /*
+    * Todo : Over Time ta kivabe Handle korbo bujhtecina
+   */
     public function index_hr_salary_transaction_detail($s_t_id)
     {
         #print_r($loan_head_id);exit;
