@@ -2417,10 +2417,10 @@ class AdmAmwController extends \BaseController
         $data_of_center = ExmCenter::get(array('exm_center.id','exm_center.capacity as capacity'));
 
         $CenterListWithCurrentCapacity = '';
+
         foreach($data_of_center as $doc){
             $CenterListWithCurrentCapacity[$doc->id]['capacity'] = $doc->capacity;
         }
-
         foreach( $selectedApplicantListWithChoiceList as $salwcl){
             foreach($salwcl['personChoiceList'] as $pcl){
                 if( $CenterListWithCurrentCapacity[$pcl]['capacity'] > 0 ){
