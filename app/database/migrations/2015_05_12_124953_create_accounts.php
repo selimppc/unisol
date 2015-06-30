@@ -161,6 +161,33 @@ class CreateAccounts extends Migration {
         });
 
 
+
+        Schema::create('acc_balance', function(Blueprint $table) {
+            $table->increments('id');
+            $table->unsignedInteger('acc_voucher_head_id')->nullable();
+            $table->unsignedInteger('acc_chart_of_accounts_id')->nullable();
+            $table->unsignedInteger('inv_supplier_id')->nullable();
+            $table->date('date')->nullable();
+            $table->text('reference')->nullable();
+            $table->unsignedInteger('year_id')->nullable();
+            $table->string('period', 2)->nullable();
+            $table->unsignedInteger('currency_id')->nullable();
+            $table->float('prime_amount')->nullable();
+            $table->float('base_amount')->nullable();
+            $table->string('status', 16)->nullable();
+            $table->integer('created_by', false, 11)->nullable();
+            $table->integer('updated_by', false, 11)->nullable();
+            $table->timestamps();
+            $table->engine = 'InnoDB';
+        });
+        Schema::table('acc_balance', function($table) {
+            $table->foreign('acc_voucher_head_id')->references('id')->on('acc_voucher_head');
+            $table->foreign('acc_chart_of_accounts_id')->references('id')->on('acc_chart_of_accounts');
+            $table->foreign('inv_supplier_id')->references('id')->on('inv_supplier');
+            $table->foreign('year_id')->references('id')->on('year');
+            $table->foreign('currency_id')->references('id')->on('currency');
+        });
+
 	}
 
 
@@ -175,6 +202,7 @@ class CreateAccounts extends Migration {
         Schema::drop('acc_ap_allocation');
         Schema::drop('acc_codesparam');
         Schema::drop('acc_trn_no_setup');
+        Schema::drop('acc_balance');
 
 	}
 
