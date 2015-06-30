@@ -33,8 +33,7 @@
                                               <td class="col-lg-10">
                                               {{$value->relDegree->relDegreeLevel->code.''.$value->relDegree->relDegreeGroup->code.' In '.$value->relDegree->relDegreeProgram->code}}&nbsp;&nbsp;  Batch #:{{ $value->batch_number }}
                                                     <a href="{{ URL::route('admission.applicant.admission.test_details',
-                                                       ['batch_id' => $value->id]) }}" class="btn-link" title="Degree,Subject & Exam Center Info For Admission" data-toggle="modal" data-target="#ATDModal">
-                                                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ATD</a>
+                                                       ['batch_id' => $value->id]) }}" class="btn-link" title="Degree,Subject & Exam Center Info For Admission" data-toggle="modal" data-target="#ATDModal">ATD</a>
                                               </td>
                                          </tr>
                                      @endforeach
