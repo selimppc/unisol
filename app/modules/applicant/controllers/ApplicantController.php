@@ -955,7 +955,6 @@ class ApplicantController extends \BaseController
         }
     }
 
-   // $id refers to applicant_id in DB table : BatchApplicant
     public function applicantDetails(){
 
         $apt_id = Auth::applicant()->get()->id;
@@ -1019,11 +1018,11 @@ class ApplicantController extends \BaseController
 
         $error_message = '';
         $applicant_id = Auth::applicant()->get()->id;
-        $applied_degree_ids = Session::get('applicantDegIds');
+        $batch_ids = Session::get('applicantBatchIds');
 
-        if($applied_degree_ids){
-            $data = Batch::with('relDegree', 'relDegree.relDegreeGroup', 'relDegree.relDegreeProgram', 'relDegree.relDegreeLevel')->whereIn('degree_id', $applied_degree_ids)->get();
-            $batch_id = Batch::whereIn('degree_id', $applied_degree_ids)->first()->id;
+        if($batch_ids){
+            $data = Batch::with('relDegree', 'relDegree.relDegreeGroup', 'relDegree.relDegreeProgram', 'relDegree.relDegreeLevel')->whereIn('id', $batch_ids)->get();
+            $batch_id = Batch::whereIn('id', $batch_ids)->first()->id;
         }
         $applicant_personal_info = ApplicantProfile::with('relCountry')
             ->where('applicant_id', '=',$applicant_id )
@@ -1037,6 +1036,10 @@ class ApplicantController extends \BaseController
 
         $psc_result = ApplicantAcademicRecords::where('applicant_id', '=',$applicant_id )->where('level_of_education','=','psc')->first()->gpa;
         $jsc_result = ApplicantAcademicRecords::where('applicant_id', '=',$applicant_id )->where('level_of_education','=','jsc')->first()->gpa;
+
+        if($batch_ids == Null){
+            $error_message .= " You Do Not Select Any Degree To Apply. Please Select Degree(s) From   <a href='/admission/public/degree-offer-list'>Admission Degree List</a>.";
+        }
 
         if($psc_result<3.50){
             $error_message .= 'Sorry!!!  You Cannot Apply This Degree. To Apply, The Minimum GPA Of PSC Is 3.50.'.'<br>';
@@ -1053,16 +1056,16 @@ class ApplicantController extends \BaseController
 
     public function checkoutBank(){
 
-        $applied_degree_ids = Session::get('applicantDegIds');
-        $data = Batch::with('relDegree','relDegree.relDegreeGroup','relDegree.relDegreeProgram','relDegree.relDegreeLevel')->whereIn('degree_id',$applied_degree_ids)->get();
+        $batch_ids = Session::get('applicantBatchIds');
+        $data = Batch::with('relDegree','relDegree.relDegreeGroup','relDegree.relDegreeProgram','relDegree.relDegreeLevel')->whereIn('id',$batch_ids)->get();
 
         return View::make('applicant::payment.checkout_bank', compact('data'));
     }
 
     public function checkoutCC(){
 
-        $applied_degree_ids = Session::get('applicantDegIds');
-        $data = Batch::with('relDegree','relDegree.relDegreeGroup','relDegree.relDegreeProgram','relDegree.relDegreeLevel')->whereIn('degree_id',$applied_degree_ids)->get();
+        $batch_ids = Session::get('applicantBatchIds');
+        $data = Batch::with('relDegree','relDegree.relDegreeGroup','relDegree.relDegreeProgram','relDegree.relDegreeLevel')->whereIn('id',$batch_ids)->get();
 
         return View::make('applicant::payment.cc', compact('data','batch_id'));
     }
