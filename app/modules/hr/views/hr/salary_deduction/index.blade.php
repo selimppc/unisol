@@ -15,12 +15,12 @@
            <div class="pull-left col-sm-4"> <h3> {{$pageTitle}} </h3>  </div>
            <div class="pull-right col-sm-4" style="padding-top: 1%;">
                 <button type="button" class="pull-right btn btn-sm btn-info" data-toggle="modal" data-target="#modal">
-                  Add HR Salary Transaction Detail
+                  Add Loan Detail
                 </button>
            </div>
         </div>
 
-        {{ Form::open([ 'route'=>'salary_transaction.batch_delete' ])}}
+        {{ Form::open([ 'route'=>'salary_deduction.batch_delete' ])}}
        <div class="box-body">
         <table id="example" class="table table-striped  table-bordered" >
             <thead>
@@ -28,11 +28,12 @@
                 <tr>
                     <th><input name="id" type="checkbox" id="checkbox" class="checkbox" value=""></th>
                     <th>Employee Name</th>
-                    <th>Transaction Number</th>
+                    <th>Title</th>
+                    <th>Type</th>
+                    <th>Loan Head</th>
+                    <th>Salary Advance</th>
+                    <th>Amount</th>
                     <th>Date</th>
-                    <th>Year</th>
-                    <th>Period</th>
-                    <th>Total Amount</th>
                     <th>Status</th>
                     <th>Action</th>
                 </tr>
@@ -41,22 +42,20 @@
                 @foreach($model as $values)
                  <tr>
                     <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $values->id }}"></td>
-                    <td>{{ $values->relHrEmployee->relUser->relUserProfile->first_name.' '.
-                           $values->relHrEmployee->relUser->relUserProfile->middle_name.' '.
-                           $values->relHrEmployee->relUser->relUserProfile->last_name
-                        }}
-                    </td>
-                    <td>{{ $values->trn_number }}</td>
+                    <td>{{ $values->relHrEmployee->relUser->relUserProfile->first_name.' '.$values->relHrEmployee->relUser->relUserProfile->middle_name.' '.$values->relHrEmployee->relUser->relUserProfile->last_name }}</td>
+                    <td>{{ ucfirst($values->title) }}</td>
+                    <td>{{ ucfirst($values->type) }}</td>
+                    <td>{{ $values->relHrLoanHead->title }}</td>
+                    <td>{{ ucfirst($values->relHrSalaryAdvance->title) }}</td>
+                    <td>{{ $values->amount }}</td>
                     <td>{{ $values->date }}</td>
-                    <td>{{ $values->relYear->title }}</td>
-                    <td>{{ ucfirst($values->period) }}</td>
-                    <td>{{ $values->total_amount }}</td>
                     <td>{{ ucfirst($values->status) }}</td>
+
                     <td>
-                        <a href="{{ URL::route('salary_transaction.show', ['s_t_id'=>$values->id ])  }}" class="btn btn-default btn-xs" title="Manage Applicant" data-toggle="modal" data-target="#modal-pc"><i style="color: #149bdf" class="fa fa-eye"></i></a>
-                        <a href="{{ URL::route('salary_transaction.edit',['s_t_id'=>$values->id])  }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal-pc"> <i style="color: #7b24dd" class="fa fa-edit"></i></a>
-                        <a data-href="{{ URL::route('salary_transaction.destroy', ['s_t_id'=>$values->id ]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i style="color: red" class="fa fa-trash-o" ></i></a>
-                        <a href="{{ URL::route('salary_transaction_detail',['s_t_id'=>$values->id])  }}" class="btn btn-default btn-xs" style="color: #802420">Salary Transaction Detail</a>
+                        <a href="{{ URL::route('show-salary-deduction', ['s_d_id'=>$values->id ]) }}" class="btn btn-default btn-xs" title="Manage Applicant" data-toggle="modal" data-target="#modal-pc"><i style="color: #149bdf" class="fa fa-eye"></i></a>
+                        <a href="{{ URL::route('edit-salary-deduction',['s_d_id'=>$values->id]) }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal-pc"> <i style="color: #7b24dd" class="fa fa-edit"></i></a>
+                        <a data-href="{{ URL::route('destroy-salary-deduction', ['s_d_id'=>$values->id ]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i style="color: red" class="fa fa-trash-o" ></i></a>
+
                     </td>
 
                  </tr>
@@ -70,16 +69,19 @@
     </div>
 
 </div>
-{{Form::open(['route'=>'store-salary-transaction', 'files'=>true])}}
-        @include('hr::hr.salary_transaction._modal._modal')
+{{Form::open(['route'=>'store-salary-deduction', 'files'=>true])}}
+        @include('hr::hr.salary_deduction._modal._modal')
 {{ Form::close() }}
 
-{{--Modal Area--}}
+
+
+{{-- Modal Area --}}
 <div class="modal fade" id="modal-pc" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
     </div>
   </div>
 </div>
+
 
 @stop

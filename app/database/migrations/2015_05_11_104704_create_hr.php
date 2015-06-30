@@ -271,7 +271,9 @@ class CreateHr extends Migration {
             $table->unsignedInteger('hr_salary_id')->nullable();
             $table->unsignedInteger('hr_allowance_id')->nullable();
             $table->string('title', 32);
-            $table->boolean('is_percentage');
+            $table->enum('is_percentage', array(
+                'yes', 'no',
+            ));
             $table->float('percentage');
             $table->enum('allowance_type', array(
                 '%-of-basic', 'fixed-amount',

@@ -955,7 +955,6 @@ class ApplicantController extends \BaseController
         }
     }
 
-   // $id refers to applicant_id in DB table : BatchApplicant
     public function applicantDetails(){
 
         $apt_id = Auth::applicant()->get()->id;
@@ -973,6 +972,61 @@ class ApplicantController extends \BaseController
         return View::make('applicant::applicant.details',
             compact('batch_applicant','applicant_personal_info','applicant_acm_records',
                 'applicant_meta_records','applied_degree_ids','data','batch_id'));
+    }
+
+    public function admExmCenter($batch_id){
+
+        $session_key = 'ExmCenterIds'.'-'.Auth::applicant()->get()->id.'-'.$batch_id;
+        $center_id = Input::get('exm_center_id');
+
+        if ($center_id) {
+            Session::put($session_key, $center_id);
+            $exm_center_all = $center_id;
+        }else{
+            $exm_center_all = Session::get($session_key);
+        }
+        return Redirect ::back();
+
+    }
+
+    public function admPaymentCheckoutByApplicant(){
+
+        $error_message = '';
+        $applicant_id = Auth::applicant()->get()->id;
+        $batch_ids = Session::get('applicantBatchIds');
+
+        if($batch_ids){
+            $data = Batch::with('relDegree', 'relDegree.relDegreeGroup', 'relDegree.relDegreeProgram', 'relDegree.relDegreeLevel')->whereIn('id', $batch_ids)->get();
+            $batch_id = Batch::whereIn('id', $batch_ids)->first()->id;
+        }
+        $applicant_personal_info = ApplicantProfile::with('relCountry')
+            ->where('applicant_id', '=',$applicant_id )
+            ->first();
+        $applicant_meta_records = ApplicantMeta::where('applicant_id', '=',$applicant_id )->first();
+        $applicant_acm_records = ApplicantAcademicRecords::where('applicant_id', '=',$applicant_id )->get();
+
+        if(empty($applicant_personal_info) || empty($applicant_meta_records) ||  count($applicant_acm_records)< 2){
+            return Redirect::back()->with('danger', 'Profile or Academic information is Missing! Complete Your profile to checkout!');
+        }
+
+        $psc_result = ApplicantAcademicRecords::where('applicant_id', '=',$applicant_id )->where('level_of_education','=','psc')->first()->gpa;
+        $jsc_result = ApplicantAcademicRecords::where('applicant_id', '=',$applicant_id )->where('level_of_education','=','jsc')->first()->gpa;
+
+        if($batch_ids == Null){
+            $error_message .= " You Do Not Select Any Degree To Apply. Please Select Degree(s) From   <a href='/admission/public/degree-offer-list'>Admission Degree List</a>.";
+        }
+
+        if($psc_result<3.50){
+            $error_message .= 'Sorry!!!  You Cannot Apply This Degree. To Apply, The Minimum GPA Of PSC Is 3.50.'.'<br>';
+        }
+        if($jsc_result<3.00){
+            $error_message .= 'Sorry!!!  You Cannot Apply This Degree. To Apply, The Minimum GPA Of JSC Is 3.00.';
+        }
+        if($error_message)
+            return Redirect::back()->with('danger', $error_message);
+        else
+            return View::make('applicant::payment.checkouts',
+                compact('batch_applicant','data','batch_id'));
     }
 
     // $id refers to batch_id
@@ -996,73 +1050,22 @@ class ApplicantController extends \BaseController
             $exm_center_all = ExmCenter::all();
         }
 
-        return View::make('admission::adm_public.admission.adm_test_details',
+        return View::make('applicant::admission_test.adm_test_details',
             compact('data','adm_test_subject','exm_center_all','batch_id'));
-    }
-
-    public function admExmCenter($batch_id){
-
-        $session_key = 'ExmCenterIds'.'-'.Auth::applicant()->get()->id.'-'.$batch_id;
-        $center_id = Input::get('exm_center_id');
-
-        if ($center_id) {
-            Session::put($session_key, $center_id);
-            $exm_center_all = $center_id;
-        }else{
-            $exm_center_all = Session::get($session_key);
-        }
-        return Redirect ::back();
-
-    }
-
-    public function admPaymentCheckoutByApplicant(){
-
-        $error_message = '';
-        $applicant_id = Auth::applicant()->get()->id;
-        $applied_degree_ids = Session::get('applicantDegIds');
-
-        if($applied_degree_ids){
-            $data = Batch::with('relDegree', 'relDegree.relDegreeGroup', 'relDegree.relDegreeProgram', 'relDegree.relDegreeLevel')->whereIn('degree_id', $applied_degree_ids)->get();
-            $batch_id = Batch::whereIn('degree_id', $applied_degree_ids)->first()->id;
-        }
-        $applicant_personal_info = ApplicantProfile::with('relCountry')
-            ->where('applicant_id', '=',$applicant_id )
-            ->first();
-        $applicant_meta_records = ApplicantMeta::where('applicant_id', '=',$applicant_id )->first();
-        $applicant_acm_records = ApplicantAcademicRecords::where('applicant_id', '=',$applicant_id )->get();
-
-        if(empty($applicant_personal_info) || empty($applicant_meta_records) ||  count($applicant_acm_records)< 2){
-            return Redirect::back()->with('danger', 'Profile or Academic information is Missing! Complete Your profile to checkout!');
-        }
-
-        $psc_result = ApplicantAcademicRecords::where('applicant_id', '=',$applicant_id )->where('level_of_education','=','psc')->first()->gpa;
-        $jsc_result = ApplicantAcademicRecords::where('applicant_id', '=',$applicant_id )->where('level_of_education','=','jsc')->first()->gpa;
-
-        if($psc_result<3.50){
-            $error_message .= 'Sorry!!!  You Cannot Apply This Degree. To Apply, The Minimum GPA Of PSC Is 3.50.'.'<br>';
-        }
-        if($jsc_result<3.00){
-            $error_message .= 'Sorry!!!  You Cannot Apply This Degree. To Apply, The Minimum GPA Of JSC Is 3.00.';
-        }
-        if($error_message)
-            return Redirect::back()->with('danger', $error_message);
-        else
-            return View::make('admission::adm_public.admission.adm_checkouts',
-                compact('batch_applicant','data','batch_id'));
     }
 
     public function checkoutBank(){
 
-        $applied_degree_ids = Session::get('applicantDegIds');
-        $data = Batch::with('relDegree','relDegree.relDegreeGroup','relDegree.relDegreeProgram','relDegree.relDegreeLevel')->whereIn('degree_id',$applied_degree_ids)->get();
+        $batch_ids = Session::get('applicantBatchIds');
+        $data = Batch::with('relDegree','relDegree.relDegreeGroup','relDegree.relDegreeProgram','relDegree.relDegreeLevel')->whereIn('id',$batch_ids)->get();
 
         return View::make('applicant::payment.checkout_bank', compact('data'));
     }
 
     public function checkoutCC(){
 
-        $applied_degree_ids = Session::get('applicantDegIds');
-        $data = Batch::with('relDegree','relDegree.relDegreeGroup','relDegree.relDegreeProgram','relDegree.relDegreeLevel')->whereIn('degree_id',$applied_degree_ids)->get();
+        $batch_ids = Session::get('applicantBatchIds');
+        $data = Batch::with('relDegree','relDegree.relDegreeGroup','relDegree.relDegreeProgram','relDegree.relDegreeLevel')->whereIn('id',$batch_ids)->get();
 
         return View::make('applicant::payment.cc', compact('data','batch_id'));
     }

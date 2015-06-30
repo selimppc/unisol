@@ -36,7 +36,7 @@ $(function() {
                 alert("In-sufficient Amount!");
                 return false;
             }else{
-                if($pay_amount > $amount){
+                if($pay_amount >= $amount){
                     //Payable Amount
                     var $least_pay_amount = (Math.round($pay_amount) - Math.round($amount));
                     $('#pay-for-amount').val($least_pay_amount);
@@ -51,7 +51,7 @@ $(function() {
                     $('#pay-for-amount').val('0');
                     $pr_amount = Math.round($pay_amount);
 
-                    $('#new-data').append("<tr> <td><input value='"+$invoice_code+"' readonly> <input name='voucher_head_id[]' type='hidden' value='"+$voucher_head_id+"'></td>  <td><input name='prime_amount[]' value='"+$pr_amount+"' readonly></td> </tr>");
+                    $('#new-data').append("<tr> <td><input value='"+$invoice_code+"' readonly> <input name='voucher_head_id[]' type='hidden' value='"+$voucher_head_id+"'></td>  <td><input name='amount[]' value='"+$pr_amount+"' readonly></td> </tr>");
                     $arrayItems.push($invoice_code);
 
                 }
