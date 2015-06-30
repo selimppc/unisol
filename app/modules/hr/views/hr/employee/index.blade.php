@@ -61,6 +61,7 @@
                         <a href="{{ URL::route('over_time',['emp_id'=>$values->id])  }}" class="btn btn-default btn-xs" style="color: #802420">Over Time</a>
                         <a href="{{ URL::route('loan_head',['emp_id'=>$values->id])  }}" class="btn btn-default btn-xs" style="color: #802420">Loan Head</a>
                         <a href="{{ URL::route('salary_advance',['emp_id'=>$values->id])  }}" class="btn btn-default btn-xs" style="color: #802420">Salary Advance</a>
+                        <a href="{{ URL::route('salary_transaction',['emp_id'=>$values->id])  }}" class="btn btn-default btn-xs" style="color: #802420">Salary Transaction</a>
                     </td>
                  </tr>
                 @endforeach
