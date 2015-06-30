@@ -467,11 +467,35 @@ Route::group(['prefix' => 'hr'], function() {
     ]);
 
     //hr_salary_deduction
-    Route::any('salary_deduction/{}',[
+    Route::any('salary_deduction/{loan_head_id}/{employee_id}',[
         'as' => 'salary_deduction',
         'uses'=> 'HrSalaryDeductionController@index_hr_salary_deduction'
     ]);
 
+    Route::any('store-salary-deduction',[
+        'as' => 'store-salary-deduction',
+        'uses'=> 'HrSalaryDeductionController@store_hr_salary_deduction'
+    ]);
+
+    Route::any('show-salary-deduction/{s_d_id}',[
+        'as' => 'show-salary-deduction',
+        'uses'=> 'HrSalaryDeductionController@show_hr_salary_deduction'
+    ]);
+
+    Route::any('edit-salary-deduction/{s_d_id}',[
+        'as' => 'edit-salary-deduction',
+        'uses'=> 'HrSalaryDeductionController@edit_hr_salary_deduction'
+    ]);
+
+    Route::any('destroy-salary-deduction/{s_d_id}',[
+        'as' => 'destroy-salary-deduction',
+        'uses'=> 'HrSalaryDeductionController@destroy_hr_salary_deduction'
+    ]);
+
+    Route::any('salary_deduction/batch_delete',[
+        'as' => 'salary_deduction.batch_delete',
+        'uses'=> 'HrSalaryDeductionController@batch_delete_hr_salary_deduction'
+    ]);
 
 
     //hr_salary_transaction_detail
