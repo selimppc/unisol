@@ -19,6 +19,11 @@
              <li><a href="{{ URL::to('hr/allowance') }}"></i><i class="fa fa-sort" style="color: #00fff2"></i>HR Allowance</a></li>
              <li><a href=""></i><i class="fa fa-money" style="color: #ffa108"></i>HR Salary(come from employee)</a></li>
              <li><a href=""></i><i class="fa fa-money" style="color: #ffa108"></i>HR Bonus(come from employee)</a></li>
+             <li><a href=""></i><i class="fa fa-money" style="color: #ffa108"></i>HR Over Time(come from employee)</a></li>
+             <li><a href=""></i><i class="fa fa-money" style="color: #ffa108"></i>HR Loan Head(come from employee)</a></li>
+             <li><a href=""></i><i class="fa fa-money" style="color: #ffa108"></i>HR Loan Detail(come from Loan Head)</a></li>
+             <li><a href=""></i><i class="fa fa-money" style="color: #ffa108"></i>HR Salary Advance(come from employee)</a></li>
+             <li><a href=""></i><i class="fa fa-money" style="color: #ffa108"></i>HR Salary Transaction(come from employee)</a></li>
          </ul>
     </li>
 </ul>

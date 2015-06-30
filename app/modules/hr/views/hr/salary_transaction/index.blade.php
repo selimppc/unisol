@@ -15,12 +15,12 @@
            <div class="pull-left col-sm-4"> <h3> {{$pageTitle}} </h3>  </div>
            <div class="pull-right col-sm-4" style="padding-top: 1%;">
                 <button type="button" class="pull-right btn btn-sm btn-info" data-toggle="modal" data-target="#modal">
-                  Add HR Salary
+                  Add HR Salary Transaction
                 </button>
            </div>
         </div>
 
-        {{ Form::open([ 'route'=>'salary.batch_delete' ])}}
+        {{ Form::open([ 'route'=>'salary_transaction.batch_delete' ])}}
        <div class="box-body">
         <table id="example" class="table table-striped  table-bordered" >
             <thead>
@@ -28,11 +28,11 @@
                 <tr>
                     <th><input name="id" type="checkbox" id="checkbox" class="checkbox" value=""></th>
                     <th>Employee Name</th>
-                    <th>Salary Type</th>
-                    <th>Currency</th>
-                    <th>Exchange Rate</th>
-                    <th>Gross</th>
-                    <th>Basic</th>
+                    <th>Transaction Number</th>
+                    <th>Date</th>
+                    <th>Year</th>
+                    <th>Period</th>
+                    <th>Total Amount</th>
                     <th>Status</th>
                     <th>Action</th>
                 </tr>
@@ -46,17 +46,17 @@
                            $values->relHrEmployee->relUser->relUserProfile->last_name
                         }}
                     </td>
-                    <td>{{ ucfirst($values->salary_type) }}</td>
-                    <td>{{ $values->currency_id }}</td>
-                    <td>{{ round($values->exchange_rate,2) }}</td>
-                    <td>{{ $values->gross }}</td>
-                    <td>{{ $values->basic }}</td>
+                    <td>{{ $values->trn_number }}</td>
+                    <td>{{ $values->date }}</td>
+                    <td>{{ $values->relYear->title }}</td>
+                    <td>{{ ucfirst($values->period) }}</td>
+                    <td>{{ $values->total_amount }}</td>
                     <td>{{ ucfirst($values->status) }}</td>
                     <td>
-                        <a href="{{ URL::route('salary.show', ['s_id'=>$values->id ])  }}" class="btn btn-default btn-xs" title="Manage Applicant" data-toggle="modal" data-target="#modal-pc"><i style="color: #149bdf" class="fa fa-eye"></i></a>
-                        <a href="{{ URL::route('salary.edit',['s_id'=>$values->id])  }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal-pc"> <i style="color: #7b24dd" class="fa fa-edit"></i></a>
-                        <a data-href="{{ URL::route('salary.destroy', ['s_id'=>$values->id ]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i style="color: red" class="fa fa-trash-o" ></i></a>
-                        <a href="{{ URL::route('salary_allowance',['s_id'=>$values->id])  }}" class="btn btn-default btn-xs" style="color: #802420">Salary Allowance</a>
+                        <a href="{{ URL::route('salary_transaction.show', ['s_t_id'=>$values->id ])  }}" class="btn btn-default btn-xs" title="Manage Applicant" data-toggle="modal" data-target="#modal-pc"><i style="color: #149bdf" class="fa fa-eye"></i></a>
+                        <a href="{{ URL::route('salary_transaction.edit',['s_t_id'=>$values->id])  }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal-pc"> <i style="color: #7b24dd" class="fa fa-edit"></i></a>
+                        <a data-href="{{ URL::route('salary_transaction.destroy', ['s_t_id'=>$values->id ]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i style="color: red" class="fa fa-trash-o" ></i></a>
+
                     </td>
 
                  </tr>
@@ -70,20 +70,16 @@
     </div>
 
 </div>
-{{Form::open(['route'=>'store-salary', 'files'=>true])}}
-        @include('hr::hr.salary._modal._modal')
+{{Form::open(['route'=>'store-salary-transaction', 'files'=>true])}}
+        @include('hr::hr.salary_transaction._modal._modal')
 {{ Form::close() }}
 
-
-
-{{-- Modal Area --}}
+{{--Modal Area--}}
 <div class="modal fade" id="modal-pc" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
     </div>
   </div>
 </div>
-
-
 
 @stop

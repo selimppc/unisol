@@ -9,7 +9,7 @@ class HrSalaryAllowance extends Eloquent{
     //TODO :: model attributes and rules and validation
     protected $table='hr_salary_allowance';
     protected $fillable = [
-        'hr_salary_id','hr_allowance_id','is_percentage','percentage','allowance_type','amount','status'
+        'hr_salary_id','hr_allowance_id','title','is_percentage','percentage','allowance_type','amount','status'
     ];
     private $errors;
     private $rules = [
@@ -61,10 +61,10 @@ class HrSalaryAllowance extends Eloquent{
 
 
     //TODO : Scope Area
-    public function scopeHrAllowanceLists($query){
-        $query = HrBank::lists('title', 'id');
-        return $query;
-
-    }
+//    public function scopeHrAllowanceLists($query){
+//        $query = HrBank::lists('title', 'id');
+//        return $query;
+//
+//    }
 
 }
