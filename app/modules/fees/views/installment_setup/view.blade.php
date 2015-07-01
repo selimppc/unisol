@@ -27,8 +27,8 @@
                                 {{Form::selectRange('no_installment', 1, 48,'', ['class' => 'l','required'=>'required'])}}
                                 {{ Form::hidden('batch_id', ($batch_id)? $batch_id: '','') }}
 
-                                {{ Form::hidden('billing_schedule_id', ($schedule_id)? $schedule_id: '','') }}
-                                {{ Form::hidden('billing_item_id', ($item_id)? $item_id: '','') }}
+                                {{ Form::hidden('schedule_id', ($schedule_id)? $schedule_id: '','') }}
+                                {{ Form::hidden('item_id', ($item_id)? $item_id: '','') }}
 
                                 {{ Form::hidden('status', 'recreate','') }}
 
