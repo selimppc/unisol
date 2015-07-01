@@ -81,11 +81,11 @@
                                 </table>
 
                                 <p><b>This is one time setup.So choose the option by thinking carefully.</b></p>
-                                {{Form::open(array('route'=> ['student.billing.setup.save']))}}
+                                {{--{{Form::open(array('route'=> ['student.billing.setup.save']))}}
                                 {{ Form::hidden('applicant_id', $applicant_id) }}
                                 {{ Form::hidden('regular','regular') }}
                                 {{ Form::submit('Submit', array('class'=>'btn btn-success'))}}
-                                {{Form::close()}}
+                                {{Form::close()}}--}}
 
                                 <a href="{{ URL::route('student.billing.setup')}}" class="btn-link pull-right"><i class="fa fa-backward text-red"></i> Back to All List</a>
 
@@ -121,11 +121,11 @@
                                     </tbody>
                                 </table>
                                 <p><b>This is one time setup.So choose the option by thinking carefully.</b></p>
-                                {{Form::open(array('route'=> ['student.billing.setup.save']))}}
+                              {{--  {{Form::open(array('route'=> ['student.billing.setup.save']))}}
                                 {{ Form::hidden('applicant_id', $applicant_id) }}
                                 {{ Form::hidden('installment','installment') }}
                                 {{ Form::submit('Submit', array('class'=>'btn btn-success'))}}
-                                {{Form::close()}}
+                                {{Form::close()}}--}}
                                 <a href="{{ URL::route('student.billing.setup')}}" class="btn-link pull-right"><i class="fa fa-backward text-red"></i> Back to All List</a>
                             </div>
                         @endif
