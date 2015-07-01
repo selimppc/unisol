@@ -18,7 +18,7 @@
            </div>
         </div>
 
-        {{ Form::open([ 'route'=>'employee.batch_delete' ])}}
+        {{ Form::open([ 'route'=>'employee.batch_delete' ]) }}
 
         <div class="box-body">
          <table id="example" class="table table-striped  table-bordered" >
@@ -70,10 +70,10 @@
             </tbody>
          </table>
         </div>
-        {{form::close() }}
+        {{ form::close() }}
     </div>
 </div>
-{{Form::open(['route'=>'employee.store', 'files'=>true])}}
+{{ Form::open(['route'=>'employee.store', 'files'=>true]) }}
         @include('hr::hr.employee._modal._modal')
 {{ Form::close() }}
 
