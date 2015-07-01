@@ -20,7 +20,7 @@
            </div>
         </div>
 
-        {{ Form::open([ 'route'=>'over_time.batch_delete' ])}}
+        {{ Form::open([ 'route'=>'over-time-batch-delete' ])}}
        <div class="box-body">
         <table id="example" class="table table-striped  table-bordered" >
             <thead>

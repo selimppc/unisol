@@ -68,8 +68,8 @@
    'thai' => 'Thai','togolese' => 'Togolese','tongan' => 'Tongan','trinidadian or Tobagonian' => 'Trinidadian or Tobagonian',
    'tunisian' => 'Tunisian','turkish' => 'Turkish', 'tuvaluan' => 'Tuvaluan','ugandan' => 'Ugandan','ukrainian' => 'Ukrainian',
    'uruguayan' => 'Uruguayan','uzbekistani' => 'Uzbekistani','venezuelan' => 'Venezuelan','vietnamese' => 'Vietnamese',
-   'welsh' => 'Welsh','yemenite' => 'Yemenite','zambian' => 'Zambian','zimbabwean' => 'Zimbabwean',)
-   ,Input::old('nationality'),['class'=>'form-control', 'required']) }}
+   'welsh' => 'Welsh','yemenite' => 'Yemenite','zambian' => 'Zambian','zimbabwean' => 'Zimbabwean'),Input::old('nationality'),
+   ['class'=>'form-control', 'required']) }}
 </div>
 
 <div class='form-group'>
