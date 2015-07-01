@@ -237,8 +237,8 @@ Route::group(['prefix' => 'hr'], function() {
         'uses'=> 'HrSalaryController@destroy_hr_salary'
     ]);
 
-    Route::any('salary/batch_delete',[
-        'as' => 'salary.batch_delete',
+    Route::any('salary-batch-delete',[
+        'as' => 'salary-batch-delete',
         'uses'=> 'HrSalaryController@batch_delete_hr_salary'
     ]);
 
@@ -270,8 +270,8 @@ Route::group(['prefix' => 'hr'], function() {
         'uses'=> 'HrBonusController@destroy_hr_bonus'
     ]);
 
-    Route::any('bonus/batch_delete',[
-        'as' => 'bonus.batch_delete',
+    Route::any('bonus-batch-delete',[
+        'as' => 'bonus-batch-delete',
         'uses'=> 'HrBonusController@batch_delete_hr_bonus'
     ]);
 
@@ -303,8 +303,8 @@ Route::group(['prefix' => 'hr'], function() {
         'uses'=> 'HrLoanHeadController@destroy_hr_loan_head'
     ]);
 
-    Route::any('loan_head/batch_delete',[
-        'as' => 'loan_head.batch_delete',
+    Route::any('batch-delete-loan-head',[
+        'as' => 'batch-delete-loan-head',
         'uses'=> 'HrLoanHeadController@batch_delete_hr_loan_head'
     ]);
 
@@ -334,8 +334,8 @@ Route::group(['prefix' => 'hr'], function() {
         'uses'=> 'HrOverTimeController@destroy_hr_over_time'
     ]);
 
-    Route::any('over_time/batch_delete',[
-        'as' => 'over_time.batch_delete',
+    Route::any('over-time-batch-delete',[
+        'as' => 'over-time-batch-delete',
         'uses'=> 'HrOverTimeController@batch_delete_hr_over_time'
     ]);
 
@@ -366,8 +366,8 @@ Route::group(['prefix' => 'hr'], function() {
         'uses'=> 'HrLoanDetailController@destroy_hr_loan_detail'
     ]);
 
-    Route::any('loan_detail/batch_delete',[
-        'as' => 'loan_detail.batch_delete',
+    Route::any('batch-delete-loan-detail',[
+        'as' => 'batch-delete-loan-detail',
         'uses'=> 'HrLoanDetailController@batch_delete_hr_loan_detail'
     ]);
 
@@ -398,8 +398,8 @@ Route::group(['prefix' => 'hr'], function() {
         'uses'=> 'HrSalaryAdvanceController@destroy_hr_salary_advance'
     ]);
 
-    Route::any('salary_advance/batch_delete',[
-        'as' => 'salary_advance.batch_delete',
+    Route::any('salary-advance-batch-delete',[
+        'as' => 'salary-advance-batch-delete',
         'uses'=> 'HrSalaryAdvanceController@batch_delete_hr_salary_advance'
     ]);
 
@@ -429,8 +429,8 @@ Route::group(['prefix' => 'hr'], function() {
         'uses'=> 'HrSalaryTransactionController@destroy_hr_salary_transaction'
     ]);
 
-    Route::any('salary_transaction/batch_delete',[
-        'as' => 'salary_transaction.batch_delete',
+    Route::any('salary-transaction-batch-delete',[
+        'as' => 'salary-transaction-batch-delete',
         'uses'=> 'HrSalaryTransactionController@batch_delete_hr_salary_transaction'
     ]);
 
@@ -461,8 +461,8 @@ Route::group(['prefix' => 'hr'], function() {
         'uses'=> 'HrSalaryAllowanceController@destroy_hr_salary_allowance'
     ]);
 
-    Route::any('salary_allowance/batch_delete',[
-        'as' => 'salary_allowance.batch_delete',
+    Route::any('salary-allowance-batch-delete',[
+        'as' => 'salary-allowance-batch-delete',
         'uses'=> 'HrSalaryAllowanceController@batch_delete_hr_salary_allowance'
     ]);
 
@@ -524,8 +524,8 @@ Route::group(['prefix' => 'hr'], function() {
         'uses'=> 'HrSalaryTransactionDetailController@destroy_hr_salary_transaction_detail'
     ]);
 
-    Route::any('salary_transaction_detail/batch_delete',[
-        'as' => 'salary_transaction_detail.batch_delete',
+    Route::any('salary-transaction-detail-batch-delete',[
+        'as' => 'salary-transaction-detail-batch-delete',
         'uses'=> 'HrSalaryTransactionDetailController@batch_delete_hr_salary_transaction_detail'
     ]);
 

@@ -3,7 +3,7 @@
     @include('layouts._top_menu')
 @stop
 @section('sidebar')
-    @include('layouts._sidebar_amw')
+    @include('layouts._sidebar_student')
 @stop
 @section('content')
     <div class="row">
@@ -14,7 +14,6 @@
     <div class="row">
         <div class="col-md-12">
             <div class="box-body table-responsive ">
-
                 <table class="table table-bordered table-hover table-striped">
                     <tr>
                         <td>Name:</td>
