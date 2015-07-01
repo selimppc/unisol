@@ -69,6 +69,7 @@
                                     <th>
                                         <input name="id" type="checkbox" id="checkbox" class="checkbox" value="">
                                     </th>
+                                    <th>Batch</th>
                                     <th>Schedule</th>
                                     <th>Item</th>
                                     <th>Cost</th>
@@ -83,6 +84,8 @@
                                     <tr>
                                         <td><input type="checkbox" name="id[]"  class="myCheckbox" value="{{ $value->id }}">
                                         </td>
+                                        <td>{{isset($value->relBatch->batch_number) ? $value->relBatch->batch_number : ''}}</td>
+
                                         <td>{{isset($value->relBillingSchedule->title) ? $value->relBillingSchedule->title:''}}</td>
 
                                         <td>{{isset($value->relBillingItem->title) ? $value->relBillingItem->title: ''}}</td>

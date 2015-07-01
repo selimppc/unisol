@@ -68,7 +68,7 @@ class AccountPayableController extends \BaseController {
         $coa_lists = AccChartOfAccounts::lists('description', 'id');
 
         //Unpaid Invoice Lists
-        $unpaid_invoice = AccVUnpaidInvoice::where('supplier_code', $supplier_id)
+        $unpaid_invoice = AccVUnpaidInvoice::where('inv_supplier_id', $supplier_id)
                         //->where('acc_voucher_head_id', $coa_id)->get();
                         ->get();
 
@@ -112,6 +112,7 @@ class AccountPayableController extends \BaseController {
                 $data_v_detail_credit = [
                     'acc_voucher_head_id' => $model_vhead->id,
                     'acc_chart_of_accounts_id' => $input_data['acc_chart_of_accounts_id'],
+                    'inv_supplier_id' => $input_data['inv_supplier_id'],
                     'prime_amount' => (-$input_data['total_amount']),
                     'base_amount' => (-$input_data['total_amount']),
                     'note'=> "open",

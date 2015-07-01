@@ -18,7 +18,7 @@
     });
 
      /********************AMW*********************
-    /**********Billing Setup Start****************/
+    /************Billing Setup Start****************/
 
     Route::any('billing/setup', [
          'as' => 'billing.setup',
@@ -57,8 +57,7 @@
         'uses' => 'FeesController@batchdeleteBillingSetup'
     ]);
 
-
-     /**********Billing History Start****************/
+     /************Billing History Start****************/
 
      Route::any('billing/history', [
          'as' => 'billing.history',
@@ -90,7 +89,8 @@
          'uses' => 'FeesController@view_installment_setup'
      ]);
 
-   /********************Student billing setup*********************/
+     /********************Student *********************
+   /********************billing setup******************/
      Route::any('student/billing/setup', [
          'as' => 'student.billing.setup',
          'uses' => 'FeesStudentController@index_student_billing'
@@ -101,7 +101,7 @@
          'uses' => 'FeesStudentController@save_billing_type'
      ]);
 
-     /********************Student billing history*********************/
+     /********************billing history*********************/
 
      Route::any('student/billing/history', [
          'as' => 'student.billing.history',
@@ -117,4 +117,6 @@
          'as' => 'applicant.billing.history.view',
          'uses' => 'FeesStudentController@view_applicant_billing_history'
      ]);
+
+
  });

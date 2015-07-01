@@ -1,20 +1,20 @@
 <?php
-use Illuminate\Auth\UserTrait;
-use Illuminate\Auth\UserInterface;
-use Illuminate\Auth\Reminders\RemindableTrait;
-use Illuminate\Auth\Reminders\RemindableInterface;
+/**
+ * Created by PhpStorm.
+ * User: User
+ * Date: 01-Jul-15
+ * Time: 2:26 PM
+ */
 
-class HrWorkWeek extends Eloquent{
-
+class HrLeave extends Eloquent{
     //TODO :: model attributes and rules and validation
-    protected $table='hr_work_week';
+    protected $table='hr_leave';
     protected $fillable = [
-        'year_id','month','day','status'
+//        'hr_leave_id','comment'
     ];
-
     private $errors;
     private $rules = [
-        //'hr_employee_id' => 'required',
+//        'hr_leave_id' => 'required',
     ];
 
     public function validate($data)
@@ -33,10 +33,6 @@ class HrWorkWeek extends Eloquent{
     }
 
     //TODO : Model Relationship
-
-    public function relYear(){
-        return $this->belongsTo('Year', 'year_id', 'id');
-    }
 
     // TODO : user info while saving data into table
     public static function boot(){
@@ -59,32 +55,6 @@ class HrWorkWeek extends Eloquent{
 
     //TODO : Scope Area
 
-    public static function getMonth(){
-        return $status = [
-            'january' => 'January',
-            'february' => 'February',
-            'march'=>'March',
-            'april'=>'April',
-            'may'=>'May',
-            'june'=>'June',
-            'july'=>'July',
-            'august'=>'August',
-            'september'=>'September',
-            'october'=>'October',
-            'november'=>'November',
-            'december'=>'December',
-        ];
-    }
 
-    public static function getDay(){
-        return $status = [
-            'saturday' => 'Saturday',
-            'sunday' => 'Sunday',
-            'monday'=>'Monday',
-            'tuesday'=>'Tuesday',
-            'wednesday'=>'Wednesday',
-            'thursday'=>'Thursday',
-            'friday'=>'Friday',
-        ];
-    }
-}
+
+} 

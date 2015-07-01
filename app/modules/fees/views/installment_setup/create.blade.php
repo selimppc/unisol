@@ -23,7 +23,7 @@
                     </li>
                 </ul>
                 <div class="col-sm-12 aca-cost-panel">
-                    <div class="aca-style"><b>Academic Cost: {{$data}} ; Per Installment Cost: {{$no_installment_price}}</b></div>
+                    <div class="aca-style"><b>Academic Cost: {{$data}} ; Per Installment Cost: {{$total}}</b></div>
                 </div>‏
                 <table class="table table-bordered small-header-table" >
                     {{ Form::open(['route'=>'installment.setup.save', 'method'=>'post', 'class'=>'form-horizontal']) }}
@@ -34,15 +34,15 @@
                     </thead>
                     <tbody>
                     {{ Form::hidden('batch_id', ($batch_id)? $batch_id: '','') }}
-                    {{ Form::hidden('billing_schedule_id', ($schedule_id)? $schedule_id: '','') }}
-                    {{ Form::hidden('billing_item_id', ($item_id)? $item_id: '','') }}
+                    {{ Form::hidden('schedule_id', ($schedule_id)? $schedule_id: '','') }}
+                    {{ Form::hidden('item_id', ($item_id)? $item_id: '','') }}
                     {{ Form::hidden('status', ($status)? $status: 'create','') }}
 
                     @for($i = 0; $i < $no_installment; $i++)
                         <tr>
-                            <td>{{ Form::text('amount[]', ($no_installment_price) ? $no_installment_price : Input::old('amount'), ['class'=>'form-control', 'required'=>'required']) }}</td>
+                            <td>{{ Form::text('amount[]', ($total) ? $total : Input::old('amount'), ['class'=>'form-control', 'required'=>'required']) }}</td>
 
-                            <td>{{ Form::text('fined_cost[]', $no_installment_price * 0.05, Input::old('fined_cost'), ['class'=>'form-control', 'required'=>'required']) }}</td>
+                            <td>{{ Form::text('fined_cost[]',$totalfc, Input::old('fined_cost'), ['class'=>'form-control', 'required'=>'required']) }}</td>
 
                             <td>{{ Form::text('deadline[]', $deadlines[$i] ,Input::old('deadline'),['class'=>'form-control date_picker','required'=>'required']) }}</td>
                         </tr>
