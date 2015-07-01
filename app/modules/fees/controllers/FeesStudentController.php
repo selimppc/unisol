@@ -81,17 +81,27 @@ class FeesStudentController extends \BaseController
 
     public function index_billing_history()
     {
-       // echo('ffffffffff');exit;
         $applicant_id = User::findOrFail(Auth::user()->get()->id)->applicant_id;
         $batch_id = BatchApplicant::where('applicant_id', $applicant_id)->first()->batch_id;
         $applicant_data = BillingVApplicantHistory::where('applicant_id', $batch_id)->get();
-
-       // $student_data = BillingVStudentHistory::where('applicant_id', $batch_id)->get();
+        $student_data = BillingVStudentHistory::with('relDegree')->get();
 
         return View::make('fees::student.billing_history.index',compact('applicant_data','student_data'));
 
     }
+    public function view_student_billing_history($id)
+    {
+        $data = BillingVStudentHistory::where('id', $id)->first();
+        $stu_data = BillingSummaryStudent::with('relBillingDetailsStudent.relBillingItem', 'relBillingSchedule')->where('id', $id)->get();
+        return View::make('fees::student.billing_history.view_student',compact('data','stu_data'));
+    }
 
+    public function view_applicant_billing_history($id)
+    {
+        $data = BillingVApplicantHistory::where('id', $id)->first();
+        $applicant_data = BillingSummaryApplicant::with('relBillingDetailsApplicant',  'relBillingSchedule')->where('id', $id)->get();
+        return View::make('fees::student.billing_history.view_applicant',compact('data','applicant_data'));
+    }
 
 
 }

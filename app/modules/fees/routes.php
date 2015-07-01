@@ -107,4 +107,14 @@
          'as' => 'student.billing.history',
          'uses' => 'FeesStudentController@index_billing_history'
      ]);
+
+     Route::any('student/billing/history/view/{id}', [
+         'as' => 'student.billing.history.view',
+         'uses' => 'FeesStudentController@view_student_billing_history'
+     ]);
+
+     Route::any('applicant/billing/history/view/{id}', [
+         'as' => 'applicant.billing.history.view',
+         'uses' => 'FeesStudentController@view_applicant_billing_history'
+     ]);
  });
