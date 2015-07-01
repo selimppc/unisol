@@ -375,7 +375,7 @@ class FeesController extends \BaseController {
                 ->where('installment_setup.batch_id', '=', $batch_id )
                 ->sum('installment_setup.fined_cost');
 
-            return View::make('fees::installment_setup.view',compact('view_installment_setup','view_details','total_cost','total_fined_cost'));
+            return View::make('fees::installment_setup.view',compact('view_installment_setup','view_details','total_cost','total_fined_cost', 'batch_id', 'schedule_id', 'item_id'));
 
         }else{
             /*  For create installment*/
@@ -421,8 +421,8 @@ class FeesController extends \BaseController {
             try {
                 for($k = 0; $k < count($amount); $k++){
                     $model = new InstallmentSetup();
-                    $model->billing_schedule_id = Input::get('billing_schedule_id');
-                    $model->billing_item_id = Input::get('billing_item_id');
+                    $model->billing_schedule_id = Input::get('schedule_id');
+                    $model->billing_item_id = Input::get('item_id');
                     $model->batch_id = Input::get('batch_id');
                     $model->cost = $amount[$k];
                     $model->deadline = $deadline[$k];
