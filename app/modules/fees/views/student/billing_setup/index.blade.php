@@ -45,9 +45,10 @@
                             </div>
                         </div>
                         <div class="col-sm-8 btn-style">
-                            {{ Form::submit('Submit', array('class'=>'btn btn-success','id'=>'button'))}}
+                            {{ Form::submit('Show', array('class'=>'btn btn-primary'))}}
                         </div>
                        {{Form::close()}}
+
                         @if($regularOrInstallment == 'regular')
                             <div class="box-body table-responsive ">
                                 <table id="example" class="table table-bordered table-hover table-striped">
@@ -78,8 +79,16 @@
                                     @endif
                                     </tbody>
                                 </table>
+
+                                <p><b>This is one time setup.So choose the option by thinking carefully.</b></p>
+                                {{Form::open(array('route'=> ['student.billing.setup.save']))}}
+                                {{ Form::hidden('applicant_id', $applicant_id) }}
+                                {{ Form::hidden('regular','regular') }}
+                                {{ Form::submit('Submit', array('class'=>'btn btn-success'))}}
+                                {{Form::close()}}
+
                                 <a href="{{ URL::route('student.billing.setup')}}" class="btn-link pull-right"><i class="fa fa-backward text-red"></i> Back to All List</a>
-                                </br>
+
                             </div>
                         @else
                             <div class="box-body table-responsive ">
@@ -111,8 +120,13 @@
                                     @endif
                                     </tbody>
                                 </table>
+                                <p><b>This is one time setup.So choose the option by thinking carefully.</b></p>
+                                {{Form::open(array('route'=> ['student.billing.setup.save']))}}
+                                {{ Form::hidden('applicant_id', $applicant_id) }}
+                                {{ Form::hidden('installment','installment') }}
+                                {{ Form::submit('Submit', array('class'=>'btn btn-success'))}}
+                                {{Form::close()}}
                                 <a href="{{ URL::route('student.billing.setup')}}" class="btn-link pull-right"><i class="fa fa-backward text-red"></i> Back to All List</a>
-                                <br>
                             </div>
                         @endif
                     </div>
