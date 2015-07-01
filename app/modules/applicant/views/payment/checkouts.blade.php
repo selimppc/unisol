@@ -39,7 +39,6 @@
      </div>
 </div>
 
-
 <div class="box box-solid ">
     <div class="box-tools pull-right">
         <button class="btn btn-success btn-xs" data-widget="collapse"><i class="fa fa-minus"></i></button>

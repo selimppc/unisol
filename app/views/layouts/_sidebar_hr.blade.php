@@ -17,13 +17,8 @@
              <li><a href="{{ URL::to('hr/employee') }}"></i><i class="fa fa-user" style="color: #0707cc"></i>HR Employee</a></li>
              <li><a href="{{ URL::to('hr/currency') }}"></i><i class="fa fa-dollar" style="color: #ff1383"></i>Currency</a></li>
              <li><a href="{{ URL::to('hr/allowance') }}"></i><i class="fa fa-sort" style="color: #00fff2"></i>HR Allowance</a></li>
-             <li><a href=""></i><i class="fa fa-money" style="color: #ffa108"></i>HR Salary(come from employee)</a></li>
-             <li><a href=""></i><i class="fa fa-money" style="color: #ffa108"></i>HR Bonus(come from employee)</a></li>
-             <li><a href=""></i><i class="fa fa-money" style="color: #ffa108"></i>HR Over Time(come from employee)</a></li>
-             <li><a href=""></i><i class="fa fa-money" style="color: #ffa108"></i>HR Loan Head(come from employee)</a></li>
-             <li><a href=""></i><i class="fa fa-money" style="color: #ffa108"></i>HR Loan Detail(come from Loan Head)</a></li>
-             <li><a href=""></i><i class="fa fa-money" style="color: #ffa108"></i>HR Salary Advance(come from employee)</a></li>
-             <li><a href=""></i><i class="fa fa-money" style="color: #ffa108"></i>HR Salary Transaction(come from employee)</a></li>
+             <li><a href="{{ Route('attendance') }}"></i><i class="fa fa-sort" style="color: #00fff2"></i>HR Attendance</a></li>
+
          </ul>
     </li>
 </ul>
