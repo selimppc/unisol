@@ -7,7 +7,7 @@
 </style>
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-     <h4> Payment for the Supplier #  </h4>
+     <h4> Payment for the Supplier # {{ $supplier_id }}  </h4>
 </div>
 
 <div style="padding: 2%; width: 99%;">
@@ -70,7 +70,7 @@
     <div class="col-sm-6">
         <div class='row'>
             <div class="col-sm-12" style="background-color: #f9f9f9">
-                <h4> Unpaid Invoice of the supplier#  </h4>
+                <h4> Unpaid Invoice of the supplier# {{$supplier_id}} </h4>
                 <table class="table table-bordered small-header-table" id="amwCourseConfig">
                     <thead>
                         <th>Invoice No</th>
@@ -79,6 +79,7 @@
                         <th>Date </th>
                     </thead>
                     <tbody class="unpaid-items">
+                    @if(isset($unpaid_invoice))
                     @foreach($unpaid_invoice as $key => $value)
                         <tr>
                             <td> {{ $value->relAccVoucherHead->voucher_number }} </td>
@@ -87,6 +88,7 @@
                             <td>{{ $value->date }}</td>
                         </tr>
                    @endforeach
+                   @endif
                 </table>
             </div>
 
@@ -123,22 +125,11 @@
 </div>
 {{ Form::close() }}
 
-<div class="form-group form-group-filled" id="event_period">
-   <input type="text" class="actual_range">
-   <input type="text" class="actual_range">
-</div>
-<script>
-$(function() {
-    $('#event_period').datepicker({
-          inputs: $('.actual_range').toArray()
-    });
-});
 
-</script>
 
 
 @include('payment::account_payable._script')
-{{--{{ HTML::script('assets/etsb/etsb_js/jquery-ui/jquery-ui.min.js')}}--}}
+{{ HTML::script('assets/etsb/etsb_js/jquery-ui/jquery-ui.min.js')}}
 {{--{{ HTML::script('assets/js/custom.js')}}--}}
 {{ HTML::script('assets/etsb/etsb_js/etsb_custom.js')}}
 {{--{{ HTML::script('assets/etsb/etsb_js/jquery/jquery.min.js')}}--}}

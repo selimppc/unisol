@@ -20,7 +20,7 @@
            </div>
         </div>
 
-        {{ Form::open([ 'route'=>'salary.batch_delete' ])}}
+        {{ Form::open([ 'route'=>'salary-batch-delete' ])}}
        <div class="box-body">
         <table id="example" class="table table-striped  table-bordered" >
             <thead>

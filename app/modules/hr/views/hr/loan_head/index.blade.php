@@ -20,7 +20,7 @@
            </div>
         </div>
 
-        {{ Form::open([ 'route'=>'loan_head.batch_delete' ])}}
+        {{ Form::open([ 'route'=>'batch-delete-loan-head' ])}}
        <div class="box-body">
         <table id="example" class="table table-striped  table-bordered" >
             <thead>

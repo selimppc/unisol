@@ -3,7 +3,7 @@
     @include('layouts._top_menu')
 @stop
 @section('sidebar')
-    @include('layouts._sidebar_amw')
+    @include('layouts._sidebar_student')
 @stop
 @section('content')
     <div class="row" xmlns="http://www.w3.org/1999/html">
@@ -28,8 +28,6 @@
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab_1">
-
-
                         {{--****************Applicant*******************--}}
 
                             <div class="box-body table-responsive ">
@@ -51,7 +49,7 @@
                                                 <td>{{isset($value->schedule_title) ? $value->schedule_title:''}}</td>
                                                 <td>{{isset($value->amount) ? $value->amount : ''}}</td>
                                                 <td>
-                                                 {{--   <a href="{{URL::route('billing.history.show',['id'=>$value->id,'app_stu_id'=> $studentOrApplicant])}}" class="btn btn-xs btn-default" href=""><i class="fa fa-eye" style="color: green"></i></a>--}}
+                                                    <a href="{{URL::route('applicant.billing.history.view',['id'=>$value->id])}}" class="btn btn-xs btn-default" href=""><i class="fa fa-eye" style="color: green"></i></a>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -77,7 +75,7 @@
                                                 <td>{{isset($value->schedule_title) ? $value->schedule_title:''}}</td>
                                                 <td>{{isset($value->amount) ? $value->amount : ''}}</td>
                                                 <td>
-                                                    <a href="{{URL::route('billing.history.show',['id'=>$value->id,'app_stu_id'=> $studentOrApplicant])}}" class="btn btn-xs btn-default" href=""><i class="fa fa-eye" style="color: green"></i></a>
+                                                    <a href="{{URL::route('student.billing.history.view',['id'=>$value->id])}}" class="btn btn-xs btn-default" href=""><i class="fa fa-eye" style="color: green"></i></a>
                                                 </td>
                                             </tr>
                                         @endforeach
