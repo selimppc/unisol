@@ -1,6 +1,6 @@
 <?php
 
-class HrWorkWeekController extends \BaseController {
+class HrLeaveCommentsController extends \BaseController {
 
     function __construct()
     {
@@ -13,23 +13,17 @@ class HrWorkWeekController extends \BaseController {
     }
 
     public function index()
-	{
-        $year = array('' => 'Select Year ') + Year::lists('title', 'id');
-        $month = HrWorkWeek::getMonth();
-        $day = HrWorkWeek::getDay();
-        $data = HrWorkWeek::with('relYear')->orderBy('id', 'DESC')->paginate(5);
+    {
+        $data = HrLeaveComments::orderBy('id', 'DESC')->paginate(5);
 
-        return View::make('hr::hr.work_week.index',compact('year','month','day','data'));
-	}
+        return View::make('hr::hr.leave_comments.index',compact('data'));
+    }
 
-	public function store()
-	{
+    public function storeLeaveComments()
+    {
         if($this->isPostRequest()){
             $input_data = Input::all();
-            $model = new HrWorkWeek();
-            $model->month = Input::get('month');
-            $model->day = Input::get('day');
-//            print_r($input_data);exit;
+            $model = new HrLeaveComments();
             if($model->validate($input_data)) {
                 DB::beginTransaction();
                 try {
@@ -44,27 +38,24 @@ class HrWorkWeekController extends \BaseController {
             }
         }
         return Redirect::back();
-	}
+    }
 
-    public function showWorkWeek($id)
+    public function showLeaveType($id)
     {
-        $model = HrWorkWeek::with('relYear')->find($id);
-        return View::make('hr::hr.work_week.show',compact('model'));
+        $model = HrLeaveComments::find($id);
+        return View::make('hr::hr.leave_type.show',compact('model'));
     }
 
-    public function editWorkWeek($id){
+    public function editLeaveType($id){
 
-        $model = HrWorkWeek::find($id);
-        $year = array('' => 'Select Year ') + Year::lists('title', 'id');
-        $month = HrWorkWeek::getMonth();
-        $day = HrWorkWeek::getDay();
-        return View::make('hr::hr.work_week.edit',compact('model','year','month','day'));
+        $model = HrLeaveComments::find($id);
+        return View::make('hr::hr.leave_type.edit',compact('model'));
     }
 
-    public function updateWorkWeek($id){
+    public function updateLeaveType($id){
 
         $data = Input::all();
-        $model = HrWorkWeek::find($id);
+        $model = HrLeaveComments::find($id);
 
         if($model->validate($data))
         {
@@ -88,10 +79,10 @@ class HrWorkWeekController extends \BaseController {
         }
     }
 
-    public function deleteWorkWeek($id)
+    public function deleteLeaveType($id)
     {
         try {
-            $data = HrWorkWeek::find($id);
+            $data = HrLeaveComments::find($id);
             if ($data->delete()) {
                 Session::flash('message', "Successfully  Deleted");
                 return Redirect::back();
@@ -105,7 +96,7 @@ class HrWorkWeekController extends \BaseController {
     public function batchDelete()
     {
         try {
-            HrWorkWeek::destroy(Request::get('ids'));
+            HrLeaveComments::destroy(Request::get('ids'));
             return Redirect::back()->with('message', 'Successfully deleted Information!');
         } catch (exception $ex) {
             return Redirect::back()->with('danger', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
