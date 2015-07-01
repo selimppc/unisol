@@ -123,22 +123,11 @@
 </div>
 {{ Form::close() }}
 
-<div class="form-group form-group-filled" id="event_period">
-   <input type="text" class="actual_range">
-   <input type="text" class="actual_range">
-</div>
-<script>
-$(function() {
-    $('#event_period').datepicker({
-          inputs: $('.actual_range').toArray()
-    });
-});
 
-</script>
 
 
 @include('payment::account_payable._script')
-{{--{{ HTML::script('assets/etsb/etsb_js/jquery-ui/jquery-ui.min.js')}}--}}
+{{ HTML::script('assets/etsb/etsb_js/jquery-ui/jquery-ui.min.js')}}
 {{--{{ HTML::script('assets/js/custom.js')}}--}}
 {{ HTML::script('assets/etsb/etsb_js/etsb_custom.js')}}
 {{--{{ HTML::script('assets/etsb/etsb_js/jquery/jquery.min.js')}}--}}
