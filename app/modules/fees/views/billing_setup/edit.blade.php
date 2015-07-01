@@ -36,8 +36,8 @@
                     {{ Form::text('cost', Input::old('cost'), array('class' => 'form-control','required'=>'required')) }}
                 </div>
                 <div class="form-group">
-                    {{ Form::label('fined_cost', 'Fined') }}<span class="text-danger">*</span>
-                    {{ Form::text('fined_cost',($edit_billing_setup->fined_cost	) ? $edit_billing_setup->fined_cost :'', array('class' => 'form-control','required'=>'required')) }}
+                    {{ Form::label('fined', 'Fined') }}<span class="text-danger">*</span>
+                    {{ Form::text('fined',($edit_billing_setup->fined_cost	) ? $edit_billing_setup->fined_cost :'', array('class' => 'form-control','required'=>'required')) }}
                 </div>
                 <div class='form-group'>
                     {{ Form::label('deadline', 'Deadline') }}
