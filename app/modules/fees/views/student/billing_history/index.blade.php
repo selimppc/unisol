@@ -28,8 +28,6 @@
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab_1">
-
-
                         {{--****************Applicant*******************--}}
 
                             <div class="box-body table-responsive ">
