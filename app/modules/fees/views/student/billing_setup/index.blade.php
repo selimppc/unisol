@@ -3,7 +3,7 @@
     @include('layouts._top_menu')
 @stop
 @section('sidebar')
-    @include('layouts._sidebar_amw')
+    @include('layouts._sidebar_student')
 @stop
 @section('content')
     <div class="row" xmlns="http://www.w3.org/1999/html">
