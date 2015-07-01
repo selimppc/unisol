@@ -306,13 +306,15 @@ class FeesController extends \BaseController {
             $relation_data = BillingSummaryStudent::with('relBillingDetailsStudent.relBillingItem', 'relBillingSchedule')->where('id', $id)->get();
         }else{
             $data = BillingVApplicantHistory::where('id', $id)->first();
-            $relation_data = BillingSummaryApplicant::with('relBillingDetailsApplicant',  'relBillingSchedule')->where('id', $id)->get();
+            $relation_data = BillingSummaryApplicant::with('relBillingDetailsApplicant',  'relBillingSchedule')
+                ->where('id', $id)
+                ->get();
         }
         //print_r($relation_data);exit;
         /*$last_query = end($relation_data);
         dd(DB::getQueryLog());*/
         #print_r($relation_data[0]['relBillingDetailsApplicant'][0]['relBillingItem']['title']);exit;
-        return View::make('fees::billing_history.view',compact('data', 'relation_data','studentOrApplicant'));
+        return View::make('fees::billing_history.view',compact('data','relation_data','studentOrApplicant'));
 
     }
 
@@ -353,7 +355,7 @@ class FeesController extends \BaseController {
         $no_installment     = Input::get('no_installment');
         $status             = Input::get('status');
 
-        /*  For View installment*/
+        /****************For View page installment*******************/
         $setup = DB::table('installment_setup')
             ->where('installment_setup.batch_id', '=' ,$batch_id)
             ->get();
@@ -378,7 +380,8 @@ class FeesController extends \BaseController {
             return View::make('fees::installment_setup.view',compact('view_installment_setup','view_details','total_cost','total_fined_cost', 'batch_id', 'schedule_id', 'item_id'));
 
         }else{
-            /*  For create installment*/
+
+            /******************For create page installment********************/
             $data = DB::table('billing_setup')
                 ->join('billing_item','billing_setup.billing_item_id','=','billing_item.id')
                 ->groupBy('billing_item.initial')
@@ -387,6 +390,10 @@ class FeesController extends \BaseController {
                 ->sum('billing_setup.cost');
 
             $no_installment_price = ($data !=0) ? $data/$no_installment : '';
+            $total = round($no_installment_price,2);
+
+            $fined_total = $total*0.05;
+            $totalfc = round($fined_total,2);
 
             // Calcuation of installment dealines
             $batch = Batch::find($batch_id)
@@ -400,7 +407,7 @@ class FeesController extends \BaseController {
                 $deadlines[$i] = date("Y-m-d", strtotime("+".$i*$duration." months +15 days", strtotime($batch['start_date'])));
             }
             //print_r($deadlines);exit;
-            return View::Make('fees::installment_setup.create', compact('data', 'no_installment', 'no_installment_price','batch_id','schedule_id','item_id','degprog_id', 'deadlines', 'status'));
+            return View::Make('fees::installment_setup.create', compact('data', 'no_installment', 'no_installment_price','batch_id','schedule_id','item_id','degprog_id', 'deadlines', 'status','total','totalfc'));
         }
     }
 
