@@ -1,4 +1,4 @@
-<div style="padding: 0px 20px 20px 20px;">
+<div style="padding: 0px 20px 20px;">
     <div class="form-group">
       {{ Form::label('forward_to', 'Leave Forward To ') }}<span class="text-danger">*</span>
       {{ Form::select('forward_to', $hr_id, Input::old('forward_to'), array('class' => 'form-control','required'=>'required')) }}
@@ -33,17 +33,31 @@
            {{ Form::text('to_date',  Input::old('to_date'),['class'=>'form-control date_picker']) }}
         </div>
     </div>
-
-    <div class='form-group'>
-        {{ Form::label('alt_contact_no', 'Alt Contact No') }}
-        {{ Form::text('alt_contact_no', Input::old('alt_contact_no'),['class'=>'form-control', 'required']) }}
+<p>&nbsp;</p>
+     <div class='form-group'>
+       <div class="col-lg-12">{{ Form::label('alt_contact_no', 'Alt Contact No') }}</div>
+         <div class="col-lg-12">{{ Form::text('alt_contact_no', Input::old('alt_contact_no'),['class'=>'form-control', 'required']) }}</div>
+     </div>
+<p>&nbsp;</p>
+    <div class="form-group">
+         <div class="col-lg-12">{{ Form::label('status', 'Status') }}</div>
+            <div class="col-lg-12">{{ Form::select ('status',  array('' => 'Select one',
+                'rejected' => 'Rejected', 'canceled' => 'Canceled','pending-approval'=>'pending Approval',
+                'scheduled'=>'Scheduled','taken'=>'Taken','approved'=>'Approved'), Input::old('status'),
+                 array('class' => 'form-control ','required')) }}</div>
+            </div>
     </div>
 
+    <div class="form-group">
+      {{ Form::label('alt_hr_employee_id', 'alt HR Employee') }}<span class="text-danger">*</span>
+      {{ Form::select('alt_hr_employee_id', $alt_hr_employee_id, Input::old('alt_hr_employee_id'), array('class' => 'form-control','required'=>'required')) }}
+    </div>
 
     <p>&nbsp;</p>
     <p>&nbsp;</p>
     {{ Form::submit('Save', array('class'=>'pull-right btn btn-info')) }}
     <a href="" class="pull-right btn btn-default" style="margin-right: 5px">Close</a>
 
+    <p>&nbsp;</p>
     <p>&nbsp;</p>
 </div>
