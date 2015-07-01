@@ -13,7 +13,7 @@
 
 Route::group(['prefix' => 'hr'], function() {
 
-//    include("routes_sh_fac.php");
+    include("routes_tjt.php");
 
     Route::get('/', function() {
         return 'Thank you so much!';

@@ -26,7 +26,8 @@
                   {{ Form::submit('Delete Items', ['class'=>'btn btn-danger btn-xs', 'id'=>'hide-button', 'style'=>'display:none', 'onclick'=> "return confirm('Are you sure you want to delete?')"])}}
                 <tr>
                     <th><input name="id" type="checkbox" id="checkbox" class="checkbox" value=""></th>
-                    <th>Employee Id</th>
+                     <th>Employee Name</th>
+                     <th>Employee Id</th>
                     <th>Join Date</th>
                     <th>Designation</th>
                     <th style="text-align: center">Bank</th>
@@ -42,7 +43,8 @@
                 @foreach($model as $values)
                  <tr>
                     <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $values->id }}"></td>
-                    <td>{{ $values->employee_id }}</td>
+                     <td>{{ $values->relUser->relUserProfile->first_name.' '.$values->relUser->relUserProfile->middle_name.' '.$values->relUser->relUserProfile->last_name }}</td>
+                     <td>{{ $values->employee_id }}</td>
                     <td>{{ $values->date_of_joining }}</td>
                     <td>{{ ucfirst($values->relDesignation->title) }}</td>
                     <td>{{ ucfirst($values->relHrBank->bank_name) }}</td>

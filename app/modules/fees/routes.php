@@ -90,10 +90,31 @@
          'uses' => 'FeesController@view_installment_setup'
      ]);
 
-   /********************Student*********************/
+   /********************Student billing setup*********************/
      Route::any('student/billing/setup', [
          'as' => 'student.billing.setup',
          'uses' => 'FeesStudentController@index_student_billing'
      ]);
 
+     Route::any('student/billing/setup/save', [
+         'as' => 'student.billing.setup.save',
+         'uses' => 'FeesStudentController@save_billing_type'
+     ]);
+
+     /********************Student billing history*********************/
+
+     Route::any('student/billing/history', [
+         'as' => 'student.billing.history',
+         'uses' => 'FeesStudentController@index_billing_history'
+     ]);
+
+     Route::any('student/billing/history/view/{id}', [
+         'as' => 'student.billing.history.view',
+         'uses' => 'FeesStudentController@view_student_billing_history'
+     ]);
+
+     Route::any('applicant/billing/history/view/{id}', [
+         'as' => 'applicant.billing.history.view',
+         'uses' => 'FeesStudentController@view_applicant_billing_history'
+     ]);
  });
