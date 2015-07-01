@@ -529,4 +529,37 @@ Route::group(['prefix' => 'hr'], function() {
         'uses'=> 'HrSalaryTransactionDetailController@batch_delete_hr_salary_transaction_detail'
     ]);
 
+
+    // all list together
+
+    Route::any('all-bonus',[
+        'as' => 'all-bonus',
+        'uses'=> 'HrAllListController@index_all_bonus'
+    ]);
+
+    Route::any('all-over-time',[
+        'as' => 'all-over-time',
+        'uses'=> 'HrAllListController@index_all_over_time'
+    ]);
+
+    Route::any('all-salary-advance',[
+        'as' => 'all-salary-advance',
+        'uses'=> 'HrAllListController@index_all_salary_advance'
+    ]);
+
+    Route::any('all-salary',[
+        'as' => 'all-salary',
+        'uses'=> 'HrAllListController@index_all_salary'
+    ]);
+
+    Route::any('all-loan-head',[
+        'as' => 'all-loan-head',
+        'uses'=> 'HrAllListController@index_all_loan_head'
+    ]);
+
+    Route::any('all-salary-transaction',[
+        'as' => 'all-salary-transaction',
+        'uses'=> 'HrAllListController@index_all_salary_transaction'
+    ]);
+
 });

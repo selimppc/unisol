@@ -37,6 +37,7 @@
                     <th>Status</th>
                     <th>Action</th>
                     <th></th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -58,11 +59,13 @@
                         <a data-href="{{ URL::route('employee.destroy', ['emp_id'=>$values->id ]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i style="color: red" class="fa fa-trash-o" ></i></a>
                     </td>
                     <td>
-                        <a href="{{ URL::route('salary',['emp_id'=>$values->id])  }}" class="btn btn-default btn-xs" style="color: #802420">Salary</a>
                         <a href="{{ URL::route('bonus',['emp_id'=>$values->id])  }}" class="btn btn-default btn-xs" style="color: #802420">Bonus</a>
                         <a href="{{ URL::route('over_time',['emp_id'=>$values->id])  }}" class="btn btn-default btn-xs" style="color: #802420">Over Time</a>
-                        <a href="{{ URL::route('loan_head',['emp_id'=>$values->id])  }}" class="btn btn-default btn-xs" style="color: #802420">Loan Head</a>
                         <a href="{{ URL::route('salary_advance',['emp_id'=>$values->id])  }}" class="btn btn-default btn-xs" style="color: #802420">Salary Advance</a>
+                    </td>
+                    <td>
+                        <a href="{{ URL::route('salary',['emp_id'=>$values->id])  }}" class="btn btn-default btn-xs" style="color: #802420">Salary</a>
+                        <a href="{{ URL::route('loan_head',['emp_id'=>$values->id])  }}" class="btn btn-default btn-xs" style="color: #802420">Loan Head</a>
                         <a href="{{ URL::route('salary_transaction',['emp_id'=>$values->id])  }}" class="btn btn-default btn-xs" style="color: #802420">Salary Transaction</a>
                     </td>
                  </tr>

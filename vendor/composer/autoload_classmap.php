@@ -238,6 +238,7 @@ return array(
     'FeesController' => $baseDir . '/app/modules/fees/controllers/FeesController.php',
     'FeesStudentController' => $baseDir . '/app/modules/fees/controllers/FeesStudentController.php',
     'HomeController' => $baseDir . '/app/controllers/HomeController.php',
+    'HrAllListController' => $baseDir . '/app/modules/hr/controllers/HrAllListController.php',
     'HrAllowance' => $baseDir . '/app/modules/hr/models/HrAllowance.php',
     'HrAllowanceController' => $baseDir . '/app/modules/hr/controllers/HrAllowanceController.php',
     'HrAttendanceController' => $baseDir . '/app/modules/hr/controllers/HrAttendanceController.php',
