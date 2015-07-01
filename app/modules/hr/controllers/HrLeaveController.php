@@ -1,6 +1,6 @@
 <?php
 
-class HrWorkWeekController extends \BaseController {
+class HrLeaveController extends \BaseController {
 
     function __construct()
     {
@@ -13,23 +13,19 @@ class HrWorkWeekController extends \BaseController {
     }
 
     public function index()
-	{
-        $year = array('' => 'Select Year ') + Year::lists('title', 'id');
-        $month = HrWorkWeek::getMonth();
-        $day = HrWorkWeek::getDay();
-        $data = HrWorkWeek::with('relYear')->orderBy('id', 'DESC')->paginate(5);
+    {
+        $data = HrLeave::with('relYear')->orderBy('id', 'DESC')->paginate(5);
+        $hr_id = User::HrList();
+        $leave_type_id = HrLeaveType::lists('title','id');
 
-        return View::make('hr::hr.work_week.index',compact('year','month','day','data'));
-	}
+        return View::make('hr::hr.leave.index',compact('data','hr_id','leave_type_id'));
+    }
 
-	public function store()
-	{
+    public function storeLeave()
+    {
         if($this->isPostRequest()){
             $input_data = Input::all();
-            $model = new HrWorkWeek();
-            $model->month = Input::get('month');
-            $model->day = Input::get('day');
-//            print_r($input_data);exit;
+            $model = new HrLeave();
             if($model->validate($input_data)) {
                 DB::beginTransaction();
                 try {
@@ -44,7 +40,7 @@ class HrWorkWeekController extends \BaseController {
             }
         }
         return Redirect::back();
-	}
+    }
 
     public function showWorkWeek($id)
     {
