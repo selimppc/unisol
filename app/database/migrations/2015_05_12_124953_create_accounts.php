@@ -66,6 +66,10 @@ class CreateAccounts extends Migration {
         Schema::create('acc_voucher_head', function(Blueprint $table) {
             $table->increments('id');
             $table->string('voucher_number',32);
+            $table->enum('type', array(
+                'account-payable', 'account-receivable', 'stock-adjustment',
+                'journal-voucher', 'payment-voucher', 'receipt-voucher', 'reverse-entry',
+            ));
             $table->dateTime('date');
             $table->text('reference');
             $table->unsignedInteger('year_id')->nullable();
