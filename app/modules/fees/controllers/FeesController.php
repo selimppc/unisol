@@ -396,9 +396,7 @@ class FeesController extends \BaseController {
             $totalfc = round($fined_total,2);
 
             // Calcuation of installment dealines
-            $batch = Batch::find($batch_id)
-                ->select('start_date', 'end_date')
-                ->first();
+            $batch = Batch::find($batch_id)->select('start_date', 'end_date')->first();////
             $end_date = strtotime($batch['end_date']);
             $start_date = strtotime($batch['start_date']);
             $duration = floor(( $end_date - $start_date ) / (3600 * 24 * 30) / $no_installment);
