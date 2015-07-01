@@ -19,6 +19,13 @@
              <li><a href="{{ URL::to('hr/allowance') }}"></i><i class="fa fa-sort" style="color: #00fff2"></i>HR Allowance</a></li>
              <li><a href="{{ Route('attendance') }}"></i><i class="fa fa-sort" style="color: #00fff2"></i>HR Attendance</a></li>
 
+             <li><a href="{{ URL::to('hr/all-bonus') }}"></i><i class="fa fa-briefcase" style="color: #0effae"></i>All Bonus</a></li>
+             <li><a href="{{ URL::to('hr/all-over-time') }}"></i><i class="fa fa-briefcase" style="color: #0effae"></i>All Over Time</a></li>
+             <li><a href="{{ URL::to('hr/all-salary-advance') }}"></i><i class="fa fa-briefcase" style="color: #0effae"></i>All Salary Advance</a></li>
+             <li><a href="{{ URL::to('hr/all-salary') }}"></i><i class="fa fa-briefcase" style="color: #0effae"></i>All Salary </a></li>
+             <li><a href="{{ URL::to('hr/all-loan-head') }}"></i><i class="fa fa-briefcase" style="color: #0effae"></i>All Loan Head </a></li>
+             <li><a href="{{ URL::to('hr/all-salary-transaction') }}"></i><i class="fa fa-briefcase" style="color: #0effae"></i>All Salary Transaction</a></li>
+
          </ul>
     </li>
 </ul>
