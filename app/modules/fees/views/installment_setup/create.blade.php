@@ -22,6 +22,20 @@
                         </ul>
                     </li>
                 </ul>
+                <table class="table table-bordered">
+                    <tr>
+                        <td width="200px">Degree Name:</td>
+                        <td>
+                            {{isset($view_details->relBatch->relDegree->relDegreeProgram->title) ? $view_details->relBatch->relDegree->relDegreeProgram->title :''}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="200px">Batch:</td>
+                        <td>
+                            {{isset($view_details->relBatch->batch_number) ? $view_details->relBatch->batch_number :''}}
+                        </td>
+                    </tr>
+                </table>
                 <div class="col-sm-12 aca-cost-panel">
                     <div class="aca-style"><b>Academic Cost: {{$data}} ; Per Installment Cost: {{$total}}</b></div>
                 </div>‏

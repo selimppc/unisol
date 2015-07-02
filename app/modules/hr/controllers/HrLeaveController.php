@@ -17,7 +17,8 @@ class HrLeaveController extends \BaseController {
         $data = HrLeave::with('relYear')->orderBy('id', 'DESC')->paginate(5);
         $hr_id = User::HrList();
         $leave_type_id = HrLeaveType::lists('title','id');
-
+//        $alt_hr_employee_id
+        
         return View::make('hr::hr.leave.index',compact('data','hr_id','leave_type_id'));
     }
 
