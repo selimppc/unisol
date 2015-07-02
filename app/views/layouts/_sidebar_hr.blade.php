@@ -20,6 +20,7 @@
              <li><a href="{{ URL::to('hr/work-week') }}"></i><i class="fa fa-sort" style="color: #00fff2"></i>HR Work Week</a></li>
              <li><a href="{{ URL::to('hr/leave-type') }}"></i><i class="fa fa-sort" style="color: #00fff2"></i>HR Leave Type</a></li>
              <li><a href="{{ URL::to('hr/leave') }}"></i><i class="fa fa-sort" style="color: #00fff2"></i>HR Leave </a></li>
+             <li><a href="{{ URL::to('hr/provident-fund') }}"></i><i class="fa fa-sort" style="color: #00fff2"></i>HR Provident Fund </a></li>
 
              <li><a href="{{ URL::to('hr/all-bonus') }}"></i><i class="fa fa-briefcase" style="color: #0effae"></i>All Bonus</a></li>
              <li><a href="{{ URL::to('hr/all-over-time') }}"></i><i class="fa fa-briefcase" style="color: #0effae"></i>All Over Time</a></li>

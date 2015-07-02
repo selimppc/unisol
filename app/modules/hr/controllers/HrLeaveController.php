@@ -16,22 +16,8 @@ class HrLeaveController extends \BaseController {
     {
         $data = HrLeave::with('relHrLeaveType')->orderBy('id', 'DESC')->paginate(5);
         $leave_type_id = HrLeaveType::lists('title','id');
-        #$hr_employee_id = User::AmwList();
-
-        //Generate Employee List
-        /*$employee_user = HrEmployee::get();
-        foreach($employee_user as $values){
-            $user_ids [] = [ $values->user_id ];
-        }
-        $employee_name = UserProfile::select('user_id', DB::raw('CONCAT(first_name, " ", middle_name, " ", last_name) AS full_name'))
-            ->orderBy('first_name')
-            ->whereIn('user_id', $user_ids)
-            ->lists('full_name', 'user_id');
-
-       */
-
         $employee = User::HrList();
-//print_r($employee_name);exit;
+
         return View::make('hr::hr.leave.index',compact('data','employee','leave_type_id'));
     }
 
