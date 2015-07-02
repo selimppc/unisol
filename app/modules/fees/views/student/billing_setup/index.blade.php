@@ -29,24 +29,20 @@
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab_1">
                         {{Form::open(array('route'=> ['student.billing.setup']))}}
-                        <div class="col-sm-8 ">
-                            <div class="col-sm-4">
-                                <div class="form-inline radio-inline">
-                                    <div class="radio radio-style">
-                                        {{ Form::radio('regularOrInstallment','installment',true ) }}
-                                        {{ Form::label('installment','Installment') }}
-                                    </div>
-                                    <div class="radio radio-style">
-                                        {{ Form::radio('regularOrInstallment','regular') }}
-                                        {{ Form::label('regular', 'Regular') }}
-                                    </div>
+                        <div class="col-sm-12 " style="background: #f6f5fa">
+                            <div class="form-inline radio-inline">
+                                <div class="radio radio-style">
+                                    {{ Form::radio('regularOrInstallment','installment',true ) }}
+                                    {{ Form::label('installment','Installment') }}
+                                </div>
+                                <div class="radio radio-style">
+                                    {{ Form::radio('regularOrInstallment','regular') }}
+                                    {{ Form::label('regular', 'Regular') }}
+                                    {{ Form::submit('Show', array('class'=>'btn btn-primary show_btn show_btn_padding'))}}
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-8 btn-style">
-                            {{ Form::submit('Show', array('class'=>'btn btn-primary'))}}
-                        </div>
-                       {{Form::close()}}
+                        {{Form::close()}}
 
                         @if($regularOrInstallment == 'regular')
                             <div class="box-body table-responsive ">
@@ -80,11 +76,11 @@
                                 </table>
 
                                 <p><b>This is one time setup.So choose the option by thinking carefully.</b></p>
-                                {{--{{Form::open(array('route'=> ['student.billing.setup.save']))}}
+                                {{Form::open(array('route'=> ['student.billing.setup.save']))}}
                                 {{ Form::hidden('applicant_id', $applicant_id) }}
-                                {{ Form::hidden('regular','regular') }}
+                                {{ Form::hidden('billing_type','regular') }}
                                 {{ Form::submit('Submit', array('class'=>'btn btn-success'))}}
-                                {{Form::close()}}--}}
+                                {{Form::close()}}
 
                                 <a href="{{ URL::route('student.billing.setup')}}" class="btn-link pull-right"><i class="fa fa-backward text-red"></i> Back to All List</a>
 
@@ -120,11 +116,11 @@
                                     </tbody>
                                 </table>
                                 <p><b>This is one time setup.So choose the option by thinking carefully.</b></p>
-                              {{--  {{Form::open(array('route'=> ['student.billing.setup.save']))}}
+                                {{Form::open(array('route'=> ['student.billing.setup.save']))}}
                                 {{ Form::hidden('applicant_id', $applicant_id) }}
-                                {{ Form::hidden('installment','installment') }}
+                                {{ Form::hidden('billing_type','installment') }}
                                 {{ Form::submit('Submit', array('class'=>'btn btn-success'))}}
-                                {{Form::close()}}--}}
+                                {{Form::close()}}
                                 <a href="{{ URL::route('student.billing.setup')}}" class="btn-link pull-right"><i class="fa fa-backward text-red"></i> Back to All List</a>
                             </div>
                         @endif

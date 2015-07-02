@@ -47,24 +47,20 @@ class FeesStudentController extends \BaseController
 
     public  function save_billing_type()
     {
-        /*$applicant_id = Input::get('applicant_id');
-        $billing_type = Input::get('installment');
-        $update = DB::table('user')
-            ->where('applicant_id', $applicant_id)
-            ->where('billing_type', "")
-            ->update(array('billing_type' => $billing_type));*/
-        /*if($this->isPostRequest()) {
-            $data = Input::all();
+        if($this->isPostRequest()) {
             $applicant_id = Input::get('applicant_id');
-            $billing_type = Input::get('installment');
+            $billing_type = Input::get('billing_type');
             DB::beginTransaction();
             try {
-                    $model = ($applicant_id) ? User::find($applicant_id) : new User;
-                    $model->billing_type = $billing_type;
-                    $model->save();
-                    DB::commit();
-
-                Session::flash('message', "Billing Type Update Successfully");
+                $update = DB::table('user')
+                    ->where('applicant_id', $applicant_id)
+                    ->where('billing_type', "")
+                    ->update(array('billing_type' => $billing_type));
+                DB::commit();
+                if($update)
+                    Session::flash('message', "Billing Type Update Successfully");
+                else
+                    Session::flash('danger', "Billing Type Setup Is Just For One Time.");
                 return Redirect::to('fees/student/billing/setup');
             }
             catch ( Exception $e ){
@@ -73,9 +69,9 @@ class FeesStudentController extends \BaseController
                 Session::flash('danger', "not added.Invalid Request!");
             }
             return Redirect::to('fees/student/billing/setup');
-
         }
-        return Redirect::to('fees/student/billing/setup');*/
+        return Redirect::to('fees/student/billing/setup');
+
     }
     /**********************Student Billing history Start***************************/
 

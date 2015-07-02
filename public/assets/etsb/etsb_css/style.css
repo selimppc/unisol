@@ -3668,6 +3668,13 @@ fieldset[disabled] .btn-vk.active {
 .no-of-installment{
     margin-bottom: 20px;
 }
+/*fees student style*/
+.show_btn{
+    margin-top: -27px;
+}
+.show_btn_padding{
+    margin-left: 28px;
+}
 
 
 
