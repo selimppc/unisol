@@ -2,85 +2,109 @@
 
 class HrProvidentFundController extends \BaseController {
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		//
-	}
+    function __construct()
+    {
+        $this->beforeFilter('', array('except' => array('')));
+    }
 
+    protected function isPostRequest()
+    {
+        return Input::server("REQUEST_METHOD") == "POST";
+    }
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
-	}
+    public function index()
+    {
+        $data = HrProvidentFund::orderBy('id', 'DESC')->paginate(5);
+        $month = HrWorkWeek::getMonth();
+        return View::make('hr::hr.hr_provident_fund.index',compact('data','month'));
+    }
 
+    public function storePvdFund()
+    {
+        if($this->isPostRequest()){
+            $input_data = Input::all();
+            #print_r($input_data);exit;
+            $model = new HrProvidentFund();
+            if($model->validate($input_data)) {
+                DB::beginTransaction();
+                try {
+                    $model->create($input_data);
+                    DB::commit();
+                    Session::flash('message', 'Success !');
+                } catch (Exception $e) {
+                    //If there are any exceptions, rollback the transaction`
+                    DB::rollback();
+                    Session::flash('danger', 'Failed !');
+                }
+            }
+        }
+        return Redirect::back();
+    }
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
-	}
+    public function showPvdFund($id)
+    {
+        $model = HrProvidentFund::with('relHrLeaveType')->find($id);
 
+        return View::make('hr::hr.hr_provident_fund.show',compact('model'));
+    }
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
+    public function editPvdFund($id){
 
+        $model = HrProvidentFund::find($id);
+        $employee = User::HrList();
+        $leave_type_id = HrLeaveType::lists('title','id');
+        return View::make('hr::hr.hr_provident_fund.edit',compact('model','employee','leave_type_id'));
+    }
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
+    public function updatePvdFund($id){
 
+        $data = Input::all();
+        $model = HrProvidentFund::find($id);
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
+        if($model->validate($data))
+        {
+            DB::beginTransaction();
+            try {
+                $model->update($data);
+                DB::commit();
+                Session::flash('message', "Successfully Updated");
+            }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', "Invalid Request !");
+            }
+            return Redirect::back();
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()
+                ->with('errors', 'Input Data Not Valid');
+        }
+    }
 
+    public function deletePvdFund($id)
+    {
+        try {
+            $data = HrProvidentFund::find($id);
+            if ($data->delete()) {
+                Session::flash('message', "Successfully  Deleted");
+                return Redirect::back();
+            }
+        } catch
+        (exception $ex) {
+            return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+        }
+    }
 
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
-	}
+    public function batchDelete()
+    {
+        try {
+            HrProvidentFund::destroy(Request::get('ids'));
+            return Redirect::back()->with('message', 'Successfully deleted Information!');
+        } catch (exception $ex) {
+            return Redirect::back()->with('danger', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
 
-
+        }
+    }
 }
