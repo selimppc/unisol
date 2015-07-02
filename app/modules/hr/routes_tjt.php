@@ -94,29 +94,29 @@ Route::any('leave/store',[
     'uses' => 'HrLeaveController@storeLeave'
 ]);
 
-Route::any('leave-comments/show/{id}',[
-    'as' =>'leave-comments.show',
+Route::any('leave/show/{id}',[
+    'as' =>'leave.show',
     'uses' => 'HrLeaveController@showLeave'
 ]);
 
-Route::any('leave-comments/edit/{id}',[
-    'as' =>'leave-comments.edit',
+Route::any('leave/edit/{id}',[
+    'as' =>'leave.edit',
     'uses' => 'HrLeaveController@editLeave'
 ]);
 
-Route::any('leave-comments/update/{id}',[
-    'as' =>'leave-comments.update',
+Route::any('leave/update/{id}',[
+    'as' =>'leave.update',
     'uses' => 'HrLeaveController@updateLeave'
 ]);
 
-Route::any('leave-comments/delete/{id}',[
-    'as' =>'leave-comments.delete',
-    'uses' => 'HrLeaveCommentsController@deleteLeaveComments'
+Route::any('leave/delete/{id}',[
+    'as' =>'leave.delete',
+    'uses' => 'HrLeaveController@deleteLeave'
 ]);
 
-Route::any('leave-comments/batch-delete',[
-    'as' =>'leave-comments.batch-delete',
-    'uses' => 'HrLeaveCommentsController@batchDelete'
+Route::any('leave/batch-delete',[
+    'as' =>'leave.batch-delete',
+    'uses' => 'HrLeaveController@batchDelete'
 ]);
 
 
