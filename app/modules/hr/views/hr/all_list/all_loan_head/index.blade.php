@@ -13,11 +13,11 @@
 
         <div class="col-sm-12">
            <div class="pull-left col-sm-4"> <h3> All Loan Head List </h3>  </div>
-           {{--<div class="pull-right col-sm-4" style="padding-top: 1%;">--}}
-                {{--<button type="button" class="pull-right btn btn-sm btn-info" data-toggle="modal" data-target="#modal">--}}
-                  {{--Add Loan Head--}}
-                {{--</button>--}}
-           {{--</div>--}}
+           <div class="pull-right col-sm-4" style="padding-top: 1%;">
+                <button type="button" class="pull-right btn btn-sm btn-info" data-toggle="modal" data-target="#modal">
+                  Add Loan Head
+                </button>
+           </div>
         </div>
 
         {{ Form::open([ 'route'=>'batch-delete-loan-head' ])}}
@@ -76,9 +76,9 @@
     </div>
 
 </div>
-{{--{{Form::open(['route'=>'save-loan-head', 'files'=>true])}}--}}
-        {{--@include('hr::hr.loan_head._modal._modal')--}}
-{{--{{ Form::close() }}--}}
+{{Form::open(['route'=>'save-loan-head', 'files'=>true])}}
+        @include('hr::hr.loan_head._modal._modal')
+{{ Form::close() }}
 
 
 
