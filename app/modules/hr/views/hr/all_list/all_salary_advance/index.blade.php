@@ -13,11 +13,11 @@
 
         <div class="col-sm-12">
            <div class="pull-left col-sm-4"> <h3> All Salary Advance List </h3>  </div>
-           {{--<div class="pull-right col-sm-4" style="padding-top: 1%;">--}}
-                {{--<button type="button" class="pull-right btn btn-sm btn-info" data-toggle="modal" data-target="#modal">--}}
-                  {{--Add HR Salary Advance--}}
-                {{--</button>--}}
-           {{--</div>--}}
+           <div class="pull-right col-sm-4" style="padding-top: 1%;">
+                <button type="button" class="pull-right btn btn-sm btn-info" data-toggle="modal" data-target="#modal">
+                  Add HR Salary Advance
+                </button>
+           </div>
         </div>
 
         {{ Form::open([ 'route'=>'salary-advance-batch-delete' ])}}
@@ -66,9 +66,9 @@
     </div>
 
 </div>
-{{--{{Form::open(['route'=>'store-salary-advance', 'files'=>true])}}--}}
-        {{--@include('hr::hr.salary_advance._modal._modal')--}}
-{{--{{ Form::close() }}--}}
+{{Form::open(['route'=>'store-salary-advance', 'files'=>true])}}
+        @include('hr::hr.salary_advance._modal._modal')
+{{ Form::close() }}
 
 
 

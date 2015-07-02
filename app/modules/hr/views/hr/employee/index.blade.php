@@ -37,7 +37,6 @@
                     <th>Status</th>
                     <th>Action</th>
                     <th></th>
-                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -57,11 +56,6 @@
                         <a href="{{ URL::route('employee.show', ['emp_id'=>$values->id ])  }}" class="btn btn-default btn-xs" title="Manage Applicant" data-toggle="modal" data-target="#modal-pc"><i style="color: #149bdf" class="fa fa-eye"></i></a>
                         <a href="{{ URL::route('employee.edit',['emp_id'=>$values->id])  }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal-pc"> <i style="color: #7b24dd" class="fa fa-edit"></i></a>
                         <a data-href="{{ URL::route('employee.destroy', ['emp_id'=>$values->id ]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i style="color: red" class="fa fa-trash-o" ></i></a>
-                    </td>
-                    <td>
-                        <a href="{{ URL::route('bonus',['emp_id'=>$values->id])  }}" class="btn btn-default btn-xs" style="color: #802420">Bonus</a>
-                        <a href="{{ URL::route('over_time',['emp_id'=>$values->id])  }}" class="btn btn-default btn-xs" style="color: #802420">Over Time</a>
-                        <a href="{{ URL::route('salary_advance',['emp_id'=>$values->id])  }}" class="btn btn-default btn-xs" style="color: #802420">Salary Advance</a>
                     </td>
                     <td>
                         <a href="{{ URL::route('salary',['emp_id'=>$values->id])  }}" class="btn btn-default btn-xs" style="color: #802420">Salary</a>

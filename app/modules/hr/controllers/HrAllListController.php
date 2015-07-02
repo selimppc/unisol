@@ -9,7 +9,9 @@ class HrAllListController extends \BaseController {
 
         $emp_name = HrBonus::with('relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')->first();
 
-        return View::make('hr::hr.all_list.all_bonus.index', compact('model','emp_name'));
+        $employee_name_list = array(''=>'Select Employee') + User::EmployeeList();
+
+        return View::make('hr::hr.all_list.all_bonus.index', compact('model','emp_name','employee_name_list'));
     }
 
     public function index_all_over_time()
@@ -18,7 +20,10 @@ class HrAllListController extends \BaseController {
 
         $emp_name = HrEmployee::with('relUser','relUser.relUserProfile')->first();
 
-        return View::make('hr::hr.all_list.all_over_time.index', compact('model','emp_name'));
+        $employee_name_list = array(''=>'Select Employee') + User::EmployeeList();
+
+        return View::make('hr::hr.all_list.all_over_time.index',
+            compact('model','emp_name','employee_name_list'));
     }
 
     public function index_all_salary_advance()
@@ -27,7 +32,10 @@ class HrAllListController extends \BaseController {
 
         $emp_name = HrSalaryAdvance::with('relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')->first();
 
-        return View::make('hr::hr.all_list.all_salary_advance.index', compact('model','selected_employee_id','emp_name'));
+        $employee_name_list = array(''=>'Select Employee') + User::EmployeeList();
+
+        return View::make('hr::hr.all_list.all_salary_advance.index',
+            compact('model','selected_employee_id','emp_name','employee_name_list'));
     }
 
     public function index_all_salary()
@@ -36,20 +44,26 @@ class HrAllListController extends \BaseController {
 
         $emp_name = HrBonus::with('relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')->first();
 
+        $employee_name_list = array(''=>'Select Employee') + User::EmployeeList();
+
         $lists_currency = array('' => 'Select Currency ') + Currency::lists('title','id');
 
         return View::make('hr::hr.all_list.all_salary.index',
-            compact('model','selected_employee_id','lists_currency','emp_name'));
+            compact('model','selected_employee_id','lists_currency','emp_name','employee_name_list'));
     }
 
     public function index_all_loan_head()
     {
         $pageTitle = 'Loan Head Lists';
+
         $model = HrLoanHead::with('relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')->get();
 
         $emp_name = HrEmployee::with('relUser','relUser.relUserProfile')->first();
 
-        return View::make('hr::hr.all_list.all_loan_head.index', compact('model','pageTitle','selected_employee_id','emp_name'));
+        $employee_name_list = array(''=>'Select Employee') + User::EmployeeList();
+
+        return View::make('hr::hr.all_list.all_loan_head.index',
+            compact('model','pageTitle','selected_employee_id','emp_name','employee_name_list'));
     }
 
     public function index_all_salary_transaction()
@@ -60,9 +74,12 @@ class HrAllListController extends \BaseController {
         $emp_name = HrSalaryTransaction::with('relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')
            ->first();
 
+        $employee_name_list = array(''=>'Select Employee') + User::EmployeeList();
+
         $year_list = array(''=>'Select Year') + Year::lists('title','id');
 
-        return View::make('hr::hr.all_list.all_salary_transaction.index', compact('model','year_list','emp_name'));
+        return View::make('hr::hr.all_list.all_salary_transaction.index',
+            compact('model','year_list','emp_name','employee_name_list'));
     }
 
 
