@@ -24,7 +24,6 @@
          </div>
     </div>
 
-
     {{ Form::submit('Save', array('class'=>'pull-right btn btn-info')) }}
     <a href="" class="pull-right btn btn-default" style="margin-right: 5px">Close</a>
 
