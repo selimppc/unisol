@@ -42,29 +42,6 @@ class FeesController extends \BaseController {
         }
         $data = $q->orderBy('id', 'DESC')->paginate(10);
 
-
-        /* $query = DB::table('billing_setup AS bs')
-             ->select(
-                 'bs.id as id',
-                 'bs.cost as cost',
-                 'bsc.title as scheduleTitle',
-                 'bi.title as billingTitle',
-                 'bs.deadline as deadline',
-                 'bs.fined_cost as fined_cost'
-             )
-             ->join('billing_schedule as bsc', 'bsc.id', '=', 'bs.billing_schedule_id')
-             ->join('billing_item AS bi', 'bi.id', '=', 'bs.billing_item_id')
-             ->join('batch AS b', 'bs.batch_id','=', 'b.id')
-             ->join('degree AS d','b.degree_id', '=', 'd.id');
-
-         if(!empty($batch_id))
-             $query->where('bs.batch_id', '=', $batch_id);
-
-         if(!empty($degree_id))
-             $query->where('d.id', '=', $degree_id);
-
-         $data = $query->paginate(10);*/
-
         return View::Make('fees::billing_setup.index', compact('degree', 'batch','data'));
     }
 
@@ -72,10 +49,10 @@ class FeesController extends \BaseController {
     {
         $degree = ['' => 'Select Degree'] + DegreeProgram::lists('title', 'id');
         $batch_id = ['' => 'Select Batch']+ Batch::lists('batch_number', 'id');
-        $schedule_id = ['' => 'Select Billing Schedule']+ BillingSchedule::lists('title', 'id');
-        $item_id = ['' => 'Select Billing Item']+ BillingItem::lists('title', 'id');
-        return View::Make('fees::billing_setup.create',compact('billing_setup','degree','batch_id','schedule_id','item_id'));
 
+        $schedule_id = ['' => 'Select Billing Schedule']+ BillingSchedule::lists('title', 'id')- ['instalment'=>'instalment'];
+        $item_id = ['' => 'Select Billing Item']+ BillingItem::lists('title', 'id')- ['instalment'=>'instalment'];
+        return View::Make('fees::billing_setup.create',compact('billing_setup','degree','batch_id','schedule_id','item_id'));
     }
 
     public function createAjaxBatchList()
@@ -89,7 +66,6 @@ class FeesController extends \BaseController {
         }else{
             return Response::make(['No data found']);
         }
-
     }
 
     public function storeBillingSetup()
@@ -200,7 +176,6 @@ class FeesController extends \BaseController {
         catch
         (exception $ex){
             return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
-
         }
     }
 
@@ -477,4 +452,72 @@ class FeesController extends \BaseController {
         return View::make('fees::installment_setup.view',compact('view_installment_setup','view_details','total_cost','total_fined_cost', 'batch_id', 'schedule_id', 'item_id'));
     }
 
+    /********************Billing Item Start*********************/
+    public function index_billing_item()
+    {
+        $billing_item = BillingItem::orderBy('id', 'ASC')->paginate(9);
+        return View::Make('fees::billing_item.index',compact('billing_item'));
+    }
+
+    public function save_item()
+    {
+        $data = Input::all();
+        $model = new BillingItem();
+        $model->title = Input::get('title');
+        $flash_msg = $model->title;
+        if($model->validate($data))
+        {
+            DB::beginTransaction();
+            try {
+                if ($model->create($data))
+                    DB::commit();
+                Session::flash('message', "$flash_msg Billing Item Successfully Added");
+            }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', "$flash_msg Billing Item Not Added.Invalid Request!");
+            }
+            return Redirect::back();
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()
+                ->with('errors', 'invalid');
+        }
+    }
+
+    public  function edit_item($id)
+    {
+        $edit_item = BillingItem::find($id);
+        return View::make('fees::billing_item.edit',compact('edit_item'));
+    }
+
+    public function update_billing_item($id)
+    {
+        $data = Input::all();
+        $model = BillingItem::find($id);
+        $model->title = Input::get('title');
+        $flash_msg = $model->title;
+        if($model->validate($data))
+        {
+            DB::beginTransaction();
+            try {
+                $model->update($data);
+                DB::commit();
+                Session::flash('message', "$flash_msg Billing Item Successfully Updated");
+            }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', "$flash_msg Billing Item Not Updated. Invalid Request !");
+            }
+            return Redirect::back();
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()
+                ->with('errors', 'Input Data Not Valid');
+        }
+    }
 }

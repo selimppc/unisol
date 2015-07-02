@@ -22,7 +22,7 @@
            </div>
         </div>
 
-        {{Form::open([ 'route'=>'leave-comments.batch-delete' ])}}
+        {{Form::open([ 'route'=>'leave.batch-delete' ])}}
        <div class="box-body">
         <table id="example" class="table table-striped  table-bordered" >
             <thead>
@@ -46,18 +46,18 @@
                 @foreach($data as $values)
                  <tr>
                     <td><input type="checkbox" name="ids[]"  id="checkbox" class="myCheckbox" value="{{ $values->id }}"></td>
-                    <td>{{$values->forward_to}}</td>
                     <td></td>
-                    <th> Action</th>
-                    <th> Action</th>
-                    <th> Action</th>
-                    <th> Action</th>
-                    <th> Action</th>
-                    <th> Action</th>
-                    <th> Action</th>
+                    <td>{{isset($values->hr_leave_type_id)?$values->relHrLeaveType->title:''}}</td>
+                    <td>{{$values->reason}}</td>
+                    <td>{{$values->leave_duration}}</td>
+                    <td>{{$values->from_date}}</td>
+                    <td>{{$values->to_date}}</td>
+                    <td>{{$values->alt_contact_no}}</td>
+                    <td></td>
+                    <td>{{$values->status}}</td>
                     <td>
-                        <a href="{{ URL::route('leave.show',['id'=>$values->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#leave-comments" style="font-size: 12px;color: darkmagenta"><span class="fa fa-eye"></span></a>
-                        <a class="btn btn-xs btn-default" href="{{ URL::route('leave.edit',['id'=>$values->id]) }}" data-toggle="modal" data-target="#leave-comments" style="font-size: 12px;color: lightseagreen"><i class="fa fa-edit"></i></a>
+                        <a href="{{ URL::route('leave.show',['id'=>$values->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#leave" style="font-size: 12px;color: darkmagenta"><span class="fa fa-eye"></span></a>
+                        <a class="btn btn-xs btn-default" href="{{ URL::route('leave.edit',['id'=>$values->id]) }}" data-toggle="modal" data-target="#leave" style="font-size: 12px;color: lightseagreen"><i class="fa fa-edit"></i></a>
                         <a data-href="{{ URL::route('leave.delete',$values->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" style="font-size: 12px;color: lightcoral"><span class="fa  fa-trash-o"></span></a>
                     </td>
                  </tr>
@@ -78,7 +78,7 @@
 
 
 {{-- Modal Area --}}
-<div class="modal fade" id="leave-comments" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="leave" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
     </div>

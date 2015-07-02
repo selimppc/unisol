@@ -10,11 +10,11 @@ class HrLeave extends Eloquent{
     //TODO :: model attributes and rules and validation
     protected $table='hr_leave';
     protected $fillable = [
-//        'hr_leave_id','comment'
+      'hr_leave_type_id','reason','leave_duration','from_date','to_date','alt_contact_no','status'
     ];
     private $errors;
     private $rules = [
-//        'hr_leave_id' => 'required',
+//        'forward_to' => 'required',
     ];
 
     public function validate($data)
@@ -33,6 +33,11 @@ class HrLeave extends Eloquent{
     }
 
     //TODO : Model Relationship
+
+    public function relHrLeaveType(){
+        return $this->belongsTo('HrLeaveType', 'hr_leave_type_id', 'id');
+    }
+
 
     // TODO : user info while saving data into table
     public static function boot(){

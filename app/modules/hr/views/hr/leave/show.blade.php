@@ -2,7 +2,7 @@
 
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-    <h4 class="modal-title" id="myModalLabel">HR Work Week</h4>
+    <h4 class="modal-title" id="myModalLabel" style="text-align: center">HR LEAVE</h4>
 </div>
 
 <div class="modal-body">
@@ -10,19 +10,34 @@
            <div class="span9 well">
                  <table style="font-size: large" class="table table-striped  table-bordered">
                        <tr>
-                         <th class="col-lg-8">Year:</th>
-                         <td>{{ isset($model->year_id)?$model->relYear->title:'' }}</td>
+                         <th class="col-lg-8">Leave Type:</th>
+                         <td>{{ isset($model->hr_leave_type_id)?$model->relHrLeaveType->title:'' }}</td>
                        </tr>
 
                        <tr>
-                         <th class="col-lg-8">Month:</th>
-                         <td>{{isset($model->month)?ucfirst($model->month):''}}</td>
+                         <th class="col-lg-8">Reason:</th>
+                         <td>{{isset($model->reason)?ucfirst($model->reason):''}}</td>
                        </tr>
 
                        <tr>
-                         <th class="col-lg-8">Day:</th>
-                         <td>{{ isset( $model->day)? ucfirst($model->day):''}}</td>
+                         <th class="col-lg-8">Leave Duration:</th>
+                         <td>{{ isset( $model->leave_duration)? ucfirst($model->leave_duration):''}}</td>
                        </tr>
+
+                      <tr>
+                         <th class="col-lg-8">Start Date:</th>
+                         <td>{{isset($model->from_date)? $model->from_date:''}}</td>
+                      </tr>
+
+                      <tr>
+                        <th class="col-lg-8">End Date:</th>
+                        <td>{{isset($model->to_date)? $model->to_date:''}}</td>
+                      </tr>
+
+                      <tr>
+                         <th class="col-lg-8">Alt Contact No:</th>
+                         <td>{{isset($model->alt_contact_no)? ucfirst($model->alt_contact_no):''}}</td>
+                      </tr>
 
                       <tr>
                          <th class="col-lg-8">Status:</th>

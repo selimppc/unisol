@@ -1,7 +1,7 @@
 <div style="padding: 0px 20px 20px;">
     <div class="form-group">
       {{ Form::label('forward_to', 'Leave Forward To ') }}<span class="text-danger">*</span>
-      {{ Form::select('forward_to', $hr_id, Input::old('forward_to'), array('class' => 'form-control','required'=>'required')) }}
+      {{ Form::select('forward_to', $employee, Input::old('forward_to'), array('class' => 'form-control','required'=>'required')) }}
     </div>
 
     <div class="form-group">
@@ -33,31 +33,31 @@
            {{ Form::text('to_date',  Input::old('to_date'),['class'=>'form-control date_picker']) }}
         </div>
     </div>
-<p>&nbsp;</p>
-     <div class='form-group'>
-       <div class="col-lg-12">{{ Form::label('alt_contact_no', 'Alt Contact No') }}</div>
+    <p>&nbsp;</p>
+    <div class='form-group'>
+         <div class="col-lg-12">{{ Form::label('alt_contact_no', 'Alt Contact No') }}</div>
          <div class="col-lg-12">{{ Form::text('alt_contact_no', Input::old('alt_contact_no'),['class'=>'form-control', 'required']) }}</div>
-     </div>
-<p>&nbsp;</p>
-    <div class="form-group">
-         <div class="col-lg-12">{{ Form::label('status', 'Status') }}</div>
-            <div class="col-lg-12">{{ Form::select ('status',  array('' => 'Select one',
-                'rejected' => 'Rejected', 'canceled' => 'Canceled','pending-approval'=>'pending Approval',
-                'scheduled'=>'Scheduled','taken'=>'Taken','approved'=>'Approved'), Input::old('status'),
-                 array('class' => 'form-control ','required')) }}</div>
-            </div>
     </div>
+    <p>&nbsp;</p>
 
     <div class="form-group">
-      {{ Form::label('alt_hr_employee_id', 'alt HR Employee') }}<span class="text-danger">*</span>
-      {{ Form::select('alt_hr_employee_id', $alt_hr_employee_id, Input::old('alt_hr_employee_id'), array('class' => 'form-control','required'=>'required')) }}
+       <div class="col-lg-12">{{ Form::label('alt_hr_employee_id', 'Alt HR Employee') }}</div>
+       <div class="col-lg-12">{{ Form::select('alt_hr_employee_id', $employee, Input::old('alt_hr_employee_id'), ['class'=>'form-control', 'required']) }}</div>
+    </div>
+    <p>&nbsp;</p>
+    <div class="form-group" style='padding: 0px 20px 20px;"'>
+         {{ Form::label('status', 'Status') }}
+         {{ Form::select ('status',  array('' => 'Select one',
+             'rejected' => 'Rejected', 'canceled' => 'Canceled','pending-approval'=>'pending Approval',
+             'scheduled'=>'Scheduled','taken'=>'Taken','approved'=>'Approved'), Input::old('status'),
+              array('class' => 'form-control ','required')) }}
+
     </div>
 
     <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    {{ Form::submit('Save', array('class'=>'pull-right btn btn-info')) }}
-    <a href="" class="pull-right btn btn-default" style="margin-right: 5px">Close</a>
-
-    <p>&nbsp;</p>
+    <div class='form-group'>
+          <div>{{ Form::submit('Save', array('class'=>' btn btn-info','style'=>'margin-left:410px')) }}
+          <a  href="" class="pull-right btn btn-bitbucket" style="margin-right: 30px">Close</a></div>
+    </div>
     <p>&nbsp;</p>
 </div>

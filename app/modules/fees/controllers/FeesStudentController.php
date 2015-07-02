@@ -19,9 +19,9 @@ class FeesStudentController extends \BaseController
     /**********************Student Billing Setup Start***************************/
     public function index_student_billing()
     {
+        if(Auth::user()->check()) {
         $regularOrInstallment = Input::get('regularOrInstallment');
         Input::flash();
-
         if($regularOrInstallment == 'regular'){
 
             $applicant_id = User::findOrFail(Auth::user()->get()->id)->applicant_id;
@@ -41,8 +41,12 @@ class FeesStudentController extends \BaseController
        // $last_query = end($data);
        // dd(DB::getQueryLog());
        // print_r($data);exit;
-
         return View::make('fees::student.billing_setup.index',compact('data','regularOrInstallment','applicant_id'));
+        } else {
+            Session::flash('danger', "Please Login As Student!");
+            return Redirect::route('user/login');
+        }
+
     }
 
     public  function save_billing_type()
