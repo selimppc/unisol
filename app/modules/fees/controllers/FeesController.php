@@ -576,12 +576,12 @@ class FeesController extends \BaseController {
             try {
                 $model->update($data);
                 DB::commit();
-                Session::flash('message', "$flash_msg Billing Item Successfully Updated");
+                Session::flash('message', "$flash_msg Billing Schedule Successfully Updated");
             }
             catch ( Exception $e ){
                 //If there are any exceptions, rollback the transaction
                 DB::rollback();
-                Session::flash('danger', "$flash_msg Billing Item Not Updated. Invalid Request !");
+                Session::flash('danger', "$flash_msg Billing Schedule Not Updated. Invalid Request !");
             }
             return Redirect::back();
         }else{
