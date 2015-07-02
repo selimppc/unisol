@@ -22,7 +22,6 @@ class FeesStudentController extends \BaseController
         if(Auth::user()->check()) {
         $regularOrInstallment = Input::get('regularOrInstallment');
         Input::flash();
-
         if($regularOrInstallment == 'regular'){
 
             $applicant_id = User::findOrFail(Auth::user()->get()->id)->applicant_id;

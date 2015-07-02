@@ -70,6 +70,8 @@
             <i class="fa fa-angle-left pull-right"></i>
         </a>
         <ul class="treeview-menu">
+            <li><a href="{{ URL::to('fees/billing/item') }}"><i class="fa  fa-bars text-green"></i> Billing Item</a></li>
+
             <li><a href="{{ URL::to('fees/billing/setup') }}"><i class="fa  fa-bars text-red"></i> Billing Setup</a></li>
 
             <li><a href="{{ URL::to('fees/installment/setup') }}"><i class="fa  fa-bars text-blue"></i> Billing Installment</a></li>
@@ -82,7 +84,6 @@
 
         </ul>
     </li>
-
 
     <li class="treeview">
             <a href="#">

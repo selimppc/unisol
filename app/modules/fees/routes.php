@@ -89,6 +89,44 @@
          'uses' => 'FeesController@view_installment_setup'
      ]);
 
+     /**********Billing Item Start****************/
+
+     Route::any('billing/item', [
+         'as' => 'billing.item',
+         'uses' => 'FeesController@index_billing_item'
+     ]);
+     Route::any('item/save',[
+         'as' => 'item.save',
+         'uses'=> 'FeesController@save_item'
+     ]);
+     Route::any('item/edit/{id}',[
+         'as' => 'item.edit',
+         'uses'=> 'FeesController@edit_item'
+     ]);
+     Route::any('billing/item/update/{id}', [
+         'as' => 'billing.item.update',
+         'uses' => 'FeesController@update_billing_item'
+     ]);
+
+     /**********Billing Schedule Start****************/
+
+     Route::any('billing/schedule', [
+         'as' => 'billing.schedule',
+         'uses' => 'FeesController@index_billing_schedule'
+     ]);
+     Route::any('schedule/save',[
+         'as' => 'schedule.save',
+         'uses'=> 'FeesController@save_schedule'
+     ]);
+     Route::any('schedule/edit/{id}',[
+         'as' => 'schedule.edit',
+         'uses'=> 'FeesController@edit_schedule'
+     ]);
+     Route::any('billing/schedule/update/{id}', [
+         'as' => 'billing.schedule.update',
+         'uses' => 'FeesController@update_billing_schedule'
+     ]);
+
      /********************Student *********************
    /********************billing setup******************/
      Route::any('student/billing/setup', [
