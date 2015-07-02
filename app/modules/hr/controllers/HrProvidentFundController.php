@@ -14,9 +14,10 @@ class HrProvidentFundController extends \BaseController {
 
     public function index()
     {
-        $data = HrProvidentFund::orderBy('id', 'DESC')->paginate(5);
+        $data = HrProvidentFund::with('relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')->orderBy('id', 'DESC')->paginate(5);
         $month = HrWorkWeek::getMonth();
-        return View::make('hr::hr.hr_provident_fund.index',compact('data','month'));
+        $employee_list = User::EmployeeList();
+        return View::make('hr::hr.hr_provident_fund.index',compact('data','month','employee_list'));
     }
 
     public function storePvdFund()
@@ -43,17 +44,17 @@ class HrProvidentFundController extends \BaseController {
 
     public function showPvdFund($id)
     {
-        $model = HrProvidentFund::with('relHrLeaveType')->find($id);
+        $data = HrProvidentFund::with('relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')->find($id);
 
-        return View::make('hr::hr.hr_provident_fund.show',compact('model'));
+        return View::make('hr::hr.hr_provident_fund.show',compact('data'));
     }
 
     public function editPvdFund($id){
 
         $model = HrProvidentFund::find($id);
-        $employee = User::HrList();
-        $leave_type_id = HrLeaveType::lists('title','id');
-        return View::make('hr::hr.hr_provident_fund.edit',compact('model','employee','leave_type_id'));
+        $month = HrWorkWeek::getMonth();
+        $employee_list = User::EmployeeList();
+        return View::make('hr::hr.hr_provident_fund.edit',compact('model','month','employee_list'));
     }
 
     public function updatePvdFund($id){

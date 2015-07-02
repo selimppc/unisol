@@ -3,15 +3,15 @@
  * Created by PhpStorm.
  * User: User
  * Date: 02-Jul-15
- * Time: 2:51 PM
+ * Time: 4:06 PM
  */
 
-class HrProvidentFund extends Eloquent{
+class HrAttendance  extends Eloquent{
 
     //TODO :: model attributes and rules and validation
-    protected $table='hr_provident_fund';
+    protected $table=' hr_attendance';
     protected $fillable = [
-        'hr_employee_id','date','month','employee_contribution_amount','company_contribution_amount','status'
+        'hr_employee_id','date','sign_in_time','sign_out_time','lunch_break_out_time','lunch_break_in_time','break_out_time','break_in_time','note'
     ];
 
     private $errors;
@@ -61,21 +61,5 @@ class HrProvidentFund extends Eloquent{
 
     //TODO : Scope Area
 
-    public static function getMonth(){
-        return $status = [
-            'january' => 'January',
-            'february' => 'February',
-            'march'=>'March',
-            'april'=>'April',
-            'may'=>'May',
-            'june'=>'June',
-            'july'=>'July',
-            'august'=>'August',
-            'september'=>'September',
-            'october'=>'October',
-            'november'=>'November',
-            'december'=>'December',
-        ];
-    }
 
 } 

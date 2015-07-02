@@ -3,13 +3,13 @@
  * Created by PhpStorm.
  * User: User
  * Date: 02-Jul-15
- * Time: 2:51 PM
+ * Time: 3:45 PM
  */
 
-class HrProvidentFund extends Eloquent{
+class HrProvidentFundConfig extends Eloquent{
 
     //TODO :: model attributes and rules and validation
-    protected $table='hr_provident_fund';
+    protected $table=' hr_provident_fund_config';
     protected $fillable = [
         'hr_employee_id','date','month','employee_contribution_amount','company_contribution_amount','status'
     ];
@@ -36,9 +36,6 @@ class HrProvidentFund extends Eloquent{
 
     //TODO : Model Relationship
 
-    public function relHrEmployee(){
-        return $this->belongsTo('HrEmployee','hr_employee_id','id');
-    }
 
     // TODO : user info while saving data into table
     public static function boot(){
@@ -60,22 +57,5 @@ class HrProvidentFund extends Eloquent{
     }
 
     //TODO : Scope Area
-
-    public static function getMonth(){
-        return $status = [
-            'january' => 'January',
-            'february' => 'February',
-            'march'=>'March',
-            'april'=>'April',
-            'may'=>'May',
-            'june'=>'June',
-            'july'=>'July',
-            'august'=>'August',
-            'september'=>'September',
-            'october'=>'October',
-            'november'=>'November',
-            'december'=>'December',
-        ];
-    }
 
 } 

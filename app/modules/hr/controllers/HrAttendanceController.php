@@ -13,79 +13,98 @@ class HrAttendanceController extends \BaseController {
     }
 
     public function index()
-	{
-		//
-	}
+    {
+        $data = HrAttendance::get();
+//        $employee_list = User::EmployeeList();
+        return View::make('hr::hr.hr_attendance.index',compact('data','employee_list'));
+    }
 
+    public function storeAttendance()
+    {
+        if($this->isPostRequest()){
+            $input_data = Input::all();
+            #print_r($input_data);exit;
+            $model = new HrAttendance();
+            if($model->validate($input_data)) {
+                DB::beginTransaction();
+                try {
+                    $model->create($input_data);
+                    DB::commit();
+                    Session::flash('message', 'Success !');
+                } catch (Exception $e) {
+                    //If there are any exceptions, rollback the transaction`
+                    DB::rollback();
+                    Session::flash('danger', 'Failed !');
+                }
+            }
+        }
+        return Redirect::back();
+    }
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
-	}
+    public function showAttendance($id)
+    {
+        $data = HrProvidentFund::with('relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')->find($id);
 
+        return View::make('hr::hr.hr_attendance.show',compact('data'));
+    }
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
-	}
+    public function editAttendance($id){
 
+        $model = HrProvidentFund::find($id);
+        $month = HrWorkWeek::getMonth();
+        $employee_list = User::EmployeeList();
+        return View::make('hr::hr.hr_attendance.edit',compact('model','month','employee_list'));
+    }
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
+    public function updateAttendance($id){
 
+        $data = Input::all();
+        $model = HrProvidentFund::find($id);
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
+        if($model->validate($data))
+        {
+            DB::beginTransaction();
+            try {
+                $model->update($data);
+                DB::commit();
+                Session::flash('message', "Successfully Updated");
+            }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', "Invalid Request !");
+            }
+            return Redirect::back();
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()
+                ->with('errors', 'Input Data Not Valid');
+        }
+    }
 
+    public function deleteAttendance($id)
+    {
+        try {
+            $data = HrProvidentFund::find($id);
+            if ($data->delete()) {
+                Session::flash('message', "Successfully  Deleted");
+                return Redirect::back();
+            }
+        } catch
+        (exception $ex) {
+            return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+        }
+    }
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
+    public function batchDelete()
+    {
+        try {
+            HrProvidentFund::destroy(Request::get('ids'));
+            return Redirect::back()->with('message', 'Successfully deleted Information!');
+        } catch (exception $ex) {
+            return Redirect::back()->with('danger', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
 
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
-	}
-
-
+        }
+    }
 }
