@@ -127,6 +127,21 @@
          'uses' => 'FeesController@update_billing_schedule'
      ]);
 
+
+     /**********Billing Summary Applicant Start*************/
+
+
+
+     /**********Billing Summary Student Start**************/
+
+
+
+
+
+
+
+
+
      /********************Student *********************
    /********************billing setup******************/
      Route::any('student/billing/setup', [
