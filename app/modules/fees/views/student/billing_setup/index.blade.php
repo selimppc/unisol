@@ -29,7 +29,7 @@
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab_1">
                         {{Form::open(array('route'=> ['student.billing.setup']))}}
-                        <div class="col-sm-12 " style="background: #f6f5fa">
+                        <div class="col-sm-12 ">
                             <div class="form-inline radio-inline">
                                 <div class="radio radio-style">
                                     {{ Form::radio('regularOrInstallment','installment',true ) }}
