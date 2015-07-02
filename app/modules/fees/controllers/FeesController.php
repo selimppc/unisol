@@ -355,7 +355,8 @@ class FeesController extends \BaseController {
         $no_installment     = Input::get('no_installment');
         $status             = Input::get('status');
 
-        /****************For View page installment*******************/
+        /****************For View page installment***********
+         **************/
         $setup = DB::table('installment_setup')
             ->where('installment_setup.batch_id', '=' ,$batch_id)
             ->get();
@@ -381,7 +382,11 @@ class FeesController extends \BaseController {
 
         }else{
 
-            /******************For create page installment********************/
+            /******************For create page installment*************
+             ****************/
+            $view_details = BillingSetup::with('relBatch', 'relBatch.relDegree','relBatch.relDegree.relDegreeProgram')
+                ->where('batch_id', '=', $batch_id)
+                ->first();
             $data = DB::table('billing_setup')
                 ->join('billing_item','billing_setup.billing_item_id','=','billing_item.id')
                 ->groupBy('billing_item.initial')
@@ -405,7 +410,7 @@ class FeesController extends \BaseController {
                 $deadlines[$i] = date("Y-m-d", strtotime("+".$i*$duration." months +15 days", strtotime($batch['start_date'])));
             }
             //print_r($deadlines);exit;
-            return View::Make('fees::installment_setup.create', compact('data', 'no_installment', 'no_installment_price','batch_id','schedule_id','item_id','degprog_id', 'deadlines', 'status','total','totalfc'));
+            return View::Make('fees::installment_setup.create', compact('view_details','data', 'no_installment', 'no_installment_price','batch_id','schedule_id','item_id','degprog_id', 'deadlines', 'status','total','totalfc'));
         }
     }
 
@@ -419,8 +424,7 @@ class FeesController extends \BaseController {
             DB::beginTransaction();
 
             if($data['status'] == 'recreate'){
-                // Delete previous items with this batch id
-                //$users = User::where_in('id', $ids)->delete();
+                //**********Delete previous items with this batch id**********/
                 InstallmentSetup::where('batch_id', $data['batch_id'])->delete();
             }
             try {
