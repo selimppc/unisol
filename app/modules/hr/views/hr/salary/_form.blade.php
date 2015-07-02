@@ -1,9 +1,7 @@
 <div class='form-group'>
-   {{--{{ Form::label('hr_employee_id', 'Employee Name') }}--}}
-   {{ Form::hidden('hr_employee_id', $selected_employee_id , Input::old('hr_employee_id'),['class'=>'form-control', 'required']) }}
+   {{ Form::label('hr_employee_id', 'Employee Name') }}
+   {{ Form::select('hr_employee_id', $employee_name_list , Input::old('hr_employee_id'),['class'=>'form-control', 'required']) }}
 </div>
-
-{{--{{ Form::hidden('hr_employee_id', $selected_employee_id) }}--}}
 
 <div class='form-group'>
    {{ Form::label('salary_type', ' Salary Type') }}

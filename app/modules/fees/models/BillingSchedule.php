@@ -13,8 +13,8 @@ class BillingSchedule extends Eloquent{
     ];
     private $errors;
     private $rules = [
-        'code' => 'required|alpha_dash',
-        'title' => 'required',
+        //'code' => 'required|alpha_dash',
+       // 'title' => 'required',
         //'description' => 'alpha',
     ];
     public function validate($data)

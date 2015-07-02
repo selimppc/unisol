@@ -13,11 +13,11 @@
 
         <div class="col-sm-12">
            <div class="pull-left col-sm-4"> <h3> All Salary Transaction List</h3>  </div>
-           {{--<div class="pull-right col-sm-4" style="padding-top: 1%;">--}}
-                {{--<button type="button" class="pull-right btn btn-sm btn-info" data-toggle="modal" data-target="#modal">--}}
-                  {{--Add HR Salary Transaction Detail--}}
-                {{--</button>--}}
-           {{--</div>--}}
+           <div class="pull-right col-sm-4" style="padding-top: 1%;">
+                <button type="button" class="pull-right btn btn-sm btn-info" data-toggle="modal" data-target="#modal">
+                  Add HR Salary Transaction
+                </button>
+           </div>
         </div>
 
         {{ Form::open([ 'route'=>'salary-transaction-batch-delete' ])}}
@@ -70,9 +70,9 @@
     </div>
 
 </div>
-{{--{{Form::open(['route'=>'store-salary-transaction', 'files'=>true])}}--}}
-        {{--@include('hr::hr.salary_transaction._modal._modal')--}}
-{{--{{ Form::close() }}--}}
+{{Form::open(['route'=>'store-salary-transaction', 'files'=>true])}}
+        @include('hr::hr.salary_transaction._modal._modal')
+{{ Form::close() }}
 
 {{--Modal Area--}}
 <div class="modal fade" id="modal-pc" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

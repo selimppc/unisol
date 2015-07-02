@@ -453,6 +453,7 @@ class FeesController extends \BaseController {
     }
 
     /********************Billing Item Start*********************/
+
     public function index_billing_item()
     {
         $billing_item = BillingItem::orderBy('id', 'ASC')->paginate(9);
@@ -520,4 +521,76 @@ class FeesController extends \BaseController {
                 ->with('errors', 'Input Data Not Valid');
         }
     }
+
+    /********************Billing Schedule Start*********************/
+
+    public function index_billing_schedule()
+    {
+        $billing_schedule = BillingSchedule::orderBy('id', 'ASC')->paginate(10);
+        return View::Make('fees::billing_schedule.index',compact('billing_schedule'));
+    }
+
+    public function save_schedule()
+    {
+        $data = Input::all();
+        $model = new BillingSchedule();
+        $model->title = Input::get('title');
+        $flash_msg = $model->title;
+        if($model->validate($data))
+        {
+            DB::beginTransaction();
+            try {
+                if ($model->create($data))
+                    DB::commit();
+                Session::flash('message', "$flash_msg Billing Item Successfully Added");
+            }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', "$flash_msg Billing Item Not Added.Invalid Request!");
+            }
+            return Redirect::back();
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()
+                ->with('errors', 'invalid');
+        }
+    }
+
+    public  function edit_schedule($id)
+    {
+        $edit_schedule = BillingSchedule::find($id);
+        return View::make('fees::billing_schedule.edit',compact('edit_schedule'));
+    }
+
+    public function update_billing_schedule($id)
+    {
+        $data = Input::all();
+        $model = BillingSchedule::find($id);
+        $model->title = Input::get('title');
+        $flash_msg = $model->title;
+        if($model->validate($data))
+        {
+            DB::beginTransaction();
+            try {
+                $model->update($data);
+                DB::commit();
+                Session::flash('message', "$flash_msg Billing Schedule Successfully Updated");
+            }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', "$flash_msg Billing Schedule Not Updated. Invalid Request !");
+            }
+            return Redirect::back();
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()
+                ->with('errors', 'Input Data Not Valid');
+        }
+    }
+
+
 }

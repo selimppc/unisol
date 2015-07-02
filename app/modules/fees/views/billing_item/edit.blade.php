@@ -20,7 +20,16 @@
     'class'=>'form-control input-sm','spellcheck'=> 'true','required'=>'required','size'=>'30x10']) }}</div>
         </div>
 
+        <div class='form-group'>
+            <div>{{ Form::label('initial', 'Initial') }}</div>
+            <div>{{ Form::select('initial',array('' => 'Select One','adm' => 'adm', 'acm' => 'acm','aacm'=>'aacm'),$edit_item->initial,['class'=>'form-control']) }}</div>
+        </div>
 
+        <div class='form-group'>
+            <div>{{ Form::label('is_unit_qty', 'Is Unit Qty') }}</div>
+            <div>{{ Form::text('is_unit_qty', Input::old('is_unit_qty'),['class'=>'form-control']) }}
+            </div>
+        </div>
 
         <div class="modal-footer">
             {{ Form::submit('Submit', array('class'=>' btn btn-xs btn-success')) }}
@@ -28,6 +37,4 @@
         </div>
         {{ Form::close() }}
     </div>
-</div>
-<div class="modal-footer">
 </div>
