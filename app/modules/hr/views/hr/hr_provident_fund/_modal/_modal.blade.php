@@ -1,15 +1,13 @@
-<!-- Add Modal -->
+<!-- Add Modal :-->
 <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog" style="z-index:1050">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Loan Head <strong style="color: #002a80">
-
-
+        <h4 class="modal-title" id="myModalLabel" style="text-align: center">HR Provident Fund</h4>
       </div>
       <div class="modal-body">
-        @include('hr::hr.loan_head._form')
+        @include('hr::hr.hr_provident_fund._form')
       </div>
     </div>
   </div>

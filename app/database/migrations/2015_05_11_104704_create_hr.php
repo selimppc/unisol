@@ -471,6 +471,7 @@ class CreateHr extends Migration {
         {
             $table->increments('id', true);
             $table->unsignedInteger('hr_employee_id')->nullable();
+            $table->dateTime('date');
             $table->enum('month', array(
                 'january', 'february', 'march', 'april', 'may', 'june',
                 'july', 'august', 'september', 'october', 'november', 'december'

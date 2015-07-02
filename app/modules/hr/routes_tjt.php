@@ -119,6 +119,43 @@ Route::any('leave/batch-delete',[
     'uses' => 'HrLeaveController@batchDelete'
 ]);
 
+//Provident Fund
+
+Route::any('provident-fund',[
+    'as' =>'provident-fund',
+    'uses' => 'HrProvidentFundController@index'
+]);
+
+Route::any('provident-fund/store',[
+    'as' =>'provident-fund.store',
+    'uses' => 'HrProvidentFundController@storePvdFund'
+]);
+
+Route::any('provident-fund/show/{id}',[
+    'as' =>'provident-fund.show',
+    'uses' => 'HrProvidentFundController@showPvdFund'
+]);
+
+Route::any('provident-fund/edit/{id}',[
+    'as' =>'provident-fund.edit',
+    'uses' => 'HrProvidentFundController@editPvdFund'
+]);
+
+Route::any('provident-fund/update/{id}',[
+    'as' =>'provident-fund.update',
+    'uses' => 'HrProvidentFundController@updatePvdFund'
+]);
+
+Route::any('provident-fund/delete/{id}',[
+    'as' =>'provident-fund.delete',
+    'uses' => 'HrProvidentFundController@deletePvdFund'
+]);
+
+Route::any('provident-fund/batch-delete',[
+    'as' =>'provident-fund.batch-delete',
+    'uses' => 'HrProvidentFundController@batchDelete'
+]);
+
 
 
 

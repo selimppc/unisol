@@ -12,20 +12,20 @@ class HrOverTimeController extends \BaseController {
         return Input::server("REQUEST_METHOD") == "POST";
     }
 
-    public function index_hr_over_time($emp_id)
-    {
-        $pageTitle = 'Over Time Lists';
-        $model = HrOverTime::with('relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')
-            ->where('hr_employee_id', $emp_id)->get();
-
-        $emp_name = HrEmployee::with('relUser','relUser.relUserProfile')
-            ->where('id', $emp_id)->first();
-
-        #print_r($emp_name);exit;
-
-        $selected_employee_id = $emp_id;
-        return View::make('hr::hr.over_time.index', compact('model','pageTitle','selected_employee_id','emp_name'));
-    }
+//    public function index_hr_over_time($emp_id)
+//    {
+//        $pageTitle = 'Over Time Lists';
+//        $model = HrOverTime::with('relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')
+//            ->where('hr_employee_id', $emp_id)->get();
+//
+//        $emp_name = HrEmployee::with('relUser','relUser.relUserProfile')
+//            ->where('id', $emp_id)->first();
+//
+//        #print_r($emp_name);exit;
+//
+//        $selected_employee_id = $emp_id;
+//        return View::make('hr::hr.over_time.index', compact('model','pageTitle','selected_employee_id','emp_name'));
+//    }
 
     public function store_hr_over_time()
     {
