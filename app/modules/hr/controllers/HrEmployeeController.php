@@ -19,8 +19,17 @@ class HrEmployeeController extends \BaseController {
         $model = HrEmployee::with('relUser','relHrBank','relHrSalaryGrade',
             'relDesignation','relDepartment','relCurrency')->get();
 
-        #print_r($model);exit;
-        #$a = User::
+//        //Generate Employee List
+//        $employee_user = HrEmployee::get();
+//        foreach($employee_user as $values){
+//            $user_ids [] = [ $values->user_id ];
+//        }
+//        $employee_name_list = UserProfile::select('user_id', DB::raw('CONCAT(first_name, " ", middle_name, " ", last_name) AS full_name'))
+//            ->orderBy('first_name')
+//            ->whereIn('user_id', $user_ids)
+//            ->lists('full_name', 'user_id');
+
+
         return View::make('hr::hr.employee.index', compact('model','pageTitle'));
     }
 
