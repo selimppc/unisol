@@ -5,8 +5,9 @@
 
 <div class="modal-body">
 
- {{Form::model($model, array('route'=>['work-week.update',$model->id,'class'=>'form-control','files'=>true]))}}
-     @include('hr::hr.leave_type._form')
+ {{Form::model($model, array('route'=>['leave.update',$model->id,'class'=>'form-control','files'=>true]))}}
+     @include('hr::hr.leave._form')
  {{ Form::close() }}
 
 </div>
+
