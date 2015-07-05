@@ -6,7 +6,7 @@
     @include('layouts._sidebar_amw')
 @stop
 @section('content')
-    <h2 class="page-header text-purple tab-text-margin text-center">Fees::Billing Schedule</h2>
+    <h3 class="text-blue text-uppercase">Fees::Billing Schedule</h3>
     <div class="row">
         <div class="col-md-12">
             <div class="nav-tabs-custom">
