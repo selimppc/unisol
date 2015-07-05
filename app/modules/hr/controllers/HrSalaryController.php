@@ -77,7 +77,8 @@ class HrSalaryController extends \BaseController {
             $model = HrSalary::findOrFail($s_id);
             $selected_employee_id = HrSalary::first()->hr_employee_id;
             $lists_currency = Currency::lists('title','id');
-            return View::make('hr::hr.salary.edit', compact('model','selected_employee_id','lists_currency'));
+            $employee_name_list = array(''=>'Select Employee') + User::EmployeeList();
+            return View::make('hr::hr.salary.edit', compact('model','selected_employee_id','lists_currency','employee_name_list'));
         }
     }
 

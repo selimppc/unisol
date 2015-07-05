@@ -78,7 +78,8 @@ class HrLoanHeadController extends \BaseController {
         }else{
             $model = HrLoanHead::findOrFail($lh_id);
             $selected_employee_id = HrLoanHead::first()->hr_employee_id;
-            return View::make('hr::hr.loan_head.edit', compact('model','selected_employee_id','lists_currency'));
+            $employee_name_list = array(''=>'Select Employee') + User::EmployeeList();
+            return View::make('hr::hr.loan_head.edit', compact('model','selected_employee_id','lists_currency','employee_name_list'));
         }        
     }
 
