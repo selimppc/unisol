@@ -9,8 +9,8 @@
         <div class="row">
             <div class="box box-solid ">
                 <div class="col-sm-12">
-                   <div class="pull-left col-sm-4"> <h3> {{$pageTitle}} </h3>  </div>
-                   <div class="pull-right col-sm-4" style="padding-top: 1%;">
+                   <div class="pull-left col-sm-4"></div>
+                   <div class="pull-right col-sm-4" style="padding: 5px;">
                         <button type="button" class="pull-right btn btn-sm btn-info" data-toggle="modal" data-target="#modal">
                           Add HR Salary Transaction
                         </button>

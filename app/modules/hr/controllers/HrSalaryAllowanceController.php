@@ -15,7 +15,6 @@ class HrSalaryAllowanceController extends \BaseController
 
     public function index_hr_salary_allowance($s_id)
     {
-        $pageTitle = 'Salary Allowance List';
         $model = HrSalaryAllowance::with('relHrSalary')->where('hr_salary_id', $s_id)->get();
         $allowance_list = HrAllowance::lists('title','id');
         #print_r($allowance_list);exit;

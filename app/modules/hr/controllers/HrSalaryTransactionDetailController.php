@@ -16,9 +16,6 @@ class HrSalaryTransactionDetailController extends \BaseController {
    */
     public function index_hr_salary_transaction_detail($s_t_id)
     {
-        #print_r($loan_head_id);exit;
-
-        $pageTitle = 'Salary Transaction Detail Lists';
         $model = HrSalaryTransactionDetail::with('relHrOverTime','relHrBonus','relHrSalaryAllowance','relHrSalaryDeduction')
             ->where('hr_salary_transaction_id', $s_t_id)->get();
         #print_r($model);exit;

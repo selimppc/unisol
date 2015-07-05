@@ -15,7 +15,6 @@ class HrLoanDetailController extends \BaseController
 
     public function index_hr_loan_detail($loan_head_id)
     {
-        $pageTitle = 'Loan Detail Lists';
         $model = HrLoanDetail::with('relHrLoanHead')
             ->where('hr_loan_head_id', $loan_head_id)->get();
 
