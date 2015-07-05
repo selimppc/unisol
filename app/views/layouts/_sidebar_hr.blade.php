@@ -22,6 +22,7 @@
              <li><a href="{{ URL::to('hr/leave-type') }}"></i><i class="fa fa-sort" style="color: #00fff2"></i>HR Leave Type</a></li>
              <li><a href="{{ URL::to('hr/leave') }}"></i><i class="fa fa-sort" style="color: #00fff2"></i>HR Leave </a></li>
              <li><a href="{{ URL::to('hr/provident-fund') }}"></i><i class="fa fa-sort" style="color: #00fff2"></i>HR Provident Fund </a></li>
+             <li><a href="{{ URL::to('hr/provident-fund-config') }}"></i><i class="fa fa-sort" style="color: #00fff2"></i>HR  Provident Fund Config</a></li>
              <li><a href="{{ URL::to('hr/bonus') }}"></i><i class="fa fa-briefcase" style="color: #0effae"></i>Bonus</a></li>
              <li><a href="{{ URL::to('hr/over_time') }}"></i><i class="fa fa-briefcase" style="color: #0effae"></i>Over Time</a></li>
              <li><a href="{{ URL::to('hr/salary_advance') }}"></i><i class="fa fa-briefcase" style="color: #0effae"></i>Salary Advance</a></li>

@@ -195,6 +195,11 @@ Route::any('attendance/batch-delete',[
     'uses' => 'HrAttendanceController@batchDelete'
 ]);
 
+//Hr Provident Fund Config
 
+Route::any('provident-fund-config',[
+    'as' =>'provident-fund-config',
+    'uses' => 'HrProvidentFundConfigController@index'
+]);
 
 

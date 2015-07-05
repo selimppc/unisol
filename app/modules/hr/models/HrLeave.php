@@ -8,7 +8,7 @@
 
 class HrLeave extends Eloquent{
     //TODO :: model attributes and rules and validation
-    protected $table='hr_leave';
+    protected $table = 'hr_leave';
     protected $fillable = [
       'forward_to','hr_leave_type_id','reason','leave_duration','from_date','to_date','alt_contact_no','alt_hr_employee_id','status'
     ];
