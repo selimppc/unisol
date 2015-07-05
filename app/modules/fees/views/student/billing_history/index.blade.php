@@ -28,66 +28,64 @@
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab_1">
-                        {{--****************Applicant*******************--}}
-
-                            <div class="box-body table-responsive ">
-                                <table id="example1" class="table table-bordered table-hover table-striped">
-                                    <thead>
+                        {{--****************student*******************--}}
+                        <p class="text-blue text-center text-uppercase">Current Billing History</p>
+                        <table id="example" class="table table-bordered table-hover table-striped">
+                            <thead>
+                            <tr>
+                                <th>Student</th>
+                                <th>Schedule</th>
+                                <th>Amount</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @if(isset($student_data))
+                                @foreach($student_data as $value)
                                     <tr>
-                                        <th>Name of Applicant</th>
-                                        <th>Schedule</th>
-                                        <th>Amount</th>
-                                        <th>Action</th>
+                                        <td>{{isset($value->first_name) ? $value->first_name:''}} {{isset($value->last_name) ? $value->last_name:''}}</td>
+                                        <td>{{isset($value->schedule_title) ? $value->schedule_title:''}}</td>
+                                        <td>{{isset($value->amount) ? $value->amount : ''}}</td>
+                                        <td>
+                                            <a href="{{URL::route('student.billing.history.view',['id'=>$value->id])}}" class="btn btn-xs btn-default" href=""><i class="fa fa-eye" style="color: green"></i></a>
+                                        </td>
                                     </tr>
-                                    </thead>
-                                    <tbody>
-                                    @if(isset($applicant_data))
-                                        @foreach($applicant_data as $value)
-                                            <tr>
-                                                <td>{{isset($value->first_name) ? $value->first_name:''}}
-                                                    {{isset($value->last_name) ? $value->last_name:''}}</td>
-                                                <td>{{isset($value->schedule_title) ? $value->schedule_title:''}}</td>
-                                                <td>{{isset($value->amount) ? $value->amount : ''}}</td>
-                                                <td>
-                                                    <a href="{{URL::route('applicant.billing.history.view',['id'=>$value->id])}}" class="btn btn-xs btn-default" href=""><i class="fa fa-eye" style="color: green"></i></a>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    @endif
-                                    </tbody>
-                                </table>
-                                <br>
-
-                                <table id="example" class="table table-bordered table-hover table-striped">
-                                    <thead>
-                                    <tr>
-                                        <th>Student</th>
-                                        <th>Schedule</th>
-                                        <th>Amount</th>
-                                        <th>Action</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    @if(isset($student_data))
-                                        @foreach($student_data as $value)
-                                            <tr>
-                                                <td>{{isset($value->first_name) ? $value->first_name:''}} {{isset($value->last_name) ? $value->last_name:''}}</td>
-                                                <td>{{isset($value->schedule_title) ? $value->schedule_title:''}}</td>
-                                                <td>{{isset($value->amount) ? $value->amount : ''}}</td>
-                                                <td>
-                                                    <a href="{{URL::route('student.billing.history.view',['id'=>$value->id])}}" class="btn btn-xs btn-default" href=""><i class="fa fa-eye" style="color: green"></i></a>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    @endif
-                                    </tbody>
-                                </table>
-                            </div>
+                                @endforeach
+                            @endif
+                            </tbody>
+                        </table>
+                        <br>
+                        <p class="text-blue text-center text-uppercase">Applicant Billing History</p>
+                        <div class="box-body table-responsive ">
+                            <table id="example1" class="table table-bordered table-hover table-striped">
+                                <thead>
+                                <tr>
+                                    <th>Name of Applicant</th>
+                                    <th>Schedule</th>
+                                    <th>Amount</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @if(isset($applicant_data))
+                                    @foreach($applicant_data as $value)
+                                        <tr>
+                                            <td>{{isset($value->first_name) ? $value->first_name:''}}
+                                                {{isset($value->last_name) ? $value->last_name:''}}</td>
+                                            <td>{{isset($value->schedule_title) ? $value->schedule_title:''}}</td>
+                                            <td>{{isset($value->amount) ? $value->amount : ''}}</td>
+                                            <td>
+                                                <a href="{{URL::route('applicant.billing.history.view',['id'=>$value->id])}}" class="btn btn-xs btn-default" href=""><i class="fa fa-eye" style="color: green"></i></a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                @endif
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-
 @stop

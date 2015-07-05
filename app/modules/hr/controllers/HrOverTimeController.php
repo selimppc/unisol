@@ -74,7 +74,8 @@ class HrOverTimeController extends \BaseController {
         }else{
             $model = HrOverTime::findOrFail($ot_id);
             $selected_employee_id = HrOverTime::first()->hr_employee_id;
-            return View::make('hr::hr.over_time.edit', compact('model','selected_employee_id','lists_currency'));
+            $employee_name_list = array(''=>'Select Employee') + User::EmployeeList();
+            return View::make('hr::hr.over_time.edit', compact('model','selected_employee_id','lists_currency','employee_name_list'));
         }
     }
 

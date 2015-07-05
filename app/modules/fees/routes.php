@@ -59,17 +59,27 @@
 
      /************Billing History Start****************/
 
+        /***********Applicant************/
      Route::any('billing/history', [
          'as' => 'billing.history',
          'uses' => 'FeesController@index_billing_history'
      ]);
 
-     Route::any('billing/history/show/{id}/{app_stu_id}', [
+     Route::any('billing/history/show/{id}', [
          'as' => 'billing.history.show',
          'uses' => 'FeesController@billing_history_show'
      ]);
 
+       /***********Student************/
+     Route::any('billing/history/student', [
+         'as' => 'billing.history.student',
+         'uses' => 'FeesController@index_student_billing_history'
+     ]);
 
+     Route::any('billing/history/student/show/{id}', [
+         'as' => 'billing.history.student.view',
+         'uses' => 'FeesController@view_student_billing_history'
+     ]);
      /**********Installment Setup Start****************/
 
      Route::any('installment/setup', [

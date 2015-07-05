@@ -37,10 +37,6 @@ class FeesStudentController extends \BaseController
                 ->where('batch_id', $batch_id);
         }
         $data = $q->get();
-        //$queries = DB::getQueryLog();
-       // $last_query = end($data);
-       // dd(DB::getQueryLog());
-       // print_r($data);exit;
         return View::make('fees::student.billing_setup.index',compact('data','regularOrInstallment','applicant_id'));
         } else {
             Session::flash('danger', "Please Login As Student!");
@@ -84,6 +80,7 @@ class FeesStudentController extends \BaseController
         $applicant_id = User::findOrFail(Auth::user()->get()->id)->applicant_id;
         $batch_id = BatchApplicant::where('applicant_id', $applicant_id)->first()->batch_id;
         $applicant_data = BillingVApplicantHistory::where('applicant_id', $batch_id)->get();
+        /*TODO: In BillingVStudentHistory there is no student_id for student.It will solve next time */
         $student_data = BillingVStudentHistory::with('relDegree')->get();
 
         return View::make('fees::student.billing_history.index',compact('applicant_data','student_data'));

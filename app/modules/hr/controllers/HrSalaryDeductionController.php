@@ -14,9 +14,6 @@ class HrSalaryDeductionController extends \BaseController {
 
     public function index_hr_salary_deduction($loan_head_id , $employee_id)
     {
-        #print_r($loan_head_id);exit;
-
-        $pageTitle = 'Salary Deduction List';
         $model = HrSalaryDeduction::with('relHrLoanHead','relHrLoanHead.relHrEmployee','relHrSalaryAdvance')
             ->where('hr_loan_head_id', $loan_head_id)->get();
         #print_r($model);exit;

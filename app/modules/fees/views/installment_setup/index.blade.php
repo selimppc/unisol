@@ -8,7 +8,7 @@
 @section('content')
     <div class="row" xmlns="http://www.w3.org/1999/html">
         <div class="col-md-12">
-            <h3 class="text-purple ">Fees::Billing Installment</h3>
+            <h3 class="text-blue text-uppercase">Fees::Billing Installment</h3>
         </div><!-- ./col -->
     </div><!-- /.row -->
     <div class="row">

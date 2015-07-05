@@ -60,7 +60,7 @@
                         <a href="{{ URL::route('loan_head.show', ['lh_id'=>$values->id ])  }}" class="btn btn-default btn-xs" title="Manage Applicant" data-toggle="modal" data-target="#modal-pc"><i style="color: #149bdf" class="fa fa-eye"></i></a>
                         <a href="{{ URL::route('loan_head.edit',['lh_id'=>$values->id])  }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal-pc"> <i style="color: #7b24dd" class="fa fa-edit"></i></a>
                         <a data-href="{{ URL::route('loan_head.destroy', ['lh_id'=>$values->id ]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i style="color: red" class="fa fa-trash-o" ></i></a>
-                        <a href="{{ URL::route('loan_detail',['loan_head_id'=>$values->id])  }}" class="btn btn-default btn-xs" style="color: #802420">Loan Detail</a>
+                        <a href="{{ URL::route('loan_detail',['loan_head_id'=>$values->id])  }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal-pc">Loan Detail</a>
                         <a href="{{ URL::route('salary_deduction',['loan_head_id'=>$values->id,'employee_id'=>$values->hr_employee_id]) }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal-pc">Salary Deduction</a>
 
                     </td>
