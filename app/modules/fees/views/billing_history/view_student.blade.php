@@ -8,7 +8,8 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            <h3 class="text-purple ">User Information</h3>
+            <h4 class="text-blue text-center text-uppercase">Student Information</h4>
+            <br>
         </div><!-- ./col -->
     </div><!-- /.row -->
     <div class="row">
@@ -48,7 +49,8 @@
                 </table>
             </div>
             <div>&nbsp;</div>
-                <h3 class="text-purple ">Billing Details Student</h3>
+            <h4 class="text-blue text-center text-uppercase">Billing Details Student</h4>
+            <br>
                 <div class="box-body table-responsive ">
                     <table class="table table-bordered table-hover table-striped">
                         <thead>
