@@ -16,12 +16,12 @@
 
                    <tr>
                        <th class="col-lg-6">Date :</th>
-                       <td>{{isset( $data->date )? $data->date :''}}</td>
+                       <td>{{isset( $data->date )? date("Y-m-d", strtotime($data->date)) :''}}</td>
                    </tr>
 
                    <tr>
                        <th class="col-lg-6">Month :</th>
-                       <td>{{  isset($data->month)?$data->month:''}}</td>
+                       <td>{{  isset($data->month)?ucfirst($data->month):''}}</td>
                    </tr>
 
 
@@ -37,7 +37,7 @@
 
                    <tr>
                       <th class="col-lg-6">Status :</th>
-                      <td>{{  isset($data->status)?$data->status:''}}</td>
+                      <td>{{isset($data->status)?ucfirst($data->status):''}}</td>
                   </tr>
 
                  </table>

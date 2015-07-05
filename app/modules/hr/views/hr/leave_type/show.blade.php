@@ -21,7 +21,7 @@
 
                        <tr>
                          <th class="col-lg-8">Employee Type:</th>
-                         <td>{{ isset( $model->employee_type)? $model->employee_type:''}}</td>
+                         <td>{{ isset( $model->employee_type)? ucfirst($model->employee_type):''}}</td>
                        </tr>
 
                  </table>

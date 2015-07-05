@@ -1,7 +1,7 @@
 <div style="padding: 0px 20px 20px;">
     <div class="form-group">
       {{ Form::label('forward_to', 'Leave Forward To ') }}<span class="text-danger">*</span>
-      {{ Form::select('forward_to', $employee, Input::old('forward_to'), array('class' => 'form-control','required'=>'required')) }}
+      {{ Form::select('forward_to', $employee_list, Input::old('forward_to'), array('class' => 'form-control','required'=>'required')) }}
     </div>
 
     <div class="form-group">
@@ -42,7 +42,7 @@
 
     <div class="form-group">
        <div class="col-lg-12">{{ Form::label('alt_hr_employee_id', 'Alt HR Employee') }}</div>
-       <div class="col-lg-12">{{ Form::select('alt_hr_employee_id', $employee, Input::old('alt_hr_employee_id'), ['class'=>'form-control', 'required']) }}</div>
+       <div class="col-lg-12">{{ Form::select('alt_hr_employee_id', $employee_list, Input::old('alt_hr_employee_id'), ['class'=>'form-control', 'required']) }}</div>
     </div>
     <p>&nbsp;</p>
     <div class="form-group" style='padding: 0px 20px 20px;"'>

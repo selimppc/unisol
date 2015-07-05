@@ -46,15 +46,15 @@
                 @foreach($data as $values)
                  <tr>
                     <td><input type="checkbox" name="ids[]"  id="checkbox" class="myCheckbox" value="{{ $values->id }}"></td>
-                    <td></td>
+                    <td>{{isset($values->forward_to)? $values->relHrEmployee->relUser->relUserProfile->first_name.' '.$values->relHrEmployee->relUser->relUserProfile->middle_name.' '.$values->relHrEmployee->relUser->relUserProfile->last_name:''}}</td>
                     <td>{{isset($values->hr_leave_type_id)?$values->relHrLeaveType->title:''}}</td>
                     <td>{{$values->reason}}</td>
                     <td>{{$values->leave_duration}}</td>
-                    <td>{{$values->from_date}}</td>
-                    <td>{{$values->to_date}}</td>
+                    <td>{{date("Y-m-d", strtotime($values->from_date))}}</td>
+                    <td>{{date("Y-m-d", strtotime($values->to_date))}}</td>
                     <td>{{$values->alt_contact_no}}</td>
-                    <td></td>
-                    <td>{{$values->status}}</td>
+                    <td>{{isset($values->alt_hr_employee_id)? $values->relHrEmployee->relUser->relUserProfile->first_name.' '.$values->relHrEmployee->relUser->relUserProfile->middle_name.' '.$values->relHrEmployee->relUser->relUserProfile->last_name:''}}</td>
+                    <td>{{ucfirst($values->status)}}</td>
                     <td>
                         <a href="{{ URL::route('leave.show',['id'=>$values->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#leave" style="font-size: 12px;color: darkmagenta"><span class="fa fa-eye"></span></a>
                         <a class="btn btn-xs btn-default" href="{{ URL::route('leave.edit',['id'=>$values->id]) }}" data-toggle="modal" data-target="#leave" style="font-size: 12px;color: lightseagreen"><i class="fa fa-edit"></i></a>

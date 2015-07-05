@@ -14,18 +14,17 @@ class HrLeaveController extends \BaseController {
 
     public function index()
     {
-        $data = HrLeave::with('relHrLeaveType')->orderBy('id', 'DESC')->paginate(5);
+        $data = HrLeave::with('relHrLeaveType','relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')->orderBy('id', 'DESC')->paginate(5);
         $leave_type_id = HrLeaveType::lists('title','id');
-        $employee = User::HrList();
+        $employee_list = User::EmployeeList();
 
-        return View::make('hr::hr.leave.index',compact('data','employee','leave_type_id'));
+        return View::make('hr::hr.leave.index',compact('data','employee_list','leave_type_id'));
     }
 
     public function storeLeave()
     {
         if($this->isPostRequest()){
             $input_data = Input::all();
-            #print_r($input_data);exit;
             $model = new HrLeave();
             if($model->validate($input_data)) {
                 DB::beginTransaction();
@@ -45,17 +44,16 @@ class HrLeaveController extends \BaseController {
 
     public function showLeave($id)
     {
-        $model = HrLeave::with('relHrLeaveType')->find($id);
-
+        $model = HrLeave::with('relHrLeaveType','relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')->find($id);
         return View::make('hr::hr.leave.show',compact('model'));
     }
 
     public function editLeave($id){
 
         $model = HrLeave::find($id);
-        $employee = User::HrList();
+        $employee_list = User::EmployeeList();
         $leave_type_id = HrLeaveType::lists('title','id');
-        return View::make('hr::hr.leave.edit',compact('model','employee','leave_type_id'));
+        return View::make('hr::hr.leave.edit',compact('model','employee_list','leave_type_id'));
     }
 
     public function updateLeave($id){
