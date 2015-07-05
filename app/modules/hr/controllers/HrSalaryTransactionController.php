@@ -78,8 +78,9 @@ class HrSalaryTransactionController extends \BaseController {
         }else{
             $model = HrSalaryTransaction::findOrFail($s_t_id);
             $selected_employee_id = HrSalaryTransaction::first()->hr_employee_id;
+            $employee_name_list = array(''=>'Select Employee') + User::EmployeeList();
             $year_list = array(''=>'Select Year') + Year::lists('title','id');
-            return View::make('hr::hr.salary_transaction.edit', compact('model','year_list','selected_employee_id','lists_currency'));
+            return View::make('hr::hr.salary_transaction.edit', compact('employee_name_list','model','year_list','selected_employee_id','lists_currency'));
         }
 
     }
