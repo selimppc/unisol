@@ -599,5 +599,12 @@ class FeesController extends \BaseController {
         }
     }
 
-
+    public function index_billing_summary()
+    {
+        $applicant = array(''=>'Select applicant') + Applicant::ApplicantList();
+       // $applicant = ['' => 'Select applicant'] + Applicant::lists('last_name','id');
+        $schedule = ['' => 'Select schedule'] + BillingSchedule::lists('title', 'id');
+        $summary_applicant = BillingSummaryApplicant::latest('id')->with('relApplicant', 'relBillingSchedule')->get();
+        return View::make('fees::billing_summary.index_applicant',compact('applicant','summary_applicant','schedule'));
+    }
 }

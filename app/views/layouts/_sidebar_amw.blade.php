@@ -71,7 +71,16 @@
         </a>
         <ul class="treeview-menu">
             <li><a href="{{ URL::to('fees/billing/schedule') }}"><i class="fa  fa-bars text-light-blue"></i> Billing Schedule</a></li>
+
             <li><a href="{{ URL::to('fees/billing/item') }}"><i class="fa  fa-bars text-green"></i> Billing Item</a></li>
+
+            <li><a href="{{ URL::to('fees/billing/summary/applicant') }}"><i class="fa  fa-bars text-olive"></i> Billing Summary Applicant</a></li>
+
+            <li><a href="#"><i class="fa  fa-bars text-yellow"></i> Billing Summary Student</a></li>
+
+            <li><a href="#"><i class="fa  fa-bars text-aqua"></i> Billing Details Applicants</a></li>
+
+            <li><a href="#"><i class="fa  fa-bars text-black"></i>Billing Details Student</a></li>
 
             <li><a href="{{ URL::to('fees/billing/setup') }}"><i class="fa  fa-bars text-red"></i> Billing Setup</a></li>
 

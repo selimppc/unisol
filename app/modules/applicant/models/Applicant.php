@@ -75,6 +75,12 @@ class Applicant extends Eloquent implements UserInterface, RemindableInterface{
     }
 
 
+    public function scopeApplicantList($query)
+    {
+        return $query-> select(DB::raw('CONCAT(applicant.first_name, " ", applicant.last_name) as full_name'), 'applicant.id as applicant_id')
+                ->lists('full_name', 'applicant_id');
+
+    }
 
 
 
