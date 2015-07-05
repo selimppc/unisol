@@ -12,7 +12,7 @@
     <div class="box box-solid ">
 
         <div class="col-sm-12">
-           <div class="pull-left col-sm-4"> <h3> {{$pageTitle}} </h3>  </div>
+           <div class="pull-left col-sm-4"> <h3> All Loan Head List </h3>  </div>
            <div class="pull-right col-sm-4" style="padding-top: 1%;">
                 <button type="button" class="pull-right btn btn-sm btn-info" data-toggle="modal" data-target="#modal">
                   Add Loan Head
@@ -60,8 +60,8 @@
                         <a href="{{ URL::route('loan_head.show', ['lh_id'=>$values->id ])  }}" class="btn btn-default btn-xs" title="Manage Applicant" data-toggle="modal" data-target="#modal-pc"><i style="color: #149bdf" class="fa fa-eye"></i></a>
                         <a href="{{ URL::route('loan_head.edit',['lh_id'=>$values->id])  }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal-pc"> <i style="color: #7b24dd" class="fa fa-edit"></i></a>
                         <a data-href="{{ URL::route('loan_head.destroy', ['lh_id'=>$values->id ]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i style="color: red" class="fa fa-trash-o" ></i></a>
-                        <a href="{{ URL::route('loan_detail',['loan_head_id'=>$values->id])  }}" class="btn btn-default btn-xs" style="color: #802420">Loan Detail</a>
-                        <a href="{{ URL::route('salary_deduction',['loan_head_id'=>$values->id,'employee_id'=>$values->hr_employee_id]) }}" class="btn btn-default btn-xs" style="color: #802420">Salary Deduction</a>
+                        <a href="{{ URL::route('loan_detail',['loan_head_id'=>$values->id])  }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal-pc">Loan Detail</a>
+                        <a href="{{ URL::route('salary_deduction',['loan_head_id'=>$values->id,'employee_id'=>$values->hr_employee_id]) }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal-pc">Salary Deduction</a>
 
                     </td>
 
@@ -83,8 +83,8 @@
 
 
 {{-- Modal Area --}}
-<div class="modal fade" id="modal-pc" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+<div class="modal fade " id="modal-pc" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
     </div>
   </div>

@@ -13,21 +13,18 @@ class HrSalaryController extends \BaseController {
     }
 
 //hr_salary
-    public function index_hr_salary($emp_id)
+    public function index_hr_salary()
     {
-        $pageTitle = 'Salary List';
-        $model = HrSalary::with('relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')
-            ->where('hr_employee_id', $emp_id)->get();
+        $model = HrSalary::with('relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')->get();
 
-        $selected_employee_id = $emp_id;
+        $emp_name = HrBonus::with('relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')->first();
 
-        $emp_name = HrBonus::with('relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')
-            ->where('hr_employee_id', $emp_id)->first();
+        $employee_name_list = array(''=>'Select Employee') + User::EmployeeList();
 
         $lists_currency = array('' => 'Select Currency ') + Currency::lists('title','id');
 
         return View::make('hr::hr.salary.index',
-            compact('model','pageTitle','selected_employee_id','lists_currency','emp_name'));
+            compact('model','selected_employee_id','lists_currency','emp_name','employee_name_list'));
     }
 
     public function store_hr_salary()

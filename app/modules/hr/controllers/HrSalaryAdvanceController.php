@@ -13,18 +13,16 @@ class HrSalaryAdvanceController extends \BaseController
         return Input::server("REQUEST_METHOD") == "POST";
     }
 
-    public function index_hr_salary_advance($emp_id)
+    public function index_hr_salary_advance()
     {
-        $pageTitle = 'Salary Advance Lists';
-        $model = HrSalaryAdvance::with('relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')
-            ->where('hr_employee_id', $emp_id)->get();
+        $model = HrSalaryAdvance::with('relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')->get();
 
-        $emp_name = HrSalaryAdvance::with('relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')
-            ->where('hr_employee_id', $emp_id)->first();
+        $emp_name = HrSalaryAdvance::with('relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')->first();
 
-        $selected_employee_id = $emp_id;
+        $employee_name_list = array(''=>'Select Employee') + User::EmployeeList();
 
-        return View::make('hr::hr.salary_advance.index', compact('model','pageTitle','selected_employee_id','emp_name'));
+        return View::make('hr::hr.salary_advance.index',
+            compact('model','selected_employee_id','emp_name','employee_name_list'));
     }
 
     public function store_hr_salary_advance()
