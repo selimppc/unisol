@@ -157,5 +157,44 @@ Route::any('provident-fund/batch-delete',[
 ]);
 
 
+//Hr Attendance
+
+
+Route::any('attendance',[
+    'as' =>'attendance',
+    'uses' => 'HrAttendanceController@index'
+]);
+
+Route::any('attendance/store',[
+    'as' =>'attendance.store',
+    'uses' => 'HrAttendanceController@storeAttendance'
+]);
+
+Route::any('attendance/show/{id}',[
+    'as' =>'attendance.show',
+    'uses' => 'HrAttendanceController@showAttendance'
+]);
+
+Route::any('attendance/edit/{id}',[
+    'as' =>'attendance.edit',
+    'uses' => 'HrAttendanceController@editAttendance'
+]);
+
+Route::any('attendance/update/{id}',[
+    'as' =>'attendance.update',
+    'uses' => 'HrAttendanceController@updateAttendance'
+]);
+
+Route::any('attendance/delete/{id}',[
+    'as' =>'attendance.delete',
+    'uses' => 'HrAttendanceController@deleteAttendance'
+]);
+
+Route::any('attendance/batch-delete',[
+    'as' =>'attendance.batch-delete',
+    'uses' => 'HrAttendanceController@batchDelete'
+]);
+
+
 
 

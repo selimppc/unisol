@@ -20,25 +20,40 @@
                    </tr>
 
                    <tr>
-                       <th class="col-lg-6">Month :</th>
-                       <td>{{  isset($data->month)?$data->month:''}}</td>
+                       <th class="col-lg-6">Sign In Time :</th>
+                       <td>{{  isset($data->sign_in_time)?$data->sign_in_time:''}}</td>
                    </tr>
 
 
                    <tr>
-                       <th class="col-lg-6">Employee Contribution Amount:</th>
-                       <td>{{  isset($data->employee_contribution_amount)?$data->employee_contribution_amount:''}}</td>
+                       <th class="col-lg-6">Sign Out Time:</th>
+                       <td>{{  isset($data->sign_out_time)?$data->sign_out_time:''}}</td>
                    </tr>
 
                    <tr>
-                       <th class="col-lg-6">Company Contribution Amount:</th>
-                       <td>{{isset($data->company_contribution_amount)?$data->company_contribution_amount:''}}</td>
+                       <th class="col-lg-6">Lunch Break Out Time :</th>
+                       <td>{{isset($data->lunch_break_out_time)?$data->lunch_break_out_time:''}}</td>
                    </tr>
 
                    <tr>
-                      <th class="col-lg-6">Status :</th>
-                      <td>{{  isset($data->status)?$data->status:''}}</td>
+                      <th class="col-lg-6">Lunch Break In Time  :</th>
+                      <td>{{  isset($data->lunch_break_in_time)?$data->lunch_break_in_time:''}}</td>
                   </tr>
+
+                  <tr>
+                     <th class="col-lg-6">Break Out Time :</th>
+                     <td>{{  isset($data->break_out_time)?$data->break_out_time:''}}</td>
+                  </tr>
+
+                 <tr>
+                     <th class="col-lg-6">Break In Time :</th>
+                     <td>{{  isset($data->break_in_time)?$data->break_in_time:''}}</td>
+                 </tr>
+
+                 <tr>
+                      <th class="col-lg-6">Note :</th>
+                      <td>{{  isset($data->note)?$data->note:''}}</td>
+                 </tr>
 
                  </table>
            </div>
