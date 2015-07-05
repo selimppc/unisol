@@ -52,8 +52,14 @@
              'scheduled'=>'Scheduled','taken'=>'Taken','approved'=>'Approved'), Input::old('status'),
               array('class' => 'form-control ','required')) }}
     </div>
-          {{ Form::submit('Save', array('class'=>'pull-right btn btn-info')) }}
-          <a  href="" class="pull-right btn btn-bitbucket" style="margin-right: 5px">Close</a>
+
+    <div class='form-group'>
+       {{ Form::label('comment', 'HR Leave Comments') }}
+       {{ Form::textarea('comment', Input::old('comment'),['onkeyup'=>"javascript:this.value=this.value.replace(/[<,>]/g,'');", 'size' => '40x9', 'class'=>'form-control','placeholder'=>'Write Your message here...']) }}
     </div>
+
+    {{ Form::submit('Save', array('class'=>'pull-right btn btn-info')) }}
+    <a  href="" class="pull-right btn btn-bitbucket" style="margin-right: 5px">Close</a>
+
     <p>&nbsp;</p>
 </div>

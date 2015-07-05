@@ -26,12 +26,27 @@ class HrLeaveController extends \BaseController {
         if($this->isPostRequest()){
             $input_data = Input::all();
             $model = new HrLeave();
+            $model->forward_to = Input::get('forward_to');
+            $model->hr_leave_type_id = Input::get('hr_leave_type_id');
+            $model->reason = Input::get('reason');
+            $model->leave_duration = Input::get('leave_duration');
+            $model->from_date = Input::get('from_date');
+            $model->to_date = Input::get('to_date');
+            $model->alt_contact_no = Input::get('alt_contact_no');
+            $model->alt_hr_employee_id = Input::get('alt_hr_employee_id');
+            $model->status = Input::get('status');
             if($model->validate($input_data)) {
                 DB::beginTransaction();
                 try {
-                    $model->create($input_data);
-                    DB::commit();
-                    Session::flash('message', 'Success !');
+                    if($model->save()){
+                         $model1 = new HrLeaveComments();
+                         $model1->hr_leave_id = $model->id;
+                         $model1->comment = Input::get('comment');
+                      If($model1->save()){
+                          DB::commit();
+                          Session::flash('message', 'Success !');
+                      }
+                    }
                 } catch (Exception $e) {
                     //If there are any exceptions, rollback the transaction`
                     DB::rollback();
