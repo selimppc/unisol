@@ -208,13 +208,62 @@ class FeesController extends \BaseController {
         $department_id = Input::get('department_id');
         $degree_id = Input::get('degree_id');
         $batch_id = Input::get('batch_id');
-        $studentOrApplicant = Input::get('studentOrApplicant');
+        $name  = Input::get('student_name');
+
+        Input::flash();
+            $q = new BillingVApplicantHistory();
+
+            if (!empty($department_id)) {
+                $q = $q->where('department_id', '=', $department_id);
+            }
+
+            if (!empty($degree_id)) {
+                $q = $q->where('degree_id', '=', $degree_id);
+            }
+
+            if (!empty($batch_id)) {
+                $q = $q->where('batch_id', '=', $batch_id);
+            }
+
+            if (!empty($name)) {
+                $q = $q->where('first_name', 'like', "%$name%");
+                $q = $q->orWhere('last_name', 'like', "%$name%");
+            }
+
+          $data = $q->get();
+
+        return View::make('fees::billing_history.index_applicant',compact('degree','batch','department','applicant','data'));
+
+	}
+	/**
+	 * Show the form for creating a new resource.
+	 *
+	 * @return Response
+	 */
+    public function billing_history_show($id)
+    {
+            $data = BillingVApplicantHistory::where('id', $id)->first();
+            $relation_data = BillingSummaryApplicant::with('relBillingDetailsApplicant',  'relBillingSchedule')
+                ->where('id', $id)
+                ->get();
+        #print_r($relation_data[0]['relBillingDetailsApplicant'][0]['relBillingItem']['title']);exit;
+        return View::make('fees::billing_history.view_applicant',compact('data','relation_data'));
+
+    }
+
+    public function index_student_billing_history()
+    {
+        $degree = ['' => 'Select Degree'] + DegreeProgram::lists('title', 'id');
+        $batch = ['' => 'Select Batch']+ Batch::lists('batch_number', 'id');
+        $department = ['' => 'Select Department']+ Department::lists('title', 'id');
+
+        $department_id = Input::get('department_id');
+        $degree_id = Input::get('degree_id');
+        $batch_id = Input::get('batch_id');
         $student_id  = Input::get('student_id');
         $name  = Input::get('student_name');
 
         Input::flash();
-
-        if($studentOrApplicant == 'student'){
 
             $q = new BillingVStudentHistory();
 
@@ -238,60 +287,18 @@ class FeesController extends \BaseController {
                 $q->where('student_id', '=', $student_id);
             }
 
-        }else {
-            $q = new BillingVApplicantHistory();
-
-            if (!empty($department_id)) {
-                $q = $q->where('department_id', '=', $department_id);
-            }
-
-            if (!empty($degree_id)) {
-                $q = $q->where('degree_id', '=', $degree_id);
-            }
-
-            if (!empty($batch_id)) {
-                $q = $q->where('batch_id', '=', $batch_id);
-            }
-
-            if (!empty($name)) {
-                $q = $q->where('first_name', 'like', "%$name%");
-                $q = $q->orWhere('last_name', 'like', "%$name%");
-            }
-        }
         $data = $q->get();
-        //$queries = DB::getQueryLog();
-        //$last_query = end($queries);
-        //dd(DB::getQueryLog());
-        //print_r($data);exit;
 
-        return View::make('fees::billing_history.index',compact('degree','batch','department','applicant','student','studentOrApplicant','data'));
-
-	}
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-    public function billing_history_show($id, $app_stu_id)
-    {
-        $studentOrApplicant = $app_stu_id;
-        if($studentOrApplicant == 'student')
-        {
-            $data = BillingVStudentHistory::where('id', $id)->first();
-            $relation_data = BillingSummaryStudent::with('relBillingDetailsStudent.relBillingItem', 'relBillingSchedule')->where('id', $id)->get();
-        }else{
-            $data = BillingVApplicantHistory::where('id', $id)->first();
-            $relation_data = BillingSummaryApplicant::with('relBillingDetailsApplicant',  'relBillingSchedule')
-                ->where('id', $id)
-                ->get();
-        }
-        //print_r($relation_data);exit;
-        /*$last_query = end($relation_data);
-        dd(DB::getQueryLog());*/
-        #print_r($relation_data[0]['relBillingDetailsApplicant'][0]['relBillingItem']['title']);exit;
-        return View::make('fees::billing_history.view',compact('data','relation_data','studentOrApplicant'));
-
+        return View::make('fees::billing_history.index_student',compact('degree','batch','department','student','data'));
     }
+
+    public function view_student_billing_history($id)
+    {
+        $data = BillingVStudentHistory::where('id', $id)->first();
+        $relation_data = BillingSummaryStudent::with('relBillingDetailsStudent.relBillingItem', 'relBillingSchedule')->where('id', $id)->get();
+        return View::make('fees::billing_history.view_student',compact('data','relation_data'));
+    }
+
 
     /**********************Installment Setup Start***************************/
 

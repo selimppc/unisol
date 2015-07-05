@@ -79,7 +79,7 @@
 
             <li><a href="{{ URL::to('fees/billing/history') }}"><i class="fa  fa-bars text-purple"></i> Billing History Applicant</a></li>
 
-            <li><a href="#"><i class="fa  fa-bars text-orange"></i> Billing History Student</a>
+            <li><a href="{{URL::to('fees/billing/history/student')}}"><i class="fa  fa-bars text-orange"></i> Billing History Student</a>
 
 
 
