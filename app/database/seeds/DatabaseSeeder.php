@@ -97,6 +97,9 @@ class DatabaseSeeder extends Seeder {
 
         $this->call('AcmMarksDistItemTable');
         $this->command->info('Acm Marks Dist Item table seeded!');
+
+        $this->call('HrProvidentFundConfigTable');
+        $this->command->info('HrProvidentFundConfig table seeded!');
 	}
 
 }

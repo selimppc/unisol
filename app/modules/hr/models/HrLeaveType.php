@@ -7,7 +7,7 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 class HrLeaveType extends Eloquent{
 
     //TODO :: model attributes and rules and validation
-    protected $table='hr_leave_type';
+    protected $table = 'hr_leave_type';
     protected $fillable = [
         'title','code','employee_type'
     ];

@@ -14,16 +14,16 @@ class HrAttendanceController extends \BaseController {
 
     public function index()
     {
-        $data = HrAttendance::get();
-//        $employee_list = User::EmployeeList();
-        return View::make('hr::hr.hr_attendance.index',compact('data','employee_list'));
+        $data = HrAttendance::with('relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')->orderBy('id', 'DESC')->paginate(5);
+        $employee_list = User::EmployeeList();
+        return View::make('hr::hr.hr_attendance.index',compact('data','employee_list','month'));
     }
 
     public function storeAttendance()
     {
         if($this->isPostRequest()){
             $input_data = Input::all();
-            #print_r($input_data);exit;
+//            print_r($input_data);exit;
             $model = new HrAttendance();
             if($model->validate($input_data)) {
                 DB::beginTransaction();
@@ -43,23 +43,22 @@ class HrAttendanceController extends \BaseController {
 
     public function showAttendance($id)
     {
-        $data = HrProvidentFund::with('relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')->find($id);
+        $data = HrAttendance::with('relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')->find($id);
 
         return View::make('hr::hr.hr_attendance.show',compact('data'));
     }
 
     public function editAttendance($id){
 
-        $model = HrProvidentFund::find($id);
-        $month = HrWorkWeek::getMonth();
+        $model = HrAttendance::find($id);
         $employee_list = User::EmployeeList();
-        return View::make('hr::hr.hr_attendance.edit',compact('model','month','employee_list'));
+        return View::make('hr::hr.hr_attendance.edit',compact('model','employee_list'));
     }
 
     public function updateAttendance($id){
 
         $data = Input::all();
-        $model = HrProvidentFund::find($id);
+        $model = HrAttendance::find($id);
 
         if($model->validate($data))
         {
@@ -86,7 +85,7 @@ class HrAttendanceController extends \BaseController {
     public function deleteAttendance($id)
     {
         try {
-            $data = HrProvidentFund::find($id);
+            $data = HrAttendance::find($id);
             if ($data->delete()) {
                 Session::flash('message', "Successfully  Deleted");
                 return Redirect::back();
@@ -100,7 +99,7 @@ class HrAttendanceController extends \BaseController {
     public function batchDelete()
     {
         try {
-            HrProvidentFund::destroy(Request::get('ids'));
+            HrAttendance::destroy(Request::get('ids'));
             return Redirect::back()->with('message', 'Successfully deleted Information!');
         } catch (exception $ex) {
             return Redirect::back()->with('danger', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');

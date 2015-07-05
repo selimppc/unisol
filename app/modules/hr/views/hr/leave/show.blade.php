@@ -16,7 +16,7 @@
 
                        <tr>
                          <th class="col-lg-8">Reason:</th>
-                         <td>{{isset($model->reason)?ucfirst($model->reason):''}}</td>
+                         <td>{{isset($model->reason)?$model->reason:''}}</td>
                        </tr>
 
                        <tr>
@@ -36,7 +36,7 @@
 
                       <tr>
                          <th class="col-lg-8">Alt Contact No:</th>
-                         <td>{{isset($model->alt_contact_no)? ucfirst($model->alt_contact_no):''}}</td>
+                         <td>{{isset($model->alt_contact_no)? $model->alt_contact_no:''}}</td>
                       </tr>
 
                       <tr>

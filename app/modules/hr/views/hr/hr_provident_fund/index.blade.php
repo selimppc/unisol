@@ -39,24 +39,24 @@
                 </tr>
             </thead>
             <tbody>
-            {{--@if(isset($data))--}}
-                {{--@foreach($data as $values)--}}
-                 {{--<tr>--}}
-                    {{--<td><input type="checkbox" name="ids[]"  id="checkbox" class="myCheckbox" value="{{ $values->id }}"></td>--}}
-                    {{--<td>{{isset($values->hr_employee_id)?$values->relHrEmployee->relUser->relUserProfile->first_name.' '.$values->relHrEmployee->relUser->relUserProfile->middle_name.' '.$values->relHrEmployee->relUser->relUserProfile->last_name:''}}</td>--}}
-                    {{--<td>{{$values->date}}</td>--}}
-                    {{--<td>{{$values->month}}</td>--}}
-                    {{--<td>{{$values->employee_contribution_amount}}</td>--}}
-                    {{--<td>{{$values->company_contribution_amount}}</td>--}}
-                    {{--<td>{{$values->status}}</td>--}}
-                    {{--<td>--}}
-                        {{--<a href="{{ URL::route('provident-fund.show',['id'=>$values->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#pvd" style="font-size: 12px;color: darkmagenta"><span class="fa fa-eye"></span></a>--}}
-                        {{--<a class="btn btn-xs btn-default" href="{{ URL::route('provident-fund.edit',['id'=>$values->id]) }}" data-toggle="modal" data-target="#pvd" style="font-size: 12px;color: lightseagreen"><i class="fa fa-edit"></i></a>--}}
-                        {{--<a data-href="{{ URL::route('provident-fund.delete',$values->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" style="font-size: 12px;color: lightcoral"><span class="fa  fa-trash-o"></span></a>--}}
-                    {{--</td>--}}
-                 {{--</tr>--}}
-                {{--@endforeach--}}
-            {{--@endif--}}
+            @if(isset($data))
+                @foreach($data as $values)
+                 <tr>
+                    <td><input type="checkbox" name="ids[]"  id="checkbox" class="myCheckbox" value="{{ $values->id }}"></td>
+                    <td>{{isset($values->hr_employee_id)?$values->relHrEmployee->relUser->relUserProfile->first_name.' '.$values->relHrEmployee->relUser->relUserProfile->middle_name.' '.$values->relHrEmployee->relUser->relUserProfile->last_name:''}}</td>
+                    <td>{{date("Y-m-d", strtotime($values->date))}}</td>
+                    <td>{{$values->month}}</td>
+                    <td>{{$values->employee_contribution_amount}}</td>
+                    <td>{{$values->company_contribution_amount}}</td>
+                    <td>{{ucfirst($values->status)}}</td>
+                    <td>
+                        <a href="{{ URL::route('provident-fund.show',['id'=>$values->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#pvd" style="font-size: 12px;color: darkmagenta"><span class="fa fa-eye"></span></a>
+                        <a class="btn btn-xs btn-default" href="{{ URL::route('provident-fund.edit',['id'=>$values->id]) }}" data-toggle="modal" data-target="#pvd" style="font-size: 12px;color: lightseagreen"><i class="fa fa-edit"></i></a>
+                        <a data-href="{{ URL::route('provident-fund.delete',$values->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" style="font-size: 12px;color: lightcoral"><span class="fa  fa-trash-o"></span></a>
+                    </td>
+                 </tr>
+                @endforeach
+            @endif
             </tbody>
 
         </table>

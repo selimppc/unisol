@@ -43,7 +43,7 @@
 
                     <td>{{$values->title}}</td>
                     <td>{{$values->code}}</td>
-                    <td>{{$values->employee_type}}</td>
+                    <td>{{ucfirst($values->employee_type)}}</td>
 
                     <td>
                         <a href="{{ URL::route('leave-type.show',['id'=>$values->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#leave-type" style="font-size: 12px;color: darkmagenta"><span class="fa fa-eye"></span></a>

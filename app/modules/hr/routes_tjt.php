@@ -10,6 +10,46 @@
 |
 */
 
+//Hr Attendance
+
+Route::any('attendance',[
+    'as' =>'attendance',
+    'uses' => 'HrAttendanceController@index'
+]);
+
+Route::any('attendance/store',[
+    'as' =>'attendance.store',
+    'uses' => 'HrAttendanceController@storeAttendance'
+]);
+
+Route::any('attendance/show/{id}',[
+    'as' =>'attendance.show',
+    'uses' => 'HrAttendanceController@showAttendance'
+]);
+
+Route::any('attendance/edit/{id}',[
+    'as' =>'attendance.edit',
+    'uses' => 'HrAttendanceController@editAttendance'
+]);
+
+Route::any('attendance/update/{id}',[
+    'as' =>'attendance.update',
+    'uses' => 'HrAttendanceController@updateAttendance'
+]);
+
+Route::any('attendance/delete/{id}',[
+    'as' =>'attendance.delete',
+    'uses' => 'HrAttendanceController@deleteAttendance'
+]);
+
+Route::any('attendance/batch-delete',[
+    'as' =>'attendance.batch-delete',
+    'uses' => 'HrAttendanceController@batchDelete'
+]);
+
+
+//Work Week
+
 Route::any('work-week',[
     'as' =>'work-week',
     'uses' => 'HrWorkWeekController@index'
@@ -43,6 +83,44 @@ Route::any('work-week/delete/{id}',[
 Route::any('work-week/batch-delete',[
     'as' =>'work-week.batch-delete',
     'uses' => 'HrWorkWeekController@batchDelete'
+]);
+
+
+// HR leave
+
+Route::any('leave',[
+    'as' =>'leave',
+    'uses' => 'HrLeaveController@index'
+]);
+
+Route::any('leave/store',[
+    'as' =>'leave.store',
+    'uses' => 'HrLeaveController@storeLeave'
+]);
+
+Route::any('leave/show/{id}',[
+    'as' =>'leave.show',
+    'uses' => 'HrLeaveController@showLeave'
+]);
+
+Route::any('leave/edit/{id}',[
+    'as' =>'leave.edit',
+    'uses' => 'HrLeaveController@editLeave'
+]);
+
+Route::any('leave/update/{id}',[
+    'as' =>'leave.update',
+    'uses' => 'HrLeaveController@updateLeave'
+]);
+
+Route::any('leave/delete/{id}',[
+    'as' =>'leave.delete',
+    'uses' => 'HrLeaveController@deleteLeave'
+]);
+
+Route::any('leave/batch-delete',[
+    'as' =>'leave.batch-delete',
+    'uses' => 'HrLeaveController@batchDelete'
 ]);
 
 //Leave Type
@@ -82,43 +160,6 @@ Route::any('leave-type/batch-delete',[
     'uses' => 'HrLeaveTypeController@batchDelete'
 ]);
 
-//leave comments
-
-Route::any('leave',[
-    'as' =>'leave',
-    'uses' => 'HrLeaveController@index'
-]);
-
-Route::any('leave/store',[
-    'as' =>'leave.store',
-    'uses' => 'HrLeaveController@storeLeave'
-]);
-
-Route::any('leave/show/{id}',[
-    'as' =>'leave.show',
-    'uses' => 'HrLeaveController@showLeave'
-]);
-
-Route::any('leave/edit/{id}',[
-    'as' =>'leave.edit',
-    'uses' => 'HrLeaveController@editLeave'
-]);
-
-Route::any('leave/update/{id}',[
-    'as' =>'leave.update',
-    'uses' => 'HrLeaveController@updateLeave'
-]);
-
-Route::any('leave/delete/{id}',[
-    'as' =>'leave.delete',
-    'uses' => 'HrLeaveController@deleteLeave'
-]);
-
-Route::any('leave/batch-delete',[
-    'as' =>'leave.batch-delete',
-    'uses' => 'HrLeaveController@batchDelete'
-]);
-
 //Provident Fund
 
 Route::any('provident-fund',[
@@ -156,45 +197,11 @@ Route::any('provident-fund/batch-delete',[
     'uses' => 'HrProvidentFundController@batchDelete'
 ]);
 
+//Hr Provident Fund Config
 
-//Hr Attendance
-
-
-Route::any('attendance',[
-    'as' =>'attendance',
-    'uses' => 'HrAttendanceController@index'
+Route::any('provident-fund-config',[
+    'as' =>'provident-fund-config',
+    'uses' => 'HrProvidentFundConfigController@index'
 ]);
-
-Route::any('attendance/store',[
-    'as' =>'attendance.store',
-    'uses' => 'HrAttendanceController@storeAttendance'
-]);
-
-Route::any('attendance/show/{id}',[
-    'as' =>'attendance.show',
-    'uses' => 'HrAttendanceController@showAttendance'
-]);
-
-Route::any('attendance/edit/{id}',[
-    'as' =>'attendance.edit',
-    'uses' => 'HrAttendanceController@editAttendance'
-]);
-
-Route::any('attendance/update/{id}',[
-    'as' =>'attendance.update',
-    'uses' => 'HrAttendanceController@updateAttendance'
-]);
-
-Route::any('attendance/delete/{id}',[
-    'as' =>'attendance.delete',
-    'uses' => 'HrAttendanceController@deleteAttendance'
-]);
-
-Route::any('attendance/batch-delete',[
-    'as' =>'attendance.batch-delete',
-    'uses' => 'HrAttendanceController@batchDelete'
-]);
-
-
 
 

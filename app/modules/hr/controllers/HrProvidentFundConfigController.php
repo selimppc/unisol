@@ -9,7 +9,8 @@ class HrProvidentFundConfigController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+        $data = HrProvidentFundConfig::get();
+        return View::make('hr::hr.provident_fund_config.index',compact('data'));
 	}
 
 
