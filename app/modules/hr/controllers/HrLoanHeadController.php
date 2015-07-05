@@ -16,8 +16,6 @@ class HrLoanHeadController extends \BaseController {
 
     public function index_hr_loan_head()
     {
-        $pageTitle = 'Loan Head Lists';
-
         $model = HrLoanHead::with('relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')->get();
 
         $emp_name = HrEmployee::with('relUser','relUser.relUserProfile')->first();
@@ -79,7 +77,7 @@ class HrLoanHeadController extends \BaseController {
             $model = HrLoanHead::findOrFail($lh_id);
             $selected_employee_id = HrLoanHead::first()->hr_employee_id;
             $employee_name_list = array(''=>'Select Employee') + User::EmployeeList();
-            return View::make('hr::hr.loan_head.edit', compact('model','selected_employee_id','lists_currency','employee_name_list'));
+            return View::make('hr::hr.loan_head.edit', compact('model','selected_employee_id','lists_currency','$employee_name_list'));
         }        
     }
 
