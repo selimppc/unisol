@@ -14,20 +14,19 @@ class HrLoanHeadController extends \BaseController {
     }
 
 
-//    public function index_hr_loan_head($emp_id)
-//    {
-//        $pageTitle = 'Loan Head Lists';
-//        $model = HrLoanHead::with('relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')
-//            ->where('hr_employee_id', $emp_id)->get();
-//
-//        $emp_name = HrEmployee::with('relUser','relUser.relUserProfile')
-//            ->where('id', $emp_id)->first();
-//
-//        #print_r($emp_name);exit;
-//
-//        $selected_employee_id = $emp_id;
-//        return View::make('hr::hr.loan_head.index', compact('model','pageTitle','selected_employee_id','emp_name'));
-//    }
+    public function index_hr_loan_head()
+    {
+        $pageTitle = 'Loan Head Lists';
+
+        $model = HrLoanHead::with('relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')->get();
+
+        $emp_name = HrEmployee::with('relUser','relUser.relUserProfile')->first();
+
+        $employee_name_list = array(''=>'Select Employee') + User::EmployeeList();
+
+        return View::make('hr::hr.loan_head.index',
+            compact('model','pageTitle','selected_employee_id','emp_name','employee_name_list'));
+    }
 
     public function store_hr_loan_head()
     {

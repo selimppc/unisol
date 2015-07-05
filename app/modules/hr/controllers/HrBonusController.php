@@ -13,19 +13,16 @@ class HrBonusController extends \BaseController
         return Input::server("REQUEST_METHOD") == "POST";
     }
 
-//    public function index_hr_bonus($emp_id)
-//    {
-//        $pageTitle = 'Bonus Lists';
-//        $model = HrBonus::with('relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')
-//            ->where('hr_employee_id', $emp_id)->get();
-//
-//        $emp_name = HrBonus::with('relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')
-//            ->where('hr_employee_id', $emp_id)->first();
-//
-//        $selected_employee_id = $emp_id;
-//
-//        return View::make('hr::hr.bonus.index', compact('model','pageTitle','selected_employee_id','emp_name'));
-//    }
+    public function index_hr_bonus()
+    {
+        $model = HrBonus::with('relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')->get();
+
+        $emp_name = HrBonus::with('relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')->first();
+
+        $employee_name_list = array(''=>'Select Employee') + User::EmployeeList();
+
+        return View::make('hr::hr.bonus.index', compact('model','emp_name','employee_name_list'));
+    }
 
     public function store_hr_bonus()
     {

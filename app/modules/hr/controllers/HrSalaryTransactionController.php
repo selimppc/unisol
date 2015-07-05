@@ -12,20 +12,20 @@ class HrSalaryTransactionController extends \BaseController {
         return Input::server("REQUEST_METHOD") == "POST";
     }
 
-    public function index_hr_salary_transaction($emp_id)
+    public function index_hr_salary_transaction()
     {
-        $pageTitle = 'Salary Transaction Lists';
         $model = HrSalaryTransaction::with('relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')
-            ->where('hr_employee_id', $emp_id)->get();
+            ->get();
 
         $emp_name = HrSalaryTransaction::with('relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')
-            ->where('hr_employee_id', $emp_id)->first();
+            ->first();
+
+        $employee_name_list = array(''=>'Select Employee') + User::EmployeeList();
 
         $year_list = array(''=>'Select Year') + Year::lists('title','id');
 
-        $selected_employee_id = $emp_id;
-
-        return View::make('hr::hr.salary_transaction.index', compact('model','pageTitle','year_list','emp_name','selected_employee_id'));
+        return View::make('hr::hr.salary_transaction.index',
+            compact('model','year_list','emp_name','employee_name_list'));
     }
 
     public function store_hr_salary_transaction()

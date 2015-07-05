@@ -22,12 +22,12 @@
              <li><a href="{{ URL::to('hr/leave') }}"></i><i class="fa fa-sort" style="color: #00fff2"></i>HR Leave </a></li>
              <li><a href="{{ URL::to('hr/provident-fund') }}"></i><i class="fa fa-sort" style="color: #00fff2"></i>HR Provident Fund </a></li>
 
-             <li><a href="{{ URL::to('hr/all-bonus') }}"></i><i class="fa fa-briefcase" style="color: #0effae"></i>All Bonus</a></li>
-             <li><a href="{{ URL::to('hr/all-over-time') }}"></i><i class="fa fa-briefcase" style="color: #0effae"></i>All Over Time</a></li>
-             <li><a href="{{ URL::to('hr/all-salary-advance') }}"></i><i class="fa fa-briefcase" style="color: #0effae"></i>All Salary Advance</a></li>
-             <li><a href="{{ URL::to('hr/all-salary') }}"></i><i class="fa fa-briefcase" style="color: #0effae"></i>All Salary </a></li>
-             <li><a href="{{ URL::to('hr/all-loan-head') }}"></i><i class="fa fa-briefcase" style="color: #0effae"></i>All Loan Head </a></li>
-             <li><a href="{{ URL::to('hr/all-salary-transaction') }}"></i><i class="fa fa-briefcase" style="color: #0effae"></i>All Salary Transaction</a></li>
+             <li><a href="{{ URL::to('hr/bonus') }}"></i><i class="fa fa-briefcase" style="color: #0effae"></i>Bonus</a></li>
+             <li><a href="{{ URL::to('hr/over_time') }}"></i><i class="fa fa-briefcase" style="color: #0effae"></i>Over Time</a></li>
+             <li><a href="{{ URL::to('hr/salary_advance') }}"></i><i class="fa fa-briefcase" style="color: #0effae"></i>Salary Advance</a></li>
+             <li><a href="{{ URL::to('hr/salary') }}"></i><i class="fa fa-briefcase" style="color: #0effae"></i>Salary </a></li>
+             <li><a href="{{ URL::to('hr/loan_head') }}"></i><i class="fa fa-briefcase" style="color: #0effae"></i>Loan Head </a></li>
+             <li><a href="{{ URL::to('hr/salary_transaction') }}"></i><i class="fa fa-briefcase" style="color: #0effae"></i>Salary Transaction</a></li>
 
          </ul>
     </li>

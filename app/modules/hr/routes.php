@@ -212,7 +212,7 @@ Route::group(['prefix' => 'hr'], function() {
 
     //hr_salary
 
-    Route::any('salary/{emp_id}',[
+    Route::any('salary',[
         'as' => 'salary',
         'uses'=> 'HrSalaryController@index_hr_salary'
     ]);
@@ -245,7 +245,7 @@ Route::group(['prefix' => 'hr'], function() {
     //------->
     //hr_bonus
 
-    Route::any('bonus/{emp_id}',[
+    Route::any('bonus',[
         'as' => 'bonus',
         'uses'=> 'HrBonusController@index_hr_bonus'
     ]);
@@ -278,7 +278,7 @@ Route::group(['prefix' => 'hr'], function() {
 
 
     //hr_loan_head
-    Route::any('loan_head/{emp_id}',[
+    Route::any('loan_head',[
         'as' => 'loan_head',
         'uses'=> 'HrLoanHeadController@index_hr_loan_head'
     ]);
@@ -309,7 +309,7 @@ Route::group(['prefix' => 'hr'], function() {
     ]);
 
     //hr_over_time
-    Route::any('over_time/{emp_id}',[
+    Route::any('over_time',[
         'as' => 'over_time',
         'uses'=> 'HrOverTimeController@index_hr_over_time'
     ]);
@@ -373,7 +373,7 @@ Route::group(['prefix' => 'hr'], function() {
 
 
     //hr_salary_advance
-    Route::any('salary_advance/{emp_id}',[
+    Route::any('salary_advance',[
         'as' => 'salary_advance',
         'uses'=> 'HrSalaryAdvanceController@index_hr_salary_advance'
     ]);
@@ -404,7 +404,7 @@ Route::group(['prefix' => 'hr'], function() {
     ]);
 
     //hr_salary_transaction
-    Route::any('salary_transaction/{emp_id}',[
+    Route::any('salary_transaction',[
         'as' => 'salary_transaction',
         'uses'=> 'HrSalaryTransactionController@index_hr_salary_transaction'
     ]);
@@ -527,39 +527,6 @@ Route::group(['prefix' => 'hr'], function() {
     Route::any('salary-transaction-detail-batch-delete',[
         'as' => 'salary-transaction-detail-batch-delete',
         'uses'=> 'HrSalaryTransactionDetailController@batch_delete_hr_salary_transaction_detail'
-    ]);
-
-
-    // all list together
-
-    Route::any('all-bonus',[
-        'as' => 'all-bonus',
-        'uses'=> 'HrAllListController@index_all_bonus'
-    ]);
-
-    Route::any('all-over-time',[
-        'as' => 'all-over-time',
-        'uses'=> 'HrAllListController@index_all_over_time'
-    ]);
-
-    Route::any('all-salary-advance',[
-        'as' => 'all-salary-advance',
-        'uses'=> 'HrAllListController@index_all_salary_advance'
-    ]);
-
-    Route::any('all-salary',[
-        'as' => 'all-salary',
-        'uses'=> 'HrAllListController@index_all_salary'
-    ]);
-
-    Route::any('all-loan-head',[
-        'as' => 'all-loan-head',
-        'uses'=> 'HrAllListController@index_all_loan_head'
-    ]);
-
-    Route::any('all-salary-transaction',[
-        'as' => 'all-salary-transaction',
-        'uses'=> 'HrAllListController@index_all_salary_transaction'
     ]);
 
 });
