@@ -20,8 +20,8 @@ class AccountPayableController extends \BaseController {
 	 */
 	public function index_account_payable()
 	{
-        $pageTitle = "Manage Account Payable ";
-        $data = InvGrnHead::whereIN('status', ['GRN Confirmed', 'Invoiced'])->latest('id')->get();
+        $pageTitle = "Account Payable ";
+        $data = InvGrnHead::whereIN('status', ['Confirmed', 'Invoiced'])->latest('id')->get();
         return View::make('payment::account_payable.index', compact('data','pageTitle'));
 	}
 
@@ -51,7 +51,7 @@ class AccountPayableController extends \BaseController {
     // manage ap
     public function  manage_account_payable(){
         //
-        $pageTitle = "Manage Account Payable";
+        $pageTitle = "Manage AP";
         $data = AccVAppayable::get();
         //print_r($data);exit;
         return View::make('payment::account_payable.manage_ap', compact('pageTitle', 'data'));
@@ -99,6 +99,7 @@ class AccountPayableController extends \BaseController {
                 //Acc Voucher Head data and Store
                 $data_v_head = [
                     'voucher_number' => $apv_no,
+                    'type' => "account-payable-voucher",
                     'date' => $input_data['date'],
                     'year_id' => $input_data['year_id'],
                     'period' => $input_data['period'],
@@ -112,7 +113,7 @@ class AccountPayableController extends \BaseController {
                 $data_v_detail_credit = [
                     'acc_voucher_head_id' => $model_vhead->id,
                     'acc_chart_of_accounts_id' => $input_data['acc_chart_of_accounts_id'],
-                    'inv_supplier_id' => $input_data['inv_supplier_id'],
+                    'inv_supplier_id' => Input::get('inv_supplier_id'),
                     'prime_amount' => (-$input_data['total_amount']),
                     'base_amount' => (-$input_data['total_amount']),
                     'note'=> "open",
@@ -123,7 +124,7 @@ class AccountPayableController extends \BaseController {
                 $data_v_detail_debit = [
                     'acc_voucher_head_id' => $model_vhead->id,
                     'acc_chart_of_accounts_id' => $input_data['expense_account'],
-                    'inv_supplier_id' => $input_data['inv_supplier_id'],
+                    'inv_supplier_id' => Input::get('inv_supplier_id'),
                     'prime_amount' => $input_data['total_amount'],
                     'base_amount' => $input_data['total_amount'],
                     'note'=> "open",
@@ -160,6 +161,8 @@ class AccountPayableController extends \BaseController {
             }
         }
         return Redirect::back();
+
+
     }
 
 }
