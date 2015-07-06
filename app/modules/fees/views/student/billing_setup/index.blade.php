@@ -62,7 +62,7 @@
                                     @if(isset($data))
                                         @foreach($data as $value)
                                             <tr>
-                                                <td>{{$sl++}}</td>
+                                                <td class="sl-no-size">{{$sl++}}</td>
                                                 <td>{{isset($value->relBillingSchedule->title) ? $value->relBillingSchedule->title:''}}</td>
 
                                                 <td>{{isset($value->relBillingItem->title) ? $value->relBillingItem->title: ''}}</td>
@@ -106,7 +106,7 @@
                                     @if(isset($data))
                                         @foreach($data as $value)
                                             <tr>
-                                                <td>{{$sl++}}</td>
+                                                <td class="sl-no-size">{{$sl++}}</td>
                                                 <td>{{isset($value->relBillingSchedule->title) ? $value->relBillingSchedule->title:''}}</td>
 
                                                 <td>{{isset($value->relBillingItem->title) ? $value->relBillingItem->title: ''}}</td>
