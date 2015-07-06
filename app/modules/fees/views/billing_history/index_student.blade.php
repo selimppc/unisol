@@ -65,6 +65,7 @@
                                 <table id="example" class="table table-bordered table-hover table-striped">
                                     <thead>
                                     <tr>
+                                        <th>SL.No</th>
                                         <th>Student</th>
                                         <th>Schedule</th>
                                         <th>Amount</th>
@@ -72,9 +73,11 @@
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    <?php{{$sl=1}}?>
                                     @if(isset($data))
                                         @foreach($data as $value)
                                             <tr>
+                                                <td>{{$sl++}}</td>
                                                 <td>{{isset($value->first_name) ? $value->first_name:''}} {{isset($value->last_name) ? $value->last_name:''}}</td>
                                                 <td>{{isset($value->schedule_title) ? $value->schedule_title:''}}</td>
                                                 <td>{{isset($value->amount) ? $value->amount : ''}}</td>
