@@ -60,6 +60,7 @@
                                 <table id="example1" class="table table-bordered table-hover table-striped">
                                     <thead>
                                     <tr>
+                                        <th>SL.No</th>
                                         <th>Name of Applicant</th>
                                         <th>Schedule</th>
                                         <th>Amount</th>
@@ -67,15 +68,17 @@
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    <?php{{$sl=1}}?>
                                     @if(isset($data))
                                         @foreach($data as $value)
                                             <tr>
+                                                <td class="sl-no-size">{{$sl++}}</td>
                                                 <td>{{isset($value->first_name) ? $value->first_name:''}}
                                                     {{isset($value->last_name) ? $value->last_name:''}}</td>
                                                 <td>{{isset($value->schedule_title) ? $value->schedule_title:''}}</td>
                                                 <td>{{isset($value->amount) ? $value->amount : ''}}</td>
                                                 <td>
-                                                    <a href="{{URL::route('billing.history.show',['id'=>$value->id])}}" class="btn btn-xs btn-default" href=""><i class="fa fa-eye" style="color: green"></i></a>
+                                                    <a href="{{URL::route('billing.history.show',['id'=>$value->id])}}" class="btn btn-xs btn-default"data-toggle="modal"data-target="#showModal"><i class="fa fa-eye" style="color: green"></i></a>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -91,5 +94,12 @@
         </div>
     </div>
 
+    {{-- Modal for show --}}
+    <div class="modal fade" id="showModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" >
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
 
+            </div>
+        </div>
+    </div>
 @stop

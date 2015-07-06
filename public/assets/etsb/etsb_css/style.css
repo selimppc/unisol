@@ -3675,6 +3675,9 @@ fieldset[disabled] .btn-vk.active {
 .show_btn_padding{
     margin-left: 28px;
 }
+.sl-no-size{
+    width: 5%;
+}
 
 
 

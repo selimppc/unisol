@@ -49,6 +49,7 @@
                                 <table id="example" class="table table-bordered table-hover table-striped">
                                     <thead>
                                     <tr>
+                                        <th>SL.No</th>
                                         <th>Schedule</th>
                                         <th>Item</th>
                                         <th>Cost</th>
@@ -57,9 +58,11 @@
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    <?php $sl=1;?>
                                     @if(isset($data))
                                         @foreach($data as $value)
                                             <tr>
+                                                <td class="sl-no-size">{{$sl++}}</td>
                                                 <td>{{isset($value->relBillingSchedule->title) ? $value->relBillingSchedule->title:''}}</td>
 
                                                 <td>{{isset($value->relBillingItem->title) ? $value->relBillingItem->title: ''}}</td>
@@ -90,6 +93,7 @@
                                 <table id="example" class="table table-bordered table-hover table-striped">
                                     <thead>
                                     <tr>
+                                        <th>SL.No</th>
                                         <th>Schedule</th>
                                         <th>Item</th>
                                         <th>Cost</th>
@@ -98,9 +102,11 @@
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    <?php $sl=1;?>
                                     @if(isset($data))
                                         @foreach($data as $value)
                                             <tr>
+                                                <td class="sl-no-size">{{$sl++}}</td>
                                                 <td>{{isset($value->relBillingSchedule->title) ? $value->relBillingSchedule->title:''}}</td>
 
                                                 <td>{{isset($value->relBillingItem->title) ? $value->relBillingItem->title: ''}}</td>

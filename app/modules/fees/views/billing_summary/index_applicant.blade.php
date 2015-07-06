@@ -22,6 +22,7 @@
                             <table id="example" class="table table-bordered table-hover table-striped">
                                 <thead>
                                 <tr>
+                                    <th>SL.No</th>
                                     <th>Applicant Name</th>
                                     <th>Schedule</th>
                                     <th>Total Cost</th>
@@ -29,16 +30,18 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+                                <?php $sl=1;?>
                                 @foreach ($summary_applicant as $value)
                                     <tr>
+                                        <td class="sl-no-size">{{$sl++}}</td>
                                         <td>{{isset($value->relApplicant->first_name) ? $value->relApplicant->first_name:''}}
                                             {{isset($value->relApplicant->last_name) ? $value->relApplicant->last_name:''}}</td>
                                         <td>{{$value->relBillingSchedule->title}}</td>
                                         <td>{{$value->total_cost}}</td>
                                         <td>
-                                          {{--  <a href="{{ URL::route('billing.setup.view',['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" href=""><i class="fa fa-eye" style="color: green"></i></a>
+                                            <a href="{{ URL::route('summary.applicant.view',['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal"><i class="fa fa-eye" style="color: green"></i></a>
 
-                                            <a href="{{ URL::route('billing.setup.edit',['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#editModal" href="" ><i class="fa fa-pencil-square-o" style="color: #0044cc"></i></a>--}}
+                                            <a href="{{ URL::route('summary.applicant.edit',['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#editModal"><i class="fa fa-pencil-square-o" style="color: #0044cc"></i></a>
 
                                         </td>
                                     </tr>
@@ -70,8 +73,17 @@
         </div>
     </div>
 
+    {{-- Modal for show --}}
+    <div class="modal fade" id="showModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" >
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+            </div>
+        </div>
+    </div>
+
     {{-- Modal for Edit --}}
-    <div class="modal fade" id="edit-modal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
 
