@@ -48,7 +48,7 @@
                     <td>{{date("Y-m-d", strtotime($values->sign_in_time))}}</td>
                     <td>{{$values->sign_in_time}}</td>
                     <td>{{$values->sign_out_time}}</td>
-                    <td>{{$values->lunch_break_out_time}}  To  {{$values->lunch_break_in_time}}</td>
+                    <td>{{$values->lunch_break_out_time}} &nbsp;<b>To</b>&nbsp;  {{$values->lunch_break_in_time}}</td>
                     <td>{{$values->break_out_time}}</td>
                     <td>{{$values->break_in_time}}</td>
                     <td>

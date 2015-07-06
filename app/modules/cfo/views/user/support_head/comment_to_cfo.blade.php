@@ -32,7 +32,6 @@
                        <td class="width1">Subject:</td>
                        <td class="width2">{{ isset($data->subject)?$data->subject:''}}</td>
                    </tr>
-
                    <tr>
                        <td class="width1">Status :</td>
                        <td  class="width2">
@@ -51,7 +50,7 @@
                          @endif
                         @if($v->replied_by =='staff')
                             <p style="padding: 1%; background: #efefef;">
-                                <b style="font-size: medium">Replied By : </b><em style="color:#a52a2a" style="font-size: medium">{{User::FullName($v->support_user_id)}}</em> <br>{{ isset($v->message)?$v->message:'' }}<br>
+                                <b style="font-size: medium">Replied By Cfo: </b><em style="color:#a52a2a" style="font-size: medium">{{User::FullName($v->support_user_id)}}</em> <br>{{ isset($v->message)?$v->message:'' }}<br>
                             </p>
                         @endif
                @endforeach
