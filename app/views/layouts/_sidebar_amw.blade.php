@@ -78,13 +78,13 @@
 
             <li><a href="#"><i class="fa  fa-bars text-yellow"></i> Billing Summary Student</a></li>
 
-            <li><a href="#"><i class="fa  fa-bars text-aqua"></i> Billing Details Applicants</a></li>
+           {{-- <li><a href="#"><i class="fa  fa-bars text-aqua"></i> Billing Details Applicants</a></li>
 
-            <li><a href="#"><i class="fa  fa-bars text-black"></i>Billing Details Student</a></li>
+            <li><a href="#"><i class="fa  fa-bars text-black"></i>Billing Details Student</a></li>--}}
 
             <li><a href="{{ URL::to('fees/billing/setup') }}"><i class="fa  fa-bars text-red"></i> Billing Setup</a></li>
 
-            <li><a href="{{ URL::to('fees/installment/setup') }}"><i class="fa  fa-bars text-blue"></i> Billing Installment</a></li>
+            <li><a href="{{ URL::to('fees/installment/setup') }}"><i class="fa  fa-bars text-blue"></i>Installment Setup</a></li>
 
             <li><a href="{{ URL::to('fees/billing/history') }}"><i class="fa  fa-bars text-purple"></i> Billing History Applicant</a></li>
 
