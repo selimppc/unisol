@@ -69,6 +69,7 @@
                                     <th>
                                         <input name="id" type="checkbox" id="checkbox" class="checkbox" value="">
                                     </th>
+                                    <th>SL.No</th>
                                     <th>Degree</th>
                                     <th>Batch</th>
                                     <th>Schedule</th>
@@ -80,11 +81,13 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+                                <?php $sl=1;?>
                                 @if(isset($data))
                                 @foreach($data as $value)
                                     <tr>
                                         <td><input type="checkbox" name="id[]"  class="myCheckbox" value="{{ $value->id }}">
                                         </td>
+                                        <td>{{$sl++}}</td>
                                         <td>{{isset($value->relBatch->relDegree->relDegreeProgram->title) ? $value->relBatch->relDegree->relDegreeProgram->title :''}}</td>
                                         
                                         <td>{{isset($value->relBatch->batch_number) ? $value->relBatch->batch_number : ''}}</td>

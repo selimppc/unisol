@@ -22,6 +22,7 @@
                             <table id="example" class="table table-bordered table-hover table-striped">
                                 <thead>
                                 <tr>
+                                    <th>SL.No</th>
                                     <th>Title</th>
                                     <th>Description</th>
                                     <th>Initial</th>
@@ -29,8 +30,10 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+                                <?php $sl=1;?>
                                 @foreach ($billing_item as $value)
                                     <tr>
+                                        <td>{{$sl++}}</td>
                                         <td>{{$value->title}}</td>
                                         <td>{{$value->description}}</td>
                                         <td>{{$value->initial}}</td>

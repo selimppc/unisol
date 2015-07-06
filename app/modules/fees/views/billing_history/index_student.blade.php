@@ -73,7 +73,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <?php{{$sl=1}}?>
+                                    <?php $sl=1;?>
                                     @if(isset($data))
                                         @foreach($data as $value)
                                             <tr>

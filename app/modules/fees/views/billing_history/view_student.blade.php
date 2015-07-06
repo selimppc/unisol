@@ -44,6 +44,7 @@
         <div class="box-body table-responsive ">
             <table class="table table-bordered table-hover table-striped">
                 <thead>
+                <th>SL.No</th>
                 <th>Item</th>
                 <th>Schedule</th>
                 <th>Cost Per Unit</th>
@@ -53,10 +54,11 @@
                 <th>Amount</th>
                 </thead>
                 <tbody>
-                <?php $i=0; ?>
+                <?php $i=0;$sl=1 ?>
                 @if(isset($relation_data))
                     @foreach($relation_data[0]->relBillingDetailsStudent as $value)
                         <tr>
+                            <td>{{$sl++}}</td>
                             <td>{{$value['relBillingItem']['title']}}</td>
 
                             <td>{{$relation_data[$i]->relBillingSchedule->title}}</td>

@@ -22,6 +22,7 @@
                             <table id="example" class="table table-bordered table-hover table-striped">
                                 <thead>
                                 <tr>
+                                    <th>SL.No</th>
                                     <th>Applicant Name</th>
                                     <th>Schedule</th>
                                     <th>Total Cost</th>
@@ -29,8 +30,10 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+                                <?php $sl=1;?>
                                 @foreach ($summary_applicant as $value)
                                     <tr>
+                                        <td>{{$sl++}}</td>
                                         <td>{{isset($value->relApplicant->first_name) ? $value->relApplicant->first_name:''}}
                                             {{isset($value->relApplicant->last_name) ? $value->relApplicant->last_name:''}}</td>
                                         <td>{{$value->relBillingSchedule->title}}</td>
