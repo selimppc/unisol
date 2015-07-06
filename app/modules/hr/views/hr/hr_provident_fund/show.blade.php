@@ -16,7 +16,7 @@
 
                    <tr>
                        <th class="col-lg-6">Date :</th>
-                       <td>{{isset( $data->date )? date("Y-m-d", strtotime($data->date)) :''}}</td>
+                       <td>{{isset( $data->date )? $data->date:''}}</td>
                    </tr>
 
                    <tr>

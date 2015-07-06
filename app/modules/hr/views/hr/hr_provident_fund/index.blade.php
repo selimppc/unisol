@@ -44,7 +44,7 @@
                  <tr>
                     <td><input type="checkbox" name="ids[]"  id="checkbox" class="myCheckbox" value="{{ $values->id }}"></td>
                     <td>{{isset($values->hr_employee_id)?$values->relHrEmployee->relUser->relUserProfile->first_name.' '.$values->relHrEmployee->relUser->relUserProfile->middle_name.' '.$values->relHrEmployee->relUser->relUserProfile->last_name:''}}</td>
-                    <td>{{date("Y-m-d", strtotime($values->date))}}</td>
+                    <td>{{$values->date}}</td>
                     <td>{{$values->month}}</td>
                     <td>{{$values->employee_contribution_amount}}</td>
                     <td>{{$values->company_contribution_amount}}</td>

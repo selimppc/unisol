@@ -31,12 +31,13 @@
                 @if(isset($comments))
                     @foreach($comments as $ct)
                        <p style="padding: 1%; background: #efefef;">
-                       {{ $ct->comment }}
+                       Comments From HR : <b>{{ User::FullName(Auth::user()->get()->id) }}</b><br>
+                       Comments :&nbsp; {{ $ct->comment }}
                        </p>
                     @endforeach
                 @endif
                 <div class="form-group">
-                      {{ Form::textarea('comment', Null, ['class' => 'form-control', 'placeholder'=>'Your Comments Here', 'style'=>'height: 100px;']) }}
+                   {{ Form::textarea('comment', Null, ['class' => 'form-control', 'placeholder'=>'Your Comments Here', 'style'=>'height: 100px;','required'=>'required']) }}
                 </div>
             </p>
         </div>

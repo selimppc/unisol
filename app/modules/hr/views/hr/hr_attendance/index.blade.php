@@ -45,7 +45,7 @@
                  <tr>
                     <td><input type="checkbox" name="ids[]"  id="checkbox" class="myCheckbox" value="{{ $values->id }}"></td>
                     <td>{{isset($values->hr_employee_id)?$values->relHrEmployee->relUser->relUserProfile->first_name.' '.$values->relHrEmployee->relUser->relUserProfile->middle_name.' '.$values->relHrEmployee->relUser->relUserProfile->last_name:''}}</td>
-                    <td>{{date("Y-m-d", strtotime($values->sign_in_time))}}</td>
+                    <td>{{$values->date}}</td>
                     <td>{{$values->sign_in_time}}</td>
                     <td>{{$values->sign_out_time}}</td>
                     <td>{{$values->lunch_break_out_time}} &nbsp;<b>To</b>&nbsp;  {{$values->lunch_break_in_time}}</td>
@@ -80,4 +80,6 @@
     </div>
   </div>
 </div>
+
+
 @stop
