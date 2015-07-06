@@ -599,11 +599,45 @@ class FeesController extends \BaseController {
         }
     }
 
+    /*****************Billing summary applicant start*********************/
+
     public function index_billing_summary()
     {
         $applicant = array(''=>'Select applicant') + Applicant::ApplicantList();
         $schedule = ['' => 'Select schedule'] + BillingSchedule::lists('title', 'id');
         $summary_applicant = BillingSummaryApplicant::latest('id')->with('relApplicant', 'relBillingSchedule')->get();
         return View::make('fees::billing_summary.index_applicant',compact('applicant','summary_applicant','schedule'));
+    }
+
+    public function save_summary_applicant()
+    {
+        $data = Input::all();
+        $model = new BillingSummaryApplicant();
+        if($model->validate($data))
+        {
+            DB::beginTransaction();
+            try {
+                if ($model->create($data))
+                    DB::commit();
+                Session::flash('message', "Billing summary applicant Successfully Added");
+            }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', "Billing summary applicant Not Added.Invalid Request!");
+            }
+            return Redirect::back();
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()
+                ->with('errors', 'invalid');
+        }
+    }
+
+    public function view_applicant_summary($id)
+    {
+        $view_summary_applicant = BillingSummaryApplicant::find($id);
+        return View::make('fees::billing_summary.view_applicant',compact('view_summary_applicant'));
     }
 }
