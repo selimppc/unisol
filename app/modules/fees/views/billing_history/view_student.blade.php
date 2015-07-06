@@ -58,7 +58,7 @@
                 @if(isset($relation_data))
                     @foreach($relation_data[0]->relBillingDetailsStudent as $value)
                         <tr>
-                            <td>{{$sl++}}</td>
+                            <td class="sl-no-size">{{$sl++}}</td>
                             <td>{{$value['relBillingItem']['title']}}</td>
 
                             <td>{{$relation_data[$i]->relBillingSchedule->title}}</td>

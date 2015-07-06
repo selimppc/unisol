@@ -40,7 +40,7 @@
         </div>
         <div>&nbsp;</div>
         {{--<h3 class="text-purple ">Billing Details Applicant</h3>--}}
-        <h4 class="text-blue text-center text-uppercase">Billing Details Applicant</h4>
+        <h4 class="text-blue text-center text-uppercase">Billing Details</h4>
         <br>
         <div class="box-body table-responsive ">
             <table class="table table-bordered table-hover table-striped">
@@ -59,7 +59,7 @@
                 @if(isset($relation_data))
                     @foreach($relation_data[$i]->relBillingDetailsApplicant as $value)
                         <tr>
-                            <td>{{$sl++}}</td>
+                            <td class="sl-no-size">{{$sl++}}</td>
                             <td>{{$value['relBillingItem']['title']}}</td>
 
                             <td>{{$relation_data[$i]->relBillingSchedule->title}}</td>

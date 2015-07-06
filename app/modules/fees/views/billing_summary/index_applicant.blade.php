@@ -33,7 +33,7 @@
                                 <?php $sl=1;?>
                                 @foreach ($summary_applicant as $value)
                                     <tr>
-                                        <td>{{$sl++}}</td>
+                                        <td class="sl-no-size">{{$sl++}}</td>
                                         <td>{{isset($value->relApplicant->first_name) ? $value->relApplicant->first_name:''}}
                                             {{isset($value->relApplicant->last_name) ? $value->relApplicant->last_name:''}}</td>
                                         <td>{{$value->relBillingSchedule->title}}</td>

@@ -33,12 +33,12 @@
                                 <?php $sl=1;?>
                                 @foreach ($billing_item as $value)
                                     <tr>
-                                        <td>{{$sl++}}</td>
+                                        <td class="sl-no-size">{{$sl++}}</td>
                                         <td>{{$value->title}}</td>
                                         <td>{{$value->description}}</td>
                                         <td>{{$value->initial}}</td>
                                         <td>
-                                            <a href="{{ URL::route('item.edit', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#edit-modal" href="" ><i class="fa fa-pencil-square-o" style="color: #0044cc"></i></a>
+                                            <a href="{{ URL::route('item.edit', ['id'=>$value->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#edit-modal"><i class="fa fa-pencil-square-o" style="color: #0044cc"></i></a>
                                         </td>
                                     </tr>
                                 @endforeach

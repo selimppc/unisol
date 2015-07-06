@@ -32,7 +32,7 @@
                                 <?php $sl=1;?>
                                 @foreach ($billing_schedule as $value)
                                     <tr>
-                                        <td>{{$sl++}}</td>
+                                        <td class="sl-no-size">{{$sl++}}</td>
                                         <td>{{$value->title}}</td>
                                         <td>{{$value->description}}</td>
                                         <td>

@@ -63,7 +63,7 @@
                                 @if(isset($data))
                                     @foreach($data as $value)
                                         <tr>
-                                            <td>{{$sl++}}</td>
+                                            <td class="sl-no-size">{{$sl++}}</td>
                                             <td>{{isset($value->relBatch->relDegree->relDegreeProgram->title) ? $value->relBatch->relDegree->relDegreeProgram->title :''}}
                                             </td>
                                             <td>{{isset($value->relBatch->batch_number) ? $value->relBatch->batch_number : ''}}</td>

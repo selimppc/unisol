@@ -87,7 +87,7 @@
                                     <tr>
                                         <td><input type="checkbox" name="id[]"  class="myCheckbox" value="{{ $value->id }}">
                                         </td>
-                                        <td>{{$sl++}}</td>
+                                        <td class="sl-no-size">{{$sl++}}</td>
                                         <td>{{isset($value->relBatch->relDegree->relDegreeProgram->title) ? $value->relBatch->relDegree->relDegreeProgram->title :''}}</td>
                                         
                                         <td>{{isset($value->relBatch->batch_number) ? $value->relBatch->batch_number : ''}}</td>

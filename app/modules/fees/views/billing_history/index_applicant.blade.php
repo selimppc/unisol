@@ -72,7 +72,7 @@
                                     @if(isset($data))
                                         @foreach($data as $value)
                                             <tr>
-                                                <td>{{$sl++}}</td>
+                                                <td class="sl-no-size">{{$sl++}}</td>
                                                 <td>{{isset($value->first_name) ? $value->first_name:''}}
                                                     {{isset($value->last_name) ? $value->last_name:''}}</td>
                                                 <td>{{isset($value->schedule_title) ? $value->schedule_title:''}}</td>
