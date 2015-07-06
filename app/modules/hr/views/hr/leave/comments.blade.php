@@ -29,9 +29,9 @@
                 </table>
                 <small>Comments as below: </small>
                 @if(isset($comments))
-                    @foreach($comments as $comt)
+                    @foreach($comments as $ct)
                        <p style="padding: 1%; background: #efefef;">
-                       {{ $comt->comment }}
+                       {{ $ct->comment }}
                        </p>
                     @endforeach
                 @endif

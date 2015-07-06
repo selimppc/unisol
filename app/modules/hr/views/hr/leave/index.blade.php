@@ -24,7 +24,7 @@
 
         {{Form::open([ 'route'=>'leave.batch-delete' ])}}
        <div class="box-body">
-        <table id="example" class="table table-striped  table-bordered" >
+        <table id="example" class="table table-striped  table-bordered">
             <thead>
                   {{ Form::submit('Delete Items', ['class'=>'btn btn-danger btn-xs', 'id'=>'hide-button', 'style'=>'display:none'])}}
                 <tr>
@@ -82,4 +82,5 @@
     </div>
   </div>
 </div>
+
 @stop
