@@ -119,7 +119,31 @@ class HrLeaveController extends \BaseController {
             return Redirect::back()->with('message', 'Successfully deleted Information!');
         } catch (exception $ex) {
             return Redirect::back()->with('danger', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
-
         }
+    }
+
+    public function viewComments($id){
+        $model = HrLeave::find($id);
+        $comments = HrLeaveComments::where('hr_leave_id','=',$id)->get();
+        return View::make('hr::hr.leave.comments',compact('model','comments'));
+    }
+
+    public function updateComments(){
+
+        $data = Input::all();
+        $model1 = HrLeave::find($data['id']);
+        $model1->update($data);
+
+        $model2 = new HrLeaveComments();
+        $model2 ->hr_leave_id = $data['id'];
+        $model2->comment = Input::get('comment');
+        if($model2->save()){
+            Session::flash('message', 'Comments Added Successfully');
+            return Redirect::back();
+        }else{
+            Session::flash('message', 'Comments Do not Added');
+            return Redirect::back();
+        }
+
     }
 }
