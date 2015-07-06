@@ -161,6 +161,22 @@
          'uses' => 'FeesController@update_applicant_summary'
      ]);
 
+   /*************Billing Details Applicant*****************/
+     Route::any('billing-details-applicant/{id}', [
+         'as' => 'billing.details.applicant',
+         'uses' => 'FeesController@create_billing_details_applicant'
+     ]);
+     Route::any('billing-details-applicant-save', [
+         'as' => 'billing.details.applicant.save',
+         'uses' => 'FeesController@save_billing_details_applicant'
+     ]);
+
+
+
+
+
+
+
 
      /**********Billing Summary Student Start**************/
 

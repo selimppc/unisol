@@ -12,7 +12,7 @@
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="#tab_1" data-toggle="tab">Billing Summary Applicant</a></li>
-                    <button type="button" class=" btn btn-success fa fa-plus pull-right " data-toggle="modal" data-target="#myModal" >
+                    <button type="button" class=" btn btn-success fa fa-plus pull-right " data-toggle="modal" data-target="#myModal" data-toggle="tooltip" data-placement="bottom" title="Add New" >
                         Add New
                     </button>
                 </ul>
@@ -33,15 +33,18 @@
                                 <?php $sl=1;?>
                                 @foreach ($summary_applicant as $value)
                                     <tr>
-                                        <td class="sl-no-size">{{$sl++}}</td>
-                                        <td>{{isset($value->relApplicant->first_name) ? $value->relApplicant->first_name:''}}
-                                            {{isset($value->relApplicant->last_name) ? $value->relApplicant->last_name:''}}</td>
+                                         <td class="sl-no-size">{{$sl++}}</td>
+
+                                        <td><a href="{{ URL::route('billing.details.applicant',['id'=>$value->id])}}" class=" btn-link" data-toggle="modal" data-target="#createModal" data-toggle="tooltip" data-placement="bottom" title="Create Billing Details">{{isset($value->relApplicant->first_name)?$value->relApplicant->first_name:''}}
+                                                {{isset($value->relApplicant->last_name)?$value->relApplicant->last_name:''}}</a></td>
+
                                         <td>{{$value->relBillingSchedule->title}}</td>
+
                                         <td>{{$value->total_cost}}</td>
                                         <td>
-                                            <a href="{{ URL::route('summary.applicant.view',['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal"><i class="fa fa-eye" style="color: green"></i></a>
+                                            <a href="{{ URL::route('summary.applicant.view',['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" data-toggle="tooltip" data-placement="bottom" title="View"><i class="fa fa-eye text-green"></i></a>
 
-                                            <a href="{{ URL::route('summary.applicant.edit',['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#editModal"><i class="fa fa-pencil-square-o" style="color: #0044cc"></i></a>
+                                            <a href="{{ URL::route('summary.applicant.edit',['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#editModal" data-toggle="tooltip" data-placement="bottom" title="Edit"><i class="fa fa-pencil-square-o text-blue"></i></a>
 
                                         </td>
                                     </tr>
@@ -84,6 +87,15 @@
 
     {{-- Modal for Edit --}}
     <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+            </div>
+        </div>
+    </div>
+
+    {{-- Modal for create billing details --}}
+    <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="showingModal">
         <div class="modal-dialog">
             <div class="modal-content">
 
