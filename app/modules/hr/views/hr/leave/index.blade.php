@@ -45,7 +45,12 @@
                     @foreach($data as $values)
                         <tr>
                             <td><input type="checkbox" name="ids[]"  id="checkbox" class="myCheckbox" value="{{ $values->id }}"></td>
-                            <td>{{isset($values->forward_to)? $values->relHrEmployee->relUser->relUserProfile->first_name.' '.$values->relHrEmployee->relUser->relUserProfile->middle_name.' '.$values->relHrEmployee->relUser->relUserProfile->last_name:''}}</td>
+                            <td>
+                                 <a href="{{ URL::route('leave.show',
+                                 ['id' => $values->id]) }}" class="btn-link" data-toggle="modal" data-target="#leave">
+                                 <b>{{isset($values->forward_to)? $values->relHrEmployee->relUser->relUserProfile->first_name.' '.$values->relHrEmployee->relUser->relUserProfile->middle_name.' '.$values->relHrEmployee->relUser->relUserProfile->last_name:''}}</b>
+                                 </a>
+                            </td>
                             <td>{{isset($values->hr_leave_type_id)?$values->relHrLeaveType->title:''}}</td>
                             <td>{{$values->reason}}</td>
                             <td>{{ucfirst($values->leave_duration)}}</td>
@@ -74,19 +79,18 @@
      @include('hr::hr.leave._modal._modal')
 {{ Form::close() }}
 
-
 {{-- Modal Area --}}
 <div class="modal fade" id="leave" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <div class="modal-content">
-    </div>
+     <div class="modal-content">
+     </div>
   </div>
 </div>
 
-<style>
-.modal-content {
-  width: 700px;
-}
-</style>
+    <style>
+    .modal-content {
+      width:700px;
+    }
+    </style>
 
 @stop

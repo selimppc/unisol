@@ -21,10 +21,13 @@
            <div class="pull-right col-sm-4" style="padding-top: 1%;">
            </div>
         </div>
+        <a href="" class="pull-right" style="margin-right: 20px" data-toggle="modal" data-target="#pvd"><ins><b>HR Provident Fund Config</b> </ins></a>
 
         {{Form::open([ 'route'=>'provident-fund.batch-delete' ])}}
+        <br><br>
        <div class="box-body">
-        <table id="example" class="table table-striped  table-bordered" >
+
+        <table id="" class="table table-striped  table-bordered">
             <thead>
                   {{ Form::submit('Delete Items', ['class'=>'btn btn-danger btn-xs', 'id'=>'hide-button', 'style'=>'display:none'])}}
                 <tr>
@@ -43,7 +46,12 @@
                 @foreach($data as $values)
                  <tr>
                     <td><input type="checkbox" name="ids[]"  id="checkbox" class="myCheckbox" value="{{ $values->id }}"></td>
-                    <td>{{isset($values->hr_employee_id)?$values->relHrEmployee->relUser->relUserProfile->first_name.' '.$values->relHrEmployee->relUser->relUserProfile->middle_name.' '.$values->relHrEmployee->relUser->relUserProfile->last_name:''}}</td>
+                    <td>
+                         <a href="{{ URL::route('provident-fund.show',
+                         ['id' => $values->id]) }}" class="btn-link" data-toggle="modal" data-target="#pvd">
+                         <b>{{isset($values->hr_employee_id)?$values->relHrEmployee->relUser->relUserProfile->first_name.' '.$values->relHrEmployee->relUser->relUserProfile->middle_name.' '.$values->relHrEmployee->relUser->relUserProfile->last_name:''}}</b>
+                         </a>
+                    </td>
                     <td>{{$values->date}}</td>
                     <td>{{$values->month}}</td>
                     <td>{{$values->employee_contribution_amount}}</td>

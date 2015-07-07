@@ -11,7 +11,7 @@ class HrProvidentFundConfig extends Eloquent{
     //TODO :: model attributes and rules and validation
     protected $table = 'hr_provident_fund_config';
     protected $fillable = [
-        'hr_employee_id','date','month','employee_contribution_amount','company_contribution_amount','status'
+        'employee_type','contribution_amount','company_contribution_0','company_contribution_25','company_contribution_50','company_contribution_75','company_contribution_100'
     ];
 
     private $errors;

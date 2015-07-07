@@ -13,7 +13,6 @@ class HrAttendanceController extends \BaseController {
 
     public function index()
     {   $date = date('d-m-Y');
-//        print_r($date);exit;
         $data = HrAttendance::with('relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')->orderBy('id', 'DESC')->paginate(5);
         $employee_list = User::EmployeeList();
         return View::make('hr::hr.hr_attendance.index',compact('data','employee_list','month','date'));
@@ -26,7 +25,6 @@ class HrAttendanceController extends \BaseController {
     {
         if($this->isPostRequest()){
             $input_data = Input::all();
-//            print_r($input_data);exit;
             $model = new HrAttendance();
             if($model->validate($input_data)) {
                 DB::beginTransaction();

@@ -67,7 +67,8 @@ class HrLeaveController extends \BaseController {
         $model = HrLeave::find($id);
         $employee_list = User::EmployeeList();
         $leave_type_id = HrLeaveType::lists('title','id');
-        return View::make('hr::hr.leave.edit',compact('model','employee_list','leave_type_id'));
+        $comments = HrLeaveComments::with('relHrLeave')->where('hr_leave_id','=',$id)->get();
+        return View::make('hr::hr.leave.edit',compact('model','employee_list','leave_type_id','comments'));
     }
 
     public function updateLeave($id){

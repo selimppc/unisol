@@ -111,4 +111,19 @@ class HrWorkWeekController extends \BaseController {
 
         }
     }
+
+    public function ajax_delete()
+    {
+        $id = Input::get('id');
+        DB::beginTransaction();
+        try {
+            HrWorkWeek::destroy($id);
+            DB::commit();
+            return Response::json("Successfully Deleted");
+        }
+        catch(exception $ex){
+            DB::rollback();
+            return Response::json("Can not be Deleted !");
+        }
+    }
 }
