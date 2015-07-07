@@ -141,7 +141,7 @@ class CreateAccounts extends Migration {
             $table->string('code',32)->nullable();
             $table->text('description')->nullable();
             $table->string('account_code',32)->nullable();
-            $table->string('account_disc',32)->nullable();
+            $table->string('account_discount',32)->nullable();
             $table->string('account_transaction',32)->nullable();
             $table->string('account_debit',32)->nullable();
             $table->string('account_tax',32)->nullable();
