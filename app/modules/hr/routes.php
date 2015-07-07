@@ -451,6 +451,11 @@ Route::group(['prefix' => 'hr'], function() {
         'uses'=> 'HrSalaryAllowanceController@store_hr_salary_allowance'
     ]);
 
+    Route::any('hr-salary-allowace-ajax-delete', [
+        'as'   => 'hr-salary-allowace-ajax-delete',
+        'uses' => 'HrSalaryAllowanceController@ajax_delete_hr_salary_allowance'
+    ]);
+
     Route::any('salary_allowance/show/{s_a_id}',[
         'as' => 'salary_allowance.show',
         'uses'=> 'HrSalaryAllowanceController@show_hr_salary_allowance'
