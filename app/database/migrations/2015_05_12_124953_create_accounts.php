@@ -142,6 +142,9 @@ class CreateAccounts extends Migration {
             $table->text('description')->nullable();
             $table->string('account_code',32)->nullable();
             $table->string('account_disc',32)->nullable();
+            $table->string('account_transaction',32)->nullable();
+            $table->string('account_debit',32)->nullable();
+            $table->string('account_tax',32)->nullable();
             $table->enum('status',array(
                 'active', 'close'
             ))->nullable();
