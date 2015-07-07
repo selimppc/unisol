@@ -599,7 +599,7 @@ class FeesController extends \BaseController {
         }
     }
 
-    /*****************Billing summary applicant start*********************/
+    /*****************Billing summary and details applicant start*********************/
 
     public function index_billing_summary()
     {
@@ -638,7 +638,11 @@ class FeesController extends \BaseController {
     public function view_applicant_summary($id)
     {
         $view_summary_applicant = BillingSummaryApplicant::find($id);
-        return View::make('fees::billing_summary.view_applicant',compact('view_summary_applicant'));
+        $view_details_applicant = BillingDetailsApplicant::with('relBillingSummaryApplicant','relBillingItem','relWaiver')
+             ->where('billing_summary_applicant_id','=',$id)
+             ->get();
+
+        return View::make('fees::billing_summary.view_applicant',compact('view_summary_applicant','view_details_applicant'));
     }
 
     public function edit_applicant_summary()

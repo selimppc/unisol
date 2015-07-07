@@ -351,6 +351,11 @@ Route::group(['prefix' => 'hr'], function() {
         'uses'=> 'HrLoanDetailController@store_hr_loan_detail'
     ]);
 
+    Route::any('ajax-delete-hr-loan-detail', [
+        'as'   => 'ajax-delete-hr-loan-detail',
+        'uses' => 'HrLoanDetailController@ajax_delete_hr_loan_detail'
+    ]);
+
     Route::any('loan_detail/show/{ld_id}',[
         'as' => 'loan_detail.show',
         'uses'=> 'HrLoanDetailController@show_hr_loan_detail'
@@ -507,6 +512,11 @@ Route::group(['prefix' => 'hr'], function() {
     Route::any('store-salary-transaction-detail',[
         'as' => 'store-salary-transaction-detail',
         'uses'=> 'HrSalaryTransactionDetailController@store_hr_salary_transaction_detail'
+    ]);
+
+    Route::any('ajax-delete-salary-trn-dtl', [
+        'as'   => 'ajax-delete-salary-trn-dtl',
+        'uses' => 'HrSalaryTransactionDetailController@ajax_delete_salary_trn_dtl'
     ]);
 
     Route::any('show-salary-transaction-detail/{s_t_d_id}',[

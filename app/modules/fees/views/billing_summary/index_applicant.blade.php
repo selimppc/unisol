@@ -35,8 +35,7 @@
                                     <tr>
                                          <td class="sl-no-size">{{$sl++}}</td>
 
-                                        <td><a href="{{ URL::route('billing.details.applicant',['id'=>$value->id])}}" class=" btn-link" data-toggle="modal" data-target="#createModal" data-toggle="tooltip" data-placement="bottom" title="Create Billing Details">{{isset($value->relApplicant->first_name)?$value->relApplicant->first_name:''}}
-                                                {{isset($value->relApplicant->last_name)?$value->relApplicant->last_name:''}}</a></td>
+                                        <td><a href="{{ URL::route('billing.details.applicant',['id'=>$value->id])}}" class=" btn-link" data-toggle="modal" data-target="#createModal" data-toggle="tooltip" data-placement="bottom" title="Create Billing Details">{{isset($value->relApplicant->first_name)?$value->relApplicant->first_name:''}}{{isset($value->relApplicant->last_name)?$value->relApplicant->last_name:''}}</a></td>
 
                                         <td>{{$value->relBillingSchedule->title}}</td>
 
@@ -45,7 +44,6 @@
                                             <a href="{{ URL::route('summary.applicant.view',['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" data-toggle="tooltip" data-placement="bottom" title="View"><i class="fa fa-eye text-green"></i></a>
 
                                             <a href="{{ URL::route('summary.applicant.edit',['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#editModal" data-toggle="tooltip" data-placement="bottom" title="Edit"><i class="fa fa-pencil-square-o text-blue"></i></a>
-
                                         </td>
                                     </tr>
                                 @endforeach
@@ -65,7 +63,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">{{HTML::image('assets/icon/media-close-btn.png')}}</button>
-                    <h4 class="modal-title" style="text-align: center;color: #800080;font-size: x-large">Billing Summary Applicant</h4>
+                    <h4 class="modal-title text-center text-purple">Billing Summary Applicant</h4>
                 </div>
                 <div class="modal-body">
                     {{Form::open(array('route' => array('summary.applicant.save')))}}
@@ -78,7 +76,7 @@
 
     {{-- Modal for show --}}
     <div class="modal fade" id="showModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" >
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
 
             </div>
@@ -96,11 +94,16 @@
 
     {{-- Modal for create billing details --}}
     <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="showingModal">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal_ex_lg">
             <div class="modal-content">
 
             </div>
         </div>
     </div>
 
+@stop
+@section('script_section')
+    <script>
+
+    </script>
 @stop

@@ -15,7 +15,7 @@ class RoleTableSeeder extends Seeder {
             array('librarian', 'librarian', 'librarian', 1, 1, 1),
             array('hr', 'hr', 'hr', 1, 1, 1),
             array('alumni', 'alumni', 'alumni', 1, 1, 1),
-            array('employer', 'employer', 'employer', 1, 1, 1),
+            array('employee', 'employee', 'employee', 1, 1, 1),
             array('applicant', 'applicant', 'applicant', 1, 1, 1),
         );
 

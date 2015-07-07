@@ -19,32 +19,52 @@ class HrLoanDetailController extends \BaseController
             ->where('hr_loan_head_id', $loan_head_id)->get();
 
         $loan_head_name = HrLoanHead::where('id', $loan_head_id)->first();
-        #print_r($loan_head_name);exit;
 
-        return View::make('hr::hr.loan_detail.index', compact('model','pageTitle','loan_head_id','loan_head_name'));
+
+        return View::make('hr::hr.loan_detail.index', compact('model','loan_head_id','loan_head_name'));
     }
 
     public function store_hr_loan_detail()
     {
-        if($this->isPostRequest()){
-            $input_data = Input::all();
-            #print_r($input_data);exit;
-            $model = new HrLoanDetail();
-            if($model->validate($input_data)) {
-                DB::beginTransaction();
-                try {
-                    $model->create($input_data);
-                    DB::commit();
-                    Session::flash('message', 'Success !');
-                } catch (Exception $e) {
-                    //If there are any exceptions, rollback the transaction`
-                    DB::rollback();
-                    Session::flash('danger', 'Failed !');
-                }
+        for($i = 0; $i < count(Input::get('hr_loan_head_id')) ; $i++){
+            $dt[] = [
+                'hr_loan_head_id' => Input::get('hr_loan_head_id'),
+                'amount'=> Input::get('amount')[$i],
+                'date'=> Input::get('date')[$i],
+            ];
+
+        }
+
+        $model = new HrLoanDetail();
+        DB::beginTransaction();
+        try{
+            foreach($dt as $values){
+                $model->create($values);
             }
+
+            DB::commit();
+            Session::flash('message', 'Success !');
+        }catch ( Exception $e ){
+            //If there are any exceptions, rollback the transaction`
+            DB::rollback();
+            Session::flash('danger', 'Failed !');
         }
         return Redirect::back();
+    }
 
+    public function ajax_delete_hr_loan_detail()
+    {
+        $id = Input::get('id');
+        DB::beginTransaction();
+        try {
+            HrLoanDetail::destroy($id);
+            DB::commit();
+            return Response::json("Successfully Deleted");
+        }
+        catch(exception $ex){
+            DB::rollback();
+            return Response::json("Can not be Deleted !");
+        }
     }
 
     public function show_hr_loan_detail($ld_id)

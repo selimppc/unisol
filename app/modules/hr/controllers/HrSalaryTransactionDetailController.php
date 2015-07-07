@@ -17,7 +17,8 @@ class HrSalaryTransactionDetailController extends \BaseController {
     public function index_hr_salary_transaction_detail($s_t_id)
     {
         $model = HrSalaryTransactionDetail::with('relHrOverTime','relHrBonus','relHrSalaryAllowance','relHrSalaryDeduction')
-            ->where('hr_salary_transaction_id', $s_t_id)->get();
+            ->where('hr_salary_transaction_id', $s_t_id)
+            ->get();
         #print_r($model);exit;
 
         $salary_allowance_list = array(''=>'Select any one') + HrSalaryAllowance::lists('title','id');
@@ -32,24 +33,50 @@ class HrSalaryTransactionDetailController extends \BaseController {
 
     public function store_hr_salary_transaction_detail()
     {
-        if($this->isPostRequest()){
-            $input_data = Input::all();
-            #print_r($input_data);exit;
-            $model = new HrSalaryTransactionDetail();
-            if($model->validate($input_data)) {
-                DB::beginTransaction();
-                try {
-                    $model->create($input_data);
-                    DB::commit();
-                    Session::flash('message', 'Success !');
-                } catch (Exception $e) {
-                    //If there are any exceptions, rollback the transaction`
-                    DB::rollback();
-                    Session::flash('danger', 'Failed !');
-                }
+        for($i = 0; $i < count(Input::get('hr_salary_transaction_id')) ; $i++){
+            $dt[] = [
+                'hr_salary_transaction_id' => Input::get('hr_salary_transaction_id'),
+                'type'=> Input::get('type')[$i],
+                'hr_salary_allowance_id'=> Input::get('hr_salary_allowance_id')[$i],
+                'hr_salary_deduction_id'=> Input::get('hr_salary_deduction_id')[$i],
+                'hr_over_time_id'=> Input::get('hr_over_time_id')[$i],
+                'hr_bonus_id'=> Input::get('hr_bonus_id')[$i],
+                'amount'=> Input::get('amount')[$i],
+                'percentage'=> Input::get('percentage')[$i],
+            ];
+
+        }
+
+        $model = new HrSalaryTransactionDetail();
+        DB::beginTransaction();
+        try{
+            foreach($dt as $values){
+                $model->create($values);
             }
+            DB::commit();
+            Session::flash('message', 'Success !');
+        }catch ( Exception $e ){
+            //If there are any exceptions, rollback the transaction`
+            DB::rollback();
+            Session::flash('danger', 'Failed !');
         }
         return Redirect::back();
+
+    }
+
+    public function ajax_delete_salary_trn_dtl()
+    {
+        $id = Input::get('id');
+        DB::beginTransaction();
+        try {
+            HrSalaryTransactionDetail::destroy($id);
+            DB::commit();
+            return Response::json("Successfully Deleted");
+        }
+        catch(exception $ex){
+            DB::rollback();
+            return Response::json("Can not be Deleted !");
+        }
     }
 
     public function show_hr_salary_transaction_detail($s_t_d_id)
