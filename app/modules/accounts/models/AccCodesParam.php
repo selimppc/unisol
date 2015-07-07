@@ -7,7 +7,8 @@ class AccCodesParam extends \Eloquent
     protected $table = 'acc_codesparam';
     protected $fillable = [
         'type', 'code', 'description',
-        'account_code', 'account_disc','status'
+        'account_code', 'account_discount', 'account_transaction', 'account_debit', 'account_tax',
+        'status'
     ];
 
     private $errors;

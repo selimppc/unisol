@@ -11,7 +11,7 @@
     <div class="col-sm-2" style="width:13%">
         <div class='form-group'>
            {{ Form::label('type', 'Type') }}
-           {{ Form::select('type', array(''=>'Select Type','allowance'=>'allowance','deduction'=>'deduction','over-time'=>'over-time','bonus'=>'bonus','commission'=>'commission'),
+           {{ Form::select('type', array(''=>'Select Type','allowance'=>'Allowance','deduction'=>'Deduction','over-time'=>'Over Time','bonus'=>'Bonus','commission'=>'Commission'),
                 Input::old('type'),['id'=>'salary_transaction_detail_type','class'=>'form-control']) }}
         </div>
     </div>
