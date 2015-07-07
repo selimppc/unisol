@@ -65,7 +65,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">{{HTML::image('assets/icon/media-close-btn.png')}}</button>
-                    <h4 class="modal-title" style="text-align: center;color: #800080;font-size: x-large">Billing Summary Applicant</h4>
+                    <h4 class="modal-title text-center text-purple">Billing Summary Applicant</h4>
                 </div>
                 <div class="modal-body">
                     {{Form::open(array('route' => array('summary.applicant.save')))}}
@@ -78,7 +78,7 @@
 
     {{-- Modal for show --}}
     <div class="modal fade" id="showModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" >
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
 
             </div>
