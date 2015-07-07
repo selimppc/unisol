@@ -153,6 +153,12 @@ class CreateAccounts extends Migration {
             $table->timestamps();
             $table->engine = 'InnoDB';
         });
+        Schema::table('acc_codesparam', function($table) {
+            $table->foreign('account_code')->references('account_code')->on('acc_chart_of_accounts');
+            $table->foreign('account_transaction')->references('account_code')->on('acc_chart_of_accounts');
+            $table->foreign('account_debit')->references('account_code')->on('acc_chart_of_accounts');
+            $table->foreign('account_tax')->references('account_code')->on('acc_chart_of_accounts');
+        });
 
 
         Schema::create('acc_trn_no_setup', function(Blueprint $table) {
