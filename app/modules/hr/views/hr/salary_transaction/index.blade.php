@@ -56,7 +56,7 @@
                         <a href="{{ URL::route('salary_transaction.show', ['s_t_id'=>$values->id ])  }}" class="btn btn-default btn-xs" title="Manage Applicant" data-toggle="modal" data-target="#modal-pc"><i style="color: #149bdf" class="fa fa-eye"></i></a>
                         <a href="{{ URL::route('salary_transaction.edit',['s_t_id'=>$values->id])  }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal-pc"> <i style="color: #7b24dd" class="fa fa-edit"></i></a>
                         <a data-href="{{ URL::route('salary_transaction.destroy', ['s_t_id'=>$values->id ]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i style="color: red" class="fa fa-trash-o" ></i></a>
-                        <a href="{{ URL::route('salary_transaction_detail',['s_t_id'=>$values->id])  }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal-pc">Salary Transaction Detail</a>
+                        <a href="{{ URL::route('salary_transaction_detail',['s_t_id'=>$values->id])  }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal-pc2">Salary Transaction Detail</a>
                     </td>
 
                  </tr>
@@ -81,5 +81,14 @@
     </div>
   </div>
 </div>
+
+<div class="modal fade" id="modal-pc2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" style="width:90%">
+    <div class="modal-content">
+    </div>
+  </div>
+</div>
+
+
 
 @stop
