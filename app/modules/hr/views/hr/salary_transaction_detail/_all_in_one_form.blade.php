@@ -100,8 +100,7 @@
                <td>{{ $values->amount }}</td>
 
                <td>
-                   {{--<a href="{{ URL::route('edit-salary-transaction-detail',['s_t_d_id'=>$values->id])  }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal-pc"> <i style="color: #7b24dd" class="fa fa-edit"></i></a>--}}
-                   <a data-href="{{ $values->id }}" data-salTrnsDtl="{{ $values->hr_salary_transaction_id }}" class="btn btn-default btn-sm delete-dt-2" id="delete-dt-2{{ $values->id }}" ><i class="fa fa-trash-o" style="font-size: 15px;color: red"></i></a>
+                   <a data-href="{{ $values->id }}" class="btn btn-default btn-sm delete-dt-2" id="delete-dt-2{{ $values->id }}" ><i class="fa fa-trash-o" style="font-size: 15px;color: red"></i></a>
                </td>
             </tr>
              <?php $counter++;?>
@@ -164,7 +163,7 @@ $(function(){
                  return false;
              } else {
                 $('#test').append("<tr> " +
-                      "<td><input type='' name='hr_salary_transaction_id' value='" + $sal_trans_id + "' readonly><input name='type[]' value='"+ $sal_trns_dtl_type +"' readonly></td>" +
+                      "<td><input type='hidden' name='hr_salary_transaction_id' value='" + $sal_trans_id + "' readonly><input name='type[]' value='"+ $sal_trns_dtl_type +"' readonly></td>" +
                       "<td><input name='hr_salary_allowance_id[]' value='"+ $sal_trns_dtl_allowance +"' readonly> </td>" +
                       "<td><input name='hr_salary_deduction_id[]' value='"+ $sal_trns_dtl_deduction +"' readonly> </td>" +
                       "<td><input name='hr_over_time_id[]' value='"+ $sal_trns_dtl_ovrtm +"' readonly> </td>" +

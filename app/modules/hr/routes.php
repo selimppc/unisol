@@ -351,6 +351,11 @@ Route::group(['prefix' => 'hr'], function() {
         'uses'=> 'HrLoanDetailController@store_hr_loan_detail'
     ]);
 
+    Route::any('ajax-delete-hr-loan-detail', [
+        'as'   => 'ajax-delete-hr-loan-detail',
+        'uses' => 'HrLoanDetailController@ajax_delete_hr_loan_detail'
+    ]);
+
     Route::any('loan_detail/show/{ld_id}',[
         'as' => 'loan_detail.show',
         'uses'=> 'HrLoanDetailController@show_hr_loan_detail'
