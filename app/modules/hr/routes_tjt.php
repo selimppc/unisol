@@ -9,7 +9,10 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
-
+Route::any('test',[
+    'as' =>'test',
+    'uses' => 'HrAttendanceController@test'
+]);
 //Hr Attendance
 
 Route::any('attendance',[

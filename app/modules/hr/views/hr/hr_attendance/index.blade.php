@@ -81,9 +81,9 @@
   </div>
 </div>
 
-{{--<style>
+<style>
 .modal-content {
   width: 700px;
 }
-</style>--}}
+</style>
 @stop
