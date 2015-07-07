@@ -49,6 +49,7 @@
                     <td>
                         <a href="{{ URL::route('work-week.show',['id'=>$values->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#work-week" style="font-size: 12px;color: darkmagenta"><span class="fa fa-eye"></span></a>
                         <a class="btn btn-xs btn-default" href="{{ URL::route('work-week.edit',['id'=>$values->id]) }}" data-toggle="modal" data-target="#work-week" style="font-size: 12px;color: lightseagreen"><i class="fa fa-edit"></i></a>
+                        {{--<a data-href="{{ $values->id }}" class="btn btn-default btn-sm delete-dt-2" id="delete-dt-2{{ $values->id }}" ><i class="fa fa-trash-o" style="font-size: 12px;color: red"></i></a>--}}
                         <a data-href="{{ URL::route('work-week.delete',$values->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" style="font-size: 12px;color: lightcoral"><span class="fa  fa-trash-o"></span></a>
                     </td>
                  </tr>
@@ -75,4 +76,22 @@
     </div>
   </div>
 </div>
+
+<script>
+    $('.delete-dt-2').click(function(e) {
+        e.preventDefault();
+        var $btn = $(this);
+        $.ajax({
+            url: 'ajax-delete-salary-trn-dtl',
+            type: 'POST',
+            dataType: 'json',
+            data: { id:  $(this).data("href") },
+            success: function(response)
+            {
+                $btn.closest("tr").remove();
+                $('#something-delete').html(response);
+            }
+        });
+    });
+</script>
 @stop

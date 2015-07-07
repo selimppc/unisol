@@ -34,8 +34,7 @@
                     <th> Sign In Time </th>
                     <th> Sign Out Time</th>
                     <th> Lunch Break</th>
-                    <th> Break Out Time</th>
-                    <th> Break In Time</th>
+                    <th> Break Time</th>
                     <th> Action</th>
                 </tr>
             </thead>
@@ -44,13 +43,17 @@
                 @foreach($data as $values)
                  <tr>
                     <td><input type="checkbox" name="ids[]"  id="checkbox" class="myCheckbox" value="{{ $values->id }}"></td>
-                    <td>{{isset($values->hr_employee_id)?$values->relHrEmployee->relUser->relUserProfile->first_name.' '.$values->relHrEmployee->relUser->relUserProfile->middle_name.' '.$values->relHrEmployee->relUser->relUserProfile->last_name:''}}</td>
+                    <td>
+                         <a href="{{ URL::route('attendance.show',
+                         ['id' => $values->id]) }}" class="btn-link" data-toggle="modal" data-target="#pvd">
+                         <b>{{isset($values->hr_employee_id)?$values->relHrEmployee->relUser->relUserProfile->first_name.' '.$values->relHrEmployee->relUser->relUserProfile->middle_name.' '.$values->relHrEmployee->relUser->relUserProfile->last_name:''}}</b>
+                         </a>
+                    </td>
                     <td>{{$values->date}}</td>
                     <td>{{$values->sign_in_time}}</td>
                     <td>{{$values->sign_out_time}}</td>
                     <td>{{$values->lunch_break_out_time}} &nbsp;<b>To</b>&nbsp;  {{$values->lunch_break_in_time}}</td>
-                    <td>{{$values->break_out_time}}</td>
-                    <td>{{$values->break_in_time}}</td>
+                    <td>{{$values->break_out_time}} &nbsp;<b>To</b>&nbsp; {{$values->break_in_time}}</td>
                     <td>
                         <a href="{{ URL::route('attendance.show',['id'=>$values->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#pvd" style="font-size: 12px;color: darkmagenta"><span class="fa fa-eye"></span></a>
                         <a class="btn btn-xs btn-default" href="{{ URL::route('attendance.edit',['id'=>$values->id]) }}" data-toggle="modal" data-target="#pvd" style="font-size: 12px;color: lightseagreen"><i class="fa fa-edit"></i></a>

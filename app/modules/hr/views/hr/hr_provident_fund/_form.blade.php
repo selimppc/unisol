@@ -1,15 +1,15 @@
 <div style="padding: 0px 20px 20px 20px;">
 
     <div class="form-group">
-      {{ Form::label('hr_employee_id', 'HR Employee') }}<span class="text-danger">*</span>
-      {{ Form::select('hr_employee_id', $employee_list, Input::old('hr_employee_id'), array('class' => 'form-control','required'=>'required')) }}
+        <div class="col-lg-4" style="padding-left: 0;">
+          {{ Form::label('hr_employee_id', 'HR Employee') }}<span class="text-danger">*</span>
+          {{ Form::select('hr_employee_id', $employee_list, Input::old('hr_employee_id'), array('class' => 'form-control','required'=>'required')) }}
+        </div>
+        <div class="col-lg-4" style="padding-right: 0;">
+           {{ Form::label('date', 'Date') }}
+           {{ Form::text('date',  Input::old('date'),['class'=>'form-control date_picker']) }}
+        </div>
     </div>
-
-    <div class='form-group'>
-       {{ Form::label('date', 'Date') }}
-       {{ Form::text('date',  Input::old('date'),['class'=>'form-control date_picker']) }}
-    </div>
-
     <div class="form-group">
        {{ Form::label('month', 'Month') }}
        {{ Form::select('month', array('' => 'Select Month ') + $month,Input::old('month'), array('class' => 'form-control','required'=>'required') ) }}
