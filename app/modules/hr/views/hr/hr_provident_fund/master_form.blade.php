@@ -43,13 +43,18 @@
 
 <div class="table-hide">
 <p>
-    <b> Loan Detail</b>
+    <b>HR Provident Fund Config</b>
     <span class="pull-right" id="something-delete" style="color: orangered; font-weight: bold"></span>
 </p>
 <table class="table table-bordered small-header-table" id="amwCourseConfig">
     <thead>
-        <th>Amount</th>
-        <th>Date</th>
+        <th>Employee Type</th>
+        <th>Contribution Amount</th>
+        <th>Company Contribution 0</th>
+        <th>Company Contribution 25</th>
+        <th>Company Contribution 50</th>
+        <th>Company Contribution 75</th>
+        <th>Company Contribution 100</th>
         <th>Action</th>
     </thead>
 
@@ -59,8 +64,13 @@
       <?php $counter = 0;?>
         @foreach($model as $values)
          <tr>
-            <td>{{ $values->amount }}</td>
-            <td>{{ $values->date }}</td>
+            <td>{{ $values->employee_type }}</td>
+            <td>{{ $values->contribution_amount }}</td>
+            <td>{{ $values->company_contribution_0 }}</td>
+            <td>{{ $values->company_contribution_25 }}</td>
+            <td>{{ $values->company_contribution_50 }}</td>
+            <td>{{ $values->company_contribution_75 }}</td>
+            <td>{{ $values->company_contribution_100 }}</td>
             <td>
                 <a data-href="{{ $values->id }}" class="btn btn-default btn-sm delete-dt-2" id="delete-dt-2{{ $values->id }}" ><i class="fa fa-trash-o" style="font-size: 15px;color: red"></i></a>
             </td>
