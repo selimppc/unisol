@@ -6,7 +6,7 @@ class AccVoucherHead extends \Eloquent
     //TODO :: model attributes and rules and validation
     protected $table = 'acc_voucher_head';
     protected $fillable = [
-        'voucher_number', 'date', 'reference',
+        'voucher_number','type', 'date', 'reference',
         'year_id', 'period', 'note',
         'status'
     ];

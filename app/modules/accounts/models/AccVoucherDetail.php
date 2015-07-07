@@ -7,7 +7,7 @@ class AccVoucherDetail extends \Eloquent
     protected $table = 'acc_voucher_detail';
     protected $fillable = [
         'acc_voucher_head_id', 'acc_chart_of_accounts_id', 'sub_account_code',
-        'currency_id', 'exchange_rate', 'prime_amount',
+        'inv_supplier_id', 'currency_id', 'exchange_rate', 'prime_amount',
         'base_amount', 'note'
     ];
 

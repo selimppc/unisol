@@ -142,6 +142,9 @@ class CreateAccounts extends Migration {
             $table->text('description')->nullable();
             $table->string('account_code',32)->nullable();
             $table->string('account_disc',32)->nullable();
+            $table->string('account_transaction',32)->nullable();
+            $table->string('account_debit',32)->nullable();
+            $table->string('account_tax',32)->nullable();
             $table->enum('status',array(
                 'active', 'close'
             ))->nullable();
@@ -149,6 +152,12 @@ class CreateAccounts extends Migration {
             $table->integer('updated_by', false, 11);
             $table->timestamps();
             $table->engine = 'InnoDB';
+        });
+        Schema::table('acc_codesparam', function($table) {
+            $table->foreign('account_code')->references('account_code')->on('acc_chart_of_accounts');
+            $table->foreign('account_transaction')->references('account_code')->on('acc_chart_of_accounts');
+            $table->foreign('account_debit')->references('account_code')->on('acc_chart_of_accounts');
+            $table->foreign('account_tax')->references('account_code')->on('acc_chart_of_accounts');
         });
 
 
