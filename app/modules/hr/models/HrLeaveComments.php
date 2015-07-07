@@ -1,19 +1,21 @@
 <?php
-use Illuminate\Auth\UserTrait;
-use Illuminate\Auth\UserInterface;
-use Illuminate\Auth\Reminders\RemindableTrait;
-use Illuminate\Auth\Reminders\RemindableInterface;
+/**
+ * Created by PhpStorm.
+ * User: User
+ * Date: 05-Jul-15
+ * Time: 4:18 PM
+ */
 
 class HrLeaveComments extends Eloquent{
 
-    //TODO :: model attributes and rules and validation
-    protected $table='hr_leave_comments';
+    protected $table = 'hr_leave_comments';
     protected $fillable = [
-        'hr_leave_id','comment'
+       'hr_leave_id','comment'
     ];
+
     private $errors;
     private $rules = [
-        'hr_leave_id' => 'required',
+//        'forward_to' => 'required',
     ];
 
     public function validate($data)
@@ -57,5 +59,4 @@ class HrLeaveComments extends Eloquent{
 
     //TODO : Scope Area
 
-
-}
+} 

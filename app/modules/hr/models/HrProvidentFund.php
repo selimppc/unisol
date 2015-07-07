@@ -9,7 +9,7 @@
 class HrProvidentFund extends Eloquent{
 
     //TODO :: model attributes and rules and validation
-    protected $table='hr_provident_fund';
+    protected $table = 'hr_provident_fund';
     protected $fillable = [
         'hr_employee_id','date','month','employee_contribution_amount','company_contribution_amount','status'
     ];
@@ -32,6 +32,10 @@ class HrProvidentFund extends Eloquent{
     public function errors()
     {
         return $this->errors;
+    }
+
+    public function getDateAttribute($date) {
+        return Carbon::parse($date)->format('d-M-Y'); //Change the format to whichever you desire
     }
 
     //TODO : Model Relationship

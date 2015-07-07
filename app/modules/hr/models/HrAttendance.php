@@ -9,7 +9,8 @@
 class HrAttendance  extends Eloquent{
 
     //TODO :: model attributes and rules and validation
-    protected $table=' hr_attendance';
+    protected $table = 'hr_attendance';
+
     protected $fillable = [
         'hr_employee_id','date','sign_in_time','sign_out_time','lunch_break_out_time','lunch_break_in_time','break_out_time','break_in_time','note'
     ];
@@ -32,6 +33,10 @@ class HrAttendance  extends Eloquent{
     public function errors()
     {
         return $this->errors;
+    }
+
+    public function getDateAttribute($date) {
+        return Carbon::parse($date)->format('d-M-Y'); //Change the format to whichever you desire
     }
 
     //TODO : Model Relationship

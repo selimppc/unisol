@@ -249,6 +249,23 @@ Route::filter('librarian', function()
 });
 
 /*======================================================================
+//For HR Module
+========================================================================*/
+Route::filter('hr', function()
+{
+    if (Auth::user()->check()){
+        $role_id = Auth::user()->get()->role_id;
+        $role = User::hasRole($role_id);
+        if($role != 'hr')
+            return Redirect::guest('user-access');
+    }else{
+        return Redirect::guest('user/login');
+    }
+
+});
+
+
+/*======================================================================
 //Fees Module
 ========================================================================*/
 Route::filter('feesAmw', function()

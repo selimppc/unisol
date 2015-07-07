@@ -8,7 +8,7 @@
 @section('content')
     <div class="row" xmlns="http://www.w3.org/1999/html">
         <div class="col-md-12">
-            <h3 class="text-purple ">Fees::Billing Setup</h3>
+            <h3 class="text-blue text-uppercase">Fees::Billing Setup</h3>
             <div class="help-text-top">
                 You can view all lists of Billing Setup and search. Also this panel will allow you to perform some actions to <b>Add Billing Setup</b>, <b>Edit</b>, <b>Delete</b>,and <b>View</b> under the column <b>Action</b>.
             </div><!-- /.box-body -->
@@ -69,6 +69,7 @@
                                     <th>
                                         <input name="id" type="checkbox" id="checkbox" class="checkbox" value="">
                                     </th>
+                                    <th>SL.No</th>
                                     <th>Degree</th>
                                     <th>Batch</th>
                                     <th>Schedule</th>
@@ -80,11 +81,13 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+                                <?php $sl=1;?>
                                 @if(isset($data))
                                 @foreach($data as $value)
                                     <tr>
                                         <td><input type="checkbox" name="id[]"  class="myCheckbox" value="{{ $value->id }}">
                                         </td>
+                                        <td class="sl-no-size">{{$sl++}}</td>
                                         <td>{{isset($value->relBatch->relDegree->relDegreeProgram->title) ? $value->relBatch->relDegree->relDegreeProgram->title :''}}</td>
                                         
                                         <td>{{isset($value->relBatch->batch_number) ? $value->relBatch->batch_number : ''}}</td>

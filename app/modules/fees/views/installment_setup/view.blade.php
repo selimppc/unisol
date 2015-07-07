@@ -53,14 +53,17 @@
                             </table>
                             <table id="example" class="table table-bordered table-hover table-striped">
                                 <thead>
+                                <th>SL.No</th>
                                 <th>Amount</th>
                                 <th>Fined Cost</th>
                                 <th>Deadlines</th>
                                 </thead>
                                 <tbody>
+                                <?php $sl=1;?>
                                 @if(isset($view_installment_setup))
                                     @foreach($view_installment_setup as $value)
                                         <tr>
+                                            <td class="sl-no-size">{{$sl++}}</td>
                                             <td>{{isset($value->cost) ? $value->cost : ''}}</td>
                                             <td>{{isset($value->fined_cost) ? $value->fined_cost : ''}}</td>
                                             <td>{{date("d-m-Y", strtotime((isset($value->deadline)) ? $value->deadline : '') ) }}</td>

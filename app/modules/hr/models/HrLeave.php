@@ -8,9 +8,9 @@
 
 class HrLeave extends Eloquent{
     //TODO :: model attributes and rules and validation
-    protected $table='hr_leave';
+    protected $table = 'hr_leave';
     protected $fillable = [
-      'hr_leave_type_id','reason','leave_duration','from_date','to_date','alt_contact_no','status'
+      'forward_to','hr_leave_type_id','reason','leave_duration','from_date','to_date','alt_contact_no','alt_hr_employee_id','status'
     ];
     private $errors;
     private $rules = [
@@ -32,12 +32,23 @@ class HrLeave extends Eloquent{
         return $this->errors;
     }
 
+    public function getFromDateAttribute($date) {
+        return Carbon::parse($date)->format('d-M-Y'); //Change the format to whichever you desire
+    }
+
+    public function getToDateAttribute($date) {
+        return Carbon::parse($date)->format('d-M-Y'); //Change the format to whichever you desire
+    }
+
     //TODO : Model Relationship
 
     public function relHrLeaveType(){
         return $this->belongsTo('HrLeaveType', 'hr_leave_type_id', 'id');
     }
 
+    public function relHrEmployee(){
+        return $this->belongsTo('HrEmployee','forward_to','id');
+    }
 
     // TODO : user info while saving data into table
     public static function boot(){

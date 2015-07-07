@@ -7,7 +7,7 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 class HrWorkWeek extends Eloquent{
 
     //TODO :: model attributes and rules and validation
-    protected $table='hr_work_week';
+    protected $table = 'hr_work_week';
     protected $fillable = [
         'year_id','month','day','status'
     ];

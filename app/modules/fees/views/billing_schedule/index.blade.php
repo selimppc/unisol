@@ -6,7 +6,7 @@
     @include('layouts._sidebar_amw')
 @stop
 @section('content')
-    <h2 class="page-header text-purple tab-text-margin text-center">Fees::Billing Schedule</h2>
+    <h3 class="text-blue text-uppercase">Fees::Billing Schedule</h3>
     <div class="row">
         <div class="col-md-12">
             <div class="nav-tabs-custom">
@@ -22,14 +22,17 @@
                             <table id="example" class="table table-bordered table-hover table-striped">
                                 <thead>
                                 <tr>
+                                    <th>SL.No</th>
                                     <th>Title</th>
                                     <th>Description</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
+                                <?php $sl=1;?>
                                 @foreach ($billing_schedule as $value)
                                     <tr>
+                                        <td class="sl-no-size">{{$sl++}}</td>
                                         <td>{{$value->title}}</td>
                                         <td>{{$value->description}}</td>
                                         <td>

@@ -51,16 +51,19 @@
                 <div class="box-body table-responsive ">
                     <table class="table table-bordered table-hover table-striped">
                         <thead>
+                        <th>SL.No</th>
                         <th>Item</th>
                         <th>Schedule</th>
                         <th>Waiver Amount</th>
                         <th>Amount</th>
                         </thead>
                         <tbody>
-                        <?php $i=0; ?>
+                        <?php $i=0;$sl=1; ?>
                         @if(isset($stu_data))
                             @foreach($stu_data[0]->relBillingDetailsStudent as $value)
                                 <tr>
+                                    <td class="sl-no-size">{{$sl++}}</td>
+
                                     <td>{{$value['relBillingItem']['title']}}</td>
 
                                     <td>{{$stu_data[$i]->relBillingSchedule->title}}</td>

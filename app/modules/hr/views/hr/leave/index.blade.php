@@ -24,7 +24,7 @@
 
         {{Form::open([ 'route'=>'leave.batch-delete' ])}}
        <div class="box-body">
-        <table id="example" class="table table-striped  table-bordered" >
+        <table id="example" class="table table-striped  table-bordered">
             <thead>
                   {{ Form::submit('Delete Items', ['class'=>'btn btn-danger btn-xs', 'id'=>'hide-button', 'style'=>'display:none'])}}
                 <tr>
@@ -33,8 +33,7 @@
                     <th> Leave Type </th>
                     <th> Reason </th>
                     <th> Leave Duration </th>
-                    <th> Leave Date From </th>
-                    <th> Leave Date To </th>
+                    <th> Leave Date </th>
                     <th> Alt contact No </th>
                     <th> Alt Hr Employee </th>
                     <th> Status</th>
@@ -42,29 +41,28 @@
                 </tr>
             </thead>
             <tbody>
-            @if(isset($data))
-                @foreach($data as $values)
-                 <tr>
-                    <td><input type="checkbox" name="ids[]"  id="checkbox" class="myCheckbox" value="{{ $values->id }}"></td>
-                    <td></td>
-                    <td>{{isset($values->hr_leave_type_id)?$values->relHrLeaveType->title:''}}</td>
-                    <td>{{$values->reason}}</td>
-                    <td>{{$values->leave_duration}}</td>
-                    <td>{{$values->from_date}}</td>
-                    <td>{{$values->to_date}}</td>
-                    <td>{{$values->alt_contact_no}}</td>
-                    <td></td>
-                    <td>{{$values->status}}</td>
-                    <td>
-                        <a href="{{ URL::route('leave.show',['id'=>$values->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#leave" style="font-size: 12px;color: darkmagenta"><span class="fa fa-eye"></span></a>
-                        <a class="btn btn-xs btn-default" href="{{ URL::route('leave.edit',['id'=>$values->id]) }}" data-toggle="modal" data-target="#leave" style="font-size: 12px;color: lightseagreen"><i class="fa fa-edit"></i></a>
-                        <a data-href="{{ URL::route('leave.delete',$values->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" style="font-size: 12px;color: lightcoral"><span class="fa  fa-trash-o"></span></a>
-                    </td>
-                 </tr>
-                @endforeach
-            @endif
+                @if(isset($data))
+                    @foreach($data as $values)
+                        <tr>
+                            <td><input type="checkbox" name="ids[]"  id="checkbox" class="myCheckbox" value="{{ $values->id }}"></td>
+                            <td>{{isset($values->forward_to)? $values->relHrEmployee->relUser->relUserProfile->first_name.' '.$values->relHrEmployee->relUser->relUserProfile->middle_name.' '.$values->relHrEmployee->relUser->relUserProfile->last_name:''}}</td>
+                            <td>{{isset($values->hr_leave_type_id)?$values->relHrLeaveType->title:''}}</td>
+                            <td>{{$values->reason}}</td>
+                            <td>{{ucfirst($values->leave_duration)}}</td>
+                            <td>{{$values->from_date}} &nbsp;<b>To</b>&nbsp; {{$values->to_date}}</td>
+                            <td>{{$values->alt_contact_no}}</td>
+                            <td>{{isset($values->alt_hr_employee_id)? $values->relHrEmployee->relUser->relUserProfile->first_name.' '.$values->relHrEmployee->relUser->relUserProfile->middle_name.' '.$values->relHrEmployee->relUser->relUserProfile->last_name:''}}</td>
+                            <td>{{ucfirst($values->status)}}</td>
+                            <td>
+                                <a href="{{ URL::route('leave.show',['id'=>$values->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#leave" style="font-size: 12px;color: darkmagenta"><span class="fa fa-eye"></span></a>
+                                <a class="btn btn-xs btn-default" href="{{ URL::route('leave.edit',['id'=>$values->id]) }}" data-toggle="modal" data-target="#leave" style="font-size: 12px;color: lightseagreen"><i class="fa fa-edit"></i></a>
+                                <a class="btn btn-xs btn-default" href="{{ URL::route('leave.comments',['id'=>$values->id]) }}" data-toggle="modal" data-target="#leave" style="font-size: 12px;color: lightskyblue" title="comments"><i class="fa fa-comment"></i></a>
+                                <a data-href="{{ URL::route('leave.delete',$values->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" style="font-size: 12px;color: lightcoral"><span class="fa  fa-trash-o"></span></a>
+                            </td>
+                        </tr>
+                    @endforeach
+                @endif
             </tbody>
-
         </table>
         </div>
         {{form::close() }}
@@ -84,4 +82,11 @@
     </div>
   </div>
 </div>
+
+<style>
+.modal-content {
+  width: 700px;
+}
+</style>
+
 @stop

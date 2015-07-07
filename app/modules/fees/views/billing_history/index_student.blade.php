@@ -8,7 +8,7 @@
 @section('content')
     <div class="row" xmlns="http://www.w3.org/1999/html">
         <div class="col-md-12">
-            <h3 class="text-purple ">Fees::Billing History</h3>
+            <h3 class="text-blue text-uppercase">Fees::Billing History</h3>
             <div class="help-text-top">
                 You can view Student Billing History and search Information here. Also this panel will allow you to perform some actions Like <b>View</b> individual billing history under the column <b>Action</b>.
             </div><!-- /.box-body -->
@@ -65,6 +65,7 @@
                                 <table id="example" class="table table-bordered table-hover table-striped">
                                     <thead>
                                     <tr>
+                                        <th>SL.No</th>
                                         <th>Student</th>
                                         <th>Schedule</th>
                                         <th>Amount</th>
@@ -72,14 +73,16 @@
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    <?php $sl=1;?>
                                     @if(isset($data))
                                         @foreach($data as $value)
                                             <tr>
+                                                <td class="sl-no-size">{{$sl++}}</td>
                                                 <td>{{isset($value->first_name) ? $value->first_name:''}} {{isset($value->last_name) ? $value->last_name:''}}</td>
                                                 <td>{{isset($value->schedule_title) ? $value->schedule_title:''}}</td>
                                                 <td>{{isset($value->amount) ? $value->amount : ''}}</td>
                                                 <td>
-                                                    <a href="{{URL::route('billing.history.student.view',['id'=>$value->id])}}" class="btn btn-xs btn-default" href=""><i class="fa fa-eye" style="color: green"></i></a>
+                                                <a href="{{URL::route('billing.history.student.view',['id'=>$value->id])}}" class="btn btn-xs btn-default"data-toggle="modal"data-target="#showModal"><i class="fa fa-eye" style="color: green"></i></a>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -95,5 +98,13 @@
         </div>
     </div>
 
+    {{-- Modal for show --}}
+    <div class="modal fade" id="showModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" >
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+            </div>
+        </div>
+    </div>
 
 @stop

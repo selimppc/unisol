@@ -8,7 +8,7 @@
 @section('content')
     <div class="row" xmlns="http://www.w3.org/1999/html">
         <div class="col-md-12">
-            <h3 class="text-purple ">Fees::Billing Installment</h3>
+            <h3 class="text-blue text-uppercase">Fees::Billing Installment</h3>
         </div><!-- ./col -->
     </div><!-- /.row -->
     <div class="row">
@@ -53,14 +53,17 @@
                         <div class="box-body table-responsive ">
                             <table id="example" class="table table-bordered table-hover table-striped">
                                 <thead>
+                                <th>SL.No</th>
                                 <th>Degree</th>
                                 <th>Batch</th>
                                 <th>Action</th>
                                 </thead>
                                 <tbody>
+                                <?php $sl=1;?>
                                 @if(isset($data))
                                     @foreach($data as $value)
                                         <tr>
+                                            <td class="sl-no-size">{{$sl++}}</td>
                                             <td>{{isset($value->relBatch->relDegree->relDegreeProgram->title) ? $value->relBatch->relDegree->relDegreeProgram->title :''}}
                                             </td>
                                             <td>{{isset($value->relBatch->batch_number) ? $value->relBatch->batch_number : ''}}</td>
