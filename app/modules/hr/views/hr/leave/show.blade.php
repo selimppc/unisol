@@ -32,12 +32,12 @@
 
                       <tr>
                          <th class="col-lg-8">Start Date:</th>
-                         <td>{{isset($model->from_date)? date("Y-m-d", strtotime($model->from_date)):''}}</td>
+                         <td>{{isset($model->from_date)?$model->from_date:''}}</td>
                       </tr>
 
                       <tr>
                         <th class="col-lg-8">End Date:</th>
-                        <td>{{isset($model->to_date)? date("Y-m-d", strtotime($model->from_date)):''}}</td>
+                        <td>{{isset($model->to_date)? $model->from_date:''}}</td>
                       </tr>
 
                       <tr>

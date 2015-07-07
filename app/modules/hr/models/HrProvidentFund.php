@@ -34,6 +34,10 @@ class HrProvidentFund extends Eloquent{
         return $this->errors;
     }
 
+    public function getDateAttribute($date) {
+        return Carbon::parse($date)->format('d-M-Y'); //Change the format to whichever you desire
+    }
+
     //TODO : Model Relationship
 
     public function relHrEmployee(){

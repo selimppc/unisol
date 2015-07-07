@@ -2,12 +2,11 @@
 
 class HrProvidentFundConfigController extends \BaseController {
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index()
+    function __construct() {
+        $this->beforeFilter('hr', array('except' => array('index')));
+    }
+
+    public function index()
 	{
         $data = HrProvidentFundConfig::get();
         return View::make('hr::hr.provident_fund_config.index',compact('data'));

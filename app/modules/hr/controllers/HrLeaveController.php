@@ -2,9 +2,8 @@
 
 class HrLeaveController extends \BaseController {
 
-    function __construct()
-    {
-        $this->beforeFilter('', array('except' => array('')));
+    function __construct() {
+        $this->beforeFilter('hr', array('except' => array('index')));
     }
 
     protected function isPostRequest()
@@ -124,7 +123,8 @@ class HrLeaveController extends \BaseController {
 
     public function viewComments($id){
         $model = HrLeave::find($id);
-        $comments = HrLeaveComments::where('hr_leave_id','=',$id)->get();
+        $comments = HrLeaveComments::with('relHrLeave')->where('hr_leave_id','=',$id)->get();
+//        print_r($comments);exit;
         return View::make('hr::hr.leave.comments',compact('model','comments'));
     }
 

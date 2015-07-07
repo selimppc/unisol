@@ -49,7 +49,7 @@
                             <td>{{isset($values->hr_leave_type_id)?$values->relHrLeaveType->title:''}}</td>
                             <td>{{$values->reason}}</td>
                             <td>{{ucfirst($values->leave_duration)}}</td>
-                            <td>{{date("Y-m-d", strtotime($values->from_date))}} &nbsp;<b>To</b>&nbsp; {{date("Y-m-d", strtotime($values->to_date))}}</td>
+                            <td>{{$values->from_date}} &nbsp;<b>To</b>&nbsp; {{$values->to_date}}</td>
                             <td>{{$values->alt_contact_no}}</td>
                             <td>{{isset($values->alt_hr_employee_id)? $values->relHrEmployee->relUser->relUserProfile->first_name.' '.$values->relHrEmployee->relUser->relUserProfile->middle_name.' '.$values->relHrEmployee->relUser->relUserProfile->last_name:''}}</td>
                             <td>{{ucfirst($values->status)}}</td>
@@ -82,5 +82,11 @@
     </div>
   </div>
 </div>
+
+<style>
+.modal-content {
+  width: 700px;
+}
+</style>
 
 @stop
