@@ -17,12 +17,12 @@
              <li><a href="{{ URL::to('hr/employee') }}"></i><i class="fa fa-user" style="color: #0707cc"></i>HR Employee</a></li>
              <li><a href="{{ URL::to('hr/currency') }}"></i><i class="fa fa-dollar" style="color: #ff1383"></i>Currency</a></li>
              <li><a href="{{ URL::to('hr/allowance') }}"></i><i class="fa fa-sort" style="color: #00fff2"></i>HR Allowance</a></li>
-             <li><a href="{{ URL::to('hr/attendance') }}"></i><i class="fa fa-sort" style="color: #00fff2"></i>HR  Attendance</a></li>
-             <li><a href="{{ URL::to('hr/work-week') }}"></i><i class="fa fa-sort" style="color: #00fff2"></i>HR Work Week</a></li>
-             <li><a href="{{ URL::to('hr/leave-type') }}"></i><i class="fa fa-sort" style="color: #00fff2"></i>HR Leave Type</a></li>
-             <li><a href="{{ URL::to('hr/leave') }}"></i><i class="fa fa-sort" style="color: #00fff2"></i>HR Leave </a></li>
-             <li><a href="{{ URL::to('hr/provident-fund') }}"></i><i class="fa fa-sort" style="color: #00fff2"></i>HR Provident Fund </a></li>
-             <li><a href="{{ URL::to('hr/provident-fund-config') }}"></i><i class="fa fa-sort" style="color: #00fff2"></i>HR  Provident Fund Config</a></li>
+             <li><a href="{{ URL::to('hr/attendance') }}"></i><i class="fa fa-align-center" style="color: #000000"></i>HR  Attendance</a></li>
+             <li><a href="{{ URL::to('hr/work-week') }}"></i><i class="fa  fa-crosshairs" style="color: #ffa108"></i>HR Work Week</a></li>
+             <li><a href="{{ URL::to('hr/leave-type') }}"></i><i class="fa fa-crop" style="color: slateblue"></i>HR Leave Type</a></li>
+             <li><a href="{{ URL::to('hr/leave') }}"></i><i class="fa fa-spinner" style="color:lightseagreen"></i>HR Leave </a></li>
+             <li><a href="{{ URL::to('hr/provident-fund') }}"></i><i class="fa fa-ticket" style="color: lightcoral"></i>HR Provident Fund </a></li>
+             <li><a href="{{ URL::to('hr/provident-fund-config') }}"></i><i class="fa fa-align-center" style="color: #000000"></i>HR  Provident Fund Config</a></li>
              <li><a href="{{ URL::to('hr/bonus') }}"></i><i class="fa fa-briefcase" style="color: #0effae"></i>Bonus</a></li>
              <li><a href="{{ URL::to('hr/over_time') }}"></i><i class="fa fa-briefcase" style="color: #0effae"></i>Over Time</a></li>
              <li><a href="{{ URL::to('hr/salary_advance') }}"></i><i class="fa fa-briefcase" style="color: #0effae"></i>Salary Advance</a></li>

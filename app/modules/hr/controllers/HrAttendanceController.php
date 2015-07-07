@@ -2,9 +2,8 @@
 
 class HrAttendanceController extends \BaseController {
 
-    function __construct()
-    {
-        $this->beforeFilter('', array('except' => array('')));
+    function __construct() {
+        $this->beforeFilter('hr', array('except' => array('index')));
     }
 
     protected function isPostRequest()
