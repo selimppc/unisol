@@ -33,7 +33,6 @@ class HrSalaryTransactionDetailController extends \BaseController {
 
     public function store_hr_salary_transaction_detail()
     {
-
         for($i = 0; $i < count(Input::get('hr_salary_transaction_id')) ; $i++){
             $dt[] = [
                 'hr_salary_transaction_id' => Input::get('hr_salary_transaction_id'),
@@ -48,19 +47,11 @@ class HrSalaryTransactionDetailController extends \BaseController {
 
         }
 
+        $model = new HrSalaryTransactionDetail();
         DB::beginTransaction();
         try{
-            foreach($dt as $key => $values){
-                $model = new HrSalaryTransactionDetail();
-                $model->type = $values['type'];
-                $model->hr_salary_transaction_id = $values['hr_salary_transaction_id'];
-                $model->hr_salary_allowance_id = $values['hr_salary_allowance_id'];
-                $model->hr_salary_deduction_id = $values['hr_salary_deduction_id'];
-                $model->hr_over_time_id = $values['hr_over_time_id'];
-                $model->hr_bonus_id = $values['hr_bonus_id'];
-                $model->amount = $values['amount'];
-                $model->percentage = $values['percentage'];
-                $model->save();
+            foreach($dt as $values){
+                $model->create($values);
             }
             DB::commit();
             Session::flash('message', 'Success !');
@@ -76,13 +67,9 @@ class HrSalaryTransactionDetailController extends \BaseController {
     public function ajax_delete_salary_trn_dtl()
     {
         $id = Input::get('id');
-        //$sal_trns_dtl_id = Input::get('sal_trns_dtl_id');
-
         DB::beginTransaction();
         try {
-            //if(HrSalaryTransaction::destroy($sal_trns_dtl_id)){
-                HrSalaryTransactionDetail::destroy($id);
-            //}
+            HrSalaryTransactionDetail::destroy($id);
             DB::commit();
             return Response::json("Successfully Deleted");
         }
@@ -90,9 +77,7 @@ class HrSalaryTransactionDetailController extends \BaseController {
             DB::rollback();
             return Response::json("Can not be Deleted !");
         }
-
     }
-
 
     public function show_hr_salary_transaction_detail($s_t_d_id)
     {
