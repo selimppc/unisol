@@ -14,10 +14,10 @@ class HrSalaryTransactionDetail extends Eloquent{
 
     private $errors;
     private $rules = [
-        'hr_salary_allowance_id' => 'required',
-        'hr_salary_transaction_id' => 'required',
-        'hr_over_time_id' => 'required',
-        'hr_bonus_id' => 'required',
+//        'hr_salary_allowance_id' => 'required',
+//        'hr_salary_transaction_id' => 'required',
+////        'hr_over_time_id' => 'required',
+//        'hr_bonus_id' => 'required',
     ];
 
     public function validate($data)

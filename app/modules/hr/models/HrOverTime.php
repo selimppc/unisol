@@ -62,4 +62,10 @@ class HrOverTime extends Eloquent{
 
 
     //TODO : Scope Area
+    public function getSignInAttribute($date) {
+        return Carbon::parse($date)->format('Y-m-d H:i:s'); //Change the format to whichever you desire
+    }
+    public function getSignOutAttribute($date) {
+        return Carbon::parse($date)->format('Y-m-d H:i:s'); //Change the format to whichever you desire
+    }
 }
