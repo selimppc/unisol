@@ -78,6 +78,15 @@ class AccountPayableController extends \BaseController {
         ));
     }
 
+    /*
+     *
+     * Store data into the following 4 table(s) at a time ::
+     * 1. acc_ap_allocation
+     * 2. acc_balance
+     * 3. acc_voucher_detail
+     * 4. acc_voucher_head
+     *
+     */
     public function store_ap_payment_voucher(){
         //Get ALl input Data
         $input_data = Input::all();
@@ -97,7 +106,7 @@ class AccountPayableController extends \BaseController {
             DB::beginTransaction();
             try {
                 //Acc Voucher Head data and Store
-                $data_v_head = [
+                 $data_v_head = [
                     'voucher_number' => $apv_no,
                     'type' => "account-payable-voucher",
                     'date' => $input_data['date'],
@@ -113,7 +122,7 @@ class AccountPayableController extends \BaseController {
                 $data_v_detail_credit = [
                     'acc_voucher_head_id' => $model_vhead->id,
                     'acc_chart_of_accounts_id' => $input_data['acc_chart_of_accounts_id'],
-                    'inv_supplier_id' => Input::get('inv_supplier_id'),
+                    //'inv_supplier_id' => Input::get('inv_supplier_id'),
                     'prime_amount' => (-$input_data['total_amount']),
                     'base_amount' => (-$input_data['total_amount']),
                     'note'=> "open",
@@ -124,7 +133,7 @@ class AccountPayableController extends \BaseController {
                 $data_v_detail_debit = [
                     'acc_voucher_head_id' => $model_vhead->id,
                     'acc_chart_of_accounts_id' => $input_data['expense_account'],
-                    'inv_supplier_id' => Input::get('inv_supplier_id'),
+                    'inv_supplier_id' => $input_data['inv_supplier_id'],
                     'prime_amount' => $input_data['total_amount'],
                     'base_amount' => $input_data['total_amount'],
                     'note'=> "open",
@@ -135,7 +144,7 @@ class AccountPayableController extends \BaseController {
                 for($i = 0; $i < count(Input::get('voucher_head_id')) ; $i++){
                     $data_ap_allocation[] = [
                         'voucher_number' => $model_vhead->voucher_number,
-                        'acc_voucher_head_id' => $model_vhead->id,
+                        'acc_voucher_head_id' => $input_data['voucher_head_id'][$i],
                         'date' => $input_data['date'],
                         'prime_amount' => Input::get('amount')[$i],
                         'base_amount' => Input::get('amount')[$i],
@@ -144,12 +153,13 @@ class AccountPayableController extends \BaseController {
                 foreach($data_ap_allocation as $values){
                     $model_ap_allocation->create($values);
                 }
+
                 // Update Acc transaction Number
                 DB::table('acc_trn_no_setup')->where('title', '=', "Account Payable Voucher")
                     ->update(array('last_number' => substr($apv_no, 4)));
 
                 //RUN Store procedure
-                DB::select('call sp_acc_voucherpost(?, ?)', array($model_vhead->voucher_number, Auth::user()->get()->id ) );
+                 DB::select('call sp_acc_voucherpost(?, ?)', array($model_vhead->id, Auth::user()->get()->id ) );
 
                 //Commit the changes
                 DB::commit();
@@ -161,8 +171,6 @@ class AccountPayableController extends \BaseController {
             }
         }
         return Redirect::back();
-
-
     }
 
 }
