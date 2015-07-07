@@ -12,10 +12,14 @@ class HrAttendanceController extends \BaseController {
     }
 
     public function index()
-    {
+    {   $date = date('d-m-Y');
+//        print_r($date);exit;
         $data = HrAttendance::with('relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')->orderBy('id', 'DESC')->paginate(5);
         $employee_list = User::EmployeeList();
-        return View::make('hr::hr.hr_attendance.index',compact('data','employee_list','month'));
+        return View::make('hr::hr.hr_attendance.index',compact('data','employee_list','month','date'));
+    }
+    public function test(){
+        return View::make('hr::hr.hr_attendance.test');
     }
 
     public function storeAttendance()
@@ -51,7 +55,8 @@ class HrAttendanceController extends \BaseController {
 
         $model = HrAttendance::find($id);
         $employee_list = User::EmployeeList();
-        return View::make('hr::hr.hr_attendance.edit',compact('model','employee_list'));
+        $date = date('d-m-Y');
+        return View::make('hr::hr.hr_attendance.edit',compact('model','employee_list','date'));
     }
 
     public function updateAttendance($id){

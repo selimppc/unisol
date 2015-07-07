@@ -97,7 +97,7 @@
     <script>
 
         /*ratna_script.js*/
-        
+
         {{---------------------Faculty Marks Distribution----------------------------}}
         {{------------------------Ajax delete in modal----------------------}}
 
