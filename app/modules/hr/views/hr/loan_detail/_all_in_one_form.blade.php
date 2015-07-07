@@ -87,14 +87,14 @@ $(function(){
          $hr_ln_dtl_date = $("#hr_loan_detail_date").val();
 
          if($hr_ln_dtl_amount==null || $hr_ln_dtl_date==null ){
-             alert("please Provide All Salary Transaction Details and then try Again!");
+             alert("please Provide All Loan Detail and then try Again!");
              return false;
          }else{
              $hr_loan_head_id = $ln_hd_id; // Salary Transaction ID
 
-             var index = $.inArray($ln_hd_id, $arrayRnc);
+             var index = $.inArray( $arrayRnc);
              if (index>=0) {
-                 alert("You already added this Salary Transaction in the below table");
+                 alert("You already added this Loan Detail in the below table");
                  //also flash the existing text field
                  $("#hr_loan_detail_amount").val("");
                  $("#hr_loan_detail_date").val("");
@@ -102,7 +102,7 @@ $(function(){
                  return false;
              } else {
                 $('#test').append("<tr> " +
-                      "<td><input type='hidden' name='hr_salary_transaction_id' value='" + $ln_hd_id + "' readonly>" +"<input name='amount[]' value='"+ $hr_ln_dtl_amount +"' readonly></td>" +
+                      "<td><input type='hidden' name='hr_loan_head_id' value='" + $ln_hd_id + "' readonly>" +"<input name='amount[]' value='"+ $hr_ln_dtl_amount +"' readonly></td>" +
                        "<td><input name='date[]' value='"+ $hr_ln_dtl_date +"' readonly></td>" +
                   " </tr>");
 

@@ -482,6 +482,11 @@ Route::group(['prefix' => 'hr'], function() {
         'uses'=> 'HrSalaryDeductionController@store_hr_salary_deduction'
     ]);
 
+    Route::any('hr-salary-deduction-ajax-delete', [
+        'as'   => 'hr-salary-deduction-ajax-delete',
+        'uses' => 'HrSalaryDeductionController@ajax_delete_hr_salary_deduction'
+    ]);
+
     Route::any('show-salary-deduction/{s_d_id}',[
         'as' => 'show-salary-deduction',
         'uses'=> 'HrSalaryDeductionController@show_hr_salary_deduction'
