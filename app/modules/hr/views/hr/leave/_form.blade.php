@@ -19,10 +19,6 @@
        </div>
     </div>
 <p>&nbsp;</p>
-    <div class='form-group'>
-       {{ Form::label('reason', 'Reason') }}
-       {{ Form::text('reason', Input::old('reason'),['class'=>'form-control', 'required']) }}
-    </div>
 
     <div class='form-group'>
         <div class="col-lg-6" style="padding-left: 0;">
@@ -36,24 +32,32 @@
         </div>
     </div>
     <p>&nbsp;</p>
-    <div class='form-group'>
-         {{ Form::label('alt_contact_no', 'Alt Contact No') }}
-         {{ Form::text('alt_contact_no', Input::old('alt_contact_no'),['class'=>'form-control', 'required']) }}
-    </div>
 
     <div class="form-group">
-       {{ Form::label('alt_hr_employee_id', 'Alt HR Employee') }}
-       {{ Form::select('alt_hr_employee_id', $employee_list, Input::old('alt_hr_employee_id'), ['class'=>'form-control', 'required']) }}
+        <div class="col-lg-6" style="padding-left: 0;">
+           {{ Form::label('alt_hr_employee_id', 'Alt HR Employee') }}
+           {{ Form::select('alt_hr_employee_id', $employee_list, Input::old('alt_hr_employee_id'), ['class'=>'form-control', 'required']) }}
+        </div>
+        <div class="col-lg-6" style="padding-right: 0;">
+        {{ Form::label('alt_contact_no', 'Alt Contact No') }}
+        {{ Form::text('alt_contact_no', Input::old('alt_contact_no'),['class'=>'form-control', 'required']) }}
+        </div>
     </div>
-
+    <p>&nbsp;</p>
     <div class="form-group">
-         {{ Form::label('status', 'Status') }}
-         {{ Form::select ('status',  array('' => 'Select one',
-             'rejected' => 'Rejected', 'canceled' => 'Canceled','pending-approval'=>'pending Approval',
-             'scheduled'=>'Scheduled','taken'=>'Taken','approved'=>'Approved'), Input::old('status'),
-              array('class' => 'form-control ','required')) }}
+        <div class="col-lg-8" style="padding-left: 0;">
+            {{ Form::label('reason', 'Reason') }}
+            {{ Form::text('reason', Input::old('reason'),['class'=>'form-control', 'required']) }}
+        </div>
+        <div class="col-lg-4" style="padding-right: 0;">
+             {{ Form::label('status', 'Status') }}
+             {{ Form::select ('status',  array('' => 'Select one',
+                 'rejected' => 'Rejected', 'canceled' => 'Canceled','pending-approval'=>'pending Approval',
+                 'scheduled'=>'Scheduled','taken'=>'Taken','approved'=>'Approved'), Input::old('status'),
+                  array('class' => 'form-control ','required')) }}
+        </div>
     </div>
-
+    <p>&nbsp;</p>
     <div class='form-group'>
        {{ Form::label('comment', 'HR Leave Comments') }}
        {{ Form::textarea('comment', Input::old('comment'),['onkeyup'=>"javascript:this.value=this.value.replace(/[<,>]/g,'');", 'size' => '40x9', 'class'=>'form-control','placeholder'=>'Write Your message here...']) }}

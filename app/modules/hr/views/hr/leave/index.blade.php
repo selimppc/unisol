@@ -83,4 +83,10 @@
   </div>
 </div>
 
+<style>
+.modal-content {
+  width: 700px;
+}
+</style>
+
 @stop
