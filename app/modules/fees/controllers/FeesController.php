@@ -640,4 +640,53 @@ class FeesController extends \BaseController {
         $view_summary_applicant = BillingSummaryApplicant::find($id);
         return View::make('fees::billing_summary.view_applicant',compact('view_summary_applicant'));
     }
+
+    public function edit_applicant_summary()
+    {
+
+    }
+
+
+    public function update_applicant_summary()
+    {
+
+    }
+
+    public function create_billing_details_applicant($id)
+    {
+        $data = BillingSummaryApplicant::with('relApplicant','relBillingSchedule')
+            ->where('id','=',$id)
+            ->first()->id;
+        $item = ['' => 'Select Billing Item'] + BillingItem::lists('title', 'id');
+        $waiver = ['' => 'Select waiver'] + Waiver::lists('title', 'id');
+
+        return View::Make('fees::billing_summary.create_details_applicant',compact('data','item','waiver'));
+    }
+
+    public function save_billing_details_applicant()
+    {
+        $data = Input::all();
+        $model = new BillingDetailsApplicant();
+        if($model->validate($data))
+        {
+            DB::beginTransaction();
+            try {
+                if ($model->create($data))
+                    DB::commit();
+                Session::flash('message', "Billing summary applicant Successfully Added");
+            }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', "Billing summary applicant Not Added.Invalid Request!");
+            }
+            return Redirect::back();
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()
+                ->with('errors', 'invalid');
+        }
+    }
+
 }

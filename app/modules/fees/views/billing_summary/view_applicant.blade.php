@@ -1,6 +1,6 @@
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal">{{HTML::image('assets/icon/media-close-btn.png')}}</button>
-    <h4 class="modal-title" style="text-align: center;color: #800080;">View {{isset($view_summary_applicant->relApplicant->first_name) ? $view_summary_applicant->relApplicant->first_name:''}}
+    <h4 class="modal-title text-center text-purple">View {{isset($view_summary_applicant->relApplicant->first_name) ? $view_summary_applicant->relApplicant->first_name:''}}
         {{isset($view_summary_applicant->relApplicant->last_name) ? $view_summary_applicant->relApplicant->last_name:''}}'s Billing Summary </h4>
 </div>
 <div class="modal-body">
