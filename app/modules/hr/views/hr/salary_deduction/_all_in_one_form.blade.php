@@ -12,8 +12,6 @@
        {{ Form::hidden('hr_employee_id',$employee_id, Input::old('hr_employee_id'),['class'=>'form-control']) }}
     </div>
 
-    {{--$employee--}}
-
     <div class="col-sm-2">
         <div class='form-group'>
            {{ Form::label('title', 'Title') }}
@@ -74,7 +72,6 @@
     <thead>
         <th>Title</th>
         <th>Type</th>
-        {{--<th>Loan Head</th>--}}
         <th>Salary Advance</th>
         <th>Amount</th>
         <th>Date</th>
@@ -92,7 +89,6 @@
             <tr>
                <td>{{ ucfirst($values->title) }}</td>
                <td>{{ ucfirst($values->type) }}</td>
-               {{--<td>{{ $values->relHrLoanHead->title }}</td>--}}
                <td>{{ ucfirst($values->relHrSalaryAdvance->title) }}</td>
                <td>{{ $values->amount }}</td>
                <td>{{ $values->date }}</td>
@@ -201,4 +197,3 @@ $(function(){
 });
 
 </script>
-{{--, sal_trns_dtl_id: $(this).data("salTrnsDtl")--}}

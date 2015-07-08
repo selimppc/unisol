@@ -19,9 +19,9 @@ class HrSalaryDeductionController extends \BaseController {
 
         $salary_advance_list = array(''=>'Select Salary Advance') + HrSalaryAdvance::lists('title','id');
 
-        $loan_head_employee = HrLoanHead::with('relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')
-            ->where('id', $loan_head_id)
-            ->first();
+//        $loan_head_employee = HrLoanHead::with('relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')
+//            ->where('id', $loan_head_id)
+//            ->first();
 
         return View::make('hr::hr.salary_deduction.index',
             compact('model','loan_head_id','salary_advance_list','employee_id','employee','loan_head_id'));
@@ -41,7 +41,6 @@ class HrSalaryDeductionController extends \BaseController {
                 'status'=> Input::get('status')[$i],
             ];
         }
-        #print_r($dt);exit;
 
         $model = new HrSalaryDeduction();
         DB::beginTransaction();
@@ -58,7 +57,6 @@ class HrSalaryDeductionController extends \BaseController {
             Session::flash('danger', 'Failed !');
         }
         return Redirect::back();
-
     }
 
     public function ajax_delete_hr_salary_deduction()
@@ -107,7 +105,7 @@ class HrSalaryDeductionController extends \BaseController {
             $loan_head_id = HrSalaryDeduction::where('id',$s_d_id)->first()->hr_loan_head_id;
             $employee_id = HrSalaryDeduction::where('id',$s_d_id)->first()->hr_employee_id;
             $salary_advance_list = array(''=>'Select any one') + HrSalaryAdvance::lists('title','id');
-            #print_r($s_id);exit;
+
             return View::make('hr::hr.salary_deduction.edit',
                 compact('model','deduction_list','s_id','loan_head_id','employee_id','salary_advance_list'));
         }

@@ -35,33 +35,31 @@ class HrSalaryTransactionDetailController extends \BaseController {
     {
         for($i = 0; $i < count(Input::get('hr_salary_transaction_id')) ; $i++){
             $dt[] = [
-                'hr_salary_transaction_id' => Input::get('hr_salary_transaction_id'),
+                'hr_salary_transaction_id' => Input::get('hr_salary_transaction_id')[$i],
                 'type'=> Input::get('type')[$i],
-                'hr_salary_allowance_id'=> Input::get('hr_salary_allowance_id')[$i],
-                'hr_salary_deduction_id'=> Input::get('hr_salary_deduction_id')[$i],
-                'hr_over_time_id'=> Input::get('hr_over_time_id')[$i],
-                'hr_bonus_id'=> Input::get('hr_bonus_id')[$i],
+                'hr_salary_allowance_id'=> Input::get('hr_salary_allowance_id')[$i] ? Input::get('hr_salary_allowance_id')[$i] : NULL,
+                'hr_salary_deduction_id'=> Input::get('hr_salary_deduction_id')[$i] ? Input::get('hr_salary_deduction_id')[$i] : NULL,
+                'hr_over_time_id'=> Input::get('hr_over_time_id')[$i] ? Input::get('hr_over_time_id')[$i] : NULL,
+                'hr_bonus_id'=> Input::get('hr_bonus_id')[$i] ? Input::get('hr_bonus_id')[$i] : NULL,
                 'amount'=> Input::get('amount')[$i],
                 'percentage'=> Input::get('percentage')[$i],
             ];
-
         }
 
-        $model = new HrSalaryTransactionDetail();
         DB::beginTransaction();
         try{
+            $model = new HrSalaryTransactionDetail();
             foreach($dt as $values){
                 $model->create($values);
             }
             DB::commit();
             Session::flash('message', 'Success !');
         }catch ( Exception $e ){
-            //If there are any exceptions, rollback the transaction`
+            //If there are any exceptions, rollback the transaction
             DB::rollback();
             Session::flash('danger', 'Failed !');
         }
         return Redirect::back();
-
     }
 
     public function ajax_delete_salary_trn_dtl()
