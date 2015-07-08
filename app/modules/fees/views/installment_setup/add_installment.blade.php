@@ -25,8 +25,8 @@
             </div>
             <div>&nbsp;</div>
             <div class="col-sm-2 btn-style2">
-                {{ Form::submit('Proceed',['class'=>'btn btn-xs btn-success']) }}
-                <button class="btn btn-default btn-xs" data-dismiss="modal" type="button">Close</button>
+                {{ Form::submit('Proceed',['class'=>'btn btn-success']) }}
+                <button class="btn btn-default" data-dismiss="modal" type="button">Close</button>
             </div>
             {{ Form::close() }}
         </div>
