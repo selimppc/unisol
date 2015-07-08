@@ -53,14 +53,11 @@ class AccountPayableController extends \BaseController {
         //
         $pageTitle = "Manage AP";
         $data = AccVAppayable::get();
-        //print_r($data);exit;
         return View::make('payment::account_payable.manage_ap', compact('pageTitle', 'data'));
     }
 
     // Account Payment Voucher
-    public function  ap_payment_voucher($supplier_id, $coa_id){
-        #print_r("Supplier ID : ".$supplier_id."<br>");
-        #print_r("Account code COA : ".$coa_id);exit;
+    public function  ap_payment_voucher($associated_id, $coa_id){
 
         $data = AccChartOfAccounts::paginate(3);
         $year_lists = Year::lists('title', 'id');
@@ -68,12 +65,12 @@ class AccountPayableController extends \BaseController {
         $coa_lists = AccChartOfAccounts::lists('description', 'id');
 
         //Unpaid Invoice Lists
-        $unpaid_invoice = AccVUnpaidInvoice::where('inv_supplier_id', $supplier_id)
+        $unpaid_invoice = AccVUnpaidInvoice::where('associated_id', $associated_id)
                         //->where('acc_voucher_head_id', $coa_id)->get();
                         ->get();
 
         return View::make('payment::account_payable.ap_voucher', compact(
-            'supplier_id', 'coa_id', 'unpaid_invoice',
+            'associated_id', 'coa_id', 'unpaid_invoice',
             'data','year_lists', 'period_lists', 'coa_lists'
         ));
     }
@@ -122,7 +119,7 @@ class AccountPayableController extends \BaseController {
                 $data_v_detail_credit = [
                     'acc_voucher_head_id' => $model_vhead->id,
                     'acc_chart_of_accounts_id' => $input_data['acc_chart_of_accounts_id'],
-                    //'inv_supplier_id' => Input::get('inv_supplier_id'),
+                    //'associated_id' => Input::get('associated_id'),
                     'prime_amount' => (-$input_data['total_amount']),
                     'base_amount' => (-$input_data['total_amount']),
                     'note'=> "open",
@@ -133,7 +130,7 @@ class AccountPayableController extends \BaseController {
                 $data_v_detail_debit = [
                     'acc_voucher_head_id' => $model_vhead->id,
                     'acc_chart_of_accounts_id' => $input_data['expense_account'],
-                    'inv_supplier_id' => $input_data['inv_supplier_id'],
+                    'associated_id' => $input_data['associated_id'],
                     'prime_amount' => $input_data['total_amount'],
                     'base_amount' => $input_data['total_amount'],
                     'note'=> "open",

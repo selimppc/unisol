@@ -56,8 +56,11 @@
                         <th>SL.No</th>
                         <th>Item</th>
                         <th>Schedule</th>
+                        <th>Cost Per Unit</th>
+                        <th>Quantity</th>
+                        <th>Total Amount</th>
                         <th>Waiver Amount</th>
-                        <th>Amount</th>
+                        <th>Total</th>
                         </thead>
                         <tbody>
                         <?php $i=0;$sl=1; ?>
@@ -65,10 +68,15 @@
                             @foreach($applicant_data[$i]->relBillingDetailsApplicant as $value)
                                 <tr>
                                     <td class="sl-no-size">{{$sl++}}</td>
-
                                     <td>{{$value['relBillingItem']['title']}}</td>
 
                                     <td>{{$applicant_data[$i]->relBillingSchedule->title}}</td>
+
+                                    <td>{{$value['cost_per_unit']}}</td>
+
+                                    <td>{{$value['quantity']}}</td>
+
+                                    <td>{{$value['total_amount']}}</td>
 
                                     <td>{{$value['waiver_amount']}}</td>
 

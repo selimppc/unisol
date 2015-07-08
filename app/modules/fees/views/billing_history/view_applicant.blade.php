@@ -52,7 +52,7 @@
                 <th>Quantity</th>
                 <th>Total Amount</th>
                 <th>Waiver Amount</th>
-                <th>Amount</th>
+                <th>Total</th>
                 </thead>
                 <tbody>
                 <?php $i=0;$sl=1 ?>

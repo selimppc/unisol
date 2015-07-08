@@ -44,7 +44,7 @@
                             {{Form::close()}}
                             <div class="col-sm-2" style="margin-top: 10px;">
                                 </br>
-                                <button type="button" class=" btn btn-success fa fa-plus " data-toggle="modal" data-target="#addInstallment" >Add Installment</button>
+                                <button type="button" class=" btn btn-success fa fa-plus pull-right" data-toggle="modal" data-target="#addInstallment" >Add Installment</button>
                             </div>
                         </div>
 

@@ -7,7 +7,7 @@
 </style>
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-     <h4> Payment for the Supplier # {{ $supplier_id }}  </h4>
+     <h4> Payment for the Supplier # {{ $associated_id }}  </h4>
 </div>
 
 <div style="padding: 2%; width: 99%;">
@@ -42,7 +42,7 @@
            {{ Form::select('acc_chart_of_accounts_id', $coa_lists, Input::old('acc_chart_of_accounts_id'),['class'=>'form-control', 'required']) }}
         </div>
         <div class='form-group'>
-           {{ Form::hidden('inv_supplier_id', $supplier_id) }}
+           {{ Form::hidden('associated_id', $associated_id) }}
         </div>
 
         <div class='form-group'>
@@ -70,7 +70,7 @@
     <div class="col-sm-6">
         <div class='row'>
             <div class="col-sm-12" style="background-color: #f9f9f9">
-                <h4> Unpaid Invoice of the supplier# {{$supplier_id}} </h4>
+                <h4> Unpaid Invoice of the supplier# {{$associated_id}} </h4>
                 <table class="table table-bordered small-header-table" id="amwCourseConfig">
                     <thead>
                         <th>Invoice No</th>
