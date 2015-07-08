@@ -101,7 +101,8 @@ class DatabaseSeeder extends Seeder {
         $this->call('HrProvidentFundConfigTable');
         $this->command->info('HrProvidentFundConfig table seeded!');
 
-
+        $this->call('PaymentOptionTable');
+        $this->command->info('PaymentOptionTable table seeded!');
 
 
         // global setup table among the system
