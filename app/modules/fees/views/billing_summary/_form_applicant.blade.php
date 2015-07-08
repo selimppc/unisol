@@ -10,6 +10,12 @@
 </div>
 
 <div class='form-group'>
+    <div>{{ Form::label('payment_option_id', 'Payment Option') }}</div>
+    <div> {{ Form::select('payment_option_id',$payment_option, Input::old('payment_option_id'), ['class'=>'form-control','required'=>'required'] ) }}
+    </div>
+</div>
+
+<div class='form-group'>
     {{ Form::label('total_cost', 'Total Cost') }}
     {{ Form::text('total_cost', Input::old('total_cost'), ['class' => 'form-control','required'=>'required']) }}
 </div>

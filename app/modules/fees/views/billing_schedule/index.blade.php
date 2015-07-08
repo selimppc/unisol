@@ -12,10 +12,11 @@
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="#tab_1" data-toggle="tab">Billing Item</a></li>
-                    <button type="button" class=" btn btn-success fa fa-plus pull-right " data-toggle="modal" data-target="#myModal" >
+                </ul>
+                    <button type="button" class=" btn btn-success fa fa-plus btn_margin " data-toggle="modal" data-target="#myModal" >
                         Add New
                     </button>
-                </ul>
+
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab_1">
                         <div class="box-body table-responsive ">
