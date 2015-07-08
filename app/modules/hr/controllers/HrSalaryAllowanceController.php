@@ -17,7 +17,6 @@ class HrSalaryAllowanceController extends \BaseController
     {
         $model = HrSalaryAllowance::with('relHrSalary')->where('hr_salary_id', $s_id)->get();
         $allowance_list = array(''=>'select Allowance')+ HrAllowance::lists('title','id');
-        #print_r($allowance_list);exit;
 
         return View::make('hr::hr.salary_allowance.index',compact('model','s_id','allowance_list'));
     }
@@ -36,6 +35,7 @@ class HrSalaryAllowanceController extends \BaseController
                 'status'=> Input::get('status')[$i],
             ];
         }
+
         $model = new HrSalaryAllowance();
         DB::beginTransaction();
         try{
@@ -67,8 +67,6 @@ class HrSalaryAllowanceController extends \BaseController
         }
     }
 
-
-
     public function show_hr_salary_allowance($s_a_id)
     {
         $data = HrSalaryAllowance::with('relHrSalary')->findOrFail($s_a_id);
@@ -97,7 +95,7 @@ class HrSalaryAllowanceController extends \BaseController
             $model = HrSalaryAllowance::findOrFail($s_a_id);
             $allowance_list = HrAllowance::lists('title','id');
             $s_id = HrSalaryAllowance::where('id',$s_a_id)->first()->hr_salary_id;
-            #print_r($s_id);exit;
+
             return View::make('hr::hr.salary_allowance.edit', compact('model','allowance_list','s_id'));
         }
     }

@@ -20,7 +20,6 @@ class HrLoanDetailController extends \BaseController
 
         $loan_head_name = HrLoanHead::where('id', $loan_head_id)->first();
 
-
         return View::make('hr::hr.loan_detail.index', compact('model','loan_head_id','loan_head_name'));
     }
 
@@ -123,6 +122,5 @@ class HrLoanDetailController extends \BaseController
             Session::flash('danger', 'Failed !');
         }
         return Redirect::back();
-
     }
 }

@@ -59,9 +59,7 @@ class HrSalaryTransactionDetailController extends \BaseController {
             DB::rollback();
             Session::flash('danger', 'Failed !');
         }
-
         return Redirect::back();
-
     }
 
     public function ajax_delete_salary_trn_dtl()
