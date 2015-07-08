@@ -134,11 +134,10 @@ $(function(){
          $sal_trns_dtl_ovrtm = $("#salary_transaction_detail_over_time").val();
          $sal_trns_dtl_bonus = $("#salary_transaction_detail_bonus").val();
 
-
-
-         if($sal_trns_dtl_type==null || $sal_trns_dtl_allowance==null || $sal_trns_dtl_deduction==null || $sal_trns_dtl_ovrtm==null ||
-            $sal_trns_dtl_bonus==null || $sal_trns_dtl_amount==null || $sal_trns_dtl_percentage == null ){
-             alert("please Provide All Salary Transaction Details and then try Again!");
+         if($sal_trns_dtl_type == null || $sal_trns_dtl_allowance == null || $sal_trns_dtl_deduction == null ||
+            $sal_trns_dtl_ovrtm == null || $sal_trns_dtl_bonus==null || $sal_trns_dtl_amount==null ||
+            $sal_trns_dtl_percentage == null ){
+             alert("Please Provide All Salary Transaction Details and Then Try Again!");
              return false;
          }else{
              $salary_transctn_id = $sal_trans_id; // Salary Transaction ID
@@ -146,7 +145,7 @@ $(function(){
              var index = $.inArray( $arrayRnc);
              if (index>=0) {
                  alert("You already added this Salary Transaction in the below table");
-                 //also flash the existing text field
+                 // Also flash the existing text field
                  $("#salary_transaction_id").val("");
                  $("#salary_transaction_detail_amount").val("");
                  $("#salary_transaction_detail_percentage").val("");

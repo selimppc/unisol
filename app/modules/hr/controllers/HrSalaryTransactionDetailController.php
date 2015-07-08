@@ -19,13 +19,11 @@ class HrSalaryTransactionDetailController extends \BaseController {
         $model = HrSalaryTransactionDetail::with('relHrOverTime','relHrBonus','relHrSalaryAllowance','relHrSalaryDeduction')
             ->where('hr_salary_transaction_id', $s_t_id)
             ->get();
-        #print_r($model);exit;
 
         $salary_allowance_list = array(''=>'Select any one') + HrSalaryAllowance::lists('title','id');
         $salary_deduction_list = array(''=>'Select any one') + HrSalaryDeduction::lists('title','id');
         $over_time_list = array(''=>'Select any one') + HrOverTime::lists('sign_in','id');
         $bonus_list = array(''=>'Select any one') + HrBonus::lists('title','id');
-        #print_r($salary_allowance_list);exit;
 
         return View::make('hr::hr.salary_transaction_detail.index', compact('model','pageTitle','loan_head_id',
             'salary_allowance_list','salary_deduction_list','over_time_list','bonus_list','s_t_id'));
@@ -104,10 +102,8 @@ class HrSalaryTransactionDetailController extends \BaseController {
             return Redirect::back();
         }else{
             $model = HrSalaryTransactionDetail::findOrFail($s_t_d_id);
-            //$s_id = HrSalaryTransactionDetail::where('id',$s_d_id)->first()->hr_salary_id;
 
             $s_t_id = HrSalaryTransactionDetail::where('id',$s_t_d_id)->first()->hr_salary_transaction_id;
-           # print_r($s_t_id);exit;
 
             $salary_allowance_list = array(''=>'Select any one') + HrSalaryAllowance::lists('title','id');
             $salary_deduction_list = array(''=>'Select any one') + HrSalaryDeduction::lists('title','id');
