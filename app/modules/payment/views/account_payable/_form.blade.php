@@ -5,8 +5,8 @@
 </div>
 
 <div class='form-group'>
-   {{ Form::label('inv_supplier_id', 'Supplier') }}
-   {{ Form::select('inv_supplier_id', InvSupplier::GetSupplier(), Input::old('inv_supplier_id'),['class'=>'form-control', 'required']) }}
+   {{ Form::label('associated_id', 'Associate Name') }}
+   {{ Form::select('associated_id', InvSupplier::GetSupplier(), Input::old('associated_id'),['class'=>'form-control', 'required']) }}
 </div>
 
 <div class='form-group'>

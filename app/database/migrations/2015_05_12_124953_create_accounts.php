@@ -94,7 +94,7 @@ class CreateAccounts extends Migration {
             $table->unsignedInteger('acc_voucher_head_id')->nullable();
             $table->unsignedInteger('acc_chart_of_accounts_id')->nullable();
             $table->string('sub_account_code',32);
-            $table->unsignedInteger('associate_id')->nullable(); //associate_id ===  supplier / applicant / student / library / others
+            $table->unsignedInteger('associated_id')->nullable(); //associated_id ===  supplier / applicant / student / library / others
             $table->unsignedInteger('currency_id')->nullable();
             $table->float('exchange_rate');
             $table->float('prime_amount');
@@ -109,7 +109,7 @@ class CreateAccounts extends Migration {
         Schema::table('acc_voucher_detail', function($table) {
             $table->foreign('acc_voucher_head_id')->references('id')->on('acc_voucher_head');
             $table->foreign('acc_chart_of_accounts_id')->references('id')->on('acc_chart_of_accounts');
-            # $table->foreign('associate_id')->references('id')->on('inv_supplier');   // associate_id indicates to inv_supplier_id
+            # $table->foreign('associated_id')->references('id')->on('inv_supplier');   // associated_id indicates to inv_supplier_id
             $table->foreign('currency_id')->references('id')->on('currency');
         });
 
@@ -179,7 +179,7 @@ class CreateAccounts extends Migration {
             $table->increments('id');
             $table->unsignedInteger('acc_voucher_head_id')->nullable();
             $table->unsignedInteger('acc_chart_of_accounts_id')->nullable();
-            $table->unsignedInteger('associate_id')->nullable(); //associate_id ===  supplier / applicant / student / library / others
+            $table->unsignedInteger('associated_id')->nullable(); //associated_id ===  supplier / applicant / student / library / others
             $table->date('date')->nullable();
             $table->text('reference')->nullable();
             $table->unsignedInteger('year_id')->nullable();
@@ -196,7 +196,7 @@ class CreateAccounts extends Migration {
         Schema::table('acc_balance', function($table) {
             $table->foreign('acc_voucher_head_id')->references('id')->on('acc_voucher_head');
             $table->foreign('acc_chart_of_accounts_id')->references('id')->on('acc_chart_of_accounts');
-            #$table->foreign('associate_id')->references('id')->on('inv_supplier'); // associate_id === inv_supplier_id
+            #$table->foreign('associated_id')->references('id')->on('inv_supplier'); // associated_id === inv_supplier_id
             $table->foreign('year_id')->references('id')->on('year');
             $table->foreign('currency_id')->references('id')->on('currency');
         });

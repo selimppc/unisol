@@ -38,7 +38,7 @@ class AccVAppayable extends \Eloquent
         return $this->belongsTo('AccChartOfAccounts', 'acc_chart_of_accounts_id', 'id');
     }
     public function relInvSupplier(){
-        return $this->belongsTo('InvSupplier', 'inv_supplier_id', 'id');
+        return $this->belongsTo('InvSupplier', 'associated_id', 'id');
     }
 
 
