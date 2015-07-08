@@ -42,6 +42,9 @@ class BillingSummaryApplicant extends Eloquent{
     public function relBillingSchedule(){
         return $this->belongsTo('BillingSchedule', 'billing_schedule_id', 'id');
     }
+    public function relPaymentOption(){
+        return $this->belongsTo('PaymentOption', 'payment_option_id', 'id');
+    }
     public function relBillingDetailsApplicant(){
         return $this->HasMany('BillingDetailsApplicant','billing_summary_applicant_id', 'id');
     }

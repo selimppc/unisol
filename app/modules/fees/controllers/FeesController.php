@@ -50,8 +50,8 @@ class FeesController extends \BaseController {
         $degree = ['' => 'Select Degree'] + DegreeProgram::lists('title', 'id');
         $batch_id = ['' => 'Select Batch']+ Batch::lists('batch_number', 'id');
 
-        $schedule_id = ['' => 'Select Billing Schedule']+ BillingSchedule::lists('title', 'id')- ['instalment'=>'instalment'];
-        $item_id = ['' => 'Select Billing Item']+ BillingItem::lists('title', 'id')- ['instalment'=>'instalment'];
+        $schedule_id = ['' => 'Select Billing Schedule']+ BillingSchedule::lists('title', 'id');
+        $item_id = ['' => 'Select Billing Item']+ BillingItem::lists('title', 'id');
         return View::Make('fees::billing_setup.create',compact('billing_setup','degree','batch_id','schedule_id','item_id'));
     }
 
@@ -658,7 +658,7 @@ class FeesController extends \BaseController {
 
     public function create_billing_details_applicant($id)
     {
-        $data = BillingSummaryApplicant::with('relApplicant','relBillingSchedule')
+        $data = BillingSummaryApplicant::with('relApplicant','relBillingSchedule','relPaymentOption')
             ->where('id','=',$id)
             ->first()->id;
         $item = ['' => 'Select Billing Item'] + BillingItem::lists('title', 'id');

@@ -24,8 +24,10 @@
                                 <tr>
                                     <th>SL.No</th>
                                     <th>Applicant Name</th>
+                                    <th>Applicant Id</th>
                                     <th>Schedule</th>
                                     <th>Total Cost</th>
+                                    <th>Payment Option</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
@@ -35,11 +37,15 @@
                                     <tr>
                                          <td class="sl-no-size">{{$sl++}}</td>
 
-                                        <td><a href="{{ URL::route('billing.details.applicant',['id'=>$value->id])}}" class=" btn-link" data-toggle="modal" data-target="#createModal" data-toggle="tooltip" data-placement="bottom" title="Create Billing Details">{{isset($value->relApplicant->first_name)?$value->relApplicant->first_name:''}}{{isset($value->relApplicant->last_name)?$value->relApplicant->last_name:''}}</a></td>
+                                        <td><a href="{{ URL::route('billing.details.applicant',['id'=>$value->id])}}" class=" btn-link text-bold" data-toggle="modal" data-target="#createModal" data-toggle="tooltip" data-placement="bottom" title="Create Billing Details">{{isset($value->relApplicant->first_name)?$value->relApplicant->first_name:''}} {{isset($value->relApplicant->last_name)?$value->relApplicant->last_name:''}}</a></td>
+
+                                        <td>{{isset($value->relApplicant->id)?$value->relApplicant->id:''}}</td>
 
                                         <td>{{$value->relBillingSchedule->title}}</td>
 
                                         <td>{{$value->total_cost}}</td>
+
+                                        <td>{{$value->relPaymentOption->title}}</td>
                                         <td>
                                             <a href="{{ URL::route('summary.applicant.view',['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" data-toggle="tooltip" data-placement="bottom" title="View"><i class="fa fa-eye text-green"></i></a>
 
