@@ -80,6 +80,7 @@ class CreateFees extends Migration {
             $table->increments('id');
             $table->unsignedInteger('student_user_id')->nullable();
             $table->unsignedInteger('billing_schedule_id')->nullable();
+            $table->unsignedInteger('payment_option_id')->nullable();
             $table->decimal('total_cost', 10);
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
@@ -136,6 +137,7 @@ class CreateFees extends Migration {
             $table->increments('id');
             $table->unsignedInteger('applicant_id')->nullable();
             $table->unsignedInteger('billing_schedule_id')->nullable();
+            $table->unsignedInteger('payment_option_id')->nullable();
             $table->decimal('total_cost', 10);
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
