@@ -57,7 +57,7 @@
                     </td>
                     <td>
                         @if($values->status != 'Invoiced')
-                            <a href="{{ URL::route('create/purchase-order', ['req_id'=>$values->id, 'user_id'=>1 ]) }}" class="btn btn-xs btn-default" ><i class="fa fa-adjust" style="color: darkslategray" data-toggle="tooltip" data-placement="bottom" title="Add VAT"></i> + VAT</a>
+                            <a href="{{ URL::route('create/purchase-order', ['req_id'=>$values->id ]) }}" class="btn btn-xs btn-default" ><i class="fa fa-adjust" style="color: darkslategray" data-toggle="tooltip" data-placement="bottom" title="Add VAT"></i> + VAT</a>
                         @endif
                     </td>
 
