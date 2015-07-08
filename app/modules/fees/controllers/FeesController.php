@@ -655,9 +655,30 @@ class FeesController extends \BaseController {
         return View::make('fees::billing_summary.edit_applicant',compact('edit_summary','applicant','schedule','payment_option'));
     }
 
-    public function update_applicant_summary()
+    public function update_applicant_summary($id)
     {
-
+        $data = Input::all();
+        $model = BillingSummaryApplicant::find($id);
+        if($model->validate($data))
+        {
+            DB::beginTransaction();
+            try {
+                if ($model->update($data))
+                    DB::commit();
+                Session::flash('message', "Billing summary applicant Successfully Added");
+            }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', "Billing summary applicant Not Added.Invalid Request!");
+            }
+            return Redirect::back();
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()
+                ->with('errors', 'invalid');
+        }
     }
 
     /*****************Billing details applicant start***********
