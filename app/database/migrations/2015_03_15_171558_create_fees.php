@@ -8,6 +8,18 @@ class CreateFees extends Migration {
 
 	public function up()
 	{
+        Schema::create('payment_option', function(Blueprint $table) {
+            $table->increments('id');
+            $table->string('code', 16)->unique();
+            $table->string('title', 32)->nullable();
+            $table->string('bank_branch', 32)->nullable();
+            $table->integer('created_by', false, 11);
+            $table->integer('updated_by', false, 11);
+            $table->timestamps();
+            $table->engine = 'InnoDB';
+        });
+
+
         Schema::create('billing_schedule', function(Blueprint $table) {
             $table->increments('id');
             $table->enum('code',array(
@@ -159,6 +171,7 @@ class CreateFees extends Migration {
 
 	public function down()
 	{
+        Schema::drop('payment_option');
         Schema::drop('billing_schedule');
         Schema::drop('billing_setup');
         Schema::drop('billing_summary_student');
