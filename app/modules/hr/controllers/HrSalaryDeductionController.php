@@ -41,8 +41,6 @@ class HrSalaryDeductionController extends \BaseController {
                 'status'=> Input::get('status')[$i],
             ];
         }
-        #print_r($dt);exit;
-
         $model = new HrSalaryDeduction();
         DB::beginTransaction();
         try{

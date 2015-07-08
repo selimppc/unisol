@@ -25,23 +25,19 @@ class HrLoanDetailController extends \BaseController
     }
 
     public function store_hr_loan_detail()
-    {
-        for($i = 0; $i < count(Input::get('hr_loan_head_id')) ; $i++){
+    {   for($i = 0; $i < count(Input::get('hr_loan_head_id')) ; $i++){
             $dt[] = [
                 'hr_loan_head_id' => Input::get('hr_loan_head_id'),
                 'amount'=> Input::get('amount')[$i],
                 'date'=> Input::get('date')[$i],
             ];
-
         }
-
         $model = new HrLoanDetail();
         DB::beginTransaction();
         try{
             foreach($dt as $values){
                 $model->create($values);
             }
-
             DB::commit();
             Session::flash('message', 'Success !');
         }catch ( Exception $e ){

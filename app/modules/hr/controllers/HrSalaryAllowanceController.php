@@ -36,8 +36,6 @@ class HrSalaryAllowanceController extends \BaseController
                 'status'=> Input::get('status')[$i],
             ];
         }
-        #print_r($dt);exit;
-
         $model = new HrSalaryAllowance();
         DB::beginTransaction();
         try{
