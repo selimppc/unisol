@@ -40,8 +40,8 @@ class BillingApplicantDetail extends Eloquent{
 
     //TODO : Model Relationship
 
-    public function relBillingSummaryApplicant(){
-        return $this->belongsTo('BillingSummaryApplicant', 'billing_summary_applicant_id', 'id');
+    public function relBillingApplicantHead(){
+        return $this->belongsTo('BillingApplicantHead', 'billing_summary_applicant_id', 'id');
     }
     public function relBillingItem(){
         return $this->belongsTo('BillingItem', 'billing_item_id', 'id');

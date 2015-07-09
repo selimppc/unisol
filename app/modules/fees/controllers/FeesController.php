@@ -607,14 +607,14 @@ class FeesController extends \BaseController {
         $applicant = array(''=>'Select applicant') + Applicant::ApplicantList();
         $schedule = ['' => 'Select schedule'] + BillingSchedule::lists('title', 'id');
         $payment_option = ['' => 'Select Payment Option'] + PaymentOption::lists('title', 'id');
-        $summary_applicant = BillingSummaryApplicant::latest('id')->with('relApplicant', 'relBillingSchedule')->get();
+        $summary_applicant = BillingApplicantHead::latest('id')->with('relApplicant', 'relBillingSchedule')->get();
         return View::make('fees::billing_summary.applicant.index_applicant',compact('applicant','summary_applicant','schedule','payment_option'));
     }
 
     public function save_summary_applicant()
     {
         $data = Input::all();
-        $model = new BillingSummaryApplicant();
+        $model = new BillingApplicantHead();
         if($model->validate($data))
         {
             DB::beginTransaction();
@@ -638,8 +638,8 @@ class FeesController extends \BaseController {
 
     public function view_applicant_summary($id)
     {
-        $view_summary_applicant = BillingSummaryApplicant::find($id);
-        $view_details_applicant = BillingDetailsApplicant::with('relBillingSummaryApplicant','relBillingItem','relWaiver')
+        $view_summary_applicant = BillingApplicantHead::find($id);
+        $view_details_applicant = BillingApplicantDetail::with('relBillingApplicantHead','relBillingItem','relWaiver')
              ->where('billing_summary_applicant_id','=',$id)
              ->get();
         return View::make('fees::billing_summary.applicant.view_applicant',compact('view_summary_applicant','view_details_applicant','total'));
@@ -647,7 +647,7 @@ class FeesController extends \BaseController {
 
     public function edit_applicant_summary($id)
     {
-        $edit_summary = BillingSummaryApplicant::find($id);
+        $edit_summary = BillingApplicantHead::find($id);
         $applicant = array(''=>'Select applicant') + Applicant::ApplicantList();
         $schedule = ['' => 'Select schedule'] + BillingSchedule::lists('title', 'id');
         $payment_option = ['' => 'Select Payment Option'] + PaymentOption::lists('title', 'id');
@@ -657,7 +657,7 @@ class FeesController extends \BaseController {
     public function update_applicant_summary($id)
     {
         $data = Input::all();
-        $model = BillingSummaryApplicant::find($id);
+        $model = BillingApplicantHead::find($id);
         if($model->validate($data))
         {
             DB::beginTransaction();
@@ -685,7 +685,7 @@ class FeesController extends \BaseController {
 
     public function create_billing_details_applicant($id)
     {
-        $data = BillingSummaryApplicant::with('relApplicant','relBillingSchedule','relPaymentOption')
+        $data = BillingApplicantHead::with('relApplicant','relBillingSchedule','relPaymentOption')
             ->where('id','=',$id)
             ->first()->id;
         $item = ['' => 'Select Billing Item'] + BillingItem::lists('title', 'id');
@@ -757,7 +757,7 @@ class FeesController extends \BaseController {
         $student = array(''=>'Select Student') + User::StudentList();
         $schedule = ['' => 'Select schedule'] + BillingSchedule::lists('title', 'id');
         $payment_option = ['' => 'Select Payment Option'] + PaymentOption::lists('title', 'id');
-        $summary_student = BillingSummaryStudent::latest('id')->with('relUser','relUser.relUserProfile', 'relBillingSchedule')->get();
+        $summary_student = BillingStudentHead::latest('id')->with('relUser','relUser.relUserProfile', 'relBillingSchedule')->get();
         return View::make('fees::billing_summary.student.index',compact('student','summary_student','schedule','payment_option'));
     }
 

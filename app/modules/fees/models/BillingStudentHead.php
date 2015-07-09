@@ -42,8 +42,8 @@ class BillingStudentHead extends Eloquent{
     public function relBillingSchedule(){
         return $this->belongsTo('BillingSchedule', 'billing_schedule_id', 'id');
     }
-    public function relBillingDetailsStudent(){
-        return $this->HasMany('BillingDetailsStudent','billing_summary_student_id', 'id');
+    public function relBillingStudentDetail(){
+        return $this->HasMany('BillingStudentDetail','billing_summary_student_id', 'id');
     }
     public function relPaymentOption(){
         return $this->belongsTo('PaymentOption', 'payment_option_id', 'id');

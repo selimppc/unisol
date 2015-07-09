@@ -46,8 +46,8 @@ class BillingApplicantHead extends Eloquent{
     public function relPaymentOption(){
         return $this->belongsTo('PaymentOption', 'payment_option_id', 'id');
     }
-    public function relBillingDetailsApplicant(){
-        return $this->HasMany('BillingDetailsApplicant','billing_summary_applicant_id', 'id');
+    public function relBillingApplicantDetail(){
+        return $this->HasMany('BillingApplicantDetail','billing_summary_applicant_id', 'id');
     }
 
 
