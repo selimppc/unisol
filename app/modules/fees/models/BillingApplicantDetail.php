@@ -9,12 +9,13 @@ class BillingApplicantDetail extends Eloquent{
     //TODO :: model attributes and rules and validation
     protected $table = 'billing_applicant_detail';
     protected $fillable = [
-        'billing_summary_applicant_id', 'billing_item_id', 'waiver_id',
-        'waiver_amount', 'cost_per_unit', 'quantity', 'total_amount',
+        'billing_applicant_head_id', 'billing_item_id', 'waiver_id',
+        'waiver_amount', 'cost_per_unit', 'quantity', 'tax_rate', 'tax_amount',
+        'total_amount',
     ];
     private $errors;
     private $rules = [
-        'billing_summary_applicant_id' => 'required|integer',
+        'billing_applicant_head_id' => 'required|integer',
         'billing_item_id' => 'required|integer',
         'waiver_id' => 'required|integer',
         'waiver_amount' => 'numeric',
@@ -41,7 +42,7 @@ class BillingApplicantDetail extends Eloquent{
     //TODO : Model Relationship
 
     public function relBillingApplicantHead(){
-        return $this->belongsTo('BillingApplicantHead', 'billing_summary_applicant_id', 'id');
+        return $this->belongsTo('BillingApplicantHead', 'billing_applicant_head_id', 'id');
     }
     public function relBillingItem(){
         return $this->belongsTo('BillingItem', 'billing_item_id', 'id');

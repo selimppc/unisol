@@ -10,7 +10,8 @@ class BillingStudentHead extends Eloquent{
     protected $table = 'billing_student_head';
 
     protected $fillable = [
-        'student_user_id', 'billing_schedule_id', 'total_cost','payment_option_id'
+        'student_user_id', 'billing_schedule_id','payment_option_id', 'tax_rate',
+        'tax_amount', 'discount_rate', 'discount_amount', 'total_cost' , 'status'
     ];
     private $errors;
     private $rules = [
@@ -43,7 +44,7 @@ class BillingStudentHead extends Eloquent{
         return $this->belongsTo('BillingSchedule', 'billing_schedule_id', 'id');
     }
     public function relBillingStudentDetail(){
-        return $this->HasMany('BillingStudentDetail','billing_summary_student_id', 'id');
+        return $this->HasMany('BillingStudentDetail','billing_student_head_id', 'id');
     }
     public function relPaymentOption(){
         return $this->belongsTo('PaymentOption', 'payment_option_id', 'id');
