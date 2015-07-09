@@ -6,7 +6,7 @@
 
 <div class="row">
 
-   <div class="ok-123">
+   <div class="ok-123" id="show_data">
         <div class="col-sm-2" style="width:12%">
             <div class='form-group'>
                {{ Form::label('employee_type', 'Employee Type') }}<br><br>
@@ -69,47 +69,47 @@
         {{ Form::open(array('route'=>'provident-fund-config.update','method' => 'POST')) }}
         {{--{{Form::hidden('id', $pvc_data->id)}}--}}
         <div class="col-sm-2" style="width:12%">
-            <div class='form-group'>
+            <div class='form-group' id="1">
                 {{ Form::label('employee_type', 'Employee Type') }}<br><br>
                 <input type="text" name="type" value="Permanent" readonly style="background-color: #efefef" class="form-control">
             </div>
         </div>
 
-        <div class="col-sm-2" style="width:13%">
+        <div class="col-sm-2" style="width:13%" id="2">
             <div class='form-group'>
                {{ Form::label('contribution_amount', 'Contribution Amount') }}
                {{ Form::text('contribution_amount', Input::old('company_contribution_0'),['id'=>'contribution_amount','class'=>'form-control']) }}
             </div>
         </div>
-        <div class="col-sm-2" style="width:14%">
+        <div class="col-sm-2" style="width:14%" id="3">
             <div class='form-group'>
                {{ Form::label('company_contribution_0', 'Company Contribution 0') }}
                {{ Form::text('company_contribution_0', Input::old('company_contribution_0'),['id'=>'company_contribution_0','class'=>'form-control']) }}
             </div>
         </div>
 
-        <div class="col-sm-2" style="width:14%">
+        <div class="col-sm-2" style="width:14%" id="4">
             <div class='form-group'>
                {{ Form::label('company_contribution_25', 'Company Contribution 25') }}
                {{ Form::text('company_contribution_25', Input::old('company_contribution_25'),['id'=>'company_contribution_25','class'=>'form-control']) }}
             </div>
         </div>
 
-        <div class="col-sm-2" style="width:14%">
+        <div class="col-sm-2" style="width:14%" id="5">
             <div class='form-group'>
                {{ Form::label('company_contribution_50', 'Company Contribution 50') }}
                {{ Form::text('company_contribution_50', Input::old('company_contribution_50'),['id'=>'company_contribution_50','class'=>'form-control']) }}
             </div>
         </div>
 
-        <div class="col-sm-2" style="width:14%">
+        <div class="col-sm-2" style="width:14%" id="6">
             <div class='form-group'>
                {{ Form::label('company_contribution_75', 'Company Contribution 75') }}
                {{ Form::text('company_contribution_75', Input::old('company_contribution_25'),['id'=>'company_contribution_75','class'=>'form-control']) }}
             </div>
         </div>
 
-        <div class="col-sm-2" style="width:14%">
+        <div class="col-sm-2" style="width:14%" id="7">
             <div class='form-group'>
                {{ Form::label('company_contribution_100', 'Company Contribution 100') }}
                {{ Form::text('company_contribution_100', Input::old('company_contribution_100'),['id'=>'company_contribution_100','class'=>'form-control']) }}
@@ -155,20 +155,20 @@
             <tbody>
               <?php $counter = 0;?>
                @foreach($model as $values)
-                    <tr>
-                       <td>{{ucfirst($values->employee_type)}}</td>
-                       <td>{{$values->contribution_amount}}</td>
-                       <td>{{round($values->company_contribution_0, 0)}}</td>
-                       <td>{{round($values->company_contribution_25, 0)}}</td>
-                       <td>{{round($values->company_contribution_50, 0)}}</td>
-                       <td>{{round($values->company_contribution_75, 0)}}</td>
-                       <td>{{round($values->company_contribution_100, 0)}}</td>
+                   <tr>
+                       <td class="et">{{ucfirst($values->employee_type)}}</td>
+                       <td class="ca">{{$values->contribution_amount}}</td>
+                       <td class="cc_0">{{round($values->company_contribution_0, 0)}}</td>
+                       <td class="cc_25">{{round($values->company_contribution_25, 0)}}</td>
+                       <td class="cc_50">{{round($values->company_contribution_50, 0)}}</td>
+                       <td class="cc_75">{{round($values->company_contribution_75, 0)}}</td>
+                       <td class="cc_100">{{round($values->company_contribution_100, 0)}}</td>
                        <td>
-                           <a class="btn btn-xs btn-default edit" href="{{Route('provident-fund-config.update',$values->id)}}" id="data-edit" style="font-size: 12px;color: lightseagreen"><i class="fa fa-edit"></i></a>
+                           <a class="btn btn-xs btn-default edit edit-pvd-config" href="{{Route('provident-fund-config.update',$values->id)}}" style="font-size: 12px;color: lightseagreen"><i class="fa fa-edit"></i></a>
                            <a data-href="{{ $values->id }}" class="btn btn-default btn-xs delete-dt-2" id="delete-dt-2{{ $values->id }}" ><i class="fa fa-trash-o" style="font-size: 12px;color: lightcoral"></i></a>
                        </td>
-                    </tr>
-                    <?php $counter++;?>
+                   </tr>
+                   <?php $counter++;?>
                @endforeach
             </tbody>
         </table>
@@ -184,11 +184,9 @@
 {{ HTML::script('assets/etsb/etsb_js/jquery-ui/jquery-ui.min.js')}}
 
 <script type="text/javascript">
-$(function(){
+ $(function(){
 
      $tableItemCounter = 0; //To stop additem if exist
-     var $arrayRnc = []; //To stop additem if exist
-
      $("#add-pvd-config").click(function(event){
 
          $employee_type = $("#employee_type").val();
@@ -199,20 +197,35 @@ $(function(){
          $company_contribution_75 = $("#company_contribution_75").val();
          $company_contribution_100 = $("#company_contribution_100").val();
 
-                $('#test').append("<tr> " +
-//                      "<td><input type='hidden' name='hr_salary_transaction_id' value='" + $sal_trans_id + "' readonly><input name='type[]' value='"+ $sal_trns_dtl_type +"' readonly></td>" +
-                      "<td><input name='employee_type' value='Permanent' readonly> </td>" +
-                      "<td><input name='contribution_amount' value='"+ $contribution_amount +"' readonly> </td>" +
-                      "<td><input name='company_contribution_0' value='"+ $company_contribution_0 +"' readonly> </td>" +
-                      "<td><input name='company_contribution_25' value='"+ $company_contribution_25 +"' readonly> </td>" +
-                      "<td><input name='company_contribution_50' value='"+ $company_contribution_50 +"' readonly></td>" +
-                      "<td><input name='company_contribution_75' value='"+ $company_contribution_75 +"' readonly></td>" +
-                      "<td><input name='company_contribution_100' value='"+ $company_contribution_100 +"' readonly></td>" +
-                      "<td></td>"+
-                  " </tr>");
-
+         $('#test').append("<tr> " +
+              "<td><input name='employee_type' value='Permanent' readonly> </td>" +
+              "<td><input name='contribution_amount' value='"+ $contribution_amount +"' readonly> </td>" +
+              "<td><input name='company_contribution_0' value='"+ $company_contribution_0 +"' readonly> </td>" +
+              "<td><input name='company_contribution_25' value='"+ $company_contribution_25 +"' readonly> </td>" +
+              "<td><input name='company_contribution_50' value='"+ $company_contribution_50 +"' readonly></td>" +
+              "<td><input name='company_contribution_75' value='"+ $company_contribution_75 +"' readonly></td>" +
+              "<td><input name='company_contribution_100' value='"+ $company_contribution_100 +"' readonly></td>" +
+              "<td></td>"+
+         "</tr>");
  	 });
 
+ 	 //edit
+ 	 $(".edit-pvd-config").click(function(event){
+          var $row = $(this).closest("tr");
+          var $data_1 = $row.find(".et").text();
+          var $data_2 = $row.find(".ca").text();
+          var $data_3 = $row.find(".cc_0").text();
+          var $data_4 = $row.find(".cc_25").text();
+          var $data_5 = $row.find(".cc_50").text();
+          var $data_6 = $row.find(".cc_75").text();
+          var $data_7 = $row.find(".cc_100").text();
+
+          $(".ok-456").show();
+          $('#1').html($data_1);
+          $('#2').html($data_2);
+          $('#3').html($data_3);
+          $('#4').html($data_4);
+ 	 });
     //delete
      $('.delete-dt-2').click(function(e) {
         e.preventDefault();
@@ -229,15 +242,15 @@ $(function(){
             }
         });
      });
-});
+ });
 
 </script>
 
 <script>
 $(function(){
      $('.edit').click(function() {
-       $(".ok-123").hide();
-       $(".ok-456").show();
+        $(".ok-123").hide();
+        $(".ok-456").show();
         return false;
      });
 });
@@ -245,8 +258,8 @@ $(function(){
 
 <div class="modal fade" id="pvd-config" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-    </div>
+     <div class="modal-content">
+     </div>
   </div>
 </div>
 
