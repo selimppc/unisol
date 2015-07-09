@@ -45,6 +45,9 @@ class BillingSummaryStudent extends Eloquent{
     public function relBillingDetailsStudent(){
         return $this->HasMany('BillingDetailsStudent','billing_summary_student_id', 'id');
     }
+    public function relPaymentOption(){
+        return $this->belongsTo('PaymentOption', 'payment_option_id', 'id');
+    }
 
     // TODO : user info while saving data into table
     public static function boot(){

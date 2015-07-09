@@ -183,17 +183,17 @@
          'as' => 'summary.student.save',
          'uses'=> 'FeesController@save_summary_student'
      ]);
-     Route::any('billing/summary/applicant/view/{id}', [
-         'as' => 'summary.applicant.view',
-         'uses' => 'FeesController@view_applicant_summary'
+     Route::any('billing-summary-student-view/{id}', [
+         'as' => 'summary.student.view',
+         'uses' => 'FeesController@view_summary_student'
      ]);
-     Route::any('billing/summary/applicant/edit/{id}', [
-         'as' => 'summary.applicant.edit',
-         'uses' => 'FeesController@edit_applicant_summary'
+     Route::any('billing-summary-student/edit/{id}', [
+         'as' => 'summary.student.edit',
+         'uses' => 'FeesController@edit_summary_student'
      ]);
-     Route::any('billing/summary/applicant/update/{id}', [
-         'as' => 'summary.applicant.update',
-         'uses' => 'FeesController@update_applicant_summary'
+     Route::any('billing-summary-student-update/{id}', [
+         'as' => 'summary.student.update',
+         'uses' => 'FeesController@update_summary_student'
      ]);
 
 

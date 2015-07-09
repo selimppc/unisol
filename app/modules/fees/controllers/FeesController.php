@@ -599,7 +599,7 @@ class FeesController extends \BaseController {
         }
     }
 
-    /*****************Billing summary start****************
+    /*****************Billing summary Applicant start****************
      ***************/
 
     public function index_billing_summary()
@@ -749,5 +749,19 @@ class FeesController extends \BaseController {
         }
         return Redirect::back();*/
     }
+
+    /*****************Billing summary Student start****************
+     *************/
+    public function index_billing_summary_student()
+    {
+        $student = array(''=>'Select Student') + User::StudentList();
+        $schedule = ['' => 'Select schedule'] + BillingSchedule::lists('title', 'id');
+        $payment_option = ['' => 'Select Payment Option'] + PaymentOption::lists('title', 'id');
+        $summary_student = BillingSummaryStudent::latest('id')->with('relUser','relUser.relUserProfile', 'relBillingSchedule')->get();
+        return View::make('fees::billing_summary.student.index',compact('student','summary_student','schedule','payment_option'));
+    }
+
+
+
 
 }
