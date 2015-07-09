@@ -518,6 +518,13 @@ Route::group(['prefix' => 'hr'], function() {
         'uses'=> 'HrSalaryTransactionDetailController@index_hr_salary_transaction_detail'
     ]);
 
+//    Route::any('create-salary-transaction-detail',[
+//        'as' => 'create-salary-transaction-detail',
+//        'uses'=> 'HrSalaryTransactionDetailController@create_salary_transaction_detail'
+//    ]);
+
+
+
     Route::any('store-salary-transaction-detail',[
         'as' => 'store-salary-transaction-detail',
         'uses'=> 'HrSalaryTransactionDetailController@store_hr_salary_transaction_detail'
