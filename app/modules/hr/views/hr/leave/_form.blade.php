@@ -1,4 +1,10 @@
+{{--{{ HTML::style('assets/css/jquery.timepicker.css') }}
+{{ HTML::style('assets/css/jquery.timepicker.min.css') }}
 
+{{ HTML::style('assets/etsb/etsb_css/bootstrap/bootstrap.min.css') }}
+{{ HTML::style('assets/etsb/etsb_css/style.css') }}
+{{ HTML::script('assets/etsb/etsb_js/jquery/jquery-2.1.1.min.js')}}
+{{ HTML::script('assets/etsb/etsb_js/jquery/jquery.min.js')}}--}}
 <div style="padding: 0px 20px 20px;">
     <div class="form-group">
       {{ Form::label('forward_to', 'Leave Forward To ') }}<span class="text-danger">*</span>
@@ -67,3 +73,31 @@
     <a  href="" class="pull-right btn btn-bitbucket" style="margin-right: 5px">Close</a>
     <p>&nbsp;</p>
 </div>
+
+
+<div class="well">
+  <div id="datetimepicker3" class="input-append">
+    <input data-format="hh:mm:ss" type="text">
+    <span class="add-on">
+      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+      </i>
+    </span>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(function() {
+    $('#datetimepicker3').datetimepicker({
+      pickDate: false
+    });
+  });
+</script>
+
+
+{{--{{ HTML::script('assets/js/jquery.timepicker.js')}}
+{{ HTML::script('assets/js/jquery.timepicker.min.js')}}
+
+{{ HTML::script('assets/etsb/etsb_js/jquery/jquery.min.js')}}
+{{ HTML::script('assets/etsb/etsb_js/jquery-ui/jquery-ui.min.js')}}
+{{ HTML::script('assets/etsb/etsb_js/bootstrap/bootstrap.min.js')}}--}}
+

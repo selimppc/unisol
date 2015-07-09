@@ -217,4 +217,14 @@ Route::any('provident-fund-config',[
     'uses' => 'HrProvidentFundConfigController@index'
 ]);
 
+Route::any('provident-fund-config/store',[
+    'as' =>'provident-fund-config.store',
+    'uses' => 'HrProvidentFundConfigController@store'
+]);
+
+Route::any('provident-fund-config/delete',[
+    'as' =>'provident-fund-config.delete',
+    'uses' => 'HrProvidentFundConfigController@ajaxDelete'
+]);
+
 

@@ -12,10 +12,28 @@ class HrAttendanceController extends \BaseController {
     }
 
     public function index()
-    {   $date = date('d-m-Y');
-        $data = HrAttendance::with('relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')->orderBy('id', 'DESC')->paginate(5);
+    {
+//        $date = date('d-m-Y');
+        $data = new HrAttendance();
+        if($this->isPostRequest()) {
+            $hr_employee = Input::get('hr_employee');
+            $id_no = Input::get('id_no');
+
+            $data = $data->with('relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile');
+            if (isset($hr_employee) && !empty($hr_employee)) $data->where('hr_attendance.hr_employee_id', '=', $hr_employee);
+            if (isset($id_no) && !empty($id_no)) $data->where('hr_attendance.hr_employee_id', '=', $id_no);
+            $data = $data->orderBy('id', 'DESC')->paginate(5);
+//            print_r($data);exit;
+        }
+        else{
+        $data = $data->with('relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')->orderBy('id', 'DESC')->paginate(5);
+    }
+//        $data = HrAttendance::with('relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')->orderBy('id', 'DESC')->paginate(5);
         $employee_list = User::EmployeeList();
-        return View::make('hr::hr.hr_attendance.index',compact('data','employee_list','month','date'));
+        $emp_id = array('' => 'Select Employee ID') + HrEmployee::lists('employee_id', 'id');
+
+        Input::flash();
+        return View::make('hr::hr.hr_attendance.index',compact('data','employee_list','month','emp_id'));
     }
     public function test(){
         return View::make('hr::hr.hr_attendance.test');
