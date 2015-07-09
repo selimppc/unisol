@@ -40,11 +40,11 @@ class BillingItem extends Eloquent{
     public function relBillingSetup(){
         return $this->HasMany('BillingSetup');
     }
-    public function relBillingDetailsStudent(){
-        return $this->HasMany('BillingDetailsStudent');
+    public function relBillingStudentDetail(){
+        return $this->HasMany('BillingStudentDetail');
     }
-    public function relBillingDetailsApplicant(){
-        return $this->HasMany('BillingDetailsApplicant');
+    public function relBillingApplicantDetail(){
+        return $this->HasMany('BillingApplicantDetail');
     }
 
 

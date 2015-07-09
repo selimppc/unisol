@@ -7,7 +7,7 @@
     <div style="padding: 10px;">
 
         {{Form::model($edit_summary, array('route' => array('summary.applicant.update', $edit_summary->id)))}}
-        @include('fees::billing_summary._form_applicant')
+        @include('fees::billing_summary.applicant._form_applicant')
         {{ Form::close() }}
     </div>
 </div>

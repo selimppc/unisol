@@ -4,23 +4,20 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class BillingDetailsStudent extends Eloquent{
+class BillingTuitionDetail extends Eloquent{
 
     //TODO :: model attributes and rules and validation
-    protected $table = 'billing_details_student';
+    protected $table = 'billing_tuition_detail';
+
     protected $fillable = [
-        'billing_summary_student_id', 'billing_item_id', 'waiver_id',
-        'waiver_amount', 'cost_per_unit', 'quantity', 'total_amount',
+        'billing_summary_student_id', 'student_user_id', 'year_id', 'month',
     ];
     private $errors;
     private $rules = [
         'billing_summary_student_id' => 'required|integer',
-        'billing_item_id' => 'required|integer',
-        'waiver_id' => 'required|integer',
-        'waiver_amount' => 'numeric',
-        'cost_per_unit' => 'numeric',
-        'quantity' => 'numeric',
-        'total_amount' => 'numeric',
+        'student_user_id' => 'required|integer',
+        'year_id' => 'required|integer',
+        'month' => 'alpha_dash',
     ];
     public function validate($data)
     {
@@ -40,15 +37,16 @@ class BillingDetailsStudent extends Eloquent{
 
     //TODO : Model Relationship
 
-    public function relBillingSummaryStudent(){
-        return $this->belongsTo('BillingSummaryStudent', 'billing_summary_student_id', 'id');
+    public function relBillingStudentHead(){
+        return $this->belongsTo('BillingStudentHead', 'billing_student_head_id', 'id');
     }
-    public function relBillingItem(){
-        return $this->belongsTo('BillingItem', 'billing_item_id', 'id');
+    public function relUser(){
+        return $this->belongsTo('User', 'student_user_id', 'id');
     }
-    public function relWaiver(){
-        return $this->belongsTo('Waiver', 'waiver_id', 'id');
+    public function relYear(){
+        return $this->belongsTo('Year', 'year_id', 'id');
     }
+
 
 
     // TODO : user info while saving data into table
@@ -72,19 +70,5 @@ class BillingDetailsStudent extends Eloquent{
 
 
     //TODO : Scope Area
-
-    public function scopeBillingItem($query){
-
-        $query = $this::join('billing_item', function($query){
-            $query->on('billing_item.id', '=', 'billing_details_student.billing_item_id');
-        })
-            ->select(DB::raw('billing_item.title as title, billing_details_student.id as bill_id'))
-            ->lists('title', 'bill_id');
-        return $query;
-    }
-
-
-
-
 
 } 

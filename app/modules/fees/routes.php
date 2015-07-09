@@ -162,6 +162,7 @@
      ]);
 
    /*************Billing Details Applicant*****************/
+
      Route::any('billing-details-applicant/{id}', [
          'as' => 'billing.details.applicant',
          'uses' => 'FeesController@create_billing_details_applicant'
@@ -172,24 +173,35 @@
      ]);
 
 
-
-
-
-
-
-
      /**********Billing Summary Student Start**************/
 
+     Route::any('billing-summary-student', [
+         'as' => 'billing.summary.student',
+         'uses' => 'FeesController@index_billing_summary_student'
+     ]);
+     Route::any('billing-summary-student-save',[
+         'as' => 'summary.student.save',
+         'uses'=> 'FeesController@save_summary_student'
+     ]);
+     Route::any('billing-summary-student-view/{id}', [
+         'as' => 'summary.student.view',
+         'uses' => 'FeesController@view_summary_student'
+     ]);
+     Route::any('billing-summary-student/edit/{id}', [
+         'as' => 'summary.student.edit',
+         'uses' => 'FeesController@edit_summary_student'
+     ]);
+     Route::any('billing-summary-student-update/{id}', [
+         'as' => 'summary.student.update',
+         'uses' => 'FeesController@update_summary_student'
+     ]);
 
 
-
-
-
-
-
+     /*************************************************************************/
 
      /********************Student *********************
-   /********************billing setup******************/
+   /*******************billing setup******************/
+
      Route::any('student/billing/setup', [
          'as' => 'student.billing.setup',
          'uses' => 'FeesStudentController@index_student_billing'

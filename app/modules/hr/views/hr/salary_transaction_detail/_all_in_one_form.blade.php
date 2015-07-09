@@ -47,19 +47,19 @@
     <div class="col-sm-2" style="width:13%">
         <div class='form-group'>
            {{ Form::label('percentage', 'Percentage') }} (%)
-           {{ Form::text('percentage', Input::old('percentage'),['id'=>'salary_transaction_detail_percentage','class'=>'form-control','readonly']) }}
+           {{ Form::text('percentage', Input::old('percentage'),['id'=>'salary_transaction_detail_percentage','class'=>'selected_percentage form-control']) }}
         </div>
     </div>
 
     <div class="col-sm-2" style="width:13%">
         <div class='form-group'>
            {{ Form::label('amount', 'Amount') }}
-           {{ Form::text('amount', Input::old('amount'),['id'=>'salary_transaction_detail_amount','class'=>'form-control']) }}
+           {{ Form::text('amount', Input::old('amount'),['id'=>'salary_transaction_detail_amount','class'=>'form-control','readonly']) }}
         </div>
     </div>
 
     <div class="col-sm-2">
-         <div class='form-group'></br>
+         <div class='form-group' style="padding-top: 10px;"></br>
             <input type="button" class="pull-right btn-xs btn-linkedin" id="add-salary-transaction-detail" value="+Add">
          </div>
     </div>
@@ -100,7 +100,7 @@
                    <a data-href="{{ $values->id }}" class="btn btn-default btn-sm delete-dt-2" ><i class="fa fa-trash-o" style="font-size: 15px;color: red"></i></a>
                </td>
             </tr>
-             <?php $counter++;?>
+            <?php $counter++;?>
        @endforeach
     </tbody>
 </table>
