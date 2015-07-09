@@ -599,14 +599,16 @@ class FeesController extends \BaseController {
         }
     }
 
-    /*****************Billing summary and details applicant start*********************/
+    /*****************Billing summary start****************
+     ***************/
 
     public function index_billing_summary()
     {
         $applicant = array(''=>'Select applicant') + Applicant::ApplicantList();
         $schedule = ['' => 'Select schedule'] + BillingSchedule::lists('title', 'id');
+        $payment_option = ['' => 'Select Payment Option'] + PaymentOption::lists('title', 'id');
         $summary_applicant = BillingSummaryApplicant::latest('id')->with('relApplicant', 'relBillingSchedule')->get();
-        return View::make('fees::billing_summary.index_applicant',compact('applicant','summary_applicant','schedule'));
+        return View::make('fees::billing_summary.applicant.index_applicant',compact('applicant','summary_applicant','schedule','payment_option'));
     }
 
     public function save_summary_applicant()
@@ -630,8 +632,7 @@ class FeesController extends \BaseController {
         }else{
             $errors = $model->errors();
             Session::flash('errors', $errors);
-            return Redirect::back()
-                ->with('errors', 'invalid');
+            return Redirect::back()->with('errors', 'invalid');
         }
     }
 
@@ -641,20 +642,46 @@ class FeesController extends \BaseController {
         $view_details_applicant = BillingDetailsApplicant::with('relBillingSummaryApplicant','relBillingItem','relWaiver')
              ->where('billing_summary_applicant_id','=',$id)
              ->get();
-
-        return View::make('fees::billing_summary.view_applicant',compact('view_summary_applicant','view_details_applicant'));
+        return View::make('fees::billing_summary.applicant.view_applicant',compact('view_summary_applicant','view_details_applicant','total'));
     }
 
-    public function edit_applicant_summary()
+    public function edit_applicant_summary($id)
     {
-
+        $edit_summary = BillingSummaryApplicant::find($id);
+        $applicant = array(''=>'Select applicant') + Applicant::ApplicantList();
+        $schedule = ['' => 'Select schedule'] + BillingSchedule::lists('title', 'id');
+        $payment_option = ['' => 'Select Payment Option'] + PaymentOption::lists('title', 'id');
+        return View::make('fees::billing_summary.applicant.edit_applicant',compact('edit_summary','applicant','schedule','payment_option'));
     }
 
-
-    public function update_applicant_summary()
+    public function update_applicant_summary($id)
     {
-
+        $data = Input::all();
+        $model = BillingSummaryApplicant::find($id);
+        if($model->validate($data))
+        {
+            DB::beginTransaction();
+            try {
+                if ($model->update($data))
+                    DB::commit();
+                Session::flash('message', "Billing summary applicant Successfully Added");
+            }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', "Billing summary applicant Not Added.Invalid Request!");
+            }
+            return Redirect::back();
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()
+                ->with('errors', 'invalid');
+        }
     }
+
+    /*****************Billing details applicant start***********
+     **********/
 
     public function create_billing_details_applicant($id)
     {
@@ -664,12 +691,12 @@ class FeesController extends \BaseController {
         $item = ['' => 'Select Billing Item'] + BillingItem::lists('title', 'id');
         $waiver = ['' => 'Select waiver'] + Waiver::lists('title', 'id');
 
-        return View::Make('fees::billing_summary.create_details_applicant',compact('data','item','waiver'));
+        return View::Make('fees::billing_summary.applicant.create_details_applicant',compact('data','item','waiver'));
     }
 
     public function save_billing_details_applicant()
     {
-        $data = Input::all();
+        /*$data = Input::all();
         $model = new BillingDetailsApplicant();
         if($model->validate($data))
         {
@@ -690,7 +717,37 @@ class FeesController extends \BaseController {
             Session::flash('errors', $errors);
             return Redirect::back()
                 ->with('errors', 'invalid');
+        }*/
+
+
+      /*  for($i = 0; $i < count(Input::get('hr_salary_transaction_id')) ; $i++){
+            $dt[] = [
+                'hr_salary_transaction_id' => Input::get('hr_salary_transaction_id'),
+                'type'=> Input::get('type')[$i],
+                'hr_salary_allowance_id'=> Input::get('hr_salary_allowance_id')[$i],
+                'hr_salary_deduction_id'=> Input::get('hr_salary_deduction_id')[$i],
+                'hr_over_time_id'=> Input::get('hr_over_time_id')[$i],
+                'hr_bonus_id'=> Input::get('hr_bonus_id')[$i],
+                'amount'=> Input::get('amount')[$i],
+                'percentage'=> Input::get('percentage')[$i],
+            ];
+
         }
+
+        $model = new HrSalaryTransactionDetail();
+        DB::beginTransaction();
+        try{
+            foreach($dt as $values){
+                $model->create($values);
+            }
+            DB::commit();
+            Session::flash('message', 'Success !');
+        }catch ( Exception $e ){
+            //If there are any exceptions, rollback the transaction`
+            DB::rollback();
+            Session::flash('danger', 'Failed !');
+        }
+        return Redirect::back();*/
     }
 
 }

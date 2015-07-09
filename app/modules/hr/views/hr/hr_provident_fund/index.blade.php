@@ -21,7 +21,7 @@
            <div class="pull-right col-sm-4" style="padding-top: 1%;">
            </div>
         </div>
-        <a href="" class="pull-right" style="margin-right: 20px" data-toggle="modal" data-target="#pvd"><ins><b>HR Provident Fund Config</b> </ins></a>
+        <a href="{{Route('provident-fund-config')}}" class="pull-right" style="margin-right: 20px" data-toggle="modal" data-target="#pvd-config"><ins><b>HR Provident Fund Config</b> </ins></a>
 
         {{Form::open([ 'route'=>'provident-fund.batch-delete' ])}}
         <br><br>
@@ -82,6 +82,13 @@
 {{-- Modal Area --}}
 <div class="modal fade" id="pvd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
+    <div class="modal-content">
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="pvd-config" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" style="width:90%">
     <div class="modal-content">
     </div>
   </div>

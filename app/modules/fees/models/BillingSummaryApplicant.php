@@ -10,12 +10,13 @@ class BillingSummaryApplicant extends Eloquent{
     protected $table = 'billing_summary_applicant';
 
     protected $fillable = [
-        'applicant_id', 'billing_schedule_id', 'total_cost'
+        'applicant_id', 'billing_schedule_id', 'total_cost','payment_option_id'
     ];
     private $errors;
     private $rules = [
         'applicant_id' => 'required|integer',
         'billing_schedule_id' => 'required|integer',
+        'payment_option_id' => 'required|integer',
         'total_cost' => 'numeric',
     ];
     public function validate($data)

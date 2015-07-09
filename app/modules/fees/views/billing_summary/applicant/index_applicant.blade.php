@@ -12,7 +12,7 @@
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="#tab_1" data-toggle="tab">Billing Summary Applicant</a></li>
-                    <button type="button" class=" btn btn-success fa fa-plus pull-right " data-toggle="modal" data-target="#myModal" data-toggle="tooltip" data-placement="bottom" title="Add New" >
+                    <button type="button" class=" btn btn-success fa fa-plus btn_margin" data-toggle="modal" data-target="#myModal" data-toggle="tooltip" data-placement="bottom" title="Add New" >
                         Add New
                     </button>
                 </ul>
@@ -41,11 +41,11 @@
 
                                         <td>{{isset($value->relApplicant->id)?$value->relApplicant->id:''}}</td>
 
-                                        <td>{{$value->relBillingSchedule->title}}</td>
+                                        <td>{{isset($value->relBillingSchedule->title)?$value->relBillingSchedule->title:''}}</td>
 
-                                        <td>{{$value->total_cost}}</td>
+                                        <td>{{isset($value->total_cost)?$value->total_cost:''}}</td>
 
-                                        <td>{{$value->relPaymentOption->title}}</td>
+                                        <td>{{isset($value->relPaymentOption->title)?$value->relPaymentOption->title:''}}</td>
                                         <td>
                                             <a href="{{ URL::route('summary.applicant.view',['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" data-toggle="tooltip" data-placement="bottom" title="View"><i class="fa fa-eye text-green"></i></a>
 
@@ -73,7 +73,7 @@
                 </div>
                 <div class="modal-body">
                     {{Form::open(array('route' => array('summary.applicant.save')))}}
-                    @include('fees::billing_summary._form_applicant')
+                    @include('fees::billing_summary.applicant._form_applicant')
                     {{ Form::close() }}
                 </div>
             </div>

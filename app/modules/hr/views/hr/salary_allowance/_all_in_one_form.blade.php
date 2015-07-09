@@ -5,7 +5,7 @@
 
 <div class="row">
     <div class='form-group'>
-      {{ Form::text('hr_salary_id', $s_id , Input::old('hr_salary_id'),['class'=>'form-control', 'required']) }}
+      {{ Form::hidden('hr_salary_id', $s_id , Input::old('hr_salary_id'),['class'=>'form-control', 'required']) }}
     </div>
 
     <div class="col-sm-2" style="width:13%">
@@ -130,7 +130,6 @@ $(function(){
          var $sal_id = "<?php echo $s_id; ?>";
 
          $salary_id = $sal_id;
-//         alert($salary_id);
          $sal_all_title = $("#salary_allowance_title").val();
          $sal_allowance_id = $("#salary_allowance_list").val();
          $sal_all_is_percentage = $("#salary_allowance_is_percentage").val();
@@ -175,7 +174,6 @@ $(function(){
                  $arrayRnc.push($salary_id);
 
                  //flush the input fields
-//                 $("#salary_transaction_id").val("");
                 $("#salary_allowance_title").val("");
                 $("#salary_allowance_list").val("");
                 $("#salary_allowance_is_percentage").val("");

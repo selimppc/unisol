@@ -33,11 +33,12 @@
             <tr>
                 <th>SL.No</th>
                 <th>Billing Item</th>
-                <th>Waiver</th>
-                <th>Waiver Amount</th>
                 <th>Cost Per Unit</th>
                 <th>Quantity</th>
                 <th>Total Amount</th>
+                <th>Waiver</th>
+                <th>Waiver Amount</th>
+                <th>Total</th>
             </tr>
             </thead>
             <tbody>
@@ -47,11 +48,12 @@
                 <tr>
                     <td class="sl-no-size">{{$sl++}}</td>
                     <td>{{isset($value->relBillingItem->title)?$value->relBillingItem->title:''}}</td>
-                    <td>{{isset($value->relWaiver->title)?$value->relWaiver->title:'0'}}</td>
-                    <td>{{isset($value->waiver_amount)?$value->waiver_amount:'0'}}</td>
                     <td>{{isset($value->cost_per_unit)?$value->cost_per_unit:'0'}}</td>
                     <td>{{isset($value->quantity)?$value->quantity:'0'}}</td>
                     <td>{{isset($value->total_amount)?$value->total_amount:'0'}}</td>
+                    <td>{{isset($value->relWaiver->title)?$value->relWaiver->title:'0'}}</td>
+                    <td>{{isset($value->waiver_amount)?$value->waiver_amount:'0'}}</td>
+                    <td>{{$value['total_amount']-$value['waiver_amount']}}</td>
                 </tr>
             @endforeach
                 @endif
