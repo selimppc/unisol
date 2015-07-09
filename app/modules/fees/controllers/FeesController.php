@@ -761,6 +761,14 @@ class FeesController extends \BaseController {
         return View::make('fees::billing_summary.student.index',compact('student','summary_student','schedule','payment_option'));
     }
 
+    public function view_summary_student($id)
+    {
+        $view_summary_student = BillingStudentHead::find($id);
+        $view_details_student = BillingStudentDetail::with('relBillingStudentHead','relBillingItem','relWaiver')
+            ->where('billing_student_head_id','=',$id)
+            ->get();
+        return View::make('fees::billing_summary.student.view',compact('view_summary_student','view_details_student','total'));
+    }
 
 
 
