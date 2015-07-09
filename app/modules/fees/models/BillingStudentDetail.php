@@ -4,20 +4,24 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class BillingTuitionDetails extends Eloquent{
+class BillingStudentDetail extends Eloquent{
 
     //TODO :: model attributes and rules and validation
-    protected $table = 'billing_tuition_details';
-
+    protected $table = 'billing_student_detail';
     protected $fillable = [
-        'billing_summary_student_id', 'student_user_id', 'year_id', 'month',
+        'billing_student_head_id', 'billing_item_id', 'waiver_id',
+        'waiver_amount', 'cost_per_unit', 'quantity', 'tax_rate', 'tax_amount',
+        'total_amount',
     ];
     private $errors;
     private $rules = [
-        'billing_summary_student_id' => 'required|integer',
-        'student_user_id' => 'required|integer',
-        'year_id' => 'required|integer',
-        'month' => 'alpha_dash',
+        'billing_student_head_id' => 'required|integer',
+        'billing_item_id' => 'required|integer',
+        'waiver_id' => 'required|integer',
+        'waiver_amount' => 'numeric',
+        'cost_per_unit' => 'numeric',
+        'quantity' => 'numeric',
+        'total_amount' => 'numeric',
     ];
     public function validate($data)
     {
@@ -37,16 +41,15 @@ class BillingTuitionDetails extends Eloquent{
 
     //TODO : Model Relationship
 
-    public function relBillingSummaryStudent(){
-        return $this->belongsTo('BillingSummaryStudent', 'billing_summary_student_id', 'id');
+    public function relBillingStudentHead(){
+        return $this->belongsTo('BillingStudentHead', 'billing_student_head_id', 'id');
     }
-    public function relUser(){
-        return $this->belongsTo('User', 'student_user_id', 'id');
+    public function relBillingItem(){
+        return $this->belongsTo('BillingItem', 'billing_item_id', 'id');
     }
-    public function relYear(){
-        return $this->belongsTo('Year', 'year_id', 'id');
+    public function relWaiver(){
+        return $this->belongsTo('Waiver', 'waiver_id', 'id');
     }
-
 
 
     // TODO : user info while saving data into table
@@ -70,5 +73,19 @@ class BillingTuitionDetails extends Eloquent{
 
 
     //TODO : Scope Area
+
+    public function scopeBillingItem($query){
+
+        $query = $this::join('billing_item', function($query){
+            $query->on('billing_item.id', '=', 'billing_student_detail.billing_item_id');
+        })
+            ->select(DB::raw('billing_item.title as title, billing_student_detail.id as bill_id'))
+            ->lists('title', 'bill_id');
+        return $query;
+    }
+
+
+
+
 
 } 

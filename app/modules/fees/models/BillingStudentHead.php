@@ -4,23 +4,20 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class BillingDetailsApplicant extends Eloquent{
+class BillingStudentHead extends Eloquent{
 
     //TODO :: model attributes and rules and validation
-    protected $table = 'billing_details_applicant';
+    protected $table = 'billing_student_head';
+
     protected $fillable = [
-        'billing_summary_applicant_id', 'billing_item_id', 'waiver_id',
-        'waiver_amount', 'cost_per_unit', 'quantity', 'total_amount',
+        'student_user_id', 'billing_schedule_id','payment_option_id', 'tax_rate',
+        'tax_amount', 'discount_rate', 'discount_amount', 'total_cost' , 'status'
     ];
     private $errors;
     private $rules = [
-        'billing_summary_applicant_id' => 'required|integer',
-        'billing_item_id' => 'required|integer',
-        'waiver_id' => 'required|integer',
-        'waiver_amount' => 'numeric',
-        'cost_per_unit' => 'numeric',
-        'quantity' => 'numeric',
-        'total_amount' => 'numeric',
+        'student_user_id' => 'required|integer',
+        'billing_schedule_id' => 'required|integer',
+        'total_cost' => 'numeric',
     ];
     public function validate($data)
     {
@@ -40,16 +37,18 @@ class BillingDetailsApplicant extends Eloquent{
 
     //TODO : Model Relationship
 
-    public function relBillingSummaryApplicant(){
-        return $this->belongsTo('BillingSummaryApplicant', 'billing_summary_applicant_id', 'id');
+    public function relUser(){
+        return $this->belongsTo('User', 'student_user_id', 'id');
     }
-    public function relBillingItem(){
-        return $this->belongsTo('BillingItem', 'billing_item_id', 'id');
+    public function relBillingSchedule(){
+        return $this->belongsTo('BillingSchedule', 'billing_schedule_id', 'id');
     }
-    public function relWaiver(){
-        return $this->belongsTo('Waiver', 'waiver_id', 'id');
+    public function relBillingStudentDetail(){
+        return $this->HasMany('BillingStudentDetail','billing_student_head_id', 'id');
     }
-
+    public function relPaymentOption(){
+        return $this->belongsTo('PaymentOption', 'payment_option_id', 'id');
+    }
 
     // TODO : user info while saving data into table
     public static function boot(){
@@ -72,8 +71,5 @@ class BillingDetailsApplicant extends Eloquent{
 
 
     //TODO : Scope Area
-
-
-
 
 } 

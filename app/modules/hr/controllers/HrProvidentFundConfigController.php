@@ -6,10 +6,14 @@ class HrProvidentFundConfigController extends \BaseController {
         $this->beforeFilter('hr', array('except' => array('index')));
     }
 
+    protected function isPostRequest()
+    {
+        return Input::server("REQUEST_METHOD") == "POST";
+    }
     public function index()
 	{
-        $data = HrProvidentFundConfig::get();
-        return View::make('hr::hr.provident_fund_config.index',compact('data'));
+        $model = HrProvidentFundConfig::get();
+        return View::make('hr::hr.provident_fund_config.index',compact('model'));
 	}
 
 	public function store()
@@ -69,10 +73,20 @@ class HrProvidentFundConfigController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
-	{
-		//
-	}
+    public function ajaxDelete()
+    {
+        $id = Input::get('id');
+        DB::beginTransaction();
+        try {
+            HrProvidentFundConfig::destroy($id);
+            DB::commit();
+            return Response::json("Successfully Deleted");
+        }
+        catch(exception $ex){
+            DB::rollback();
+            return Response::json("Can not be Deleted !");
+        }
+    }
 
 
 }
