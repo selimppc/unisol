@@ -764,7 +764,7 @@ class FeesController extends \BaseController {
     public function view_summary_student($id)
     {
         $view_summary_student = BillingStudentHead::find($id);
-        $view_details_student = BillingStudentDetail::with('relBillingApplicantHead','relBillingItem','relWaiver')
+        $view_details_student = BillingStudentDetail::with('relBillingStudentHead','relBillingItem','relWaiver')
             ->where('billing_student_head_id','=',$id)
             ->get();
         return View::make('fees::billing_summary.student.view',compact('view_summary_student','view_details_student','total'));
