@@ -76,45 +76,56 @@ class CreateFees extends Migration {
 
         //TODO :: Student's Billing Summary and Details with Tuition Fees
 
-        Schema::create('billing_summary_student', function(Blueprint $table) {
+        Schema::create('billing_student_head', function(Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('student_user_id')->nullable();
             $table->unsignedInteger('billing_schedule_id')->nullable();
             $table->unsignedInteger('payment_option_id')->nullable();
+
+            $table->decimal('tax_rate')->nullable();
+            $table->float('tax_amount')->nullable();
+            $table->decimal('discount_rate')->nullable();
+            $table->float('discount_amount')->nullable();
+
             $table->decimal('total_cost', 10);
+            $table->enum('status', array(
+                'open', 'close', 'approved', 'confirmed', 'cancel', 'balanced', 'post', 'posted', 'invoiced'
+            ));
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
             $table->engine = 'InnoDB';
         });
-        Schema::table('billing_summary_student', function($table) {
+        Schema::table('billing_student_head', function($table) {
             $table->foreign('student_user_id')->references('id')->on('user');
             $table->foreign('billing_schedule_id')->references('id')->on('billing_schedule');
         });
 
-        Schema::create('billing_details_student', function(Blueprint $table) {
+        Schema::create('billing_student_detail', function(Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('billing_summary_student_id')->nullable();
+            $table->unsignedInteger('billing_student_head_id')->nullable();
             $table->unsignedInteger('billing_item_id')->nullable();
             $table->unsignedInteger('waiver_id')->nullable();
             $table->decimal('waiver_amount', 10);
             $table->decimal('cost_per_unit', 10);
             $table->decimal('quantity', 10);
+            $table->decimal('tax_rate')->nullable();
+            $table->float('tax_amount')->nullable();
             $table->decimal('total_amount', 10);
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
             $table->engine = 'InnoDB';
         });
-        Schema::table('billing_details_student', function($table) {
-            $table->foreign('billing_summary_student_id')->references('id')->on('billing_summary_student');
+        Schema::table('billing_student_detail', function($table) {
+            $table->foreign('billing_student_head_id')->references('id')->on('billing_student_head');
             $table->foreign('billing_item_id')->references('id')->on('billing_item');
             $table->foreign('waiver_id')->references('id')->on('waiver');
         });
 
-        Schema::create('billing_tuition_details', function(Blueprint $table) {
+        Schema::create('billing_tuition_detail', function(Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('billing_summary_student_id')->nullable();
+            $table->unsignedInteger('billing_student_head_id')->nullable();
             $table->unsignedInteger('student_user_id')->nullable();
             $table->unsignedInteger('year_id')->nullable();
             $table->enum('month',array(
@@ -125,46 +136,57 @@ class CreateFees extends Migration {
             $table->timestamps();
             $table->engine = 'InnoDB';
         });
-        Schema::table('billing_tuition_details', function($table) {
-            $table->foreign('billing_summary_student_id')->references('id')->on('billing_summary_student');
+        Schema::table('billing_tuition_detail', function($table) {
+            $table->foreign('billing_student_head_id')->references('id')->on('billing_student_head');
             $table->foreign('student_user_id')->references('id')->on('user');
             $table->foreign('year_id')->references('id')->on('year');
         });
 
 
         //TODO :: Applicant's Billing Summary and Details
-        Schema::create('billing_summary_applicant', function(Blueprint $table) {
+        Schema::create('billing_applicant_head', function(Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('applicant_id')->nullable();
             $table->unsignedInteger('billing_schedule_id')->nullable();
             $table->unsignedInteger('payment_option_id')->nullable();
+
+            $table->decimal('tax_rate')->nullable();
+            $table->float('tax_amount')->nullable();
+            $table->decimal('discount_rate')->nullable();
+            $table->float('discount_amount')->nullable();
+
             $table->decimal('total_cost', 10);
+            $table->enum('status', array(
+                'open', 'close', 'approved', 'confirmed', 'cancel', 'balanced', 'post', 'posted', 'invoiced'
+            ));
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
             $table->engine = 'InnoDB';
         });
-        Schema::table('billing_summary_applicant', function($table) {
+        Schema::table('billing_applicant_head', function($table) {
             $table->foreign('applicant_id')->references('id')->on('applicant');
             $table->foreign('billing_schedule_id')->references('id')->on('billing_schedule');
         });
 
-        Schema::create('billing_details_applicant', function(Blueprint $table) {
+        Schema::create('billing_applicant_detail', function(Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('billing_summary_applicant_id')->nullable();
+            $table->unsignedInteger('billing_applicant_head_id')->nullable();
             $table->unsignedInteger('billing_item_id')->nullable();
             $table->unsignedInteger('waiver_id')->nullable();
             $table->decimal('waiver_amount', 10);
             $table->decimal('cost_per_unit', 10);
             $table->decimal('quantity', 10);
+            $table->decimal('tax_rate')->nullable();
+            $table->float('tax_amount')->nullable();
             $table->decimal('total_amount', 10);
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
             $table->engine = 'InnoDB';
         });
-        Schema::table('billing_details_applicant', function($table) {
-            $table->foreign('billing_summary_applicant_id')->references('id')->on('billing_summary_applicant');
+        Schema::table('billing_applicant_detail', function($table) {
+            $table->foreign('billing_applicant_head_id')->references('id')->on('billing_applicant_head');
             $table->foreign('billing_item_id')->references('id')->on('billing_item');
             $table->foreign('waiver_id')->references('id')->on('waiver');
         });
@@ -176,11 +198,14 @@ class CreateFees extends Migration {
         Schema::drop('payment_option');
         Schema::drop('billing_schedule');
         Schema::drop('billing_setup');
-        Schema::drop('billing_summary_student');
-        Schema::drop('billing_details_student');
-        Schema::drop('billing_tuition_details');
-        Schema::drop('billing_summary_applicant');
-        Schema::drop('billing_details_applicant');
+        Schema::drop('billing_student_head');
+        Schema::drop('billing_student_detail');
+        Schema::drop('billing_tuition_detail');
+        Schema::drop('billing_applicant_head');
+        Schema::drop('billing_applicant_detail');
+
 	}
+
+
 
 }
