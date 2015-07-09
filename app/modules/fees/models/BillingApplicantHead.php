@@ -4,18 +4,19 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class BillingSummaryStudent extends Eloquent{
+class BillingApplicantHead extends Eloquent{
 
     //TODO :: model attributes and rules and validation
-    protected $table = 'billing_summary_student';
+    protected $table = 'billing_applicant_head';
 
     protected $fillable = [
-        'student_user_id', 'billing_schedule_id', 'total_cost'
+        'applicant_id', 'billing_schedule_id', 'total_cost','payment_option_id'
     ];
     private $errors;
     private $rules = [
-        'student_user_id' => 'required|integer',
+        'applicant_id' => 'required|integer',
         'billing_schedule_id' => 'required|integer',
+        'payment_option_id' => 'required|integer',
         'total_cost' => 'numeric',
     ];
     public function validate($data)
@@ -36,18 +37,20 @@ class BillingSummaryStudent extends Eloquent{
 
     //TODO : Model Relationship
 
-    public function relUser(){
-        return $this->belongsTo('User', 'student_user_id', 'id');
+    public function relApplicant(){
+        return $this->belongsTo('Applicant', 'applicant_id', 'id');
     }
     public function relBillingSchedule(){
         return $this->belongsTo('BillingSchedule', 'billing_schedule_id', 'id');
     }
-    public function relBillingDetailsStudent(){
-        return $this->HasMany('BillingDetailsStudent','billing_summary_student_id', 'id');
-    }
     public function relPaymentOption(){
         return $this->belongsTo('PaymentOption', 'payment_option_id', 'id');
     }
+    public function relBillingDetailsApplicant(){
+        return $this->HasMany('BillingDetailsApplicant','billing_summary_applicant_id', 'id');
+    }
+
+
 
     // TODO : user info while saving data into table
     public static function boot(){
