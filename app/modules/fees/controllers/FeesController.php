@@ -608,7 +608,7 @@ class FeesController extends \BaseController {
         $schedule = ['' => 'Select schedule'] + BillingSchedule::lists('title', 'id');
         $payment_option = ['' => 'Select Payment Option'] + PaymentOption::lists('title', 'id');
         $summary_applicant = BillingSummaryApplicant::latest('id')->with('relApplicant', 'relBillingSchedule')->get();
-        return View::make('fees::billing_summary.index_applicant',compact('applicant','summary_applicant','schedule','payment_option'));
+        return View::make('fees::billing_summary.applicant.index_applicant',compact('applicant','summary_applicant','schedule','payment_option'));
     }
 
     public function save_summary_applicant()
@@ -632,8 +632,7 @@ class FeesController extends \BaseController {
         }else{
             $errors = $model->errors();
             Session::flash('errors', $errors);
-            return Redirect::back()
-                ->with('errors', 'invalid');
+            return Redirect::back()->with('errors', 'invalid');
         }
     }
 
@@ -643,7 +642,7 @@ class FeesController extends \BaseController {
         $view_details_applicant = BillingDetailsApplicant::with('relBillingSummaryApplicant','relBillingItem','relWaiver')
              ->where('billing_summary_applicant_id','=',$id)
              ->get();
-        return View::make('fees::billing_summary.view_applicant',compact('view_summary_applicant','view_details_applicant','total'));
+        return View::make('fees::billing_summary.applicant.view_applicant',compact('view_summary_applicant','view_details_applicant','total'));
     }
 
     public function edit_applicant_summary($id)
@@ -652,7 +651,7 @@ class FeesController extends \BaseController {
         $applicant = array(''=>'Select applicant') + Applicant::ApplicantList();
         $schedule = ['' => 'Select schedule'] + BillingSchedule::lists('title', 'id');
         $payment_option = ['' => 'Select Payment Option'] + PaymentOption::lists('title', 'id');
-        return View::make('fees::billing_summary.edit_applicant',compact('edit_summary','applicant','schedule','payment_option'));
+        return View::make('fees::billing_summary.applicant.edit_applicant',compact('edit_summary','applicant','schedule','payment_option'));
     }
 
     public function update_applicant_summary($id)
@@ -692,7 +691,7 @@ class FeesController extends \BaseController {
         $item = ['' => 'Select Billing Item'] + BillingItem::lists('title', 'id');
         $waiver = ['' => 'Select waiver'] + Waiver::lists('title', 'id');
 
-        return View::Make('fees::billing_summary.create_details_applicant',compact('data','item','waiver'));
+        return View::Make('fees::billing_summary.applicant.create_details_applicant',compact('data','item','waiver'));
     }
 
     public function save_billing_details_applicant()

@@ -73,7 +73,7 @@
                 </div>
                 <div class="modal-body">
                     {{Form::open(array('route' => array('summary.applicant.save')))}}
-                    @include('fees::billing_summary._form_applicant')
+                    @include('fees::billing_summary.applicant._form_applicant')
                     {{ Form::close() }}
                 </div>
             </div>
