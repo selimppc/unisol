@@ -5,7 +5,8 @@
 </style>
 
 <div class="row">
-   <div class="pvd-form">
+
+   <div class="ok-123">
         <div class="col-sm-2" style="width:12%">
             <div class='form-group'>
                {{ Form::label('employee_type', 'Employee Type') }}<br><br>
@@ -54,7 +55,7 @@
                {{ Form::text('company_contribution_100', Input::old('company_contribution_100'),['id'=>'company_contribution_100','class'=>'form-control']) }}
             </div>
         </div>
-        <p>&nbsp;</p>
+
         <p>&nbsp;</p>
         <p>&nbsp;</p>
         <div class="pull-right">
@@ -62,74 +63,72 @@
                 <input type="button" class="btn-xs btn-linkedin" id="add-pvd-config" value="+Add">
              </div>
         </div>
-        <p>&nbsp;</p>
    </div>
-
    {{---------------Update---------------------------------------------------------------------------------------------------}}
-   <div style="display: none" class="pvd-update">
-       {{--{{Form::model($model, array('route'=>['admission.public.update-applicant-profile'], 'class'=>'form-horizontal','files'=>true))}}--}}
+   <div style="display: none;" class="ok-456">
+        {{ Form::open(array('route'=>'provident-fund-config.update','method' => 'POST')) }}
+        {{--{{Form::hidden('id', $pvc_data->id)}}--}}
         <div class="col-sm-2" style="width:12%">
-           <div class='form-group'>
-              {{ Form::label('employee_type', 'Employee Type') }}<br><br>
-              <input type="text" name="type" value="Permanent" readonly style="background-color: #efefef" class="form-control">
-           </div>
+            <div class='form-group'>
+                {{ Form::label('employee_type', 'Employee Type') }}<br><br>
+                <input type="text" name="type" value="Permanent" readonly style="background-color: #efefef" class="form-control">
+            </div>
         </div>
 
         <div class="col-sm-2" style="width:13%">
-           <div class='form-group'>
-              {{ Form::label('contribution_amount', 'Contribution Amount') }}
-              {{ Form::text('contribution_amount', Input::old('contribution_amount'),['id'=>'contribution_amount','class'=>'form-control']) }}
-           </div>
+            <div class='form-group'>
+               {{ Form::label('contribution_amount', 'Contribution Amount') }}
+               {{ Form::text('contribution_amount', Input::old('company_contribution_0'),['id'=>'contribution_amount','class'=>'form-control']) }}
+            </div>
         </div>
-
         <div class="col-sm-2" style="width:14%">
             <div class='form-group'>
-              {{ Form::label('company_contribution_0', 'Company Contribution 0') }}
-              {{ Form::text('company_contribution_0', Input::old('company_contribution_0'),['id'=>'company_contribution_0','class'=>'form-control']) }}
+               {{ Form::label('company_contribution_0', 'Company Contribution 0') }}
+               {{ Form::text('company_contribution_0', Input::old('company_contribution_0'),['id'=>'company_contribution_0','class'=>'form-control']) }}
             </div>
         </div>
 
         <div class="col-sm-2" style="width:14%">
             <div class='form-group'>
-              {{ Form::label('company_contribution_25', 'Company Contribution 25') }}
-              {{ Form::text('company_contribution_25', Input::old('company_contribution_25'),['id'=>'company_contribution_25','class'=>'form-control']) }}
+               {{ Form::label('company_contribution_25', 'Company Contribution 25') }}
+               {{ Form::text('company_contribution_25', Input::old('company_contribution_25'),['id'=>'company_contribution_25','class'=>'form-control']) }}
             </div>
         </div>
 
         <div class="col-sm-2" style="width:14%">
-           <div class='form-group'>
-              {{ Form::label('company_contribution_50', 'Company Contribution 50') }}
-              {{ Form::text('company_contribution_50', Input::old('company_contribution_50'),['id'=>'company_contribution_50','class'=>'form-control']) }}
-           </div>
+            <div class='form-group'>
+               {{ Form::label('company_contribution_50', 'Company Contribution 50') }}
+               {{ Form::text('company_contribution_50', Input::old('company_contribution_50'),['id'=>'company_contribution_50','class'=>'form-control']) }}
+            </div>
         </div>
 
         <div class="col-sm-2" style="width:14%">
-           <div class='form-group'>
-              {{ Form::label('company_contribution_75', 'Company Contribution 75') }}
-              {{ Form::text('company_contribution_75', Input::old('company_contribution_25'),['id'=>'company_contribution_75','class'=>'form-control']) }}
-           </div>
+            <div class='form-group'>
+               {{ Form::label('company_contribution_75', 'Company Contribution 75') }}
+               {{ Form::text('company_contribution_75', Input::old('company_contribution_25'),['id'=>'company_contribution_75','class'=>'form-control']) }}
+            </div>
         </div>
 
         <div class="col-sm-2" style="width:14%">
-           <div class='form-group'>
-              {{ Form::label('company_contribution_100', 'Company Contribution 100') }}
-              {{ Form::text('company_contribution_100', Input::old('company_contribution_100'),['id'=>'company_contribution_100','class'=>'form-control']) }}
-           </div>
+            <div class='form-group'>
+               {{ Form::label('company_contribution_100', 'Company Contribution 100') }}
+               {{ Form::text('company_contribution_100', Input::old('company_contribution_100'),['id'=>'company_contribution_100','class'=>'form-control']) }}
+            </div>
         </div>
-        <p>&nbsp;</p>
         <p>&nbsp;</p>
         <p>&nbsp;</p>
         <div class="pull-right">
-            <div class='form-group' style="margin-right: 4px">
-               <input type="button" class="btn-xs btn-linkedin" id="add-pvd-config" value="+Add">
-            </div>
+           <div class='form-group' style="margin-right: 4px">
+              {{ Form::submit('Update', array('class'=>'pull-right btn-sm btn-info')) }}
+           </div>
         </div>
-        <p>&nbsp;</p>
+   {{ Form::close() }}
    </div>
-        {{--{{ Form::close() }}--}}
+
    {{--------------------Update:End--------------------------------------------------------------------------------------------------}}
 
    {{-------------------- HR Provident Fund Config List --------------------------------------------------------------------------------}}
+   <br><br>
     <div class="table-hide">
         <p>
             <h5 style="text-align: center;color: royalblue"><b>HR Provident Fund Config List</b></h5>
@@ -165,7 +164,7 @@
                        <td>{{round($values->company_contribution_75, 0)}}</td>
                        <td>{{round($values->company_contribution_100, 0)}}</td>
                        <td>
-                           <a class="btn btn-xs btn-default edit" href=""  style="font-size: 12px;color: lightseagreen"><i class="fa fa-edit"></i></a>
+                           <a class="btn btn-xs btn-default edit" href="{{Route('provident-fund-config.update',$values->id)}}" id="data-edit" style="font-size: 12px;color: lightseagreen"><i class="fa fa-edit"></i></a>
                            <a data-href="{{ $values->id }}" class="btn btn-default btn-xs delete-dt-2" id="delete-dt-2{{ $values->id }}" ><i class="fa fa-trash-o" style="font-size: 12px;color: lightcoral"></i></a>
                        </td>
                     </tr>
@@ -212,22 +211,10 @@ $(function(){
                       "<td></td>"+
                   " </tr>");
 
-//                 $arrayRnc.push($salary_transctn_id);
-
-                 //flush the input fields
-                 /*$("#salary_transaction_detail_amount").val("");
-                 $("#salary_transaction_detail_percentage").val("");
-                 $("#salary_transaction_detail_type").val("");
-                 $("#salary_transaction_detail_over_time").val("");
-                 $("#salary_transaction_detail_bonus").val("");
-                 $("#salary_transaction_detail_allowance").val("");
-                 $("#salary_transaction_detail_deduction").val("");*/
-
  	 });
 
     //delete
      $('.delete-dt-2').click(function(e) {
-//     alert('ok');
         e.preventDefault();
         var $btn = $(this);
         $.ajax({
@@ -242,24 +229,15 @@ $(function(){
             }
         });
      });
-
-     //edit
-     /*$('.edit').click(function() {
-         $(".pvd-form").hide();
-
-       $(".pvd-update").show();
-        return false;
-     });*/
-
 });
 
 </script>
 
 <script>
-$( document ).ready(function() {
+$(function(){
      $('.edit').click(function() {
-       $(".pvd-form").hide();
-       $(".pvd-update").show();
+       $(".ok-123").hide();
+       $(".ok-456").show();
         return false;
      });
 });
