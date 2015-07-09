@@ -104,7 +104,7 @@ return array(
     'BillingSetup' => $baseDir . '/app/modules/fees/models/BillingSetup.php',
     'BillingSummaryApplicant' => $baseDir . '/app/modules/fees/models/BillingSummaryApplicant.php',
     'BillingSummaryStudent' => $baseDir . '/app/modules/fees/models/BillingSummaryStudent.php',
-    'BillingTuitionDetails' => $baseDir . '/app/modules/fees/models/BillingTuitionDetails.php',
+    'BillingTuitionDetails' => $baseDir . '/app/modules/fees/models/BillingTuitionDetail.php',
     'BillingVApplicantHistory' => $baseDir . '/app/modules/fees/models/BillingVApplicantHistory.php',
     'BillingVStudentHistory' => $baseDir . '/app/modules/fees/models/BillingVStudentHistory.php',
     'BoardUniversity' => $baseDir . '/app/modules/common/models/BoardUniversity.php',

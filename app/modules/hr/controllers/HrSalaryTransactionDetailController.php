@@ -20,14 +20,49 @@ class HrSalaryTransactionDetailController extends \BaseController {
             ->where('hr_salary_transaction_id', $s_t_id)
             ->get();
 
+        $sal_allwnce_amount = DB::table('hr_salary_allowance')
+            ->join('hr_salary_transaction_detail', function($join)
+            {
+                $join->on('hr_salary_allowance.id', '=', 'hr_salary_transaction_detail.hr_salary_allowance_id');
+            })
+            ->select('hr_salary_allowance.amount as all_amount')
+            ->first()->all_amount;
+
+        #print_r($sal_allwnce_amount);exit;
+
         $salary_allowance_list = array(''=>'Select any one') + HrSalaryAllowance::lists('title','id');
         $salary_deduction_list = array(''=>'Select any one') + HrSalaryDeduction::lists('title','id');
         $over_time_list = array(''=>'Select any one') + HrOverTime::lists('sign_in','id');
         $bonus_list = array(''=>'Select any one') + HrBonus::lists('title','id');
 
-        return View::make('hr::hr.salary_transaction_detail.index', compact('model','pageTitle','loan_head_id',
-            'salary_allowance_list','salary_deduction_list','over_time_list','bonus_list','s_t_id'));
+        return View::make('hr::hr.salary_transaction_detail.index', compact('model','salary_allowance_list',
+            'salary_deduction_list','over_time_list','bonus_list','s_t_id','sal_allwnce_amount'));
     }
+
+//    public function create_salary_transaction_detail()
+//    {
+//        $model = HrSalaryTransactionDetail::with('relHrOverTime','relHrBonus',
+//            'relHrSalaryAllowance','relHrSalaryDeduction')->get();
+//
+//
+////        $allowance_amount = DB::table('hr_salary_allowance')
+////            ->join('hr_salary_transaction_detail', function($join)
+////            {
+////                $join->on('hr_salary_allowance.id', '=', 'hr_salary_transaction_detail.hr_salary_allowance_id');
+////            })
+////            ->select('hr_salary_allowance.amount as all_amount')
+////            ->get();
+////
+////        #print_r($allowance_amount);exit;
+//
+//        $salary_allowance_list = array(''=>'Select any one') + HrSalaryAllowance::lists('title','id');
+//        $salary_deduction_list = array(''=>'Select any one') + HrSalaryDeduction::lists('title','id');
+//        $over_time_list = array(''=>'Select any one') + HrOverTime::lists('sign_in','id');
+//        $bonus_list = array(''=>'Select any one') + HrBonus::lists('title','id');
+//
+//        return View::make('hr::hr.salary_transaction_detail._all_in_one_form', compact('model','salary_allowance_list',
+//            'salary_deduction_list','over_time_list','bonus_list','s_t_id'));
+//    }
 
     public function store_hr_salary_transaction_detail()
     {

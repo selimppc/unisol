@@ -4,10 +4,10 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class BillingTuitionDetails extends Eloquent{
+class BillingTuitionDetail extends Eloquent{
 
     //TODO :: model attributes and rules and validation
-    protected $table = 'billing_tuition_details';
+    protected $table = 'billing_tuition_detail';
 
     protected $fillable = [
         'billing_summary_student_id', 'student_user_id', 'year_id', 'month',
@@ -37,8 +37,8 @@ class BillingTuitionDetails extends Eloquent{
 
     //TODO : Model Relationship
 
-    public function relBillingSummaryStudent(){
-        return $this->belongsTo('BillingSummaryStudent', 'billing_summary_student_id', 'id');
+    public function relBillingStudentHead(){
+        return $this->belongsTo('BillingStudentHead', 'billing_student_head_id', 'id');
     }
     public function relUser(){
         return $this->belongsTo('User', 'student_user_id', 'id');

@@ -4,7 +4,7 @@
 </div>
 
 <div class="myForm" style="padding: 2%; width: 99%;">
-    <div class="modal-body " >
+    <div class="modal-body">
         {{ Form::open(['route'=>'provident-fund-config.store']) }}
             @include('hr::hr.provident_fund_config._form_details')
         {{ Form::close() }}
