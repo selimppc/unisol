@@ -640,7 +640,7 @@ class FeesController extends \BaseController {
     {
         $view_summary_applicant = BillingApplicantHead::find($id);
         $view_details_applicant = BillingApplicantDetail::with('relBillingApplicantHead','relBillingItem','relWaiver')
-             ->where('billing_summary_applicant_id','=',$id)
+             ->where('billing_applicant_head_id','=',$id)
              ->get();
         return View::make('fees::billing_summary.applicant.view_applicant',compact('view_summary_applicant','view_details_applicant','total'));
     }
