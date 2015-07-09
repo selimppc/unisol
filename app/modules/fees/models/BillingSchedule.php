@@ -35,11 +35,11 @@ class BillingSchedule extends Eloquent{
 
     //TODO : Model Relationship
 
-    public function relBillingSummaryStudent(){
-        return $this->HasMany('BillingSummaryStudent');
+    public function relBillingStudentHead(){
+        return $this->HasMany('BillingStudentHead');
     }
-    public function relBillingSummaryApplicant(){
-        return $this->HasMany('AdmQuestionItems');
+    public function relBillingApplicantHead(){
+        return $this->HasMany('BillingApplicantHead');
     }
 
 

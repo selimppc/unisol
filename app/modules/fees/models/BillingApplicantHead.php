@@ -10,7 +10,9 @@ class BillingApplicantHead extends Eloquent{
     protected $table = 'billing_applicant_head';
 
     protected $fillable = [
-        'applicant_id', 'billing_schedule_id', 'total_cost','payment_option_id'
+        'applicant_id', 'billing_schedule_id', 'payment_option_id',
+        'tax_rate', 'tax_amount', 'discount_rate', 'discount_amount', 'total_cost',
+        'status'
     ];
     private $errors;
     private $rules = [
@@ -46,8 +48,8 @@ class BillingApplicantHead extends Eloquent{
     public function relPaymentOption(){
         return $this->belongsTo('PaymentOption', 'payment_option_id', 'id');
     }
-    public function relBillingDetailsApplicant(){
-        return $this->HasMany('BillingDetailsApplicant','billing_summary_applicant_id', 'id');
+    public function relBillingApplicantDetail(){
+        return $this->HasMany('BillingApplicantDetail','billing_applicant_head_id', 'id');
     }
 
 
