@@ -22,8 +22,8 @@ $(".edit-pvd-config").click(function(event){
           $('#3').html($data_3);
           $('#4').html($data_4);
           $('#5').html($data_5);*/
-//          $('#new-value-123').val($data_1);
-//          $('#new-value-132').val($data_2);
+//                   $('#new-value-123').val($data_1);
+//                   $('#new-value-132').val($data_2);
         $('.view').html("<tr> " +"" +
          "<td hidden='hidden'><input name='' value='"+ $id +"'> </td>"+
          "<td ><input name='' value='"+ $data_1 +"'> </td>" +
@@ -41,7 +41,7 @@ $(".edit-pvd-config").click(function(event){
 
    <div class="ok-123" id="show_data">
         <div class="col-sm-2" style="width:12%">
-
+        {{Form::hidden('id',Input::old('id'))}}
             <div class='form-group'>
                {{ Form::label('employee_type', 'Employee Type') }}<br><br>
                <input type="text" name="employee_type" value="Permanent" readonly style="background-color: #efefef" class="form-control">
@@ -101,7 +101,7 @@ $(".edit-pvd-config").click(function(event){
 
    {{---------------Update---------------------------------------------------------------------------------------------------}}
    {{ Form::open(array('route'=>'update','method' => 'POST')) }}
-    
+    {{--{{ Form::open(array('url' => 'hr/update')) }}--}}
    <div style="display: none;" class="ok-456">
 
         <table>
@@ -128,7 +128,7 @@ $(".edit-pvd-config").click(function(event){
 
    </div>
 {{ Form::close() }}
-   {{--------------------  Update:End  --------------------------------------------------------------------------------------------------}}
+   {{--------------------Update:End--------------------------------------------------------------------------------------------------}}
 
    {{-------------------- HR Provident Fund Config List --------------------------------------------------------------------------------}}
    <br><br>
@@ -160,7 +160,7 @@ $(".edit-pvd-config").click(function(event){
               <?php $counter = 0;?>
                @foreach($model as $values)
                    <tr>
-                       <td class="config-id" hidden="hidden">{{$values->id}}></td>
+                       <td class="config-id" hidden="hidden">{{$values->id }}></td>
                        <td class="et">{{ucfirst($values->employee_type)}}</td>
                        <td class="ca">{{$values->contribution_amount}}</td>
                        <td class="cc_0">{{round($values->company_contribution_0, 0)}}</td>
@@ -169,8 +169,8 @@ $(".edit-pvd-config").click(function(event){
                        <td class="cc_75">{{round($values->company_contribution_75, 0)}}</td>
                        <td class="cc_100">{{round($values->company_contribution_100, 0)}}</td>
                        <td class="config-id">
-                          <a class="btn btn-xs btn-default edit edit-pvd-config" href="{{$values->id}}" style="font-size: 12px;color: lightseagreen"><i class="fa fa-edit"></i></a>
-                          <a data-href="{{ $values->id }}" class="btn btn-default btn-xs delete-dt-2" id="delete-dt-2{{ $values->id }}" ><i class="fa fa-trash-o" style="font-size: 12px;color: lightcoral"></i></a>
+                           <a class="btn btn-xs btn-default edit edit-pvd-config" href="{{$values->id}}" style="font-size: 12px;color: lightseagreen"><i class="fa fa-edit"></i></a>
+                           <a data-href="{{ $values->id }}" class="btn btn-default btn-xs delete-dt-2" id="delete-dt-2{{ $values->id }}" ><i class="fa fa-trash-o" style="font-size: 12px;color: lightcoral"></i></a>
                        </td>
                    </tr>
                    <?php $counter++;?>
