@@ -701,7 +701,30 @@ class FeesController extends \BaseController {
 
     public function save_billing_details_applicant()
     {
-          for($i = 0; $i < count(Input::get('billing_summary_applicant_id')) ; $i++){
+        //echo('ok');exit;
+      /*  $data = Input::all();
+        $model = new BillingApplicantDetail();
+        if($model->validate($data))
+        {
+            DB::beginTransaction();
+            try {
+                if ($model->create($data))
+                    DB::commit();
+                Session::flash('message', "Billing summary applicant Successfully Added");
+            }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', "Billing summary applicant Not Added.Invalid Request!");
+            }
+            return Redirect::back();
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()->with('errors', 'invalid');
+        }*/
+
+        for($i = 0; $i < count(Input::get('billing_summary_applicant_id')) ; $i++){
             $dt[] = [
                 'billing_item_id' => Input::get('billing_item_id'),
                 'waiver_id'=> Input::get('waiver_id')[$i],
@@ -730,7 +753,7 @@ class FeesController extends \BaseController {
 
     public function applicant_to_invoice( $billing_applicant_head_id )
     {
-        $check = BillingApplicantHead::where('billing_applicant_head_id', $billing_applicant_head_id)->exists();
+        $check = BillingApplicantDetail::where('billing_applicant_head_id', $billing_applicant_head_id)->exists();
         if($check){
             //Call Store Procedure
             DB::select('call sp_fees_applicant_to_invoice(?, ?)', array($billing_applicant_head_id, Auth::user()->get()->id ) );
@@ -740,7 +763,6 @@ class FeesController extends \BaseController {
         }
         return Redirect::back();
     }
-
 
 
 

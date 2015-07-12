@@ -121,18 +121,17 @@
             $total_amount = $("#total_amount").val();
 
             $('#item').append("<tr> " +
-            "<td><input name='billing_item_id' value='"+ $billing_item_id +"' >"+listItemTitle+"</td>" +
-            "<td><input name='waiver_id' value='"+ $waiver_id +"' readonly>"+waiverTitle+"</td>" +
-            "<td><input name='waiver_amount' value='"+ $waiver_amount +"' readonly> </td>" +
-            "<td><input name='cost_per_unit' value='"+ $cost_per_unit +"'readonly > </td>" +
-            "<td><input name='quantity' value='"+ $quantity +"' ></td>" +
-            "<td><input name='total_amount' value='"+ $total_amount +"' ></td>" +
+            "<td><input type='text' name='billing_item_id[]' value='"+ $billing_item_id +"' >'+listItemTitle+'</td>" +
+            "<td><input type='text' name='waiver_id[]' value='"+ $waiver_id +"' readonly>'+waiverTitle+'</td>" +
+            "<td><input name='waiver_amount[]' value='"+ $waiver_amount +"'> </td>" +
+            "<td><input name='cost_per_unit[]' value='"+ $cost_per_unit +"' > </td>" +
+            "<td><input name='quantity[]' value='"+ $quantity +"' ></td>" +
+            "<td><input name='total_amount[]' value='"+ $total_amount +"' ></td>" +
             "<td></td>"+
             "</tr>");
 
         });
     });
-
 
 </script>
 

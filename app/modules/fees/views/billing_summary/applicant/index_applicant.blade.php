@@ -29,7 +29,7 @@
                                     <th>Total Cost</th>
                                     <th>Payment Option</th>
                                     <th>Action</th>
-                                    <th></th>
+                                    <th>Invoice</th>
                                 </tr>
                                 </thead>
                                 <tbody>

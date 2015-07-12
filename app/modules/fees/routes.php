@@ -160,7 +160,7 @@
          'as' => 'summary.applicant.update',
          'uses' => 'FeesController@update_applicant_summary'
      ]);
-     Route::any('create-invoice-applicant/{billing_applicant_head_id}', [
+     Route::any('create-invoice-applicant/{id}', [
          'as' => 'create-invoice-applicant',
          'uses' => 'FeesController@applicant_to_invoice'
      ]);
