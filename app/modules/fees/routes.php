@@ -138,7 +138,7 @@
      ]);
 
 
-     /**********Billing Summary Applicant Start*************/
+     /**********Billing Applicant head Start*************/
 
      Route::any('billing/summary/applicant', [
          'as' => 'billing.summary.applicant',
@@ -160,7 +160,10 @@
          'as' => 'summary.applicant.update',
          'uses' => 'FeesController@update_applicant_summary'
      ]);
-
+     Route::any('create-invoice-applicant/{billing_applicant_head_id}', [
+         'as' => 'create-invoice-applicant',
+         'uses' => 'FeesController@applicant_to_invoice'
+     ]);
    /*************Billing Details Applicant*****************/
 
      Route::any('billing-details-applicant/{id}', [
@@ -171,6 +174,7 @@
          'as' => 'billing.details.applicant.save',
          'uses' => 'FeesController@save_billing_details_applicant'
      ]);
+
 
 
      /**********Billing Summary Student Start**************/

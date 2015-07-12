@@ -29,6 +29,7 @@
                                     <th>Total Cost</th>
                                     <th>Payment Option</th>
                                     <th>Action</th>
+                                    <th></th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -50,6 +51,9 @@
                                             <a href="{{ URL::route('summary.applicant.view',['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" data-toggle="tooltip" data-placement="bottom" title="View"><i class="fa fa-eye text-green"></i></a>
 
                                             <a href="{{ URL::route('summary.applicant.edit',['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#editModal" data-toggle="tooltip" data-placement="bottom" title="Edit"><i class="fa fa-pencil-square-o text-blue"></i></a>
+                                        </td>
+                                        <td>
+                                            <a href="{{ URL::route('create-invoice-applicant',['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="tooltip" data-placement="bottom" title="Create Invoice">Create Invoice</a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -98,7 +102,7 @@
         </div>
     </div>
 
-    {{-- Modal for create billing details --}}
+   {{--  Modal for create billing details--}}
     <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="showingModal">
         <div class="modal-dialog modal_ex_lg">
             <div class="modal-content">
@@ -107,9 +111,4 @@
         </div>
     </div>
 
-@stop
-@section('script_section')
-    <script>
-
-    </script>
 @stop
