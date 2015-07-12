@@ -41,7 +41,7 @@ $(".edit-pvd-config").click(function(event){
 
    <div class="ok-123" id="show_data">
         <div class="col-sm-2" style="width:12%">
-        {{Form::hidden('id',Input::old('id'))}}
+
             <div class='form-group'>
                {{ Form::label('employee_type', 'Employee Type') }}<br><br>
                <input type="text" name="employee_type" value="Permanent" readonly style="background-color: #efefef" class="form-control">
@@ -101,7 +101,7 @@ $(".edit-pvd-config").click(function(event){
 
    {{---------------Update---------------------------------------------------------------------------------------------------}}
    {{ Form::open(array('route'=>'update','method' => 'POST')) }}
-    {{--{{ Form::open(array('url' => 'hr/update')) }}--}}
+    
    <div style="display: none;" class="ok-456">
 
         <table>
