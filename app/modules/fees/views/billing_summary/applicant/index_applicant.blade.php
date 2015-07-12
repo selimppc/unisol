@@ -27,9 +27,9 @@
                                     <th>Applicant Id</th>
                                     <th>Schedule</th>
                                     <th>Total Cost</th>
-                                    <th>Payment Option</th>
+                                    <th>Status</th>
                                     <th>Action</th>
-                                    <th>Invoice</th>
+                                    <th>Confirm</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -46,14 +46,17 @@
 
                                         <td>{{isset($value->total_cost)?$value->total_cost:''}}</td>
 
-                                        <td>{{isset($value->relPaymentOption->title)?$value->relPaymentOption->title:''}}</td>
+                                        <td>{{isset($value->status)?$value->status:''}}</td>
                                         <td>
                                             <a href="{{ URL::route('summary.applicant.view',['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" data-toggle="tooltip" data-placement="bottom" title="View"><i class="fa fa-eye text-green"></i></a>
 
                                             <a href="{{ URL::route('summary.applicant.edit',['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#editModal" data-toggle="tooltip" data-placement="bottom" title="Edit"><i class="fa fa-pencil-square-o text-blue"></i></a>
+
                                         </td>
                                         <td>
-                                            <a href="{{ URL::route('create-invoice-applicant',['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="tooltip" data-placement="bottom" title="Create Invoice">Create Invoice</a>
+                                         {{--   <a href="{{ URL::route('create-invoice-applicant',['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="tooltip" data-placement="bottom" title="Create Invoice"><i class="fa fa-plus-circle text-red"></i> Create Invoice</a>--}}
+
+                                            <a href="#" class="btn btn-xs btn-default" data-toggle="tooltip" data-placement="bottom" title="Confirm Billing Details"><i class="fa fa-caret-square-o-down text-blue"></i> Confirm</a>
                                         </td>
                                     </tr>
                                 @endforeach
