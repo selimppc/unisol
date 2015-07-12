@@ -1,11 +1,11 @@
 <ul class="sidebar-menu">
     <li class="active">
-        <a href="/user/applicant-dashboard">
+        <a href="#">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
         </a>
     </li>
     <li>
-        <a href="/applicant/details">
+        <a href="#">
             <i class="fa fa-dashboard"></i> <span>Details</span>
         </a>
     </li>

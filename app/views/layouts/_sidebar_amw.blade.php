@@ -1,6 +1,6 @@
 <ul class="sidebar-menu">
     <li>
-        <a href="/admission">
+        <a href="{{URL::to('user/amw-dashboard')}}">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
         </a>
     </li>
