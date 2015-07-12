@@ -4,7 +4,7 @@
 </div>
 <div class="modal-body">
     <div style="padding: 10px;">
-        {{ Form::hidden('billing_summary_applicant_id', $data, ['class'=>'form-control'])}}
+        {{ Form::hidden('billing_applicant_head_id', $billing_head_id, ['class'=>'form-control'])}}
         <div class="col-sm-3">
             <div class="form-group">
                 {{ Form::label('billing_item_id', 'Item') }}
@@ -109,8 +109,9 @@
     $(function(){
 
         /*   $tableItemCounter = 0; //To stop additem if exist*/
-        $("#add_billing_applicant_detail").click(function(event){
+            $("#add_billing_applicant_detail").click(function(event){
 
+            var $billing_head_id = "<?php echo $billing_head_id; ?>";
             $billing_item_id = $("#billing_item_id").val();
             var listItemTitle = $( ".billing_item_id option:selected" ).text();
             $waiver_id = $("#waiver_id").val();
@@ -121,7 +122,7 @@
             $total_amount = $("#total_amount").val();
 
             $('#item').append("<tr> " +
-            "<td><input type='text' name='billing_item_id[]' value='"+ $billing_item_id +"' >'+listItemTitle+'</td>" +
+            "<td><input type='hidden' name='billing_applicant_head_id[]' value='"+ $billing_head_id +"' ><input type='text' name='billing_item_id[]' value='"+ $billing_item_id +"' >'+listItemTitle+'</td>" +
             "<td><input type='text' name='waiver_id[]' value='"+ $waiver_id +"' readonly>'+waiverTitle+'</td>" +
             "<td><input name='waiver_amount[]' value='"+ $waiver_amount +"'> </td>" +
             "<td><input name='cost_per_unit[]' value='"+ $cost_per_unit +"' > </td>" +
@@ -133,7 +134,6 @@
         });
     });
 
-    
 </script>
 
 

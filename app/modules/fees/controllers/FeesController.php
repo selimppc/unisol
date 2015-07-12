@@ -685,7 +685,7 @@ class FeesController extends \BaseController {
 
     public function create_billing_details_applicant($id)
     {
-        $data = BillingApplicantHead::with('relApplicant','relBillingSchedule','relPaymentOption')
+        $billing_head_id = BillingApplicantHead::with('relApplicant','relBillingSchedule','relPaymentOption')
             ->where('id','=',$id)
             ->first()->id;
 
@@ -696,38 +696,17 @@ class FeesController extends \BaseController {
         $item = ['' => 'Select Billing Item'] + BillingItem::lists('title', 'id');
         $waiver = ['' => 'Select waiver'] + Waiver::lists('title', 'id');
 
-        return View::Make('fees::billing_summary.applicant.create_details_applicant',compact('data','item','waiver','billing_details_data'));
+        return View::Make('fees::billing_summary.applicant.create_details_applicant',compact('billing_head_id','item','waiver','billing_details_data'));
     }
 
     public function save_billing_details_applicant()
     {
-        //echo('ok');exit;
-      /*  $data = Input::all();
-        $model = new BillingApplicantDetail();
-        if($model->validate($data))
-        {
-            DB::beginTransaction();
-            try {
-                if ($model->create($data))
-                    DB::commit();
-                Session::flash('message', "Billing summary applicant Successfully Added");
-            }
-            catch ( Exception $e ){
-                //If there are any exceptions, rollback the transaction
-                DB::rollback();
-                Session::flash('danger', "Billing summary applicant Not Added.Invalid Request!");
-            }
-            return Redirect::back();
-        }else{
-            $errors = $model->errors();
-            Session::flash('errors', $errors);
-            return Redirect::back()->with('errors', 'invalid');
-        }*/
-
-
-        for($i = 0; $i < count(Input::get('billing_summary_applicant_id')) ; $i++){
-            $dt[] = [
-                'billing_item_id' => Input::get('billing_item_id'),
+        $data = Input::all();
+        $counter = count(Input::get('billing_item_id'));
+        for($i = 0; $i < $counter ; $i++){
+            $dt []= [
+                'billing_applicant_head_id' => Input::get('billing_applicant_head_id')[$i],
+                'billing_item_id' => Input::get('billing_item_id')[$i],
                 'waiver_id'=> Input::get('waiver_id')[$i],
                 'waiver_amount'=> Input::get('waiver_amount')[$i],
                 'cost_per_unit'=> Input::get('cost_per_unit')[$i],
@@ -736,6 +715,7 @@ class FeesController extends \BaseController {
             ];
 
         }
+      //  print_r($dt);exit;
         $model = new BillingApplicantDetail();
         DB::beginTransaction();
         try{
@@ -745,6 +725,7 @@ class FeesController extends \BaseController {
             DB::commit();
             Session::flash('message', 'Success !');
         }catch ( Exception $e ){
+           // print_r($e->getMessage());exit;
             //If there are any exceptions, rollback the transaction`
             DB::rollback();
             Session::flash('danger', 'Failed !');
