@@ -8,40 +8,40 @@
         <div class="col-sm-3">
             <div class="form-group">
                 {{ Form::label('billing_item_id', 'Item') }}
-                {{ Form::select('billing_item_id', $item, Input::old('billing_item_id'), ['class' => 'form-control','required'=>'required']) }}
+                {{ Form::select('billing_item_id', $item, Input::old('billing_item_id'), ['class' => 'form-control','id'=>'billing_item_id','required'=>'required']) }}
             </div>
         </div>
         <div class="col-sm-2">
             <div class="form-group">
                 {{ Form::label('waiver_id', 'Waiver') }}
-                {{ Form::select('waiver_id', $waiver, Input::old('waiver_id'), ['class' => 'form-control','required'=>'required']) }}
+                {{ Form::select('waiver_id', $waiver, Input::old('waiver_id'), ['class' => 'form-control','id'=>'waiver_id','required'=>'required']) }}
             </div>
         </div>
         <div class="col-sm-2">
             <div class='form-group'>
                 <div>{{ Form::label('waiver_amount', 'Waiver Amount') }}</div>
-                <div>{{ Form::text('waiver_amount', Input::old('waiver_amount'),['class'=>'form-control','required'=>'required']) }}
+                <div>{{ Form::text('waiver_amount', Input::old('waiver_amount'),['class'=>'form-control','id'=>'waiver_amount','required'=>'required']) }}
                 </div>
             </div>
         </div>
         <div class="col-sm-2">
             <div class='form-group'>
                 <div>{{ Form::label('cost_per_unit', 'Cost Per Unit') }}</div>
-                <div>{{ Form::text('cost_per_unit', Input::old('cost_per_unit'),['class'=>'form-control','required'=>'required']) }}
+                <div>{{ Form::text('cost_per_unit', Input::old('cost_per_unit'),['class'=>'form-control','id'=>'cost_per_unit','required'=>'required']) }}
                 </div>
             </div>
         </div>
         <div class="col-sm-1">
             <div class='form-group'>
                 <div>{{ Form::label('quantity', 'Quentity') }}</div>
-                <div>{{ Form::text('quantity', Input::old('quantity'),['class'=>'form-control','required'=>'required']) }}
+                <div>{{ Form::text('quantity', Input::old('quantity'),['class'=>'form-control','id'=>'quantity','required'=>'required']) }}
                 </div>
             </div>
         </div>
         <div class="col-sm-2">
             <div class='form-group'>
                 <div>{{ Form::label('total_amount', 'Total Amount') }}</div>
-                <div>{{ Form::text('total_amount', Input::old('total_amount'),['class'=>'form-control','required'=>'required']) }}
+                <div>{{ Form::text('total_amount', Input::old('total_amount'),['class'=>'form-control','id'=>'total_amount','required'=>'required']) }}
                 </div>
             </div>
         </div>
@@ -111,29 +111,31 @@
         /*   $tableItemCounter = 0; //To stop additem if exist*/
             $("#add_billing_applicant_detail").click(function(event){
 
-            var $billing_head_id = "<?php echo $billing_head_id; ?>";
-            $billing_item_id = $("#billing_item_id").val();
-            var listItemTitle = $( ".billing_item_id option:selected" ).text();
-            $waiver_id = $("#waiver_id").val();
-            var waiverTitle = $( ".waiver_id option:selected" ).text();
-            $waiver_amount = $("#waiver_amount").val();
-            $cost_per_unit = $("#cost_per_unit").val();
-            $quantity= $("#quantity").val();
-            $total_amount = $("#total_amount").val();
+                var $billing_head_id = "<?php echo $billing_head_id; ?>";
+                $billing_item_id = $("#billing_item_id").val();
+               // alert($billing_item_id);
+                var listItemTitle = $(" #billing_item_id option:selected ").text();
+               //alert(listItemTitle);
+                $waiver_id = $("#waiver_id").val();
+                var waiverTitle = $( " #waiver_id option:selected " ).text();
+               // alert(waiverTitle);
+                $waiver_amount = $("#waiver_amount").val();
+                $cost_per_unit = $("#cost_per_unit").val();
+                $quantity= $("#quantity").val();
+                $total_amount = $("#total_amount").val();
 
-            $('#item').append("<tr> " +
-            "<td><input type='hidden' name='billing_applicant_head_id[]' value='"+ $billing_head_id +"' ><input type='text' name='billing_item_id[]' value='"+ $billing_item_id +"' >'+listItemTitle+'</td>" +
-            "<td><input type='text' name='waiver_id[]' value='"+ $waiver_id +"' readonly>'+waiverTitle+'</td>" +
-            "<td><input name='waiver_amount[]' value='"+ $waiver_amount +"'> </td>" +
-            "<td><input name='cost_per_unit[]' value='"+ $cost_per_unit +"' > </td>" +
-            "<td><input name='quantity[]' value='"+ $quantity +"' ></td>" +
-            "<td><input name='total_amount[]' value='"+ $total_amount +"' ></td>" +
-            "<td></td>"+
-            "</tr>");
+                $('#item').append("<tr> " +
+                "<td><input type='hidden' name='billing_applicant_head_id[]' value='"+ $billing_head_id +"' ><input type='hidden' name='billing_item_id[]' value='"+ $billing_item_id +"' ><input type='text' value='"+ listItemTitle +"' ></td>" +
+                "<td><input type='hidden' name='waiver_id[]' value='"+ $waiver_id +"' readonly>" +"<input type='text' value='"+ waiverTitle +"' readonly></td>" +
+                "<td><input name='waiver_amount[]' value='"+ $waiver_amount +"'> </td>" +
+                "<td><input name='cost_per_unit[]' value='"+ $cost_per_unit +"' > </td>" +
+                "<td><input name='quantity[]' value='"+ $quantity +"' ></td>" +
+                "<td><input name='total_amount[]' value='"+ $total_amount +"' ></td>" +
+                "<td></td>"+
+                "</tr>");
 
         });
     });
-
 </script>
 
 
