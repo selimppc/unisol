@@ -724,6 +724,7 @@ class FeesController extends \BaseController {
             return Redirect::back()->with('errors', 'invalid');
         }*/
 
+
         for($i = 0; $i < count(Input::get('billing_summary_applicant_id')) ; $i++){
             $dt[] = [
                 'billing_item_id' => Input::get('billing_item_id'),
