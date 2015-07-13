@@ -50,7 +50,7 @@
                     <td>{{ $values->date }}</td>
                     <td>{{ $values->relYear->title }}</td>
                     <td>{{ ucfirst($values->period) }}</td>
-                    <td>{{ $values->total_amount }}</td>
+                    <td>{{ round($values->total_amount,2) }}</td>
                     <td>{{ ucfirst($values->status) }}</td>
                     <td>
                         <a href="{{ URL::route('salary_transaction.show', ['s_t_id'=>$values->id ])  }}" class="btn btn-default btn-xs" title="Manage Applicant" data-toggle="modal" data-target="#modal-pc"><i style="color: #149bdf" class="fa fa-eye"></i></a>

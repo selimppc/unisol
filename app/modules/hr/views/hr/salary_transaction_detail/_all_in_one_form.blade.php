@@ -98,6 +98,7 @@
         <th>Salary Deduction</th>
         <th>Over Time</th>
         <th>Bonus</th>
+        <th>Percentage(%)</th>
         <th>Amount</th>
         <th>Action</th>
     </thead>
@@ -114,7 +115,8 @@
                <td>{{ isset($values->relHrSalaryDeduction->title) ? (ucfirst($values->relHrSalaryDeduction->title)) : "" }}</td>
                <td>{{ isset($values->relHrOverTime->sign_in) ? $values->relHrOverTime->sign_in : "" }}</td>
                <td>{{ isset($values->relHrBonus->title) ? (ucfirst($values->relHrBonus->title)) : "" }}</td>
-               <td>{{ isset($values->amount) ? $values->amount : ""}}</td>
+               <td>{{ isset($values->percentage) ? round($values->percentage) : ""}}</td>
+               <td>{{ isset($values->amount) ? round($values->amount,2) : ""}}</td>
                <td>
                    <a data-href="{{ $values->id }}" class="btn btn-default btn-sm delete-dt-2" ><i class="fa fa-trash-o" style="font-size: 15px;color: red"></i></a>
                </td>
@@ -261,8 +263,16 @@ $(function(){
 
      // selection change with form
      $('.std_percentage').change(function(){
+           var a = $('.std_percentage').val();
+           var b = document.getElementById("sal-allowance").value;
+
+           var amount = document.getElementById('salary_transaction_detail_amount');
+           var myResult = (a*b)/100;
+           amount.value = myResult;
+
            $('.std_amount').prop('disabled', true);
      });
+
 
      $('.std_amount').change(function(){
            $('.std_percentage').prop('disabled', true);
