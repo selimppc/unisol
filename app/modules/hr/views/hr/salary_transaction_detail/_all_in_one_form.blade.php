@@ -4,18 +4,50 @@
 </style>
 
 <div class="row">
-    <div class='form-group'>
-       {{ Form::hidden('hr_salary_transaction_id', $s_t_id ,Input::old('hr_salary_transaction_id')) }}
-    </div>
 
-     <div class='form-group'>
-           {{ Form::text('salaryAllowanceAmount', $sal_allwnce_amount ,Input::old('salaryAllowanceAmount')) }}
-     </div>
+ <h1>Drop Down</h1>
+  {{--{{ Form::open(array('url'=>'dd/dropdown/data', 'class'=>'form-signin')) }}--}}
+
+  {{ Form::select('id', ['Select user'] + HrSalaryAllowance::lists('title','id'), Input::old(''), ['id'=>'sal_all', 'class'=>'form-control'] )}}
+
+  <br>
+  <div id="loader" style="display:none;">
+      <img src="img/loading.gif" alt="broken" width="100"/>
+  </div>
+
+  <select id="some-thing" name="some_thing" class="form-control">
+      <option>Please choose one</option>
+  </select>
+{{--{{ Form::close() }}--}}
+
+
+    <div class="row" style="padding-bottom: 10px ">
+         <div class='form-group '>
+             {{ Form::hidden('hr_salary_transaction_id', $s_t_id ,Input::old('hr_salary_transaction_id')) }}
+         </div>
+
+         <div class='form-group col-sm-2'>
+               S.Allowance :{{ Form::text('salaryAllowanceAmount', $sal_allwnce_amount ,Input::old('salaryAllowanceAmount'),['readonly']) }}
+         </div>
+
+         <div class='form-group col-sm-2'>
+               S.Deduction :{{ Form::text('salaryDeductionAmount', $sal_decution_amount ,Input::old('salaryDeductionAmount'),['readonly']) }}
+         </div>
+
+         <div class='form-group col-sm-2'>
+                S.Bonus :{{ Form::text('salaryBonusAmount', $sal_bonus_amount ,Input::old('salaryBonusAmount'),['readonly']) }}
+          </div>
+
+          <div class='form-group col-sm-2'>
+              S.Over Time :{{ Form::text('salaryOverTimeAmount', $sal_over_time_amount ,Input::old('salaryOverTimeAmount'),['readonly']) }}
+          </div>
+          </br>
+      </div>
 
     <div class="col-sm-2" style="width:13%">
         <div class='form-group'>
            {{ Form::label('type', 'Type') }}
-           {{ Form::select('type', array(''=>'Select Type','allowance'=>'Allowance','deduction'=>'Deduction','over-time'=>'Over Time','bonus'=>'Bonus'),
+           {{ Form::select('type', array(''=>'Select Type','allowance'=>'allowance','deduction'=>'deduction','over-time'=>'over-time','bonus'=>'bonus'),
                 Input::old('type'),['id'=>'salary_transaction_detail_type','class'=>'form-control']) }}
         </div>
     </div>
@@ -244,13 +276,29 @@ $(function(){
         }
      });
 
-     // selection change
-     $('.std_percentage').click(function(){
+     // selection change with form
+     $('.std_percentage').change(function(){
            $('.std_amount').prop('disabled', true);
      });
 
-     $('.std_amount').click(function(){
+     $('.std_amount').change(function(){
            $('.std_percentage').prop('disabled', true);
+     });
+
+     // dependable drop down
+     $('#sal_all').change(function(){
+         $('#loader').show();
+
+         $.get("{{ url('hr/dd/dropdown/data')}}",
+         { id: $(this).val() },
+         function(data) {
+              var model = $('#some-thing');
+              model.empty();
+             $.each(data, function(key, element) {
+                 model.append("<option value='"+ key +"'>" + element + "</option>");
+             });
+             $('#loader').hide();
+         });
      });
 
 });
