@@ -4,18 +4,33 @@
 </style>
 
 <div class="row">
-    <div class='form-group'>
-       {{ Form::hidden('hr_salary_transaction_id', $s_t_id ,Input::old('hr_salary_transaction_id')) }}
-    </div>
+    <div class="row" style="padding-bottom: 10px ">
+         <div class='form-group '>
+             {{ Form::hidden('hr_salary_transaction_id', $s_t_id ,Input::old('hr_salary_transaction_id')) }}
+         </div>
 
-     <div class='form-group'>
-           {{ Form::text('salaryAllowanceAmount', $sal_allwnce_amount ,Input::old('salaryAllowanceAmount')) }}
-     </div>
+         <div class='form-group col-sm-2'>
+               S.Allowance Amount :{{ Form::text('some_allowance' ,null,['id'=>'sal-allowance']) }}
+         </div>
+
+         <div class='form-group col-sm-2'>
+               S.Deduction Amount :{{ Form::text('some_deduction', null,['id'=>'sal-deduction']) }}
+         </div>
+
+         <div class='form-group col-sm-2'>
+                S.Bonus Amount:{{ Form::text('some_bonus', null ,['id'=>'sal-bonus']) }}
+          </div>
+
+          <div class='form-group col-sm-2'>
+              S.Over Time Amount :{{ Form::text('some_overtime',null ,['id'=>'sal-overtime']) }}
+          </div>
+          </br>
+      </div>
 
     <div class="col-sm-2" style="width:13%">
         <div class='form-group'>
            {{ Form::label('type', 'Type') }}
-           {{ Form::select('type', array(''=>'Select Type','allowance'=>'Allowance','deduction'=>'Deduction','over-time'=>'Over Time','bonus'=>'Bonus'),
+           {{ Form::select('type', array(''=>'Select Type','allowance'=>'allowance','deduction'=>'deduction','over-time'=>'over-time','bonus'=>'bonus'),
                 Input::old('type'),['id'=>'salary_transaction_detail_type','class'=>'form-control']) }}
         </div>
     </div>
@@ -23,28 +38,28 @@
     <div id="allowanceType" class="col-sm-2" style="display:none;width:13%">
         <div class='form-group'>
            {{ Form::label('hr_salary_allowance_id', 'S.Allowance') }}
-           {{ Form::select('hr_salary_allowance_id',$salary_allowance_list ,Input::old('hr_salary_allowance_id'),['id'=>'salary_transaction_detail_allowance','class'=>'form-control']) }}
+           {{ Form::select('hr_salary_allowance_id',$salary_allowance_list ,Input::old('hr_salary_allowance_id'),['id'=>'salary_transaction_detail_allowance','class'=>'sal_allowance form-control']) }}
         </div>
     </div>
 
     <div id="deductionType" class="col-sm-2" style="display:none;width:13%">
         <div class='form-group'>
            {{ Form::label('hr_salary_deduction_id', 'S.Deduction') }}
-           {{ Form::select('hr_salary_deduction_id',$salary_deduction_list ,Input::old('hr_salary_deduction_id'),['id'=>'salary_transaction_detail_deduction','class'=>'form-control']) }}
+           {{ Form::select('hr_salary_deduction_id',$salary_deduction_list ,Input::old('hr_salary_deduction_id'),['id'=>'salary_transaction_detail_deduction','class'=>'sal_deduction form-control']) }}
         </div>
     </div>
 
     <div id="overTimeType" class="col-sm-2" style="display:none;width:13%">
         <div class='form-group'>
            {{ Form::label('hr_over_time_id', 'Over-Time') }}
-           {{ Form::select('hr_over_time_id',$over_time_list ,Input::old('hr_over_time_id'),['id'=>'salary_transaction_detail_over_time','class'=>'form-control']) }}
+           {{ Form::select('hr_over_time_id',$over_time_list ,Input::old('hr_over_time_id'),['id'=>'salary_transaction_detail_over_time','class'=>'sal_overtime form-control']) }}
         </div>
     </div>
 
     <div id="bonusType" class="col-sm-2" style="display:none;width:13%">
         <div class='form-group'>
            {{ Form::label('hr_bonus_id', 'Bonus') }}
-           {{ Form::select('hr_bonus_id',$bonus_list ,Input::old('hr_bonus_id'),['id'=>'salary_transaction_detail_bonus','class'=>'form-control']) }}
+           {{ Form::select('hr_bonus_id',$bonus_list ,Input::old('hr_bonus_id'),['id'=>'salary_transaction_detail_bonus','class'=>'sal_bonus form-control']) }}
         </div>
     </div>
 
@@ -244,14 +259,58 @@ $(function(){
         }
      });
 
-     // selection change
-     $('.std_percentage').click(function(){
+     // selection change with form
+     $('.std_percentage').change(function(){
            $('.std_amount').prop('disabled', true);
      });
 
-     $('.std_amount').click(function(){
+     $('.std_amount').change(function(){
            $('.std_percentage').prop('disabled', true);
      });
+
+     // sal_allowance dependable drop down to text show
+     $('.sal_allowance').change(function(){
+
+         $.get("{{ url('hr/sal-allowance/amount')}}",
+         { id: $(this).val() },
+         function(data) {
+              $('#sal-allowance').val(data);
+         });
+     });
+
+     // sal_allowance dependable drop down to text show
+      $('.sal_deduction').change(function(){
+
+          $.get("{{ url('hr/sal-deduction/amount')}}",
+          { id: $(this).val() },
+          function(data) {
+               $('#sal-deduction').val(data);
+          });
+      });
+
+      // sal_allowance dependable drop down to text show
+      $('.sal_overtime').change(function(){
+
+           $.get("{{ url('hr/sal-overtime/amount')}}",
+           { id: $(this).val() },
+           function(data) {
+                $('#sal-overtime').val(data);
+           });
+      });
+
+      // sal_allowance dependable drop down to text show
+      $('.sal_bonus').change(function(){
+
+           $.get("{{ url('hr/sal-bonus/amount')}}",
+           { id: $(this).val() },
+           function(data) {
+                $('#sal-bonus').val(data);
+           });
+      });
+
+
+
+
 
 });
 
