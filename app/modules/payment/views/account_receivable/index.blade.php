@@ -11,9 +11,7 @@
         <div class="col-sm-12">
            <div class="pull-left col-sm-4"> <h3> {{$pageTitle}} </h3>  </div>
            <div class="pull-right col-sm-4" style="padding-top: 1%;">
-                <button type="button" class="pull-right btn btn-sm btn-info" data-toggle="modal" data-target="#modal">
-                  + Action
-                </button>
+                <a href="{{ URL::route('manage-applicant-ar') }}" type="button" class="pull-right btn btn-sm btn-info" > >> Applicant Money Receipt</a>
            </div>
         </div>
 
@@ -22,9 +20,9 @@
             <thead>
 
                 <tr>
-                    <th> applicant_id: </th>
-                    <th> billing_schedule_id </th>
-                    <th> total_cost </th>
+                    <th> Applicant  </th>
+                    <th> Billing Schedule </th>
+                    <th> Total Cost </th>
                     <th> Status </th>
                     <th> Action</th>
                     <th> + VAT</th>
@@ -35,15 +33,16 @@
                 @foreach($data as $values)
                  <tr style="{{$values->status=='invoiced' ? 'background-color: burlywood' : '' }}">
                     <td><b>
-                        {{ link_to_route($values->status!="invoiced" ?'details-of-grn' : 'details-of-grn',$values->id,['bah_id'=>$values->id], ['data-toggle'=>"modal", 'data-target'=>"#modal-pc"]) }}
+                        {{ link_to_route('details-applicant-receivable', Str::title($values->relApplicant->first_name." ".$values->relApplicant->last_name),['bah_id'=>$values->id], ['data-toggle'=>"modal", 'data-target'=>"#modal-pc"]) }}
                     </b></td>
-                    <td> {{ $values->billing_schedule_id }}</td>
+                    <td> {{ Str::title($values->relBillingSchedule->title) }}</td>
                     <td>{{ $values->total_cost }}</td>
                     <td>{{Str::title($values->status)}}</td>
 
-                    <td>@if($values->status != 'Invoiced')
-                            <a href="{{ URL::route('ap-create-invoice', ['bah_id'=>$values->id ])  }}" class="btn btn-default btn-xs" title="Create Invoice"><span class="fa fa-pencil"></span> + Invoice</a>
-                            @endif
+                    <td>
+                    @if($values->status != 'Confirmed')
+                            <a href="{{ URL::route('create-invoice-applicant',['bah_id'=>$values->id])}}" class="btn btn-xs btn-default" data-toggle="tooltip" data-placement="bottom" title="Create Invoice"><i class="fa fa-plus-circle text-red"></i> Create Invoice</a>
+                    @endif
                     </td>
                     <td>
                         @if($values->status != 'Invoiced')
