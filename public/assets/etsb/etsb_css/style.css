@@ -3689,10 +3689,15 @@ fieldset[disabled] .btn-vk.active {
     margin-left: 78%;
 }
 
-/*fees billing details student style*/
+/*fees billing details applicant style*/
 
-/*input{ border: 1px solid #e8e5ef; }
-#test input {  width: 100%; }*/
+/*input{
+    border: 1px solid #e8e5ef;
+}*/
+#item input {
+    border: none;
+    width: 100%;
+}
 
 
 
