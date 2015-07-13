@@ -1,23 +1,19 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: User
- * Date: 02-Jul-15
- * Time: 3:45 PM
- */
+//use Carbon\Carbon;
 
-class HrProvidentFundConfig extends Eloquent{
-
+class AccVArApplicant extends \Eloquent
+{
     //TODO :: model attributes and rules and validation
-    protected $table = 'hr_provident_fund_config';
+    protected $table = 'acc_v_ar_applicant';
     protected $fillable = [
-        'employee_type','contribution_amount','company_contribution_0','company_contribution_25','company_contribution_50','company_contribution_75','company_contribution_100'
     ];
 
     private $errors;
     private $rules = [
-        'contribution_amount' => 'required|integer',
-        'company_contribution_0' => 'required|integer',
+        //'purchase_no' => 'required|integer',
+        //'acm_marks_distribution_id' => 'required|integer',
+        //'acm_class_schedule_id' => 'required|integer',
+        //'status' => 'required|integer',
     ];
 
     public function validate($data)
@@ -35,7 +31,15 @@ class HrProvidentFundConfig extends Eloquent{
         return $this->errors;
     }
 
+
     //TODO : Model Relationship
+    public function relAccChartOfAccounts(){
+        return $this->belongsTo('AccChartOfAccounts', 'acc_chart_of_accounts_id', 'id');
+    }
+    public function relApplicant(){
+        return $this->belongsTo('Applicant', 'associated_id', 'id');
+    }
+
 
 
     // TODO : user info while saving data into table
@@ -44,19 +48,23 @@ class HrProvidentFundConfig extends Eloquent{
         static::creating(function($query){
             if(Auth::user()->check()){
                 $query->created_by = Auth::user()->get()->id;
-            }elseif(Auth::applicant()->check()){
-                $query->created_by = Auth::applicant()->get()->id;
             }
         });
         static::updating(function($query){
             if(Auth::user()->check()){
                 $query->updated_by = Auth::user()->get()->id;
-            }elseif(Auth::applicant()->check()){
-                $query->updated_by = Auth::applicant()->get()->id;
             }
         });
     }
 
+
     //TODO : Scope Area
 
-} 
+    /*public function geDateAttribute($date) {
+        return Carbon::parse($date)->format('d-M-Y'); //Change the format to whichever you desire
+    }*/
+
+
+
+
+}
