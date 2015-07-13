@@ -18,8 +18,8 @@
                 </tr>
 
                 <tr>
-                    <td><strong> Type:</strong></td>
-                    <td>{{ ucfirst($data->type) }}</td>
+                    <td><strong> Status:</strong></td>
+                    <td>{{ ucfirst($data->status) }}</td>
                 </tr>
 
             </table>

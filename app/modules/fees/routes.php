@@ -160,7 +160,10 @@
          'as' => 'summary.applicant.update',
          'uses' => 'FeesController@update_applicant_summary'
      ]);
-
+     Route::any('billing-applicant-head-update', [
+         'as' => 'billing-applicant-head-update',
+         'uses' => 'FeesController@update_applicant_head_status'
+     ]);
 
    /*************Billing Applicant Detail*****************/
 

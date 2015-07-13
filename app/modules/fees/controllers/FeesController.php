@@ -14,7 +14,9 @@ class FeesController extends \BaseController {
         return Input::server("REQUEST_METHOD") == "POST";
     }
 
-    /**********************Billing Setup Start***************************/
+    /****==================================================================
+                                Billing Setup Start
+    ===================================================================****/
 
     public function indexBillingSetup()
     {
@@ -197,7 +199,9 @@ class FeesController extends \BaseController {
         }
     }
 
-    /**********************Billing History Start***************************/
+    /****==================================================================
+                            Billing History Start
+    ===================================================================****/
 
 	public function index_billing_history()
 	{
@@ -299,8 +303,9 @@ class FeesController extends \BaseController {
         return View::make('fees::billing_history.view_student',compact('data','relation_data'));
     }
 
-
-    /**********************Installment Setup Start***************************/
+    /****==================================================================
+                        Installment Setup Start
+    ===================================================================****/
 
     public function index_installment_setup()
     {
@@ -459,7 +464,10 @@ class FeesController extends \BaseController {
         return View::make('fees::installment_setup.view',compact('view_installment_setup','view_details','total_cost','total_fined_cost', 'batch_id', 'schedule_id', 'item_id'));
     }
 
-    /********************Billing Item Start*********************/
+
+    /****==================================================================
+                            Billing Item Start
+    ===================================================================****/
 
     public function index_billing_item()
     {
@@ -529,7 +537,9 @@ class FeesController extends \BaseController {
         }
     }
 
-    /********************Billing Schedule Start*********************/
+    /****==================================================================
+                            Billing Schedule Start
+    ===================================================================****/
 
     public function index_billing_schedule()
     {
@@ -599,8 +609,9 @@ class FeesController extends \BaseController {
         }
     }
 
-    /*****************Billing summary Applicant start****************
-     ***************/
+    /****==================================================================
+                    Billing Applicant Head start
+    ===================================================================****/
 
     public function index_billing_summary()
     {
@@ -680,8 +691,39 @@ class FeesController extends \BaseController {
         }
     }
 
-    /*****************Billing details applicant start***********
-     **********/
+    public  function update_applicant_head_status()
+    {
+        if($this->isPostRequest()) {
+            $id = Input::get('id');
+            $status = Input::get('status');
+            DB::beginTransaction();
+            try {
+                $update = DB::table('billing_applicant_head')
+                    ->where('id', $id)
+                    ->where('status', "open")
+                    ->update(array('status' => $status));
+                DB::commit();
+                if($update)
+                    Session::flash('message', "Billing Details confirmed Successfully");
+                else
+                    Session::flash('danger', "Billing Details confirmed Is Just For One Time.");
+                return Redirect::to('fees/billing/summary/applicant');
+            }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', "not added.Invalid Request!");
+            }
+            return Redirect::to('fees/billing/summary/applicant');
+        }
+        return Redirect::to('fees/billing/summary/applicant');
+
+    }
+
+    /****==================================================================
+                  Billing details applicant start
+     ===================================================================****/
+
 
     public function create_billing_details_applicant($id)
     {
@@ -739,7 +781,6 @@ class FeesController extends \BaseController {
 
     public function ajax_delete_detail()
     {
-
       if(Request::ajax())
         {
             $id = Input::get('billing_applicant_detail_id');
@@ -768,9 +809,10 @@ class FeesController extends \BaseController {
     }*/
 
 
+    /****==================================================================
+                        Billing summary Student start
+    ===================================================================****/
 
-    /*****************Billing summary Student start****************
-     *************/
     public function index_billing_summary_student()
     {
         $student = array(''=>'Select Student') + User::StudentList();
