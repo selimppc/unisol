@@ -3,34 +3,7 @@
     input{ border-color: 1px solid #efefef; }
     #test input { border: none; width: 100%; }
 </style>
-<script>
 
-$(".edit-pvd-config").click(function(event){
-          var $row = $(this).closest("tr");
-          $data_1 = $row.find(".et").text();
-          $data_2 = $row.find(".ca").text();
-          $data_3 = $row.find(".cc_0").text();
-          $data_4 = $row.find(".cc_25").text();
-          $data_5 = $row.find(".cc_50").text();
-          $data_6 = $row.find(".cc_75").text();
-          $data_7 = $row.find(".cc_100").text();
-          $id = $row.find(".config-id").text();
-
-          $(".ok-456").show();
-
-          $('.view').html("<tr> " +"" +
-         "<td hidden='hidden'><input name='config_id' value='"+ $id +"'></td>"+
-         "<td ><input name='employee_type' value='"+ $data_1 +"'> </td>" +
-         "<td ><input name='contribution_amount' value='"+ $data_2 +"'> </td>" +
-         "<td ><input name='company_contribution_0' value='"+ $data_3 +"'> </td>" +
-         "<td ><input name='company_contribution_25' value='"+ $data_4 +"'> </td>" +
-         "<td ><input name='company_contribution_50' value='"+ $data_5 +"'> </td>" +
-         "<td ><input name='company_contribution_75' value='"+ $data_6 +"'> </td>" +
-         "<td ><input name='company_contribution_100' value='"+ $data_7 +"'> </td>" +
-         "</tr>");
- 	 });
-
-</script>
 <div class="row">
    <div class="ok-123" id="show_data">
         <div class="col-sm-2" style="width:12%">
@@ -92,6 +65,7 @@ $(".edit-pvd-config").click(function(event){
         </div>
    </div>
 
+   @include('hr::hr.provident_fund_config._script')
    {{---------------Update---------------------------------------------------------------------------------------------------}}
    <div style="display: none;" class="ok-456">
         <table>
@@ -119,7 +93,6 @@ $(".edit-pvd-config").click(function(event){
    {{--------------------Update:End--------------------------------------------------------------------------------------------------}}
 
    {{-------------------- HR Provident Fund Config List --------------------------------------------------------------------------------}}
-   @include('hr::hr.provident_fund_config._script')
    <br><br>
     <div class="table-hide">
         <p>
@@ -176,7 +149,6 @@ $(".edit-pvd-config").click(function(event){
 
 {{ HTML::script('assets/etsb/etsb_js/jquery/jquery.min.js')}}
 {{ HTML::script('assets/etsb/etsb_js/jquery-ui/jquery-ui.min.js')}}
-
 
 
 <div class="modal fade" id="pvd-config" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

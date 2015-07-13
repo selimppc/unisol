@@ -16,8 +16,8 @@ class HrProvidentFundConfig extends Eloquent{
 
     private $errors;
     private $rules = [
-        'contribution_amount' => 'required|integer',
-        'company_contribution_0' => 'required|integer',
+//        'contribution_amount' => 'required|integer',
+//        'company_contribution_0' => 'required|integer',
     ];
 
     public function validate($data)
