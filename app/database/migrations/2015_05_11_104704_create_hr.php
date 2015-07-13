@@ -161,9 +161,14 @@ class CreateHr extends Migration {
             $table->unsignedInteger('hr_employee_id')->nullable();
             $table->dateTime('sign_in');
             $table->dateTime('sign_out');
-            $table->enum('type', array(
+            $table->enum('status', array(
                 'active', 'close',
             ));
+            $table->float('unit_cost');
+            $table->integer('quantity');
+            $table->float('amount');
+
+
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
