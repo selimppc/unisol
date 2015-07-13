@@ -70,34 +70,8 @@
     </div>
 
     {{ Form::submit('Save', array('class'=>'pull-right btn btn-info')) }}
-    <a  href="" class="pull-right btn btn-bitbucket" style="margin-right: 5px">Close</a>
+    <a  href="" class="pull-right btn btn-default" style="margin-right: 5px">Close</a>
     <p>&nbsp;</p>
 </div>
 
-
-<div class="well">
-  <div id="datetimepicker3" class="input-append">
-    <input data-format="hh:mm:ss" type="text">
-    <span class="add-on">
-      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
-      </i>
-    </span>
-  </div>
-</div>
-
-<script type="text/javascript">
-  $(function() {
-    $('#datetimepicker3').datetimepicker({
-      pickDate: false
-    });
-  });
-</script>
-
-
-{{--{{ HTML::script('assets/js/jquery.timepicker.js')}}
-{{ HTML::script('assets/js/jquery.timepicker.min.js')}}
-
-{{ HTML::script('assets/etsb/etsb_js/jquery/jquery.min.js')}}
-{{ HTML::script('assets/etsb/etsb_js/jquery-ui/jquery-ui.min.js')}}
-{{ HTML::script('assets/etsb/etsb_js/bootstrap/bootstrap.min.js')}}--}}
 

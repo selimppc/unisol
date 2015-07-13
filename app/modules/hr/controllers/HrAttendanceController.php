@@ -23,7 +23,6 @@ class HrAttendanceController extends \BaseController {
             if (isset($hr_employee) && !empty($hr_employee)) $data->where('hr_attendance.hr_employee_id', '=', $hr_employee);
             if (isset($id_no) && !empty($id_no)) $data->where('hr_attendance.hr_employee_id', '=', $id_no);
             $data = $data->orderBy('id', 'DESC')->paginate(5);
-//            print_r($data);exit;
         }
         else{
         $data = $data->with('relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')->orderBy('id', 'DESC')->paginate(5);
