@@ -20,62 +20,31 @@ class HrProvidentFundConfigController extends \BaseController {
 	{
         if($this->isPostRequest()){
             $input_data = Input::all();
-//            print_r($input_data);exit;
-            $id = Input::get('id');
-            $employee_type = Input::get('employee_type');
-            $contribution_amount = Input::get('contribution_amount');
-            $company_contribution_0 = Input::get('company_contribution_0');
-            $company_contribution_0 = Input::get('company_contribution_0');
-            $company_contribution_25 = Input::get('company_contribution_20');
-            $company_contribution_50 = Input::get('company_contribution_50');
-            $company_contribution_75 = Input::get('company_contribution_75');
-            $company_contribution_100 = Input::get('company_contribution_100');
-            $model = ($id) ? HrProvidentFundConfig::find($id) : new HrProvidentFundConfig;
+            $id =Input::get('config_id');
+            $model = $id ? HrProvidentFundConfig::find($id) : new HrProvidentFundConfig();
 
-            if($id){
-            echo 'in if';
-            }else{
-                echo 'in else';
-            }
-            exit;
-
-            $model = new HrProvidentFundConfig();
-            if($model->validate($input_data)) {
-                DB::beginTransaction();
-                try {
-                    $model->create($input_data);
-                    DB::commit();
-                    Session::flash('message', 'Success !!');
-                } catch (Exception $e) {
-                    //If there are any exceptions, rollback the transaction`
-                    DB::rollback();
-                    Session::flash('danger', 'Failed !');
+                if($model->validate($input_data)) {
+                    DB::beginTransaction();
+                    try{
+                        if($id){
+                            $model->update($input_data);
+                            DB::commit();
+                            Session::flash('message', 'Successfully Updated !');
+                        }else{
+                            $model->create($input_data);
+                            DB::commit();
+                            Session::flash('message', 'Successfully added !');
+                        }
+                    }catch ( Exception $e ){
+                        DB::rollback();
+                        Session::flash('danger', 'Failed !');
+                    }
+                }else{
+                    Session::flash('danger', 'Validation Error!! Please FillUp These Fields With Integer Values.');
                 }
-            }
-        }
-        return Redirect::back();
-	}
-
-    public function updatePvc($id){
-        echo 'ok';exit;
-        if($this->isPostRequest()){
-            $input_data = Input::all();
-            $model = HrProvidentFundConfig::findOrFail($id);
-            if($model->validate($input_data)){
-                DB::beginTransaction();
-                try{
-                    $model->update($input_data);
-                    DB::commit();
-                    Session::flash('message', 'Success !');
-                }catch ( Exception $e ){
-                    //If there are any exceptions, rollback the transaction`
-                    DB::rollback();
-                    Session::flash('danger', 'Failed !');
-                }
-            }
             return Redirect::back();
         }
-    }
+	}
 
     public function ajaxDelete()
     {

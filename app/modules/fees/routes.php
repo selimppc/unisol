@@ -160,24 +160,25 @@
          'as' => 'summary.applicant.update',
          'uses' => 'FeesController@update_applicant_summary'
      ]);
-     Route::any('create-invoice-applicant/{id}', [
-         'as' => 'create-invoice-applicant',
-         'uses' => 'FeesController@applicant_to_invoice'
-     ]);
-   /*************Billing Details Applicant*****************/
+
+
+   /*************Billing Applicant Detail*****************/
 
      Route::any('billing-details-applicant/{id}', [
          'as' => 'billing.details.applicant',
          'uses' => 'FeesController@create_billing_details_applicant'
      ]);
+
      Route::any('billing-details-applicant-save', [
          'as' => 'billing.details.applicant.save',
          'uses' => 'FeesController@save_billing_details_applicant'
      ]);
 
+     Route::post('detail/applicantdelete/ajax',
+         'FeesController@ajax_delete_detail'
+     );
 
-
-     /**********Billing Summary Student Start**************/
+     /**********Billing Student Head Start**************/
 
      Route::any('billing-summary-student', [
          'as' => 'billing.summary.student',
