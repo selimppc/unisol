@@ -3698,6 +3698,11 @@ fieldset[disabled] .btn-vk.active {
     border: none;
     width: 100%;
 }
+.b-text{
+    font-weight: bold;
+    font-style: normal;
+    
+}
 
 
 
