@@ -40,7 +40,7 @@
 
                                       {{--  <td><a href="{{ URL::route('billing.details.applicant',['id'=>$value->id])}}" class=" btn-link text-bold" data-toggle="modal" data-target="#createModal" data-toggle="tooltip" data-placement="bottom" title="Create Billing Details">{{isset($value->relApplicant->first_name)?$value->relApplicant->first_name:''}} {{isset($value->relApplicant->last_name)?$value->relApplicant->last_name:''}}</a></td>--}}
 
-                                       <td>{{ link_to_route($value->status=="open" ? 'billing.details.applicant' : 'summary.applicant.view',$value->relApplicant->first_name,['id'=>$value->id], ['data-toggle'=>"modal",'data-target'=>"#createModal"]) }}</td>
+                                       <td>{{ link_to_route($value->status=="open" ? 'billing.details.applicant' : 'summary.applicant.view',$value->relApplicant->first_name.' '.$value->relApplicant->first_name,['id'=>$value->id], ['data-toggle'=>"modal",'data-target'=>"#createModal"]) }}</td>
 
                                         <td>{{isset($value->relApplicant->id)?$value->relApplicant->id:''}}</td>
 
@@ -61,13 +61,11 @@
                                         </td>
                                         <td>
                                             @if($value->status != 'confirmed')
-                                           {{--     <a href="#" class="btn btn-xs btn-default" data-toggle="tooltip" data-placement="bottom" title="Confirm Billing Details"><i class="fa fa-caret-square-o-down text-blue"></i> Confirm</a>--}}
-                                            {{Form::open(array('route'=> ['billing-applicant-head-update']))}}
-                                            {{ Form::hidden('id',$value->id) }}
-                                            {{ Form::hidden('status','confirmed') }}
-                                            {{ Form::submit('Confirm', array('class'=>'btn btn-xs btn-warning'))}}
-                                            {{Form::close()}}
-
+                                                {{Form::open(array('route'=> ['billing-applicant-head-update']))}}
+                                                {{ Form::hidden('id',$value->id) }}
+                                                {{ Form::hidden('status','confirmed') }}
+                                                {{ Form::submit('Confirm', array('class'=>'btn btn-xs btn-warning'))}}
+                                                {{Form::close()}}
                                             @endif
                                         </td>
                                     </tr>
