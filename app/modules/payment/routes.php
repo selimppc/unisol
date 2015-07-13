@@ -53,11 +53,35 @@ Route::group(['prefix' => 'payment'], function() {
 
 
 
+    /*
+     * =============================================================
+     * // Account Receivable
+     * =============================================================
+     */
 
     // Account Receivable
     Route::any("applicant-receivable-index",[
         "as"   => "applicant-receivable-index",
         "uses" => "AccountReceivableController@index_applicant_receivable"
+    ]);
+
+    Route::any("details-applicant-receivable/{bah_id}",[
+        "as"   => "details-applicant-receivable",
+        "uses" => "AccountReceivableController@show_applicant_bill"
+    ]);
+
+    //create invoice
+    Route::any('create-invoice-applicant/{bah_id}', [
+        'as' => 'create-invoice-applicant',
+        'uses' => 'AccountReceivableController@applicant_to_invoice'
+    ]);
+
+
+
+    //Manage Applicant AR
+    Route::any('manage-applicant-ar', [
+        'as' => 'manage-applicant-ar',
+        'uses' => 'AccountReceivableController@manage_applicant_ar'
     ]);
 
 

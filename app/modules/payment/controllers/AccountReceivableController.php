@@ -26,6 +26,44 @@ class AccountReceivableController extends \BaseController {
 	}
 
 
+    /*
+     * $grn_id ::
+     */
+    public function show_applicant_bill($bah_id){
+        $ba_head = BillingApplicantHead::find($bah_id);
+        $ba_dt = BillingApplicantDetail::where('billing_applicant_head_id', $bah_id)->get();
+        return View::make('payment::account_receivable.show', compact('bah_id', 'ba_head', 'ba_dt'));
+    }
+
+
+    /*
+     * ===============================================
+     * create invoice
+     * ===============================================
+     */
+    public function applicant_to_invoice( $billing_applicant_head_id )
+    {
+        $check = BillingApplicantDetail::where('billing_applicant_head_id', $billing_applicant_head_id)->exists();
+        if($check){
+            //Call Store Procedure
+            DB::select('call sp_fees_applicant_to_invoice(?, ?)', array($billing_applicant_head_id, Auth::user()->get()->id ) );
+            Session::flash('message', 'Invoiced Successfully !');
+        }else{
+            Session::flash('info', 'Applicant Billing Detail is empty. Please add Billing item. And try later!');
+        }
+        return Redirect::back();
+    }
+
+
+
+    // manage AR for applicant
+    public function  manage_applicant_ar(){
+        //
+        $pageTitle = "Applicant Payment History"; //acc_v_ar_applicant
+        $data = AccVArApplicant::get();
+        return View::make('payment::account_receivable.applicant_ar_payable', compact('pageTitle', 'data'));
+    }
+
 	/**
 	 * Show the form for creating a new resource.
 	 *
