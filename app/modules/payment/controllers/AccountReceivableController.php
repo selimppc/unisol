@@ -64,6 +64,8 @@ class AccountReceivableController extends \BaseController {
         return View::make('payment::account_receivable.applicant_ar_payable', compact('pageTitle', 'data'));
     }
 
+
+
 	/**
 	 * Show the form for creating a new resource.
 	 *
