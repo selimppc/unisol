@@ -13,7 +13,20 @@ class HrLeaveController extends \BaseController {
 
     public function index()
     {
-        $data = HrLeave::with('relHrLeaveType','relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')->orderBy('id', 'DESC')->paginate(5);
+        $data = new HrLeave();
+        if($this->isPostRequest()) {
+            $employee_list = Input::get('forward_to');
+
+            $data = $data->with('relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile');
+            if (isset($employee_list) && !empty($employee_list)) $data->where('hr_leave.forward_to', '=', $employee_list);
+//            if (isset($id_no) && !empty($id_no)) $data->where('hr_attendance.hr_employee_id', '=', $id_no);
+            $data = $data->orderBy('id', 'DESC')->paginate(5);
+        }
+        else{
+            $data = $data->with('relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')->orderBy('id', 'DESC')->paginate(5);
+        }
+
+//        $data = HrLeave::with('relHrLeaveType','relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')->orderBy('id', 'DESC')->paginate(5);
         $leave_type_id = HrLeaveType::lists('title','id');
         $employee_list = User::EmployeeList();
 
@@ -24,6 +37,7 @@ class HrLeaveController extends \BaseController {
     {
         if($this->isPostRequest()){
             $input_data = Input::all();
+//            print_r($input_data);exit;
             $model = new HrLeave();
             $model->forward_to = Input::get('forward_to');
             $model->hr_leave_type_id = Input::get('hr_leave_type_id');
@@ -41,10 +55,10 @@ class HrLeaveController extends \BaseController {
                          $model1 = new HrLeaveComments();
                          $model1->hr_leave_id = $model->id;
                          $model1->comment = Input::get('comment');
-                      If($model1->save()){
+                       If($model1->save()){
                           DB::commit();
                           Session::flash('message', 'Success !');
-                      }
+                       }
                     }
                 } catch (Exception $e) {
                     //If there are any exceptions, rollback the transaction`
@@ -108,7 +122,7 @@ class HrLeaveController extends \BaseController {
             }
         } catch
         (exception $ex) {
-            return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+            return Redirect::back()->with('danger', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
         }
     }
 
