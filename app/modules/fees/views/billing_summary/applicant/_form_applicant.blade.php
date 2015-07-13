@@ -17,7 +17,7 @@
 
 <div class='form-group'>
     {{ Form::label('total_cost', 'Total Cost') }}
-    {{ Form::text('total_cost', Input::old('total_cost'), ['class' => 'form-control','required'=>'required']) }}
+    {{ Form::text('total_cost', Input::old('total_cost'), ['class' => 'form-control','placeholder'=>'0.00']) }}
 </div>
 
 <div class="modal-footer">

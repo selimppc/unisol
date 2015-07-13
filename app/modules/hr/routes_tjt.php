@@ -227,4 +227,9 @@ Route::any('provident-fund-config/delete',[
     'uses' => 'HrProvidentFundConfigController@ajaxDelete'
 ]);
 
+Route::any('update',[
+    'as' =>'update',
+    'uses' => 'HrProvidentFundConfigController@updatePvc'
+]);
+
 
