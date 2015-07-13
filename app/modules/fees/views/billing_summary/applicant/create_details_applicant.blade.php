@@ -1,6 +1,7 @@
 <div class="modal-header" xmlns="http://www.w3.org/1999/html">
     <button type="button" class="close" data-dismiss="modal">{{HTML::image('assets/icon/media-close-btn.png')}}</button>
-    <h4 class="text-center text-purple">Create Billing Details Applicant</h4>
+    <h4 class="text-center text-purple">Create {{isset($applicant_name->relApplicant->first_name) ? $applicant_name->relApplicant->first_name:''}}
+        {{isset($applicant_name->relApplicant->last_name) ? $applicant_name->relApplicant->last_name:''}}'s Billing Details </h4>
 </div>
 <div class="modal-body">
     <div style="padding: 10px;">
@@ -69,7 +70,8 @@
         <th>Cost Per Unit</th>
         <th>Quantity</th>
         <th>Total Amount</th>
-        <th width="100px">Action</th>
+        <th>Action</th>
+
         </thead>
 
         <tbody id="item">
@@ -79,7 +81,10 @@
         <tbody>
         @foreach ($billing_details_data as $value)
             <tr>
-                <td>{{isset($value->relBillingItem->title)?$value->relBillingItem->title:''}}</td>
+
+                <td>{{isset($value->relBillingItem->title)?$value->relBillingItem->title:''}}
+                    {{ Form::hidden('billing_applicant_detail_id[]', $value->id)}}
+                </td>
 
                  <td>{{isset($value->relWaiver->title)? $value->relWaiver->title:'0'}}</td>
 
@@ -90,6 +95,9 @@
                 <td>{{isset($value->quantity)? $value->quantity:''}}</td>
 
                 <td>{{isset($value->total_amount)? $value->total_amount  :''}}</td>
+
+                <td><a class="btn btn-default btn-sm" id="removeTrId" onClick="deleteNearestTr(this.id, {{$value->id}})"><i class="fa fa-trash-o text-red" style="font-size: 15px;"></i></a>
+                </td>
             </tr>
         @endforeach
         </tbody>
@@ -101,8 +109,8 @@
     {{ Form::close() }}
 </div>
 </div>
-<p>&nbsp;</p>
-
+<div>&nbsp;</div>
+<div>&nbsp;</div>
 @include('fees::billing_summary.applicant._script')
 
 

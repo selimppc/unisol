@@ -54,8 +54,6 @@
 
                                         </td>
                                         <td>
-                                         {{--   <a href="{{ URL::route('create-invoice-applicant',['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="tooltip" data-placement="bottom" title="Create Invoice"><i class="fa fa-plus-circle text-red"></i> Create Invoice</a>--}}
-
                                             <a href="#" class="btn btn-xs btn-default" data-toggle="tooltip" data-placement="bottom" title="Confirm Billing Details"><i class="fa fa-caret-square-o-down text-blue"></i> Confirm</a>
                                         </td>
                                     </tr>

@@ -689,6 +689,10 @@ class FeesController extends \BaseController {
             ->where('id','=',$id)
             ->first()->id;
 
+        $applicant_name = BillingApplicantHead::with('relApplicant','relBillingSchedule','relPaymentOption')
+            ->where('id','=',$id)
+            ->first();
+
         $billing_details_data = BillingApplicantDetail::with('relBillingApplicantHead','relBillingItem','relWaiver')
             ->where('billing_applicant_head_id','=',$id)
             ->get();
@@ -696,7 +700,7 @@ class FeesController extends \BaseController {
         $item = ['' => 'Select Billing Item'] + BillingItem::lists('title', 'id');
         $waiver = ['' => 'Select waiver'] + Waiver::lists('title', 'id');
 
-        return View::Make('fees::billing_summary.applicant.create_details_applicant',compact('billing_head_id','item','waiver','billing_details_data'));
+        return View::Make('fees::billing_summary.applicant.create_details_applicant',compact('billing_head_id','item','waiver','billing_details_data','applicant_name'));
     }
 
     public function save_billing_details_applicant()
@@ -704,7 +708,7 @@ class FeesController extends \BaseController {
         $data = Input::all();
         $counter = count(Input::get('billing_item_id'));
         for($i = 0; $i < $counter ; $i++){
-            $dt []= [
+            $all []= [
                 'billing_applicant_head_id' => Input::get('billing_applicant_head_id')[$i],
                 'billing_item_id' => Input::get('billing_item_id')[$i],
                 'waiver_id'=> Input::get('waiver_id')[$i],
@@ -715,11 +719,11 @@ class FeesController extends \BaseController {
             ];
 
         }
-      //  print_r($dt);exit;
+      //  print_r($all);exit;
         $model = new BillingApplicantDetail();
         DB::beginTransaction();
         try{
-            foreach($dt as $values){
+            foreach($all as $values){
                 $model->create($values);
             }
             DB::commit();
@@ -733,7 +737,24 @@ class FeesController extends \BaseController {
         return Redirect::back();
     }
 
-    public function applicant_to_invoice( $billing_applicant_head_id )
+    public function ajax_delete_detail()
+    {
+
+      if(Request::ajax())
+        {
+            $id = Input::get('billing_applicant_detail_id');
+            $data = BillingApplicantDetail::find($id);
+            if($data->delete())
+                return Response::json(['msg'=> 'Data Successfully Deleted']);
+            else
+                return Response::json(['msg'=> 'Data Successfully Not Deleted']);
+        }
+
+    }
+
+
+  /* Store procedure save example
+   public function applicant_to_invoice( $billing_applicant_head_id )
     {
         $check = BillingApplicantDetail::where('billing_applicant_head_id', $billing_applicant_head_id)->exists();
         if($check){
@@ -744,7 +765,7 @@ class FeesController extends \BaseController {
             Session::flash('info', 'Applicant Billing Detail is empty. Please add Billing item. And try later!');
         }
         return Redirect::back();
-    }
+    }*/
 
 
 
