@@ -52,4 +52,14 @@ Route::group(['prefix' => 'payment'], function() {
     ]);
 
 
+
+
+    // Account Receivable
+    Route::any("applicant-receivable-index",[
+        "as"   => "applicant-receivable-index",
+        "uses" => "AccountReceivableController@index_applicant_receivable"
+    ]);
+
+
+
 });
