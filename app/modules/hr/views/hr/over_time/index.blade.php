@@ -30,7 +30,10 @@
                     <th>Employee Name</th>
                     <th>Sign-in Time</th>
                     <th>Sign-Out Time</th>
-                    <th>Type</th>
+                    <th>Unit Cost</th>
+                    <th>Quantity</th>
+                    <th>Amount</th>
+                    <th>Status</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -45,7 +48,10 @@
                     </td>
                     <td>{{ $values->sign_in }}</td>
                     <td>{{ $values->sign_out }}</td>
-                    <td>{{ ucfirst($values->type) }}</td>
+                    <td>{{ $values->unit_cost }}</td>
+                    <td>{{ $values->quantity }}</td>
+                    <td>{{ $values->amount }}</td>
+                    <td>{{ ucfirst($values->status) }}</td>
 
                     <td>
                         <a href="{{ URL::route('over_time.show', ['ot_id'=>$values->id ])  }}" class="btn btn-default btn-xs" title="Manage Applicant" data-toggle="modal" data-target="#modal-pc"><i style="color: #149bdf" class="fa fa-eye"></i></a>

@@ -9,7 +9,7 @@ class HrOverTime extends Eloquent{
     //TODO :: model attributes and rules and validation
     protected $table='hr_over_time';
     protected $fillable = [
-        'hr_employee_id','sign_in','sign_out','type'
+        'hr_employee_id','sign_in','sign_out','unit_cost','quantity','amount','status'
     ];
 //'currency_id','exchange_rate',
     private $errors;
