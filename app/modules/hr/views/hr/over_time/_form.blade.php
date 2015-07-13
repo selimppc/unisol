@@ -5,7 +5,7 @@
 
 <div class='form-group'>
    {{ Form::label('sign_in', 'Sign In') }}
-   {{ Form::text('sign_in',  Input::old('sign_in'),['class'=>'form-control date_picker','id'=>'datetimepicker1']) }}
+   {{ Form::text('sign_in',  Input::old('sign_in'),['class'=>'form-control date_picker']) }}
 </div>
 
 <div class='form-group'>
@@ -14,8 +14,23 @@
 </div>
 
 <div class='form-group'>
-   {{ Form::label('type', 'Type') }}
-   {{ Form::select('type',[''=>'Select Status','active'=>'active','close'=>'close'], Input::old('type'),['class'=>'form-control', 'required']) }}
+   {{ Form::label('unit_cost', 'Unit Cost') }}
+   {{ Form::text('unit_cost',  Input::old('unit_cost'),['class'=>'unit form-control']) }}
+</div>
+
+<div class='form-group'>
+   {{ Form::label('quantity', 'Quantity') }}
+   {{ Form::text('quantity',  Input::old('quantity'),['class'=>'form-control']) }}
+</div>
+
+<div class='form-group'>
+   {{ Form::label('amount', 'Amount') }}
+   {{ Form::text('amount',  Input::old('amount'),['class'=>'amount form-control','id'=>'amount']) }}
+</div>
+
+<div class='form-group'>
+   {{ Form::label('status', 'Status') }}
+   {{ Form::select('status',[''=>'Select Status','active'=>'active','close'=>'close'], Input::old('status'),['class'=>'form-control', 'required']) }}
 </div>
 
 
@@ -23,3 +38,22 @@
 <a href="" class="pull-right btn btn-default" style="margin-right: 5px">Close</a>
 
 <p>&nbsp;</p>
+
+
+
+<script type="text/javascript">
+
+//$(function(){
+//    $('.amount').change(function(){
+//           var a = $('.unit').val();
+//           var b = $('.hour').val();
+//
+//           var amount = document.getElementById('amount');
+//           var myResult = a * b;
+//           amount.value = myResult;
+//
+//           $('.std_amount').prop('disabled', true);
+//     });
+//});
+
+</script>

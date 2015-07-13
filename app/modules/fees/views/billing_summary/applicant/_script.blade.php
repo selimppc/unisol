@@ -68,8 +68,6 @@
             whichtr.fadeOut(500).remove();
            // arrayItems.pop(getId);//To stop additem if exist
         }
-
     }
-
 
 </script>

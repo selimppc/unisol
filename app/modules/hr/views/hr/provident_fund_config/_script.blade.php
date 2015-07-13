@@ -1,6 +1,6 @@
-<script type="text/javascript">
 
- $(function(){
+<script type="text/javascript">
+$(function(){
 
      $tableItemCounter = 0; //To stop additem if exist
      $("#add-pvd-config").click(function(event){
@@ -31,9 +31,34 @@
               "<td><input name='company_contribution_50' value='"+ $company_contribution_50 +"' readonly></td>" +
               "<td><input name='company_contribution_75' value='"+ $company_contribution_75 +"' readonly></td>" +
               "<td><input name='company_contribution_100' value='"+ $company_contribution_100 +"' readonly></td>" +
-              "<td></td>"+
          "</tr>");
  	 });
+
+      //edit
+   	 $(".edit-pvd-config").click(function(event){
+           var $row = $(this).closest("tr");
+           $data_1 = $row.find(".et").text();
+           $data_2 = $row.find(".ca").text();
+           $data_3 = $row.find(".cc_0").text();
+           $data_4 = $row.find(".cc_25").text();
+           $data_5 = $row.find(".cc_50").text();
+           $data_6 = $row.find(".cc_75").text();
+           $data_7 = $row.find(".cc_100").text();
+           $id = $row.find(".config-id").text();
+
+           $(".ok-456").show();
+
+           $('.view').html("<tr> " +"" +
+          "<td hidden='hidden'><input name='config_id' value='"+ $id +"'></td>"+
+          "<td ><input name='employee_type' value='"+ $data_1 +"'> </td>" +
+          "<td ><input name='contribution_amount' value='"+ $data_2 +"'> </td>" +
+          "<td ><input name='company_contribution_0' value='"+ $data_3 +"'> </td>" +
+          "<td ><input name='company_contribution_25' value='"+ $data_4 +"'> </td>" +
+          "<td ><input name='company_contribution_50' value='"+ $data_5 +"'> </td>" +
+          "<td ><input name='company_contribution_75' value='"+ $data_6 +"'> </td>" +
+          "<td ><input name='company_contribution_100' value='"+ $data_7 +"'> </td>" +
+          "</tr>");
+      	 });
 
     //delete
      $('.delete-dt-2').click(function(e) {
@@ -56,6 +81,7 @@
 $(function(){
      $('.edit').click(function() {
         $(".ok-123").hide();
+//        $(".ok-456").show();
         return false;
      });
 });

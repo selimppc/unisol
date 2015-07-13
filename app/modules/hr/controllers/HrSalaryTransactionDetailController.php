@@ -18,6 +18,7 @@ class HrSalaryTransactionDetailController extends \BaseController {
     {
         $model = HrSalaryTransactionDetail::with('relHrOverTime','relHrBonus','relHrSalaryAllowance','relHrSalaryDeduction')
             ->where('hr_salary_transaction_id', $s_t_id)
+            ->orderBy('id', 'DESC')
             ->get();
 
 //        // salary allowance amount
@@ -67,7 +68,7 @@ class HrSalaryTransactionDetailController extends \BaseController {
         // all list here
         $salary_allowance_list = array(''=>'Select any one') + HrSalaryAllowance::lists('title','id');
         $salary_deduction_list = array(''=>'Select any one') + HrSalaryDeduction::lists('title','id');
-        $over_time_list = array(''=>'Select any one') + HrOverTime::lists('sign_in','id');
+        $over_time_list = array(''=>'Select any one') + HrOverTime::lists('amount','id');
         $bonus_list = array(''=>'Select any one') + HrBonus::lists('title','id');
 
         return View::make('hr::hr.salary_transaction_detail.index', compact('model','salary_allowance_list',
@@ -102,7 +103,7 @@ class HrSalaryTransactionDetailController extends \BaseController {
     public function hr_overtime_amount()
     {
         $input = Input::get('id');
-        $info = HrOverTime::where('id', '=', $input)->first()->sign_out;
+        $info = HrOverTime::where('id', '=', $input)->first()->amount;
         if($info){
             return Response::make($info);
         }else{

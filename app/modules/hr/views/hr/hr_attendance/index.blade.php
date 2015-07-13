@@ -14,41 +14,39 @@
 
 <div class="row">
 
-    <div class="box box-solid ">
+ <div class="box box-solid ">
     <br>
-        {{--<div class="box box-info">--}}
-           {{-------------------Searching Starts--------------------------------------------------------------}}
-            <div>
-                {{ Form::open(array('url' => 'hr/attendance')) }}
-                <div class="col-sm-8">
-                   <div class="col-sm-4" style="padding-left: 0">
-                     {{ Form::label('hr_employee', 'HR Employee') }}
-                     {{ Form::select('hr_employee', [''=>'Select HR Employee' ] + $employee_list, Input::old('hr_employee'), array('class' => 'form-control') ) }}
-                   </div>
+   {{-------------------Searching Starts--------------------------------------------------------------}}
+    <div>
+        {{ Form::open(array('url' => 'hr/attendance')) }}
+        <div class="col-sm-8">
+           <div class="col-sm-4" style="padding-left: 0">
+             {{ Form::label('hr_employee', 'HR Employee') }}
+             {{ Form::select('hr_employee', [''=>'Select HR Employee' ] + $employee_list, Input::old('hr_employee'), array('class' => 'form-control') ) }}
+           </div>
 
-                   <div class="col-sm-4">
-                      {{ Form::label('id_no', 'Employee ID No') }}
-                      {{ Form::select('id_no', $emp_id, Input::old('id_no'), array('class' => 'form-control') ) }}
-                   </div>
+           <div class="col-sm-4">
+              {{ Form::label('id_no', 'Employee ID No') }}
+              {{ Form::select('id_no', $emp_id, Input::old('id_no'), array('class' => 'form-control') ) }}
+           </div>
 
-                   <br><br>
-                   <div>
-                    {{ Form::submit('Search', array('class'=>' pull-left btn btn-info btn-xs','id'=>'button'))}}
-                   </div>
-                </div>
-                {{ Form::close() }}
-            </div>
-        <br><br>
-    {{--</div>--}}
-       {{------------Searching Ends--------------------------------------------------------------------}}
-        <div class="col-sm-12">
-           <div class="pull-left col-sm-4"></div>
-           <div class="pull-right col-sm-4" style="padding-top: 1%;">
+           <br><br>
+           <div>
+            {{ Form::submit('Search', array('class'=>' pull-left btn btn-info btn-xs','id'=>'button'))}}
            </div>
         </div>
+        {{ Form::close() }}
+    </div>
+    <br><br>
+       {{------------Searching Ends--------------------------------------------------------------------}}
+    <div class="col-sm-12">
+       <div class="pull-left col-sm-4"></div>
+       <div class="pull-right col-sm-4" style="padding-top: 1%;">
+       </div>
+    </div>
 
-        {{Form::open([ 'route'=>'attendance.batch-delete' ])}}
-       <div class="box-body">
+    {{Form::open([ 'route'=>'attendance.batch-delete' ])}}
+    <div class="box-body">
         <table id="" class="table table-striped  table-bordered" >
             <thead>
                   {{ Form::submit('Delete Items', ['class'=>'btn btn-danger btn-xs', 'id'=>'hide-button', 'style'=>'display:none'])}}
@@ -92,10 +90,10 @@
             </tbody>
 
         </table>
-        </div>
-        {{form::close() }}
-        {{ $data->links() }}
     </div>
+    {{form::close() }}
+    {{ $data->links() }}
+ </div>
 </div>
 
 {{ Form::open(array('route' => 'attendance.store')) }}

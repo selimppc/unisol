@@ -14,7 +14,12 @@ class HrOverTimeController extends \BaseController {
 
     public function index_hr_over_time()
     {
-        $model = HrOverTime::with('relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')->get();
+        $model = HrOverTime::with('relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')
+//          ->select('id', 'sign_out - sign_in as stay_time')
+            ->orderBy('id', 'DESC')
+            ->get();
+
+//      print_r($model);exit;
 
         $emp_name = HrEmployee::with('relUser','relUser.relUserProfile')->first();
 
