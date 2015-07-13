@@ -551,9 +551,27 @@ Route::group(['prefix' => 'hr'], function() {
 
     // dependable drop down
 
-    Route::any('dd/dropdown/data',[
-        'as'   => 'dd.dropdown.data',
-        'uses' => 'HrSalaryTransactionDetailController@h_r_dropDownData'
+    Route::any('sal-allowance/amount',[
+        'as'   => 'sal-allowance.amount',
+        'uses' => 'HrSalaryTransactionDetailController@hr_salary_allowance_amount'
     ]);
+
+    Route::any('sal-deduction/amount',[
+        'as'   => 'sal-deduction.amount',
+        'uses' => 'HrSalaryTransactionDetailController@hr_salary_deduction_amount'
+    ]);
+
+    Route::any('sal-overtime/amount',[
+        'as'   => 'sal-overtime.amount',
+        'uses' => 'HrSalaryTransactionDetailController@hr_overtime_amount'
+    ]);
+
+    Route::any('sal-bonus/amount',[
+        'as'   => 'sal-bonus.amount',
+        'uses' => 'HrSalaryTransactionDetailController@hr_salary_bonus_amount'
+    ]);
+
+
+
 
 });

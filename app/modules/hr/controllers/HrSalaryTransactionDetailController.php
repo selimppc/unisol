@@ -20,47 +20,47 @@ class HrSalaryTransactionDetailController extends \BaseController {
             ->where('hr_salary_transaction_id', $s_t_id)
             ->get();
 
-        // salary allowance amount
-        $sal_allwnce_amount = DB::table('hr_salary_allowance')
-            ->join('hr_salary_transaction_detail', function($join)
-            {
-                $join->on('hr_salary_allowance.id', '=', 'hr_salary_transaction_detail.hr_salary_allowance_id');
-            })
-            ->select('hr_salary_allowance.amount as all_amount')
-            ->first()->all_amount;
-        #print_r($sal_allwnce_amount);exit;
-
-        // salary deduction amount
-        $sal_decution_amount = DB::table('hr_salary_deduction')
-            ->join('hr_salary_transaction_detail', function($join)
-            {
-                $join->on('hr_salary_deduction.id', '=', 'hr_salary_transaction_detail.hr_salary_deduction_id');
-            })
-            ->select('hr_salary_deduction.amount as all_amount')
-            ->first()->all_amount;
-        #print_r($sal_decution_amount);exit;
-
-        //salary bonus amount
-        $sal_bonus_amount = DB::table('hr_bonus')
-        ->join('hr_salary_transaction_detail', function($join)
-        {
-            $join->on('hr_bonus.id', '=', 'hr_salary_transaction_detail.hr_bonus_id');
-        })
-        ->select('hr_bonus.amount as all_amount')
-        ->first()->all_amount;
-        #print_r($sal_bonus_amount);exit;
-
-        // slary over time amount
-
-        //Salary Bonus Amount
-        $sal_over_time_amount = DB::table('hr_over_time')
-            ->join('hr_salary_transaction_detail', function($join)
-            {
-                $join->on('hr_over_time.id', '=', 'hr_salary_transaction_detail.hr_over_time_id');
-            })
-            ->select('hr_over_time.type as ot_type')
-            ->first()->ot_type;
-        #print_r($sal_over_time_amount);exit;
+//        // salary allowance amount
+//        $sal_allwnce_amount = DB::table('hr_salary_allowance')
+//            ->join('hr_salary_transaction_detail', function($join)
+//            {
+//                $join->on('hr_salary_allowance.id', '=', 'hr_salary_transaction_detail.hr_salary_allowance_id');
+//            })
+//            ->select('hr_salary_allowance.amount as all_amount')
+//            ->first()->all_amount;
+//        #print_r($sal_allwnce_amount);exit;
+//
+//        // salary deduction amount
+//        $sal_decution_amount = DB::table('hr_salary_deduction')
+//            ->join('hr_salary_transaction_detail', function($join)
+//            {
+//                $join->on('hr_salary_deduction.id', '=', 'hr_salary_transaction_detail.hr_salary_deduction_id');
+//            })
+//            ->select('hr_salary_deduction.amount as all_amount')
+//            ->first()->all_amount;
+//        #print_r($sal_decution_amount);exit;
+//
+//        //salary bonus amount
+//        $sal_bonus_amount = DB::table('hr_bonus')
+//        ->join('hr_salary_transaction_detail', function($join)
+//        {
+//            $join->on('hr_bonus.id', '=', 'hr_salary_transaction_detail.hr_bonus_id');
+//        })
+//        ->select('hr_bonus.amount as all_amount')
+//        ->first()->all_amount;
+//        #print_r($sal_bonus_amount);exit;
+//
+//        // slary over time amount
+//
+//        //Salary Bonus Amount
+//        $sal_over_time_amount = DB::table('hr_over_time')
+//            ->join('hr_salary_transaction_detail', function($join)
+//            {
+//                $join->on('hr_over_time.id', '=', 'hr_salary_transaction_detail.hr_over_time_id');
+//            })
+//            ->select('hr_over_time.type as ot_type')
+//            ->first()->ot_type;
+//        #print_r($sal_over_time_amount);exit;
 
 
 
@@ -75,22 +75,56 @@ class HrSalaryTransactionDetailController extends \BaseController {
             'sal_decution_amount','sal_bonus_amount','sal_over_time_amount'));
     }
 
-// dependable drop down
+// Dependable drop down to text start
 
-//    public function dropDownForm(){
-//        return View::make('test.dropdown_form');
-//    }
-
-    public function h_r_dropDownData()
+    public function hr_salary_allowance_amount()
     {
         $input = Input::get('id');
-        $user_profile = HrSalaryAllowance::where('id', '=', $input)->lists('amount', 'id');
-        if($user_profile){
-            return Response::make(['please select one']+ $user_profile);
+        $info = HrSalaryAllowance::where('id', '=', $input)->first()->amount;
+        if($info){
+            return Response::make($info);
         }else{
-            return Response::make(['no data found']);
+            return Response::make('no data found');
         }
     }
+
+    public function hr_salary_deduction_amount()
+    {
+        $input = Input::get('id');
+        $info = HrSalaryDeduction::where('id', '=', $input)->first()->amount;
+        if($info){
+            return Response::make($info);
+        }else{
+            return Response::make('no data found');
+        }
+    }
+
+    public function hr_overtime_amount()
+    {
+        $input = Input::get('id');
+        $info = HrOverTime::where('id', '=', $input)->first()->sign_out;
+        if($info){
+            return Response::make($info);
+        }else{
+            return Response::make('no data found');
+        }
+    }
+
+    public function hr_salary_bonus_amount()
+    {
+        $input = Input::get('id');
+        $info = HrBonus::where('id', '=', $input)->first()->amount;
+        if($info){
+            return Response::make($info);
+        }else{
+            return Response::make('no data found');
+        }
+    }
+
+
+
+
+// End of dependable drop down to text
 
     public function store_hr_salary_transaction_detail()
     {
