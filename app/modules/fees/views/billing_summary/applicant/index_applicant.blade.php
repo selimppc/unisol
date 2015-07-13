@@ -51,11 +51,11 @@
                                         <td>{{isset($value->status)?$value->status:''}}
                                         </td>
                                         <td>
-                                            @if($value->status=='open')
+                                            @if($value->status=='Open')
                                             <a href="{{ URL::route('summary.applicant.view',['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" data-toggle="tooltip" data-placement="bottom" title="View"><i class="fa fa-eye text-green"></i></a>
 
                                             <a href="{{ URL::route('summary.applicant.edit',['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#editModal" data-toggle="tooltip" data-placement="bottom" title="Edit"><i class="fa fa-pencil-square-o text-blue"></i></a>
-                                            @elseif($value->status=='confirmed')
+                                            @elseif($value->status=='Confirmed')
                                                 <a href="{{ URL::route('summary.applicant.view',['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" data-toggle="tooltip" data-placement="bottom" title="View"><i class="fa fa-eye text-green"></i></a>
                                             @endif
                                         </td>
@@ -63,7 +63,7 @@
                                             @if($value->status != 'confirmed')
                                                 {{Form::open(array('route'=> ['billing-applicant-head-update']))}}
                                                 {{ Form::hidden('id',$value->id) }}
-                                                {{ Form::hidden('status','confirmed') }}
+                                                {{ Form::hidden('status','Confirmed') }}
                                                 {{ Form::submit('Confirm', array('class'=>'btn btn-xs btn-warning'))}}
                                                 {{Form::close()}}
                                             @endif
