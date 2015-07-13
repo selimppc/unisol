@@ -40,7 +40,7 @@
 
                                       {{--  <td><a href="{{ URL::route('billing.details.applicant',['id'=>$value->id])}}" class=" btn-link text-bold" data-toggle="modal" data-target="#createModal" data-toggle="tooltip" data-placement="bottom" title="Create Billing Details">{{isset($value->relApplicant->first_name)?$value->relApplicant->first_name:''}} {{isset($value->relApplicant->last_name)?$value->relApplicant->last_name:''}}</a></td>--}}
 
-                                       <td>{{ link_to_route($value->status=="open" ? 'billing.details.applicant' : 'summary.applicant.view',$value->relApplicant->first_name.' '.$value->relApplicant->first_name,['id'=>$value->id], ['data-toggle'=>"modal",'data-target'=>"#createModal"]) }}</td>
+                                       <td class="b-text">{{ link_to_route($value->status=="open" ? 'billing.details.applicant' : 'summary.applicant.view',$value->relApplicant->first_name.' '.$value->relApplicant->first_name,['id'=>$value->id], ['data-toggle'=>"modal",'data-target'=>"#createModal"]) }}</td>
 
                                         <td>{{isset($value->relApplicant->id)?$value->relApplicant->id:''}}</td>
 
