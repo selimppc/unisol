@@ -424,7 +424,7 @@ class CreateHr extends Migration {
         });
         Schema::table('hr_leave', function($table) {
             $table->foreign('hr_employee_id')->references('id')->on('hr_employee');
-            $table->foreign('forward_to')->references('id')->on('hr_employee');
+            $table->foreign('forward_to')->references('id')->on('user');
             $table->foreign('hr_leave_type_id')->references('id')->on('hr_leave_type');
             $table->foreign('alt_hr_employee_id')->references('id')->on('hr_employee');
         });
