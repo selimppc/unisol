@@ -810,7 +810,6 @@ class FeesController extends \BaseController {
 
     }
 
-
   /* Store procedure save example
    public function applicant_to_invoice( $billing_applicant_head_id )
     {
