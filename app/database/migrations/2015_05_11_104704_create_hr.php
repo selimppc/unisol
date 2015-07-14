@@ -401,6 +401,7 @@ class CreateHr extends Migration {
         Schema::create('hr_leave', function(Blueprint $table)
         {
             $table->increments('id', true);
+            $table->unsignedInteger('hr_employee_id')->nullable();
             $table->unsignedInteger('forward_to')->nullable();
             $table->unsignedInteger('hr_leave_type_id')->nullable();
             $table->text('reason');
@@ -422,6 +423,7 @@ class CreateHr extends Migration {
             $table->timestamps();
         });
         Schema::table('hr_leave', function($table) {
+            $table->foreign('hr_employee_id')->references('id')->on('hr_employee');
             $table->foreign('forward_to')->references('id')->on('hr_employee');
             $table->foreign('hr_leave_type_id')->references('id')->on('hr_leave_type');
             $table->foreign('alt_hr_employee_id')->references('id')->on('hr_employee');

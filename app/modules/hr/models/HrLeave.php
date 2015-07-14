@@ -32,12 +32,12 @@ class HrLeave extends Eloquent{
         return $this->errors;
     }
 
-    public function getFromDateAttribute($date) {
-        return Carbon::parse($date)->format('d-M-Y'); //Change the format to whichever you desire
+    public function getFromDateAttribute($from_date) {
+        return Carbon::parse($from_date)->format('d-M-Y'); //Change the format to whichever you desire
     }
 
-    public function getToDateAttribute($date) {
-        return Carbon::parse($date)->format('d-M-Y'); //Change the format to whichever you desire
+    public function getToDateAttribute($to_date) {
+        return Carbon::parse($to_date)->format('d-M-Y'); //Change the format to whichever you desire
     }
 
     //TODO : Model Relationship

@@ -89,3 +89,5 @@
     <p>&nbsp;</p>
 
  </div>
+
+{{ HTML::script('assets/js/custom.js')}}
