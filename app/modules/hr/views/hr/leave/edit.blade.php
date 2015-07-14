@@ -5,7 +5,7 @@
     <h4 class="modal-title" id="myModalLabel">Edit </h4>
 </div>
 
-<div class="modal-body" style="padding: 50px">
+<div class="modal-body" style="padding: 50px;">
 
    {{ Form::open(['route' => ['leave.update',$model->id], 'class'=>'form-horizontal','files' => true,]) }}
    <div class="form-group">
@@ -71,4 +71,6 @@
    {{Form::close()}}
    <p>&nbsp;</p>
 </div>
+
+{{ HTML::script('assets/js/custom.js')}}
 
