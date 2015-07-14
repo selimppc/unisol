@@ -8,7 +8,9 @@
 <div class="modal-body">
 
  {{Form::model($model, array('route'=>['attendance.update',$model->id,'class'=>'form-control','files'=>true]))}}
+     {{ Form::hidden('id', $model->id) }}
      @include('hr::hr.hr_attendance._form')
  {{ Form::close() }}
 
 </div>
+
