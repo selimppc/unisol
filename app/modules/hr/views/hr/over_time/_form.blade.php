@@ -5,27 +5,27 @@
 
 <div class='form-group'>
    {{ Form::label('sign_in', 'Sign In') }}
-   {{ Form::text('sign_in',  Input::old('sign_in'),['class'=>'form-control date_picker']) }}
+   {{ Form::text('sign_in', Input::old('sign_in'),['id'=>'in_time','class'=>'form-control date_picker']) }}
 </div>
 
 <div class='form-group'>
    {{ Form::label('sign_out', 'Sign Out') }}
-   {{ Form::text('sign_out',  Input::old('sign_out'),['class'=>'form-control date_picker']) }}
+   {{ Form::text('sign_out', Input::old('sign_out'),['id'=>'out_time','class'=>'form-control date_picker']) }}
 </div>
 
 <div class='form-group'>
    {{ Form::label('unit_cost', 'Unit Cost') }}
-   {{ Form::text('unit_cost',  Input::old('unit_cost'),['class'=>'unit form-control']) }}
+   {{ Form::text('unit_cost', Input::old('unit_cost'),['class'=>'form-control','id'=>'unit']) }}
 </div>
 
 <div class='form-group'>
    {{ Form::label('quantity', 'Quantity') }}
-   {{ Form::text('quantity',  Input::old('quantity'),['class'=>'form-control']) }}
+   {{ Form::text('quantity', Input::old('quantity'),['class'=>'form-control']) }}
 </div>
 
 <div class='form-group'>
    {{ Form::label('amount', 'Amount') }}
-   {{ Form::text('amount',  Input::old('amount'),['class'=>'amount form-control','id'=>'amount']) }}
+   {{ Form::text('amount', Input::old('amount'),['class'=>'form-control','id'=>'amount']) }}
 </div>
 
 <div class='form-group'>
@@ -43,17 +43,29 @@
 
 <script type="text/javascript">
 
-//$(function(){
-//    $('.amount').change(function(){
-//           var a = $('.unit').val();
-//           var b = $('.hour').val();
-//
-//           var amount = document.getElementById('amount');
-//           var myResult = a * b;
-//           amount.value = myResult;
-//
-//           $('.std_amount').prop('disabled', true);
-//     });
-//});
+$(function(){
+    $('#unit').change(function(){
+        sign_time = $('#in_time').val();
+        out_time = $('#out_time').val();
+        unit = $('#unit').val();
+
+        start_actual_time = new Date(sign_time);
+        end_actual_time = new Date(out_time);
+
+        diff = end_actual_time - start_actual_time;
+
+        diffSeconds = diff / 1000;
+        HH = Math.floor(diffSeconds / 3600);
+        MM = Math.floor(diffSeconds % 3600) / 60;
+
+        formatted = ( (MM <= 30) ? HH : HH+1 ) + "." + ( (MM <= 30) ? (5) : 0);
+
+        // others
+        var amount = document.getElementById('amount');
+        var price = formatted * unit;
+        amount.value = price;
+
+    });
+});
 
 </script>
