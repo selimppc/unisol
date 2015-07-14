@@ -735,7 +735,7 @@ class FeesController extends \BaseController {
             ->where('id','=',$id)
             ->first();
 
-        $billing_details_data = BillingApplicantDetail::with('relBillingApplicantHead','relBillingItem','relWaiver')
+        $billing_details_data = BillingApplicantDetail::latest('id')->with('relBillingApplicantHead','relBillingItem','relWaiver')
             ->where('billing_applicant_head_id','=',$id)
             ->get();
 
