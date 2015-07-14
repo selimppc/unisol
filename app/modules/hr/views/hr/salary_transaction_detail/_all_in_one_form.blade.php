@@ -110,7 +110,7 @@
       <?php $counter = 0;?>
        @foreach($model as $values)
             <tr>
-               <td>{{ $values->type }}</td>
+               <td>{{ ucfirst($values->type) }}</td>
                <td>{{ isset($values->relHrSalaryAllowance->title) ? (ucfirst($values->relHrSalaryAllowance->title)) : "" }}</td>
                <td>{{ isset($values->relHrSalaryDeduction->title) ? (ucfirst($values->relHrSalaryDeduction->title)) : "" }}</td>
                <td>{{ isset($values->relHrOverTime->sign_in) ? $values->relHrOverTime->sign_in : "" }}</td>
@@ -266,8 +266,7 @@ $(function(){
      $('.std_percentage').change(function(){
            var a = $('.std_percentage').val();
            var b = document.getElementById("sal-allowance").value;
-
-           var amount = document.getElementById('salary_transaction_detail_amount');
+           var amount = document.getElementById('salary_transaction_detail_amount');;
            var myResult = (a*b)/100;
            amount.value = myResult;
 
@@ -276,6 +275,13 @@ $(function(){
 
 
      $('.std_amount').change(function(){
+
+           var a = $('.std_amount').val();
+           var b = document.getElementById("sal-allowance").value;
+           var percentage = document.getElementById('salary_transaction_detail_percentage');;
+           var myResult = (a*100)/b;
+           percentage.value = myResult;
+
            $('.std_percentage').prop('disabled', true);
      });
 
