@@ -8,17 +8,17 @@
         $("#add_billing_applicant_detail").click(function(event){
 
             var $billing_head_id = "<?php echo $billing_head_id; ?>";
-            $billing_item_id = $("#billing_item_id").val();
+            $billing_item_id = $("#billing_item_id").val('');
             // alert($billing_item_id);
             var listItemTitle = $(" #billing_item_id option:selected ").text();
             //alert(listItemTitle);
-            $waiver_id = $("#waiver_id").val();
+            $waiver_id = $("#waiver_id").val('');
             var waiverTitle = $( " #waiver_id option:selected " ).text();
             // alert(waiverTitle);
-            $waiver_amount = $("#waiver_amount").val();
-            $cost_per_unit = $("#cost_per_unit").val();
-            $quantity= $("#quantity").val();
-            $total_amount = $("#total_amount").val();
+            $waiver_amount = $("#waiver_amount").val('');
+            $cost_per_unit = $("#cost_per_unit").val('');
+            $quantity= $("#quantity").val('');
+            $total_amount = $("#total_amount").val('');
 
             $('#item').append("<tr> " +
             "<td width='300'><input type='hidden' name='billing_applicant_head_id[]' value='"+ $billing_head_id +"' ><input type='hidden' name='billing_item_id[]' value='"+ $billing_item_id +"' ><input type='text' value='"+ listItemTitle +"' readonly ></td>" +

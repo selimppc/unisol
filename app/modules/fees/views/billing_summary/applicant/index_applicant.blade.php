@@ -40,7 +40,7 @@
 
                                       {{--  <td><a href="{{ URL::route('billing.details.applicant',['id'=>$value->id])}}" class=" btn-link text-bold" data-toggle="modal" data-target="#createModal" data-toggle="tooltip" data-placement="bottom" title="Create Billing Details">{{isset($value->relApplicant->first_name)?$value->relApplicant->first_name:''}} {{isset($value->relApplicant->last_name)?$value->relApplicant->last_name:''}}</a></td>--}}
 
-                                       <td class="b-text">{{ link_to_route($value->status=="open" ? 'billing.details.applicant' : 'summary.applicant.view',$value->relApplicant->first_name.' '.$value->relApplicant->first_name,['id'=>$value->id], ['data-toggle'=>"modal",'data-target'=>"#createModal"]) }}</td>
+                                       <td class="b-text">{{ link_to_route($value->status=="open" ? 'billing.details.applicant' : 'summary.applicant.view',$value->relApplicant->first_name.' '.$value->relApplicant->last_name,['id'=>$value->id], ['data-toggle'=>"modal",'data-target'=>"#createModal"]) }}</td>
 
                                         <td>{{isset($value->relApplicant->id)?$value->relApplicant->id:''}}</td>
 
@@ -51,11 +51,12 @@
                                         <td>{{isset($value->status)?$value->status:''}}
                                         </td>
                                         <td>
-                                            @if($value->status=='Open')
+                                            @if($value->status=='open')
                                             <a href="{{ URL::route('summary.applicant.view',['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" data-toggle="tooltip" data-placement="bottom" title="View"><i class="fa fa-eye text-green"></i></a>
 
                                             <a href="{{ URL::route('summary.applicant.edit',['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#editModal" data-toggle="tooltip" data-placement="bottom" title="Edit"><i class="fa fa-pencil-square-o text-blue"></i></a>
-                                            @elseif($value->status=='Confirmed')
+
+                                            @elseif($value->status=='confirmed')
                                                 <a href="{{ URL::route('summary.applicant.view',['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" data-toggle="tooltip" data-placement="bottom" title="View"><i class="fa fa-eye text-green"></i></a>
                                             @endif
                                         </td>
@@ -63,7 +64,7 @@
                                             @if($value->status != 'confirmed')
                                                 {{Form::open(array('route'=> ['billing-applicant-head-update']))}}
                                                 {{ Form::hidden('id',$value->id) }}
-                                                {{ Form::hidden('status','Confirmed') }}
+                                                {{ Form::hidden('status','confirmed') }}
                                                 {{ Form::submit('Confirm', array('class'=>'btn btn-xs btn-warning'))}}
                                                 {{Form::close()}}
                                             @endif
