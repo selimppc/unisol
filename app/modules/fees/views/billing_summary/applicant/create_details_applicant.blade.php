@@ -46,19 +46,23 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-2">
-            <div class='form-group'>
+
+        <span class="pull-left" id="fill-up-form" style="color:#f06f5d; font-weight: bold"></span>
+
+        <div class="pull-right">
+            <div class='form-group' style="margin-right: 4px">
                 <input type="button" class="btn btn-primary" id="add_billing_applicant_detail" value="+Add">
             </div>
         </div>
+
         <div>&nbsp;</div>
         <div>&nbsp;</div>
         <div>&nbsp;</div>
     </div>
 
-    <div class="table-hide">
+    <div class="delete-msg">
         <p>
-		<span class="pull-right" id="something-delete" style="color: orangered; font-weight: bold">
+		<span class="pull-right" id="something-delete" style="color: #ff4921; font-weight: bold">
 		</span>
         </p>
         {{Form::open(array('route' => array('billing.details.applicant.save')))}}

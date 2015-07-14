@@ -4,12 +4,6 @@
 <script type="text/javascript">
     $(function(){
 
-       // $tableItemCounter = 0;//To stop additem if exist
-        //var arrayItems=[];//To stop additem if exist
-
-        /*function editListItem(itemid){
-         arrayItems.push(itemid);
-         }*/
         $("#add_billing_applicant_detail").click(function(event)
         {
             var $billing_head_id = "<?php echo $billing_head_id; ?>";
@@ -22,19 +16,18 @@
             $quantity= $("#quantity").val();
             $total_amount = $("#total_amount").val();
 
-            if($billing_item_id == "" || $cost_per_unit == "" || $total_amount == "") {
+           /* if($billing_item_id == "" || $cost_per_unit == "" || $total_amount == "") {
                 alert("Please Add Item and try Again!");
                 return false;
-            }
-            else {
+            }*/
+                if($billing_item_id == "" || $cost_per_unit == "" || $total_amount == "")
+                {
+                    document.getElementById('fill-up-form').innerHTML=" Please Fill Up  All Fields And try Again!";
+                    return false;
+                }else{
+                    document.getElementById('fill-up-form').innerHTML="";
+                }
 
-                /* item_id = parseInt($(".listItemTitle option:selected").val());//To stop additem if exist
-                 var index = $.inArray(item_id, arrayItems);//To stop additem if exist
-                 if (index >= 0) {
-                 alert("Already Added!");
-                 return;
-                 }
-                 else {*/
                 $('#item').append("<tr> " +
                 "<td width='300'><input type='hidden' name='billing_applicant_head_id[]' value='" + $billing_head_id + "' ><input type='hidden' name='billing_item_id[]' value='" + $billing_item_id + "' ><input type='text' value='" + listItemTitle + "' readonly ></td>" +
                 "<td><input type='hidden' name='waiver_id[]' value='" + $waiver_id + "' readonly>" + "<input type='text' value='" + waiverTitle + "' readonly></td>" +
@@ -55,9 +48,6 @@
                 $("#cost_per_unit").val("");
                 $("#quantity").val("");
                 $("#total_amount").val("");
-            }
-            // }
-            // }
 
         });
     });
@@ -85,6 +75,7 @@
                             console.log(msg);
                             var whichtr = $('#'+getId).closest("tr");
                             whichtr.fadeOut(500).remove();
+                           // $('#something-delete').html(response);
                             //arrayItems.pop(getId);//To stop additem if exist
                         });
             }

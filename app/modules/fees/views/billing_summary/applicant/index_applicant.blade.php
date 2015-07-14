@@ -48,7 +48,7 @@
 
                                         <td>{{isset($value->total_cost)?$value->total_cost:''}}</td>
 
-                                        <td>{{isset($value->status)?$value->status:''}}
+                                        <td>{{ucfirst($value->status)}}
                                         </td>
                                         <td>
                                             @if($value->status=='open')
