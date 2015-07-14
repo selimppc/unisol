@@ -132,7 +132,7 @@ class AccountReceivableController extends \BaseController {
                 $data_v_detail_credit = [
                     'acc_voucher_head_id' => $model_vhead->id,
                     'acc_chart_of_accounts_id' => $input_data['acc_chart_of_accounts_id'],
-                    //'associated_id' => $input_data['associated_id'],
+                    'associated_id' => $associated_id, //$input_data['associated_id'],
                     'prime_amount' => (-$input_data['total_amount']),
                     'base_amount' => (-$input_data['total_amount']),
                     'note'=> "open",
@@ -143,7 +143,7 @@ class AccountReceivableController extends \BaseController {
                 $data_v_detail_debit = [
                     'acc_voucher_head_id' => $model_vhead->id,
                     'acc_chart_of_accounts_id' => $input_data['expense_account'],
-                    'associated_id' => $associated_id, //$input_data['associated_id'],
+                    //'associated_id' => $associated_id, //$input_data['associated_id'],
                     'prime_amount' => $input_data['total_amount'],
                     'base_amount' => $input_data['total_amount'],
                     'note'=> "open",
