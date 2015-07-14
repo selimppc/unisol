@@ -1,4 +1,4 @@
-{{Form::open(['route'=>'store-ap-payment-voucher', 'files'=>true, 'id'=>'grn-sub-grn-data'])}}
+{{Form::open(['route'=>'store-applicant-ar-voucher', 'files'=>true, 'id'=>'grn-sub-grn-data'])}}
 <style type="text/css">
     .unpaid-items tr:hover{
         cursor: pointer;
@@ -128,7 +128,7 @@
 
 
 
-@include('payment::account_payable._script')
+@include('payment::account_receivable._script')
 {{ HTML::script('assets/etsb/etsb_js/jquery-ui/jquery-ui.min.js')}}
 {{--{{ HTML::script('assets/js/custom.js')}}--}}
 {{ HTML::script('assets/etsb/etsb_js/etsb_custom.js')}}
