@@ -60,8 +60,6 @@ $(function(){
 
         formatted = ( (MM <= 30) ? HH : HH+1 ) + "." + ( (MM <= 30) ? (5) : 0);
 
-        //price = formatted * 10;
-
         // others
         var amount = document.getElementById('amount');
         var price = formatted * unit;
