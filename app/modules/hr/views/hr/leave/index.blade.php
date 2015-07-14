@@ -13,29 +13,33 @@
 <h3>HR Leave</h3>
 
 <div class="row">
-
-    <div class="box box-solid ">
+    <div class="box box-solid">
     <br>
     {{-------------------Searching Starts--------------------------------------------------------------}}
         <div>
             {{ Form::open(array('url' => 'hr/leave')) }}
-            <div class="col-sm-8">
-                <div class="col-sm-4" style="padding-left: 0">
+            <div class="col-sm-10">
+                <div class="col-sm-3" style="padding-left: 0">
                     {{ Form::label('hr_employee_id', 'HR Employee') }}
                     {{ Form::select('hr_employee_id', [''=>'Select HR Employee' ] + $employee_list, Input::old('hr_employee_id'), array('class' => 'form-control') ) }}
                 </div>
-                <div class="col-sm-3" style="padding-left: 0">
+                <div class="col-sm-2" style="padding-left: 0">
                     {{ Form::label('from_date', 'Start Date') }}
                     {{ Form::select('from_date', [''=>'Select Date' ] + $date1, Input::old('from_date'), array('class' => 'form-control') ) }}
                 </div>
-                <div class="col-sm-3" style="padding-left: 0">
+                <div class="col-sm-2" style="padding-left: 0">
                     {{ Form::label('to_date', 'End Date') }}
                     {{ Form::select('to_date', [''=>'Select Date' ] + $date2, Input::old('to_date'), array('class' => 'form-control') ) }}
                 </div>
-                <br><br>
-                <div>
-                   {{ Form::submit('Search', array('class'=>' pull-left btn btn-info btn-xs','id'=>'button'))}}
+                <div class="col-sm-3" style="padding-left: 0">
+                    {{ Form::label('hr_leave_type_id', 'HR Leave Type') }}
+                    {{ Form::select('hr_leave_type_id', [''=>'Select HR Leave Type' ] + $leave_type, Input::old('hr_leave_type_id'), array('class' => 'form-control') ) }}
                 </div>
+                <div class="col-sm-2" style="padding-left: 0">
+                    {{ Form::label('status', 'Status') }}
+                    {{ Form::select('status', [''=>'Select Status' ] + $status, Input::old('status'), array('class' => 'form-control') ) }}
+                </div>
+                   {{ Form::submit('Search', array('class'=>' pull-right btn btn-info btn-xs','id'=>'button'))}}
             </div>
             {{ Form::close() }}
         </div>
@@ -49,7 +53,7 @@
 
         {{Form::open([ 'route'=>'leave.batch-delete' ])}}
         <div class="box-body">
-            <table id="example" class="table table-striped  table-bordered">
+            <table id="" class="table table-striped  table-bordered">
                 <thead>
                       {{ Form::submit('Delete Items', ['class'=>'btn btn-danger btn-xs', 'id'=>'hide-button', 'style'=>'display:none'])}}
                     <tr>

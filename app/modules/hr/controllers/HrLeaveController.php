@@ -18,11 +18,15 @@ class HrLeaveController extends \BaseController {
             $employee_list = Input::get('hr_employee_id');
             $date1 = Input::get('from_date');
             $date2 = Input::get('to_date');
+            $leave_type = Input::get('hr_leave_type_id');
+            $status = Input::get('status');
 
             $data = $data->with('relUser','relUser.relUserProfile','relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile');
             if (isset($employee_list) && !empty($employee_list)) $data->where('hr_leave.hr_employee_id', '=', $employee_list);
             if (isset($date1) && !empty($date1)) $data->where('hr_leave.from_date', '=', $date1);
             if (isset($date2) && !empty($date2)) $data->where('hr_leave.to_date', '=', $date2);
+            if (isset($status) && !empty($status)) $data->where('hr_leave.status', '=', $status);
+            if (isset($leave_type) && !empty($leave_type)) $data->where('hr_leave.hr_leave_type_id', '=', $leave_type);
             $data = $data->orderBy('id', 'DESC')->paginate(5);
         }
         else{
@@ -33,8 +37,11 @@ class HrLeaveController extends \BaseController {
         $hr_employee = User::HrList();
         $date1 = HrLeave::lists('from_date','from_date');
         $date2 = HrLeave::lists('to_date','to_date');
+        $leave_type = HrLeaveType::lists('title','id');
+        $status = HrLeave::lists('status','status');
+
         Input::flash();
-        return View::make('hr::hr.leave.index',compact('data','employee_list','leave_type_id','hr_employee','date1','date2'));
+        return View::make('hr::hr.leave.index',compact('data','employee_list','leave_type_id','hr_employee','date1','date2','leave_type','status'));
     }
 
     public function storeLeave()
