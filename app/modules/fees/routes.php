@@ -160,6 +160,10 @@
          'as' => 'summary.applicant.update',
          'uses' => 'FeesController@update_applicant_summary'
      ]);
+     Route::any("applicant-head-destroy/{id}", [
+         "as"   => "applicant-head-destroy",
+         "uses" => "FeesController@destroy_billing_applicant_head"
+     ]);
      Route::any('billing-applicant-head-update', [
          'as' => 'billing-applicant-head-update',
          'uses' => 'FeesController@update_applicant_head_status'

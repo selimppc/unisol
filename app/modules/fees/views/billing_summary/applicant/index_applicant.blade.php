@@ -35,12 +35,10 @@
                                 <tbody>
                                 <?php $sl=1;?>
                                 @foreach ($summary_applicant as $value)
+                                    @if($value->status !=='cancel')
                                     <tr>
-                                         <td class="sl-no-size">{{$sl++}}</td>
-
-                                      {{--  <td><a href="{{ URL::route('billing.details.applicant',['id'=>$value->id])}}" class=" btn-link text-bold" data-toggle="modal" data-target="#createModal" data-toggle="tooltip" data-placement="bottom" title="Create Billing Details">{{isset($value->relApplicant->first_name)?$value->relApplicant->first_name:''}} {{isset($value->relApplicant->last_name)?$value->relApplicant->last_name:''}}</a></td>--}}
-
-                                       <td class="b-text">{{ link_to_route($value->status=="open" ? 'billing.details.applicant' : 'summary.applicant.view',$value->relApplicant->first_name.' '.$value->relApplicant->first_name,['id'=>$value->id], ['data-toggle'=>"modal",'data-target'=>"#createModal"]) }}</td>
+                                       <td class="sl-no-size">{{$sl++}}</td>
+                                       <td class="b-text">{{ link_to_route($value->status=="open" ? 'billing.details.applicant' : 'summary.applicant.view',$value->relApplicant->first_name.' '.$value->relApplicant->last_name,['id'=>$value->id], ['data-toggle'=>"modal",'data-target'=>"#createModal"]) }}</td>
 
                                         <td>{{isset($value->relApplicant->id)?$value->relApplicant->id:''}}</td>
 
@@ -48,14 +46,17 @@
 
                                         <td>{{isset($value->total_cost)?$value->total_cost:''}}</td>
 
-                                        <td>{{isset($value->status)?$value->status:''}}
+                                        <td>{{ucfirst($value->status)}}
                                         </td>
                                         <td>
-                                            @if($value->status=='Open')
+                                            @if($value->status=='open')
                                             <a href="{{ URL::route('summary.applicant.view',['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" data-toggle="tooltip" data-placement="bottom" title="View"><i class="fa fa-eye text-green"></i></a>
 
                                             <a href="{{ URL::route('summary.applicant.edit',['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#editModal" data-toggle="tooltip" data-placement="bottom" title="Edit"><i class="fa fa-pencil-square-o text-blue"></i></a>
-                                            @elseif($value->status=='Confirmed')
+
+                                                <a data-href="{{ URL::route('applicant-head-destroy', ['req_id'=>$value->id ]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa fa-circle-o-notch" style="color: red" data-toggle="tooltip" data-placement="bottom" title="Cancel"></i></a>
+
+                                            @elseif($value->status=='confirmed')
                                                 <a href="{{ URL::route('summary.applicant.view',['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" data-toggle="tooltip" data-placement="bottom" title="View"><i class="fa fa-eye text-green"></i></a>
                                             @endif
                                         </td>
@@ -63,16 +64,17 @@
                                             @if($value->status != 'confirmed')
                                                 {{Form::open(array('route'=> ['billing-applicant-head-update']))}}
                                                 {{ Form::hidden('id',$value->id) }}
-                                                {{ Form::hidden('status','Confirmed') }}
+                                                {{ Form::hidden('status','confirmed') }}
                                                 {{ Form::submit('Confirm', array('class'=>'btn btn-xs btn-warning'))}}
                                                 {{Form::close()}}
                                             @endif
                                         </td>
                                     </tr>
+                                    @endif
                                 @endforeach
                                 </tbody>
                             </table>
-                            {{--{{ $billing_summary_applicant->links() }}--}}
+
                         </div>
                     </div>
                 </div>
@@ -123,5 +125,26 @@
             </div>
         </div>
     </div>
+
+    {{-- Modal for cancel --}}
+    <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Confirm Cancel</h4>
+                </div>
+                <div class="modal-body">
+                    <strong>Are you sure to Cancel?</strong>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+                    <a href="#" class="btn btn-danger danger">Cancel</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 @stop

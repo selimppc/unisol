@@ -70,18 +70,28 @@ Route::group(['prefix' => 'payment'], function() {
         "uses" => "AccountReceivableController@show_applicant_bill"
     ]);
 
-    //create invoice
+    //create Applicant invoice
     Route::any('create-invoice-applicant/{bah_id}', [
         'as' => 'create-invoice-applicant',
         'uses' => 'AccountReceivableController@applicant_to_invoice'
     ]);
 
-
-
     //Manage Applicant AR
     Route::any('manage-applicant-ar', [
         'as' => 'manage-applicant-ar',
         'uses' => 'AccountReceivableController@manage_applicant_ar'
+    ]);
+
+    //manage Applicant Receivable Amount
+    Route::any("applicant-ar-voucher/{associated_id}/{coa_id}", [
+        "as"   => "applicant-ar-voucher",
+        "uses" => "AccountReceivableController@applicant_receive_voucher"
+    ]);
+
+    // Store Applicant Payment / Money Receipt
+    Route::any("store-applicant-ar-voucher", [
+        "as"   => "store-applicant-ar-voucher",
+        "uses" => "AccountReceivableController@store_applicant_ar_voucher"
     ]);
 
 

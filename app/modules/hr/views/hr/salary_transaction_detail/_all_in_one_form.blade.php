@@ -110,7 +110,7 @@
       <?php $counter = 0;?>
        @foreach($model as $values)
             <tr>
-               <td>{{ $values->type }}</td>
+               <td>{{ ucfirst($values->type) }}</td>
                <td>{{ isset($values->relHrSalaryAllowance->title) ? (ucfirst($values->relHrSalaryAllowance->title)) : "" }}</td>
                <td>{{ isset($values->relHrSalaryDeduction->title) ? (ucfirst($values->relHrSalaryDeduction->title)) : "" }}</td>
                <td>{{ isset($values->relHrOverTime->sign_in) ? $values->relHrOverTime->sign_in : "" }}</td>
@@ -184,8 +184,9 @@ $(function(){
                       "<td><input name='hr_salary_deduction_id[]' value='"+ $sal_trns_dtl_deduction +"' readonly> </td>" +
                       "<td><input name='hr_over_time_id[]' value='"+ $sal_trns_dtl_ovrtm +"' readonly> </td>" +
                       "<td><input name='hr_bonus_id[]' value='"+ $sal_trns_dtl_bonus +"' readonly> </td>" +
-                      "<td><input name='amount[]' value='"+ $sal_trns_dtl_amount +"' readonly></td>" +
                       "<td><input name='percentage[]' value='"+ $sal_trns_dtl_percentage +"' readonly></td>" +
+                      "<td><input name='amount[]' value='"+ $sal_trns_dtl_amount +"' readonly></td>" +
+
                   " </tr>");
 
                  $arrayRnc.push($salary_transctn_id);
@@ -265,8 +266,7 @@ $(function(){
      $('.std_percentage').change(function(){
            var a = $('.std_percentage').val();
            var b = document.getElementById("sal-allowance").value;
-
-           var amount = document.getElementById('salary_transaction_detail_amount');
+           var amount = document.getElementById('salary_transaction_detail_amount');;
            var myResult = (a*b)/100;
            amount.value = myResult;
 
@@ -275,6 +275,13 @@ $(function(){
 
 
      $('.std_amount').change(function(){
+
+           var a = $('.std_amount').val();
+           var b = document.getElementById("sal-allowance").value;
+           var percentage = document.getElementById('salary_transaction_detail_percentage');;
+           var myResult = (a*100)/b;
+           percentage.value = myResult;
+
            $('.std_percentage').prop('disabled', true);
      });
 
@@ -317,10 +324,6 @@ $(function(){
                 $('#sal-bonus').val(data);
            });
       });
-
-
-
-
 
 });
 
