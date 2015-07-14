@@ -10,7 +10,13 @@
             $billing_item_id = $("#billing_item_id").val();
             var listItemTitle = $(" #billing_item_id option:selected ").text();
             $waiver_id = $("#waiver_id").val();
-            var waiverTitle = $( " #waiver_id option:selected " ).text();
+            if($waiver_id !=="")
+            {
+                var waiverTitle = $( " #waiver_id option:selected " ).text();
+            }
+            else{
+                var waiverTitle = "";
+            }
             $waiver_amount = $("#waiver_amount").val();
             $cost_per_unit = $("#cost_per_unit").val();
             $quantity= $("#quantity").val();
@@ -19,35 +25,36 @@
            /* if($billing_item_id == "" || $cost_per_unit == "" || $total_amount == "") {
                 alert("Please Add Item and try Again!");
                 return false;
-            }*/
-                if($billing_item_id == "" || $cost_per_unit == "" || $total_amount == "")
-                {
-                    document.getElementById('fill-up-form').innerHTML=" Please Fill Up  All Fields And try Again!";
-                    return false;
-                }else{
-                    document.getElementById('fill-up-form').innerHTML="";
-                }
+            }
+            else{ $('#item').append("<tr> " + ........ */
 
-                $('#item').append("<tr> " +
-                "<td width='300'><input type='hidden' name='billing_applicant_head_id[]' value='" + $billing_head_id + "' ><input type='hidden' name='billing_item_id[]' value='" + $billing_item_id + "' ><input type='text' value='" + listItemTitle + "' readonly ></td>" +
-                "<td><input type='hidden' name='waiver_id[]' value='" + $waiver_id + "' readonly>" + "<input type='text' value='" + waiverTitle + "' readonly></td>" +
-                "<td><input name='waiver_amount[]' value='" + $waiver_amount + "' readonly > </td>" +
-                "<td><input name='cost_per_unit[]' value='" + $cost_per_unit + "' readonly > </td>" +
-                "<td><input name='quantity[]' value='" + $quantity + "' readonly></td>" +
-                "<td><input name='total_amount[]' value='" + $total_amount + "' readonly></td>" +
-                "<td><a class='btn btn-default btn-sm' id='removeTrId' onClick='deleteNearestTr(this.id, 0)'><i class='fa  fa-trash-o text-red' style='font-size: 15px'></i></a></td>" +
-                "</tr>");
+            if($billing_item_id == "" || $cost_per_unit == "" || $total_amount == "")
+            {
+                document.getElementById('fill-up-form').innerHTML=" Please Fill Up  All Fields And try Again!";
+                return false;
+            }else{
+                document.getElementById('fill-up-form').innerHTML="";
+            }
+            $('#item').append("<tr> " +
+            "<td width='300'><input type='hidden' name='billing_applicant_head_id[]' value='" + $billing_head_id + "' ><input type='hidden' name='billing_item_id[]' value='" + $billing_item_id + "' ><input type='text' value='" + listItemTitle + "' readonly ></td>" +
+            "<td><input type='hidden' name='waiver_id[]' value='" + $waiver_id + "' readonly>" + "<input type='text' value='" + waiverTitle + "' readonly></td>" +
+            "<td><input name='waiver_amount[]' value='" + $waiver_amount + "' readonly > </td>" +
+            "<td><input name='cost_per_unit[]' value='" + $cost_per_unit + "' readonly > </td>" +
+            "<td><input name='quantity[]' value='" + $quantity + "' readonly></td>" +
+            "<td><input name='total_amount[]' value='" + $total_amount + "' readonly></td>" +
+            "<td><a class='btn btn-default btn-sm' id='removeTrId' onClick='deleteNearestTr(this.id, 0)'><i class='fa  fa-trash-o text-red' style='font-size: 15px'></i></a></td>" +
+            "</tr>");
 
-                // Insert item_id as INT to array otherwise it may be added like string
-                //arrayItems.push(ItemId);//To stop additem if exist
+            // Insert item_id as INT to array otherwise it may be added like string
+            //arrayItems.push(ItemId);//To stop additem if exist
 
-                //flush the input fields
-                $("#billing_item_id").val("");
-                $("#waiver_id").val("");
-                $("#waiver_amount").val("");
-                $("#cost_per_unit").val("");
-                $("#quantity").val("");
-                $("#total_amount").val("");
+            //flush the input fields
+            $("#billing_item_id").val("");
+            $("#waiver_id").val("");
+            $("#waiver_amount").val("");
+            $("#cost_per_unit").val("");
+            $("#quantity").val("");
+            $("#total_amount").val("");
 
         });
     });
