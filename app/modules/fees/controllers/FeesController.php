@@ -691,6 +691,23 @@ class FeesController extends \BaseController {
         }
     }
 
+    public function destroy_billing_applicant_head($id)
+    {
+        $model = BillingApplicantHead::findOrFail($id);
+        $model->status = 'cancel';
+        DB::beginTransaction();
+        try{
+            $model->save();
+            DB::commit();
+            Session::flash('message', 'Success !');
+        }catch ( Exception $e ){
+            //If there are any exceptions, rollback the transaction`
+            DB::rollback();
+            Session::flash('danger', 'Failed !');
+        }
+        return Redirect::back();
+    }
+
     public  function update_applicant_head_status()
     {
         if($this->isPostRequest()) {

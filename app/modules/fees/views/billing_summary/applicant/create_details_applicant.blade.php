@@ -61,10 +61,10 @@
     </div>
 
     <div class="delete-msg">
-        <p>
+        {{--<p>
 		<span class="pull-right" id="something-delete" style="color: #ff4921; font-weight: bold">
 		</span>
-        </p>
+        </p>--}}
         {{Form::open(array('route' => array('billing.details.applicant.save')))}}
         <table class="table table-bordered small-header-table" id="amwCourseConfig">
             <thead>
