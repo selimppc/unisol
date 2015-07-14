@@ -20,9 +20,17 @@
         <div>
             {{ Form::open(array('url' => 'hr/leave')) }}
             <div class="col-sm-8">
-                <div class="col-sm-5" style="padding-left: 0">
-                    {{ Form::label('forward_to', 'HR Employee') }}
-                    {{ Form::select('forward_to', [''=>'Select HR Employee (Forward To)' ] + $employee_list, Input::old('forward_to'), array('class' => 'form-control') ) }}
+                <div class="col-sm-4" style="padding-left: 0">
+                    {{ Form::label('hr_employee_id', 'HR Employee') }}
+                    {{ Form::select('hr_employee_id', [''=>'Select HR Employee' ] + $employee_list, Input::old('hr_employee_id'), array('class' => 'form-control') ) }}
+                </div>
+                <div class="col-sm-3" style="padding-left: 0">
+                    {{ Form::label('from_date', 'Start Date') }}
+                    {{ Form::select('from_date', [''=>'Select Date' ] + $date1, Input::old('from_date'), array('class' => 'form-control') ) }}
+                </div>
+                <div class="col-sm-3" style="padding-left: 0">
+                    {{ Form::label('to_date', 'End Date') }}
+                    {{ Form::select('to_date', [''=>'Select Date' ] + $date2, Input::old('to_date'), array('class' => 'form-control') ) }}
                 </div>
                 <br><br>
                 <div>
@@ -46,6 +54,7 @@
                       {{ Form::submit('Delete Items', ['class'=>'btn btn-danger btn-xs', 'id'=>'hide-button', 'style'=>'display:none'])}}
                     <tr>
                         <th><input name="id" type="checkbox" id="checkbox" class="checkbox" value=""></th>
+                        <th> HR Employee</th>
                         <th> Leave Forward To</th>
                         <th> Leave Type </th>
                         <th> Reason </th>
@@ -65,15 +74,18 @@
                                 <td>
                                      <a href="{{ URL::route('leave.show',
                                      ['id' => $values->id]) }}" class="btn-link" data-toggle="modal" data-target="#leave">
-                                     <b>{{isset($values->forward_to)? $values->relHrEmployee->relUser->relUserProfile->first_name.' '.$values->relHrEmployee->relUser->relUserProfile->middle_name.' '.$values->relHrEmployee->relUser->relUserProfile->last_name:''}}</b>
+                                     <b>{{isset($values->hr_employee_id)? $values->relHrEmployee->relUser->relUserProfile->first_name.' '.$values->relHrEmployee->relUser->relUserProfile->middle_name.' '.$values->relHrEmployee->relUser->relUserProfile->last_name:''}}</b>
                                      </a>
                                 </td>
+                                <td>{{isset($values->forward_to)?$values->relUser->relUserProfile->first_name.' '.$values->relUser->relUserProfile->middle_name.' '.$values->relUser->relUserProfile->last_name:''}}</td>
                                 <td>{{isset($values->hr_leave_type_id)?$values->relHrLeaveType->title:''}}</td>
                                 <td>{{$values->reason}}</td>
                                 <td>{{Str::title($values->leave_duration)}}</td>
                                 <td>{{$values->from_date}} &nbsp;<b>To</b>&nbsp; {{$values->to_date}}</td>
                                 <td>{{$values->alt_contact_no}}</td>
-                                <td>{{isset($values->alt_hr_employee_id)? $values->relHrEmployee->relUser->relUserProfile->first_name.' '.$values->relHrEmployee->relUser->relUserProfile->middle_name.' '.$values->relHrEmployee->relUser->relUserProfile->last_name:''}}</td>
+                                <td>
+                                   {{isset($values->alt_hr_employee_id)? $values->relHrAltEmployee->relUser->relUserProfile->first_name.' '.$values->relHrAltEmployee->relUser->relUserProfile->middle_name.' '.$values->relHrAltEmployee->relUser->relUserProfile->last_name:''}}
+                                </td>
                                 <td>{{ucfirst($values->status)}}</td>
                                 <td>
                                      <a href="{{ URL::route('leave.show',['id'=>$values->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#leave" style="font-size: 12px;color: darkmagenta"><span class="fa fa-eye"></span></a>

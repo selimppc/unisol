@@ -1,8 +1,8 @@
 
 <div style="padding: 0px 20px 20px;">
     <div class="form-group">
-        {{ Form::label('hr_employee', 'HR Employee') }}<span class="text-danger">*</span>
-        {{ Form::select('hr_employee', $employee_list, Input::old('hr_employee'), array('class' => 'form-control','required'=>'required')) }}
+        {{ Form::label('hr_employee_id', 'HR Employee') }}<span class="text-danger">*</span>
+        {{ Form::select('hr_employee_id', $employee_list, Input::old('hr_employee_id'), array('class' => 'form-control','required'=>'required')) }}
     </div>
     <div class="form-group">
        <div class="col-lg-6" style="padding-left: 0;">
@@ -35,7 +35,7 @@
     <div class="form-group">
         <div class="col-lg-6" style="padding-left: 0;">
            {{ Form::label('forward_to', 'Leave Forward To ') }}<span class="text-danger">*</span>
-           {{ Form::select('forward_to', $employee_list, Input::old('forward_to'), array('class' => 'form-control','required'=>'required')) }}
+           {{ Form::select('forward_to', $hr_employee, Input::old('forward_to'), array('class' => 'form-control','required'=>'required')) }}
         </div>
         <div class="col-lg-6" style="padding-right: 0;">
           {{ Form::label('alt_hr_employee_id', 'Alt HR Employee') }}
