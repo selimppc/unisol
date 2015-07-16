@@ -11,6 +11,7 @@ class HrSalaryTransactionDetailController extends \BaseController {
     {
         return Input::server("REQUEST_METHOD") == "POST";
     }
+
    /*
     * Todo : Over Time ta kivabe Handle korbo bujhtecina
    */
@@ -20,50 +21,6 @@ class HrSalaryTransactionDetailController extends \BaseController {
             ->where('hr_salary_transaction_id', $s_t_id)
             ->orderBy('id', 'DESC')
             ->get();
-
-//        // salary allowance amount
-//        $sal_allwnce_amount = DB::table('hr_salary_allowance')
-//            ->join('hr_salary_transaction_detail', function($join)
-//            {
-//                $join->on('hr_salary_allowance.id', '=', 'hr_salary_transaction_detail.hr_salary_allowance_id');
-//            })
-//            ->select('hr_salary_allowance.amount as all_amount')
-//            ->first()->all_amount;
-//        #print_r($sal_allwnce_amount);exit;
-//
-//        // salary deduction amount
-//        $sal_decution_amount = DB::table('hr_salary_deduction')
-//            ->join('hr_salary_transaction_detail', function($join)
-//            {
-//                $join->on('hr_salary_deduction.id', '=', 'hr_salary_transaction_detail.hr_salary_deduction_id');
-//            })
-//            ->select('hr_salary_deduction.amount as all_amount')
-//            ->first()->all_amount;
-//        #print_r($sal_decution_amount);exit;
-//
-//        //salary bonus amount
-//        $sal_bonus_amount = DB::table('hr_bonus')
-//        ->join('hr_salary_transaction_detail', function($join)
-//        {
-//            $join->on('hr_bonus.id', '=', 'hr_salary_transaction_detail.hr_bonus_id');
-//        })
-//        ->select('hr_bonus.amount as all_amount')
-//        ->first()->all_amount;
-//        #print_r($sal_bonus_amount);exit;
-//
-//        // slary over time amount
-//
-//        //Salary Bonus Amount
-//        $sal_over_time_amount = DB::table('hr_over_time')
-//            ->join('hr_salary_transaction_detail', function($join)
-//            {
-//                $join->on('hr_over_time.id', '=', 'hr_salary_transaction_detail.hr_over_time_id');
-//            })
-//            ->select('hr_over_time.type as ot_type')
-//            ->first()->ot_type;
-//        #print_r($sal_over_time_amount);exit;
-
-
 
         // all list here
         $salary_allowance_list = array(''=>'Select any one') + HrSalaryAllowance::lists('title','id');
@@ -77,7 +34,6 @@ class HrSalaryTransactionDetailController extends \BaseController {
     }
 
 // Dependable drop down to text start
-
     public function hr_salary_allowance_amount()
     {
         $input = Input::get('id');
@@ -123,10 +79,7 @@ class HrSalaryTransactionDetailController extends \BaseController {
     }
 
 
-
-
 // End of dependable drop down to text
-
     public function store_hr_salary_transaction_detail()
     {
         for($i = 0; $i < count(Input::get('hr_salary_transaction_id')) ; $i++){
