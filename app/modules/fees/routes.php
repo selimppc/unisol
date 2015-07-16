@@ -191,7 +191,7 @@
          'as' => 'billing.summary.student',
          'uses' => 'FeesController@index_billing_summary_student'
      ]);
-     Route::any('billing-summary-student-save',[
+     Route::any('summary-student-save',[
          'as' => 'summary.student.save',
          'uses'=> 'FeesController@save_summary_student'
      ]);

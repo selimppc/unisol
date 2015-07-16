@@ -6,7 +6,8 @@
 
 <div class='form-group'>
     {{ Form::label('billing_schedule_id', 'Schedule') }}
-    {{ Form::select('billing_schedule_id', $schedule, Input::old('billing_schedule_id'), ['class' => 'form-control','required'=>'required']) }}
+    {{ Form::select('billing_schedule_id', $schedule,Input::old('billing_schedule_id'), ['class' => 'form-control','required'=>'required']) }}
+  {{--  <input type="text" name="billing_schedule_id" value="Admission" readonly style="background-color: #efefef" class="form-control">--}}
 </div>
 
 <div class='form-group'>

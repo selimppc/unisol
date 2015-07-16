@@ -74,9 +74,9 @@
 
             <li><a href="{{ URL::to('fees/billing/item') }}"><i class="fa  fa-bars text-green"></i> Billing Item</a></li>
 
-            <li><a href="{{ URL::to('fees/billing/summary/applicant') }}"><i class="fa  fa-bars text-olive"></i> Billing Summary Applicant</a></li>
+            <li><a href="{{ URL::to('fees/billing/summary/applicant') }}"><i class="fa  fa-bars text-olive"></i> Billing Applicant Head</a></li>
 
-            <li><a href="{{URL::to('fees/billing-summary-student')}}"><i class="fa fa-bars text-yellow"></i> Billing Summary Student</a></li>
+            <li><a href="{{URL::to('fees/billing-summary-student')}}"><i class="fa fa-bars text-yellow"></i> Billing Student Head</a></li>
 
            {{-- <li><a href="#"><i class="fa  fa-bars text-aqua"></i> Billing Details Applicants</a></li>
 
