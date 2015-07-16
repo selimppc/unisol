@@ -57,7 +57,7 @@
                 <tbody>
                 <?php $i=0;$sl=1 ?>
                 @if(isset($relation_data))
-                    @foreach($relation_data[$i]->relBillingDetailsApplicant as $value)
+                    @foreach($relation_data[$i]->relBillingApplicantDetail as $value)
                         <tr>
                             <td class="sl-no-size">{{$sl++}}</td>
                             <td>{{$value['relBillingItem']['title']}}</td>

@@ -20,11 +20,13 @@
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="#tab_1" data-toggle="tab">Billing History Applicant</a></li>
                 </ul>
+                <a href="{{ URL::route('billing-applicant-head')}}" class="btn-link pull-right"><i class="fa fa-backward text-aqua"></i> Back to Applicant (Fees)</a>
+
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab_1">
 
                         {{--****************** Filter :Starts ***********************--}}
-                        {{Form::open(array('route'=> ['billing.history']))}}
+                        {{Form::open(array('route'=> ['applicant-billing-history']))}}
                         <div class="col-sm-8 ">
                             <div class="col-sm-4">
                                 {{ Form::label('department_id', 'Department') }}
@@ -85,7 +87,7 @@
                                     @endif
                                     </tbody>
                                 </table>
-                                <a href="{{ URL::route('billing.history')}}" class="btn-link pull-right"><i class="fa fa-backward text-red"></i> Back to All List</a>
+                                <a href="{{ URL::route('applicant-billing-history')}}" class="btn-link pull-right"><i class="fa fa-backward text-red"></i> Back to All List</a>
                                 <br>
                             </div>
                     </div>

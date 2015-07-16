@@ -6,7 +6,7 @@
     @include('layouts._sidebar_amw')
 @stop
 @section('content')
-    <h3 class="text-blue text-uppercase">Fees::Billing Student Head</h3>
+    <h3 class="text-blue text-uppercase">Fees :: Student</h3>
     <div class="row">
         <div class="col-md-12">
             <div class="nav-tabs-custom">
@@ -15,6 +15,8 @@
                     <button type="button" class=" btn btn-success fa fa-plus btn_margin" data-toggle="modal" data-target="#myModal" data-toggle="tooltip" data-placement="bottom" title="Add New" >
                         Add New
                     </button>
+
+                    <a href="{{URL::route('student-billing-history')}}" class="btn btn-xs btn-default" href=""><i class="fa fa-eye" style="color: green"></i>View Fees Details</a>
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab_1">
