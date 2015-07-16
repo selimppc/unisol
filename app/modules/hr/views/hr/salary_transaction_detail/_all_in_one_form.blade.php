@@ -6,7 +6,7 @@
 <div class="row">
     <div class="row" style="padding-bottom: 10px ">
          <div class='form-group '>
-             {{ Form::hidden('hr_salary_transaction_id', $s_t_id ,Input::old('hr_salary_transaction_id')) }}
+             {{ Form::hidden('hr_salary_transaction_head_id', $s_t_id ,Input::old('hr_salary_transaction_head_id')) }}
          </div>
 
          <div class='form-group col-sm-2'>
@@ -177,7 +177,7 @@ $(function(){
                  return false;
              } else {
                 $('#test').append("<tr> " +
-                      "<td><input type='hidden' name='hr_salary_transaction_id[]' value='" + $sal_trans_id + "' readonly><input name='type[]' value='"+ $sal_trns_dtl_type +"' readonly></td>" +
+                      "<td><input type='hidden' name='hr_salary_transaction_head_id[]' value='" + $sal_trans_id + "' readonly><input name='type[]' value='"+ $sal_trns_dtl_type +"' readonly></td>" +
                       "<td><input name='hr_salary_allowance_id[]' value='"+ $sal_trns_dtl_allowance +"' readonly> </td>" +
                       "<td><input name='hr_salary_deduction_id[]' value='"+ $sal_trns_dtl_deduction +"' readonly> </td>" +
                       "<td><input name='hr_over_time_id[]' value='"+ $sal_trns_dtl_ovrtm +"' readonly> </td>" +

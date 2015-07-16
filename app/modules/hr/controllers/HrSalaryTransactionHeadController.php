@@ -1,6 +1,6 @@
 <?php
 
-class HrSalaryTransactionController extends \BaseController {
+class HrSalaryTransactionHeadController extends \BaseController {
 
     function __construct()
     {
@@ -14,10 +14,10 @@ class HrSalaryTransactionController extends \BaseController {
 
     public function index_hr_salary_transaction()
     {
-        $model = HrSalaryTransaction::with('relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')
+        $model = HrSalaryTransactionHead::with('relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')
             ->get();
 
-        $emp_name = HrSalaryTransaction::with('relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')
+        $emp_name = HrSalaryTransactionHead::with('relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')
             ->first();
 
         $employee_name_list = array(''=>'Select Employee') + User::EmployeeList();
@@ -33,7 +33,7 @@ class HrSalaryTransactionController extends \BaseController {
         if($this->isPostRequest()){
             $input_data = Input::all();
             #print_r($input_data);exit;
-            $model = new HrSalaryTransaction();
+            $model = new HrSalaryTransactionHead();
             if($model->validate($input_data)) {
                 DB::beginTransaction();
                 try {
@@ -52,7 +52,7 @@ class HrSalaryTransactionController extends \BaseController {
 
     public function show_hr_salary_transaction($s_t_id)
     {
-        $data = HrSalaryTransaction::findOrFail($s_t_id);
+        $data = HrSalaryTransactionHead::findOrFail($s_t_id);
         return View::make('hr::hr.salary_transaction.view', compact('data'));
     }
 
@@ -60,7 +60,7 @@ class HrSalaryTransactionController extends \BaseController {
     {
         if($this->isPostRequest()){
             $input_data = Input::all();
-            $model = HrSalaryTransaction::findOrFail($s_t_id);
+            $model = HrSalaryTransactionHead::findOrFail($s_t_id);
 
             if($model->validate($input_data)){
                 DB::beginTransaction();
@@ -76,8 +76,8 @@ class HrSalaryTransactionController extends \BaseController {
             }
             return Redirect::back();
         }else{
-            $model = HrSalaryTransaction::findOrFail($s_t_id);
-            $selected_employee_id = HrSalaryTransaction::first()->hr_employee_id;
+            $model = HrSalaryTransactionHead::findOrFail($s_t_id);
+            $selected_employee_id = HrSalaryTransactionHead::first()->hr_employee_id;
             $employee_name_list = array(''=>'Select Employee') + User::EmployeeList();
             $year_list = array(''=>'Select Year') + Year::lists('title','id');
             return View::make('hr::hr.salary_transaction.edit', compact('employee_name_list','model','year_list','selected_employee_id','lists_currency'));
@@ -89,7 +89,7 @@ class HrSalaryTransactionController extends \BaseController {
     {
         DB::beginTransaction();
         try{
-            HrSalaryTransaction::destroy($s_t_id);
+            HrSalaryTransactionHead::destroy($s_t_id);
             DB::commit();
             Session::flash('message', 'Successfully Deleted !');
         }catch ( Exception $e ){
@@ -105,7 +105,7 @@ class HrSalaryTransactionController extends \BaseController {
     {
         DB::beginTransaction();
         try{
-            HrSalaryTransaction::destroy(Request::get('id'));
+            HrSalaryTransactionHead::destroy(Request::get('id'));
             DB::commit();
             Session::flash('message', 'Success !');
         }catch( Exception $e ){

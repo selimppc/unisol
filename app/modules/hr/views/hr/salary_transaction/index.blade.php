@@ -12,10 +12,10 @@
     <div class="box box-solid ">
 
         <div class="col-sm-12">
-           <div class="pull-left col-sm-4"> <h3> All Salary Transaction List</h3>  </div>
+           <div class="pull-left col-sm-4"> <h3> All Salary Transaction Head List</h3>  </div>
            <div class="pull-right col-sm-4" style="padding-top: 1%;">
                 <button type="button" class="pull-right btn btn-sm btn-info" data-toggle="modal" data-target="#modal">
-                  Add HR Salary Transaction
+                  Add HR Salary Transaction Head
                 </button>
            </div>
         </div>
@@ -31,7 +31,7 @@
                     <th>Transaction Number</th>
                     <th>Date</th>
                     <th>Year</th>
-                    <th>Period</th>
+                    <th>Month</th>
                     <th>Total Amount</th>
                     <th>Status</th>
                     <th>Action</th>
