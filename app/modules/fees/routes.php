@@ -17,7 +17,10 @@
         return 'Thank you so much!';
     });
 
-     /********************AMW*********************
+     /****==================================================================
+                          User :: Amw
+     ===================================================================****/
+
     /************Billing Setup Start****************/
 
     Route::any('billing/setup', [
@@ -59,7 +62,9 @@
 
      /************Billing History Start****************/
 
-        /***********Applicant************/
+        /***==============================
+                 Applicant
+           ===============================***/
      Route::any('applicant-billing-history', [
          'as' => 'applicant-billing-history',
          'uses' => 'FeesController@index_billing_history'
@@ -70,7 +75,10 @@
          'uses' => 'FeesController@billing_history_show'
      ]);
 
-       /***********Student************/
+     /***==============================
+                Student
+     ===============================***/
+
      Route::any('student-billing-history', [
          'as' => 'student-billing-history',
          'uses' => 'FeesController@index_student_billing_history'
@@ -208,10 +216,28 @@
          'uses' => 'FeesController@update_student_head'
      ]);
 
+     /*************Billing Student Detail*****************/
 
-     /*************************************************************************/
+     Route::any('billing-details-student/{id}', [
+         'as' => 'billing.details.student',
+         'uses' => 'FeesController@create_billing_details_student'
+     ]);
 
-     /********************Student *********************
+     Route::any('billing-details-student-save', [
+         'as' => 'billing.details.student.save',
+         'uses' => 'FeesController@save_billing_details_student'
+     ]);
+
+     Route::post('detail/student/delete/ajax',
+         'FeesController@ajax_delete_student_detail'
+     );
+
+
+
+     /****==================================================================
+                         User :: Student
+     ===================================================================****/
+
    /*******************billing setup******************/
 
      Route::any('student/billing/setup', [

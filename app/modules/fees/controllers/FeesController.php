@@ -765,20 +765,21 @@ class FeesController extends \BaseController {
     public function save_billing_details_applicant()
     {
         $data = Input::all();
+
         $counter = count(Input::get('billing_item_id'));
         for($i = 0; $i < $counter ; $i++){
             $all []= [
                 'billing_applicant_head_id' => Input::get('billing_applicant_head_id')[$i],
                 'billing_item_id' => Input::get('billing_item_id')[$i],
-                'waiver_id'=> Input::get('waiver_id')[$i],
-                'waiver_amount'=> Input::get('waiver_amount')[$i],
+                'waiver_id'=> Input::get('waiver_id')[$i]? Input::get('waiver_id')[$i] : NULL,
+                'waiver_amount'=> Input::get('waiver_amount')[$i] ? Input::get('waiver_amount')[$i]: 0.00,
                 'cost_per_unit'=> Input::get('cost_per_unit')[$i],
                 'quantity'=> Input::get('quantity')[$i],
                 'total_amount'=> Input::get('total_amount')[$i],
             ];
 
         }
-      //  print_r($all);exit;
+       // print_r($all);exit;
         $model = new BillingApplicantDetail();
         DB::beginTransaction();
         try{

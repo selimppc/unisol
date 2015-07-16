@@ -17,11 +17,11 @@ class BillingApplicantDetail extends Eloquent{
     private $rules = [
         'billing_applicant_head_id' => 'required|integer',
         'billing_item_id' => 'required|integer',
-        'waiver_id' => 'required|integer',
-        'waiver_amount' => 'numeric',
-        'cost_per_unit' => 'numeric',
-        'quantity' => 'numeric',
-        'total_amount' => 'numeric',
+//        'waiver_id' => 'required|integer',
+//        'waiver_amount' => 'numeric',
+//        'cost_per_unit' => 'numeric',
+//        'quantity' => 'numeric',
+//        'total_amount' => 'numeric',
     ];
     public function validate($data)
     {
