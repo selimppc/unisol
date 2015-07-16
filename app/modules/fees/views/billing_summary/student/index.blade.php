@@ -47,9 +47,9 @@
 
                                         <td>{{isset($value->relPaymentOption->title)?$value->relPaymentOption->title:''}}</td>
                                         <td>
-                                            <a href="{{ URL::route('summary.student.view',['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" data-toggle="tooltip" data-placement="bottom" title="View"><i class="fa fa-eye text-green"></i></a>
+                                            <a href="{{ URL::route('student-head-view',['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" data-toggle="tooltip" data-placement="bottom" title="View"><i class="fa fa-eye text-green"></i></a>
 
-                                            <a href="{{ URL::route('summary.student.edit',['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#editModal" data-toggle="tooltip" data-placement="bottom" title="Edit"><i class="fa fa-pencil-square-o text-blue"></i></a>
+                                            <a href="{{ URL::route('billing-student-head-edit',['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#editModal" data-toggle="tooltip" data-placement="bottom" title="Edit"><i class="fa fa-pencil-square-o text-blue"></i></a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -72,7 +72,7 @@
                     <h4 class="modal-title text-center text-purple">Billing Student Head</h4>
                 </div>
                 <div class="modal-body">
-                    {{Form::open(array('route' => array('summary.student.save')))}}
+                    {{Form::open(array('route' => array('student-head-save')))}}
                     @include('fees::billing_summary.student._form')
                     {{ Form::close() }}
                 </div>

@@ -70,7 +70,7 @@
     <div class="col-sm-6">
         <div class='row'>
             <div class="col-sm-12" style="background-color: #f9f9f9">
-                <h4> Unpaid Invoice of the supplier# {{$associated_id}} </h4>
+                <h4> Unpaid Invoice of the Applicant # {{$associated_id}} </h4>
                 <table class="table table-bordered small-header-table" id="amwCourseConfig">
                     <thead>
                         <th>Invoice No</th>

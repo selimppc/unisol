@@ -613,7 +613,7 @@ class FeesController extends \BaseController {
                     Billing Applicant Head start
     ===================================================================****/
 
-    public function index_billing_summary()
+    public function index_billing_applicant_head()
     {
         $applicant = array(''=>'Select applicant') + Applicant::ApplicantList();
         $schedule = ['' => 'Select schedule'] + BillingSchedule::lists('title', 'id');
@@ -622,7 +622,7 @@ class FeesController extends \BaseController {
         return View::make('fees::billing_summary.applicant.index_applicant',compact('applicant','summary_applicant','schedule','payment_option'));
     }
 
-    public function save_summary_applicant()
+    public function save_applicant_head()
     {
         $data = Input::all();
         $model = new BillingApplicantHead();
@@ -647,7 +647,7 @@ class FeesController extends \BaseController {
         }
     }
 
-    public function view_applicant_summary($id)
+    public function view_billing_applicant($id)
     {
         $view_summary_applicant = BillingApplicantHead::find($id);
         $view_details_applicant = BillingApplicantDetail::with('relBillingApplicantHead','relBillingItem','relWaiver')
@@ -656,7 +656,7 @@ class FeesController extends \BaseController {
         return View::make('fees::billing_summary.applicant.view_applicant',compact('view_summary_applicant','view_details_applicant','total'));
     }
 
-    public function edit_applicant_summary($id)
+    public function edit_billing_applicant_head($id)
     {
         $edit_summary = BillingApplicantHead::find($id);
         $applicant = array(''=>'Select applicant') + Applicant::ApplicantList();
@@ -665,7 +665,7 @@ class FeesController extends \BaseController {
         return View::make('fees::billing_summary.applicant.edit_applicant',compact('edit_summary','applicant','schedule','payment_option'));
     }
 
-    public function update_applicant_summary($id)
+    public function update_billing_applicant_head($id)
     {
         $data = Input::all();
         $model = BillingApplicantHead::find($id);
@@ -724,16 +724,16 @@ class FeesController extends \BaseController {
                     Session::flash('message', "Billing Details confirmed Successfully");
                 else
                     Session::flash('danger', "Billing Details confirmed Is Just For One Time.");
-                return Redirect::to('fees/billing/summary/applicant');
+                return Redirect::to('fees/billing-applicant-head');
             }
             catch ( Exception $e ){
                 //If there are any exceptions, rollback the transaction
                 DB::rollback();
                 Session::flash('danger', "not added.Invalid Request!");
             }
-            return Redirect::to('fees/billing/summary/applicant');
+            return Redirect::to('fees/billing-applicant-head');
         }
-        return Redirect::to('fees/billing/summary/applicant');
+        return Redirect::to('fees/billing-applicant-head');
 
     }
 
@@ -829,7 +829,7 @@ class FeesController extends \BaseController {
                         Billing  Student Head start
     ===================================================================****/
 
-    public function index_billing_summary_student()
+    public function index_billing_student_head()
     {
         $student = array(''=>'Select Student') + User::StudentList();
         $schedule = ['' => 'Select schedule'] + BillingSchedule::lists('title', 'id');
@@ -839,7 +839,7 @@ class FeesController extends \BaseController {
         return View::make('fees::billing_summary.student.index',compact('student','summary_student','schedule','payment_option'));
     }
 
-    public  function save_summary_student()
+    public  function save_billing_student_head()
     {
         $data = Input::all();
         $model = new BillingStudentHead();
@@ -864,10 +864,7 @@ class FeesController extends \BaseController {
         }
     }
 
-
-
-
-    public function view_summary_student($id)
+    public function view_billing_student($id)
     {
         $view_summary_student = BillingStudentHead::find($id);
         $view_details_student = BillingStudentDetail::with('relBillingStudentHead','relBillingItem','relWaiver')
@@ -875,6 +872,42 @@ class FeesController extends \BaseController {
             ->get();
         return View::make('fees::billing_summary.student.view',compact('view_summary_student','view_details_student','total'));
     }
+
+    public function edit_student_head($id)
+    {
+        $edit_summary = BillingApplicantHead::find($id);
+        $applicant = array(''=>'Select applicant') + Applicant::ApplicantList();
+        $schedule = ['' => 'Select schedule'] + BillingSchedule::lists('title', 'id');
+        $payment_option = ['' => 'Select Payment Option'] + PaymentOption::lists('title', 'id');
+        return View::make('fees::billing_summary.applicant.edit_applicant',compact('edit_summary','applicant','schedule','payment_option'));
+    }
+
+    public function update_student_head($id)
+    {
+        $data = Input::all();
+        $model = BillingApplicantHead::find($id);
+        if($model->validate($data))
+        {
+            DB::beginTransaction();
+            try {
+                if ($model->update($data))
+                    DB::commit();
+                Session::flash('message', "Billing summary applicant Successfully Added");
+            }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', "Billing summary applicant Not Added.Invalid Request!");
+            }
+            return Redirect::back();
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()
+                ->with('errors', 'invalid');
+        }
+    }
+
 
 
 
