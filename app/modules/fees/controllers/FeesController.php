@@ -632,12 +632,12 @@ class FeesController extends \BaseController {
             try {
                 if ($model->create($data))
                     DB::commit();
-                Session::flash('message', "Billing summary applicant Successfully Added");
+                Session::flash('message', "Billing Applicant Head Successfully Added");
             }
             catch ( Exception $e ){
                 //If there are any exceptions, rollback the transaction
                 DB::rollback();
-                Session::flash('danger', "Billing summary applicant Not Added.Invalid Request!");
+                Session::flash('danger', "Billing Applicant Head Not Added.Invalid Request!");
             }
             return Redirect::back();
         }else{
@@ -826,7 +826,7 @@ class FeesController extends \BaseController {
 
 
     /****==================================================================
-                        Billing summary Student start
+                        Billing  Student Head start
     ===================================================================****/
 
     public function index_billing_summary_student()
@@ -835,8 +835,37 @@ class FeesController extends \BaseController {
         $schedule = ['' => 'Select schedule'] + BillingSchedule::lists('title', 'id');
         $payment_option = ['' => 'Select Payment Option'] + PaymentOption::lists('title', 'id');
         $summary_student = BillingStudentHead::latest('id')->with('relUser','relUser.relUserProfile', 'relBillingSchedule')->get();
+
         return View::make('fees::billing_summary.student.index',compact('student','summary_student','schedule','payment_option'));
     }
+
+    public  function save_summary_student()
+    {
+        $data = Input::all();
+        $model = new BillingStudentHead();
+        if($model->validate($data))
+        {
+            DB::beginTransaction();
+            try {
+                if ($model->create($data))
+                    DB::commit();
+                Session::flash('message', "Billing Student Head Successfully Added");
+            }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', "Billing applicant Head Not Added.Invalid Request!");
+            }
+            return Redirect::back();
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()->with('errors', 'invalid');
+        }
+    }
+
+
+
 
     public function view_summary_student($id)
     {

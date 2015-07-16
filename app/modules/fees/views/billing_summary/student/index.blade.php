@@ -6,12 +6,12 @@
     @include('layouts._sidebar_amw')
 @stop
 @section('content')
-    <h3 class="text-blue text-uppercase">Fees::Billing Summary Student</h3>
+    <h3 class="text-blue text-uppercase">Fees::Billing Student Head</h3>
     <div class="row">
         <div class="col-md-12">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#tab_1" data-toggle="tab">Billing Summary Student</a></li>
+                    <li class="active"><a href="#tab_1" data-toggle="tab">Billing Student Head</a></li>
                     <button type="button" class=" btn btn-success fa fa-plus btn_margin" data-toggle="modal" data-target="#myModal" data-toggle="tooltip" data-placement="bottom" title="Add New" >
                         Add New
                     </button>
@@ -69,12 +69,12 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">{{HTML::image('assets/icon/media-close-btn.png')}}</button>
-                    <h4 class="modal-title text-center text-purple">Billing Summary Applicant</h4>
+                    <h4 class="modal-title text-center text-purple">Billing Student Head</h4>
                 </div>
                 <div class="modal-body">
-                    {{--{{Form::open(array('route' => array('summary.applicant.save')))}}
-                    @include('fees::billing_summary.applicant._form_applicant')
-                    {{ Form::close() }}--}}
+                    {{Form::open(array('route' => array('summary.student.save')))}}
+                    @include('fees::billing_summary.student._form')
+                    {{ Form::close() }}
                 </div>
             </div>
         </div>
@@ -107,9 +107,4 @@
         </div>
     </div>
 
-@stop
-@section('script_section')
-    <script>
-
-    </script>
 @stop

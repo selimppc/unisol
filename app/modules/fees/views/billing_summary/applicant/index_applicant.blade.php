@@ -6,12 +6,12 @@
     @include('layouts._sidebar_amw')
 @stop
 @section('content')
-    <h3 class="text-blue text-uppercase">Fees::Billing Summary Applicant</h3>
+    <h3 class="text-blue text-uppercase">Fees::Billing Applicant Head</h3>
     <div class="row">
         <div class="col-md-12">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#tab_1" data-toggle="tab">Billing Summary Applicant</a></li>
+                    <li class="active"><a href="#tab_1" data-toggle="tab">Billing Applicant Head</a></li>
                     <button type="button" class=" btn btn-success fa fa-plus btn_margin" data-toggle="modal" data-target="#myModal" data-toggle="tooltip" data-placement="bottom" title="Add New" >
                         Add New
                     </button>
@@ -54,7 +54,7 @@
 
                                             <a href="{{ URL::route('summary.applicant.edit',['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#editModal" data-toggle="tooltip" data-placement="bottom" title="Edit"><i class="fa fa-pencil-square-o text-blue"></i></a>
 
-                                                <a data-href="{{ URL::route('applicant-head-destroy', ['req_id'=>$value->id ]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa fa-circle-o-notch" style="color: red" data-toggle="tooltip" data-placement="bottom" title="Cancel"></i></a>
+                                                <a data-href="{{ URL::route('applicant-head-destroy', ['req_id'=>$value->id ]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa fa-power-off" style="color: red" data-toggle="tooltip" data-placement="bottom" title="Cancel"></i></a>
 
                                             @elseif($value->status=='confirmed')
                                                 <a href="{{ URL::route('summary.applicant.view',['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" data-toggle="tooltip" data-placement="bottom" title="View"><i class="fa fa-eye text-green"></i></a>
@@ -87,7 +87,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">{{HTML::image('assets/icon/media-close-btn.png')}}</button>
-                    <h4 class="modal-title text-center text-purple">Billing Summary Applicant</h4>
+                    <h4 class="modal-title text-center text-purple">Billing Applicant Head</h4>
                 </div>
                 <div class="modal-body">
                     {{Form::open(array('route' => array('summary.applicant.save')))}}
@@ -144,6 +144,4 @@
             </div>
         </div>
     </div>
-
-
 @stop
