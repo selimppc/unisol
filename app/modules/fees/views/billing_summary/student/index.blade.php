@@ -16,7 +16,7 @@
                         Add New
                     </button>
 
-                    <a href="{{URL::route('student-billing-history')}}" class="btn btn-xs btn-default" href=""><i class="fa fa-eye" style="color: green"></i>View Fees Details</a>
+                    <a href="{{URL::route('student-billing-history')}}" class="btn btn-xs btn-default" href=""><i class="fa fa-arrow-right text-light-blue"></i> View Fees Details</a>
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab_1">
@@ -29,8 +29,9 @@
                                     <th>Student Id</th>
                                     <th>Schedule</th>
                                     <th>Total Cost</th>
-                                    <th>Payment Option</th>
+                                    <th>Status</th>
                                     <th>Action</th>
+                                    <th>Confirm</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -50,12 +51,13 @@
 
                                         <td>{{isset($value->total_cost)?$value->total_cost:''}}</td>
 
-                                        <td>{{isset($value->relPaymentOption->title)?$value->relPaymentOption->title:''}}</td>
+                                        <td>{{ucfirst($value->status)}}</td>
                                         <td>
                                             <a href="{{ URL::route('student-head-view',['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" data-toggle="tooltip" data-placement="bottom" title="View"><i class="fa fa-eye text-green"></i></a>
 
                                             <a href="{{ URL::route('student-head-edit',['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#editHeadModal" data-toggle="tooltip" data-placement="bottom" title="Edit"><i class="fa fa-pencil-square-o text-blue"></i></a>
                                         </td>
+                                        <td></td>
                                     </tr>
                                 @endforeach
                                 </tbody>

@@ -25,6 +25,12 @@
                     {{isset($view_summary_applicant->total_cost)?$view_summary_applicant->total_cost:''}}
                 </td>
             </tr>
+            <tr>
+                <td>Status:</td>
+                <td>
+                    {{ucfirst($view_summary_applicant->status)}}
+                </td>
+            </tr>
         </table>
         <br>
         <h4 class="text-blue text-center text-uppercase">Billing Details</h4>
