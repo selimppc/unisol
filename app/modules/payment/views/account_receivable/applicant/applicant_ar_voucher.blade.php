@@ -128,7 +128,7 @@
 
 
 
-@include('payment::applicant._script')
+@include('payment::account_receivable.applicant._script')
 {{ HTML::script('assets/etsb/etsb_js/jquery-ui/jquery-ui.min.js')}}
 {{--{{ HTML::script('assets/js/custom.js')}}--}}
 {{ HTML::script('assets/etsb/etsb_js/etsb_custom.js')}}

@@ -22,7 +22,7 @@ class AccountReceivableController extends \BaseController {
 	{
         $pageTitle = "Applicant Account Receivable ";
         $data = BillingApplicantHead::with('relApplicant')->whereIN('status', ['Confirmed', 'Invoiced'])->latest('id')->get();
-        return View::make('payment::account_receivable.index', compact('data','pageTitle'));
+        return View::make('payment::account_receivable.applicant.index', compact('data','pageTitle'));
 	}
 
 
@@ -32,7 +32,7 @@ class AccountReceivableController extends \BaseController {
     public function show_applicant_bill($bah_id){
         $ba_head = BillingApplicantHead::find($bah_id);
         $ba_dt = BillingApplicantDetail::where('billing_applicant_head_id', $bah_id)->get();
-        return View::make('payment::account_receivable.show', compact('bah_id', 'ba_head', 'ba_dt'));
+        return View::make('payment::account_receivable.applicant.show', compact('bah_id', 'ba_head', 'ba_dt'));
     }
 
 
@@ -61,7 +61,7 @@ class AccountReceivableController extends \BaseController {
         //
         $pageTitle = "Applicant Payment History"; //acc_v_ar_applicant
         $data = AccVArApplicant::get();
-        return View::make('payment::account_receivable.applicant_ar_payable', compact('pageTitle', 'data'));
+        return View::make('payment::account_receivable.applicant.applicant_ar_payable', compact('pageTitle', 'data'));
     }
 
 
@@ -78,7 +78,7 @@ class AccountReceivableController extends \BaseController {
             //->where('acc_voucher_head_id', $coa_id)->get();
             ->get();
 
-        return View::make('payment::account_receivable.applicant_ar_voucher', compact(
+        return View::make('payment::account_receivable.applicant.applicant_ar_voucher', compact(
             'associated_id', 'coa_id', 'unpaid_invoice',
             'data','year_lists', 'period_lists', 'coa_lists'
         ));
