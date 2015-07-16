@@ -55,7 +55,7 @@ Route::group(['prefix' => 'payment'], function() {
 
     /*
      * =============================================================
-     * // Account Receivable
+     * // Account Receivable for Applicant
      * =============================================================
      */
 
@@ -92,6 +92,49 @@ Route::group(['prefix' => 'payment'], function() {
     Route::any("store-applicant-ar-voucher", [
         "as"   => "store-applicant-ar-voucher",
         "uses" => "AccountReceivableController@store_applicant_ar_voucher"
+    ]);
+
+
+
+    /*
+     * =============================================================
+     * // Account Receivable for Student
+     * =============================================================
+     */
+
+    // Account Receivable
+    Route::any("student-receivable-index",[
+        "as"   => "student-receivable-index",
+        "uses" => "AccountReceivableController@index_student_receivable"
+    ]);
+
+    Route::any("details-student-receivable/{bah_id}",[
+        "as"   => "details-student-receivable",
+        "uses" => "AccountReceivableController@show_student_bill"
+    ]);
+
+    //create student invoice
+    Route::any('create-invoice-student/{bah_id}', [
+        'as' => 'create-invoice-student',
+        'uses' => 'AccountReceivableController@student_to_invoice'
+    ]);
+
+    //Manage student AR
+    Route::any('manage-student-ar', [
+        'as' => 'manage-student-ar',
+        'uses' => 'AccountReceivableController@manage_student_ar'
+    ]);
+
+    //manage Applicant Receivable Amount
+    Route::any("student-ar-voucher/{associated_id}/{coa_id}", [
+        "as"   => "student-ar-voucher",
+        "uses" => "AccountReceivableController@student_receive_voucher"
+    ]);
+
+    // Store Applicant Payment / Money Receipt
+    Route::any("store-student-ar-voucher", [
+        "as"   => "store-student-ar-voucher",
+        "uses" => "AccountReceivableController@store_student_ar_voucher"
     ]);
 
 
