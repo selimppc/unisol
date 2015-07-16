@@ -30,7 +30,7 @@
     <div class="col-sm-2" style="width:13%">
         <div class='form-group'>
            {{ Form::label('type', 'Type') }}
-           {{ Form::select('type', array(''=>'Select Type','allowance'=>'allowance','deduction'=>'deduction','over-time'=>'over-time','bonus'=>'bonus'),
+           {{ Form::select('type', array(''=>'Select Type','allowance'=>'Allowance','deduction'=>'Deduction','over-time'=>'Over-Time','bonus'=>'Bonus'),
                 Input::old('type'),['id'=>'salary_transaction_detail_type','class'=>'form-control']) }}
         </div>
     </div>
@@ -203,7 +203,7 @@ $(function(){
          }
  	 });
 
-    //delete : ok
+    // Delete : ok
      $('.delete-dt-2').click(function(e) {
         e.preventDefault();
         var $btn = $(this);
@@ -220,7 +220,7 @@ $(function(){
         });
      });
 
-     // drop down change with input form and div
+     // Drop down change with input form and div
      $('#salary_transaction_detail_type').change(function(){
         selection = $(this).val();
         switch(selection)
@@ -262,12 +262,12 @@ $(function(){
         }
      });
 
-     // selection change with form
+     // Selection change with form
      $('.std_percentage').change(function(){
            var a = $('.std_percentage').val();
 
-           var b = document.getElementById("sal-allowance").value;
-//           var b = document.getElementById("sal-deduction").value;
+//           var b = document.getElementById("sal-allowance").value;
+           var b = -(document.getElementById("sal-deduction").value);
 //           var b = document.getElementById("sal-bonus").value;
 //           var b = document.getElementById("sal-overtime").value;
            var amount = document.getElementById('salary_transaction_detail_amount');;
@@ -282,7 +282,7 @@ $(function(){
 
            var a = $('.std_amount').val();
            var b = document.getElementById("sal-allowance").value;
-//           var b = document.getElementById("sal-deduction").value;
+//           var b = -(document.getElementById("sal-deduction").value);
 //           var b = document.getElementById("sal-bonus").value;
 //           var b = document.getElementById("sal-overtime").value;
            var percentage = document.getElementById('salary_transaction_detail_percentage');;
@@ -292,9 +292,8 @@ $(function(){
            $('.std_percentage').prop('disabled', true);
      });
 
-     // sal_allowance dependable drop down to text show
+     // Sal Allowance dependable drop down to text show
      $('.sal_allowance').change(function(){
-
          $.get("{{ url('hr/sal-allowance/amount')}}",
          { id: $(this).val() },
          function(data) {
@@ -302,9 +301,8 @@ $(function(){
          });
      });
 
-     // sal_allowance dependable drop down to text show
+     // SAl Deduction dependable drop down to text show
       $('.sal_deduction').change(function(){
-
           $.get("{{ url('hr/sal-deduction/amount')}}",
           { id: $(this).val() },
           function(data) {
@@ -312,9 +310,8 @@ $(function(){
           });
       });
 
-      // sal_allowance dependable drop down to text show
+      // Sal Over-Time dependable drop down to text show
       $('.sal_overtime').change(function(){
-
            $.get("{{ url('hr/sal-overtime/amount')}}",
            { id: $(this).val() },
            function(data) {
@@ -322,16 +319,14 @@ $(function(){
            });
       });
 
-      // sal_allowance dependable drop down to text show
+      // Sal Bonus dependable drop down to text show
       $('.sal_bonus').change(function(){
-
            $.get("{{ url('hr/sal-bonus/amount')}}",
            { id: $(this).val() },
            function(data) {
                 $('#sal-bonus').val(data);
            });
       });
-
 });
 
 </script>
