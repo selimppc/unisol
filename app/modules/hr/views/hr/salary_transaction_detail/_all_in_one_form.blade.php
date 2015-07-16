@@ -113,7 +113,7 @@
                <td>{{ ucfirst($values->type) }}</td>
                <td>{{ isset($values->relHrSalaryAllowance->title) ? (ucfirst($values->relHrSalaryAllowance->title)) : "" }}</td>
                <td>{{ isset($values->relHrSalaryDeduction->title) ? (ucfirst($values->relHrSalaryDeduction->title)) : "" }}</td>
-               <td>{{ isset($values->relHrOverTime->sign_in) ? $values->relHrOverTime->sign_in : "" }}</td>
+               <td>{{ isset($values->relHrOverTime->amount) ? $values->relHrOverTime->amount : "" }}</td>
                <td>{{ isset($values->relHrBonus->title) ? (ucfirst($values->relHrBonus->title)) : "" }}</td>
                <td>{{ isset($values->percentage) ? round($values->percentage) : ""}}</td>
                <td>{{ isset($values->amount) ? round($values->amount,2) : ""}}</td>
@@ -265,7 +265,11 @@ $(function(){
      // selection change with form
      $('.std_percentage').change(function(){
            var a = $('.std_percentage').val();
+
            var b = document.getElementById("sal-allowance").value;
+//           var b = document.getElementById("sal-deduction").value;
+//           var b = document.getElementById("sal-bonus").value;
+//           var b = document.getElementById("sal-overtime").value;
            var amount = document.getElementById('salary_transaction_detail_amount');;
            var myResult = (a*b)/100;
            amount.value = myResult;
@@ -278,6 +282,9 @@ $(function(){
 
            var a = $('.std_amount').val();
            var b = document.getElementById("sal-allowance").value;
+//           var b = document.getElementById("sal-deduction").value;
+//           var b = document.getElementById("sal-bonus").value;
+//           var b = document.getElementById("sal-overtime").value;
            var percentage = document.getElementById('salary_transaction_detail_percentage');;
            var myResult = (a*100)/b;
            percentage.value = myResult;
