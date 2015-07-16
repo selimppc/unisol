@@ -8,62 +8,68 @@
       {{ Form::hidden('hr_salary_id', $s_id , Input::old('hr_salary_id'),['class'=>'form-control', 'required']) }}
     </div>
 
-    <div class="col-sm-2" style="width:13%">
-        <div class='form-group'>
-            {{ Form::label('title', 'Title') }}
-            {{ Form::text('title', Input::old('title'),['id'=>'salary_allowance_title','class'=>'form-control']) }}
-        </div>
+
+       <div class="col-sm-12">
+            <div class="col-sm-4" style="width:20%">
+                <div class='form-group'>
+                    {{ Form::label('title', 'Title') }}
+                    {{ Form::text('title', Input::old('title'),['id'=>'salary_allowance_title','class'=>'form-control']) }}
+                </div>
+            </div>
+
+            <div class="col-sm-4" style="width:20%">
+                <div class='form-group'>
+                   {{ Form::label('hr_allowance_id', 'Allowance') }}
+                   {{ Form::select('hr_allowance_id',$allowance_list ,Input::old('hr_allowance_id'),['id'=>'salary_allowance_list','class'=>'form-control']) }}
+                </div>
+            </div>
+
+            <div class="col-sm-4" style="width:20%">
+                <div class='form-group'>
+                  {{ Form::label('is_percentage', 'Is Percentage ?') }}
+                  {{ Form::select('is_percentage',array('yes'=>'Yes','no'=>'No') , Input::old('is_percentage'),['id'=>'salary_allowance_is_percentage','class'=>'form-control']) }}
+                </div>
+            </div>
+
+            <div class="col-sm-4" style="width:20%">
+                <div class='form-group'>
+                   {{ Form::label('percentage', 'Percentage(%)') }}
+                     {{ Form::text('percentage', Input::old('percentage'),['id'=>'salary_allowance_percentage','class'=>'form-control']) }}
+                </div>
+            </div>
+       </div>
+
+       <div class="col-sm-12">
+            <div class="col-sm-4" style="width:20%">
+                <div class='form-group'>
+                    {{ Form::label('allowance_type', 'Allowance Type') }}
+                     {{ Form::select('allowance_type' , array(''=>'Select Allowance Type','%-of-basic'=>'% of Basic','fixed-amount'=>'Fixed Amount') ,
+                        Input::old('allowance_type'),['id'=>'salary_allowance_all_type','class'=>'form-control']) }}
+                </div>
+            </div>
+
+            <div class="col-sm-4" style="width:20%">
+                <div class='form-group'>
+                  {{ Form::label('amount', 'Amount') }}
+                    {{ Form::text('amount', Input::old('amount'),['id'=>'salary_allowance_amount','class'=>'form-control']) }}
+                </div>
+            </div>
+
+            <div class="col-sm-4" style="width:20%">
+                <div class='form-group'>
+                   {{ Form::label('status', 'Status') }}
+                     {{ Form::select('status',array(''=>'Select Status','active'=>'active','close'=>'close'),
+                        Input::old('status'),['id'=>'salary_allowance_status','class'=>'form-control']) }}
+                </div>
+            </div>
+
+            <div class="col-sm-4" style="margin-top: 25px;margin-left: -125px">
+                 <div class='form-group'>
+                    <input type="button" class="pull-right btn-linkedin" id="add-salary-allowance" value="+Add">
+                 </div>
+            </div>
     </div>
 
-    <div class="col-sm-2" style="width:13%">
-        <div class='form-group'>
-           {{ Form::label('hr_allowance_id', 'Allowance') }}
-           {{ Form::select('hr_allowance_id',$allowance_list ,Input::old('hr_allowance_id'),['id'=>'salary_allowance_list','class'=>'form-control']) }}
-        </div>
-    </div>
-
-    <div class="col-sm-2" style="width:13%">
-        <div class='form-group'>
-          {{ Form::label('is_percentage', 'Is Percentage ?') }}
-          {{ Form::select('is_percentage',array('yes'=>'Yes','no'=>'No') , Input::old('is_percentage'),['id'=>'salary_allowance_is_percentage','class'=>'form-control']) }}
-        </div>
-    </div>
-
-    <div class="col-sm-2" style="width:13%">
-        <div class='form-group'>
-           {{ Form::label('percentage', 'Percentage(%)') }}
-             {{ Form::text('percentage', Input::old('percentage'),['id'=>'salary_allowance_percentage','class'=>'form-control']) }}
-        </div>
-    </div>
-
-    <div class="col-sm-2" style="width:13%">
-        <div class='form-group'>
-            {{ Form::label('allowance_type', 'Allowance Type') }}
-             {{ Form::select('allowance_type' , array(''=>'Select Allowance Type','%-of-basic'=>'% of Basic','fixed-amount'=>'Fixed Amount') ,
-                Input::old('allowance_type'),['id'=>'salary_allowance_all_type','class'=>'form-control']) }}
-        </div>
-    </div>
-
-    <div class="col-sm-2" style="width:13%">
-        <div class='form-group'>
-          {{ Form::label('amount', 'Amount') }}
-            {{ Form::text('amount', Input::old('amount'),['id'=>'salary_allowance_amount','class'=>'form-control']) }}
-        </div>
-    </div>
-
-    <div class="col-sm-2" style="width:13%">
-        <div class='form-group'>
-           {{ Form::label('status', 'Status') }}
-             {{ Form::select('status',array(''=>'Select Status','active'=>'active','close'=>'close'),
-                Input::old('status'),['id'=>'salary_allowance_status','class'=>'form-control']) }}
-        </div>
-    </div>
-
-    <div class="col-sm-2">
-         <div class='form-group'>
-            <input type="button" class="pull-right btn-xs btn-linkedin" id="add-salary-allowance" value="+Add">
-         </div>
-    </div>
 
 </div>
 
