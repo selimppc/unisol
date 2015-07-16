@@ -38,7 +38,7 @@
                                     @if($value->status !=='cancel')
                                     <tr>
                                        <td class="sl-no-size">{{$sl++}}</td>
-                                       <td class="b-text">{{ link_to_route($value->status=="open" ? 'billing.details.applicant' : 'summary.applicant.view',$value->relApplicant->first_name.' '.$value->relApplicant->last_name,['id'=>$value->id], ['data-toggle'=>"modal",'data-target'=>"#createModal"]) }}</td>
+                                       <td class="b-text">{{ link_to_route($value->status=="open" ? 'billing.details.applicant' : 'billing-applicant-view',$value->relApplicant->first_name.' '.$value->relApplicant->last_name,['id'=>$value->id], ['data-toggle'=>"modal",'data-target'=>"#createModal"]) }}</td>
 
                                         <td>{{isset($value->relApplicant->id)?$value->relApplicant->id:''}}</td>
 
@@ -50,14 +50,14 @@
                                         </td>
                                         <td>
                                             @if($value->status=='open')
-                                            <a href="{{ URL::route('summary.applicant.view',['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" data-toggle="tooltip" data-placement="bottom" title="View"><i class="fa fa-eye text-green"></i></a>
+                                            <a href="{{ URL::route('billing-applicant-view',['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" data-toggle="tooltip" data-placement="bottom" title="View"><i class="fa fa-eye text-green"></i></a>
 
-                                            <a href="{{ URL::route('summary.applicant.edit',['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#editModal" data-toggle="tooltip" data-placement="bottom" title="Edit"><i class="fa fa-pencil-square-o text-blue"></i></a>
+                                            <a href="{{ URL::route('billing-applicant-head-edit',['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#editModal" data-toggle="tooltip" data-placement="bottom" title="Edit"><i class="fa fa-pencil-square-o text-blue"></i></a>
 
                                                 <a data-href="{{ URL::route('applicant-head-destroy', ['req_id'=>$value->id ]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa fa-power-off" style="color: red" data-toggle="tooltip" data-placement="bottom" title="Cancel"></i></a>
 
                                             @elseif($value->status=='confirmed')
-                                                <a href="{{ URL::route('summary.applicant.view',['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" data-toggle="tooltip" data-placement="bottom" title="View"><i class="fa fa-eye text-green"></i></a>
+                                                <a href="{{ URL::route('billing-applicant-view',['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" data-toggle="tooltip" data-placement="bottom" title="View"><i class="fa fa-eye text-green"></i></a>
                                             @endif
                                         </td>
                                         <td>
@@ -90,7 +90,7 @@
                     <h4 class="modal-title text-center text-purple">Billing Applicant Head</h4>
                 </div>
                 <div class="modal-body">
-                    {{Form::open(array('route' => array('summary.applicant.save')))}}
+                    {{Form::open(array('route' => array('save-billing-applicant-head')))}}
                     @include('fees::billing_summary.applicant._form_applicant')
                     {{ Form::close() }}
                 </div>
