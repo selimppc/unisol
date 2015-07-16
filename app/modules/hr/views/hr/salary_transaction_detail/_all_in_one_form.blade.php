@@ -264,8 +264,8 @@ $(function(){
      $('.std_percentage').change(function(){
            var a = $('.std_percentage').val();
 
-//           var b = document.getElementById("sal-allowance").value;
-           var b = -(document.getElementById("sal-deduction").value);
+           var b = document.getElementById("sal-allowance").value;
+//           var b = -(document.getElementById("sal-deduction").value);
 //           var b = document.getElementById("sal-bonus").value;
 //           var b = document.getElementById("sal-overtime").value;
            var amount = document.getElementById('salary_transaction_detail_amount');;

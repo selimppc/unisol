@@ -23,10 +23,10 @@
    {{ Form::text('period', Input::old('period'),['size' => '30x5','class'=>'form-control', 'required']) }}
 </div>
 
-<div class='form-group'>
-   {{ Form::label('total_amount', 'Total Amount') }}
-   {{ Form::text('total_amount', Input::old('total_amount'),['size' => '30x5','class'=>'form-control', 'required']) }}
-</div>
+{{--<div class='form-group'>--}}
+   {{--{{ Form::label('total_amount', 'Total Amount') }}--}}
+   {{--{{ Form::text('total_amount', 0,Input::old('total_amount'),['size' => '30x5','class'=>'form-control', 'required']) }}--}}
+{{--</div>--}}
 
 <div class='form-group'>
    {{ Form::label('status', 'Status') }}
