@@ -8,7 +8,7 @@
 @section('content')
     <div class="row" xmlns="http://www.w3.org/1999/html">
         <div class="col-md-12">
-            <h3 class="text-blue text-uppercase">Fees::Billing History</h3>
+            <h3 class="text-blue text-uppercase">Student :: FEES History</h3>
             <div class="help-text-top">
                 You can view Student Billing History and search Information here. Also this panel will allow you to perform some actions Like <b>View</b> individual billing history under the column <b>Action</b>.
             </div><!-- /.box-body -->
@@ -18,7 +18,7 @@
         <div class="col-md-12">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#tab_1" data-toggle="tab">Billing History Student</a></li>
+                    <li class="active"><a href="#tab_1" data-toggle="tab">Student Fees History</a></li>
                 </ul>
 
                 <a href="{{ URL::route('billing-student-head')}}" class="btn-link pull-right"><i class="fa fa-backward text-aqua"></i> Back to Student (Fees)</a>
