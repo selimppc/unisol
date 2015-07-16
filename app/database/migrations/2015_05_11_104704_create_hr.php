@@ -301,7 +301,7 @@ class CreateHr extends Migration {
 
 
 
-        Schema::create('hr_salary_transaction', function(Blueprint $table)
+        Schema::create('hr_salary_transaction_head', function(Blueprint $table)
         {
             $table->increments('id', true);
             $table->string('trn_number', 32);
@@ -318,7 +318,7 @@ class CreateHr extends Migration {
             $table->integer('updated_by', false, 11);
             $table->timestamps();
         });
-        Schema::table('hr_salary_transaction', function($table) {
+        Schema::table('hr_salary_transaction_head', function($table) {
             $table->foreign('hr_employee_id')->references('id')->on('hr_employee');
             $table->foreign('year_id')->references('id')->on('year');
         });
@@ -330,7 +330,7 @@ class CreateHr extends Migration {
         Schema::create('hr_salary_transaction_detail', function(Blueprint $table)
         {
             $table->increments('id', true);
-            $table->unsignedInteger('hr_salary_transaction_id')->nullable();
+            $table->unsignedInteger('hr_salary_transaction_head_id')->nullable();
             $table->enum('type', array(
                 'allowance', 'deduction', 'over-time', 'bonus', 'commission'
             ));
@@ -346,7 +346,7 @@ class CreateHr extends Migration {
             $table->timestamps();
         });
         Schema::table('hr_salary_transaction_detail', function($table) {
-            $table->foreign('hr_salary_transaction_id')->references('id')->on('hr_salary_transaction');
+            $table->foreign('hr_salary_transaction_head_id')->references('id')->on('hr_salary_transaction_head');
             $table->foreign('hr_salary_allowance_id')->references('id')->on('hr_salary_allowance');
             $table->foreign('hr_salary_deduction_id')->references('id')->on('hr_salary_deduction');
             $table->foreign('hr_over_time_id')->references('id')->on('hr_over_time');
@@ -539,7 +539,7 @@ class CreateHr extends Migration {
         Schema::drop('hr_salary_allowance');
         Schema::drop('hr_salary_advance');
 
-        Schema::drop('hr_salary_transaction');
+        Schema::drop('hr_salary_transaction_head');
         Schema::drop('hr_salary_transaction_detail');
 
         Schema::drop('hr_attendance');
