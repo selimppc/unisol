@@ -3,7 +3,7 @@
 class HrWorkWeekController extends \BaseController {
 
     function __construct() {
-        $this->beforeFilter('hr', array('except' => array('index')));
+        $this->beforeFilter('hr', array('except' => array('')));
     }
 
     protected function isPostRequest()

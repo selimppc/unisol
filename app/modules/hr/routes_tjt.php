@@ -163,9 +163,9 @@ Route::any('leave-type/update/{id}',[
     'uses' => 'HrLeaveTypeController@updateLeaveType'
 ]);
 
-Route::any('leave-type/delete/{id}',[
+Route::any('leave-type/delete',[
     'as' =>'leave-type.delete',
-    'uses' => 'HrLeaveTypeController@deleteLeaveType'
+    'uses' => 'HrLeaveTypeController@ajaxDelete'
 ]);
 
 Route::any('leave-type/batch-delete',[

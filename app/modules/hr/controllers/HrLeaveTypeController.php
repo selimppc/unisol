@@ -3,7 +3,7 @@
 class HrLeaveTypeController extends \BaseController {
 
     function __construct() {
-        $this->beforeFilter('hr', array('except' => array('index')));
+        $this->beforeFilter('hr', array('except' => array('')));
     }
 
     protected function isPostRequest()
@@ -13,30 +13,39 @@ class HrLeaveTypeController extends \BaseController {
 
     public function index()
     {
-        $data = HrLeaveType::orderBy('id', 'DESC')->paginate(5);
-
-        return View::make('hr::hr.leave_type.index',compact('data'));
+        $model = HrLeaveType::latest('id')->get();
+        return View::make('hr::hr.leave_type.index',compact('model'));
     }
 
     public function storeLeaveType()
     {
         if($this->isPostRequest()){
             $input_data = Input::all();
-            $model = new HrLeaveType();
+            $id = Input::get('leave_type_id');
+
+            $model = $id ? HrLeaveType::find($id) : new HrLeaveType();
+
             if($model->validate($input_data)) {
                 DB::beginTransaction();
-                try {
-                    $model->create($input_data);
-                    DB::commit();
-                    Session::flash('message', 'Success !');
-                } catch (Exception $e) {
-                    //If there are any exceptions, rollback the transaction`
+                try{
+                    if($id){
+                        $model->update($input_data);
+                        DB::commit();
+                        Session::flash('message', 'Successfully Updated !');
+                    }else{
+                        $model->create($input_data);
+                        DB::commit();
+                        Session::flash('message', 'Successfully added !');
+                    }
+                }catch ( Exception $e ){
                     DB::rollback();
                     Session::flash('danger', 'Failed !');
                 }
+            }else{
+                Session::flash('danger', 'Validation Error!! Please FillUp These Fields With Integer Values.');
             }
+            return Redirect::back();
         }
-        return Redirect::back();
     }
 
     public function showLeaveType($id)
@@ -78,17 +87,18 @@ class HrLeaveTypeController extends \BaseController {
         }
     }
 
-    public function deleteLeaveType($id)
+    public function ajaxDelete()
     {
+        $id = Input::get('id');
+        DB::beginTransaction();
         try {
-            $data = HrLeaveType::find($id);
-            if ($data->delete()) {
-                Session::flash('message', "Successfully  Deleted");
-                return Redirect::back();
-            }
-        } catch
-        (exception $ex) {
-            return Redirect::back()->with('error', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
+            HrLeaveType::destroy($id);
+            DB::commit();
+            return Response::json("Successfully Deleted");
+        }
+        catch(exception $ex){
+            DB::rollback();
+            return Response::json("Can not be Deleted !");
         }
     }
 

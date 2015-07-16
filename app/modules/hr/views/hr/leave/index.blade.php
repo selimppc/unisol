@@ -50,7 +50,7 @@
            <div class="pull-right col-sm-4" style="padding-top: 1%;">
            </div>
         </div>
-
+         <a href="{{Route('leave-type')}}" class="pull-right" style="margin-right: 20px" data-toggle="modal" data-target="#leave-type"><ins><b>HR Leave Type</b> </ins></a>
         {{Form::open([ 'route'=>'leave.batch-delete' ])}}
         <div class="box-body">
             <table id="" class="table table-striped  table-bordered">
@@ -120,10 +120,21 @@
   </div>
 </div>
 
+
+<div class="modal fade" id="leave-type" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content" style="margin-left: 70px;width:100%">
+
+    </div>
+  </div>
+</div>
+
     <style>
     .modal-content {
       width:700px;
     }
     </style>
+
+
 
 @stop

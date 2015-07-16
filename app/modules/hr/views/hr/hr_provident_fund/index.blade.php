@@ -53,14 +53,15 @@
                          </a>
                     </td>
                     <td>{{$values->date}}</td>
-                    <td>{{$values->month}}</td>
+                    <td>{{ucfirst($values->month)}}</td>
                     <td>{{$values->employee_contribution_amount}}</td>
                     <td>{{$values->company_contribution_amount}}</td>
                     <td>{{ucfirst($values->status)}}</td>
                     <td>
-                        <a href="{{ URL::route('provident-fund.show',['id'=>$values->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#pvd" style="font-size: 12px;color: darkmagenta"><span class="fa fa-eye"></span></a>
-                        <a class="btn btn-xs btn-default" href="{{ URL::route('provident-fund.edit',['id'=>$values->id]) }}" data-toggle="modal" data-target="#pvd" style="font-size: 12px;color: lightseagreen"><i class="fa fa-edit"></i></a>
-                        <a data-href="{{ URL::route('provident-fund.delete',$values->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" style="font-size: 12px;color: lightcoral"><span class="fa  fa-trash-o"></span></a>
+                        <a href="{{ URL::route('provident-fund.show',['id'=>$values->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#pvd" style="font-size: 12px;color: darkmagenta" title="SHOW"><span class="fa fa-eye"></span></a>
+                        <a class="btn btn-xs btn-default" href="{{ URL::route('provident-fund.edit',['id'=>$values->id]) }}" data-toggle="modal" data-target="#pvd" style="font-size: 12px;color: lightseagreen" title="EDIT"><i class="fa fa-edit"></i></a>
+                        <a data-href="{{ URL::route('provident-fund.delete',$values->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" style="font-size: 12px;color: lightcoral" title="DELETE"><span class="fa  fa-trash-o"></span></a>
+                        <a href="{{Route('provident-fund-config')}}" class="btn btn-xs btn-default" style="font-size: 12px;color:green" data-toggle="modal" data-target="#pvd-config"><i class="fa fa-money" title="HR Provident Fund Config"></i></a>
                     </td>
                  </tr>
                 @endforeach
