@@ -82,7 +82,6 @@
             <input type="button" class="pull-right btn-xs btn-linkedin" id="add-salary-transaction-detail" value="+Add">
          </div>
     </div>
-
 </div>
 
 <div class="table-hide">
@@ -138,7 +137,6 @@
 
 <script type="text/javascript">
 $(function(){
-
     //Beneficial Add(s) : ok
      $tableItemCounter = 0; //To stop additem if exist
      var $arrayRnc = []; //To stop additem if exist
@@ -301,7 +299,7 @@ $(function(){
          });
      });
 
-     // SAl Deduction dependable drop down to text show
+     // Sal Deduction dependable drop down to text show
       $('.sal_deduction').change(function(){
           $.get("{{ url('hr/sal-deduction/amount')}}",
           { id: $(this).val() },
@@ -328,5 +326,4 @@ $(function(){
            });
       });
 });
-
 </script>

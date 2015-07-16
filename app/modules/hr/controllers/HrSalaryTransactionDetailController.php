@@ -15,6 +15,7 @@ class HrSalaryTransactionDetailController extends \BaseController {
    /*
     * Todo : Over Time ta kivabe Handle korbo bujhtecina
    */
+
     public function index_hr_salary_transaction_detail($s_t_id)
     {
         $model = HrSalaryTransactionDetail::with('relHrOverTime','relHrBonus','relHrSalaryAllowance','relHrSalaryDeduction')
