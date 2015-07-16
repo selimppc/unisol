@@ -15,7 +15,7 @@
                     <button type="button" class=" btn btn-success fa fa-plus btn_margin" data-toggle="modal" data-target="#myModal" data-toggle="tooltip" data-placement="bottom" title="Add New" >
                         Add New
                     </button>
-                    <a href="{{URL::route('billing.history')}}" class="btn btn-xs btn-default" href=""><i class="fa fa-eye" style="color: green"></i>View Fees Details</a>
+                    <a href="{{URL::route('applicant-billing-history')}}" class="btn btn-xs btn-default" href=""><i class="fa fa-eye" style="color: green"></i>View Fees Details</a>
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab_1">

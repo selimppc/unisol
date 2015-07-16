@@ -27,7 +27,7 @@
                     <div class="tab-pane active" id="tab_1">
 
                         {{--****************** Filter :Starts ***********************--}}
-                        {{Form::open(array('route'=> ['billing.history.student']))}}
+                        {{Form::open(array('route'=> ['student-billing-history']))}}
                         <div class="col-sm-8 ">
                             <div class="col-sm-4">
                                 {{ Form::label('department_id', 'Department') }}
@@ -92,7 +92,7 @@
                                     @endif
                                     </tbody>
                                 </table>
-                                <a href="{{ URL::route('billing.history.student')}}" class="btn-link pull-right"><i class="fa fa-backward text-red"></i> Back to All List</a>
+                                <a href="{{ URL::route('student-billing-history')}}" class="btn-link pull-right"><i class="fa fa-backward text-red"></i> Back to All List</a>
                                 </br>
                             </div>
                     </div>

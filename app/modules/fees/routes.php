@@ -60,8 +60,8 @@
      /************Billing History Start****************/
 
         /***********Applicant************/
-     Route::any('billing/history', [
-         'as' => 'billing.history',
+     Route::any('applicant-billing-history', [
+         'as' => 'applicant-billing-history',
          'uses' => 'FeesController@index_billing_history'
      ]);
 
@@ -71,8 +71,8 @@
      ]);
 
        /***********Student************/
-     Route::any('billing/history/student', [
-         'as' => 'billing.history.student',
+     Route::any('student-billing-history', [
+         'as' => 'student-billing-history',
          'uses' => 'FeesController@index_student_billing_history'
      ]);
 

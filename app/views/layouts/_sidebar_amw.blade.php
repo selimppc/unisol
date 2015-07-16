@@ -82,9 +82,9 @@
 
             <li><a href="{{ URL::to('fees/installment/setup') }}"><i class="fa  fa-bars text-blue"></i>Installment Setup</a></li>
 
-            <li><a href="{{ URL::to('fees/billing/history') }}"><i class="fa  fa-bars text-purple"></i> Fees History Applicant</a></li>
+            <li><a href="{{ URL::to('fees/applicant-billing-history') }}"><i class="fa  fa-bars text-purple"></i> Fees History Applicant</a></li>
 
-            <li><a href="{{URL::to('fees/billing/history/student')}}"><i class="fa  fa-bars text-orange"></i> Fees History Student</a>
+            <li><a href="{{URL::to('fees/student-billing-history')}}"><i class="fa  fa-bars text-orange"></i> Fees History Student</a>
         </ul>
     </li>
 

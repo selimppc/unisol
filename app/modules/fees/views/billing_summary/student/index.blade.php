@@ -16,7 +16,7 @@
                         Add New
                     </button>
 
-                    <a href="{{URL::route('billing.history.student')}}" class="btn btn-xs btn-default" href=""><i class="fa fa-eye" style="color: green"></i>View Fees Details</a>
+                    <a href="{{URL::route('student-billing-history')}}" class="btn btn-xs btn-default" href=""><i class="fa fa-eye" style="color: green"></i>View Fees Details</a>
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab_1">
