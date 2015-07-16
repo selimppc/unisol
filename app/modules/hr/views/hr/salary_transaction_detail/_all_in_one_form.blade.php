@@ -6,7 +6,7 @@
 <div class="row">
     <div class="row" style="padding-bottom: 10px ">
          <div class='form-group '>
-             {{ Form::hidden('hr_salary_transaction_id', $s_t_id ,Input::old('hr_salary_transaction_id')) }}
+             {{ Form::hidden('hr_salary_transaction_head_id', $s_t_id ,Input::old('hr_salary_transaction_head_id')) }}
          </div>
 
          <div class='form-group col-sm-2'>
@@ -30,7 +30,7 @@
     <div class="col-sm-2" style="width:13%">
         <div class='form-group'>
            {{ Form::label('type', 'Type') }}
-           {{ Form::select('type', array(''=>'Select Type','allowance'=>'allowance','deduction'=>'deduction','over-time'=>'over-time','bonus'=>'bonus'),
+           {{ Form::select('type', array(''=>'Select Type','allowance'=>'Allowance','deduction'=>'Deduction','over-time'=>'Over-Time','bonus'=>'Bonus'),
                 Input::old('type'),['id'=>'salary_transaction_detail_type','class'=>'form-control']) }}
         </div>
     </div>
@@ -82,7 +82,6 @@
             <input type="button" class="pull-right btn-xs btn-linkedin" id="add-salary-transaction-detail" value="+Add">
          </div>
     </div>
-
 </div>
 
 <div class="table-hide">
@@ -113,7 +112,7 @@
                <td>{{ ucfirst($values->type) }}</td>
                <td>{{ isset($values->relHrSalaryAllowance->title) ? (ucfirst($values->relHrSalaryAllowance->title)) : "" }}</td>
                <td>{{ isset($values->relHrSalaryDeduction->title) ? (ucfirst($values->relHrSalaryDeduction->title)) : "" }}</td>
-               <td>{{ isset($values->relHrOverTime->sign_in) ? $values->relHrOverTime->sign_in : "" }}</td>
+               <td>{{ isset($values->relHrOverTime->amount) ? $values->relHrOverTime->amount : "" }}</td>
                <td>{{ isset($values->relHrBonus->title) ? (ucfirst($values->relHrBonus->title)) : "" }}</td>
                <td>{{ isset($values->percentage) ? round($values->percentage) : ""}}</td>
                <td>{{ isset($values->amount) ? round($values->amount,2) : ""}}</td>
@@ -138,7 +137,6 @@
 
 <script type="text/javascript">
 $(function(){
-
     //Beneficial Add(s) : ok
      $tableItemCounter = 0; //To stop additem if exist
      var $arrayRnc = []; //To stop additem if exist
@@ -179,7 +177,7 @@ $(function(){
                  return false;
              } else {
                 $('#test').append("<tr> " +
-                      "<td><input type='hidden' name='hr_salary_transaction_id[]' value='" + $sal_trans_id + "' readonly><input name='type[]' value='"+ $sal_trns_dtl_type +"' readonly></td>" +
+                      "<td><input type='hidden' name='hr_salary_transaction_head_id[]' value='" + $sal_trans_id + "' readonly><input name='type[]' value='"+ $sal_trns_dtl_type +"' readonly></td>" +
                       "<td><input name='hr_salary_allowance_id[]' value='"+ $sal_trns_dtl_allowance +"' readonly> </td>" +
                       "<td><input name='hr_salary_deduction_id[]' value='"+ $sal_trns_dtl_deduction +"' readonly> </td>" +
                       "<td><input name='hr_over_time_id[]' value='"+ $sal_trns_dtl_ovrtm +"' readonly> </td>" +
@@ -203,7 +201,7 @@ $(function(){
          }
  	 });
 
-    //delete : ok
+    // Delete : ok
      $('.delete-dt-2').click(function(e) {
         e.preventDefault();
         var $btn = $(this);
@@ -220,7 +218,7 @@ $(function(){
         });
      });
 
-     // drop down change with input form and div
+     // Drop down change with input form and div
      $('#salary_transaction_detail_type').change(function(){
         selection = $(this).val();
         switch(selection)
@@ -262,10 +260,14 @@ $(function(){
         }
      });
 
-     // selection change with form
+     // Selection change with form
      $('.std_percentage').change(function(){
            var a = $('.std_percentage').val();
+
            var b = document.getElementById("sal-allowance").value;
+//           var b = -(document.getElementById("sal-deduction").value);
+//           var b = document.getElementById("sal-bonus").value;
+//           var b = document.getElementById("sal-overtime").value;
            var amount = document.getElementById('salary_transaction_detail_amount');;
            var myResult = (a*b)/100;
            amount.value = myResult;
@@ -278,6 +280,9 @@ $(function(){
 
            var a = $('.std_amount').val();
            var b = document.getElementById("sal-allowance").value;
+//           var b = -(document.getElementById("sal-deduction").value);
+//           var b = document.getElementById("sal-bonus").value;
+//           var b = document.getElementById("sal-overtime").value;
            var percentage = document.getElementById('salary_transaction_detail_percentage');;
            var myResult = (a*100)/b;
            percentage.value = myResult;
@@ -285,9 +290,8 @@ $(function(){
            $('.std_percentage').prop('disabled', true);
      });
 
-     // sal_allowance dependable drop down to text show
+     // Sal Allowance dependable drop down to text show
      $('.sal_allowance').change(function(){
-
          $.get("{{ url('hr/sal-allowance/amount')}}",
          { id: $(this).val() },
          function(data) {
@@ -295,9 +299,8 @@ $(function(){
          });
      });
 
-     // sal_allowance dependable drop down to text show
+     // Sal Deduction dependable drop down to text show
       $('.sal_deduction').change(function(){
-
           $.get("{{ url('hr/sal-deduction/amount')}}",
           { id: $(this).val() },
           function(data) {
@@ -305,9 +308,8 @@ $(function(){
           });
       });
 
-      // sal_allowance dependable drop down to text show
+      // Sal Over-Time dependable drop down to text show
       $('.sal_overtime').change(function(){
-
            $.get("{{ url('hr/sal-overtime/amount')}}",
            { id: $(this).val() },
            function(data) {
@@ -315,16 +317,13 @@ $(function(){
            });
       });
 
-      // sal_allowance dependable drop down to text show
+      // Sal Bonus dependable drop down to text show
       $('.sal_bonus').change(function(){
-
            $.get("{{ url('hr/sal-bonus/amount')}}",
            { id: $(this).val() },
            function(data) {
                 $('#sal-bonus').val(data);
            });
       });
-
 });
-
 </script>

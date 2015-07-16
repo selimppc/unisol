@@ -4,10 +4,10 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class HrSalaryTransaction extends Eloquent{
+class HrSalaryTransactionHead extends Eloquent{
 
     //TODO :: model attributes and rules and validation
-    protected $table='hr_salary_transaction';
+    protected $table='hr_salary_transaction_head';
     protected $fillable = [
         'trn_number','hr_employee_id','date','year_id','period','total_amount','status'
     ];

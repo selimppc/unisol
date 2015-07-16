@@ -20,7 +20,6 @@ Route::group(['prefix' => 'hr'], function() {
     });
 
 //HR BANK
-
     Route::any('bank',[
         'as' => 'bank',
         'uses'=> 'HrBankController@index_hr_bank'
@@ -52,7 +51,6 @@ Route::group(['prefix' => 'hr'], function() {
     ]);
 
 //HR SALARY GRADE
-
     Route::any('salary_grade',[
         'as' => 'salary_grade',
         'uses'=> 'HrSalaryGradeController@index_hr_salary_grade'
@@ -84,7 +82,6 @@ Route::group(['prefix' => 'hr'], function() {
     ]);
 
 //HR TAX RULE
-
     Route::any('tax_rule',[
         'as' => 'tax_rule',
         'uses'=> 'HrTaxRuleController@index_hr_tax_rule'
@@ -147,7 +144,6 @@ Route::group(['prefix' => 'hr'], function() {
     ]);
 
 //HR EMPLOYEE
-
     Route::any('employee',[
         'as' => 'employee',
         'uses'=> 'HrEmployeeController@index_hr_employee'
@@ -179,7 +175,6 @@ Route::group(['prefix' => 'hr'], function() {
     ]);
 
 //HR ALLOWANCE
-
     Route::any('allowance',[
         'as' => 'allowance',
         'uses'=> 'HrAllowanceController@index_hr_allowance'
@@ -211,7 +206,6 @@ Route::group(['prefix' => 'hr'], function() {
     ]);
 
 //HR SALARY
-
     Route::any('salary',[
         'as' => 'salary',
         'uses'=> 'HrSalaryController@index_hr_salary'
@@ -243,7 +237,6 @@ Route::group(['prefix' => 'hr'], function() {
     ]);
 
 //HR BONUS
-
     Route::any('bonus',[
         'as' => 'bonus',
         'uses'=> 'HrBonusController@index_hr_bonus'
@@ -410,32 +403,32 @@ Route::group(['prefix' => 'hr'], function() {
 //HR SALARY TRANSACTION
     Route::any('salary_transaction',[
         'as' => 'salary_transaction',
-        'uses'=> 'HrSalaryTransactionController@index_hr_salary_transaction'
+        'uses'=> 'HrSalaryTransactionHeadController@index_hr_salary_transaction'
     ]);
 
     Route::any('store-salary-transaction',[
         'as' => 'store-salary-transaction',
-        'uses'=> 'HrSalaryTransactionController@store_hr_salary_transaction'
+        'uses'=> 'HrSalaryTransactionHeadController@store_hr_salary_transaction'
     ]);
 
     Route::any('salary_transaction/show/{s_t_id}',[
         'as' => 'salary_transaction.show',
-        'uses'=> 'HrSalaryTransactionController@show_hr_salary_transaction'
+        'uses'=> 'HrSalaryTransactionHeadController@show_hr_salary_transaction'
     ]);
 
     Route::any('salary_transaction/edit/{s_t_id}',[
         'as' => 'salary_transaction.edit',
-        'uses'=> 'HrSalaryTransactionController@edit_hr_salary_transaction'
+        'uses'=> 'HrSalaryTransactionHeadController@edit_hr_salary_transaction'
     ]);
 
     Route::any('salary_transaction/destroy/{s_t_id}',[
         'as' => 'salary_transaction.destroy',
-        'uses'=> 'HrSalaryTransactionController@destroy_hr_salary_transaction'
+        'uses'=> 'HrSalaryTransactionHeadController@destroy_hr_salary_transaction'
     ]);
 
     Route::any('salary-transaction-batch-delete',[
         'as' => 'salary-transaction-batch-delete',
-        'uses'=> 'HrSalaryTransactionController@batch_delete_hr_salary_transaction'
+        'uses'=> 'HrSalaryTransactionHeadController@batch_delete_hr_salary_transaction'
     ]);
 
 
@@ -549,8 +542,7 @@ Route::group(['prefix' => 'hr'], function() {
         'uses'=> 'HrSalaryTransactionDetailController@batch_delete_hr_salary_transaction_detail'
     ]);
 
-    // dependable drop down
-
+// Dependable Drop Down
     Route::any('sal-allowance/amount',[
         'as'   => 'sal-allowance.amount',
         'uses' => 'HrSalaryTransactionDetailController@hr_salary_allowance_amount'
@@ -570,8 +562,4 @@ Route::group(['prefix' => 'hr'], function() {
         'as'   => 'sal-bonus.amount',
         'uses' => 'HrSalaryTransactionDetailController@hr_salary_bonus_amount'
     ]);
-
-
-
-
 });

@@ -6,7 +6,7 @@
     @include('layouts._sidebar_amw')
 @stop
 @section('content')
-    <h3 class="text-blue text-uppercase">Fees::Billing Student Head</h3>
+    <h3 class="text-blue text-uppercase">Fees :: Student</h3>
     <div class="row">
         <div class="col-md-12">
             <div class="nav-tabs-custom">
@@ -15,6 +15,8 @@
                     <button type="button" class=" btn btn-success fa fa-plus btn_margin" data-toggle="modal" data-target="#myModal" data-toggle="tooltip" data-placement="bottom" title="Add New" >
                         Add New
                     </button>
+
+                    <a href="{{URL::route('student-billing-history')}}" class="btn btn-xs btn-default" href=""><i class="fa fa-arrow-right text-light-blue"></i> View Fees Details</a>
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab_1">
@@ -27,8 +29,9 @@
                                     <th>Student Id</th>
                                     <th>Schedule</th>
                                     <th>Total Cost</th>
-                                    <th>Payment Option</th>
+                                    <th>Status</th>
                                     <th>Action</th>
+                                    <th>Confirm</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -39,18 +42,22 @@
 
                                         <td><a href="#" class=" btn-link text-bold" data-toggle="modal" data-target="#createModal" data-toggle="tooltip" data-placement="bottom" title="Create Billing Details">{{isset($value->relUser->relUserProfile->first_name)?$value->relUser->relUserProfile->first_name:''}} {{isset($value->relUser->relUserProfile->last_name)?$value->relUser->relUserProfile->last_name:''}}</a></td>
 
+                                        {{--<td class="b-text">{{ link_to_route($value->status=="open" ? 'billing.details.student' : 'student-head-view',$value->relUser->relUserProfile->first_name.' '.$value->relUser->relUserProfile->last_name,['id'=>$value->id], ['data-toggle'=>"modal",'data-target'=>"#createModal"]) }}</td>--}}
+
+
                                         <td>{{isset($value->relUser->relUserProfile->user_id)?$value->relUser->relUserProfile->user_id:''}}</td>
 
                                         <td>{{isset($value->relBillingSchedule->title)?$value->relBillingSchedule->title:''}}</td>
 
                                         <td>{{isset($value->total_cost)?$value->total_cost:''}}</td>
 
-                                        <td>{{isset($value->relPaymentOption->title)?$value->relPaymentOption->title:''}}</td>
+                                        <td>{{ucfirst($value->status)}}</td>
                                         <td>
-                                            <a href="{{ URL::route('summary.student.view',['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" data-toggle="tooltip" data-placement="bottom" title="View"><i class="fa fa-eye text-green"></i></a>
+                                            <a href="{{ URL::route('student-head-view',['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" data-toggle="tooltip" data-placement="bottom" title="View"><i class="fa fa-eye text-green"></i></a>
 
-                                            <a href="{{ URL::route('summary.student.edit',['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#editModal" data-toggle="tooltip" data-placement="bottom" title="Edit"><i class="fa fa-pencil-square-o text-blue"></i></a>
+                                            <a href="{{ URL::route('student-head-edit',['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#editHeadModal" data-toggle="tooltip" data-placement="bottom" title="Edit"><i class="fa fa-pencil-square-o text-blue"></i></a>
                                         </td>
+                                        <td></td>
                                     </tr>
                                 @endforeach
                                 </tbody>
@@ -72,7 +79,7 @@
                     <h4 class="modal-title text-center text-purple">Billing Student Head</h4>
                 </div>
                 <div class="modal-body">
-                    {{Form::open(array('route' => array('summary.student.save')))}}
+                    {{Form::open(array('route' => array('student-head-save')))}}
                     @include('fees::billing_summary.student._form')
                     {{ Form::close() }}
                 </div>
@@ -90,7 +97,7 @@
     </div>
 
     {{-- Modal for Edit --}}
-    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true">
+    <div class="modal fade" id="editHeadModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
 

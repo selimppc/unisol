@@ -70,25 +70,21 @@
             <i class="fa fa-angle-left pull-right"></i>
         </a>
         <ul class="treeview-menu">
-            <li><a href="{{ URL::to('fees/billing/schedule') }}"><i class="fa  fa-bars text-light-blue"></i> Billing Schedule</a></li>
-
             <li><a href="{{ URL::to('fees/billing/item') }}"><i class="fa  fa-bars text-green"></i> Billing Item</a></li>
 
-            <li><a href="{{ URL::to('fees/billing/summary/applicant') }}"><i class="fa  fa-bars text-olive"></i> Billing Applicant Head</a></li>
+            <li><a href="{{ URL::to('fees/billing/schedule') }}"><i class="fa  fa-bars text-light-blue"></i> Billing Schedule</a></li>
 
-            <li><a href="{{URL::to('fees/billing-summary-student')}}"><i class="fa fa-bars text-yellow"></i> Billing Student Head</a></li>
+            <li><a href="{{ URL::to('fees/billing-applicant-head') }}"><i class="fa  fa-bars text-olive"></i> Applicant (Fees) </a></li>
 
-           {{-- <li><a href="#"><i class="fa  fa-bars text-aqua"></i> Billing Details Applicants</a></li>
-
-            <li><a href="#"><i class="fa  fa-bars text-black"></i>Billing Details Student</a></li>--}}
+            <li><a href="{{URL::to('fees/billing-student-head')}}"><i class="fa fa-bars text-yellow"></i> Student (Fees) </a></li>
 
             <li><a href="{{ URL::to('fees/billing/setup') }}"><i class="fa  fa-bars text-red"></i> Billing Setup</a></li>
 
             <li><a href="{{ URL::to('fees/installment/setup') }}"><i class="fa  fa-bars text-blue"></i>Installment Setup</a></li>
 
-            <li><a href="{{ URL::to('fees/billing/history') }}"><i class="fa  fa-bars text-purple"></i> Billing History Applicant</a></li>
+            <li><a href="{{ URL::to('fees/applicant-billing-history') }}"><i class="fa  fa-bars text-purple"></i> Fees History Applicant</a></li>
 
-            <li><a href="{{URL::to('fees/billing/history/student')}}"><i class="fa  fa-bars text-orange"></i> Billing History Student</a>
+            <li><a href="{{URL::to('fees/student-billing-history')}}"><i class="fa  fa-bars text-orange"></i> Fees History Student</a>
         </ul>
     </li>
 
