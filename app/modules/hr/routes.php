@@ -403,32 +403,32 @@ Route::group(['prefix' => 'hr'], function() {
 //HR SALARY TRANSACTION
     Route::any('salary_transaction',[
         'as' => 'salary_transaction',
-        'uses'=> 'HrSalaryTransactionController@index_hr_salary_transaction'
+        'uses'=> 'HrSalaryTransactionHeadController@index_hr_salary_transaction'
     ]);
 
     Route::any('store-salary-transaction',[
         'as' => 'store-salary-transaction',
-        'uses'=> 'HrSalaryTransactionController@store_hr_salary_transaction'
+        'uses'=> 'HrSalaryTransactionHeadController@store_hr_salary_transaction'
     ]);
 
     Route::any('salary_transaction/show/{s_t_id}',[
         'as' => 'salary_transaction.show',
-        'uses'=> 'HrSalaryTransactionController@show_hr_salary_transaction'
+        'uses'=> 'HrSalaryTransactionHeadController@show_hr_salary_transaction'
     ]);
 
     Route::any('salary_transaction/edit/{s_t_id}',[
         'as' => 'salary_transaction.edit',
-        'uses'=> 'HrSalaryTransactionController@edit_hr_salary_transaction'
+        'uses'=> 'HrSalaryTransactionHeadController@edit_hr_salary_transaction'
     ]);
 
     Route::any('salary_transaction/destroy/{s_t_id}',[
         'as' => 'salary_transaction.destroy',
-        'uses'=> 'HrSalaryTransactionController@destroy_hr_salary_transaction'
+        'uses'=> 'HrSalaryTransactionHeadController@destroy_hr_salary_transaction'
     ]);
 
     Route::any('salary-transaction-batch-delete',[
         'as' => 'salary-transaction-batch-delete',
-        'uses'=> 'HrSalaryTransactionController@batch_delete_hr_salary_transaction'
+        'uses'=> 'HrSalaryTransactionHeadController@batch_delete_hr_salary_transaction'
     ]);
 
 
