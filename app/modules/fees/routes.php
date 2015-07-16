@@ -140,25 +140,25 @@
 
      /**********Billing Applicant head Start*************/
 
-     Route::any('billing/summary/applicant', [
-         'as' => 'billing.summary.applicant',
-         'uses' => 'FeesController@index_billing_summary'
+     Route::any('billing-applicant-head', [
+         'as' => 'billing-applicant-head',
+         'uses' => 'FeesController@index_billing_applicant_head'
      ]);
-     Route::any('billing/summary/applicant/save',[
-         'as' => 'summary.applicant.save',
-         'uses'=> 'FeesController@save_summary_applicant'
+     Route::any('save-billing-applicant-head',[
+         'as' => 'save-billing-applicant-head',
+         'uses'=> 'FeesController@save_applicant_head'
      ]);
-     Route::any('billing/summary/applicant/view/{id}', [
-         'as' => 'summary.applicant.view',
-         'uses' => 'FeesController@view_applicant_summary'
+     Route::any('billing-applicant-view/{id}', [
+         'as' => 'billing-applicant-view',
+         'uses' => 'FeesController@view_billing_applicant'
      ]);
-     Route::any('billing/summary/applicant/edit/{id}', [
-         'as' => 'summary.applicant.edit',
-         'uses' => 'FeesController@edit_applicant_summary'
+     Route::any('billing-applicant-head-edit/{id}', [
+         'as' => 'billing-applicant-head-edit',
+         'uses' => 'FeesController@edit_billing_applicant_head'
      ]);
-     Route::any('billing/summary/applicant/update/{id}', [
-         'as' => 'summary.applicant.update',
-         'uses' => 'FeesController@update_applicant_summary'
+     Route::any('billing-applicant-head-update/{id}', [
+         'as' => 'update-billing-applicant-head',
+         'uses' => 'FeesController@update_billing_applicant_head'
      ]);
      Route::any("applicant-head-destroy/{id}", [
          "as"   => "applicant-head-destroy",

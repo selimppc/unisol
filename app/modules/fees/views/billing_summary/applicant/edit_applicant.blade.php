@@ -6,7 +6,7 @@
 <div class="modal-body">
     <div style="padding: 10px;">
 
-        {{Form::model($edit_summary, array('route' => array('summary.applicant.update', $edit_summary->id)))}}
+        {{Form::model($edit_summary, array('route' => array('update-billing-applicant-head', $edit_summary->id)))}}
         @include('fees::billing_summary.applicant._form_applicant')
         {{ Form::close() }}
     </div>
