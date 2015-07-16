@@ -875,29 +875,29 @@ class FeesController extends \BaseController {
 
     public function edit_student_head($id)
     {
-        $edit_summary = BillingApplicantHead::find($id);
-        $applicant = array(''=>'Select applicant') + Applicant::ApplicantList();
+        $edit_student_head = BillingStudentHead::find($id);
+        $student = array(''=>'Select Student') + User::StudentList();
         $schedule = ['' => 'Select schedule'] + BillingSchedule::lists('title', 'id');
         $payment_option = ['' => 'Select Payment Option'] + PaymentOption::lists('title', 'id');
-        return View::make('fees::billing_summary.applicant.edit_applicant',compact('edit_summary','applicant','schedule','payment_option'));
+        return View::make('fees::billing_summary.student.edit',compact('edit_student_head','student','schedule','payment_option'));
     }
 
     public function update_student_head($id)
     {
         $data = Input::all();
-        $model = BillingApplicantHead::find($id);
+        $model = BillingStudentHead::find($id);
         if($model->validate($data))
         {
             DB::beginTransaction();
             try {
                 if ($model->update($data))
                     DB::commit();
-                Session::flash('message', "Billing summary applicant Successfully Added");
+                Session::flash('message', "Billing Student Head Successfully Added");
             }
             catch ( Exception $e ){
                 //If there are any exceptions, rollback the transaction
                 DB::rollback();
-                Session::flash('danger', "Billing summary applicant Not Added.Invalid Request!");
+                Session::flash('danger', "Billing Student Head Not Added.Invalid Request!");
             }
             return Redirect::back();
         }else{

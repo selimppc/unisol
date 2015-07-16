@@ -200,7 +200,7 @@
          'uses' => 'FeesController@view_billing_student'
      ]);
      Route::any('billing-student-head/edit/{id}', [
-         'as' => 'billing-student-head-edit',
+         'as' => 'student-head-edit',
          'uses' => 'FeesController@edit_student_head'
      ]);
      Route::any('billing-student-head-update/{id}', [
