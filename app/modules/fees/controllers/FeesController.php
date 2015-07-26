@@ -768,7 +768,7 @@ class FeesController extends \BaseController {
     {
         $bill_id = Input::get('billing_item_id');
         $cost = BillingSetup::where('billing_item_id', $bill_id)->pluck("cost");
-        /*pluck-tula ana like get*/
+        /*pluck is like first(),Laravel::Getting Single value from the database using pluck*/
         if($cost){
             return Response::make($cost);
         }else{

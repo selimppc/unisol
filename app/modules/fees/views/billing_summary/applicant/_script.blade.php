@@ -61,7 +61,6 @@
 
     /************************* Calculation starts to make total amount using waiver information *******************************/
 
-
         $('#billing_item_id2').change(function(){
             var quan = $('#quantity2').val();
             var waiver_amount = $('#waiver_amount2').val();
@@ -95,13 +94,11 @@
 
         });
 
-        
         function calculate_sum_data(data, quan, waiver_amount)
         {
             var sum_data = 0;                 
                 if(quan > 0 && quan != "")
                 {
-
                     sum_data = parseFloat((quan * data) - waiver_amount ,10).toFixed(2);
                 }
                 else
@@ -114,11 +111,7 @@
 
     /************************* Calculation ends to make total amount using waiver information *******************************/
 
-
-
     });
-
-
 
     //---------------------Billing details ajax delete in popup----------------------------}}
 
