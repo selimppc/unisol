@@ -1,7 +1,7 @@
 <?php
 
 
-class DegreeLevel extends Eloquent
+class DegreeLevels extends Eloquent
 {
 
     protected $table = 'degree_level';
