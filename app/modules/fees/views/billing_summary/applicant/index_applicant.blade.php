@@ -11,11 +11,11 @@
         <div class="col-md-12">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#tab_1" data-toggle="tab">Billing Applicant Head</a></li>
+                    <li class="active"><a href="#tab_1" data-toggle="tab">Billing Applicant</a></li>
                     <button type="button" class=" btn btn-success fa fa-plus btn_margin" data-toggle="modal" data-target="#myModal" data-toggle="tooltip" data-placement="bottom" title="Add New" >
                         Add New
                     </button>
-                    <a href="{{URL::route('applicant-billing-history')}}" class="btn btn-xs btn-default" href=""><i class="fa fa-arrow-right text-light-blue"></i> View Fees Details</a>
+                    <a href="{{URL::route('applicant-billing-history')}}" class="btn btn-default"><i class="fa fa-arrow-right text-light-blue"></i> View Fees Details</a>
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab_1">

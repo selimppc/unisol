@@ -875,7 +875,7 @@ class FeesController extends \BaseController {
     public function index_billing_student_head()
     {
         $student = array(''=>'Select Student') + User::StudentList();
-        $schedule = ['' => 'Select schedule'] + BillingSchedule::lists('title', 'id');
+        $schedule = ['' => 'Select Schedule'] + BillingSchedule::lists('title', 'id');
         $payment_option = ['' => 'Select Payment Option'] + PaymentOption::lists('title', 'id');
         $summary_student = BillingStudentHead::latest('id')->with('relUser','relUser.relUserProfile', 'relBillingSchedule')->get();
 
@@ -1037,7 +1037,6 @@ class FeesController extends \BaseController {
             ];
 
         }
-        // print_r($all);exit;
         $model = new BillingStudentDetail();
         DB::beginTransaction();
         try{
@@ -1047,13 +1046,12 @@ class FeesController extends \BaseController {
             DB::commit();
             Session::flash('message', 'Success !');
         }catch ( Exception $e ){
-            // print_r($e->getMessage());exit;
-            //If there are any exceptions, rollback the transaction`
             DB::rollback();
             Session::flash('danger', 'Failed !');
         }
         return Redirect::back();
     }
+
 
     public function ajax_delete_student_detail()
     {

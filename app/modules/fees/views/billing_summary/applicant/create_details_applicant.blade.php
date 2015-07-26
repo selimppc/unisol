@@ -27,7 +27,7 @@
         <div class="col-sm-2">
             <div class='form-group'>
                 <div>{{ Form::label('cost_per_unit', 'Cost Per Unit') }}</div>
-                <div>{{ Form::text('cost_per_unit', Input::old('cost_per_unit'),['class'=>'form-control','id'=>'cost_per_unit2','required'=>'required']) }}
+                <div>{{ Form::text('cost_per_unit', Input::old('cost_per_unit'),['class'=>'form-control','id'=>'cost_per_unit2','required'=>'required','readonly'=>'readonly']) }}
                 </div>
             </div>
         </div>
@@ -42,7 +42,7 @@
             <div class='form-group'>
                 <div>{{ Form::label('total_amount', 'Total Amount') }}</div>
                 <div>
-                    {{ Form::text('total_amount', Input::old('total_amount'),['class'=>'form-control','id'=>'total_amount2','required'=>'required']) }}
+                    {{ Form::text('total_amount', Input::old('total_amount'),['class'=>'form-control','id'=>'total_amount2','required'=>'required','readonly'=>'readonly']) }}
                 </div>
             </div>
         </div>
