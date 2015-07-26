@@ -762,10 +762,36 @@ class FeesController extends \BaseController {
         return View::Make('fees::billing_summary.applicant.create_details_applicant',compact('billing_head_id','item','waiver','billing_details_data','applicant_name'));
     }
 
+  /*************************JS Search and Total Amount Calculation**************************/
+
+    public function get_cost_by_billing_id()
+    {
+        $bill_id = Input::get('billing_item_id');
+        $cost = BillingSetup::where('billing_item_id', $bill_id)->pluck("cost");
+        /*pluck-tula ana like get*/
+        if($cost){
+            return Response::make($cost);
+        }else{
+            return Response::make(0);
+        }
+    }
+
+    public function get_cost_by_waiver_id()
+    {
+        $bill_id = Input::get('billing_waiver_id');
+
+        $cost = Waiver::where('id', $bill_id)->pluck("amount");
+
+        if($cost){
+            return Response::make($cost);
+        }else{
+            return Response::make(0);
+        }
+    }
+
     public function save_billing_details_applicant()
     {
         $data = Input::all();
-
         $counter = count(Input::get('billing_item_id'));
         for($i = 0; $i < $counter ; $i++){
             $all []= [

@@ -8,41 +8,42 @@
         {{ Form::hidden('billing_applicant_head_id', $billing_head_id, ['class'=>'form-control'])}}
         <div class="col-sm-3">
             <div class="form-group">
-                {{ Form::label('billing_item_id', 'Item') }}
-                {{ Form::select('billing_item_id', $item, Input::old('billing_item_id'), ['class' => 'form-control','id'=>'billing_item_id','required'=>'required']) }}
+                {{ Form::label('billing_item_id', 'Item') }}                
+                {{ Form::select('billing_item_id', $item, Input::old('billing_item_id'), ['class' => 'form-control','id'=>'billing_item_id2','required'=>'required']) }}
             </div>
         </div>
         <div class="col-sm-2">
             <div class="form-group">
                 {{ Form::label('waiver_id', 'Waiver') }}
-                {{ Form::select('waiver_id', $waiver, Input::old('waiver_id'), ['class' => 'form-control','id'=>'waiver_id']) }}
+                {{ Form::select('waiver_id', $waiver, Input::old('waiver_id'), ['class' => 'form-control','id'=>'waiver_id2']) }}
             </div>
         </div>
         <div class="col-sm-2">
             <div class='form-group'>
                 <div>{{ Form::label('waiver_amount', 'Waiver Amount') }}</div>
-                <div>{{ Form::text('waiver_amount', Input::old('waiver_amount'),['class'=>'form-control','id'=>'waiver_amount']) }}
+                <div>{{ Form::text('waiver_amount', Input::old('waiver_amount'),['class'=>'form-control','id'=>'waiver_amount2']) }}
                 </div>
             </div>
         </div>
         <div class="col-sm-2">
             <div class='form-group'>
                 <div>{{ Form::label('cost_per_unit', 'Cost Per Unit') }}</div>
-                <div>{{ Form::text('cost_per_unit', Input::old('cost_per_unit'),['class'=>'form-control','id'=>'cost_per_unit','required'=>'required']) }}
+                <div>{{ Form::text('cost_per_unit', Input::old('cost_per_unit'),['class'=>'form-control','id'=>'cost_per_unit2','required'=>'required']) }}
                 </div>
             </div>
         </div>
         <div class="col-sm-1">
             <div class='form-group'>
                 <div>{{ Form::label('quantity', 'Quentity') }}</div>
-                <div>{{ Form::text('quantity', Input::old('quantity'),['class'=>'form-control','id'=>'quantity','required'=>'required','placeholder'=> '1']) }}
+                <div>{{ Form::text('quantity', Input::old('quantity'),['class'=>'form-control','id'=>'quantity2','required'=>'required']) }}
                 </div>
             </div>
         </div>
         <div class="col-sm-2">
             <div class='form-group'>
                 <div>{{ Form::label('total_amount', 'Total Amount') }}</div>
-                <div>{{ Form::text('total_amount', Input::old('total_amount'),['class'=>'form-control','id'=>'total_amount','required'=>'required']) }}
+                <div>
+                    {{ Form::text('total_amount', Input::old('total_amount'),['class'=>'form-control','id'=>'total_amount2','required'=>'required']) }}
                 </div>
             </div>
         </div>

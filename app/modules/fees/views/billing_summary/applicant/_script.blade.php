@@ -7,20 +7,20 @@
         $("#add_billing_applicant_detail").click(function(event)
         {
             var $billing_head_id = "<?php echo $billing_head_id; ?>";
-            $billing_item_id = $("#billing_item_id").val();
-            var listItemTitle = $(" #billing_item_id option:selected ").text();
-            $waiver_id = $("#waiver_id").val();
+            $billing_item_id = $("#billing_item_id2").val();
+            var listItemTitle = $(" #billing_item_id2 option:selected ").text();
+            $waiver_id = $("#waiver_id2").val();
             if($waiver_id !=="")
             {
-                var waiverTitle = $( " #waiver_id option:selected " ).text();
+                var waiverTitle = $( " #waiver_id2 option:selected " ).text();
             }
             else{
                 var waiverTitle = "";
             }
-            $waiver_amount = $("#waiver_amount").val();
-            $cost_per_unit = $("#cost_per_unit").val();
-            $quantity= $("#quantity").val();
-            $total_amount = $("#total_amount").val();
+            $waiver_amount = $("#waiver_amount2").val();
+            $cost_per_unit = $("#cost_per_unit2").val();
+            $quantity= $("#quantity2").val();
+            $total_amount = $("#total_amount2").val();
 
            /* if($billing_item_id == "" || $cost_per_unit == "" || $total_amount == "") {
                 alert("Please Add Item and try Again!");
@@ -57,6 +57,65 @@
             $("#total_amount").val("");
 
         });
+
+
+    /************************* Calculation starts to make total amount using waiver information *******************************/
+
+
+        $('#billing_item_id2').change(function(){
+            var quan = $('#quantity2').val();
+            var waiver_amount = $('#waiver_amount2').val();
+            $.get("{{ url('fees/get-cost-by-billing-id')}}",
+            { billing_item_id: $(this).val() },
+            function(data) {
+                $('#cost_per_unit2').val(data);
+                calculate_sum_data(data, quan, waiver_amount); 
+            });
+        });
+
+        $('#waiver_id2').change(function(){
+            $.get("{{ url('fees/get-cost-by-waiver-id')}}",
+            { billing_waiver_id: $(this).val() },
+            function(data) {
+               $('#waiver_amount2').val(data);
+               var quan = $('#quantity2').val();
+               var waiver_amount = $('#waiver_amount2').val();
+               var total_am = $('#cost_per_unit2').val();
+
+               calculate_sum_data(total_am, quan, data);
+            });
+        });
+
+        $('#quantity2').on('blur', function(){
+            var quan = $('#quantity2').val();
+            var waiver_amount = $('#waiver_amount2').val();
+            var total_am = $('#cost_per_unit2').val();
+            
+            calculate_sum_data(total_am, quan, waiver_amount);    
+
+        });
+
+        
+        function calculate_sum_data(data, quan, waiver_amount)
+        {
+            var sum_data = 0;                 
+                if(quan > 0 && quan != "")
+                {
+
+                    sum_data = parseFloat((quan * data) - waiver_amount ,10).toFixed(2);
+                }
+                else
+                {
+                   $('#quantity2').val(1);
+                   sum_data = parseFloat(data - waiver_amount ,10).toFixed(2);
+                }
+               $('#total_amount2').val(sum_data);
+        }
+
+    /************************* Calculation ends to make total amount using waiver information *******************************/
+
+
+
     });
 
 

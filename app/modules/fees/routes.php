@@ -184,6 +184,16 @@
          'uses' => 'FeesController@create_billing_details_applicant'
      ]);
 
+     Route::get('get-cost-by-billing-id', [
+         'as' => 'get-cost-by-billing-id',
+         'uses' => 'FeesController@get_cost_by_billing_id'
+     ]);
+
+     Route::get('get-cost-by-waiver-id', [
+         'as' => 'get-cost-by-waiver-id',
+         'uses' => 'FeesController@get_cost_by_waiver_id'
+     ]);
+
      Route::any('billing-details-applicant-save', [
          'as' => 'billing.details.applicant.save',
          'uses' => 'FeesController@save_billing_details_applicant'
