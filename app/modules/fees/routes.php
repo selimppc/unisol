@@ -17,11 +17,50 @@
         return 'Thank you so much!';
     });
 
-     /****==================================================================
-                          User :: Amw
-     ===================================================================****/
+             /****==================================================================
+                                     User :: Amw
+             ===================================================================****/
 
-    /************Billing Setup Start****************/
+     /*============================Billing Item Start=====================================*/
+
+     Route::any('billing/item', [
+         'as' => 'billing.item',
+         'uses' => 'FeesController@index_billing_item'
+     ]);
+     Route::any('item/save',[
+         'as' => 'item.save',
+         'uses'=> 'FeesController@save_item'
+     ]);
+     Route::any('item/edit/{id}',[
+         'as' => 'item.edit',
+         'uses'=> 'FeesController@edit_item'
+     ]);
+     Route::any('billing/item/update/{id}', [
+         'as' => 'billing.item.update',
+         'uses' => 'FeesController@update_billing_item'
+     ]);
+
+     /*============================Billing Schedule Start===================================*/
+
+     Route::any('billing/schedule', [
+         'as' => 'billing.schedule',
+         'uses' => 'FeesController@index_billing_schedule'
+     ]);
+     Route::any('schedule/save',[
+         'as' => 'schedule.save',
+         'uses'=> 'FeesController@save_schedule'
+     ]);
+     Route::any('schedule/edit/{id}',[
+         'as' => 'schedule.edit',
+         'uses'=> 'FeesController@edit_schedule'
+     ]);
+     Route::any('billing/schedule/update/{id}', [
+         'as' => 'billing.schedule.update',
+         'uses' => 'FeesController@update_billing_schedule'
+     ]);
+
+
+     /*============================Billing Setup Start ===================================*/
 
     Route::any('billing/setup', [
          'as' => 'billing.setup',
@@ -31,10 +70,15 @@
          'as' => 'billing.create',
          'uses' => 'FeesController@createBillingSetup'
      ]);
+
+     /****Ajax::For Billing setup and installment setup dependable dropdown***/
+
     Route::any('billing/drop-down-batch',[
      'as' =>'amw.drop-down-batch',
      'uses' => 'FeesController@createAjaxBatchList'
     ]);
+     /************/
+
     Route::any('billing/setup/save', [
         'as' => 'billing.setup.save',
         'uses' => 'FeesController@storeBillingSetup'
@@ -60,11 +104,12 @@
         'uses' => 'FeesController@batchdeleteBillingSetup'
     ]);
 
-     /************Billing History Start****************/
+    /*============================Billing History Start ===================================*/
 
-        /***==============================
-                 Applicant
-           ===============================***/
+     /***==============================
+                Applicant
+     ===============================***/
+
      Route::any('applicant-billing-history', [
          'as' => 'applicant-billing-history',
          'uses' => 'FeesController@index_billing_history'
@@ -88,7 +133,9 @@
          'as' => 'billing.history.student.view',
          'uses' => 'FeesController@view_student_billing_history'
      ]);
-     /**********Installment Setup Start****************/
+
+
+     /*============================Installment Setup Start===================================*/
 
      Route::any('installment/setup', [
          'as' => 'installment.setup',
@@ -107,46 +154,8 @@
          'uses' => 'FeesController@view_installment_setup'
      ]);
 
-     /**********Billing Item Start****************/
 
-     Route::any('billing/item', [
-         'as' => 'billing.item',
-         'uses' => 'FeesController@index_billing_item'
-     ]);
-     Route::any('item/save',[
-         'as' => 'item.save',
-         'uses'=> 'FeesController@save_item'
-     ]);
-     Route::any('item/edit/{id}',[
-         'as' => 'item.edit',
-         'uses'=> 'FeesController@edit_item'
-     ]);
-     Route::any('billing/item/update/{id}', [
-         'as' => 'billing.item.update',
-         'uses' => 'FeesController@update_billing_item'
-     ]);
-
-     /**********Billing Schedule Start****************/
-
-     Route::any('billing/schedule', [
-         'as' => 'billing.schedule',
-         'uses' => 'FeesController@index_billing_schedule'
-     ]);
-     Route::any('schedule/save',[
-         'as' => 'schedule.save',
-         'uses'=> 'FeesController@save_schedule'
-     ]);
-     Route::any('schedule/edit/{id}',[
-         'as' => 'schedule.edit',
-         'uses'=> 'FeesController@edit_schedule'
-     ]);
-     Route::any('billing/schedule/update/{id}', [
-         'as' => 'billing.schedule.update',
-         'uses' => 'FeesController@update_billing_schedule'
-     ]);
-
-
-     /**********Billing Applicant head Start*************/
+    /*===========================Billing Applicant head Start===============================*/
 
      Route::any('billing-applicant-head', [
          'as' => 'billing-applicant-head',
@@ -177,12 +186,15 @@
          'uses' => 'FeesController@update_applicant_head_status'
      ]);
 
-   /*************Billing Applicant Detail*****************/
+
+     /*===========================Billing Applicant Detail===============================*/
 
      Route::any('billing-details-applicant/{id}', [
          'as' => 'billing.details.applicant',
          'uses' => 'FeesController@create_billing_details_applicant'
      ]);
+
+     /****Ajax::For search and calculate total amount for applicant and student***/
 
      Route::get('get-cost-by-billing-id', [
          'as' => 'get-cost-by-billing-id',
@@ -193,6 +205,7 @@
          'as' => 'get-cost-by-waiver-id',
          'uses' => 'FeesController@get_cost_by_waiver_id'
      ]);
+     //**********//
 
      Route::any('billing-details-applicant-save', [
          'as' => 'billing.details.applicant.save',
@@ -203,7 +216,8 @@
          'FeesController@ajax_delete_detail'
      );
 
-     /**********Billing Student Head Start**************/
+
+     /*=============================Billing Student Head Start===============================*/
 
      Route::any('billing-student-head', [
          'as' => 'billing-student-head',
@@ -226,7 +240,8 @@
          'uses' => 'FeesController@update_student_head'
      ]);
 
-     /*************Billing Student Detail*****************/
+
+     /*==============================Billing Student Detail=================================*/
 
      Route::any('billing-details-student/{id}', [
          'as' => 'billing.details.student',
@@ -244,11 +259,12 @@
 
 
 
-     /****==================================================================
-                         User :: Student
-     ===================================================================****/
 
-   /*******************billing setup******************/
+             /****==================================================================
+                                        User :: Student
+             ===================================================================****/
+
+    /*=====================================billing setup======================================*/
 
      Route::any('student/billing/setup', [
          'as' => 'student.billing.setup',
@@ -260,7 +276,7 @@
          'uses' => 'FeesStudentController@save_billing_type'
      ]);
 
-     /********************billing history*********************/
+     /*====================================billing history======================================*/
 
      Route::any('student/billing/history', [
          'as' => 'student.billing.history',

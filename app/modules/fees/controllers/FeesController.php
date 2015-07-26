@@ -14,9 +14,160 @@ class FeesController extends \BaseController {
         return Input::server("REQUEST_METHOD") == "POST";
     }
 
-    /****==================================================================
-                                Billing Setup Start
-    ===================================================================****/
+
+    /****============================================================================================
+                                    Billing Item Start
+    ============================================================================================****/
+
+    public function index_billing_item()
+    {
+        $billing_item = BillingItem::orderBy('id', 'ASC')->paginate(9);
+        return View::Make('fees::billing_item.index',compact('billing_item'));
+    }
+
+    public function save_item()
+    {
+        $data = Input::all();
+        $model = new BillingItem();
+        $model->title = Input::get('title');
+        $flash_msg = $model->title;
+        if($model->validate($data))
+        {
+            DB::beginTransaction();
+            try {
+                if ($model->create($data))
+                    DB::commit();
+                Session::flash('message', "$flash_msg Billing Item Successfully Added");
+            }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', "$flash_msg Billing Item Not Added.Invalid Request!");
+            }
+            return Redirect::back();
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()
+                ->with('errors', 'invalid');
+        }
+    }
+
+    public  function edit_item($id)
+    {
+        $edit_item = BillingItem::find($id);
+        return View::make('fees::billing_item.edit',compact('edit_item'));
+    }
+
+    public function update_billing_item($id)
+    {
+        $data = Input::all();
+        $model = BillingItem::find($id);
+        $model->title = Input::get('title');
+        $flash_msg = $model->title;
+        if($model->validate($data))
+        {
+            DB::beginTransaction();
+            try {
+                $model->update($data);
+                DB::commit();
+                Session::flash('message', "$flash_msg Billing Item Successfully Updated");
+            }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', "$flash_msg Billing Item Not Updated. Invalid Request !");
+            }
+            return Redirect::back();
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()
+                ->with('errors', 'Input Data Not Valid');
+        }
+    }
+
+
+
+
+    /****=======================================================================================
+                                     Billing Schedule Start
+    =======================================================================================****/
+
+    public function index_billing_schedule()
+    {
+        $billing_schedule = BillingSchedule::orderBy('id', 'ASC')->paginate(10);
+        return View::Make('fees::billing_schedule.index',compact('billing_schedule'));
+    }
+
+    public function save_schedule()
+    {
+        $data = Input::all();
+        $model = new BillingSchedule();
+        $model->title = Input::get('title');
+        $flash_msg = $model->title;
+        if($model->validate($data))
+        {
+            DB::beginTransaction();
+            try {
+                if ($model->create($data))
+                    DB::commit();
+                Session::flash('message', "$flash_msg Billing Item Successfully Added");
+            }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', "$flash_msg Billing Item Not Added.Invalid Request!");
+            }
+            return Redirect::back();
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()
+                ->with('errors', 'invalid');
+        }
+    }
+
+    public  function edit_schedule($id)
+    {
+        $edit_schedule = BillingSchedule::find($id);
+        return View::make('fees::billing_schedule.edit',compact('edit_schedule'));
+    }
+
+    public function update_billing_schedule($id)
+    {
+        $data = Input::all();
+        $model = BillingSchedule::find($id);
+        $model->title = Input::get('title');
+        $flash_msg = $model->title;
+        if($model->validate($data))
+        {
+            DB::beginTransaction();
+            try {
+                $model->update($data);
+                DB::commit();
+                Session::flash('message', "$flash_msg Billing Schedule Successfully Updated");
+            }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', "$flash_msg Billing Schedule Not Updated. Invalid Request !");
+            }
+            return Redirect::back();
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()
+                ->with('errors', 'Input Data Not Valid');
+        }
+    }
+
+
+
+
+    /****============================================================================================
+                                  Billing Setup Start
+    ============================================================================================****/
 
     public function indexBillingSetup()
     {
@@ -199,9 +350,11 @@ class FeesController extends \BaseController {
         }
     }
 
-    /****==================================================================
-                            Billing History Start
-    ===================================================================****/
+
+
+    /****==========================================================================================
+                                        Billing History Start
+    =========================================================================================****/
 
 	public function index_billing_history()
 	{
@@ -303,9 +456,11 @@ class FeesController extends \BaseController {
         return View::make('fees::billing_history.view_student',compact('data','relation_data'));
     }
 
-    /****==================================================================
-                        Installment Setup Start
-    ===================================================================****/
+
+
+    /****==========================================================================================
+                                    Installment Setup Start
+    ==========================================================================================****/
 
     public function index_installment_setup()
     {
@@ -465,153 +620,11 @@ class FeesController extends \BaseController {
     }
 
 
-    /****==================================================================
-                            Billing Item Start
-    ===================================================================****/
 
-    public function index_billing_item()
-    {
-        $billing_item = BillingItem::orderBy('id', 'ASC')->paginate(9);
-        return View::Make('fees::billing_item.index',compact('billing_item'));
-    }
 
-    public function save_item()
-    {
-        $data = Input::all();
-        $model = new BillingItem();
-        $model->title = Input::get('title');
-        $flash_msg = $model->title;
-        if($model->validate($data))
-        {
-            DB::beginTransaction();
-            try {
-                if ($model->create($data))
-                    DB::commit();
-                Session::flash('message', "$flash_msg Billing Item Successfully Added");
-            }
-            catch ( Exception $e ){
-                //If there are any exceptions, rollback the transaction
-                DB::rollback();
-                Session::flash('danger', "$flash_msg Billing Item Not Added.Invalid Request!");
-            }
-            return Redirect::back();
-        }else{
-            $errors = $model->errors();
-            Session::flash('errors', $errors);
-            return Redirect::back()
-                ->with('errors', 'invalid');
-        }
-    }
-
-    public  function edit_item($id)
-    {
-        $edit_item = BillingItem::find($id);
-        return View::make('fees::billing_item.edit',compact('edit_item'));
-    }
-
-    public function update_billing_item($id)
-    {
-        $data = Input::all();
-        $model = BillingItem::find($id);
-        $model->title = Input::get('title');
-        $flash_msg = $model->title;
-        if($model->validate($data))
-        {
-            DB::beginTransaction();
-            try {
-                $model->update($data);
-                DB::commit();
-                Session::flash('message', "$flash_msg Billing Item Successfully Updated");
-            }
-            catch ( Exception $e ){
-                //If there are any exceptions, rollback the transaction
-                DB::rollback();
-                Session::flash('danger', "$flash_msg Billing Item Not Updated. Invalid Request !");
-            }
-            return Redirect::back();
-        }else{
-            $errors = $model->errors();
-            Session::flash('errors', $errors);
-            return Redirect::back()
-                ->with('errors', 'Input Data Not Valid');
-        }
-    }
-
-    /****==================================================================
-                            Billing Schedule Start
-    ===================================================================****/
-
-    public function index_billing_schedule()
-    {
-        $billing_schedule = BillingSchedule::orderBy('id', 'ASC')->paginate(10);
-        return View::Make('fees::billing_schedule.index',compact('billing_schedule'));
-    }
-
-    public function save_schedule()
-    {
-        $data = Input::all();
-        $model = new BillingSchedule();
-        $model->title = Input::get('title');
-        $flash_msg = $model->title;
-        if($model->validate($data))
-        {
-            DB::beginTransaction();
-            try {
-                if ($model->create($data))
-                    DB::commit();
-                Session::flash('message', "$flash_msg Billing Item Successfully Added");
-            }
-            catch ( Exception $e ){
-                //If there are any exceptions, rollback the transaction
-                DB::rollback();
-                Session::flash('danger', "$flash_msg Billing Item Not Added.Invalid Request!");
-            }
-            return Redirect::back();
-        }else{
-            $errors = $model->errors();
-            Session::flash('errors', $errors);
-            return Redirect::back()
-                ->with('errors', 'invalid');
-        }
-    }
-
-    public  function edit_schedule($id)
-    {
-        $edit_schedule = BillingSchedule::find($id);
-        return View::make('fees::billing_schedule.edit',compact('edit_schedule'));
-    }
-
-    public function update_billing_schedule($id)
-    {
-        $data = Input::all();
-        $model = BillingSchedule::find($id);
-        $model->title = Input::get('title');
-        $flash_msg = $model->title;
-        if($model->validate($data))
-        {
-            DB::beginTransaction();
-            try {
-                $model->update($data);
-                DB::commit();
-                Session::flash('message', "$flash_msg Billing Schedule Successfully Updated");
-            }
-            catch ( Exception $e ){
-                //If there are any exceptions, rollback the transaction
-                DB::rollback();
-                Session::flash('danger', "$flash_msg Billing Schedule Not Updated. Invalid Request !");
-            }
-            return Redirect::back();
-        }else{
-            $errors = $model->errors();
-            Session::flash('errors', $errors);
-            return Redirect::back()
-                ->with('errors', 'Input Data Not Valid');
-        }
-    }
-
-    /****==================================================================
-                    Billing Applicant Head start
-    ===================================================================****/
+    /****============================================================================================
+                              Billing Applicant Head start
+    ============================================================================================****/
 
     public function index_billing_applicant_head()
     {
@@ -737,9 +750,9 @@ class FeesController extends \BaseController {
 
     }
 
-    /****==================================================================
-                  Billing details applicant start
-     ===================================================================****/
+    /****==========================================================================================
+                             Billing details applicant start
+     =========================================================================================****/
 
 
     public function create_billing_details_applicant($id)
@@ -762,7 +775,7 @@ class FeesController extends \BaseController {
         return View::Make('fees::billing_summary.applicant.create_details_applicant',compact('billing_head_id','item','waiver','billing_details_data','applicant_name'));
     }
 
-  /*************************JS Search and Total Amount Calculation**************************/
+  /*************************Ajax Search and Total Amount Calculation**************************/
 
     public function get_cost_by_billing_id()
     {
@@ -788,6 +801,9 @@ class FeesController extends \BaseController {
             return Response::make(0);
         }
     }
+
+    /********************End search*******/
+
 
     public function save_billing_details_applicant()
     {
@@ -852,9 +868,9 @@ class FeesController extends \BaseController {
     }*/
 
 
-    /****==================================================================
-                        Billing  Student Head start
-    ===================================================================****/
+    /****=======================================================================================
+                              Billing  Student Head start
+    =======================================================================================****/
 
     public function index_billing_student_head()
     {
@@ -919,12 +935,12 @@ class FeesController extends \BaseController {
             try {
                 if ($model->update($data))
                     DB::commit();
-                Session::flash('message', "Billing Student Head Successfully Added");
+                Session::flash('message', "Billing Student Head Successfully Updated");
             }
             catch ( Exception $e ){
                 //If there are any exceptions, rollback the transaction
                 DB::rollback();
-                Session::flash('danger', "Billing Student Head Not Added.Invalid Request!");
+                Session::flash('danger', "Billing Student Head Not Updated.Invalid Request!");
             }
             return Redirect::back();
         }else{
@@ -937,5 +953,29 @@ class FeesController extends \BaseController {
 
 
 
+
+    /****========================================================================================
+                                Billing details Student start
+    =========================================================================================****/
+
+    public function create_billing_details_student($id)
+    {
+        $billing_head_id = BillingStudentHead::with('relUser','relBillingSchedule','relPaymentOption')
+            ->where('id','=',$id)
+            ->first()->id;
+
+        $student_name = BillingStudentHead::with('relUser','relBillingSchedule','relPaymentOption')
+            ->where('id','=',$id)
+            ->first();
+
+        $billing_details_data = BillingStudentDetail::latest('id')->with('relBillingStudentHead','relBillingItem','relWaiver')
+            ->where('billing_student_head_id','=',$id)
+            ->get();
+
+        $item = ['' => 'Select Billing Item'] + BillingItem::lists('title', 'id');
+        $waiver = ['' => 'Select waiver'] + Waiver::lists('title', 'id');
+
+        return View::Make('fees::billing_summary.student.create_details_student',compact('billing_head_id','item','waiver','billing_details_data','student_name'));
+    }
 
 }

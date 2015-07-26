@@ -1,7 +1,6 @@
 <div class="modal-header" xmlns="http://www.w3.org/1999/html">
     <button type="button" class="close" data-dismiss="modal">{{HTML::image('assets/icon/media-close-btn.png')}}</button>
-    <h4 class="text-center text-purple">Create {{isset($applicant_name->relApplicant->first_name) ? $applicant_name->relApplicant->first_name:''}}
-        {{isset($applicant_name->relApplicant->last_name) ? $applicant_name->relApplicant->last_name:''}}'s Billing Details </h4>
+    <h4 class="text-center text-purple">Create {{$applicant_name->relApplicant->first_name.' '.$applicant_name->relApplicant->last_name}}'s Billing Details </h4>
 </div>
 <div class="modal-body">
     <div style="padding: 10px;">

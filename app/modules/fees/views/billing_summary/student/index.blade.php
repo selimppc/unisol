@@ -40,9 +40,9 @@
                                     <tr>
                                         <td class="sl-no-size">{{$sl++}}</td>
 
-                                        <td><a href="#" class=" btn-link text-bold" data-toggle="modal" data-target="#createModal" data-toggle="tooltip" data-placement="bottom" title="Create Billing Details">{{isset($value->relUser->relUserProfile->first_name)?$value->relUser->relUserProfile->first_name:''}} {{isset($value->relUser->relUserProfile->last_name)?$value->relUser->relUserProfile->last_name:''}}</a></td>
+                                     {{--   <td><a href="#" class=" btn-link text-bold" data-toggle="modal" data-target="#createModalStudent" data-toggle="tooltip" data-placement="bottom" title="Create Billing Details">{{isset($value->relUser->relUserProfile->first_name)?$value->relUser->relUserProfile->first_name:''}} {{isset($value->relUser->relUserProfile->last_name)?$value->relUser->relUserProfile->last_name:''}}</a></td>--}}
 
-                                        {{--<td class="b-text">{{ link_to_route($value->status=="open" ? 'billing.details.student' : 'student-head-view',$value->relUser->relUserProfile->first_name.' '.$value->relUser->relUserProfile->last_name,['id'=>$value->id], ['data-toggle'=>"modal",'data-target'=>"#createModal"]) }}</td>--}}
+                                        <td class="b-text">{{ link_to_route($value->status=="open" ? 'billing.details.student' : 'student-head-view',$value->relUser->relUserProfile->first_name.' '.$value->relUser->relUserProfile->last_name,['id'=>$value->id], ['data-toggle'=>"modal",'data-target'=>"#createModalStudent"]) }}</td>
 
 
                                         <td>{{isset($value->relUser->relUserProfile->user_id)?$value->relUser->relUserProfile->user_id:''}}</td>
@@ -106,10 +106,30 @@
     </div>
 
     {{-- Modal for create billing details --}}
-    <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="showingModal">
+    <div class="modal fade" id="createModalStudent" tabindex="-1" role="dialog" aria-labelledby="showingModal">
         <div class="modal-dialog modal_ex_lg">
             <div class="modal-content">
 
+            </div>
+        </div>
+    </div>
+
+    {{-- Modal for cancel --}}
+    <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Confirm Cancel</h4>
+                </div>
+                <div class="modal-body">
+                    <strong>Are you sure to Cancel?</strong>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+                    <a href="#" class="btn btn-danger danger">Cancel</a>
+
+                </div>
             </div>
         </div>
     </div>
