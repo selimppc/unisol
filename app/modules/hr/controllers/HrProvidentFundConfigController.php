@@ -40,7 +40,7 @@ class HrProvidentFundConfigController extends \BaseController {
                         Session::flash('danger', 'Failed !');
                     }
                 }else{
-                    Session::flash('danger', 'Validation Error!! Please FillUp These Fields With Integer Values.');
+                    Session::flash('danger', 'Invalid Request!!');
                 }
             return Redirect::back();
         }
@@ -60,6 +60,4 @@ class HrProvidentFundConfigController extends \BaseController {
             return Response::json("Can not be Deleted !");
         }
     }
-
-
 }

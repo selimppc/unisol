@@ -42,7 +42,7 @@ class HrLeaveTypeController extends \BaseController {
                     Session::flash('danger', 'Failed !');
                 }
             }else{
-                Session::flash('danger', 'Validation Error!! Please FillUp These Fields With Integer Values.');
+                Session::flash('danger', 'Validation Error!!');
             }
             return Redirect::back();
         }
@@ -59,7 +59,7 @@ class HrLeaveTypeController extends \BaseController {
         $model = HrLeaveType::find($id);
         return View::make('hr::hr.leave_type.edit',compact('model'));
     }
-    
+
     public function ajaxDelete()
     {
         $id = Input::get('id');

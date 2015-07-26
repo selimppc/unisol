@@ -11,4 +11,4 @@
 
 </div>
 
-{{ HTML::script('assets/js/custom.js')}}
+{{--{{ HTML::script('assets/js/custom.js')}}--}}
