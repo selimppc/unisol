@@ -12,10 +12,6 @@ class HrSalaryTransactionDetailController extends \BaseController {
         return Input::server("REQUEST_METHOD") == "POST";
     }
 
-   /*
-    * Todo : Over Time ta kivabe Handle korbo bujhtecina
-   */
-
     public function index_hr_salary_transaction_detail($s_t_id)
     {
         $model = HrSalaryTransactionDetail::with('relHrOverTime','relHrBonus','relHrSalaryAllowance','relHrSalaryDeduction')
@@ -30,8 +26,6 @@ class HrSalaryTransactionDetailController extends \BaseController {
         $bonus_list = array(''=>'Select any one') + HrBonus::lists('title','id');
 
         $salary = round(HrSalaryTransactionDetail::where('salary_trn_hd_id', $s_t_id)->sum('amount'),2);
-//        print_r($salary);exit;
-
         return View::make('hr::hr.salary_transaction_detail.index', compact('model','salary_allowance_list',
             'salary_deduction_list','over_time_list','bonus_list','s_t_id','sal_allwnce_amount',
             'sal_decution_amount','sal_bonus_amount','sal_over_time_amount','salary'));
@@ -98,6 +92,7 @@ class HrSalaryTransactionDetailController extends \BaseController {
                 'amount'=> Input::get('amount')[$i],
                 'percentage'=> Input::get('percentage')[$i],
             ];
+//            print_r($dt);exit;
         }
 
         DB::beginTransaction();
@@ -158,9 +153,7 @@ class HrSalaryTransactionDetailController extends \BaseController {
             return Redirect::back();
         }else{
             $model = HrSalaryTransactionDetail::findOrFail($s_t_d_id);
-
             $s_t_id = HrSalaryTransactionDetail::where('id',$s_t_d_id)->first()->salary_trn_hd_id;
-
             $salary_allowance_list = array(''=>'Select any one') + HrSalaryAllowance::lists('title','id');
             $salary_deduction_list = array(''=>'Select any one') + HrSalaryDeduction::lists('title','id');
             $over_time_list = array(''=>'Select any one') + HrOverTime::lists('sign_in','id');
