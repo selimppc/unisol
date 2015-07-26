@@ -15,14 +15,24 @@
 <div class="row">
 
     <div class="box box-solid ">
-
-        <div class="col-sm-12">
-           <div class="pull-left col-sm-4"></div>
-           <div class="pull-right col-sm-4" style="padding-top: 1%;">
-           </div>
-        </div>
-        <a href="{{Route('provident-fund-config')}}" class="pull-right" style="margin-right: 20px" data-toggle="modal" data-target="#pvd-config"><ins><b>HR Provident Fund Config</b> </ins></a>
-
+       <ul class="nav nav-tabs">
+           <li class="active"><a href="#tab_1" data-toggle="tab">HR Provident Fund</a></li>
+           <li class="dropdown">
+               <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                   Settings  <span class="caret"></span>
+               </a>
+               <ul class="dropdown-menu">
+                   <li role="presentation" data-toggle="modal" data-target="#addCategory"><a role="menuitem" tabindex="-1" href="{{Route('provident-fund-config')}}" data-toggle="modal" data-target="#pvd-config">HR Provident Fund Config</a></li>
+               </ul>
+           </li>
+           <li class="pull-right" class="dropdown">
+               <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-gear"></i>&nbsp;</a>
+               <ul class="dropdown-menu">
+                   <li role="presentation" ><a role="menuitem" tabindex="-1" href="{{Route('provident-fund-config')}}" data-toggle="modal" data-target="#pvd-config">HR Provident Fund Config</a></li>
+               </ul>
+           </li>
+       </ul>
+        {{--<a href="{{Route('provident-fund-config')}}" class="pull-right" style="margin-right: 20px" data-toggle="modal" data-target="#pvd-config"><ins><b>HR Provident Fund Config</b></ins></a>--}}
         {{Form::open([ 'route'=>'provident-fund.batch-delete' ])}}
         <br><br>
        <div class="box-body">
@@ -52,7 +62,7 @@
                          <b>{{isset($values->hr_employee_id)?$values->relHrEmployee->relUser->relUserProfile->first_name.' '.$values->relHrEmployee->relUser->relUserProfile->middle_name.' '.$values->relHrEmployee->relUser->relUserProfile->last_name:''}}</b>
                          </a>
                     </td>
-                    <td>{{$values->date}}</td>
+                    <td>{{date("Y-m-d", strtotime($values->date))}}</td>
                     <td>{{ucfirst($values->month)}}</td>
                     <td>{{$values->employee_contribution_amount}}</td>
                     <td>{{$values->company_contribution_amount}}</td>
@@ -61,7 +71,6 @@
                         <a href="{{ URL::route('provident-fund.show',['id'=>$values->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#pvd" style="font-size: 12px;color: darkmagenta" title="SHOW"><span class="fa fa-eye"></span></a>
                         <a class="btn btn-xs btn-default" href="{{ URL::route('provident-fund.edit',['id'=>$values->id]) }}" data-toggle="modal" data-target="#pvd" style="font-size: 12px;color: lightseagreen" title="EDIT"><i class="fa fa-edit"></i></a>
                         <a data-href="{{ URL::route('provident-fund.delete',$values->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" style="font-size: 12px;color: lightcoral" title="DELETE"><span class="fa  fa-trash-o"></span></a>
-                        <a href="{{Route('provident-fund-config')}}" class="btn btn-xs btn-default" style="font-size: 12px;color:green" data-toggle="modal" data-target="#pvd-config"><i class="fa fa-money" title="HR Provident Fund Config"></i></a>
                     </td>
                  </tr>
                 @endforeach

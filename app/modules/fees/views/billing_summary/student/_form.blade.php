@@ -15,10 +15,10 @@
     </div>
 </div>
 
-<div class='form-group'>
+{{--<div class='form-group'>
     {{ Form::label('total_cost', 'Total Cost') }}
     {{ Form::text('total_cost', Input::old('total_cost'), ['class' => 'form-control','placeholder'=>'0.00']) }}
-</div>
+</div>--}}
 
 <div class="modal-footer">
     {{ Form::submit('Submit', array('class'=>' btn btn-success')) }}

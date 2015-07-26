@@ -34,14 +34,14 @@ class HrLeaveController extends \BaseController {
         }
         $leave_type_id = HrLeaveType::lists('title','id');
         $employee_list = User::EmployeeList();
-        $hr_employee = User::HrList();
+        $hr_list = User::HrList();
         $date1 = HrLeave::lists('from_date','from_date');
         $date2 = HrLeave::lists('to_date','to_date');
         $leave_type = HrLeaveType::lists('title','id');
         $status = HrLeave::lists('status','status');
 
         Input::flash();
-        return View::make('hr::hr.leave.index',compact('data','employee_list','leave_type_id','hr_employee','date1','date2','leave_type','status'));
+        return View::make('hr::hr.leave.index',compact('data','employee_list','leave_type_id','hr_list','date1','date2','leave_type','status'));
     }
 
     public function storeLeave()
@@ -85,6 +85,7 @@ class HrLeaveController extends \BaseController {
     public function showLeave($id)
     {
         $model = HrLeave::with('relHrLeaveType','relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')->find($id);
+//        print_r($model);exit;
         return View::make('hr::hr.leave.show',compact('model'));
     }
 
@@ -92,9 +93,10 @@ class HrLeaveController extends \BaseController {
 
         $model = HrLeave::find($id);
         $employee_list = User::EmployeeList();
+        $hr_list = User::HrList();
         $leave_type_id = HrLeaveType::lists('title','id');
         $comments = HrLeaveComments::with('relHrLeave')->where('hr_leave_id','=',$id)->get();
-        return View::make('hr::hr.leave.edit',compact('model','employee_list','leave_type_id','comments'));
+        return View::make('hr::hr.leave.edit',compact('model','employee_list','leave_type_id','comments','hr_list'));
     }
 
     public function updateLeave($id){

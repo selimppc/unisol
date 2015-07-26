@@ -7,7 +7,7 @@
     <div class="form-group">
         <div class="col-lg-6" style="padding-left: 0;">
            {{ Form::label('date', 'Date') }}
-           {{ Form::text('date',  Input::old('date'),['class'=>'form-control date_picker']) }}
+           {{ Form::text('date',  Input::old('date'),['class'=>'form-control date_picker', 'required']) }}
         </div>
 
         <div class="col-lg-6" style="padding-right: 0;">

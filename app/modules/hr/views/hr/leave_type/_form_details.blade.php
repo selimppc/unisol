@@ -4,7 +4,7 @@
 </style>
 
 <div class="row">
-    <div class="ok-123" id="show_data">
+    <div class="text-field" id="show_data">
         <div class="col-sm-2" style="width:37%">
             <div class='form-group'>
                 {{ Form::label('title', 'Title') }}
@@ -40,7 +40,7 @@
 
 {{ Form::open(['route'=>'leave-type.store']) }}
     {{---------------Update---------------------------------------------------------------------------------------------------}}
-    <div style="display: none;" class="ok-456">
+    <div style="display: none;" class="table-data">
         <table>
             <thead>
             <th class="col-sm-2">Title</th>
@@ -89,7 +89,7 @@
                 <td class="code">{{$values->code}}</td>
                 <td class="employee_type">{{Str::title($values->employee_type)}}</td>
                 <td>
-                    <a class="btn btn-xs btn-default lt-edit type" href="{{$values->id}}" style="font-size: 12px;color: lightseagreen"><i class="fa fa-edit"></i></a>
+                    <a class="btn btn-xs btn-default lt-edit type-of-emp selected-emp" href="{{$values->id}}" style="font-size: 12px;color: lightseagreen"><i class="fa fa-edit"></i></a>
                     <a data-href="{{ $values->id }}" class="btn btn-default btn-xs delete-dt-2" id="delete-dt-2{{ $values->id }}" ><i class="fa fa-trash-o" style="font-size: 12px;color: lightcoral"></i></a>
                 </td>
             </tr>
