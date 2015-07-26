@@ -13,9 +13,9 @@
 
         <div class="col-sm-12">
            <div class="pull-left col-sm-4"> <h3> All Salary Transaction Head List</h3>  </div>
-           <div class="pull-right col-sm-4" style="padding-top: 1%;">
+           <div class="pull-right col-sm-4" style="padding-top: 1%;margin-right: 100px">
                 <button type="button" class="pull-right btn btn-sm btn-info" data-toggle="modal" data-target="#modal">
-                  Add HR Salary Transaction Head
+                  +Add
                 </button>
            </div>
         </div>
