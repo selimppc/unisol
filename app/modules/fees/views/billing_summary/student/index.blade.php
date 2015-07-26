@@ -11,12 +11,12 @@
         <div class="col-md-12">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#tab_1" data-toggle="tab">Billing Student Head</a></li>
+                    <li class="active"><a href="#tab_1" data-toggle="tab">Billing Student </a></li>
                     <button type="button" class=" btn btn-success fa fa-plus btn_margin" data-toggle="modal" data-target="#myModal" data-toggle="tooltip" data-placement="bottom" title="Add New" >
                         Add New
                     </button>
 
-                    <a href="{{URL::route('student-billing-history')}}" class="btn btn-xs btn-default" href=""><i class="fa fa-arrow-right text-light-blue"></i> View Fees Details</a>
+                    <a href="{{URL::route('student-billing-history')}}" class="btn btn-default" ><i class="fa fa-arrow-right text-light-blue"></i> View Fees Details</a>
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab_1">
@@ -39,11 +39,7 @@
                                 @foreach ($summary_student as $value)
                                     <tr>
                                         <td class="sl-no-size">{{$sl++}}</td>
-
-                                        <td><a href="#" class=" btn-link text-bold" data-toggle="modal" data-target="#createModal" data-toggle="tooltip" data-placement="bottom" title="Create Billing Details">{{isset($value->relUser->relUserProfile->first_name)?$value->relUser->relUserProfile->first_name:''}} {{isset($value->relUser->relUserProfile->last_name)?$value->relUser->relUserProfile->last_name:''}}</a></td>
-
-                                        {{--<td class="b-text">{{ link_to_route($value->status=="open" ? 'billing.details.student' : 'student-head-view',$value->relUser->relUserProfile->first_name.' '.$value->relUser->relUserProfile->last_name,['id'=>$value->id], ['data-toggle'=>"modal",'data-target'=>"#createModal"]) }}</td>--}}
-
+                                        <td class="b-text">{{ link_to_route($value->status=="open" ? 'billing.details.student' : 'student-head-view',$value->relUser->relUserProfile->first_name.' '.$value->relUser->relUserProfile->last_name,['id'=>$value->id], ['data-toggle'=>"modal",'data-target'=>"#createDetails"]) }}</td>
 
                                         <td>{{isset($value->relUser->relUserProfile->user_id)?$value->relUser->relUserProfile->user_id:''}}</td>
 
@@ -53,11 +49,29 @@
 
                                         <td>{{ucfirst($value->status)}}</td>
                                         <td>
+                                            @if($value->status=='open')
                                             <a href="{{ URL::route('student-head-view',['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" data-toggle="tooltip" data-placement="bottom" title="View"><i class="fa fa-eye text-green"></i></a>
 
                                             <a href="{{ URL::route('student-head-edit',['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#editHeadModal" data-toggle="tooltip" data-placement="bottom" title="Edit"><i class="fa fa-pencil-square-o text-blue"></i></a>
+
+                                            <a data-href="{{ URL::route('student-head-destroy', ['req_id'=>$value->id ]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa fa-power-off text-red" data-toggle="tooltip" data-placement="bottom" title="Cancel"></i></a>
+
+                                            @elseif($value->status=='confirmed')
+
+                                                <a href="{{ URL::route('student-head-view',['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" data-toggle="tooltip" data-placement="bottom" title="View"><i class="fa fa-eye text-green"></i></a>
+
+                                            @endif
                                         </td>
-                                        <td></td>
+                                        <td>
+                                            @if($value->status != 'confirmed')
+                                                {{Form::open(array('route'=> ['billing-student-head-status']))}}
+                                                {{ Form::hidden('id',$value->id) }}
+                                                {{ Form::hidden('status','confirmed') }}
+                                                {{ Form::submit('Confirm', array('class'=>'btn btn-xs btn-warning'))}}
+                                                {{Form::close()}}
+
+                                            @endif
+                                        </td>
                                     </tr>
                                 @endforeach
                                 </tbody>
@@ -80,7 +94,7 @@
                 </div>
                 <div class="modal-body">
                     {{Form::open(array('route' => array('student-head-save')))}}
-                    @include('fees::billing_summary.student._form')
+                     @include('fees::billing_summary.student._form')
                     {{ Form::close() }}
                 </div>
             </div>
@@ -106,10 +120,30 @@
     </div>
 
     {{-- Modal for create billing details --}}
-    <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="showingModal">
+    <div class="modal fade" id="createDetails" tabindex="-1" role="dialog" aria-labelledby="showingModal">
         <div class="modal-dialog modal_ex_lg">
             <div class="modal-content">
 
+            </div>
+        </div>
+    </div>
+
+    {{-- Modal for cancel --}}
+    <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Confirm Cancel</h4>
+                </div>
+                <div class="modal-body">
+                    <strong>Are you sure to Cancel?</strong>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+                    <a href="#" class="btn btn-danger danger">Cancel</a>
+
+                </div>
             </div>
         </div>
     </div>

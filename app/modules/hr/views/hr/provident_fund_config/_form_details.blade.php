@@ -54,13 +54,15 @@
                {{ Form::text('company_contribution_100', Input::old('company_contribution_100'),['id'=>'company_contribution_100','class'=>'form-control']) }}
             </div>
         </div>
+
         <span class="pull-left" id="something-added" style="color:lightcoral; font-weight: bold"></span>
         <p>&nbsp;</p>
-        <p>&nbsp;</p>
+        <br>
+        {{--<p>&nbsp;</p>--}}
 
         <div class="pull-right">
              <div class='form-group' style="margin-right: 4px">
-                <input type="button" class="btn-xs btn-linkedin" id="add-pvd-config" value="+Add">
+                <input type="button" class="btn-sm btn-linkedin" id="add-pvd-config" value="+Add">
              </div>
         </div>
    </div>

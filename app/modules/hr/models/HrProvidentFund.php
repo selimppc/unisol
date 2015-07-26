@@ -16,7 +16,8 @@ class HrProvidentFund extends Eloquent{
 
     private $errors;
     private $rules = [
-        //'hr_employee_id' => 'required',
+        'employee_contribution_amount' => 'required|max:6',
+        'company_contribution_amount' => 'required|max:6',
     ];
 
     public function validate($data)
@@ -34,9 +35,9 @@ class HrProvidentFund extends Eloquent{
         return $this->errors;
     }
 
-    public function getDateAttribute($date) {
+   /* public function getDateAttribute($date) {
         return Carbon::parse($date)->format('d-M-Y'); //Change the format to whichever you desire
-    }
+    }*/
 
     //TODO : Model Relationship
 

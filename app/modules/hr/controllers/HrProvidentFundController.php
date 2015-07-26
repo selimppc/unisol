@@ -76,11 +76,9 @@ class HrProvidentFundController extends \BaseController {
             }
             return Redirect::back();
         }else{
-            $errors = $model->errors();
-            Session::flash('errors', $errors);
-            return Redirect::back()
-                ->with('errors', 'Input Data Not Valid');
+            Session::flash('danger', 'Input Data Not Valid!!');
         }
+        return Redirect::back();
     }
 
     public function deletePvdFund($id)
