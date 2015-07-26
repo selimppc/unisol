@@ -10,25 +10,9 @@
          </div>
 
          <div class='form-group col-sm-2'>
-                S:{{ Form::text('someInfo' ,null,['id'=>'selim_data']) }}
+                Amount:{{ Form::text('someInfo' ,null,['id'=>'salary-data']) }}
          </div>
 
-
-         {{--<div class='form-group col-sm-2'>--}}
-               {{--S.Allowance Amount :{{ Form::text('some_allowance' ,null,['id'=>'sal-allowance']) }}--}}
-         {{--</div>--}}
-
-         {{--<div class='form-group col-sm-2'>--}}
-               {{--S.Deduction Amount :{{ Form::text('some_deduction', null,['id'=>'sal-deduction']) }}--}}
-         {{--</div>--}}
-
-         {{--<div class='form-group col-sm-2'>--}}
-                {{--S.Bonus Amount:{{ Form::text('some_bonus', null ,['id'=>'sal-bonus']) }}--}}
-          {{--</div>--}}
-
-          {{--<div class='form-group col-sm-2'>--}}
-              {{--S.Over Time Amount :{{ Form::text('some_overtime',null ,['id'=>'sal-overtime']) }}--}}
-          {{--</div>--}}
           </br>
       </div>
 
@@ -119,7 +103,7 @@
                <td>{{ isset($values->relHrSalaryDeduction->title) ? (ucfirst($values->relHrSalaryDeduction->title)) : "" }}</td>
                <td>{{ isset($values->relHrOverTime->amount) ? $values->relHrOverTime->amount : "" }}</td>
                <td>{{ isset($values->relHrBonus->title) ? (ucfirst($values->relHrBonus->title)) : "" }}</td>
-               <td>{{ isset($values->percentage) ? round($values->percentage) : ""}}</td>
+               <td>{{ isset($values->percentage) ? round($values->percentage,2) : ""}}</td>
                <td>{{ isset($values->amount) ? round($values->amount,2) : ""}}</td>
                <td>
                    <a data-href="{{ $values->id }}" class="btn btn-default btn-sm delete-dt-2" ><i class="fa fa-trash-o" style="font-size: 15px;color: red"></i></a>
@@ -269,10 +253,7 @@ $(function(){
      $('.std_percentage').change(function(){
            var a = $('.std_percentage').val();
 
-           var b = document.getElementById("selim_data").value;
-//           var b = -(document.getElementById("sal-deduction").value);
-//           var b = document.getElementById("sal-bonus").value;
-//           var b = document.getElementById("sal-overtime").value;
+           var b = document.getElementById("salary-data").value;
            var amount = document.getElementById('salary_transaction_detail_amount');;
            var myResult = (a*b)/100;
            amount.value = myResult;
@@ -284,10 +265,7 @@ $(function(){
      $('.std_amount').change(function(){
 
            var a = $('.std_amount').val();
-           var b = document.getElementById("selim_data").value;
-//           var b = -(document.getElementById("sal-deduction").value);
-//           var b = document.getElementById("sal-bonus").value;
-//           var b = document.getElementById("sal-overtime").value;
+           var b = document.getElementById("salary-data").value;
            var percentage = document.getElementById('salary_transaction_detail_percentage');;
            var myResult = (a*100)/b;
            percentage.value = myResult;
@@ -295,18 +273,45 @@ $(function(){
            $('.std_percentage').prop('disabled', true);
      });
 
-//     //  dynamic dynamic
+//  dynamic dynamic
 
      $('.shafi').change(function(){
-         type = $(".shafi_type").val();
-         alert(type);
-         $.get(type == "allowance" ? url('hr/sal-allowance/amount') : url('hr/sal-allowance/amount') ,
+              type = $(".shafi_type").val();
+             switch(type)
+             {
+                 case 'allowance':
+                     $.get(type == "allowance" ? "{{ url('hr/sal-allowance/amount') }}" : null ,
+                     { id: $(this).val() },
+                     function(data) {
+                          $('#salary-data').val(data);
+                     });
+                     break;
 
-         { id: $(this).val() },
-         function(data) {
-             $('#selim_data').val(data);
-         });
-     });
+                 case 'deduction':
+                     $.get(type == "deduction" ? "{{ url('hr/sal-deduction/amount') }}" : null ,
+                     { id: $(this).val() },
+                     function(data) {
+                           $('#salary-data').val(data);
+                     });
+                     break;
+
+                 case 'over-time':
+                     $.get(type == "over-time" ? "{{ url('hr/sal-overtime/amount') }}" : null ,
+                     { id: $(this).val() },
+                     function(data) {
+                           $('#salary-data').val(data);
+                     });
+                     break;
+
+                 case 'bonus':
+                     $.get(type == "bonus" ? "{{ url('hr/sal-bonus/amount') }}" : null ,
+                     { id: $(this).val() },
+                     function(data) {
+                           $('#salary-data').val(data);
+                     });
+                     break;
+             }
+          });
 
 });
 </script>
