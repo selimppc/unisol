@@ -3,63 +3,55 @@
     #test input { border: none; width: 100%; }
 </style>
 
+<div class='form-group'>
+    Your Salary is : {{ Form::text('salary', $salary, Input::old('salary')) }} [ Salary = allowance - deduction + over-time + bonus ]
+</div>
+
 <div class="row">
     <div class="row" style="padding-bottom: 10px ">
-         <div class='form-group '>
-             {{ Form::hidden('hr_salary_transaction_head_id', $s_t_id ,Input::old('hr_salary_transaction_head_id')) }}
+         <div class='form-group'>
+             {{ Form::hidden('salary_trn_hd_id', $s_t_id ,Input::old('salary_trn_hd_id')) }}
          </div>
 
          <div class='form-group col-sm-2'>
-               S.Allowance Amount :{{ Form::text('some_allowance' ,null,['id'=>'sal-allowance']) }}
+                Amount:{{ Form::text('someInfo' ,null,['id'=>'salary-data']) }}
          </div>
-
-         <div class='form-group col-sm-2'>
-               S.Deduction Amount :{{ Form::text('some_deduction', null,['id'=>'sal-deduction']) }}
-         </div>
-
-         <div class='form-group col-sm-2'>
-                S.Bonus Amount:{{ Form::text('some_bonus', null ,['id'=>'sal-bonus']) }}
-          </div>
-
-          <div class='form-group col-sm-2'>
-              S.Over Time Amount :{{ Form::text('some_overtime',null ,['id'=>'sal-overtime']) }}
-          </div>
           </br>
-      </div>
+    </div>
 
     <div class="col-sm-2" style="width:13%">
         <div class='form-group'>
            {{ Form::label('type', 'Type') }}
            {{ Form::select('type', array(''=>'Select Type','allowance'=>'Allowance','deduction'=>'Deduction','over-time'=>'Over-Time','bonus'=>'Bonus'),
-                Input::old('type'),['id'=>'salary_transaction_detail_type','class'=>'form-control']) }}
+                Input::old('type'),['id'=>'salary_transaction_detail_type','class'=>'shafi_type form-control']) }}
         </div>
     </div>
 
     <div id="allowanceType" class="col-sm-2" style="display:none;width:13%">
         <div class='form-group'>
            {{ Form::label('hr_salary_allowance_id', 'S.Allowance') }}
-           {{ Form::select('hr_salary_allowance_id',$salary_allowance_list ,Input::old('hr_salary_allowance_id'),['id'=>'salary_transaction_detail_allowance','class'=>'sal_allowance form-control']) }}
+           {{ Form::select('hr_salary_allowance_id',$salary_allowance_list ,Input::old('hr_salary_allowance_id'),['id'=>'salary_transaction_detail_allowance','class'=>'shafi form-control']) }}
         </div>
     </div>
 
     <div id="deductionType" class="col-sm-2" style="display:none;width:13%">
         <div class='form-group'>
            {{ Form::label('hr_salary_deduction_id', 'S.Deduction') }}
-           {{ Form::select('hr_salary_deduction_id',$salary_deduction_list ,Input::old('hr_salary_deduction_id'),['id'=>'salary_transaction_detail_deduction','class'=>'sal_deduction form-control']) }}
+           {{ Form::select('hr_salary_deduction_id',$salary_deduction_list ,Input::old('hr_salary_deduction_id'),['id'=>'salary_transaction_detail_deduction','class'=>'shafi form-control']) }}
         </div>
     </div>
 
     <div id="overTimeType" class="col-sm-2" style="display:none;width:13%">
         <div class='form-group'>
            {{ Form::label('hr_over_time_id', 'Over-Time') }}
-           {{ Form::select('hr_over_time_id',$over_time_list ,Input::old('hr_over_time_id'),['id'=>'salary_transaction_detail_over_time','class'=>'sal_overtime form-control']) }}
+           {{ Form::select('hr_over_time_id',$over_time_list ,Input::old('hr_over_time_id'),['id'=>'salary_transaction_detail_over_time','class'=>'shafi form-control']) }}
         </div>
     </div>
 
     <div id="bonusType" class="col-sm-2" style="display:none;width:13%">
         <div class='form-group'>
            {{ Form::label('hr_bonus_id', 'Bonus') }}
-           {{ Form::select('hr_bonus_id',$bonus_list ,Input::old('hr_bonus_id'),['id'=>'salary_transaction_detail_bonus','class'=>'sal_bonus form-control']) }}
+           {{ Form::select('hr_bonus_id',$bonus_list ,Input::old('hr_bonus_id'),['id'=>'salary_transaction_detail_bonus','class'=>'shafi form-control']) }}
         </div>
     </div>
 
@@ -85,50 +77,50 @@
 </div>
 
 <div class="table-hide">
-<p>
-    <b> Salary Transaction Detail</b>
-    <span class="pull-right" id="something-delete" style="color: orangered; font-weight: bold"></span>
-</p>
+    <p>
+       <b> Salary Transaction Detail</b>
+       <span class="pull-right" id="something-delete" style="color: orangered; font-weight: bold"></span>
+    </p>
 
-<table class="table table-bordered small-header-table" id="amwCourseConfig">
-    <thead>
-        <th>Type</th>
-        <th>Salary Allowance</th>
-        <th>Salary Deduction</th>
-        <th>Over Time</th>
-        <th>Bonus</th>
-        <th>Percentage(%)</th>
-        <th>Amount</th>
-        <th>Action</th>
-    </thead>
+    <table class="table table-bordered small-header-table" id="amwCourseConfig">
+        <thead>
+            <th>Type</th>
+            <th>Salary Allowance</th>
+            <th>Salary Deduction</th>
+            <th>Over Time</th>
+            <th>Bonus</th>
+            <th>Percentage(%)</th>
+            <th>Amount</th>
+            <th>Action</th>
+        </thead>
 
-    <tbody id="test">
-    </tbody>
+        <tbody id="test">
+        </tbody>
 
-    <tbody>
-      <?php $counter = 0;?>
-       @foreach($model as $values)
-            <tr>
-               <td>{{ ucfirst($values->type) }}</td>
-               <td>{{ isset($values->relHrSalaryAllowance->title) ? (ucfirst($values->relHrSalaryAllowance->title)) : "" }}</td>
-               <td>{{ isset($values->relHrSalaryDeduction->title) ? (ucfirst($values->relHrSalaryDeduction->title)) : "" }}</td>
-               <td>{{ isset($values->relHrOverTime->amount) ? $values->relHrOverTime->amount : "" }}</td>
-               <td>{{ isset($values->relHrBonus->title) ? (ucfirst($values->relHrBonus->title)) : "" }}</td>
-               <td>{{ isset($values->percentage) ? round($values->percentage) : ""}}</td>
-               <td>{{ isset($values->amount) ? round($values->amount,2) : ""}}</td>
-               <td>
-                   <a data-href="{{ $values->id }}" class="btn btn-default btn-sm delete-dt-2" ><i class="fa fa-trash-o" style="font-size: 15px;color: red"></i></a>
-               </td>
-            </tr>
-            <?php $counter++;?>
-       @endforeach
-    </tbody>
-</table>
+        <tbody>
+          <?php $counter = 0;?>
+           @foreach($model as $values)
+                <tr>
+                   <td>{{ ucfirst($values->type) }}</td>
+                   <td>{{ isset($values->relHrSalaryAllowance->title) ? (ucfirst($values->relHrSalaryAllowance->title)) : "" }}</td>
+                   <td>{{ isset($values->relHrSalaryDeduction->title) ? (ucfirst($values->relHrSalaryDeduction->title)) : "" }}</td>
+                   <td>{{ isset($values->relHrOverTime->amount) ? $values->relHrOverTime->amount : "" }}</td>
+                   <td>{{ isset($values->relHrBonus->title) ? (ucfirst($values->relHrBonus->title)) : "" }}</td>
+                   <td>{{ isset($values->percentage) ? round($values->percentage,2) : ""}}</td>
+                   <td>{{ isset($values->amount) ? round($values->amount,2) : ""}}</td>
+                   <td>
+                       <a data-href="{{ $values->id }}" class="btn btn-default btn-sm delete-dt-2" ><i class="fa fa-trash-o" style="font-size: 15px;color: red"></i></a>
+                   </td>
+                </tr>
+                <?php $counter++;?>
+           @endforeach
+        </tbody>
+    </table>
 
-<div class="modal-footer">
-        {{ Form::submit('Submit', ['class'=>'btn btn-large btn-success'] ) }}
-        <button class="btn btn-default btn-large" data-dismiss="modal" type="button">Close</button>
-</div>
+    <div class="modal-footer">
+            {{ Form::submit('Submit', ['class'=>'btn btn-large btn-success'] ) }}
+            <button class="btn btn-default btn-large" data-dismiss="modal" type="button">Close</button>
+    </div>
 </div>
 <p>&nbsp;</p>
 
@@ -137,7 +129,7 @@
 
 <script type="text/javascript">
 $(function(){
-    //Beneficial Add(s) : ok
+//Beneficial Add(s) : ok
      $tableItemCounter = 0; //To stop additem if exist
      var $arrayRnc = []; //To stop additem if exist
 
@@ -177,7 +169,7 @@ $(function(){
                  return false;
              } else {
                 $('#test').append("<tr> " +
-                      "<td><input type='hidden' name='hr_salary_transaction_head_id[]' value='" + $sal_trans_id + "' readonly><input name='type[]' value='"+ $sal_trns_dtl_type +"' readonly></td>" +
+                      "<td><input type='hidden' name='salary_trn_hd_id[]' value='" + $sal_trans_id + "' readonly><input name='type[]' value='"+ $sal_trns_dtl_type +"' readonly></td>" +
                       "<td><input name='hr_salary_allowance_id[]' value='"+ $sal_trns_dtl_allowance +"' readonly> </td>" +
                       "<td><input name='hr_salary_deduction_id[]' value='"+ $sal_trns_dtl_deduction +"' readonly> </td>" +
                       "<td><input name='hr_over_time_id[]' value='"+ $sal_trns_dtl_ovrtm +"' readonly> </td>" +
@@ -185,7 +177,7 @@ $(function(){
                       "<td><input name='percentage[]' value='"+ $sal_trns_dtl_percentage +"' readonly></td>" +
                       "<td><input name='amount[]' value='"+ $sal_trns_dtl_amount +"' readonly></td>" +
 
-                  " </tr>");
+                " </tr>");
 
                  $arrayRnc.push($salary_transctn_id);
 
@@ -201,7 +193,7 @@ $(function(){
          }
  	 });
 
-    // Delete : ok
+// Delete : ok
      $('.delete-dt-2').click(function(e) {
         e.preventDefault();
         var $btn = $(this);
@@ -218,7 +210,7 @@ $(function(){
         });
      });
 
-     // Drop down change with input form and div
+// Drop down change with input form and div : ok
      $('#salary_transaction_detail_type').change(function(){
         selection = $(this).val();
         switch(selection)
@@ -260,14 +252,11 @@ $(function(){
         }
      });
 
-     // Selection change with form
+// Selection change with form : ok
      $('.std_percentage').change(function(){
            var a = $('.std_percentage').val();
 
-           var b = document.getElementById("sal-allowance").value;
-//           var b = -(document.getElementById("sal-deduction").value);
-//           var b = document.getElementById("sal-bonus").value;
-//           var b = document.getElementById("sal-overtime").value;
+           var b = document.getElementById("salary-data").value;
            var amount = document.getElementById('salary_transaction_detail_amount');;
            var myResult = (a*b)/100;
            amount.value = myResult;
@@ -279,10 +268,7 @@ $(function(){
      $('.std_amount').change(function(){
 
            var a = $('.std_amount').val();
-           var b = document.getElementById("sal-allowance").value;
-//           var b = -(document.getElementById("sal-deduction").value);
-//           var b = document.getElementById("sal-bonus").value;
-//           var b = document.getElementById("sal-overtime").value;
+           var b = document.getElementById("salary-data").value;
            var percentage = document.getElementById('salary_transaction_detail_percentage');;
            var myResult = (a*100)/b;
            percentage.value = myResult;
@@ -290,40 +276,44 @@ $(function(){
            $('.std_percentage').prop('disabled', true);
      });
 
-     // Sal Allowance dependable drop down to text show
-     $('.sal_allowance').change(function(){
-         $.get("{{ url('hr/sal-allowance/amount')}}",
-         { id: $(this).val() },
-         function(data) {
-              $('#sal-allowance').val(data);
-         });
+// dynamic dynamic : ok
+
+     $('.shafi').change(function(){
+         type = $(".shafi_type").val();
+         switch(type)
+         {
+             case 'allowance':
+                 $.get(type == "allowance" ? "{{ url('hr/sal-allowance/amount') }}" : null ,
+                 { id: $(this).val() },
+                 function(data) {
+                      $('#salary-data').val(data);
+                 });
+                 break;
+
+             case 'deduction':
+                 $.get(type == "deduction" ? "{{ url('hr/sal-deduction/amount') }}" : null ,
+                 { id: $(this).val() },
+                 function(data) {
+                       $('#salary-data').val(data);
+                 });
+                 break;
+
+             case 'over-time':
+                 $.get(type == "over-time" ? "{{ url('hr/sal-overtime/amount') }}" : null ,
+                 { id: $(this).val() },
+                 function(data) {
+                       $('#salary-data').val(data);
+                 });
+                 break;
+
+             case 'bonus':
+                 $.get(type == "bonus" ? "{{ url('hr/sal-bonus/amount') }}" : null ,
+                 { id: $(this).val() },
+                 function(data) {
+                       $('#salary-data').val(data);
+                 });
+                 break;
+         }
      });
-
-     // Sal Deduction dependable drop down to text show
-      $('.sal_deduction').change(function(){
-          $.get("{{ url('hr/sal-deduction/amount')}}",
-          { id: $(this).val() },
-          function(data) {
-               $('#sal-deduction').val(data);
-          });
-      });
-
-      // Sal Over-Time dependable drop down to text show
-      $('.sal_overtime').change(function(){
-           $.get("{{ url('hr/sal-overtime/amount')}}",
-           { id: $(this).val() },
-           function(data) {
-                $('#sal-overtime').val(data);
-           });
-      });
-
-      // Sal Bonus dependable drop down to text show
-      $('.sal_bonus').change(function(){
-           $.get("{{ url('hr/sal-bonus/amount')}}",
-           { id: $(this).val() },
-           function(data) {
-                $('#sal-bonus').val(data);
-           });
-      });
 });
 </script>
