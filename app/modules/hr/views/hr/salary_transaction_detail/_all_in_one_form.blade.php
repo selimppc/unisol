@@ -3,6 +3,10 @@
     #test input { border: none; width: 100%; }
 </style>
 
+<div class='form-group'>
+    Your Salary is : {{ Form::text('salary', $salary, Input::old('salary')) }} [salary = allowance - deduction + over-time + bonus]
+</div>
+
 <div class="row">
     <div class="row" style="padding-bottom: 10px ">
          <div class='form-group'>
@@ -12,7 +16,6 @@
          <div class='form-group col-sm-2'>
                 Amount:{{ Form::text('someInfo' ,null,['id'=>'salary-data']) }}
          </div>
-
           </br>
       </div>
 
@@ -276,42 +279,42 @@ $(function(){
 //  dynamic dynamic
 
      $('.shafi').change(function(){
-              type = $(".shafi_type").val();
-             switch(type)
-             {
-                 case 'allowance':
-                     $.get(type == "allowance" ? "{{ url('hr/sal-allowance/amount') }}" : null ,
-                     { id: $(this).val() },
-                     function(data) {
-                          $('#salary-data').val(data);
-                     });
-                     break;
+         type = $(".shafi_type").val();
+         switch(type)
+         {
+             case 'allowance':
+                 $.get(type == "allowance" ? "{{ url('hr/sal-allowance/amount') }}" : null ,
+                 { id: $(this).val() },
+                 function(data) {
+                      $('#salary-data').val(data);
+                 });
+                 break;
 
-                 case 'deduction':
-                     $.get(type == "deduction" ? "{{ url('hr/sal-deduction/amount') }}" : null ,
-                     { id: $(this).val() },
-                     function(data) {
-                           $('#salary-data').val(data);
-                     });
-                     break;
+             case 'deduction':
+                 $.get(type == "deduction" ? "{{ url('hr/sal-deduction/amount') }}" : null ,
+                 { id: $(this).val() },
+                 function(data) {
+                       $('#salary-data').val(data);
+                 });
+                 break;
 
-                 case 'over-time':
-                     $.get(type == "over-time" ? "{{ url('hr/sal-overtime/amount') }}" : null ,
-                     { id: $(this).val() },
-                     function(data) {
-                           $('#salary-data').val(data);
-                     });
-                     break;
+             case 'over-time':
+                 $.get(type == "over-time" ? "{{ url('hr/sal-overtime/amount') }}" : null ,
+                 { id: $(this).val() },
+                 function(data) {
+                       $('#salary-data').val(data);
+                 });
+                 break;
 
-                 case 'bonus':
-                     $.get(type == "bonus" ? "{{ url('hr/sal-bonus/amount') }}" : null ,
-                     { id: $(this).val() },
-                     function(data) {
-                           $('#salary-data').val(data);
-                     });
-                     break;
-             }
-          });
+             case 'bonus':
+                 $.get(type == "bonus" ? "{{ url('hr/sal-bonus/amount') }}" : null ,
+                 { id: $(this).val() },
+                 function(data) {
+                       $('#salary-data').val(data);
+                 });
+                 break;
+         }
+     });
 
 });
 </script>

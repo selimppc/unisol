@@ -29,9 +29,12 @@ class HrSalaryTransactionDetailController extends \BaseController {
         $over_time_list = array(''=>'Select any one') + HrOverTime::lists('amount','id');
         $bonus_list = array(''=>'Select any one') + HrBonus::lists('title','id');
 
+        $salary = round(HrSalaryTransactionDetail::where('salary_trn_hd_id', $s_t_id)->sum('amount'),2);
+//        print_r($salary);exit;
+
         return View::make('hr::hr.salary_transaction_detail.index', compact('model','salary_allowance_list',
             'salary_deduction_list','over_time_list','bonus_list','s_t_id','sal_allwnce_amount',
-            'sal_decution_amount','sal_bonus_amount','sal_over_time_amount'));
+            'sal_decution_amount','sal_bonus_amount','sal_over_time_amount','salary'));
     }
 
 // Dependable drop down to text start
@@ -49,13 +52,14 @@ class HrSalaryTransactionDetailController extends \BaseController {
     public function hr_salary_deduction_amount()
     {
         $input = Input::get('id');
-        $info = HrSalaryDeduction::where('id', '=', $input)->first()->amount;
+        $info = -(HrSalaryDeduction::where('id', '=', $input)->first()->amount);
         if($info){
             return Response::make($info);
         }else{
             return Response::make('no data found');
         }
     }
+
 
     public function hr_overtime_amount()
     {
