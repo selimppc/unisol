@@ -4,7 +4,7 @@
 </style>
 
 <div class='form-group'>
-    Your Salary is : {{ Form::text('salary', $salary, Input::old('salary')) }} [salary = allowance - deduction + over-time + bonus]
+    Your Salary is : {{ Form::text('salary', $salary, Input::old('salary')) }} [ Salary = allowance - deduction + over-time + bonus ]
 </div>
 
 <div class="row">
@@ -17,7 +17,7 @@
                 Amount:{{ Form::text('someInfo' ,null,['id'=>'salary-data']) }}
          </div>
           </br>
-      </div>
+    </div>
 
     <div class="col-sm-2" style="width:13%">
         <div class='form-group'>
@@ -77,50 +77,50 @@
 </div>
 
 <div class="table-hide">
-<p>
-    <b> Salary Transaction Detail</b>
-    <span class="pull-right" id="something-delete" style="color: orangered; font-weight: bold"></span>
-</p>
+    <p>
+       <b> Salary Transaction Detail</b>
+       <span class="pull-right" id="something-delete" style="color: orangered; font-weight: bold"></span>
+    </p>
 
-<table class="table table-bordered small-header-table" id="amwCourseConfig">
-    <thead>
-        <th>Type</th>
-        <th>Salary Allowance</th>
-        <th>Salary Deduction</th>
-        <th>Over Time</th>
-        <th>Bonus</th>
-        <th>Percentage(%)</th>
-        <th>Amount</th>
-        <th>Action</th>
-    </thead>
+    <table class="table table-bordered small-header-table" id="amwCourseConfig">
+        <thead>
+            <th>Type</th>
+            <th>Salary Allowance</th>
+            <th>Salary Deduction</th>
+            <th>Over Time</th>
+            <th>Bonus</th>
+            <th>Percentage(%)</th>
+            <th>Amount</th>
+            <th>Action</th>
+        </thead>
 
-    <tbody id="test">
-    </tbody>
+        <tbody id="test">
+        </tbody>
 
-    <tbody>
-      <?php $counter = 0;?>
-       @foreach($model as $values)
-            <tr>
-               <td>{{ ucfirst($values->type) }}</td>
-               <td>{{ isset($values->relHrSalaryAllowance->title) ? (ucfirst($values->relHrSalaryAllowance->title)) : "" }}</td>
-               <td>{{ isset($values->relHrSalaryDeduction->title) ? (ucfirst($values->relHrSalaryDeduction->title)) : "" }}</td>
-               <td>{{ isset($values->relHrOverTime->amount) ? $values->relHrOverTime->amount : "" }}</td>
-               <td>{{ isset($values->relHrBonus->title) ? (ucfirst($values->relHrBonus->title)) : "" }}</td>
-               <td>{{ isset($values->percentage) ? round($values->percentage,2) : ""}}</td>
-               <td>{{ isset($values->amount) ? round($values->amount,2) : ""}}</td>
-               <td>
-                   <a data-href="{{ $values->id }}" class="btn btn-default btn-sm delete-dt-2" ><i class="fa fa-trash-o" style="font-size: 15px;color: red"></i></a>
-               </td>
-            </tr>
-            <?php $counter++;?>
-       @endforeach
-    </tbody>
-</table>
+        <tbody>
+          <?php $counter = 0;?>
+           @foreach($model as $values)
+                <tr>
+                   <td>{{ ucfirst($values->type) }}</td>
+                   <td>{{ isset($values->relHrSalaryAllowance->title) ? (ucfirst($values->relHrSalaryAllowance->title)) : "" }}</td>
+                   <td>{{ isset($values->relHrSalaryDeduction->title) ? (ucfirst($values->relHrSalaryDeduction->title)) : "" }}</td>
+                   <td>{{ isset($values->relHrOverTime->amount) ? $values->relHrOverTime->amount : "" }}</td>
+                   <td>{{ isset($values->relHrBonus->title) ? (ucfirst($values->relHrBonus->title)) : "" }}</td>
+                   <td>{{ isset($values->percentage) ? round($values->percentage,2) : ""}}</td>
+                   <td>{{ isset($values->amount) ? round($values->amount,2) : ""}}</td>
+                   <td>
+                       <a data-href="{{ $values->id }}" class="btn btn-default btn-sm delete-dt-2" ><i class="fa fa-trash-o" style="font-size: 15px;color: red"></i></a>
+                   </td>
+                </tr>
+                <?php $counter++;?>
+           @endforeach
+        </tbody>
+    </table>
 
-<div class="modal-footer">
-        {{ Form::submit('Submit', ['class'=>'btn btn-large btn-success'] ) }}
-        <button class="btn btn-default btn-large" data-dismiss="modal" type="button">Close</button>
-</div>
+    <div class="modal-footer">
+            {{ Form::submit('Submit', ['class'=>'btn btn-large btn-success'] ) }}
+            <button class="btn btn-default btn-large" data-dismiss="modal" type="button">Close</button>
+    </div>
 </div>
 <p>&nbsp;</p>
 
@@ -129,7 +129,7 @@
 
 <script type="text/javascript">
 $(function(){
-    //Beneficial Add(s) : ok
+//Beneficial Add(s) : ok
      $tableItemCounter = 0; //To stop additem if exist
      var $arrayRnc = []; //To stop additem if exist
 
@@ -177,7 +177,7 @@ $(function(){
                       "<td><input name='percentage[]' value='"+ $sal_trns_dtl_percentage +"' readonly></td>" +
                       "<td><input name='amount[]' value='"+ $sal_trns_dtl_amount +"' readonly></td>" +
 
-                  " </tr>");
+                " </tr>");
 
                  $arrayRnc.push($salary_transctn_id);
 
@@ -193,7 +193,7 @@ $(function(){
          }
  	 });
 
-    // Delete : ok
+// Delete : ok
      $('.delete-dt-2').click(function(e) {
         e.preventDefault();
         var $btn = $(this);
@@ -210,7 +210,7 @@ $(function(){
         });
      });
 
-     // Drop down change with input form and div
+// Drop down change with input form and div : ok
      $('#salary_transaction_detail_type').change(function(){
         selection = $(this).val();
         switch(selection)
@@ -252,7 +252,7 @@ $(function(){
         }
      });
 
-     // Selection change with form
+// Selection change with form : ok
      $('.std_percentage').change(function(){
            var a = $('.std_percentage').val();
 
@@ -276,7 +276,7 @@ $(function(){
            $('.std_percentage').prop('disabled', true);
      });
 
-//  dynamic dynamic
+// dynamic dynamic : ok
 
      $('.shafi').change(function(){
          type = $(".shafi_type").val();
@@ -315,6 +315,5 @@ $(function(){
                  break;
          }
      });
-
 });
 </script>
