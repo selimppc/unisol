@@ -737,16 +737,16 @@ class FeesController extends \BaseController {
                     Session::flash('message', "Billing Details confirmed Successfully");
                 else
                     Session::flash('danger', "Billing Details confirmed Is Just For One Time.");
-                return Redirect::to('fees/billing-applicant-head');
+                return Redirect::back();
             }
             catch ( Exception $e ){
                 //If there are any exceptions, rollback the transaction
                 DB::rollback();
                 Session::flash('danger', "not added.Invalid Request!");
             }
-            return Redirect::to('fees/billing-applicant-head');
+            return Redirect::back();
         }
-        return Redirect::to('fees/billing-applicant-head');
+        return Redirect::back();
 
     }
 
@@ -951,8 +951,51 @@ class FeesController extends \BaseController {
         }
     }
 
+    public function destroy_billing_student_head($id)
+    {
+        $model = BillingStudentHead::findOrFail($id);
+        $model->status = 'cancel';
+        DB::beginTransaction();
+        try{
+            $model->save();
+            DB::commit();
+            Session::flash('message', 'Success !');
+        }catch ( Exception $e ){
+            //If there are any exceptions, rollback the transaction`
+            DB::rollback();
+            Session::flash('danger', 'Failed !');
+        }
+        return Redirect::back();
+    }
 
+    public  function update_student_head_status()
+    {
+        if($this->isPostRequest()) {
+            $id = Input::get('id');
+            $status = Input::get('status');
+            DB::beginTransaction();
+            try {
+                $update = DB::table('billing_student_head')
+                    ->where('id', $id)
+                    ->where('status', "open")
+                    ->update(array('status' => $status));
+                DB::commit();
+                if($update)
+                    Session::flash('message', "Billing Details confirmed Successfully");
+                else
+                    Session::flash('danger', "Billing Details confirmed Is Just For One Time.");
+                return Redirect::back();
+            }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', "not added.Invalid Request!");
+            }
+            return Redirect::back();
+        }
+        return Redirect::back();
 
+    }
 
     /****========================================================================================
                                 Billing details Student start

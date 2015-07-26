@@ -44,7 +44,7 @@
             "<td><input name='total_amount[]' value='" + $total_amount + "' readonly></td>" +
             "<td><a class='btn btn-default btn-sm' id='removeTrId' onClick='deleteNearestTr(this.id, 0)'><i class='fa  fa-trash-o text-red' style='font-size: 15px'></i></a></td>" +
             "</tr>");
-            
+
             //flush the input fields
             $("#billing_item_id2").val("");
             $("#waiver_id2").val("");

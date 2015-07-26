@@ -49,11 +49,29 @@
 
                                         <td>{{ucfirst($value->status)}}</td>
                                         <td>
+                                            @if($value->status=='open')
                                             <a href="{{ URL::route('student-head-view',['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" data-toggle="tooltip" data-placement="bottom" title="View"><i class="fa fa-eye text-green"></i></a>
 
                                             <a href="{{ URL::route('student-head-edit',['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#editHeadModal" data-toggle="tooltip" data-placement="bottom" title="Edit"><i class="fa fa-pencil-square-o text-blue"></i></a>
+
+                                            <a data-href="{{ URL::route('student-head-destroy', ['req_id'=>$value->id ]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa fa-power-off text-red" data-toggle="tooltip" data-placement="bottom" title="Cancel"></i></a>
+
+                                            @elseif($value->status=='confirmed')
+
+                                                <a href="{{ URL::route('student-head-view',['id'=>$value->id])}}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#showModal" data-toggle="tooltip" data-placement="bottom" title="View"><i class="fa fa-eye text-green"></i></a>
+
+                                            @endif
                                         </td>
-                                        <td></td>
+                                        <td>
+                                            @if($value->status != 'confirmed')
+                                                {{Form::open(array('route'=> ['billing-student-head-status']))}}
+                                                {{ Form::hidden('id',$value->id) }}
+                                                {{ Form::hidden('status','confirmed') }}
+                                                {{ Form::submit('Confirm', array('class'=>'btn btn-xs btn-warning'))}}
+                                                {{Form::close()}}
+
+                                            @endif
+                                        </td>
                                     </tr>
                                 @endforeach
                                 </tbody>

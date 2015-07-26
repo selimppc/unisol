@@ -239,6 +239,14 @@
          'as' => 'billing-student-head.update',
          'uses' => 'FeesController@update_student_head'
      ]);
+     Route::any("student-head-destroy/{id}", [
+         "as"   => "student-head-destroy",
+         "uses" => "FeesController@destroy_billing_student_head"
+     ]);
+     Route::any('billing-student-head-status', [
+         'as' => 'billing-student-head-status',
+         'uses' => 'FeesController@update_student_head_status'
+     ]);
 
 
      /*==============================Billing Student Detail=================================*/
@@ -256,7 +264,6 @@
      Route::post('detail/student/delete/ajax',
          'FeesController@ajax_delete_student_detail'
      );
-
 
 
              /****==================================================================
