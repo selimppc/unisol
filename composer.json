@@ -47,7 +47,9 @@
             "app/modules/rnc/controllers",
             "app/modules/rnc/models",
             "app/modules/cfo/controllers",
-            "app/modules/cfo/models"
+            "app/modules/cfo/models",
+            "app/modules/payroll/controllers",
+            "app/modules/payroll/models"
 		],
 
         "files":[
