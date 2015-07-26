@@ -24,7 +24,7 @@ class CreateBillingVApplicantHistory extends Migration {
               `b`.`id`           AS `batch_id`,
               `d`.`id`           AS `degree_id`,
               `dpt`.`id`         AS `department_id`
-            FROM `billing_summary_applicant` `bsa`
+            FROM `billing_applicant_head` `bsa`
                     JOIN `billing_schedule` `bs` ON `bs`.`id` = `bsa`.`billing_schedule_id`
                 JOIN `applicant` `app` ON `app`.`id` = `bsa`.`applicant_id`
                 JOIN `batch_applicant` `ba` ON `ba`.`applicant_id` = `app`.`id`

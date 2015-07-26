@@ -18,16 +18,17 @@ class CreateHr extends Migration {
             $table->integer('updated_by', false, 11);
             $table->timestamps();
         });
-        /*Schema::create('currency', function(Blueprint $table)
-        {
-            $table->increments('id', true);
-            $table->string('title', 32);
-            $table->string('code', 32);
-            $table->float('exchange_rate');
-            $table->integer('created_by', false, 11);
-            $table->integer('updated_by', false, 11);
-            $table->timestamps();
-        });*/
+
+//        Schema::create('currency', function(Blueprint $table)
+//        {
+//            $table->increments('id', true);
+//            $table->string('title', 32);
+//            $table->string('code', 32);
+//            $table->float('exchange_rate');
+//            $table->integer('created_by', false, 11);
+//            $table->integer('updated_by', false, 11);
+//            $table->timestamps();
+//        });
 
         Schema::create('hr_tax_rule', function(Blueprint $table)
         {
@@ -327,10 +328,12 @@ class CreateHr extends Migration {
 
 
 
+
+
         Schema::create('hr_salary_transaction_detail', function(Blueprint $table)
         {
             $table->increments('id', true);
-            $table->unsignedInteger('hr_salary_transaction_head_id')->nullable();
+            $table->unsignedInteger('salary_trn_hd_id')->nullable();
             $table->enum('type', array(
                 'allowance', 'deduction', 'over-time', 'bonus', 'commission'
             ));
@@ -346,7 +349,7 @@ class CreateHr extends Migration {
             $table->timestamps();
         });
         Schema::table('hr_salary_transaction_detail', function($table) {
-            $table->foreign('hr_salary_transaction_head_id')->references('id')->on('hr_salary_transaction_head');
+            $table->foreign('salary_trn_hd_id')->references('id')->on('hr_salary_transaction_head');
             $table->foreign('hr_salary_allowance_id')->references('id')->on('hr_salary_allowance');
             $table->foreign('hr_salary_deduction_id')->references('id')->on('hr_salary_deduction');
             $table->foreign('hr_over_time_id')->references('id')->on('hr_over_time');

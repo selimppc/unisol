@@ -26,7 +26,7 @@ class CreateBillingVStudentHistory extends Migration {
               dpt.id		AS department_id
 
 
-            FROM `billing_summary_student` `bss`
+            FROM `billing_student_head` `bss`
                 JOIN `billing_schedule` `bs` ON `bs`.`id` = `bss`.`billing_schedule_id`
                 JOIN `user` `u` ON `u`.`id` = `bss`.`student_user_id`
                 JOIN user_profile uf ON uf.user_id = u.id

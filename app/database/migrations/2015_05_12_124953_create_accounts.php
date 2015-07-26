@@ -7,7 +7,7 @@ class CreateAccounts extends Migration {
 
 	public function up()
 	{
-        Schema::create('bank', function(Blueprint $table) {
+         Schema::create('bank', function(Blueprint $table) {
             $table->increments('id');
             $table->string('title',32);
             $table->string('branch',32);
@@ -140,11 +140,11 @@ class CreateAccounts extends Migration {
             $table->string('type',32)->nullable();
             $table->string('code',32)->nullable();
             $table->text('description')->nullable();
-            $table->string('account_code',32)->nullable();
+            $table->string('account_code',8)->nullable();
             $table->string('account_discount',32)->nullable();
             $table->string('account_transaction',32)->nullable();
-            $table->string('account_debit',32)->nullable();
-            $table->string('account_tax',32)->nullable();
+            $table->string('account_debit',8)->nullable();
+            $table->string('account_tax',8)->nullable();
             $table->enum('status',array(
                 'active', 'close'
             ))->nullable();
@@ -154,10 +154,10 @@ class CreateAccounts extends Migration {
             $table->engine = 'InnoDB';
         });
         Schema::table('acc_codesparam', function($table) {
-            $table->foreign('account_code')->references('account_code')->on('acc_chart_of_accounts');
-            $table->foreign('account_transaction')->references('account_code')->on('acc_chart_of_accounts');
-            $table->foreign('account_debit')->references('account_code')->on('acc_chart_of_accounts');
-            $table->foreign('account_tax')->references('account_code')->on('acc_chart_of_accounts');
+            #$table->foreign('account_code')->references('account_code')->on('acc_chart_of_accounts');
+            #$table->foreign('account_transaction')->references('account_code')->on('acc_chart_of_accounts');
+            #$table->foreign('account_debit')->references('account_code')->on('acc_chart_of_accounts');
+            #$table->foreign('account_tax')->references('account_code')->on('acc_chart_of_accounts');
         });
 
 
