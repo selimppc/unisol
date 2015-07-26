@@ -59,34 +59,7 @@ class HrLeaveTypeController extends \BaseController {
         $model = HrLeaveType::find($id);
         return View::make('hr::hr.leave_type.edit',compact('model'));
     }
-
-    public function updateLeaveType($id){
-
-        $data = Input::all();
-        $model = HrLeaveType::find($id);
-
-        if($model->validate($data))
-        {
-            DB::beginTransaction();
-            try {
-                $model->update($data);
-                DB::commit();
-                Session::flash('message', "Successfully Updated");
-            }
-            catch ( Exception $e ){
-                //If there are any exceptions, rollback the transaction
-                DB::rollback();
-                Session::flash('danger', "Invalid Request !");
-            }
-            return Redirect::back();
-        }else{
-            $errors = $model->errors();
-            Session::flash('errors', $errors);
-            return Redirect::back()
-                ->with('errors', 'Input Data Not Valid');
-        }
-    }
-
+    
     public function ajaxDelete()
     {
         $id = Input::get('id');
