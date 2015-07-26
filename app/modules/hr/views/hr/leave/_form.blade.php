@@ -1,9 +1,10 @@
 
 <div style="padding: 0px 20px 20px;">
     <div class="form-group">
-        {{ Form::label('hr_employee_id', 'HR Employee') }}<span class="text-danger">*</span>
-        {{ Form::select('hr_employee_id', $employee_list, Input::old('hr_employee_id'), array('class' => 'form-control','required'=>'required')) }}
+         {{ Form::label('forward_to', 'Leave Forward To ') }}<span class="text-danger">*</span>
+         {{ Form::select('forward_to', $hr_list, Input::old('forward_to'), array('class' => 'form-control','required'=>'required')) }}
     </div>
+
     <div class="form-group">
        <div class="col-lg-6" style="padding-left: 0;">
           {{ Form::label('hr_leave_type_id', 'Leave Type ') }}<span class="text-danger">*</span>
@@ -33,17 +34,10 @@
     <p>&nbsp;</p>
 
     <div class="form-group">
-        <div class="col-lg-6" style="padding-left: 0;">
-           {{ Form::label('forward_to', 'Leave Forward To ') }}<span class="text-danger">*</span>
-           {{ Form::select('forward_to', $hr_employee, Input::old('forward_to'), array('class' => 'form-control','required'=>'required')) }}
-        </div>
-        <div class="col-lg-6" style="padding-right: 0;">
-          {{ Form::label('alt_hr_employee_id', 'Alt HR Employee') }}
-           {{ Form::select('alt_hr_employee_id', $employee_list, Input::old('alt_hr_employee_id'), ['class'=>'form-control', 'required']) }}
-        </div>
+        {{ Form::label('alt_hr_employee_id', 'Alt HR Employee') }}
+        {{ Form::select('alt_hr_employee_id', $employee_list, Input::old('alt_hr_employee_id'), ['class'=>'form-control', 'required']) }}
     </div>
 
-    <p>&nbsp;</p>
     <div class="form-group">
         <div class="col-lg-6" style="padding-left: 0;">
         {{ Form::label('alt_contact_no', 'Alt Contact No') }}
@@ -65,12 +59,9 @@
     </div>
 
     <p>&nbsp;</p>
-    <div class='form-group'>
-       {{ Form::label('comment', 'HR Leave Comments') }}
-       {{ Form::textarea('comment', Input::old('comment'),['onkeyup'=>"javascript:this.value=this.value.replace(/[<,>]/g,'');", 'size' => '20x5', 'class'=>'form-control','placeholder'=>'Write Your message here...']) }}
-    </div>
 
-    {{ Form::submit('Save', array('class'=>'pull-right btn btn-info')) }}
+
+    {{ Form::submit('Submit', array('class'=>'pull-right btn btn-info')) }}
     <a  href="" class="pull-right btn btn-default" style="margin-right: 5px">Close</a>
     <p>&nbsp;</p>
 </div>
