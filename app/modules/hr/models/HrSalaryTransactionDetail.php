@@ -9,14 +9,14 @@ class HrSalaryTransactionDetail extends Eloquent{
     //TODO :: model attributes and rules and validation
     protected $table='hr_salary_transaction_detail';
     protected $fillable = [
-        'hr_salary_transaction_head_id','type','hr_salary_allowance_id','hr_salary_deduction_id','hr_over_time_id','hr_bonus_id','percentage','amount'
+        'salary_trn_hd_id','type','hr_salary_allowance_id','hr_salary_deduction_id','hr_over_time_id','hr_bonus_id','percentage','amount'
     ];
 
     private $errors;
     private $rules = [
 //        'hr_salary_allowance_id' => 'required',
-//        'hr_salary_transaction_id' => 'required',
-////        'hr_over_time_id' => 'required',
+//        'salary_trn_hd_id' => 'required',
+//        'hr_over_time_id' => 'required',
 //        'hr_bonus_id' => 'required',
     ];
 
@@ -39,7 +39,7 @@ class HrSalaryTransactionDetail extends Eloquent{
 
     //is this relation ok ?
     public function relHrSalaryTransactionHead(){
-        return $this->belongsTo('HrSalaryTransactionHead','hr_salary_transaction_head_id','id');
+        return $this->belongsTo('HrSalaryTransactionHead','salary_trn_hd_id','id');
     }
 
     public function relHrSalaryAllowance(){

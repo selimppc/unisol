@@ -19,7 +19,7 @@ class HrSalaryTransactionDetailController extends \BaseController {
     public function index_hr_salary_transaction_detail($s_t_id)
     {
         $model = HrSalaryTransactionDetail::with('relHrOverTime','relHrBonus','relHrSalaryAllowance','relHrSalaryDeduction')
-            ->where('hr_salary_transaction_head_id', $s_t_id)
+            ->where('salary_trn_hd_id', $s_t_id)
             ->orderBy('id', 'DESC')
             ->get();
 
@@ -29,9 +29,12 @@ class HrSalaryTransactionDetailController extends \BaseController {
         $over_time_list = array(''=>'Select any one') + HrOverTime::lists('amount','id');
         $bonus_list = array(''=>'Select any one') + HrBonus::lists('title','id');
 
+        $salary = round(HrSalaryTransactionDetail::where('salary_trn_hd_id', $s_t_id)->sum('amount'),2);
+//        print_r($salary);exit;
+
         return View::make('hr::hr.salary_transaction_detail.index', compact('model','salary_allowance_list',
             'salary_deduction_list','over_time_list','bonus_list','s_t_id','sal_allwnce_amount',
-            'sal_decution_amount','sal_bonus_amount','sal_over_time_amount'));
+            'sal_decution_amount','sal_bonus_amount','sal_over_time_amount','salary'));
     }
 
 // Dependable drop down to text start
@@ -49,13 +52,14 @@ class HrSalaryTransactionDetailController extends \BaseController {
     public function hr_salary_deduction_amount()
     {
         $input = Input::get('id');
-        $info = HrSalaryDeduction::where('id', '=', $input)->first()->amount;
+        $info = -(HrSalaryDeduction::where('id', '=', $input)->first()->amount);
         if($info){
             return Response::make($info);
         }else{
             return Response::make('no data found');
         }
     }
+
 
     public function hr_overtime_amount()
     {
@@ -83,9 +87,9 @@ class HrSalaryTransactionDetailController extends \BaseController {
 // End of dependable drop down to text
     public function store_hr_salary_transaction_detail()
     {
-        for($i = 0; $i < count(Input::get('hr_salary_transaction_head_id')) ; $i++){
+        for($i = 0; $i < count(Input::get('salary_trn_hd_id')) ; $i++){
             $dt[] = [
-                'hr_salary_transaction_head_id' => Input::get('hr_salary_transaction_head_id')[$i],
+                'salary_trn_hd_id' => Input::get('salary_trn_hd_id')[$i],
                 'type'=> Input::get('type')[$i],
                 'hr_salary_allowance_id'=> Input::get('hr_salary_allowance_id')[$i] ? Input::get('hr_salary_allowance_id')[$i] : NULL,
                 'hr_salary_deduction_id'=> Input::get('hr_salary_deduction_id')[$i] ? Input::get('hr_salary_deduction_id')[$i] : NULL,
@@ -155,7 +159,7 @@ class HrSalaryTransactionDetailController extends \BaseController {
         }else{
             $model = HrSalaryTransactionDetail::findOrFail($s_t_d_id);
 
-            $s_t_id = HrSalaryTransactionDetail::where('id',$s_t_d_id)->first()->hr_salary_transaction_head_id;
+            $s_t_id = HrSalaryTransactionDetail::where('id',$s_t_d_id)->first()->salary_trn_hd_id;
 
             $salary_allowance_list = array(''=>'Select any one') + HrSalaryAllowance::lists('title','id');
             $salary_deduction_list = array(''=>'Select any one') + HrSalaryDeduction::lists('title','id');
