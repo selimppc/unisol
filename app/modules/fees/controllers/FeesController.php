@@ -975,7 +975,54 @@ class FeesController extends \BaseController {
         $item = ['' => 'Select Billing Item'] + BillingItem::lists('title', 'id');
         $waiver = ['' => 'Select waiver'] + Waiver::lists('title', 'id');
 
-        return View::Make('fees::billing_summary.student.create_details_student',compact('billing_head_id','item','waiver','billing_details_data','student_name'));
+        return View::Make('fees::billing_summary.student.create_details_student',compact('billing_head_id','student_name','billing_details_data','item','waiver'));
     }
 
+    public function save_billing_details_student()
+    {
+        $data = Input::all();
+        $counter = count(Input::get('billing_item_id'));
+        for($i = 0; $i < $counter ; $i++){
+            $all []= [
+                'billing_student_head_id' => Input::get('billing_applicant_head_id')[$i],
+                'billing_item_id' => Input::get('billing_item_id')[$i],
+                'waiver_id'=> Input::get('waiver_id')[$i]? Input::get('waiver_id')[$i] : NULL,
+                'waiver_amount'=> Input::get('waiver_amount')[$i] ? Input::get('waiver_amount')[$i]: 0.00,
+                'cost_per_unit'=> Input::get('cost_per_unit')[$i],
+                'quantity'=> Input::get('quantity')[$i],
+                'total_amount'=> Input::get('total_amount')[$i],
+            ];
+
+        }
+        // print_r($all);exit;
+        $model = new BillingStudentDetail();
+        DB::beginTransaction();
+        try{
+            foreach($all as $values){
+                $model->create($values);
+            }
+            DB::commit();
+            Session::flash('message', 'Success !');
+        }catch ( Exception $e ){
+            // print_r($e->getMessage());exit;
+            //If there are any exceptions, rollback the transaction`
+            DB::rollback();
+            Session::flash('danger', 'Failed !');
+        }
+        return Redirect::back();
+    }
+
+    public function ajax_delete_student_detail()
+    {
+        if(Request::ajax())
+        {
+            $id = Input::get('billing_student_detail_id');
+            $data = BillingStudentDetail::find($id);
+            if($data->delete())
+                return Response::json(['msg'=> 'Data Successfully Deleted']);
+            else
+                return Response::json(['msg'=> 'Data Successfully Not Deleted']);
+        }
+
+    }
 }

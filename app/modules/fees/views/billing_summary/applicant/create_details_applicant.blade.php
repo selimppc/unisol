@@ -1,4 +1,4 @@
-<div class="modal-header" xmlns="http://www.w3.org/1999/html">
+<div class="modal-header">
     <button type="button" class="close" data-dismiss="modal">{{HTML::image('assets/icon/media-close-btn.png')}}</button>
     <h4 class="text-center text-purple">Create {{$applicant_name->relApplicant->first_name.' '.$applicant_name->relApplicant->last_name}}'s Billing Details </h4>
 </div>
@@ -66,7 +66,7 @@
 		</span>
         </p>--}}
         {{Form::open(array('route' => array('billing.details.applicant.save')))}}
-        <table class="table table-bordered small-header-table" id="amwCourseConfig">
+        <table class="table table-bordered small-header-table">
             <thead>
             <th>Billing Item</th>
             <th>waiver</th>
@@ -75,7 +75,6 @@
             <th>Quantity</th>
             <th>Total Amount</th>
             <th>Action</th>
-
             </thead>
 
             <tbody id="item">
@@ -89,7 +88,6 @@
 
                     <td>{{isset($value->relBillingItem->title)?$value->relBillingItem->title:''}}
                         {{ Form::hidden('billing_applicant_detail_id[]', $value->id)}}
-                        {{ Form::hidden('billing_applicant_head_id[]', $value->billing_item_id)}}
                     </td>
 
                     <td>{{isset($value->relWaiver->title)? $value->relWaiver->title:'0'}}</td>

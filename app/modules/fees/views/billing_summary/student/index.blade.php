@@ -39,11 +39,7 @@
                                 @foreach ($summary_student as $value)
                                     <tr>
                                         <td class="sl-no-size">{{$sl++}}</td>
-
-                                     {{--   <td><a href="#" class=" btn-link text-bold" data-toggle="modal" data-target="#createModalStudent" data-toggle="tooltip" data-placement="bottom" title="Create Billing Details">{{isset($value->relUser->relUserProfile->first_name)?$value->relUser->relUserProfile->first_name:''}} {{isset($value->relUser->relUserProfile->last_name)?$value->relUser->relUserProfile->last_name:''}}</a></td>--}}
-
-                                        <td class="b-text">{{ link_to_route($value->status=="open" ? 'billing.details.student' : 'student-head-view',$value->relUser->relUserProfile->first_name.' '.$value->relUser->relUserProfile->last_name,['id'=>$value->id], ['data-toggle'=>"modal",'data-target'=>"#createModalStudent"]) }}</td>
-
+                                        <td class="b-text">{{ link_to_route($value->status=="open" ? 'billing.details.student' : 'student-head-view',$value->relUser->relUserProfile->first_name.' '.$value->relUser->relUserProfile->last_name,['id'=>$value->id], ['data-toggle'=>"modal",'data-target'=>"#createDetails"]) }}</td>
 
                                         <td>{{isset($value->relUser->relUserProfile->user_id)?$value->relUser->relUserProfile->user_id:''}}</td>
 
@@ -80,7 +76,7 @@
                 </div>
                 <div class="modal-body">
                     {{Form::open(array('route' => array('student-head-save')))}}
-                    @include('fees::billing_summary.student._form')
+                     @include('fees::billing_summary.student._form')
                     {{ Form::close() }}
                 </div>
             </div>
@@ -106,7 +102,7 @@
     </div>
 
     {{-- Modal for create billing details --}}
-    <div class="modal fade" id="createModalStudent" tabindex="-1" role="dialog" aria-labelledby="showingModal">
+    <div class="modal fade" id="createDetails" tabindex="-1" role="dialog" aria-labelledby="showingModal">
         <div class="modal-dialog modal_ex_lg">
             <div class="modal-content">
 

@@ -49,12 +49,12 @@
             //arrayItems.push(ItemId);//To stop additem if exist
 
             //flush the input fields
-            $("#billing_item_id").val("");
-            $("#waiver_id").val("");
-            $("#waiver_amount").val("");
-            $("#cost_per_unit").val("");
-            $("#quantity").val("");
-            $("#total_amount").val("");
+            $("#billing_item_id2").val("");
+            $("#waiver_id2").val("");
+            $("#waiver_amount2").val("");
+            $("#cost_per_unit2").val("");
+            $("#quantity2").val("");
+            $("#total_amount2").val("");
 
         });
 
