@@ -5,7 +5,7 @@ class HrSalaryAdvanceController extends \BaseController
 
     function __construct()
     {
-        $this->beforeFilter('', array('except' => array('')));
+        $this->beforeFilter('hr', array('except' => array('')));
     }
 
     protected function isPostRequest()
