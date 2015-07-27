@@ -3688,7 +3688,9 @@ fieldset[disabled] .btn-vk.active {
 .btn_margin2{
     margin-left: 78%;
 }
-
+.btn-width{
+    height:28px;
+}
 /*fees billing details applicant style*/
 
 /*input{

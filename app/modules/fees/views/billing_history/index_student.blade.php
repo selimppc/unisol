@@ -21,7 +21,7 @@
                     <li class="active"><a href="#tab_1" data-toggle="tab">Student Fees History</a></li>
                 </ul>
 
-                <a href="{{ URL::route('billing-student-head')}}" class="btn-link pull-right"><i class="fa fa-backward text-aqua"></i> Back to Student (Fees)</a>
+                <a href="{{ URL::route('billing-student')}}" class="btn-link pull-right"><i class="fa fa-backward text-aqua"></i> Back to Student (Fees)</a>
 
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab_1">
