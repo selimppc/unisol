@@ -22,9 +22,11 @@ class HrEmployeeController extends \BaseController {
         $salary_grade = HrSalaryGrade::SalaryGradeLists();
         $depart = Department::GetDepartmentLists();
 
+        $currency = Currency::CurrencyLists();
+
         $bank = HrBank::HrBankLists();
 
-        return View::make('hr::hr.employee.index', compact('model','pageTitle','salary_grade','depart','bank'));
+        return View::make('hr::hr.employee.index', compact('model','pageTitle','salary_grade','depart','bank','currency'));
     }
 
     public function store_hr_employee()

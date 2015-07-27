@@ -49,7 +49,7 @@
     <div class="col-sm-6">
         <div class='form-group'>
            {{ Form::label('currency_id', 'Currency') }}
-           {{ Form::select('currency_id',array('' => 'Select Currency ') + Currency::CurrencyLists() ,Input::old('currency_id'),['class'=>'form-control', 'required']) }}
+           {{ Form::select('currency_id',$currency ,Input::old('currency_id'),['class'=>'form-control', 'required']) }}
         </div>
 
         <div class='form-group'>
