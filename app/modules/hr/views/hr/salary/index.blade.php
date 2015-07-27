@@ -43,7 +43,7 @@
                     <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $values->id }}"></td>
                     <td><b>{{ link_to_route('salary_allowance',
                         $values->relHrEmployee->relUser->relUserProfile->first_name.' '.$values->relHrEmployee->relUser->relUserProfile->middle_name.' '.$values->relHrEmployee->relUser->relUserProfile->last_name ,
-                        ['s_id'=>$values->id], ['data-toggle'=>"modal", 'data-target'=>"#modal-pc"] ) }}
+                        ['s_id'=>$values->id], ['title'=>'Salary Allowance','data-toggle'=>"modal", 'data-target'=>"#modal-pc"] ) }}
                         </b>
                     </td>
                     <td>{{ ucfirst($values->salary_type) }}</td>
