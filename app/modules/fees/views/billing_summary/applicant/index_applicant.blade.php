@@ -16,7 +16,10 @@
                         Add New
                     </button>
 
-                    <button href="{{URL::route('applicant-billing-history')}}" type="button" class="btn btn-default fa fa-arrow-right text-light-blue">View Fees Details</button>
+                    <a href="{{URL::route('applicant-billing-history')}}" class="btn btn-default fa fa-arrow-right text-light-blue btn-width">View Fees Details</a>
+
+                  {{--  <button href="{{URL::route('applicant-billing-history')}}" type="button" class="btn btn-default"><i class="fa fa-arrow-right text-light-blue"></i> View Fees Details</button>--}}
+
 
                 </ul>
                 <div class="tab-content">

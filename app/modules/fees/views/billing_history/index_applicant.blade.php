@@ -20,7 +20,7 @@
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="#tab_1" data-toggle="tab">Applicant Fees History</a></li>
                 </ul>
-                <a href="{{ URL::route('billing-applicant-head')}}" class="btn-link pull-right"><i class="fa fa-backward text-aqua"></i> Back to Applicant (Fees)</a>
+                <a href="{{ URL::route('billing-applicant')}}" class="btn-link pull-right"><i class="fa fa-backward text-aqua"></i> Back to Applicant (Fees)</a>
 
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab_1">

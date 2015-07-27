@@ -17,7 +17,7 @@
                         Add New
                     </button>
 
-                    <button href="{{URL::route('student-billing-history')}}" type="button" class="btn btn-default fa fa-arrow-right text-light-blue">View Fees Details</button>
+                    <a href="{{URL::route('student-billing-history')}}" class="btn btn-default fa fa-arrow-right text-light-blue btn-width">View Fees Details</a>
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab_1">
