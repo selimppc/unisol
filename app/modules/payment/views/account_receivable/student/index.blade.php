@@ -21,6 +21,7 @@
 
                 <tr>
                     <th> Student  </th>
+                    <th> Student Name </th>
                     <th> Billing Schedule </th>
                     <th> Total Cost </th>
                     <th> Status </th>
@@ -33,8 +34,9 @@
                 @foreach($data as $values)
                  <tr style="{{$values->status=='invoiced' ? 'background-color: burlywood' : '' }}">
                     <td><b>
-                        {{ link_to_route('details-student-receivable', Str::title($values->relUser->id),['bsh_id'=>$values->id], ['data-toggle'=>"modal", 'data-target'=>"#modal-pc"]) }}
+                        {{ link_to_route('details-student-receivable', Str::title($values->relUser->student_id),['bsh_id'=>$values->id], ['data-toggle'=>"modal", 'data-target'=>"#modal-pc"]) }}
                     </b></td>
+                     <td>{{$values->relUser->relUserProfile->first_name.' '.$values->relUser->relUserProfile->last_name}}</td>
                     <td> {{ Str::title($values->relBillingSchedule->title) }}</td>
                     <td>{{ $values->total_cost }}</td>
                     <td>{{Str::title($values->status)}}</td>

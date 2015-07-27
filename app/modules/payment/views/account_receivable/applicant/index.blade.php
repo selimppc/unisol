@@ -21,6 +21,7 @@
 
                 <tr>
                     <th> Applicant  </th>
+                    <th> Applicant Id </th>
                     <th> Billing Schedule </th>
                     <th> Total Cost </th>
                     <th> Status </th>
@@ -35,6 +36,8 @@
                     <td><b>
                         {{ link_to_route('details-applicant-receivable', Str::title($values->relApplicant->first_name." ".$values->relApplicant->last_name),['bah_id'=>$values->id], ['data-toggle'=>"modal", 'data-target'=>"#modal-pc"]) }}
                     </b></td>
+                     <td>{{isset($values->relApplicant->applicant_id)?$values->relApplicant->applicant_id:''}}</td>
+
                     <td> {{ Str::title($values->relBillingSchedule->title) }}</td>
                     <td>{{ $values->total_cost }}</td>
                     <td>{{Str::title($values->status)}}</td>
