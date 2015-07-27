@@ -46,12 +46,14 @@
                 @if(isset($bs_dt))
                 @foreach($bs_dt as $values)
                  <tr>
-                    <td>{{Str::title($values->relBillingItem->title)}}</td>
-                    <td>{{Str::title($values->relWaiver->title)}} </td>
-                    <td>{{Str::title($values->relWaiver->amount)}} </td>
-                    <td>{{$values->cost_per_unit}}</td>
-                    <td>{{ $values->quantity }}  </td>
-                    <td>{{$values->total_amount}}</td>
+                   <td>{{Str::title($values->relBillingItem->title)}}</td>
+                   {{-- <td>{{Str::title($values->relWaiver->title)}} </td>
+                    <td>{{Str::title($values->relWaiver->amount)}} </td>--}}
+                    <td>{{isset($values->relWaiver->title)? $values->relWaiver->title:''}} </td>
+                    <td>{{isset($values->relWaiver->amount)? $values->relWaiver->amount:''}} </td>
+                    <td>{{isset($values->cost_per_unit)? $values->cost_per_unit:''}}</td>
+                    <td>{{isset($values->quantity) ? $values->quantity:'' }}  </td>
+                    <td>{{isset($values->total_amount) ? $values->total_amount:''}}</td>
                  </tr>
                 @endforeach
                 @else
