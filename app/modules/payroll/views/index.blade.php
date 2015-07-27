@@ -34,7 +34,7 @@
                 @foreach($data as $values)
                  <tr style="{{$values->status=='invoiced' ? 'background-color: burlywood' : '' }}">
                     <td><b>
-                        {{ link_to_route($values->status!="invoiced" ?'show-hr-trn' : 'hr-create-invoice',$values->trn_number,['trn_id'=>$values->id], ['data-toggle'=>"modal", 'data-target'=>"#modal-pc"]) }}
+                        {{ link_to_route($values->status!="invoiced" ?'show-hr-trn' : 'show-hr-trn',$values->trn_number,['trn_id'=>$values->id], ['data-toggle'=>"modal", 'data-target'=>"#modal-pc"]) }}
                     </b></td>
                     <td> {{ $values->hr_employee_id }}</td>
                     <td>{{ $values->date }}</td>

@@ -313,6 +313,8 @@ class CreateHr extends Migration {
             $table->unsignedInteger('year_id')->nullable();
 
             $table->string('period');
+            $table->decimal('tax_rate')->nullable();
+            $table->float('tax_amount')->nullable();
             $table->float('total_amount');
             $table->enum('status', array(
                 'open', 'ask-for-interview', 'approved', 'denied', 'request-for-update',
@@ -345,6 +347,8 @@ class CreateHr extends Migration {
             $table->unsignedInteger('hr_salary_deduction_id')->nullable();
             $table->unsignedInteger('hr_over_time_id')->nullable();
             $table->unsignedInteger('hr_bonus_id')->nullable();
+            $table->decimal('tax_rate')->nullable();
+            $table->float('tax_amount')->nullable();
             $table->decimal('percentage', 2, 0);
             $table->float('amount');
             $table->integer('created_by', false, 11);
