@@ -140,6 +140,7 @@ return array(
         'App\Modules\Library\ServiceProvider',
         'App\Modules\Payment\ServiceProvider',
         'App\Modules\Rnc\ServiceProvider',
+        'App\Modules\Payroll\ServiceProvider',
 
 	),
 
