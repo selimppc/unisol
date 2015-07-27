@@ -71,7 +71,6 @@ class PayrollController extends \BaseController {
         $unpaid_invoice = AccVUnpaidinvHr::where('associated_id', $associated_id)
             //->where('acc_voucher_head_id', $coa_id)->get();
             ->get();
-        print_r($unpaid_invoice);exit;
 
         return View::make('payroll::hr_voucher', compact(
             'associated_id', 'coa_id', 'unpaid_invoice',
