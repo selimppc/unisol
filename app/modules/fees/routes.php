@@ -157,8 +157,8 @@
 
     /*===========================Billing Applicant head Start===============================*/
 
-     Route::any('billing-applicant-head', [
-         'as' => 'billing-applicant-head',
+     Route::any('billing-applicant', [
+         'as' => 'billing-applicant',
          'uses' => 'FeesController@index_billing_applicant_head'
      ]);
      Route::any('save-billing-applicant-head',[
@@ -219,8 +219,8 @@
 
      /*=============================Billing Student Head Start===============================*/
 
-     Route::any('billing-student-head', [
-         'as' => 'billing-student-head',
+     Route::any('billing-student', [
+         'as' => 'billing-student',
          'uses' => 'FeesController@index_billing_student_head'
      ]);
      Route::any('student-head-save',[

@@ -61,10 +61,10 @@
 
 
    /*======To hide waiver select box and waiver amount text box when select this 2 item below=====*/
+     /*  $(selector).prop(property)*/
 
        $('#billing_item_id2').change(function(){
            selection = $(this).find(':selected').text();
-           //selection = $(this + 'option:selected').text();
            console.log(selection);
            switch(selection)
            {

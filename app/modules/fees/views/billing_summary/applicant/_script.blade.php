@@ -5,7 +5,7 @@
     $(function(){
 
         /*================================Add New Item====================================*/
-        
+
         $("#add_billing_applicant_detail").click(function(event)
         {
             var $billing_head_id = "<?php echo $billing_head_id; ?>";
@@ -65,7 +65,6 @@
 
         $('#billing_item_id2').change(function(){
             selection = $(this).find(':selected').text();
-            //selection = $(this + 'option:selected').text();
             console.log(selection);
             switch(selection)
             {

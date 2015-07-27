@@ -12,11 +12,12 @@
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="#tab_1" data-toggle="tab">Billing Student </a></li>
+
                     <button type="button" class=" btn btn-success fa fa-plus btn_margin" data-toggle="modal" data-target="#myModal" data-toggle="tooltip" data-placement="bottom" title="Add New" >
                         Add New
                     </button>
 
-                    <a href="{{URL::route('student-billing-history')}}" class="btn btn-default" ><i class="fa fa-arrow-right text-light-blue"></i> View Fees Details</a>
+                    <button href="{{URL::route('student-billing-history')}}" type="button" class="btn btn-default fa fa-arrow-right text-light-blue">View Fees Details</button>
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab_1">
