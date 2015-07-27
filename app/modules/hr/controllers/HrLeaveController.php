@@ -2,9 +2,9 @@
 
 class HrLeaveController extends \BaseController {
 
-    function __construct() {
+    /*function __construct() {
         $this->beforeFilter('hr', array('except' => array('')));
-    }
+    }*/
 
     protected function isPostRequest()
     {
@@ -14,7 +14,6 @@ class HrLeaveController extends \BaseController {
     public function index()
     {
         $data = new HrLeave();
-        $status = $data->getStatus();
 
         if($this->isPostRequest()) {
             $employee_list = Input::get('hr_employee_id');

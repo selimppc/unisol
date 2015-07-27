@@ -79,15 +79,6 @@ class HrLeave extends Eloquent{
 
     //TODO : Scope Area
 
-    public static function getStatus(){
-        return $status = [
-            'rejected' => 'Rejected',
-            'canceled' => 'Canceled',
-            'pending-approval'=>'Pending-Approval',
-            'scheduled'=>'Scheduled',
-            'taken'=>'Taken',
-            'approved'=>'Approved'
-        ];
-    }
+
 
 } 
