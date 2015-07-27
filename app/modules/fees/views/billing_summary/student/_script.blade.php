@@ -60,51 +60,31 @@
 
 
 
-    /*=======To hide waiver select box and waiver amount text box when select this 2 item below======*/
+   /*======To hide waiver select box and waiver amount text box when select this 2 item below=====*/
 
-    /* $('#billing_item_id2').change(function(){
-         selection = $(this + 'option:selected').text();
-         switch(selection)
-         {
-             case 'Admission Application form charge':
-                 $('#waiver_amount2').prop("disabled", true);
-                 break;
+       $('#billing_item_id2').change(function(){
+           selection = $(this).find(':selected').text();
+           //selection = $(this + 'option:selected').text();
+           console.log(selection);
+           switch(selection)
+           {
+               case 'Admission Application form charge':
+                   $('#waiver_id2').prop('disabled', true);
+                   $('#waiver_amount2').prop('disabled', true);
+                   break;
 
-             case 'Admission time charge.':
-                 $('#waiver_amount2').prop("disabled", true);
-                 break;
+               case 'Admission time charge.':
+                   $('#waiver_id2').prop('disabled', true);
+                   $('#waiver_amount2').prop('disabled', true);
+                   break;
 
-             default:
-                 $('#waiver_amount2').prop("disabled", false);
-                 break;
-         }
-         console.log(selection);
-     });*/
-
-        $('#billing_item_id2').change(function(){
-            selection = $(this).text();
-            //var selection = $(':selected', this).attr('selection');
-            switch(selection)
-            {
-                case 'Admission Application form charge':
-                    $('#waiver_id2').hide();
-                    $('#waiver_amount2').attr('disabled', 'disabled');
-                    break;
-
-                case 'Admission time charge.':
-                    $('#waiver_id2').hide();
-                    $('#waiver_amount2').attr('disabled', 'disabled');
-                    break;
-
-                default:
-                    $('#waiver_id2').show();
-                    $('#waiver_amount2').show();
-                    break;
-            }
-            /*console.log(selection);*/
-        });
-
-
+               default:
+                   //$("#waiver_amount2").filter('disabled').removeAttr('disabled');
+                   $('#waiver_id2').prop('disabled', false);
+                   $('#waiver_amount2').prop('disabled', false);
+                   break;
+           }
+       });
 
     /*=============Calculation starts to make total amount using waiver information ================*/
 
