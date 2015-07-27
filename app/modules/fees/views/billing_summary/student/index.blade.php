@@ -76,7 +76,7 @@
                                 @endforeach
                                 </tbody>
                             </table>
-                            {{--{{ $billing_summary_applicant->links() }}--}}
+                            {{ $summary_student->links() }}
                         </div>
                     </div>
                 </div>

@@ -631,7 +631,7 @@ class FeesController extends \BaseController {
         $applicant = array(''=>'Select applicant') + Applicant::ApplicantList();
         $schedule = ['' => 'Select schedule'] + BillingSchedule::lists('title', 'id');
         $payment_option = ['' => 'Select Payment Option'] + PaymentOption::lists('title', 'id');
-        $summary_applicant = BillingApplicantHead::latest('id')->with('relApplicant', 'relBillingSchedule')->get();
+        $summary_applicant = BillingApplicantHead::latest('id')->with('relApplicant', 'relBillingSchedule')->paginate(10);
         return View::make('fees::billing_summary.applicant.index_applicant',compact('applicant','summary_applicant','schedule','payment_option'));
     }
 
@@ -663,7 +663,7 @@ class FeesController extends \BaseController {
     public function view_billing_applicant($id)
     {
         $view_summary_applicant = BillingApplicantHead::find($id);
-        $view_details_applicant = BillingApplicantDetail::with('relBillingApplicantHead','relBillingItem','relWaiver')
+        $view_details_applicant = BillingApplicantDetail::latest('id')->with('relBillingApplicantHead','relBillingItem','relWaiver')
              ->where('billing_applicant_head_id','=',$id)
              ->get();
         return View::make('fees::billing_summary.applicant.view_applicant',compact('view_summary_applicant','view_details_applicant','total'));
@@ -877,7 +877,7 @@ class FeesController extends \BaseController {
         $student = array(''=>'Select Student') + User::StudentList();
         $schedule = ['' => 'Select Schedule'] + BillingSchedule::lists('title', 'id');
         $payment_option = ['' => 'Select Payment Option'] + PaymentOption::lists('title', 'id');
-        $summary_student = BillingStudentHead::latest('id')->with('relUser','relUser.relUserProfile', 'relBillingSchedule')->get();
+        $summary_student = BillingStudentHead::latest('id')->with('relUser','relUser.relUserProfile', 'relBillingSchedule')->paginate(10);
 
         return View::make('fees::billing_summary.student.index',compact('student','summary_student','schedule','payment_option'));
     }
@@ -910,7 +910,7 @@ class FeesController extends \BaseController {
     public function view_billing_student($id)
     {
         $view_summary_student = BillingStudentHead::find($id);
-        $view_details_student = BillingStudentDetail::with('relBillingStudentHead','relBillingItem','relWaiver')
+        $view_details_student = BillingStudentDetail::latest('id')->with('relBillingStudentHead','relBillingItem','relWaiver')
             ->where('billing_student_head_id','=',$id)
             ->get();
         return View::make('fees::billing_summary.student.view',compact('view_summary_student','view_details_student','total'));

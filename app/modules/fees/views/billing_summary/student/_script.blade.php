@@ -2,7 +2,10 @@
 {{ HTML::script('assets/etsb/etsb_js/jquery-ui/jquery-ui.min.js')}}
 
 <script type="text/javascript">
-    $(function(){
+   /* $(function(){* same */
+   $( document ).ready(function()
+   {
+   /*================================Add New Item====================================*/
 
         $("#add_billing_student_detail").click(function(event)
         {
@@ -56,7 +59,54 @@
         });
 
 
-        /************************* Calculation starts to make total amount using waiver information *******************************/
+
+    /*=======To hide waiver select box and waiver amount text box when select this 2 item below======*/
+
+    /* $('#billing_item_id2').change(function(){
+         selection = $(this + 'option:selected').text();
+         switch(selection)
+         {
+             case 'Admission Application form charge':
+                 $('#waiver_amount2').prop("disabled", true);
+                 break;
+
+             case 'Admission time charge.':
+                 $('#waiver_amount2').prop("disabled", true);
+                 break;
+
+             default:
+                 $('#waiver_amount2').prop("disabled", false);
+                 break;
+         }
+         console.log(selection);
+     });*/
+
+        $('#billing_item_id2').change(function(){
+            selection = $(this).text();
+            //var selection = $(':selected', this).attr('selection');
+            switch(selection)
+            {
+                case 'Admission Application form charge':
+                    $('#waiver_id2').hide();
+                    $('#waiver_amount2').attr('disabled', 'disabled');
+                    break;
+
+                case 'Admission time charge.':
+                    $('#waiver_id2').hide();
+                    $('#waiver_amount2').attr('disabled', 'disabled');
+                    break;
+
+                default:
+                    $('#waiver_id2').show();
+                    $('#waiver_amount2').show();
+                    break;
+            }
+            /*console.log(selection);*/
+        });
+
+
+
+    /*=============Calculation starts to make total amount using waiver information ================*/
 
         $('#billing_item_id2').change(function(){
             var quan = $('#quantity2').val();
@@ -65,6 +115,7 @@
                     { billing_item_id: $(this).val() },
                     function(data) {
                         $('#cost_per_unit2').val(data);
+
                         calculate_sum_data(data, quan, waiver_amount);
                     });
         });
@@ -106,11 +157,11 @@
             $('#total_amount2').val(sum_data);
         }
 
-        /************************* Calculation ends to make total amount using waiver information *******************************/
 
     });
 
-    //---------------------Billing details ajax delete in popup----------------------------}}
+
+    /*=================================Ajax delete in popup========================================*/
 
     function deleteNearestTr(getId, detailsId)
     {

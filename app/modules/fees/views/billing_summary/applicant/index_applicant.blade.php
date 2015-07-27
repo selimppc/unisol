@@ -77,6 +77,7 @@
                                 @endforeach
                                 </tbody>
                             </table>
+                            {{ $summary_applicant->links() }}
                         </div>
                     </div>
                 </div>
