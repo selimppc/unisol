@@ -313,7 +313,8 @@ class CreateHr extends Migration {
             $table->string('period');
             $table->float('total_amount');
             $table->enum('status', array(
-                'open', 'ask-for-interview', 'approved', 'denied', 'request-for-update'
+                'open', 'ask-for-interview', 'approved', 'denied', 'request-for-update',
+                'confirmed', 'invoiced'
             ));
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
@@ -519,6 +520,19 @@ class CreateHr extends Migration {
             $table->timestamps();
         });
 
+
+        Schema::create('hr_trn_no_setup', function(Blueprint $table) {
+            $table->increments('id');
+            $table->string('code', 4)->unique();
+            $table->string('title', 32)->nullable();
+            $table->integer('last_number', false, 10)->nullable();
+            $table->integer('increment', false, 1)->nullable();
+            $table->integer('created_by', false, 11)->nullable();
+            $table->integer('updated_by', false, 11)->nullable();
+            $table->timestamps();
+            $table->engine = 'InnoDB';
+        });
+
 	}
 
 	public function down()
@@ -554,6 +568,7 @@ class CreateHr extends Migration {
 
         Schema::drop('hr_provident fund');
         Schema::drop('hr_provident_fund_config');
+        Schema::drop('hr_trn_no_setup');
 
 	}
 
