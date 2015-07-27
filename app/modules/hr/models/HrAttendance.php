@@ -36,7 +36,7 @@ class HrAttendance  extends Eloquent{
     }
 
     public function getDateAttribute($date) {
-        return Carbon::parse($date)->format('d-M-Y'); //Change the format to whichever you desire
+        return Carbon::parse($date)->format('Y-m-d'); //Change the format to whichever you desire
     }
 
     //TODO : Model Relationship

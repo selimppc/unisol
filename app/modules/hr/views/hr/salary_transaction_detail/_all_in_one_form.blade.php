@@ -141,6 +141,7 @@ $(function(){
          $sal_trns_dtl_percentage = $("#salary_transaction_detail_percentage").val();
 
 
+
 //Try 1
          //$.get($sal_trns_dtl_allowance = $("#salary_transaction_detail_allowance").val() ? $allowance_name = $(".allowance_name option:selected").text() : null );
          //$.get($sal_trns_dtl_deduction = $("#salary_transaction_detail_deduction").val() ? $deduction_name = $(".deduction_name option:selected").text() : null );

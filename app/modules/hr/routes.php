@@ -347,6 +347,22 @@ Route::group(['prefix' => 'hr'], function() {
         'as' => 'salary-transaction-batch-delete',
         'uses'=> 'HrSalaryTransactionHeadController@batch_delete_hr_salary_transaction'
     ]);
+
+    Route::any('confirm-salary-transaction/{st_id}',[
+        'as' => 'confirm-salary-transaction',
+        'uses'=> 'HrSalaryTransactionHeadController@confirm_salary_transaction'
+    ]);
+
+    Route::any('salary_transaction/show_confirm/{s_t_id}',[
+        'as' => 'salary_transaction.show_confirm',
+        'uses'=> 'HrSalaryTransactionHeadController@show_confirm_salary_transaction'
+    ]);
+
+
+
+
+
+
 //HR SALARY ALLOWANCE
     Route::any('salary_allowance/{s_id}',[
         'as' => 'salary_allowance',
