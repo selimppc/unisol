@@ -3,7 +3,7 @@
       <div class="col-sm-6">
         <div class='form-group'>
            {{ Form::label('user_id', 'User Name') }}
-           {{ Form::select('user_id', User::FullNameWithRoleNameList() ,Input::old('user_id'),['class'=>'form-control', 'required']) }}
+           {{ Form::select('user_id', $user_list ,Input::old('user_id'),['class'=>'form-control', 'required']) }}
         </div>
 
         <div class='form-group'>
@@ -33,7 +33,7 @@
 
         <div class='form-group'>
            {{ Form::label('designation_id', 'Designation') }}
-           {{ Form::select('designation_id',array('' => 'Select Designation ') + Designation::GetDesignationLists() ,Input::old('designation_id'),['class'=>'form-control', 'required']) }}
+           {{ Form::select('designation_id', $designation ,Input::old('designation_id'),['class'=>'form-control', 'required']) }}
         </div>
 
         <div class='form-group'>

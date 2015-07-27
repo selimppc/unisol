@@ -19,12 +19,15 @@ class HrEmployeeController extends \BaseController {
         $model = HrEmployee::with('relUser','relHrBank','relHrSalaryGrade',
             'relDesignation','relDepartment','relCurrency')->get();
 
+        $user_list = User::FullNameWithRoleNameList();
+
         $salary_grade = HrSalaryGrade::SalaryGradeLists();
         $depart = Department::GetDepartmentLists();
         $currency = Currency::CurrencyLists();
         $bank = HrBank::HrBankLists();
+        $designation = Designation::GetDesignationLists();
 
-        return View::make('hr::hr.employee.index', compact('model','pageTitle','salary_grade','depart','bank','currency'));
+        return View::make('hr::hr.employee.index', compact('user_list','model','pageTitle','salary_grade','depart','bank','currency','designation'));
     }
 
     public function store_hr_employee()
