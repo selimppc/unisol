@@ -33,7 +33,9 @@ class AccVApHr extends \Eloquent
 
 
     //TODO : Model Relationship
-
+    public function relAccChartOfAccounts(){
+        return $this->belongsTo('AccChartOfAccounts', 'acc_chart_of_accounts_id', 'id');
+    }
 
 
 

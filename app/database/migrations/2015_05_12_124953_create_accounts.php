@@ -69,6 +69,7 @@ class CreateAccounts extends Migration {
             $table->enum('type', array(
                 'account-payable', 'account-receivable', 'stock-adjustment',
                 'journal-voucher', 'payment-voucher', 'receipt-voucher', 'reverse-entry',
+                'hr-salary',
             ));
             $table->dateTime('date');
             $table->text('reference');
