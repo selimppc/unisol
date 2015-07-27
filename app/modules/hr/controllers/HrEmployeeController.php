@@ -19,7 +19,14 @@ class HrEmployeeController extends \BaseController {
         $model = HrEmployee::with('relUser','relHrBank','relHrSalaryGrade',
             'relDesignation','relDepartment','relCurrency')->get();
 
-        return View::make('hr::hr.employee.index', compact('model','pageTitle'));
+        $salary_grade = HrSalaryGrade::SalaryGradeLists();
+        $depart = Department::GetDepartmentLists();
+
+        $currency = Currency::CurrencyLists();
+
+        $bank = HrBank::HrBankLists();
+
+        return View::make('hr::hr.employee.index', compact('model','pageTitle','salary_grade','depart','bank','currency'));
     }
 
     public function store_hr_employee()
@@ -70,7 +77,11 @@ class HrEmployeeController extends \BaseController {
             return Redirect::back();
         }else{
             $model = HrEmployee::findOrFail($emp_id);
-            return View::make('hr::hr.employee.edit', compact('model'));
+            $salary_grade = HrSalaryGrade::SalaryGradeLists();
+            $depart = Department::GetDepartmentLists();
+            $currency = Currency::CurrencyLists();
+            $bank = HrBank::HrBankLists();
+            return View::make('hr::hr.employee.edit', compact('model','salary_grade','depart','currency','bank'));
         }
     }
 

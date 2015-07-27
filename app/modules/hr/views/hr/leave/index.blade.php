@@ -34,7 +34,7 @@
     <br>
     {{-------------------Searching Starts--------------------------------------------------------------}}
         <div>
-            {{ Form::open(array('url' => 'hr/leave')) }}
+            {{ Form::open(array('url' => 'hr/leave','class'=>'form-horizontal')) }}
             <div class="col-sm-10">
                 <div class="col-sm-3" style="padding-left: 0">
                     {{ Form::label('hr_employee_id', 'HR Employee') }}
@@ -48,15 +48,20 @@
                     {{ Form::label('to_date', 'End Date') }}
                     {{ Form::select('to_date', [''=>'Select Date' ] + $date2, Input::old('to_date'), array('class' => 'form-control') ) }}
                 </div>
-                <div class="col-sm-3" style="padding-left: 0">
+                <div class="col-sm-2" style="padding-left: 0">
                     {{ Form::label('hr_leave_type_id', 'HR Leave Type') }}
-                    {{ Form::select('hr_leave_type_id', [''=>'Select HR Leave Type' ] + $leave_type, Input::old('hr_leave_type_id'), array('class' => 'form-control') ) }}
+                    {{ Form::select('hr_leave_type_id', [''=>'Select One' ] + $leave_type, Input::old('hr_leave_type_id'), array('class' => 'form-control') ) }}
                 </div>
                 <div class="col-sm-2" style="padding-left: 0">
-                    {{ Form::label('status', 'Status') }}
-                    {{ Form::select('status', [''=>'Select Status' ] + $status, Input::old('status'), array('class' => 'form-control') ) }}
+                   {{ Form::label('status', 'Status')}}
+                   {{ Form::select('status', ['' => 'Select Status','rejected' => 'Rejected','canceled' => 'Canceled',
+                    'scheduled'=>'Scheduled','taken'=>'Taken','approved'=>'Approved'] , Input::old('status'), array('class' => 'form-control'))}}
                 </div>
-                   {{ Form::submit('Search', array('class'=>' pull-right btn btn-info btn-xs','id'=>'button'))}}
+                <br>
+                <div style="padding-left: 930px;margin-top: 6px">
+                    {{ Form::submit('Search', array('class'=>' btn btn-info btn-sm','id'=>'button','style'=>"width: 70px"))}}
+                </div>
+
             </div>
             {{ Form::close() }}
         </div>
@@ -128,7 +133,7 @@
             </table>
        </div>
        {{form::close() }}
-       {{ $data->links() }}
+{{--       {{ $data->links() }}--}}
     </div>
 </div>
 

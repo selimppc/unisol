@@ -72,11 +72,11 @@
                 </tr>
                 <tr>
                     <td><strong>Emergency Contact Relation: </strong></td>
-                    <td>{{ $data->emergency_contact_relationship }}</td>
+                    <td>{{ ucfirst($data->emergency_contact_relationship) }}</td>
                 </tr>
                 <tr>
                     <td><strong>Status: </strong></td>
-                    <td>{{ $data->status }}</td>
+                    <td>{{ ucfirst($data->status) }}</td>
                 </tr>
             </table>
         </div>
