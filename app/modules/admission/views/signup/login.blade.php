@@ -1,9 +1,10 @@
-@extends('layouts.master')
-
-@section('sidebar')
-    @include('admission::_sidebar')
+@extends('layouts.layout')
+@section('top_menu')
+    @include('layouts._top_menu')
 @stop
-
+@section('sidebar')
+    {{--@include('layouts._sidebar_u')--}}
+@stop
 @section('content')
 
 <div class="span6 well">

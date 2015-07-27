@@ -1,80 +1,70 @@
-@extends('layouts.master')
-
-@section('sidebar')
-    @include('admission::_sidebar')
+@extends('layouts.layout')
+@section('top_menu')
+    @include('layouts._top_menu')
 @stop
-
+@section('sidebar')
+    @include('layouts._sidebar_public')
+@stop
 @section('content')
 
- <div class='control-group'>
- <legend style="color: #0088cc">Sign Up Here.......</legend>
-<div class="span6 well">
+    <!-- left column -->
+    <div class="col-md-8"style="margin-left: 40px">
+        <!-- general form elements -->
+        <div class="box box-solid">
+            <div class="box-header">
+                <h3 class="text-center text-green">Sign Up Here.......</h3>
+            </div><!-- /.box-header -->
+            <div class="box-body">
+                {{ Form::open(array('class'=>'form-horizontal','url' => 'applicant/store', 'method' =>'post', 'files'=>'true','id'=>'signup-form')) }}
 
-{{ Form::open(array('class'=>'form-horizontal','url' => 'user/store', 'method' =>'post', 'files'=>'true','id'=>'signup-form')) }}
+                <span class="text-muted ">Please fillup the following fields and be an registered user.</span>
+                <div>&nbsp;</div>
+                <span class="text-muted "><em><span style="color:red;">*</span>Marked are required fields </em></span>
+                <div>&nbsp;</div>
 
+                <div class="control-group">
+                    <div class="col-lg-6" style="padding-left: 0;">
+                        {{ Form::label('username', 'User Name:') }}
+                        {{ Form::text('username',Input::old('username'), array('class' => 'form-control','placeholder'=>'Enter your user name')) }}
+                    </div>
+                    <div class="col-lg-6" style="padding-right: 0;">
+                         {{ Form::label('email_address', 'Email') }}
+                         {{ Form::text('email_address', Input::old('email_address'), array('class'=>'form-control','placeholder'=>'Enter a valid email address','required')) }}
+                    </div>
+                </div>
 
- <div class="form-group">
-    <span class="text-muted"><em><span style="color:red;">  * </span><b>Indicates required field</b> </em></span>
- </div>
+                <div class="control-group">
+                     <div class="col-lg-6" style="padding-left: 0;">
+                        {{ Form::label('password', 'Password') }}
+                        {{ Form::password('password', array('placeholder'=>'........','class'=>'form-control')) }}
+                     </div>
+                     <div class="col-lg-6" style="padding-right: 0;">
+                        {{ Form::label('confirmpassword', 'ConfirmPassword') }}
+                        {{ Form::password('confirmpassword', array('placeholder'=>'........','class'=>'form-control')) }}
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="col-lg-6" style="padding-left: 0;">
+                        {{ Form::label('role_id', 'Target Role') }}
+                        {{ Form::select('role_id', array(''=>'Select One','10' =>'Applicant', '2' => 'Teacher','8'=>'Alumni','9' => 'Employee'), '', array('class' => 'form-control'))}}
+                    </div>
+                    <div class="col-lg-6" style="padding-right: 0;">
+                        {{ Form::label('to_date', 'End Date') }}
+                        {{ Form::text('to_date',  Input::old('to_date'),['class'=>'form-control date_picker']) }}
+                    </div>
+                </div>
+                <p>&nbsp;</p>
+                {{ Form::submit('Register', array('class' => 'btn btn-success')) }}
+                <a href="{{URL::previous()}}" class="btn btn-default">Close</a>
+                <br>
+                <br>
+                {{ Form::close() }}
 
-
-<div class="control-group @if ($errors->has('username')) has-error @endif">
-
-<span style="color:red;">*</span>
-        {{ Form::label('username', 'User Name:') }}
-        {{ Form::text('username',Input::old('username'), array('class' => 'form-control','placeholder'=>'Enter your user name')) }}
-@if ($errors->has('username')) <p class="help-block">{{ $errors->first('username') }}</p> @endif</div>
-
-<div class="control-group @if ($errors->has('email_address')) has-error @endif">
-
-<span style="color:red;">*</span>
-        {{ Form::label('email_address', 'Email') }}
-        {{ Form::text('email_address', Input::old('email_address'), array('class'=>'form-control','placeholder'=>'Enter a valid email address','required')) }}
-@if ($errors->has('email_address')) <p class="help-block" >{{ $errors->first('email_address') }}</p> @endif</div>
-
-<div class="control-group @if ($errors->has('password')) has-error @endif">
-
-<span style="color:red;">*</span>
-        {{ Form::label('password', 'Password') }}
-        {{ Form::password('password', array('placeholder'=>'........','class'=>'form-control')) }}
-@if ($errors->has('password')) <p class="help-block">{{ $errors->first('password') }}</p> @endif</div>
-
-<div class="control-group @if ($errors->has('confirmpassword')) has-error @endif">
-
-<span style="color:red;">*</span>
-        {{ Form::label('confirmpassword', 'ConfirmPassword') }}
-        {{ Form::password('confirmpassword', array('placeholder'=>'........','class'=>'form-control')) }}
-@if ($errors->has('confirmpassword')) <p class="help-block">{{ $errors->first('confirmpassword') }}</p> @endif</div>
-
-<div class="control-group @if ($errors->has('targetrole')) has-error @endif">
-
-<span style="color:red;">*</span>
-        {{ Form::label('targetrole', 'Target Role') }}
-        {{ Form::select('targetrole', array(''=>'Select One','applicant' => 'Applicant', faculty => 'Teacher','staff'=>'Staff','alumni'=>'Alumni','employer' => 'Employer'), '', array('class' => 'form-control'))}}
-@if ($errors->has('targetrole')) <p class="help-block">{{ $errors->first('targetrole') }}</p> @endif</div>
-          <br>
-
-        {{--{{ HTML::image(Captcha::img(), 'Captha image') }}--}}
-
-
-        {{--{{ Form::text('captcha_value', null, ['class'=>'form-control']) }}--}}
-        {{--<div class="g-recaptcha" data-sitekey="6LeYvf4SAAAAAE72M_jBFJdzfx7mglsnK_0C4cr6"></div>--}}
-
-
-
-         <br>
-
-        {{ Form::submit('Submit', array('class' => 'btn btn-primary')) }}
-
-<br>
-<br>
-
-{{ Form::close() }}
-
-</div>
-
-</div>
-
+            </div><!-- /.box -->
+            {{--</div>--}}
+        </div>
+    </div>
+@stop
 
 <script type="text/javascript">
  $(document).ready(function() {
@@ -87,5 +77,3 @@
         $('#confirmpassword').tooltip({  title: 'Write again your password  to confirm it',placement : 'right' });
 });
 </script>
-
-@stop

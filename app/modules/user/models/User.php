@@ -8,11 +8,12 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 class User extends Eloquent implements UserInterface, RemindableInterface {
 
 	protected $table = 'user';
-    protected $fillable = [
+    /*protected $fillable = [
         'username', 'password', 'email', 'role_id', 'department_id', 'join_date',
         'last_visit','ip_address','status', 'verified_code', 'csrf_token',
-        'applicant_id', 'waiver_id', 'created_by', 'updated_by'
-    ];
+        'applicant_id', 'waiver_id',
+        'created_by', 'updated_by'
+    ];*/
     public $errors;
 
     private $rules = [

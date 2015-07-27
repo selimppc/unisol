@@ -2,7 +2,7 @@
 
 class UserDashboardController extends \BaseController {
 
-	public function amwDashboard(){
+    public function amwDashboard(){
         Session::flash('message','Welcome to dashboard of "AMW" !');
         return View::make('user::dashboard.amw');
     }
@@ -35,5 +35,9 @@ class UserDashboardController extends \BaseController {
     public function applicantDashboard(){
         Session::flash('message','Welcome to dashboard of "Applicant" !');
         return View::make('user::dashboard.applicant');
+    }
+    public function employeeDashboard(){
+        Session::flash('message','Welcome to dashboard of "Employee" !');
+        return View::make('user::dashboard.employee');
     }
 }

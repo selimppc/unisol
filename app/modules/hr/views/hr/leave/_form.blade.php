@@ -1,5 +1,6 @@
 
 <div style="padding: 0px 20px 20px;">
+    {{Form::text('hr_employee_id',$hr_employee_id)}}
     <div class="form-group">
          {{ Form::label('forward_to', 'Leave Forward To ') }}<span class="text-danger">*</span>
          {{ Form::select('forward_to', $hr_list, Input::old('forward_to'), array('class' => 'form-control','required'=>'required')) }}

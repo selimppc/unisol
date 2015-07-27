@@ -2,9 +2,9 @@
 
 class HrLeaveController extends \BaseController {
 
-    /*function __construct() {
+    function __construct() {
         $this->beforeFilter('hr', array('except' => array('')));
-    }*/
+    }
 
     protected function isPostRequest()
     {
@@ -39,7 +39,6 @@ class HrLeaveController extends \BaseController {
         $date1 = HrLeave::lists('from_date','from_date');
         $date2 = HrLeave::lists('to_date','to_date');
         $leave_type = HrLeaveType::lists('title','id');
-
 
         Input::flash();
         return View::make('hr::hr.leave.index',compact('data','employee_list','leave_type_id','hr_list','date1','date2','leave_type','status'));

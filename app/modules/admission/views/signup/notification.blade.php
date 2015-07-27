@@ -1,9 +1,10 @@
-@extends('layouts.master')
-
-@section('sidebar')
-    @include('admission::_sidebar')
+@extends('layouts.layout')
+@section('top_menu')
+    @include('layouts._top_menu')
 @stop
-
+@section('sidebar')
+    {{--@include('layouts._sidebar_u')--}}
+@stop
 @section('content')
 
 
@@ -12,9 +13,9 @@
 <h4 class="form-signin-heading">Mail Notification</h4>
 
        <div>
-       <p>Thanks for signing up! Please check your email.</p>
+       <p>Thanks for signing up!</p>
        </div>
-        {{ Form::close() }}
+       {{ Form::close() }}
 
 </div>
 
