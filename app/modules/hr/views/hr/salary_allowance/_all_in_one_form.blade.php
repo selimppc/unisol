@@ -58,7 +58,7 @@
             <div class="col-sm-4" style="width:20%">
                 <div class='form-group'>
                    {{ Form::label('status', 'Status') }}
-                     {{ Form::select('status',array(''=>'Select Status','active'=>'active','close'=>'close'),
+                     {{ Form::select('status',array(''=>'Select Status','active'=>'Active','close'=>'Close'),
                         Input::old('status'),['id'=>'salary_allowance_status','class'=>'form-control']) }}
                 </div>
             </div>

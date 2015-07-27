@@ -39,7 +39,7 @@
 
 <div class='form-group'>
    {{ Form::label('status', 'Status') }}
-   {{ Form::select('status',[''=>'Select Status','new'=>'new','running'=>'running','complete'=>'complete'], Input::old('status'),['class'=>'form-control', 'required']) }}
+   {{ Form::select('status',[''=>'Select Status','new'=>'New','running'=>'Running','complete'=>'Complete'], Input::old('status'),['class'=>'form-control', 'required']) }}
 </div>
 
 {{ Form::submit('Save', array('class'=>'pull-right btn btn-info')) }}

@@ -3,7 +3,7 @@
 class PayrollController extends \BaseController {
 
     function __construct() {
-        $this->beforeFilter('amw', array('except' => array('')));
+        $this->beforeFilter('hr', array('except' => array('')));
     }
     /*
      * POST REQUEST

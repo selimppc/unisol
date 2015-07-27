@@ -41,27 +41,27 @@
                 </tr>
             </thead>
             <tbody>
-             @if(!empty($model))
-                @foreach($model as $values)
-                 <tr>
-                    <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $values->id }}"></td>
-                     <td>{{ $values->relUser->relUserProfile->first_name.' '.$values->relUser->relUserProfile->middle_name.' '.$values->relUser->relUserProfile->last_name }}</td>
-                     <td>{{ $values->employee_id }}</td>
-                    <td>{{ $values->date_of_joining }}</td>
-                    <td>{{ ucfirst($values->relDesignation->title) }}</td>
-                    <td>{{ ucfirst($values->relHrBank->bank_name) }}</td>
-                    <td>{{ $values->bank_account_no }}</td>
-                    <td>{{ ucfirst($values->employee_type) }}</td>
-                    <td>{{ ucfirst($values->employee_category) }}</td>
-                    <td>{{ ucfirst($values->status) }}</td>
-                    <td>
-                        <a href="{{ URL::route('employee.show', ['emp_id'=>$values->id ])  }}" class="btn btn-default btn-xs" title="Manage Applicant" data-toggle="modal" data-target="#modal-pc"><i style="color: #149bdf" class="fa fa-eye"></i></a>
-                        <a href="{{ URL::route('employee.edit',['emp_id'=>$values->id])  }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal-pc"> <i style="color: #7b24dd" class="fa fa-edit"></i></a>
-                        <a data-href="{{ URL::route('employee.destroy', ['emp_id'=>$values->id ]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i style="color: red" class="fa fa-trash-o" ></i></a>
-                    </td>
-                 </tr>
-                @endforeach
-             @endif
+             @if(isset($model))
+             	@foreach($model as $values)
+             	 <tr>
+             		<td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $values->id }}"></td>
+             		<td>{{ isset($values->user_id) ? $values->relUser->relUserProfile->first_name.' '.$values->relUser->relUserProfile->middle_name.' '.$values->relUser->relUserProfile->last_name : "" }}</td>
+             		<td>{{ $values->employee_id }}</td>
+             		<td>{{ $values->date_of_joining }}</td>
+             		<td>{{ isset($values->designation_id)? ucfirst($values->relDesignation->title):"" }}</td>
+             		<td>{{ isset($values->hr_bank_id)? ucfirst($values->relHrBank->bank_name):"" }}</td>
+             		<td>{{ $values->bank_account_no }}</td>
+             		<td>{{ ucfirst($values->employee_type) }}</td>
+             		<td>{{ ucfirst($values->employee_category) }}</td>
+             		<td>{{ ucfirst($values->status) }}</td>
+             		<td>
+             			<a href="{{ URL::route('employee.show', ['emp_id'=>$values->id ])  }}" class="btn btn-default btn-xs" title="Manage Applicant" data-toggle="modal" data-target="#modal-pc"><i style="color: #149bdf" class="fa fa-eye"></i></a>
+             			<a href="{{ URL::route('employee.edit',['emp_id'=>$values->id])  }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal-pc"> <i style="color: #7b24dd" class="fa fa-edit"></i></a>
+             			<a data-href="{{ URL::route('employee.destroy', ['emp_id'=>$values->id ]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i style="color: red" class="fa fa-trash-o" ></i></a>
+             		</td>
+             	 </tr>
+             	@endforeach
+              @endif
             </tbody>
          </table>
         </div>

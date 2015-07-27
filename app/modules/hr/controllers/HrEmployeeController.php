@@ -4,7 +4,7 @@ class HrEmployeeController extends \BaseController {
 
     function __construct()
     {
-        $this->beforeFilter('', array('except' => array('')));
+        $this->beforeFilter('hr', array('except' => array('')));
     }
 
     protected function isPostRequest()
@@ -21,9 +21,7 @@ class HrEmployeeController extends \BaseController {
 
         $salary_grade = HrSalaryGrade::SalaryGradeLists();
         $depart = Department::GetDepartmentLists();
-
         $currency = Currency::CurrencyLists();
-
         $bank = HrBank::HrBankLists();
 
         return View::make('hr::hr.employee.index', compact('model','pageTitle','salary_grade','depart','bank','currency'));

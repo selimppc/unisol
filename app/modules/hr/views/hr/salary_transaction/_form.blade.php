@@ -29,7 +29,7 @@
 
 <div class='form-group'>
    {{ Form::label('status', 'Status') }}
-   {{ Form::select('status',array(''=>'Select Status','open'=>'open','ask-for-interview'=>'ask for interview','approved'=>'approved','denied'=>'denied','request-for-update'=>'request for update'), Input::old('status'),['class'=>'form-control', 'required']) }}
+   {{ Form::select('status',array(''=>'Select Status','open'=>'Open','ask-for-interview'=>'Ask For Interview','approved'=>'Approved','denied'=>'Denied','request-for-update'=>'Request For Update'), Input::old('status'),['class'=>'form-control', 'required']) }}
 </div>
 
 

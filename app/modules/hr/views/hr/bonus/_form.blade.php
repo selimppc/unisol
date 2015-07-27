@@ -25,7 +25,7 @@
 
 <div class='form-group'>
    {{ Form::label('status', 'Status') }}
-   {{ Form::select('status',[''=>'Select Status','active'=>'active','close'=>'close'], Input::old('status'),['class'=>'form-control', 'required']) }}
+   {{ Form::select('status',[''=>'Select Status','active'=>'Active','close'=>'Close'], Input::old('status'),['class'=>'form-control', 'required']) }}
 </div>
 
 {{ Form::submit('Save', array('class'=>'pull-right btn btn-info')) }}

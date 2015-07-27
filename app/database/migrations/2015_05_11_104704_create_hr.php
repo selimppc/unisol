@@ -100,7 +100,9 @@ class CreateHr extends Migration {
             $table->string('emergency_contact_number', 32);
             $table->string('emergency_contact_relationship', 32);
             $table->text('note');
-            $table->string('status', 32);
+            $table->enum('status', array(
+                'open', 'closed', 'not-in-service'
+            ));
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);
             $table->timestamps();
