@@ -14,8 +14,6 @@ class PayrollController extends \BaseController {
     }
 
 
-
-
     /**
      * Display a listing of the resource.
      *
@@ -57,8 +55,8 @@ class PayrollController extends \BaseController {
     // manage HR Invoiced Data
     public function  manage_hr_invoice(){
         $pageTitle = "Manage HR Salary Invoice";
-        $data = AccVAppayable::get();
-        return View::make('payroll::manage_hr_invoice', compact('pageTitle', 'data'));
+        $data = AccVApHr::get();
+        return View::make('payroll::hr_invoice', compact('pageTitle', 'data'));
     }
 
     // Salary Payment Voucher
@@ -70,11 +68,11 @@ class PayrollController extends \BaseController {
         $coa_lists = AccChartOfAccounts::lists('description', 'id');
 
         //Unpaid Invoice Lists
-        $unpaid_invoice = AccVUnpaidInvoice::where('associated_id', $associated_id)
+        $unpaid_invoice = AccVUnpaidinvHr::where('associated_id', $associated_id)
             //->where('acc_voucher_head_id', $coa_id)->get();
             ->get();
 
-        return View::make('payroll::ap_voucher', compact(
+        return View::make('payroll::hr_voucher', compact(
             'associated_id', 'coa_id', 'unpaid_invoice',
             'data','year_lists', 'period_lists', 'coa_lists'
         ));
@@ -89,12 +87,12 @@ class PayrollController extends \BaseController {
      * 4. acc_voucher_head
      *
      */
-    public function store_ap_payment_voucher(){
+    public function store_hr_salary_voucher(){
         //Get ALl input Data
         $input_data = Input::all();
 
         // Generate Voucher Number
-        $apv_no = AccTrnNoSetup::where('title', '=', "Account Payable Voucher")
+        $apv_no = AccTrnNoSetup::where('title', '=', "HR Salary")
             ->select(DB::raw('CONCAT (code, LPAD(last_number + 1, 8, 0)) as number'))
             ->first()->number;
 
@@ -110,7 +108,7 @@ class PayrollController extends \BaseController {
                 //Acc Voucher Head data and Store
                 $data_v_head = [
                     'voucher_number' => $apv_no,
-                    'type' => "account-payable-voucher",
+                    'type' => "hr-salary",
                     'date' => $input_data['date'],
                     'year_id' => $input_data['year_id'],
                     'period' => $input_data['period'],
@@ -157,7 +155,7 @@ class PayrollController extends \BaseController {
                 }
 
                 // Update Acc transaction Number
-                DB::table('acc_trn_no_setup')->where('title', '=', "Account Payable Voucher")
+                DB::table('acc_trn_no_setup')->where('title', '=', "HR Salary ")
                     ->update(array('last_number' => substr($apv_no, 4)));
 
                 //RUN Store procedure
