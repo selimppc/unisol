@@ -156,8 +156,8 @@ $(function(){
                  return false;
              } else {
                 $('#test').append("<tr> " +
-                      "<td><input type='' name='hr_loan_head_id[]' value='" + $ln_hd_id + "' readonly>" + "<input name='title[]' value='"+ $sal_deduction_title +"' readonly> </td>" +
-                      "<td><input type='' name='hr_employee_id' value='" + $sal_dedc_employee_id + "' readonly>" + "<input name='type[]' value='"+ $sal_deduction_type +"' readonly> </td>" +
+                      "<td><input type='hidden' name='hr_loan_head_id[]' value='" + $ln_hd_id + "' readonly>" + "<input name='title[]' value='"+ $sal_deduction_title +"' readonly> </td>" +
+                      "<td><input type='hidden' name='hr_employee_id' value='" + $sal_dedc_employee_id + "' readonly>" + "<input name='type[]' value='"+ $sal_deduction_type +"' readonly> </td>" +
                       "<td><input name='hr_salary_advance_id[]' value='"+ $sal_salary_advance +"' readonly></td>" +
                       "<td><input name='amount[]' value='"+ $sal_deduction_amount +"' readonly></td>" +
                       "<td><input name='date[]' value='"+ $sal_deduction_date +"' readonly></td>" +

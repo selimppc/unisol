@@ -93,7 +93,7 @@
 
         <div class='form-group'>
            {{ Form::label('status', 'Status') }}
-           {{ Form::text('status', Input::old('status'),['class'=>'form-control', 'required']) }}
+           {{ Form::select('status', [''=>'Select Status','active'=>'Active','cancel'=>'Cancel'],Input::old('status'),['class'=>'form-control', 'required']) }}
         </div>
     </div>
 

@@ -41,7 +41,7 @@
                 </tr>
             </thead>
             <tbody>
-             @if(empty($model))
+             @if(!empty($model))
                 @foreach($model as $values)
                  <tr>
                     <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $values->id }}"></td>

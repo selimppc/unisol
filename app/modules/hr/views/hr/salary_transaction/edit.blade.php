@@ -15,7 +15,7 @@
 
                 <div class='form-group'>
                    {{ Form::label('trn_number', 'Transaction Number') }}
-                   {{ Form::text('trn_number', Input::old('trn_number'),['class'=>'form-control','readonly']) }}
+                   {{ Form::hidden('trn_number', Input::old('trn_number'),['class'=>'form-control','readonly']) }}
                 </div>
 
                 <div class='form-group'>
