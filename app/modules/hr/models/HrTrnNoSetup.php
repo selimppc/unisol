@@ -51,6 +51,7 @@ class HrTrnNoSetup extends \Eloquent
     }
 
 
+
     //TODO : Scope Area
 
 
