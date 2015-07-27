@@ -15,7 +15,9 @@
                     <button type="button" class=" btn btn-success fa fa-plus btn_margin" data-toggle="modal" data-target="#myModal" data-toggle="tooltip" data-placement="bottom" title="Add New" >
                         Add New
                     </button>
-                    <a href="{{URL::route('applicant-billing-history')}}" class="btn btn-default"><i class="fa fa-arrow-right text-light-blue"></i> View Fees Details</a>
+
+                    <button href="{{URL::route('applicant-billing-history')}}" type="button" class="btn btn-default fa fa-arrow-right text-light-blue">View Fees Details</button>
+
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab_1">
@@ -77,6 +79,7 @@
                                 @endforeach
                                 </tbody>
                             </table>
+                            {{ $summary_applicant->links() }}
                         </div>
                     </div>
                 </div>

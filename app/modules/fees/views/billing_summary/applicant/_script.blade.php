@@ -4,6 +4,8 @@
 <script type="text/javascript">
     $(function(){
 
+        /*================================Add New Item====================================*/
+
         $("#add_billing_applicant_detail").click(function(event)
         {
             var $billing_head_id = "<?php echo $billing_head_id; ?>";
@@ -59,7 +61,35 @@
         });
 
 
-    /************************* Calculation starts to make total amount using waiver information *******************************/
+    /*======To hide waiver select box and waiver amount text box when select this 2 item below=====*/
+
+        $('#billing_item_id2').change(function(){
+            selection = $(this).find(':selected').text();
+            console.log(selection);
+            switch(selection)
+            {
+                case 'Admission Application form charge':
+                    $('#waiver_id2').prop('disabled', true);
+                    $('#waiver_amount2').prop('disabled', true);
+                    break;
+
+                case 'Admission time charge.':
+                    $('#waiver_id2').prop('disabled', true);
+                    $('#waiver_amount2').prop('disabled', true);
+                    break;
+
+                default:
+                    //$("#waiver_amount2").filter('disabled').removeAttr('disabled');
+                    $('#waiver_id2').prop('disabled', false);
+                    $('#waiver_amount2').prop('disabled', false);
+                    break;
+            }
+        });
+
+
+
+    /*===========Calculation starts to make total amount using waiver information ===============*/
+
 
         $('#billing_item_id2').change(function(){
             var quan = $('#quantity2').val();
@@ -109,11 +139,9 @@
                $('#total_amount2').val(sum_data);
         }
 
-    /************************* Calculation ends to make total amount using waiver information *******************************/
-
     });
 
-    //---------------------Billing details ajax delete in popup----------------------------}}
+    /*=================================Ajax delete in popup========================================*/
 
     function deleteNearestTr(getId, detailsId)
     {

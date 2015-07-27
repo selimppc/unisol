@@ -74,9 +74,9 @@
 
             <li><a href="{{ URL::to('fees/billing/schedule') }}"><i class="fa  fa-bars text-light-blue"></i> Billing Schedule</a></li>
 
-            <li><a href="{{ URL::to('fees/billing-applicant-head') }}"><i class="fa  fa-bars text-olive"></i> Applicant (Fees) </a></li>
+            <li><a href="{{ URL::to('fees/billing-applicant') }}"><i class="fa  fa-bars text-olive"></i> Applicant (Fees) </a></li>
 
-            <li><a href="{{URL::to('fees/billing-student-head')}}"><i class="fa fa-bars text-yellow"></i> Student (Fees) </a></li>
+            <li><a href="{{URL::to('fees/billing-student')}}"><i class="fa fa-bars text-yellow"></i> Student (Fees) </a></li>
 
             <li><a href="{{ URL::to('fees/billing/setup') }}"><i class="fa  fa-bars text-red"></i> Billing Setup</a></li>
 
