@@ -46,9 +46,9 @@
                 @if(isset($ba_dt))
                 @foreach($ba_dt as $values)
                  <tr>
-                    <td>{{Str::title($values->relBillingItem->title)}}</td>
-                    <td>{{Str::title($values->relWaiver->title)}} </td>
-                    <td>{{Str::title($values->relWaiver->amount)}} </td>
+                     <td>{{Str::title($values->relBillingItem->title)}}</td>
+                     <td>{{isset($values->relWaiver->title)? $values->relWaiver->title:''}} </td>
+                     <td>{{isset($values->relWaiver->amount)? $values->relWaiver->amount:''}} </td>
                     <td>{{$values->cost_per_unit}}</td>
                     <td>{{ $values->quantity }}  </td>
                     <td>{{$values->total_amount}}</td>
