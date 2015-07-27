@@ -224,8 +224,8 @@ class AccountReceivableController extends \BaseController {
      * $grn_id ::
      */
     public function show_student_bill($bsh_id){
-        $ba_head = BillingStudentHead::find($bsh_id);
-        $ba_dt = BillingStudentDetail::where('billing_student_head_id', $bsh_id)->get();
+        $bs_head = BillingStudentHead::find($bsh_id);
+        $bs_dt = BillingStudentDetail::where('billing_student_head_id', $bsh_id)->get();
         return View::make('payment::account_receivable.student.show', compact('bsh_id', 'bs_head', 'bs_dt'));
     }
 

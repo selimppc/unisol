@@ -39,7 +39,7 @@
 
         <tr>
             <td><strong> Status:</strong></td>
-            <td>{{ $grn_head->status }}</td>
+            <td>{{ $hr_trn_head->status }}</td>
         </tr>
 
     </table>
