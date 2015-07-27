@@ -88,7 +88,6 @@ class PayrollController extends \BaseController {
      *
      */
     public function store_hr_salary_voucher(){
-        exit("OK");
         //Get ALl input Data
         $input_data = Input::all();
 
