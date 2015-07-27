@@ -23,12 +23,12 @@
 
         <div class='form-group'>
            {{ Form::label('hr_salary_grade_id', 'Salary Grade') }}
-           {{ Form::select('hr_salary_grade_id',array('' => 'Select Salary Grade ') + HrSalaryGrade::SalaryGradeLists() ,Input::old('hr_salary_grade_id'),['class'=>'form-control', 'required']) }}
+           {{ Form::select('hr_salary_grade_id', $salary_grade ,Input::old('hr_salary_grade_id'),['class'=>'form-control', 'required']) }}
         </div>
 
         <div class='form-group'>
            {{ Form::label('department_id', 'Departmnet') }}
-           {{ Form::select('department_id',array('' => 'Select Departmnet ') + Department::GetDepartmentLists() ,Input::old('department_id'),['class'=>'form-control', 'required']) }}
+           {{ Form::select('department_id', $depart ,Input::old('department_id'),['class'=>'form-control', 'required']) }}
         </div>
 
         <div class='form-group'>
@@ -38,7 +38,7 @@
 
         <div class='form-group'>
            {{ Form::label('hr_bank_id', 'Bank') }}
-           {{ Form::select('hr_bank_id',array('' => 'Select Bank ') + HrBank::HrBankLists() ,Input::old('hr_bank_id'),['class'=>'form-control', 'required']) }}
+           {{ Form::select('hr_bank_id', $bank ,Input::old('hr_bank_id'),['class'=>'form-control', 'required']) }}
         </div>
 
         <div class='form-group'>

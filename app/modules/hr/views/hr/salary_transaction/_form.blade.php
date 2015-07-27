@@ -5,7 +5,7 @@
 
 <div class='form-group'>
    {{ Form::label('trn_number', 'Transaction Number') }}
-   {{ Form::text('trn_number',  Input::old('trn_number'),['class'=>'form-control']) }}
+   {{ Form::text('trn_number', $salary_trn_no, Input::old('trn_number'),['class'=>'form-control']) }}
 </div>
 
 <div class='form-group'>
@@ -20,7 +20,7 @@
 
 <div class='form-group'>
    {{ Form::label('period', 'Month') }}
-   {{ Form::text('period', Input::old('period'),['size' => '30x5','class'=>'form-control', 'required']) }}
+   {{ Form::select('period', [''=>'Select Month','january'=>'January','february'=>'February','march'=>'March','april'=>'April','may'=>'May','june'=>'June','july'=>'July','august'=>'August','september'=>'September','october'=>'October','november'=>'November','december'=>'December'],Input::old('period'),['class'=>'form-control', 'required']) }}
 </div>
 
 {{--<div class='form-group'>--}}
