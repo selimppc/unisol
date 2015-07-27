@@ -53,8 +53,9 @@
                     {{ Form::select('hr_leave_type_id', [''=>'Select One' ] + $leave_type, Input::old('hr_leave_type_id'), array('class' => 'form-control') ) }}
                 </div>
                 <div class="col-sm-2" style="padding-left: 0">
-                   {{ Form::label('status', 'Status') }}
-                   {{ Form::select('status', ['' => 'Select Status'] + $status , Input::old('status'))}}
+                   {{ Form::label('status', 'Status')}}
+                   {{ Form::select('status', ['' => 'Select Status','rejected' => 'Rejected','canceled' => 'Canceled',
+                    'scheduled'=>'Scheduled','taken'=>'Taken','approved'=>'Approved'] , Input::old('status'), array('class' => 'form-control'))}}
                 </div>
                 <br>
                 <div style="padding-left: 930px;margin-top: 6px">
