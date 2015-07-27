@@ -16,7 +16,7 @@ class HrEmployeeController extends \BaseController {
     public function index_hr_employee()
     {
         $pageTitle = 'HR Employee List';
-        $model = HrEmployee::with('relUser','relHrBank','relHrSalaryGrade',
+        $model = HrEmployee::with('relUser.relUserProfile','relHrBank','relHrSalaryGrade',
             'relDesignation','relDepartment','relCurrency')->get();
 
         $user_list = User::FullNameWithRoleNameList();
