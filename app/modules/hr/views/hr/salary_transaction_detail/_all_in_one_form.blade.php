@@ -4,7 +4,7 @@
 </style>
 
 <div class='form-group'>
-    Your Salary is : {{ Form::text('salary', $salary, Input::old('salary')) }} [ Salary = allowance - deduction + over-time + bonus ]
+    {{ Form::hidden('salary', $salary, Input::old('salary')) }}
 </div>
 
 <div class="row">
@@ -14,7 +14,7 @@
          </div>
 
          <div class='form-group col-sm-2'>
-                Amount:{{ Form::text('someInfo' ,null,['id'=>'salary-data']) }}
+                {{ Form::hidden('someInfo' ,null,['id'=>'salary-data']) }}
          </div>
     </div>
 

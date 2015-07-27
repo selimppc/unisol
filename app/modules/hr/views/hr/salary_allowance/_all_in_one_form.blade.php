@@ -150,7 +150,7 @@ $(function(){
              return false;
          }else{
              $salary_id = $sal_id; // Salary Transaction ID
-             alert($sal_id);
+//             alert($sal_id);
 
              var index = $.inArray($sal_id, $arrayRnc);
              if (index>=0) {
