@@ -41,11 +41,13 @@
                 @foreach($model as $values)
                  <tr>
                     <td><input type="checkbox" name="id[]"  id="checkbox" class="myCheckbox" value="{{ $values->id }}"></td>
-                    <td><b>
-                        {{ link_to_route('salary_transaction_detail',
-                            $values->relHrEmployee->relUser->relUserProfile->first_name.' '.$values->relHrEmployee->relUser->relUserProfile->middle_name.' '.$values->relHrEmployee->relUser->relUserProfile->last_name ,
-                          ['s_t_id'=>$values->id], ['data-toggle'=>"modal", 'data-target'=>"#modal-pc2"] ) }}
-                    </b></td>
+                    <td>
+                        @if($values->status=="open")
+                            <b>{{ link_to_route('salary_transaction_detail', $values->relHrEmployee->relUser->relUserProfile->first_name.' '.$values->relHrEmployee->relUser->relUserProfile->middle_name,['s_t_id'=>$values->id], ['data-toggle'=>"modal", 'data-target'=>"#modal-pc2"] ) }}</b>
+                        @else
+                            <b>{{ link_to_route('salary_transaction.show_confirm', $values->relHrEmployee->relUser->relUserProfile->first_name.' '.$values->relHrEmployee->relUser->relUserProfile->middle_name,['s_t_id'=>$values->id], ['data-toggle'=>"modal", 'data-target'=>"#modal-pc"] ) }}</b>
+                        @endif
+                    </td>
                     <td>{{ $values->trn_number }}</td>
                     <td>{{ $values->date }}</td>
                     <td>{{ $values->relYear->title }}</td>
@@ -53,11 +55,16 @@
                     <td>{{ round($values->total_amount,2) }}</td>
                     <td>{{ ucfirst($values->status) }}</td>
                     <td>
-                        <a href="{{ URL::route('salary_transaction.show', ['s_t_id'=>$values->id ])  }}" class="btn btn-default btn-xs" title="Manage Applicant" data-toggle="modal" data-target="#modal-pc"><i style="color: #149bdf" class="fa fa-eye"></i></a>
-                        <a href="{{ URL::route('salary_transaction.edit',['s_t_id'=>$values->id])  }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal-pc"> <i style="color: #7b24dd" class="fa fa-edit"></i></a>
-                        <a data-href="{{ URL::route('salary_transaction.destroy', ['s_t_id'=>$values->id ]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i style="color: red" class="fa fa-trash-o" ></i></a>
-                    </td>
+                        @if($values->status=="open")
+                            <a href="{{ URL::route('salary_transaction.show', ['s_t_id'=>$values->id ])  }}" class="btn btn-default btn-xs" title="Manage Applicant" data-toggle="modal" data-target="#modal-pc"><i style="color: #149bdf" class="fa fa-eye"></i></a>
+                            <a href="{{ URL::route('salary_transaction.edit',['s_t_id'=>$values->id])  }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal-pc"> <i style="color: #7b24dd" class="fa fa-edit"></i></a>
+                            <a data-href="{{ URL::route('salary_transaction.destroy', ['s_t_id'=>$values->id ]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i style="color: red" class="fa fa-trash-o" ></i></a>
+                            <a data-href="{{ URL::route('confirm-salary-transaction', ['st_id'=>$values->id ]) }}" class="btn btn-xs btn-success" data-toggle="modal" data-target="#confirm-std" href=""><i style="color: darkslategray"></i>Confirm</a>
+                        @else
+                            <a href="{{ URL::route('salary_transaction.show_confirm', ['s_t_id'=>$values->id ])  }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal-pc"><i style="color: #0005df" class="fa fa-eye"></i></a>
 
+                        @endif
+                    </td>
                  </tr>
                 @endforeach
             </tbody>

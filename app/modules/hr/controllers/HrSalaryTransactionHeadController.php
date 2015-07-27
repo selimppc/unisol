@@ -117,6 +117,40 @@ class HrSalaryTransactionHeadController extends \BaseController {
 
     }
 
+    public function confirm_salary_transaction($st_id)
+    {
+        $input_data = Input::all();
+            DB::beginTransaction();
+                try{
+
+                    $model = HrSalaryTransactionHead::findOrFail($st_id);
+                    $model->status = "confirmed";
+                    $model->update($input_data);
+
+                    DB::commit();
+                    Session::flash('message', 'Success !');
+                }catch ( Exception $e ){
+                    //If there are any exceptions, rollback the transaction`
+                    DB::rollback();
+                    Session::flash('danger', 'Failed !');
+                }
+            return Redirect::back();
+    }
+
+    public function show_confirm_salary_transaction($s_t_id)
+    {
+        $data = HrSalaryTransactionHead::where('status', '!=','denied')->findOrFail($s_t_id);
+
+        $model = HrSalaryTransactionDetail::with('relHrOverTime','relHrBonus','relHrSalaryAllowance','relHrSalaryDeduction')
+            ->where('salary_trn_hd_id', $data->id)
+            ->orderBy('id', 'DESC')
+            ->get();
+
+        return View::make('hr::hr.salary_transaction.view_confirmation', compact('data','model'));
+    }
+
+
+
 
 
 }

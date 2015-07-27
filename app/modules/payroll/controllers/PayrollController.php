@@ -21,29 +21,32 @@ class PayrollController extends \BaseController {
      *
      * @return Response
      */
-    public function index_account_payable()
+    public function index_hr_payroll()
     {
-        $pageTitle = "Account Payable ";
-        $data = InvGrnHead::whereIN('status', ['Confirmed', 'Invoiced'])->latest('id')->get();
-        return View::make('payment::account_payable.index', compact('data','pageTitle'));
+        $pageTitle = "HR Payroll";
+        $data = HrSalaryTransactionHead::whereIN('status', ['Confirmed', 'Invoiced'])->latest('id')->get();
+        return View::make('payroll::index', compact('data','pageTitle'));
     }
 
 
     /*
-     * $grn_id ::
+     * $trn_id :: HR Salary Transaction ID
      */
-    public function show_detail_grn($grn_id){
-        $grn_head = InvGrnHead::find($grn_id);
-        $grn_dt = InvGrnDetail::where('inv_grn_head_id', $grn_id)->get();
-        return View::make('payment::account_payable.show', compact('grn_id', 'grn_head', 'grn_dt'));
+    public function show_hr_transaction($trn_id){
+        $hr_trn_head = HrSalaryTransactionHead::find($trn_id);
+        $hr_trn_dt = HrSalaryTransactionDetail::where('salary_trn_hd_id', $trn_id)->get();
+        return View::make('payroll::show', compact('trn_id', 'hr_trn_head', 'hr_trn_dt'));
     }
 
 
-    public function ap_create_invoice($grn_id){
-        $check = InvGrnDetail::where('inv_grn_head_id', $grn_id)->exists();
+    /*
+     *  $trn_id :: Hr Salary Transaction Head ID
+     */
+    public function hr_create_invoice($trn_id){
+        $check = HrSalaryTransactionDetail::where('salary_trn_hd_id', $trn_id)->exists();
         if($check){
             //Call Store Procedure
-            DB::select('call sp_inv_to_invoice(?, ?)', array($grn_id, Auth::user()->get()->id ) );
+            DB::select('call sp_hr_to_invoice.sql(?, ?)', array($trn_id, Auth::user()->get()->id ) );
             Session::flash('message', 'Invoiced Successfully !');
         }else{
             Session::flash('info', 'Failed!');
@@ -51,16 +54,15 @@ class PayrollController extends \BaseController {
         return Redirect::back();
     }
 
-    // manage ap
-    public function  manage_account_payable(){
-        //
-        $pageTitle = "Manage AP";
+    // manage HR Invoiced Data
+    public function  manage_hr_invoice(){
+        $pageTitle = "Manage HR Salary Invoice";
         $data = AccVAppayable::get();
-        return View::make('payment::account_payable.manage_ap', compact('pageTitle', 'data'));
+        return View::make('payroll::manage_hr_invoice', compact('pageTitle', 'data'));
     }
 
-    // Account Payment Voucher
-    public function  ap_payment_voucher($associated_id, $coa_id){
+    // Salary Payment Voucher
+    public function  hr_payment_voucher($associated_id, $coa_id){
 
         $data = AccChartOfAccounts::paginate(3);
         $year_lists = Year::lists('title', 'id');
@@ -72,7 +74,7 @@ class PayrollController extends \BaseController {
             //->where('acc_voucher_head_id', $coa_id)->get();
             ->get();
 
-        return View::make('payment::account_payable.ap_voucher', compact(
+        return View::make('payroll::ap_voucher', compact(
             'associated_id', 'coa_id', 'unpaid_invoice',
             'data','year_lists', 'period_lists', 'coa_lists'
         ));
