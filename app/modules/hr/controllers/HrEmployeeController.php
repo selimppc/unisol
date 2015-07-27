@@ -19,6 +19,8 @@ class HrEmployeeController extends \BaseController {
         $model = HrEmployee::with('relUser.relUserProfile','relHrBank','relHrSalaryGrade',
             'relDesignation','relDepartment','relCurrency')->get();
 
+//        print_r($model);exit;
+
         $user_list = User::FullNameWithRoleNameList();
 
         $salary_grade = HrSalaryGrade::SalaryGradeLists();
