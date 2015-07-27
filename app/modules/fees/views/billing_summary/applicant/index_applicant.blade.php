@@ -18,8 +18,6 @@
 
                     <a href="{{URL::route('applicant-billing-history')}}" class="btn btn-default fa fa-arrow-right text-light-blue btn-width">View Fees Details</a>
 
-                  {{--  <button href="{{URL::route('applicant-billing-history')}}" type="button" class="btn btn-default"><i class="fa fa-arrow-right text-light-blue"></i> View Fees Details</button>--}}
-
 
                 </ul>
                 <div class="tab-content">
@@ -46,7 +44,7 @@
                                        <td class="sl-no-size">{{$sl++}}</td>
                                        <td class="b-text">{{ link_to_route($value->status=="open" ? 'billing.details.applicant' : 'billing-applicant-view',$value->relApplicant->first_name.' '.$value->relApplicant->last_name,['id'=>$value->id], ['data-toggle'=>"modal",'data-target'=>"#createModal"]) }}</td>
 
-                                        <td>{{isset($value->relApplicant->id)?$value->relApplicant->id:''}}</td>
+                                        <td>{{isset($value->relApplicant->applicant_id)?$value->relApplicant->applicant_id:''}}</td>
 
                                         <td>{{isset($value->relBillingSchedule->title)?$value->relBillingSchedule->title:''}}</td>
 
