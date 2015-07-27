@@ -46,7 +46,7 @@ class PayrollController extends \BaseController {
         $check = HrSalaryTransactionDetail::where('salary_trn_hd_id', $trn_id)->exists();
         if($check){
             //Call Store Procedure
-            DB::select('call sp_inv_to_invoice(?, ?)', array($trn_id, Auth::user()->get()->id ) );
+            DB::select('call sp_hr_to_invoice.sql(?, ?)', array($trn_id, Auth::user()->get()->id ) );
             Session::flash('message', 'Invoiced Successfully !');
         }else{
             Session::flash('info', 'Failed!');
