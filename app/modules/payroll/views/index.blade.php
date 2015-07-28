@@ -27,7 +27,6 @@
                     <th> Total Amount </th>
                     <th> status </th>
                     <th> Action</th>
-                    <th> + VAT</th>
                 </tr>
             </thead>
             <tbody>
@@ -45,11 +44,6 @@
                     <td>@if($values->status != 'invoiced')
                             <a href="{{ URL::route('hr-create-invoice', ['trn_id'=>$values->id ])  }}" class="btn btn-default btn-xs" title="Create Invoice"><span class="fa fa-pencil"></span> + Invoice</a>
                             @endif
-                    </td>
-                    <td>
-                        @if($values->status != 'invoiced')
-                            <a href="{{ URL::route('hr-create-invoice', ['trn_id'=>$values->id ]) }}" class="btn btn-xs btn-default" ><i class="fa fa-adjust" style="color: darkslategray" data-toggle="tooltip" data-placement="bottom" title="Add VAT"></i> + VAT</a>
-                        @endif
                     </td>
 
                  </tr>
