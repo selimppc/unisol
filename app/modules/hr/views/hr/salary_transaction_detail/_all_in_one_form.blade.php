@@ -17,7 +17,7 @@
          </div>
     </div>
 
-    <div class="col-sm-2" style="width:13%">
+    <div class="col-sm-2" style="width:17%">
         <div class='form-group'>
            {{ Form::label('type', 'Type') }}
            {{ Form::select('type', array(''=>'Select Type','allowance'=>'Allowance','deduction'=>'Deduction','over-time'=>'Over-Time','bonus'=>'Bonus'),
@@ -25,42 +25,42 @@
         </div>
     </div>
 
-    <div id="allowanceType" class="col-sm-2" style="display:none;width:13%">
+    <div id="allowanceType" class="col-sm-2" style="display:none;width:17%">
         <div class='form-group'>
            {{ Form::label('hr_salary_allowance_id', 'S.Allowance') }}
            {{ Form::select('hr_salary_allowance_id',$salary_allowance_list ,Input::old('hr_salary_allowance_id'),['id'=>'salary_transaction_detail_allowance','class'=>'allowance_name shafi form-control']) }}
         </div>
     </div>
 
-    <div id="deductionType" class="col-sm-2" style="display:none;width:13%">
+    <div id="deductionType" class="col-sm-2" style="display:none;width:17%">
         <div class='form-group'>
            {{ Form::label('hr_salary_deduction_id', 'S.Deduction') }}
            {{ Form::select('hr_salary_deduction_id',$salary_deduction_list ,Input::old('hr_salary_deduction_id'),['id'=>'salary_transaction_detail_deduction','class'=>'deduction_name shafi form-control']) }}
         </div>
     </div>
 
-    <div id="overTimeType" class="col-sm-2" style="display:none;width:13%">
+    <div id="overTimeType" class="col-sm-2" style="display:none;width:17%">
         <div class='form-group'>
            {{ Form::label('hr_over_time_id', 'Over-Time') }}
            {{ Form::select('hr_over_time_id',$over_time_list ,Input::old('hr_over_time_id'),['id'=>'salary_transaction_detail_over_time','class'=>'overtime_name shafi form-control']) }}
         </div>
     </div>
 
-    <div id="bonusType" class="col-sm-2" style="display:none;width:13%">
+    <div id="bonusType" class="col-sm-2" style="display:none;width:17%">
         <div class='form-group'>
            {{ Form::label('hr_bonus_id', 'Bonus') }}
            {{ Form::select('hr_bonus_id',$bonus_list ,Input::old('hr_bonus_id'),['id'=>'salary_transaction_detail_bonus','class'=>'bonus_name shafi form-control']) }}
         </div>
     </div>
 
-    <div class="col-sm-2" style="width:13%">
+    <div class="col-sm-2" style="width:17%">
         <div class='form-group'>
            {{ Form::label('percentage', 'Percentage') }} (%)
            {{ Form::text('percentage', Input::old('percentage'),['id'=>'salary_transaction_detail_percentage','class'=>'std_percentage form-control']) }}
         </div>
     </div>
 
-    <div class="col-sm-2" style="width:13%">
+    <div class="col-sm-2" style="width:17%">
         <div class='form-group'>
            {{ Form::label('amount', 'Amount') }}
            {{ Form::text('amount', Input::old('amount'),['id'=>'salary_transaction_detail_amount','class'=>'std_amount form-control']) }}
@@ -116,8 +116,8 @@
     </table>
 
     <div class="modal-footer">
-            {{ Form::submit('Submit', ['class'=>'btn btn-large btn-success'] ) }}
-            <button class="btn btn-default btn-large" data-dismiss="modal" type="button">Close</button>
+        {{ Form::submit('Submit', ['class'=>'btn btn-large btn-success'] ) }}
+        <button class="btn btn-default btn-large" data-dismiss="modal" type="button">Close</button>
     </div>
 </div>
 <p>&nbsp;</p>
@@ -139,8 +139,6 @@ $(function(){
          $sal_trns_dtl_amount = $("#salary_transaction_detail_amount").val();
          $sal_trns_dtl_percentage = $("#salary_transaction_detail_percentage").val();
 
-
-
 //Try 1
 //         $sal_trns_dtl_allowance = $("#salary_transaction_detail_allowance").val() ? $allowance_name = $(".allowance_name option:selected").text() : "";
 //         $sal_trns_dtl_deduction = $("#salary_transaction_detail_deduction").val() ? $deduction_name = $(".deduction_name option:selected").text() : "";
@@ -148,19 +146,45 @@ $(function(){
 //         $sal_trns_dtl_bonus = $("#salary_transaction_detail_bonus").val() ? $bonus_name = $(".bonus_name option:selected").text() : "" ;
 
 //Try 2
-//         var allowance = $("#salary_transaction_detail_allowance").val();
-//         var deduction = $("#salary_transaction_detail_deduction").val();
-//         var ovrtm = $("#salary_transaction_detail_over_time").val();
-//         var bonus =$("#salary_transaction_detail_bonus").val();
-//         if (allowance.value != null )
-//         { $allowance_name = $(".allowance_name option:selected").text(); }
-//         else if(deduction.value != null )
-//         { $deduction_name = $(".deduction_name option:selected").text(); }
-//         else if(ovrtm.value != null )
-//         { $ovrtm_name = $(".overtime_name option:selected").text(); }
-//         else if(bonus.value != null )
-//         { $bonus_name = $(".bonus_name option:selected").text();  }
+//         if ($sal_trns_dtl_allowance = $("#salary_transaction_detail_allowance").val() )
+//         { $allowance_name = $(".allowance_name option:selected").text() }
+//         else if($sal_trns_dtl_deduction = $("#salary_transaction_detail_deduction").val() )
+//         { $deduction_name = $(".deduction_name option:selected").text() }
+//         else if($sal_trns_dtl_ovrtm = $("#salary_transaction_detail_over_time").val() )
+//         { $ovrtm_name = $(".overtime_name option:selected").text() }
+//         else if($sal_trns_dtl_bonus = $("#salary_transaction_detail_bonus").val() )
+//         { $bonus_name = $(".bonus_name option:selected").text()  }
 
+//Try 3
+//
+//var $sal_trns_dtl_allowance = document.getElementById("salary_transaction_detail_allowance");
+//if( $sal_trns_dtl_deduction == null && $sal_trns_dtl_ovrtm == null && $sal_trns_dtl_bonus == null){
+//    var $allowance_name = $sal_trns_dtl_allowance.options[$sal_trns_dtl_allowance.selectedIndex].text;
+//    var $deduction_name = "";
+//    var $ovrtm_name = "";
+//    var $bonus_name = "";
+//}
+//var $sal_trns_dtl_deduction = document.getElementById("salary_transaction_detail_deduction");
+//if( $sal_trns_dtl_allowance == null && $sal_trns_dtl_ovrtm == null && $sal_trns_dtl_bonus == null){
+//    var $deduction_name = $sal_trns_dtl_deduction.options[$sal_trns_dtl_deduction.selectedIndex].text;
+//    var $allowance_name = "";
+//    var $ovrtm_name = "";
+//    var $bonus_name = "";
+//}
+//var $sal_trns_dtl_ovrtm = document.getElementById("salary_transaction_detail_over_time");
+//if( $sal_trns_dtl_allowance == null && $sal_trns_dtl_deduction == null && $sal_trns_dtl_bonus == null){
+//    var $ovrtm_name = $sal_trns_dtl_ovrtm.options[$sal_trns_dtl_ovrtm.selectedIndex].text;
+//    var $allowance_name = "";
+//    var $deduction_name = "";
+//    var $bonus_name = "";
+//}
+//var $sal_trns_dtl_bonus = document.getElementById("salary_transaction_detail_bonus");
+//if( $sal_trns_dtl_allowance == null && $sal_trns_dtl_deduction == null && $sal_trns_dtl_ovrtm == null){
+//    var $bonus_name = $sal_trns_dtl_bonus.options[$sal_trns_dtl_bonus.selectedIndex].text;
+//    var $allowance_name = "";
+//    var $deduction_name = "";
+//    var $ovrtm_name = "";
+//}
 
 //success
          $sal_trns_dtl_allowance = $("#salary_transaction_detail_allowance").val();
@@ -200,7 +224,7 @@ $(function(){
              } else {
                 $('#test').append("<tr> " +
 
-                      "<td><input type='hidden' name='salary_trn_hd_id[]' value='" + $sal_trans_id + "' readonly><input name='type[]' value='"+ $sal_trns_dtl_type +"' readonly></td>" +
+                      "<td><input type='hidden' name='salary_trn_hd_id[]' value='" + $sal_trans_id + "' readonly><b><input name='type[]' value='"+ $sal_trns_dtl_type +"' readonly></b></td>" +
                       "<td><input value='"+ $allowance_name +"' readonly> <input type='hidden' name='hr_salary_allowance_id[]' value='"+ $sal_trns_dtl_allowance +"' readonly> </td>" +
                       "<td><input value='"+ $deduction_name +"' readonly> <input type='hidden' name='hr_salary_deduction_id[]' value='"+ $sal_trns_dtl_deduction +"' readonly> </td>" +
                       "<td><input value='"+ $ovrtm_name +"' readonly> <input type='hidden' name='hr_over_time_id[]' value='"+ $sal_trns_dtl_ovrtm +"' readonly> </td>" +
@@ -225,7 +249,7 @@ $(function(){
          }
  	 });
 
-// Delete : ok
+//Delete : ok
      $('.delete-dt-2').click(function(e) {
         e.preventDefault();
         var $btn = $(this);
@@ -242,7 +266,7 @@ $(function(){
         });
      });
 
-// Drop down change with input form and div : ok
+//Drop down change with input form and div : ok
      $('#salary_transaction_detail_type').change(function(){
         selection = $(this).val();
         switch(selection)
@@ -284,7 +308,7 @@ $(function(){
         }
      });
 
-// Selection change with form : ok
+//Selection change with form : ok
      $('.std_percentage').change(function(){
            var a = $('.std_percentage').val();
            var b = document.getElementById("salary-data").value;
@@ -293,7 +317,6 @@ $(function(){
            amount.value = myResult;
            $('.std_amount').prop('disabled', true);
      });
-
 
      $('.std_amount').change(function(){
            var a = $('.std_amount').val();
@@ -304,7 +327,7 @@ $(function(){
            $('.std_percentage').prop('disabled', true);
      });
 
-// Dynamic dynamic : ok
+//Dynamic dynamic : ok
 
      $('.shafi').change(function(){
          type = $(".shafi_type").val();
