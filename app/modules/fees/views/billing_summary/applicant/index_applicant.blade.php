@@ -94,7 +94,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">{{HTML::image('assets/icon/media-close-btn.png')}}</button>
-                    <h4 class="modal-title text-center text-purple">Billing Applicant Head</h4>
+                    <h4 class="modal-title text-center text-purple">Billing Applicant</h4>
                 </div>
                 <div class="modal-body">
                     {{Form::open(array('route' => array('save-billing-applicant-head')))}}
