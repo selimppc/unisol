@@ -17,6 +17,7 @@ class HrLeaveController extends \BaseController {
 
         if($this->isPostRequest()) {
             $employee_list = Input::get('hr_employee_id');
+//            print_r($employee_list);exit;
             $date1 = Input::get('from_date');
             $date2 = Input::get('to_date');
             $leave_type = Input::get('hr_leave_type_id');
@@ -84,61 +85,11 @@ class HrLeaveController extends \BaseController {
 
     public function showLeave($id)
     {
-        $model = HrLeave::with('relHrLeaveType','relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')->find($id);
+        $model = HrLeave::with('relUser','relUser.relUserProfile','relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')->find($id);
 //        print_r($model);exit;
-        return View::make('hr::hr.leave.show',compact('model'));
+        return View::make('hr::hr.leave.hrm.show',compact('model'));
     }
 
-    public function editLeave($id){
-
-        $model = HrLeave::find($id);
-        $employee_list = User::EmployeeList();
-        $hr_list = User::HrList();
-        $leave_type_id = HrLeaveType::lists('title','id');
-        $comments = HrLeaveComments::with('relHrLeave')->where('hr_leave_id','=',$id)->get();
-        return View::make('hr::hr.leave.edit',compact('model','employee_list','leave_type_id','comments','hr_list'));
-    }
-
-    public function updateLeave($id){
-
-        $data = Input::all();
-        $model = HrLeave::find($id);
-
-        if($model->validate($data))
-        {
-            DB::beginTransaction();
-            try {
-                $model->update($data);
-                DB::commit();
-                Session::flash('message', "Successfully Updated");
-            }
-            catch ( Exception $e ){
-                //If there are any exceptions, rollback the transaction
-                DB::rollback();
-                Session::flash('danger', "Invalid Request !");
-            }
-            return Redirect::back();
-        }else{
-            $errors = $model->errors();
-            Session::flash('errors', $errors);
-            return Redirect::back()
-                ->with('errors', 'Input Data Not Valid');
-        }
-    }
-
-    public function deleteLeave($id)
-    {
-        try {
-            $data = HrLeave::find($id);
-            if ($data->delete()) {
-                Session::flash('message', "Successfully  Deleted");
-                return Redirect::back();
-            }
-        } catch
-        (exception $ex) {
-            return Redirect::back()->with('danger', 'Invalid Delete Process ! At first Delete Data from related tables then come here again. Thank You !!!');
-        }
-    }
 
     public function batchDelete()
     {
@@ -150,29 +101,29 @@ class HrLeaveController extends \BaseController {
         }
     }
 
-    public function viewComments($id){
-        $model = HrLeave::find($id);
-        $comments = HrLeaveComments::with('relHrLeave')->where('hr_leave_id','=',$id)->get();
-//        print_r($comments);exit;
-        return View::make('hr::hr.leave.comments',compact('model','comments'));
-    }
+//    public function viewComments($id){
+//        $model = HrLeave::find($id);
+//        $comments = HrLeaveComments::with('relHrLeave')->where('hr_leave_id','=',$id)->get();
+////        print_r($comments);exit;
+//        return View::make('hr::hr.leave.comments',compact('model','comments'));
+//    }
 
-    public function updateComments(){
-
-        $data = Input::all();
-        $model1 = HrLeave::find($data['id']);
-        $model1->update($data);
-
-        $model2 = new HrLeaveComments();
-        $model2 ->hr_leave_id = $data['id'];
-        $model2->comment = Input::get('comment');
-        if($model2->save()){
-            Session::flash('message', 'Comments Added Successfully');
-            return Redirect::back();
-        }else{
-            Session::flash('message', 'Comments Do not Added');
-            return Redirect::back();
-        }
-
-    }
+//    public function updateComments(){
+//
+//        $data = Input::all();
+//        $model1 = HrLeave::find($data['id']);
+//        $model1->update($data);
+//
+//        $model2 = new HrLeaveComments();
+//        $model2 ->hr_leave_id = $data['id'];
+//        $model2->comment = Input::get('comment');
+//        if($model2->save()){
+//            Session::flash('message', 'Comments Added Successfully');
+//            return Redirect::back();
+//        }else{
+//            Session::flash('message', 'Comments Do not Added');
+//            return Redirect::back();
+//        }
+//
+//    }
 }

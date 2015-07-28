@@ -7,9 +7,9 @@
 @stop
 @section('content')
 
-<button type="button" class="pull-right btn btn-sm btn-info" data-toggle="modal" data-target="#modal">
-  + HR Leave
-</button>
+{{--<button type="button" class="pull-right btn btn-sm btn-info" data-toggle="modal" data-target="#modal">--}}
+  {{--+ HR Leave--}}
+{{--</button>--}}
 <h3>HR Leave</h3>
 
 <div class="row">
@@ -100,10 +100,10 @@
                                 <td>
                                      <a href="{{ URL::route('leave.show',
                                      ['id' => $values->id]) }}" class="btn-link" data-toggle="modal" data-target="#leave">
-                                     <b>{{isset($values->hr_employee_id)?  User::FullName($values->created_by):''}}</b>
+                                     <b>{{isset($values->created_by)? User::FullName($values->created_by):''}}</b>
                                      </a>
                                 </td>
-                                <td>{{isset($values->forward_to)?$values->relUser->relUserProfile->first_name.' '.$values->relUser->relUserProfile->middle_name.' '.$values->relUser->relUserProfile->last_name:''}}</td>
+                                <td>{{isset($values->forward_to)?$values->relHrAltEmployee->relUser->relUserProfile->first_name.' '.$values->relHrAltEmployee->relUser->relUserProfile->middle_name.' '.$values->relHrAltEmployee->relUser->relUserProfile->last_name:''}}</td>
                                 <td>{{isset($values->hr_leave_type_id)?$values->relHrLeaveType->title:''}}</td>
                                 <td>{{$values->reason}}</td>
                                 <td>{{Str::title($values->leave_duration)}}</td>
@@ -116,14 +116,11 @@
                                 <td>
                                 @if($values->status == 'approved')
                                      <a href="{{ URL::route('leave.show',['id'=>$values->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#leave" style="font-size: 12px;color: darkmagenta"><span class="fa fa-eye"></span></a>
-                                     {{--<a class="btn btn-xs btn-default" href="{{ URL::route('leave.edit',['id'=>$values->id]) }}" data-toggle="modal" data-target="#leave" style="font-size: 12px;color: lightseagreen"><i class="fa fa-edit"></i></a>--}}
-                                     {{--<a class="btn btn-xs btn-default" href="{{ URL::route('leave.comments',['id'=>$values->id]) }}" data-toggle="modal" data-target="#leave" style="font-size: 12px;color: lightskyblue" title="comments"><i class="fa fa-comment"></i></a>--}}
-                                     {{--<a data-href="{{ URL::route('leave.delete',$values->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" style="font-size: 12px;color: lightcoral"><span class="fa  fa-trash-o"></span></a>--}}
+                                @elseif($values->status == 'canceled')
+                                     <a href="{{ URL::route('leave.show',['id'=>$values->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#leave" style="font-size: 12px;color: darkmagenta"><span class="fa fa-eye"></span></a>
                                 @else
                                      <a href="{{ URL::route('leave.show',['id'=>$values->id]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#leave" style="font-size: 12px;color: darkmagenta"><span class="fa fa-eye"></span></a>
-                                     <a class="btn btn-xs btn-default" href="{{ URL::route('leave.edit',['id'=>$values->id]) }}" data-toggle="modal" data-target="#leave" style="font-size: 12px;color: lightseagreen"><i class="fa fa-edit"></i></a>
                                      <a class="btn btn-xs btn-default" href="{{ URL::route('leave.comments',['id'=>$values->id]) }}" data-toggle="modal" data-target="#leave" style="font-size: 12px;color: lightskyblue" title="comments"><i class="fa fa-comment"></i></a>
-                                     <a data-href="{{ URL::route('leave.delete',$values->id) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" style="font-size: 12px;color: lightcoral"><span class="fa  fa-trash-o"></span></a>
                                 @endif
                                 </td>
                             </tr>
@@ -137,9 +134,9 @@
     </div>
 </div>
 
-{{ Form::open(array('route' => 'leave.store')) }}
-     @include('hr::hr.leave._modal._modal')
-{{ Form::close() }}
+{{--{{ Form::open(array('route' => 'leave.store')) }}--}}
+     {{--@include('hr::hr.leave._modal._modal')--}}
+{{--{{ Form::close() }}--}}
 
 {{-- Modal Area --}}
 <div class="modal fade" id="leave" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

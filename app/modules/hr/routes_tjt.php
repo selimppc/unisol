@@ -101,35 +101,20 @@ Route::any('leave/show/{id}',[
     'uses' => 'HrLeaveController@showLeave'
 ]);
 
-Route::any('leave/edit/{id}',[
-    'as' =>'leave.edit',
-    'uses' => 'HrLeaveController@editLeave'
-]);
-
-Route::any('leave/update/{id}',[
-    'as' =>'leave.update',
-    'uses' => 'HrLeaveController@updateLeave'
-]);
-
-Route::any('leave/delete/{id}',[
-    'as' =>'leave.delete',
-    'uses' => 'HrLeaveController@deleteLeave'
-]);
-
 Route::any('leave/batch-delete',[
     'as' =>'leave.batch-delete',
     'uses' => 'HrLeaveController@batchDelete'
 ]);
 
-Route::any('leave/comments/{id}',[
-    'as' =>'leave.comments',
-    'uses' => 'HrLeaveController@viewComments'
-]);
+//Route::any('leave/comments/{id}',[
+//    'as' =>'leave.comments',
+//    'uses' => 'HrLeaveController@viewComments'
+//]);
 
-Route::any('update/leave-comments',[
-    'as' =>'update.leave.comments',
-    'uses' => 'HrLeaveController@updateComments'
-]);
+//Route::any('update/leave-comments',[
+//    'as' =>'update.leave.comments',
+//    'uses' => 'HrLeaveController@updateComments'
+//]);
 //hr_employee leave
 Route::any('employee/leave',[
     'as' =>'employee.leave',
@@ -141,6 +126,35 @@ Route::any('leave/store',[
     'uses' => 'EmployeeController@storeHrLeave'
 ]);
 
+Route::any('leave/show/{id}',[
+    'as' =>'leave.show',
+    'uses' => 'EmployeeController@showLeave'
+]);
+
+Route::any('leave/edit/{id}',[
+    'as' =>'leave.edit',
+    'uses' => 'EmployeeController@editLeave'
+]);
+
+Route::any('leave/update/{id}',[
+    'as' =>'leave.update',
+    'uses' => 'EmployeeController@updateLeave'
+]);
+
+Route::any('leave/delete/{id}',[
+    'as' =>'leave.delete',
+    'uses' => 'EmployeeController@deleteLeave'
+]);
+
+Route::any('leave/comments/{id}',[
+    'as' =>'leave.comments',
+    'uses' => 'EmployeeController@viewComments'
+]);
+
+Route::any('update/leave-comments',[
+    'as' =>'update.leave.comments',
+    'uses' => 'EmployeeController@updateComments'
+]);
 //Leave Type
 
 Route::any('leave-type',[
@@ -177,6 +191,8 @@ Route::any('leave-type/batch-delete',[
     'as' =>'leave-type.batch-delete',
     'uses' => 'HrLeaveTypeController@batchDelete'
 ]);
+
+
 
 //Provident Fund
 
