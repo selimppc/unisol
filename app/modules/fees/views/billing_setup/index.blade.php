@@ -23,7 +23,7 @@
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab_1">
 
-                      {{--====================== Filter :Starts ==========================--}}
+                      {{--====================== Filter :Starts ==================--}}
                         
                         {{Form::open(array('route'=> ['billing.setup']))}}
                           <fieldset class="well the-fieldset2">
