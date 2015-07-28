@@ -14,7 +14,6 @@
                 </div>
 
                 <div class='form-group'>
-                   {{ Form::label('trn_number', 'Transaction Number') }}
                    {{ Form::hidden('trn_number', Input::old('trn_number'),['class'=>'form-control','readonly']) }}
                 </div>
 
@@ -40,7 +39,10 @@
 
                 {{ Form::submit('Save', array('class'=>'pull-right btn btn-info')) }}
                 <a href="" class="pull-right btn btn-default" style="margin-right: 5px">Close</a>
+                </br>
 
         {{ Form::close() }}
     </div>
 </div>
+
+
