@@ -15,8 +15,8 @@
         <div class="col-md-12">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#tab_1" data-toggle="tab">Billing Installment</a></li>
-                    <li class="dropdown">
+                    <li class="active"></li>
+                   {{-- <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                             Settings  <span class="caret"></span>
                         </a>
@@ -24,31 +24,31 @@
                             <li role="presentation" data-toggle="modal" data-target="#addCategory"><a role="menuitem" tabindex="-1" href="#"> </a>
                             </li>
                         </ul>
-                    </li>
+                    </li>--}}
                 </ul>
-
+                <button type="button" class=" btn btn-success fa fa-plus pull-right" data-toggle="modal" data-target="#addInstallment" >Add Installment</button>
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab_1">
 
-                        {{--****************** Filter :Starts ***********************--}}
-                        <div class="col-sm-8">
-                            {{Form::open(array('route'=> ['installment.setup']))}}
-                            <div class="col-sm-3">
-                                {{ Form::label('degree_id', 'Degree') }}
-                                {{ Form::select('degree_id',$degree,Input::old('degree_id'), array('class' => 'form-control') ) }}
-                            </div>
-                            <div class="col-sm-2 install-filter">
-                                </br>
-                                {{ Form::submit('Filter', array('class'=>'btn btn-primary','id'=>'button'))}}
+                        {{--================= Filter :Starts =========================--}}
+
+                        {{Form::open(array('route'=> ['installment.setup']))}}
+                        <fieldset class="well the-fieldset2">
+                            <legend class="the-legend2"> SEARCH </legend>
+                            <div class="col-sm-12">
+                                <div class="col-sm-4">
+                                    {{ Form::label('degree_id', 'Degree') }}
+                                    {{ Form::select('degree_id',$degree,Input::old('degree_id'), array('class' => 'form-control') ) }}
+                                </div>
+                                <div class="col-sm-2 btn-padding">
+                                    {{ Form::submit('Filter', array('class'=>'btn btn-success','id'=>'button'))}}
+                                    {{ Form::reset('Reset', ['class' => 'btn btn-default','id'=>'button']) }}
+                                </div>
                             </div>
                             {{Form::close()}}
-                            <div class="col-sm-2" style="margin-top: 10px;">
-                                </br>
-                                <button type="button" class=" btn btn-success fa fa-plus pull-right" data-toggle="modal" data-target="#addInstallment" >Add Installment</button>
-                            </div>
-                        </div>
+                        </fieldset>
 
-                        {{--*****************Filter :Ends **************************--}}
+                        {{--=====================Filter :Ends =========================--}}
 
                         <div class="box-body table-responsive ">
                             <table id="example" class="table table-bordered table-hover table-striped">

@@ -17,7 +17,7 @@
                         Add New
                     </button>
 
-                    <a href="{{URL::route('student-billing-history')}}" class="btn btn-default fa fa-arrow-right text-light-blue btn-width">View Fees Details</a>
+                    <a href="{{URL::route('student-billing-history')}}" class="btn btn-default fa fa-arrow-right text-light-blue btn-width">All Student Fees Details</a>
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab_1">
@@ -38,6 +38,7 @@
                                 <tbody>
                                 <?php $sl=1;?>
                                 @foreach ($summary_student as $value)
+                                    @unless($value->status =='cancel')
                                     <tr>
                                         <td class="sl-no-size">{{$sl++}}</td>
                                         <td class="b-text">{{ link_to_route($value->status=="open" ? 'billing.details.student' : 'student-head-view',$value->relUser->relUserProfile->first_name.' '.$value->relUser->relUserProfile->last_name,['id'=>$value->id], ['data-toggle'=>"modal",'data-target'=>"#createDetails"]) }}</td>
@@ -74,6 +75,7 @@
                                             @endif
                                         </td>
                                     </tr>
+                                    @endunless
                                 @endforeach
                                 </tbody>
                             </table>

@@ -9,25 +9,25 @@
     <div class="row" xmlns="http://www.w3.org/1999/html">
         <div class="col-md-12">
             <h3 class="text-blue text-uppercase">Applicant :: FEES History</h3>
-            <div class="help-text-top">
-                You can view all Applicant Billing History and search Information here. Also this panel will allow you to perform some actions Like <b>View</b> individual billing history under the column <b>Action</b>.
-            </div><!-- /.box-body -->
         </div><!-- ./col -->
     </div><!-- /.row -->
     <div class="row">
         <div class="col-md-12">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#tab_1" data-toggle="tab">Applicant Fees History</a></li>
+                    <li class="active"></li>
                 </ul>
                 <a href="{{ URL::route('billing-applicant')}}" class="btn-link pull-right"><i class="fa fa-backward text-aqua"></i> Back to Applicant (Fees)</a>
 
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab_1">
 
-                        {{--****************** Filter :Starts ***********************--}}
+                        {{--===================Filter :Starts ============================--}}
+                        
                         {{Form::open(array('route'=> ['applicant-billing-history']))}}
-                        <div class="col-sm-8 ">
+                        <fieldset class="well the-fieldset">
+                            <legend class="the-legend"> SEARCH </legend>
+                        <div class="col-sm-12">
                             <div class="col-sm-4">
                                 {{ Form::label('department_id', 'Department') }}
                                 {{ Form::select('department_id',$department,Input::old('department_id'), array('class' => 'form-control') ) }}
@@ -48,15 +48,12 @@
                                         {{ Form::text('student_name',Input::old('student_name'), array('class'=>'textbox-style','placeholder'=>'Enter name')) }}
                                     </div>
                                 </div>
+                                {{ Form::submit('Filter', array('class'=>'btn btn-success','id'=>'button'))}}
+                                {{ Form::reset('Reset', ['class' => 'btn btn-default','id'=>'button']) }}
                             </div>
                         </div>
-                        <div class="col-sm-8 btn-style">
-                            {{ Form::submit('Filter', array('class'=>'btn','id'=>'button'))}}
-                        </div>
                         {{Form::close()}}
-                        {{-- End Filter--}}
-
-                        {{--****************Applicant*******************--}}
+                        </fieldset>
 
                             <div class="box-body table-responsive ">
                                 <table id="example1" class="table table-bordered table-hover table-striped">
@@ -80,7 +77,7 @@
                                                 <td>{{isset($value->schedule_title) ? $value->schedule_title:''}}</td>
                                                 <td>{{isset($value->amount) ? $value->amount : ''}}</td>
                                                 <td>
-                                                    <a href="{{URL::route('billing.history.show',['id'=>$value->id])}}" class="btn btn-xs btn-default"data-toggle="modal"data-target="#showModal"><i class="fa fa-eye" style="color: green"></i></a>
+                                                    <a href="{{URL::route('billing.history.show',['id'=>$value->id])}}" class="btn btn-xs btn-default"data-toggle="modal"data-target="#showModal"><i class="fa fa-eye text-green"></i></a>
                                                 </td>
                                             </tr>
                                         @endforeach
