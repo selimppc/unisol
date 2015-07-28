@@ -23,7 +23,8 @@
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab_1">
 
-                        {{--****************** Filter :Starts ***********************--}}
+                        {{--================= Filter :Starts ==========================--}}
+
                         {{Form::open(array('route'=> ['student-billing-history']))}}
                         <fieldset class="well the-fieldset">
                             <legend class="the-legend"> SEARCH </legend>
@@ -54,12 +55,11 @@
                                     </div>
                                 </div>
                                 {{ Form::submit('Filter', array('class'=>'btn btn-success','id'=>'button'))}}
+                                {{ Form::reset('Reset', ['class' => 'btn btn-default','id'=>'button']) }}
                             </div>
                         </div>
                         {{Form::close()}}
                         </fieldset>
-
-                        {{--****************Student*******************--}}
 
                             <div class="box-body table-responsive ">
                                 <table id="example" class="table table-bordered table-hover table-striped">
