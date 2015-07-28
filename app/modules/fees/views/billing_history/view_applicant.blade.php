@@ -39,7 +39,6 @@
             </table>
         </div>
         <div>&nbsp;</div>
-        {{--<h3 class="text-purple ">Billing Details Applicant</h3>--}}
         <h4 class="text-blue text-center text-uppercase">Billing Details</h4>
         <br>
         <div class="box-body table-responsive ">
@@ -50,9 +49,9 @@
                 <th>Schedule</th>
                 <th>Cost Per Unit</th>
                 <th>Quantity</th>
-                <th>Total Amount</th>
+                <th>Waiver</th>
                 <th>Waiver Amount</th>
-                <th>Total</th>
+                <th>Total Amount</th>
                 </thead>
                 <tbody>
                 <?php $i=0;$sl=1 ?>
@@ -61,18 +60,12 @@
                         <tr>
                             <td class="sl-no-size">{{$sl++}}</td>
                             <td>{{$value['relBillingItem']['title']}}</td>
-
                             <td>{{$relation_data[$i]->relBillingSchedule->title}}</td>
-
                             <td>{{$value['cost_per_unit']}}</td>
-
                             <td>{{$value['quantity']}}</td>
-
-                            <td>{{$value['total_amount']}}</td>
-
+                            <td>{{isset($value->relWaiver->title)?$value->relWaiver->title:'0'}}</td>
                             <td>{{$value['waiver_amount']}}</td>
-
-                            <td>{{$value['total_amount']-$value['waiver_amount']}}</td>
+                            <td>{{$value['total_amount']}}</td>
 
                         </tr>
                     @endforeach

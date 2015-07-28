@@ -5,7 +5,6 @@
 <div class="modal-body">
     <div style="padding: 10px;">
         <div class="box-body table-responsive ">
-        {{--    <h4 class="text-blue text-center text-uppercase">Student Information</h4>--}}
             <table class="table table-bordered table-hover table-striped">
                 <tr>
                     <td>Name:</td>
@@ -49,9 +48,9 @@
                 <th>Schedule</th>
                 <th>Cost Per Unit</th>
                 <th>Quantity</th>
-                <th>Total Amount</th>
+                <th>Waiver</th>
                 <th>Waiver Amount</th>
-                <th>Amount</th>
+                <th>Total Amount</th>
                 </thead>
                 <tbody>
                 <?php $i=0;$sl=1 ?>
@@ -60,18 +59,12 @@
                         <tr>
                             <td class="sl-no-size">{{$sl++}}</td>
                             <td>{{$value['relBillingItem']['title']}}</td>
-
                             <td>{{$relation_data[$i]->relBillingSchedule->title}}</td>
-
                             <td>{{$value['cost_per_unit']}}</td>
-
                             <td>{{$value['quantity']}}</td>
-
-                            <td>{{$value['total_amount']}}</td>
-
+                            <td>{{isset($value->relWaiver->title)?$value->relWaiver->title:'0'}}</td>
                             <td>{{$value['waiver_amount']}}</td>
-
-                            <td>{{$value['total_amount']-$value['waiver_amount']}}</td>
+                            <td>{{$value['total_amount']}}</td>
 
                         </tr>
                     @endforeach
