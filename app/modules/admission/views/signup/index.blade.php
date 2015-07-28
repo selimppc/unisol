@@ -6,9 +6,8 @@
     @include('layouts._sidebar_public')
 @stop
 @section('content')
-
     <!-- left column -->
-    <div class="col-md-8"style="margin-left: 40px">
+    <div class="col-md-8"style="margin-left: 160px">
         <!-- general form elements -->
         <div class="box box-solid">
             <div class="box-header">
@@ -27,37 +26,47 @@
                         {{ Form::label('username', 'User Name:') }}
                         {{ Form::text('username',Input::old('username'), array('class' => 'form-control','placeholder'=>'Enter your user name')) }}
                     </div>
+
                     <div class="col-lg-6" style="padding-right: 0;">
                          {{ Form::label('email_address', 'Email') }}
                          {{ Form::text('email_address', Input::old('email_address'), array('class'=>'form-control','placeholder'=>'Enter a valid email address','required')) }}
                     </div>
                 </div>
-
+                <br><br><br><br>
                 <div class="control-group">
                      <div class="col-lg-6" style="padding-left: 0;">
-                        {{ Form::label('password', 'Password') }}
-                        {{ Form::password('password', array('placeholder'=>'........','class'=>'form-control')) }}
+                        {{ Form::label('password', 'Password:') }} <span style="color:red;">*</span>
+                        {{ Form::password('password', array('placeholder'=>'','class'=>'form-control')) }}
                      </div>
                      <div class="col-lg-6" style="padding-right: 0;">
-                        {{ Form::label('confirmpassword', 'ConfirmPassword') }}
-                        {{ Form::password('confirmpassword', array('placeholder'=>'........','class'=>'form-control')) }}
+                        {{ Form::label('confirm_password', 'Confirm Password') }}
+                        {{ Form::password('confirm_password', array('placeholder'=>'','class'=>'form-control')) }}
                     </div>
                 </div>
+               <br><br><br><br>
+                <div class="control-group">
+                   {{ Form::label('department_id', 'Department') }}<span class="text-danger">*</span>
+                   {{ Form::select('department_id',$department,Input::old('department_id'),['class'=>'form-control input-sm','required']) }}
+                </div>
+                <br>
                 <div class="control-group">
                     <div class="col-lg-6" style="padding-left: 0;">
                         {{ Form::label('role_id', 'Target Role') }}
-                        {{ Form::select('role_id', array(''=>'Select One','10' =>'Applicant', '2' => 'Teacher','8'=>'Alumni','9' => 'Employee'), '', array('class' => 'form-control'))}}
+                        {{ Form::select('role_id', array(''=>'Select One','1' =>'Admin','2'=>'Teacher', '3' => 'AMW','4'=>'Student','9' => 'Employee','5'=>'Accounts','7'=>'Hrm','8'=>'Alumni','11'=>'CFO'), '', array('class' => 'form-control'))}}
                     </div>
                     <div class="col-lg-6" style="padding-right: 0;">
-                        {{ Form::label('to_date', 'End Date') }}
-                        {{ Form::text('to_date',  Input::old('to_date'),['class'=>'form-control date_picker']) }}
+                        {{ Form::label('join _date', 'Join Date') }}
+                        {{ Form::text('join _date',  Input::old('join _date'),['class'=>'form-control date_picker']) }}
                     </div>
                 </div>
+                <br>
                 <p>&nbsp;</p>
-                {{ Form::submit('Register', array('class' => 'btn btn-success')) }}
-                <a href="{{URL::previous()}}" class="btn btn-default">Close</a>
-                <br>
-                <br>
+                <div class="pull-right">
+                     {{ Form::submit('Submit', array('class' => 'btn btn-primary btn-sm')) }}
+                     <a href="{{URL::previous()}}" class="btn btn-default btn-sm" style="margin-right:8px">Close</a>
+                </div>
+<p>&nbsp;</p>
+
                 {{ Form::close() }}
 
             </div><!-- /.box -->

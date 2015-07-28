@@ -7,7 +7,7 @@
  */
 
 
-Route::any('users','UserSignupController@Userindex');
+Route::any('user-signup','UserSignupController@Userindex');
 Route::any('user/store','UserSignupController@Userstore');
 Route::post('send/email', 'UserSignupController@send_users_email');
 Route::get('register/verify/{verified_code}','UserSignupController@confirm');
