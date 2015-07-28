@@ -19,8 +19,6 @@ class HrEmployeeController extends \BaseController {
         $model = HrEmployee::with('relUser.relUserProfile','relHrBank','relHrSalaryGrade',
             'relDesignation','relDepartment','relCurrency')->get();
 
-//        print_r($model);exit;
-
         $user_list = User::FullNameWithRoleNameList();
 
         $salary_grade = HrSalaryGrade::SalaryGradeLists();
@@ -84,7 +82,9 @@ class HrEmployeeController extends \BaseController {
             $depart = Department::GetDepartmentLists();
             $currency = Currency::CurrencyLists();
             $bank = HrBank::HrBankLists();
-            return View::make('hr::hr.employee.edit', compact('model','salary_grade','depart','currency','bank'));
+            $user_list = User::FullNameWithRoleNameList();
+            $designation = Designation::GetDesignationLists();
+            return View::make('hr::hr.employee.edit', compact('designation','user_list','model','salary_grade','depart','currency','bank'));
         }
     }
 
