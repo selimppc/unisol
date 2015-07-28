@@ -16,7 +16,7 @@
             </a>
         </li>
         <li class="">
-            <a href="{{ URL::to('userss') }}">
+            <a href="{{ URL::to('users') }}">
                 <i class="fa fa-angle-double-right"></i> <span>User Registration</span>
             </a>
         </li>

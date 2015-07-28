@@ -52,17 +52,17 @@ class UserSignupController extends \BaseController {
 
                 $data->username = Input::get('username');
                 $data->password = Hash::make(Input::get('password'));//dd($data->password);
+                $data->csrf_token = Input::get('_token');
+
                 $data->role_id = Input::get('role_id');
 
                 $data->verified_code = $verified_code;
 
                 if ($data->save()) {
-
-                    return View::make('admission::signup.login');
-
+                    Session::flash('message', 'Thanks for signing up!');
+                    return Redirect::to('user');
                 } else {
                     Session::flash('message', 'not sending email. try again');
-
                     return Redirect::to('user')->with('message', 'Signup Here ');
                 }
             }
@@ -113,13 +113,12 @@ class UserSignupController extends \BaseController {
     public function UserLogin()
     {
         $credentials = array(
-            'email'=> Input::get('email'),
+            'username'=> Input::get('username'),
             'password'=>Input::get('password'),
-
         );
 
         if(Auth::check()){
-            $user_id = Auth::user()->username;
+            $user_id = Auth::user()->get()->username;
             $pageTitle = 'You are already logged in!';
             echo $pageTitle;
             //return View::make('usersign/dashboard', compact('user_id', 'pageTitle'));

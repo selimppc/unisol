@@ -15,7 +15,7 @@
                 <h3 class="text-center text-green">Sign Up Here.......</h3>
             </div><!-- /.box-header -->
             <div class="box-body">
-                {{ Form::open(array('class'=>'form-horizontal','url' => 'applicant/store', 'method' =>'post', 'files'=>'true','id'=>'signup-form')) }}
+                {{ Form::open(array('class'=>'form-horizontal','url' => 'user/store', 'method' =>'post', 'files'=>'true','id'=>'signup-form')) }}
 
                 <span class="text-muted ">Please fillup the following fields and be an registered user.</span>
                 <div>&nbsp;</div>

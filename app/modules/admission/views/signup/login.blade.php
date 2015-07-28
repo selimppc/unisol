@@ -12,11 +12,11 @@
 
          <h4 class="form-signin-heading">Login</h4>
 
-         {{ Form::label('email','Username or Email address') }}
+         {{ Form::label('username','Username') }}
          <label for="username">
                  <a href="/user/username_reset">(forgot username?)</a>
          </label>
-        {{ Form::text('email', null, array('class'=>'form-control', 'placeholder'=>'Email Address')) }}
+        {{ Form::text('username', null, array('class'=>'form-control', 'placeholder'=>'Email Address')) }}
         <br>
         {{ Form::label('password','Password') }}
         <label for="password">
