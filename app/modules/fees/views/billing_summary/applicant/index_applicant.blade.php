@@ -16,7 +16,7 @@
                         Add New
                     </button>
 
-                    <a href="{{URL::route('applicant-billing-history')}}" class="btn btn-default fa fa-arrow-right text-light-blue btn-width">View Fees Details</a>
+                    <a href="{{URL::route('applicant-billing-history')}}" class="btn btn-default fa fa-arrow-right text-light-blue btn-width">All Applicant Fees Details</a>
 
 
                 </ul>

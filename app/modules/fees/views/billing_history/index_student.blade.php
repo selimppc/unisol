@@ -28,7 +28,9 @@
 
                         {{--****************** Filter :Starts ***********************--}}
                         {{Form::open(array('route'=> ['student-billing-history']))}}
-                        <div class="col-sm-8 ">
+                        <fieldset class="well the-fieldset">
+                            <legend class="the-legend"> SEARCH </legend>
+                        <div class="col-sm-12">
                             <div class="col-sm-4">
                                 {{ Form::label('department_id', 'Department') }}
                                 {{ Form::select('department_id',$department,Input::old('department_id'), array('class' => 'form-control') ) }}
@@ -54,13 +56,14 @@
                                         {{ Form::text('student_name',Input::old('student_name'), array('class'=>'textbox-style','placeholder'=>'Enter name')) }}
                                     </div>
                                 </div>
+                                {{ Form::submit('Filter', array('class'=>'btn btn-success','id'=>'button'))}}
                             </div>
                         </div>
-                        <div class="col-sm-8 btn-style">
+                       {{-- <div class="col-sm-8 btn-style">
                             {{ Form::submit('Filter', array('class'=>'btn','id'=>'button'))}}
-                        </div>
+                        </div>--}}
                         {{Form::close()}}
-                        {{-- End Filter--}}
+                        </fieldset>
 
                         {{--****************Student*******************--}}
 
