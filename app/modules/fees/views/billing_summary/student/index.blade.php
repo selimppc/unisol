@@ -17,7 +17,7 @@
                         Add New
                     </button>
 
-                    <a href="{{URL::route('student-billing-history')}}" class="btn btn-default fa fa-arrow-right text-light-blue btn-width">View Fees Details</a>
+                    <a href="{{URL::route('student-billing-history')}}" class="btn btn-default fa fa-arrow-right text-light-blue btn-width">All Student Fees Details</a>
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab_1">
@@ -91,7 +91,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">{{HTML::image('assets/icon/media-close-btn.png')}}</button>
-                    <h4 class="modal-title text-center text-purple">Billing Student Head</h4>
+                    <h4 class="modal-title text-center text-purple">Billing Student</h4>
                 </div>
                 <div class="modal-body">
                     {{Form::open(array('route' => array('student-head-save')))}}

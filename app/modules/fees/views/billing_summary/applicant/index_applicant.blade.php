@@ -16,7 +16,7 @@
                         Add New
                     </button>
 
-                    <a href="{{URL::route('applicant-billing-history')}}" class="btn btn-default fa fa-arrow-right text-light-blue btn-width">View Fees Details</a>
+                    <a href="{{URL::route('applicant-billing-history')}}" class="btn btn-default fa fa-arrow-right text-light-blue btn-width">All Applicant Fees Details</a>
 
 
                 </ul>
@@ -94,7 +94,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">{{HTML::image('assets/icon/media-close-btn.png')}}</button>
-                    <h4 class="modal-title text-center text-purple">Billing Applicant Head</h4>
+                    <h4 class="modal-title text-center text-purple">Billing Applicant</h4>
                 </div>
                 <div class="modal-body">
                     {{Form::open(array('route' => array('save-billing-applicant-head')))}}
