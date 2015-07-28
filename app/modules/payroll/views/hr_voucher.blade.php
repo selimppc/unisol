@@ -1,4 +1,4 @@
-{{Form::open(['route'=>'store-ap-payment-voucher', 'files'=>true, 'id'=>'grn-sub-grn-data'])}}
+{{Form::open(['route'=>'hr-salary-voucher-store', 'files'=>true, 'id'=>'grn-sub-grn-data'])}}
 <style type="text/css">
     .unpaid-items tr:hover{
         cursor: pointer;

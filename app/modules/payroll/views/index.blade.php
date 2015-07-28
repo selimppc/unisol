@@ -27,7 +27,6 @@
                     <th> Total Amount </th>
                     <th> status </th>
                     <th> Action</th>
-                    <th> + VAT</th>
                 </tr>
             </thead>
             <tbody>
@@ -42,14 +41,9 @@
                     <td>{{ $values->period }}  </td>
                     <td>{{ $values->total_amount }}  </td>
                     <td>{{Str::title($values->status)}}</td>
-                    <td>@if($values->status != 'Invoiced')
+                    <td>@if($values->status != 'invoiced')
                             <a href="{{ URL::route('hr-create-invoice', ['trn_id'=>$values->id ])  }}" class="btn btn-default btn-xs" title="Create Invoice"><span class="fa fa-pencil"></span> + Invoice</a>
                             @endif
-                    </td>
-                    <td>
-                        @if($values->status != 'Invoiced')
-                            <a href="{{ URL::route('hr-create-invoice', ['trn_id'=>$values->id ]) }}" class="btn btn-xs btn-default" ><i class="fa fa-adjust" style="color: darkslategray" data-toggle="tooltip" data-placement="bottom" title="Add VAT"></i> + VAT</a>
-                        @endif
                     </td>
 
                  </tr>

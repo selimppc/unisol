@@ -43,8 +43,8 @@ Route::group(['prefix' => 'payroll'], function() {
         "uses" => "PayrollController@hr_payment_voucher"
     ]);
 
-    Route::any("store-hr-salary-voucher", [
-        "as"   => "store-hr-salary-voucher",
+    Route::any("hr-salary-voucher-store", [
+        "as"   => "hr-salary-voucher-store",
         "uses" => "PayrollController@store_hr_salary_voucher"
     ]);
 

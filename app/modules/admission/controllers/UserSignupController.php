@@ -23,53 +23,46 @@ class UserSignupController extends \BaseController {
 
     public function Userstore()
     {
+        $input_data = Input::all();
+//        print_r($input_data);exit;
         $token = csrf_token();
 
         $rules = array(
 
-            'email_address' => 'Required|email|unique:user',
-            'username' => 'Required',
-            'password' => 'regex:((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})|required',
-            'confirmpassword' => 'Required|same:password',
-            'targetrole' => 'Required',
+//            'email' => 'required|email|unique:user',
+//            'username' => 'required',
+//            'password' => 'regex:((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})|required',
+//            'confirmpassword' => 'required|same:password',
+//            'role_id' => 'required',
 
         );
 
         $validator = Validator::make(Input::all(), $rules);
 
         if ($validator->Fails()) {
-            Session::flash('message', 'Data not saved');
-            return Redirect::to('user')->withErrors($validator)->withInput();
+            Session::flash('danger', 'Data not saved');
+            return Redirect::back();
 
         } else {
             $verified_code = str_random(30);
             if ($token == Input::get('_token')) {
                 $data = new User();
 
-                $data->email_address = Input::get('email_address');
+                $data->email = Input::get('email_address');
+
                 $data->username = Input::get('username');
                 $data->password = Hash::make(Input::get('password'));//dd($data->password);
-                $data->user_type = Input::get('targetrole');
+                $data->csrf_token = Input::get('_token');
 
+                $data->role_id = Input::get('role_id');
 
                 $data->verified_code = $verified_code;
 
                 if ($data->save()) {
-                    $email=$data->email_address;
-
-                    Mail::send('admission::signup.verify', array('link' => $verified_code),  function($message) use ($email)
-                    {
-                        $message->from('test@edutechsolutionsbd.com', 'Mail Notification');
-                        $message->to($email);
-                       // $message->cc('tanintjt@gmail.com');
-                        $message->subject('Notification');
-                    });
-
-                    return View::make('admission::signup.notification');
-
+                    Session::flash('message', 'Thanks for signing up!');
+                    return Redirect::to('user');
                 } else {
                     Session::flash('message', 'not sending email. try again');
-
                     return Redirect::to('user')->with('message', 'Signup Here ');
                 }
             }
@@ -78,7 +71,7 @@ class UserSignupController extends \BaseController {
 
     public function send_users_email()
     {
-        $users = DB::table('user')->select('email_address')->get();
+        $users = DB::table('user')->select('email')->get();
         $emailList = array();
         foreach($users as $user)
         {
@@ -120,13 +113,12 @@ class UserSignupController extends \BaseController {
     public function UserLogin()
     {
         $credentials = array(
-            'email'=> Input::get('email'),
+            'username'=> Input::get('username'),
             'password'=>Input::get('password'),
-
         );
 
         if(Auth::check()){
-            $user_id = Auth::user()->username;
+            $user_id = Auth::user()->get()->username;
             $pageTitle = 'You are already logged in!';
             echo $pageTitle;
             //return View::make('usersign/dashboard', compact('user_id', 'pageTitle'));
