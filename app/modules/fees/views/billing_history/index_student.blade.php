@@ -54,6 +54,7 @@
                                     </div>
                                 </div>
                                 {{ Form::submit('Filter', array('class'=>'btn btn-success','id'=>'button'))}}
+                                {{ Form::reset('Reset', ['class' => 'btn btn-default','id'=>'button']) }}
                             </div>
                         </div>
                         {{Form::close()}}

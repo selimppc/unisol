@@ -36,7 +36,7 @@
                                     {{ Form::label('batch_id', 'Batch') }}
                                     {{ Form::select('batch_id',$batch, Input::old('batch_id'), array('class' => 'form-control')) }}
                                 </div>
-                                <div class="col-sm-2" style="padding-top: 24px;">
+                                <div class="col-sm-2 btn-padding">
                                     {{ Form::submit('Filter', array('class'=>'btn btn-success','id'=>'button'))}}
                                     {{ Form::reset('Reset', ['class' => 'btn btn-default','id'=>'button']) }}
                                 </div>
