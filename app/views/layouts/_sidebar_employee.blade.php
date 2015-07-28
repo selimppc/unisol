@@ -13,7 +13,7 @@
          </a>
          <ul class="treeview-menu">
 
-             <li><a href="{{ URL::to('hr/leave') }}"></i><i class="fa fa-spinner" style="color:lightseagreen"></i>HR Leave </a></li>
+             <li><a href="{{ URL::to('hr/employee/leave') }}"></i><i class="fa fa-spinner" style="color:lightseagreen"></i>HR Leave </a></li>
              {{--<li><a href="{{ URL::to('hr/provident-fund') }}"></i><i class="fa fa-ticket" style="color: lightcoral"></i>HR Provident Fund </a></li>--}}
          </ul>
     </li>

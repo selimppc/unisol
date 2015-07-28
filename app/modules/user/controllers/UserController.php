@@ -79,6 +79,9 @@ class UserController extends \BaseController {
             if($user_role=="hr"){
                 return Redirect::to("user/hr-dashboard");
             }
+            if($user_role=="employee"){
+                return Redirect::to("user/employee-dashboard");
+            }
         }elseif(Auth::applicant()->check()){
             return Redirect::to("user/applicant-dashboard");
         }else{
@@ -179,7 +182,4 @@ class UserController extends \BaseController {
             $user->save();
         });
     }
-
-
-
 }

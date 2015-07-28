@@ -96,11 +96,6 @@ Route::any('leave',[
     'uses' => 'HrLeaveController@index'
 ]);
 
-Route::any('leave/store',[
-    'as' =>'leave.store',
-    'uses' => 'HrLeaveController@storeLeave'
-]);
-
 Route::any('leave/show/{id}',[
     'as' =>'leave.show',
     'uses' => 'HrLeaveController@showLeave'
@@ -134,6 +129,16 @@ Route::any('leave/comments/{id}',[
 Route::any('update/leave-comments',[
     'as' =>'update.leave.comments',
     'uses' => 'HrLeaveController@updateComments'
+]);
+//hr_employee leave
+Route::any('employee/leave',[
+    'as' =>'employee.leave',
+    'uses' => 'EmployeeController@employeeIndex'
+]);
+
+Route::any('leave/store',[
+    'as' =>'leave.store',
+    'uses' => 'EmployeeController@storeHrLeave'
 ]);
 
 //Leave Type
