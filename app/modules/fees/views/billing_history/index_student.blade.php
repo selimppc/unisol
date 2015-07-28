@@ -84,7 +84,7 @@
                                                 <td>{{isset($value->schedule_title) ? $value->schedule_title:''}}</td>
                                                 <td>{{isset($value->amount) ? $value->amount : ''}}</td>
                                                 <td>
-                                                <a href="{{URL::route('billing.history.student.view',['id'=>$value->id])}}" class="btn btn-xs btn-default"data-toggle="modal"data-target="#showModal"><i class="fa fa-eye text-greent"></i></a>
+                                                <a href="{{URL::route('billing.history.student.view',['id'=>$value->id])}}" class="btn btn-xs btn-default"data-toggle="modal"data-target="#showModal"><i class="fa fa-eye text-green"></i></a>
                                                 </td>
                                             </tr>
                                         @endforeach
