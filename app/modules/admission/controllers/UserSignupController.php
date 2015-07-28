@@ -13,7 +13,8 @@ class UserSignupController extends \BaseController {
 
     public function Userindex()
 	{
-        return View::make('admission::signup.index');
+        $department = array('' => 'Select Department ') + Department::lists('title', 'id');
+        return View::make('admission::signup.index',compact('department'));
 	}
 
     public function create()
@@ -24,48 +25,23 @@ class UserSignupController extends \BaseController {
     public function Userstore()
     {
         $input_data = Input::all();
-//        print_r($input_data);exit;
-        $token = csrf_token();
+        $verified_code = str_random(30);
+        //model
+        $model = new User();
+        $model->email = $input_data['email_address'];
+        $model->username = $input_data['username'];
+        $model->password = $input_data['password'];//dd($data->password);
+        $model->csrf_token = $input_data['_token'];
+        $model->role_id = $input_data['role_id'];
+        $model->verified_code = $verified_code;
 
-        $rules = array(
+        if ($model->save()) {
+            Session::flash('message', "Thanks for signing up! You can login now at <a href='user/login'><b>User Login</b></a>");
 
-//            'email' => 'required|email|unique:user',
-//            'username' => 'required',
-//            'password' => 'regex:((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})|required',
-//            'confirmpassword' => 'required|same:password',
-//            'role_id' => 'required',
-
-        );
-
-        $validator = Validator::make(Input::all(), $rules);
-
-        if ($validator->Fails()) {
-            Session::flash('danger', 'Data not saved');
-            return Redirect::back();
-
-        } else {
-            $verified_code = str_random(30);
-            if ($token == Input::get('_token')) {
-                $data = new User();
-
-                $data->email = Input::get('email_address');
-
-                $data->username = Input::get('username');
-                $data->password = Hash::make(Input::get('password'));//dd($data->password);
-                $data->csrf_token = Input::get('_token');
-
-                $data->role_id = Input::get('role_id');
-
-                $data->verified_code = $verified_code;
-
-                if ($data->save()) {
-                    Session::flash('message', 'Thanks for signing up!');
-                    return Redirect::to('user');
-                } else {
-                    Session::flash('message', 'not sending email. try again');
-                    return Redirect::to('user')->with('message', 'Signup Here ');
-                }
-            }
+            return Redirect::to('user-signup');
+        }else{
+            Session::flash('message', 'not sending email. try again');
+            return Redirect::to('user-signup')->with('message', 'Signup Here ');
         }
     }
 
