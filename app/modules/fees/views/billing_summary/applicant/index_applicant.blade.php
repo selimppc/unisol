@@ -39,8 +39,8 @@
                                 <tbody>
                                 <?php $sl=1;?>
                                 @foreach ($summary_applicant as $value)
-                                    @if($value->status !=='cancel')
-                                    <tr>
+                                    @unless($value->status =='cancel')
+                                        <tr>
                                        <td class="sl-no-size">{{$sl++}}</td>
                                        <td class="b-text">{{ link_to_route($value->status=="open" ? 'billing.details.applicant' : 'billing-applicant-view',$value->relApplicant->first_name.' '.$value->relApplicant->last_name,['id'=>$value->id], ['data-toggle'=>"modal",'data-target'=>"#createModal"]) }}</td>
 
@@ -76,7 +76,7 @@
                                             @endif
                                         </td>
                                     </tr>
-                                    @endif
+                                    @endunless
                                 @endforeach
                                 </tbody>
                             </table>

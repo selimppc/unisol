@@ -22,7 +22,8 @@
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab_1">
 
-                        {{--****************** Filter :Starts ***********************--}}
+                        {{--===================Filter :Starts ============================--}}
+                        
                         {{Form::open(array('route'=> ['applicant-billing-history']))}}
                         <fieldset class="well the-fieldset">
                             <legend class="the-legend"> SEARCH </legend>
@@ -48,12 +49,11 @@
                                     </div>
                                 </div>
                                 {{ Form::submit('Filter', array('class'=>'btn btn-success','id'=>'button'))}}
+                                {{ Form::reset('Reset', ['class' => 'btn btn-default','id'=>'button']) }}
                             </div>
                         </div>
                         {{Form::close()}}
                         </fieldset>
-
-                        {{--****************Applicant*******************--}}
 
                             <div class="box-body table-responsive ">
                                 <table id="example1" class="table table-bordered table-hover table-striped">
@@ -77,7 +77,7 @@
                                                 <td>{{isset($value->schedule_title) ? $value->schedule_title:''}}</td>
                                                 <td>{{isset($value->amount) ? $value->amount : ''}}</td>
                                                 <td>
-                                                    <a href="{{URL::route('billing.history.show',['id'=>$value->id])}}" class="btn btn-xs btn-default"data-toggle="modal"data-target="#showModal"><i class="fa fa-eye" style="color: green"></i></a>
+                                                    <a href="{{URL::route('billing.history.show',['id'=>$value->id])}}" class="btn btn-xs btn-default"data-toggle="modal"data-target="#showModal"><i class="fa fa-eye text-green"></i></a>
                                                 </td>
                                             </tr>
                                         @endforeach
