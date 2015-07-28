@@ -24,7 +24,7 @@
                     <div class="tab-pane active" id="tab_1">
 
                       {{--====================== Filter :Starts ==================--}}
-                        
+
                         {{Form::open(array('route'=> ['billing.setup']))}}
                           <fieldset class="well the-fieldset2">
                             <legend class="the-legend2"> SEARCH </legend>
