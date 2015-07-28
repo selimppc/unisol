@@ -22,7 +22,8 @@
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab_1">
 
-                        {{--****************** Filter :Starts ***********************--}}
+                        {{--===================Filter :Starts ============================--}}
+                        
                         {{Form::open(array('route'=> ['applicant-billing-history']))}}
                         <fieldset class="well the-fieldset">
                             <legend class="the-legend"> SEARCH </legend>
@@ -53,8 +54,6 @@
                         </div>
                         {{Form::close()}}
                         </fieldset>
-
-                        {{--****************Applicant*******************--}}
 
                             <div class="box-body table-responsive ">
                                 <table id="example1" class="table table-bordered table-hover table-striped">

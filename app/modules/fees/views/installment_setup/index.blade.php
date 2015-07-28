@@ -30,7 +30,8 @@
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab_1">
 
-                        {{--****************** Filter :Starts ***********************--}}
+                        {{--================= Filter :Starts =========================--}}
+
                         {{Form::open(array('route'=> ['installment.setup']))}}
                         <fieldset class="well the-fieldset2">
                             <legend class="the-legend2"> SEARCH </legend>
@@ -47,7 +48,7 @@
                             {{Form::close()}}
                         </fieldset>
 
-                        {{--*****************Filter :Ends **************************--}}
+                        {{--=====================Filter :Ends =========================--}}
 
                         <div class="box-body table-responsive ">
                             <table id="example" class="table table-bordered table-hover table-striped">
