@@ -3714,6 +3714,7 @@ fieldset[disabled] .btn-vk.active {
     color: #368009;
 }
 .the-fieldset {
+    width:100%;
     border: 1px groove #368009;
     -webkit-box-shadow:  0px 0px 0px 0px #abf7fa;
     box-shadow:  0px 0px 0px 0px #deecef;

@@ -35,7 +35,7 @@
     <li class="treeview">
         <a href="#">
             <i class="fa  fa-male" style="color: #0044cc"></i>
-            <span> User Account </span>
+            <span> Create Applicant Account </span>
             <i class="fa fa-angle-left pull-right"></i>
         </a>
         <ul class="treeview-menu">
