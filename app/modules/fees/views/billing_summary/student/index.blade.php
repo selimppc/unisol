@@ -143,7 +143,7 @@
                     <strong>Are you sure to Cancel?</strong>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     <a href="#" class="btn btn-danger danger">Cancel</a>
 
                 </div>

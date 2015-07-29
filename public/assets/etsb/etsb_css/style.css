@@ -3615,7 +3615,7 @@ fieldset[disabled] .btn-vk.active {
     word-wrap:break-word;
 }
 
-/*********fees Module style***********/
+/**********************fees Module style*************************/
 
 .radio-inline{
     margin-top: 15px;
@@ -3669,7 +3669,7 @@ fieldset[disabled] .btn-vk.active {
     margin-bottom: 20px;
 }
 
-/*fees student style*/
+/******************fees student style***********************/
 .show_btn{
     margin-top: -27px;
 }
@@ -3705,6 +3705,8 @@ fieldset[disabled] .btn-vk.active {
     font-style: normal;
 
 }
+
+/*******************Search box legend**************************/
 .the-legend {
     border-style: none;
     border-width: 0;
