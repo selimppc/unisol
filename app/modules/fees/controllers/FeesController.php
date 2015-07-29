@@ -497,8 +497,8 @@ class FeesController extends \BaseController {
         $no_installment     = Input::get('no_installment');
         $status             = Input::get('status');
 
-        /****************For View page installment***********
-         **************/
+        /*=======================For View page installment================================*/
+
         $setup = DB::table('installment_setup')
             ->where('installment_setup.batch_id', '=' ,$batch_id)
             ->get();
@@ -524,8 +524,8 @@ class FeesController extends \BaseController {
 
         }else{
 
-            /******************For create page installment*************
-             ****************/
+        /*======================For create page installment=========================*/
+
             $view_details = BillingSetup::with('relBatch', 'relBatch.relDegree','relBatch.relDegree.relDegreeProgram')
                 ->where('batch_id', '=', $batch_id)
                 ->first();
