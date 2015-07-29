@@ -15,12 +15,12 @@ class HrSalaryTransactionHeadController extends \BaseController {
     public function index_hr_salary_transaction()
     {
         $model = HrSalaryTransactionHead::with('relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')
-            ->get();
+            ->orderBy('id', 'DESC')->get();
 
         $emp_name = HrSalaryTransactionHead::with('relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')
             ->first();
 
-        $employee_name_list = array(''=>'Select Employee') + User::EmployeeList();
+        $employee_name_list = array(''=>'Select Employee') + User::GenuineEmployeeList();
 
         $year_list = array(''=>'Select Year') + Year::lists('title','id');
 
