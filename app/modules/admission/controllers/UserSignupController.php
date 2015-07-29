@@ -24,6 +24,7 @@ class UserSignupController extends \BaseController {
 
     public function Userstore()
     {
+
         $input_data = Input::all();
         $verified_code = str_random(30);
         //model
@@ -32,8 +33,11 @@ class UserSignupController extends \BaseController {
         $model->username = $input_data['username'];
         $model->password = $input_data['password'];//dd($data->password);
         $model->csrf_token = $input_data['_token'];
+        $model->department_id = $input_data['department_id'];
         $model->role_id = $input_data['role_id'];
         $model->verified_code = $verified_code;
+        $model->ip_address = getHostByName(getHostName());
+        $model->status = 1;
 
         if ($model->save()) {
             Session::flash('message', "Thanks for signing up! You can login now at <a href='user/login'><b>User Login</b></a>");
