@@ -19,7 +19,7 @@ class HrSalaryController extends \BaseController {
 
         $emp_name = HrBonus::with('relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')->first();
 
-        $employee_name_list = array(''=>'Select Employee') + User::EmployeeList();
+        $employee_name_list = array(''=>'Select Employee') + User::GenuineEmployeeList();
 
         $lists_currency = array('' => 'Select Currency ') + Currency::lists('title','id');
 

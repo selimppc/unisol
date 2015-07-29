@@ -12,8 +12,8 @@
          <div class='form-group'>
              {{ Form::hidden('salary_trn_hd_id', $s_t_id ,Input::old('salary_trn_hd_id')) }}
          </div>
-         <div class='form-group col-sm-2'>
-              {{ Form::hidden('someInfo' ,null,['id'=>'salary-data']) }}
+         <div class='form-group col-sm-2' style="padding-left: 10px">
+              {{ Form::text('someInfo' ,null,['id'=>'salary-data']) }}
          </div>
     </div>
 
@@ -322,7 +322,7 @@ $(function(){
            var a = $('.std_amount').val();
            var b = document.getElementById("salary-data").value;
            var percentage = document.getElementById('salary_transaction_detail_percentage');;
-           var myResult = Math.round(a*100)/b;
+           var myResult = (a*100)/b;
            percentage.value = myResult.toFixed(2);
            $('.std_percentage').prop('disabled', true);
      });

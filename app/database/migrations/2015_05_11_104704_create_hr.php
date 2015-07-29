@@ -349,7 +349,7 @@ class CreateHr extends Migration {
             $table->unsignedInteger('hr_bonus_id')->nullable();
             $table->decimal('tax_rate')->nullable();
             $table->float('tax_amount')->nullable();
-            $table->decimal('percentage', 5, 2);
+            $table->float('percentage', 8, 2);
             $table->float('amount');
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);

@@ -23,7 +23,7 @@ class HrOverTimeController extends \BaseController {
 
         $emp_name = HrEmployee::with('relUser','relUser.relUserProfile')->first();
 
-        $employee_name_list = array(''=>'Select Employee') + User::EmployeeList();
+        $employee_name_list = array(''=>'Select Employee') + User::GenuineEmployeeList();
 
         return View::make('hr::hr.over_time.index',
             compact('model','emp_name','employee_name_list'));
