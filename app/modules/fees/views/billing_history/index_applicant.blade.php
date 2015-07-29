@@ -15,7 +15,7 @@
         <div class="col-md-12">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    <li class="active"></li>
+                    <li class="active"><a href="#tab_1" data-toggle="tab">Applicant Fess History</a></li>
                 </ul>
                 <a href="{{ URL::route('billing-applicant')}}" class="btn-link pull-right"><i class="fa fa-backward text-aqua"></i> Back to Applicant (Fees)</a>
 
