@@ -17,10 +17,9 @@ class HrEmployeeController extends \BaseController {
     {
         $pageTitle = 'HR Employee List';
         $model = HrEmployee::with('relUser.relUserProfile','relHrBank','relHrSalaryGrade',
-            'relDesignation','relDepartment','relCurrency')->get();
+            'relDesignation','relDepartment','relCurrency')->orderBy('id', 'DESC')->get();
 
         $user_list = User::FullNameWithRoleNameList();
-
         $salary_grade = HrSalaryGrade::SalaryGradeLists();
         $depart = Department::GetDepartmentLists();
         $currency = Currency::CurrencyLists();

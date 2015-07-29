@@ -64,7 +64,7 @@ class ApplicantController extends \BaseController
                     });
                     //return View::make('applicant::signup.mail_notification');
                     Session::flash('message', 'Thanks for signing up! Please check your email.');
-                    return Redirect::to('/applicant/registration');
+                    return Redirect::to('applicant/registration');
                 } else {
                     Session::flash('danger', 'Please try again');
                     return Redirect::to('/applicant/registration');

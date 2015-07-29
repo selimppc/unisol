@@ -103,7 +103,7 @@
                                      <b>{{isset($values->created_by)? User::FullName($values->created_by):''}}</b>
                                      </a>
                                 </td>
-                                <td>{{isset($values->forward_to)?$values->relHrAltEmployee->relUser->relUserProfile->first_name.' '.$values->relHrAltEmployee->relUser->relUserProfile->middle_name.' '.$values->relHrAltEmployee->relUser->relUserProfile->last_name:''}}</td>
+                                <td>{{isset($values->forward_to)?$values->relUser->relUserProfile->first_name.' '.$values->relUser->relUserProfile->middle_name.' '.$values->relUser->relUserProfile->last_name:''}}</td>
                                 <td>{{isset($values->hr_leave_type_id)?$values->relHrLeaveType->title:''}}</td>
                                 <td>{{$values->reason}}</td>
                                 <td>{{Str::title($values->leave_duration)}}</td>
