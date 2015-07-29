@@ -31,8 +31,8 @@
                 @if(isset($comments))
                     @foreach($comments as $ct)
                        <p style="padding: 1%; background: #efefef;">
-                       Comments From HR : <b>{{ isset($ct->created_by)? User::FullName($ct->created_by):'' }}</b><br>
-                       Comments :&nbsp; {{ isset($ct->comment)?$ct->comment:''}}
+                         <b>{{ isset($ct->created_by)? User::FullName($ct->created_by):'' }}</b>:
+                         &nbsp; {{ isset($ct->comment)?$ct->comment:''}}
                        </p>
                     @endforeach
                 @endif

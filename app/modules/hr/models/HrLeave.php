@@ -78,7 +78,20 @@ class HrLeave extends Eloquent{
     }
 
     //TODO : Scope Area
+    public function scopeExceptLoggedUser($id){
 
+        $user_id = Auth::user()->get()->id;
+        $role_id = Role::where('code', '=', 'employee')->first()->id;
+
+        $query = array('' => 'Select HR Employee') + $this::join('user_profile', function($query){
+                $query->on('user_profile.user_id', '=', 'user.id');
+            })
+                ->select(DB::raw('CONCAT(user_profile.first_name, " ", user_profile.last_name) as full_name'), 'user.id as user_id')
+                ->where('user.role_id', '=', $role_id)
+                ->where('user.id', '!=', $user_id)
+                ->lists('full_name', 'user_id');
+        return $query;
+    }
 
 
 } 

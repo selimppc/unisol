@@ -1,8 +1,7 @@
 
-
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-    <h4 class="modal-title" id="myModalLabel" style="text-align: center">HR LEAVE</h4>
+    <h4 class="modal-title" id="myModalLabel" style="text-align: center">HR LEAVE..</h4>
 </div>
 
 <div class="modal-body">
@@ -11,7 +10,7 @@
              <table style="font-size: large" class="table table-striped  table-bordered">
                    <tr>
                       <th class="col-lg-6">Forward To :</th>
-                      <td>{{isset($model->forward_to)?$model->relUser->relUserProfile->first_name.' '.$model->relUser->relUserProfile->middle_name.' '.$model->relUser->relUserProfile->last_name:''}}</td>
+                      <td>{{isset($model->forward_to)?$model->relHrEmployee->relUser->relUserProfile->first_name.' '.$model->relHrEmployee->relUser->relUserProfile->middle_name.' '.$model->relHrEmployee->relUser->relUserProfile->last_name:''}}</td>
                    </tr>
 
                    <tr>
@@ -46,7 +45,7 @@
 
                    <tr>
                      <th class="col-lg-6">Alt Hr Employee :</th>
-                     <td>{{isset($model->alt_hr_employee_id)?$model->relHrAltEmployee->relUser->relUserProfile->first_name.' '.$model->relHrAltEmployee->relUser->relUserProfile->middle_name.' '.$model->relHrAltEmployee->relUser->relUserProfile->last_name:''}}</td>
+                     <td>{{isset($model->alt_hr_employee_id)?$model->relHrEmployee->relUser->relUserProfile->first_name.' '.$model->relHrEmployee->relUser->relUserProfile->middle_name.' '.$model->relHrEmployee->relUser->relUserProfile->last_name:''}}</td>
                    </tr>
 
                    <tr>
