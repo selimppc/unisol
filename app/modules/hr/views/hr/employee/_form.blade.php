@@ -59,21 +59,21 @@
 
         <div class='form-group'>
            {{ Form::label('employee_type', 'Employee Type') }}
-           {{ Form::select('employee_type', [''=>'Select Employee Type','permanent'=>'permanent', 'full-time'=>'full-time',
-                    'contractual'=>'contractual', 'part-time'=>'part-time','one-time'=>'one-time',
-                    'project'=>'project', 'support'=>'support'], Input::old('employee_type'),
+           {{ Form::select('employee_type', [''=>'Select Employee Type','permanent'=>'Permanent', 'full-time'=>'Full Time',
+                    'contractual'=>'Contractual', 'part-time'=>'Part Time','one-time'=>'One Time',
+                    'project'=>'Project', 'support'=>'Support'], Input::old('employee_type'),
                     ['class'=>'form-control', 'required']) }}
         </div>
 
         <div class='form-group'>
            {{ Form::label('employee_category', 'Employee Category') }}
-           {{ Form::select('employee_category',[''=>'Select Employee Category','professional'=>'professional','auxiliary'=>'auxiliary',
-                'technical'=>'technical'], Input::old('employee_category'),['class'=>'form-control', 'required']) }}
+           {{ Form::select('employee_category',[''=>'Select Employee Category','professional'=>'Professional','auxiliary'=>'Auxiliary',
+                'technical'=>'Technical'], Input::old('employee_category'),['class'=>'form-control', 'required']) }}
         </div>
 
         <div class='form-group'>
            {{ Form::label('work_shift', 'Work Shift') }}
-           {{ Form::select('work_shift',[''=>'Select Employee Work Shift','day'=>'day','evening'=>'evening','night'=>'night'] ,Input::old('work_shift'),['class'=>'form-control', 'required']) }}
+           {{ Form::select('work_shift',[''=>'Select Employee Work Shift','day'=>'Day','evening'=>'Evening','night'=>'Night'] ,Input::old('work_shift'),['class'=>'form-control', 'required']) }}
         </div>
 
         <div class='form-group'>
