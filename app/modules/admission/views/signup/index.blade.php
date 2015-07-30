@@ -11,14 +11,13 @@
         <!-- general form elements -->
         <div class="box box-solid">
             <div class="box-header" style="background-color: #0490a6">
-                 <h3 class="text-center text-green"><b style="color: #f5f5f5">Sign Up Here.......</b></h3>
+                            <h3 class="text-center text-green"><b style="color: #f5f5f5">Sign Up Here.......</b></h3>
             </div><!-- /.box-header -->
-            <div class="box-body" style="background-color:lavender">
+            <div class="box-body" style="background-color:aliceblue">
                 {{ Form::open(array('class'=>'form-horizontal','url' => 'user/store', 'method' =>'post', 'files'=>'true','id'=>'signup-form')) }}
-
                 <span class="text-muted ">Please fillup the following fields and be an registered user.</span>
                 <div>&nbsp;</div>
-                <span class="text-muted "><em><span style="color:red;">*</span>Marked are required fields </em></span>
+                <span class="text-muted "><em style="color:midnightblue"><span style="color:red;">(*)</span> Marked are required fields </em></span>
                 <div>&nbsp;</div>
 
                 <div class="control-group">
@@ -61,7 +60,7 @@
                 <br><br><br><br>
                 <div class='control-group'>
                    <div class="col-lg-4" style="padding-left: 0;">
-                      {{ Form::label('gender', 'Gender : (Select One)') }}<span class="text-danger">*</span>
+                      {{ Form::label('gender', 'Gender : (Select One)')}}<span class="text-danger">*</span>
                       <div class="form-inline">
                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                           <div class="radio">
@@ -71,9 +70,11 @@
                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                           <div class="radio">
                              {{ Form::radio('gender', 'female', (Input::old('gender') == 'female'), array('id'=>'female', 'class'=>'radio')) }}
-                             {{ Form::label('female', 'Female') }}
+                             {{ Form::label('female', 'Female')}}
                           </div>
                       </div>
+                   </div>
+                   <div style="color:firebrick" id ="errors">
                    </div>
                    <div class="col-lg-4" style="padding-right: 0;">
                        {{ Form::label('date_of_birth', 'Date of Birth:') }}<span class="text-danger">*</span>
@@ -103,7 +104,7 @@
                 <div class="control-group">
                     <div class="col-lg-4" style="padding-left: 0;">
                        {{ Form::label('department_id', 'Department') }}<span class="text-danger">*</span>
-                       {{ Form::select('department_id',$department,Input::old('department_id'),['class'=>'form-control input-sm','required']) }}
+                       {{ Form::select('department_id',$department,Input::old('department_id'),['class'=>'form-control','required']) }}
                     </div>
                     <div class="col-lg-4" style="padding-left: 0;">
                         {{ Form::label('role_id', 'Target Role') }}<span class="text-danger">*</span>
@@ -122,7 +123,6 @@
                      <a href="{{URL::previous()}}" class="btn btn-default btn-sm" style="margin-right:8px">Close</a>
                 </div>
                 <p>&nbsp;</p>
-
                 {{ Form::close() }}
             </div><!-- /.box -->
         </div>

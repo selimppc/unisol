@@ -24,36 +24,42 @@ class UserSignupController extends \BaseController {
         $verified_code = str_random(30);
         //model
         $model = new User();
-        $model->email = $input_data['email_address'];
-        $model->username = $input_data['username'];
-        $model->password = $input_data['password'];//dd($data->password);
-        $model->csrf_token = $input_data['_token'];
-        $model->department_id = $input_data['department_id'];
-        $model->role_id = $input_data['role_id'];
-        $model->verified_code = $verified_code;
-        $model->ip_address = getHostByName(getHostName());
-        $model->status = 1;
-
-        if ($model->save()) {
-            $model1 = new UserProfile();
-            $model1->user_id = $model->id;
-            $model1->first_name = Input::get('first_name');
-            $model1->middle_name = Input::get('middle_name');
-            $model1->last_name = Input::get('last_name');
-            $model1->date_of_birth = Input::get('date_of_birth');
-            $model1->gender = Input::get('gender');
-            $model1->city = Input::get('city');
-            $model1->state = Input::get('state');
-            $model1->country = Input::get('country');
-            $model1->zip_code = Input::get('zip_code');
-            $model1->save();
-
-            Session::flash('message', "Thanks for signing up! You can login now at <a href='user/login'><b>User Login</b></a>");
-            return Redirect::to('user-signup');
-        }else{
-            Session::flash('message', 'not sending email. try again');
-            return Redirect::to('user-signup')->with('message', 'Signup Here ');
+        if($model->validate($input_data)) {
+            $model->email = $input_data['email_address'];
+            $model->username = $input_data['username'];
+            $model->password = $input_data['password'];//dd($data->password);
+            $model->csrf_token = $input_data['_token'];
+            $model->department_id = $input_data['department_id'];
+            $model->role_id = $input_data['role_id'];
+            $model->verified_code = $verified_code;
+            $model->ip_address = getHostByName(getHostName());
+            $model->status = 1;
+            if ($model->save()) {
+                $model1 = new UserProfile();
+                if($model1->validate($input_data)) {
+                    $model1->user_id = $model->id;
+                    $model1->first_name = Input::get('first_name');
+                    $model1->middle_name = Input::get('middle_name');
+                    $model1->last_name = Input::get('last_name');
+                    $model1->date_of_birth = Input::get('date_of_birth');
+                    $model1->gender = Input::get('gender');
+                    $model1->city = Input::get('city');
+                    $model1->state = Input::get('state');
+                    $model1->country = Input::get('country');
+                    $model1->zip_code = Input::get('zip_code');
+                    $model1->save();
+                    Session::flash('message', "Thanks for signing up! You can login now at <a href='user/login'><b>User Login</b></a>");
+                    return Redirect::to('user-signup');
+                }else{
+                    Session::flash('danger', 'Invalid Request. Please Try Again.');
+                    return Redirect::back();
+                }
+            }
+        }else {
+            Session::flash('danger', '. Please Try Again.');
+            return Redirect::back();
         }
+
     }
 
     public function send_users_email()
