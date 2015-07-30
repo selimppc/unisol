@@ -11,8 +11,8 @@
            <i class="fa fa-angle-left pull-right"></i>
        </a>
        <ul class="treeview-menu">
-            <li><a href="{{ URL::to('user/profile-info') }}"> Profile</a></li>
-            <li><a href="{{ URL::to('user/profile-info') }}"> Personal Information </a></li>
+            <li><a href="{{ URL::to('user/profile-info') }}">Personal Information</a></li>
+            <li><a href="{{ URL::to('user/meta-data') }}"> Biographical Information </a></li>
        </ul>
     </li>
 
