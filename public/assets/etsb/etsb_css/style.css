@@ -3630,10 +3630,11 @@ fieldset[disabled] .btn-vk.active {
 .inline-textbox{
     margin-top: 8px;
 }
-.textbox-style
+.search-tbox-style
 {
     -moz-border-radius: 10px;
     padding:2px;
+    width: 305px;
 }
 .btn-style{
  margin-top: 2%;
@@ -3717,6 +3718,7 @@ fieldset[disabled] .btn-vk.active {
 }
 .the-fieldset {
     width:100%;
+  /*  height: 146px;*/
     border: 1px groove #368009;
     -webkit-box-shadow:  0px 0px 0px 0px #abf7fa;
     box-shadow:  0px 0px 0px 0px #deecef;

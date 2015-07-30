@@ -17,7 +17,7 @@
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="#tab_1" data-toggle="tab">Applicant Fees History</a></li>
                 </ul>
-                <a href="{{ URL::route('billing-applicant')}}" class="btn-link pull-right"><i class="fa fa-backward text-aqua"></i> Back to Applicant (Fees)</a>
+                <a href="{{ URL::route('billing-applicant')}}" class="btn-link pull-right"><i class="fa fa-backward text-aqua"></i> Applicant (Fees)</a>
 
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab_1">
@@ -40,12 +40,18 @@
                                 {{ Form::label('batch_id', 'Batch') }}
                                 {{ Form::select('batch_id',$batch, Input::old('batch_id'), array('class' => 'form-control')) }}
                             </div>
+
+                           {{-- <div class="col-sm-4">
+                                {{ Form::text('student_name',Input::old('student_name'), array('class'=>'textbox-style','placeholder'=>'Enter name')) }}
+                                {{ Form::submit('Filter', array('class'=>'btn btn-success','id'=>'button'))}}
+                                {{ Form::reset('Reset', ['class' => 'btn btn-default','id'=>'button']) }}
+                            </div>--}}
                         </div>
                         <div class="col-lg-9 inline-textbox">
                             <div class="form-inline">
                                 <div class="form-group ">
                                     <div class="col-lg-12">
-                                        {{ Form::text('student_name',Input::old('student_name'), array('class'=>'textbox-style','placeholder'=>'Enter name')) }}
+                                        {{ Form::text('student_name',Input::old('student_name'), array('class'=>'search-tbox-style','placeholder'=>'Enter name')) }}
                                     </div>
                                 </div>
                                 {{ Form::submit('Filter', array('class'=>'btn btn-success','id'=>'button'))}}
@@ -54,6 +60,7 @@
                         </div>
                         {{Form::close()}}
                         </fieldset>
+                        {{--===================Filter :Ends ============================--}}
 
                             <div class="box-body table-responsive ">
                                 <table id="example1" class="table table-bordered table-hover table-striped">
