@@ -74,8 +74,7 @@
                           </div>
                       </div>
                    </div>
-                   <div style="color:firebrick" id ="errors">
-                   </div>
+
                    <div class="col-lg-4" style="padding-right: 0;">
                        {{ Form::label('date_of_birth', 'Date of Birth:') }}<span class="text-danger">*</span>
                        {{ Form::text('date_of_birth', Input::old('date_of_birth'),['class'=>'form-control date_picker','required'=>'required','required']) }}

@@ -37,3 +37,8 @@ Route::any("user/meta-data", [
     "uses" => "UserInformationController@metaDataIndex"
 ]);
 
+Route::any("user/meta-data/store", [
+    "as"   => "user/meta-data/store",
+    "uses" => "UserInformationController@storeMetaData"
+]);
+

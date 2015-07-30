@@ -9,6 +9,33 @@ class UserMeta extends Eloquent {
 
     protected $table = 'user_meta';
 
+    protected $fillable = [
+        'user_id', 'fathers_name', 'mothers_name', 'fathers_occupation', 'fathers_phone','freedom_fighter','mothers_occupation','mothers_phone',
+         'national_id','driving_licence','passport','place_of_birth','marital_status','nationality','religion','signature','present_address','permanent_address'
+    ];
+
+    private $errors;
+    private $rules = [
+//        'zip_code' => 'required|numeric',
+//        'gender' => 'required',
+//        'image' => 'required'
+    ];
+
+    public function validate($data)
+    {
+        $validate = Validator::make($data, $this->rules);
+        if ($validate->fails())
+        {
+            $this->errors = $validate->errors();
+            return false;
+        }
+        return true;
+    }
+    public function errors()
+    {
+        return $this->errors;
+    }
+
     public function relUser(){
         return $this->belongsTo('User');
     }

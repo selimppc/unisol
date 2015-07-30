@@ -141,8 +141,8 @@ class UserInformationController extends \BaseController {
         if ($validator->passes()) {
             DB::beginTransaction();
             try {
-                $profile = ApplicantProfile::find($id);
-                $FlashMsg = Auth::applicant()->get()->username;
+                $profile = UserProfile::find($id);
+                $FlashMsg = Auth::user()->get()->username;
                 $imagefile = Input::file('profile_image');
                 $extension = $imagefile->getClientOriginalExtension();
                 $filename = str_random(12) . '.' . $extension;
@@ -164,7 +164,6 @@ class UserInformationController extends \BaseController {
             return Redirect::back()->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
         }
     }
-
  /*User Meta Data*/
 
     public function metaDataIndex(){
@@ -173,5 +172,29 @@ class UserInformationController extends \BaseController {
         $meta_data = UserMeta::where('user_id', '=', $user_id)->first();
         return View::make('user::user_info.meta_data.index',compact('meta_data','user_id'));
     }
+    public function storeMetaData(){
+
+        if($this->isPostRequest()){
+            $input_data = Input::all();
+            $model = new UserMeta();
+            $model->user_id = Input::get('user_id');
+//            print_r($input_data);exit;
+            if($model->validate($input_data)) {
+                DB::beginTransaction();
+                try {
+                    $model->create($input_data);
+                    DB::commit();
+                    Session::flash('message', 'Success !');
+                } catch (Exception $e) {
+                    //If there are any exceptions, rollback the transaction`
+                    DB::rollback();
+                    Session::flash('danger', 'Failed !');
+                }
+            }
+        }
+        return Redirect::back();
+    }
+
+
 
 }
