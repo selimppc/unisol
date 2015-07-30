@@ -1,5 +1,7 @@
 <?php
 
+include("routes_tjt.php");
+
 Route::any("user/login", [
     "as"   => "user/login",
     "uses" => "UserController@login"

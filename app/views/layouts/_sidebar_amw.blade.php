@@ -4,6 +4,17 @@
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
         </a>
     </li>
+    <li class="treeview">
+       <a href="#">
+           <i class="fa  fa-male" style="color: #0072b1"></i>
+           <span>Accounts</span>
+           <i class="fa fa-angle-left pull-right"></i>
+       </a>
+       <ul class="treeview-menu">
+            <li><a href="{{ URL::to('user/profile-info') }}"> Profile</a></li>
+            <li><a href="{{ URL::to('user/profile-info') }}"> Personal Information </a></li>
+       </ul>
+    </li>
 
     <li class="treeview">
         <a href="#">
