@@ -92,8 +92,10 @@ class HrSalaryTransactionDetailController extends \BaseController {
                 'amount'=> Input::get('amount')[$i],
                 'percentage'=> Input::get('percentage')[$i],
             ];
-//            print_r($dt);exit;
+//            print_r($dt);exit;  // single entry before loop complete
+
         }
+//        print_r($dt);exit; // all the entry after loop complete
 
         DB::beginTransaction();
         try{
