@@ -19,7 +19,7 @@ class HrSalaryAdvanceController extends \BaseController
 
         $emp_name = HrSalaryAdvance::with('relHrEmployee','relHrEmployee.relUser','relHrEmployee.relUser.relUserProfile')->first();
 
-        $employee_name_list = array(''=>'Select Employee') + User::EmployeeList();
+        $employee_name_list = array(''=>'Select Employee') + User::GenuineEmployeeList();
 
         return View::make('hr::hr.salary_advance.index',
             compact('model','selected_employee_id','emp_name','employee_name_list'));

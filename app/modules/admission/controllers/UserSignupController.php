@@ -10,16 +10,11 @@ class UserSignupController extends \BaseController {
         return Input::server("REQUEST_METHOD") == "POST";
     }
 
-
     public function Userindex()
 	{
         $department = array('' => 'Select Department ') + Department::lists('title', 'id');
-        return View::make('admission::signup.index',compact('department'));
-	}
-
-    public function create()
-	{
-
+        $countryList = array('' => 'Please Select') + Country::lists('title', 'id');
+        return View::make('admission::signup.index',compact('department','countryList'));
 	}
 
     public function Userstore()
@@ -40,8 +35,20 @@ class UserSignupController extends \BaseController {
         $model->status = 1;
 
         if ($model->save()) {
-            Session::flash('message', "Thanks for signing up! You can login now at <a href='user/login'><b>User Login</b></a>");
+            $model1 = new UserProfile();
+            $model1->user_id = $model->id;
+            $model1->first_name = Input::get('first_name');
+            $model1->middle_name = Input::get('middle_name');
+            $model1->last_name = Input::get('last_name');
+            $model1->date_of_birth = Input::get('date_of_birth');
+            $model1->gender = Input::get('gender');
+            $model1->city = Input::get('city');
+            $model1->state = Input::get('state');
+            $model1->country = Input::get('country');
+            $model1->zip_code = Input::get('zip_code');
+            $model1->save();
 
+            Session::flash('message', "Thanks for signing up! You can login now at <a href='user/login'><b>User Login</b></a>");
             return Redirect::to('user-signup');
         }else{
             Session::flash('message', 'not sending email. try again');
