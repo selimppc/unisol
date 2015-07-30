@@ -54,26 +54,17 @@ class UserInformationController extends \BaseController {
 
         if($this->isPostRequest()){
             $input_data = Input::all();
-//            print_r($input_data);exit;
             $model = new User();
-            /*$model->hr_employee_id = Input::get('hr_employee_id');
-            $model->forward_to = Input::get('forward_to');
-            $model->hr_leave_type_id = Input::get('hr_leave_type_id');
-            $model->reason = Input::get('reason');
-            $model->leave_duration = Input::get('leave_duration');
-            $model->from_date = Input::get('from_date');
-            $model->to_date = Input::get('to_date');
-            $model->alt_contact_no = Input::get('alt_contact_no');
-            $model->alt_hr_employee_id = Input::get('alt_hr_employee_id');
-            $model->status = Input::get('status');*/
             if($model->validate($input_data)) {
                 DB::beginTransaction();
                 try {
                     if($model->create($input_data)){
                         $model1 = new UserProfile();
-                        $model1->user_id = $model1->id;
+                        if($model1->validate($input_data)) {
 
-                        If($model1->create($input_data)){
+                        }
+                        $model1->user_id = $model->id;
+                        if($model1->create($input_data)){
                             DB::commit();
                             Session::flash('message', 'Success !');
                         }
@@ -83,6 +74,7 @@ class UserInformationController extends \BaseController {
                     DB::rollback();
                     Session::flash('danger', 'Failed !');
                 }
+
             }
         }
         return Redirect::back();

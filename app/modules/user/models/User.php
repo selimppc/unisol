@@ -28,10 +28,10 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         // .. more rules here ..
         //'password'         => 'required',
         //'password_confirm' => 'required|same:password'
-        //'name'                  => 'required|between:4,16',
+        'username'                  => 'required',
         //'email'                 => 'required|email',
-        //'password'              => 'required|alpha_num|between:4,8|confirmed',
-        //'password_confirmation' => 'required|alpha_num|between:4,8',
+        'password'              => 'required',
+        'confirm_password' => 'Required|same:password',
     ];
     public function validate($data)
     {

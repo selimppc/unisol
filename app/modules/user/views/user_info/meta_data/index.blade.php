@@ -32,10 +32,10 @@
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab_1">
                         @if($meta_data != null)
-                            <a class="pull-right btn btn-sm btn-success" href="{{ URL::route('user/profile-info/edit',['id'=>$meta_data->id]) }}" data-toggle="modal" data-target="#myeditModal" >Edit Profile <i class="fa fa-arrow-circle-right"></i></a>
+                            <a class="pull-right btn btn-sm btn-success" href="{{ URL::route('user/profile-info/edit',['id'=>$meta_data->id]) }}" data-toggle="modal" data-target="#myeditModal" >Edit Biographical <i class="fa fa-arrow-circle-right"></i></a>
                         @else
                             <button type="button" class="pull-right btn btn-sm btn-info" data-toggle="modal" data-target="#modal">
-                              + Add Profile
+                              + Add Biographical Info
                             </button>
                         @endif
 
@@ -68,7 +68,7 @@
                                 </tr>
                                 <tr>
                                     <th>Is Freedom Fighter ?</th>
-                                    <td>{{$meta_data['freedom_fighter']==1 ? 'Yes' : 'No'}}</td>
+                                    <td>{{isset($meta_data->freedom_fighter) ? $meta_data['freedom_fighter']==1 ? 'Yes' : 'No':''}}</td>
                                 </tr>
                                 <tr>
                                     <th>National ID#</th>
