@@ -35,6 +35,7 @@
                     <th>Total Amount</th>
                     <th>Status</th>
                     <th>Action</th>
+                    <th>Confirmation</th>
                 </tr>
             </thead>
             <tbody>
@@ -60,10 +61,15 @@
                                 <a href="{{ URL::route('salary_transaction.show', ['s_t_id'=>$values->id ])  }}" class="btn btn-default btn-xs" title="Manage Applicant" data-toggle="modal" data-target="#modal-pc"><i style="color: #149bdf" class="fa fa-eye"></i></a>
                                 <a href="{{ URL::route('salary_transaction.edit',['s_t_id'=>$values->id])  }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal-pc"> <i style="color: #7b24dd" class="fa fa-edit"></i></a>
                                 <a data-href="{{ URL::route('salary_transaction.destroy', ['s_t_id'=>$values->id ]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i style="color: red" class="fa fa-trash-o" ></i></a>
-                                <a data-href="{{ URL::route('confirm-salary-transaction', ['st_id'=>$values->id ]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-status-one" href="" title="Confirm"><i style="color: #1a8007" class="fa fa-check-square-o"></i></a>
                         @else
                                 <a href="{{ URL::route('salary_transaction.show_confirm', ['s_t_id'=>$values->id ])  }}" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal-pc"><i style="color: #0005df" class="fa fa-eye"></i></a>
                         @endif
+                    </td>
+                    <td>
+                        @if($values->status=="open")
+                                <a data-href="{{ URL::route('confirm-salary-transaction', ['st_id'=>$values->id ]) }}" class="btn btn-xs btn-success" data-toggle="modal" data-target="#confirm-status-one" href="" title="Click to Confirm" style="color: #470580"><i style="color: #470580" class="fa fa-check-square-o"></i> Confirm</a>
+                        @endif
+
                     </td>
                  </tr>
                 @endforeach
