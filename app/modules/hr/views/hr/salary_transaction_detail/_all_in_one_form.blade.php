@@ -142,16 +142,16 @@ $(function(){
 
 
 //Try 1
-    $sal_trns_dtl_allowance = $("#salary_transaction_detail_allowance").val() ? $("#salary_transaction_detail_allowance option:selected").text() : null;
-    alert($sal_trns_dtl_allowance);
-    $sal_trns_dtl_deduction = $("#salary_transaction_detail_deduction").val() ? $("#salary_transaction_detail_deduction option:selected").text() : null;
-    alert($sal_trns_dtl_deduction);
-    $sal_trns_dtl_ovrtm = $("#salary_transaction_detail_over_time").val() ? $("#salary_transaction_detail_over_time option:selected").text() : null;
-    alert($sal_trns_dtl_ovrtm);
-    $sal_trns_dtl_bonus = $("#salary_transaction_detail_bonus").val() ? $("#salary_transaction_detail_bonus option:selected").text() : null;
-    alert($sal_trns_dtl_bonus);
+    $sal_trns_dtl_allowance = $("#salary_transaction_detail_allowance").val() ? $("#salary_transaction_detail_allowance option:selected").text() : "";
+    $sal_trns_dtl_allowance_val = $("#salary_transaction_detail_allowance").val();
+    $sal_trns_dtl_deduction = $("#salary_transaction_detail_deduction").val() ? $("#salary_transaction_detail_deduction option:selected").text() : "";
+    $sal_trns_dtl_deduction_val = $("#salary_transaction_detail_deduction").val();
+    $sal_trns_dtl_ovrtm = $("#salary_transaction_detail_over_time").val() ? $("#salary_transaction_detail_over_time option:selected").text() : "";
+    $sal_trns_dtl_ovrtm_val = $("#salary_transaction_detail_over_time").val();
+    $sal_trns_dtl_bonus = $("#salary_transaction_detail_bonus").val() ? $("#salary_transaction_detail_bonus option:selected").text() : "";
+    $sal_trns_dtl_bonus_val = $("#salary_transaction_detail_bonus").val();
 
-//Try 20p
+//Try 2
 
 //         if ($sal_trns_dtl_allowance = $("#salary_transaction_detail_allowance").val() )
 //         { $allowance_name = $(".allowance_name option:selected").text() }
@@ -270,10 +270,10 @@ $(function(){
                 $('#test').append("<tr> " +
 
                       "<td><input type='hidden' name='salary_trn_hd_id[]' value='" + $sal_trans_id + "' readonly><input name='type[]' value='"+ $sal_trns_type +"' readonly></td>" +
-                      "<td><input value='"+ $sal_trns_dtl_allowance +"' readonly> <input type='hidden' name='hr_salary_allowance_id[]' value='"+ $sal_trns_dtl_allowance +"' readonly> </td>" +
-                      "<td><input value='"+ $sal_trns_dtl_deduction +"' readonly> <input type='hidden' name='hr_salary_deduction_id[]' value='"+ $sal_trns_dtl_deduction +"' readonly> </td>" +
-                      "<td><input value='"+ $sal_trns_dtl_ovrtm +"' readonly> <input type='hidden' name='hr_over_time_id[]' value='"+ $sal_trns_dtl_ovrtm +"' readonly> </td>" +
-                      "<td><input value='"+ $sal_trns_dtl_bonus +"' readonly> <input type='hidden' name='hr_bonus_id[]' value='"+ $sal_trns_dtl_bonus +"' readonly> </td>" +
+                      "<td><input value='"+ $sal_trns_dtl_allowance +"' readonly> <input type='hidden' name='hr_salary_allowance_id[]' value='"+ $sal_trns_dtl_allowance_val +"' readonly> </td>" +
+                      "<td><input value='"+ $sal_trns_dtl_deduction +"' readonly> <input type='hidden' name='hr_salary_deduction_id[]' value='"+ $sal_trns_dtl_deduction_val +"' readonly> </td>" +
+                      "<td><input value='"+ $sal_trns_dtl_ovrtm +"' readonly> <input type='hidden' name='hr_over_time_id[]' value='"+ $sal_trns_dtl_ovrtm_val +"' readonly> </td>" +
+                      "<td><input value='"+ $sal_trns_dtl_bonus +"' readonly> <input type='hidden' name='hr_bonus_id[]' value='"+ $sal_trns_dtl_bonus_val +"' readonly> </td>" +
                       "<td><input name='percentage[]' value='"+ $sal_trns_dtl_percentage +"' readonly></td>" +
                       "<td><input name='amount[]' value='"+ $sal_trns_dtl_amount +"' readonly></td>" +
 

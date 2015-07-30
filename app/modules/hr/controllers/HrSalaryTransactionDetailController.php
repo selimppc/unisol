@@ -95,7 +95,7 @@ class HrSalaryTransactionDetailController extends \BaseController {
 //            print_r($dt);exit;  // single entry before loop complete
 
         }
-        print_r($dt);exit; // all the entry after loop complete
+//        print_r($dt);exit; // all the entry after loop complete
 
         DB::beginTransaction();
         try{
