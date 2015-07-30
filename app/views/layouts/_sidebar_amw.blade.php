@@ -11,8 +11,8 @@
            <i class="fa fa-angle-left pull-right"></i>
        </a>
        <ul class="treeview-menu">
-            <li><a href="{{ URL::to('user/profile-info') }}"> Profile</a></li>
-            <li><a href="{{ URL::to('user/profile-info') }}"> Personal Information </a></li>
+            <li><a href="{{ URL::to('user/profile-info') }}">Personal Information</a></li>
+            <li><a href="{{ URL::to('user/meta-data') }}"> Biographical Information </a></li>
        </ul>
     </li>
 
@@ -92,10 +92,6 @@
             <li><a href="{{ URL::to('fees/billing/setup') }}"><i class="fa  fa-bars text-red"></i> Billing Setup</a></li>
 
             <li><a href="{{ URL::to('fees/installment/setup') }}"><i class="fa  fa-bars text-blue"></i>Installment Setup</a></li>
-
-            <li><a href="{{ URL::to('fees/applicant-billing-history') }}"><i class="fa  fa-bars text-purple"></i> Fees History Applicant</a></li>
-
-            <li><a href="{{URL::to('fees/student-billing-history')}}"><i class="fa  fa-bars text-orange"></i> Fees History Student</a>
         </ul>
     </li>
 

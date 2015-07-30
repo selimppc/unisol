@@ -13,21 +13,14 @@ class UserInformationController extends \BaseController {
 
 	public function profileIndex(){
 
-//        if(Auth::user()->check()) {
             $user_id = Auth::user()->get()->id;
             $countryList = array('' => 'Please Select') + Country::lists('title', 'id');
             $profile = UserProfile::where('user_id', '=', $user_id)->first();
             return View::make('user::user_info.profile.index',compact('profile','countryList','user_id'));
-//        }
-        /*else {
-            Session::flash('danger', "Please Login As Applicant!  Or if not registered applicant then go <a href='/applicant/signup'>signup from here</a>");
-            return Redirect::route('user/login');
-        }*/
-
     }
 	public function storeProfile()
 	{
-       $data = Input::all();
+       /*$data = Input::all();
         $model = new UserProfile();
         if ($model->validate($data)) {
             $model->user_id = Auth::user()->get()->id;
@@ -57,7 +50,34 @@ class UserInformationController extends \BaseController {
         }else{
             Session::flash('danger', 'Invalid Request');
             return Redirect::back();
+        }*/
+
+        if($this->isPostRequest()){
+            $input_data = Input::all();
+            $model = new User();
+            if($model->validate($input_data)) {
+                DB::beginTransaction();
+                try {
+                    if($model->create($input_data)){
+                        $model1 = new UserProfile();
+                        if($model1->validate($input_data)) {
+
+                        }
+                        $model1->user_id = $model->id;
+                        if($model1->create($input_data)){
+                            DB::commit();
+                            Session::flash('message', 'Success !');
+                        }
+                    }
+                } catch (Exception $e) {
+                    //If there are any exceptions, rollback the transaction`
+                    DB::rollback();
+                    Session::flash('danger', 'Failed !');
+                }
+
+            }
         }
+        return Redirect::back();
 	}
     public function editUserProfile($id){
 
@@ -145,52 +165,13 @@ class UserInformationController extends \BaseController {
         }
     }
 
-        /**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
+ /*User Meta Data*/
 
+    public function metaDataIndex(){
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
-	}
-
+        $user_id = Auth::user()->get()->id;
+        $meta_data = UserMeta::where('user_id', '=', $user_id)->first();
+        return View::make('user::user_info.meta_data.index',compact('meta_data','user_id'));
+    }
 
 }

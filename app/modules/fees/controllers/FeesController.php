@@ -751,7 +751,7 @@ class FeesController extends \BaseController {
     }
 
     /****==========================================================================================
-                             Billing details applicant start
+                            Billing details applicant start
      =========================================================================================****/
 
 
