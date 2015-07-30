@@ -14,7 +14,7 @@ class HrSalaryTransactionDetailController extends \BaseController {
 
     public function index_hr_salary_transaction_detail($s_t_id)
     {
-        $model = HrSalaryTransactionDetail::with('relHrOverTime','relHrBonus','relHrSalaryAllowance','relHrSalaryDeduction')
+        $model = HrSalaryTransactionDetail::with('relHrOverTime','relHrBonus','relHrSalaryAllowance','relHrSalaryDeduction','relHrSalaryTransactionHead')
             ->where('salary_trn_hd_id', $s_t_id)
             ->orderBy('id', 'DESC')
             ->get();
@@ -95,7 +95,7 @@ class HrSalaryTransactionDetailController extends \BaseController {
 //            print_r($dt);exit;  // single entry before loop complete
 
         }
-//        print_r($dt);exit; // all the entry after loop complete
+        print_r($dt);exit; // all the entry after loop complete
 
         DB::beginTransaction();
         try{
