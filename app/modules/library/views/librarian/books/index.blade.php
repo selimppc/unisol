@@ -61,8 +61,9 @@
                                             <td style="color:magenta"><b>No File</b></td>
                                         @else
                                             <td>
-                                                <a href="{{ URL::route('book.read',['book_id'=>$value->id]) }}" target="_blank"><i class="fa fa-tablet" title="Read Book"></i></a>
-                                                <a href="{{ URL::route('book.download',['book_id'=>$value->id]) }}" style="color: blue" ><i class="fa fa-cloud-download" title="Download"></i></a>
+                                                <a href="{{ URL::route('book.read',['book_id'=>$value->id]) }}"><i class="fa fa-book text-aqua" title="Read Book"></i></a>
+
+                                                <a href="{{ URL::route('book.download',['book_id'=>$value->id]) }}"><i class="fa fa-download" title="Download"></i></a>
                                             </td>
                                         @endif
                                         <td>
