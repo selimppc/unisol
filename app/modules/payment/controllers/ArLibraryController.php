@@ -22,18 +22,18 @@ class ArLibraryController extends \BaseController {
 	public function index_library_receivable()
 	{
 		$pageTitle = "Library Transaction History  ";
-		$data = BillingStudentHead::with('relUser')->whereIN('status', ['Confirmed', 'Invoiced'])->latest('id')->get();
-		return View::make('payment::account_receivable.student.index', compact('data','pageTitle'));
+		$data = LibBookTransaction::with('relUser')->whereIN('status', ['Confirmed', 'Invoiced'])->latest('id')->get();
+		return View::make('payment::library.index', compact('data','pageTitle'));
 	}
 
 
 	/*
-     * $grn_id ::
+     * $lib_id ::
      */
-	public function show_library_bill($bsh_id){
-		$bs_head = BillingStudentHead::find($bsh_id);
-		$bs_dt = BillingStudentDetail::where('billing_student_head_id', $bsh_id)->get();
-		return View::make('payment::account_receivable.student.show', compact('bsh_id', 'bs_head', 'bs_dt'));
+	public function show_library_bill($lib_id){
+		$lib_head = LibBookTransaction::find($lib_id);
+		$lib_dt = LibBookFinancialTransaction::where('lib_book_transaction_id', $lib_id)->get();
+		return View::make('payment::library.show', compact('lib_id', 'lib_head', 'lib_dt'));
 	}
 
 
@@ -42,27 +42,27 @@ class ArLibraryController extends \BaseController {
      * create invoice
      * ===============================================
      */
-	public function library_to_invoice( $billing_student_head_id )
+	public function library_to_invoice( $lib_book_trn_id )
 	{
-		$check = BillingStudentDetail::where('billing_student_head_id', $billing_student_head_id)->exists();
+		$check = LibBookFinancialTransaction::where('lib_book_transaction_id', $lib_book_trn_id)->exists();
 		if($check){
 			//Call Store Procedure
-			DB::select('call sp_fees_student_to_invoice(?, ?)', array($billing_student_head_id, Auth::user()->get()->id ) );
+			DB::select('call sp_fees_student_to_invoice(?, ?)', array($lib_book_trn_id, Auth::user()->get()->id ) );
 			Session::flash('message', 'Invoiced Successfully !');
 		}else{
-			Session::flash('info', 'Student Billing Detail is empty. Please add Billing item. And try later!');
+			Session::flash('info', 'Library Billing Detail is empty. Please add Billing item. And try later!');
 		}
 		return Redirect::back();
 	}
 
 
 
-	// manage AR for student
+	// manage AR for Library
 	public function  manage_library_bill(){
 		//
-		$pageTitle = "Student Payment History"; //acc_v_ar_applicant
+		$pageTitle = "Library Payment History"; //acc_v_ar_lib
 		$data = AccVArStudent::get();
-		return View::make('payment::account_receivable.student.student_ar_payable', compact('pageTitle', 'data'));
+		return View::make('payment::library.lib_invoice', compact('pageTitle', 'data'));
 	}
 
 
@@ -79,7 +79,7 @@ class ArLibraryController extends \BaseController {
 			//->where('acc_voucher_head_id', $coa_id)->get();
 			->get();
 
-		return View::make('payment::account_receivable.student.student_ar_voucher', compact(
+		return View::make('payment::library.lib_voucher', compact(
 			'associated_id', 'coa_id', 'unpaid_invoice',
 			'data','year_lists', 'period_lists', 'coa_lists'
 		));
@@ -102,7 +102,7 @@ class ArLibraryController extends \BaseController {
 		$associated_id = Input::get('associated_id');
 
 		// Generate Voucher Number
-		$apr_no = AccTrnNoSetup::where('title', '=', "Account Receivable Voucher")
+		$apr_no = AccTrnNoSetup::where('title', '=', "Library Voucher")
 			->select(DB::raw('CONCAT (code, LPAD(last_number + 1, 8, 0)) as number'))
 			->first()->number;
 

@@ -7,7 +7,7 @@
 </style>
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-     <h4> Payment for the Employee # {{ $associated_id }}  </h4>
+     <h4> Payment for the Library User # {{ $associated_id }}  </h4>
 </div>
 
 <div style="padding: 2%; width: 99%;">
@@ -70,7 +70,7 @@
     <div class="col-sm-6">
         <div class='row'>
             <div class="col-sm-12" style="background-color: #f9f9f9">
-                <h4> Unpaid Invoice of the Employee# {{$associated_id}} </h4>
+                <h4> Unpaid Invoice of the Library User # {{$associated_id}} </h4>
                 <table class="table table-bordered small-header-table" id="amwCourseConfig">
                     <thead>
                         <th>Invoice No</th>
@@ -128,7 +128,7 @@
 
 
 
-@include('payroll::_script')
+@include('payment::library._script')
 {{ HTML::script('assets/etsb/etsb_js/jquery-ui/jquery-ui.min.js')}}
 {{--{{ HTML::script('assets/js/custom.js')}}--}}
 {{ HTML::script('assets/etsb/etsb_js/etsb_custom.js')}}

@@ -38,6 +38,10 @@ class AccChartOfAccounts extends \Eloquent
 
     //TODO : Model Relationship
 
+    public function relHrEmployee(){
+        return $this->belongsTo('HrEmployee', 'associated_id', 'id');
+    }
+
 
 
     // TODO : user info while saving data into table
