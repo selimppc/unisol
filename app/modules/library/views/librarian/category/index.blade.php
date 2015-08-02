@@ -64,7 +64,7 @@
 
     {{-- Modal add new  --}}
     <div id="myModal" class="modal fade">
-        <div class="modal-dialog" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+        <div class="modal-dialog" >
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">{{HTML::image('assets/icon/media-close-btn.png')}}</button>
@@ -81,7 +81,7 @@
     </div>
 
     {{-- Modal for Edit --}}
-    <div class="modal fade" id="edit-modal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal fade" id="edit-modal" tabindex="-1" role="dialog" aria-labelledby="showingModal">
         <div class="modal-dialog">
             <div class="modal-content">
 
@@ -90,7 +90,7 @@
     </div>
 
     {{-- Modal for show --}}
-    <div class="modal fade" id="showModal" tabindex="-1" role="dialog" aria-labelledby="showingModal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal fade" id="showModal" tabindex="-1" role="dialog" aria-labelledby="showingModal">
         <div class="modal-dialog">
             <div class="modal-content">
 
@@ -98,7 +98,7 @@
         </div>
     </div>
     {{-- Modal for delete --}}
-    <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
