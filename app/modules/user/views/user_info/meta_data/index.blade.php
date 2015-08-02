@@ -106,10 +106,10 @@
                                     <th>Permanent Address</th>
                                     <td>{{isset($meta_data->permanent_address) ? $meta_data->permanent_address : ''}}</td>
                                 </tr>
-                                <tr>
+                                {{--<tr>
                                     <th class="col-lg-6">Signature</th>
                                     <td class="etsb-image-doc">{{ isset($meta_data->signature)? $meta_data->signature != null ? HTML::image('/applicant_images/app_meta/'.$meta_data->signature) :'Signature do not added yet.' :''}}</td>
-                                </tr>
+                                </tr>--}}
                             </table>
                         </div>
                     </div>

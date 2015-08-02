@@ -13,7 +13,32 @@ class UserMiscellaneousInfo extends Eloquent {
         return $this->belongsTo('User');
     }
 
+    protected $fillable = [
+        'user_id', 'ever_admit_this_university', 'ever_dismiss', 'academic_honors_received', 'ever_admit_other_university','admission_test_center',
 
+    ];
+
+    private $errors;
+    private $rules = [
+//        'zip_code' => 'required|numeric',
+//        'gender' => 'required',
+//        'image' => 'required'
+    ];
+
+    public function validate($data)
+    {
+        $validate = Validator::make($data, $this->rules);
+        if ($validate->fails())
+        {
+            $this->errors = $validate->errors();
+            return false;
+        }
+        return true;
+    }
+    public function errors()
+    {
+        return $this->errors;
+    }
 
     public static function boot(){
         parent::boot();

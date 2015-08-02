@@ -52,3 +52,25 @@ Route::any("user/meta-data/update/{id}", [
     "uses" => "UserInformationController@updateMetaData"
 ]);
 
+//Miscellaneous_Info
+
+Route::any("user/misc-info", [
+    "as"   => "user/misc-info",
+    "uses" => "UserInformationController@miscIndex"
+]);
+
+Route::any("user/misc-info/store", [
+    "as"   => "user/misc-info/store",
+    "uses" => "UserInformationController@storeMisc"
+]);
+
+Route::any("user/misc-info/edit/{id}", [
+    "as"   => "user/misc-info/edit",
+    "uses" => "UserInformationController@editMiscInfo"
+]);
+
+Route::any("user/misc-info/update/{id}", [
+    "as"   => "user/misc-info/update",
+    "uses" => "UserInformationController@updateMiscInfo"
+]);
+

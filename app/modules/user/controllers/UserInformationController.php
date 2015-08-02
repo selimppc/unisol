@@ -214,5 +214,64 @@ class UserInformationController extends \BaseController {
         }
     }
 
+    public function miscIndex(){
+        $user_id = Auth::user()->get()->id;
+        $data = UserMiscellaneousInfo::where('user_id', '=', $user_id)->first();
+        return View::make('user::user_info.miscellaneous_info.index',compact('data','user_id'));
+    }
 
+    public function storeMisc(){
+        if($this->isPostRequest()){
+            $input_data = Input::all();
+            $model = new UserMiscellaneousInfo();
+            $model->user_id = Input::get('user_id');
+//            print_r($input_data);exit;
+            if($model->validate($input_data)) {
+                DB::beginTransaction();
+                try {
+                    $model->create($input_data);
+                    DB::commit();
+                    Session::flash('message', 'Success !');
+                } catch (Exception $e) {
+                    //If there are any exceptions, rollback the transaction`
+                    DB::rollback();
+                    Session::flash('danger', 'Failed !');
+                }
+            }
+        }
+        return Redirect::back();
+    }
+
+    public function editMiscInfo($id){
+
+        $model = UserMiscellaneousInfo::find($id);
+        $user_id = Auth::user()->get()->id;
+        return View::make('user::user_info.miscellaneous_info._modal.edit', compact('model','user_id'));
+    }
+
+    public function updateMiscInfo($id){
+        $data = Input::all();
+        $model = UserMiscellaneousInfo::find($id);
+
+        if($model->validate($data))
+        {
+            DB::beginTransaction();
+            try {
+                $model->update($data);
+                DB::commit();
+                Session::flash('message', "Successfully Updated");
+            }
+            catch ( Exception $e ){
+                //If there are any exceptions, rollback the transaction
+                DB::rollback();
+                Session::flash('danger', "Invalid Request !");
+            }
+            return Redirect::back();
+        }else{
+            $errors = $model->errors();
+            Session::flash('errors', $errors);
+            return Redirect::back()
+                ->with('errors', 'Input Data Not Valid');
+        }
+    }
 }

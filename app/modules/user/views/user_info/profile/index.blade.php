@@ -7,7 +7,7 @@
 @stop
 @section('content')
     <!-- START CUSTOM TABS -->
-    {{--<h2 class="page-header text-purple tab-text-margin">User Profile</h2>--}}
+    <h2 class="page-header text-purple tab-text-margin">User Profile</h2>
     <div class="row">
         <div class="col-md-12">
             <!-- Custom Tabs -->
@@ -38,11 +38,12 @@
                               + Add Profile
                             </button>
                         @endif
-                        <div class="box-body table-responsive ">
+                        <div class="box-body table-responsive">
                             <table class="table table-striped  table-bordered">
                                 <tr>
                                     <th>Profile Picture</th>
                                        <td>
+                                       @if(isset($profile->image))
                                            @if($profile->image == null)
                                               <a class=" btn-link" href="{{ URL::route('user/profile-info/profile-image',['id'=>$profile->id])}}" data-toggle="modal" data-target="#changeImageModal">
                                                 {{ $profile->image != null ? HTML::image('user_images/profile/'.$profile->image, $profile->image):""}}
@@ -51,11 +52,12 @@
                                               @else
                                               {{ $profile->image != null ? HTML::image('user_images/profile/'.$profile->image, $profile->image):""}}
                                            @endif
+                                        @endif
                                        </td>
                                 </tr>
                                 <tr>
                                     <th>First Name</th>
-                                    <td>{{isset($profile->user_id) ? $profile->user_id : ''}}</td>
+                                    <td>{{isset($profile->first_name) ? $profile->first_name : ''}}</td>
                                 </tr>
                                 <tr>
                                     <th>Middle Name</th>
