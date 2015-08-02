@@ -16,7 +16,7 @@ Route::group(['prefix' => 'library'], function() {
         return 'Thank you so much!';
     });
 
-    /**********Library Book Category Start****************/
+    /*====================Book Category Start======================*/
 
     Route::get('book/category',
         'LibraryController@index'
@@ -45,7 +45,7 @@ Route::group(['prefix' => 'library'], function() {
         'uses' => 'LibraryController@batchdeleteCategory'
     ]);
 
-    /**********Library Book Author Start****************/
+    /*==================Book Author Start=========================*/
 
     Route::get('book/author',
         'LibraryController@indexAuthor'
@@ -74,7 +74,8 @@ Route::group(['prefix' => 'library'], function() {
         'uses' => 'LibraryController@batchdeleteAuthor'
     ]);
 
-    /**********Library Book Publisher Start****************/
+
+    /*=====================Book Publisher Start========================*/
 
     Route::get('book/publisher',
         'LibraryController@indexPublisher'
@@ -103,7 +104,7 @@ Route::group(['prefix' => 'library'], function() {
         'uses' => 'LibraryController@batchdeletePublisher'
     ]);
 
-    /**********Library Book Start****************/
+    /*=======================Book Start==============================*/
 
     Route::get('book/',
         'LibraryController@indexBook'
@@ -140,6 +141,8 @@ Route::group(['prefix' => 'library'], function() {
         'as' =>'book.read',
         'uses' => 'LibraryController@bookRead'
     ]);
+
+    /*=======================Book Transaction Start==============================*/
 
 });
 
