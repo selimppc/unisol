@@ -147,7 +147,6 @@ class UserInformationController extends \BaseController {
 
         Session::flash('message', "Successfully Added Profile Picture!");
         return Redirect::back();
-
     }
  /*User Meta Data*/
 
@@ -283,28 +282,76 @@ class UserInformationController extends \BaseController {
     }
 
     public function extraCurricularStore(){
-        if($this->isPostRequest()){
-            $input_data = Input::all();
-            $model = new UserExtraCurricularActivity();
-            $model->user_id = Input::get('user_id');
-//            print_r($input_data);exit;
-            if($model->validate($input_data)) {
-                DB::beginTransaction();
-                try {
-                    $model->create($input_data);
-                    DB::commit();
-                    Session::flash('message', 'Success !');
-                } catch (Exception $e) {
-                    //If there are any exceptions, rollback the transaction`
-                    DB::rollback();
-                    Session::flash('danger', 'Failed !');
-                }
-            }
-        }
-        return Redirect::back();
+
+         $data = Input::all();
+         $file = $data['certificate_medal'];
+         $model = new UserExtraCurricularActivity();
+         if ($model->validate($data)) {
+             $model->user_id = Auth::user()->get()->id;
+             $model->title = Input::get('title');
+             $model->description = Input::get('description');
+             $model->achievement = Input::get('achievement');
+             if($file){
+                   $imagefile= Input::file('certificate_medal');
+                   $extension = $imagefile->getClientOriginalExtension();
+                   $filename = str_random(12) . '.' . $extension;
+                   $file=strtolower($filename);
+                   $path = public_path("/user_images/certificates/" . $file);
+                   Image::make($imagefile->getRealPath())->resize(800, 800)->save($path);
+                   $model->certificate_medal =$file;
+             }
+             $model->save();
+
+             Session::flash('message', "Successfully Added Information!");
+             return Redirect::back();
+         }else{
+             Session::flash('danger', 'Invalid Request');
+             return Redirect::back();
+         }
     }
 
-    public function viewCM($id){
+    public function viewCertificateMedal($id){
 
+        $model = UserExtraCurricularActivity::find($id);
+        return View::make('user::user_info.extra_curricular._view_certificate_medal',compact('model'));
+    }
+
+    public function editExtraCurricular($id){
+
+        $model = UserExtraCurricularActivity::find($id);
+        $user_id = Auth::user()->get()->id;
+        return View::make('user::user_info.extra_curricular..edit', compact('model','user_id'));
+    }
+
+    public function updateExtraCurricular($id){
+
+        $data = Input::all();
+        $file = $data['certificate_medal'];
+//        print_r($data);exit;
+        $model = UserExtraCurricularActivity::find($id);
+        if ($model->validate($data)) {
+            $model->user_id = Auth::user()->get()->id;
+            $model->title = Input::get('title');
+            $model->description = Input::get('description');
+            $model->achievement = Input::get('achievement');
+
+            if($file){
+                $imagefile = Input::file('certificate_medal');
+                $extension = $imagefile->getClientOriginalExtension();
+                $filename = str_random(12) . '.' . $extension;
+                $file = strtolower($filename);
+                $path = public_path("/user_images/certificates/" . $file);
+                Image::make($imagefile->getRealPath())->resize(800, 800)->save($path);
+                $model->certificate_medal  = $file;
+            }
+
+            $model->save();
+
+            Session::flash('message', "Successfully Updated Information!");
+            return Redirect::back();
+        }else{
+            Session::flash('danger', 'Invalid Request');
+            return Redirect::back();
+        }
     }
 }
