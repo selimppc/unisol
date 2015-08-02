@@ -141,7 +141,7 @@ class CreateLibrary extends Migration {
 
 
 
-        Schema::create('lib_book_financial_transaction', function(Blueprint $table)
+        Schema::create('lib_book_transaction_financial', function(Blueprint $table)
         {
             $table->increments('id', true);
             $table->unsignedInteger('lib_book_transaction_id')->nullable();
@@ -162,7 +162,7 @@ class CreateLibrary extends Migration {
             $table->integer('updated_by', false, 11);
             $table->timestamps();
         });
-        Schema::table('lib_book_financial_transaction', function($table) {
+        Schema::table('lib_book_transaction_financial', function($table) {
             $table->foreign('lib_book_transaction_id')->references('id')->on('lib_book_transaction');
         });
 
@@ -179,7 +179,7 @@ class CreateLibrary extends Migration {
         Schema::drop('lib_settings');
         Schema::drop('lib_books');
         Schema::drop('lib_book_transaction');
-        Schema::drop('lib_book_financial_transaction');
+        Schema::drop('lib_book_transaction_financial');
 
 	}
 

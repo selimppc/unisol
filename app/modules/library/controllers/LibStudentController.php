@@ -138,7 +138,7 @@ class LibStudentController extends \BaseController
                 if ($transaction->save())
                 {
                     // save to lib_book_financial_transaction table
-                    $f_transaction = new LibBookFinancialTransaction();
+                    $f_transaction = new LibBookTransactionFinancial();
                     $f_transaction->lib_book_transaction_id = $transaction->id;
                     $f_transaction->amount = $cb->digital_sell_price;
                     $f_transaction->trn_type = 'commercial';
@@ -182,7 +182,7 @@ class LibStudentController extends \BaseController
 
         $sum = $all_cart_books->sum('digital_sell_price');
 
-        $my_cart_books = LibBookTransaction::with('relLibBook','relLibBookFinancialTransaction')->get();
+        $my_cart_books = LibBookTransaction::with('relLibBook','relLibBookTransactionFinancial')->get();
 
         return View::make('library::student.my_book',compact('all_cart_book_ids','my_cart_books','sum'));
     }
