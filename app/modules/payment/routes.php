@@ -141,6 +141,48 @@ Route::group(['prefix' => 'payment'], function() {
 
 
 
+    /*
+     * =============================================
+     * For Library
+     * =============================================
+     */
+
+    // Account Receivable
+    Route::any("library-receivable-index",[
+        "as"   => "student-receivable-index",
+        "uses" => "ArLibraryController@index_library_receivable"
+    ]);
+
+    Route::any("library-details/{lib_id}",[
+        "as"   => "library-details",
+        "uses" => "ArLibraryController@show_library_bill"
+    ]);
+
+    //create Library invoice
+    Route::any('library-create-invoice/{lib_id}', [
+        'as' => 'library-create-invoice',
+        'uses' => 'ArLibraryController@library_to_invoice'
+    ]);
+
+    //Manage Library Bill AR
+    Route::any('manage-library-bill', [
+        'as' => 'manage-library-bill',
+        'uses' => 'ArLibraryController@manage_library_bill'
+    ]);
+
+    //manage Library Receivable Amount
+    Route::any("Library-bill-voucher/{associated_id}/{coa_id}", [
+        "as"   => "Library-bill-voucher",
+        "uses" => "ArLibraryController@library_bill_voucher"
+    ]);
+
+    // Store Library Payment / Money Receipt
+    Route::any("store-library-voucher", [
+        "as"   => "store-library-voucher",
+        "uses" => "ArLibraryController@store_library_voucher"
+    ]);
+
+
 
 
 

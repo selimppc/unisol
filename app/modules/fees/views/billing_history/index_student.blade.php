@@ -18,47 +18,74 @@
                     <li class="active"><a href="#tab_1" data-toggle="tab">Student Fees History</a></li>
                 </ul>
 
-                <a href="{{ URL::route('billing-student')}}" class="btn-link pull-right"><i class="fa fa-backward text-aqua"></i> Back to Student (Fees)</a>
+                <a href="{{ URL::route('billing-student')}}" class="btn-link pull-right"><i class="fa fa-backward text-aqua"></i> Student (Fees)</a>
 
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab_1">
 
                         {{--================= Filter :Starts ==========================--}}
+                       {{-- <script>
+                            $(document).ready(function(){
+                                $(".the-legend").click(function(){
+                                    $("#search-student-panel").hide();
+                                });
 
-                        {{Form::open(array('route'=> ['student-billing-history']))}}
+                                $(".the-legend").click(function(){
+                                    $("#search-student-panel").show();
+                                });
+                            });
+                        </script>--}}
+                        <script>
+                            $(document).ready(function(){
+                                $("#flip").click(function(){
+                                    $("#panel").slideToggle("slow");
+                                });
+                            });
+                        </script>
+
+
                         <fieldset class="well the-fieldset">
-                            <legend class="the-legend"> SEARCH </legend>
-                        <div class="col-sm-12">
-                            <div class="col-sm-4">
-                                {{ Form::label('department_id', 'Department') }}
-                                {{ Form::select('department_id',$department,Input::old('department_id'), array('class' => 'form-control') ) }}
-                            </div>
-                            <div class="col-sm-4">
-                                {{ Form::label('degree_id', 'Degree') }}
-                                {{ Form::select('degree_id',$degree,Input::old('degree_id'), array('class' => 'form-control') ) }}
-                            </div>
-                            <div class="col-sm-4">
-                                {{ Form::label('batch_id', 'Batch') }}
-                                {{ Form::select('batch_id',$batch, Input::old('batch_id'), array('class' => 'form-control')) }}
-                            </div>
-                        </div>
-                        <div class="col-lg-9 inline-textbox">
-                            <div class="form-inline">
-                                <div class="form-group ">
-                                    <div class="col-lg-12">
-                                        {{ Form::text('student_id',Input::old('student_id'), array('class'=>'textbox-style','placeholder'=>'Enter id')) }} OR
+                            <legend class="the-legend search-cursor" id="flip"> SEARCH </legend>
+                            {{--<div id="search-student-panel" style="display: none">--}}
+                            <div id="panel" >
+                                {{Form::open(array('route'=> ['student-billing-history']))}}
+                                <div class="col-sm-12" >
+                                    <div class="col-sm-4">
+                                        {{ Form::label('department_id', 'Department') }}
+                                        {{ Form::select('department_id',$department,Input::old('department_id'), array('class' => 'form-control') ) }}
+                                    </div>
+                                    <div class="col-sm-4">
+                                        {{ Form::label('degree_id', 'Degree') }}
+                                        {{ Form::select('degree_id',$degree,Input::old('degree_id'), array('class' => 'form-control') ) }}
+                                    </div>
+                                    <div class="col-sm-4">
+                                        {{ Form::label('batch_id', 'Batch') }}
+                                        {{ Form::select('batch_id',$batch, Input::old('batch_id'), array('class' => 'form-control')) }}
                                     </div>
                                 </div>
-                                <div class="form-group ">
-                                    <div class="col-lg-12">
-                                        {{ Form::text('student_name',Input::old('student_name'), array('class'=>'textbox-style','placeholder'=>'Enter name')) }}
+                                <div class="col-lg-9 inline-textbox">
+                                    <div class="form-inline">
+                                        <div class="form-group ">
+                                            <div class="col-lg-12">
+                                                {{ Form::text('student_id',Input::old('student_id'), array('class'=>'search-tbox-style','placeholder'=>'Enter id')) }}
+                                            </div>
+                                        </div>
+                                        <div class="form-group ">
+                                            <div class="col-lg-12">
+                                                {{ Form::text('student_name',Input::old('student_name'), array('class'=>'search-tbox-style','placeholder'=>'Enter name')) }}
+                                            </div>
+                                        </div>
+                                        <div class="form-group ">
+                                            <div class="col-lg-12" style="margin-top: 5px">
+                                                {{ Form::submit('Filter', array('class'=>'btn btn-success','id'=>'button'))}}
+                                                {{ Form::reset('Reset', ['class' => 'btn btn-default','id'=>'button']) }}
+                                            </div>
+                                        </div>
+
                                     </div>
                                 </div>
-                                {{ Form::submit('Filter', array('class'=>'btn btn-success','id'=>'button'))}}
-                                {{ Form::reset('Reset', ['class' => 'btn btn-default','id'=>'button']) }}
+                                {{Form::close()}}
                             </div>
-                        </div>
-                        {{Form::close()}}
                         </fieldset>
 
                         {{--================= Filter :Ends ==========================--}}

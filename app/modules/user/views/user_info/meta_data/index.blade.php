@@ -32,7 +32,7 @@
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab_1">
                         @if($meta_data != null)
-                            <a class="pull-right btn btn-sm btn-success" href="{{ URL::route('user/profile-info/edit',['id'=>$meta_data->id]) }}" data-toggle="modal" data-target="#myeditModal" >Edit Biographical <i class="fa fa-arrow-circle-right"></i></a>
+                            <a class="pull-right btn btn-sm btn-success" href="{{ URL::route('user/meta-data/edit',['id'=>$meta_data->id]) }}" data-toggle="modal" data-target="#myeditModal" >Edit Biographical <i class="fa fa-arrow-circle-right"></i></a>
                         @else
                             <button type="button" class="pull-right btn btn-sm btn-info" data-toggle="modal" data-target="#modal">
                               + Add Biographical Info
@@ -106,10 +106,10 @@
                                     <th>Permanent Address</th>
                                     <td>{{isset($meta_data->permanent_address) ? $meta_data->permanent_address : ''}}</td>
                                 </tr>
-                                {{--<tr>
+                                <tr>
                                     <th class="col-lg-6">Signature</th>
-                                    <td class="etsb-image-doc">{{ $meta_data->signature != null ? HTML::image('/applicant_images/app_meta/'.$meta_data->signature) :'Signature do not added yet.' }}</td>
-                                </tr>--}}
+                                    <td class="etsb-image-doc">{{ isset($meta_data->signature)? $meta_data->signature != null ? HTML::image('/applicant_images/app_meta/'.$meta_data->signature) :'Signature do not added yet.' :''}}</td>
+                                </tr>
                             </table>
                         </div>
                     </div>
@@ -119,9 +119,9 @@
     </div>
 
 
-    {{--{{ Form::open(array('route' => 'user/profile-info/store','files'=>'true')) }}
-         @include('user::user_info.profile._modal')
-    {{ Form::close() }}--}}
+    {{ Form::open(array('route' => 'user/meta-data/store','files'=>'true')) }}
+         @include('user::user_info.meta_data._modal')
+    {{ Form::close() }}
 
     <!-- Modal : edit -->
     <div class="modal fade" id="myeditModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

@@ -365,7 +365,7 @@ class FeesController extends \BaseController {
         $department_id = Input::get('department_id');
         $degree_id = Input::get('degree_id');
         $batch_id = Input::get('batch_id');
-        $name  = Input::get('student_name');
+        $name  = Input::get('applicant_name');
 
         Input::flash();
             $q = new BillingVApplicantHistory();

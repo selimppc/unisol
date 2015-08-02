@@ -16,6 +16,7 @@ class CreateApplicant extends Migration {
             $table->string('username')->unique();
             $table->string('email')->unique();
             $table->string('password', 64);
+            $table->string('applicant_id', 64);
             $table->date('reg_date');
             $table->dateTime('last_visit');
             $table->string('ip_address', 16);

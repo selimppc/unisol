@@ -122,7 +122,7 @@ class CreateLibrary extends Migration {
             $table->dateTime('issue_date');
             $table->dateTime('return_date');
             $table->enum('status', array(
-                'received','returned', 'delay', 'cancel'
+                'received','returned', 'delay', 'cancel', 'purchase','purchase-cancel',
             ));
             $table->integer('created_by', false, 11);
             $table->integer('updated_by', false, 11);

@@ -58,7 +58,7 @@
        </div>
     </div>
     <div class='form-group'>
-       @if(isset($model->image))
+        @if(isset($model->image))
              {{ Form::label('image', 'Profile Image') }}
              {{ HTML::image('user_images/profile/' . $model->image) }}
              {{ Form::file('image',array('multiple'=>true,)) }}
@@ -66,7 +66,7 @@
              <p>&nbsp;</p>
              {{ Form::label('image', 'Select Profile Picture :') }}<span class="text-danger">*</span>
              {{ Form::file('image',array('multiple'=>true)) }}
-       @endif
+        @endif
     </div>
 
     {{ Form::submit('Submit', array('class'=>'pull-right btn btn-info')) }}
