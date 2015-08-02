@@ -41,8 +41,6 @@ class AccVUnpaidinvHr extends \Eloquent
         return $this->belongsTo('AccVoucherHead', 'acc_voucher_head_id', 'id');
     }
 
-
-
     // TODO : user info while saving data into table
     public static function boot(){
         parent::boot();

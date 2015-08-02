@@ -15,7 +15,7 @@
         </tr>
         <tr>
             <td><strong> HR Employee </strong></td>
-            <td>{{ $hr_trn_head->hr_employee_id }}</td>
+            <td>{{ $hr_trn_head->relHrEmployee->employee_id }}</td>
         </tr>
 
         <tr>
@@ -25,21 +25,21 @@
 
         <tr>
             <td><strong> Year </strong></td>
-            <td>{{ $hr_trn_head->year_id }}</td>
+            <td>{{ $hr_trn_head->relYear->title }}</td>
         </tr>
         <tr>
             <td><strong> Month </strong></td>
-            <td>{{ $hr_trn_head->period }}</td>
+            <td>{{ ucfirst($hr_trn_head->period) }}</td>
         </tr>
 
         <tr>
             <td> <strong> Total Amount </strong> </td>
-            <td>{{ $hr_trn_head->total_amount }}</td>
+            <td>{{ round($hr_trn_head->total_amount,2) }}</td>
         </tr>
 
         <tr>
             <td><strong> Status</strong></td>
-            <td>{{ $hr_trn_head->status }}</td>
+            <td>{{ ucfirst($hr_trn_head->status) }}</td>
         </tr>
 
     </table>
@@ -67,12 +67,12 @@
                 @foreach($hr_trn_dt as $values)
                  <tr>
                     <td>{{ Str::title($values->type) }} </td>
-                    <td>{{ $values->hr_salary_allowance_id }}  </td>
-                    <td>{{ $values->hr_salary_deduction_id }}</td>
-                    <td>{{ $values->hr_over_time_id }}</td>
-                    <td>{{ $values->hr_bonus_id }}  </td>
+                    <td>{{ isset($values->hr_salary_allowance_id) ? $values->relHrSalaryAllowance->title : "" }}  </td>
+                    <td>{{ isset($values->hr_salary_deduction_id) ? $values->relHrSalaryDeduction->title : "" }}  </td>
+                    <td>{{ isset($values->hr_over_time_id) ? $values->relHrOverTime->amount : "" }}  </td>
+                    <td>{{ isset($values->hr_bonus_id) ? $values->relHrBonus->title : "" }}  </td>
                     <td>{{ $values->percentage }}</td>
-                    <td>{{ $values->amount }}</td>
+                    <td>{{ round($values->amount,2) }}</td>
                  </tr>
                 @endforeach
                 @else

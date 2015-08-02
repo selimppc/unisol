@@ -31,13 +31,14 @@ class AccVApHr extends \Eloquent
         return $this->errors;
     }
 
-
     //TODO : Model Relationship
     public function relAccChartOfAccounts(){
         return $this->belongsTo('AccChartOfAccounts', 'acc_chart_of_accounts_id', 'id');
     }
 
-
+    public function relHrEmployee(){
+        return $this->belongsTo('HrEmployee', 'associated_id', 'id');
+    }
 
     // TODO : user info while saving data into table
     public static function boot(){
@@ -54,13 +55,8 @@ class AccVApHr extends \Eloquent
         });
     }
 
-
     //TODO : Scope Area
     public function getDateAttribute($date) {
         return Carbon::parse($date)->format('d-M-Y'); //Change the format to whichever you desire
     }
-
-
-
-
 }
