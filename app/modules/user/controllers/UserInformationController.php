@@ -354,4 +354,50 @@ class UserInformationController extends \BaseController {
             return Redirect::back();
         }
     }
+
+//    Supporting Docs..
+     public function indexSDocs(){
+
+         $user_id = Auth::user()->get()->id;
+         $supporting_docs = UserSupportingDoc::where('user_id', '=', $user_id)->first();
+         if(!$supporting_docs){
+             $supporting_docs = new UserSupportingDoc();
+             $supporting_docs->user_id = Auth::user()->get()->id;
+             $supporting_docs->save();
+         }
+         return View::make('user::user_info.supporting_docs.index', compact('supporting_docs', 'doc_type'));
+     }
+
+     public function supportingDocs($doc_type, $sdoc_id){
+
+         $supporting_docs = UserSupportingDoc::where('id', '=', $sdoc_id)->first();
+         if(!$supporting_docs)
+             $supporting_docs = null;
+
+         return View::make('user::user_info.supporting_docs._form', compact('supporting_docs', 'doc_type'));
+     }
+
+    public function sDocsStore()
+    {
+        $data = Input::all();
+        $sdoc = $data['id'] ? UserSupportingDoc::find($data['id']) : new UserSupportingDoc;
+        if ($data['doc_type']=='other') {
+            $sdoc->other = Input::get('other');
+        } else {
+            $file = Input::file('doc_file');
+            $extension = $file->getClientOriginalExtension();
+            $filename = str_random(12) . '.' . $extension;
+            $sdoc_file=strtolower($filename);
+            $path = public_path("/user_images/s_doc/" . $sdoc_file);
+            Image::make($file->getRealPath())->resize(100, 100)->save($path);
+            $sdoc->$data['doc_type'] =$sdoc_file;
+        }
+        if ($sdoc->save())
+            return Redirect::to('user/supporting-docs')->with('message', 'successfully added');
+        else
+            return Redirect::to('user/supporting-docs')->with('message', 'Not Added');
+    }
+
+
+
 }
