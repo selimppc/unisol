@@ -73,7 +73,9 @@
                                                 {{ Form::submit('Confirm', array('class'=>'btn btn-xs btn-warning'))}}
                                                 {{Form::close()}}--}}
 
-                                              <a href="{{ URL::route('status-billing-applicant-head-update', ['id'=>$value->id ])}}" class="btn btn-xs btn-warning" data-toggle="modal" data-target="#confirmStatus" title="Click to Confirm"><i class="fa fa-check-square-o"></i> Confirm</a>
+                                                <a data-href="{{ URL::route('status-billing-applicant-head-update', ['req_id'=>$value->id ]) }}" class="btn btn-xs btn-default" data-toggle="modal" data-target="#confirm-delete" href="" ><i class="fa fa-check-square-o text-green" data-toggle="tooltip" data-placement="bottom" title="Cancel"></i> Confirm</a>
+
+
                                             @endif
                                         </td>
                                     </tr>
@@ -91,7 +93,7 @@
 
     {{-- Modal add new  --}}
     <div id="myModal" class="modal fade">
-        <div class="modal-dialog" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+        <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">{{HTML::image('assets/icon/media-close-btn.png')}}</button>
@@ -133,20 +135,20 @@
         </div>
     </div>
 
-    {{-- Modal for cancel --}}
-    <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    {{-- Modal for cancel and confirm status --}}
+    <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Confirm Cancel</h4>
+                    <h4 class="modal-title" id="myModalLabel">Confirm</h4>
                 </div>
                 <div class="modal-body">
-                    <strong>Are you sure to Cancel?</strong>
+                    <strong>Are you sure!! Do You Want to Confirm It?</strong>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <a href="#" class="btn btn-danger danger">Cancel</a>
+                    <a href="#" class="btn btn-danger danger">Ok</a>
 
                 </div>
             </div>
@@ -154,24 +156,7 @@
     </div>
 
 
-    {{-- Modal for Confirm Status --}}
 
-    <div class="modal fade" id="confirmStatus" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Confirmation</h4>
-                </div>
-                <div class="modal-body">
-                    <strong>Are you sure to Confirm Billing Details?</strong>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    <a href="" class="btn btn-success primary">OK</a>
-                </div>
-            </div>
-        </div>
-    </div>
+
 
 @stop
