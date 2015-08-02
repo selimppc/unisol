@@ -9,7 +9,8 @@ class LibBookTransaction extends Eloquent{
     //TODO :: model attributes and rules and validation
     protected $table='lib_book_transaction';
     protected $fillable = [
-        'user_id', 'lib_books_id','issue_date','return_date','status'
+        'user_id', 'lib_books_id','issue_date','return_date',
+        'tax_rate','tax_amount','total_amount', 'status'
     ];
     private $errors;
     private $rules = [
