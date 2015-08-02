@@ -74,3 +74,20 @@ Route::any("user/misc-info/update/{id}", [
     "uses" => "UserInformationController@updateMiscInfo"
 ]);
 
+//Extra-Curricular Activities
+Route::any("user/extra-curricular", [
+    "as"   => "user/extra-curricular",
+    "uses" => "UserInformationController@extraCurricularIndex"
+]);
+
+Route::any("user/extra-curricular/store", [
+    "as"   => "user/extra-curricular/store",
+    "uses" => "UserInformationController@extraCurricularStore"
+]);
+
+Route::any("user/extra-curricular/view", [
+    "as"   => "user/extra-curricular/view",
+    "uses" => "UserInformationController@extraCurricularStore"
+]);
+
+

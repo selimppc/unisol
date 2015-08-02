@@ -13,6 +13,8 @@
        <ul class="treeview-menu">
             <li><a href="{{ URL::to('user/profile-info') }}">Personal Information</a></li>
             <li><a href="{{ URL::to('user/meta-data') }}"> Biographical Information </a></li>
+            <li><a href="{{ URL::to('user/extra-curricular') }}"> Extra-Curricular Activities </a></li>
+            <li><a href="{{ URL::to('user/misc-info') }}"> Miscellaneous Information </a></li>
        </ul>
     </li>
 

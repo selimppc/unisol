@@ -274,4 +274,37 @@ class UserInformationController extends \BaseController {
                 ->with('errors', 'Input Data Not Valid');
         }
     }
+
+    public function extraCurricularIndex(){
+        $user_id = Auth::user()->get()->id;
+        $data = UserExtraCurricularActivity::where('user_id', '=', $user_id)->get();
+//        print_r($data);exit;
+        return View::make('user::user_info.extra_curricular.index',compact('data','user_id'));
+    }
+
+    public function extraCurricularStore(){
+        if($this->isPostRequest()){
+            $input_data = Input::all();
+            $model = new UserExtraCurricularActivity();
+            $model->user_id = Input::get('user_id');
+//            print_r($input_data);exit;
+            if($model->validate($input_data)) {
+                DB::beginTransaction();
+                try {
+                    $model->create($input_data);
+                    DB::commit();
+                    Session::flash('message', 'Success !');
+                } catch (Exception $e) {
+                    //If there are any exceptions, rollback the transaction`
+                    DB::rollback();
+                    Session::flash('danger', 'Failed !');
+                }
+            }
+        }
+        return Redirect::back();
+    }
+
+    public function viewCM($id){
+
+    }
 }
