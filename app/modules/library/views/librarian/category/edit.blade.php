@@ -27,8 +27,8 @@
             <div>{{ Form::select('status',array('' => 'Select One','open' => 'Open', 'close' => 'Close','active'=>'Active','inactive'=>'Inactive'),$edit_category->status,['class'=>'form-control','required'=>'required']) }}</div>
         </div>
         <div>
-            {{ Form::submit('Submit', array('class'=>'btn btn-xs btn-success')) }}
-            <button class="btn btn-default btn-xs" data-dismiss="modal" type="button">Close</button>
+            {{ Form::submit('Submit', array('class'=>'btn btn-success')) }}
+            <button class="btn btn-default " data-dismiss="modal" type="button">Close</button>
         </div>
         {{ Form::close() }}
     </div>
